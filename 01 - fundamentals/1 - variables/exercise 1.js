@@ -1,5 +1,5 @@
 /* 
-LEÇON – Variables & Références (Version CRAZYDEVS)
+LEÇON – Variables & Références
 ---------------------------------------------------
 
 Bienvenue dans le monde où JS t'apprend pas juste à coder, mais à comprendre la vie secrète des variables.
