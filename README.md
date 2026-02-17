@@ -2,66 +2,81 @@
 
 ## Présentation
 
-MyFunnyJS est un projet d’apprentissage JavaScript conçu pour transformer un débutant en ingénieur JS capable. L’objectif est d’apprendre les concepts fondamentaux et avancés de JavaScript tout en s’amusant avec des exercices créatifs, interactifs et inattendus.
+MyFunnyJS est un projet d’apprentissage JavaScript destiné à transformer un développeur en ingénieur JS. L’objectif est de comprendre profondément le langage, les structures de données, les algorithmes et l’architecture, tout en s’amusant avec des exercices créatifs et inattendus.
 
-Chaque dossier contient des exercices thématiques qui vous permettront de comprendre en profondeur :
+Chaque dossier représente un niveau ou un concept clé avec ses exercices, allant du fondamental au système avancé.
 
-- Variables et références
-- Scope et closures
-- Fonctions comme objets
-- Modèle d’exécution et contexte
-- Programmation asynchrone
-- Structures de données natives
-- Mémoire et performances
-- Patterns et architecture
-- Sécurité et edge cases
-- Programmation fonctionnelle
+---
 
 ## Organisation du projet
 
-Le projet est structuré pour guider l’apprenant du niveau fondamental vers des concepts avancés, avec des exercices progressifs et thématiques.
+---
 
-## Objectifs pédagogiques
+## Philosophie et tips d’ingénieur
 
-1. **Comprendre JavaScript en profondeur**
-   - Différences primitives vs références
-   - Scope et context d’exécution
-   - Fonction comme valeur et closures
-   - Call stack et Event Loop
+### Comprendre ce qui change VRAIMENT
 
-2. **Maîtriser l’asynchrone**
-   - Callbacks, Promises, Async/Await
-   - Microtasks vs Macrotasks
-   - Concurrence et exécution en JS
+- Avant l’IA : la valeur = vitesse + syntaxe + frameworks.
+- Aujourd’hui : la valeur = compréhension + architecture + jugement.
+- L’IA produit le code, mais elle ne raisonne pas. L’ingénieur, lui, optimise, sécurise, choisit les bons patterns.
 
-3. **Structures de données et performance**
-   - Arrays, Objects, Map, Set
-   - Mutation vs immutabilité
-   - Analyse de complexité (Big-O)
+### Ce qu’il faut apprendre
 
-4. **Architecture et patterns**
-   - Patterns classiques (Observer, Factory, Singleton)
-   - Modules ES et CommonJS
-   - Clean Architecture appliquée à JS
+1. Fondamentaux hardcore : algos, structures de données, complexité, systèmes, bases de données.
+2. Architecture : Clean Architecture, microservices, event-driven, scalabilité, caching.
+3. Sécurité : OWASP, injection, XSS, auth flows, hashing.
+4. Performance : profiling, optimisation mémoire, async/concurrency, threading.
+5. IA comme levier : générer, corriger, refactorer, comprendre le code IA, jamais copier-coller aveuglément.
 
-5. **Pratique et fun**
-   - Exercices interactifs, créatifs et inattendus
-   - Scénarios variés : pirates, aliens, monstres, robots, laboratoires magiques
-   - Application directe dans CrazyDevs, la plateforme communautaire pour développeurs
+### Niveau d’ingénierie 2026
+
+- Comprendre système + produit + sécurité.
+- Savoir utiliser l’IA comme copilote.
+- Lire et modifier 20k+ lignes de code efficacement.
+- Penser en terme d’outcome, pas juste de feature.
+
+---
+
+## Concepts fondamentaux à maîtriser
+
+- **Variable = Référence** : primitives vs objets, copier valeur vs copier adresse.
+- **Scope & Context** : global, function, block, closures.
+- **Fonctions comme objets** : passer, retourner, stocker.
+- **Call Stack & Event Loop** : mono-thread, microtasks vs macrotasks.
+- **Structures de données** : Array, LinkedList, Stack, Queue, Heap, BST, AVL, Hash Table, Union-Find, Fenwick Tree, Suffix Array.
+- **Complexité & Big-O** : O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ).
+- **Patterns algorithmiques** : Brute Force, Divide & Conquer, Greedy, Dynamic Programming, Backtracking, Graph Traversal.
+
+---
+
+## Exercices
+
+- **Niveau 1** : Stack sans push/pop, Queue optimisée, hash table simple.
+- **Niveau 2** : Min-Heap, BST insertion/recherche, comparer Array vs LinkedList.
+- **Niveau 3** : Union-Find avec compression, AVL Tree, vérifier cycle dans un graphe.
+
+---
+
+## Bonus Crazy
+
+Exercices thématiques et interactifs qui mélangent tous les concepts appris :  
+pirates, zombies, robots, aliens, laboratoires magiques… le but est d’appliquer JS dans un contexte fun mais réaliste pour comprendre la mutation des variables, références, scope, et async.
+
+---
 
 ## Roadmap
 
-1. **Phase 1 : Fundamentals** – Variables, Scope, Fonctions, Execution Context
-2. **Phase 2 : Async & Event Loop** – Callbacks, Promises, Async/Await, Microtasks
-3. **Phase 3 : Memory & Performance** – Garbage Collection, Mutation, Big-O
-4. **Phase 4 : Data Structures** – Arrays, Objects, Map, Set
-5. **Phase 5 : Patterns & Architecture** – Module pattern, Observer, Factory
-6. **Phase 6 : Bonus Crazy** – Exercices ludiques et interactifs, mélangeant tous les concepts
+1. Fundamentals
+2. Async & Event Loop
+3. Memory & Performance
+4. Data Structures
+5. Functional JS
+6. Runtime Environment
+7. Architecture & Patterns
+8. Security
+9. Edge Cases
+10. Bonus Crazy
 
-## Contribution
+## Autor
 
-Ce projet est open-source. N’hésitez pas à proposer des exercices fun, corriger les exercices existants ou améliorer les explications.
-
-## Licence
-
-Ce projet est sous licence MIT.
+LOVASOA RM
