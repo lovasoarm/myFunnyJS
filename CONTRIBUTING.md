@@ -1,4 +1,4 @@
-## Bienvenue dans le labo
+# Bienvenue dans le labo
 
 Si tu lis ça, c’est que tu veux contribuer à MyFunnyJS.  
 Très bon choix.
@@ -113,4 +113,26 @@ Pose-toi ces questions :
 - Est-ce que ça apprend vraiment quelque chose ?
 - Est-ce que c’est clair ?
 - Est-ce que ça respecte la roadmap ?
-- Est-ce que ça a
+- Est-ce que ça aide à devenir ingénieur logiciel ?
+
+Si la réponse est oui, propose.
+
+---
+
+## Mentalité
+
+On ne forme pas des machines à taper du code.  
+On forme des ingénieurs capables de :
+
+- Comprendre des systèmes
+- Structurer une solution
+- Optimiser
+- Sécuriser
+- Penser en profondeur
+
+Si tu contribues dans cet esprit, tu es au bon endroit.
+
+---
+
+**Auteur**  
+Lovasoa RM
