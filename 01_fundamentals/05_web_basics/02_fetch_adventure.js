@@ -351,3 +351,66 @@ Juste des pages mortes.
 
 Fin de l’aventure fetch.
 */
+
+/*
+BONUS: TRY/CATCH/finally
+try {
+  // code qui peut planter
+} catch(e) {
+  // si ça plante → on arrive ici
+} finally {
+  // s'exécute TOUJOURS, que ça plante ou pas
+}
+
+ex:
+async function loadData() {
+  console.log("⏳ Chargement...");
+
+  try {
+    let response = await fetch("https://jsonplaceholder.typicode.com/users");
+    if (!response.ok) throw new Error("Erreur HTTP : " + response.status);
+
+    let data = await response.json();
+    console.log("Données reçues :", data.length, "users");
+
+  } catch(e) {
+    console.log("Erreur :", e.message);
+
+  } finally {
+    console.log("Chargement terminé."); // s'affiche toujours
+    // idéal pour cacher un spinner, fermer une connexion...
+  }
+}
+
+loadData();
+
+
+Ce qui s'affiche si tout va bien :
+
+⏳ Chargement...
+ Données reçues : 10 users
+ Chargement terminé.
+
+Ce qui s'affiche si erreur :
+⏳ Chargement...
+Erreur : Erreur HTTP : 404
+Chargement terminé.  ← finally s'exécute quand même
+
+
+// Sans throw — l'erreur passe inaperçue
+if (!response.ok) return; // on sort silencieusement
+
+// Avec throw — on force le catch à se déclencher
+if (!response.ok) throw new Error("Erreur HTTP : " + response.status);
+//                                 ↑ catch(e) reçoit ce message dans e.message
+
+### Résumé
+
+try     → code risqué
+catch   → plan B si ça plante
+finally → s'exécute TOUJOURS (spinner, log, nettoyage)
+throw   → lancer manuellement une erreur vers le catch
+
+Cas d'usage de finally : cacher un spinner de chargement, fermer une connexion base de données, logger la fin d'une opération — peu importe si ça a réussi ou échoué.
+
+  */
