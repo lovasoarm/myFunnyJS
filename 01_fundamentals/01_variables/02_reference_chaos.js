@@ -100,5 +100,3 @@ let team = [
   { name: "Beta", hp: 100 },
   { name: "Gamma", hp: 100 },
 ];
-
-// Ton code ici

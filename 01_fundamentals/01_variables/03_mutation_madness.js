@@ -54,7 +54,7 @@ let deepMonsters = monsters.map(monster => ({
 
 Pour objets très imbriqués :
 
-let deepMonsters = structuredClone(monsters);
+let deepMonsters = structuredClone(monsters); (deep copy version simplifiée)
 
 ----------------------------------
 POURQUOI C’EST CRUCIAL ?

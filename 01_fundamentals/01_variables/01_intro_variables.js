@@ -37,5 +37,3 @@ let team = [
   { name: "Zombie2", hp: 100 },
   { name: "Zombie3", hp: 100 },
 ];
-
-// Ton code ici pour backupTeam et les modifications des hp

@@ -184,8 +184,51 @@ parent.append(li);
 
 Différence ?
 
-append accepte texte + multiple nodes.
 appendChild accepte un seul node.
+append accepte texte + multiple nodes. ex: Tous les autres cas → append (plus flexible)
+parent.append(node1, node2, "du texte");
+
+ex:
+Le HTML de départ
+html<ul id="liste"></ul>
+<p id="résumé"></p>
+Avec append — tout en une fois
+javascriptconst liste = document.querySelector("#liste");
+
+// Créer plusieurs éléments
+const item1 = document.createElement("li");
+item1.textContent = "🍎 Pommes";
+
+const item2 = document.createElement("li");
+item2.textContent = "🥛 Lait";
+
+const item3 = document.createElement("li");
+item3.textContent = "🍞 Pain";
+
+// Tout ajouter d'un coup
+liste.append(item1, item2, item3);
+
+Résultat dans le DOM :
+
+- 🍎 Pommes
+- 🥛 Lait
+- 🍞 Pain
+
+ex2:
+Mix node + texte brut
+javascriptconst résumé = document.querySelector("#résumé");
+
+const span = document.createElement("span");
+span.textContent = "3 articles";
+span.style.fontWeight = "bold";
+
+// Texte + node + texte, en une seule ligne
+résumé.append("Tu as ", span, " dans ton panier.");
+
+Résultat :
+Tu as 3 articles dans ton panier.
+       ↑ en gras
+
 
 ===========================================================
 5) EVENTS — SYSTÈME D’INTERACTION
@@ -207,6 +250,9 @@ element.addEventListener("click", handler);
 Toujours séparer logique et structure.
 Jamais d’attribut onclick dans HTML.
 
+=> À éviter — onclick dans le HTML
+ex: html<button onclick="maFonction()">Clique</button>
+
 Pourquoi ?
 
 Séparation des responsabilités.
@@ -226,13 +272,35 @@ event.currentTarget = élément attaché
 
 Ingénieur comprend la différence.
 
----
+ex: 
+<div id="parent">
+  <button id="enfant">Clique moi</button>
+</div>
+parent.addEventListener("click", function(event) {
+  console.log(event.target);        // <button id="enfant"> ← là où le clic a eu lieu
+  console.log(event.currentTarget); // <div id="parent">   ← là où l'écouteur est attaché
+});
 
 Empêcher comportement natif :
 
 event.preventDefault();
 
 Sinon un formulaire recharge la page.
+
+ex:
+Sans preventDefault :
+javascriptform.addEventListener("submit", function(event) {
+  console.log("Formulaire soumis !");
+  // La page recharge instantanément → le console.log disparaît
+});
+
+Avec preventDefault:
+javascriptform.addEventListener("submit", function(event) {
+  event.preventDefault(); // Stoppe le rechargement
+
+  const valeur = document.querySelector("input").value;
+  console.log("Nom saisi :", valeur); // On peut traiter les données
+});
 
 ===========================================================
 6) EVENT BUBBLING — PHÉNOMÈNE FONDAMENTAL
@@ -285,6 +353,22 @@ for (...) {
   parent.appendChild(newElement);
 }
 
+ex:
+Le mauvais pattern — insertion en boucle
+javascriptconst liste = document.querySelector("ul");
+
+for (let i = 0; i < 1000; i++) {
+  const li = document.createElement("li");
+  li.textContent = `Item ${i}`;
+
+  liste.appendChild(li); // ← touche le DOM 1000 fois
+}
+Ce qui se passe :
+Iteration 1 → Reflow + Repaint
+Iteration 2 → Reflow + Repaint
+Iteration 3 → Reflow + Repaint
+... × 1000 -> 1000 reflows. Le navigateur souffre.
+
 Meilleur :
 
 Créer un DocumentFragment.
@@ -302,6 +386,58 @@ parent.append(fragment);
 
 Une seule insertion.
 Moins de reflow.
+
+ex:
+const liste = document.querySelector("ul");
+
+// Fragment = conteneur léger qui vit en mémoire, pas dans le DOM
+const fragment = document.createDocumentFragment();
+
+for (let i = 0; i < 1000; i++) {
+  const li = document.createElement("li");
+  li.textContent = `Item ${i}`;
+
+  fragment.append(li); // ← touche uniquement la mémoire
+}
+
+liste.append(fragment); // ← touche le DOM UNE seule fois
+
+Ce qui se passe :
+
+Iterations 1 à 1000 → travail en mémoire (rapide ⚡)
+Insertion finale    → 1 seul Reflow + Repaint
+
+### Visualiser la différence
+
+-> Sans fragment :
+
+[DOM]  ←── li  (reflow)
+[DOM]  ←── li  (reflow)
+[DOM]  ←── li  (reflow)
+... × 1000
+
+
+-> Avec fragment :
+
+[Mémoire] ←── li
+[Mémoire] ←── li
+[Mémoire] ←── li
+... × 1000
+[DOM] ←── fragment entier  (1 seul reflow)
+
+Ce qu'est vraiment un DocumentFragment :
+javascriptconst fragment = document.createDocumentFragment();
+
+// C'est un nœud léger — pas de tag HTML, pas de style, pas de layout
+// Il sert uniquement de "sac" temporaire pour grouper des éléments
+
+fragment.append(li1, li2, li3);
+
+// Quand tu l'injectes dans le DOM,
+// le fragment lui-même disparaît — seuls ses enfants sont insérés
+liste.append(fragment);
+// → liste contient li1, li2, li3
+// → fragment est maintenant vide
 
 ===========================================================
 8) MENTALITÉ INGÉNIEUR DOM
