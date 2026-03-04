@@ -68,5 +68,3 @@ La Team Closure.
 7) Réfléchis : qui voit quoi en mémoire ?
 
 */
-
-// Ton code ici

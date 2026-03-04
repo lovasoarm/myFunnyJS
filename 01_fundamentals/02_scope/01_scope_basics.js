@@ -88,7 +88,6 @@ La Team Scope.
 Comprends bien : **scope = zone de vie de ta variable**.  
 C’est la base avant de te lancer dans les closures, context et event loop.
 */
-
 let hero = "Link";
 
 function adventure() {
@@ -97,5 +96,3 @@ function adventure() {
 }
 
 adventure();
-
-// Ton code pour tester les blocs

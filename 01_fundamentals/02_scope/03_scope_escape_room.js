@@ -85,7 +85,4 @@ Explique avec tes mots :
 
 Ne passe pas au chapitre suivant si tu ne comprends pas
 qui garde quoi en mémoire.
-
 */
-
-// Ton code ici
