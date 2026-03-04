@@ -105,8 +105,9 @@ Même lui ne s’aime pas.
 Donc on teste avec :
 
 Number.isNaN(value)
-
-Toujours.
+NB: isNaN("hello")        // true  ← convertit d'abord en nombre, puis teste
+Number.isNaN("hello") // false ← teste strictement sans conversion
+=>Number.isNaN() est plus fiable car il retourne true uniquement si la valeur est réellement NaN, sans conversion de type implicite.
 
 -----------------------------------------------------------
 3) BOOLEAN — LA PSYCHOLOGIE DE JS
