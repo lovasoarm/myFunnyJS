@@ -1,8 +1,8 @@
-# SCOPE ESCAPE ROOM — EXERCICES DE CLOSURE
+# SCOPE ESCAPE ROOM : EXERCICES DE CLOSURE
 
 Bienvenue dans la salle verrouillée du scope. La porte est fermée. Le code est la clé.
 
-**Objectif :** comprendre réellement comment une **closure** fonctionne — c'est-à-dire une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée.
+**Objectif :** comprendre réellement comment une **closure** fonctionne : c'est-à-dire une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée.
 
 Ici tu ne codes pas juste. Tu réfléchis :
 
@@ -12,7 +12,7 @@ Ici tu ne codes pas juste. Tu réfléchis :
 
 ---
 
-## NIVEAU 1 — LE COFFRE SECRET
+## NIVEAU 1 : LE COFFRE SECRET
 
 1. Crée une fonction `createVault(secret)`
 2. Stocke `secret` dans une variable locale
@@ -37,7 +37,7 @@ vault2("unicorn"); // Access granted
 
 ---
 
-## NIVEAU 2 — LE PIÈGE DU COMPTEUR
+## NIVEAU 2 : LE PIÈGE DU COMPTEUR
 
 1. Crée une fonction `createLimitedCounter(limit)`
 2. À l'intérieur, crée une variable `count = 0`
@@ -63,7 +63,7 @@ counter2(); // 1  ← pas de contamination entre les deux
 
 ---
 
-## NIVEAU 3 — LA BOUCLE MAUDITE
+## NIVEAU 3 : LA BOUCLE MAUDITE
 
 Lis ce code. Ne le lance pas encore. **Réfléchis d'abord.**
 

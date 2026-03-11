@@ -1,4 +1,4 @@
-# CLOSURE TRAP — FERMETURES & PIÈGES
+# CLOSURE TRAP : FERMETURES & PIÈGES
 
 Bienvenue dans le monde des **closures** : une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit terminée.
 
@@ -18,7 +18,7 @@ function makeCounter() {
 
 Crée ton propre test et observe ce que retourne la fonction à chaque appel.
 
-> À chaque appel de la fonction retournée, `count` persiste. Elle n'est pas réinitialisée — c'est la closure en action.
+> À chaque appel de la fonction retournée, `count` persiste. Elle n'est pas réinitialisée : c'est la closure en action.
 
 ---
 
@@ -34,13 +34,13 @@ for (var i = 1; i <= 3; i++) {
 
 Réfléchis avant de lancer. Que va afficher `i` ?
 
-> `var` n'est pas block-scoped : toutes les fonctions dans la boucle partagent la **même** variable `i`. Au moment où les `setTimeout` s'exécutent, la boucle est déjà terminée — `i` vaut `4`.
+> `var` n'est pas block-scoped : toutes les fonctions dans la boucle partagent la **même** variable `i`. Au moment où les `setTimeout` s'exécutent, la boucle est déjà terminée : `i` vaut `4`.
 
 ---
 
 ## 3) COMMENT RÉSOUDRE
 
-**Solution 1 — `let` à la place de `var` :**
+**Solution 1 : `let` à la place de `var` :**
 
 ```javascript
 for (let i = 1; i <= 3; i++) {
@@ -52,7 +52,7 @@ for (let i = 1; i <= 3; i++) {
 
 `let` est block-scoped : chaque itération crée sa propre variable `i`.
 
-**Solution 2 — IIFE (fonction immédiatement appelée) pour capturer la valeur :**
+**Solution 2 : IIFE (fonction immédiatement appelée) pour capturer la valeur :**
 
 ```javascript
 for (var i = 1; i <= 3; i++) {
@@ -72,9 +72,9 @@ L'IIFE crée un nouveau scope à chaque itération et capture la valeur courante
 
 ## POURQUOI C'EST CRUCIAL ?
 
-- **Callbacks** — fonction passée pour être appelée plus tard
-- **Event listeners** — fonction qui réagit à un événement
-- **Async** — code qui s'exécute après un délai ou une promesse
+- **Callbacks** : fonction passée pour être appelée plus tard
+- **Event listeners** : fonction qui réagit à un événement
+- **Async** : code qui s'exécute après un délai ou une promesse
 
 Comprendre le piège te permet d'éviter des **bugs invisibles**. Les closures permettent aussi de créer des fonctions avec une "mémoire" privée et fiable.
 

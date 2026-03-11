@@ -1,6 +1,6 @@
-# FUNCTION FACTORY — USINE À FONCTIONS
+# FUNCTION FACTORY : USINE À FONCTIONS
 
-On va créer des fonctions **qui fabriquent d'autres fonctions**. C'est comme une usine à clones — mais version JS, sans les implications éthiques.
+On va créer des fonctions **qui fabriquent d'autres fonctions**. C'est comme une usine à clones : mais version JS, sans les implications éthiques.
 
 ---
 
@@ -30,18 +30,18 @@ Chaque appel à `makePlayer` crée une **nouvelle fonction indépendante**, avec
 
 - Chaque fonction garde **sa propre mémoire** grâce à la closure
 - Tu fabriques des fonctions **sur mesure** sans copier-coller
-- Ton scope global reste propre — pas de dizaines de fonctions redondantes qui traînent
+- Ton scope global reste propre : pas de dizaines de fonctions redondantes qui traînent
 - Pattern utilisé partout : factories, builders, event listeners, middleware...
 
-> C'est la différence entre faire 10 sandwichs à la main et avoir une machine qui les fait pour toi — à la demande, avec les ingrédients que tu choisis.
+> C'est la différence entre faire 10 sandwichs à la main et avoir une machine qui les fait pour toi : à la demande, avec les ingrédients que tu choisis.
 
 ---
 
 ## 3) TERMES TECHNIQUES
 
-**Closure** — une fonction qui se souvient des variables de son environnement parent, même après que celui-ci ait terminé son exécution.
+**Closure** : une fonction qui se souvient des variables de son environnement parent, même après que celui-ci ait terminé son exécution.
 
-**Factory** — une fonction qui produit d'autres fonctions (ou objets) à la demande, selon les paramètres qu'on lui passe.
+**Factory** : une fonction qui produit d'autres fonctions (ou objets) à la demande, selon les paramètres qu'on lui passe.
 
 ```
 makePlayer("Boby", 100)  →  nouvelle fonction avec "Boby" et 100 verrouillés

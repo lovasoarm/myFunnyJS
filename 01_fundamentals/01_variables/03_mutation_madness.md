@@ -1,4 +1,4 @@
-# MUTATION MADNESS — SHALLOW VS DEEP COPY
+# MUTATION MADNESS : SHALLOW VS DEEP COPY
 
 Bienvenue dans le chaos ultime.
 
@@ -42,13 +42,13 @@ Si tu ne comprends pas ça, tu vas créer des **bugs invisibles**.
 
 ## COMMENT FAIRE UNE VRAIE COPIE ?
 
-**Shallow** — copie le tableau uniquement :
+**Shallow** : copie le tableau uniquement :
 
 ```javascript
 let shallowMonsters = [...monsters];
 ```
 
-**Deep manuelle** — copie les objets imbriqués :
+**Deep manuelle** : copie les objets imbriqués :
 
 ```javascript
 let deepMonsters = monsters.map((monster) => ({
@@ -57,7 +57,7 @@ let deepMonsters = monsters.map((monster) => ({
 }));
 ```
 
-**Deep native** — pour des structures très imbriquées :
+**Deep native** : pour des structures très imbriquées :
 
 ```javascript
 let deepMonsters = structuredClone(monsters);
@@ -69,10 +69,10 @@ let deepMonsters = structuredClone(monsters);
 
 ## POURQUOI C'EST CRUCIAL ?
 
-- **React / Vue** — le state doit rester immuable
-- **Backend** — éviter de modifier un objet partagé par erreur
-- **Architecture** — sécurité mémoire
-- **Performance** — éviter des mutations surprises
+- **React / Vue** : le state doit rester immuable
+- **Backend** : éviter de modifier un objet partagé par erreur
+- **Architecture** : sécurité mémoire
+- **Performance** : éviter des mutations surprises
 
 ---
 

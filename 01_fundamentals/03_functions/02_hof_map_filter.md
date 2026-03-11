@@ -1,4 +1,4 @@
-# HIGH ORDER FUNCTIONS — MAP & FILTER
+# HIGH ORDER FUNCTIONS : MAP & FILTER
 
 Bienvenue dans le labo des fonctions qui manipulent des fonctions. _(Fonctionception.)_
 
@@ -47,7 +47,7 @@ console.log(numbers); // [1, 2, 3] ← intact
 Points clés :
 
 - `map` ne **jamais** modifie le tableau original
-- prend une fonction en argument — c'est elle qui décide la transformation
+- prend une fonction en argument : c'est elle qui décide la transformation
 - retourne toujours un tableau de **même longueur**
 
 > Pense à `map` comme une chaîne de montage : chaque élément passe par ta fonction et ressort transformé de l'autre côté.
@@ -68,7 +68,7 @@ console.log(points); // [10, 5, 8, 3] ← intact
 
 Points clés :
 
-- `filter` = un videur à l'entrée du club — il ne laisse passer que ceux qui passent la condition
+- `filter` = un videur à l'entrée du club : il ne laisse passer que ceux qui passent la condition
 - retourne un tableau potentiellement **plus court** que l'original
 - tableau original **toujours intact**
 
@@ -83,7 +83,7 @@ Points clés :
 
 - Code **plus court, plus lisible**, moins de boucles `for` manuelles
 - Parfait pour manipuler des collections : joueurs, scores, produits, utilisateurs...
-- C'est la base du style **fonctionnel** en JS — et de tout ce que tu feras en React
+- C'est la base du style **fonctionnel** en JS : et de tout ce que tu feras en React
 
 > Maîtriser `map` et `filter`, c'est passer de "je subis les tableaux" à "je les plie à ma volonté".
 

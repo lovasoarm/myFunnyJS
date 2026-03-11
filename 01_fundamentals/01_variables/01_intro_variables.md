@@ -6,11 +6,11 @@
 
 ## 1. Variable = Référence ?
 
-**Primitives** — `number`, `string`, `boolean`
+**Primitives** : `number`, `string`, `boolean`
 - Tu copies la **valeur directement**.
 - Chaque variable vit de façon **indépendante** : modifier l'une ne touche pas l'autre.
 
-**Objets** — `array`, `object`, `function`
+**Objets** : `array`, `object`, `function`
 - Tu ne copies pas la maison, tu copies **la clé**.
 - Deux variables peuvent pointer sur la **même maison** : si tu modifies l'intérieur via l'une, l'autre le voit aussi.
 
@@ -18,7 +18,7 @@
 
 ## 2. Pourquoi c'est un piège classique ?
 
-Tu modifies un objet en croyant ne pas toucher l'autre variable — **chaos invisible**.
+Tu modifies un objet en croyant ne pas toucher l'autre variable : **chaos invisible**.
 
 Cas fréquents :
 - Tableaux partagés entre deux scopes
@@ -35,7 +35,7 @@ Cas fréquents :
 
 ---
 
-## Exercice — Team Crazy Zombies
+## Exercice : Team Crazy Zombies
 
 ### Objectif
 
@@ -61,7 +61,7 @@ let team = [
 
 ### Ce que tu vas découvrir
 
-`backupTeam` et `team` sont la **même référence** — chaque modification via l'une se reflète dans l'autre. Le "backup" n'en est pas un.
+`backupTeam` et `team` sont la **même référence** : chaque modification via l'une se reflète dans l'autre. Le "backup" n'en est pas un.
 
 ---
 

@@ -1,4 +1,4 @@
-# SCOPE BASICS — GLOBAL, LOCAL, BLOCK
+# SCOPE BASICS : GLOBAL, LOCAL, BLOCK
 
 Bienvenue dans le royaume des portées.
 
@@ -55,9 +55,9 @@ console.log(blockVar); // ReferenceError — le bloc est terminé
 
 | Mot-clé | Scope                             |
 | ------- | --------------------------------- |
-| `var`   | function scope — ignore les blocs |
-| `let`   | block scope — safe                |
-| `const` | block scope — safe                |
+| `var`   | function scope : ignore les blocs |
+| `let`   | block scope : safe                |
+| `const` | block scope : safe                |
 
 > Règle simple : n'utilise jamais `var`. Préfère toujours `let` ou `const`.
 
