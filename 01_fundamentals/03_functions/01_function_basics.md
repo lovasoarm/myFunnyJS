@@ -1,4 +1,4 @@
-# FUNCTION BASICS — UNE FONCTION EST UN OBJET VIVANT
+# FUNCTION BASICS : UNE FONCTION EST UN OBJET VIVANT
 
 Arrête de croire qu'une fonction = juste du code.
 
@@ -78,7 +78,7 @@ execute(function () {
 });
 ```
 
-On passe une fonction à une autre fonction. Ça s'appelle un **callback** — une fonction donnée à une autre pour être exécutée plus tard.
+On passe une fonction à une autre fonction. Ça s'appelle un **callback** : une fonction donnée à une autre pour être exécutée plus tard.
 
 C'est la base de :
 
@@ -105,7 +105,7 @@ let fn = outer();
 fn(); // Inside
 ```
 
-Chaque appel à `outer` crée une **nouvelle fonction** et la retourne. Chaque fonction retournée peut capturer son **environnement lexical** — la zone mémoire qui l'entoure au moment de sa création.
+Chaque appel à `outer` crée une **nouvelle fonction** et la retourne. Chaque fonction retournée peut capturer son **environnement lexical** : la zone mémoire qui l'entoure au moment de sa création.
 
 Et là, tu entres dans le monde des closures.
 
@@ -206,4 +206,4 @@ Si tu ne comprends pas ça, tu **subis** le langage.
 // Ton code ici
 ```
 
-> Comprends. Ne regarde pas juste le résultat. Réfléchis à la **référence** — deux noms, un seul objet en mémoire.
+> Comprends. Ne regarde pas juste le résultat. Réfléchis à la **référence** : deux noms, un seul objet en mémoire.
