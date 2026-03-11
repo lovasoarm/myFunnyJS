@@ -1,4 +1,4 @@
-# SCOPE BASICS — GLOBAL, LOCAL, BLOCK
+# SCOPE BASICS : GLOBAL, LOCAL, BLOCK
 
 Bienvenue dans le royaume des portées.
 
