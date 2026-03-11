@@ -35,7 +35,7 @@ Cas fréquents :
 
 ---
 
-## Exercice — Team Crazy Zombies
+## Exercice : Team Crazy Zombies
 
 ### Objectif
 
