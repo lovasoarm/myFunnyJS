@@ -14,7 +14,6 @@ Le mot d'ordre : **apprendre sérieusement en s'amusant**. Chaque dossier est un
 MyFunnyJS/
 ├── README.md                          # Présentation générale, roadmap & vision CrazyDevs
 ├── CONTRIBUTING.md                    # Comment contribuer sans tout péter
-├── ROADMAP.md                         # Parcours Software Engineer complet, étape par étape
 │
 ├── 01_fundamentals/                   # Les bases qui font les vrais ingénieurs
 │   ├── 01_variables/                  # Variables = Super Pouvoir
