@@ -10,22 +10,25 @@ Le mot d’ordre : **apprendre sérieusement en s’amusant**. Chaque dossier es
 
 ## Organisation du bazar (a.k.a dossier (juste éstimation))
 
+```
 MyFunnyJS/
-├─ README.md # Ce doc incroyable que tu lis
-├─ CONTRIBUTING.md # Comment contribuer sans faire exploser GitHub
-├─ 01_fundamentals/ # Les bases JS et universelles
-├─ 02_async/ # Event Loop, Promises, async, micro/macrotasks
-├─ 03_memory_performance/ # GC, copies, mutations, Big-O, profiling
-├─ 04_data_structures/ # Arrays, LinkedList, Stack, Queue, Heap, BST, AVL, Hash, Graphs
-├─ 05_algorithms/ # Sorting, Searching, DP, Greedy, Backtracking, Graph Traversal
-├─ 06_functional_js/ # HOF, composition, pure functions, currying
-├─ 07_runtime_env/ # Browser, Node, streams, buffers
-├─ 08_architecture_patterns/ # Module, Observer, Factory, Singleton, MVC, Event-driven
-├─ 09_security/ # XSS, CSRF, Injection, Auth, Hashing
-├─ 10_edge_cases/ # NaN, undefined, floating point, objets qui se rebellent
-├─ 11_bonus_crazy/ # Zombies, pirates, robots, aliens, laboratoires magiques
-├─ 12_projects/ # Petits projets intégrateurs, CrazyDevs ready
-└─ 13_tools/ # Snippets, helpers, scripts utiles pour survivre
+├── README.md                  # Ce doc incroyable que tu lis
+├── CONTRIBUTING.md            # Comment contribuer sans tout casser
+│
+├── 01_fundamentals/           # Les bases JS et universelles
+├── 02_async/                  # Event Loop, Promises, async/await
+├── 03_memory_performance/     # GC, mutations, Big-O, profiling
+├── 04_data_structures/        # Arrays, LinkedList, Stack, Queue, Hash, Graphs...
+├── 05_algorithms/             # Sorting, DP, Greedy, Backtracking...
+├── 06_functional_js/          # HOF, composition, currying, pure functions
+├── 07_runtime_env/            # Browser, Node.js, streams, buffers
+├── 08_architecture_patterns/  # MVC, Observer, Factory, Event-driven...
+├── 09_security/               # XSS, CSRF, Auth, Hashing
+├── 10_edge_cases/             # NaN, undefined, floating point...
+├── 11_bonus_crazy/            # 🧟 Zombies, pirates, aliens & magie noire
+├── 12_projects/               # Projets intégrateurs CrazyDevs
+└── 13_tools/                  # Snippets et helpers pour survivre
+```
 
 ---
 
