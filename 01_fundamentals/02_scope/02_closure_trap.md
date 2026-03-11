@@ -1,4 +1,4 @@
-# CLOSURE TRAP — FERMETURES & PIÈGES
+# CLOSURE TRAP : FERMETURES & PIÈGES
 
 Bienvenue dans le monde des **closures** : une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit terminée.
 
