@@ -12,6 +12,7 @@ Le mot d'ordre : **apprendre sérieusement en s'amusant**. Chaque dossier est un
 
 ```
 MyFunnyJS/
+<<<<<<< HEAD
 ├── README.md                          # Présentation générale, roadmap & vision CrazyDevs
 ├── CONTRIBUTING.md                    # Comment contribuer sans tout péter
 ├── ROADMAP.md                         # Parcours Software Engineer complet, étape par étape
@@ -235,6 +236,24 @@ MyFunnyJS/
     ├── 03_array_utils.js              # Utilitaires tableaux avancés
     ├── 04_benchmark.js                # Mesurer les perfs de n'importe quoi
     └── 05_debug_toolkit.js            # Toolkit debug pour survivre
+=======
+├── README.md                  # Ce doc incroyable que tu lis
+├── CONTRIBUTING.md            # Comment contribuer sans tout casser
+│
+├── 01_fundamentals/           # Les bases JS et universelles
+├── 02_async/                  # Event Loop, Promises, async/await
+├── 03_memory_performance/     # GC, mutations, Big-O, profiling
+├── 04_data_structures/        # Arrays, LinkedList, Stack, Queue, Hash, Graphs...
+├── 05_algorithms/             # Sorting, DP, Greedy, Backtracking...
+├── 06_functional_js/          # HOF, composition, currying, pure functions
+├── 07_runtime_env/            # Browser, Node.js, streams, buffers
+├── 08_architecture_patterns/  # MVC, Observer, Factory, Event-driven...
+├── 09_security/               # XSS, CSRF, Auth, Hashing
+├── 10_edge_cases/             # NaN, undefined, floating point...
+├── 11_bonus_crazy/            # 🧟 Zombies, pirates, aliens & magie noire
+├── 12_projects/               # Projets intégrateurs CrazyDevs
+└── 13_tools/                  # Snippets et helpers pour survivre
+>>>>>>> 66e37a2685089fcb66f93f2f719a668cd80b4099
 ```
 
 ---
