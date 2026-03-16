@@ -140,3 +140,17 @@ structuredClone →  nouvelle adresse   tableau isolé     objets isolés
 > **Piège :** `JSON.parse(JSON.stringify(x))` fait aussi une deep copy,
 > mais détruit les `Date`, `Set`, `Map` et `undefined` en silence.
 > Préfère `structuredClone`.
+
+---
+
+### Shallow / Deep Copy selon certains les langages
+
+| Langage | Objets par défaut | Deep copy | Particularité |
+|---|---|---|---|
+| JavaScript | référence | `structuredClone()` | shallow avec `[...arr]` / `{...obj}` |
+| Python | référence | `copy.deepcopy()` | shallow avec `list.copy()` ou `[:]` |
+| Java | référence | manuel ou lib | primitives copiées, objets non |
+| C# | référence | `Clone()` ou sérialisation | structs copiés par valeur |
+| Go | valeur (structs) | natif pour structs | slices et maps restent par référence |
+| Rust | valeur si `Copy` | natif si `Clone` | le compilateur interdit le double accès mutable |
+| C/C++ | explicite (pointeurs) | `memcpy` ou manuel | tu choisis toi-même à chaque fois |
