@@ -30,7 +30,7 @@ Cas fréquents :
 
 ---
 
-## 3. Conseils d'ingénieur
+## 3. Conseils
 
 - Savoir **quand cloner** : shallow copy (`[...arr]`, `{...obj}`) vs deep copy (`structuredClone`, `JSON.parse/stringify`)
 - Toujours vérifier si tu travailles sur la **vraie référence** ou sur une **copie**

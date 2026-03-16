@@ -124,7 +124,7 @@ MyFunnyJS/
 │       ├── 01_dijkstra_race.js        # Dijkstra shortest path
 │       └── 02_a_star_dungeon.js       # A* pathfinding dans un donjon
 │
-├── 06_math_for_devs/                  # Maths pour ingénieurs (pas de panique)
+├── 06_math_basics/                  # Maths basics
 │   ├── 01_logic_gates.js              # Logique booléenne & opérateurs bits
 │   ├── 02_modular_arithmetic.js       # Modulo, hashing, crypto basics
 │   ├── 03_probability_basics.js       # Probabilités pour algos randomisés
@@ -238,7 +238,7 @@ MyFunnyJS/
 
 ---
 
-## Philosophie et tips de boss
+## Philosophie et tips
 
 ### Comprendre ce qui change vraiment
 
@@ -258,7 +258,7 @@ MyFunnyJS/
 
 ## Concepts que tu dois maîtriser
 
-- **Variables = Super Pouvoir** : primitives vs objets, copier valeur vs copier adresse.
+- **Variables** : primitives vs objets, copier valeur vs copier adresse.
 - **Scope & Contexte** : global, fonction, block, closures.
 - **Fonctions comme jouets** : passer, retourner, stocker.
 - **Call Stack & Event Loop** : mono-thread, microtasks vs macrotasks (ton cerveau doit suivre).
@@ -267,7 +267,7 @@ MyFunnyJS/
 - **Patterns algorithmiques** : Brute Force, Divide & Conquer, Greedy, DP, Backtracking, Graph Traversal.
 - **Patterns design & architecture** : Singleton, Factory, Observer, Module, MVC, Event-driven.
 - **Sécurité & performance** : Injection, XSS, CSRF, hashing, threading, async/concurrency.
-- **Maths pour devs** : logique booléenne, modular arithmetic, probabilités, combinatoires.
+- **Maths** : logique booléenne, modular arithmetic, probabilités, combinatoires.
 - **Refactoring** : SOLID, Clean Code, KISS, DRY, code smells.
 - **Web concepts** : Client-Serveur, HTTP/REST, rendering pipeline, auth flows, caching, sérialisation.
 
@@ -285,7 +285,7 @@ MyFunnyJS/
 
 ---
 
-## Bonus Crazy
+## Bonus
 
 Exercices fous et interactifs :
 

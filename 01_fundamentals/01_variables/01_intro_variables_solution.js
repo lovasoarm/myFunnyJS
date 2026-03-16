@@ -20,3 +20,4 @@ team.push({ name: "Zombie4", hp: 100 });
 
 console.log("Team:", team);
 console.log("BackupTeam:", backupTeam);
+//team et backup pointent vers une la meme adresse mémoire ici
