@@ -33,7 +33,7 @@ vault1("unicorn"); // Access denied
 vault2("unicorn"); // Access granted
 ```
 
-> **Question :** Pourquoi chaque coffre garde son propre secret ? Où est stocké `secret` après la fin de `createVault` ? _(Indice : `createVault` est morte, mais `secret` survit dans la closure — comme un fantôme utile.)_
+> **Question :** Pourquoi chaque coffre garde son propre secret ? Où est stocké `secret` après la fin de `createVault` ? _(Indice : `createVault` est morte, mais `secret` survit dans la closure : comme un fantôme utile.)_
 
 ---
 
@@ -75,7 +75,7 @@ for (var i = 1; i <= 3; i++) {
 }
 ```
 
-> **Question :** Pourquoi toutes les portes affichent-elles le même numéro ? _(Indice : `var` n'est pas block-scoped — toutes les fonctions partagent la même variable `i`. Quand les `setTimeout` s'exécutent, la boucle est déjà terminée et `i` vaut `4`. Toutes les portes s'ouvrent sur la même pièce vide.)_
+> **Question :** Pourquoi toutes les portes affichent-elles le même numéro ? _(Indice : `var` n'est pas block-scoped -> toutes les fonctions partagent la même variable `i`. Quand les `setTimeout` s'exécutent, la boucle est déjà terminée et `i` vaut `4`. Toutes les portes s'ouvrent sur la même pièce vide.)_
 
 **Maintenant refais exactement la même chose avec `let` :**
 
