@@ -258,7 +258,7 @@ MyFunnyJS/
 
 ## Concepts que tu dois maîtriser
 
-- **Variables = Super Pouvoir** : primitives vs objets, copier valeur vs copier adresse.
+- **Variables** : primitives vs objets, copier valeur vs copier adresse.
 - **Scope & Contexte** : global, fonction, block, closures.
 - **Fonctions comme jouets** : passer, retourner, stocker.
 - **Call Stack & Event Loop** : mono-thread, microtasks vs macrotasks (ton cerveau doit suivre).
@@ -267,7 +267,7 @@ MyFunnyJS/
 - **Patterns algorithmiques** : Brute Force, Divide & Conquer, Greedy, DP, Backtracking, Graph Traversal.
 - **Patterns design & architecture** : Singleton, Factory, Observer, Module, MVC, Event-driven.
 - **Sécurité & performance** : Injection, XSS, CSRF, hashing, threading, async/concurrency.
-- **Maths pour devs** : logique booléenne, modular arithmetic, probabilités, combinatoires.
+- **Maths** : logique booléenne, modular arithmetic, probabilités, combinatoires.
 - **Refactoring** : SOLID, Clean Code, KISS, DRY, code smells.
 - **Web concepts** : Client-Serveur, HTTP/REST, rendering pipeline, auth flows, caching, sérialisation.
 
