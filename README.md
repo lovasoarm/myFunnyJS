@@ -124,7 +124,7 @@ MyFunnyJS/
 │       ├── 01_dijkstra_race.js        # Dijkstra shortest path
 │       └── 02_a_star_dungeon.js       # A* pathfinding dans un donjon
 │
-├── 06_math_for_devs/                  # Maths pour ingénieurs (pas de panique)
+├── 06_math_for_devs/                  # Maths basics
 │   ├── 01_logic_gates.js              # Logique booléenne & opérateurs bits
 │   ├── 02_modular_arithmetic.js       # Modulo, hashing, crypto basics
 │   ├── 03_probability_basics.js       # Probabilités pour algos randomisés
