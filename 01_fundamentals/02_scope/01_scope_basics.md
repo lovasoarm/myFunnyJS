@@ -98,3 +98,15 @@ adventure();
 
 > **Scope = zone de vie de ta variable.**
 > C'est la base avant de te lancer dans les closures, le context et l'event loop.
+
+---
+### Comparaison avec certains langages:
+| Concept | JavaScript | Python | Dart | PHP |
+|---|---|---|---|---|
+| Variable globale | `let x` en haut du fichier | `x = 42` hors fonction | `var x` hors classe | `$x` hors fonction |
+| Variable locale | `let x` dans une fonction | `x = 42` dans une fonction | `var x` dans une fonction | `$x` dans une fonction |
+| Block scope | `let`/`const` | pas de block scope natif | oui, par défaut | oui, `{}` |
+| Mot-clé à éviter | `var` (function scope) | — | — | — |
+| Déclaration constante | `const` | — | `final` / `const` | `define()` / `const` |
+| Erreur hors scope | `ReferenceError` | `NameError` | erreur de compilation | `Undefined variable` |
+| Niveau de rigueur | flexible | permissif | strict | semi-strict |
