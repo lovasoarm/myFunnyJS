@@ -76,11 +76,11 @@ Mais l’ambiance est fun.
 
 On peut utiliser :
 
-- Zombies
+- Titans
 - Pirates
 - Robots
 - Aliens
-- Laboratoires magiques
+- Labos magiques
 - Ou n’importe quel univers créatif
 
 Mais le fond doit rester solide.
