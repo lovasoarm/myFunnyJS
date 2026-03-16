@@ -88,8 +88,21 @@ Comprendre le piège te permet d'éviter des **bugs invisibles**. Les closures p
 2. Retourne une fonction `addPlayer(name)` qui ajoute un joueur au tableau et l'affiche
 3. Crée **deux équipes distinctes** avec `makeTeam()`
 4. Ajoute deux joueurs dans chaque équipe
-5. Observe comment chaque fonction garde sa **propre mémoire** — c'est la closure
+5. Observe comment chaque fonction garde sa **propre mémoire** : c'est la closure
 6. Refais un mini `for` loop avec `var` puis avec `let` pour voir le piège classique
 7. Réfléchis : qui voit quoi en mémoire ?
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis au scope.
+
+---
+
+### Comparaison :
+| Concept | JavaScript | Python | Dart | PHP |
+|---|---|---|---|---|
+| Closure native | oui, `function` retourne une `function` | oui, via `def` imbriqué | oui, via fonctions imbriquées | oui, depuis PHP 5.3 avec `use` |
+| Capture de variable | automatique | automatique | automatique | manuelle avec `use ($var)` |
+| Piège boucle + async | `var` partage la même référence | pas de `var`, moins de piège | `let` block-scoped par défaut | peu pertinent, pas d'event loop natif |
+| Solution recommandée | `let` ou IIFE | `default arg` dans la lambda | `let` par défaut | `use` explicite |
+| Fonction anonyme | `function() {}` / `() => {}` | `lambda x: x` | `(x) => x` | `function() use () {}` |
+| Mémoire privée via closure | oui | oui | oui | oui mais verbeux |
+| Niveau de piège | eleve : `var` est silencieux | faible | faible | moyen : `use` oublié = bug |
