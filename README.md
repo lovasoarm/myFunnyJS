@@ -285,7 +285,7 @@ MyFunnyJS/
 
 ---
 
-## Bonus Crazy
+## Bonus
 
 Exercices fous et interactifs :
 
