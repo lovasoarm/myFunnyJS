@@ -7,10 +7,12 @@
 ## 1. Variable = Référence ?
 
 **Primitives** : `number`, `string`, `boolean`
-- Tu copies la **valeur directement**.
+
+- Tu copies la **valeur directement**.des idées étranges mais intelligentes
 - Chaque variable vit de façon **indépendante** : modifier l'une ne touche pas l'autre.
 
 **Objets** : `array`, `object`, `function`
+
 - Tu ne copies pas la maison, tu copies **la clé**.
 - Deux variables peuvent pointer sur la **même maison** : si tu modifies l'intérieur via l'une, l'autre le voit aussi.
 
@@ -21,6 +23,7 @@
 Tu modifies un objet en croyant ne pas toucher l'autre variable : **chaos invisible**.
 
 Cas fréquents :
+
 - Tableaux partagés entre deux scopes
 - Objets de configuration mutés par accident
 - Backup mal géré qui pointe toujours sur l'original
@@ -67,9 +70,9 @@ let team = [
 
 ## Résumé
 
-| Type | Comportement | Exemple |
-|------|-------------|---------|
-| Primitif | Copie de valeur | `let b = a` → indépendants |
-| Objet / Array | Copie de référence | `let b = a` → liés |
-| Shallow copy | Nouveau conteneur, mêmes enfants | `[...arr]` |
-| Deep copy | Tout est dupliqué | `structuredClone(obj)` |
+| Type          | Comportement                     | Exemple                    |
+| ------------- | -------------------------------- | -------------------------- |
+| Primitif      | Copie de valeur                  | `let b = a` → indépendants |
+| Objet / Array | Copie de référence               | `let b = a` → liés         |
+| Shallow copy  | Nouveau conteneur, mêmes enfants | `[...arr]`                 |
+| Deep copy     | Tout est dupliqué                | `structuredClone(obj)`     |
