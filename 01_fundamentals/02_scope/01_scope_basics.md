@@ -36,7 +36,7 @@ function myFunc() {
 }
 
 myFunc();
-console.log(localVar); // ReferenceError — introuvable
+console.log(localVar); // ReferenceError -> introuvable
 ```
 
 ---
@@ -50,7 +50,7 @@ if (true) {
   let blockVar = "Je vis ici";
   console.log(blockVar); // OK
 }
-console.log(blockVar); // ReferenceError — le bloc est terminé
+console.log(blockVar); // ReferenceError -> le bloc est terminé
 ```
 
 | Mot-clé | Scope                             |
