@@ -238,7 +238,7 @@ MyFunnyJS/
 
 ---
 
-## Philosophie et tips de boss
+## Philosophie et tips
 
 ### Comprendre ce qui change vraiment
 
