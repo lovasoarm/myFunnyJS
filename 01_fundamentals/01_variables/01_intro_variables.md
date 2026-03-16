@@ -73,3 +73,70 @@ let team = [
 | Objet / Array | Copie de référence | `let b = a` → liés |
 | Shallow copy | Nouveau conteneur, mêmes enfants | `[...arr]` |
 | Deep copy | Tout est dupliqué | `structuredClone(obj)` |
+
+---
+
+## Référence vs Shallow vs Deep Copy
+
+
+
+### `let backupTeam = team` : référence directe
+
+```
+team       ──┐
+              ├──▶  [ {Z1,hp:100}, {Z2,hp:100}, {Z3,hp:100} ]
+backupTeam ──┘
+```
+
+`backupTeam[0].hp += 50` → **les deux voient hp:150**. Ce n'est pas une copie, c'est un alias.
+
+
+
+### `[...team]` : shallow copy
+
+```
+team       ──▶  [ ·──▶{Z1,hp:100}, ·──▶{Z2,hp:100}, ·──▶{Z3,hp:100} ]
+                       ↑                ↑                ↑
+backupTeam ──▶  [ ·───┘            ·───┘            ·───┘ ]
+```
+
+`team.push(Z4)` → backupTeam reste à 3 éléments ✓  
+`team[0].hp = 0` → backupTeam[0].hp vaut aussi 0 ✗  
+Le tableau est neuf. Les objets dedans sont partagés.
+
+Mais attention: push/pop/splice ajoute un slot dans tab, autretab ne bouge pas.
+ex: avec push: 
+```
+let autretab = [1, 2, 3];
+let tab = [...autretab];
+
+tab.push(4);
+
+console.log(tab);      // [1, 2, 3, 4]
+console.log(autretab); // [1, 2, 3]  ← intact
+```
+
+
+### `structuredClone(team)` : deep copy
+
+```
+team       ──▶  [ {Z1,hp:100}, {Z2,hp:100}, {Z3,hp:100} ]
+
+backupTeam ──▶  [ {Z1,hp:100}, {Z2,hp:100}, {Z3,hp:100} ]
+```
+
+Tout est dupliqué. Modifier l'un ne touche pas l'autre. ✓
+
+---
+
+### Récap
+
+```
+=               →  même adresse       tableau partagé   objets partagés
+[...arr]        →  nouvelle adresse   tableau isolé     objets partagés
+structuredClone →  nouvelle adresse   tableau isolé     objets isolés
+```
+
+> **Piège :** `JSON.parse(JSON.stringify(x))` fait aussi une deep copy,
+> mais détruit les `Date`, `Set`, `Map` et `undefined` en silence.
+> Préfère `structuredClone`.
