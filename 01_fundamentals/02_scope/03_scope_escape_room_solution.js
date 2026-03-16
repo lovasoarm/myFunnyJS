@@ -191,4 +191,22 @@ user.sayNameArrow();   // Arrow function: undefined (this hérité du global)
 Conclusion: Ici, sayNameArrow est écrit dans l’objet user, mais… l’objet n’est pas un scope lexical, c’est juste une structure.
 Donc le this de l’arrow function pointe en fait sur le contexte extérieur, qui est le global (ou undefined en mode strict).
 
+Another BONUS:
+Le scope lexical crée un contexte d'exécution. Quand tu écris une fonction ou un bloc, JS crée un nouveau niveau de portée. Les variables déclarées à l'intérieur n'existent pas à l'extérieur.
+function maFonction() {
+  let x = 10; // x vit ici, nulle part ailleurs
+}
+console.log(x); // ReferenceError
+if (true) {
+  let y = 20; // y vit dans ce bloc
+}
+console.log(y); // ReferenceError
+Ces {} créent un vrai scope : une zone avec ses propres variables et son propre this.
+
+Ce que contient le global selon l'environnement : 
+| Environnement              | `this` vaut               |
+| -------------------------- | ------------------------- |
+| Navigateur                 | `window`                  |
+| Node.js                    | `{}` (module) ou `global` |
+| Mode strict `"use strict"` | `undefined`               |
 */
