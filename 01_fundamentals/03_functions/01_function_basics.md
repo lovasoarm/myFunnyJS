@@ -13,7 +13,7 @@ Donc une fonction c'est :
 - \+ une référence (adresse mémoire)
 - \+ des propriétés possibles
 
-Oui. Une fonction peut avoir des propriétés. Oui. Elle peut être stockée. Oui. Elle peut être manipulée comme une variable. _(Bref, elle fait ce qu'elle veut — c'est une citoyenne de première classe.)_
+Oui. Une fonction peut avoir des propriétés. Oui. Elle peut être stockée. Oui. Elle peut être manipulée comme une variable. _(Bref, elle fait ce qu'elle veut : c'est une citoyenne de première classe.)_
 
 C'est pour ça qu'on dit que les fonctions sont des **first-class citizens** : des valeurs traitées comme n'importe quelle autre valeur.
 
