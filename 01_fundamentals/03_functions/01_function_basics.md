@@ -169,7 +169,7 @@ Tu obtiens :
 a → même adresse → même objet
 ```
 
-Ce n'est **pas une copie**. C'est un **pointeur** — une deuxième étiquette sur la même boîte.
+Ce n'est **pas une copie**. C'est un **pointeur** : une deuxième étiquette sur la même boîte.
 
 ---
 
