@@ -46,7 +46,7 @@ let copy = greet;
 copy(); // Hello
 ```
 
-Tu ne copies pas le code. Tu copies **la référence** (adresse mémoire). `copy` et `greet` pointent vers le **même objet fonction** — même logique que les objets.
+Tu ne copies pas le code. Tu copies **la référence** (adresse mémoire). `copy` et `greet` pointent vers le **même objet fonction** -> même logique que les objets.
 
 ---
 
