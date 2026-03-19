@@ -281,9 +281,6 @@ React Native : JavaScript (le plus ancien, encore tres utilise)
 
 ## 3. Top 10 des langages en 2026
 
-> Sources croisees : TIOBE Index, Stack Overflow Developer Survey 2025,
-> GitHub Octoverse, RedMonk Rankings.
-
 ### Le classement
 
 ```
