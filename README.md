@@ -206,42 +206,13 @@ MyFunnyJS/
 │   ├── 03_rate_limiting_guard.js               # Rate limiting —> se protéger du flood
 │   └── 04_message_queues.js                    # Message queues : RabbitMQ, Kafka intro
 │
-│
-├── 15_testing/                                 # Testing : le filet de sécurité du pro
-│   ├── 01_why_testing.js                       # Pourquoi tester —> avant que la prod explose
-│   ├── 02_unit_testing_basics.js               # Unit tests : tester une fonction comme un sniper
-│   ├── 03_jest_crash_course.js                 # Jest from scratch —> describe, it, expect
-│   ├── 04_mocking_madness.js                   # Mocking & spies —> simuler la réalité
-│   ├── 05_integration_testing.js               # Tests d'intégration —> plusieurs pièces ensemble
-│   ├── 06_tdd_arena.js                         # TDD : écrire le test avant le code, comme un boss
-│   └── 07_test_driven_refactor.js              # Refactorer en sécurité grâce aux tests
-│
-│
-├── 16_toolchain/                               # Toolchain : l'arsenal du dev moderne
-│   ├── 01_npm_survival_guide.js                # npm, scripts, package.json —> survivre à l'écosystème
-│   ├── 02_vite_esbuild_turbo.js                # Vite & esbuild —> bundler à la vitesse de la lumière
-│   ├── 03_eslint_code_police.js                # ESLint —> la police du code qui t'empêche de péter la prod
-│   ├── 04_prettier_formatter.js                # Prettier —> formater sans débattre des espaces
-│   ├── 05_git_workflows.js                     # Git avancé —> branches, rebase, hooks
-│   └── 06_ci_cd_pipeline.js                    # CI/CD —> automatiser jusqu'à zéro effort humain
-│
-│
-├── 17_typescript/                              # TypeScript : JS avec un casque et une armure
-│   ├── 01_why_typescript.ts                    # Pourquoi TS —> quand JS commence à te mentir
-│   ├── 02_types_interfaces.ts                  # Types & interfaces —> nommer la réalité
-│   ├── 03_generics_unleashed.ts                # Generics —> le code qui s'adapte à tout
-│   ├── 04_narrowing_guards.ts                  # Type narrowing & guards —> réduire l'incertitude
-│   ├── 05_utility_types_toolbox.ts             # Utility types : Partial, Pick, Omit & co
-│   └── 06_ts_in_the_wild.ts                    # TypeScript sur de vrais projets — patterns pro
-│
-│
-├── 18_edge_cases/                              # Cas Bizarres : JS qui se rebelle contre son créateur
+├── 15_edge_cases/                              # Cas Bizarres : JS qui se rebelle contre son créateur
 │   ├── 01_nan_madness.js                       # NaN — le nombre qui n'est pas un nombre
 │   ├── 02_undefined_abyss.js                   # undefined vs null —> l'abîme philosophique
 │   └── 03_floating_point_fiasco.js             # 0.1 + 0.2 != 0.3 —> le scandale mondial
 │
 │
-├── 19_bonus_crazy/                             # Exercices Fous
+├── 16_bonus_crazy/                             # Exercices Fous
 │   ├── 01_pirates/                             # Pirates —> coder ou couler
 │   │   ├── 01_pirate_treasure_map.js           # Hash tables pour localiser le trésor
 │   │   ├── 02_pirate_ship_battle.js            # Graphes & pathfinding en pleine mer
@@ -308,12 +279,37 @@ MyFunnyJS/
 │       └── tests/
 │
 │
-└── 21_tools/                                   # Arsenal du développeur : tes gadgets maison
-    ├── 01_logger.js                            # Logger custom avec niveaux (debug/info/warn/error)
-    ├── 02_helper_functions.js                  # Helpers réutilisables partout dans le projet
-    ├── 03_array_utils.js                       # Utilitaires tableaux avancés
-    ├── 04_benchmark.js                         # Mesurer les perfs de n'importe quoi
-    └── 05_debug_toolkit.js                     # Toolkit debug pour survivre aux bugs de 2h du matin
+├── 21_annexes/                                    # Annexes pro : bonus pour aller encore plus loin
+│   ├── testing/                                   # Testing : le filet de sécurité du pro
+│   │   ├── 01_why_testing.js                      # Pourquoi tester : avant que la prod explose
+│   │   ├── 02_unit_testing_basics.js              # Unit tests : tester une fonction comme un sniper
+│   │   ├── 03_jest_crash_course.js                # Jest from scratch : describe, it, expect
+│   │   ├── 04_mocking_madness.js                  # Mocking & spies : simuler la réalité
+│   │   ├── 05_integration_testing.js              # Tests d'intégration : plusieurs pièces ensemble
+│   │   ├── 06_tdd_arena.js                        # TDD : écrire le test avant le code, comme un boss
+│   │   └── 07_test_driven_refactor.js             # Refactorer en sécurité grâce aux tests
+│   ├── toolchain/                                 # Toolchain : l'arsenal du dev moderne
+│   │   ├── 01_npm_survival_guide.js               # npm, scripts, package.json : survivre à l'écosystème
+│   │   ├── 02_vite_esbuild_turbo.js               # Vite & esbuild : bundler à la vitesse de la lumière
+│   │   ├── 03_eslint_code_police.js               # ESLint : la police du code qui t'empêche de péter la prod
+│   │   ├── 04_prettier_formatter.js               # Prettier : formater sans débattre des espaces
+│   │   ├── 05_git_workflows.js                    # Git avancé : branches, rebase, hooks
+│   │   └── 06_ci_cd_pipeline.js                   # CI/CD : automatiser jusqu'à zéro effort humain
+│   └── typescript/                                # TypeScript : JS avec un casque et une armure
+│       ├── 01_why_typescript.ts                   # Pourquoi TS -> quand JS commence à te mentir
+│       ├── 02_types_interfaces.ts                 # Types & interfaces -> nommer la réalité
+│       ├── 03_generics_unleashed.ts               # Generics —> le code qui s'adapte à tout
+│       ├── 04_narrowing_guards.ts                 # Type narrowing & guards —> réduire l'incertitude
+│       ├── 05_utility_types_toolbox.ts            # Utility types : Partial, Pick, Omit & co
+│       └── 06_ts_in_the_wild.ts                   # TypeScript sur de vrais projets > patterns pro
+│
+│
+└── 22_tools/                                      # Arsenal du développeur : tes gadgets maison
+    ├── 01_logger.js                               # Logger custom avec niveaux (debug/info/warn/error)
+    ├── 02_helper_functions.js                     # Helpers réutilisables partout dans le projet
+    ├── 03_array_utils.js                          # Utilitaires tableaux avancés
+    ├── 04_benchmark.js                            # Mesurer les perfs de n'importe quoi
+    └── 05_debug_toolkit.js                        # Toolkit debug pour survivre aux bugs de 2h du matin
 ```
 
 ---
@@ -355,23 +351,12 @@ MyFunnyJS/
 
 ---
 
-## Exercices de la folie
-
-- **Niveau 1** : Stack sans push/pop, Queue optimisée, hash table simple.
-- **Niveau 2** : Min-Heap, BST insertion/recherche, comparer Array vs LinkedList.
-- **Niveau 3** : Union-Find avec compression, AVL Tree, vérifier cycle dans un graphe.
-
-> Chaque exercice peut être adapté à Python, Java, C#, Rust… bref, ton cerveau est le vrai langage.
-
----
-
 ## Bonus
 
-Exercices fous et interactifs :
+Quelques exercices fous et interactifs :
 
 - Pirates, slashers, titans, persos d'animés, laboratoires magiques...
 - Objectif : appliquer variables, références, scope, async, structures, patterns dans des **contextes déjantés**.
-- Chaque challenge = mini projet CrazyDevs prêt à te faire exploser la tête et la logique.
 
 ---
 
@@ -379,10 +364,10 @@ Exercices fous et interactifs :
 
 1. Fundamentals
 2. Async & Event Loop
-3. Memory & Performance
-4. Data Structures
-5. Algorithms
-6. Math for Devs
+3. Math for Devs
+4. Memory & Performance
+5. Data Structures
+6. Algorithms
 7. Functional JS
 8. Refactoring
 9. Runtime Environment
@@ -393,7 +378,9 @@ Exercices fous et interactifs :
 14. Scalability
 15. Edge Cases
 16. Bonus Crazy
-17. Projects intégrateurs
+17. mini-projects
+18. annexes
+19. tools
 
 ---
 
