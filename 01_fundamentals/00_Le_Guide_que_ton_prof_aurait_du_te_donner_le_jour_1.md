@@ -774,7 +774,7 @@ Conclusion : app mobile (Flutter) + backend API (Node ou Python) + base de donne
 
 ```
 CONTRAINTE          IMPACT SUR LE CHOIX TECH
-::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-----------------------------------------------------------------------------------
 
 Peu de temps         :  Technos que tu connais DEJA. Pas le moment d'apprendre Rust.
 
@@ -1106,47 +1106,5 @@ et les requetes HTTP s'adaptera en quelques semaines a n'importe quel nouveau fr
 
 ---
 
-## 8. Ressources utiles
-
-```
-CLASSEMENTS ET STATS
-::::::::::::::::::::
-  tiobe.com                  :  TIOBE Index, classement mensuel des langages
-  survey.stackoverflow.co    :  Dev Survey annuel de Stack Overflow
-  octoverse.github.com       :  Langages les plus utilises sur GitHub
-  redmonk.com/sogrady        :  RedMonk Language Rankings
-
-FEUILLES DE ROUTE PAR METIER
-:::::::::::::::::::::::::::::
-  roadmap.sh                 :  Feuilles de route pour chaque metier du dev
-                                (frontend, backend, mobile, DevOps, IA...)
-
-APPRENTISSAGE GRATUIT
-:::::::::::::::::::::
-  cs50.harvard.edu           :  Cours intro informatique de Harvard. Gratuit. Excellent.
-  theodinproject.com         :  Parcours web complet et gratuit
-  freecodecamp.org           :  Certificats web gratuits
-  codecademy.com             :  Interactif, bien fait pour les debutants
-  exercism.io                :  Exercices de code dans 70+ langages
-
-PRATIQUE ET PROJETS
-:::::::::::::::::::
-  github.com                 :  Lis du code open source. Contribue quand tu peux.
-  leetcode.com               :  Algorithmes et structures de donnees (pour les entretiens)
-  frontendmentor.io          :  Projets UI realistes pour le front-end
-  buildspace.so              :  Projets guides pour apprendre en construisant
-
-COMMUNAUTES
-:::::::::::
-  stackoverflow.com          :  Quand tu bloques, quelqu'un a eu le meme probleme
-  discord.gg/devcommunity    :  Communautes de devs par technologie
-  dev.to                     :  Articles et tutoriels par des devs pour des devs
-  hashnode.com               :  Blog de devs, souvent des contenus de qualite
-```
-
----
-
-*Guide redige en mars 2026.*
-*Les estimations de popularite sont basees sur TIOBE, Stack Overflow Developer Survey 2025,*
 *GitHub Octoverse et RedMonk. Ce sont des tendances, pas des chiffres officiels absolus.*
 *Les technos evoluent vite : toujours verifier les sources recentes avant une decision importante.*
