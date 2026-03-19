@@ -1106,5 +1106,5 @@ et les requetes HTTP s'adaptera en quelques semaines a n'importe quel nouveau fr
 
 ---
 
-*GitHub Octoverse et RedMonk. Ce sont des tendances, pas des chiffres officiels absolus.*
-*Les technos evoluent vite : toujours verifier les sources recentes avant une decision importante.*
+>Ce sont des tendances, pas des chiffres officiels absolus.
+>Les technos evoluent vite : toujours verifier les sources recentes avant une decision importante.
