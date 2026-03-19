@@ -8,7 +8,7 @@ Le mot d'ordre : **apprendre sérieusement en s'amusant**. Chaque dossier est un
 
 ---
 
-## Organisation du projet
+## Organisation du projet estimée
 
 ```
 MyFunnyJS/
