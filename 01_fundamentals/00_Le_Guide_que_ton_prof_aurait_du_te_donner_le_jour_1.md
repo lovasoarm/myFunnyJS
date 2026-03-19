@@ -1311,7 +1311,7 @@ Marche emploi            Large              En forte croissance
           Deploie lui-meme sur Vercel + Railway
 ```
 
-**Exemple rigolo : la réalité d'un full-stack dans une startup :**
+**Exemple : la réalité d'un full-stack dans une startup :**
 
 ```javascript
 // Lundi : "t'es full-stack non ? Tu peux aussi jeter un oeil au DevOps ?"
