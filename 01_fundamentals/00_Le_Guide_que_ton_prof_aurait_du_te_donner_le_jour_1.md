@@ -316,7 +316,7 @@ print(saluer("Prometheus"))
 # Sortie : Bonjour Prometheus, bienvenue dans le monde du code
 ```
 
-Pourquoi il domine : l'IA. ChatGPT, Gemini, tous les modeles d'IA sont entraines avec Python.
+Pourquoi il domine : l'IA. ChatGPT, Gemini, tous les modeles d'IA sont entrainés avec Python.
 PyTorch, TensorFlow, Hugging Face : tout est en Python. Si tu veux toucher a l'IA en 2026,
 t'as pas vraiment le choix.
 
