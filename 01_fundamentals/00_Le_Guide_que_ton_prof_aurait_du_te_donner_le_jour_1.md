@@ -974,7 +974,7 @@ DANS LA VRAIE VIE tu l'utilises pour :
   Scripts d'automatisation
   APIs et backends
   IA et Machine Learning
-  Web scraping
+  Web scraping (extraire automatiquement des données depuis un site web ex: 500 produits etc.)
   Tests automatises
 
 A L'ECOLE tu apprends JavaScript.
@@ -995,7 +995,7 @@ DANS LA VRAIE VIE tu l'utilises pour :
 A L'ECOLE tu apprends C ou C++.
 DANS LA VRAIE VIE tu l'utilises pour :
   Comprendre comment un ordinateur fonctionne vraiment
-  Les logiciels ou la performance est critique
+  Les logiciels où la performance est critique
   Les jeux video avec Unreal Engine
   Les systemes embarques (arduino, robotique)
   Le trading haute frequence
@@ -1004,7 +1004,7 @@ DANS LA VRAIE VIE tu l'utilises pour :
 
 ---
 
-### Exemple concret complet : de l'idee a la stack
+### Exemple concret complet : de l'idée à la stack
 
 **Situation** : tu veux creer une plateforme communautaire pour developpeurs. Des profils
 utilisateurs, des posts, des likes, une messagerie en temps reel.
@@ -1035,7 +1035,7 @@ Hebergement      :  Vercel (gratuit)
 **Pourquoi pas quelque chose de plus complexe ?**
 
 ```
-  Parce que ca suffit.
+  Parce que ça suffit.
   Ces outils sont gratuits au debut.
   Ils sont scalables si le projet grandit.
   La doc est excellente.
@@ -1112,7 +1112,7 @@ et les requetes HTTP s'adaptera en quelques semaines a n'importe quel nouveau fr
 ---
 ## 8. Les métiers du dev : la carte au trésor que personne t'a donnée
 
-> *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux — idéalement les deux ?"*
+> *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"*
 
 Ok. T'as appris à coder. Bonne nouvelle : t'as maintenant accès à l'une des industries les plus larges, les plus diverses, et les mieux payées de la planète. Mauvaise nouvelle : y'a tellement de métiers que la plupart des gens ne savent même pas qu'ils existent.
 
@@ -1168,8 +1168,8 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 11h00  Bug : le layout explose sur mobile Samsung Galaxy S22 -> debogage CSS
 12h00  Code review : il relit le code d'un collegue, laisse des commentaires
 14h00  Integration d'une API backend : fetch des donnees utilisateur
-16h00  Optimisation : reduction du bundle, lazy loading des images
-17h30  Deploiement sur la branche de staging pour validation
+16h00  Optimisation : reduction du bundle (faire en sorte que ces fichiers soient le plus légers possible pour que la page charge vite.), lazy loading des images
+17h30  Deploiement sur la branche de staging (dev (tu codes) → staging (tu testes) → production (les users voient)) pour validation
 ```
 
 **Technologies typiques** :
@@ -1198,9 +1198,9 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
-**Compétences clés** : maitrise du DOM et des événements browser, responsive design et accessibilité (WCAG), optimisation des performances (Core Web Vitals), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
+**Compétences clés** : maitrise du DOM et des événements browser, responsive design et accessibilité (WCAG : Web Content Accessibility Guidelines : des règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées (malvoyants, daltoniens, gens qui naviguent au clavier sans souris)), optimisation des performances (Core Web Vitals : C'est les métriques de Google pour mesurer la performance ressentie par l'utilisateur.), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
->  **Tip méconnu** : un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN fonctionne. Pas juste "faire joli".
+>  **Tip méconnu** : un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN (Content Delivery Network -> un réseau de serveurs répartis dans le monde entier qui stockent des copies de tes fichiers statiques (images, JS, CSS). Sans CDN : un user à Tokyo télécharge tes images depuis ton serveur à Paris -> lent. Avec CDN : il les télécharge depuis un serveur à Tokyo — rapide.) fonctionne. Pas juste "faire joli".
 
 ---
 
