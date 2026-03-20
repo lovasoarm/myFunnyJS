@@ -1212,10 +1212,10 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 ```
 09h00  Review des logs de prod : y'a eu une erreur 500 a 3h du matin
 09h30  Debogage : une requete SQL non optimisee qui bloquait toute la base
-11h00  Implementation d'un nouvel endpoint : POST /api/v2/orders
+11h00  Implementation d'un nouvel endpoint : POST /api/v2/orders (Lien normal → GET  https://monsite.com/produits (tu visites une page) ,Endpoint API  →  POST https://monsite.com/api/orders (tu envoies des données, il se passe quelque chose))
 13h30  Ecriture des tests unitaires pour la logique de paiement
 15h00  Discussion architecture : comment gerer 10x plus de requetes
-16h30  Documentation de l'API dans Swagger/OpenAPI
+16h30  Documentation de l'API dans Swagger/OpenAPI (un outil qui génère automatiquement une documentation interactive de ton API)
 17h30  Code review et merge de deux pull requests
 ```
 
@@ -1242,14 +1242,14 @@ app.get('/api/user/:id', async (req, res) => {
   // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
   // requête DB avec retry si connexion timeout
   // cache le résultat 60s pour pas bruler la base
-  // log la requete pour le monitoring
+  // log la requete pour le monitoring (surveiller ton app en temps réel pour savoir si tout va bien.)
   // gère 14 cas d'erreur differents
   // renvoie les données
   // et si c'est vendredi soir : prie pour que rien ne casse le weekend
 })
 ```
 
-**Compétences clés** : conception de bases de données (schémas, indexation, migrations), sécurité (authentification, JWT, OAuth2, HTTPS), design d'API (REST, GraphQL, gRPC), performance et scalabilité, logging et monitoring en production.
+**Compétences clés** : conception de bases de données (schémas, indexation (technique pour accélérer les recherches dans ta base de données.), migrations), sécurité (authentification, JWT, OAuth2, HTTPS), design d'API (REST, GraphQL, gRPC), performance et scalabilité, logging et monitoring en production.
 
 ---
 
@@ -1393,7 +1393,7 @@ Cloud         :  BigQuery, Snowflake, Redshift, AWS S3
 Orchestration :  Apache Airflow, Prefect, Dagster
 ```
 
-> Ne pas confondre avec : Data Scientist (qui analyse les données) ou ML Engineer (qui entraîne des modèles). Le Data Engineer construit l'infrastructure qui rend tout ça possible. Il est le plombier — invisible quand tout va bien, indispensable quand les tuyaux fuient.
+> Ne pas confondre avec : Data Scientist (qui analyse les données) ou ML Engineer (qui entraîne des modèles). Le Data Engineer construit l'infrastructure qui rend tout ça possible. Il est le plombier : invisible quand tout va bien, indispensable quand les tuyaux fuient.
 
 ---
 
@@ -1402,7 +1402,7 @@ Orchestration :  Apache Airflow, Prefect, Dagster
 **En une phrase** : il entraîne, déploie et maintient des modèles d'intelligence artificielle.
 
 ```
-ML ENGINEER vs DATA SCIENTIST
+ML ENGINEER vs DATA SCIENTIST (c'est le gars qui analyse et tire des conclusions depuis les données propres que le data engineer a préparées.)
 ::::::::::::::::::::::::::::::::::::::::::::::
 Data Scientist  :  explore les donnees, teste des hypotheses,
                    "ca marche sur mon ordi en Jupyter Notebook"
