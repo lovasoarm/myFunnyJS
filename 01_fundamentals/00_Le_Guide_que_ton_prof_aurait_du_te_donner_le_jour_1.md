@@ -510,9 +510,9 @@ COBOL    : personne ne l'apprend. Tout le monde l'utilise sans le savoir.
 
 ## 4. Comment choisir son langage ?
 
-C'est LA question. Et la reponse honnete : ca depend.
+C'est LA question. Et la reponse honnete : ça depend.
 
-Mais "ca depend" tout seul c'est inutile. Voila les vraies questions a se poser, dans l'ordre.
+Mais "ça depend" tout seul c'est inutile. Voila les vraies questions a se poser, dans l'ordre.
 
 ---
 
@@ -534,7 +534,7 @@ De l'IA ou de la data            :   Python (et rien d'autre en 2026)
 Des outils systeme / performance :   C, C++, Rust
 Des scripts d'automatisation     :   Python, Go, Bash
 Des applications d'entreprise    :   Java, C#, Kotlin
-Du WebAssembly                   :   Rust, C++
+Du WebAssembly                   :   Rust, C++ (Calculs lourds (maths, IA, physique),Jeux 3D / graphismes etc.)
 ```
 
 ---
