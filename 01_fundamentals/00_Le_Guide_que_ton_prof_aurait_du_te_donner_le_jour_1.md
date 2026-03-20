@@ -98,7 +98,7 @@ entre vous deux.
 
 ---
 
-### Qui a programme quoi en premier ?
+### Qui a programmé quoi en premier ?
 
 ```
 PREMIER ALGO DOCUMENTE    : Ada Lovelace (1843)
