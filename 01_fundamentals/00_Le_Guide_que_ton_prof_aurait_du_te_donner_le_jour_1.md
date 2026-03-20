@@ -1439,6 +1439,80 @@ SOC (Security Operations)      Rapport de vulnerabilites
 
 Les security engineers sont parmi les mieux payés de l'industrie. La demande explose. L'offre de profils qualifiés reste très faible.
 
+### Exemple avec une application : Amorya
+Une app de rencontre où les utilisateurs créent un profil, matchent, et discutent.
+Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
+
+#### Le workflow
+
+```
+                                                                        AMORYA
+                                                                Application mobile et web
+                                                                           │
+                                                                           │  l'utilisateur swipe, matche, envoie des messages
+                                                                           │
+                                                                           ▼
+                                                                    DEV WEB / MOBILE
+                                                            Construit l'app. Chaque action
+                                                            est enregistrée en base de données.
+                                                                           │
+                                                                           │  données brutes : swipes, matchs, messages, connexions
+                                                                           │
+                                                                           ▼
+                                                                     DATA ENGINEER
+                                                            Collecte tout ce que l'app produit.
+                                                            Nettoie, organise, rend les données utilisables.
+                                                                           │
+                                                             ┌─────────────┴─────────────┐
+                                                             │                           │
+                                                             │  chiffres prêts           │  chiffres prêts
+                                                             │                           │
+                                                             ▼                           ▼
+                                                       DATA ANALYST               DATA SCIENTIST
+                                                    Lit ce qui s'est passé.     Prédit ce qui va se passer.
+                                                    "Les matchs arrivent          "Ces deux profils ont 87%
+                                                     surtout le dimanche."         de compatibilité."
+                                                    Rapport pour                  Améliore l'algorithme
+                                                    l'équipe produit.             de suggestion.
+                                                             │                           │
+                                                             │  insights produit         │  nouveau modèle prêt
+                                                             │  (ce qu'on comprend       |
+                                                             |    grâce aux chiffres)    |
+                                                             └─────────────┬─────────────┘
+                                                                           │
+                                                                           │  résultats intégrés
+                                                                           │
+                                                                           ▼
+                                                                    DEV WEB / MOBILE
+                                                            Affiche les meilleurs profils en premier.
+                                                            Intègre les nouvelles fonctionnalités.
+                                                                           │
+                                                                           │  nouvelle version de l'app
+                                                                           │
+                                                                           ▼
+                                                                         DEVOPS
+                                                            Déploie la mise à jour sans coupure.
+                                                            Surveille que les serveurs tiennent.
+                                                                           │
+                                                                           │  app en ligne, serveurs stables
+                                                                           │
+                                                                           ▼
+                                                                   SECURITY ENGINEER
+                                                                Surveille en permanence.
+                                                              Bloque les faux profils, protège
+                                                            les données personnelles des utilisateurs.
+ ```
+
+#### Résumé
+
+| Rôle                | Responsabilité                                      |
+|---------------------|-----------------------------------------------------|
+| Dev Web / Mobile    | Construit ce que l'utilisateur voit et utilise      |
+| Data Engineer       | Collecte et prépare les données                     |
+| Data Analyst        | Explique ce qui s'est passé                         |
+| Data Scientist      | Prédit ce qui va se passer                          |
+| DevOps              | Déploie et maintient l'app en ligne                 |
+| Security Engineer   | Protège l'app et ses utilisateurs                   |
 ---
 
 ### Les rôles d'évolution de carrière
