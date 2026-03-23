@@ -1679,7 +1679,7 @@ CE QU'ON NE LUI DEMANDE PAS ENCORE
 -  Choisir entre Supabase Storage et S3 (il ne sait pas encore
    que Supabase est gratuit jusqu'à 1GB mais que S3 coûte
    moins cher à grande échelle)
--  Gérer la sécurité des uploads (validation MIME, taille max)
+-  Gérer la sécurité des uploads (validation MIME (image/jpeg, image/png, application/pdf), taille max)
 ```
 
 ---
