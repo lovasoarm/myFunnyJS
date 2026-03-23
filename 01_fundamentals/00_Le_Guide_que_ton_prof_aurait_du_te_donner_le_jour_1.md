@@ -1640,7 +1640,7 @@ Vercel              Héberger le projet, déploiement          Railway, Render, 
                                                        |_________________|_________________|
                                                                          |
                                                                          ▼
-                                                            [ Sharp — composition ]
+                                                            [ Sharp : composition ]
                                                                          |
                                                         _________________|_________________
                                                        |                 |                 |
@@ -1652,7 +1652,7 @@ Vercel              Héberger le projet, déploiement          Railway, Render, 
                                                        |_________________|_________________|
                                                                          |
                                                                          ▼
-                                                            [ OUTPUT — meme.png ]
+                                                            [ OUTPUT : meme.png ]
                                                                          |
                                                               affichage en < 2 sec
 ```
