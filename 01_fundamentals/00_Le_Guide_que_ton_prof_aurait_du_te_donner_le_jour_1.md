@@ -1994,7 +1994,7 @@ function f(x, y, z) {
   return x + y
 }
 
-// Dev excellent : ca se lit comme une phrase
+// Dev excellent : ça se lit comme une phrase
 const TAX_RATES = {
   reduced: 1.10,
   standard: 1.20,
@@ -2006,7 +2006,7 @@ function calculateTotalPrice(basePrice, shippingCost, taxType) {
   return rate ? basePrice * rate : basePrice + shippingCost
 }
 
-// Six mois plus tard, un nouveau dev lit ca et comprend en 10 secondes.
+// Six mois plus tard, un nouveau dev lit ça et comprend en 10 secondes.
 // Avec la version f(x, y, z), il allait pleurer.
 ```
 
@@ -2051,12 +2051,12 @@ bus.emit('pizza:commandee', { saveur: 'Regina', client: 'Bob' })
 
 Les patterns les plus utiles en pratique :
 ```
-Singleton   : une seule instance dans toute l'app (ex: connexion DB)
-Observer    : notifier des objets quand un etat change (ex: React re-render)
-Factory     : creer des objets sans specifier leur classe exacte
-Repository  : couche d'abstraction entre logique metier et base de donnees
-Strategy    : changer un algorithme a l'execution sans modifier le code appelant
-Adapter     : brancher une interface incompatible sur une autre
+Singleton   : une seule instance dans toute l'app (ex: connexion DB)("comme le wifi de la maison : y'en a un, tout le monde partage")
+Observer    : notifier des objets quand un etat change (ex: React re-render)("comme un groupe WhatsApp : quelqu'un envoie un message, tout le monde reçoit")
+Factory     : creer des objets sans specifier leur classe exacte ("comme un distributeur automatique : t'appuies sur B3, tu sais pas qui l'a fabriqué")
+Repository  : couche d'abstraction entre logique metier et base de donnees ("comme googler quelque chose : t'sais pas où est l'info, tu demandes juste")
+Strategy    : changer un algorithme à l'execution sans modifier le code appelant ("comme choisir entre Uber et le bus : toi t'as juste dit 'amène-moi là-bas'")
+Adapter     : brancher une interface incompatible sur une autre (("comme un adaptateur jack 3.5 → USB-C : les deux veulent juste jouer de la musique")
 ```
 
 **4. Compréhension des systèmes**
