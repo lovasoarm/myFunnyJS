@@ -2138,7 +2138,7 @@ LA CORRECTION
 -> Integre les tests des le debut, meme basiques
 -> Commence toujours par comprendre le probleme avant de choisir l'outil
 -> Documente les decisions importantes au moment ou tu les prends
--> Code review, collaboration, communication : ca compte autant que le code
+-> Code review, collaboration, communication : ça compte autant que le code
 ```
 
 ---
@@ -2172,7 +2172,7 @@ LA CORRECTION
 |     doit comprendre sans te demander.                            |
 |                                                                  |
 |  5. DEBOGAGE SYSTEMATIQUE                                        |
-|     Pas juste Google l'erreur. Comprendre POURQUOI ca casse.     |
+|     Pas juste Google l'erreur. Comprendre POURQUOI ça casse.     |
 |     Hypothese -> test -> resultat -> hypothese suivante.         |
 |                                                                  |
 |  6. BASES DE DONNEES RELATIONNELLES                              |
@@ -2185,7 +2185,7 @@ LA CORRECTION
 |     Les vecteurs d'attaque changent. Les principes, non.         |
 |                                                                  |
 |  8. COMMUNICATION TECHNIQUE                                      |
-|     Expliquer une decision technique a quelqu'un qui ne code     |
+|     Expliquer une decision technique à quelqu'un qui ne code     |
 |     pas. Ecrire un bon README. Donner une bonne code review.     |
 |     Presenter une architecture clairement.                       |
 |                                                                  |
@@ -2290,7 +2290,7 @@ Le même profil, le même ordinateur, les mêmes compétences : mais des revenus
 C'est la ligne qui change tout. Un dev qui travaille pour des clients étrangers depuis son pays ne joue plus dans la même catégorie salariale.
 
 ```
-SALAIRES REMOTE (depuis n'importe quel pays a cout de vie bas)
+SALAIRES REMOTE (depuis n'importe quel pays à cout de vie bas)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 Junior remote   :   20 000 –  35 000 $ / an
 Mid remote      :   40 000 –  65 000 $ / an
@@ -2301,7 +2301,7 @@ Senior remote   :   70 000 – 100 000 $ / an
 COMPARAISON ILLUSTREE (exemple Madagascar, applicable partout)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 Dev local junior       :    5 400 $ / an
-Dev remote junior      :   20 000 $ / an    -> ratio x3,7
+Dev remote junior      :   20 000 $ / an    -> ratio x3,7 (multiplicateur)
 
 Dev local senior       :   22 000 $ / an
 Dev remote senior      :   80 000 $ / an    -> ratio x3,6
@@ -2397,7 +2397,7 @@ RANG   PAYS              REGION            POURQUOI ILS RECRUTENT
 |                                              |
 |   marche local       vs       remote         |
 |                                              |
-|   salaire de base         x3 a x10           |
+|   salaire de base         x3 à x10           |
 |                                              |
 |   (le meme dev, le meme ordi, la meme code)  |
 |                                              |
@@ -2427,7 +2427,7 @@ function construireCarriereRemote(dev) {
   return dev.salaire * 3  // minimum
 }
 
-// La seule variable : a qui tu factures.
+// La seule variable : à qui tu factures.
 ```
 
 > *"Un dev peut gagner 5 000 $ / an. Le même dev, avec les mêmes compétences, peut gagner 80 000 $ / an. La seule variable, c'est à qui il facture."*
