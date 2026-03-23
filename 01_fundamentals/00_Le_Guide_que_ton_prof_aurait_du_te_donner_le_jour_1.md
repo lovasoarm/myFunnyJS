@@ -1544,7 +1544,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 ---
 
-#### Exemple de WORKFLOW avec un exemple : "Meme Mashup Generator"
+#### WORKFLOW avec un exemple : "Meme Mashup Generator"
 > *Tu uploads des images ou du texte → l'app combine tout aléatoirement → meme WTF généré.*
 
 ---
