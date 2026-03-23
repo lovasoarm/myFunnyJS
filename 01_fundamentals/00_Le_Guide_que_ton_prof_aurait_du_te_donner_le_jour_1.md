@@ -1903,7 +1903,7 @@ Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui diff�
 
 Le champ le plus en feu de 2026. La demande dépasse massivement l'offre de profils qualifiés.
 
-Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui différencie les tops : maths (algèbre linéaire, stats, calcul), compréhension théorique des architectures. Les vrais postes ML demandent souvent un Master ou un PhD. Mais les postes "AI Engineer" (qui utilisent des APIs et déploient des modèles existants) sont accessibles sans.
+Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui différencie les tops : maths (algèbre linéaire, stats, calcul), compréhension théorique des architectures. Les vrais postes ML demandent souvent un Master ou un PhD (doctorat). Mais les postes "AI Engineer" (qui utilisent des APIs et déploient des modèles existants) sont accessibles sans.
 
 ---
 
@@ -1911,7 +1911,7 @@ Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui diff
 
 Le marché manque cruellement de profils. Toutes les entreprises ont besoin de sécurité. Peu de gens savent vraiment faire.
 
-Technologies : Kali Linux, Metasploit, Burp Suite, Wireshark, Python, Bash. Ce qui différencie les tops : curiosité maniaque, connaître le système en profondeur (réseau, OS, code bas niveau), éthique. Certifications : CEH, OSCP (difficile mais très valorisée), CISSP, CompTIA Security+.
+Technologies : Kali Linux, Metasploit, Burp Suite, Wireshark, Python, Bash. Ce qui différencie les tops : curiosité maniaque, connaître le système en profondeur (réseau, OS, code bas niveau), éthique (tu utilises tes compétences pour défendre). Certifications : CEH, OSCP (difficile mais très valorisée), CISSP, CompTIA Security+.
 
 ---
 
@@ -1937,12 +1937,12 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 ETAPE 1 : COUPE CE QUI TE DEPLAIT VRAIMENT
   Tu detestes les maths pousses ?              -> elimine IA/ML et Systemes
   Tu veux voir des resultats visuels vite ?    -> garde Web et Mobile
-  Tu adores comprendre "comment ca marche" ?   -> Cloud, Securite, Systemes
+  Tu adores comprendre "comment ça marche" ?   -> Cloud, Securite, Systemes
 
 ETAPE 2 : CROISE AVEC LE MARCHE LOCAL + REMOTE
   Offres d'emploi dans ta ville ?   -> regarde LinkedIn, Indeed, Upwork
   Travail remote ?                  -> Web, Cloud, IA, Mobile = les plus remote-friendly
-  Freelance ?                       -> Web et Mobile = les plus faciles a vendre
+  Freelance ?                       -> Web et Mobile = les plus faciles à vendre
 
 ETAPE 3 : EVALUE LA DUREE D'APPRENTISSAGE
   Employable en 6-12 mois ?   -> Web, Mobile (Flutter/RN)
