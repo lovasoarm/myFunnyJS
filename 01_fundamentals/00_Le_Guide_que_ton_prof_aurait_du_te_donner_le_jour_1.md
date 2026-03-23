@@ -1544,117 +1544,318 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 ---
 
-#### Junior Developer (0-2 ans)
+# Exemple de WORKFLOW avec un exemple : "Meme Mashup Generator"
+> *Tu uploads des images ou du texte → l'app combine tout aléatoirement → meme WTF généré.*
+
+---
+
+## Vue d'ensemble
 
 ```
-CE QU'ON ATTEND                      CE QU'ON N'EXIGE PAS ENCORE
-::::::::::::::::::::::               :::::::::::::::::::::::::::::::
-Livrer des features simples          Concevoir une architecture from scratch
-Apprendre vite                       Gerer la dette technique (code fait à la va-vite qu'on écrit vite aujourd'hui et qu'on paie cher à corriger plus tard.)
-Ecrire du code lisible et teste      Mentorer d'autres personnes
-Ne pas bloquer l'equipe
+                                                              [ UTILISATEUR ]
+                                                                     |
+                                                         drag & drop image + texte
+                                                                     |
+                                                                     ▼
+                                                            [ Next.js Frontend ]
+                                                                     |
+                                                              POST /api/upload
+                                                                     |
+                                                                     ▼
+                                                              [ API Route ]
+                                                                     |
+                                                      _______________↓________________
+                                                     |                                |
+                                                     ▼                                ▼
+                                          [ Supabase Storage ]              [ Meme Engine (Node.js) ]
+                                          (stocke l'image uploadée)                  |
+                                                                         ____________|____________
+                                                                        |                         |
+                                                                        ▼                         ▼
+                                                                [ Supabase DB ]           [ Sharp (lib) ]
+                                                                (pioche une phrase        (colle texte +
+                                                                 WTF aléatoire)            filtre sur image)
+                                                                        |                         |
+                                                                        |_________________________|
+                                                                                     |
+                                                                                     ▼
+                                                                         [ Meme PNG généré ]
+                                                                                     |
+                                                                                     ▼
+                                                                        [ Supabase Storage ]
+                                                                        (sauvegarde le meme final)
+                                                                                     |
+                                                                              URL publique
+                                                                                     |
+                                                                                     ▼
+                                                                    [ Frontend — affiche le meme ]
+                                                                                     |
+                                                                        _____________|_____________
+                                                                       |                           |
+                                                                 [ Télécharger ]             [ Partager ]
 ```
 
 ---
 
-#### Mid-Level / Senior Developer (3-8 ans)
-
-La vraie différence entre junior et senior, ce n'est pas le nombre de langages connus.
+## La stack : exemple d'outils
 
 ```
-JUNIOR                          SENIOR
-::::::::::::::                  :::::::::::::::
-"Comment je code ca ?"          "Pourquoi on code ca ?"
-Resout les problemes            Anticipe les problemes
-Suit les decisions              Influence les decisions
-Code d'abord, design ensuite    Design d'abord, code ensuite
-Connait les outils              Comprend les trade-offs (un choix où gagner quelque chose oblige à sacrifier autre chose (ex: coder vite mais mal)
-Cherche LA meilleure solution   Cherche LA BONNE solution dans CE contexte
-```
-
-Un senior sait surtout dire **non** : "non, ce pattern (une solution type à un problème qui revient souvent) va créer de la dette technique dans 6 mois. Voilà pourquoi et voilà comment faire autrement."
-
----
-
-#### Software Architect
-
-Il dessine le plan d'ensemble. Comment les systèmes communiquent. Quels patterns utiliser. Comment le système tiendra dans 5 ans.
-
-```
-L'ARCHITECTE NE CODE PAS TOUT.
-Il decide :
-  - Microservices ou monolithe ?
-  - Event-driven ou REST ?
-  - Quelle base de donnees pour quel cas d'usage ?
-  - Comment garantir la resilience si un service tombe ?
-  - Comment securiser les echanges entre services ?
-Et il doit CONVAINCRE son equipe que ses choix sont les bons.
-```
-
-> Les meilleurs architectes continuent de mettre les mains dans le code régulièrement. Sinon ils perdent le contact avec la réalité : et ça se voit vite dans les décisions qu'ils prennent.
-
----
-
-#### Tech Lead
-
-Rôle hybride : il code toujours, mais il guide aussi l'équipe.
-
-```
-RESPONSABILITES TECH LEAD
-::::::::::::::::::::::::::::::::::
-Technique   :  Architecture des features, code reviews, standards de code,
-               choix des outils, performance, securite
-Humain      :  Mentorer les juniors, debloquer les collegues,
-               coordination avec les PMs, estimation des taches
-Relation    :  Interface entre l'equipe technique et les non-techniques
-               (CEO, PO, clients)
+OUTIL               RÔLE DANS LE PROJET                     ALTERNATIVE SI ÇA SCALE
+::::::::::::::::    :::::::::::::::::::::::::::::::::::::::  :::::::::::::::::::::::::::
+Next.js             Le site + les routes API, tout en un     Séparer front (React) / back (Express)
+Supabase Storage    Stocker les images uploadées et          S3 (Amazon) si tu dépasses 1GB/mois
+                    les memes générés                        ou si tu veux plus de contrôle
+Supabase DB         Sauvegarder les phrases WTF,             PlanetScale, Railway, Neon
+                    l'historique des memes générés
+Sharp               Coller le texte sur l'image côté         Canvas API (si tu fais ça dans
+                    serveur (rapide, léger)                  le navigateur)
+Vercel              Héberger le projet, déploiement          Railway, Render, VPS perso
+                    automatique depuis GitHub
 ```
 
 ---
 
-#### Engineering Manager
-
-Il a arrêté (ou presque) de coder. Son rôle : faire en sorte que son équipe soit heureuse, productive, et livre bien.
+## Le MEME Engine en détail
 
 ```
-ENGINEERING MANAGER  =/=  TECH LEAD
-Engineering Manager  :  "Mon job c'est que les gens dans mon equipe evoluent,
-                         soient motives et livrent bien. Je m'occupe des 1:1,
-                         des recrutements, des conflits, de la roadmap."
-Tech Lead            :  "Mon job c'est que les decisions techniques soient
-                         les bonnes et que le code soit propre."
-Un seul peut faire les deux. Mais c'est epuisant. Les grandes boites separent les roles.
+                                                                     [ INPUT ]
+                                                                         |
+                                                         ________________|________________
+                                                        |                                  |
+                                                Image uploadée                      Texte du user
+                                                (photo de chat)                   ("moi un lundi")
+                                                        |                                  |
+                                                        |________________  _______________|
+                                                                         | |
+                                                                         ▼ ▼
+                                                                 [ Randomisation ]
+                                                                         |
+                                                        _________________|_________________
+                                                       |                 |                 |
+                                                       ▼                 ▼                 ▼
+                                               flip horizontal      filtre random     phrase random
+                                               (40% de chance)    neon/glitch/flou    depuis Supabase DB
+                                                                   /sépia             (si texte vide)
+                                                       |                 |                 |
+                                                       |_________________|_________________|
+                                                                         |
+                                                                         ▼
+                                                            [ Sharp — composition ]
+                                                                         |
+                                                        _________________|_________________
+                                                       |                 |                 |
+                                                       ▼                 ▼                 ▼
+                                               redimensionne        écrit le texte     applique
+                                               en 800×600           en blanc +         le filtre
+                                                                    contour noir       choisi
+                                                       |                 |                 |
+                                                       |_________________|_________________|
+                                                                         |
+                                                                         ▼
+                                                            [ OUTPUT — meme.png ]
+                                                                         |
+                                                              affichage en < 2 sec
 ```
 
 ---
 
-#### CTO (Chief Technical Officer)
+## Qui fait quoi dans la vraie vie?
+
+
+### Junior Dev *(0–2 ans)*
+
+Il code les pièces simples. Il apprend.
 
 ```
-CTO STARTUP (5-20 personnes)        CTO SCALE-UP (200+ personnes)
-::::::::::::::::::::::::            ::::::::::::::::::::::::::::::
-Code encore beaucoup                Code rarement ou jamais
-Recrute les premiers ingenieurs     Gere des VP Engineering
-Choisit la stack initiale           Definit la vision tech a 3 ans
-Parle aux investisseurs             Represente la tech au board
+CE QU'IL FAIT SUR CE PROJET
+────────────────────────────────────────────────────────────────
+-  Intègre le composant drag & drop (React Dropzone)
+-  Appelle l'API /api/generate et affiche le meme retourné
+-  Connecte le bouton "Télécharger" au lien Supabase Storage
+
+CE QU'ON NE LUI DEMANDE PAS ENCORE
+────────────────────────────────────────────────────────────────
+-  Concevoir le Meme Engine from scratch
+-  Choisir entre Supabase Storage et S3 (il ne sait pas encore
+   que Supabase est gratuit jusqu'à 1GB mais que S3 coûte
+   moins cher à grande échelle)
+-  Gérer la sécurité des uploads (validation MIME, taille max)
 ```
 
 ---
 
-#### Freelance / Entrepreneur Tech
+### Mid-Level Dev *(3–5 ans)*
+
+Il comprend le pourquoi, pas juste le comment.
 
 ```
-FREELANCE                           ENTREPRENEUR TECH
-:::::::::::::                       ::::::::::::::::::::
-Clients varies                      Tu construis ton propre produit
-Tu fixes tes tarifs                 Tu vises un marche
-Flexibilite totale                  Risque financier reel
-Revenus variables                   Si ca marche : gros upside
-Pas de manager                      Tout repose sur toi au debut
-Gestion admin seul                  Potentiellement CTO de ta propre boite
+JUNIOR                                MID-LEVEL
+::::::::::::::::::::::::::            :::::::::::::::::::::::::::::::::::::
+"Comment j'envoie l'image            "Pourquoi on envoie l'image côté
+ côté serveur ?"                      serveur et pas côté client ?
+                                       → parce que Sharp ne tourne pas
+                                         dans le navigateur, et Canvas
+                                         est trop lent sur mobile"
+
+"Je copie l'exemple Sharp             "Je lis la doc Sharp pour comprendre
+ de la doc"                            le pipeline : input → transform → output
+                                        et je choisis les bonnes options"
+
+Résout le bug de l'image              Anticipe que les PNG transparents
+ qui s'affiche mal                     vont poser problème avec le filtre
+                                        sépia → il gère ça avant que ça arrive
 ```
 
-Un freelance senior peut facturer des clients européens ou américains à des tarifs occidentaux, depuis n'importe quel pays. C'est l'un des leviers les plus puissants du développement en 2026.
+---
+
+### Senior Dev *(6–8 ans)*
+
+Il dit **non** quand il le faut.
+
+> *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les MEMES se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
+
+  ```
+                                            CE QU'IL APPORTE SUR CE PROJET
+                                           ::::::::::::::::::::::::::::::::::::
+                                            Design du pipeline complet
+                                              (queue ou génération synchrone ?)
+                                                              |
+                                                 _____________|_____________
+                                                |                           |
+                                            Sécurité uploads            Perf Sharp
+                                            validation MIME stricte,    Sharp recrée son instance à
+                                            taille max, rate limiting   chaque requête → il l'initialise
+                                                                        une seule fois au démarrage
+                                                |                           |
+                                                |___________________________|
+                                                              |
+                                                       Code reviews
+                                              repère que le junior oublie de gérer
+                                              les erreurs d'upload (que se passe-t-il
+                                              si Supabase est down ?)
+```
+
+---
+
+### Tech Lead *(Senior qui guide l'équipe)*
+
+Il code encore, mais il passe du temps à débloquer les autres.
+
+```
+TECHNIQUE                              HUMAIN
+:::::::::::::::::::::::::::::          ::::::::::::::::::::::::::::::::::
+Choisit Sharp plutôt que Canvas        Explique au junior pourquoi son
+  après avoir testé les deux             composant React re-render 10x
+Définit la structure des dossiers      Fait le lien avec le PM :
+  (features/, lib/, api/)                "non, le filtre animé GIF est
+Pose les règles de code review           possible mais ça triple le temps
+  (toute PR doit avoir des tests         de génération / on le fait en v2"
+  sur le Meme Engine)
+```
+
+---
+
+### Software Architect *(Décisions d'ensemble)*
+
+Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système.
+
+```
+                                                    SES QUESTIONS SUR CE PROJET
+                                          ::::::::::::::::::::::::::::::::::::::::::::::::
+                                            Monolithe ou microservice pour la génération ?
+                                                              |
+                                                 _____________|______________
+                                                |                            |
+                                            Monolithe Next.js           Microservice séparé
+                                            plus simple à déployer      si le Meme Engine tourne
+                                            sur Vercel, parfait         sur un serveur plus puissant
+                                            pour débuter                (génération intensive = CPU élevé)
+                                            
+                                            Supabase Storage ou S3 pour stocker les memes ?
+                                                              |
+                                                 _____________|______________
+                                                |                            |
+                                            Supabase                        S3
+                                            gratuit jusqu'à 1 GB,           pas de limite, moins cher
+                                            intégration facile,             à grande échelle, mais
+                                            parfait sous 10 000             plus de config
+                                            memes/mois                      (IAM, buckets, permissions)
+                                            
+                                            Comment éviter que le stockage explose ?
+                                            → job CRON : les memes non téléchargés depuis 7 jours
+                                              sont supprimés automatiquement
+```
+
+---
+
+### Engineering Manager *(Management, pas code)*
+
+```
+CE QU'IL FAIT                          CE QU'IL NE FAIT PAS
+::::::::::::::::::::::::::::::::       ::::::::::::::::::::::::::::::
+S'assure que le junior monte           Choisir entre Sharp et Canvas
+  en compétence (1:1 réguliers)        Faire du code review
+Gère le recrutement si le projet       Concevoir le Meme Engine
+  grandit (on a besoin d'un
+  second dev ?)
+Protège l'équipe des demandes
+  irréalistes ("le meme en 0.1s
+  c'est pas possible, voilà pourquoi")
+```
+
+---
+
+###  CTO
+
+```
+STARTUP (projet early-stage)           SI MEME MASHUP DEVIENT VIRAL
+:::::::::::::::::::::::::::::          :::::::::::::::::::::::::::::::::
+Code encore (il a tout construit)      Code rarement
+Choisit la stack initiale              Définit la vision tech à 2 ans
+  (Next.js + Supabase + Vercel)         (passer sur S3 ? ouvrir une API
+Recrute le premier dev                   publique pour les créateurs ?)
+Parle aux premiers users               Surveille les coûts d'infra
+```
+
+---
+
+### Freelance / Entrepreneur
+
+```
+FREELANCE                              ENTREPRENEUR (tu construis Meme Mashup pour toi)
+:::::::::::::::::::::                  :::::::::::::::::::::::::::::::::::::::::::::::::
+Un client te paie pour                 Tu construis le produit, tu vises les
+  construire ce type d'app               créateurs de contenu TikTok / Instagram
+Tu choisis la stack, tu livres         Tu es dev + PM + support en même temps
+Tu factures à l'heure ou au projet    Si ça devient viral → gros upside
+  (tarifs occidentaux depuis           Si ça flop → t'as quand même appris
+   Madagascar, c'est le levier 2026)     Next.js, Supabase et Sharp en vrai
+```
+
+---
+
+## Résumé : qui touche à quoi sur ce projet
+
+```
+RÔLE                  SUR MEME MASHUP GENERATOR
+::::::::::::::::      :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Junior Dev            Composants UI, appels API, bouton télécharger
+Mid-Level Dev         Meme Engine, intégration Sharp + Supabase
+Senior Dev            Pipeline complet, sécurité uploads, perf, code reviews
+Tech Lead             Archi des features + mentoring + lien avec le PM
+Software Architect    Monolithe vs microservice, Supabase vs S3, scalabilité
+Engineering Manager   Équipe, recrutement, roadmap, protection des devs
+CTO                   Stack initiale, vision, si nécessaire les premiers commits
+Freelance             Livre la feature demandée, seul ou en mission courte
+Entrepreneur          Tout. Le produit, les users, les coûts, la survie du projet.
+```
+
+---
+
+> *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"* 
+
+> Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais 
+> tu n'es plus junior. Tu decides où tu vas.
 
 ---
 
