@@ -2071,15 +2071,17 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 // Les trois questions d'un dev qui pense architecture
 
 // 1. "Comment ce code va evoluer dans 6 mois ?"
-// Si la reponse c'est "on va devoir tout recrire", c'est un signal.
+// Si la reponse c'est "on va devoir tout recrire", c'est un signal. (ex: t'as hardcodé la langue en "fr" partout et le client veut l'anglais : bonne chance!)
 
 // 2. "Si cette partie tombe en panne, qu'est-ce qui casse autour ?"
-// Un systeme bien architecturé a des points de defaillance isoles.
+// Un systeme bien architecturé a des points de defaillance isolés.
 // Un systeme mal architecturé : tout tombe en meme temps.
+ (ex: le service de notif email plante et somehow le paiement marche plus : classique)
 
 // 3. "Comment un nouveau dev comprend ce systeme en 30 minutes ?"
 // Si t'es le seul a pouvoir expliquer comment ca marche,
 // c'est pas de la valeur. C'est un risque.
+ (ex: t'es en vacances, ton tel sonne, c'est le CTO : t'aurais dû écrire de la doc)
 ```
 
 ---
