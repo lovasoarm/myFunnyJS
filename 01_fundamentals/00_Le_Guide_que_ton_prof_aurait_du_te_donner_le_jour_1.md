@@ -1871,7 +1871,7 @@ Entrepreneur          Tout. Le produit, les users, les coûts, la survie du proj
 | Cybersécurité | Très élevée | Mondial | Excellent | Explosion |
 | Jeux vidéo | Élevée | Concentré | Correct | Stable |
 | Blockchain | Élevée | Volatile | Bon | Instable |
-| Systèmes / Kernel | Très élevée | Niche | Excellent | Stable (rare) |
+| Systèmes / Kernel | Très élevée | Niche (marché très petit et très spécialisé) | Excellent | Stable (rare) |
 
 ---
 
@@ -1879,7 +1879,7 @@ Entrepreneur          Tout. Le produit, les users, les coûts, la survie du proj
 
 Le domaine le plus accessible, le plus vaste, et le plus employant. Des milliers de frameworks. Des millions d'offres dans le monde.
 
-Technologies : HTML, CSS, JS/TS, React, Next.js, Vue, Node.js, PostgreSQL. Ce qui différencie les tops : performance, accessibilité, architecture front, SEO technique. Sous-spécialisations : e-commerce, SaaS, apps temps réel (websockets), PWA.
+Technologies : HTML, CSS, JS/TS, React, Next.js, Vue, Node.js, PostgreSQL. Ce qui différencie les tops (les meilleurs développeurs web) : performance, accessibilité, architecture front, SEO technique. Sous-spécialisations : e-commerce, SaaS, apps temps réel (websockets), PWA (Progressive Web App : une app web qui se comporte comme une app mobile native, sans passer par l'App Store comme "Spotify Web Player").
 
 ---
 
