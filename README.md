@@ -22,7 +22,7 @@ MyFunnyJS/
 │   │   ├── 02_reference_chaos.js               # Les références qui foutent tout en l'air
 │   │   └── 03_mutation_madness.js              # Mutation & copies : shallow vs deep
 │   ├── 02_scope/                               # Scope & Contexte : où vit ton code ?
-│   │   ├── 01_scope_basics.js                  # Global, local, block — les territoires
+│   │   ├── 01_scope_basics.js                  # Global, local, block : les territoires
 │   │   ├── 02_closure_trap.js                  # Fermetures et pièges mortels
 │   │   └── 03_scope_escape_room.js             # Escape room de closures
 │   ├── 03_functions/                           # Fonctions comme jouets de guerre
@@ -33,13 +33,17 @@ MyFunnyJS/
 │   │   ├── 01_primitives.js                    # string, number, boolean, symbol
 │   │   ├── 02_type_coercion.js                 # Conversions implicites et pièges
 │   │   └── 03_type_transformers.js             # Transformer et vérifier les types
-│   └── 05_web_basics/                          # Web Fundamentals immersifs
-│       ├── 01_dom_manipulation.js              # DOM, sélecteurs, events, animations
-│       ├── 02_fetch_adventure.js               # Fetch API dans des missions crazys
-│       ├── 03_storage_treasure.js              # LocalStorage & Cookies comme trésor
-│       ├── 04_template_portals.js              # Templates strings & DOM templating
-│       ├── 05_web_helpers.js                   # Fonctions DOM/event réutilisables
-│       └── 06_module_factory.js                # Modules ES6, import/export
+│   ├── 05_web_basics/                          # Web Fundamentals immersifs
+│   │   ├── 01_dom_manipulation.js              # DOM, sélecteurs, events, animations
+│   │   ├── 02_fetch_adventure.js               # Fetch API dans des missions crazys
+│   │   ├── 03_storage_treasure.js              # LocalStorage & Cookies comme trésor
+│   │   ├── 04_template_portals.js              # Templates strings & DOM templating
+│   │   ├── 05_web_helpers.js                   # Fonctions DOM/event réutilisables
+│   │   └── 06_module_factory.js                # Modules ES6, import/export
+│   └── 06_regex/                               # Regex : l'arme secrète du parseur
+│       ├── 01_regex_basics.js                  # Syntaxe, flags, patterns de base
+│       ├── 02_regex_combat.js                  # Validation email, URL, téléphone
+│       └── 03_regex_extractor.js               # Capturer, remplacer, splitter comme un sniper
 │
 │
 ├── 02_async/                                   # L'Event Loop : ton cerveau doit suivre
@@ -122,7 +126,7 @@ MyFunnyJS/
 │   │   └── 03_merge_sort_fusion.js             # Merge sort : divide & conquer
 │   ├── 02_searching/                           # Recherche : trouver l'aiguille dans la botte
 │   │   ├── 01_linear_search_hunt.js            # Linear search
-│   │   └── 02_binary_search_mission.js         # Binary search —:couper en deux jusqu'à la vérité
+│   │   └── 02_binary_search_mission.js         # Binary search : couper en deux jusqu'à la vérité
 │   ├── 03_dynamic_programming/                 # DP : se souvenir pour aller plus vite
 │   │   ├── 01_fibonacci_factory.js             # Fibonacci memoization
 │   │   ├── 02_dp_knapsack_adventure.js         # Knapsack problem
@@ -164,11 +168,11 @@ MyFunnyJS/
 │   ├── 01_module_castle.js                     # Module pattern
 │   ├── 02_observer_watchtower.js               # Observer pattern
 │   ├── 03_factory_machine.js                   # Factory pattern
-│   ├── 04_singleton_throne.js                  # Singleton -> l'unique, l'intouchable
-│   ├── 05_mvc_temple.js                        # MVC —> séparer les responsabilités comme un pro
-│   ├── 06_clean_architecture.js                # Clean Architecture —> couches & dépendances
-│   ├── 07_event_driven_reactor.js              # Event-driven —> réagir aux événements du monde
-│   └── 08_microservices_intro.js               # Microservices —> découper intelligemment
+│   ├── 04_singleton_throne.js                  # Singleton : l'unique, l'intouchable
+│   ├── 05_mvc_temple.js                        # MVC — séparer les responsabilités comme un pro
+│   ├── 06_clean_architecture.js                # Clean Architecture : couches & dépendances
+│   ├── 07_event_driven_reactor.js              # Event-driven : réagir aux événements du monde
+│   └── 08_microservices_intro.js               # Microservices : découper intelligemment
 │
 │
 ├── 11_web_concepts/                            # Concepts Web : tout ce qu'un ingénieur doit savoir
@@ -177,139 +181,165 @@ MyFunnyJS/
 │   ├── 03_browser_rendering.js                 # Pipeline de rendu du navigateur
 │   ├── 04_state_and_data_flow.js               # State, props, flux de données
 │   ├── 05_separation_of_concerns.js            # Séparation des responsabilités
-│   ├── 06_tradeoffs_abstractions.js            # Tradeoffs & abstractions —> penser en ingénieur
+│   ├── 06_tradeoffs_abstractions.js            # Tradeoffs & abstractions — penser en ingénieur
 │   ├── 07_caching_strategies.js                # Caching : vitesse vs fraîcheur des données
-│   ├── 08_data_serialization.js                # JSON, XML, binaire —> sérialiser les données
+│   ├── 08_data_serialization.js                # JSON, XML, binaire : sérialiser les données
 │   ├── 09_auth_vs_authz.js                     # Authentication vs Authorization
-│   └── 10_env_config_secrets.js                # Config, .env, secrets management
+│   ├── 10_env_config_secrets.js                # Config, .env, secrets management
+│   └── 11_a11y_basics.js                       # Accessibilité : coder pour tout le monde
 │
 │
-├── 12_security/                                # Sécurité Badass : OWASP & au-delà des nightmares
-│   ├── 01_xss_fortress.js                      # XSS — injection de scripts dans le navigateur
-│   ├── 02_sql_injection_trap.js                # SQL Injection —> l'attaque classique depuis 1998
-│   ├── 03_csrf_maze.js                         # CSRF —> requêtes forgées dans le dos
-│   ├── 04_prototype_police.js                  # Prototype Pollution —> JS qui se retourne contre toi
+├── 12_api_craft/                               # API Craft : construire ce que le monde consomme
+│   ├── 01_express_dungeon.js                   # Express from scratch : routes, req, res, middleware
+│   ├── 02_rest_architecture.js                 # REST : verbes, ressources, status codes comme un pro
+│   ├── 03_crud_factory.js                      # CRUD complet : créer, lire, modifier, supprimer
+│   ├── 04_middleware_chain.js                  # Middleware : la chaîne de traitement des requêtes
+│   ├── 05_error_handling_fortress.js           # Gestion d'erreurs : ne jamais crasher en prod
+│   ├── 06_graphql_portal.js                    # GraphQL : requêter exactement ce dont tu as besoin
+│   └── 07_api_auth_vault.js                    # Auth API : JWT, headers, sécuriser ses endpoints
+│
+│
+├── 13_security/                                # Sécurité Badass : OWASP & au-delà des nightmares
+│   ├── 01_xss_fortress.js                      # XSS : injection de scripts dans le navigateur
+│   ├── 02_sql_injection_trap.js                # SQL Injection : l'attaque classique depuis 1998
+│   ├── 03_csrf_maze.js                         # CSRF : requêtes forgées dans le dos
+│   ├── 04_prototype_police.js                  # Prototype Pollution : JS qui se retourne contre toi
 │   ├── 05_auth_flows_vault.js                  # Auth flows : JWT, sessions, OAuth
 │   └── 06_hashing_fortress.js                  # Hashing : bcrypt, salt, rainbow tables
 │
 │
-├── 13_databases/                               # Bases de données : persister intelligemment dans le temps
+├── 14_databases/                               # Bases de données : persister intelligemment dans le temps
 │   ├── 01_sql_dungeon.js                       # SQL : requêtes, jointures, indexes
 │   ├── 02_nosql_chaos.js                       # NoSQL : documents, clé/valeur, graphes
 │   ├── 03_db_design_arena.js                   # Modélisation, relations, normalisation
 │   └── 04_caching_layer.js                     # Redis, caching strategies, TTL
 │
 │
-├── 14_scalability/                             # Scalabilité : tenir sous la pression sans imploser
-│   ├── 01_load_balancing.js                    # Load balancing —> distribuer la charge
+├── 15_scalability/                             # Scalabilité : tenir sous la pression sans imploser
+│   ├── 01_load_balancing.js                    # Load balancing : distribuer la charge
 │   ├── 02_horizontal_vs_vertical.js            # Scale horizontalement vs verticalement
-│   ├── 03_rate_limiting_guard.js               # Rate limiting —> se protéger du flood
+│   ├── 03_rate_limiting_guard.js               # Rate limiting : se protéger du flood
 │   └── 04_message_queues.js                    # Message queues : RabbitMQ, Kafka intro
 │
-├── 15_edge_cases/                              # Cas Bizarres : JS qui se rebelle contre son créateur
-│   ├── 01_nan_madness.js                       # NaN — le nombre qui n'est pas un nombre
-│   ├── 02_undefined_abyss.js                   # undefined vs null —> l'abîme philosophique
-│   └── 03_floating_point_fiasco.js             # 0.1 + 0.2 != 0.3 —> le scandale mondial
+│
+├── 16_edge_cases/                              # Cas Bizarres : JS qui se rebelle contre son créateur
+│   ├── 01_nan_madness.js                       # NaN : le nombre qui n'est pas un nombre
+│   ├── 02_undefined_abyss.js                   # undefined vs null : l'abîme philosophique
+│   └── 03_floating_point_fiasco.js             # 0.1 + 0.2 != 0.3 : le scandale mondial
 │
 │
-├── 16_bonus_crazy/                             # Exercices Fous
-│   ├── 01_pirates/                             # Pirates —> coder ou couler
+├── 17_bonus_crazy/                             # Exercices Fous
+│   ├── 01_pirates/                             # Pirates : coder ou couler
 │   │   ├── 01_pirate_treasure_map.js           # Hash tables pour localiser le trésor
 │   │   ├── 02_pirate_ship_battle.js            # Graphes & pathfinding en pleine mer
 │   │   └── 03_pirate_kraken_escape.js          # Backtracking pour fuir le kraken
-│   ├── 02_slashers/                            # Slashers —> survie par l'algorithme
+│   ├── 02_slashers/                            # Slashers : survie par l'algorithme
 │   │   ├── 01_slasher_pursuit.js               # BFS/DFS pour échapper au tueur
 │   │   ├── 02_slasher_trap_lab.js              # Closures & scope dans le labo maudit
 │   │   └── 03_slasher_last_stand.js            # DP pour maximiser tes chances de survie
-│   ├── 03_titans/                              # Titans —> Attack on Data Structures
+│   ├── 03_titans/                              # Titans : Attack on Data Structures
 │   │   ├── 01_titan_shifters.js                # Polymorphisme & héritage titan
 │   │   ├── 02_titan_wall_defense.js            # Stack & Queue pour défendre les murs
 │   │   └── 03_titan_forest_chase.js            # A* pathfinding dans la forêt
-│   ├── 04_anime_arena/                         # Anime Arena —> les persos codent avec toi
+│   ├── 04_anime_arena/                         # Anime Arena : les persos codent avec toi
 │   │   ├── 01_naruto_shadow_clones.js          # Références & copies style Naruto
 │   │   ├── 02_hunter_exam_algo.js              # Algorithmes style Hunter x Hunter
 │   │   └── 03_dragon_ball_power.js             # Récursion & Big-O niveau Super Saiyan
-│   └── 05_magic_lab/                           # Laboratoire Magique —> alchimie de code pur
+│   └── 05_magic_lab/                           # Laboratoire Magique : alchimie de code pur
 │       ├── 01_magic_potions.js                 # Composition & currying alchimiste
 │       ├── 02_magic_portals.js                 # Graphs & BFS entre portails dimensionnels
 │       └── 03_magic_creatures.js               # POO & polymorphisme créatures
 │
 │
-├── 20_mini_projects/                                # Projets Intégrateurs : tout assembler pour de vrai
-│   ├── vaika_car_app/                          # App voiture —> CRUD + async + Clean Archi
-│   │   ├── README.md                           # Contexte, objectifs, stack utilisée
-│   │   ├── src/
-│   │   │   ├── main.js                         # Point d'entrée
-│   │   │   ├── api/                            # Couche fetch & gestion erreurs
-│   │   │   ├── models/                         # Entités & data shaping
-│   │   │   └── ui/                             # Rendu DOM & interactions
-│   │   └── tests/                              # Tests unitaires & intégration
-│   ├── mini_social_network/                    # Réseau social —> auth + data flow + state
+├── 20_mini_projects/                           # Projets Intégrateurs : tout assembler pour de vrai
+│   ├── vaika_car_app/                          # App voiture : CRUD + async + Clean Archi
 │   │   ├── README.md
 │   │   ├── src/
 │   │   │   ├── main.js
-│   │   │   ├── auth/                           # Login, register, JWT handling
-│   │   │   ├── feed/                           # Posts, likes, comments
-│   │   │   └── store/                          # State management maison
+│   │   │   ├── api/
+│   │   │   ├── models/
+│   │   │   └── ui/
 │   │   └── tests/
-│   ├── crypto_tracker/                         # Crypto tracker —> API externe + caching + WebSocket
+│   │       ├── api.test.js                     # Tests de la couche fetch
+│   │       ├── models.test.js                  # Tests des entités
+│   │       └── ui.test.js                      # Tests des interactions DOM
+│   ├── mini_social_network/                    # Réseau social : auth + data flow + state
 │   │   ├── README.md
 │   │   ├── src/
 │   │   │   ├── main.js
-│   │   │   ├── api/                            # CoinGecko ou équivalent
-│   │   │   ├── cache/                          # Stratégie de cache TTL
-│   │   │   └── realtime/                       # WebSocket price updates
+│   │   │   ├── auth/
+│   │   │   ├── feed/
+│   │   │   └── store/
 │   │   └── tests/
-│   ├── crazy_chat_app/                         # Chat app —> WebSockets + event-driven + rooms
+│   │       ├── auth.test.js                    # Tests login/register/JWT
+│   │       ├── feed.test.js                    # Tests posts & likes
+│   │       └── store.test.js                   # Tests state management
+│   ├── crypto_tracker/                         # Crypto tracker : API externe + caching + WebSocket
 │   │   ├── README.md
 │   │   ├── src/
 │   │   │   ├── main.js
-│   │   │   ├── server/                         # Node.js WS server
-│   │   │   ├── client/                         # UI & connexion WS
-│   │   │   └── events/                         # Event bus & message routing
+│   │   │   ├── api/
+│   │   │   ├── cache/
+│   │   │   └── realtime/
 │   │   └── tests/
-│   └── crazydevs_prototype/                    # Le grand projet final —> tout ce qu'on a appris
-│       ├── README.md                           # Vision, archi, roadmap du prototype
+│   │       ├── api.test.js                     # Tests appels CoinGecko
+│   │       └── cache.test.js                   # Tests stratégie TTL
+│   ├── crazy_chat_app/                         # Chat app : WebSockets + event-driven + rooms
+│   │   ├── README.md
+│   │   ├── src/
+│   │   │   ├── main.js
+│   │   │   ├── server/
+│   │   │   ├── client/
+│   │   │   └── events/
+│   │   └── tests/
+│   │       ├── server.test.js                  # Tests WS server
+│   │       └── events.test.js                  # Tests event bus & routing
+│   └── crazydevs_prototype/                    # Le grand projet final : tout ce qu'on a appris
+│       ├── README.md
 │       ├── src/
 │       │   ├── main.js
-│       │   ├── core/                           # Business logic pure
-│       │   ├── infra/                          # DB, API, external services
-│       │   ├── ui/                             # Interface & interactions
-│       │   └── shared/                         # Utils partagés entre couches
+│       │   ├── core/
+│       │   ├── infra/
+│       │   ├── ui/
+│       │   └── shared/
 │       └── tests/
+│           ├── core.test.js                    # Tests business logic
+│           ├── infra.test.js                   # Tests DB & API
+│           └── integration.test.js             # Tests end-to-end
 │
 │
-├── 21_annexes/                                    # Annexes pro : bonus pour aller encore plus loin
-│   ├── testing/                                   # Testing : le filet de sécurité du pro
-│   │   ├── 01_why_testing.js                      # Pourquoi tester : avant que la prod explose
-│   │   ├── 02_unit_testing_basics.js              # Unit tests : tester une fonction comme un sniper
-│   │   ├── 03_jest_crash_course.js                # Jest from scratch : describe, it, expect
-│   │   ├── 04_mocking_madness.js                  # Mocking & spies : simuler la réalité
-│   │   ├── 05_integration_testing.js              # Tests d'intégration : plusieurs pièces ensemble
-│   │   ├── 06_tdd_arena.js                        # TDD : écrire le test avant le code, comme un boss
-│   │   └── 07_test_driven_refactor.js             # Refactorer en sécurité grâce aux tests
-│   ├── toolchain/                                 # Toolchain : l'arsenal du dev moderne
-│   │   ├── 01_npm_survival_guide.js               # npm, scripts, package.json : survivre à l'écosystème
-│   │   ├── 02_vite_esbuild_turbo.js               # Vite & esbuild : bundler à la vitesse de la lumière
-│   │   ├── 03_eslint_code_police.js               # ESLint : la police du code qui t'empêche de péter la prod
-│   │   ├── 04_prettier_formatter.js               # Prettier : formater sans débattre des espaces
-│   │   ├── 05_git_workflows.js                    # Git avancé : branches, rebase, hooks
-│   │   └── 06_ci_cd_pipeline.js                   # CI/CD : automatiser jusqu'à zéro effort humain
-│   └── typescript/                                # TypeScript : JS avec un casque et une armure
-│       ├── 01_why_typescript.ts                   # Pourquoi TS -> quand JS commence à te mentir
-│       ├── 02_types_interfaces.ts                 # Types & interfaces -> nommer la réalité
-│       ├── 03_generics_unleashed.ts               # Generics —> le code qui s'adapte à tout
-│       ├── 04_narrowing_guards.ts                 # Type narrowing & guards —> réduire l'incertitude
-│       ├── 05_utility_types_toolbox.ts            # Utility types : Partial, Pick, Omit & co
-│       └── 06_ts_in_the_wild.ts                   # TypeScript sur de vrais projets > patterns pro
+├── 21_annexes/                                 # Annexes pro : bonus pour aller encore plus loin
+│   ├── testing/                                # Testing : le filet de sécurité du pro
+│   │   ├── 01_why_testing.js                   # Pourquoi tester : avant que la prod explose
+│   │   ├── 02_unit_testing_basics.js           # Unit tests : tester une fonction comme un sniper
+│   │   ├── 03_jest_crash_course.js             # Jest from scratch : describe, it, expect
+│   │   ├── 04_mocking_madness.js               # Mocking & spies : simuler la réalité
+│   │   ├── 05_integration_testing.js           # Tests d'intégration : plusieurs pièces ensemble
+│   │   ├── 06_tdd_arena.js                     # TDD : écrire le test avant le code, comme un boss
+│   │   └── 07_test_driven_refactor.js          # Refactorer en sécurité grâce aux tests
+│   ├── toolchain/                              # Toolchain : l'arsenal du dev moderne
+│   │   ├── 01_npm_survival_guide.js            # npm, scripts, package.json : survivre à l'écosystème
+│   │   ├── 02_vite_esbuild_turbo.js            # Vite & esbuild : bundler à la vitesse de la lumière
+│   │   ├── 03_eslint_code_police.js            # ESLint : la police du code qui t'empêche de péter la prod
+│   │   ├── 04_prettier_formatter.js            # Prettier : formater sans débattre des espaces
+│   │   ├── 05_git_workflows.js                 # Git avancé : branches, rebase, hooks
+│   │   └── 06_ci_cd_pipeline.js                # CI/CD : automatiser jusqu'à zéro effort humain
+│   └── typescript/                             # TypeScript : JS avec un casque et une armure
+│       ├── 01_why_typescript.ts                # Pourquoi TS : quand JS commence à te mentir
+│       ├── 02_types_interfaces.ts              # Types & interfaces : nommer la réalité
+│       ├── 03_generics_unleashed.ts            # Generics — le code qui s'adapte à tout
+│       ├── 04_narrowing_guards.ts              # Type narrowing & guards : réduire l'incertitude
+│       ├── 05_utility_types_toolbox.ts         # Utility types : Partial, Pick, Omit & co
+│       └── 06_ts_in_the_wild.ts               # TypeScript sur de vrais projets : patterns pro
 │
 │
-└── 22_tools/                                      # Arsenal du développeur : tes gadgets maison
-    ├── 01_logger.js                               # Logger custom avec niveaux (debug/info/warn/error)
-    ├── 02_helper_functions.js                     # Helpers réutilisables partout dans le projet
-    ├── 03_array_utils.js                          # Utilitaires tableaux avancés
-    ├── 04_benchmark.js                            # Mesurer les perfs de n'importe quoi
-    └── 05_debug_toolkit.js                        # Toolkit debug pour survivre aux bugs de 2h du matin
+└── 22_tools/                                   # Arsenal du développeur : tes gadgets maison
+    ├── 01_logger.js                            # Logger custom avec niveaux (debug/info/warn/error)
+    ├── 02_helper_functions.js                  # Helpers réutilisables partout dans le projet
+    ├── 03_array_utils.js                       # Utilitaires tableaux avancés
+    ├── 04_benchmark.js                         # Mesurer les perfs de n'importe quoi
+    ├── 05_debug_toolkit.js                     # Toolkit debug pour survivre aux bugs de 2h du matin
+    └── 06_devtools_survival.js                 # DevTools : breakpoints, network, profiler
 ```
 
 ---
@@ -373,14 +403,15 @@ Quelques exercices fous et interactifs :
 9. Runtime Environment
 10. Architecture & Patterns
 11. Web Concepts
-12. Security
-13. Databases
-14. Scalability
-15. Edge Cases
-16. Bonus Crazy
-17. mini-projects
-18. annexes
-19. tools
+12. API
+13. Security
+14. Databases
+15. Scalability
+16. Edge Cases
+17. Bonus Crazy
+18. mini-projects
+19. annexes
+20. tools
 
 ---
 
