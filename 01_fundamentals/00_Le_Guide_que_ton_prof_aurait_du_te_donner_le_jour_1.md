@@ -1717,8 +1717,8 @@ Il dit **non** quand il le faut.
   ```
                                             CE QU'IL APPORTE SUR CE PROJET
                                            ::::::::::::::::::::::::::::::::::::
-                                            Design du pipeline complet
-                                              (queue ou génération synchrone ?)
+                                            Design du pipeline complet ((ici : image uploadée → meme généré → URL retournée).)
+                                              (queue ou génération synchrone ?) -> génère tout de suite ou demande ajoutée à la file ?
                                                               |
                                                  _____________|_____________
                                                 |                           |
