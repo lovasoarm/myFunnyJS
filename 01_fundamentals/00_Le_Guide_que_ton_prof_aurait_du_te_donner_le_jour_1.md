@@ -12,6 +12,7 @@
 6. [J'ai une idee ou un cahier des charges : je fais quoi exactement ?](#6-jai-une-idee-ou-un-cahier-des-charges--je-fais-quoi-exactement)
 7. [Les verites qu'on te dira jamais en cours](#7-les-verites-quon-te-dira-jamais-en-cours)
 8. [Les métiers du dev : la carte au trésor que personne t'a donnée](#8-les-metiers-du-dev--la-carte-au-tresor-que-personnequon-t-a-donnee)
+9. [BONUS: L'IA, le vrai métier, et les erreurs qui tuent les carrières](#9-BONUS---LIA--le-vrai-métier--et-les-erreurs-qui-tuent-les-carrières)
 
 ---
 
