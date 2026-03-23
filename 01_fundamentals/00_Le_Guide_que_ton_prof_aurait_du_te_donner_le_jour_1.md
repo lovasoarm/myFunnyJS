@@ -1746,7 +1746,7 @@ TECHNIQUE                              HUMAIN
 :::::::::::::::::::::::::::::          ::::::::::::::::::::::::::::::::::
 Choisit Sharp plutôt que Canvas        Explique au junior pourquoi son
   après avoir testé les deux             composant React re-render 10x
-Définit la structure des dossiers      Fait le lien avec le PM :
+Définit la structure des dossiers      Fait le lien avec le PM (Product Manager):
   (features/, lib/, api/)                "non, le filtre animé GIF est
 Pose les règles de code review           possible mais ça triple le temps
   (toute PR doit avoir des tests         de génération / on le fait en v2"
@@ -1762,7 +1762,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
 ```
                                                     SES QUESTIONS SUR CE PROJET
                                           ::::::::::::::::::::::::::::::::::::::::::::::::
-                                            Monolithe ou microservice pour la génération ?
+                          Monolithe (toute l'app est dans un seul projet) ou microservice pour la génération ?
                                                               |
                                                  _____________|______________
                                                 |                            |
@@ -1814,7 +1814,7 @@ Code encore (il a tout construit)      Code rarement
 Choisit la stack initiale              Définit la vision tech à 2 ans
   (Next.js + Supabase + Vercel)         (passer sur S3 ? ouvrir une API
 Recrute le premier dev                   publique pour les créateurs ?)
-Parle aux premiers users               Surveille les coûts d'infra
+Parle aux premiers users               Surveille les coûts d'infra (tout ce que tu paies pour faire tourner ton app : serveurs, stockage, base de données, etc.)
 ```
 
 ---
@@ -1827,7 +1827,7 @@ FREELANCE                              ENTREPRENEUR (tu construis Meme Mashup po
 Un client te paie pour                 Tu construis le produit, tu vises les
   construire ce type d'app               créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres         Tu es dev + PM + support en même temps
-Tu factures à l'heure ou au projet    Si ça devient viral → gros upside
+Tu factures à l'heure ou au projet     Si ça devient viral → gros upside (le gain potentiel si ça marche)
   (tarifs occidentaux depuis           Si ça flop → t'as quand même appris
    Madagascar, c'est le levier 2026)     Next.js, Supabase et Sharp en vrai
 ```
@@ -1854,7 +1854,7 @@ Entrepreneur          Tout. Le produit, les users, les coûts, la survie du proj
 
 > *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"* 
 
-> Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais 
+> Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais (ex: Génération synchrone -> simple à coder MAIS serveur saturé à 500 users)
 > tu n'es plus junior. Tu decides où tu vas.
 
 ---
