@@ -1544,12 +1544,12 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 ---
 
-# Exemple de WORKFLOW avec un exemple : "Meme Mashup Generator"
+#### Exemple de WORKFLOW avec un exemple : "Meme Mashup Generator"
 > *Tu uploads des images ou du texte → l'app combine tout aléatoirement → meme WTF généré.*
 
 ---
 
-## Vue d'ensemble
+#### Vue d'ensemble :
 
 ```
                                                               [ UTILISATEUR ]
@@ -1597,7 +1597,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 ---
 
-## La stack : exemple d'outils
+#### La stack : exemple d'outils
 
 ```
 OUTIL               RÔLE DANS LE PROJET                     ALTERNATIVE SI ÇA SCALE
@@ -1615,7 +1615,7 @@ Vercel              Héberger le projet, déploiement          Railway, Render, 
 
 ---
 
-## Le MEME Engine en détail
+#### Le MEME Engine en détail
 
 ```
                                                                      [ INPUT ]
@@ -1659,10 +1659,10 @@ Vercel              Héberger le projet, déploiement          Railway, Render, 
 
 ---
 
-## Qui fait quoi dans la vraie vie?
+### Qui fait quoi dans la vraie vie?
 
 
-### Junior Dev *(0–2 ans)*
+#### Junior Dev *(0–2 ans)*
 
 Il code les pièces simples. Il apprend.
 
@@ -1684,7 +1684,7 @@ CE QU'ON NE LUI DEMANDE PAS ENCORE
 
 ---
 
-### Mid-Level Dev *(3–5 ans)*
+#### Mid-Level Dev *(3–5 ans)*
 
 Il comprend le pourquoi, pas juste le comment.
 
@@ -1708,7 +1708,7 @@ Résout le bug de l'image              Anticipe que les PNG transparents
 
 ---
 
-### Senior Dev *(6–8 ans)*
+#### Senior Dev *(6–8 ans)*
 
 Il dit **non** quand il le faut.
 
@@ -1737,7 +1737,7 @@ Il dit **non** quand il le faut.
 
 ---
 
-### Tech Lead *(Senior qui guide l'équipe)*
+#### Tech Lead *(Senior qui guide l'équipe)*
 
 Il code encore, mais il passe du temps à débloquer les autres.
 
@@ -1755,7 +1755,7 @@ Pose les règles de code review           possible mais ça triple le temps
 
 ---
 
-### Software Architect *(Décisions d'ensemble)*
+#### Software Architect *(Décisions d'ensemble)*
 
 Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système.
 
@@ -1788,7 +1788,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
 
 ---
 
-### Engineering Manager *(Management, pas code)*
+#### Engineering Manager *(Management, pas code)*
 
 ```
 CE QU'IL FAIT                          CE QU'IL NE FAIT PAS
@@ -1805,7 +1805,7 @@ Protège l'équipe des demandes
 
 ---
 
-###  CTO
+####  CTO
 
 ```
 STARTUP (projet early-stage)           SI MEME MASHUP DEVIENT VIRAL
@@ -1819,7 +1819,7 @@ Parle aux premiers users               Surveille les coûts d'infra
 
 ---
 
-### Freelance / Entrepreneur
+#### Freelance / Entrepreneur
 
 ```
 FREELANCE                              ENTREPRENEUR (tu construis Meme Mashup pour toi)
