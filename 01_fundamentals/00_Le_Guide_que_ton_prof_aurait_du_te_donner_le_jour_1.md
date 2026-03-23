@@ -1962,15 +1962,15 @@ ETAPE 4 : TESTE AVANT DE T'ENGAGER
 > *"La plupart des devs savent coder. Les bons devs savent résoudre des problèmes. Les excellents devs savent résoudre les bons problèmes."*
 
 ```
-DEV MOYEN                              DEV EXCELLENT
-::::::::::::::::::                     ::::::::::::::::::::::
-Copie/colle sans comprendre            Comprend ce qu'il colle
-Connait le langage                     Comprend le systeme
-"Est-ce que ca fonctionne ?"           "Est-ce que c'est maintenable ?"
-Peur du code des autres                Lit le code des autres avec curiosite
-Evite les sujets inconnus              Plonge dans les sujets inconnus
-Ne teste que le "happy path"           Teste les edge cases
-Reflechit en features                  Reflechit en systemes
+DEV MOYEN                                                                          DEV EXCELLENT
+::::::::::::::::::                                                                 ::::::::::::::::::::::
+Copie/colle sans comprendre                 --------->                             Comprend ce qu'il colle
+Connait le langage                          --------->                             Comprend le systeme (comprend comment les pièces s'assemblent)
+"Est-ce que ca fonctionne ?"                --------->                            "Est-ce que c'est maintenable ?"
+Peur du code des autres                     --------->                             Lit le code des autres avec curiosité
+Evite les sujets inconnus                   --------->                             Plonge dans les sujets inconnus
+Ne teste que le "happy path" (scénario idéal où tout se passe bien)   --------->   Teste les edge cases
+Reflechit en features                       --------->                             Reflechit en systemes       
 ```
 
 **Les compétences qui créent la différence :**
@@ -1987,7 +1987,7 @@ Complexite O(n), O(log n), O(1) : ca devient tres concret quand t'as
 **2. Clean Code**
 
 ```javascript
-// Dev moyen : ca marche, personne sait pourquoi, personne ose y toucher
+// Dev moyen : ça marche, personne sait pourquoi, personne ose y toucher
 function f(x, y, z) {
   if (z === 1) return x * 1.1
   if (z === 2) return x * 1.2
