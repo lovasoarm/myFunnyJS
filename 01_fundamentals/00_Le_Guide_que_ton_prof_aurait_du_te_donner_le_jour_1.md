@@ -2092,13 +2092,13 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 ANNEES 1-2 : LE DEBROUSSAILLAGE
   Tu apprends vite mais tu casses aussi vite.
   Chaque semaine tu decouvres que tu ne sais pas quelque chose.
-  C'est normal. C'est comme ca pour tout le monde.
+  C'est normal. C'est comme ça pour tout le monde.
   Objectif : livrer de la valeur, apprendre les bases du travail en equipe.
   Erreur classique : vouloir tout apprendre en meme temps -> epuisement.
 
 ANNEES 3-5 : L'AUTONOMIE
   Tu livres sans supervision constante.
-  Tu commences a avoir des opinions sur les choix techniques.
+  Tu commences à avoir des opinions sur les choix techniques.
   Tu peux concevoir une feature de A a Z.
   Objectif : developper ta specialite et ta reputation.
   Erreur classique : rester en confort zone, eviter les projets complexes.
@@ -2112,10 +2112,10 @@ ANNEES 5-8 : L'IMPACT
                      sans vraiment vouloir gerer des gens.
 
 ANNEES 8-15 : LA FORCE TRANQUILLE
-  Tu n'as plus a prouver que tu sais coder.
+  Tu n'as plus à prouver que tu sais coder.
   Tu resous des problemes organisationnels autant que techniques.
   Tu as un reseau solide dans l'industrie.
-  Objectif : impact a grande echelle, ou independance (freelance/startup).
+  Objectif : impact à grande echelle, ou independance (freelance/startup).
   Erreur classique : se reposer sur ses lauriers, arreter d'apprendre.
 ```
 
