@@ -1550,7 +1550,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 CE QU'ON ATTEND                      CE QU'ON N'EXIGE PAS ENCORE
 ::::::::::::::::::::::               :::::::::::::::::::::::::::::::
 Livrer des features simples          Concevoir une architecture from scratch
-Apprendre vite                       Gerer la dette technique
+Apprendre vite                       Gerer la dette technique (code fait à la va-vite qu'on écrit vite aujourd'hui et qu'on paie cher à corriger plus tard.)
 Ecrire du code lisible et teste      Mentorer d'autres personnes
 Ne pas bloquer l'equipe
 ```
@@ -1568,11 +1568,11 @@ JUNIOR                          SENIOR
 Resout les problemes            Anticipe les problemes
 Suit les decisions              Influence les decisions
 Code d'abord, design ensuite    Design d'abord, code ensuite
-Connait les outils              Comprend les trade-offs
+Connait les outils              Comprend les trade-offs (un choix où gagner quelque chose oblige à sacrifier autre chose (ex: coder vite mais mal)
 Cherche LA meilleure solution   Cherche LA BONNE solution dans CE contexte
 ```
 
-Un senior sait surtout dire **non** : "non, ce pattern va créer de la dette technique dans 6 mois. Voilà pourquoi et voilà comment faire autrement."
+Un senior sait surtout dire **non** : "non, ce pattern (une solution type à un problème qui revient souvent) va créer de la dette technique dans 6 mois. Voilà pourquoi et voilà comment faire autrement."
 
 ---
 
