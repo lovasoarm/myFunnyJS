@@ -2136,7 +2136,7 @@ LA CORRECTION
 -> Apprends Git en profondeur, pas juste les commandes de base
 -> Passe du temps sur des projets open source, lis du code existant
 -> Integre les tests des le debut, meme basiques
--> Commence toujours par comprendre le probleme avant de choisir l'outil
+-> Commence toujours par comprendre le probleme avant de choisir l'outil ((ex: "j'ai besoin de stocker des donnees" → choisis d'abord entre localStorage, une BDD, un fichier, etc. selon le contexte, pas juste "je vais utiliser MongoDB parce que je connais")
 -> Documente les decisions importantes au moment ou tu les prends
 -> Code review, collaboration, communication : ça compte autant que le code
 ```
@@ -2435,17 +2435,14 @@ function construireCarriereRemote(dev) {
 > *_Les salaires sont indicatifs et varient selon le pays, l'entreprise et l'expérience.*_
 
 ---
-# BONUS — L'IA, le vrai métier, et les erreurs qui tuent les carrières
-## Le guide que t'aurais voulu avoir dès le premier jour
+# BONUS : L'IA, le vrai métier, et les erreurs qui tuent les carrière
 
----
-
-## 1. L'IA en 2026 — Ce qui se passe vraiment
+## 1. L'IA en 2026 : Ce qui se passe vraiment
 
 ### Le contexte en chiffres bruts
 
 ```
-  Netflix    -> 3,5 ans   pour atteindre 1 million d'utilisateurs
+  Netflix    -> 3,5 ans  pour atteindre 1 million d'utilisateurs
   Instagram  -> 2,5 mois
   TikTok     -> 9 mois
   ChatGPT    -> 72 heures
@@ -2468,8 +2465,13 @@ function construireCarriereRemote(dev) {
 ```
 
 Un LLM prédit le mot suivant. Encore et encore. C'est le principe.
-C'est "juste ça" qui cache une ingénierie monstrueuse — mais c'est le principe.
-
+C'est "juste ça" qui cache une ingénierie monstrueuse : mais c'est le principe.
+Exemple concret :
+```
+"La capitale de la France est..."
+Le modèle a vu des milliards de textes où cette phrase se terminait par "Paris". Donc statistiquement, "Paris" est le choix le plus probable : pas parce qu'il "sait" que Paris est la capitale, mais parce qu'il a appris que ces mots se suivent très souvent.
+C'est la nuance importante : il ne raisonne pas, il complète des patterns.
+```
 ### Les grandes familles d'IA
 
 ```
@@ -2517,7 +2519,7 @@ async function fetchUserOrders(userId) {
 }
 
 // L'IA peut PAS savoir :
-//   -> si ca tient à 10M de requêtes
+//   -> si ça tient à 10M de requêtes
 //   -> si ta DB est déjà sous charge
 //   -> que deux requêtes séquentielles ici = bombe à retardement
 //   -> ce que ton client veut vraiment dire par "rapide"
@@ -2530,7 +2532,7 @@ async function fetchUserOrders(userId) {
 
 ---
 
-## 3. Tips IA — Ce que personne te dit
+## 3. Tips IA : Ce que presque personne te dit
 
 ### Tip 1 : contexte = qualité
 
@@ -2598,7 +2600,7 @@ async function fetchUserOrders(userId) {
   Ca marche vraiment.
 ```
 
-### Tip 6 : l'hallucination — le bug invisible
+### Tip 6 : l'hallucination -> le bug invisible
 
 ```javascript
 // Tu demandes : "Comment utiliser .flatDeep() en JavaScript ?"
@@ -2629,8 +2631,7 @@ const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
                             merge seulement après
 ```
 
-Mindset : stagiaire ultra-rapide qui a tout lu sur internet
-mais qui invente des réponses pour pas avoir l'air de pas savoir.
+Mindset : stagiaire ultra-rapide qui a tout lu sur internet mais qui invente des réponses pour pas avoir l'air de pas savoir.
 Ton boulot : valider. Toujours.
 
 ### Tip 7 : les outils à connaître
@@ -2651,7 +2652,7 @@ Ton boulot : valider. Toujours.
 
 ---
 
-## 4. L'IA et le marché — Sans bullshit
+## 4. L'IA et le marché : Sans bullshit
 
 ```
   LA PEUR                              LA RÉALITÉ 2026
@@ -2682,7 +2683,7 @@ Ton boulot : valider. Toujours.
 
 ---
 
-## 5. Le vrai métier de dev — Pas le film, la réalité
+## 5. Le vrai métier de dev : Pas le film, la réalité
 
 ### Ce qu'on t'a vendu vs ce que c'est vraiment
 
@@ -2697,8 +2698,7 @@ Ton boulot : valider. Toujours.
   Travailler seul dans ton coin    -->  Communication constante avec des non-devs
 ```
 
-Et pourtant : c'est l'un des meilleurs métiers du monde en 2026.
-Pas malgré ça. Avec ça.
+Et pourtant : c'est l'un des meilleurs métiers du monde en 2026.Pas malgré ça. Avec ça.
 
 ---
 
@@ -2719,8 +2719,7 @@ Pas malgré ça. Avec ça.
                      non-devs     le dire
 ```
 
-La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE".
-Les bons savent que les quatre colonnes comptent autant.
+La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bons savent que les quatre colonnes comptent autant.
 
 ---
 
@@ -2740,9 +2739,7 @@ Les bons savent que les quatre colonnes comptent autant.
                                                        et comment réparer vite
 ```
 
-La vraie différence entre junior et senior :
-pas le nombre de langages connus.
-La capacité à voir ce qui va mal **avant** que ça arrive.
+La vraie différence entre junior et senior ? pas le nombre de langages connus. La capacité à voir ce qui va mal **avant** que ça arrive.
 
 ---
 
