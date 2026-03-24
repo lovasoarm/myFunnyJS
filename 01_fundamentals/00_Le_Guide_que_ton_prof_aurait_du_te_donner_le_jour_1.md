@@ -2751,7 +2751,7 @@ La vraie différence entre junior et senior ? pas le nombre de langages connus. 
   Un bon reviewer regarde :
     -> Le code fait-il ce qu'il dit faire ?
     -> Est-ce maintenable dans 6 mois par quelqu'un d'autre ?
-    -> Y a-t-il des edge cases non gérés ?
+    -> Y a-t-il des edge cases non gérés ? (C'est tout ce qui sort du scénario idéal)
     -> Est-ce que ça introduit de la dette technique ?
     -> Est-ce que la nomenclature est cohérente avec le reste ?
     -> Les tests couvrent-ils les cas critiques ?
