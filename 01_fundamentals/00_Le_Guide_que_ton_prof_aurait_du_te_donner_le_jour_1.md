@@ -544,10 +544,11 @@ Les concepts que tu apprends dans un langage se transfèrent.
 ## 5. Débutant ou intermédiaire : par où commencer ?
 
 ### Si tu es complètement débutant
-
-**Python** est le meilleur point d'entrée en 2026. Exemple concret pour comprendre pourquoi.
-
-Même programme dans trois langages différents : afficher une liste de prénoms.
+Commence par un langage **simple à lire et à comprendre**, pour que ton cerveau se concentre sur la logique, pas sur la syntaxe.
+Exemples:
+- **Python** : super lisible, rapide à écrire, tu vois tout de suite ce que ton code fait.  
+- **JavaScript** : si tu veux te lancer sur le web, voir le résultat direct dans le navigateur, c’est motivant et fun.
+> Astuce : Commence par Python si tu sais pas, c’est le point d’entrée le plus smooth. Mais si ton rêve c’est de créer des sites web ou des applis front, JS est ton ami. Les concepts que tu apprends (variables, boucles, fonctions) se réutilisent partout, peu importe le langage.
 
 ```python
 # Python : tu lis, tu comprends immédiatement
@@ -575,12 +576,7 @@ public class Main {
     }
 }
 ```
-
-Ces trois blocs font **exactement la même chose**. En tant que débutant, tu veux pouvoir te concentrer sur la logique, pas sur la syntaxe. Python gagne.
-
-**JavaScript** est aussi une excellente option si tu veux aller vers le web. Tu vois les résultats dans ton navigateur immédiatement. C'est très motivant.
-
-> **Conseil :** si tu sais pas quoi choisir entre Python et JavaScript, commence par Python. Si tu veux faire des sites web rapidement, commence par JavaScript. Dans les deux cas, les bases que tu apprends s'appliquent partout.
+Ces trois programmes font la même chose. Mais en tant que débutant, tu veux comprendre la logique avant de te noyer dans le code. Python ou JS te donnent cette super-puissance.
 
 ---
 
@@ -591,40 +587,40 @@ OBJECTIF : DEV WEB FULL-STACK
 :::::::::::::::::::::::::::::::::::::::::
   Début    -->  HTML + CSS + JavaScript basique
   3 mois   -->  JavaScript (fonctions, objets, fetch/API)
-  6 mois   -->  TypeScript + React ou Vue
-  1 an     -->  Next.js ou Nuxt + base de données (SQL)
-  1 an+    -->  Déploiement, Docker, CI/CD
+  6 mois   -->  TypeScript (ou Flow, ou équivalent) + React ou Vue (React -> tendance et eco énorme, Vue -> flexible et léger) # Super-pouvoirs front-end
+  1 an     -->  Next.js ou Nuxt (ou équivalent) + DB (SQL ou NoSQL) # Construis ton royaume web complet
+  1 an+    -->  Déploiement, Docker, CI/CD (ou équivalent) # Maîtrise la survie de ton code en production
   Résultat :  Dev web junior employable
 
 OBJECTIF : DEV MOBILE
 :::::::::::::::::::::::::::::::::::::::::
   Cross-platform :
-    Début    -->  Dart basique
-    3 mois   -->  Flutter (widgets, navigation, état)
-    6 mois   -->  Firebase ou Supabase (auth, base de données)
-    1 an     -->  App publiée sur le Play Store ou l'App Store
+    Début    -->  Dart basique (ou équivalent) # Langage simple pour commencer
+    3 mois   -->  Flutter (ou React Native, ou équivalent) # Flutter -> tendance, facile pour UI, React Native -> mature, écosystème large
+    6 mois   -->  Firebase / Supabase (ou équivalent) # Stocke tes trésors
+    1 an     -->  App sur Play Store / App Store (ou équivalent) # Ton app devient légendaire
 
   Android natif :
-    Début    -->  Kotlin basique + POO
-    3 mois   -->  Jetpack Compose
-    6 mois   -->  Architecture MVVM + Retrofit
-    1 an     -->  App publiée
+    Début    -->  Kotlin basique + POO (ou Java, ou équivalent) # Kotlin -> moderne et concis ; Java -> classique et stable
+    3 mois   -->  Jetpack Compose (ou équivalent) # UI moderne et reactive, tu vois tout bouger
+    6 mois   -->  MVVM + Retrofit (ou équivalent) # Architecture solide = bouclier de ton app
+    1 an     -->  App publiée # Héros dans l’arène officielle
 
 OBJECTIF : DATA / IA
 :::::::::::::::::::::::::::::::::::::::::
-  Début    -->  Python basique
-  3 mois   -->  NumPy + Pandas (manipulation de données)
-  6 mois   -->  Matplotlib + Seaborn (visualisation)
-  1 an     -->  Machine Learning avec scikit-learn
-  1 an+    -->  Deep Learning avec PyTorch ou TensorFlow
+  Début    -->  Python basique (ou R, ou équivalent) # Python -> lisible et simple ; R -> spécialisé data
+  3 mois   -->  NumPy + Pandas (ou équivalent) # Manipule les données comme un pro
+  6 mois   -->  Matplotlib + Seaborn (ou Plotly, ou équivalent) # Visualisation : graphiques statiques vs interactifs
+  1 an     -->  Machine Learning avec scikit-learn (ou équivalent) # ML classique
+  1 an+    -->  Deep Learning (PyTorch ou TensorFlow, ou équivalent) # PyTorch -> flexible, TensorFlow -> mature et scale
 
 OBJECTIF : SYSTÈMES / PERFORMANCE
 :::::::::::::::::::::::::::::::::::::::::
-  Début    -->  C (apprends la gestion mémoire, les pointeurs)
-  6 mois   -->  C++ ou Rust
-  1 an     -->  Architecture bas niveau, OS, compilateurs
+  Début    -->  C (ou Rust, ou équivalent) (mémoire, pointeurs) # C -> classique, Rust -> safe et moderne
+  6 mois   -->  C++ ou Rust (ou équivalent) # C++ -> puissant mais verbeux, Rust -> sécurité et contrôle
+  1 an     -->  Architecture bas niveau, OS, compilateurs (ou équivalent) # Deviens maître forgeron du système
 ```
-
+> Choisis ton parcours comme un RPG : chaque étape = un niveau, chaque skill = une arme ou un sort pour ton futur métier.
 ---
 
 ### La règle des deux technologies
