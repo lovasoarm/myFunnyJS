@@ -484,20 +484,20 @@ Du WebAssembly                   :   Rust, C++ (calculs lourds -> jeux 3D, physi
 
 ### Question 2 : Projet perso ou pro ?
 
-**Projet perso** : choisis ce qui te motive. Si Python t'ennuie et que tu kiffes Rust, vas-y. L'apprentissage sera quand même utile. La motivation c'est le carburant.
+**Projet perso** : fais ce qui te fait vibrer. Si un langage t’ennuie et qu’un autre te donne envie de coder le soir en grignotant des chips, prends celui qui te fait kiffer. La motivation, c’est ton carburant. Tout ce que tu apprends se retransformera plus tard.
+> Exemple : Python te gave mais Rust te fait rêver ? Vas-y. Tu vas quand même apprendre des concepts qui te serviront ailleurs. La motivation c’est le turbo pour ton cerveau.
 
-**Projet pro ou startup** : choisis ce qui a le plus grand écosystème, le plus de librairies, et le plus de développeurs sur le marché (pour recruter plus tard si ça grandit).
-
-> **Tip :** regarde les offres d'emploi dans ta ville ou ton pays cible. Ce qui est demandé dans les annonces, c'est ce que tu dois apprendre.
+**Projet pro / startup** : mise sur ce qui a la plus grosse communauté, le plus de librairies et de devs autour. Comme ça, si ton projet cartonne, tu pourras recruter ou trouver des solutions rapidement.
+> **Astuce :** check les offres d’emploi dans ta ville ou ton pays cible. Ce qui est demandé là, c’est ce que tu dois apprendre pour être un pro du marché.
 
 ---
 
 ### Question 3 : Maintenant ou long terme ?
 
 ```
-PROTOTYPER VITE (dans les semaines) :   Python, JavaScript
-Systèmes qui durent 10 ans          :   Java, C#, Rust
-Performance critique                :   C, C++, Rust, Go
+PROTOTYPER VITE (dans les semaines) :   Langage cool, rapide, qui te fait pas chier avec la mémoire ou les compilations. Tu veux voir ton code vivre tout de                                              suite. (Ex: Python, JavaScript)
+Systèmes qui durent 10 ans          :   Langage solide, énorme communauté, utilisé par des entreprises depuis des décennies, pas de risque qu’il disparaisse.                                             (Ex: Java, C#, Rust)  
+Performance critique                :   Langage qui te laisse contrôler chaque octet. Plus compliqué à gérer, mais plus rapide et précis. (Ex: C, C++, Rust, Go)
 ```
 
 ---
