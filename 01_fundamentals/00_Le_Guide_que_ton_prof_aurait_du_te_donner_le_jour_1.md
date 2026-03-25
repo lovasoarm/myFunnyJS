@@ -250,17 +250,17 @@ React Native : JavaScript (le plus ancien, encore très utilisé)
 ### Le classement
 
 ```
- RANG   LANGAGE          PART ESTIMÉE   USAGE PRINCIPAL              TENDANCE
- ----   -------          ------------   ---------------              --------
-  1     Python           ~30%           IA, data, backend, scripts   Hausse constante
-  2     JavaScript       ~23%           Web front + back, mobile     Stable / indispensable
-  3     Java             ~15%           Enterprise, Android, backend Stable / legacy fort
-  4     TypeScript       ~12%           Web, tout ce que JS fait     Forte hausse
-  5     C / C++          ~10%           Systèmes, jeux, performance  Stable
-  6     Rust             ~8%            Systèmes, sécurité, WASM     Forte hausse
-  7     Go               ~7%            Backend, microservices       En hausse
-  8     Kotlin           ~6%            Android, backend Spring      Stable / hausse
-  9     Swift            ~5%            iOS, macOS                   Stable
+ RANG   LANGAGE          PART ESTIMÉE   USAGE PRINCIPAL                 TENDANCE
+ ----   -------          ------------   ---------------                 --------
+  1     Python           ~30%           IA, data, backend, scripts      Hausse constante
+  2     JavaScript       ~23%           Web front + back, mobile        Stable / indispensable
+  3     Java             ~15%           Enterprise, Android, backend    Stable / legacy fort
+  4     TypeScript       ~12%           Web, tout ce que JS fait        Forte hausse
+  5     C / C++          ~10%           Systèmes, jeux, performance     Stable
+  6     Rust             ~8%            Systèmes, sécurité, WASM        Forte hausse
+  7     Go               ~7%            Backend, microservices          En hausse
+  8     Kotlin           ~6%            Android, backend Spring         Stable / hausse
+  9     Swift            ~5%            iOS, macOS                      Stable
   10    C#               ~5%            Jeux Unity, Windows, enterprise Stable
 ```
 
