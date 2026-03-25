@@ -432,7 +432,7 @@ MyFunnyJS/
 01  Fundamentals          =>  les bases sans lesquelles tout le reste est du sable
 02  Async & Event Loop    =>  comprendre le coeur invisible de JS
 03  Testing First         =>  tester avant de coder, pas après
-04  Math for Devs         =>  les maths qui servent vraiment
+04  Maths utiles          =>  les maths qui servent vraiment
 05  Memory & Performance  =>  comprendre ce qui coûte cher et pourquoi
 06  Data Structures       =>  les armes secrètes de tout bon algorithme
 07  Algorithms            =>  les patterns qui résolvent 90% des problèmes
