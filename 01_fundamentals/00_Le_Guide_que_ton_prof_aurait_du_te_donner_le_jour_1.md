@@ -477,7 +477,7 @@ De l'IA ou de la data            :   Python (et rien d'autre en 2026)
 Des outils système / performance :   C, C++, Rust
 Des scripts d'automatisation     :   Python, Go, Bash
 Des applications d'entreprise    :   Java, C#, Kotlin
-Du WebAssembly                   :   Rust, C++ (calculs lourds, jeux 3D, physique, etc.)
+Du WebAssembly                   :   Rust, C++ (calculs lourds -> jeux 3D, physique, photoshop en ligne, figma, etc.)
 ```
 
 ---
