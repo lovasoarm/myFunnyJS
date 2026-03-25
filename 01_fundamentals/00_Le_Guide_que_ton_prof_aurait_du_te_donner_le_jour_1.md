@@ -1,4 +1,4 @@
-# Le Guide que ton prof aurait du te donner le jour 1
+# Le Guide que ton prof aurait dû te donner le jour 1
 
 ---
 
@@ -8,233 +8,197 @@
 2. [Les grands types de langages](#2-les-grands-types-de-langages)
 3. [Top 10 des langages en 2026](#3-top-10-des-langages-en-2026)
 4. [Comment choisir son langage ?](#4-comment-choisir-son-langage)
-5. [Debutant ou intermediaire : par ou commencer ?](#5-debutant-ou-intermediaire--par-ou-commencer)
-6. [J'ai une idee ou un cahier des charges : je fais quoi exactement ?](#6-jai-une-idee-ou-un-cahier-des-charges--je-fais-quoi-exactement)
-7. [Les verites qu'on te dira jamais en cours](#7-les-verites-quon-te-dira-jamais-en-cours)
-8. [Les métiers du dev : la carte au trésor que personne t'a donnée](#8-les-metiers-du-dev--la-carte-au-tresor-que-personnequon-t-a-donnee)
-9. [BONUS: L'IA, le vrai métier, et les erreurs qui tuent les carrières](#9-BONUS---LIA--le-vrai-métier--et-les-erreurs-qui-tuent-les-carrières)
+5. [Débutant ou intermédiaire : par où commencer ?](#5-débutant-ou-intermédiaire--par-où-commencer)
+6. [J'ai une idée ou un cahier des charges : je fais quoi exactement ?](#6-jai-une-idée-ou-un-cahier-des-charges--je-fais-quoi-exactement)
+7. [Les vérités qu'on te dira jamais en cours](#7-les-vérités-quon-te-dira-jamais-en-cours)
+8. [Les métiers du dev : la carte au trésor que personne t'a donnée](#8-les-métiers-du-dev--la-carte-au-trésor-que-personne-ta-donnée)
+9. [Ce que ça vaut vraiment : salaires et le levier remote](#9-ce-que-ça-vaut-vraiment--salaires-et-le-levier-remote)
+10. [BONUS : L'IA, le vrai métier, et les erreurs qui tuent les carrières](#10-bonus--lia-le-vrai-métier-et-les-erreurs-qui-tuent-les-carrières)
+11. [Conclusion](#11-conclusion)
 
 ---
 
 ## 1. C'est quoi un langage de programmation ?
 
-### L'origine : le vrai debut de l'histoire
+### L'origine : le vrai début de l'histoire
 
-Avant de parler de Python ou de JavaScript, il faut remonter loin. Tres loin. Genre... 1843.
+Avant de parler de Python ou de JavaScript, il faut remonter loin. Très loin. Genre... 1843.
 
-En **1843**, une femme nommee **Ada Lovelace** ecrit ce qu'on considere aujourd'hui comme le tout
-premier algorithme destine a etre execute par une machine. Elle travaillait sur la "Machine
-Analytique" de **Charles Babbage** : une machine mecanique geante qui n'a jamais vraiment ete
-construite de son vivant. Ada est donc techniquement la premiere programmeuse de l'histoire.
-C'est pour ca que le langage **Ada** (utilise encore aujourd'hui dans l'aviation et l'armee) porte
-son prenom.
+En **1843**, une femme nommée **Ada Lovelace** écrit ce qu'on considère aujourd'hui comme le tout premier algorithme destiné à être exécuté par une machine. Elle travaillait sur la "Machine Analytique" de **Charles Babbage** : une machine mécanique géante qui n'a jamais vraiment été construite de son vivant. Ada est donc techniquement la première programmeuse de l'histoire.
 
-> Tip : Ada Lovelace etait aussi la fille du poete Lord Byron. La programmation et la poesie,
-> c'est pas si different finalement.
+C'est pour ça que le langage **Ada** (utilisé encore aujourd'hui dans l'aviation et l'armée) porte son prénom.
 
-Mais un "vrai" langage de programmation au sens moderne, ca arrive bien plus tard.
+> **Tip :** Ada Lovelace était aussi la fille du poète Lord Byron. La programmation et la poésie, c'est pas si différent finalement.
 
-En **1949**, **John Mauchly** cree **Short Code** : le premier langage a ressembler a ce qu'on
-connait aujourd'hui. Des instructions lisibles par un humain, pas juste des 0 et des 1.
+Mais un "vrai" langage de programmation au sens moderne, ça arrive bien plus tard.
 
-Puis en **1957**, **John Backus** et son equipe chez IBM inventent **FORTRAN**
-(FORmula TRANslation). C'est le premier langage vraiment utilisé massivement, principalement
-pour les calculs scientifiques. FORTRAN existe encore en 2026. Oui, vraiment. Les scientifiques
-qui simulent des trajectoires de fusees l'utilisent encore.
+En **1949**, **John Mauchly** crée **Short Code** : le premier langage à ressembler à ce qu'on connaît aujourd'hui. Des instructions lisibles par un humain, pas juste des 0 et des 1.
+
+Puis en **1957**, **John Backus** et son équipe chez IBM inventent **FORTRAN** (FORmula TRANslation). C'est le premier langage vraiment utilisé massivement, principalement pour les calculs scientifiques. FORTRAN existe encore en 2026. Oui, vraiment. Les scientifiques qui simulent des trajectoires de fusées l'utilisent encore.
 
 ---
 
-### Mais concretement, un langage c'est quoi ?
+### Mais concrètement, un langage c'est quoi ?
 
-Un ordinateur ne comprend qu'une seule chose : des **0 et des 1**. Le binaire. Personne ne code
-en binaire (enfin, il y a des gens... on va pas en parler).
+Un ordinateur ne comprend qu'une seule chose : des **0 et des 1**. Le binaire. Personne ne code en binaire (enfin, il y a des gens... on va pas en parler).
 
 ```
 Le mot "Bonjour" en binaire :
 01000010 01101111 01101110 01101010 01101111 01110101 01110010
 ```
 
-Un langage de programmation, c'est un **intermediaire** entre toi (l'humain) et la machine. Tu
-ecris des instructions dans un format que tu comprends, et le langage s'occupe de tout traduire
-en langage machine.
+Un langage de programmation, c'est un **intermédiaire** entre toi (l'humain) et la machine. Tu écris des instructions dans un format que tu comprends, et le langage s'occupe de tout traduire en langage machine.
 
 ```
-Illustration : la chaine de traduction
-
+Illustration : la chaîne de traduction
   TOI                LANGAGE               MACHINE
   ----               --------              -------
  "affiche           print("Bonjour")   01000010 01101111...
   Bonjour"               |
-  (ta pensee)       (ta syntaxe)        (ce que la puce comprend)
+  (ta pensée)       (ta syntaxe)        (ce que la puce comprend)
 ```
 
-C'est exactement comme un traducteur lors d'une conference internationale. Toi tu parles
-francais, la machine parle binaire, et le langage de programmation joue le role de l'interprete
-entre vous deux.
+C'est exactement comme un traducteur lors d'une conférence internationale. Toi tu parles français, la machine parle binaire, et le langage de programmation joue le rôle de l'interprète entre vous deux.
 
 ---
 
-### Frise chronologique : de 1843 a 2026
+### Frise chronologique : de 1843 à 2026
 
 ```
-1843 -------- Ada Lovelace ecrit le 1er algo de l'histoire (sur papier)
+1843 -------- Ada Lovelace écrit le 1er algo de l'histoire (sur papier)
 1949 -------- Short Code : 1er langage lisible par un humain
-1957 -------- FORTRAN : 1er langage massivement utilise (IBM)
-1958 -------- LISP : ancetre de tous les langages fonctionnels
+1957 -------- FORTRAN : 1er langage massivement utilisé (IBM)
+1958 -------- LISP : ancêtre de tous les langages fonctionnels
 1959 -------- COBOL : Grace Hopper. Les banques l'utilisent encore
-1972 -------- C : Dennis Ritchie. Le pere de presque tout
+1972 -------- C : Dennis Ritchie. Le père de presque tout
 1983 -------- C++ : C mais avec des objets dedans
-1991 -------- Python : Guido van Rossum. Nomme d'apres les Monty Python
-1995 -------- Java + JavaScript + PHP : L'ANNEE DU WEB
+1991 -------- Python : Guido van Rossum. Nommé d'après les Monty Python
+1995 -------- Java + JavaScript + PHP : L'ANNÉE DU WEB
 2009 -------- Go : Google en avait marre que C++ compile trop lentement
 2010 -------- Rust : Mozilla en avait marre que C++ plante tout
 2014 -------- Swift : Apple remplace Objective-C, enfin lisible
-2015 -------- Kotlin : JetBrains commence a tuer Java sur Android
-2016 -------- TypeScript : Microsoft rend JavaScript serieux
+2015 -------- Kotlin : JetBrains commence à tuer Java sur Android
+2016 -------- TypeScript : Microsoft rend JavaScript sérieux
 2022+ ------- Zig, Carbon : nouveaux challengers qui visent C/C++
 ```
 
-> Anecdote : en 1995, Java, JavaScript et PHP sont tous les trois sortis la meme annee. C'est
-> comme si Ferrari, Lamborghini et Bugatti avaient tous sorti leur voiture le meme jour.
+> **Anecdote :** en 1995, Java, JavaScript et PHP sont tous les trois sortis la même année. C'est comme si Ferrari, Lamborghini et Bugatti avaient tous sorti leur voiture le même jour.
 
 ---
 
 ### Qui a programmé quoi en premier ?
 
 ```
-PREMIER ALGO DOCUMENTE    : Ada Lovelace (1843)
+PREMIER ALGO DOCUMENTÉ    : Ada Lovelace (1843)
 PREMIER LANGAGE LISIBLE   : John Mauchly avec Short Code (1949)
-PREMIER LANGAGE MASSIVEMENT UTILISE : John Backus avec FORTRAN (1957)
+PREMIER LANGAGE MASSIVEMENT UTILISÉ : John Backus avec FORTRAN (1957)
 PREMIER LANGAGE WEB       : Brendan Eich avec JavaScript (1995, en 10 jours)
 ```
 
-> Oui, JavaScript a ete cree en **10 jours**. Et ca explique beaucoup de choses.
+> Oui, JavaScript a été créé en **10 jours**. Et ça explique beaucoup de choses.
 
 ---
 
 ## 2. Les grands types de langages
 
-Il existe plusieurs facons de classer les langages. Voila les principales, avec des analogies
-concretes pour que ca rentre vraiment.
+Il existe plusieurs façons de classer les langages. Voilà les principales, avec des analogies concrètes pour que ça rentre vraiment.
 
 ---
 
 ### Bas niveau vs Haut niveau
 
-**Bas niveau** : tu es tres proche de la machine. Tu controles tout. La memoire, les registres,
-les octets. C'est puissant, c'est ultra-rapide. C'est aussi dangereux si tu fais des erreurs.
+**Bas niveau** : tu es très proche de la machine. Tu contrôles tout. La mémoire, les registres, les octets. C'est puissant, c'est ultra-rapide. C'est aussi dangereux si tu fais des erreurs.
 
 ```
 Exemples : Assembleur, C
-
 Analogie :
-  Conduire une F1 sans assistance electronique.
-  Tu peux aller tres vite. Mais si tu rates une courbe, t'es dans le mur.
+  Conduire une F1 sans assistance électronique.
+  Tu peux aller très vite. Mais si tu rates une courbe, t'es dans le mur.
 ```
 
-**Haut niveau** : le langage s'occupe de beaucoup de choses a ta place. La memoire ? Geree
-automatiquement. Les types ? Souvent deduits tout seuls. Tu te concentres sur la logique.
+**Haut niveau** : le langage s'occupe de beaucoup de choses à ta place. La mémoire ? Gérée automatiquement. Les types ? Souvent déduits tout seuls. Tu te concentres sur la logique.
 
 ```
 Exemples : Python, JavaScript, Kotlin, Swift
-
 Analogie :
   Conduire une Tesla avec pilote automatique.
-  Tu indiques la destination, la voiture gere le reste.
-  Tu peux quand meme tout controler si tu veux, mais t'as pas besoin.
+  Tu indiques la destination, la voiture gère le reste.
+  Tu peux quand même tout contrôler si tu veux, mais t'as pas besoin.
 ```
 
-> Tip : "bas niveau" et "haut niveau" ne veulent pas dire "mauvais" et "bon". C'est juste le
-> niveau d'abstraction. Les deux ont leur place.
+> **Tip :** "bas niveau" et "haut niveau" ne veulent pas dire "mauvais" et "bon". C'est juste le niveau d'abstraction. Les deux ont leur place.
 
 ---
 
-### Compile vs Interprete vs JIT
+### Compilé vs Interprété vs JIT
 
 C'est la question du "comment ton code devient un vrai programme qui tourne".
 
 ```
-COMPILE (ex: C, C++, Rust, Go)
+COMPILÉ (ex: C, C++, Rust, Go)
 :::::::::::::::::::::::::::::::::::::::::::::::::
-
-  Ton code .c  -->  Compilateur  -->  .exe / binaire  -->  Execute
+  Ton code .c  -->  Compilateur  -->  .exe / binaire  -->  Exécuté
   (lisible)         (traducteur)      (machine pure)        (rapide)
-
-  Avantage  : tres rapide a l'execution
-  Inconvenient : tu dois recompiler apres chaque modif
-
+  Avantage  : très rapide à l'exécution
+  Inconvénient : tu dois recompiler après chaque modif
 --------------------------------------------------------------------
-
-INTERPRETE (ex: Python, Ruby)
+INTERPRÉTÉ (ex: Python, Ruby)
 :::::::::::::::::::::::::::::::::::::::::::::::::
-
-  Ton code .py  -->  Interprete  -->  Execute ligne par ligne
-  (lisible)          (lit + agit)     (en temps reel)
-
-  Avantage  : flexible, facile a tester
-  Inconvenient : un peu plus lent que le compile
-
+  Ton code .py  -->  Interprète  -->  Exécuté ligne par ligne
+  (lisible)          (lit + agit)     (en temps réel)
+  Avantage  : flexible, facile à tester
+  Inconvénient : un peu plus lent que le compilé
 --------------------------------------------------------------------
-
 JIT : Just-In-Time (ex: JavaScript V8, Java JVM, Kotlin)
 :::::::::::::::::::::::::::::::::::::::::::::::::
-
-  Ton code  -->  Compile AU MOMENT ou tu l'executes  -->  Execute
+  Ton code  -->  Compilé AU MOMENT où tu l'exécutes  -->  Exécuté
                  (pas avant, pas ligne par ligne)
-
-  Avantage  : combine vitesse du compile + flexibilite de l'interprete
-  C'est ce que fait Chrome quand il execute ton JS
+  Avantage  : combine vitesse du compilé + flexibilité de l'interprété
+  C'est ce que fait Chrome quand il exécute ton JS
 ```
 
-> Analogie pour le JIT : t'imagines un chef cuisinier qui prend ta commande et cuisine exactement
-> ce dont tu as besoin, juste a temps. Ni trop tot (gache), ni trop tard (froid).
+> **Analogie pour le JIT :** t'imagines un chef cuisinier qui prend ta commande et cuisine exactement ce dont tu as besoin, juste à temps. Ni trop tôt (gâché), ni trop tard (froid).
 
 ---
 
 ### Les paradigmes de programmation
 
-Un paradigme, c'est une philosophie. Une facon de penser ton code. Meme langage, paradigmes
-differents = code completement different.
+Un paradigme, c'est une philosophie. Une façon de penser ton code. Même langage, paradigmes différents = code complètement différent.
 
-**Imperatif** : tu dis a la machine COMMENT faire les choses, etape par etape.
+**Impératif** : tu dis à la machine COMMENT faire les choses, étape par étape.
 
 ```javascript
-// Imperatif : "voila comment faire"
+// Impératif : "voilà comment faire"
 let total = 0;
 for (let i = 0; i < nombres.length; i++) {
   total = total + nombres[i];
 }
 ```
 
-**Fonctionnel** : tu dis a la machine CE QUE tu veux obtenir. Tu travailles avec des fonctions
-pures. Pas de modification de variables existantes.
+**Fonctionnel** : tu dis à la machine CE QUE tu veux obtenir. Tu travailles avec des fonctions pures. Pas de modification de variables existantes.
 
 ```javascript
-// Fonctionnel : "voila ce que je veux"
+// Fonctionnel : "voilà ce que je veux"
 const total = nombres.reduce((acc, n) => acc + n, 0);
 ```
 
-**Oriente Objet (POO)** : tu organises ton code autour d'"objets" qui ont des proprietes et
-des comportements. C'est la methode la plus repandue en entreprise.
+**Orienté Objet (POO)** : tu organises ton code autour d'"objets" qui ont des propriétés et des comportements. C'est la méthode la plus répandue en entreprise.
 
 ```python
-# POO : les donnees et les actions sont dans le meme endroit
+# POO : les données et les actions sont dans le même endroit
 class Voiture:
     def __init__(self, marque, vitesse_max):
         self.marque = marque
         self.vitesse_max = vitesse_max
-
     def presenter(self):
-        print(f"Je suis une {self.marque}, je vais jusqu'a {self.vitesse_max} km/h")
+        print(f"Je suis une {self.marque}, je vais jusqu'à {self.vitesse_max} km/h")
 
 ma_voiture = Voiture("Toyota", 180)
 ma_voiture.presenter()
-# Sortie : Je suis une Toyota, je vais jusqu'a 180 km/h
+# Sortie : Je suis une Toyota, je vais jusqu'à 180 km/h
 ```
 
-> Tip important : la plupart des langages modernes supportent PLUSIEURS paradigmes. Python est
-> imperatif, fonctionnel et oriente objet selon ce que tu choisis de faire. T'as pas a choisir
-> un camp.
+> **Tip important :** la plupart des langages modernes supportent PLUSIEURS paradigmes. Python est impératif, fonctionnel et orienté objet selon ce que tu choisis de faire. T'as pas à choisir un camp.
 
 ---
 
@@ -250,32 +214,33 @@ ma_voiture.presenter()
          |   HTML : la structure          Python          |
          |   CSS  : le style              Java            |
          |   JS   : les interactions      PHP             |
-         |   TS   : JS mais serieux       Go              |
+         |   TS   : JS mais sérieux       Go              |
          |                                Rust            |
          |                                Node.js (JS)    |
          |                                C#              |
          |________________________________________________|
                               |
                               v
-                        BASE DE DONNEES
+                        BASE DE DONNÉES
                     (PostgreSQL, MySQL, MongoDB...)
 ```
 
 **Full-stack** : tu fais les deux. Le dev qui fait le front ET le back.
 
-**JavaScript / TypeScript** est le seul langage que tu peux utiliser partout : navigateur, serveur,
-mobile. C'est pour ca qu'il est si dominant.
+**JavaScript / TypeScript** est le seul langage que tu peux utiliser partout : navigateur, serveur, mobile. C'est pour ça qu'il est si dominant.
 
 **Mobile natif** :
+
 ```
 iOS     : Swift
 Android : Kotlin
 ```
 
 **Mobile cross-platform** (une seule codebase pour iOS + Android) :
+
 ```
-Flutter      : Dart (pousse par Google, tres solide en 2026)
-React Native : JavaScript (le plus ancien, encore tres utilise)
+Flutter      : Dart (poussé par Google, très solide en 2026)
+React Native : JavaScript (le plus ancien, encore très utilisé)
 ```
 
 ---
@@ -285,22 +250,21 @@ React Native : JavaScript (le plus ancien, encore tres utilise)
 ### Le classement
 
 ```
- RANG   LANGAGE          PART ESTIMEE   USAGE PRINCIPAL              TENDANCE
+ RANG   LANGAGE          PART ESTIMÉE   USAGE PRINCIPAL              TENDANCE
  ----   -------          ------------   ---------------              --------
   1     Python           ~30%           IA, data, backend, scripts   Hausse constante
   2     JavaScript       ~23%           Web front + back, mobile     Stable / indispensable
   3     Java             ~15%           Enterprise, Android, backend Stable / legacy fort
   4     TypeScript       ~12%           Web, tout ce que JS fait     Forte hausse
-  5     C / C++          ~10%           Systemes, jeux, performance  Stable
-  6     Rust             ~8%            Systemes, securite, WASM     Forte hausse
+  5     C / C++          ~10%           Systèmes, jeux, performance  Stable
+  6     Rust             ~8%            Systèmes, sécurité, WASM     Forte hausse
   7     Go               ~7%            Backend, microservices       En hausse
-  8     Kotlin           ~6%            Android, backend Spring      Stable/hausse
+  8     Kotlin           ~6%            Android, backend Spring      Stable / hausse
   9     Swift            ~5%            iOS, macOS                   Stable
   10    C#               ~5%            Jeux Unity, Windows, enterprise Stable
 ```
 
-*Les pourcentages sont des estimations relatives basees sur plusieurs indices croises, pas des
-chiffres officiels absolus. C'est une tendance, pas une loi.*
+*Les pourcentages sont des estimations relatives basées sur plusieurs indices croisés, pas des chiffres officiels absolus. C'est une tendance, pas une loi.*
 
 ---
 
@@ -309,7 +273,7 @@ chiffres officiels absolus. C'est une tendance, pas une loi.*
 **1. Python : le roi indiscutable en 2026**
 
 ```python
-# Python c'est aussi propre que ca
+# Python c'est aussi propre que ça
 def saluer(nom):
     return f"Bonjour {nom}, bienvenue dans le monde du code"
 
@@ -317,9 +281,7 @@ print(saluer("Prometheus"))
 # Sortie : Bonjour Prometheus, bienvenue dans le monde du code
 ```
 
-Pourquoi il domine : l'IA. ChatGPT, Gemini, tous les modeles d'IA sont entrainés avec Python.
-PyTorch, TensorFlow, Hugging Face : tout est en Python. Si tu veux toucher a l'IA en 2026,
-t'as pas vraiment le choix.
+Pourquoi il domine : l'IA. ChatGPT, Gemini, tous les modèles d'IA sont entraînés avec Python. PyTorch, TensorFlow, Hugging Face : tout est en Python. Si tu veux toucher à l'IA en 2026, t'as pas vraiment le choix.
 
 ---
 
@@ -333,12 +295,11 @@ console.log(message);
 // ["Alice code en JS", "Bob code en JS", "Prometheus code en JS"]
 ```
 
-Pourquoi il reste indispensable : c'est le seul langage natif des navigateurs. Tu peux faire
-du front, du back avec Node.js, du mobile avec React Native. Un seul langage pour tout.
+Pourquoi il reste indispensable : c'est le seul langage natif des navigateurs. Tu peux faire du front, du back avec Node.js, du mobile avec React Native. Un seul langage pour tout.
 
 ---
 
-**3. Java : le veterane des grandes boites**
+**3. Java : le vétéran des grandes boîtes**
 
 ```java
 // Java : verbeux mais solide
@@ -350,9 +311,7 @@ public class Salutation {
 }
 ```
 
-Pourquoi il reste : les grandes banques, assurances, et entreprises ont des millions de lignes
-de code Java. On peut pas tout réécrire du jour au lendemain. Java a aussi la JVM qui est
-extraordinairement optimisee apres 30 ans.
+Pourquoi il reste : les grandes banques, assurances, et entreprises ont des millions de lignes de code Java. On peut pas tout réécrire du jour au lendemain. Java a aussi la JVM qui est extraordinairement optimisée après 30 ans.
 
 ---
 
@@ -364,19 +323,18 @@ function calculerAge(anneeNaissance: number): number {
     return 2026 - anneeNaissance;
 }
 
-const age = calculerAge(2000);  // OK : 26
-const bug = calculerAge("2000"); // ERREUR detectee avant meme d'executer
+const age = calculerAge(2000);   // OK : 26
+const bug = calculerAge("2000"); // ERREUR détectée avant même d'exécuter
 ```
 
-En 2026, la majorite des nouveaux projets web professionnel sont en TypeScript, pas JavaScript.
-C'est devenu le standard de facto.
+En 2026, la majorité des nouveaux projets web professionnels sont en TypeScript, pas JavaScript. C'est devenu le standard de facto.
 
 ---
 
 **5. C / C++ : les anciens qui refusent de mourir**
 
 ```c
-// C : pas de magie. Tu geres toi-meme ta memoire.
+// C : pas de magie. Tu gères toi-même ta mémoire.
 #include <stdio.h>
 int main() {
     int nombres[5] = {1, 2, 3, 4, 5};
@@ -389,36 +347,33 @@ int main() {
 }
 ```
 
-Utilises dans le noyau Linux, Windows, macOS. Dans les voitures, les avions, les consoles de jeu.
-Partout ou la performance est non-negociable.
+Utilisés dans le noyau Linux, Windows, macOS. Dans les voitures, les avions, les consoles de jeu. Partout où la performance est non-négociable.
 
 ---
 
-**6. Rust : le nouveau sherif de la ville**
+**6. Rust : le nouveau shérif de la ville**
 
 ```rust
-// Rust : aussi rapide que C, mais il t'empeche de faire des betises
+// Rust : aussi rapide que C, mais il t'empêche de faire des bêtises
 fn main() {
     let nombres = vec![1, 2, 3, 4, 5];
     let total: i32 = nombres.iter().sum();
     println!("Total : {}", total);
 }
-// Si tu tentes d'acceder a une case memoire invalide, Rust refuse de compiler.
-// En C, ca aurait plante silencieusement en production.
+// Si tu tentes d'accéder à une case mémoire invalide, Rust refuse de compiler.
+// En C, ça aurait planté silencieusement en production.
 ```
 
-Le gouvernement americain et l'Union Europeenne ont officiellement recommande Rust pour les
-logiciels critiques en 2024-2025. Microsoft reecrit des parties de Windows en Rust.
+Le gouvernement américain et l'Union Européenne ont officiellement recommandé Rust pour les logiciels critiques en 2024-2025. Microsoft réécrit des parties de Windows en Rust.
 
 ---
 
-**7. Go : le langage de la simplicite radicale**
+**7. Go : le langage de la simplicité radicale**
 
 ```go
 // Go : minimaliste par design
 package main
 import "fmt"
-
 func main() {
     prenoms := []string{"Alice", "Bob", "Prometheus"}
     for _, prenom := range prenoms {
@@ -427,8 +382,7 @@ func main() {
 }
 ```
 
-Cree par Google pour remplacer C++ dans leurs serveurs internes. Compile ultra-vite, s'execute
-ultra-vite. Docker, Kubernetes, Terraform : tous ecrits en Go.
+Créé par Google pour remplacer C++ dans leurs serveurs internes. Compile ultra-vite, s'exécute ultra-vite. Docker, Kubernetes, Terraform : tous écrits en Go.
 
 ---
 
@@ -445,8 +399,7 @@ fun main() {
 }
 ```
 
-Kotlin est maintenant le langage officiel d'Android. JetBrains (les createurs d'IntelliJ IDEA
-et de la suite d'IDEs professionnels) le maintiennent activement.
+Kotlin est maintenant le langage officiel d'Android. JetBrains (les créateurs d'IntelliJ IDEA et de la suite d'IDEs professionnels) le maintiennent activement.
 
 ---
 
@@ -460,8 +413,7 @@ for dev in devs {
 }
 ```
 
-Objective-C (l'ancien langage d'Apple) etait tellement difficile a lire que les developpeurs
-fuyaient le developpement iOS. Swift a tout change en 2014.
+Objective-C (l'ancien langage d'Apple) était tellement difficile à lire que les développeurs fuyaient le développement iOS. Swift a tout changé en 2014.
 
 ---
 
@@ -473,8 +425,7 @@ var devs = new List<string> {"Alice", "Bob", "Prometheus"};
 devs.ForEach(dev => Console.WriteLine($"Bonjour {dev}"));
 ```
 
-Si tu veux faire des jeux avec Unity, c'est C#. Si tu veux faire des apps Windows, c'est C#.
-Dans les grandes boites europeennes, C# est tres present dans les stacks .NET.
+Si tu veux faire des jeux avec Unity, c'est C#. Si tu veux faire des apps Windows, c'est C#. Dans les grandes boîtes européennes, C# est très présent dans les stacks .NET.
 
 ---
 
@@ -483,37 +434,29 @@ Dans les grandes boites europeennes, C# est tres present dans les stacks .NET.
 ```
 PHP      : peu de gens l'avouent, mais WordPress fait tourner ~43% du web mondial.
            PHP est partout.
-
-Ruby     : decline depuis des annees, mais Ruby on Rails est encore dans des milliers
+Ruby     : décline depuis des années, mais Ruby on Rails est encore dans des milliers
            de startups.
-
-Dart     : langage de Flutter. Pousse tres fort par Google. En forte progression
+Dart     : langage de Flutter. Poussé très fort par Google. En forte progression
            sur le mobile.
-
-Lua      : discret mais present dans TOUS les jeux video. Roblox, WoW, etc.
-
-SQL      : pas vraiment un langage de prog general, mais probablement le langage
-           le plus utilise dans le monde professionnel. Tout le monde y touche.
-
-HTML/CSS : oublies des classements parce que techniquement pas des "vrais langages
+Lua      : discret mais présent dans TOUS les jeux vidéo. Roblox, WoW, etc.
+SQL      : pas vraiment un langage de prog général, mais probablement le langage
+           le plus utilisé dans le monde professionnel. Tout le monde y touche.
+HTML/CSS : oubliés des classements parce que techniquement pas des "vrais langages
            de programmation". Mais sans eux, pas de web.
-
-Zig      : challenger de C. Tres jeune, tres prometteur.
-
-Carbon   : challenger de C++. Cree par Google. A surveiller.
-
+Zig      : challenger de C. Très jeune, très prometteur.
+Carbon   : challenger de C++. Créé par Google. À surveiller.
 COBOL    : personne ne l'apprend. Tout le monde l'utilise sans le savoir.
-           Les banques font tourner des systemes critiques en COBOL.
-           Les gens qui savent le maintenir sont payes TRES cher.
+           Les banques font tourner des systèmes critiques en COBOL.
+           Les gens qui savent le maintenir sont payés TRÈS cher.
 ```
 
 ---
 
 ## 4. Comment choisir son langage ?
 
-C'est LA question. Et la reponse honnete : ça depend.
+C'est LA question. Et la réponse honnête : ça dépend.
 
-Mais "ça depend" tout seul c'est inutile. Voila les vraies questions a se poser, dans l'ordre.
+Mais "ça dépend" tout seul c'est inutile. Voilà les vraies questions à se poser, dans l'ordre.
 
 ---
 
@@ -524,32 +467,28 @@ Le langage suit le besoin. **Jamais l'inverse.**
 ```
 SI TU VEUX FAIRE...                  CHOISIS...
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 Un site web (interface)          :   JavaScript / TypeScript
 Une API ou un serveur web        :   Node.js, Python, Go, Java, PHP
 Une app mobile iOS               :   Swift
 Une app mobile Android           :   Kotlin
 Une app mobile iOS + Android     :   Flutter (Dart) ou React Native (JS)
-Un jeu video                     :   C# (Unity) / C++ (Unreal) / GDScript (Godot)
+Un jeu vidéo                     :   C# (Unity) / C++ (Unreal) / GDScript (Godot)
 De l'IA ou de la data            :   Python (et rien d'autre en 2026)
-Des outils systeme / performance :   C, C++, Rust
+Des outils système / performance :   C, C++, Rust
 Des scripts d'automatisation     :   Python, Go, Bash
 Des applications d'entreprise    :   Java, C#, Kotlin
-Du WebAssembly                   :   Rust, C++ (Calculs lourds (maths, IA, physique),Jeux 3D / graphismes etc.)
+Du WebAssembly                   :   Rust, C++ (calculs lourds, jeux 3D, physique, etc.)
 ```
 
 ---
 
 ### Question 2 : Projet perso ou pro ?
 
-**Projet perso** : choisis ce qui te motive. Si Python t'ennuie et que tu kiffes Rust, vas-y.
-L'apprentissage sera quand meme utile. La motivation c'est le carburant.
+**Projet perso** : choisis ce qui te motive. Si Python t'ennuie et que tu kiffes Rust, vas-y. L'apprentissage sera quand même utile. La motivation c'est le carburant.
 
-**Projet pro ou startup** : choisis ce qui a le plus grand ecosysteme, le plus de librairies,
-et le plus de developpeurs sur le marche (pour recruter plus tard si ca grandit).
+**Projet pro ou startup** : choisis ce qui a le plus grand écosystème, le plus de librairies, et le plus de développeurs sur le marché (pour recruter plus tard si ça grandit).
 
-> Tip : regarde les offres d'emploi dans ta ville ou ton pays cible. Ce qui est demande
-> dans les annonces, c'est ce que tu dois apprendre.
+> **Tip :** regarde les offres d'emploi dans ta ville ou ton pays cible. Ce qui est demandé dans les annonces, c'est ce que tu dois apprendre.
 
 ---
 
@@ -557,28 +496,28 @@ et le plus de developpeurs sur le marche (pour recruter plus tard si ca grandit)
 
 ```
 PROTOTYPER VITE (dans les semaines) :   Python, JavaScript
-Systemes qui durent 10 ans          :   Java, C#, Rust
+Systèmes qui durent 10 ans          :   Java, C#, Rust
 Performance critique                :   C, C++, Rust, Go
 ```
 
 ---
 
-### Question 4 : La communaute est grande comment ?
+### Question 4 : La communauté est grande comment ?
 
-Plus la communaute est grande, plus tu as :
+Plus la communauté est grande, plus tu as :
 
 ```
-- De la documentation (souvent traduite en francais)
-- Des librairies et frameworks deja faits (t'as pas a tout reinventer)
-- Des reponses sur Stack Overflow (quelqu'un a eu ton probleme avant toi)
+- De la documentation (souvent traduite en français)
+- Des librairies et frameworks déjà faits (t'as pas à tout réinventer)
+- Des réponses sur Stack Overflow (quelqu'un a eu ton problème avant toi)
 - Des offres d'emploi (important quand tu veux bosser)
 - Des tutos YouTube gratuits
 ```
 
-**Classement des communautes en 2026 :**
+**Classement des communautés en 2026 :**
 
 ```
-Enorme   :  Python, JavaScript, Java
+Énorme   :  Python, JavaScript, Java
 Grande   :  TypeScript, C#, C/C++, Rust
 Moyenne  :  Go, Kotlin, Swift, PHP
 Plus petite mais solide : Ruby, Dart, Scala
@@ -588,32 +527,30 @@ Plus petite mais solide : Ruby, Dart, Scala
 
 ### Conseil anti-paralysie
 
-La "paralysie de l'analyse" c'est quand tu passes 3 semaines a comparer des langages au lieu
-de coder. C'est l'ennemi numero 1 des debutants.
+La "paralysie de l'analyse" c'est quand tu passes 3 semaines à comparer des langages au lieu de coder. C'est l'ennemi numéro 1 des débutants.
 
 ```
 Tu te demandes : Python ou JavaScript ?
                  Flutter ou React Native ?
                  Go ou Rust ?
 
-La vraie reponse : CHOISIS ET COMMENCE.
-
-Tu changeras peut-etre dans 6 mois. C'est pas grave.
+La vraie réponse : CHOISIS ET COMMENCE.
+Tu changeras peut-être dans 6 mois. C'est pas grave.
 Les concepts que tu apprends dans un langage se transfèrent.
 ```
 
 ---
 
-## 5. Debutant ou intermediaire : par ou commencer ?
+## 5. Débutant ou intermédiaire : par où commencer ?
 
-### Si tu es completement debutant
+### Si tu es complètement débutant
 
-**Python** est le meilleur point d'entree en 2026. Exemple concret pour comprendre pourquoi.
+**Python** est le meilleur point d'entrée en 2026. Exemple concret pour comprendre pourquoi.
 
-Meme programme dans trois langages differents : afficher une liste de prenoms.
+Même programme dans trois langages différents : afficher une liste de prénoms.
 
 ```python
-# Python : tu lis, tu comprends immediatement
+# Python : tu lis, tu comprends immédiatement
 prenoms = ["Alice", "Bob", "Prometheus"]
 for prenom in prenoms:
     print(f"Bonjour {prenom}")
@@ -626,10 +563,9 @@ prenoms.forEach(prenom => console.log(`Bonjour ${prenom}`));
 ```
 
 ```java
-// Java : le meme resultat, mais beaucoup plus de bruit
+// Java : le même résultat, mais beaucoup plus de bruit
 import java.util.Arrays;
 import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         List<String> prenoms = Arrays.asList("Alice", "Bob", "Prometheus");
@@ -640,67 +576,63 @@ public class Main {
 }
 ```
 
-Ces trois blocs font **exactement la meme chose**. En tant que debutant, tu veux pouvoir
-te concentrer sur la logique, pas sur la syntaxe. Python gagne.
+Ces trois blocs font **exactement la même chose**. En tant que débutant, tu veux pouvoir te concentrer sur la logique, pas sur la syntaxe. Python gagne.
 
-**JavaScript** est aussi une excellente option si tu veux aller vers le web. Tu vois les
-resultats dans ton navigateur immediatement. C'est tres motivant.
+**JavaScript** est aussi une excellente option si tu veux aller vers le web. Tu vois les résultats dans ton navigateur immédiatement. C'est très motivant.
 
-> Conseil : si tu sais pas quoi choisir entre Python et JavaScript, commence par Python.
-> Si tu veux faire des sites web rapidement, commence par JavaScript.
-> Dans les deux cas, les bases que tu apprends s'appliquent partout.
+> **Conseil :** si tu sais pas quoi choisir entre Python et JavaScript, commence par Python. Si tu veux faire des sites web rapidement, commence par JavaScript. Dans les deux cas, les bases que tu apprends s'appliquent partout.
 
 ---
 
-### Le parcours recommande selon ton objectif
+### Le parcours recommandé selon ton objectif
 
 ```
 OBJECTIF : DEV WEB FULL-STACK
 :::::::::::::::::::::::::::::::::::::::::
-  Debut    -->  HTML + CSS + JavaScript basique
+  Début    -->  HTML + CSS + JavaScript basique
   3 mois   -->  JavaScript (fonctions, objets, fetch/API)
   6 mois   -->  TypeScript + React ou Vue
-  1 an     -->  Next.js ou Nuxt + base de donnees (SQL)
-  1 an+    -->  Deploiement, Docker, CI/CD
-  Resultat :  Dev web junior employable
+  1 an     -->  Next.js ou Nuxt + base de données (SQL)
+  1 an+    -->  Déploiement, Docker, CI/CD
+  Résultat :  Dev web junior employable
 
 OBJECTIF : DEV MOBILE
 :::::::::::::::::::::::::::::::::::::::::
   Cross-platform :
-    Debut    -->  Dart basique
-    3 mois   -->  Flutter (widgets, navigation, etat)
-    6 mois   -->  Firebase ou Supabase (auth, base de donnees)
-    1 an     -->  App publiee sur le Play Store ou l'App Store
+    Début    -->  Dart basique
+    3 mois   -->  Flutter (widgets, navigation, état)
+    6 mois   -->  Firebase ou Supabase (auth, base de données)
+    1 an     -->  App publiée sur le Play Store ou l'App Store
 
   Android natif :
-    Debut    -->  Kotlin basique + POO
+    Début    -->  Kotlin basique + POO
     3 mois   -->  Jetpack Compose
     6 mois   -->  Architecture MVVM + Retrofit
-    1 an     -->  App publiee
+    1 an     -->  App publiée
 
 OBJECTIF : DATA / IA
 :::::::::::::::::::::::::::::::::::::::::
-  Debut    -->  Python basique
-  3 mois   -->  NumPy + Pandas (manipulation de donnees)
+  Début    -->  Python basique
+  3 mois   -->  NumPy + Pandas (manipulation de données)
   6 mois   -->  Matplotlib + Seaborn (visualisation)
   1 an     -->  Machine Learning avec scikit-learn
   1 an+    -->  Deep Learning avec PyTorch ou TensorFlow
 
-OBJECTIF : SYSTEMES / PERFORMANCE
+OBJECTIF : SYSTÈMES / PERFORMANCE
 :::::::::::::::::::::::::::::::::::::::::
-  Debut    -->  C (apprends la gestion memoire, les pointeurs)
+  Début    -->  C (apprends la gestion mémoire, les pointeurs)
   6 mois   -->  C++ ou Rust
   1 an     -->  Architecture bas niveau, OS, compilateurs
 ```
 
 ---
 
-### La regle des deux technologies
+### La règle des deux technologies
 
-Ne cherche pas a tout apprendre en meme temps. En 2026, la regle d'or c'est :
+Ne cherche pas à tout apprendre en même temps. En 2026, la règle d'or c'est :
 
 ```
-Maitrise UN langage + maitrise UN framework ou domaine specifique.
+Maîtrise UN langage + maîtrise UN framework ou domaine spécifique.
 
 Exemples concrets :
   Python   + FastAPI       -->  Dev backend API
@@ -709,24 +641,21 @@ Exemples concrets :
   JS/TS    + Next.js       -->  Dev full-stack web
   Dart     + Flutter       -->  Dev mobile cross-platform
   Kotlin   + Jetpack       -->  Dev Android natif
-  C#       + Unity         -->  Dev jeu video
+  C#       + Unity         -->  Dev jeu vidéo
   Go       + (rien)        -->  Backend microservices (Go se suffit souvent)
 ```
 
-> La profondeur bat la largeur. Un dev qui maitrise vraiment React + TypeScript vaut plus
-> qu'un dev qui connait vaguement React, Vue, Angular, Svelte et Solid en meme temps.
+> La profondeur bat la largeur. Un dev qui maîtrise vraiment React + TypeScript vaut plus qu'un dev qui connaît vaguement React, Vue, Angular, Svelte et Solid en même temps.
 
 ---
 
-## 6. J'ai une idee ou un cahier des charges : je fais quoi exactement ?
+## 6. J'ai une idée ou un cahier des charges : je fais quoi exactement ?
 
-C'est la section la plus importante. Parce que c'est exactement la situation ou la majorite
-des etudiants se perdent. Tu sors de cours, tu sais coder. Et la tu te demandes "mais dans la
-vraie vie, je fais quoi exactement ?"
+C'est la section la plus importante. Parce que c'est exactement la situation où la majorité des étudiants se perdent. Tu sors de cours, tu sais coder. Et là tu te demandes "mais dans la vraie vie, je fais quoi exactement ?"
 
 ---
 
-### Etape 1 : Definir le type de produit
+### Étape 1 : Définir le type de produit
 
 **Avant de choisir un seul outil ou langage**, tu dois savoir ce que tu construis.
 
@@ -735,63 +664,52 @@ Pose-toi ces questions dans l'ordre :
 ```
 1. C'est quoi le produit ?
    (site web / app mobile / outil interne / jeu / API / script...)
-
 2. Qui va l'utiliser ?
-   (grand public / entreprises / toi seul / des developpeurs...)
-
+   (grand public / entreprises / toi seul / des développeurs...)
 3. Sur quel appareil ?
-   (navigateur / telephone / bureau / serveur / les deux...)
-
-4. Y a-t-il de la donnee a stocker ?
-   (oui --> tu as besoin d'une base de donnees)
-
-5. Faut-il se connecter a des services externes ?
+   (navigateur / téléphone / bureau / serveur / les deux...)
+4. Y a-t-il de la donnée à stocker ?
+   (oui --> tu as besoin d'une base de données)
+5. Faut-il se connecter à des services externes ?
    (paiement, GPS, notifications push, emails, SMS...)
-
-6. Y a-t-il des contraintes legales ?
-   (sante, finances, donnees personnelles --> RGPD, securite renforcee)
+6. Y a-t-il des contraintes légales ?
+   (santé, finances, données personnelles --> RGPD, sécurité renforcée)
 ```
 
 Exemple pratique :
 
 ```
-Idee : "je veux creer une app pour noter et partager des restaurants"
+Idée : "je veux créer une app pour noter et partager des restaurants"
 
-Reponses :
+Réponses :
   1. App mobile + site web
   2. Grand public
-  3. Telephone principalement
+  3. Téléphone principalement
   4. Oui : restaurants, avis, utilisateurs, notes
   5. Oui : GPS (maps), photos, notifications
-  6. Donnees personnelles : respecter le RGPD
+  6. Données personnelles : respecter le RGPD
 
-Conclusion : app mobile (Flutter) + backend API (Node ou Python) + base de donnees
+Conclusion : app mobile (Flutter) + backend API (Node ou Python) + base de données
              (PostgreSQL ou Firebase) + service de maps (Google Maps API)
 ```
 
 ---
 
-### Etape 2 : Identifier les contraintes reelles
+### Étape 2 : Identifier les contraintes réelles
 
 ```
 CONTRAINTE          IMPACT SUR LE CHOIX TECH
 -----------------------------------------------------------------------------------
-
-Peu de temps         :  Technos que tu connais DEJA. Pas le moment d'apprendre Rust.
-
-Pas de budget        :  Vercel (gratuit), Supabase (gratuit), Firebase (gratuit au debut)
-
-Travail en equipe    :  Ce que tout le monde dans l'equipe sait deja. Pas le moment
+Peu de temps         :  Technos que tu connais DÉJÀ. Pas le moment d'apprendre Rust.
+Pas de budget        :  Vercel (gratuit), Supabase (gratuit), Firebase (gratuit au début)
+Travail en équipe    :  Ce que tout le monde dans l'équipe sait déjà. Pas le moment
                         d'imposer un langage exotique.
-
 Doit durer longtemps :  Java, C#, Rust : stables, maintenus sur le long terme.
-                        Evite les frameworks trop jeunes (ils disparaissent vite).
-
+                        Évite les frameworks trop jeunes (ils disparaissent vite).
 Beaucoup d'utilisateurs potentiels :
-                        Pense a la scalabilite. Go et Node.js gèrent bien la charge.
-                        Les bases de donnees relationnelles (PostgreSQL) tiennent mieux
+                        Pense à la scalabilité. Go et Node.js gèrent bien la charge.
+                        Les bases de données relationnelles (PostgreSQL) tiennent mieux
                         que certaines bases NoSQL sous haute charge.
-
 Client / projet scolaire :
                         Choisis ce qui te permet de livrer quelque chose qui MARCHE.
                         Un projet simple qui fonctionne vaut 100x mieux qu'un projet
@@ -800,51 +718,44 @@ Client / projet scolaire :
 
 ---
 
-### Etape 3 : Choisir la stack
+### Étape 3 : Choisir la stack
 
-Une **stack** c'est l'ensemble des technologies que tu vas utiliser. Front + Back + Base de
-donnees + Hebergement.
+Une **stack** c'est l'ensemble des technologies que tu vas utiliser. Front + Back + Base de données + Hébergement.
 
 ```
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-SITE WEB ou APP WEB : stack moderne debutant-intermediaire
+SITE WEB ou APP WEB : stack moderne débutant-intermédiaire
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Front-end    :  Next.js (React + TypeScript)
   Back-end     :  Inclus dans Next.js via API routes, ou Supabase directement
-  Base de donnees : PostgreSQL via Supabase
+  Base de données : PostgreSQL via Supabase
   Auth         :  Supabase Auth (Google, GitHub, email/password)
-  Hebergement  :  Vercel (gratuit pour les petits projets)
+  Hébergement  :  Vercel (gratuit pour les petits projets)
   Style        :  Tailwind CSS
-
-Avantages : tout est gratuit au debut, tres bien documente, des milliers de tutos.
+Avantages : tout est gratuit au début, très bien documenté, des milliers de tutos.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 SITE WEB : stack alternative
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Front-end    :  Vue.js ou SvelteKit
   Back-end     :  Python avec FastAPI
-  Base de donnees : PostgreSQL
-  Hebergement  :  Railway ou Render
+  Base de données : PostgreSQL
+  Hébergement  :  Railway ou Render
   Style        :  Tailwind CSS
-
 Quand choisir cette stack : si tu connais mieux Python que JavaScript pour le back.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 APPLICATION MOBILE : cross-platform
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Langage      :  Dart
   Framework    :  Flutter
   Backend/Auth :  Firebase ou Supabase
   Maps         :  Google Maps Flutter Plugin
-  Deploiement  :  Google Play Store + Apple App Store
+  Déploiement  :  Google Play Store + Apple App Store
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 APPLICATION MOBILE : natif Android
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Langage      :  Kotlin
   UI           :  Jetpack Compose
   Architecture :  MVVM + Clean Architecture
@@ -853,14 +764,12 @@ APPLICATION MOBILE : natif Android
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 OUTIL INTERNE ou SCRIPT
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Python + librairies selon le besoin
   (requests pour les APIs, pandas pour la data, etc.)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-JEU VIDEO
+JEU VIDÉO
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   Plupart des cas    :  Unity + C#
   Gratuit open source:  Godot + GDScript (ou C#)
   AAA / ultra-perf   :  Unreal Engine + C++
@@ -868,37 +777,36 @@ JEU VIDEO
 
 ---
 
-### Etape 4 : Ne pas surarchitecturer
+### Étape 4 : Ne pas surarchitecturer
 
-C'est **l'erreur classique** de l'etudiant en info.
+C'est **l'erreur classique** de l'étudiant en info.
 
 ```
-SCENARIO TYPE :
-  Le projet : une application de prise de notes (3 ecrans).
-  Ce que l'etudiant fait :
+SCÉNARIO TYPE :
+  Le projet : une application de prise de notes (3 écrans).
+
+  Ce que l'étudiant fait :
     Semaine 1 : configure Docker + Docker Compose
     Semaine 2 : met en place Kubernetes
-    Semaine 3 : architecture microservices avec 4 services separes
+    Semaine 3 : architecture microservices avec 4 services séparés
     Semaine 4 : pipeline CI/CD sur GitHub Actions
-    Semaine 5 : ... il a pas encore une seule note dans l'app
+    Semaine 5 : ... il n'a pas encore une seule note dans l'app
 
-PROBLEME : l'etudiant a construit l'infrastructure d'Amazon pour une app de notes.
+PROBLÈME : l'étudiant a construit l'infrastructure d'Amazon pour une app de notes.
 
 LA BONNE APPROCHE :
-  Semaine 1 : l'app de notes fonctionne, on peut creer une note et la lire.
+  Semaine 1 : l'app de notes fonctionne, on peut créer une note et la lire.
   Semaine 2 : on peut modifier et supprimer une note.
   Semaine 3 : authentification.
-  Semaine 4 : deploiement simple sur Vercel.
-  Plus tard  : si ya 10 000 utilisateurs, la on reflechit a Docker et Kubernetes.
+  Semaine 4 : déploiement simple sur Vercel.
+  Plus tard  : si ya 10 000 utilisateurs, là on réfléchit à Docker et Kubernetes.
 ```
 
-> Regle : **commence simple**. Ajoute de la complexite quand le BESOIN apparait vraiment, pas
-> avant. Un MVP (Minimum Viable Product) c'est la version la plus simple possible qui resout
-> le vrai probleme. Tout le reste vient apres.
+> **Règle : commence simple.** Ajoute de la complexité quand le BESOIN apparaît vraiment, pas avant. Un MVP (Minimum Viable Product) c'est la version la plus simple possible qui résout le vrai problème. Tout le reste vient après.
 
 ---
 
-### Le schema de decision complet
+### Le schéma de décision complet
 
 ```
                     TU AS UN PROJET
@@ -910,7 +818,7 @@ LA BONNE APPROCHE :
        |                  |                  |
       WEB               MOBILE            AUTRE
        |                  |                  |
-  interface ?         iOS seul ?         Jeu video ?
+  interface ?         iOS seul ?         Jeu vidéo ?
        |                  |                  |
       Oui              --> Swift          Unity + C#
        |                  |              Unreal + C++
@@ -926,7 +834,7 @@ LA BONNE APPROCHE :
                      _____|_____            |
                     |           |      Python UNIQUEMENT
                   API          API     PyTorch / TensorFlow
-               incluse       separee   scikit-learn / Pandas
+               incluse       séparée   scikit-learn / Pandas
                 (Supabase)       |
                              Qui fait le back ?
                                  |
@@ -937,23 +845,21 @@ LA BONNE APPROCHE :
                        Node.js          FastAPI
                        Express          Django
                        Fastify          Flask
-
                           |
                           v
-                   BASE DE DONNEES ?
+                   BASE DE DONNÉES ?
                           |
               ____________|____________
              |                        |
-        Donnees relationnelles   Donnees flexibles
+        Données relationnelles   Données flexibles
         (tableaux + relations)   (documents JSON)
              |                        |
          PostgreSQL               MongoDB
          MySQL                    Firebase Firestore
          SQLite (local)
-
                           |
                           v
-                     HEBERGEMENT ?
+                     HÉBERGEMENT ?
                           |
               ____________|____________
              |            |            |
@@ -961,24 +867,24 @@ LA BONNE APPROCHE :
           (front /      (back /      (back /
           Next.js)      Node/Python)  Node/Python)
            Gratuit      Gratuit       Gratuit
-           au debut     au debut      au debut
+           au début     au début      au début
 ```
 
 ---
 
-### Quand utiliser ce qu'on apprend a l'ecole ?
+### Quand utiliser ce qu'on apprend à l'école ?
 
 ```
-A L'ECOLE tu apprends Python.
+À L'ÉCOLE tu apprends Python.
 DANS LA VRAIE VIE tu l'utilises pour :
   Data science, analyse, visualisation
   Scripts d'automatisation
   APIs et backends
   IA et Machine Learning
-  Web scraping (extraire automatiquement des données depuis un site web ex: 500 produits etc.)
-  Tests automatises
+  Web scraping (extraire automatiquement des données depuis un site web)
+  Tests automatisés
 
-A L'ECOLE tu apprends JavaScript.
+À L'ÉCOLE tu apprends JavaScript.
 DANS LA VRAIE VIE tu l'utilises pour :
   Tout ce qui s'affiche dans un navigateur (obligatoire)
   Les applications web full-stack (Next.js, Nuxt)
@@ -986,38 +892,37 @@ DANS LA VRAIE VIE tu l'utilises pour :
   Le backend avec Node.js
   Les scripts d'automatisation web
 
-A L'ECOLE tu apprends Java.
+À L'ÉCOLE tu apprends Java.
 DANS LA VRAIE VIE tu l'utilises pour :
   Les grandes entreprises et banques
   Le backend d'applications critiques
   Android (mais Kotlin le remplace)
-  Les systemes qui doivent tourner 24/7 sans jamais tomber
+  Les systèmes qui doivent tourner 24/7 sans jamais tomber
 
-A L'ECOLE tu apprends C ou C++.
+À L'ÉCOLE tu apprends C ou C++.
 DANS LA VRAIE VIE tu l'utilises pour :
   Comprendre comment un ordinateur fonctionne vraiment
   Les logiciels où la performance est critique
-  Les jeux video avec Unreal Engine
-  Les systemes embarques (arduino, robotique)
-  Le trading haute frequence
-  Les noyaux de systemes d'exploitation
+  Les jeux vidéo avec Unreal Engine
+  Les systèmes embarqués (arduino, robotique)
+  Le trading haute fréquence
+  Les noyaux de systèmes d'exploitation
 ```
 
 ---
 
 ### Exemple concret complet : de l'idée à la stack
 
-**Situation** : tu veux creer une plateforme communautaire pour developpeurs. Des profils
-utilisateurs, des posts, des likes, une messagerie en temps reel.
+**Situation** : tu veux créer une plateforme communautaire pour développeurs. Des profils utilisateurs, des posts, des likes, une messagerie en temps réel.
 
 **Analyse du projet** :
 
 ```
-Type de produit     :  Application web (mobile en version 2 peut-etre)
-Utilisateurs        :  Des developpeurs : public averti, ils utilisent un navigateur
-Fonctionnalites cles:  Auth, profils, posts, likes, messagerie temps reel
-Contrainte principale: messagerie en temps reel = besoin de websockets ou de subscriptions
-Budget              :  Zero (projet perso / scolaire)
+Type de produit     :  Application web (mobile en version 2 peut-être)
+Utilisateurs        :  Des développeurs : public averti, ils utilisent un navigateur
+Fonctionnalités clés:  Auth, profils, posts, likes, messagerie temps réel
+Contrainte principale: messagerie en temps réel = besoin de websockets ou de subscriptions
+Budget              :  Zéro (projet perso / scolaire)
 Temps               :  3 mois
 ```
 
@@ -1026,18 +931,18 @@ Temps               :  3 mois
 ```
 Front-end        :  Next.js (TypeScript)
 Styles           :  Tailwind CSS
-Backend          :  Supabase (API auto-generee depuis PostgreSQL)
+Backend          :  Supabase (API auto-générée depuis PostgreSQL)
 Auth             :  Supabase Auth
-Base de donnees  :  PostgreSQL via Supabase
-Temps reel       :  Supabase Realtime (websockets inclus)
-Hebergement      :  Vercel (gratuit)
+Base de données  :  PostgreSQL via Supabase
+Temps réel       :  Supabase Realtime (websockets inclus)
+Hébergement      :  Vercel (gratuit)
 ```
 
 **Pourquoi pas quelque chose de plus complexe ?**
 
 ```
   Parce que ça suffit.
-  Ces outils sont gratuits au debut.
+  Ces outils sont gratuits au début.
   Ils sont scalables si le projet grandit.
   La doc est excellente.
   Des milliers de tutos existent.
@@ -1046,23 +951,20 @@ Hebergement      :  Vercel (gratuit)
 
 ---
 
-## 7. Les verites qu'on te dira jamais en cours
+## 7. Les vérités qu'on te dira jamais en cours
 
-**Verite 1 : Le meilleur langage c'est celui que tu maitrises vraiment.**
+**Vérité 1 : Le meilleur langage c'est celui que tu maîtrises vraiment.**
 
-Un dev qui connait JavaScript sur le bout des doigts battra toujours quelqu'un qui connait
-vaguement dix langages. La profondeur bat la largeur, toujours.
+Un dev qui connaît JavaScript sur le bout des doigts battra toujours quelqu'un qui connaît vaguement dix langages. La profondeur bat la largeur, toujours.
 
-**Verite 2 : Les langages ne meurent pas vraiment.**
+**Vérité 2 : Les langages ne meurent pas vraiment.**
 
-COBOL de 1959 tourne encore dans les banques en 2026. FORTRAN tourne encore dans les labos
-scientifiques. Si t'apprends un langage "mort", les concepts que tu apprends restent valides
-partout. Mais pour le marche de l'emploi, choisis quelque chose de vivant.
+COBOL de 1959 tourne encore dans les banques en 2026. FORTRAN tourne encore dans les labos scientifiques. Si t'apprends un langage "mort", les concepts que tu apprends restent valides partout. Mais pour le marché de l'emploi, choisis quelque chose de vivant.
 
-**Verite 3 : Les concepts se transferent.**
+**Vérité 3 : Les concepts se transfèrent.**
 
 ```
-Si tu maitrises vraiment Python :
+Si tu maîtrises vraiment Python :
   Apprendre Go prend quelques semaines.
   Apprendre Kotlin prend quelques semaines.
   Apprendre Swift prend quelques semaines.
@@ -1071,46 +973,41 @@ Les boucles, les conditions, les fonctions, les objets, les erreurs :
   c'est pareil partout. La syntaxe change. La logique, non.
 ```
 
-**Verite 4 : La stack ne fait pas tout.**
+**Vérité 4 : La stack ne fait pas tout.**
 
 ```
 Applications extraordinaires construites avec des technos "basiques" :
-  Instagram au debut : Python + Django. Simple. Efficace.
-  Twitter au debut   : Ruby on Rails. Pas tres "cool". Mais ca marchait.
+  Instagram au début : Python + Django. Simple. Efficace.
+  Twitter au début   : Ruby on Rails. Pas très "cool". Mais ça marchait.
   WhatsApp           : Erlang. Un langage de 1986. 2 milliards d'utilisateurs.
 
 Applications catastrophiques construites avec les technos les plus modernes :
-  Il y en a plein. On en parle juste moins parce que personne les connait.
+  Il y en a plein. On en parle juste moins parce que personne les connaît.
 
-La qualite du code et de l'architecture matter plus que le choix du langage.
+La qualité du code et de l'architecture comptent plus que le choix du langage.
 ```
 
-**Verite 5 : Lire du code des autres est aussi important qu'en ecrire.**
+**Vérité 5 : Lire du code des autres est aussi important qu'en écrire.**
 
-Passe du temps sur GitHub. Lis des projets open source dans ton domaine. Essaie de comprendre
-comment les autres ont resolu les memes problemes que toi. C'est comme lire des livres pour
-un ecrivain : indispensable.
+Passe du temps sur GitHub. Lis des projets open source dans ton domaine. Essaie de comprendre comment les autres ont résolu les mêmes problèmes que toi. C'est comme lire des livres pour un écrivain : indispensable.
 
-**Verite 6 : Le syndrome de l'imposteur est universel.**
+**Vérité 6 : Le syndrome de l'imposteur est universel.**
 
-Meme les devs avec 15 ans d'experience googlelent des trucs basiques tous les jours. Tout le
-monde le fait. Personne ne sait tout par coeur. La difference entre un junior et un senior
-c'est souvent juste le nombre de fois ou il a resolu le meme type de probleme.
+Même les devs avec 15 ans d'expérience googlèrent des trucs basiques tous les jours. Tout le monde le fait. Personne ne sait tout par cœur. La différence entre un junior et un senior c'est souvent juste le nombre de fois où il a résolu le même type de problème.
 
-**Verite 7 : Les outils changent. Les fondamentaux, non.**
+**Vérité 7 : Les outils changent. Les fondamentaux, non.**
 
-Les frameworks changent tous les 3 ans. Angular, React, Vue, Svelte, Solid... dans 5 ans
-il y en aura d'autres. Mais quelqu'un qui comprend vraiment le DOM, les evenements, l'asynchrone
-et les requetes HTTP s'adaptera en quelques semaines a n'importe quel nouveau framework.
+Les frameworks changent tous les 3 ans. Angular, React, Vue, Svelte, Solid... dans 5 ans il y en aura d'autres. Mais quelqu'un qui comprend vraiment le DOM, les événements, l'asynchrone et les requêtes HTTP s'adaptera en quelques semaines à n'importe quel nouveau framework.
 
 > Construis des fondations solides. Le reste vient tout seul.
 
 ---
 
->_Ce sont des tendances, pas des chiffres officiels absolus._
->_Les technos evoluent vite : toujours verifier les sources recentes avant une decision importante._
+> *Ces informations sont des tendances, pas des chiffres officiels absolus.*
+> *Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante.*
 
 ---
+
 ## 8. Les métiers du dev : la carte au trésor que personne t'a donnée
 
 > *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"*
@@ -1134,8 +1031,8 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
    |  Mobile Dev            Data Engineer    Cloud Engineer     |
    |  UI/UX Engineer        API Engineer     Platform Engineer  |
    |                                                            |
-   |  CE QUI REND INTELLIGENT           CE QUI PROTEGE TOUT     |
-   |  (layer intelligence)              (layer securite)        |
+   |  CE QUI REND INTELLIGENT           CE QUI PROTÈGE TOUT     |
+   |  (layer intelligence)              (layer sécurité)        |
    |                                                            |
    |  ML Engineer           Data Scientist   Security Engineer  |
    |  AI Engineer           Research Eng.    Pentest / Red Team |
@@ -1146,7 +1043,7 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
    |  Software Architect    Engineering Manager    CTO          |
    |____________________________________________________________|
    |                                                            |
-   |  SPECIALISATIONS SECTORIELLES                              |
+   |  SPÉCIALISATIONS SECTORIELLES                              |
    |  Game Dev  |  Blockchain Dev  |  Embedded Systems Dev      |
    |  Compiler Engineer  |  Graphics Engineer  |  Kernel Dev    |
    |____________________________________________________________|
@@ -1163,24 +1060,28 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 **En une phrase** : il construit tout ce que tu vois et touches dans une interface. Le bouton, la liste, l'animation, le formulaire.
 
 **Une journée type** :
+
 ```
-09h00  Reunion avec l'equipe design : les maquettes Figma sont pretes
-09h30  Implementation d'un nouveau composant React (formulaire de connexion)
-11h00  Bug : le layout explose sur mobile Samsung Galaxy S22 -> debogage CSS
-12h00  Code review : il relit le code d'un collegue, laisse des commentaires
-14h00  Integration d'une API backend : fetch des donnees utilisateur
-16h00  Optimisation : reduction du bundle (faire en sorte que ces fichiers soient le plus légers possible pour que la page charge vite.), lazy loading des images
-17h30  Deploiement sur la branche de staging (dev (tu codes) → staging (tu testes) → production (les users voient)) pour validation
+09h00  Réunion avec l'équipe design : les maquettes Figma sont prêtes
+09h30  Implémentation d'un nouveau composant React (formulaire de connexion)
+11h00  Bug : le layout explose sur mobile Samsung Galaxy S22 -> débogage CSS
+12h00  Code review : il relit le code d'un collègue, laisse des commentaires
+14h00  Intégration d'une API backend : fetch des données utilisateur
+16h00  Optimisation : réduction du bundle, lazy loading des images
+        (bundle = fichiers JS/CSS regroupés pour que la page charge vite)
+17h30  Déploiement sur la branche de staging pour validation
+        (dev → staging → production : les users voient la version finale)
 ```
 
 **Technologies typiques** :
+
 ```
 Obligatoire  :  HTML, CSS, JavaScript, TypeScript
 Frameworks   :  React, Vue, Angular, Svelte
 Outils       :  Webpack/Vite, Git, npm/yarn, Chrome DevTools
 Tests        :  Jest, Vitest, Playwright, Cypress
 Styles       :  Tailwind CSS, CSS Modules, Styled Components
-Etat global  :  Redux, Zustand, Pinia, Jotai
+État global  :  Redux, Zustand, Pinia, Jotai
 ```
 
 **Exemple : ce qu'un vrai frontend dev rencontre tous les jours :**
@@ -1199,9 +1100,9 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
-**Compétences clés** : maitrise du DOM et des événements browser, responsive design et accessibilité (WCAG : Web Content Accessibility Guidelines : des règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées (malvoyants, daltoniens, gens qui naviguent au clavier sans souris)), optimisation des performances (Core Web Vitals : C'est les métriques de Google pour mesurer la performance ressentie par l'utilisateur.), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
+**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'utilisateur), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
->  **Tip méconnu** : un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN (Content Delivery Network -> un réseau de serveurs répartis dans le monde entier qui stockent des copies de tes fichiers statiques (images, JS, CSS). Sans CDN : un user à Tokyo télécharge tes images depuis ton serveur à Paris -> lent. Avec CDN : il les télécharge depuis un serveur à Tokyo — rapide.) fonctionne. Pas juste "faire joli".
+> **Tip méconnu :** un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN fonctionne. (CDN = réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques. Sans CDN : un user à Tokyo télécharge tes images depuis Paris → lent. Avec CDN : depuis Tokyo → rapide.) Pas juste "faire joli".
 
 ---
 
@@ -1210,26 +1111,30 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 **En une phrase** : il construit le moteur. La logique métier, les APIs, les bases de données, la sécurité des données.
 
 **Une journée type** :
+
 ```
-09h00  Review des logs de prod : y'a eu une erreur 500 a 3h du matin
-09h30  Debogage : une requete SQL non optimisee qui bloquait toute la base
-11h00  Implementation d'un nouvel endpoint : POST /api/v2/orders (Lien normal → GET  https://monsite.com/produits (tu visites une page) ,Endpoint API  →  POST https://monsite.com/api/orders (tu envoies des données, il se passe quelque chose))
-13h30  Ecriture des tests unitaires pour la logique de paiement
-15h00  Discussion architecture : comment gerer 10x plus de requetes
-16h30  Documentation de l'API dans Swagger/OpenAPI (un outil qui génère automatiquement une documentation interactive de ton API)
+09h00  Review des logs de prod : y'a eu une erreur 500 à 3h du matin
+09h30  Débogage : une requête SQL non optimisée qui bloquait toute la base
+11h00  Implémentation d'un nouvel endpoint : POST /api/v2/orders
+        (GET = tu lis une page / POST = tu envoies des données, il se passe quelque chose)
+13h30  Écriture des tests unitaires pour la logique de paiement
+15h00  Discussion architecture : comment gérer 10x plus de requêtes
+16h30  Documentation de l'API dans Swagger/OpenAPI
+        (outil qui génère automatiquement une documentation interactive de ton API)
 17h30  Code review et merge de deux pull requests
 ```
 
 **Technologies typiques** :
+
 ```
 Langages         :  Node.js (JS/TS), Python, Java, Go, C#, PHP, Rust
 Frameworks       :  Express, Fastify, FastAPI, Spring Boot, Gin, Laravel
-Bases de donnees :  PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
+Bases de données :  PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
 Outils           :  Docker, Git, Postman, Swagger
 Cloud            :  AWS/GCP/Azure (basiques)
 ```
 
-**Exemple: le quotidien du backend dev :**
+**Exemple : le quotidien du backend dev :**
 
 ```javascript
 // Ce que le frontend pense que l'API fait
@@ -1242,15 +1147,15 @@ app.get('/api/user/:id', async (req, res) => {
   // vérifie que t'as le droit de voir CET utilisateur (pas juste n'importe lequel)
   // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
   // requête DB avec retry si connexion timeout
-  // cache le résultat 60s pour pas bruler la base
-  // log la requete pour le monitoring (surveiller ton app en temps réel pour savoir si tout va bien.)
-  // gère 14 cas d'erreur differents
+  // cache le résultat 60s pour pas brûler la base
+  // log la requête pour le monitoring (surveiller ton app en temps réel)
+  // gère 14 cas d'erreur différents
   // renvoie les données
   // et si c'est vendredi soir : prie pour que rien ne casse le weekend
 })
 ```
 
-**Compétences clés** : conception de bases de données (schémas, indexation (technique pour accélérer les recherches dans ta base de données.), migrations), sécurité (authentification, JWT, OAuth2, HTTPS), design d'API (REST, GraphQL, gRPC), performance et scalabilité, logging et monitoring en production.
+**Compétences clés** : conception de bases de données (schémas, indexation, migrations), sécurité (authentification, JWT, OAuth2, HTTPS), design d'API (REST, GraphQL, gRPC), performance et scalabilité, logging et monitoring en production.
 
 ---
 
@@ -1273,23 +1178,24 @@ iOS Dev      Android Dev        Flutter Dev   React Native Dev
 **Différences réelles** :
 
 ```
-CRITERE                  NATIF              CROSS-PLATFORM
+CRITÈRE                  NATIF              CROSS-PLATFORM
 ::::::::::::             :::::::            ::::::::::::::::
-Performance              Maximale           Tres bonne
-Acces hardware           Complet            Partiel
+Performance              Maximale           Très bonne
+Accès hardware           Complet            Partiel
 Une seule codebase       Non                Oui
 Vitesse de dev           Plus lent          Plus rapide
 Rendu UI                 100% natif         Quasi-natif (Flutter)
-Marche emploi            Large              En forte croissance
+Marché emploi            Large              En forte croissance
 ```
 
 **Une journée type (Flutter Dev)** :
+
 ```
-09h00  Fix layout : debordement sur petits ecrans
+09h00  Fix layout : débordement sur petits écrans
 10h30  Notifications push avec Firebase Cloud Messaging
 12h30  Discussion architecture des states (Bloc vs Riverpod)
 14h00  Tests sur appareils physiques et simulateurs
-15h30  Optimisation : temps de demarrage de 2s -> 0.8s
+15h30  Optimisation : temps de démarrage de 2s -> 0.8s
 17h00  Publication beta sur le Play Store via Fastlane
 ```
 
@@ -1309,13 +1215,13 @@ Marche emploi            Large              En forte croissance
    Tailwind      Supabase
        |____________|
              |
-          Deploie lui-meme sur Vercel + Railway
+          Déploie lui-même sur Vercel + Railway
 ```
 
 **Exemple : la réalité d'un full-stack dans une startup :**
 
 ```javascript
-// Lundi : "t'es full-stack non ? Tu peux aussi jeter un oeil au DevOps ?"
+// Lundi : "t'es full-stack non ? Tu peux aussi jeter un œil au DevOps ?"
 
 // Mardi matin
 git commit -m "fix: bug critique en prod qui crashait 50% des users"
@@ -1353,14 +1259,15 @@ Ce qui le distingue d'un simple dev : il pense systèmes et non juste features, 
 LE MONDE AVANT DEVOPS         LE MONDE AVEC DEVOPS
 :::::::::::::::::::           ::::::::::::::::::::
 Dev : "mon code marche        Dev + Ops travaillent
-  en local, c'est bon"        ensemble depuis le debut
-Ops : "ton truc plante        Pipeline CI/CD automatise
-  en prod, pas mon            Monitoring en temps reel
-  probleme"                   Infrastructure as Code
-  -> les deux se detestent    -> les deux se comprennent
+  en local, c'est bon"        ensemble depuis le début
+Ops : "ton truc plante        Pipeline CI/CD automatisé
+  en prod, pas mon            Monitoring en temps réel
+  problème"                   Infrastructure as Code
+  -> les deux se détestent    -> les deux se comprennent
 ```
 
 **Technologies typiques** :
+
 ```
 Conteneurs      :  Docker, Kubernetes, Helm
 CI/CD           :  GitHub Actions, GitLab CI, Jenkins, CircleCI
@@ -1381,12 +1288,13 @@ Ce qu'il fait vraiment : écrire les pipelines de déploiement, configurer les s
 **En une phrase** : il construit les tuyaux par lesquels les données circulent.
 
 ```
-DONNEES BRUTES  ->  DATA ENGINEER  ->  DONNEES PROPRES ET ACCESSIBLES
+DONNÉES BRUTES  ->  DATA ENGINEER  ->  DONNÉES PROPRES ET ACCESSIBLES
 (logs, APIs,        (construit les      (Data Scientists, analystes,
  bases, fichiers)    pipelines ETL)      ML models peuvent travailler)
 ```
 
 **Technologies typiques** :
+
 ```
 Langages      :  Python, SQL, Scala
 Frameworks    :  Apache Spark, Apache Kafka, dbt, Airflow
@@ -1403,16 +1311,17 @@ Orchestration :  Apache Airflow, Prefect, Dagster
 **En une phrase** : il entraîne, déploie et maintient des modèles d'intelligence artificielle.
 
 ```
-ML ENGINEER vs DATA SCIENTIST (c'est le gars qui analyse et tire des conclusions depuis les données propres que le data engineer a préparées.)
+ML ENGINEER vs DATA SCIENTIST
 ::::::::::::::::::::::::::::::::::::::::::::::
-Data Scientist  :  explore les donnees, teste des hypotheses,
-                   "ca marche sur mon ordi en Jupyter Notebook"
-ML Engineer     :  prend le modele et le rend utilisable en production :
-                   API rapide, scalable, mise a jour auto,
-                   monitoring du modele en temps reel
+Data Scientist  :  explore les données, teste des hypothèses,
+                   "ça marche sur mon ordi en Jupyter Notebook"
+ML Engineer     :  prend le modèle et le rend utilisable en production :
+                   API rapide, scalable, mise à jour auto,
+                   monitoring du modèle en temps réel
 ```
 
 **Technologies typiques** :
+
 ```
 Langages      :  Python (exclusivement ou presque)
 Frameworks ML :  PyTorch, TensorFlow, JAX, scikit-learn
@@ -1429,21 +1338,22 @@ LLMs/Agents   :  Hugging Face, LangChain, LlamaIndex
 **En une phrase** : il cherche les failles avant que quelqu'un de malveillant les trouve.
 
 ```
-DEFENSIVE (Blue Team)          OFFENSIVE (Red Team / Pentester)
+DÉFENSIVE (Blue Team)          OFFENSIVE (Red Team / Pentester)
 :::::::::::::::::::            ::::::::::::::::::::::::::::::::::
-Construit des defenses         Attaque les systemes de l'entreprise
+Construit des défenses         Attaque les systèmes de l'entreprise
 Audit et hardening             Avec autorisation (pour trouver les failles)
 SIEM, IDS/IPS                  Kali Linux, Metasploit, Burp Suite
-Reponse aux incidents          CVE, exploits, social engineering
-SOC (Security Operations)      Rapport de vulnerabilites
+Réponse aux incidents          CVE, exploits, social engineering
+SOC (Security Operations)      Rapport de vulnérabilités
 ```
 
 Les security engineers sont parmi les mieux payés de l'industrie. La demande explose. L'offre de profils qualifiés reste très faible.
 
 ---
+
 ### Exemple avec une application : Amorya
-Une app de rencontre où les utilisateurs créent un profil, matchent, et discutent.
-Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
+
+Une app de rencontre où les utilisateurs créent un profil, matchent, et discutent. Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
 
 #### Le workflow
 
@@ -1467,8 +1377,6 @@ Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit
                                                                  │
                                                    ┌─────────────┴─────────────┐
                                                    │                           │
-                                                   │  chiffres prêts           │  chiffres prêts
-                                                   │                           │
                                                    ▼                           ▼
                                              DATA ANALYST               DATA SCIENTIST
                                           Lit ce qui s'est passé.     Prédit ce qui va se passer.
@@ -1477,44 +1385,36 @@ Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit
                                           Rapport pour                  Améliore l'algorithme
                                           l'équipe produit.             de suggestion.
                                                    │                           │
-                                                   │  insights produit         │  nouveau modèle prêt
-                                                   │  (ce qu'on comprend       |
-                                                   |    grâce aux chiffres)    |
                                                    └─────────────┬─────────────┘
-                                                                 │
-                                                                 │  résultats intégrés
                                                                  │
                                                                  ▼
                                                           DEV WEB / MOBILE
                                                   Affiche les meilleurs profils en premier.
                                                   Intègre les nouvelles fonctionnalités.
                                                                  │
-                                                                 │  nouvelle version de l'app
-                                                                 │
                                                                  ▼
                                                                DEVOPS
                                                   Déploie la mise à jour sans coupure.
                                                   Surveille que les serveurs tiennent.
-                                                                 │
-                                                                 │  app en ligne, serveurs stables
                                                                  │
                                                                  ▼
                                                          SECURITY ENGINEER
                                                       Surveille en permanence.
                                                     Bloque les faux profils, protège
                                                   les données personnelles des utilisateurs.
- ```
+```
 
 #### Résumé
 
-| Rôle                | Responsabilité                                      |
-|---------------------|-----------------------------------------------------|
-| Dev Web / Mobile    | Construit ce que l'utilisateur voit et utilise      |
-| Data Engineer       | Collecte et prépare les données                     |
-| Data Analyst        | Explique ce qui s'est passé                         |
-| Data Scientist      | Prédit ce qui va se passer                          |
-| DevOps              | Déploie et maintient l'app en ligne                 |
-| Security Engineer   | Protège l'app et ses utilisateurs                   |
+| Rôle | Responsabilité |
+|---|---|
+| Dev Web / Mobile | Construit ce que l'utilisateur voit et utilise |
+| Data Engineer | Collecte et prépare les données |
+| Data Analyst | Explique ce qui s'est passé |
+| Data Scientist | Prédit ce qui va se passer |
+| DevOps | Déploie et maintient l'app en ligne |
+| Security Engineer | Protège l'app et ses utilisateurs |
+
 ---
 
 ### Les rôles d'évolution de carrière
@@ -1522,7 +1422,7 @@ Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit
 > *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"*
 
 ```
-ANNEE 1-3       ANNEE 3-6        ANNEE 6-10       ANNEE 10+
+ANNÉE 1-3       ANNÉE 3-6        ANNÉE 6-10       ANNÉE 10+
 :::::::::       :::::::::        ::::::::::::     ::::::::::::
 Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
                                      |
@@ -1532,7 +1432,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
                          ____________|______________
                         |                           |
                  Software Architect          Engineering Manager
-                 (decisions techniques)      (gestion d'equipe)
+                 (décisions techniques)      (gestion d'équipe)
                         |                           |
                         |___________________________|
                                      |
@@ -1545,6 +1445,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 ---
 
 #### WORKFLOW avec un exemple : "Meme Mashup Generator"
+
 > *Tu uploads des images ou du texte → l'app combine tout aléatoirement → meme WTF généré.*
 
 ---
@@ -1581,7 +1482,6 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
                                                                                      ▼
                                                                          [ Meme PNG généré ]
                                                                                      |
-                                                                                     ▼
                                                                         [ Supabase Storage ]
                                                                         (sauvegarde le meme final)
                                                                                      |
@@ -1604,7 +1504,7 @@ OUTIL               RÔLE DANS LE PROJET                     ALTERNATIVE SI ÇA 
 ::::::::::::::::    :::::::::::::::::::::::::::::::::::::::  :::::::::::::::::::::::::::
 Next.js             Le site + les routes API, tout en un     Séparer front (React) / back (Express)
 Supabase Storage    Stocker les images uploadées et          S3 (Amazon) si tu dépasses 1GB/mois
-                    les memes générés                        ou si tu veux plus de contrôle
+                    les memes générés
 Supabase DB         Sauvegarder les phrases WTF,             PlanetScale, Railway, Neon
                     l'historique des memes générés
 Sharp               Coller le texte sur l'image côté         Canvas API (si tu fais ça dans
@@ -1659,8 +1559,7 @@ Vercel              Héberger le projet, déploiement          Railway, Render, 
 
 ---
 
-### Qui fait quoi dans la vraie vie?
-
+### Qui fait quoi dans la vraie vie ?
 
 #### Junior Dev *(0–2 ans)*
 
@@ -1676,10 +1575,8 @@ CE QU'IL FAIT SUR CE PROJET
 CE QU'ON NE LUI DEMANDE PAS ENCORE
 ────────────────────────────────────────────────────────────────
 -  Concevoir le Meme Engine from scratch
--  Choisir entre Supabase Storage et S3 (il ne sait pas encore
-   que Supabase est gratuit jusqu'à 1GB mais que S3 coûte
-   moins cher à grande échelle)
--  Gérer la sécurité des uploads (validation MIME (image/jpeg, image/png, application/pdf), taille max)
+-  Choisir entre Supabase Storage et S3
+-  Gérer la sécurité des uploads (validation MIME, taille max)
 ```
 
 ---
@@ -1696,11 +1593,9 @@ JUNIOR                                MID-LEVEL
                                        → parce que Sharp ne tourne pas
                                          dans le navigateur, et Canvas
                                          est trop lent sur mobile"
-
 "Je copie l'exemple Sharp             "Je lis la doc Sharp pour comprendre
- de la doc"                            le pipeline : input → transform → output
-                                        et je choisis les bonnes options"
-
+ de la doc"                            le pipeline et je choisis les
+                                        bonnes options"
 Résout le bug de l'image              Anticipe que les PNG transparents
  qui s'affiche mal                     vont poser problème avec le filtre
                                         sépia → il gère ça avant que ça arrive
@@ -1712,13 +1607,13 @@ Résout le bug de l'image              Anticipe que les PNG transparents
 
 Il dit **non** quand il le faut.
 
-> *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les MEMES se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
+> *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
 
-  ```
+```
                                             CE QU'IL APPORTE SUR CE PROJET
                                            ::::::::::::::::::::::::::::::::::::
-                                            Design du pipeline complet ((ici : image uploadée → meme généré → URL retournée).)
-                                              (queue ou génération synchrone ?) -> génère tout de suite ou demande ajoutée à la file ?
+                                            Design du pipeline complet
+                                              (queue ou génération synchrone ?)
                                                               |
                                                  _____________|_____________
                                                 |                           |
@@ -1762,7 +1657,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
 ```
                                                     SES QUESTIONS SUR CE PROJET
                                           ::::::::::::::::::::::::::::::::::::::::::::::::
-                          Monolithe (toute l'app est dans un seul projet) ou microservice pour la génération ?
+                          Monolithe ou microservice pour la génération ?
                                                               |
                                                  _____________|______________
                                                 |                            |
@@ -1770,7 +1665,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
                                             plus simple à déployer      si le Meme Engine tourne
                                             sur Vercel, parfait         sur un serveur plus puissant
                                             pour débuter                (génération intensive = CPU élevé)
-                                            
+
                                             Supabase Storage ou S3 pour stocker les memes ?
                                                               |
                                                  _____________|______________
@@ -1779,8 +1674,8 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
                                             gratuit jusqu'à 1 GB,           pas de limite, moins cher
                                             intégration facile,             à grande échelle, mais
                                             parfait sous 10 000             plus de config
-                                            memes/mois                      (IAM, buckets, permissions)
-                                            
+                                            memes/mois
+
                                             Comment éviter que le stockage explose ?
                                             → job CRON : les memes non téléchargés depuis 7 jours
                                               sont supprimés automatiquement
@@ -1796,8 +1691,7 @@ CE QU'IL FAIT                          CE QU'IL NE FAIT PAS
 S'assure que le junior monte           Choisir entre Sharp et Canvas
   en compétence (1:1 réguliers)        Faire du code review
 Gère le recrutement si le projet       Concevoir le Meme Engine
-  grandit (on a besoin d'un
-  second dev ?)
+  grandit
 Protège l'équipe des demandes
   irréalistes ("le meme en 0.1s
   c'est pas possible, voilà pourquoi")
@@ -1805,7 +1699,7 @@ Protège l'équipe des demandes
 
 ---
 
-####  CTO
+#### CTO
 
 ```
 STARTUP (projet early-stage)           SI MEME MASHUP DEVIENT VIRAL
@@ -1814,7 +1708,7 @@ Code encore (il a tout construit)      Code rarement
 Choisit la stack initiale              Définit la vision tech à 2 ans
   (Next.js + Supabase + Vercel)         (passer sur S3 ? ouvrir une API
 Recrute le premier dev                   publique pour les créateurs ?)
-Parle aux premiers users               Surveille les coûts d'infra (tout ce que tu paies pour faire tourner ton app : serveurs, stockage, base de données, etc.)
+Parle aux premiers users               Surveille les coûts d'infra
 ```
 
 ---
@@ -1827,14 +1721,14 @@ FREELANCE                              ENTREPRENEUR (tu construis Meme Mashup po
 Un client te paie pour                 Tu construis le produit, tu vises les
   construire ce type d'app               créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres         Tu es dev + PM + support en même temps
-Tu factures à l'heure ou au projet     Si ça devient viral → gros upside (le gain potentiel si ça marche)
+Tu factures à l'heure ou au projet     Si ça devient viral → gros upside
   (tarifs occidentaux depuis           Si ça flop → t'as quand même appris
    Madagascar, c'est le levier 2026)     Next.js, Supabase et Sharp en vrai
 ```
 
 ---
 
-## Résumé : qui touche à quoi sur ce projet
+### Résumé : qui touche à quoi sur ce projet
 
 ```
 RÔLE                  SUR MEME MASHUP GENERATOR
@@ -1852,10 +1746,9 @@ Entrepreneur          Tout. Le produit, les users, les coûts, la survie du proj
 
 ---
 
-> *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"* 
-
-> Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais (ex: Génération synchrone -> simple à coder MAIS serveur saturé à 500 users)
-> tu n'es plus junior. Tu decides où tu vas.
+> *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"*
+> Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais,
+> tu n'es plus junior. Tu décides où tu vas.
 
 ---
 
@@ -1871,19 +1764,19 @@ Entrepreneur          Tout. Le produit, les users, les coûts, la survie du proj
 | Cybersécurité | Très élevée | Mondial | Excellent | Explosion |
 | Jeux vidéo | Élevée | Concentré | Correct | Stable |
 | Blockchain | Élevée | Volatile | Bon | Instable |
-| Systèmes / Kernel | Très élevée | Niche (marché très petit et très spécialisé) | Excellent | Stable (rare) |
+| Systèmes / Kernel | Très élevée | Niche | Excellent | Stable (rare) |
 
 ---
 
-#### Web :
+#### Web
 
 Le domaine le plus accessible, le plus vaste, et le plus employant. Des milliers de frameworks. Des millions d'offres dans le monde.
 
-Technologies : HTML, CSS, JS/TS, React, Next.js, Vue, Node.js, PostgreSQL. Ce qui différencie les tops (les meilleurs développeurs web) : performance, accessibilité, architecture front, SEO technique. Sous-spécialisations : e-commerce, SaaS, apps temps réel (websockets), PWA (Progressive Web App : une app web qui se comporte comme une app mobile native, sans passer par l'App Store comme "Spotify Web Player").
+Technologies : HTML, CSS, JS/TS, React, Next.js, Vue, Node.js, PostgreSQL. Ce qui différencie les tops : performance, accessibilité, architecture front, SEO technique. Sous-spécialisations : e-commerce, SaaS, apps temps réel (websockets), PWA (Progressive Web App : une app web qui se comporte comme une app mobile native, sans passer par l'App Store).
 
 ---
 
-#### Mobile :
+#### Mobile
 
 La majorité des gens utilisent leur téléphone plus que leur PC. C'est un marché énorme.
 
@@ -1903,7 +1796,7 @@ Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui diff�
 
 Le champ le plus en feu de 2026. La demande dépasse massivement l'offre de profils qualifiés.
 
-Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui différencie les tops : maths (algèbre linéaire, stats, calcul), compréhension théorique des architectures. Les vrais postes ML demandent souvent un Master ou un PhD (doctorat). Mais les postes "AI Engineer" (qui utilisent des APIs et déploient des modèles existants) sont accessibles sans.
+Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui différencie les tops : maths (algèbre linéaire, stats, calcul), compréhension théorique des architectures. Les vrais postes ML demandent souvent un Master ou un PhD. Mais les postes "AI Engineer" (qui utilisent des APIs et déploient des modèles existants) sont accessibles sans.
 
 ---
 
@@ -1911,7 +1804,7 @@ Technologies : Python, PyTorch, TensorFlow, Hugging Face, LangChain. Ce qui diff
 
 Le marché manque cruellement de profils. Toutes les entreprises ont besoin de sécurité. Peu de gens savent vraiment faire.
 
-Technologies : Kali Linux, Metasploit, Burp Suite, Wireshark, Python, Bash. Ce qui différencie les tops : curiosité maniaque, connaître le système en profondeur (réseau, OS, code bas niveau), éthique (tu utilises tes compétences pour défendre). Certifications : CEH, OSCP (difficile mais très valorisée), CISSP, CompTIA Security+.
+Technologies : Kali Linux, Metasploit, Burp Suite, Wireshark, Python, Bash. Ce qui différencie les tops : curiosité maniaque, connaître le système en profondeur (réseau, OS, code bas niveau), éthique. Certifications : CEH, OSCP (difficile mais très valorisée), CISSP, CompTIA Security+.
 
 ---
 
@@ -1925,7 +1818,7 @@ Technologies : Unity + C#, Unreal Engine + C++, Godot + GDScript/C#. Ce qui diff
 
 #### Blockchain
 
-Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycles crypto. En 2021 c'était le El Dorado. En 2023 ça s'est effondré. En 2024-2026 ça remonte. Risqué comme pari de carrière à long terme.
+Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycles crypto. En 2021 c'était l'El Dorado. En 2023 ça s'est effondré. En 2024-2026 ça remonte. Risqué comme pari de carrière à long terme.
 
 ---
 
@@ -1934,25 +1827,25 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 > *"Si tu entres dans un donjon au hasard, t'as peut-être choisi celui qui donne sur une décharge. Voilà comment choisir le bon couloir."*
 
 ```
-ETAPE 1 : COUPE CE QUI TE DEPLAIT VRAIMENT
-  Tu detestes les maths pousses ?              -> elimine IA/ML et Systemes
-  Tu veux voir des resultats visuels vite ?    -> garde Web et Mobile
-  Tu adores comprendre "comment ça marche" ?   -> Cloud, Securite, Systemes
+ÉTAPE 1 : COUPE CE QUI TE DÉPLAÎT VRAIMENT
+  Tu détestes les maths poussés ?              -> élimine IA/ML et Systèmes
+  Tu veux voir des résultats visuels vite ?    -> garde Web et Mobile
+  Tu adores comprendre "comment ça marche" ?   -> Cloud, Sécurité, Systèmes
 
-ETAPE 2 : CROISE AVEC LE MARCHE LOCAL + REMOTE
+ÉTAPE 2 : CROISE AVEC LE MARCHÉ LOCAL + REMOTE
   Offres d'emploi dans ta ville ?   -> regarde LinkedIn, Indeed, Upwork
   Travail remote ?                  -> Web, Cloud, IA, Mobile = les plus remote-friendly
   Freelance ?                       -> Web et Mobile = les plus faciles à vendre
 
-ETAPE 3 : EVALUE LA DUREE D'APPRENTISSAGE
+ÉTAPE 3 : ÉVALUE LA DURÉE D'APPRENTISSAGE
   Employable en 6-12 mois ?   -> Web, Mobile (Flutter/RN)
   Employable en 1-2 ans ?     -> Backend fort, DevOps, Data
-  Employable en 2-4 ans ?     -> IA/ML, Cybersecurite, Systemes
+  Employable en 2-4 ans ?     -> IA/ML, Cybersécurité, Systèmes
 
-ETAPE 4 : TESTE AVANT DE T'ENGAGER
-  Fais un mini-projet de 2-4 semaines dans chaque specialisation qui t'attire.
-  Laquelle te donnait envie de continuer le soir, meme sans obligation ?
-  Celle-la, c'est la tienne.
+ÉTAPE 4 : TESTE AVANT DE T'ENGAGER
+  Fais un mini-projet de 2-4 semaines dans chaque spécialisation qui t'attire.
+  Laquelle te donnait envie de continuer le soir, même sans obligation ?
+  Celle-là, c'est la tienne.
 ```
 
 ---
@@ -1961,27 +1854,15 @@ ETAPE 4 : TESTE AVANT DE T'ENGAGER
 
 > *"La plupart des devs savent coder. Les bons devs savent résoudre des problèmes. Les excellents devs savent résoudre les bons problèmes."*
 
-```
-DEV MOYEN                                                                          DEV EXCELLENT
-::::::::::::::::::                                                                 ::::::::::::::::::::::
-Copie/colle sans comprendre                 --------->                             Comprend ce qu'il colle
-Connait le langage                          --------->                             Comprend le systeme (comprend comment les pièces s'assemblent)
-"Est-ce que ca fonctionne ?"                --------->                            "Est-ce que c'est maintenable ?"
-Peur du code des autres                     --------->                             Lit le code des autres avec curiosité
-Evite les sujets inconnus                   --------->                             Plonge dans les sujets inconnus
-Ne teste que le "happy path" (scénario idéal où tout se passe bien)   --------->   Teste les edge cases
-Reflechit en features                       --------->                             Reflechit en systemes       
-```
-
-**Les compétences qui créent la différence :**
-
 **1. Algorithmique et structures de données**
+
 ```
 Savoir utiliser une liste c'est bien.
-Savoir POURQUOI tu choisis une HashMap plutot qu'une liste dans CE cas precis,
+Savoir POURQUOI tu choisis une HashMap plutôt qu'une liste dans CE cas précis,
 c'est autre chose.
-Complexite O(n), O(log n), O(1) : ca devient tres concret quand t'as
-10 millions d'enregistrements et que la requete prend 12 secondes.
+
+Complexité O(n), O(log n), O(1) : ça devient très concret quand t'as
+10 millions d'enregistrements et que la requête prend 12 secondes.
 ```
 
 **2. Clean Code**
@@ -2012,76 +1893,78 @@ function calculateTotalPrice(basePrice, shippingCost, taxType) {
 
 **3. Design Patterns**
 
-Les patterns sont des solutions documentées à des problèmes récurrents. Savoir quand les appliquer : et surtout quand les éviter te fait passer un cap.
+Les patterns sont des solutions documentées à des problèmes récurrents. Savoir quand les appliquer — et surtout quand les éviter — te fait passer un cap.
 
 ```javascript
-// Exemple du pattern Observer : le meme principe que les EventListeners que tu connais
+// Exemple du pattern Observer : le même principe que les EventListeners
 // ou que le state management dans React
-
 class EventBus {
   constructor() {
     this.listeners = {}
   }
-
   on(event, callback) {
     if (!this.listeners[event]) this.listeners[event] = []
     this.listeners[event].push(callback)
   }
-
   emit(event, data) {
     (this.listeners[event] || []).forEach(cb => cb(data))
   }
 }
 
 const bus = new EventBus()
-
 bus.on('pizza:commandee', ({ saveur }) => {
-  console.log(`Le four se prepare pour une pizza ${saveur}`)
+  console.log(`Le four se prépare pour une pizza ${saveur}`)
 })
-
 bus.on('pizza:commandee', ({ client }) => {
-  console.log(`SMS envoye a ${client} : votre pizza est en preparation`)
+  console.log(`SMS envoyé à ${client} : votre pizza est en préparation`)
 })
-
 bus.emit('pizza:commandee', { saveur: 'Regina', client: 'Bob' })
-// -> Le four se prepare pour une pizza Regina
-// -> SMS envoye a Bob : votre pizza est en preparation
-// Chaque partie du systeme reagit sans se connaitre. C'est ca le pattern Observer.
+// -> Le four se prépare pour une pizza Regina
+// -> SMS envoyé à Bob : votre pizza est en préparation
+// Chaque partie du système réagit sans se connaître. C'est ça le pattern Observer.
 ```
 
 Les patterns les plus utiles en pratique :
+
 ```
-Singleton   : une seule instance dans toute l'app (ex: connexion DB)("comme le wifi de la maison : y'en a un, tout le monde partage")
-Observer    : notifier des objets quand un etat change (ex: React re-render)("comme un groupe WhatsApp : quelqu'un envoie un message, tout le monde reçoit")
-Factory     : creer des objets sans specifier leur classe exacte ("comme un distributeur automatique : t'appuies sur B3, tu sais pas qui l'a fabriqué")
-Repository  : couche d'abstraction entre logique metier et base de donnees ("comme googler quelque chose : t'sais pas où est l'info, tu demandes juste")
-Strategy    : changer un algorithme à l'execution sans modifier le code appelant ("comme choisir entre Uber et le bus : toi t'as juste dit 'amène-moi là-bas'")
-Adapter     : brancher une interface incompatible sur une autre (("comme un adaptateur jack 3.5 → USB-C : les deux veulent juste jouer de la musique")
+Singleton   : une seule instance dans toute l'app (ex: connexion DB)
+              "comme le wifi de la maison : y'en a un, tout le monde partage"
+Observer    : notifier des objets quand un état change (ex: React re-render)
+              "comme un groupe WhatsApp : quelqu'un envoie, tout le monde reçoit"
+Factory     : créer des objets sans spécifier leur classe exacte
+              "comme un distributeur automatique : t'appuies sur B3, tu sais pas qui l'a fabriqué"
+Repository  : couche d'abstraction entre logique métier et base de données
+              "comme googler quelque chose : t'sais pas où est l'info, tu demandes juste"
+Strategy    : changer un algorithme à l'exécution sans modifier le code appelant
+              "comme choisir entre Uber et le bus : toi t'as juste dit 'amène-moi là-bas'"
+Adapter     : brancher une interface incompatible sur une autre
+              "comme un adaptateur jack 3.5 → USB-C : les deux veulent juste jouer de la musique"
 ```
 
 **4. Compréhension des systèmes**
 
 Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID).
 
->  **Livre de référence** : *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
+> **Livre de référence :** *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
 
 **5. Architecture logicielle**
 
 ```javascript
 // Les trois questions d'un dev qui pense architecture
 
-// 1. "Comment ce code va evoluer dans 6 mois ?"
-// Si la reponse c'est "on va devoir tout recrire", c'est un signal. (ex: t'as hardcodé la langue en "fr" partout et le client veut l'anglais : bonne chance!)
+// 1. "Comment ce code va évoluer dans 6 mois ?"
+// Si la réponse c'est "on va devoir tout réécrire", c'est un signal.
+// (ex: t'as hardcodé la langue en "fr" partout et le client veut l'anglais : bonne chance!)
 
 // 2. "Si cette partie tombe en panne, qu'est-ce qui casse autour ?"
-// Un systeme bien architecturé a des points de defaillance isolés.
-// Un systeme mal architecturé : tout tombe en meme temps.
- (ex: le service de notif email plante et somehow le paiement marche plus : classique)
+// Un système bien architecturé a des points de défaillance isolés.
+// Un système mal architecturé : tout tombe en même temps.
+// (ex: le service de notif email plante et somehow le paiement marche plus : classique)
 
-// 3. "Comment un nouveau dev comprend ce systeme en 30 minutes ?"
-// Si t'es le seul a pouvoir expliquer comment ca marche,
+// 3. "Comment un nouveau dev comprend ce système en 30 minutes ?"
+// Si t'es le seul à pouvoir expliquer comment ça marche,
 // c'est pas de la valeur. C'est un risque.
- (ex: t'es en vacances, ton tel sonne, c'est le CTO : t'aurais dû écrire de la doc)
+// (ex: t'es en vacances, ton tel sonne, c'est le CTO : t'aurais dû écrire de la doc)
 ```
 
 ---
@@ -2089,118 +1972,34 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 ### La carrière réaliste sur 10-15 ans
 
 ```
-ANNEES 1-2 : LE DEBROUSSAILLAGE
+ANNÉES 1-2 : LE DÉBROUSSAILLAGE
   Tu apprends vite mais tu casses aussi vite.
-  Chaque semaine tu decouvres que tu ne sais pas quelque chose.
+  Chaque semaine tu découvres que tu ne sais pas quelque chose.
   C'est normal. C'est comme ça pour tout le monde.
-  Objectif : livrer de la valeur, apprendre les bases du travail en equipe.
-  Erreur classique : vouloir tout apprendre en meme temps -> epuisement.
+  Objectif : livrer de la valeur, apprendre les bases du travail en équipe.
+  Erreur classique : vouloir tout apprendre en même temps -> épuisement.
 
-ANNEES 3-5 : L'AUTONOMIE
+ANNÉES 3-5 : L'AUTONOMIE
   Tu livres sans supervision constante.
   Tu commences à avoir des opinions sur les choix techniques.
-  Tu peux concevoir une feature de A a Z.
-  Objectif : developper ta specialite et ta reputation.
-  Erreur classique : rester en confort zone, eviter les projets complexes.
+  Tu peux concevoir une feature de A à Z.
+  Objectif : développer ta spécialité et ta réputation.
+  Erreur classique : rester en zone de confort, éviter les projets complexes.
 
-ANNEES 5-8 : L'IMPACT
-  Ton code affecte des equipes entieres.
+ANNÉES 5-8 : L'IMPACT
+  Ton code affecte des équipes entières.
   Tu mentores des juniors (naturellement, pas encore par obligation).
-  Tu vois les patterns des projets qui reussissent ou echouent.
+  Tu vois les patterns des projets qui réussissent ou échouent.
   Objectif : choisir entre technique pure (architect/principal) ou leadership.
-  Erreur classique : prendre un role manager parce que "c'est la promotion normale"
-                     sans vraiment vouloir gerer des gens.
+  Erreur classique : prendre un rôle manager parce que "c'est la promotion normale"
+                     sans vraiment vouloir gérer des gens.
 
-ANNEES 8-15 : LA FORCE TRANQUILLE
+ANNÉES 8-15 : LA FORCE TRANQUILLE
   Tu n'as plus à prouver que tu sais coder.
-  Tu resous des problemes organisationnels autant que techniques.
-  Tu as un reseau solide dans l'industrie.
-  Objectif : impact à grande echelle, ou independance (freelance/startup).
-  Erreur classique : se reposer sur ses lauriers, arreter d'apprendre.
-```
-
-**Les erreurs à éviter tôt dans la carrière** :
-
-```
-ERREUR                                  POURQUOI C'EST GRAVE
-::::::::::::::::::::::                  ::::::::::::::::::::::::::::::::::::::::
-Ignorer Git (juste "git push")          Tu vas perdre du travail ou bloquer l'equipe
-Ne jamais lire le code des autres       Tu reinventes constamment la roue
-Eviter les tests unitaires              Ta dette technique explose en 6 mois
-Technologie d'abord, probleme apres     Tu suringenieres tout
-Aucune documentation                    Le toi de dans 6 mois te deteste
-Travailler en silos                     Tu bloques ta propre progression
-
-LA CORRECTION
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
--> Apprends Git en profondeur, pas juste les commandes de base
--> Passe du temps sur des projets open source, lis du code existant
--> Integre les tests des le debut, meme basiques
--> Commence toujours par comprendre le probleme avant de choisir l'outil ((ex: "j'ai besoin de stocker des donnees" → choisis d'abord entre localStorage, une BDD, un fichier, etc. selon le contexte, pas juste "je vais utiliser MongoDB parce que je connais")
--> Documente les decisions importantes au moment ou tu les prends
--> Code review, collaboration, communication : ça compte autant que le code
-```
-
----
-
-### Les compétences qui restent valides toute une vie
-
-> *"Les frameworks meurent. Les langages évoluent. Certaines choses, jamais."*
-
-```
-+------------------------------------------------------------------+
-|          COMPETENCES FONDAMENTALES UNIVERSELLES                  |
-+------------------------------------------------------------------+
-|                                                                  |
-|  1. PENSEE ALGORITHMIQUE                                         |
-|     Decomposer un probleme complexe en sous-problemes simples    |
-|     et les resoudre methodiquement.                              |
-|     Valide en 1975. Valide en 2026. Valide en 2060.              |
-|                                                                  |
-|  2. STRUCTURES DE DONNEES                                        |
-|     Tableaux, listes liees, arbres, graphes, hash maps.          |
-|     Inventees dans les annees 60. N'ont pas change.              |
-|     Ne changeront pas.                                           |
-|                                                                  |
-|  3. RESEAUX ET WEB                                               |
-|     HTTP, TCP/IP, DNS, TLS. Comment les donnees voyagent.        |
-|     C'est la plomberie de l'internet. Ca dure.                   |
-|                                                                  |
-|  4. CODE PROPRE                                                  |
-|     Nommer correctement, structurer logiquement, commenter       |
-|     ce qui n'est pas evident. Un humain qui lit ton code         |
-|     doit comprendre sans te demander.                            |
-|                                                                  |
-|  5. DEBOGAGE SYSTEMATIQUE                                        |
-|     Pas juste Google l'erreur. Comprendre POURQUOI ça casse.     |
-|     Hypothese -> test -> resultat -> hypothese suivante.         |
-|                                                                  |
-|  6. BASES DE DONNEES RELATIONNELLES                              |
-|     SQL existe depuis 1974. Il sera encore la dans 30 ans.       |
-|     Modeliser des donnees, ecrire des requetes efficaces,        |
-|     comprendre les transactions ACID.                            |
-|                                                                  |
-|  7. SECURITE DE BASE                                             |
-|     XSS, injection SQL, CSRF, authentification, chiffrement.     |
-|     Les vecteurs d'attaque changent. Les principes, non.         |
-|                                                                  |
-|  8. COMMUNICATION TECHNIQUE                                      |
-|     Expliquer une decision technique à quelqu'un qui ne code     |
-|     pas. Ecrire un bon README. Donner une bonne code review.     |
-|     Presenter une architecture clairement.                       |
-|                                                                  |
-|  9. APPRENTISSAGE EN CONTINU                                     |
-|     Les devs qui prosperent ne savent pas tout.                  |
-|     Ils savent apprendre vite. Un nouveau framework en           |
-|     2 semaines si les fondations sont solides.                   |
-|                                                                  |
-|  10. SYSTEMES DISTRIBUES (bases)                                 |
-|      Latence, consistance, disponibilite, partitionnement.       |
-|      Le theoreme CAP. Ce que veut dire "scalable".               |
-|      De plus en plus d'apps tournent sur le cloud.               |
-|      Ces concepts s'appliquent partout.                          |
-|                                                                  |
-+------------------------------------------------------------------+
+  Tu résous des problèmes organisationnels autant que techniques.
+  Tu as un réseau solide dans l'industrie.
+  Objectif : impact à grande échelle, ou indépendance (freelance/startup).
+  Erreur classique : se reposer sur ses lauriers, arrêter d'apprendre.
 ```
 
 ---
@@ -2243,23 +2042,18 @@ Réponse honnête : ça dépend de trois choses : le métier, le niveau, et surt
 ```
 PAYS                 NIVEAU     SALAIRE ANNUEL ($)
 ::::::::::::         :::::::    ::::::::::::::::::
-Etats-Unis           Junior     70 000 –  90 000 $
+États-Unis           Junior     70 000 –  90 000 $
                      Senior    170 000 – 225 000 $
-
 Europe (FR / DE)     Junior     50 000 –  75 000 $
                      Senior     75 000 – 100 000 $
-
 Royaume-Uni          Senior     90 000 – 100 000 $
-
 Inde                 Junior     10 000 –  15 000 $
                      Senior     20 000 –  55 000 $
-
 Afrique du Sud       Junior     18 000 –  26 000 $
                      Senior     40 000 –  60 000 $
-
-Madagascar           Junior     ~5 400 $ / an (marche local)
-(exemple local)      Senior     ~22 000 $ / an (marche local)
-                     Realite    souvent 1 300 – 4 000 $ / an sur le terrain
+Madagascar           Junior     ~5 400 $ / an (marché local)
+(exemple local)      Senior     ~22 000 $ / an (marché local)
+                     Réalité    souvent 1 300 – 4 000 $ / an sur le terrain
 ```
 
 > Ces chiffres reflètent le marché **local** de chaque pays. La colonne "remote" ci-dessous est une autre histoire.
@@ -2271,14 +2065,11 @@ Madagascar           Junior     ~5 400 $ / an (marche local)
 Pris comme exemple concret d'un marché local en pays émergent : parce que le contraste avec le remote est particulièrement parlant.
 
 ```
-MARCHE LOCAL
+MARCHÉ LOCAL
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-Realite terrain     :  ~110 000 – 333 000 $ eq. / an
-                       (ce que beaucoup touchent vraiment : bien moins)
-
 Junior "officiel"   :  ~5 400 $ / an
-
 Senior reconnu      :  ~22 000 $ / an
+Réalité terrain     :  souvent bien moins pour beaucoup
 ```
 
 Le même profil, le même ordinateur, les mêmes compétences : mais des revenus sans commune mesure selon le marché visé.
@@ -2290,7 +2081,7 @@ Le même profil, le même ordinateur, les mêmes compétences : mais des revenus
 C'est la ligne qui change tout. Un dev qui travaille pour des clients étrangers depuis son pays ne joue plus dans la même catégorie salariale.
 
 ```
-SALAIRES REMOTE (depuis n'importe quel pays à cout de vie bas)
+SALAIRES REMOTE (depuis n'importe quel pays à coût de vie bas)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 Junior remote   :   20 000 –  35 000 $ / an
 Mid remote      :   40 000 –  65 000 $ / an
@@ -2298,17 +2089,15 @@ Senior remote   :   70 000 – 100 000 $ / an
 ```
 
 ```
-COMPARAISON ILLUSTREE (exemple Madagascar, applicable partout)
+COMPARAISON ILLUSTRÉE (exemple Madagascar, applicable partout)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 Dev local junior       :    5 400 $ / an
-Dev remote junior      :   20 000 $ / an    -> ratio x3,7 (multiplicateur)
-
+Dev remote junior      :   20 000 $ / an    -> ratio x3,7
 Dev local senior       :   22 000 $ / an
 Dev remote senior      :   80 000 $ / an    -> ratio x3,6
-
 Dev remote mid         :   40 000 $ / an
 vs dev local senior    :   22 000 $ / an    -> ratio x1,8
-                           (avec moins d'experience requise)
+                           (avec moins d'expérience requise)
 ```
 
 La question n'est donc pas "quel métier choisir". La question est "comment accéder au marché remote ?"
@@ -2318,26 +2107,20 @@ La question n'est donc pas "quel métier choisir". La question est "comment acc�
 ### Les stacks qui paient le plus en remote (2026)
 
 ```
-STACK / SPECIALISATION                    SALAIRE REMOTE MOYEN (global)
+STACK / SPÉCIALISATION                    SALAIRE REMOTE MOYEN (global)
 ::::::::::::::::::::::::::::::            :::::::::::::::::::::::::::::
 AI / ML Engineer                          126 000 – 190 000 $ / an
   Python + PyTorch/TF + MLOps
-
 Cloud / DevOps                            121 000 – 180 000 $ / an
   AWS/GCP + Kubernetes + Terraform
-
 Security Engineer                          90 000 – 170 000 $ / an
-  reseaux + pentest + SIEM
-
+  réseaux + pentest + SIEM
 Full-Stack senior                          90 000 – 165 000 $ / an
   React/TS + Node.js
-
 Backend fort                               85 000 – 160 000 $ / an
-  Go / Rust / Java + systemes distribues
-
+  Go / Rust / Java + systèmes distribués
 Mobile senior                              70 000 – 130 000 $ / an
   Flutter / React Native
-
 Frontend senior                            71 000 – 120 000 $ / an
   React/Next.js + TypeScript + perf
 ```
@@ -2349,93 +2132,78 @@ Frontend senior                            71 000 – 120 000 $ / an
 ### Les 10 pays qui recrutent le plus de devs remote
 
 ```
-RANG   PAYS              REGION            POURQUOI ILS RECRUTENT
+RANG   PAYS              RÉGION            POURQUOI ILS RECRUTENT
 ::::   ::::              ::::::            ::::::::::::::::::::::::::::::::::::
- 1     Etats-Unis         Amerique du Nord  Volume massif de startups et scale-ups.
+ 1     États-Unis         Amérique du Nord  Volume massif de startups et scale-ups.
                                             Manque chronique de devs locaux.
                                             Le remote est le standard depuis 2020.
-
- 2     Allemagne          Europe            Berlin = hub tech europeen.
+ 2     Allemagne          Europe            Berlin = hub tech européen.
                                             Forte demande en backend, data, IA.
-                                            Moins de devs locaux qu'aux US.
-
  3     Royaume-Uni        Europe            Fintech, SaaS, medtech.
-                                            Remote bien etabli post-pandemic.
-
- 4     Canada             Amerique du Nord  Hubs Toronto et Vancouver.
-                                            Timezone proche des US. Tres remote-friendly.
-
+                                            Remote bien établi post-pandemic.
+ 4     Canada             Amérique du Nord  Hubs Toronto et Vancouver.
+                                            Timezone proche des US. Très remote-friendly.
  5     Australie          APAC              Fintech + e-commerce en hausse.
-                                            Manque de devs locaux qualifies.
-
+                                            Manque de devs locaux qualifiés.
  6     Pays-Bas           Europe            Amsterdam = hub IA et SaaS.
-                                            Tres ouverts aux devs internationaux.
-
+                                            Très ouverts aux devs internationaux.
  7     France             Europe            Startups (Doctolib, Leboncoin, Datadog).
                                             Remote en forte hausse depuis 2022.
-
  8     Singapour          APAC              Fintech + gouvernance tech.
                                             Passerelle Asie du Sud-Est.
-
- 9     Suede / Danemark   Europe du Nord    Salaires eleves. Remote bien integre.
-                                            Focus fort sur qualite du code.
-
-10     Israel             Moyen-Orient      Tech tres dense. Startups en cybersec, IA.
-                                            Recrutent sur le marche global.
+ 9     Suède / Danemark   Europe du Nord    Salaires élevés. Remote bien intégré.
+                                            Focus fort sur qualité du code.
+10     Israël             Moyen-Orient      Tech très dense. Startups en cybersec, IA.
+                                            Recrutent sur le marché global.
 ```
 
 > Les plateformes pour commencer : **Upwork**, **Toptal**, **Malt** (France/Europe), **LinkedIn**, **Remote.com**, **Arc.dev**. La langue qui ouvre le plus de portes : l'anglais. La deuxième : le français pour l'Europe.
 
 ---
 
-### La conclusion :
+### La conclusion salaires :
 
 ```
 +----------------------------------------------+
 |                                              |
-|         MEMES COMPETENCES                   |
+|         MÊMES COMPÉTENCES                   |
 |                                              |
-|   marche local       vs       remote         |
+|   marché local       vs       remote         |
 |                                              |
 |   salaire de base         x3 à x10           |
 |                                              |
-|   (le meme dev, le meme ordi, la meme code)  |
+|   (le même dev, le même ordi, le même code)  |
 |                                              |
 +----------------------------------------------+
 ```
 
-La différence entre ces deux colonnes tient à une seule chose : l'accès au marché.
-
-Et ça se construit. Un portfolio sur GitHub. Un profil LinkedIn en anglais. Une ou deux missions sur Upwork. Une réputation. Ça prend du temps : mais c'est linéaire, pas magique.
+La différence entre ces deux colonnes tient à une seule chose : l'accès au marché. Et ça se construit. Un portfolio sur GitHub. Un profil LinkedIn en anglais. Une ou deux missions sur Upwork. Une réputation. Ça prend du temps : mais c'est linéaire, pas magique.
 
 ```javascript
 // La carrière remote, vue comme un algorithme
-
 function construireCarriereRemote(dev) {
   const etapes = [
     "portfolio GitHub avec 3 projets propres et documentés",
     "profil LinkedIn en anglais avec les bons mots-clés",
-    "premiere mission Upwork (peu importe le tarif, c'est pour les reviews)",
-    "deuxieme mission avec un vrai tarif",
-    "reputation construite -> les clients viennent vers toi",
+    "première mission Upwork (peu importe le tarif, c'est pour les reviews)",
+    "deuxième mission avec un vrai tarif",
+    "réputation construite -> les clients viennent vers toi",
   ]
-
   for (const etape of etapes) {
     dev.faire(etape)  // pas de raccourci, pas de magie
   }
-
   return dev.salaire * 3  // minimum
 }
-
 // La seule variable : à qui tu factures.
 ```
 
 > *"Un dev peut gagner 5 000 $ / an. Le même dev, avec les mêmes compétences, peut gagner 80 000 $ / an. La seule variable, c'est à qui il facture."*
-
-> *_Les salaires sont indicatifs et varient selon le pays, l'entreprise et l'expérience.*_
+>
+> *Les salaires sont indicatifs et varient selon le pays, l'entreprise et l'expérience.*
 
 ---
-# BONUS : L'IA, le vrai métier, et les erreurs qui tuent les carrière
+
+## 10. BONUS : L'IA, le vrai métier, et les erreurs qui tuent les carrières
 
 ## 1. L'IA en 2026 : Ce qui se passe vraiment
 
@@ -2456,49 +2224,48 @@ function construireCarriereRemote(dev) {
 ```
   CE QUE LES GENS CROIENT              CE QUE C'EST VRAIMENT
   ::::::::::::::::::::::::             :::::::::::::::::::::::::::::::::::::
-
   "Une IA qui pense"            -->    Un modèle statistique ultra-massif
-  "Ca remplace les humains"     -->    Un très bon outil qui se trompe encore
+  "Ça remplace les humains"     -->    Un très bon outil qui se trompe encore
   "C'est magique"               -->    Des matrices, du calcul, des GPUs qui surchauffent
-  "Ca invente des trucs"        -->    Ca recombine ce qu'il a absorbé à l'entraînement
-  "Ca comprend le contexte"     -->    Ca prédit le token suivant. Encore. Encore. Encore.
+  "Ça invente des trucs"        -->    Ça recombine ce qu'il a absorbé à l'entraînement
+  "Ça comprend le contexte"     -->    Ça prédit le token suivant. Encore. Encore. Encore.
 ```
 
-Un LLM prédit le mot suivant. Encore et encore. C'est le principe.
-C'est "juste ça" qui cache une ingénierie monstrueuse : mais c'est le principe.
+Un LLM prédit le mot suivant. Encore et encore. C'est le principe. C'est "juste ça" qui cache une ingénierie monstrueuse : mais c'est le principe.
+
 Exemple concret :
+
 ```
 "La capitale de la France est..."
-Le modèle a vu des milliards de textes où cette phrase se terminait par "Paris". Donc statistiquement, "Paris" est le choix le plus probable : pas parce qu'il "sait" que Paris est la capitale, mais parce qu'il a appris que ces mots se suivent très souvent.
+Le modèle a vu des milliards de textes où cette phrase se terminait par "Paris".
+Donc statistiquement, "Paris" est le choix le plus probable : pas parce qu'il "sait"
+que Paris est la capitale, mais parce qu'il a appris que ces mots se suivent très souvent.
 C'est la nuance importante : il ne raisonne pas, il complète des patterns.
 ```
+
 ### Les grandes familles d'IA
 
 ```
-  TEXTE / CODE              IMAGES / VIDEO              ACTION
+  TEXTE / CODE              IMAGES / VIDÉO              ACTION
   ::::::::::::              ::::::::::::::              :::::::::::
-
   LLM                       Diffusion Models            Agents IA
    |                         |                           |
    +-> génère du texte        +-> image depuis texte      +-> le LLM peut agir
    +-> répond, explique       +-> Midjourney, DALL-E      +-> cherche sur le web
    +-> code, refactor         +-> Stable Diffusion        +-> lance du code
    +-> GPT-4o, Claude,        +-> Sora (vidéo)            +-> appelle des APIs
-       Gemini, Llama 3         +-> PyTorch en coulisses    +-> prend des décisions
-   +-> Python en coulisses                                +-> frontière 2025-2026
+       Gemini, Llama 3         +-> PyTorch en coulisses    +-> frontière 2025-2026
 ```
 
-Les **modèles de code** (Copilot, Cursor) sont des LLMs spécialisés.
-Ils vivent dans ton IDE. Pendant que tu lis ça, ils attendent.
+Les **modèles de code** (Copilot, Cursor) sont des LLMs spécialisés. Ils vivent dans ton IDE. Pendant que tu lis ça, ils attendent.
 
 ---
 
 ## 2. Ce que l'IA change pour un dev
 
 ```
-  AVANT (2019)                              APRES (2026)
+  AVANT (2019)                              APRÈS (2026)
   ::::::::::::                              ::::::::::::
-
   Tu googles l'erreur                 -->   Tu colles l'erreur dans le chat
   Tu lis Stack Overflow               -->   Tu as une explication sur mesure
   Tu écris le boilerplate à la main   -->   Tu génères la structure en 10s
@@ -2541,7 +2308,6 @@ async function fetchUserOrders(userId) {
   Tu donnes du contexte précis ->    output quasi-production-ready
 
   MAUVAIS : "Fais-moi un hook React"
-
   BON :     "Crée un hook React TypeScript useDebounce(value, delay)
              qui retarde la mise à jour d'une valeur.
              Usage : formulaire de recherche avec appel API.
@@ -2563,7 +2329,6 @@ async function fetchUserOrders(userId) {
 
 ```
   Au lieu de : "Comment je fais pour que mon app soit rapide ?"
-
   Dis :        "Mon API Node.js/Express répond en 800ms en moyenne
                 sur un endpoint qui lit 3 tables PostgreSQL.
                 Les tables sont indexées sur les FKs.
@@ -2575,7 +2340,7 @@ async function fetchUserOrders(userId) {
 ### Tip 4 : utilise-la pour apprendre, pas juste copier
 
 ```javascript
-// MAUVAIS : tu colles le code. Ca marche. Tu passes à autre chose.
+// MAUVAIS : tu colles le code. Ça marche. Tu passes à autre chose.
 
 // BON : tu colles le code, puis tu demandes
 // "Explique-moi chaque ligne de ce que tu viens de générer.
@@ -2589,32 +2354,29 @@ async function fetchUserOrders(userId) {
 
 ```
   Problème bloquant depuis 1h ?
-
   Écris à l'IA :
     "Je vais t'expliquer mon problème. Ne réponds pas encore.
      Juste écoute et dis-moi si tu vois quelque chose d'étrange."
 
   Souvent, en formulant le problème pour l'expliquer,
   tu trouves toi-même la réponse avant qu'elle réponde.
-  C'est le rubber duck debugging version IA.
-  Ca marche vraiment.
+  C'est le rubber duck debugging version IA. Ça marche vraiment.
 ```
 
-### Tip 6 : l'hallucination -> le bug invisible
+### Tip 6 : l'hallucination → le bug invisible
 
 ```javascript
 // Tu demandes : "Comment utiliser .flatDeep() en JavaScript ?"
-
 // L'IA répond avec une confiance absolue :
 const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
 // "flatDeep() prend un paramètre de profondeur..."
 
-// PROBLEME : flatDeep() n'existe pas.
+// PROBLÈME : flatDeep() n'existe pas.
 // La vraie méthode : .flat(depth)
 // L'IA a inventé un nom plausible. Elle n'en sait rien.
 // Elle dit ce qui est statistiquement probable. Pas ce qui est vrai.
 
-// REGLE : toujours vérifier dans la doc officielle.
+// RÈGLE : toujours vérifier dans la doc officielle.
 //         Surtout pour les méthodes de libs, les APIs, les versions récentes.
 ```
 
@@ -2631,15 +2393,13 @@ const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
                             merge seulement après
 ```
 
-Mindset : stagiaire ultra-rapide qui a tout lu sur internet mais qui invente des réponses pour pas avoir l'air de pas savoir.
-Ton boulot : valider. Toujours.
+Mindset : stagiaire ultra-rapide qui a tout lu sur internet mais qui invente des réponses pour pas avoir l'air de pas savoir. Ton boulot : valider. Toujours.
 
 ### Tip 7 : les outils à connaître
 
 ```
   OUTIL              USAGE                                    PRIX
   :::::              :::::                                    ::::
-
   Cursor             IDE IA-first (base VSCode)               freemium
   GitHub Copilot     Autocomplétion intégrée                  payant
   Claude             Pair programmer conversationnel           freemium
@@ -2657,16 +2417,13 @@ Ton boulot : valider. Toujours.
 ```
   LA PEUR                              LA RÉALITÉ 2026
   :::::::                              :::::::::::::::
-
   "L'IA va prendre mon job"  -->  La demande de devs a augmenté.
                                   Les devs qui utilisent l'IA livrent 2-3x plus vite.
                                   Ce sont eux qu'on recrute. Pas les autres.
-
   "Plus besoin d'apprendre"  -->  L'IA génère du code.
                                   Quelqu'un doit le comprendre, valider, déployer,
                                   déboguer quand ça plante à 3h du matin.
                                   Ce quelqu'un : c'est toi.
-
   "Le no-code remplace tout" -->  Le no-code a élargi le marché.
                                   Plus de gens font des apps simples.
                                   Les devs gèrent la complexité que le no-code
@@ -2689,8 +2446,7 @@ Ton boulot : valider. Toujours.
 
 ```
   LE FILM                              LA RÉALITÉ
-  :::::::                              :::::::::::::::::::::::::::::
-
+  :::::::                              :::::::::::::::::::::::::::::::::
   Du code propre toute la journée -->  60% de réunions, emails, PR reviews
   Des projets passionnants         -->  Surtout du legacy et des bugs incompréhensibles
   Des choix technos excitants      -->  "On reste sur jQuery, le client veut pas changer"
@@ -2698,20 +2454,20 @@ Ton boulot : valider. Toujours.
   Travailler seul dans ton coin    -->  Communication constante avec des non-devs
 ```
 
-Et pourtant : c'est l'un des meilleurs métiers du monde en 2026.Pas malgré ça. Avec ça.
+Et pourtant : c'est l'un des meilleurs métiers du monde en 2026. Pas malgré ça. Avec ça.
 
 ---
 
 ### Les vrais piliers du métier
 
 ```
-                          LE METIER DE DEV
+                          LE MÉTIER DE DEV
                                  |
           _____________________|_____________________
          |              |              |              |
       TECHNIQUE      COMM         JUGEMENT        APPRENTISSAGE
          |              |              |              |
-   Coder proprement  Ecrire       Choisir entre   Apprendre en
+   Coder proprement  Écrire       Choisir entre   Apprendre en
    Déboguer          des PR       10 solutions    continu sans
    Architecturer     claires      correctes       se noyer
    Tester            Expliquer    Dire non        Filtrer le bruit
@@ -2723,12 +2479,11 @@ La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bon
 
 ---
 
-### Les types de journées selon le séniorité
+### Les types de journées selon la séniorité
 
 ```
   JUNIOR                     MID-LEVEL               SENIOR
   ::::::                     :::::::::               ::::::
-
   "Comment je fais ça ?"     "Voilà comment faire"   "Devrait-on faire ça ?"
   Suit les specs             Améliore les specs       Questionne les specs
   Résout son ticket          Voit l'impact des        Anticipe les problèmes
@@ -2739,7 +2494,7 @@ La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bon
                                                        et comment réparer vite
 ```
 
-La vraie différence entre junior et senior ? pas le nombre de langages connus. La capacité à voir ce qui va mal **avant** que ça arrive.
+La vraie différence entre junior et senior ? Pas le nombre de langages connus. La capacité à voir ce qui va mal **avant** que ça arrive.
 
 ---
 
@@ -2751,7 +2506,7 @@ La vraie différence entre junior et senior ? pas le nombre de langages connus. 
   Un bon reviewer regarde :
     -> Le code fait-il ce qu'il dit faire ?
     -> Est-ce maintenable dans 6 mois par quelqu'un d'autre ?
-    -> Y a-t-il des edge cases non gérés ? (C'est tout ce qui sort du scénario idéal)
+    -> Y a-t-il des edge cases non gérés ?
     -> Est-ce que ça introduit de la dette technique ?
     -> Est-ce que la nomenclature est cohérente avec le reste ?
     -> Les tests couvrent-ils les cas critiques ?
@@ -2804,7 +2559,6 @@ function f(a, b, c) {
 
 // Ce code vit longtemps
 const TAX = { reduced: 1.10, standard: 1.20 }
-
 function calculateFinalPrice(basePrice, shipping, taxType) {
   const rate = TAX[taxType]
   return rate
@@ -2840,24 +2594,18 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 ```
   ERREUR                              POURQUOI C'EST GRAVE
   ::::::                              ::::::::::::::::::::
-
   Ignorer Git (juste "git push")  ->  Tu perds du travail, tu bloques l'équipe,
                                       tu écrases le code d'un collègue.
                                       Git c'est pas optionnel.
-
   Jamais de tests                 ->  6 mois plus tard, t'oses plus toucher au code.
                                       Chaque modif casse quelque chose.
                                       La dette technique devient incontrôlable.
-
   Variables nommées n'importe     ->  data, temp, result, x, toto.
   comment                             6 mois plus tard, même toi tu comprends plus.
-
   Aucune gestion d'erreur         ->  L'app plante silencieusement.
                                       Tu sais pas où, ni pourquoi, ni pour qui.
-
   Copier-coller sans comprendre   ->  Tu copies aussi les bugs. Et t'as aucune idée
                                       comment les corriger.
-
   Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app
                                       de 50 utilisateurs. 3 mois perdus.
                                       Aucune feature livrée.
@@ -2868,23 +2616,17 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 ```
   ERREUR                              POURQUOI C'EST GRAVE
   ::::::                              ::::::::::::::::::::
-
   Rester en zone de confort       ->  T'apprends plus. Dans 3 ans t'es obsolète
                                       sur des technos que tu connais depuis 5 ans.
-
   Éviter les projets complexes    ->  La croissance vient exactement de là.
                                       Les projets confortables ne font pas progresser.
-
   Manager parce que "promotion"   ->  Dev senior -> Manager c'est un métier différent.
                                       Si tu le veux pas vraiment, tu seras malheureux
                                       et mauvais. Les deux en même temps.
-
   Jamais documenter               ->  Le toi de dans 6 mois te détestera.
                                       Tes collègues aussi. Personne n'ose le dire.
-
   Travailler en silos             ->  Tu bloques ta progression. Les meilleurs
                                       apprentissages viennent des autres, pas de toi.
-
   Ne jamais négocier              ->  Les salaires ne s'ajustent pas automatiquement.
                                       Personne ne vient te proposer une augmentation.
                                       C'est toi qui demandes, ou ça n'arrive pas.
@@ -2917,28 +2659,28 @@ Les frameworks meurent. Les langages évoluent. Ces choses, jamais.
   |          LES 8 PILIERS INTEMPORELS                               |
   +------------------------------------------------------------------+
   |                                                                  |
-  |  1. PENSEE ALGORITHMIQUE                                         |
+  |  1. PENSÉE ALGORITHMIQUE                                         |
   |     Décomposer un problème complexe en sous-problèmes simples.   |
   |     Valide en 1975. Valide en 2026. Valide en 2060.              |
   |                                                                  |
-  |  2. STRUCTURES DE DONNEES                                        |
+  |  2. STRUCTURES DE DONNÉES                                        |
   |     Tableaux, hash maps, arbres, graphes.                        |
   |     Savoir POURQUOI tu choisis l'une plutôt qu'une autre.        |
   |     Inventées dans les années 60. N'ont pas changé.              |
   |                                                                  |
-  |  3. RESEAUX ET WEB                                               |
+  |  3. RÉSEAUX ET WEB                                               |
   |     HTTP, TCP/IP, DNS, TLS, WebSockets.                          |
   |     Comment les données voyagent. C'est la plomberie d'internet. |
   |                                                                  |
-  |  4. DEBOGAGE SYSTEMATIQUE                                        |
-  |     Pas juste googler l'erreur. Comprendre POURQUOI ca casse.    |
+  |  4. DÉBOGAGE SYSTÉMATIQUE                                        |
+  |     Pas juste googler l'erreur. Comprendre POURQUOI ça casse.    |
   |     Hypothèse -> test -> résultat -> hypothèse suivante.         |
   |                                                                  |
-  |  5. BASES DE DONNEES RELATIONNELLES                              |
+  |  5. BASES DE DONNÉES RELATIONNELLES                              |
   |     SQL existe depuis 1974. Il sera là dans 30 ans.              |
   |     Modéliser, écrire des requêtes efficaces, comprendre ACID.   |
   |                                                                  |
-  |  6. SECURITE DE BASE                                             |
+  |  6. SÉCURITÉ DE BASE                                             |
   |     XSS, injection SQL, CSRF, auth, chiffrement.                 |
   |     Les vecteurs changent. Les principes, non.                   |
   |                                                                  |
@@ -2960,11 +2702,10 @@ Les frameworks meurent. Les langages évoluent. Ces choses, jamais.
 
 ```javascript
 const leDevDe2026 = {
-
   // IA
   utiliseLIA           : true,   // outil, pas cerveau de remplacement
   valideceQuIlGenere   : true,   // jamais copier-coller aveuglément
-  promtpAvecContexte   : true,   // garbage in, garbage out
+  promptAvecContexte   : true,   // garbage in, garbage out
 
   // Technique
   construitLesBases    : true,   // algo, systèmes, réseau : l'IA aide pas là-dessus
@@ -2977,8 +2718,8 @@ const leDevDe2026 = {
   ditNonSiNecessaire   : true,   // une feature inutile bien codée reste inutile
 
   // Carrière
-  resteeCurieux        : true,   // tout change vite, faut suivre
-  saleEnglais          : true,   // accès au marché remote = x3 sur le salaire
+  resteCurieux         : true,   // tout change vite, faut suivre
+  saitLAnglais         : true,   // accès au marché remote = x3 sur le salaire
   construitEnPublic    : true,   // GitHub, portfolio, réputation : ça se construit tôt
 }
 
@@ -2995,10 +2736,9 @@ const leDevDe2026 = {
 ```
   DEV MOYEN                              DEV QUI DURE
   ::::::::::                             :::::::::::::::::::::::::::
-
   Copie sans comprendre              ->  Comprend ce qu'il colle
-  Connait le langage                 ->  Comprend le système
-  "Est-ce que ca fonctionne ?"       ->  "Est-ce que c'est maintenable ?"
+  Connaît le langage                 ->  Comprend le système
+  "Est-ce que ça fonctionne ?"       ->  "Est-ce que c'est maintenable ?"
   Peur du code des autres            ->  Lit le code des autres avec curiosité
   Évite les sujets inconnus          ->  Plonge dedans
   Pense en features                  ->  Pense en systèmes
@@ -3008,7 +2748,78 @@ const leDevDe2026 = {
 
 ---
 
-> "L'IA c'est le meilleur pair programmer que t'auras jamais.
->  Rapide, disponible, patient, jamais de mauvaise humeur.
->  Mais il a besoin de toi pour savoir ce qu'il fait vraiment.
->  C'est toi le dev. Lui c'est l'outil."
+> *"L'IA c'est le meilleur pair programmer que t'auras jamais.*
+> *Rapide, disponible, patient, jamais de mauvaise humeur.*
+> *Mais il a besoin de toi pour savoir ce qu'il fait vraiment.*
+> *C'est toi le dev. Lui c'est l'outil."*
+
+---
+
+## 11. Conclusion
+
+Tu as maintenant entre les mains ce que ce guide promettait : une carte. Pas une formule magique, pas un raccourci, une carte.
+
+Elle couvre les fondations (les langages, leur histoire, leur logique), les choix (comment décider sans se paralyser), les métiers (qui fait vraiment quoi dans l'industrie), le marché (ce que ça vaut, et comment accéder aux bons marchés), et les principes qui durent (ceux qu'aucun framework ne va remplacer dans 3 ans).
+
+---
+
+### Ce que tu dois retenir
+
+```
+  1. LE LANGAGE N'EST PAS LE PROBLÈME
+     Le meilleur langage c'est celui que tu maîtrises.
+     Les concepts voyagent. La syntaxe change. La logique, non.
+
+  2. LA STACK NE FAIT PAS TOUT
+     Des apps extraordinaires ont été construites avec des outils "ordinaires".
+     La qualité du code et de la réflexion comptent plus que les outils choisis.
+
+  3. LA PROFONDEUR BAT LA LARGEUR
+     Un expert React/TypeScript vaut plus que quelqu'un qui connaît
+     vaguement cinq frameworks. Choisis une direction. Creuse.
+
+  4. LE REMOTE EST UN LEVIER RÉEL
+     Mêmes compétences, marché différent = salaire multiplié par 3 à 10.
+     Ça se construit : portfolio, profil, réputation, premières missions.
+
+  5. L'IA EST UN OUTIL, PAS UN CERVEAU DE REMPLACEMENT
+     Utilise-la pour aller vite. Garde ton cerveau pour les décisions.
+     Valide toujours. Comprends avant d'intégrer.
+
+  6. LES FONDAMENTAUX DURENT
+     Algorithmique, structures de données, réseaux, bases de données, sécurité.
+     Les frameworks changent tous les 3 ans.
+     Ces 8 piliers resteront valides en 2060.
+
+  7. LE MÉTIER C'EST AUSSI DE LA COMMUNICATION
+     Technique, comm, jugement, apprentissage continu : quatre colonnes, pas une.
+     Ceux qui n'en voient qu'une deviennent des devs moyens qui stagnent.
+```
+
+---
+
+### La suite, c'est quoi ?
+
+Ce guide t'a donné le contexte. Maintenant c'est toi qui construis.
+
+```
+  SI TU DÉMARRES         ->  Choisis UN langage. Lance UN projet. Finis-le.
+  SI TU ES INTERMÉDIAIRE ->  Approfondis ta spécialisation.
+                              Lis du code open source. Contribue.
+  SI TU VISES LE REMOTE  ->  3 projets propres sur GitHub.
+                              Profil LinkedIn en anglais.
+                              Première mission, peu importe le tarif.
+  DANS TOUS LES CAS      ->  Construis les fondamentaux.
+                              Ils ne t'abandonneront jamais.
+```
+
+---
+
+La différence entre ceux qui réussissent dans ce métier et ceux qui abandonnent n'est pas le talent. C'est la régularité. Une heure par jour, tous les jours, pendant deux ans : tu es employable. Pendant cinq ans : tu es crédible. Pendant dix ans : tu décides où tu vas.
+
+> *"Le code que tu écris aujourd'hui, tu t'en souviendras plus dans 3 ans.*
+> *Ce que tu comprends aujourd'hui, personne ne peut te le prendre."*
+
+---
+
+*Ces informations sont des tendances basées sur l'état du marché en 2026. Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante.*
