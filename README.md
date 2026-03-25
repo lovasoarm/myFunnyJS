@@ -310,12 +310,14 @@ MyFunnyJS/
 │   └── 09_e2e_playwright_beast.js                  # Playwright E2E : tester comme un vrai utilisateur
 │
 │
-├── 04_math_basics/                                 # Maths : les fondations invisibles du code
-│   ├── 01_logic_gates.js                           # Logique booléenne & opérateurs bits
-│   ├── 02_modular_arithmetic.js                    # Modulo, hashing, crypto basics
-│   ├── 03_probability_basics.js                    # Probabilités pour algos randomisés
-│   ├── 04_combinatorics_blast.js                   # Permutations, combinaisons, factorielles
-│   └── 05_linear_algebra_lite.js                   # Matrices, vecteurs (pour ML/graphics)
+├── 04_math_basics/                       # Maths de dev : la potion magique pour hacker le monde
+    ├── 01_boolean_logic.js                # Vrai ou faux ? Ton arme secrète pour dominer les if et && comme un boss
+    ├── 02_modular_arithmetic.js           # Modulo & co : quand tu veux faire rebondir les nombres comme un ninja
+    ├── 03_bit_manipulation.js             # Bit à bit : jouer avec des 0 et 1 comme des Lego surpuissants
+    ├── 04_hashing_basics.js               # Hash & cache : transformer le chaos en lookup instantané
+    ├── 05_probability_random.js           # Probabilité & RNG : le destin entre tes mains, Monte Carlo style
+    ├── 06_combinatorics.js                # Factorielle & permutations : calculer toutes les combinaisons possibles sans exploser ton cerveau
+    └── 07_geometry_for_dev.js             # Points, distances & collisions : dompter les pixels et le plan XY comme un mage du canvas
 │
 │
 ├── 05_memory_performance/                          # Mémoire & Performance Turbo
