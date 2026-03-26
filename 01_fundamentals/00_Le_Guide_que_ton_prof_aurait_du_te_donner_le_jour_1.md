@@ -723,7 +723,6 @@ SITE WEB ou APP WEB : stack moderne débutant-intermédiaire suggérée :
   Back-end     :  Inclus dans Next.js via API routes, ou Supabase directement (alternatives : Express.js, FastAPI en Python, NestJS)
   Base de données : PostgreSQL via Supabase (alternatives : MySQL, MongoDB, Firebase Firestore)
   Auth         :  Supabase Auth (Google, GitHub, email/password) (alternatives : Firebase Auth, Auth.js, Clerk)
-
   Hébergement  :  Vercel (gratuit pour les petits projets) (alternatives : Netlify, Railway, Render, Firebase Hosting)
   Style        :  Tailwind CSS (alternatives : Bootstrap, Shadcn/ui, Chakra UI)
 Avantages : tout est gratuit au début, très bien documenté, des milliers de tutos.
@@ -732,24 +731,17 @@ Avantages : tout est gratuit au début, très bien documenté, des milliers de t
 APPLICATION MOBILE : cross-platform
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   Langage      :  Dart (alternatives : JavaScript/TypeScript, Kotlin Multiplatform)
-
   Framework    :  Flutter (alternatives : React Native, Expo, Ionic)
-
   Backend/Auth :  Firebase ou Supabase (alternatives : Appwrite, PocketBase, ton propre serveur)
-
   Maps         :  Google Maps Flutter Plugin (alternatives : Mapbox, OpenStreetMap via flutter_map)
-
   Déploiement  :  Google Play Store + Apple App Store (alternatives : APK direct pour Android, TestFlight pour les bêtas iOS)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 APPLICATION MOBILE : natif Android
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   Langage      :  Kotlin (alternatives : Java, Flutter/Dart si tu veux iOS aussi)
-
   UI           :  Jetpack Compose (alternatives : XML Views classique, Flutter Widgets)
-
   Architecture :  MVVM + Clean Architecture (alternatives : MVI, MVP pour les projets plus simples)
-
   Backend      :  Firebase ou API REST (alternatives : Supabase, Appwrite, ton propre serveur Express)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -761,9 +753,7 @@ OUTIL INTERNE ou SCRIPT
 JEU VIDÉO
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   Plupart des cas    :  Unity + C#
-
   Gratuit open source:  Godot + GDScript (ou C#)(alternatives : Pygame en Python pour débuter)
-
   AAA / ultra-perf   :  Unreal Engine + C++ (alternatives : CryEngine, custom engine si t'es fou)
 ```
 
@@ -778,10 +768,10 @@ SCÉNARIO TYPE :
   Le projet : une application de prise de notes (3 écrans).
 
   Ce que l'étudiant fait :
-    Semaine 1 : configure Docker + Docker Compose
-    Semaine 2 : met en place Kubernetes
-    Semaine 3 : architecture microservices avec 4 services séparés
-    Semaine 4 : pipeline CI/CD sur GitHub Actions
+    Semaine 1 : configure Docker + Docker Compose ((Docker = une boîte magique qui emballe ton app pour qu'elle tournepartout pareil. Compose = plusieurs boîtes                  qui se parlent entre elles)
+    Semaine 2 : met en place Kubernetes (un chef d'orchestre qui gère des milliers de boîtes Docker en même temps. Utilisé par Google, Netflix...)
+    Semaine 3 : architecture microservices avec 4 services séparés (au lieu d'une seule app, tu découpes en mini-apps qui communiquent.Amazon a des centaines de                  microservices)
+    Semaine 4 : pipeline CI/CD sur GitHub Actions ((un robot qui teste et déploie ton code automatiquement à chaque push)
     Semaine 5 : ... il n'a pas encore une seule note dans l'app
 
 PROBLÈME : l'étudiant a construit l'infrastructure d'Amazon pour une app de notes.
@@ -800,66 +790,66 @@ LA BONNE APPROCHE :
 
 ### Le schéma de décision complet
 
-```
-                    TU AS UN PROJET
-                          |
-                          v
-          Qu'est-ce que tu construis ?
-                          |
-        __________________|__________________
-       |                  |                  |
-      WEB               MOBILE            AUTRE
-       |                  |                  |
-  interface ?         iOS seul ?         Jeu vidéo ?
-       |                  |                  |
-      Oui              --> Swift          Unity + C#
-       |                  |              Unreal + C++
-  Next.js (TS)       Android seul ?      Godot + GDScript
-  React / Vue             |
-  SvelteKit           --> Kotlin              |
-                          |             Script / Outil ?
-                      Les deux ?             |
-                          |            Python + libs
-                      --> Flutter
-                       (Dart)               |
-                          |           IA / Data ?
-                     _____|_____            |
-                    |           |      Python UNIQUEMENT
-                  API          API     PyTorch / TensorFlow
-               incluse       séparée   scikit-learn / Pandas
-                (Supabase)       |
-                             Qui fait le back ?
-                                 |
-                          ________________
-                         |                |
-                      JS / TS           Python
-                          |                |
-                       Node.js          FastAPI
-                       Express          Django
-                       Fastify          Flask
-                          |
-                          v
-                   BASE DE DONNÉES ?
-                          |
-              ____________|____________
-             |                        |
-        Données relationnelles   Données flexibles
-        (tableaux + relations)   (documents JSON)
-             |                        |
-         PostgreSQL               MongoDB
-         MySQL                    Firebase Firestore
-         SQLite (local)
-                          |
-                          v
-                     HÉBERGEMENT ?
-                          |
-              ____________|____________
-             |            |            |
-           Vercel       Railway      Render
-          (front /      (back /      (back /
-          Next.js)      Node/Python)  Node/Python)
-           Gratuit      Gratuit       Gratuit
-           au début     au début      au début
+                                      ```
+                                                         TU AS UN PROJET
+                                                                |
+                                                                v
+                                                   Qu'est-ce que tu construis ?
+                                                                |
+                                              __________________|__________________
+                                             |                  |                  |
+                                            WEB               MOBILE             AUTRE
+                                             |                  |                  |
+                                        interface ?         iOS seul ?         Jeu vidéo ?
+                                             |                  |                  |
+                                            Oui              --> Swift         Unity + C#
+                                             |                  |             Unreal + C++
+                                        Next.js (TS)       Android seul ?     Godot + GDScript
+                                        React / Vue             |
+                                        SvelteKit           --> Kotlin             |
+                                                                |             Script / Outil ?
+                                                            Les deux ?             |
+                                                                |            Python + libs
+                                                            --> Flutter
+                                                             (Dart)               |
+                                                                |            IA / Data ?
+                                                           _____|_____            |
+                                                          |           |      Python UNIQUEMENT
+                                                        API          API     PyTorch / TensorFlow
+                                                     incluse       séparée   scikit-learn / Pandas
+                                                    (Supabase)        |
+                                                                Qui fait le back ?
+                                                                      |
+                                                                ________________
+                                                               |                |
+                                                            JS / TS           Python
+                                                                |                |
+                                                             Node.js           FastAPI
+                                                             Express           Django
+                                                             Fastify           Flask
+                                                                |
+                                                                v
+                                                         BASE DE DONNÉES ?
+                                                                |
+                                                    ____________|____________
+                                                   |                        |
+                                         Données relationnelles      Données flexibles
+                                         (tableaux + relations)      (documents JSON)
+                                                   |                        |
+                                               PostgreSQL               MongoDB
+                                               MySQL                    Firebase Firestore
+                                               SQLite (local)
+                                                                |
+                                                                v
+                                                           HÉBERGEMENT ?
+                                                                |
+                                                    ____________|____________
+                                                   |            |            |
+                                                 Vercel       Railway      Render
+                                                (front /      (back /      (back /
+                                                Next.js)      Node/Python)  Node/Python)
+                                                 Gratuit      Gratuit       Gratuit
+                                                 au début     au début      au début
 ```
 
 ---
@@ -933,11 +923,7 @@ Hébergement      :  Vercel (gratuit)
 **Pourquoi pas quelque chose de plus complexe ?**
 
 ```
-  Parce que ça suffit.
-  Ces outils sont gratuits au début.
-  Ils sont scalables si le projet grandit.
-  La doc est excellente.
-  Des milliers de tutos existent.
+  Parce que ça suffit. Ces outils sont gratuits au début. Ils sont scalables si le projet grandit. La doc est excellente. Des milliers de tutos existent.
   Tu peux livrer en 3 mois, pas en 3 ans.
 ```
 
@@ -946,27 +932,22 @@ Hébergement      :  Vercel (gratuit)
 ## 7. Les vérités qu'on te dira jamais en cours
 
 **Vérité 1 : Le meilleur langage c'est celui que tu maîtrises vraiment.**
-
 Un dev qui connaît JavaScript sur le bout des doigts battra toujours quelqu'un qui connaît vaguement dix langages. La profondeur bat la largeur, toujours.
 
 **Vérité 2 : Les langages ne meurent pas vraiment.**
-
 COBOL de 1959 tourne encore dans les banques en 2026. FORTRAN tourne encore dans les labos scientifiques. Si t'apprends un langage "mort", les concepts que tu apprends restent valides partout. Mais pour le marché de l'emploi, choisis quelque chose de vivant.
 
 **Vérité 3 : Les concepts se transfèrent.**
-
 ```
 Si tu maîtrises vraiment Python :
   Apprendre Go prend quelques semaines.
   Apprendre Kotlin prend quelques semaines.
   Apprendre Swift prend quelques semaines.
-
 Les boucles, les conditions, les fonctions, les objets, les erreurs :
   c'est pareil partout. La syntaxe change. La logique, non.
 ```
 
 **Vérité 4 : La stack ne fait pas tout.**
-
 ```
 Applications extraordinaires construites avec des technos "basiques" :
   Instagram au début : Python + Django. Simple. Efficace.
@@ -980,31 +961,25 @@ La qualité du code et de l'architecture comptent plus que le choix du langage.
 ```
 
 **Vérité 5 : Lire du code des autres est aussi important qu'en écrire.**
-
 Passe du temps sur GitHub. Lis des projets open source dans ton domaine. Essaie de comprendre comment les autres ont résolu les mêmes problèmes que toi. C'est comme lire des livres pour un écrivain : indispensable.
 
 **Vérité 6 : Le syndrome de l'imposteur est universel.**
-
 Même les devs avec 15 ans d'expérience googlèrent des trucs basiques tous les jours. Tout le monde le fait. Personne ne sait tout par cœur. La différence entre un junior et un senior c'est souvent juste le nombre de fois où il a résolu le même type de problème.
 
 **Vérité 7 : Les outils changent. Les fondamentaux, non.**
-
 Les frameworks changent tous les 3 ans. Angular, React, Vue, Svelte, Solid... dans 5 ans il y en aura d'autres. Mais quelqu'un qui comprend vraiment le DOM, les événements, l'asynchrone et les requêtes HTTP s'adaptera en quelques semaines à n'importe quel nouveau framework.
 
 > Construis des fondations solides. Le reste vient tout seul.
 
 ---
-
 > *Ces informations sont des tendances, pas des chiffres officiels absolus.*
 > *Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante.*
-
 ---
 
 ## 8. Les métiers du dev : la carte au trésor que personne t'a donnée
+> *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : Quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"*
 
-> *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"*
-
-Ok. T'as appris à coder. Bonne nouvelle : t'as maintenant accès à l'une des industries les plus larges, les plus diverses, et les mieux payées de la planète. Mauvaise nouvelle : y'a tellement de métiers que la plupart des gens ne savent même pas qu'ils existent.
+Ok. T'as appris à coder. Bonne nouvelle : t'as maintenant accès à l'une des industries les plus larges, les plus diverses, et les mieux payées de la planète. Mauvaise nouvelle : Y'a tellement de métiers que la plupart des gens ne savent même pas qu'ils existent.
 
 Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment tout.
 
@@ -1048,11 +1023,8 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 ---
 
 #### Frontend Developer
-
 **En une phrase** : il construit tout ce que tu vois et touches dans une interface. Le bouton, la liste, l'animation, le formulaire.
-
 **Une journée type** :
-
 ```
 09h00  Réunion avec l'équipe design : les maquettes Figma sont prêtes
 09h30  Implémentation d'un nouveau composant React (formulaire de connexion)
@@ -1111,8 +1083,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
         (GET = tu lis une page / POST = tu envoies des données, il se passe quelque chose)
 13h30  Écriture des tests unitaires pour la logique de paiement
 15h00  Discussion architecture : comment gérer 10x plus de requêtes
-16h30  Documentation de l'API dans Swagger/OpenAPI
-        (outil qui génère automatiquement une documentation interactive de ton API)
+16h30  Documentation de l'API dans Swagger/OpenAPI (outil qui génère automatiquement une documentation interactive de ton API)
 17h30  Code review et merge de deux pull requests
 ```
 
@@ -1158,9 +1129,9 @@ app.get('/api/user/:id', async (req, res) => {
 Il se subdivise en deux sous-métiers distincts :
 
 ```
-NATIF                           CROSS-PLATFORM
-::::::::::::::::::::::          ::::::::::::::::::::::::
-iOS Dev      Android Dev        Flutter Dev   React Native Dev
+         NATIF                        CROSS-PLATFORM
+::::::::::::::::::::::            ::::::::::::::::::::::::
+  iOS Dev      Android Dev        Flutter Dev       React Native Dev
   Swift        Kotlin             Dart              JS/TS
   SwiftUI      Jetpack Compose    Flutter           RN Components
   Xcode        Android Studio     Pub packages      npm packages
@@ -1181,7 +1152,6 @@ Marché emploi            Large              En forte croissance
 ```
 
 **Une journée type (Flutter Dev)** :
-
 ```
 09h00  Fix layout : débordement sur petits écrans
 10h30  Notifications push avec Firebase Cloud Messaging
@@ -1198,16 +1168,17 @@ Marché emploi            Large              En forte croissance
 **En une phrase** : il peut construire le frontend ET le backend. Pas forcément expert dans les deux : mais opérationnel partout.
 
 ```
-        FULL-STACK DEV
-        ____________
-       |            |
-   Frontend      Backend
-   React/TS      Node.js
-   Next.js       PostgreSQL
-   Tailwind      Supabase
-       |____________|
-             |
-          Déploie lui-même sur Vercel + Railway
+ex:
+                             FULL-STACK DEV
+                              ____________
+                             |            |
+                         Frontend      Backend
+                         React/TS      Node.js
+                         Next.js       PostgreSQL
+                         Tailwind      Supabase
+                             |____________|
+                                   |
+                   Déploie lui-même sur Vercel + Railway
 ```
 
 **Exemple : la réalité d'un full-stack dans une startup :**
@@ -1238,7 +1209,6 @@ La plupart des full-stacks ont une "main hand". Ils font les deux, mais sont vra
 **En une phrase** : titre généraliste, rôle qui varie énormément selon le contexte.
 
 Dans la Silicon Valley et les grandes tech companies, **Software Engineer** est le titre de base pour tous les devs. Chez Google, Meta, Stripe : tout le monde est "SWE".
-
 Ce qui le distingue d'un simple dev : il pense systèmes et non juste features, il se préoccupe de la maintenabilité à long terme, il connaît les patterns et les structures de données, il fait passer ses solutions à l'échelle.
 
 ---
@@ -1305,15 +1275,11 @@ Orchestration :  Apache Airflow, Prefect, Dagster
 ```
 ML ENGINEER vs DATA SCIENTIST
 ::::::::::::::::::::::::::::::::::::::::::::::
-Data Scientist  :  explore les données, teste des hypothèses,
-                   "ça marche sur mon ordi en Jupyter Notebook"
-ML Engineer     :  prend le modèle et le rend utilisable en production :
-                   API rapide, scalable, mise à jour auto,
-                   monitoring du modèle en temps réel
+Data Scientist  :  explore les données, teste des hypothèses, "ça marche sur mon ordi en Jupyter Notebook"
+ML Engineer     :  prend le modèle et le rend utilisable en production : API rapide, scalable, mise à jour auto, monitoring du modèle en temps réel
 ```
 
 **Technologies typiques** :
-
 ```
 Langages      :  Python (exclusivement ou presque)
 Frameworks ML :  PyTorch, TensorFlow, JAX, scikit-learn
@@ -1438,7 +1404,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 #### WORKFLOW avec un exemple : "Meme Mashup Generator"
 
-> *Tu uploads des images ou du texte → l'app combine tout aléatoirement → meme WTF généré.*
+> *Tu uploads des images ou du texte → l'app combine tout aléatoirement → MEME WTF généré.*
 
 ---
 
@@ -1492,7 +1458,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 #### La stack : exemple d'outils
 
 ```
-OUTIL               RÔLE DANS LE PROJET                     ALTERNATIVE SI ÇA SCALE
+OUTIL               RÔLE DANS LE PROJET                      ALTERNATIVE SI ÇA SCALE
 ::::::::::::::::    :::::::::::::::::::::::::::::::::::::::  :::::::::::::::::::::::::::
 Next.js             Le site + les routes API, tout en un     Séparer front (React) / back (Express)
 Supabase Storage    Stocker les images uploadées et          S3 (Amazon) si tu dépasses 1GB/mois
@@ -1602,24 +1568,22 @@ Il dit **non** quand il le faut.
 > *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
 
 ```
-                                            CE QU'IL APPORTE SUR CE PROJET
-                                           ::::::::::::::::::::::::::::::::::::
-                                            Design du pipeline complet
-                                              (queue ou génération synchrone ?)
+                                               CE QU'IL APPORTE SUR CE PROJET
+                                             ::::::::::::::::::::::::::::::::::::
+                                                 Design du pipeline complet
+                                               (queue ou génération synchrone ?)
                                                               |
                                                  _____________|_____________
                                                 |                           |
-                                            Sécurité uploads            Perf Sharp
-                                            validation MIME stricte,    Sharp recrée son instance à
-                                            taille max, rate limiting   chaque requête → il l'initialise
-                                                                        une seule fois au démarrage
+                                          Sécurité uploads              Perf Sharp
+                                      validation MIME stricte,     Sharp recrée son instance à
+                                     taille max, rate limiting     chaque requête → il l'initialise une seule fois au démarrage
                                                 |                           |
                                                 |___________________________|
                                                               |
                                                        Code reviews
                                               repère que le junior oublie de gérer
-                                              les erreurs d'upload (que se passe-t-il
-                                              si Supabase est down ?)
+                                              les erreurs d'upload (que se passe-t-il si Supabase est down ?)
 ```
 
 ---
@@ -1631,12 +1595,12 @@ Il code encore, mais il passe du temps à débloquer les autres.
 ```
 TECHNIQUE                              HUMAIN
 :::::::::::::::::::::::::::::          ::::::::::::::::::::::::::::::::::
-Choisit Sharp plutôt que Canvas        Explique au junior pourquoi son
-  après avoir testé les deux             composant React re-render 10x
-Définit la structure des dossiers      Fait le lien avec le PM (Product Manager):
-  (features/, lib/, api/)                "non, le filtre animé GIF est
-Pose les règles de code review           possible mais ça triple le temps
-  (toute PR doit avoir des tests         de génération / on le fait en v2"
+Choisit Sharp plutôt que Canvas        Explique au junior pourquoi son composant React re-render 10x
+  après avoir testé les deux           Fait le lien avec le PM (Product Manager): "non, le filtre animé GIF est possible mais ça triple le temps de génération / 
+Définit la structure des dossiers      on le fait en v2"
+  (features/, lib/, api/)                
+Pose les règles de code review          
+  (toute PR doit avoir des tests        
   sur le Meme Engine)
 ```
 
@@ -1649,7 +1613,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
 ```
                                                     SES QUESTIONS SUR CE PROJET
                                           ::::::::::::::::::::::::::::::::::::::::::::::::
-                          Monolithe ou microservice pour la génération ?
+                                           Monolithe ou microservice pour la génération ?
                                                               |
                                                  _____________|______________
                                                 |                            |
@@ -1672,7 +1636,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
                                             → job CRON : les memes non téléchargés depuis 7 jours
                                               sont supprimés automatiquement
 ```
-
+> Les microservices : c'est uniquement côté backend/serveur
 ---
 
 #### Engineering Manager *(Management, pas code)*
@@ -1691,7 +1655,7 @@ Protège l'équipe des demandes
 
 ---
 
-#### CTO
+#### CTO (le boss de la partie tech)
 
 ```
 STARTUP (projet early-stage)           SI MEME MASHUP DEVIENT VIRAL
