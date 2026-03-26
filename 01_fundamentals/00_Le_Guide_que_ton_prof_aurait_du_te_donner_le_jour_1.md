@@ -699,7 +699,7 @@ CONTRAINTE          IMPACT SUR LE CHOIX TECH
 Peu de temps         :  Technos que tu connais DÉJÀ. Pas le moment d'apprendre Rust. (choisis un truc que t'as déjà vu en cours ou sur YouTube)
 Pas de budget        :  Vercel (gratuit), Supabase (gratuit), Firebase (gratuit au début). ex: Prends celui que ton pote a déjà utilisé, c'est plus facile à                             débugger ensemble.
 Travail en équipe    :  Ce que tout le monde dans l'équipe sait déjà. Pas le moment
-                        d'imposer un langage exotique. ((demande à ton équipe ce qu'ils ont déjà touché, pars avec ça))
+                        d'imposer un langage exotique (presque personne n'utilise). ex: Demande à ton équipe ce qu'ils ont déjà touché, pars avec ça.
 Doit durer longtemps :  Java, C#, Rust : stables, maintenus sur le long terme.
                         Évite les frameworks trop jeunes (ils disparaissent vite). (évite le truc sorti y'a 6 mois dont tout le monde parle sur Twitter par                               exemple)
 Beaucoup d'utilisateurs potentiels :  Pense à la scalabilité. Go et Node.js gèrent bien la charge. Les bases de données relationnelles (PostgreSQL) tiennent mieux
@@ -717,14 +717,15 @@ Une **stack** c'est l'ensemble des technologies que tu vas utiliser. Front + Bac
 
 ```
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-SITE WEB ou APP WEB : stack moderne débutant-intermédiaire
+SITE WEB ou APP WEB : stack moderne débutant-intermédiaire suggérée :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Front-end    :  Next.js (React + TypeScript)
-  Back-end     :  Inclus dans Next.js via API routes, ou Supabase directement
-  Base de données : PostgreSQL via Supabase
-  Auth         :  Supabase Auth (Google, GitHub, email/password)
-  Hébergement  :  Vercel (gratuit pour les petits projets)
-  Style        :  Tailwind CSS
+  Front-end    :  Next.js (React + TypeScript)(alternatives : Vue.js + Nuxt, SvelteKit, Astro)
+  Back-end     :  Inclus dans Next.js via API routes, ou Supabase directement (alternatives : Express.js, FastAPI en Python, NestJS)
+  Base de données : PostgreSQL via Supabase (alternatives : MySQL, MongoDB, Firebase Firestore)
+  Auth         :  Supabase Auth (Google, GitHub, email/password) (alternatives : Firebase Auth, Auth.js, Clerk)
+
+  Hébergement  :  Vercel (gratuit pour les petits projets) (alternatives : Netlify, Railway, Render, Firebase Hosting)
+  Style        :  Tailwind CSS (alternatives : Bootstrap, Shadcn/ui, Chakra UI)
 Avantages : tout est gratuit au début, très bien documenté, des milliers de tutos.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
