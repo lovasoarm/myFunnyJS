@@ -669,7 +669,7 @@ Pose-toi ces questions dans l'ordre :
 5. Faut-il se connecter à des services externes ?
    (paiement, GPS, notifications push, emails, SMS...)
 6. Y a-t-il des contraintes légales ?
-   (santé, finances, données personnelles --> RGPD, sécurité renforcée)
+   (santé, finances, données personnelles --> RGPD (Règlement Général sur la Protection des Données), sécurité renforcée)
 ```
 
 Exemple pratique :
@@ -696,20 +696,17 @@ Conclusion : app mobile (Flutter) + backend API (Node ou Python) + base de donn�
 ```
 CONTRAINTE          IMPACT SUR LE CHOIX TECH
 -----------------------------------------------------------------------------------
-Peu de temps         :  Technos que tu connais DÉJÀ. Pas le moment d'apprendre Rust.
-Pas de budget        :  Vercel (gratuit), Supabase (gratuit), Firebase (gratuit au début)
+Peu de temps         :  Technos que tu connais DÉJÀ. Pas le moment d'apprendre Rust. (choisis un truc que t'as déjà vu en cours ou sur YouTube)
+Pas de budget        :  Vercel (gratuit), Supabase (gratuit), Firebase (gratuit au début). ex: Prends celui que ton pote a déjà utilisé, c'est plus facile à                             débugger ensemble.
 Travail en équipe    :  Ce que tout le monde dans l'équipe sait déjà. Pas le moment
-                        d'imposer un langage exotique.
+                        d'imposer un langage exotique. ((demande à ton équipe ce qu'ils ont déjà touché, pars avec ça))
 Doit durer longtemps :  Java, C#, Rust : stables, maintenus sur le long terme.
-                        Évite les frameworks trop jeunes (ils disparaissent vite).
-Beaucoup d'utilisateurs potentiels :
-                        Pense à la scalabilité. Go et Node.js gèrent bien la charge.
-                        Les bases de données relationnelles (PostgreSQL) tiennent mieux
-                        que certaines bases NoSQL sous haute charge.
-Client / projet scolaire :
-                        Choisis ce qui te permet de livrer quelque chose qui MARCHE.
+                        Évite les frameworks trop jeunes (ils disparaissent vite). (évite le truc sorti y'a 6 mois dont tout le monde parle sur Twitter par                               exemple)
+Beaucoup d'utilisateurs potentiels :  Pense à la scalabilité. Go et Node.js gèrent bien la charge. Les bases de données relationnelles (PostgreSQL) tiennent mieux
+                        que certaines bases NoSQL sous haute charge.(commence par Node.js, y'a des millions de tutos si tu bloques)
+Client / projet scolaire :  Choisis ce qui te permet de livrer quelque chose qui MARCHE.
                         Un projet simple qui fonctionne vaut 100x mieux qu'un projet
-                        complexe qui plante.
+                        complexe qui plante. (fais le truc le plus simple possible qui répond au besoin, c'est tout)
 ```
 
 ---
