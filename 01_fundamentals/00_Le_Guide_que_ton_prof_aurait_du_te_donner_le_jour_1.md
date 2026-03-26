@@ -729,44 +729,42 @@ SITE WEB ou APP WEB : stack moderne débutant-intermédiaire suggérée :
 Avantages : tout est gratuit au début, très bien documenté, des milliers de tutos.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-SITE WEB : stack alternative
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Front-end    :  Vue.js ou SvelteKit
-  Back-end     :  Python avec FastAPI
-  Base de données : PostgreSQL
-  Hébergement  :  Railway ou Render
-  Style        :  Tailwind CSS
-Quand choisir cette stack : si tu connais mieux Python que JavaScript pour le back.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 APPLICATION MOBILE : cross-platform
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Langage      :  Dart
-  Framework    :  Flutter
-  Backend/Auth :  Firebase ou Supabase
-  Maps         :  Google Maps Flutter Plugin
-  Déploiement  :  Google Play Store + Apple App Store
+  Langage      :  Dart (alternatives : JavaScript/TypeScript, Kotlin Multiplatform)
+
+  Framework    :  Flutter (alternatives : React Native, Expo, Ionic)
+
+  Backend/Auth :  Firebase ou Supabase (alternatives : Appwrite, PocketBase, ton propre serveur)
+
+  Maps         :  Google Maps Flutter Plugin (alternatives : Mapbox, OpenStreetMap via flutter_map)
+
+  Déploiement  :  Google Play Store + Apple App Store (alternatives : APK direct pour Android, TestFlight pour les bêtas iOS)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 APPLICATION MOBILE : natif Android
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Langage      :  Kotlin
-  UI           :  Jetpack Compose
-  Architecture :  MVVM + Clean Architecture
-  Backend      :  Firebase ou API REST
+  Langage      :  Kotlin (alternatives : Java, Flutter/Dart si tu veux iOS aussi)
+
+  UI           :  Jetpack Compose (alternatives : XML Views classique, Flutter Widgets)
+
+  Architecture :  MVVM + Clean Architecture (alternatives : MVI, MVP pour les projets plus simples)
+
+  Backend      :  Firebase ou API REST (alternatives : Supabase, Appwrite, ton propre serveur Express)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 OUTIL INTERNE ou SCRIPT
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Python + librairies selon le besoin
-  (requests pour les APIs, pandas pour la data, etc.)
+  Python + librairies selon le besoin (alternatives : Node.js, Bash pour les scripts simples, Go pour la perf) (requests pour les APIs, pandas pour la data, etc.)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 JEU VIDÉO
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   Plupart des cas    :  Unity + C#
-  Gratuit open source:  Godot + GDScript (ou C#)
-  AAA / ultra-perf   :  Unreal Engine + C++
+
+  Gratuit open source:  Godot + GDScript (ou C#)(alternatives : Pygame en Python pour débuter)
+
+  AAA / ultra-perf   :  Unreal Engine + C++ (alternatives : CryEngine, custom engine si t'es fou)
 ```
 
 ---
