@@ -1794,7 +1794,7 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
   Freelance ?                       -> Web et Mobile = les plus faciles à vendre
 
 ÉTAPE 3 : ÉVALUE LA DURÉE D'APPRENTISSAGE
-  Employable en 6-12 mois ?   -> Web, Mobile (Flutter/RN)
+  Employable en 6-12 mois ?   -> Web, Mobile
   Employable en 1-2 ans ?     -> Backend fort, DevOps, Data
   Employable en 2-4 ans ?     -> IA/ML, Cybersécurité, Systèmes
 
@@ -1813,12 +1813,8 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 **1. Algorithmique et structures de données**
 
 ```
-Savoir utiliser une liste c'est bien.
-Savoir POURQUOI tu choisis une HashMap plutôt qu'une liste dans CE cas précis,
-c'est autre chose.
-
-Complexité O(n), O(log n), O(1) : ça devient très concret quand t'as
-10 millions d'enregistrements et que la requête prend 12 secondes.
+- Savoir utiliser une liste c'est bien. Savoir POURQUOI tu choisis une HashMap plutôt qu'une liste dans CE cas précis, c'est autre chose.
+- Complexité O(n), O(log n), O(1) : ça devient très concret quand t'as 10 millions d'enregistrements et que la requête prend 12 secondes.
 ```
 
 **2. Clean Code**
@@ -1848,8 +1844,7 @@ function calculateTotalPrice(basePrice, shippingCost, taxType) {
 ```
 
 **3. Design Patterns**
-
-Les patterns sont des solutions documentées à des problèmes récurrents. Savoir quand les appliquer — et surtout quand les éviter — te fait passer un cap.
+Les patterns sont des solutions documentées à des problèmes récurrents. Savoir quand les appliquer et surtout quand les éviter : te fait passer un cap.
 
 ```javascript
 // Exemple du pattern Observer : le même principe que les EventListeners
