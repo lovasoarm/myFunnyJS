@@ -2256,8 +2256,7 @@ async function fetchUserOrders(userId) {
 
 ---
 
-## 3. Tips IA : Ce que presque personne te dit
-
+## 3. Tips IA 2026 :
 ### Tip 1 : contexte = qualité
 
 ```
@@ -2265,10 +2264,8 @@ async function fetchUserOrders(userId) {
   Tu donnes du contexte précis ->    output quasi-production-ready
 
   MAUVAIS : "Fais-moi un hook React"
-  BON :     "Crée un hook React TypeScript useDebounce(value, delay)
-             qui retarde la mise à jour d'une valeur.
-             Usage : formulaire de recherche avec appel API.
-             Pas de lib externe. Nettoie le timeout au unmount."
+  BON :     "Crée un hook React TypeScript useDebounce(value, delay) qui retarde la mise à jour d'une valeur.
+             Usage : formulaire de recherche avec appel API. Pas de lib externe. Nettoie le timeout au unmount."
 ```
 
 ### Tip 2 : le format magique pour tout prompt technique
@@ -2286,10 +2283,7 @@ async function fetchUserOrders(userId) {
 
 ```
   Au lieu de : "Comment je fais pour que mon app soit rapide ?"
-  Dis :        "Mon API Node.js/Express répond en 800ms en moyenne
-                sur un endpoint qui lit 3 tables PostgreSQL.
-                Les tables sont indexées sur les FKs.
-                Où je regarde en premier pour optimiser ?"
+  Dis :        "Mon API Node.js/Express répond en 800ms en moyenne sur un endpoint qui lit 3 tables PostgreSQL. Les tables sont indexées sur les FKs. Où je                       regarde en premier pour optimiser ?"
 
   L'IA te sort un diagnostic ciblé au lieu d'un cours magistral de 40 pages.
 ```
@@ -2303,8 +2297,7 @@ async function fetchUserOrders(userId) {
 // "Explique-moi chaque ligne de ce que tu viens de générer.
 //  Dis-moi ce qui pourrait mal tourner en prod."
 
-// Dans 6 mois : le premier dev copie encore.
-//               Le second comprend pourquoi son code marche.
+// Dans 6 mois : le premier dev copie encore. Le second comprend pourquoi son code marche.
 ```
 
 ### Tip 5 : l'IA comme rubber duck dopée
@@ -2321,7 +2314,6 @@ async function fetchUserOrders(userId) {
 ```
 
 ### Tip 6 : l'hallucination → le bug invisible
-
 ```javascript
 // Tu demandes : "Comment utiliser .flatDeep() en JavaScript ?"
 // L'IA répond avec une confiance absolue :
@@ -2333,14 +2325,13 @@ const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
 // L'IA a inventé un nom plausible. Elle n'en sait rien.
 // Elle dit ce qui est statistiquement probable. Pas ce qui est vrai.
 
-// RÈGLE : toujours vérifier dans la doc officielle.
-//         Surtout pour les méthodes de libs, les APIs, les versions récentes.
+// RÈGLE : toujours vérifier dans la doc officielle. Surtout pour les méthodes de libs, les APIs, les versions récentes.
 ```
 
 ```
   L'IA génère                    TOI
       |                           |
-      | "voilà la solution"       |
+      |    "voilà la solution"    |
       |-------------------------->|
                                   |
                             vérifie dans la doc
@@ -2351,21 +2342,6 @@ const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
 ```
 
 Mindset : stagiaire ultra-rapide qui a tout lu sur internet mais qui invente des réponses pour pas avoir l'air de pas savoir. Ton boulot : valider. Toujours.
-
-### Tip 7 : les outils à connaître
-
-```
-  OUTIL              USAGE                                    PRIX
-  :::::              :::::                                    ::::
-  Cursor             IDE IA-first (base VSCode)               freemium
-  GitHub Copilot     Autocomplétion intégrée                  payant
-  Claude             Pair programmer conversationnel           freemium
-  ChatGPT            Idem, bon pour le debugging              freemium
-  Codeium            Alternative Copilot                      gratuit
-  v0 (Vercel)        Génère des UIs React depuis du texte     freemium
-  Perplexity         Recherche avec sources citées            freemium
-  Warp               Terminal avec IA intégrée                freemium
-```
 
 ---
 
