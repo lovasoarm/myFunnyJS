@@ -2378,15 +2378,14 @@ Mindset : stagiaire ultra-rapide qui a tout lu sur internet mais qui invente des
 ### Ce qu'on t'a vendu vs ce que c'est vraiment
 
 ```
-  LE FILM                              LA RÉALITÉ
-  :::::::                              :::::::::::::::::::::::::::::::::
-  Du code propre toute la journée -->  60% de réunions, emails, PR reviews
-  Des projets passionnants         -->  Surtout du legacy et des bugs incompréhensibles
+  LE FILM                               LA RÉALITÉ
+  :::::::                               :::::::::::::::::::::::::::::::::
+  Du code propre toute la journée  -->  60% de réunions, emails, PR reviews
+  Des projets passionnants         -->  Surtout du legacy (ex: déchiffrer du code de 2008) et des bugs incompréhensibles
   Des choix technos excitants      -->  "On reste sur jQuery, le client veut pas changer"
   Résoudre des puzzles élégants    -->  Déboguer un truc qui marchait la semaine dernière
   Travailler seul dans ton coin    -->  Communication constante avec des non-devs
 ```
-
 Et pourtant : c'est l'un des meilleurs métiers du monde en 2026. Pas malgré ça. Avec ça.
 
 ---
@@ -2398,17 +2397,17 @@ Et pourtant : c'est l'un des meilleurs métiers du monde en 2026. Pas malgré ç
                                  |
           _____________________|_____________________
          |              |              |              |
-      TECHNIQUE      COMM         JUGEMENT        APPRENTISSAGE
+      TECHNIQUE       COMM         JUGEMENT      APPRENTISSAGE
          |              |              |              |
    Coder proprement  Écrire       Choisir entre   Apprendre en
    Déboguer          des PR       10 solutions    continu sans
-   Architecturer     claires      correctes       se noyer
+   Architecturer     claires.     correctes.      se noyer.
    Tester            Expliquer    Dire non        Filtrer le bruit
    Déployer          à des        quand faut
                      non-devs     le dire
 ```
 
-La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bons savent que les quatre colonnes comptent autant.
+La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bons savent que les quatre colonnes comptent autant. (Le mec qui code comme un dieu mais qui répond jamais aux mails, arrive en retard à toutes les réunions, et refuse d'expliquer ses choix : Il se fait virer avant le stagiaire sympa qui code en jQuery.)
 
 ---
 
