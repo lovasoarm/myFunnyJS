@@ -1894,7 +1894,7 @@ Adapter     : brancher une interface incompatible sur une autre
 
 **4. Compréhension des systèmes**
 
-Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID).
+Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS -> ex : une requête fetch passe par DNS pour résoudre le domaine, TCP pour établir la connexion, HTTP pour transporter les données), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID -> ex : un index sur user_id utilise un B-tree pour trouver la ligne en O(log n) au lieu de scanner toute la table).
 
 > **Livre de référence :** *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
 
