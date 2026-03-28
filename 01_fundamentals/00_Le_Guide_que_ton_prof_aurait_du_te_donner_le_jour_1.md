@@ -1891,7 +1891,21 @@ Strategy    : changer un algorithme à l'exécution sans modifier le code appela
 Adapter     : brancher une interface incompatible sur une autre
               "comme un adaptateur jack 3.5 → USB-C : les deux veulent juste jouer de la musique"
 ```
+#### Anti-patterns classiques : ou comment saboter ton propre code avec style
+| Anti-pattern | C'est quoi | Conséquence | Analogie technique | Analogie réaliste|
+|---|---|---|---|---|
+| **Requêtes séquentielles indépendantes** | Tu lances deux requêtes l'une après l'autre alors qu'elles ont aucun lien | 200ms au lieu de 100ms. Multiplie par 10M req/jour et pleure | Faire un `await fetchUser()` puis `await fetchOrders()` alors que les deux peuvent partir en même temps avec `Promise.all` | Aller chercher ta pizza ET ta boisson au bar en deux voyages séparés alors que t'as deux mains |
+| **God Object** | Une classe / un fichier qui fait absolument tout | 3000 lignes, personne n'ose toucher, le fichier a sa propre légende urbaine | `UserManager.js` qui gère l'auth, les emails, les paiements, les rapports et accessoirement ton karma | Un employé qui est à la fois caissier, cuisinier, livreur, comptable et vigil. Il est partout. Il est nulle part. Il démissionne |
+| **Hardcoding** | Des valeurs magiques collées directement dans le code au lieu de variables ou configs | Le client veut changer une valeur. Tu cherches dans 47 fichiers. Tu souffres | `if (currency === "EUR")` écrit en dur partout : le client veut ajouter le dollar, bonne chance | Tatouer ton numéro de téléphone sur ton front. Tu déménages. Problème |
+| **Callback Hell** | Des fonctions imbriquées les unes dans les autres à l'infini | Code illisible, debugging cauchemardesque, tes collègues te détestent | `getData(fn(a) { getMore(a, fn(b) { save(b, fn(c) { … }) }) })` : la pyramide de la mort | Des poupées russes, mais chaque poupée contient une autre poupée qui contient une tâche urgente et une mauvaise surprise |
+| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. Le user, lui, il sait. Depuis 3 semaines | Un try/catch vide sur un appel API critique : l'appel plante, l'app continue comme si de rien n'était, les données sont corrompues | Recevoir une lettre d'huissier, la mettre à la poubelle sans lire, et s'étonner que la police débarque |
+| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 users. Le vrai goulot d'étranglement était ailleurs depuis le début | Mettre en place Redis, un CDN et du sharding de DB pour une app qui a 8 utilisateurs dont 3 sont toi | Acheter une Ferrari pour aller chercher le pain à 200m. T'as optimisé la vitesse. T'avais un problème de distance |
+| **Copier-coller au lieu d'abstraire** | Le même bloc de 30 lignes existe en 6 endroits dans le codebase | Tu corriges le bug dans 3 endroits. Les 3 autres attendent leur tour patiemment | La fonction de validation d'email recopiée dans chaque composant au lieu d'être dans `utils/validators.js` | Écrire ta recette de gâteau sur 6 post-its différents. Tu corriges une faute sur 3. Les autres post-its servent du gâteau raté |
+| **Tout mettre dans le front** | Logique métier, validation, calcul de prix : tout dans le client JS | N'importe qui ouvre DevTools, modifie les variables, achète à 0€ | Calculer le prix final d'une commande côté React et envoyer juste le total au serveur sans vérification | Confier à l'acheteur le soin d'écrire lui-même le prix sur le ticket de caisse. Évidemment il écrit 0€ |
+| **Ne jamais committer** | "Je commit quand c'est fini" : spoiler : c'est jamais fini | Le laptop meurt. Le disque claque. 3 semaines de travail partent à la poubelle | Travailler 2 semaines sur une feature sans un seul `git commit` puis perdre tout à cause d'un crash | Écrire un roman entier à la main sans faire de photocopie. La maison brûle. Chapitre 1 : les cendres |
+| **Dépendances circulaires** | Le module A importe B, B importe A, personne sait qui démarre en premier | Erreurs cryptiques au runtime, build qui plante sans raison claire, 2h de debug pour rien | `auth.js` importe `user.js` qui importe `auth.js` : Node.js reçoit `undefined` et te souhaite bonne chance | Deux personnes qui attendent chacune que l'autre ouvre la porte. Elles meurent là. Devant la porte |
 
+---
 **4. Compréhension des systèmes**
 
 Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS -> ex : une requête fetch passe par DNS pour résoudre le domaine, TCP pour établir la connexion, HTTP pour transporter les données), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID -> ex : un index sur user_id utilise un B-tree pour trouver la ligne en O(log n) au lieu de scanner toute la table).
@@ -2082,8 +2096,8 @@ Frontend senior                            71 000 – 120 000 $ / an
 ### Les 10 pays qui recrutent le plus de devs remote
 
 ```
-RANG   PAYS              RÉGION            POURQUOI ILS RECRUTENT
-::::   ::::              ::::::            ::::::::::::::::::::::::::::::::::::
+RANG   PAYS               RÉGION            POURQUOI ILS RECRUTENT
+::::   ::::               ::::::            ::::::::::::::::::::::::::::::::::::
  1     États-Unis         Amérique du Nord  Volume massif de startups et scale-ups.
                                             Manque chronique de devs locaux.
                                             Le remote est le standard depuis 2020.
@@ -2112,15 +2126,14 @@ RANG   PAYS              RÉGION            POURQUOI ILS RECRUTENT
 ---
 
 ### La conclusion salaires :
-
 ```
 +----------------------------------------------+
 |                                              |
-|         MÊMES COMPÉTENCES                   |
+|              MÊMES COMPÉTENCES               |
 |                                              |
 |   marché local       vs       remote         |
 |                                              |
-|   salaire de base         x3 à x10           |
+|   salaire de base            x3 à x10        |
 |                                              |
 |   (le même dev, le même ordi, le même code)  |
 |                                              |
@@ -2165,8 +2178,7 @@ function construireCarriereRemote(dev) {
   TikTok     -> 9 mois
   ChatGPT    -> 72 heures
 
-  Aucun produit dans l'histoire n'a grandi aussi vite.
-  Et les devs sont en première ligne.
+  Aucun produit dans l'histoire n'a grandi aussi vite. Et les devs sont en première ligne.
 ```
 
 ### Sous le capot : c'est quoi vraiment
@@ -2187,24 +2199,20 @@ Exemple concret :
 
 ```
 "La capitale de la France est..."
-Le modèle a vu des milliards de textes où cette phrase se terminait par "Paris".
-Donc statistiquement, "Paris" est le choix le plus probable : pas parce qu'il "sait"
-que Paris est la capitale, mais parce qu'il a appris que ces mots se suivent très souvent.
-C'est la nuance importante : il ne raisonne pas, il complète des patterns.
+Le modèle a vu des milliards de textes où cette phrase se terminait par "Paris".Donc statistiquement, "Paris" est le choix le plus probable : pas parce qu'il "sait" que Paris est la capitale, mais parce qu'il a appris que ces mots se suivent très souvent. C'est la nuance importante : il ne raisonne pas, il complète des patterns.
 ```
 
 ### Les grandes familles d'IA
-
 ```
   TEXTE / CODE              IMAGES / VIDÉO              ACTION
   ::::::::::::              ::::::::::::::              :::::::::::
-  LLM                       Diffusion Models            Agents IA
-   |                         |                           |
+   LLM                        Diffusion Models            Agents IA
+   |                          |                           |
    +-> génère du texte        +-> image depuis texte      +-> le LLM peut agir
    +-> répond, explique       +-> Midjourney, DALL-E      +-> cherche sur le web
    +-> code, refactor         +-> Stable Diffusion        +-> lance du code
    +-> GPT-4o, Claude,        +-> Sora (vidéo)            +-> appelle des APIs
-       Gemini, Llama 3         +-> PyTorch en coulisses    +-> frontière 2025-2026
+       Gemini, Llama 3        +-> PyTorch en coulisses    +-> frontière 2025-2026
 ```
 
 Les **modèles de code** (Copilot, Cursor) sont des LLMs spécialisés. Ils vivent dans ton IDE. Pendant que tu lis ça, ils attendent.
@@ -2243,8 +2251,7 @@ async function fetchUserOrders(userId) {
 //   -> si t'as besoin d'un cache, d'un index, ou d'un refacto complet
 //   -> ce que le reste de ton codebase fait en parallèle
 
-// Un bon dev utilise l'IA pour la vitesse
-//               garde son cerveau pour les décisions
+// Un bon dev utilise l'IA pour la vitesse et garde son cerveau pour les décisions
 ```
 
 ---
