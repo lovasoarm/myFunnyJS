@@ -2524,7 +2524,8 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 
   Copier-coller sans comprendre   ->  Tu copies aussi les bugs. Et t'as aucune idée comment les corriger.
 
-  Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app de 50 utilisateurs. 3 mois perdus. Aucune feature livrée.
+  Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app de 50 utilisateurs.
+                                      3 mois perdus. Aucune feature livrée.
 ```
 
 ### Erreurs de carrière
@@ -2536,14 +2537,17 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 
   Éviter les projets complexes    ->  La croissance vient exactement de là. Les projets confortables ne font pas progresser.
 
-  Manager parce que "promotion"   ->  Dev senior -> Manager : c'est un métier différent.  Si tu le veux pas vraiment, tu seras malheureux et mauvais. Les deux en                                       même temps.
+  Manager parce que "promotion"   ->  Dev senior -> Manager : c'est un métier différent.
+                                      Si tu le veux pas vraiment, tu seras malheureux et mauvais.
+                                      Les deux en même temps.
 
   Jamais documenter               ->  Le toi de dans 6 mois te détestera. Tes collègues aussi. Personne n'ose le dire.
 
   Travailler en silos             ->  Tu bloques ta progression. Les meilleurs apprentissages viennent des autres, pas de toi.
   (reste dans son coin)
  
-  Ne jamais négocier              ->  Les salaires ne s'ajustent pas automatiquement. Personne ne vient te proposer une augmentation. C'est toi qui demandes, ou                                        ça n'arrive pas.
+  Ne jamais négocier              ->  Les salaires ne s'ajustent pas automatiquement. Personne ne vient te proposer une augmentation.
+                                      C'est toi qui demandes, ou ça n'arrive pas.
 ```
 
 ### L'erreur mentale la plus répandue
