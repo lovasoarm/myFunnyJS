@@ -2532,20 +2532,18 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 ```
   ERREUR                              POURQUOI C'EST GRAVE
   ::::::                              ::::::::::::::::::::
-  Rester en zone de confort       ->  T'apprends plus. Dans 3 ans t'es obsolète
-                                      sur des technos que tu connais depuis 5 ans.
-  Éviter les projets complexes    ->  La croissance vient exactement de là.
-                                      Les projets confortables ne font pas progresser.
-  Manager parce que "promotion"   ->  Dev senior -> Manager c'est un métier différent.
-                                      Si tu le veux pas vraiment, tu seras malheureux
-                                      et mauvais. Les deux en même temps.
-  Jamais documenter               ->  Le toi de dans 6 mois te détestera.
-                                      Tes collègues aussi. Personne n'ose le dire.
-  Travailler en silos             ->  Tu bloques ta progression. Les meilleurs
-                                      apprentissages viennent des autres, pas de toi.
-  Ne jamais négocier              ->  Les salaires ne s'ajustent pas automatiquement.
-                                      Personne ne vient te proposer une augmentation.
-                                      C'est toi qui demandes, ou ça n'arrive pas.
+  Rester en zone de confort       ->  T'apprends plus. Dans 3 ans t'es obsolète sur des technos que tu connais depuis 5 ans.
+
+  Éviter les projets complexes    ->  La croissance vient exactement de là. Les projets confortables ne font pas progresser.
+
+  Manager parce que "promotion"   ->  Dev senior -> Manager : c'est un métier différent.  Si tu le veux pas vraiment, tu seras malheureux et mauvais. Les deux en                                       même temps.
+
+  Jamais documenter               ->  Le toi de dans 6 mois te détestera. Tes collègues aussi. Personne n'ose le dire.
+
+  Travailler en silos             ->  Tu bloques ta progression. Les meilleurs apprentissages viennent des autres, pas de toi.
+  (reste dans son coin)
+ 
+  Ne jamais négocier              ->  Les salaires ne s'ajustent pas automatiquement. Personne ne vient te proposer une augmentation. C'est toi qui demandes, ou                                        ça n'arrive pas.
 ```
 
 ### L'erreur mentale la plus répandue
@@ -2567,7 +2565,6 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 ---
 
 ## 7. Les compétences fondamentales qui durent toute une vie
-
 Les frameworks meurent. Les langages évoluent. Ces choses, jamais.
 
 ```
