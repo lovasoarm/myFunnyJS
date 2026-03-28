@@ -2412,22 +2412,19 @@ La plupart des devs pensent que le métier c'est la colonne "TECHNIQUE". Les bon
 ---
 
 ### Les types de journées selon la séniorité
-
 ```
-  JUNIOR                     MID-LEVEL               SENIOR
-  ::::::                     :::::::::               ::::::
-  "Comment je fais ça ?"     "Voilà comment faire"   "Devrait-on faire ça ?"
-  Suit les specs             Améliore les specs       Questionne les specs
-  Résout son ticket          Voit l'impact des        Anticipe les problèmes
-                             tickets sur le reste     avant qu'ils arrivent
-  Cherche de l'aide          Aide les autres          Crée un environnement où
-                             en passant               tout le monde peut avancer
-  Peur de casser en prod     Respecte la prod         Sait comment ne pas casser
+  JUNIOR                     MID-LEVEL                SENIOR
+  ::::::                     :::::::::                ::::::
+  "Comment je fais ça ?"     "Voilà comment faire"    "Devrait-on faire ça ?"
+  Suit les specs             Améliore les specs .      Questionne les specs.
+  Résout son ticket          Voit l'impact des         Anticipe les problèmes
+                             tickets sur le reste.     avant qu'ils arrivent.
+  Cherche de l'aide          Aide les autres           Crée un environnement où
+                             en passant.               tout le monde peut avancer.
+  Peur de casser en prod     Respecte la prod          Sait comment ne pas casser
                                                        et comment réparer vite
 ```
-
 La vraie différence entre junior et senior ? Pas le nombre de langages connus. La capacité à voir ce qui va mal **avant** que ça arrive.
-
 ---
 
 ### Ce que personne te dit sur le code review
@@ -2449,8 +2446,7 @@ La vraie différence entre junior et senior ? Pas le nombre de langages connus. 
     -> Signale les zones d'incertitude ("pas sûr de cette approche")
     -> Garde les PR petites (< 400 lignes de préférence)
 
-  Une PR de 2000 lignes = personne la review vraiment.
-  Elle est mergée avec un "LGTM" et des bugs en prod 3 jours après.
+  Une PR de 2000 lignes = personne la review vraiment. Elle est mergée avec un "LGTM" (Looks Good To Me) et des bugs en prod 3 jours après.
 ```
 
 ---
