@@ -2456,9 +2456,7 @@ La vraie différence entre junior et senior ? Pas le nombre de langages connus. 
 **1. Lire du code que t'as pas écrit**
 
 ```
-  La majorité du temps d'un dev expérimenté :
-  comprendre du code existant, pas en écrire du nouveau.
-
+  La majorité du temps d'un dev expérimenté : comprendre du code existant, pas en écrire du nouveau.
   Ouvre des projets open source dans ton domaine.
   Lis le code. Essaie de comprendre sans lancer.
   Pose des questions au code. Pourquoi ce choix ?
@@ -2466,15 +2464,12 @@ La vraie différence entre junior et senior ? Pas le nombre de langages connus. 
 ```
 
 **2. Estimer le temps de manière honnête**
-
 ```
   Junior : "3 jours" -> prend 3 semaines
   Mid    : "1 semaine" -> prend 10 jours, avec des risques bien identifiés
-  Senior : "Je peux donner un chiffre après avoir découpé en sous-tâches.
-            Voilà les incertitudes : [liste]. La fourchette réaliste est X-Y."
+  Senior : "Je peux donner un chiffre après avoir découpé en sous-tâches. Voilà les incertitudes : [liste]. La fourchette réaliste est X-Y." Exemple : Le senior qui dit "2 à 4 semaines selon si l'API tierce est stable" a l'air moins impressionnant que le junior qui dit "3 jours" avec confiance : jusqu'au jour de la deadline.
 
-  Savoir dire "je sais pas encore" c'est une compétence.
-  Pas un aveu de faiblesse.
+  Savoir dire "je sais pas encore" c'est une compétence. Pas un aveu de faiblesse.
 ```
 
 **3. Écrire pour les humains d'abord**
