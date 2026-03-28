@@ -2473,13 +2473,11 @@ La vraie différence entre junior et senior ? Pas le nombre de langages connus. 
 ```
 
 **3. Écrire pour les humains d'abord**
-
 ```javascript
 // Ce code "marche"
 function f(a, b, c) {
   return c ? a * (c === 1 ? 1.1 : 1.2) : a + b
 }
-
 // Ce code vit longtemps
 const TAX = { reduced: 1.10, standard: 1.20 }
 function calculateFinalPrice(basePrice, shipping, taxType) {
@@ -2497,15 +2495,11 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 **4. Savoir quand ne PAS coder**
 
 ```
-  Un bon dev n'ajoute pas de code quand c'est pas nécessaire.
-  Chaque ligne de code = dette future.
-  Chaque fonction = chose à maintenir, tester, documenter.
-
+  Un bon dev n'ajoute pas de code quand c'est pas nécessaire. Chaque ligne de code = dette future. Chaque fonction = chose à maintenir, tester, documenter.
   Avant de coder : est-ce qu'une lib existante fait ça ?
                    est-ce qu'une config suffit ?
                    est-ce que le besoin est vraiment réel ?
-
-  Le meilleur code c'est souvent le code qu'on n'a pas écrit.
+  Le meilleur code c'est souvent le code qu'on n'a pas écrit. (Parfois la meilleure solution c'est une lib existante, une config, ou juste... ne rien faire.)
 ```
 
 ---
