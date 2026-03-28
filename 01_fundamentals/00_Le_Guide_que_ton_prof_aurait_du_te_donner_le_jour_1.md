@@ -2671,7 +2671,6 @@ const leDevDe2026 = {
 ## 11. Conclusion
 
 Tu as maintenant entre les mains ce que ce guide promettait : une carte. Pas une formule magique, pas un raccourci, une carte.
-
 Elle couvre les fondations (les langages, leur histoire, leur logique), les choix (comment décider sans se paralyser), les métiers (qui fait vraiment quoi dans l'industrie), le marché (ce que ça vaut, et comment accéder aux bons marchés), et les principes qui durent (ceux qu'aucun framework ne va remplacer dans 3 ans).
 
 ---
@@ -2716,13 +2715,13 @@ Elle couvre les fondations (les langages, leur histoire, leur logique), les choi
 Ce guide t'a donné le contexte. Maintenant c'est toi qui construis.
 
 ```
-  SI TU DÉMARRES         ->  Choisis UN langage. Lance UN projet. Finis-le.
-  SI TU ES INTERMÉDIAIRE ->  Approfondis ta spécialisation.
+  SI TU DÉMARRES         ->   Choisis UN langage. Lance UN projet. Finis-le.
+  SI TU ES INTERMÉDIAIRE ->   Approfondis ta spécialisation.
                               Lis du code open source. Contribue.
-  SI TU VISES LE REMOTE  ->  3 projets propres sur GitHub.
+  SI TU VISES LE REMOTE  ->   3 projets propres sur GitHub.
                               Profil LinkedIn en anglais.
                               Première mission, peu importe le tarif.
-  DANS TOUS LES CAS      ->  Construis les fondamentaux.
+  DANS TOUS LES CAS      ->   Construis les fondamentaux.
                               Ils ne t'abandonneront jamais.
 ```
 
