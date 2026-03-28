@@ -1898,7 +1898,7 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 
 > **Livre de référence :** *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
 
-**5. Architecture logicielle**
+**5. Architecture logicielle -> "l'art de prendre des décisions structurelles aujourd'hui pour ne pas les regretter demain"** 
 
 ```javascript
 // Les trois questions d'un dev qui pense architecture
@@ -1942,15 +1942,14 @@ ANNÉES 5-8 : L'IMPACT
   Tu mentores des juniors (naturellement, pas encore par obligation).
   Tu vois les patterns des projets qui réussissent ou échouent.
   Objectif : choisir entre technique pure (architect/principal) ou leadership.
-  Erreur classique : prendre un rôle manager parce que "c'est la promotion normale"
-                     sans vraiment vouloir gérer des gens.
+  Erreur classique : prendre un rôle manager parce que "c'est la promotion normale" sans vraiment vouloir gérer des gens.
 
 ANNÉES 8-15 : LA FORCE TRANQUILLE
   Tu n'as plus à prouver que tu sais coder.
   Tu résous des problèmes organisationnels autant que techniques.
   Tu as un réseau solide dans l'industrie.
   Objectif : impact à grande échelle, ou indépendance (freelance/startup).
-  Erreur classique : se reposer sur ses lauriers, arrêter d'apprendre.
+  Erreur classique : se reposer sur ses lauriers (se contenter de ce qu'on a déjà accompli, sans aller plus loin), arrêter d'apprendre.
 ```
 
 ---
