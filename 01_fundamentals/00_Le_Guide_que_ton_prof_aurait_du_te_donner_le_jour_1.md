@@ -2505,27 +2505,26 @@ function calculateFinalPrice(basePrice, shipping, taxType) {
 ---
 
 ## 6. Les erreurs qui tuent les carrières
-
 ### Erreurs techniques
 
 ```
   ERREUR                              POURQUOI C'EST GRAVE
   ::::::                              ::::::::::::::::::::
-  Ignorer Git (juste "git push")  ->  Tu perds du travail, tu bloques l'équipe,
-                                      tu écrases le code d'un collègue.
+  Ignorer Git (juste "git push")  ->  Tu perds du travail, tu bloques l'équipe, tu écrases le code d'un collègue.
                                       Git c'est pas optionnel.
+
   Jamais de tests                 ->  6 mois plus tard, t'oses plus toucher au code.
                                       Chaque modif casse quelque chose.
                                       La dette technique devient incontrôlable.
-  Variables nommées n'importe     ->  data, temp, result, x, toto.
-  comment                             6 mois plus tard, même toi tu comprends plus.
-  Aucune gestion d'erreur         ->  L'app plante silencieusement.
-                                      Tu sais pas où, ni pourquoi, ni pour qui.
-  Copier-coller sans comprendre   ->  Tu copies aussi les bugs. Et t'as aucune idée
-                                      comment les corriger.
-  Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app
-                                      de 50 utilisateurs. 3 mois perdus.
-                                      Aucune feature livrée.
+
+  Variables nommées n'importe     ->  data, temp, result, x, toto. 6 mois plus tard, même toi tu comprends plus.
+  comment                            
+
+  Aucune gestion d'erreur         ->  L'app plante silencieusement. Tu sais pas où, ni pourquoi, ni pour qui.
+
+  Copier-coller sans comprendre   ->  Tu copies aussi les bugs. Et t'as aucune idée comment les corriger.
+
+  Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app de 50 utilisateurs. 3 mois perdus. Aucune feature livrée.
 ```
 
 ### Erreurs de carrière
