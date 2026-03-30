@@ -1,0 +1,130 @@
+<svg viewBox="0 0 740 180" xmlns="http://www.w3.org/2000/svg" width="740" height="180">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&amp;family=Martian+Mono:wght@300&amp;display=swap');
+
+      .bg    { fill: #0c0c0c; }
+      .rule  { stroke: #2c2c2c; stroke-width: 0.8; }
+      .tick  { stroke: #3a3a3a; stroke-width: 0.8; }
+
+      .label {
+        font-family: 'Martian Mono', 'Courier New', monospace;
+        font-size: 9px;
+        fill: #505050;
+        letter-spacing: 0.18em;
+      }
+
+      .t-my {
+        font-family: 'Cormorant Garamond', 'Palatino Linotype', Palatino, serif;
+        font-size: 86px;
+        font-weight: 300;
+        fill: #e8e8e8;
+        letter-spacing: 0em;
+      }
+
+      .t-funny {
+        font-family: 'Cormorant Garamond', 'Palatino Linotype', Palatino, serif;
+        font-size: 86px;
+        font-weight: 300;
+        font-style: italic;
+        fill: #c9973a;
+        letter-spacing: 0em;
+      }
+
+      .t-js {
+        font-family: 'Martian Mono', 'Courier New', monospace;
+        font-size: 17px;
+        fill: #c9973a;
+        letter-spacing: 0.04em;
+        opacity: 0.65;
+      }
+
+      .sub {
+        font-family: 'Martian Mono', 'Courier New', monospace;
+        font-size: 10px;
+        fill: #888880;
+        letter-spacing: 0.08em;
+      }
+
+      .sub-dim { fill: #555550; }
+
+      /* — animations — */
+      .label-tl  { opacity:0; animation: fi  0.5s ease forwards 0.1s; }
+      .label-tr  { opacity:0; animation: fi  0.5s ease forwards 0.1s; }
+      .rule-top  { opacity:0; animation: fi  0.6s ease forwards 0.05s; }
+
+      .t-my      { opacity:0; animation: fi  0.4s ease forwards 0.5s; }
+
+      .f1 { opacity:0; animation: ci 0.03s ease forwards 0.52s; }
+      .f2 { opacity:0; animation: ci 0.03s ease forwards 0.60s; }
+      .f3 { opacity:0; animation: ci 0.03s ease forwards 0.68s; }
+      .f4 { opacity:0; animation: ci 0.03s ease forwards 0.76s; }
+      .f5 { opacity:0; animation: ci 0.03s ease forwards 0.84s; }
+
+      .cursor {
+        fill: #c9973a;
+        opacity: 0;
+        animation: cappear 0s forwards 0.52s, blink 0.75s step-end infinite 0.52s;
+      }
+
+      .t-js      { opacity:0; animation: fi  0.4s ease forwards 1.05s; }
+      .rule-mid  { opacity:0; animation: fi  0.5s ease forwards 1.2s;  }
+      .ticks     { opacity:0; animation: fi  0.4s ease forwards 1.3s;  }
+      .sub       { opacity:0; animation: up  0.5s ease forwards 1.4s;  }
+      .rule-bot  { opacity:0; animation: fi  0.4s ease forwards 1.7s;  }
+
+      @keyframes fi      { to { opacity:1; } }
+      @keyframes ci      { to { opacity:1; } }
+      @keyframes cappear { to { opacity:1; } }
+      @keyframes blink   { 0%,100%{opacity:1} 50%{opacity:0} }
+      @keyframes up {
+        from { opacity:0; transform:translateY(4px); }
+        to   { opacity:1; transform:translateY(0);   }
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="740" height="180" rx="2"/>
+
+  <!-- règle haut -->
+  <line class="rule rule-top" x1="40" y1="28" x2="700" y2="28"/>
+  <text class="label label-tl" x="40"  y="21">// CrazyDevs</text>
+  <text class="label label-tr" x="700" y="21" text-anchor="end">curriculum · 2026</text>
+
+  <!-- titre serré : My + Funny collés -->
+  <!-- "My" = ~118px wide à font-size 86 weight 300 -->
+  <text class="t-my" x="40" y="112">My</text>
+
+  <!-- Funny lettre par lettre, x calé juste après "My" -->
+  <text class="t-funny f1" x="158" y="112">F</text>
+  <text class="t-funny f2" x="196" y="112">u</text>
+  <text class="t-funny f3" x="234" y="112">n</text>
+  <text class="t-funny f4" x="272" y="112">n</text>
+  <text class="t-funny f5" x="310" y="112">y</text>
+
+  <!-- curseur fin -->
+  <rect class="cursor" x="350" y="84" width="2" height="34" rx="1"/>
+
+  <!-- JS petit, aligné baseline -->
+  <text class="t-js" x="360" y="112">JS</text>
+
+  <!-- règle médiane -->
+  <line class="rule rule-mid" x1="40" y1="128" x2="700" y2="128"/>
+  <g class="ticks">
+    <line class="tick" x1="40"  y1="125" x2="40"  y2="131"/>
+    <line class="tick" x1="700" y1="125" x2="700" y2="131"/>
+    <line class="tick" x1="370" y1="126" x2="370" y2="130"/>
+  </g>
+
+  <!-- tagline -->
+  <text class="sub" x="40" y="148">
+    <tspan class="sub-dim">de </tspan>
+    <tspan>"je connais quelques trucs"</tspan>
+    <tspan class="sub-dim">  →  </tspan>
+    <tspan>"je comprends ce que je fais"</tspan>
+  </text>
+  <text class="sub sub-dim" x="40" y="163">et comment ne pas tout péter en prod.</text>
+
+  <!-- règle bas -->
+  <line class="rule rule-bot" x1="40" y1="174" x2="700" y2="174"/>
+</svg>
