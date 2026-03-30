@@ -458,6 +458,39 @@ MyFunnyJS/
 
 ---
 
+## LE NOYAU DUR : ce que tu dois maîtriser en béton armé
+Tu peux pas tout avaler d'un coup. Personne peut. Mais si tu sors de MyFunnyJS avec ces cinq blocs verrouillés, t'es dangereux.
+
+**01 : Fundamentals + Async.** Pas négociable. Si tu comprends pas les closures, le scope, et l'Event Loop, tout le reste flotte dans le vide. C'est le sol. Tu construis pas une maison sur du sable.
+
+**03 : Testing First.** Pas à la fin. Pas "quand t'as le temps". Maintenant. Un dev qui teste pas, c'est un pilote qui navigue sans instruments : il vole, mais il sait pas où il va ni quand ça va tomber.
+
+**06 + 07 : Data Structures & Algorithms.** Pas pour les entretiens. Pour penser. Savoir quelle structure choisir dans quel contexte, c'est la différence entre du code qui tient et du code qui s'effondre sous la charge.
+
+**09 : Refactoring.** Parce que ton premier jet sera toujours approximatif. Et le dev qui peut pas relire son propre code six mois après et l'améliorer sans tout casser, il stagne.
+
+**11 + 13 : Architecture + API Craft.** Tu construis pour Next.js, Supabase etc. . Sans patterns solides et sans API propres, ton projet grandit pas : il pourrit.
+
+```
+        PRIORITÉ ABSOLUE
+________________|________________
+                |
+    01_fundamentals + 02_async     <=  sans ça, t'es aveugle
+                |
+        03_testing_first           <=  sans ça, t'es imprudent
+                |
+    06_data_structures + 07_algos  <=  sans ça, t'es limité
+                |
+        09_refactoring             <=  sans ça, t'es un risque pour ton équipe
+                |
+    11_architecture + 13_api       <=  sans ça, t'es junior à vie
+              
+
+```
+
+Le reste (sécurité, scalabilité, observabilité, team craft) c'est ce qui fait la différence entre un bon dev et un senior. Mais ces cinq blocs, c'est le ticket d'entrée. Maîtrise ça d'abord. Le reste vient avec le temps et les projets réels.
+
+---
 ## Ce que ce curriculum ne peut pas faire à ta place
 
 Finir ce curriculum te mène à 95 sur 100. Les 5 points restants ne viennent pas d'un fichier `.js`.
