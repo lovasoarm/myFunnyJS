@@ -102,4 +102,4 @@ Points clés :
 // Ton code ici
 ```
 
-> `map` et `filter` retournent toujours de **nouveaux tableaux** — l'original ne bouge pas. Si tu modifies l'original, tu fais quelque chose de travers.
+> `map` et `filter` retournent toujours de **nouveaux tableaux** : l'original ne bouge pas. Si tu modifies l'original, tu fais quelque chose de travers.

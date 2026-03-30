@@ -86,7 +86,7 @@ C'est la base de :
 - Événements
 - Promesses
 - React
-- Middleware
+- Middleware (Code qui se place entre deux choses : généralement entre la requête qui arrive et la réponse qui repart.)
 
 > Si tu comprends les callbacks, tu as déjà déverrouillé 80% du JS asynchrone. _(Les 20% restants ? On y vient.)_
 
@@ -149,7 +149,7 @@ function attack() {}
 
 JS fait trois choses :
 
-1. Crée un **objet fonction** en mémoire
+1. Crée un **objet fonction** en mémoire (Ce que JS crée en mémoire quand tu déclares une fonction.)
 2. Crée une **variable** `attack`
 3. Met la **référence** de l'objet dedans
 
@@ -184,7 +184,6 @@ Ce n'est **pas une copie**. C'est un **pointeur** : une deuxième étiquette sur
 | Architecture JS moderne | ok                              |
 
 Si tu comprends que les fonctions sont des objets, tu comprends pourquoi JS est flexible.
-
 Si tu ne comprends pas ça, tu **subis** le langage.
 
 ---
