@@ -1,5 +1,4 @@
-# MyFunnyJS
-
+![MyFunnyJS](./assets/title.svg)
 
 Ce projet, c'est le chemin complet pour passer de **"je connais quelques trucs en JS"** à **"je comprends ce que je fais, pourquoi je le fais, et comment ne pas tout péter en prod"**.
 
@@ -34,7 +33,6 @@ En 2026, la valeur d'un développeur ne vient plus de sa vitesse à taper ou de 
 **Remplis les TDD_JOURNAL et les POSTMORTEM.** Ce ne sont pas des formalités. C'est l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment. Ces fichiers sont la différence entre quelqu'un qui a codé un projet et quelqu'un qui a appris quelque chose.
 
 ---
-
 
 ## Ce que tu dois maîtriser : la liste complète
 
@@ -455,10 +453,10 @@ MyFunnyJS/
 24  Tools                 =>  les gadgets maison pour aller plus vite
 ```
 
-
 ---
 
 ## LE NOYAU DUR : ce que tu dois maîtriser en béton armé
+
 Tu peux pas tout avaler d'un coup. Personne peut. Mais si tu sors de MyFunnyJS avec ces cinq blocs verrouillés, t'es dangereux.
 
 **01 : Fundamentals + Async.** Pas négociable. Si tu comprends pas les closures, le scope, et l'Event Loop, tout le reste flotte dans le vide. C'est le sol. Tu construis pas une maison sur du sable.
@@ -484,13 +482,14 @@ ________________|________________
         09_refactoring             <=  sans ça, t'es un risque pour ton équipe
                 |
     11_architecture + 13_api       <=  sans ça, t'es junior à vie
-              
+
 
 ```
 
 Le reste (sécurité, scalabilité, observabilité, team craft) c'est ce qui fait la différence entre un bon dev et un senior. Mais ces cinq blocs, c'est le ticket d'entrée. Maîtrise ça d'abord. Le reste vient avec le temps et les projets réels.
 
 ---
+
 ## Ce que ce curriculum ne peut pas faire à ta place
 
 Finir ce curriculum te mène à 95 sur 100. Les 5 points restants ne viennent pas d'un fichier `.js`.
