@@ -80,4 +80,4 @@ Ces deux fonctions **ne se connaissent pas**. Modifier l'une ne touche pas l'aut
 // Ton code ici
 ```
 
-> Chaque fonction créée est un **clone indépendant**. Même mémoire parente, univers séparés. La factory a fait son travail — maintenant les clones vivent leur vie.
+> Chaque fonction créée est un **clone indépendant**. Même mémoire parente, univers séparés. La factory a fait son travail : maintenant les clones vivent leur vie.
