@@ -25,9 +25,7 @@ function inspect(value) {
   console.log("--- inspect(" + value + ") ---");
   console.log("Type réel       :", typeof value);
   console.log("estArray        :", Array.isArray(value));
-  console.log(
-    "estNumberValide :",
-    typeof value === "number" && !Number.isNaN(value),
+  console.log("estNumberValide :", typeof value === "number" && !Number.isNaN(value),
   );
   console.log("estFalsy        :", !value);
 }
@@ -69,7 +67,7 @@ function parseCurrency(value) {
   if (typeof value !== "string") return null;
 
   // Supprime espaces et symboles comme $, €, £...
-  let cleaned = value.trim().replace(/[^0-9.]/g, "");
+  let cleaned = value.trim().replace(/[^0-9.]/g, ""); //replace() : Remplace une occurrence (ou plusieurs) dans une chaîne et retourne une nouvelle chaîne; l'originale n'est pas modifiée.
   //NB :
   //.trim() → supprime les espaces autour
   //.replace(/[^0-9.]/g, "") → garde uniquement les chiffres et le point, supprime tout le reste ($, lettres, etc.)
