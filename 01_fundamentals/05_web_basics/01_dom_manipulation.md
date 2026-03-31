@@ -91,7 +91,7 @@ element.value; // valeur d'un input
 - `textContent` → texte brut, sûr
 - `innerHTML` → interprète HTML → **danger si données utilisateur** (risque XSS = injection de script malveillant)
 
-> Règle simple : utilise `textContent` sauf si tu dois absolument injecter du HTML — et même là, méfie-toi.
+> Règle simple : utilise `textContent` sauf si tu dois absolument injecter du HTML : et même là, méfie-toi.
 
 ---
 
@@ -107,7 +107,7 @@ title.textContent = "Nouveau titre";
 
 ```javascript
 element.setAttribute("disabled", true); // ancienne méthode
-element.disabled = true; // moderne — préfère ça
+element.disabled = true; // moderne —> préfère ça
 ```
 
 **Modifier les classes :**
@@ -138,7 +138,7 @@ const li = document.createElement("li");
 li.textContent = "Item";
 
 parent.appendChild(li); // un seul node
-parent.append(li); // moderne — accepte plusieurs nodes et du texte
+parent.append(li); // moderne —> accepte plusieurs nodes et du texte
 ```
 
 Différence :
@@ -149,7 +149,7 @@ Différence :
 | `append`      | plusieurs nodes + texte brut |
 
 ```javascript
-// append — tout en une fois
+// append tout en une fois
 const liste = document.querySelector("#liste");
 
 const item1 = document.createElement("li");
