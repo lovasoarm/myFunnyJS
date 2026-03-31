@@ -1,3 +1,15 @@
+/*
+MISSION PRIMITIVES
+Crée une variable score = 50
+Copie-la dans bestScore
+Change bestScore à 100
+Vérifie si score change
+Ensuite :
+Crée un objet player = { hp: 100 }
+Copie-le dans clone
+Modifie clone.hp
+Observe la différence
+*/
 let score = 50;
 let bestScore = score;
 bestScore = 100;
