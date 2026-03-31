@@ -24,7 +24,7 @@ Oui. 7. Pas 6.
 4. `undefined`
 5. `null`
 6. `bigint`
-7. `symbol`
+7. `symbol` (Utilisé rarement dans le code mais partout dans les internals de JS (itérateurs, promesses, etc.)
 
 ---
 
@@ -41,7 +41,7 @@ let text = "Hi";
 text[0] = "B"; // ça ne marche pas
 ```
 
-Les primitives ne se modifient pas directement. JS t'ignore en silence — pas d'erreur, pas d'effet, juste du néant.
+Les primitives ne se modifient pas directement. JS t'ignore en silence -> pas d'erreur, pas d'effet, juste du néant.
 
 ---
 
@@ -121,7 +121,7 @@ Type unique utilisé pour créer des clés uniques dans les objets. Avancé, mai
 
 ## PRIMITIVE VS OBJET
 
-**Primitif — copié par valeur** (valeur copiée directement) :
+**Primitif : copié par valeur** (valeur copiée directement) :
 
 ```javascript
 let a = 10;
@@ -134,7 +134,7 @@ console.log(a); // 10
 
 `b` reçoit une copie indépendante. Modifier `b` ne touche pas `a`.
 
-**Objet — copié par référence** (adresse mémoire partagée) :
+**Objet : copié par référence** (adresse mémoire partagée) :
 
 ```javascript
 let obj1 = { hp: 100 };
