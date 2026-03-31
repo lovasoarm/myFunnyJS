@@ -148,10 +148,10 @@ d'entrée. Maîtrise ça d'abord. Le reste vient avec le temps et les projets r�
 MyFunnyJS/
 ├── README.md                                              # Le manifeste CrazyDevs : lis ça avant de coder
 ├── CONTRIBUTING.md                                        # Comment contribuer sans tout péter
-├── CHANGELOG.md                                           # L'historique des updates du curriculum
 │
 │
 ├── 01_fundamentals/                                       # Les bases : zéro excuse de les ignorer
+│   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md
 │   ├── 01_variables/                                      # Variables : le Super Pouvoir
 │   │   ├── 01_intro_variables.js                          # Primitives vs objets, la vérité cachée
 │   │   ├── 02_reference_chaos.js                          # Les références qui foutent tout en l'air
