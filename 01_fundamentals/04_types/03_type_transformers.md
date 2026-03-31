@@ -35,7 +35,7 @@ undefined.toString(); // BOOM erreur
 
 ```javascript
 let score = 99;
-let display = String(score); // "99" — prêt à être affiché sans surprise
+let display = String(score); // "99" : prêt à être affiché sans surprise
 ```
 
 ---
@@ -47,17 +47,17 @@ Tu récupères un input :
 ```javascript
 let price = "200";
 
-price + 50; // "20050" — catastrophe silencieuse
-Number(price) + 50; // 250    — correct
+price + 50; // "20050" —> catastrophe silencieuse
+Number(price) + 50; // 250    —> correct
 ```
 
 Les outils :
 
 ```javascript
 Number("42"); // 42
-Number("42px"); // NaN — trop strict, abandonne au moindre caractère bizarre
+Number("42px"); // NaN —> trop strict, abandonne au moindre caractère bizarre
 
-parseInt("42px"); // 42  — lit jusqu'à ce que ça sente mauvais
+parseInt("42px"); // 42  —> lit jusqu'à ce que ça sente mauvais
 parseFloat("3.14px"); // 3.14
 ```
 
@@ -136,8 +136,8 @@ typeof null; // "object"
 Bug vieux de 1995. On vit avec. On ne comprend plus vraiment pourquoi. On continue.
 
 ```javascript
-typeof []; // "object" — pas très utile
-typeof NaN; // "number" — scandaleux
+typeof []; // "object" : pas très utile
+typeof NaN; // "number" : scandaleux
 ```
 
 Pour les tableaux, utilise toujours :
@@ -182,7 +182,7 @@ Propre. Prévisible. Solide.
 
 ---
 
-## 6) CAS RÉEL — FORMULAIRE DU MONDE SAUVAGE
+## 6) CAS RÉEL : FORMULAIRE DU MONDE SAUVAGE
 
 ```javascript
 let ageInput = "18years";
