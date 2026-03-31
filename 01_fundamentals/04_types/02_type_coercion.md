@@ -2,7 +2,7 @@
 
 JavaScript est un langage **dynamique** (dynamique = les variables peuvent changer de type).
 
-Donc JS convertit parfois les types automatiquement. Ça s'appelle la **coercion** — conversion automatique d'un type vers un autre.
+Donc JS convertit parfois les types automatiquement. Ça s'appelle la **coercion** —> conversion automatique d'un type vers un autre.
 
 Et c'est là que le chaos commence.
 
@@ -104,15 +104,15 @@ false, 0, "", null, undefined, NaN
 
 ```javascript
 if ("hello") {
-  console.log("C'est vrai"); // s'exécute — string non vide = truthy
+  console.log("C'est vrai"); // s'exécute : string non vide = truthy
 }
 
 if ("0") {
-  console.log("Aussi vrai"); // s'exécute — "0" est une string non vide
+  console.log("Aussi vrai"); // s'exécute : "0" est une string non vide
 }
 
 if (0) {
-  console.log("Jamais"); // ne s'exécute pas — 0 est falsy
+  console.log("Jamais"); // ne s'exécute pas : 0 est falsy
 }
 ```
 
