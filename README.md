@@ -37,7 +37,7 @@ réfléchit pas. Toi oui.
 
 ## Les règles du jeu
 
-**Lis chaque fichier du début à la fin** avant de coder. Les .md contiennent la leçon. Ne les saute pas.
+**Lis chaque fichier du début à la fin** avant de coder. Les `.md` contiennent la leçon. Ne les saute pas.
 
 **Code toi-même.** Copier-coller une solution depuis l'IA sans la comprendre, c'est comme
 regarder quelqu'un faire des pompes à ta place. Ton cerveau ne se renforce pas.
