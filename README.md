@@ -83,10 +83,9 @@ ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 24  Observability           =>  voir ce qui se passe en prod
 25  Team Craft              =>  coder avec des humains, pas juste avec une machine
 26  Edge Cases              =>  JS qui se rebelle, et comment y survivre
-27  Bonus Crazy             =>  appliquer tout ça dans des contextes déjantés
-28  Mini Projects           =>  assembler tout ça pour de vrai
-29  Annexes                 =>  Node CLI, toolchain, le reste
-30  Tools                   =>  les gadgets maison pour aller plus vite
+27  Mini Projects           =>  assembler tout ça pour de vrai
+28  Annexes                 =>  Node CLI, toolchain, le reste
+29  Tools                   =>  les gadgets maison pour aller plus vite
 ```
 
 ---
@@ -96,26 +95,26 @@ ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 Tu peux pas tout avaler d'un coup. Personne peut. Mais si tu sors de MyFunnyJS avec ces
 six blocs verrouillés, t'es dangereux.
 
-**01 + 02 : Fundamentals + Async.** Pas négociable. Si tu comprends pas les closures, le
+**01 + 02 : Fundamentals + Async.** : Pas négociable. Si tu comprends pas les closures, le
 scope, et l'Event Loop, tout le reste flotte dans le vide. C'est le sol. Tu construis pas
 une maison sur du sable.
 
-**03 + 04 : Testing + Error Handling.** Pas à la fin. Pas "quand t'as le temps". Maintenant.
+**03 + 04 : Testing + Error Handling.** : Pas à la fin. Pas "quand t'as le temps". Maintenant.
 Un dev qui teste pas et qui gère pas ses erreurs, c'est un pilote sans instruments : il vole,
 mais il sait pas où il va ni quand ça va tomber.
 
-**07 + 08 : Data Structures & Algorithms.** Pas pour les entretiens. Pour penser. Savoir
+**07 + 08 : Data Structures & Algorithms.** : Pas pour les entretiens. Pour penser. Savoir
 quelle structure choisir dans quel contexte, c'est la différence entre du code qui tient et
 du code qui s'effondre sous la charge.
 
-**10 + 11 : Design Patterns + Refactoring.** Parce que ton premier jet sera toujours
+**10 + 11 : Design Patterns + Refactoring.** : Parce que ton premier jet sera toujours
 approximatif. Les patterns t'apprennent à ne pas réinventer la roue. Le refactoring
 t'apprend à améliorer sans tout casser.
 
-**12 : TypeScript.** En 2026, ne pas savoir TypeScript, c'est se présenter à un entretien
+**12 : TypeScript.** : En 2026, ne pas savoir TypeScript, c'est se présenter à un entretien
 sans chaussures. Ce n'est plus un bonus. C'est le standard.
 
-**14 + 19 : Architecture + API Craft.** Sans patterns solides et sans API propres, ton
+**14 + 19 : Architecture + API Craft.** : Sans patterns solides et sans API propres, ton
 projet grandit pas : il pourrit.
 
 ```
@@ -476,50 +475,70 @@ MyFunnyJS/
 │   └── 04_prototype_chain_dark.js                         # La chaîne de prototypes dans ses pires moments
 │
 │
-├── 27_bonus_crazy/                                        # Exercices Fous : le fun ne s'excuse pas
-│   ├── 01_pirates/                                        # Pirates : coder ou couler
-│   ├── 02_slashers/                                       # Slashers : survie par l'algorithme
-│   ├── 03_titans/                                         # Titans : Attack on Data Structures
-│   ├── 04_anime_arena/                                    # Anime Arena : les persos codent avec toi
-│   └── 05_magic_lab/                                      # Laboratoire Magique : alchimie de code pur
-│
-│
 ├── 28_mini_projects/                                      # Projets Intégrateurs : tout assembler pour de vrai
-│   ├── vaika_car_app/                                     # App voiture : CRUD + async + Clean Archi
-│   │   ├── README.md                                      # Contexte, objectifs, ce qu'on doit apprendre
-│   │   ├── TDD_JOURNAL.md                                 # Tests écrits AVANT le code
-│   │   ├── POSTMORTEM.md                                  # Ce qui a cassé, pourquoi, ce qu'on ferait mieux
+│   ├── 01_shinobi_engine/                                 # Moteur de combat Naruto : FP + patterns + maths
+│   │   ├── cahierdescharges.md                            # Specs fonctionnelles et techniques détaillées
+│   │   ├── README.md                                      # Contexte, objectifs, modules couverts
+│   │   ├── TDD_JOURNAL.md                                 # Tests écrits avant le code
+│   │   ├── POSTMORTEM.md                                  # Ce qui a cassé, ce qu'on aurait fait mieux
 │   │   ├── src/
 │   │   └── tests/
-│   ├── mini_social_network/                               # Réseau social : auth + data flow + state
+│   │
+│   ├── 02_titan_tracker/                                  # Système de détection AoT : data structures + algos
+│   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── src/
 │   │   └── tests/
-│   ├── crypto_tracker/                                    # Crypto tracker : API externe + caching + WebSocket
+│   │
+│   ├── 03_vinyl_vault/                                    # API collection vinyle : REST + auth + sécurité
+│   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── src/
 │   │   └── tests/
-│   ├── crazy_chat_app/                                    # Chat app : WebSockets + event-driven + rooms
+│   │
+│   ├── 04_ballon_dor_cli/                                 # Classement Ballon d'Or en terminal : Node CLI + algos
+│   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── src/
 │   │   └── tests/
-│   └── crazydevs_prototype/                               # Le grand projet final : tout ce qu'on a appris
-│       ├── README.md                                      # Le plus important des README
-│       ├── TDD_JOURNAL.md                                 # Le plus important des journaux
-│       ├── POSTMORTEM.md                                  # Ce qui s'est cassé, ce qu'on a appris
-│       ├── ADR/                                           # Architecture Decision Records
-│       │   ├── 001_why_nextjs.md                          # Pourquoi Next.js et pas autre chose
-│       │   ├── 002_why_supabase.md                        # Pourquoi Supabase
-│       │   └── 003_state_management_choice.md             # Quel state management et pourquoi
+│   │
+│   ├── 05_setlist_generator/                              # Générateur de setlist concert : FP + regex + TypeScript
+│   │   ├── cahierdescharges.md
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md
+│   │   ├── POSTMORTEM.md
+│   │   ├── src/
+│   │   └── tests/
+│   │
+│   ├── 06_quirk_simulator/                                # Duels de Quirks MHA : async + SSE + event-driven
+│   │   ├── cahierdescharges.md
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md
+│   │   ├── POSTMORTEM.md
+│   │   ├── src/
+│   │   └── tests/
+│   │
+│   ├── 07_ultras_dashboard/                               # Dashboard analytics foot : observability + perf + TDD
+│   │   ├── cahierdescharges.md
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md
+│   │   ├── POSTMORTEM.md
+│   │   ├── src/
+│   │   └── tests/
+│   │
+│   └── 08_kaiju_i18n/                                     # Encyclopédie Kaijus multilingue : i18n + a11y + TypeScript
+│       ├── cahierdescharges.md
+│       ├── README.md
+│       ├── TDD_JOURNAL.md
+│       ├── POSTMORTEM.md
 │       ├── src/
 │       └── tests/
-│
 │
 ├── 29_annexes/                                            # Annexes pro : pour aller encore plus loin
 │   ├── toolchain/                                         # Toolchain : l'arsenal du dev moderne
