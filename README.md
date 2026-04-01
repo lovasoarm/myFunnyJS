@@ -699,6 +699,93 @@ Code review : donner et recevoir du feedback utile
 
 ---
 
+## Les projets
+
+### 01_shinobi_engine/ -> Le moteur de combat Naruto :
+**Modules couverts :** `01_fundamentals` · `05_math_basics` · `09_functional_js` · `10_design_patterns`
+Un moteur de combat textuel entre ninjas. Chaque shinobi a des stats, des jutsus, un chakra. Les combats se résolvent via des fonctions pures, les jutsus sont des Strategy patterns, et le système de chakra tourne autour de probabilité et de modulo.
+- Fonctions pures pour les calculs de dégâts
+- Strategy pattern pour chaque type de jutsu
+- Composition pour assembler les capacités
+- Probabilité & RNG pour les critiques et les esquives
+- Immutabilité : jamais de mutation d'état direct
+
+
+### 02_titan_tracker/ -> Le système de détection des Titans :
+**Modules couverts :** `07_data_structures` · `08_algorithms` · `06_memory_performance`
+Un système de surveillance des murs inspiré d'Attack on Titan. Des capteurs détectent des Titans à différentes positions, le système les trie par niveau de menace, calcule les chemins d'évacuation les plus courts, et repère les zones d'invasion connectées.
+- Graph pour modéliser la carte des murs et des chemins
+- Dijkstra pour trouver les routes d'évacuation optimales
+- Min-heap pour la priority queue des menaces
+- BFS pour détecter les zones envahies connectées
+- Big-O analysis sur chaque algo utilisé
+
+
+### 03_vinyl_vault/ —> L'API secrète de la collection vinyle :
+**Modules couverts :** `19_api_craft` · `22_databases` · `20_security` · `15_web_concepts`
+Une API REST complète pour gérer une collection de vinyles. Artistes, albums, tracks, notes perso. Avec auth JWT, recherche, et rate limiting pour que personne ne scrappe ta collection privée.
+- Express CRUD complet sur albums, artistes et tracks
+- Auth JWT : sign, verify, refresh token
+- Hashing bcrypt pour les mots de passe
+- Rate limiting par IP
+- Sanitization des inputs contre XSS et injection
+- OpenAPI doc minimale
+
+
+### 04_ballon_dor_cli/ —> Le classement Ballon d'Or en terminal :
+**Modules couverts :** `13_runtime_env` · `08_algorithms` · `11_refactoring` · `04_error_handling`
+Un outil CLI Node.js pour gérer et simuler le vote du Ballon d'Or. Les journalistes votent, les points s'agrègent, le classement se met à jour. Plusieurs commandes disponibles : `vote`, `rank`, `reset`, `simulate`. Sauvegarde locale JSON incluse.
+- CLI avec `process.argv` et parsing de flags
+- Merge Sort pour le classement final
+- Filesystem pour la persistance via `fs`
+- Custom errors : `InvalidVoteError`, `PlayerNotFoundError`
+- Refactoring challenge : v1 procédurale → v2 modulaire propre
+- Tests unitaires sur les fonctions de calcul de score
+
+
+### 05_setlist_generator/ —> Le générateur de setlist pour concerts :
+**Modules couverts :** `09_functional_js` · `01_fundamentals/06_regex` · `12_typescript`
+Un outil qui prend une bibliothèque de chansons en JSON et génère des setlists optimisées selon des critères : énergie, durée, cohérence de genre. Le tout en FP pur, typé en TypeScript, avec parsing de métadonnées via regex.
+- Fonctions pures et composition pour les filtres et les tris
+- Currying pour les critères de sélection
+- Regex pour parser durées (`3:45`), BPM, tonalités depuis des strings
+- TypeScript : generics, utility types (`Partial`, `Pick`), type guards
+- Immutabilité totale sur la bibliothèque source
+
+
+### 06_quirk_simulator/ —> Les duels de Quirks en temps réel :
+**Modules couverts :** `02_async` · `04_error_handling` · `18_realtime` · `14_architecture_patterns`
+Un simulateur de duels de héros inspiré de My Hero Academia. Les Quirks ont des effets asynchrones : délais de charge, recharge, effets persistants. Le moteur streame les events du combat via SSE vers un frontend minimaliste.
+- Async/await pour les effets de Quirk avec délais
+- `Promise.race` pour les interruptions de combat
+- SSE pour streamer les events du duel en live
+- Event-driven architecture pour les effets chaînés
+- Custom errors : `QuirkOverheatError`, `HeroDownError`
+- Module pattern pour isoler chaque Quirk
+
+
+### 07_ultras_dashboard/ —> Le dashboard d'analytics d'un club de foot :
+**Modules couverts :** `24_observability` · `23_scalability` · `06_memory_performance` · `03_testing_first`
+Un dashboard Node.js qui ingère des données de matchs en temps réel : passes, tirs, positions. Il génère des stats live, profite les calculs lourds, et tient la charge grâce au rate limiting. Tous les agrégateurs sont testés en TDD.
+- Structured JSON logging de chaque event de match
+- Métriques : possession, xG, heatmap de passes
+- Rate limiting sur l'endpoint de mise à jour live
+- `performance.now()` et profiling sur les agrégations
+- TDD : tests écrits avant les fonctions d'analytics
+- Big-O analysis sur les agrégations
+
+
+### 08_kaiju_i18n/ —> L'encyclopédie multilingue des Kaijus :
+**Modules couverts :** `17_i18n` · `16_accessibility` · `12_typescript` · `15_web_concepts`
+Une encyclopédie web des Kaijus inspirée de Godzilla et Pacific Rim, disponible en français, anglais, japonais et malgache. Chaque fiche affiche les stats, la catégorie de menace, et les dates formatées selon la locale. Entièrement accessible.
+- i18n complet avec 4 locales dont une custom (malgache)
+- Dates formatées selon la locale avec `Intl.DateTimeFormat`
+- Pluralisation : `1 attaque`, `3 attaques`, `0 attaque`
+- TypeScript : clés de traduction typées, utility types
+- ARIA roles complets et navigation clavier
+- Contraste WCAG AA vérifié sur toutes les fiches
+
+---
 ## Ce que ce curriculum ne peut pas faire à ta place
 
 Finir ce curriculum te mène à 95 sur 100. Les 5 points restants ne viennent pas d'un
