@@ -224,9 +224,39 @@ Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souvi
 ---
 
 
-### Tableau bonus récap :
+### Tableau BONUS récap :
 | | localStorage | sessionStorage | Cookie |
 |---|---|---|---|
 | **Durée** | Pour toujours | Jusqu'à fermeture onglet | Tu choisis |
 | **Serveur peut lire ?** | nope | nope | ok |
 | **Usage typique** | Préférences user | Données temporaires | Authentification |
+
+
+
+#### SessionStorage -> La table pendant un cours :
+
+Tes données survivent aux rechargements mais **meurent quand tu fermes l'onglet**. Contrairement à une variable qui meurt au moindre rechargement, elle tient le coup pendant toute ta session.
+```js
+// Écrire
+sessionStorage.setItem("etape", "2");
+// Lire
+const etape = sessionStorage.getItem("etape");
+console.log(etape); // "2"
+// Supprimer
+sessionStorage.removeItem("etape");
+```
+> Parfait pour : formulaire multi-étapes, quiz en cours, données temporaires sensibles.
+
+#### Cookie -> Le post-it que le serveur peut lire :
+
+Le seul des trois que **le serveur peut lire**. Tu peux lui mettre une date d'expiration. C'est lui qui gère l'authentification et tout ce qui doit traverser le réseau.
+
+```js
+// Écrire un cookie
+document.cookie = "pseudo=Prometheus; max-age=604800"; // expire dans 7 jours
+// Lire les cookies
+console.log(document.cookie); // "pseudo=Prometheus"
+// Supprimer un cookie
+document.cookie = "pseudo=; max-age=0"; // max-age à 0 = suppression
+```
+> Parfait pour : session de connexion, langue côté serveur, tracking.
