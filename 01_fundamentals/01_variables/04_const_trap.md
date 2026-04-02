@@ -39,7 +39,7 @@ arr1 = [4, 5, 6];     // let autorise la réassignation
 
 const arr2 = [1, 2, 3];
 arr2 = [4, 5, 6];     // TypeError
-arr2.push(4);         // le contenu reste modifiable
+arr2.push(4);         // le contenu reste modifiable : tu vas à l'adresse 0x1A et tu modifies ce qu'il y a dedans. const s'en fout complètement, il surveille juste la variable, pas le contenu.
 ```
 
 ---
@@ -57,6 +57,30 @@ console.log(config.debug);  // false : rien n'a changé
 
 > Attention : `Object.freeze` est shallow. Les objets imbriqués restent mutables.
 
+#### `Object.freeze` : "Il Gèle Pas Tout, Menteur"
+
+Tu crois avoir tout freezé. T'as juste mis une vitre sur la surface.
+```js
+const config = Object.freeze({
+  env: "production",
+  database: { host: "localhost", port: 5432 }
+});
+
+config.env = "dev";           // mur de glace : ignoré
+config.database.port = 9999;  // passe à travers : objet imbriqué vivant
+```
+
+#### Ce que freeze voit vraiment :
+
+```
+config
+  ├── env      → "production"   ← gelé, intouchable
+  └── database → [ adresse ]    ← l'adresse est gelée... pas ce qu'elle pointe
+```
+
+Il protège la **clé**, pas la **maison derrière la clé**. Même arnaque que le shallow copy.
+
+> Pour un vrai deep freeze, il faudrait appeler `Object.freeze` récursivement sur chaque niveau. JS te laisse faire ça toi-même. Sympa de sa part.
 ---
 
 ## MISSION : Trouve le Bug
@@ -87,7 +111,7 @@ Ligne A → autorisé : on modifie le contenu d'un objet
 Ligne B → autorisé : on modifie le tableau (pas la variable)
 Ligne C → TypeError : Assignment to constant variable
            const bloque la réassignation, pas la mutation
-Ligne D → ne s'exécute jamais : le crash vient avant
+Ligne D → ne s'exécute jamais : le crash vient avant (jamais atteinte : le crash a déjà tué l'exécution. Tout ce qui vient après le mur n'existe plus.)
 ```
 
 ---
