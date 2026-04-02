@@ -14,6 +14,7 @@ for (let i = 0; i < 1000; i++) {
 liste.append(fragment); // injection unique
 
 
+
 /*
 EXO 2 : Event Delegation
 Crée une liste dynamique. Un seul event listener doit gérer le clic sur n'importe quel item pour le supprimer.
@@ -32,12 +33,13 @@ for (let i = 0; i < 5; i++) {
   newfragment.append(l);
 }
 ul.append(newfragment);
-ul.addEventListener("click", function (e) {
+ul.addEventListener("click", function (e) { // 1 listener sur ul plutôt que N listeners sur les boutons.
   if (e.target.matches("button")) {
-    e.target.closest("li").remove();
+    e.target.closest("li").remove(); //"pars de moi (le bouton), remonte dans les ancêtres, et donne-moi le premier <li> que tu trouves."
   }
 });
 // => mais ici, c'est pas grave si on utilise pas "fragment", c'est juste une ptite liste
+
 
 
 /*EXO 3 : Toggle Architecturé
