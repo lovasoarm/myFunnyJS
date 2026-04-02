@@ -1,4 +1,4 @@
-//NIVEAU 1 — LE COFFRE SECRET
+//NIVEAU 1 : LE COFFRE SECRET
 function createVault(secret) {
   // ça c'est du type closure
   let theSecret = secret;
@@ -57,7 +57,7 @@ Appel 1 → même boîte
 Appel 2 → même boîte (écrase)
 */
 
-// NIVEAU 2 — LE PIÈGE DU COMPTEUR
+// NIVEAU 2 : LE PIÈGE DU COMPTEUR
 function createLimitedCounter(limit) {
   let count = 0;
   return function counter() {
@@ -79,7 +79,7 @@ Appel 2 → nouvelle boîte
 Chaque boîte a son propre count.
 */
 
-//NIVEAU 3 — LA BOUCLE MAUDITE
+//NIVEAU 3 : LA BOUCLE MAUDITE
 for (var i = 1; i <= 3; i++) {
   setTimeout(function () {
     console.log("Door number:", i);
@@ -114,19 +114,19 @@ Qu’est-ce qui est recréé à chaque itération ?
 Iteration 1:
 BLOCK ENV #1
 └── i ─────► 1
-     ↑
+    ↑
    callback #1 capture CETTE référence
 
 Iteration 2:
 BLOCK ENV #2
 └── i ─────► 2
-     ↑
+    ↑
    callback #2 capture CETTE référence
 
 Iteration 3:
 BLOCK ENV #3
 └── i ─────► 3
-     ↑
+    ↑
    callback #3 capture CETTE référence
 
 */
@@ -164,7 +164,7 @@ Ici, x meurt à la fin des {}
 RESUME:
 *Closure → une fonction qui garde une boîte mémoire.
 *Function scope → var vit dans toute la fonction.
-*Block scope → let vit seulement dans {}.
+*Block scope → let ou const vit seulement dans {}.
 *Var en async → une seule variable partagée → chaos.
 */
 
