@@ -30,7 +30,7 @@ Pourquoi ? Parce que le réseau prend du temps. JS dit : _"Ok je lance la requê
 
 ---
 
-## 2) PROMISE — LA VALEUR DU FUTUR
+## 2) PROMISE : LA VALEUR DU FUTUR
 
 Quand tu fais `fetch(url)`, tu reçois une `Promise<Response>`.
 
@@ -58,12 +58,12 @@ Ce code signifie : envoie la requête → quand la réponse arrive → transform
 
 ## 3) VERSION MODERNE : ASYNC / AWAIT
 
-Les ingénieurs modernes préfèrent `async/await`. Pourquoi ? Parce que ça ressemble à du code normal — plus de chaîne de `.then()`.
+Les ingénieurs modernes préfèrent `async/await`. Pourquoi ? Parce que ça ressemble à du code normal : plus de chaîne de `.then()`.
 
 ```javascript
 async function loadUsers() {
   let response = await fetch("https://jsonplaceholder.typicode.com/users");
-  let data = await response.json();
+  let data = await response.json(); //C'est aussi asynchrone parce que les données peuvent arriver en plusieurs morceaux (streaming). Il faut attendre que tout soit reçu et converti en objet JS.
   console.log(data);
 }
 
@@ -92,7 +92,7 @@ async function loadUsers() {
 
   if (!response.ok) {
     console.log("Erreur serveur :", response.status);
-    return; // sort de la fonction — l'exécution s'arrête ici
+    return; // sort de la fonction —> l'exécution s'arrête ici
   }
 
   let users = await response.json();
@@ -136,12 +136,12 @@ async function loadData() {
 
   try {
     let response = await fetch("https://jsonplaceholder.typicode.com/users");
-    if (!response.ok) throw new Error("Erreur HTTP : " + response.status);
+    if (!response.ok) throw new Error("Erreur HTTP : " + response.status); //ce texte devient e.message
 
     let data = await response.json();
     console.log("Données reçues :", data.length, "users");
-  } catch (e) {
-    console.log("Erreur :", e.message);
+  } catch (e) { //e.message —> soit ton message custom du throw, soit le message automatique de JS.
+    console.log("Erreur :", e.message); //"Erreur : Erreur HTTP : 404" si ça plante
   } finally {
     console.log("Chargement terminé."); // s'affiche toujours
   }
