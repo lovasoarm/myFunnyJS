@@ -1,105 +1,104 @@
 # LE CHAOS DES RÉFÉRENCES
 
-On va aller plus profond.
+> T'as compris la théorie. Maintenant on va voir pourquoi ça explose en prod.
+
+---
+
+## 1. Ce qui se passe vraiment en mémoire
 
 Quand tu fais :
 
-```javascript
+```js
 let arr1 = [1, 2, 3];
 let arr2 = arr1;
 ```
 
-Tu ne copies **PAS** le tableau.
+JS ne duplique pas le tableau. Il copie **l'adresse mémoire**.
 
-Tu copies **l'adresse mémoire**.
+```
+arr1 ──┐
+       ├──→ [ 1, 2, 3 ]  (en mémoire, un seul objet)
+arr2 ──┘
+```
 
 Donc :
 
-```javascript
+```js
 arr2.push(4);
+console.log(arr1); // [1, 2, 3, 4] —> arr1 aussi
 ```
 
-Va aussi modifier `arr1`.
-
-Pourquoi ?
-
-Parce que `arr1` et `arr2` pointent vers le **MÊME** tableau en mémoire.
+Même adresse = même tableau = même chaos.
 
 ---
 
-## MÉMOIRE SIMPLIFIÉE
+## 2. Le piège du "backup"
 
-```
-Variable → adresse → objet
-```
+```js
+let team = [{ name: "Zombie1", hp: 100 }];
+let backupTeam = team; // pas une copie : même adresse
 
-Ce n'est pas :
-
-```
-Variable → objet
+backupTeam[0].hp += 50;
+console.log(team[0].hp); // 150 —> ton "backup" a modifié l'original
 ```
 
-C'est :
-
-```
-Variable → pointeur → objet
-```
-
-Si deux variables pointent au même endroit, elles contrôlent la même chose.
+`backupTeam` n'est pas un backup. C'est un **alias**.
 
 ---
 
-## COMMENT COPIER VRAIMENT ?
+## 3. Comment copier vraiment : Shallow Copy
 
-Pour un tableau :
+Pour créer un **nouveau** tableau ou objet :
 
-```javascript
-let newArr = [...arr1];
+```js
+let newArr = [...arr1];      // spread operator
+let newObj = { ...obj1 };   // idem pour les objets
 ```
 
-Pour un objet :
+Maintenant `newArr` et `arr1` sont deux tableaux distincts.
 
-```javascript
-let newObj = { ...obj1 };
+```
+arr1   ──→ [ 1, 2, 3 ]  (original)
+newArr ──→ [ 1, 2, 3 ]  (copie : adresse différente)
 ```
 
-Mais attention : ça fait une copie **superficielle** _(shallow copy)_.
-
-Si l'objet contient un objet à l'intérieur, la référence interne reste partagée.
-
-Et là… **chaos total**.
+**Mais attention** — c'est une copie **superficielle**. Si le tableau contient des objets, leurs références internes restent partagées. On appelle ça le **shallow copy**. Le niveau suivant ? `03_mutation_madness.md`.
 
 ---
 
-## POURQUOI C'EST CRUCIAL ?
+## MISSION : Team Crazy Zombies
 
-En React. En Node. En backend. En architecture. En performance.
+### Objectif
+Voir concrètement que deux variables peuvent pointer sur le même tableau.
 
-Si tu ne maîtrises pas ça, tu vas créer des **bugs invisibles**.
+### Instructions
 
----
+1. Crée un tableau `team` avec 3 zombies `{ name, hp }`.
+2. Crée `backupTeam` qui pointe sur **le même tableau** (pas de copie).
+3. Le boss booste le `hp` du premier zombie via `backupTeam` de **+50**.
+4. Un virus met le `hp` du deuxième zombie via `team` à **0**.
+5. Affiche `team` et `backupTeam`.
 
-# MISSION CHAOS
+### Code de départ
 
-## La Team Mutante
-
-1. Crée un tableau `team` avec 3 joueurs `{name, hp}`
-2. Crée une variable `shadowTeam` qui copie `team` **DIRECTEMENT**
-3. Enlève 50 hp au premier joueur via `shadowTeam`
-4. Affiche `team` et `shadowTeam`
-
-Ensuite :
-
-5. Crée une vraie copie avec le **spread operator**
-6. Modifie le deuxième joueur
-7. Observe la différence
-
-> Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.
-
-```javascript
+```js
 let team = [
-  { name: "Alpha", hp: 100 },
-  { name: "Beta", hp: 100 },
-  { name: "Gamma", hp: 100 },
+  { name: "Zombie1", hp: 100 },
+  { name: "Zombie2", hp: 100 },
+  { name: "Zombie3", hp: 100 },
 ];
+// Ton code ici
 ```
+
+### Résultat attendu
+
+```
+team[0].hp      → 150   // boosté via backupTeam
+team[1].hp      → 0     // détruit via team
+backupTeam[0].hp → 150  // même référence : même résultat
+backupTeam[1].hp → 0    // idem
+
+team === backupTeam → true
+```
+
+> `backupTeam` et `team` sont le **même tableau**. Le backup n'en est pas un.
