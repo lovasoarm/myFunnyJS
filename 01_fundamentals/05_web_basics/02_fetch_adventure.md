@@ -172,21 +172,21 @@ if (!response.ok) return; // on sort silencieusement
 
 // Avec throw : on force le catch à se déclencher
 if (!response.ok) throw new Error("Erreur HTTP : " + response.status);
-//                                 ↑ catch(e) reçoit ce message dans e.message
+//                                     ↑ catch(e) reçoit ce message dans e.message
 ```
 
 | Bloc      | Rôle                                             |
 | --------- | ------------------------------------------------ |
 | `try`     | code risqué                                      |
-| `catch`   | plan B si ça plante                              |
-| `finally` | s'exécute **toujours** — spinner, log, nettoyage |
+| `catch`   | plan B si ça plante(catche n'importe quel erreur)|
+| `finally` | s'exécute **toujours** : spinner, log, nettoyage |
 | `throw`   | lancer manuellement une erreur vers le `catch`   |
 
 > `finally` est fait pour les tâches de nettoyage : cacher un spinner de chargement, fermer une connexion base de données, logger la fin d'une opération : peu importe si ça a réussi ou échoué.
 
 ---
 
-## 6) POST — ENVOYER DES DONNÉES
+## 6) POST : ENVOYER DES DONNÉES
 
 `fetch` peut aussi envoyer des données, pas seulement en recevoir :
 
@@ -221,7 +221,7 @@ C'est tout. Mais c'est la base de : React apps, mobile apps, dashboards, SaaS, A
 
 ---
 
-# MISSIONS CRAZYDЕВS
+# MISSIONS
 
 ## MISSION 1 : LE RADAR À JOUEURS
 
