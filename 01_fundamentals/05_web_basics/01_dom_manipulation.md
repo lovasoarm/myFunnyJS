@@ -221,12 +221,12 @@ parent.addEventListener("click", function (event) {
 **Empêcher le comportement natif :**
 
 ```javascript
-// Sans preventDefault — la page recharge, le console.log disparaît
+// Sans preventDefault : la page recharge, le console.log disparaît
 form.addEventListener("submit", function (event) {
   console.log("Formulaire soumis !");
 });
 
-// Avec preventDefault — on garde le contrôle
+// Avec preventDefault : on garde le contrôle (Tu peux récupérer les données, les valider, les envoyer via fetch... tout ce que tu veux, à ta façon.)
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const valeur = document.querySelector("input").value;
@@ -276,7 +276,7 @@ for (let i = 0; i < 1000; i++) {
 }
 ```
 
-**Bon — DocumentFragment :**
+**Bon : DocumentFragment :**
 
 ```javascript
 const liste = document.querySelector("ul");
@@ -306,7 +306,7 @@ Avec fragment :
 [DOM] ←── fragment entier  (1 seul reflow)
 ```
 
-> `DocumentFragment` est un nœud léger sans tag HTML, sans style, sans layout. Il sert de sac temporaire. Quand tu l'injectes dans le DOM, le fragment lui-même disparaît — seuls ses enfants sont insérés.
+> `DocumentFragment` est un nœud léger sans tag HTML, sans style, sans layout. Il sert de sac temporaire. Quand tu l'injectes dans le DOM, le fragment lui-même disparaît : seuls ses enfants sont insérés.
 
 ---
 
@@ -342,7 +342,7 @@ Pas un listener par item. Un seul. Sur le parent.
 
 ## EXO 3 : Toggle Architecturé
 
-Crée un bouton qui toggle la classe `"dark"` sur le body. Contrainte : pas de manipulation `style` directe — uniquement `classList`.
+Crée un bouton qui toggle la classe `"dark"` sur le body. Contrainte : pas de manipulation `style` directe : uniquement `classList`.
 
 ---
 
