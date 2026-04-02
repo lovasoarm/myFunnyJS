@@ -62,7 +62,7 @@ arr1   ──→ [ 1, 2, 3 ]  (original)
 newArr ──→ [ 1, 2, 3 ]  (copie : adresse différente)
 ```
 
-**Mais attention** — c'est une copie **superficielle**. Si le tableau contient des objets, leurs références internes restent partagées. On appelle ça le **shallow copy**. Le niveau suivant ? `03_mutation_madness.md`.
+**Mais attention** : c'est une copie **superficielle**. Si le tableau contient des objets, leurs références internes restent partagées. On appelle ça le **shallow copy**. Le niveau suivant ? `03_mutation_madness.md`.
 
 ---
 
