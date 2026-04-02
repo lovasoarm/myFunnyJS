@@ -78,7 +78,7 @@ localStorage.getItem("player"); // "[object Object]" ← inutilisable
 
 ---
 
-## 5) JSON — LA SOLUTION
+## 5) JSON : LA SOLUTION
 
 ```javascript
 JSON.stringify(); // objet → texte
