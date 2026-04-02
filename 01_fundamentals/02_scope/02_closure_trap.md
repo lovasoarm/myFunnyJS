@@ -1,30 +1,35 @@
-# CLOSURE TRAP : FERMETURES & PIÈGES
+# CLOSURE TRAP : La Fonction Qui N'Oublie Jamais
 
-Bienvenue dans le monde des **closures** : une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit terminée.
+> Une closure c'est une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée. Comme un fantôme utile.
 
 ---
 
-## 1) CLOSURE BASIQUE
+## 1. Closure Basique : Le Compteur Immortel
 
-```javascript
+```js
 function makeCounter() {
-  let count = 0; // variable locale à makeCounter
+  let count = 0; // variable locale : normalement elle mourrait ici
   return function () {
     count += 1;
     return count;
   };
 }
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
 ```
 
-Crée ton propre test et observe ce que retourne la fonction à chaque appel.
+`makeCounter` est terminée. Mais `count` survit —> la fonction retournée la garde en mémoire. C'est ça une closure : une fonction avec une boîte mémoire privée.
 
-> À chaque appel de la fonction retournée, `count` persiste. Elle n'est pas réinitialisée : c'est la closure en action.
+> Crée un deuxième compteur `counter2 = makeCounter()` et observe qu'il repart de 0. Deux appels = deux boîtes séparées.
 
 ---
 
-## 2) PIÈGE CLASSIQUE AVEC BOUCLE
+## 2. Le Piège Classique : `var` Dans Une Boucle Async
 
-```javascript
+```js
 for (var i = 1; i <= 3; i++) {
   setTimeout(function () {
     console.log("i vaut :", i);
@@ -32,17 +37,32 @@ for (var i = 1; i <= 3; i++) {
 }
 ```
 
-Réfléchis avant de lancer. Que va afficher `i` ?
+**Réfléchis avant de lancer. Que va afficher `i` ?**
 
-> `var` n'est pas block-scoped : toutes les fonctions dans la boucle partagent la **même** variable `i`. Au moment où les `setTimeout` s'exécutent, la boucle est déjà terminée : `i` vaut `4`.
+```
+i vaut : 4
+i vaut : 4
+i vaut : 4
+```
+
+`var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent —> `i` vaut déjà `4`. Toutes les callbacks lisent la même valeur.
+
+```
+GLOBAL ENV
+└── i ──────────────► 4
+         ↑
+   callback #1 ───────┤
+   callback #2 ───────┤  ← toutes pointent sur le même i
+   callback #3 ───────┘
+```
 
 ---
 
-## 3) COMMENT RÉSOUDRE
+## 3. Comment Résoudre
 
 **Solution 1 : `let` à la place de `var` :**
 
-```javascript
+```js
 for (let i = 1; i <= 3; i++) {
   setTimeout(function () {
     console.log("i vaut :", i); // 1, 2, 3
@@ -50,11 +70,17 @@ for (let i = 1; i <= 3; i++) {
 }
 ```
 
-`let` est block-scoped : chaque itération crée sa propre variable `i`.
+`let` crée une nouvelle variable `i` à chaque itération. Chaque callback capture sa propre copie.
 
-**Solution 2 : IIFE (fonction immédiatement appelée) pour capturer la valeur :**
+```
+BLOCK ENV #1 → i = 1  ← callback #1 capture ça
+BLOCK ENV #2 → i = 2  ← callback #2 capture ça
+BLOCK ENV #3 → i = 3  ← callback #3 capture ça
+```
 
-```javascript
+**Solution 2 : IIFE pour capturer la valeur :**
+
+```js
 for (var i = 1; i <= 3; i++) {
   (function (j) {
     setTimeout(function () {
@@ -64,45 +90,82 @@ for (var i = 1; i <= 3; i++) {
 }
 ```
 
-L'IIFE crée un nouveau scope à chaque itération et capture la valeur courante de `i` dans `j`.
-
-> Teste les deux solutions et compare les résultats.
+L'IIFE crée un nouveau scope à chaque itération et capture la valeur courante de `i` dans `j`. Vieux pattern, mais utile à comprendre.
 
 ---
 
-## POURQUOI C'EST CRUCIAL ?
+## 4. Pourquoi Les Closures C'est Puissant ?
 
-- **Callbacks** : fonction passée pour être appelée plus tard
-- **Event listeners** : fonction qui réagit à un événement
-- **Async** : code qui s'exécute après un délai ou une promesse
+Les closures c'est pas juste un concept à connaître pour les entretiens. C'est ce qui fait fonctionner :
 
-Comprendre le piège te permet d'éviter des **bugs invisibles**. Les closures permettent aussi de créer des fonctions avec une "mémoire" privée et fiable.
+- Les **callbacks** : la fonction se souvient du contexte où elle a été créée
+- Les **event listeners** : chaque listener garde accès à ses variables locales
+- Les **modules** : mémoire privée sans classes, sans global
+- Tout l'**async** de JS : promises, setTimeout, fetch
 
----
-
-# MISSION CLOSURE TRAP
-
-## La Team Closure
-
-1. Crée une fonction `makeTeam()` qui initialise un tableau vide `team`
-2. Retourne une fonction `addPlayer(name)` qui ajoute un joueur au tableau et l'affiche
-3. Crée **deux équipes distinctes** avec `makeTeam()`
-4. Ajoute deux joueurs dans chaque équipe
-5. Observe comment chaque fonction garde sa **propre mémoire** : c'est la closure
-6. Refais un mini `for` loop avec `var` puis avec `let` pour voir le piège classique
-7. Réfléchis : qui voit quoi en mémoire ?
-
-> Comprends. Ne regarde pas juste le résultat. Réfléchis au scope.
+Si tu rates les closures, tu rates la moitié de comment JS fonctionne réellement.
 
 ---
 
-### Comparaison :
+## Comparaison multi-langages
+
 | Concept | JavaScript | Python | Dart | PHP |
 |---|---|---|---|---|
-| Closure native | oui, `function` retourne une `function` | oui, via `def` imbriqué | oui, via fonctions imbriquées | oui, depuis PHP 5.3 avec `use` |
+| Closure native | `function` retourne une `function` | `def` imbriqué | fonctions imbriquées | depuis PHP 5.3 avec `use` |
 | Capture de variable | automatique | automatique | automatique | manuelle avec `use ($var)` |
 | Piège boucle + async | `var` partage la même référence | pas de `var`, moins de piège | `let` block-scoped par défaut | peu pertinent, pas d'event loop natif |
 | Solution recommandée | `let` ou IIFE | `default arg` dans la lambda | `let` par défaut | `use` explicite |
-| Fonction anonyme | `function() {}` / `() => {}` | `lambda x: x` | `(x) => x` | `function() use () {}` |
-| Mémoire privée via closure | oui | oui | oui | oui mais verbeux |
-| Niveau de piège | eleve : `var` est silencieux | faible | faible | moyen : `use` oublié = bug |
+| Niveau de piège | élevé : `var` est silencieux | faible | faible | moyen : `use` oublié = bug |
+
+---
+
+## MISSION : La Team Closure
+
+### Instructions
+
+1. Crée `makeTeam()` qui initialise un tableau vide `team`
+2. Retourne une fonction `addPlayer(name)` qui ajoute un joueur et affiche le tableau
+3. Crée **deux équipes distinctes** avec `makeTeam()`
+4. Ajoute deux joueurs dans chaque équipe
+5. Observe que chaque équipe garde sa propre mémoire
+6. Refais un mini `for` avec `var` puis `let` —> observe la différence
+
+### Code de départ
+
+```js
+function makeTeam() {
+  // ton code ici
+}
+
+const alphaTeam = makeTeam();
+const betaTeam = makeTeam();
+
+// Ajoute des joueurs ici
+```
+
+### Résultat attendu
+
+```
+// alphaTeam
+Équipe : ["Link"]
+Équipe : ["Link", "Zelda"]
+
+// betaTeam
+Équipe : ["Mario"]
+Équipe : ["Mario", "Luigi"]
+
+// alphaTeam non contaminée
+alphaTeam toujours : ["Link", "Zelda"]
+
+// boucle var
+i vaut : 4
+i vaut : 4
+i vaut : 4
+
+// boucle let
+i vaut : 1
+i vaut : 2
+i vaut : 3
+```
+
+> Deux appels à `makeTeam()` = deux boîtes mémoire séparées. C'est exactement ça une closure.
