@@ -1,109 +1,113 @@
-# MUTATION MADNESS : SHALLOW VS DEEP COPY
+# MUTATION MADNESS : Shallow vs Deep Copy
 
-Bienvenue dans le chaos ultime.
+> Tu croyais avoir copié. T'as juste dupliqué le chaos.
 
-Quand tu fais :
+---
 
-```javascript
+## 1. Le problème du shallow copy avec des objets imbriqués
+
+```js
 let monsters = [
   { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc", hp: 150, attack: { dmg: 30, type: "smash" } },
+  { name: "Orc",    hp: 150, attack: { dmg: 30, type: "smash" } },
 ];
 
 let shallowMonsters = [...monsters];
 ```
 
-Tu as copié le tableau, mais **pas les objets à l'intérieur**.
+Le tableau est nouveau. Mais les objets à l'intérieur ? **Même référence.**
+
+```
+monsters       ──→ [ obj1, obj2 ]
+shallowMonsters ──→ [ obj1, obj2 ]  ← mêmes objets, pas des copies
+```
 
 Donc :
 
-```javascript
+```js
 shallowMonsters[0].attack.dmg += 10;
+console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 ```
-
-Va **aussi** modifier `monsters[0].attack.dmg`.
 
 ---
 
-## MÉMOIRE SIMPLIFIÉE
-
-```
-Variable → tableau → objets → objets imbriqués
-```
+## 2. Shallow vs Deep : le tableau de vérité
 
 | Type         | Tableau | Objets internes | Objets imbriqués |
 | ------------ | ------- | --------------- | ---------------- |
 | Shallow copy | nouveau | partagés        | partagés         |
 | Deep copy    | nouveau | nouveaux        | nouveaux         |
 
-Si tu ne comprends pas ça, tu vas créer des **bugs invisibles**.
-
 ---
 
-## COMMENT FAIRE UNE VRAIE COPIE ?
+## 3. Comment faire une vraie Deep Copy
 
-**Shallow** : copie le tableau uniquement :
+**Manuelle avec `map` + spread** : quand t'as un niveau d'imbrication :
 
-```javascript
-let shallowMonsters = [...monsters];
-```
-
-**Deep manuelle** : copie les objets imbriqués :
-
-```javascript
+```js
 let deepMonsters = monsters.map((monster) => ({
   ...monster,
-  attack: { ...monster.attack },
+  attack: { ...monster.attack }, // on recopie aussi l'objet imbriqué
 }));
 ```
 
-**Deep native** : pour des structures très imbriquées :
+**`structuredClone`** : la méthode moderne, pour tout le reste :
 
-```javascript
+```js
 let deepMonsters = structuredClone(monsters);
 ```
 
-> `structuredClone` est la méthode moderne recommandée. Elle gère tous les niveaux d'imbrication sans code supplémentaire.
+Un seul appel. Tous les niveaux copiés. Fini le chaos.
+
+> Limite de `structuredClone` : ne fonctionne pas avec les `Function` et les classes complexes. Pour du JSON classique, c'est parfait.
 
 ---
 
-## POURQUOI C'EST CRUCIAL ?
+## MISSION : La Team Chaotique
 
-- **React / Vue** : le state doit rester immuable
-- **Backend** : éviter de modifier un objet partagé par erreur
-- **Architecture** : sécurité mémoire
-- **Performance** : éviter des mutations surprises
+### Objectif
+Comprendre la différence entre shallow et deep copy sur des objets imbriqués.
 
----
+### Instructions
 
-# MISSION MUTATION MADNESS
+**Partie 1 : Le chaos**
+1. Crée `monsters` avec 3 monstres `{ name, hp, attack: { dmg, type } }`.
+2. Crée `shallowMonsters` avec le spread operator `[...]`.
+3. Modifie le `dmg` du premier monstre via `shallowMonsters`.
+4. Affiche `monsters` et `shallowMonsters` — observe que **les deux ont changé**.
 
-## La Team Chaotique
+**Partie 2 : Le contrôle**
 
-1. Crée un tableau `monsters` avec 3 monstres :
-   ```javascript
-   { name, hp, attack: { dmg, type } }
-   ```
-2. Crée une copie `shallowMonsters` avec le spread operator `[...]`
-3. Modifie `dmg` du premier monstre via `shallowMonsters`
-4. Affiche `monsters` et `shallowMonsters`
-   → Observe le chaos : **les deux tableaux ont changé**
+5. Crée `deepMonsters` avec `map` + spread imbriqué.
+6. Modifie le `dmg` du deuxième monstre via `deepMonsters`.
+7. Affiche `monsters` et `deepMonsters` — `monsters` **doit rester intact**.
 
-Ensuite :
+**Bonus : structuredClone**
 
-5. Crée une vraie copie `deepMonsters` avec `map` + spread
-6. Modifie `dmg` du deuxième monstre via `deepMonsters`
-7. Affiche `monsters` et `deepMonsters`
-   → Observe que `monsters` **reste intact**
+8. Refais la partie 2 en une ligne avec `structuredClone`.
+9. Même résultat, zéro effort.
 
-```javascript
+### Code de départ
+
+```js
 let monsters = [
   { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc", hp: 150, attack: { dmg: 30, type: "smash" } },
-  { name: "Troll", hp: 200, attack: { dmg: 40, type: "crush" } },
+  { name: "Orc",    hp: 150, attack: { dmg: 30, type: "smash" } },
+  { name: "Troll",  hp: 200, attack: { dmg: 40, type: "crush" } },
 ];
-
 // Ton code ici
+```
+
+### Résultat attendu
+
+```
+// Après partie 1
+monsters[0].attack.dmg      → 30   // modifié : shallow copy piégé
+shallowMonsters[0].attack.dmg → 30 // idem : même référence
+
+// Après partie 2
+monsters[1].attack.dmg      → 30   // intact : deep copy protège l'original
+deepMonsters[1].attack.dmg  → 10   // modifié uniquement ici
 ```
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.
