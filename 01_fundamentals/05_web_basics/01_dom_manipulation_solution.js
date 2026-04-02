@@ -53,6 +53,7 @@ b.addEventListener("click", function () {
 });
 
 
+
 /*
 EXO 4 : Form Control
 Crée un formulaire avec ces contraintes :
