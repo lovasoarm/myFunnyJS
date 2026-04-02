@@ -147,13 +147,14 @@ MyFunnyJS/
 ├── README.md                                              # Le manifeste CrazyDevs : lis ça avant de coder
 ├── CONTRIBUTING.md                                        # Comment contribuer sans tout péter
 │
-│
+│ 
 ├── 01_fundamentals/                                       # Les bases : zéro excuse de les ignorer
 │   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md
 │   ├── 01_variables/                                      # Variables : le Super Pouvoir
 │   │   ├── 01_intro_variables.js                          # Primitives vs objets, la vérité cachée
 │   │   ├── 02_reference_chaos.js                          # Les références qui foutent tout en l'air
 │   │   └── 03_mutation_madness.js                         # Mutation & copies : shallow vs deep
+│   │   └── 04_const_trap.js                               # `const` ne veut pas dire immuable
 │   ├── 02_scope/                                          # Scope & Contexte : où vit ton code ?
 │   │   ├── 01_scope_basics.js                             # Global, local, block : les territoires
 │   │   ├── 02_closure_trap.js                             # Fermetures et pièges mortels
