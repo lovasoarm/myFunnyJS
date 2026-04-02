@@ -94,20 +94,21 @@ if (savedTheme === "dark") {
 b.addEventListener("click", function () {
   document.body.classList.toggle("dark");
 
-  const theme = document.body.classList.contains("dark") ? "dark" : "white";
+  const theme = document.body.classList.contains("dark") ? "dark" : "white"; 
+  //1er clic  → dark n'est pas là → il l'ajoute    → DARK
+  //2ème clic → dark est là       → il le retire   → WHITE (et ainsi de suite...)
   localStorage.setItem("theme", theme); // sauvegarde le vrai état
 });
 
 /*
 Le flux complet :
-Page charge
-    ↓
-localStorage a "dark" ? → ajoute classe dark sur body
-    ↓
-Clic bouton
-    ↓
-toggle dark sur body
-    ↓
-body a la classe dark ? → sauvegarde "dark"
-                        → sauvegarde "white"
+Première visite
+    → localStorage vide
+    → condition fausse
+    → page en WHITE ← défaut
+
+Après avoir cliqué une fois sur dark + rechargé
+    → localStorage a "dark"
+    → condition vraie
+    → page en DARK
 */
