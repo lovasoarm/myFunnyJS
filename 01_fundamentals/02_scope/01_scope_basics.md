@@ -1,114 +1,133 @@
-# SCOPE BASICS : GLOBAL, LOCAL, BLOCK
+# SCOPE : Où Vit Ta Variable ?
 
-Bienvenue dans le royaume des portées.
-
-En JS, **la portée** _(scope)_ définit **où une variable existe et peut être vue**.
+> Chaque variable a une zone de vie. En dehors de cette zone, elle n'existe plus. Elle est morte. ReferenceError. Game over.
 
 ---
 
-## 1) GLOBAL SCOPE
+## 1. Global Scope : La Variable Qui Traîne Partout
 
-Une variable globale vit **partout dans ton code**.
+Elle est déclarée dehors, elle vit partout. Toutes les fonctions peuvent la voir.
 
-```javascript
-let globalVar = "Je suis partout";
+```js
+let hero = "Link";
 
-function printGlobal() {
-  console.log(globalVar); // accessible
+function adventure() {
+  console.log(hero); // "Link" : accessible depuis la fonction
 }
 
-printGlobal();
-console.log(globalVar); // accessible aussi
+adventure();
+console.log(hero); // "Link" : accessible dehors aussi
 ```
 
-> Attention : trop de variables globales = chaos assuré.
+> Trop de globales = n'importe qui peut modifier n'importe quoi. C'est le chaos de la colocation où tout le monde touche à tout.
 
 ---
 
-## 2) LOCAL SCOPE (FUNCTION)
+## 2. Local Scope : Ce Qui Se Passe Dans La Fonction Reste Dans La Fonction
 
-Une variable locale n'existe **que dans la fonction** où elle a été déclarée.
+Une variable déclarée dans une fonction meurt quand la fonction se termine.
 
-```javascript
-function myFunc() {
-  let localVar = "Je suis local";
-  console.log(localVar); // OK
+```js
+function adventure() {
+  let weapon = "Sword"; // vit ici et nulle part ailleurs
+  console.log(weapon);  // OK
 }
 
-myFunc();
-console.log(localVar); // ReferenceError -> introuvable
+adventure();
+console.log(weapon); // ReferenceError : weapon est morte
 ```
 
 ---
 
-## 3) BLOCK SCOPE (`if`, `for`, `while`)
+## 3. Block Scope : `let` et `const` Respectent les `{}`
 
-`let` et `const` respectent le **scope du bloc** :
+Un bloc c'est tout ce qui est entre `{}` : `if`, `for`, `while`.
 
-```javascript
+```js
 if (true) {
-  let blockVar = "Je vis ici";
-  console.log(blockVar); // OK
+  let potion = "Health"; // vit dans ce bloc uniquement
+  console.log(potion);   // OK
 }
-console.log(blockVar); // ReferenceError -> le bloc est terminé
+
+console.log(potion); // ReferenceError : le bloc est terminé
 ```
 
-| Mot-clé | Scope                             |
-| ------- | --------------------------------- |
-| `var`   | function scope : ignore les blocs |
-| `let`   | block scope : safe                |
-| `const` | block scope : safe                |
+**Mais `var` s'en fout des blocs :**
 
-> Règle simple : n'utilise jamais `var`. Préfère toujours `let` ou `const`.
+```js
+if (true) {
+  var ghost = "Je fuis partout";
+}
+
+console.log(ghost); // "Je fuis partout" : var ignore le bloc
+```
+
+| Mot-clé | Scope | Safe ? |
+| ------- | ----- | ------ |
+| `var`   | function scope : ignore les `{}` | nope |
+| `let`   | block scope : respecte les `{}`  | ok   |
+| `const` | block scope : respecte les `{}`  | ok   |
+
+> Règle d'or : `var` n'existe pas dans ton vocabulaire. `let` et `const` seulement.
 
 ---
 
-## 4) POURQUOI C'EST CRUCIAL ?
+## 4. Pourquoi c'est crucial
 
-- Évite de polluer le scope global
-- Prévient les bugs où une variable change sans prévenir
-- Permet de gérer correctement les closures et l'async
-- Base indispensable avant les patterns avancés et l'architecture JS
+Sans scope control :
+- Une variable globale se fait écraser sans prévenir
+- Un bug dans une boucle contamine tout le reste
+- Les closures et l'async deviennent un enfer
+
+Avec scope control : chaque variable vit exactement là où elle doit vivre. Pas plus loin.
 
 ---
 
-# MISSION SCOPE BASICS
+## Comparaison multi-langages
 
-## La Team Scope
+| Concept | JavaScript | Python | Dart | PHP |
+| ------- | ---------- | ------ | ---- | --- |
+| Variable globale | `let x` hors fonction | `x = 42` hors fonction | `var x` hors classe | `$x` hors fonction |
+| Variable locale | `let x` dans une fonction | `x = 42` dans une fonction | `var x` dans une fonction | `$x` dans une fonction |
+| Block scope | `let` / `const` | pas natif | oui par défaut | oui avec `{}` |
+| Mot-clé à éviter | `var` | . | . | . |
+| Constante | `const` | . | `final` / `const` | `define()` / `const` |
+| Erreur hors scope | `ReferenceError` | `NameError` | erreur de compilation | `Undefined variable` |
+| Niveau de rigueur | flexible | permissif | strict | semi-strict |
 
-1. Crée une variable globale `hero = "Link"`
-2. Crée une fonction `adventure()` qui déclare une variable locale `weapon = "Sword"`
-3. Dans la fonction, affiche `hero` et `weapon`
-4. Hors de la fonction, essaie d'afficher `weapon` → observe l'erreur
-5. Crée un `if (true)` et à l'intérieur déclare `let potion = "Health"`
-6. Essaie d'afficher `potion` hors du bloc → observe l'erreur
+---
 
-```javascript
+## MISSION : La Zone Interdite
+
+### Instructions
+
+1. Déclare une variable globale `hero = "Link"`
+2. Crée une fonction `adventure()` avec une variable locale `weapon = "Sword"`
+3. Dans la fonction : affiche `hero` et `weapon`
+4. Hors de la fonction : essaie d'afficher `weapon` → observe l'erreur
+5. Crée un `if (true)` avec `let potion = "Health"` à l'intérieur
+6. Hors du bloc : essaie d'afficher `potion` → observe l'erreur
+
+### Code de départ
+
+```js
 let hero = "Link";
 
 function adventure() {
   let weapon = "Sword";
-  console.log("Dans la fonction:", hero, weapon);
+  console.log("Dans la fonction :", hero, weapon);
 }
 
 adventure();
-
 // Ton code ici
 ```
 
-> **Scope = zone de vie de ta variable.**
-> C'est la base avant de te lancer dans les closures, le context et l'event loop.
+### Résultat attendu
 
----
+```
+Dans la fonction : Link Sword
+ReferenceError: weapon is not defined   ← hors fonction
+ReferenceError: potion is not defined   ← hors bloc
+```
 
-### Comparaison avec certains langages:
-
-| Concept               | JavaScript                 | Python                     | Dart                      | PHP                    |
-| --------------------- | -------------------------- | -------------------------- | ------------------------- | ---------------------- |
-| Variable globale      | `let x` en haut du fichier | `x = 42` hors fonction     | `var x` hors classe       | `$x` hors fonction     |
-| Variable locale       | `let x` dans une fonction  | `x = 42` dans une fonction | `var x` dans une fonction | `$x` dans une fonction |
-| Block scope           | `let`/`const`              | pas de block scope natif   | oui, par défaut           | oui, `{}`              |
-| Mot-clé à éviter      | `var` (function scope)     | .                          | .                         | .                      |
-| Déclaration constante | `const`                    | .                          | `final` / `const`         | `define()` / `const`   |
-| Erreur hors scope     | `ReferenceError`           | `NameError`                | erreur de compilation     | `Undefined variable`   |
-| Niveau de rigueur     | flexible                   | permissif                  | strict                    | semi-strict            |
+> **Scope = zone de vie de ta variable.** C'est la base de tout ce qui vient après : closures, async, architecture.
