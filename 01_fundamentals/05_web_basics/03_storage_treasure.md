@@ -4,7 +4,7 @@ Ton navigateur peut garder des données. Même si la page est rechargée. Même 
 
 C'est comme un petit coffre-fort.
 
-Deux outils principaux : **LocalStorage** et **Cookies**. Aujourd'hui on parle surtout de LocalStorage : parce que c'est simple et utilisé partout.
+Deux outils principaux : **LocalStorage** et **Cookies**(le seul que le serveur peut lire.). Aujourd'hui on parle surtout de LocalStorage : parce que c'est simple et utilisé partout.
 
 ---
 
@@ -25,7 +25,7 @@ Donc les navigateurs ont inventé **LocalStorage** : un petit disque dur intégr
 
 ---
 
-## 2) LOCALSTORAGE — LE COFFRE DU NAVIGATEUR
+## 2) LOCALSTORAGE : LE COFFRE DU NAVIGATEUR
 
 LocalStorage = stockage **permanent** dans le navigateur.
 
@@ -133,7 +133,7 @@ C'est un mini disque dur du navigateur. Discret, rapide, et il ne se plaint jama
 
 ---
 
-# MISSIONS CRAZYDЕВS
+# MISSIONS
 
 ## MISSION 1 : LE TRÉSOR DU JOUEUR
 
@@ -151,7 +151,7 @@ Sauvegarde-le dans `localStorage`, récupère-le et affiche :
 
 ---
 
-## MISSION 2 — LE COMPTEUR IMMORTEL
+## MISSION 2 : LE COMPTEUR IMMORTEL
 
 Crée un compteur qui augmente de `+1` à chaque chargement de page.
 
@@ -219,5 +219,14 @@ localStorage.setItem("key", JSON.stringify(obj));
 // Le récupérer
 const obj = JSON.parse(localStorage.getItem("key"));
 ```
-
 Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent de l'utilisateur.
+
+---
+
+
+### Tableau bonus récap :
+| | localStorage | sessionStorage | Cookie |
+|---|---|---|---|
+| **Durée** | Pour toujours | Jusqu'à fermeture onglet | Tu choisis |
+| **Serveur peut lire ?** | nope | nope | ok |
+| **Usage typique** | Préférences user | Données temporaires | Authentification |
