@@ -1,4 +1,8 @@
-//EXO 1 — Liste scalable
+/*
+EXO 1 : Liste Scalable
+Crée dynamiquement 1000 <li> et optimise l'insertion.
+Indice : DocumentFragment.
+*/
 const liste = document.querySelector("ul"); // cible dans le DOM
 const fragment = document.createDocumentFragment();
 for (let i = 0; i < 1000; i++) {
@@ -9,7 +13,12 @@ for (let i = 0; i < 1000; i++) {
 }
 liste.append(fragment); // injection unique
 
-//EXO 2 — Event Delegation
+
+/*
+EXO 2 : Event Delegation
+Crée une liste dynamique. Un seul event listener doit gérer le clic sur n'importe quel item pour le supprimer.
+Pas un listener par item. Un seul. Sur le parent.
+*/
 const ul = document.createElement("ul");
 document.body.append(ul);
 
@@ -30,7 +39,10 @@ ul.addEventListener("click", function (e) {
 });
 // => mais ici, c'est pas grave si on utilise pas "fragment", c'est juste une ptite liste
 
-// EXO 3 — Toggle Architecturé
+
+/*EXO 3 : Toggle Architecturé
+Crée un bouton qui toggle la classe "dark" sur le body. Contrainte : pas de manipulation style directe : uniquement classList.
+*/
 const b = document.createElement("button");
 document.body.append(b);
 
@@ -38,7 +50,14 @@ b.addEventListener("click", function () {
   document.body.classList.toggle("dark"); // change le background en dark dans css si present
 });
 
-// EXO 4 — Form Control
+
+/*
+EXO 4 : Form Control
+Crée un formulaire avec ces contraintes :
+Empêcher le submit si l'input est vide
+Afficher un message d'erreur via le DOM
+Pas d'alert()
+Gestion propre du flux. */
 // Créer les éléments
 const form = document.createElement("form");
 
@@ -71,7 +90,6 @@ form.addEventListener("submit", function (e) {
   erreur.textContent = ""; // reset l'erreur
   console.log("Nom :", inputNom.value, "| Age :", inputAge.value);
 });
-
 // ### Le flux propre
 // ```
 // Submit déclenché
