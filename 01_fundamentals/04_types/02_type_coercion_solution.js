@@ -1,4 +1,4 @@
-console.log("10" + 5); //105
+console.log("10" + 5); //"105"
 console.log("10" - 5); //forcing calcul -> 5
 console.log(true + 1); //true s'évalue à 1 donc 1+1 = 2
 console.log(false + 1); //false s'évalue en 0 donc 1+0 = 1
