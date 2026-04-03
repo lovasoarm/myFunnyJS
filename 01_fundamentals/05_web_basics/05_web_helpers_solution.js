@@ -22,7 +22,7 @@ append(document.body, button);
 
 on(button, "click", () => {
   let p = create("p"); // nouveau p créé à chaque clic
-  addTitle(p, "🧟 un zombie apparaît !");
+  addTitle(p, "grrr un zombie apparaît !");
   append(document.body, p);
 });
 
