@@ -4,15 +4,13 @@ let validatePrice = Number(price);
 console.log(validatePrice + 1);
 
 //EXO 2
-let size = "300px";
-function validateSize() {
-  if (typeof size === "number" && !Number.isNaN(size)) {
-    return "ok";
-  } else {
-    return -1;
-  }
+function validateSize(value) {
+  const parsed = parseInt(value);
+  if (Number.isNaN(parsed)) return -1;
+  return parsed;
 }
-console.log(validateSize());
+console.log(validateSize("300px")); // 300
+console.log(validateSize("abc"));   // -1
 
 //EXO 3
 Boolean("false"); // true, ya des trucs dedans
