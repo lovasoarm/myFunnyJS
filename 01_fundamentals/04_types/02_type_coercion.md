@@ -2,7 +2,7 @@
 
 JavaScript est un langage **dynamique** (dynamique = les variables peuvent changer de type).
 
-Donc JS convertit parfois les types automatiquement. Ça s'appelle la **coercion** —> conversion automatique d'un type vers un autre.
+Donc JS convertit parfois les types automatiquement. Ça s'appelle la **coercion** → conversion automatique d'un type vers un autre.
 
 Et c'est là que le chaos commence.
 
@@ -25,7 +25,6 @@ console.log("5" - 1); // 4
 Pourquoi ? Le `-` force une conversion en number. `"5"` devient `5`, donc `5 - 1 = 4`.
 
 Résumé :
-
 - `+` peut faire de la **concaténation** si une string est présente
 - `-`, `*`, `/` forcent toujours un calcul **numérique**
 
@@ -36,7 +35,7 @@ Résumé :
 ## 2) `==` VS `===`
 
 ```javascript
-console.log(5 == "5"); // true
+console.log(5 == "5");  // true
 console.log(5 === "5"); // false
 ```
 
@@ -50,13 +49,12 @@ console.log(5 === "5"); // false
 ## 3) LES CAS TORDUS
 
 ```javascript
-console.log(false == 0); // true
-console.log("" == 0); // true
+console.log(false == 0);       // true
+console.log("" == 0);          // true
 console.log(null == undefined); // true
 ```
 
 Pourquoi ? JS applique des règles internes de conversion :
-
 - `false` → devient `0`
 - `""` → devient `0`
 - `null` et `undefined` sont considérés égaux entre eux avec `==`
@@ -75,7 +73,7 @@ Tu contrôles la conversion. Pas de magie cachée.
 
 ```javascript
 // String vers Number
-Number("10"); // 10
+Number("10");   // 10
 parseInt("10"); // 10
 
 // Number vers String
@@ -106,11 +104,9 @@ false, 0, "", null, undefined, NaN
 if ("hello") {
   console.log("C'est vrai"); // s'exécute : string non vide = truthy
 }
-
 if ("0") {
   console.log("Aussi vrai"); // s'exécute : "0" est une string non vide
 }
-
 if (0) {
   console.log("Jamais"); // ne s'exécute pas : 0 est falsy
 }
@@ -136,25 +132,24 @@ Si tu ne maîtrises pas la coercion, tu **subis** JavaScript.
 **Étape 1 : observe et comprends chaque résultat :**
 
 ```javascript
-console.log("10" + 5);
-console.log("10" - 5);
-console.log(true + 1);
-console.log(false + 1);
+console.log("10" + 5);   // "105" ← string, pas number
+console.log("10" - 5);   // 5
+console.log(true + 1);   // 2
+console.log(false + 1);  // 1
 ```
 
 **Étape 2 : compare :**
 
 ```javascript
-console.log(null == 0);
-console.log(null == undefined);
-console.log(null === undefined);
+console.log(null == 0);          // false
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
 ```
 
 **Étape 3 : crée une variable et teste la condition :**
 
 ```javascript
 let input = "0";
-
 if (input) {
   console.log("truthy");
 } else {
