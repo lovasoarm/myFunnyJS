@@ -1,4 +1,4 @@
-//MISSION 1 : LE PORTAIL DES HÉROS
+//MISSION 1 : LE PORTAIL DES HÉROS -> Génère une carte HTML pour chaque héros
 let heroes = [
   { name: "Blob", level: 5 },
   { name: "Zorg", level: 9 },
@@ -13,7 +13,12 @@ heroes.forEach((hero) => {
 });
 //document.body.innerHTML = html;
 
-//MISSION 2 : LA TAVERNE DES ARMES
+
+
+/*MISSION 2 : LA TAVERNE DES ARMES
+Crée une fonction createWeaponCard(weapon) qui retourne ce template : "<div class="weapon">Katana - 120 dmg</div>"
+Ensuite génère plusieurs armes depuis un tableau.
+*/
 let createWeaponCard = function (weapon) {
   return `
         <div class="weapon">
@@ -26,7 +31,9 @@ html2 += createWeaponCard({ name: "Katana", damage: 120 });
 html2 += createWeaponCard({ name: "Dragonov", damage: 1000 });
 //document.body.innerHTML = html2;
 
-//MISSION 3 — LA LISTE DES MONSTRES
+
+
+//MISSION 3 : LA LISTE DES MONSTRES -> "Génère une liste HTML"
 let html3 = "<ul>";
 let monsters = [
   { name: "Goblin", hp: 30 },
@@ -45,7 +52,12 @@ html3 += "</ul>";
      +html3 += "</ul>" → il ferme la chaîne
 */
 
-//MISSION 4 — LE PORTAIL MAGIQUE
+
+
+/*MISSION 4 : LE PORTAIL MAGIQUE
+Crée un <input>. Quand l'utilisateur tape un nom, JS crée dynamiquement une carte joueur : Input : "Blob"
+→ <div class="player">Blob vient d'entrer dans l'arène</div>
+*/
 /* dans html:
 <input type="text" placeholder="Entrez un nom">
 <button>Entrer</button>
@@ -67,8 +79,12 @@ btn.addEventListener("click", function () {
 -document.body.innerHTML += → recrée tout le body à chaque clic
 -arena.innerHTML += → modifie seulement la zone cible, le bouton et l'input sont préservés */
 
-//MISSION 5 — LA MACHINE À CARTES
-//html : <div id="list"></div>
+
+
+/*MISSION 5 : LA MACHINE À CARTES
+Crée une fonction renderCards(list) qui prend n'importe quel tableau d'objets et génère automatiquement tout le HTML. (data → template → DOM)
+*/
+//dans html : <div id="list"></div>
 let listes = document.querySelector("#list");
 
 let renderCards = function (list) {
