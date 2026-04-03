@@ -135,7 +135,7 @@ Dans une vraie app, tu manipules le DOM **des centaines de fois**. Les helpers p
 C'est la base de nombreuses librairies. Exemple historique : **jQuery** faisait exactement ça.
 
 ```javascript
-$("#button").click(fn); // jQuery, 2006 — pionnier du helper DOM
+$("#button").click(fn); // jQuery, 2006 : pionnier du helper DOM
 ```
 
 Les helpers sont une **couche d'abstraction** : une simplification d'un système complexe. Tu caches la complexité derrière un nom qui dit ce qu'il fait.
