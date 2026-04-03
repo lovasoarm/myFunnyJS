@@ -1,4 +1,4 @@
-//MISSION 1 — LE PORTAIL DES HÉROS
+//MISSION 1 : LE PORTAIL DES HÉROS
 let heroes = [
   { name: "Blob", level: 5 },
   { name: "Zorg", level: 9 },
@@ -13,7 +13,7 @@ heroes.forEach((hero) => {
 });
 //document.body.innerHTML = html;
 
-//MISSION 2 — LA TAVERNE DES ARMES
+//MISSION 2 : LA TAVERNE DES ARMES
 let createWeaponCard = function (weapon) {
   return `
         <div class="weapon">
@@ -39,12 +39,11 @@ monsters.forEach((m) => {
 
 html3 += "</ul>";
 //document.body.innerHTML = html3;
-/*Rendu correct :
-html<ul>
-    <li>Goblin - 30hp</li>
-    <li>Dragon - 500hp</li>
-    <li>Slime - 10hp</li>
-</ul> */
+/*Le moteur JS lit et exécute ça dans l'ordre (concaténation séquentielle):
+     +html3 = "<ul>" → la variable contient juste "<ul>"
+     +Le forEach tourne 3 fois, et à chaque tour il colle un <li> à la fin
+     +html3 += "</ul>" → il ferme la chaîne
+*/
 
 //MISSION 4 — LE PORTAIL MAGIQUE
 /* dans html:
