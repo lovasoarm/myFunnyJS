@@ -245,7 +245,7 @@ C'est exactement le moteur des frameworks. Tu viens de le réinventer.
 # RÉSUMÉ
 
 ```javascript
-`Hello ${name}`; // interpolation — variable dans du texte
+`Hello ${name}`; // interpolation : variable dans du texte
 ```
 
 Template strings permettent : HTML dynamique, interpolation, multi-ligne.
