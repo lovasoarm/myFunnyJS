@@ -218,7 +218,7 @@ Génère une liste HTML :
 
 ---
 
-## MISSION 4 — LE PORTAIL MAGIQUE
+## MISSION 4 : LE PORTAIL MAGIQUE
 
 Crée un `<input>`. Quand l'utilisateur tape un nom, JS crée dynamiquement une carte joueur :
 
@@ -230,7 +230,7 @@ Input : "Blob"
 
 ---
 
-## MISSION 5 — LA MACHINE À CARTES
+## MISSION 5 : LA MACHINE À CARTES
 
 Crée une fonction `renderCards(list)` qui prend n'importe quel tableau d'objets et génère automatiquement tout le HTML.
 
