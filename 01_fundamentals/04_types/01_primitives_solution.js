@@ -18,4 +18,4 @@ console.log(score);
 let player = { hp: 100 };
 let clone = player;
 clone.hp = 50;
-console.log(clone);
+console.log(clone); //{ hp: 50 } ← même objet en mémoire, // player.hp ← modifié aussi
