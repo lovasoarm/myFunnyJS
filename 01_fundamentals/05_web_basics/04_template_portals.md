@@ -1,6 +1,6 @@
 # TEMPLATE PORTALS : TEMPLATE STRINGS & DOM TEMPLATING
 
-Aujourd'hui on attaque un truc **fondamental du web moderne** : générer du HTML avec JavaScript.
+Aujourd'hui, on attaque un truc **fondamental du web moderne** : générer du HTML avec JavaScript.
 
 Pourquoi ? Parce que dans une vraie application, les données viennent d'une API, l'utilisateur interagit, l'interface doit changer. Le navigateur doit **créer du HTML dynamiquement**.
 
@@ -143,7 +143,7 @@ Tu peux maintenant générer des centaines de cartes avec la même fonction. Don
 
 ```javascript
 document.body.innerHTML = html; // remplace tout
-document.body.innerHTML += html; // ajoute — mais recrée tout le DOM à chaque fois
+document.body.innerHTML += html; // ajoute —> mais recrée tout le DOM à chaque fois
 ```
 
 Dans les grosses apps, recréer le DOM à chaque update devient lent. C'est pour ça que les frameworks ont inventé le **Virtual DOM** : un système de comparaison intelligent qui ne met à jour que ce qui a changé.
