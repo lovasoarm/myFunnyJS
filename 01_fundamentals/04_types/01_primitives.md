@@ -24,7 +24,7 @@ Oui. 7. Pas 6.
 4. `undefined`
 5. `null`
 6. `bigint`
-7. `symbol` (Utilisé rarement dans le code mais partout dans les internals de JS (itérateurs, promesses, etc.)
+7. `symbol` (Utilisé rarement dans le code mais partout dans les internals de JS : itérateurs, promesses, etc.)
 
 ---
 
@@ -41,7 +41,7 @@ let text = "Hi";
 text[0] = "B"; // ça ne marche pas
 ```
 
-Les primitives ne se modifient pas directement. JS t'ignore en silence -> pas d'erreur, pas d'effet, juste du néant.
+Les primitives ne se modifient pas directement. JS t'ignore en silence → pas d'erreur, pas d'effet, juste du néant.
 
 ---
 
@@ -55,7 +55,6 @@ let price = 19.99;
 En JS il n'existe qu'**un seul type `number`** (pas `int`, pas `float` séparé).
 
 Attention :
-
 - `NaN` = Not a Number
 - `Infinity` existe aussi
 
@@ -91,7 +90,6 @@ let y = null;
 `null` = absence **volontaire** de valeur.
 
 Différence simple :
-
 - `undefined` = JS n'a rien mis
 - `null` = toi tu as mis "rien"
 
@@ -119,42 +117,36 @@ Type unique utilisé pour créer des clés uniques dans les objets. Avancé, mai
 
 ---
 
-## PRIMITIVE VS OBJET
+## PRIMITIVE VS OBJET : LA DIFFÉRENCE CLÉ
 
-**Primitif : copié par valeur** (valeur copiée directement) :
+Les primitifs sont **copiés par valeur**. Les objets sont **copiés par référence** : deux noms, une seule boîte en mémoire.
 
 ```javascript
 let a = 10;
 let b = a;
-
 b = 20;
-
-console.log(a); // 10
+console.log(a); // 10 ← indépendant
 ```
-
-`b` reçoit une copie indépendante. Modifier `b` ne touche pas `a`.
-
-**Objet : copié par référence** (adresse mémoire partagée) :
 
 ```javascript
 let obj1 = { hp: 100 };
 let obj2 = obj1;
-
 obj2.hp = 50;
-
-console.log(obj1.hp); // 50
+console.log(obj1.hp); // 50 ← même objet en mémoire
 ```
 
-`obj2` reçoit l'adresse de `obj1`. Deux noms, une seule boîte en mémoire.
+> Le mécanisme complet des références et copies est dans `01_variables/02_reference_chaos.js`. Si tu n'as pas fait ce fichier, fais-le : c'est là que ça explose vraiment.
 
 ---
 
 ## POURQUOI C'EST CRUCIAL ?
 
-- Comprendre les comparaisons (`==` vs `===`)
-- Comprendre la **coercion** (conversion automatique de type)
-- Comprendre les bugs liés aux références
-- Base pour maîtriser la mémoire en JS
+| Concept | Repose sur les primitifs |
+| --- | --- |
+| Comparaisons `==` vs `===` | ok |
+| Coercion automatique | ok |
+| Bugs de référence | ok |
+| Mémoire JS | ok |
 
 ---
 
@@ -170,7 +162,7 @@ Ensuite :
 5. Crée un objet `player = { hp: 100 }`
 6. Copie-le dans `clone`
 7. Modifie `clone.hp`
-8. Observe la différence
+8. Affiche `player` ET `clone` —> observe que les deux ont changé
 
 ```javascript
 // Ton code ici
