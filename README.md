@@ -143,8 +143,8 @@ d'entrée. Maîtrise ça d'abord. Le reste vient avec le temps et les projets r�
 
 ```
 MyFunnyJS/
-├── README.md                                              # Le manifeste CrazyDevs : lis ça avant de coder
-├── CONTRIBUTING.md                                        # Comment contribuer sans tout péter
+├── README.md                                             # Lis ça avant de coder
+├── CONTRIBUTING.md                                       # Comment contribuer sans tout péter
 ├── CHANGELOG.md                                          # Historique des décisions structurelles majeures
 ├── jest.config.js                                        # Config Jest partagée par tous les modules
 ├── .eslintrc.js                                          # Règles ESLint uniformes sur tout le repo
