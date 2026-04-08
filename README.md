@@ -820,6 +820,8 @@ MyFunnyJS/
 │       ├── 01_declaration_files.ts                        # .d.ts : typer des bibliothèques non typées
 │       ├── 02_ts_compiler_config.md                       # tsconfig.json : chaque option expliquée simplement
 │       └── 03_ts_migration_guide.md                       # Migrer un projet JS vers TS sans tout casser
+│   └── system_design/                                        
+│       ├──01_system_design_grimoire.md                           
 │
 │
 └── 30_tools/                                             # Arsenal maison : tes gadgets pour aller plus vite
