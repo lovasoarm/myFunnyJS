@@ -33,8 +33,8 @@ C'est le point de départ. Maintenant, rendre ce pattern plus expressif.
 Au lieu de chercher exactement "ninja", on peut chercher "n'importe quel chiffre" :
 
 ```js
-/\d/.test("Messi a 7 ballons d'or")   // true  — il y a au moins un chiffre
-/\d/.test("zéro but")                  // false — aucun chiffre
+/\d/.test("Messi a 7 ballons d'or")   // true  : il y a au moins un chiffre
+/\d/.test("zéro but")                  // false : aucun chiffre
 ```
 
 `\d` est un raccourci pour "un chiffre de 0 à 9". Il y en a d'autres :
@@ -44,7 +44,7 @@ Au lieu de chercher exactement "ninja", on peut chercher "n'importe quel chiffre
 /\s/   // un espace, une tabulation, un retour à la ligne
 ```
 
-Le majuscule inverse le sens — c'est la même logique partout :
+Le majuscule inverse le sens : c'est la même logique partout :
 
 ```js
 /\D/   // tout SAUF un chiffre
@@ -59,8 +59,8 @@ Le majuscule inverse le sens — c'est la même logique partout :
 `/\d/` matche un seul chiffre. Pour matcher un nombre entier, il faut dire "un chiffre ou plus" :
 
 ```js
-/\d+/.test("91 buts")    // true  — "91" = deux chiffres, + accepte 1 ou plus
-/\d+/.test("zéro but")   // false — aucun chiffre
+/\d+/.test("91 buts")    // true  —> "91" = deux chiffres, + accepte 1 ou plus
+/\d+/.test("zéro but")   // false —> aucun chiffre
 ```
 
 Les quantificateurs :
@@ -73,7 +73,7 @@ Les quantificateurs :
 /\d{2,4}/  // entre 2 et 4 chiffres
 ```
 
-Exemple concret — matcher une durée comme "3:45" ou "03:45" :
+Exemple concret —> matcher une durée comme "3:45" ou "03:45" :
 
 ```js
 // Minutes : 1 ou 2 chiffres. Secondes : exactement 2 chiffres.
@@ -96,8 +96,8 @@ Sans ancre, le pattern peut matcher n'importe où dans la chaîne :
 Avec les ancres `^` et `$`, on force la position :
 
 ```js
-/^\d{1,2}:\d{2}$/.test("03:45")                          // true  — toute la chaîne est une durée
-/^\d{1,2}:\d{2}$/.test("durée: 03:45 et autre chose")    // false — il y a du texte autour
+/^\d{1,2}:\d{2}$/.test("03:45")                          // true  : toute la chaîne est une durée
+/^\d{1,2}:\d{2}$/.test("durée: 03:45 et autre chose")    // false : il y a du texte autour
 ```
 
 `^` = début de chaîne. `$` = fin de chaîne.
@@ -112,7 +112,7 @@ Avec les ancres `^` et `$`, on force la position :
 /[aeiou]/    // une voyelle
 /[a-z]/      // une lettre minuscule
 /[A-Z0-9]/   // une majuscule OU un chiffre
-/[^aeiou]/   // n'importe quoi SAUF une voyelle — le ^ dans [] = "pas ça"
+/[^aeiou]/   // n'importe quoi SAUF une voyelle : le ^ dans [] = "pas ça"
 ```
 
 Exemple : matcher une tonalité musicale comme "Dm", "F#", "Bb" :
@@ -128,7 +128,7 @@ Exemple : matcher une tonalité musicale comme "Dm", "F#", "Bb" :
 
 ## 6) LES 4 MÉTHODES QU'ON UTILISE VRAIMENT
 
-### `.test()` — est-ce que ça matche ?
+### `.test()` : est-ce que ça matche ?
 
 ```js
 /\d+/.test("91 buts")   // true
@@ -139,19 +139,19 @@ Retourne `true` ou `false`. Rien d'autre.
 
 ---
 
-### `.match()` — extraire ce qui matche
+### `.match()` : extraire ce qui matche
 
 ```js
 const texte = "Messi a marqué 91 buts en 2012"
 
-texte.match(/\d+/)    // ['91'] — s'arrête au premier match
-texte.match(/\d+/g)   // ['91', '2012'] — tous les matchs grâce au flag g
+texte.match(/\d+/)    // ['91'] : s'arrête au premier match
+texte.match(/\d+/g)   // ['91', '2012'] : tous les matchs grâce au flag g
 ```
 
 **Ce que tu dois savoir avant d'utiliser `.match()` :**
 
 ```js
-// Si rien ne matche, .match() retourne null — pas un tableau vide
+// Si rien ne matche, .match() retourne null : pas un tableau vide
 "zéro but".match(/\d+/)   // null
 
 // Ce bug arrive tout le temps chez les débutants :
@@ -167,23 +167,23 @@ if (result) {
 
 ---
 
-### `.replace()` — remplacer ce qui matche
+### `.replace()` : remplacer ce qui matche
 
 ```js
 const texte = "Messi a marqué 91 buts en 2012"
 
-texte.replace(/\d+/, 'X')    // "Messi a marqué X buts en 2012"  — premier seulement
-texte.replace(/\d+/g, 'X')   // "Messi a marqué X buts en X"     — tous
+texte.replace(/\d+/, 'X')    // "Messi a marqué X buts en 2012"  : premier seulement
+texte.replace(/\d+/g, 'X')   // "Messi a marqué X buts en X"     : tous
 ```
 
 ---
 
-### `.split()` — couper autour de ce qui matche
+### `.split()` : couper autour de ce qui matche
 
 ```js
 // Le séparateur peut être un pattern, pas juste un caractère fixe
 "un, deux,  trois".split(/,\s*/)   // ['un', 'deux', 'trois']
-// ,\s* = une virgule suivie de zéro espace ou plus — gère les espaces irréguliers
+// ,\s* = une virgule suivie de zéro espace ou plus —> gère les espaces irréguliers
 ```
 
 ---
@@ -198,7 +198,7 @@ Deux flags à connaître maintenant :
 /ninja/gi  // les deux en même temps
 ```
 
-Le flag `g` change le comportement de `.match()` — c'est ce qu'on a vu en section 6.
+Le flag `g` change le comportement de `.match()` : c'est ce qu'on a vu en section 6.
 
 ---
 
@@ -209,7 +209,7 @@ const entry = "03:45 | Lose Yourself | 170 BPM"
 
 // Extraire la durée
 const duree = entry.match(/\d{1,2}:\d{2}/)
-// ['03:45'] — duree[0] = '03:45'
+// ['03:45'] : duree[0] = '03:45'
 
 // Extraire le BPM
 const bpm = entry.match(/(\d+)\s*BPM/)
@@ -219,7 +219,7 @@ const bpm = entry.match(/(\d+)\s*BPM/)
 
 // Extraire la tonalité si elle est présente
 const tonalite = entry.match(/[A-G][#b]?m?$/)
-// null — pas de tonalité dans cet exemple
+// null : pas de tonalité dans cet exemple
 // Pas de crash grâce au if(result) vu en section 6
 ```
 
@@ -237,7 +237,7 @@ dangereux.test("aaaaaaaaaaaab")      // lent
 dangereux.test("aaaaaaaaaaaaaaaab")  // peut geler Node.js plusieurs secondes
 ```
 
-Le moteur essaie toutes les façons possibles de faire matcher `(a+)+`. Sur une chaîne qui ne matche pas, il les essaie toutes avant d'abandonner. Plus la chaîne est longue, plus c'est long — exponentiellement.
+Le moteur essaie toutes les façons possibles de faire matcher `(a+)+`. Sur une chaîne qui ne matche pas, il les essaie toutes avant d'abandonner. Plus la chaîne est longue, plus c'est long —> exponentiellement.
 
 La règle : **méfie-toi des quantificateurs imbriqués** comme `(a+)+` ou `(\w+)*`. En prod, teste toujours un pattern suspect avec une longue chaîne qui ne matche pas.
 
@@ -250,9 +250,9 @@ La règle : **méfie-toi des quantificateurs imbriqués** comme `(a+)+` ou `(\w+
 Les logs du système de surveillance ressemblent à ça :
 
 ```
-"[14:32] ALERTE — Titan Colossal détecté — Coordonnées : 47"
-"[14:33] STATUS — Tout est calme"
-"[14:35] ALERTE — Titan Bestial détecté — Coordonnées : 12"
+"[14:32] ALERTE : Titan Colossal détecté —> Coordonnées : 47"
+"[14:33] STATUS : Tout est calme"
+"[14:35] ALERTE : Titan Bestial détecté —> Coordonnées : 12"
 ```
 
 Écris `isAlert(log)` qui retourne `true` si la ligne est une alerte.
