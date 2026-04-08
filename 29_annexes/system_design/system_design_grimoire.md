@@ -457,17 +457,6 @@ const server = https.createServer({
 
 ---
 
-## Placement
-
-```
-29_annexes/
-└── system_design/
-    └── system_concepts_grimoire.md
-```
-
 Référence transversale pour `22_databases`, `23_scalability`, `20_security`, `18_realtime`.
 Pas un module séquentiel : un fichier qu'on ouvre quand on croise un terme inconnu dans un codebase ou une PR review.
 
----
-
-*CrazyDevs : "Learn it, break it, own it."*
