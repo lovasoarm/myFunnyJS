@@ -821,7 +821,7 @@ MyFunnyJS/
 │       ├── 02_ts_compiler_config.md                       # tsconfig.json : chaque option expliquée simplement
 │       └── 03_ts_migration_guide.md                       # Migrer un projet JS vers TS sans tout casser
 │   └── system_design/                                        
-│       ├──01_system_design_grimoire.md                           
+│       ├──01_system_design_grimoire.md                    # Quand tu croises un terme dans un codebase ou une PR review     
 │
 │
 └── 30_tools/                                             # Arsenal maison : tes gadgets pour aller plus vite
