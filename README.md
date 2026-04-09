@@ -171,7 +171,7 @@ MyFunnyJS/
 │   │   ├── 02_closure_trap_solution.js
 │   │   ├── 03_scope_escape_room.md                       # Escape room de closures
 │   │   ├── 03_scope_escape_room_solution.js
-│   │   └── 04_this_content.md                            # Concernant 'this'
+│   │   └── 04_this_context.md                            # Concernant 'this'
 │   │   └── 05_scope_glossary.md
 │   ├── 03_functions/                                     # Fonctions : jouets de guerre
 │   │   ├── 01_function_basics.md                         # Définition, appel, retour
