@@ -12,7 +12,7 @@
 const team = [{ name: "Zombie1", hp: 100 }];
 
 team[0].hp = 0;     //  autorisé : on modifie le contenu
-team.push({...});   //  autorisé : on modifie le tableau
+team.push({ name: "Zombie2", hp: 80 });   //  autorisé : on modifie le tableau
 team = [];          //  TypeError : on réassigne la variable
 ```
 
