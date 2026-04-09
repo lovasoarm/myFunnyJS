@@ -806,6 +806,14 @@ MyFunnyJS/
 │       ├── ADR/
 │       ├── src/
 │       └── tests/
+│   └── 09_oracle_glitch/                                    # Le LLM qui hallucine et toi qui le surveilles
+│       ├── cahierdescharges.md
+│       ├── README.md
+│       ├── TDD_JOURNAL.md
+│       ├── POSTMORTEM.md
+│       ├── ADR/
+│       ├── src/
+│       └── tests/
 │
 │
 ├── 29_annexes/                                           # Annexes pro : pour aller encore plus loin
@@ -1085,6 +1093,18 @@ Une encyclopédie web des Kaijus inspirée de Godzilla et Pacific Rim, disponibl
 - TypeScript : clés de traduction typées, utility types
 - ARIA roles complets et navigation clavier
 - Contraste WCAG AA vérifié sur toutes les fiches
+
+### 09_oracle_glitch/ : Le LLM qui hallucine et toi qui le surveilles
+
+**Modules couverts :** `21_ai_native_dev` · `27_oop_js` · `25_team_craft` · `26_edge_cases`
+L'IA se prend pour un génie. Elle analyse ton code JS, détecte des bugs, propose des fixes, génère des tests. Parfois elle a raison. Parfois elle invente des fonctions qui n'existent pas, retourne du JSON malformé, ou te jure qu'un `NaN === NaN`. Ton boulot : construire le pipeline qui la surveille, la valide, et la remet à sa place quand elle délire.C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
+
+- Streaming Anthropic token par token : t'arrêtes pas d'attendre, tu lis en direct
+- Zod comme garde du corps : si la sortie LLM ne matche pas le schema, elle passe pas
+- CodeAnalyzer, PromptBuilder, OutputValidator : trois classes, trois responsabilités, zéro spaghetti
+- Edge cases injectés comme des pièges : timeout à 3 secondes, quota dépassé, NaN dans les métriques, réponse tronquée à mi-JSON
+- ADR : chaque décision technique documentée avant de coder, pas après
+- POSTMORTEM : ce que l'IA a cassé, comment tu l'as vu venir, et ce que tu as mis en place pour que ça arrive plus
 
 ---
 
