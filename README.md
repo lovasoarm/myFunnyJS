@@ -729,7 +729,7 @@ MyFunnyJS/
 │   └── 05_edge_cases_grimoire.md
 │
 │
-├── 27_oop_js/                                            # OOP en JS : prototype, classes, héritage — la face cachée
+├── 27_oop_js/                                            # OOP en JS : prototype, classes, héritage -> la face cachée
 │   ├── 01_prototype_chain.md                             # La chaîne de prototypes : comment JS hérite vraiment
 │   ├── 01_prototype_chain_solution.js
 │   ├── 02_classes_es6.md                                 # Classes ES6 : sucre syntaxique sur prototype
@@ -985,7 +985,7 @@ Code review : donner et recevoir du feedback utile
 
 ## Les projets
 
-### 01_shinobi_engine/ — Le moteur de combat Naruto
+### 01_shinobi_engine/ : Le moteur de combat Naruto
 
 **Modules couverts :** `01_fundamentals` · `05_math_basics` · `09_functional_js` · `10_design_patterns`
 
@@ -997,7 +997,7 @@ Un moteur de combat textuel entre ninjas. Chaque shinobi a des stats, des jutsus
 - Probabilité & RNG pour les critiques et les esquives
 - Immutabilité : jamais de mutation d'état direct
 
-### 02_titan_tracker/ — Le système de détection des Titans
+### 02_titan_tracker/ : Le système de détection des Titans
 
 **Modules couverts :** `07_data_structures` · `08_algorithms` · `06_memory_performance`
 
@@ -1009,7 +1009,7 @@ Un système de surveillance des murs inspiré d'Attack on Titan. Des capteurs d�
 - BFS pour détecter les zones envahies connectées
 - Big-O analysis sur chaque algo utilisé
 
-### 03_vinyl_vault/ — L'API secrète de la collection vinyle
+### 03_vinyl_vault/ : L'API secrète de la collection vinyle
 
 **Modules couverts :** `19_api_craft` · `22_databases` · `20_security` · `15_web_concepts`
 
@@ -1022,7 +1022,7 @@ Une API REST complète pour gérer une collection de vinyles. Artistes, albums, 
 - Sanitization des inputs contre XSS et injection
 - OpenAPI doc minimale
 
-### 04_ballon_dor_cli/ — Le classement Ballon d'Or en terminal
+### 04_ballon_dor_cli/ : Le classement Ballon d'Or en terminal
 
 **Modules couverts :** `13_runtime_env` · `08_algorithms` · `11_refactoring` · `03_error_handling`
 
@@ -1035,7 +1035,7 @@ Un outil CLI Node.js pour gérer et simuler le vote du Ballon d'Or. Les journali
 - Refactoring challenge : v1 procédurale → v2 modulaire propre
 - Tests unitaires sur les fonctions de calcul de score
 
-### 05_setlist_generator/ — Le générateur de setlist pour concerts
+### 05_setlist_generator/ : Le générateur de setlist pour concerts
 
 **Modules couverts :** `09_functional_js` · `01_fundamentals/07_regex` · `12_typescript`
 
@@ -1047,7 +1047,7 @@ Un outil qui prend une bibliothèque de chansons en JSON et génère des setlist
 - TypeScript : generics, utility types (`Partial`, `Pick`), type guards
 - Immutabilité totale sur la bibliothèque source
 
-### 06_quirk_simulator/ — Les duels de Quirks en temps réel
+### 06_quirk_simulator/ : Les duels de Quirks en temps réel
 
 **Modules couverts :** `02_async` · `03_error_handling` · `18_realtime` · `14_architecture_patterns`
 
@@ -1060,7 +1060,7 @@ Un simulateur de duels de héros inspiré de My Hero Academia. Les Quirks ont de
 - Custom errors : `QuirkOverheatError`, `HeroDownError`
 - Module pattern pour isoler chaque Quirk
 
-### 07_ultras_dashboard/ — Le dashboard d'analytics d'un club de foot
+### 07_ultras_dashboard/ : Le dashboard d'analytics d'un club de foot
 
 **Modules couverts :** `24_observability` · `23_scalability` · `06_memory_performance` · `04_testing`
 
@@ -1073,7 +1073,7 @@ Un dashboard Node.js qui ingère des données de matchs en temps réel : passes,
 - TDD : tests écrits avant les fonctions d'analytics
 - Big-O analysis sur les agrégations
 
-### 08_kaiju_i18n/ — L'encyclopédie multilingue des Kaijus
+### 08_kaiju_i18n/ : L'encyclopédie multilingue des Kaijus
 
 **Modules couverts :** `17_i18n` · `16_accessibility` · `12_typescript` · `15_web_concepts`
 
