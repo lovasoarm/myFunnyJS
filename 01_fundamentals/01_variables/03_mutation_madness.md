@@ -80,7 +80,7 @@ Comprendre la différence entre shallow et deep copy sur des objets imbriqués.
 
 5. Crée `deepMonsters` avec `map` + spread imbriqué.
 6. Modifie le `dmg` du deuxième monstre via `deepMonsters`.
-7. Affiche `monsters` et `deepMonsters` — `monsters` **doit rester intact**.
+7. Affiche `monsters` et `deepMonsters` , `monsters` **doit rester intact**.
 
 **Bonus : structuredClone**
 
