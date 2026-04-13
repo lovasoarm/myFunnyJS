@@ -6,7 +6,7 @@
 
 ## 1. Deux types, deux comportements
 
-### Primitives — `number`, `string`, `boolean`, `null`, `undefined`
+### Primitives : `number`, `string`, `boolean`, `null`, `undefined`
 
 Tu copies la **valeur directement**. Chaque variable vit de façon indépendante.
 
