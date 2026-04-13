@@ -79,7 +79,7 @@ Exemple concret —> matcher une durée comme "3:45" ou "03:45" :
 // Minutes : 1 ou 2 chiffres. Secondes : exactement 2 chiffres.
 /\d{1,2}:\d{2}/.test("3:45")    // true
 /\d{1,2}:\d{2}/.test("03:45")   // true
-/\d{1,2}:\d{2}/.test("3:4")     // false — secondes trop courtes
+/\d{1,2}:\d{2}/.test("3:4")     // false : secondes trop courtes
 /\d{1,2}:\d{2}/.test("abc")     // false
 ```
 
