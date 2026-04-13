@@ -149,7 +149,7 @@ hero.attack();
 
 // Bloc B
 const fn = hero.attack;
-fn();
+fn(); 
 
 // Bloc C
 const hero2 = {
@@ -176,9 +176,9 @@ hero3.attack();
 
 ```
 Bloc A → "Shadow"     // this = hero, méthode appelée via objet
-Bloc B → undefined    // this perdu : fn appelée sans objet
+Bloc B → undefined    // this perdu : fn appelée sans objet (Elle ne se souvient plus qu’elle venait de hero)
 Bloc C → undefined    // arrow function hérite du global, pas de hero2
-Bloc D → "Frost"      // arrow dans setTimeout hérite de attack() → this = hero3
+Bloc D → "Frost"      // arrow dans setTimeout hérite de attack() → this = hero3 (Ici, la flèche est définie à l’intérieur de attack(), et attack() a été appelée sur hero3, donc le this dans attack() c’est hero3.)
 ```
 
 > Le piège du **Bloc B** est le plus classique en prod. Tu extrais une méthode de son objet, tu l'appelles seule —> `this` disparaît. Retiens ça.
