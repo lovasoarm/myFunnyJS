@@ -6,6 +6,7 @@ Ce projet, c'est le chemin complet pour passer de **"je connais quelques trucs e
 à **"je comprends ce que je fais, pourquoi je le fais, et comment ne pas tout péter en prod"**.
 
 On apprend JavaScript. Mais l'objectif est beaucoup plus large.
+
 Les structures de données, les algorithmes, les patterns d'architecture, la sécurité,
 la performance, le testing, l'observabilité, le travail en équipe : tout ça tourne dans
 n'importe quel langage. JS n'est que le vecteur. Ce qu'on construit ici, c'est **une façon
@@ -137,621 +138,558 @@ Le reste (sécurité, scalabilité, observabilité, team craft, a11y, i18n, real
 qui fait la différence entre un bon dev et un senior. Mais ces six blocs, c'est le ticket
 d'entrée. Maîtrise ça d'abord. Le reste vient avec le temps et les projets réels.
 
----
-
-## Architecture complète du projet
+## ARBORESCENCE COMPLÈTE
 
 ```
 MyFunnyJS/
-├── README.md                                             # Lis ça avant de coder
-├── CONTRIBUTING.md                                       # Comment contribuer sans tout péter
-├── CHANGELOG.md                                          # Historique des décisions structurelles majeures
-├── jest.config.js                                        # Config Jest partagée par tous les modules
-├── .eslintrc.js                                          # Règles ESLint uniformes sur tout le repo
-├── .github/
-│   └── workflows/
-│       └── test.yml                                      # CI : lint + tests sur chaque push
+├── README.md
+├── CONTRIBUTING.md
 │
-│
-├── 01_fundamentals/                                      # Les bases : zéro excuse de les ignorer
+├── 01_fundamentals/
 │   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md
-│   ├── 01_variables/                                     # Variables : le super pouvoir de base
-│   │   ├── 01_intro_variables.md                         # Primitives vs objets, la vérité cachée
-│   │   ├── 02_reference_chaos.md                         # Les références qui foutent tout en l'air
+│   ├── 01_variables/
+│   │   ├── 01_intro_variables.md
+│   │   ├── 02_reference_chaos.md
 │   │   ├── 02_reference_chaos_solution.js
-│   │   ├── 03_mutation_madness.md                        # Mutation & copies : shallow vs deep
+│   │   ├── 03_mutation_madness.md
 │   │   ├── 03_mutation_madness_solution.js
-│   │   ├── 04_const_trap.md                              # `const` ne veut pas dire immuable
-│   │   ├── 04_const_trap_solution.js
+│   │   ├── 04_const_trap.md
 │   │   └── 05_variable_glossary.md
-│   ├── 02_scope/                                         # Scope & Contexte : où vit ton code ?
-│   │   ├── 01_scope_basics.md                            # Global, local, block : les territoires
+│   ├── 02_scope/
+│   │   ├── 01_scope_basics.md
 │   │   ├── 01_scope_basics_solution.js
-│   │   ├── 02_closure_trap.md                            # Fermetures et pièges mortels
+│   │   ├── 02_closure_trap.md
 │   │   ├── 02_closure_trap_solution.js
-│   │   ├── 03_scope_escape_room.md                       # Escape room de closures
+│   │   ├── 03_scope_escape_room.md
 │   │   ├── 03_scope_escape_room_solution.js
-│   │   └── 04_this_context.md                            # Concernant 'this'
-│   │   └── 05_scope_glossary.md
-│   ├── 03_functions/                                     # Fonctions : jouets de guerre
-│   │   ├── 01_function_basics.md                         # Définition, appel, retour
+│   │   └── 04_scope_glossary.md
+│   ├── 03_functions/
+│   │   ├── 01_function_basics.md
 │   │   ├── 01_function_basics_solution.js
-│   │   ├── 02_hof_map_filter.md                          # HOF, map, filter, reduce
+│   │   ├── 02_hof_map_filter.md
 │   │   ├── 02_hof_map_filter_solution.js
-│   │   ├── 03_function_factory.md                        # Usines à fonctions & patterns
+│   │   ├── 03_function_factory.md
 │   │   ├── 03_function_factory_solution.js
-│   │   └── 04_function_grimoire.md
-│   ├── 04_types/                                         # Types, coercition & dynamisme JS
-│   │   ├── 01_primitives.md                              # string, number, boolean, symbol
+│   │   └── function_grimoire.md
+│   ├── 04_types/
+│   │   ├── 01_primitives.md
 │   │   ├── 01_primitives_solution.js
-│   │   ├── 02_type_coercion.md                           # Conversions implicites et pièges
+│   │   ├── 02_type_coercion.md
 │   │   ├── 02_type_coercion_solution.js
-│   │   ├── 03_type_transformers.md                       # Transformer et vérifier les types
+│   │   ├── 03_type_transformers.md
 │   │   ├── 03_type_transformers_solution.js
 │   │   └── 04_types_grimoire.md
-│   ├── 05_web_basics/                                    # Web Fundamentals immersifs
-│   │   ├── 01_dom_manipulation.md                        # DOM, sélecteurs, events, animations
+│   ├── 05_web_basics/
+│   │   ├── 01_dom_manipulation.md
 │   │   ├── 01_dom_manipulation_solution.js
-│   │   ├── 02_fetch_adventure.md                         # Fetch API dans des missions crazys
+│   │   ├── 02_fetch_adventure.md
 │   │   ├── 02_fetch_adventure_solution.js
-│   │   ├── 03_storage_treasure.md                        # LocalStorage & Cookies comme trésor
+│   │   ├── 03_storage_treasure.md
 │   │   ├── 03_storage_treasure_solution.js
-│   │   ├── 04_template_portals.md                        # Template strings & DOM templating
+│   │   ├── 04_template_portals.md
 │   │   ├── 04_template_portals_solution.js
-│   │   ├── 05_web_helpers.md                             # Fonctions DOM/event réutilisables
+│   │   ├── 05_web_helpers.md
 │   │   ├── 05_web_helpers_solution.js
-│   │   └── 06_web_grimoire.md
-│   ├── 06_modules/                                       # Modules ES6 : organiser son code comme un pro
-│   │   ├── 01_import_export.md                           # import/export : nommé, default, namespace
-│   │   ├── 01_import_export_solution.js
-│   │   ├── 02_module_patterns.md                         # Encapsuler, exposer, protéger
-│   │   ├── 02_module_patterns_solution.js
-│   │   └── 03_modules_grimoire.md
-│   └── 07_regex/                                         # Regex : l'arme secrète du parseur
-│       ├── 01_regex_basics.md                            # Syntaxe, flags, patterns de base
+│   │   ├── 06_module_factory.md
+│   │   ├── 06_module_factory_solution.js
+│   │   └── 07_web_grimoire.md
+│   └── 06_regex/
+│       ├── 01_regex_basics.md
 │       ├── 01_regex_basics_solution.js
-│       ├── 02_regex_combat.md                            # Validation email, URL, téléphone
+│       ├── 02_regex_combat.md
 │       ├── 02_regex_combat_solution.js
-│       ├── 03_regex_extractor.md                         # Capturer, remplacer, splitter comme un sniper
+│       ├── 03_regex_extractor.md
 │       ├── 03_regex_extractor_solution.js
 │       └── 04_regex_grimoire.md
 │
-│
-├── 02_async/                                             # L'Event Loop : ton cerveau doit suivre
-│   ├── 01_callbacks/                                     # Callbacks : l'ancien monde qui fait encore mal
-│   │   ├── 01_callback_maze.md                           # Labyrinthe de callbacks : trouve la sortie
+├── 02_async/
+│   ├── 01_callbacks/
+│   │   ├── 01_callback_maze.md
 │   │   ├── 01_callback_maze_solution.js
-│   │   ├── 02_callback_challenge.md                      # Challenge pratique : sans en mourir
+│   │   ├── 02_callback_challenge.md
 │   │   ├── 02_callback_challenge_solution.js
 │   │   └── 03_callbacks_grimoire.md
-│   ├── 02_promises/                                      # Promises : l'espoir encodé
-│   │   ├── 01_promise_race.md                            # Race entre promesses : que le meilleur gagne
+│   ├── 02_promises/
+│   │   ├── 01_promise_race.md
 │   │   ├── 01_promise_race_solution.js
-│   │   ├── 02_promise_chain_reactor.md                   # Chainage nucléaire : attention aux explosions
+│   │   ├── 02_promise_chain_reactor.md
 │   │   ├── 02_promise_chain_reactor_solution.js
 │   │   └── 03_promises_grimoire.md
-│   ├── 03_async_await/                                   # Async/await : le futur propre
-│   │   ├── 01_async_jungle.md                            # Async dans une jungle de fonctions
+│   ├── 03_async_await/
+│   │   ├── 01_async_jungle.md
 │   │   ├── 01_async_jungle_solution.js
-│   │   ├── 02_async_rescue.md                            # Opération sauvetage async
+│   │   ├── 02_async_rescue.md
 │   │   ├── 02_async_rescue_solution.js
 │   │   └── 03_async_grimoire.md
-│   └── 04_event_loop/                                    # Mono-thread, micro vs macrotasks
-│       ├── 01_microtask_madness.md                       # Microtasks en folie totale
+│   └── 04_event_loop/
+│       ├── 01_microtask_madness.md
 │       ├── 01_microtask_madness_solution.js
-│       ├── 02_macrotask_monsters.md                      # Macrotasks et timing de monstre
+│       ├── 02_macrotask_monsters.md
 │       ├── 02_macrotask_monsters_solution.js
 │       └── 03_event_loop_grimoire.md
 │
+├── 03_testing_first/
+│   ├── 01_why_testing_or_die.md
+│   ├── 01_why_testing_or_die_solution.js
+│   ├── 02_unit_sniper.md
+│   ├── 02_unit_sniper_solution.js
+│   ├── 03_jest_crash_course.md
+│   ├── 03_jest_crash_course_solution.js
+│   ├── 04_mocking_madness.md
+│   ├── 04_mocking_madness_solution.js
+│   ├── 05_integration_reactor.md
+│   ├── 05_integration_reactor_solution.js
+│   ├── 06_tdd_arena.md
+│   ├── 06_tdd_arena_solution.js
+│   ├── 07_test_driven_refactor.md
+│   ├── 07_test_driven_refactor_solution.js
+│   ├── 08_contract_testing_pact.md
+│   ├── 08_contract_testing_pact_solution.js
+│   ├── 09_e2e_playwright_beast.md
+│   ├── 09_e2e_playwright_beast_solution.js
+│   └── 10_testing_grimoire.md
 │
-├── 03_error_handling/                                    # Erreurs : survivre sans exploser en prod
-│   ├── 01_try_catch_basics.md                            # try/catch : attraper les bombes avant qu'elles explosent
+├── 04_error_handling/
+│   ├── 01_try_catch_basics.md
 │   ├── 01_try_catch_basics_solution.js
-│   ├── 02_custom_errors.md                               # Erreurs custom : créer tes propres messages de guerre
+│   ├── 02_custom_errors.md
 │   ├── 02_custom_errors_solution.js
-│   ├── 03_error_propagation.md                           # Propagation : qui gère quoi et où
+│   ├── 03_error_propagation.md
 │   ├── 03_error_propagation_solution.js
-│   ├── 04_async_error_traps.md                           # Erreurs async : les plus silencieuses et les plus mortelles
+│   ├── 04_async_error_traps.md
 │   ├── 04_async_error_traps_solution.js
-│   ├── 05_error_strategy.md                              # Stratégies : fail fast, fail safe, fallback, retry
+│   ├── 05_error_strategy.md
 │   ├── 05_error_strategy_solution.js
 │   └── 06_error_grimoire.md
 │
-│
-├── 04_testing/                                           # Tests : pas une option, une religion
-│   ├── 01_why_testing_or_die.md                          # Pourquoi tester : avant que la prod explose
-│   ├── 01_why_testing_or_die_solution.js
-│   ├── 02_unit_sniper.md                                 # Unit tests : tester une fonction comme un sniper
-│   ├── 02_unit_sniper_solution.js
-│   ├── 03_jest_crash_course.md                           # Jest from scratch : describe, it, expect
-│   ├── 03_jest_crash_course_solution.js
-│   ├── 04_mocking_madness.md                             # Mocking & spies : simuler la réalité
-│   ├── 04_mocking_madness_solution.js
-│   ├── 05_async_testing.md                               # Tester l'async : Promises, timers, event emitters
-│   ├── 05_async_testing_solution.js
-│   ├── 06_tdd_arena.md                                   # TDD : écrire le test avant le code, comme un boss
-│   ├── 06_tdd_arena_solution.js
-│   ├── 07_test_driven_refactor.md                        # Refactorer en sécurité grâce aux tests
-│   ├── 07_test_driven_refactor_solution.js
-│   ├── 08_integration_reactor.md                         # Tests d'intégration : plusieurs pièces ensemble
-│   ├── 08_integration_reactor_solution.js
-│   ├── 09_contract_testing_pact.md                       # Contract testing : API qui tiennent leur promesse
-│   ├── 09_contract_testing_pact_solution.js
-│   ├── 10_e2e_playwright_beast.md                        # Playwright E2E : tester comme un vrai utilisateur
-│   ├── 10_e2e_playwright_beast_solution.js
-│   └── 11_testing_grimoire.md
-│
-│
-├── 05_math_basics/                                       # Maths de dev : la potion magique pour hacker le monde
-│   ├── 01_boolean_logic.md                               # Vrai ou faux ? Maîtriser les if et && comme un boss
+├── 05_math_basics/
+│   ├── 01_boolean_logic.md
 │   ├── 01_boolean_logic_solution.js
-│   ├── 02_modular_arithmetic.md                          # Modulo & co : faire rebondir les nombres comme un ninja
+│   ├── 02_modular_arithmetic.md
 │   ├── 02_modular_arithmetic_solution.js
-│   ├── 03_bit_manipulation.md                            # Bits : jouer avec des 0 et 1 comme des Lego surpuissants
+│   ├── 03_bit_manipulation.md
 │   ├── 03_bit_manipulation_solution.js
-│   ├── 04_hashing_basics.md                              # Hash : transformer le chaos en lookup instantané
+│   ├── 04_hashing_basics.md
 │   ├── 04_hashing_basics_solution.js
-│   ├── 05_probability_random.md                          # Probabilité & RNG : le destin entre tes mains
+│   ├── 05_probability_random.md
 │   ├── 05_probability_random_solution.js
-│   ├── 06_combinatorics_lite.md                          # Combinatoires essentielles : factorielle et permutations utiles
+│   ├── 06_combinatorics_lite.md
 │   ├── 06_combinatorics_lite_solution.js
-│   ├── 07_geometry_for_dev.md                            # Points, distances & collisions : mage du canvas
+│   ├── 07_geometry_for_dev.md
 │   ├── 07_geometry_for_dev_solution.js
 │   └── 08_math_grimoire.md
 │
-│
-├── 06_memory_performance/                                # Mémoire & Performance : comprendre ce qui coûte cher
-│   ├── 01_gc/                                            # Garbage Collector : qui nettoie tes saletés ?
-│   │   ├── 01_gc_basics.md                               # Bases GC, mark & sweep
+├── 06_memory_performance/
+│   ├── 01_gc/
+│   │   ├── 01_gc_basics.md
 │   │   ├── 01_gc_basics_solution.js
-│   │   ├── 02_gc_simulator.md                            # Simule le GC toi-même
+│   │   ├── 02_gc_simulator.md
 │   │   └── 02_gc_simulator_solution.js
-│   ├── 02_copy_vs_ref/                                   # Shallow vs Deep : le miroir trompeur
-│   │   ├── 01_shallow_vs_deep.md                         # Copie superficielle vs profonde
+│   ├── 02_copy_vs_ref/
+│   │   ├── 01_shallow_vs_deep.md
 │   │   ├── 01_shallow_vs_deep_solution.js
-│   │   ├── 02_mutation_minefield.md                      # Champ de mines de mutations
+│   │   ├── 02_mutation_minefield.md
 │   │   └── 02_mutation_minefield_solution.js
-│   ├── 03_complexity/                                    # Big-O : mesure tout, optimise tout
-│   │   ├── 01_big_o_basics.md                            # O(1) à O(2^n) expliqués comme une carte
+│   ├── 03_complexity/
+│   │   ├── 01_big_o_basics.md
 │   │   ├── 01_big_o_basics_solution.js
-│   │   ├── 02_complexity_analysis.md                     # Analyser des algos réels sans se perdre
+│   │   ├── 02_complexity_analysis.md
 │   │   ├── 02_complexity_analysis_solution.js
-│   │   ├── 03_runtime_race.md                            # Course de performance en live
+│   │   ├── 03_runtime_race.md
 │   │   └── 03_runtime_race_solution.js
-│   ├── 04_profiling/                                     # Profiling : trouver les goulots d'étranglement
-│   │   ├── 01_profiling_basics.md                        # Mesurer avec performance.now() comme un chirurgien
+│   ├── 04_profiling/
+│   │   ├── 01_profiling_basics.md
 │   │   ├── 01_profiling_basics_solution.js
-│   │   ├── 02_memory_leak_hunter.md                      # Chasse aux fuites mémoire : aucune pitié
+│   │   ├── 02_memory_leak_hunter.md
 │   │   ├── 02_memory_leak_hunter_solution.js
-│   │   ├── 03_devtools_deep_dive.md                      # DevTools : breakpoints, flame graphs, memory snapshots
+│   │   ├── 03_devtools_deep_dive.md
 │   │   └── 03_devtools_deep_dive_solution.js
-│   ├── 05_core_web_vitals/                               # Perf réelle mesurée : ce que Google juge
-│   │   ├── 01_lcp_inp_cls_basics.md                      # LCP, INP, CLS : les 3 juges du navigateur
+│   ├── 05_core_web_vitals/
+│   │   ├── 01_lcp_inp_cls_basics.md
 │   │   ├── 01_lcp_inp_cls_basics_solution.js
-│   │   ├── 02_lighthouse_audit.md                        # Auditer & scorer une vraie page
+│   │   ├── 02_lighthouse_audit.md
 │   │   ├── 02_lighthouse_audit_solution.js
-│   │   ├── 03_perf_budget_enforcer.md                    # Définir et défendre un budget de performance
+│   │   ├── 03_perf_budget_enforcer.md
 │   │   └── 03_perf_budget_enforcer_solution.js
 │   └── 06_memory_perf_grimoire.md
 │
-│
-├── 07_data_structures/                                   # Structures de données : les armes secrètes
-│   ├── 01_array/                                         # Arrays : le couteau suisse universel
-│   │   ├── 01_array_basics.md                            # Création, accès, manipulation fondamentale
+├── 07_data_structures/
+│   ├── 01_array/
+│   │   ├── 01_array_basics.md
 │   │   ├── 01_array_basics_solution.js
-│   │   ├── 02_array_methods_battle.md                    # map, filter, reduce, find : le tournoi final
+│   │   ├── 02_array_methods_battle.md
 │   │   └── 02_array_methods_battle_solution.js
-│   ├── 02_linked_list/                                   # Linked List : la chaîne qu'on construit soi-même
-│   │   ├── 01_linked_list_basics.md                      # Noeud, insertion, suppression
+│   ├── 02_linked_list/
+│   │   ├── 01_linked_list_basics.md
 │   │   ├── 01_linked_list_basics_solution.js
-│   │   ├── 02_linked_list_arena.md                       # Inverser, détecter les cycles, survivre
+│   │   ├── 02_linked_list_arena.md
 │   │   └── 02_linked_list_arena_solution.js
-│   ├── 03_stack/                                         # Stack : LIFO, le tas de pancakes cosmiques
-│   │   ├── 01_stack_basics.md                            # Push, pop, peek : la pile qui obéit
+│   ├── 03_stack/
+│   │   ├── 01_stack_basics.md
 │   │   ├── 01_stack_basics_solution.js
-│   │   ├── 02_stack_missions.md                          # Parenthèses valides, historique de navigation
+│   │   ├── 02_stack_missions.md
 │   │   └── 02_stack_missions_solution.js
-│   ├── 04_queue/                                         # Queue : FIFO, la file d'attente de l'enfer
-│   │   ├── 01_queue_basics.md                            # Enqueue, dequeue : premier arrivé, premier servi
+│   ├── 04_queue/
+│   │   ├── 01_queue_basics.md
 │   │   ├── 01_queue_basics_solution.js
-│   │   ├── 02_queue_challenges.md                        # BFS, impressions, systèmes de tickets
+│   │   ├── 02_queue_challenges.md
 │   │   └── 02_queue_challenges_solution.js
-│   ├── 05_heap/                                          # Heap : le roi des priorités
-│   │   ├── 01_heap_basics.md                             # Min-heap, max-heap : la hiérarchie des valeurs
+│   ├── 05_heap/
+│   │   ├── 01_heap_basics.md
 │   │   ├── 01_heap_basics_solution.js
-│   │   ├── 02_heap_priority_queue.md                     # Priority queue : qui passe en premier ?
+│   │   ├── 02_heap_priority_queue.md
 │   │   └── 02_heap_priority_queue_solution.js
-│   ├── 06_bst/                                           # BST : arbres de recherche binaire
-│   │   ├── 01_bst_basics.md                              # Insertion, recherche, suppression dans l'arbre
+│   ├── 06_bst/
+│   │   ├── 01_bst_basics.md
 │   │   ├── 01_bst_basics_solution.js
-│   │   ├── 02_bst_traversal.md                           # Inorder, preorder, postorder : les 3 chemins
+│   │   ├── 02_bst_traversal.md
 │   │   └── 02_bst_traversal_solution.js
-│   ├── 07_hash_table/                                    # Hash Table : la mémoire parfaite du hacker
-│   │   ├── 01_hash_table_basics.md                       # Hashing, collisions, chaining
+│   ├── 07_hash_table/
+│   │   ├── 01_hash_table_basics.md
 │   │   ├── 01_hash_table_basics_solution.js
-│   │   ├── 02_hash_table_arena.md                        # Anagrammes, fréquences, lookup O(1)
+│   │   ├── 02_hash_table_arena.md
 │   │   └── 02_hash_table_arena_solution.js
-│   ├── 08_graphs/                                        # Graphes : modéliser le monde réel en code
-│   │   ├── 01_graph_basics.md                            # Noeud, arête, dirigé vs non-dirigé
+│   ├── 08_graphs/
+│   │   ├── 01_graph_basics.md
 │   │   ├── 01_graph_basics_solution.js
-│   │   ├── 02_graph_bfs_dfs.md                           # BFS & DFS : naviguer le graphe comme un explorateur
+│   │   ├── 02_graph_bfs_dfs.md
 │   │   ├── 02_graph_bfs_dfs_solution.js
-│   │   ├── 03_graph_challenges.md                        # Connexité, cycles, composantes
+│   │   ├── 03_graph_challenges.md
 │   │   └── 03_graph_challenges_solution.js
-│   ├── 09_advanced_bonus/                                # Structures avancées : pour aller encore plus loin
-│   │   ├── 01_union_find.md                              # Union-Find : qui est connecté à qui ?
+│   ├── 09_advanced_bonus/
+│   │   ├── 01_union_find.md
 │   │   ├── 01_union_find_solution.js
-│   │   ├── 02_fenwick_tree.md                            # Fenwick Tree : sommes cumulées ultra-rapides (FAANG level)
+│   │   ├── 02_fenwick_tree.md
 │   │   ├── 02_fenwick_tree_solution.js
-│   │   ├── 03_suffix_array.md                            # Suffix Array : recherche de patterns extrême (FAANG level)
+│   │   ├── 03_suffix_array.md
 │   │   └── 03_suffix_array_solution.js
 │   └── 10_data_structures_grimoire.md
 │
-│
-├── 08_algorithms/                                        # Algorithmes : les patterns qui résolvent tout
-│   ├── 01_sorting/                                       # Tri : mettre de l'ordre dans le chaos absolu
-│   │   ├── 01_bubble_insertion.md                        # Bubble & Insertion : les classiques à comprendre
+├── 08_algorithms/
+│   ├── 01_sorting/
+│   │   ├── 01_bubble_insertion.md
 │   │   ├── 01_bubble_insertion_solution.js
-│   │   ├── 02_merge_sort.md                              # Merge Sort : diviser pour mieux régner
+│   │   ├── 02_merge_sort.md
 │   │   ├── 02_merge_sort_solution.js
-│   │   ├── 03_quick_sort.md                              # Quick Sort : le plus rapide en pratique
+│   │   ├── 03_quick_sort.md
 │   │   ├── 03_quick_sort_solution.js
-│   │   ├── 04_sorting_race.md                            # Course : quel tri gagne dans quel contexte ?
+│   │   ├── 04_sorting_race.md
 │   │   └── 04_sorting_race_solution.js
-│   ├── 02_searching/                                     # Recherche : trouver l'aiguille dans la botte
-│   │   ├── 01_linear_binary.md                           # Linear vs Binary : la nuit et le jour
+│   ├── 02_searching/
+│   │   ├── 01_linear_binary.md
 │   │   ├── 01_linear_binary_solution.js
-│   │   ├── 02_search_challenges.md                       # Rotation, peak, first/last occurrence
+│   │   ├── 02_search_challenges.md
 │   │   └── 02_search_challenges_solution.js
-│   ├── 03_dynamic_programming/                           # DP : se souvenir pour aller plus vite
-│   │   ├── 01_dp_basics.md                               # Memoization & tabulation : les deux visages de la DP
+│   ├── 03_dynamic_programming/
+│   │   ├── 01_dp_basics.md
 │   │   ├── 01_dp_basics_solution.js
-│   │   ├── 02_dp_classics.md                             # Fibonacci, knapsack, coin change
+│   │   ├── 02_dp_classics.md
 │   │   ├── 02_dp_classics_solution.js
-│   │   ├── 03_dp_matrix.md                               # Grid DP : chemins, îles, matrices
+│   │   ├── 03_dp_matrix.md
 │   │   └── 03_dp_matrix_solution.js
-│   ├── 04_greedy/                                        # Greedy : prendre le meilleur maintenant
-│   │   ├── 01_greedy_basics.md                           # Pourquoi greedy marche (et quand il échoue)
+│   ├── 04_greedy/
+│   │   ├── 01_greedy_basics.md
 │   │   ├── 01_greedy_basics_solution.js
-│   │   ├── 02_greedy_missions.md                         # Intervalles, activités, monnaie
+│   │   ├── 02_greedy_missions.md
 │   │   └── 02_greedy_missions_solution.js
-│   ├── 05_backtracking/                                  # Backtracking : essayer, échouer, recommencer
-│   │   ├── 01_backtracking_basics.md                     # L'idée : explorer toutes les possibilités sans se perdre
+│   ├── 05_backtracking/
+│   │   ├── 01_backtracking_basics.md
 │   │   ├── 01_backtracking_basics_solution.js
-│   │   ├── 02_backtracking_arena.md                      # Sudoku, N-Queens, combinaisons
+│   │   ├── 02_backtracking_arena.md
 │   │   └── 02_backtracking_arena_solution.js
-│   ├── 06_graph_algorithms/                              # Algos de graphes : naviguer l'impossible
-│   │   ├── 01_dijkstra.md                                # Dijkstra : le chemin le plus court
+│   ├── 06_graph_algorithms/
+│   │   ├── 01_dijkstra.md
 │   │   ├── 01_dijkstra_solution.js
-│   │   ├── 02_astar.md                                   # A* : Dijkstra avec de l'intuition en plus
+│   │   ├── 02_astar.md
 │   │   ├── 02_astar_solution.js
-│   │   ├── 03_topological_sort.md                        # Tri topologique : qui vient avant qui
+│   │   ├── 03_topological_sort.md
 │   │   └── 03_topological_sort_solution.js
 │   └── 07_algorithms_grimoire.md
 │
-│
-├── 09_functional_js/                                     # JS Fonctionnel : coder sans effets de bord ni regrets
-│   ├── 01_pure_functions.md                              # Fonctions pures : toujours le même résultat, zéro surprise
+├── 09_functional_js/
+│   ├── 01_pure_functions.md
 │   ├── 01_pure_functions_solution.js
-│   ├── 02_immutability.md                                # Immutabilité : ne jamais modifier, toujours transformer
+│   ├── 02_immutability.md
 │   ├── 02_immutability_solution.js
-│   ├── 03_composition.md                                 # Composition : assembler des fonctions comme des Lego
+│   ├── 03_composition.md
 │   ├── 03_composition_solution.js
-│   ├── 04_currying.md                                    # Currying : une fonction, un argument à la fois
+│   ├── 04_currying.md
 │   ├── 04_currying_solution.js
-│   ├── 05_partial_application.md                         # Application partielle : pré-remplir pour réutiliser
+│   ├── 05_partial_application.md
 │   ├── 05_partial_application_solution.js
-│   ├── 06_fp_challenge.md                                # Challenge final : tout assembler en FP pur
+│   ├── 06_fp_challenge.md
 │   ├── 06_fp_challenge_solution.js
 │   └── 07_fp_grimoire.md
 │
-│
-├── 10_design_patterns/                                   # Design Patterns : les recettes de cuisine du code solide
-│   ├── 01_creational/                                    # Créationnels : comment créer des objets intelligemment
-│   │   ├── 01_factory_pattern.md                         # Factory : une usine qui sait ce qu'elle fabrique
+├── 10_design_patterns/
+│   ├── 01_creational/
+│   │   ├── 01_factory_pattern.md
 │   │   ├── 01_factory_pattern_solution.js
-│   │   ├── 02_singleton_pattern.md                       # Singleton : une seule instance, un seul roi
+│   │   ├── 02_singleton_pattern.md
 │   │   ├── 02_singleton_pattern_solution.js
-│   │   ├── 03_builder_pattern.md                         # Builder : construire étape par étape sans devenir fou
+│   │   ├── 03_builder_pattern.md
 │   │   └── 03_builder_pattern_solution.js
-│   ├── 02_structural/                                    # Structuraux : comment organiser les objets entre eux
-│   │   ├── 01_decorator_pattern.md                       # Decorator : ajouter des pouvoirs sans tout réécrire
+│   ├── 02_structural/
+│   │   ├── 01_decorator_pattern.md
 │   │   ├── 01_decorator_pattern_solution.js
-│   │   ├── 02_adapter_pattern.md                         # Adapter : brancher l'incompatible sans pleurer
+│   │   ├── 02_adapter_pattern.md
 │   │   ├── 02_adapter_pattern_solution.js
-│   │   ├── 03_proxy_pattern.md                           # Proxy : surveiller et contrôler l'accès
+│   │   ├── 03_proxy_pattern.md
 │   │   └── 03_proxy_pattern_solution.js
-│   ├── 03_behavioral/                                    # Comportementaux : comment les objets se parlent
-│   │   ├── 01_observer_pattern.md                        # Observer : abonné, éditeur, tout le monde est content
+│   ├── 03_behavioral/
+│   │   ├── 01_observer_pattern.md
 │   │   ├── 01_observer_pattern_solution.js
-│   │   ├── 02_strategy_pattern.md                        # Strategy : changer d'algorithme à la volée
+│   │   ├── 02_strategy_pattern.md
 │   │   ├── 02_strategy_pattern_solution.js
-│   │   ├── 03_command_pattern.md                         # Command : encapsuler une action pour l'annuler ou la rejouer
+│   │   ├── 03_command_pattern.md
 │   │   └── 03_command_pattern_solution.js
 │   └── 04_patterns_grimoire.md
 │
-│
-├── 11_refactoring/                                       # Refactoring : écrire du code qui survit à son auteur
-│   ├── 01_clean_code_basics.md                           # Nommage, lisibilité, KISS, DRY
+├── 11_refactoring/
+│   ├── 01_clean_code_basics.md
 │   ├── 01_clean_code_basics_solution.js
-│   ├── 02_solid_principles.md                            # SOLID : les 5 commandements de l'architecture
+│   ├── 02_solid_principles.md
 │   ├── 02_solid_principles_solution.js
-│   ├── 03_code_smells.md                                 # Code smells : identifier et corriger avant que ça pourrit
+│   ├── 03_code_smells.md
 │   ├── 03_code_smells_solution.js
-│   ├── 04_refacto_in_action.md                           # Refactorer du vrai code sale en quelque chose de propre
+│   ├── 04_refacto_in_action.md
 │   ├── 04_refacto_in_action_solution.js
-│   ├── 05_refacto_challenge.md                           # Challenge : transformer du spaghetti en lasagne propre
+│   ├── 05_refacto_challenge.md
 │   ├── 05_refacto_challenge_solution.js
 │   └── 06_refacto_grimoire.md
 │
-│
-├── 12_typescript/                                        # TypeScript : JS avec un casque et une armure (obligatoire)
-│   ├── 01_ts_basics/                                     # Les bases : types, interfaces, la survie
+├── 12_typescript/
+│   ├── 01_ts_basics/
 │   │   ├── 01_types_and_interfaces.md
 │   │   ├── 01_types_and_interfaces_solution.ts
 │   │   ├── 02_functions_typed.md
 │   │   ├── 02_functions_typed_solution.ts
 │   │   ├── 03_classes_typed.md
 │   │   └── 03_classes_typed_solution.ts
-│   ├── 02_ts_intermediate/                               # Niveau intermédiaire : là où ça devient utile
+│   ├── 02_ts_intermediate/
 │   │   ├── 01_generics.md
 │   │   ├── 01_generics_solution.ts
-│   │   ├── 02_utility_types.md                           # Partial, Pick, Omit, Record : les outils magiques
+│   │   ├── 02_utility_types.md
 │   │   ├── 02_utility_types_solution.ts
 │   │   ├── 03_union_intersection.md
 │   │   ├── 03_union_intersection_solution.ts
-│   │   ├── 04_type_guards.md                             # Vérifier le type à l'exécution
+│   │   ├── 04_type_guards.md
 │   │   └── 04_type_guards_solution.ts
-│   ├── 03_ts_advanced/                                   # Niveau avancé : pour tenir en code review
-│   │   ├── 01_conditional_types.md                       # Types conditionnels : if/else dans le système de types
+│   ├── 03_ts_advanced/
+│   │   ├── 01_conditional_types.md
 │   │   ├── 01_conditional_types_solution.ts
-│   │   ├── 02_mapped_types.md                            # Mapped types : transformer un type en un autre
+│   │   ├── 02_mapped_types.md
 │   │   ├── 02_mapped_types_solution.ts
-│   │   ├── 03_ts_in_real_project.md                      # TS dans un vrai projet : config, migration, stratégie
+│   │   ├── 03_ts_in_real_project.md
 │   │   └── 03_ts_in_real_project_solution.ts
 │   └── 04_typescript_grimoire.md
 │
-│
-├── 13_runtime_env/                                       # Runtime : là où ton code prend vie (ou meurt)
-│   ├── 01_node_vs_browser.md                             # Node vs Browser : les différences qui comptent vraiment
+├── 13_runtime_env/
+│   ├── 01_node_vs_browser.md
 │   ├── 01_node_vs_browser_solution.js
-│   ├── 02_streams_buffers.md                             # Streams & Buffers : manipuler des données en flux
+│   ├── 02_streams_buffers.md
 │   ├── 02_streams_buffers_solution.js
-│   ├── 03_commonjs_vs_esm.md                             # CommonJS vs ESM : l'histoire de deux systèmes de modules
+│   ├── 03_commonjs_vs_esm.md
 │   ├── 03_commonjs_vs_esm_solution.js
-│   ├── 04_process_env_argv.md                            # process, env, argv : les variables secrètes de Node
+│   ├── 04_process_env_argv.md
 │   ├── 04_process_env_argv_solution.js
-│   ├── 05_worker_threads.md                              # Worker Threads : parallélisme en JS mono-thread
+│   ├── 05_worker_threads.md
 │   ├── 05_worker_threads_solution.js
-│   ├── 06_node_cli_scripts/                              # Node CLI : automatiser le monde depuis le terminal
-│   │   ├── 01_cli_basics.md                              # Lire les args, parser les flags, afficher proprement
+│   ├── 06_node_cli_scripts/
+│   │   ├── 01_cli_basics.md
 │   │   ├── 01_cli_basics_solution.js
-│   │   ├── 02_filesystem_ops.md                          # Lire, écrire, copier, déplacer des fichiers
+│   │   ├── 02_filesystem_ops.md
 │   │   ├── 02_filesystem_ops_solution.js
-│   │   ├── 03_automation_scripts.md                      # Scripts d'automatisation : fini les tâches répétitives
+│   │   ├── 03_automation_scripts.md
 │   │   ├── 03_automation_scripts_solution.js
-│   │   ├── 04_cli_tool_builder.md                        # Construire un vrai outil CLI de A à Z
+│   │   ├── 04_cli_tool_builder.md
 │   │   └── 04_cli_tool_builder_solution.js
 │   └── 07_runtime_grimoire.md
 │
-│
-├── 14_architecture_patterns/                             # Architecture Ninja : construire en grand, penser en sage
-│   ├── 01_module_pattern.md                              # Module Pattern : encapsuler, exposer, protéger
+├── 14_architecture_patterns/
+│   ├── 01_module_pattern.md
 │   ├── 01_module_pattern_solution.js
-│   ├── 02_mvc_pattern.md                                 # MVC : Model, View, Controller comme des grands
+│   ├── 02_mvc_pattern.md
 │   ├── 02_mvc_pattern_solution.js
-│   ├── 03_clean_architecture.md                          # Clean Architecture : les couches qui ne se mélangent pas
+│   ├── 03_clean_architecture.md
 │   ├── 03_clean_architecture_solution.js
-│   ├── 04_event_driven.md                                # Event-Driven : réagir plutôt que demander
+│   ├── 04_event_driven.md
 │   ├── 04_event_driven_solution.js
-│   ├── 05_microservices_intro.md                         # Microservices : quand un seul bloc ne suffit plus
+│   ├── 05_microservices_intro.md
 │   ├── 05_microservices_intro_solution.js
 │   └── 06_architecture_grimoire.md
 │
-│
-├── 15_web_concepts/                                      # Concepts Web : tout ce qu'un ingénieur doit savoir
-│   ├── 01_http_rest_basics.md                            # HTTP, verbes REST, status codes : la grammaire du web
+├── 15_web_concepts/
+│   ├── 01_http_rest_basics.md
 │   ├── 01_http_rest_basics_solution.js
-│   ├── 02_browser_render_pipeline.md                     # Pipeline de rendu : ce qui se passe entre URL et pixel
+│   ├── 02_browser_render_pipeline.md
 │   ├── 02_browser_render_pipeline_solution.js
-│   ├── 03_state_and_dataflow.md                          # State & Data Flow : qui sait quoi et quand
+│   ├── 03_state_and_dataflow.md
 │   ├── 03_state_and_dataflow_solution.js
-│   ├── 04_caching_strategies.md                          # Caching : vitesse vs fraîcheur, choisir intelligemment
+│   ├── 04_caching_strategies.md
 │   ├── 04_caching_strategies_solution.js
-│   ├── 05_auth_authz.md                                  # Auth vs Authz : qui tu es, ce que tu peux faire
+│   ├── 05_auth_authz.md
 │   ├── 05_auth_authz_solution.js
-│   ├── 06_serialization.md                               # JSON, XML, binaire : parler plusieurs langues de données
+│   ├── 06_serialization.md
 │   ├── 06_serialization_solution.js
-│   ├── 07_seo_and_rendering.md                           # SEO & Rendering : SSR, SSG, CSR et ce que Google voit
+│   ├── 07_seo_and_rendering.md
 │   ├── 07_seo_and_rendering_solution.js
 │   └── 08_web_concepts_grimoire.md
 │
-│
-├── 16_accessibility/                                     # Accessibilité : coder pour tout le monde, pas juste toi
-│   ├── 01_a11y_why_it_matters.md                         # Pourquoi l'accessibilité : éthique ET légalité
+├── 16_accessibility/
+│   ├── 01_a11y_why_it_matters.md
 │   ├── 01_a11y_why_it_matters_solution.js
-│   ├── 02_aria_basics.md                                 # ARIA : les attributs qui parlent aux machines
+│   ├── 02_aria_basics.md
 │   ├── 02_aria_basics_solution.js
-│   ├── 03_keyboard_navigation.md                         # Navigation clavier : tab, focus, skip links
+│   ├── 03_keyboard_navigation.md
 │   ├── 03_keyboard_navigation_solution.js
-│   ├── 04_contrast_and_colors.md                         # Contraste & couleurs : WCAG AA et AAA expliqués
+│   ├── 04_contrast_and_colors.md
 │   ├── 04_contrast_and_colors_solution.js
-│   ├── 05_screen_readers.md                              # Lecteurs d'écran : comment ils lisent ton HTML
+│   ├── 05_screen_readers.md
 │   ├── 05_screen_readers_solution.js
-│   ├── 06_a11y_audit.md                                  # Auditer une page : axe, Lighthouse, corrections
+│   ├── 06_a11y_audit.md
 │   ├── 06_a11y_audit_solution.js
 │   └── 07_a11y_grimoire.md
 │
-│
-├── 17_i18n/                                              # Internationalisation : parler toutes les langues sans tout réécrire
-│   ├── 01_i18n_basics.md                                 # Locales, traductions, structure de base
+├── 17_i18n/
+│   ├── 01_i18n_basics.md
 │   ├── 01_i18n_basics_solution.js
-│   ├── 02_dates_timezones.md                             # Dates & fuseaux : le piège que personne ne voit venir
+│   ├── 02_dates_timezones.md
 │   ├── 02_dates_timezones_solution.js
-│   ├── 03_number_formats.md                              # Formats numériques : virgule, point, devises selon la locale
+│   ├── 03_number_formats.md
 │   ├── 03_number_formats_solution.js
-│   ├── 04_pluralization.md                               # Pluralisation : 1 chat, 2 chats, zéro chat
+│   ├── 04_pluralization.md
 │   ├── 04_pluralization_solution.js
-│   ├── 05_i18n_in_project.md                             # i18n dans un vrai projet : react-i18next, next-intl
+│   ├── 05_i18n_in_project.md
 │   ├── 05_i18n_in_project_solution.js
 │   └── 06_i18n_grimoire.md
 │
-│
-├── 18_realtime/                                          # Real-Time : le web qui respire en direct
-│   ├── 01_websockets/                                    # WebSockets : connexion permanente, données en temps réel
-│   │   ├── 01_ws_basics.md                               # Ouvrir, envoyer, recevoir, fermer proprement
+├── 18_realtime/
+│   ├── 01_websockets/
+│   │   ├── 01_ws_basics.md
 │   │   ├── 01_ws_basics_solution.js
-│   │   ├── 02_ws_chat_room.md                            # Construire un chat room : rooms, broadcast, events
+│   │   ├── 02_ws_chat_room.md
 │   │   └── 02_ws_chat_room_solution.js
-│   ├── 02_sse/                                           # SSE : Server-Sent Events, le flux unidirectionnel
-│   │   ├── 01_sse_basics.md                              # Quand SSE est mieux que WebSocket (et pourquoi)
+│   ├── 02_sse/
+│   │   ├── 01_sse_basics.md
 │   │   ├── 01_sse_basics_solution.js
-│   │   ├── 02_sse_live_feed.md                           # Live feed : notifications, dashboards en temps réel
+│   │   ├── 02_sse_live_feed.md
 │   │   └── 02_sse_live_feed_solution.js
-│   ├── 03_webrtc/                                        # WebRTC : pair-à-pair, vidéo, audio, data channels
-│   │   ├── 01_webrtc_concepts.md                         # Signaling, ICE, STUN, TURN : les bases théoriques
+│   ├── 03_webrtc/
+│   │   ├── 01_webrtc_concepts.md
 │   │   ├── 01_webrtc_concepts_solution.js
-│   │   ├── 02_webrtc_demo.md                             # Demo pair-à-pair : envoyer des données sans serveur
+│   │   ├── 02_webrtc_demo.md
 │   │   └── 02_webrtc_demo_solution.js
 │   └── 04_realtime_grimoire.md
 │
-│
-├── 19_api_craft/                                         # API Craft : construire ce que le monde consomme
-│   ├── 01_express_from_scratch.md                        # Express : router, middleware, request, response
+├── 19_api_craft/
+│   ├── 01_express_from_scratch.md
 │   ├── 01_express_from_scratch_solution.js
-│   ├── 02_rest_crud_complete.md                          # REST complet : CRUD propre avec validation
+│   ├── 02_rest_crud_complete.md
 │   ├── 02_rest_crud_complete_solution.js
-│   ├── 03_error_handling_api.md                          # Erreurs en API : ne jamais crasher en prod
+│   ├── 03_error_handling_api.md
 │   ├── 03_error_handling_api_solution.js
-│   ├── 04_auth_jwt.md                                    # Auth JWT : signer, vérifier, expirer
+│   ├── 04_auth_jwt.md
 │   ├── 04_auth_jwt_solution.js
-│   ├── 05_graphql_basics.md                              # GraphQL : queries, mutations, resolvers
+│   ├── 05_graphql_basics.md
 │   ├── 05_graphql_basics_solution.js
-│   ├── 06_api_versioning.md                              # Versioning : /v1, /v2, ne jamais casser les clients
+│   ├── 06_api_versioning.md
 │   ├── 06_api_versioning_solution.js
-│   ├── 07_openapi_swagger.md                             # OpenAPI & Swagger : documenter pour humains et machines
+│   ├── 07_openapi_swagger.md
 │   ├── 07_openapi_swagger_solution.js
 │   └── 08_api_grimoire.md
 │
-│
-├── 20_security/                                          # Sécurité : OWASP & au-delà des nightmares
-│   ├── 01_xss_injection.md                               # XSS & Injection : les attaques les plus répandues
+├── 20_security/
+│   ├── 01_xss_injection.md
 │   ├── 01_xss_injection_solution.js
-│   ├── 02_csrf_cors.md                                   # CSRF & CORS : protéger sans bloquer les bonnes requêtes
+│   ├── 02_csrf_cors.md
 │   ├── 02_csrf_cors_solution.js
-│   ├── 03_prototype_pollution.md                         # Prototype Pollution : l'attaque JS que personne ne voit
+│   ├── 03_prototype_pollution.md
 │   ├── 03_prototype_pollution_solution.js
-│   ├── 04_auth_flows.md                                  # Flows d'auth : OAuth2, PKCE, sessions vs tokens
+│   ├── 04_auth_flows.md
 │   ├── 04_auth_flows_solution.js
-│   ├── 05_hashing_bcrypt.md                              # Hashing : bcrypt, salt, stocker les mots de passe correctement
+│   ├── 05_hashing_bcrypt.md
 │   ├── 05_hashing_bcrypt_solution.js
-│   ├── 06_owasp_checklist.md                             # OWASP Top 10 : la liste des erreurs à ne jamais faire
+│   ├── 06_owasp_checklist.md
 │   ├── 06_owasp_checklist_solution.js
 │   └── 07_security_grimoire.md
 │
-│
-├── 21_ai_native_dev/                                     # AI-Native Dev : coder avec l'IA comme un senior
-│   ├── 01_ai_workflow.md                                 # Workflow IA : copilote, pas chauffeur
-│   ├── 01_ai_workflow_solution.js                        # Intégration API OpenAI/Anthropic : appels, streaming, gestion d'erreurs
-│   ├── 02_prompt_engineering.md                          # Prompt Engineering : générer du bon code, pas du bruit
-│   ├── 02_prompt_engineering_solution.js                 # Construire et tester des prompts programmatiquement
-│   ├── 03_validate_ai_output.md                          # Valider ce que l'IA produit : elle se trompe aussi
-│   ├── 03_validate_ai_output_solution.js                 # Zod + parsing : valider la sortie JSON d'un LLM
-│   ├── 04_ai_refactor_partner.md                         # L'IA comme partenaire de refactoring
-│   ├── 04_ai_refactor_partner_solution.js                # Pipeline : soumettre du code, parser la réponse, appliquer les diffs
-│   ├── 05_ai_test_generator.md                           # Générer des tests avec l'IA : vite fait, bien validé
-│   ├── 05_ai_test_generator_solution.js                  # Générer + exécuter des tests Jest depuis une réponse LLM
+├── 21_ai_native_dev/
+│   ├── 01_ai_workflow.md
+│   ├── 01_ai_workflow_solution.js
+│   ├── 02_prompt_engineering.md
+│   ├── 02_prompt_engineering_solution.js
+│   ├── 03_validate_ai_output.md
+│   ├── 03_validate_ai_output_solution.js
+│   ├── 04_ai_refactor_partner.md
+│   ├── 04_ai_refactor_partner_solution.js
+│   ├── 05_ai_test_generator.md
+│   ├── 05_ai_test_generator_solution.js
 │   └── 06_ai_grimoire.md
 │
-│
-├── 22_databases/                                         # Bases de données : persister intelligemment
-│   ├── 01_sql_basics.md                                  # SQL : requêtes, jointures, indexes, agrégations
+├── 22_databases/
+│   ├── 01_sql_basics.md
 │   ├── 01_sql_basics_solution.js
-│   ├── 02_nosql_basics.md                                # NoSQL : documents, clé/valeur, quand choisir quoi
+│   ├── 02_nosql_basics.md
 │   ├── 02_nosql_basics_solution.js
-│   ├── 03_data_modeling.md                               # Modélisation : normalisation, relations, schémas
+│   ├── 03_data_modeling.md
 │   ├── 03_data_modeling_solution.js
-│   ├── 04_redis_caching.md                               # Redis : cache, sessions, queues légères
+│   ├── 04_redis_caching.md
 │   ├── 04_redis_caching_solution.js
-│   ├── 05_db_in_js.md                                    # DB en JS : Prisma, Drizzle, Supabase dans la pratique
+│   ├── 05_db_in_js.md
 │   ├── 05_db_in_js_solution.js
 │   └── 06_databases_grimoire.md
 │
-│
-├── 23_scalability/                                       # Scalabilité : tenir quand ça devient sérieux
-│   ├── 01_load_balancing.md                              # Load Balancing : répartir sans faire tomber
+├── 23_scalability/
+│   ├── 01_load_balancing.md
 │   ├── 01_load_balancing_solution.js
-│   ├── 02_horizontal_vs_vertical.md                      # Scale horizontal vs vertical : les vraies différences
+│   ├── 02_horizontal_vs_vertical.md
 │   ├── 02_horizontal_vs_vertical_solution.js
-│   ├── 03_rate_limiting.md                               # Rate Limiting : protéger sans punir les bons utilisateurs
+│   ├── 03_rate_limiting.md
 │   ├── 03_rate_limiting_solution.js
-│   ├── 04_message_queues.md                              # Message Queues : RabbitMQ, Kafka, découpler pour tenir
+│   ├── 04_message_queues.md
 │   ├── 04_message_queues_solution.js
 │   └── 05_scalability_grimoire.md
 │
-│
-├── 24_observability/                                     # Observabilité : voir ce qui se passe en prod
-│   ├── 01_structured_logging.md                          # Logs JSON structurés : fini les console.log nus
+├── 24_observability/
+│   ├── 01_structured_logging.md
 │   ├── 01_structured_logging_solution.js
-│   ├── 02_distributed_tracing.md                         # Distributed Tracing : suivre une requête partout
+│   ├── 02_distributed_tracing.md
 │   ├── 02_distributed_tracing_solution.js
-│   ├── 03_metrics_alerting.md                            # Métriques & alerting : être prévenu avant le crash
+│   ├── 03_metrics_alerting.md
 │   ├── 03_metrics_alerting_solution.js
-│   ├── 04_sentry_in_prod.md                              # Sentry : capturer, trier, corriger en prod
+│   ├── 04_sentry_in_prod.md
 │   ├── 04_sentry_in_prod_solution.js
-│   ├── 05_debug_in_prod.md                               # Déboguer en prod sans tout casser : l'art du chirurgien
+│   ├── 05_debug_in_prod.md
 │   ├── 05_debug_in_prod_solution.js
 │   └── 06_observability_grimoire.md
 │
-│
-├── 25_team_craft/                                        # Coder en équipe : le vrai différenciateur senior
-│   ├── 01_code_review.md                                 # Code Review : donner et recevoir du feedback utile
+├── 25_team_craft/
+│   ├── 01_code_review.md
 │   ├── 01_code_review_solution.js
-│   ├── 02_adr_writing.md                                 # ADR : documenter les décisions techniques qui doivent durer
+│   ├── 02_adr_writing.md
 │   ├── 02_adr_writing_solution.js
-│   ├── 03_technical_writing.md                           # Technical Writing : écrire pour des humains fatigués
+│   ├── 03_technical_writing.md
 │   ├── 03_technical_writing_solution.js
-│   ├── 04_navigate_codebase.md                           # Naviguer un codebase inconnu sans paniquer
+│   ├── 04_navigate_codebase.md
 │   ├── 04_navigate_codebase_solution.js
-│   ├── 05_pair_programming.md                            # Pair Programming : deux cerveaux valent mieux qu'un (parfois)
+│   ├── 05_pair_programming.md
 │   ├── 05_pair_programming_solution.js
 │   └── 06_team_grimoire.md
 │
-│
-├── 26_edge_cases/                                        # Cas Bizarres : JS qui se rebelle contre son créateur
-│   ├── 01_nan_undefined_null.md                          # NaN, undefined, null : le triangle des Bermudes de JS
+├── 26_edge_cases/
+│   ├── 01_nan_undefined_null.md
 │   ├── 01_nan_undefined_null_solution.js
-│   ├── 02_floating_point.md                              # 0.1 + 0.2 ≠ 0.3 : l'horreur des virgules flottantes
+│   ├── 02_floating_point.md
 │   ├── 02_floating_point_solution.js
-│   ├── 03_weird_coercions.md                             # Les coercitions que personne n'a demandées
+│   ├── 03_weird_coercions.md
 │   ├── 03_weird_coercions_solution.js
-│   ├── 04_prototype_chain_dark.md                        # La chaîne de prototypes dans ses pires moments
+│   ├── 04_prototype_chain_dark.md
 │   ├── 04_prototype_chain_dark_solution.js
 │   └── 05_edge_cases_grimoire.md
 │
-│
-├── 27_oop_js/                                            # OOP en JS : prototype, classes, héritage -> la face cachée
-│   ├── 01_prototype_chain.md                             # La chaîne de prototypes : comment JS hérite vraiment
-│   ├── 01_prototype_chain_solution.js
-│   ├── 02_classes_es6.md                                 # Classes ES6 : sucre syntaxique sur prototype
-│   ├── 02_classes_es6_solution.js
-│   ├── 03_inheritance_patterns.md                        # Héritage : composition vs héritage, le vrai débat
-│   ├── 03_inheritance_patterns_solution.js
-│   ├── 04_mixins.md                                      # Mixins : réutiliser sans hériter
-│   ├── 04_mixins_solution.js
-│   └── 05_oop_grimoire.md
-│
-│
-├── 28_mini_projects/                                     # Projets Intégrateurs : tout assembler pour de vrai
-│   ├── 01_shinobi_engine/                                # Moteur de combat Naruto : FP + patterns + maths
-│   │   ├── cahierdescharges.md                           # Specs fonctionnelles et techniques détaillées
-│   │   ├── README.md                                     # Contexte, objectifs, modules couverts
-│   │   ├── TDD_JOURNAL.md                                # Tests écrits avant le code
-│   │   ├── POSTMORTEM.md                                 # Ce qui a cassé, ce qu'on aurait fait mieux
-│   │   ├── ADR/                                          # Décisions d'architecture documentées
-│   │   ├── src/
-│   │   └── tests/
-│   ├── 02_titan_tracker/                                 # Système de détection AoT : data structures + algos
+├── 28_mini_projects/
+│   ├── 01_rasengan_engine/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -759,7 +697,7 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   ├── 03_vinyl_vault/                                   # API collection vinyle : REST + auth + sécurité
+│   ├── 02_garo_no_kronika/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -767,7 +705,7 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   ├── 04_ballon_dor_cli/                                # Classement Ballon d'Or en terminal : Node CLI + algos
+│   ├── 03_walking_dead_protocol/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -775,7 +713,7 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   ├── 05_setlist_generator/                             # Générateur de setlist concert : FP + regex + TypeScript
+│   ├── 04_breaking_cache/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -783,7 +721,7 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   ├── 06_quirk_simulator/                               # Duels de Quirks MHA : async + SSE + event-driven
+│   ├── 05_prison_break_api/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -791,7 +729,7 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   ├── 07_ultras_dashboard/                              # Dashboard analytics foot : observability + perf + TDD
+│   ├── 06_ultras_dashboard/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
@@ -799,7 +737,15 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/
 │   │   └── tests/
-│   └── 08_kaiju_i18n/                                    # Encyclopédie Kaijus multilingue : i18n + a11y + TypeScript
+│   ├── 07_ballon_dor_cli/
+│   │   ├── cahierdescharges.md
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md
+│   │   ├── POSTMORTEM.md
+│   │   ├── ADR/
+│   │   ├── src/
+│   │   └── tests/
+│   └── 08_trapsoul_radio/
 │       ├── cahierdescharges.md
 │       ├── README.md
 │       ├── TDD_JOURNAL.md
@@ -807,7 +753,7 @@ MyFunnyJS/
 │       ├── ADR/
 │       ├── src/
 │       └── tests/
-│   └── 09_oracle_glitch/                                    # Le LLM qui hallucine et toi qui le surveilles
+│   └── 09_oracle_glitch/
 │       ├── cahierdescharges.md
 │       ├── README.md
 │       ├── TDD_JOURNAL.md
@@ -816,296 +762,211 @@ MyFunnyJS/
 │       ├── src/
 │       └── tests/
 │
+├── 29_annexes/
+│   ├── toolchain/
+│   │   ├── 01_git_survival.md
+│   │   ├── 02_vscode_setup.md
+│   │   ├── 03_package_managers.md
+│   │   ├── 04_bundlers.md
+│   │   ├── 05_docker_basics.md
+│   │   └── 06_cicd_basics.md
+│   └── typescript_advanced/
+│       ├── 01_declaration_files.ts
+│       ├── 02_ts_compiler_config.md
+│       └── 03_ts_migration_guide.md
 │
-├── 29_annexes/                                           # Annexes pro : pour aller encore plus loin
-│   ├── toolchain/                                        # Toolchain : l'arsenal du dev moderne
-│   │   ├── 01_git_survival.md                            # Git : les commandes qui sauvent une carrière
-│   │   ├── 02_vscode_setup.md                            # VSCode : extensions, shortcuts, config qui déchire
-│   │   ├── 03_package_managers.md                        # npm, yarn, pnpm : qui gère quoi et comment
-│   │   ├── 04_bundlers.md                                 # Vite, Webpack, esbuild : pourquoi ça existe
-│   │   ├── 05_docker_basics.md                            # Docker : containeriser sans se noyer
-│   │   └── 06_cicd_basics.md                              # CI/CD : automatiser pour ne plus jamais déployer à la main
-│   └── typescript_advanced/                              # TypeScript avancé : pour les cas extrêmes
-│       ├── 01_declaration_files.ts                        # .d.ts : typer des bibliothèques non typées
-│       ├── 02_ts_compiler_config.md                       # tsconfig.json : chaque option expliquée simplement
-│       └── 03_ts_migration_guide.md                       # Migrer un projet JS vers TS sans tout casser
-│   └── system_design/                                        
-│       ├──01_system_design_grimoire.md                    # Quand tu croises un terme dans un codebase ou une PR review     
-│
-│
-└── 30_tools/                                             # Arsenal maison : tes gadgets pour aller plus vite
-    ├── 01_logger.js                                      # Logger propre : plus jamais de console.log nu
-    ├── 02_helper_functions.js                            # Fonctions utiles : le couteau suisse personnel
-    ├── 03_array_utils.js                                 # Utils tableau : les raccourcis que t'as toujours voulus
-    ├── 04_benchmark.js                                   # Benchmark : mesurer avant d'optimiser
-    ├── 05_debug_toolkit.js                               # Debug toolkit : inspecter, tracer, comprendre
-    └── 06_devtools_cheatsheet.md                         # DevTools : le guide de survie du navigateur
+└── 30_tools/
+    ├── 01_logger.js
+    ├── 02_helper_functions.js
+    ├── 03_array_utils.js
+    ├── 04_benchmark.js
+    ├── 05_debug_toolkit.js
+    └── 06_devtools_cheatsheet.md
 ```
-
----
-
-## Ce que tu dois maîtriser : la carte complète
-
-### Fondamentaux JS
-
-```
-Primitives vs objets
-  => Copier une valeur vs copier une adresse
-  => Scope global, fonction, block
-  => Closures et pourquoi elles piègent tout le monde
-Fonctions comme valeurs
-  => Les passer, les retourner, les stocker
-  => Call Stack et Event Loop : mono-thread, microtasks vs macrotasks
-Coercition de types
-  => Conversions implicites
-  => Regex pour parser, valider, extraire
-```
-
-### Error Handling
-
-```
-try/catch/finally : attraper sans perdre le contexte
-  => Erreurs custom : créer ses propres types d'erreur
-  => Propagation : qui gère quoi et à quel niveau
-  => Erreurs async : les plus silencieuses et les plus mortelles
-  => Stratégies : fail fast, fail safe, fallback, retry
-```
-
-### Testing
-
-```
-Unit tests, mocks, spies
-  => Async testing : Promises, timers, event emitters
-  => TDD : écrire le test AVANT le code
-  => Tests d'intégration
-  => Contract testing
-  => E2E avec Playwright
-Le testing n'est pas une étape après le code.
-C'est une façon de coder.
-```
-
-### TypeScript
-
-```
-Types, interfaces, type alias
-  => Generics : flexible et typé en même temps
-  => Utility types : Partial, Pick, Omit, Record
-  => Type guards : vérifier le type à l'exécution
-  => Types conditionnels & mapped types
-En 2026, TS n'est plus optionnel.
-```
-
-### Accessibilité
-
-```
-ARIA : les attributs qui parlent aux machines
-  => Navigation clavier : tab, focus, skip links
-  => Contraste & couleurs : WCAG AA et AAA
-  => Lecteurs d'écran : comment ils lisent ton HTML
-Coder pour tout le monde, pas juste pour les gens qui te ressemblent.
-```
-
-### Design Patterns
-
-```
-Creational  : Factory, Singleton, Builder
-  => Structural  : Decorator, Adapter, Proxy
-  => Behavioral  : Observer, Strategy, Command
-Pas juste les nommer.
-Les appliquer dans le bon contexte.
-```
-
-### Mémoire et performance
-
-```
-Garbage Collector : qui nettoie quoi et quand
-  => Shallow copy vs deep copy
-  => Big-O de O(1) à O(2^n)
-  => Profiling avec performance.now()
-  => Fuites mémoire : comment les chasser
-  => DevTools : breakpoints, flame graphs, memory snapshots
-LCP, INP, CLS : les Core Web Vitals que Google mesure sur ton app
-```
-
-### Real-Time
-
-```
-WebSockets : connexion permanente, bidirectionnelle
-  => SSE : quand le serveur parle seul
-  => WebRTC : pair-à-pair, sans serveur entre les deux
-Choisir le bon outil selon le besoin réel.
-```
-
-### Architecture et patterns
-
-```
-Module  =>  MVC  =>  Clean Architecture
-  => Event-driven  =>  Microservices
-Savoir les appliquer et surtout savoir
-POURQUOI on les applique dans tel contexte.
-```
-
-### i18n
-
-```
-Locales, traductions, structure
-  => Dates & fuseaux horaires : le piège universel
-  => Formats numériques selon la locale
-  => Pluralisation
-  => react-i18next, next-intl dans la pratique
-```
-
-### AI-Native Dev
-
-```
-Cursor et Copilot : workflow propre, pas de copier-coller zombie
-  => Prompt engineering : générer du bon code
-  => Valider ce que l'IA produit
-  => Savoir quand lui faire confiance et quand reprendre le volant
-  => Écrire du code que l'IA peut relire et modifier sans tout casser
-```
-
-### Observabilité en prod
-
-```
-Logs JSON structurés : fini les console.log nus
-  => Distributed tracing : suivre une requête partout
-  => Métriques et alerting : être prévenu avant le crash
-  => Sentry : capturer, trier, corriger en prod
-  => Déboguer en prod sans tout casser
-Sans ça, tu codes bien mais tu es aveugle
-quand quelque chose explose.
-```
-
-### Team Craft
-
-```
-Code review : donner et recevoir du feedback utile
-  => ADR : documenter les décisions techniques qui doivent durer
-  => Technical writing : écrire pour des humains fatigués
-  => Naviguer un codebase inconnu
-  => Pair programming
-```
-
-> Tout ça fonctionne dans n'importe quel langage.
-> JS est le terrain d'entraînement. La façon de penser, elle, est universelle.
 
 ---
 
 ## Les projets
 
-### 01_shinobi_engine/ : Le moteur de combat Naruto
+Les 9 mini-projets couvrent l'ensemble du curriculum. Chaque projet est un assemblage réel
+de 3 à 4 modules : pas d'exercice théorique, pas de "implémente une fonction map". Des
+systèmes qui ont une raison d'exister, des contraintes qui forcent de vraies décisions.
+
+```
+01_rasengan_engine       =>  01_fundamentals + 05_math + 09_functional_js + 10_design_patterns
+02_garo_no_kronika       =>  02_async + 03_error_handling + 18_realtime + 14_architecture
+03_walking_dead_protocol =>  04_testing + 11_refactoring + 13_runtime_env + 30_tools
+04_breaking_cache        =>  07_data_structures + 08_algorithms + 06_memory_performance
+05_prison_break_api      =>  19_api_craft + 20_security + 22_databases + 15_web_concepts
+06_ultras_dashboard      =>  24_observability + 23_scalability + 12_typescript
+07_ballon_dor_cli        =>  13_runtime_env + 11_refactoring + 03_error_handling + 29_annexes
+08_trapsoul_radio        =>  12_typescript + 15_web_concepts + 16_accessibility + 17_i18n
+09_oracle_glitch         =>  21_ai_native_dev + 27_oop_js + 25_team_craft + 26_edge_cases
+```
+
+---
+
+### 01_rasengan_engine/ : Le moteur de jutsu de Naruto
 
 **Modules couverts :** `01_fundamentals` · `05_math_basics` · `09_functional_js` · `10_design_patterns`
 
-Un moteur de combat textuel entre ninjas. Chaque shinobi a des stats, des jutsus, un chakra. Les combats se résolvent via des fonctions pures, les jutsus sont des Strategy patterns, et le système de chakra tourne autour de probabilité et de modulo.
+Naruto veut un simulateur de combat textuel. Chaque ninja a des stats (chakra, vitesse, force), une liste de jutsus, et un style de combat. Le moteur calcule les dégâts, gère les cooldowns, résout les esquives. Le tout sans une seule mutation d'état : chaque tour retourne un nouvel état, jamais modifié.
 
-- Fonctions pures pour les calculs de dégâts
-- Strategy pattern pour chaque type de jutsu
-- Composition pour assembler les capacités
-- Probabilité & RNG pour les critiques et les esquives
-- Immutabilité : jamais de mutation d'état direct
+C'est le premier projet. Ici t'apprends à penser fonctionnel, à composer des comportements, à utiliser les maths comme des armes. Pas de framework. Pas de bibliothèque. Du JS pur.
 
-### 02_titan_tracker/ : Le système de détection des Titans
+- Fonctions pures et composition (`pipe`, `compose`) pour assembler les capacités de chaque ninja
+- Immutabilité totale : `Object.freeze`, spread, jamais de mutation directe sur les stats
+- Strategy pattern pour les jutsus : chaque technique est une fonction interchangeable
+- Factory pattern pour créer les ninjas et leurs configurations
+- Probabilité et RNG pour les critiques, les esquives, les ratés
+- Arithmétique modulaire pour les cycles de chakra et les cooldowns
+- HOF : `map`, `filter`, `reduce` comme seuls outils de transformation de l'état de combat
 
-**Modules couverts :** `07_data_structures` · `08_algorithms` · `06_memory_performance`
+---
 
-Un système de surveillance des murs inspiré d'Attack on Titan. Des capteurs détectent des Titans à différentes positions, le système les trie par niveau de menace, calcule les chemins d'évacuation les plus courts, et repère les zones d'invasion connectées.
-
-- Graph pour modéliser la carte des murs et des chemins
-- Dijkstra pour trouver les routes d'évacuation optimales
-- Min-heap pour la priority queue des menaces
-- BFS pour détecter les zones envahies connectées
-- Big-O analysis sur chaque algo utilisé
-
-### 03_vinyl_vault/ : L'API secrète de la collection vinyle
-
-**Modules couverts :** `19_api_craft` · `22_databases` · `20_security` · `15_web_concepts`
-
-Une API REST complète pour gérer une collection de vinyles. Artistes, albums, tracks, notes perso. Avec auth JWT, recherche, et rate limiting pour que personne ne scrappe ta collection privée.
-
-- Express CRUD complet sur albums, artistes et tracks
-- Auth JWT : sign, verify, refresh token
-- Hashing bcrypt pour les mots de passe
-- Rate limiting par IP
-- Sanitization des inputs contre XSS et injection
-- OpenAPI doc minimale
-
-### 04_ballon_dor_cli/ : Le classement Ballon d'Or en terminal
-
-**Modules couverts :** `13_runtime_env` · `08_algorithms` · `11_refactoring` · `03_error_handling`
-
-Un outil CLI Node.js pour gérer et simuler le vote du Ballon d'Or. Les journalistes votent, les points s'agrègent, le classement se met à jour. Plusieurs commandes disponibles : `vote`, `rank`, `reset`, `simulate`. Sauvegarde locale JSON incluse.
-
-- CLI avec `process.argv` et parsing de flags
-- Merge Sort pour le classement final
-- Filesystem pour la persistance via `fs`
-- Custom errors : `InvalidVoteError`, `PlayerNotFoundError`
-- Refactoring challenge : v1 procédurale → v2 modulaire propre
-- Tests unitaires sur les fonctions de calcul de score
-
-### 05_setlist_generator/ : Le générateur de setlist pour concerts
-
-**Modules couverts :** `09_functional_js` · `01_fundamentals/07_regex` · `12_typescript`
-
-Un outil qui prend une bibliothèque de chansons en JSON et génère des setlists optimisées selon des critères : énergie, durée, cohérence de genre. Le tout en FP pur, typé en TypeScript, avec parsing de métadonnées via regex.
-
-- Fonctions pures et composition pour les filtres et les tris
-- Currying pour les critères de sélection
-- Regex pour parser durées (`3:45`), BPM, tonalités depuis des strings
-- TypeScript : generics, utility types (`Partial`, `Pick`), type guards
-- Immutabilité totale sur la bibliothèque source
-
-### 06_quirk_simulator/ : Les duels de Quirks en temps réel
+### 02_garo_no_kronika/ : La Chronique des Chevaliers de la Flamme
 
 **Modules couverts :** `02_async` · `03_error_handling` · `18_realtime` · `14_architecture_patterns`
 
-Un simulateur de duels de héros inspiré de My Hero Academia. Les Quirks ont des effets asynchrones : délais de charge, recharge, effets persistants. Le moteur streame les events du combat via SSE vers un frontend minimaliste.
+Inspiré de Garo Honoo no Kokuin. Des Chevaliers d'Or patrouillent les villes la nuit. Chaque apparition d'un Horror déclenche une alerte asynchrone : le Chevalier le plus proche reçoit la mission, prépare son armure avec un délai, combat, et le résultat est streamé en direct vers le Conseil de Surveillance. Si le combat dépasse 99.9 secondes, l'armure se désintègre. Erreur fatale. Propagation immédiate.
 
-- Async/await pour les effets de Quirk avec délais
-- `Promise.race` pour les interruptions de combat
-- SSE pour streamer les events du duel en live
-- Event-driven architecture pour les effets chaînés
-- Custom errors : `QuirkOverheatError`, `HeroDownError`
-- Module pattern pour isoler chaque Quirk
+- Dispatcher de missions asynchrone : chaque alerte Horror est une Promise chainée
+- `Promise.race` pour gérer la limite des 99.9 secondes d'armure
+- `Promise.allSettled` pour les combats simultanés dans plusieurs quartiers
+- SSE pour streamer les events de combat vers le Conseil en temps réel
+- Event-driven architecture : chaque action déclenche des réactions en cascade
+- Module pattern pour isoler chaque Chevalier et ses capacités
+- Stratégie d'erreur complète : `HorrorEscapeError`, `ArmorCollapseError`, `KnightDownError`
+- Fail-fast sur les missions critiques, fallback sur les missions secondaires
 
-### 07_ultras_dashboard/ : Le dashboard d'analytics d'un club de foot
+---
 
-**Modules couverts :** `24_observability` · `23_scalability` · `06_memory_performance` · `04_testing`
+### 03_walking_dead_protocol/ : Le protocole de survie des survivants
 
-Un dashboard Node.js qui ingère des données de matchs en temps réel : passes, tirs, positions. Il génère des stats live, profile les calculs lourds, et tient la charge grâce au rate limiting. Tous les agrégateurs sont testés en TDD.
+**Modules couverts :** `04_testing` · `11_refactoring` · `13_runtime_env` · `30_tools`
 
-- Structured JSON logging de chaque event de match
-- Métriques : possession, xG, heatmap de passes
-- Rate limiting sur l'endpoint de mise à jour live
-- `performance.now()` et profiling sur les agrégations
-- TDD : tests écrits avant les fonctions d'analytics
-- Big-O analysis sur les agrégations
+Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire, rotations de garde, rations alimentaires, niveaux de sécurité. Le code existe déjà. Il a été écrit en pleine apocalypse zombie, la nuit, sous la pression. C'est du spaghetti. Personne ne sait ce qu'il fait. Zéro test.
 
-### 08_kaiju_i18n/ : L'encyclopédie multilingue des Kaijus
+Ton boulot : ne jamais ajouter de feature avant d'avoir des tests. Refactorer sans rien casser. Transformer ce camp en forteresse de code propre.
 
-**Modules couverts :** `17_i18n` · `16_accessibility` · `12_typescript` · `15_web_concepts`
+- Suite de tests complète sur un codebase existant : unit, intégration, E2E avec Playwright
+- TDD pur pour chaque nouvelle feature : le test arrive avant le code, toujours
+- Mocking et spies : simuler des attaques de zombies sans vrais zombies
+- Refactoring SOLID complet : v1 spaghetti → v2 modulaire — SRP, OCP, DIP appliqués sur du code réel
+- Code smells identifiés et corrigés un par un
+- CLI Node.js pour automatiser les rapports de camp et les alertes de rations
+- Worker Threads pour paralléliser les simulations de menace
+- `30_tools` intégré au pipeline : logger structuré, benchmark, debug toolkit
 
-Une encyclopédie web des Kaijus inspirée de Godzilla et Pacific Rim, disponible en français, anglais, japonais et malgache. Chaque fiche affiche les stats, la catégorie de menace, et les dates formatées selon la locale. Entièrement accessible.
+---
 
-- i18n complet avec 4 locales dont une custom (malgache)
-- Dates formatées selon la locale avec `Intl.DateTimeFormat`
-- Pluralisation : `1 attaque`, `3 attaques`, `0 attaque`
-- TypeScript : clés de traduction typées, utility types
-- ARIA roles complets et navigation clavier
-- Contraste WCAG AA vérifié sur toutes les fiches
+### 04_breaking_cache/ : La cuisine de Walter White
+
+**Modules couverts :** `07_data_structures` · `08_algorithms` · `06_memory_performance`
+
+Walter White a besoin d'optimiser sa supply chain. Il a des distributeurs, des routes, des stocks, des niveaux de menace. Chaque décision doit être calculée à froid, avec précision. Le réseau de distribution est un graphe. Les priorités sont gérées par un heap. Chaque algorithme tourne sous profilage : Walter ne tolère pas les inefficacités.
+
+- Graphe orienté pondéré pour modéliser le réseau de distribution (villes, routes, risques)
+- Dijkstra pour trouver les chemins de livraison les plus sûrs
+- Min-heap pour prioriser les urgences : pénurie, concurrence, danger immédiat
+- BFS pour détecter les routes compromises, DFS pour l'exploration complète du réseau
+- Merge Sort et Quick Sort sur les lots : analyse comparative dans quel contexte chacun gagne
+- Dynamic Programming : optimisation du stock sous contraintes (knapsack)
+- `performance.now()` et profilage sur chaque algo : aucun algo non mesuré n'est accepté
+- Big-O analysis complète : O(1), O(log n), O(n log n), O(n²) — le coût de chaque décision
+
+---
+
+### 05_prison_break_api/ : L'évasion de Fox River
+
+**Modules couverts :** `19_api_craft` · `20_security` · `22_databases` · `15_web_concepts`
+
+Michael Scofield a besoin d'une infrastructure. Chaque prisonnier a un profil, chaque section de la prison a des access logs, et le plan d'évasion est une série d'endpoints sécurisés. L'API doit tenir sous pression, ne jamais exposer d'info sensible, et résister aux tentatives d'injection de T-Bag qui essaie de hacker le système depuis l'intérieur.
+
+- API REST Express complète : CRUD sur les profils, plans d'évasion, sections de la prison
+- Auth JWT avec sign, verify, refresh — chaque endpoint vérifie qui tu es
+- Bcrypt sur tous les mots de passe : T-Bag ne trouvera rien d'utile dans la DB
+- Rate limiting par IP : pas de brute force sur l'endpoint de login
+- Sanitization contre XSS, injection SQL et prototype pollution
+- Modélisation de DB : relations profils / plans / sections, indexes sur les colonnes critiques
+- Redis pour cacher les plans souvent consultés, TTL et invalidation
+- OpenAPI doc : chaque endpoint documenté, chaque erreur spécifiée
+- Browser render pipeline, state et dataflow : ce qui se passe entre la requête et l'affichage
+- Caching strategies : quand mettre en cache, quand invalider, quand ne pas cacher
+
+---
+
+### 06_ultras_dashboard/ : Le dashboard d'analytics d'un club de foot
+
+**Modules couverts :** `24_observability` · `23_scalability` · `12_typescript`
+
+Le club de foot le plus suivi de la saison. Des milliers d'ultras connectés en même temps. Des données de match qui arrivent à 200 events par minute. Un dashboard qui doit afficher possession, xG, heatmap de passes, alertes en temps réel — sans jamais tomber. Si le serveur crash pendant un match, les ultras brûlent tout.
+
+- Pipeline d'ingestion d'events de match typé TypeScript de bout en bout
+- Structured JSON logging sur chaque event avec correlation IDs
+- Distributed tracing : suivre une requête de l'event de match jusqu'à l'affichage
+- Métriques et alerting : seuils de latence, taux d'erreur, alertes automatiques
+- Sentry en prod : `captureException`, `setContext`, release tracking
+- Rate limiting sur l'endpoint live : protéger sans couper les ultras légitimes
+- Scale horizontal simulé : plusieurs instances, load balancing, message queues
+- Generics TypeScript sur tout le pipeline : `Event<T>`, `Pipeline<Input, Output>`
+- Utility types sur les structs d'events : `Readonly`, `Pick`, `Omit`, `Record`
+
+---
+
+### 07_ballon_dor_cli/ : Le vote du Ballon d'Or en terminal
+
+**Modules couverts :** `13_runtime_env` · `11_refactoring` · `03_error_handling` · `29_annexes`
+
+Les journalistes du monde entier votent. Les points s'agrègent. Le classement se met à jour en direct. Commandes disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. La v1 a été codée en une nuit par un stagiaire. Elle fonctionne. Mais elle est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est containerisée, testée, et déployée proprement.
+
+- CLI Node.js complet : `process.argv`, parsing de flags, affichage formaté dans le terminal
+- Filesystem : lecture/écriture JSON pour la persistance des votes entre sessions
+- Worker Threads pour paralléliser les simulations de vote massif
+- Custom errors : `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError`
+- Propagation d'erreurs : qui gère quoi et à quel niveau du CLI
+- Refactoring complet v1 → v2 : SOLID sur du code CLI procédural, code smells éliminés
+- Toolchain via `29_annexes` : Git workflow propre, Docker pour containeriser, CI/CD sur chaque push
+- Scripts d'automatisation : générer des votes de test, exporter le classement en CSV
+
+---
+
+### 08_trapsoul_radio/ : La radio underground qui ne dort jamais
+
+**Modules couverts :** `12_typescript` · `15_web_concepts` · `16_accessibility` · `17_i18n`
+
+Une plateforme de radio web dédiée au trapsoul, au RnB et au country underground. Des artistes du monde entier. Des auditeurs de toutes les langues. Une interface qui doit fonctionner au clavier, à la souris, aux lecteurs d'écran, et en 4 langues sans que le code parte en vrille. Si un auditeur aveugle ne peut pas naviguer, la radio ne sort pas.
+
+- Interface TypeScript de bout en bout : types stricts, interfaces, generics sur les tracks et playlists
+- Clés de traduction typées en TS : si une clé n'existe pas, erreur de compilation
+- 4 locales : français, anglais, japonais, malgache — pluralisation et dates formatées par locale
+- `Intl.DateTimeFormat` et `Intl.NumberFormat` pour chaque locale sans bibliothèque externe
+- ARIA roles complets : `role="radio"`, `aria-live` sur les updates de track en cours
+- Navigation clavier : tab order logique, focus visible, skip links, focus trap dans les modals
+- Contraste WCAG AA vérifié sur toutes les couleurs de l'interface
+- Browser render pipeline optimisé : LCP, INP, CLS sous les seuils Google
+- SEO et rendering : métadonnées dynamiques, SSR sur les pages d'artistes
+
+---
 
 ### 09_oracle_glitch/ : Le LLM qui hallucine et toi qui le surveilles
 
 **Modules couverts :** `21_ai_native_dev` · `27_oop_js` · `25_team_craft` · `26_edge_cases`
-L'IA se prend pour un génie. Elle analyse ton code JS, détecte des bugs, propose des fixes, génère des tests. Parfois elle a raison. Parfois elle invente des fonctions qui n'existent pas, retourne du JSON malformé, ou te jure qu'un `NaN === NaN`. Ton boulot : construire le pipeline qui la surveille, la valide, et la remet à sa place quand elle délire.C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
 
-- Streaming Anthropic token par token : t'arrêtes pas d'attendre, tu lis en direct
+L'IA se prend pour un génie. Elle analyse ton code JS, détecte des bugs, propose des fixes, génère des tests. Parfois elle a raison. Parfois elle invente des fonctions qui n'existent pas, retourne du JSON malformé, te jure qu'un `NaN === NaN`, ou te sort un `undefined is not a function` en guise de fix. Ton boulot : construire le pipeline qui la surveille, la valide, et la remet à sa place quand elle délire.
+
+C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
+
+- Streaming Anthropic token par token : tu lis pendant que l'IA génère, tu n'attends pas la fin
 - Zod comme garde du corps : si la sortie LLM ne matche pas le schema, elle passe pas
-- CodeAnalyzer, PromptBuilder, OutputValidator : trois classes, trois responsabilités, zéro spaghetti
-- Edge cases injectés comme des pièges : timeout à 3 secondes, quota dépassé, NaN dans les métriques, réponse tronquée à mi-JSON
-- ADR : chaque décision technique documentée avant de coder, pas après
-- POSTMORTEM : ce que l'IA a cassé, comment tu l'as vu venir, et ce que tu as mis en place pour que ça arrive plus
+- `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : trois classes OOP, trois responsabilités, zéro spaghetti
+- Prototype chain utilisée intentionnellement : `Validator` → `StrictValidator` → `LLMOutputValidator`
+- Mixins pour composer les comportements de validation sans hériter de tout
+- Edge cases injectés comme des pièges réels : timeout à 3s, quota dépassé, `NaN` dans les métriques, réponse tronquée à mi-JSON, `undefined` au milieu d'un tableau
+- `0.1 + 0.2` dans les métriques de scoring : l'IA ne voit pas le problème, toi tu le catches
+- Code review outillée : l'IA propose, tu valides avec des règles, tu approuves ou rejettes
+- ADR : chaque décision technique du pipeline documentée avant de coder, pas après
+- POSTMORTEM : ce que l'IA a cassé, comment tu l'as vu venir, ce que tu as mis en place
 
 ---
 
@@ -1129,4 +990,4 @@ mergée par quelqu'un que tu ne connais pas : ça vaut dix modules.
 
 ## Auteur
 
-**Lovasoarm**
+**Lovasoarm AKA Aramis**
