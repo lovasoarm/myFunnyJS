@@ -74,7 +74,7 @@ Comprendre la différence entre shallow et deep copy sur des objets imbriqués.
 1. Crée `monsters` avec 3 monstres `{ name, hp, attack: { dmg, type } }`.
 2. Crée `shallowMonsters` avec le spread operator `[...]`.
 3. Modifie le `dmg` du premier monstre via `shallowMonsters`.
-4. Affiche `monsters` et `shallowMonsters` — observe que **les deux ont changé**.
+4. Affiche `monsters` et `shallowMonsters` : observe que **les deux ont changé**.
 
 **Partie 2 : Le contrôle**
 
