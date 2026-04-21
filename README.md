@@ -193,12 +193,18 @@ MyFunnyJS/
 │   │   ├── 06_module_factory.md
 │   │   ├── 06_module_factory_solution.js
 │   │   └── 07_web_grimoire.md
-│   └── 06_regex/
-│       ├── 01_regex_basics.md
+|   |   06_modules/                                       
+│   │   ├── 01_import_export.md                           
+│   │   ├── 01_import_export_solution.js
+│   │   ├── 02_module_patterns.md                        
+│   │   ├── 02_module_patterns_solution.js
+│   │   └── 03_modules_grimoire.md
+│   └── 07_regex/                                       
+│       ├── 01_regex_basics.md                           
 │       ├── 01_regex_basics_solution.js
-│       ├── 02_regex_combat.md
+│       ├── 02_regex_combat.md                          
 │       ├── 02_regex_combat_solution.js
-│       ├── 03_regex_extractor.md
+│       ├── 03_regex_extractor.md                         
 │       ├── 03_regex_extractor_solution.js
 │       └── 04_regex_grimoire.md
 │
