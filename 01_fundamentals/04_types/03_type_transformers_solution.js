@@ -13,7 +13,7 @@ console.log(validateSize("300px")); // 300
 console.log(validateSize("abc"));   // -1
 
 //EXO 3
-Boolean("false"); // true, ya des trucs dedans
+Boolean("false"); // true, ya un truc dedans
 Boolean(" "); // true, ya un truc (espace)
 Boolean([]); //true, ya un tableau
 Boolean(0); //false, 0 consideré comme falsy
