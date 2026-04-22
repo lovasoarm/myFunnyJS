@@ -244,7 +244,7 @@ Quand tu cliques un bouton, l'event **remonte dans l'arbre** :
 button → div → body → document
 ```
 
-Ça s'appelle le **bubbling**. Et c'est ce qui rend possible l'**event delegation**.
+Ça s'appelle le **bubbling**. Et c'est ce qui rend possible l'**event delegation** (tu attaches un seul écouteur sur un parent).
 
 Au lieu d'ajouter 100 listeners sur 100 boutons, tu mets **un seul listener sur le parent** :
 
