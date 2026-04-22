@@ -129,4 +129,4 @@ fetch() reçoit une réponse quand même
 // exception lancée
 //       ↓
 // catch se déclenche 
-//Règle simple : try/catch attrape les erreurs réseau. Les erreurs HTTP (404, 500) passent dans le try — c'est response.ok qui les détecte.*/
+//Règle simple : try/catch attrape les erreurs réseau. Les erreurs HTTP (404, 500) passent dans le try : c'est response.ok qui les détecte.*/
