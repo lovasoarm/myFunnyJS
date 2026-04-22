@@ -89,7 +89,7 @@ Règles pour un mini-projet :
 MyFunnyJS est sérieux.  
 Mais l'ambiance est fun.
 
-Les univers autorisés : titans, pirates, ninjas, héros, kaijus, foot, musique, robots, aliens, labos magiques, ou n'importe quoi d'autre qui motive.
+Les univers autorisés : N'importe quoi qui motive.
 
 Le fun ne remplace jamais la rigueur.  
 L'ambiance est un moyen, pas une fin.
