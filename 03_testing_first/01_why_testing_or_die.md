@@ -1,4 +1,4 @@
-# POURQUOI LES TESTS — OU LA MORT EN PROD
+# POURQUOI LES TESTS : OU LA MORT EN PROD
 
 T'as déjà pushé un fix qui cassait autre chose ?
 T'as déjà dit "ça marche sur ma machine" et eu tort ?
@@ -15,7 +15,7 @@ Tu l'écris. Tu le lances à la main. Tu vois que ça marche.
 Tu pousses en prod.
 Trois semaines plus tard, quelqu'un touche à ce fichier. Rien n'est cassé en apparence. Mais un edge case silencieux s'est introduit. Il va exploser un vendredi soir.
 
-C'est ça, le code sans tests : une boîte noire que seul toi tu comprends, et encore — seulement le jour où tu l'as écrit.
+C'est ça, le code sans tests : une boîte noire que seul toi tu comprends, et encore : seulement le jour où tu l'as écrit.
 
 ```js
 // calculeScore.js
@@ -72,7 +72,7 @@ Les frameworks (Jest, Vitest) font exactement ça, mais avec de meilleures erreu
 
 ---
 
-## 3) LES QUATRE TYPES DE TESTS — LA PYRAMIDE
+## 3) LES QUATRE TYPES DE TESTS : LA PYRAMIDE
 
 ```
           /\
@@ -99,7 +99,7 @@ Pourquoi ? Parce que les unit tests sont instantanés. Les E2E prennent des minu
 ## 4) CE QU'UN TEST PROTÈGE VRAIMENT
 
 Un test ne prouve pas que ton code est parfait.
-Un test prouve que ton code fait ce qu'il est censé faire — aujourd'hui.
+Un test prouve que ton code fait ce qu'il est censé faire : aujourd'hui.
 
 Et quand quelqu'un refactorise dans six mois : les tests lui disent si il a cassé quelque chose.
 C'est ça le vrai pouvoir : pas la vérification aujourd'hui, mais la protection dans le temps.
@@ -167,4 +167,4 @@ Quels tests seraient unitaires ? Intégration ? E2E ?
 Un test c'est : appeller ton code + vérifier la sortie.
 Sans tests, ton code est une boîte noire qui attend d'exploser en prod.
 La pyramide : beaucoup de unit tests, peu d'E2E.
-Le vrai gain : pas aujourd'hui — dans six mois, quand quelqu'un touche au code et que les tests lui disent immédiatement si il a cassé quelque chose.
+Le vrai gain : pas aujourd'hui : dans six mois, quand quelqu'un touche au code et que les tests lui disent immédiatement si il a cassé quelque chose.
