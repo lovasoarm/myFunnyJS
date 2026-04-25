@@ -1,4 +1,4 @@
-# UNIT SNIPER — TESTER UNE FONCTION PRÉCISÉMENT
+# UNIT SNIPER : TESTER UNE FONCTION PRÉCISÉMENT
 
 Un fusil à pompe tire dans tous les sens. Il touche, mais il détruit aussi beaucoup de choses utiles.
 Un sniper vise une cible précise. Un seul coup. Pas de dégâts collatéraux.
@@ -63,7 +63,7 @@ Si ton test fait plusieurs ACT ou plusieurs ASSERT sur des choses différentes :
 
 ---
 
-## 3) TESTER LES CAS LIMITES — LE VRAI TRAVAIL
+## 3) TESTER LES CAS LIMITES : LE VRAI TRAVAIL
 
 Le cas normal, tout le monde le teste. Les edge cases, personne.
 C'est pourtant là que les bugs vivent.
@@ -95,7 +95,7 @@ Chaque edge case est un futur bug évité.
 ## 4) CE QU'UN TEST DOIT DOCUMENTER
 
 Un bon test est une documentation vivante.
-En lisant le test, tu comprends ce que la fonction est censée faire — même sans regarder son implémentation.
+En lisant le test, tu comprends ce que la fonction est censée faire : même sans regarder son implémentation.
 
 ```js
 describe('calculeKDA', () => {
@@ -115,11 +115,11 @@ describe('calculeKDA', () => {
 
 `describe` groupe les tests d'une même unité.
 `it` décrit le comportement attendu en langage humain.
-Si le test échoue et que quelqu'un le lit, il comprend immédiatement ce qui est cassé — pas juste "un test a raté".
+Si le test échoue et que quelqu'un le lit, il comprend immédiatement ce qui est cassé : pas juste "un test a raté".
 
 ---
 
-## 5) ISOLATION — POURQUOI C'EST OBLIGATOIRE
+## 5) ISOLATION : POURQUOI C'EST OBLIGATOIRE
 
 Un test unitaire qui dépend d'un autre test : c'est une bombe à retardement.
 
