@@ -57,7 +57,7 @@ console.log(naruto.attaquer("Pain"))   // "Naruto attaque Pain !"
 La différence avec les exports nommés : à l'import, tu peux appeler ça comme tu veux.
 
 ```js
-import buildNinja from "./ninja.js"   // même fichier, nom différent — valide
+import buildNinja from "./ninja.js"   // même fichier, nom différent —> valide
 import n from "./ninja.js"            // aussi valide
 ```
 
@@ -170,7 +170,7 @@ Utilité réelle : code splitting dans les apps web. Tu charges le code de la pa
 ## EXO 1 : le village de Konoha
 Tu as trois fichiers à créer :
 - `ninjas.js` : exporte une liste de ninjas (objets avec nom, rang, clan)
-- `filtres.js` : exporte deux fonctions — une pour filtrer par rang, une pour filtrer par clan
+- `filtres.js` : exporte deux fonctions : une pour filtrer par rang, une pour filtrer par clan
 - `main.js` : importe tout, affiche les Jonin du clan Uchiha
 
 Contrainte : `main.js` ne contient aucune logique de filtrage. Tout ça vit dans `filtres.js`.
