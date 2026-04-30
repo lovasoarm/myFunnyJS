@@ -11,7 +11,7 @@ Les modules ES6 règlent ça : chaque fichier a son propre scope. Ce que tu n'ex
 ```js
 // jutsu.js
 export const rasengan = (puissance) => puissance * 9000
-export const kagebunshin = (nombre) => Array(nombre).fill("clone")
+export const kagebunshin = (nombre) => Array(nombre).fill("clone") //kagebunshin(5) -> ["clone", "clone", "clone", "clone", "clone"]
 
 // interne au fichier -> pas exporté, donc invisible depuis l'extérieur
 const chakraNaruto = 9999
