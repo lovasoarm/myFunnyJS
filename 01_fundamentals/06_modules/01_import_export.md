@@ -31,7 +31,7 @@ Règle : ce que tu n'exportes pas reste privé. `chakraNaruto` n'est accessible 
 
 ## 2) EXPORT DEFAULT : le truc principal du fichier
 
-Chaque fichier peut avoir exactement un `export default`. C'est l'export "signature" du module.
+Chaque fichier peut avoir exactement un `export default`. C'est l'export "signature" du module. Tu PEUX PAS avoir deux export default
 
 ```js
 // ninja.js
