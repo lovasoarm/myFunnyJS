@@ -178,7 +178,7 @@ Si tu oublies ce check une fois en prod, t'as un crash silencieux sur un cas lim
 
 ```js
 |    // OU logique
-()   // groupe — isole une partie du pattern
+()   // groupe : isole une partie du pattern
 (?:) // groupe non-capturant : groupe sans stocker dans les résultats
 ```
 
