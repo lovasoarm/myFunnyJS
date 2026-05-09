@@ -3,7 +3,7 @@
 Avant les Promises. Avant async/await. Il y avait les callbacks.
 Et tout le monde s'y est perdu exactement de la même façon.
 
-Ce chapitre existe pour deux raisons : comprendre pourquoi JS a évolué, et lire du code legacy sans paniquer. Du code avec des callbacks existe encore partout en prod — Node.js, des librairies historiques, des APIs tierces. T'as pas le choix de les comprendre.
+Ce chapitre existe pour deux raisons : comprendre pourquoi JS a évolué, et lire du code legacy sans paniquer. Du code avec des callbacks existe encore partout en prod : Node.js, des librairies historiques, des APIs tierces. T'as pas le choix de les comprendre.
 
 ---
 
@@ -25,7 +25,7 @@ direBonjour("Naruto", function(msg) {
 
 C'est tout. Pas de magie. Tu passes une fonction, elle est exécutée au bon moment.
 
-Le truc : JavaScript est single-threaded. Une seule chose à la fois. Quand t'as une opération lente — lire un fichier, faire une requête HTTP, attendre une réponse — tu peux pas juste bloquer et attendre. T'as besoin de dire au runtime : *fais ça, et quand c'est fini, appelle cette fonction*.
+Le truc : JavaScript est single-threaded. Une seule chose à la fois. Quand t'as une opération lente : lire un fichier, faire une requête HTTP, attendre une réponse : tu peux pas juste bloquer et attendre. T'as besoin de dire au runtime : *fais ça, et quand c'est fini, appelle cette fonction*.
 
 ```js
 // sans callback : t'es bloqué
@@ -43,7 +43,7 @@ faireAutreChose()
 
 ---
 
-## 2) L'ERREUR EN PREMIER — error-first callbacks
+## 2) L'ERREUR EN PREMIER : error-first callbacks
 
 Convention Node.js. Toutes les librairies Node respectent ça : **le premier argument du callback est toujours une erreur**.
 
@@ -56,7 +56,7 @@ fs.readFile("mission.txt", "utf8", function(err, data) {
 
   if (err) {
     console.error("Fichier introuvable :", err.message)
-    return // sortir immédiatement — ne pas continuer avec data = undefined
+    return // sortir immédiatement : ne pas continuer avec data = undefined
   }
 
   console.log("Mission :", data)
@@ -70,7 +70,7 @@ Le `return` après le `if (err)` est critique. Beaucoup de bugs viennent de l'ab
 fs.readFile("mission.txt", "utf8", function(err, data) {
   if (err) {
     console.error("Erreur :", err.message)
-    // pas de return — le code continue
+    // pas de return : le code continue
   }
   console.log(data.toUpperCase()) // TypeError: Cannot read properties of undefined
 })
@@ -148,7 +148,7 @@ C'est le callback hell. Pas un problème esthétique : un problème de maintenan
 
 ---
 
-## 4) SORTIR DU LABYRINTHE — sans Promises
+## 4) SORTIR DU LABYRINTHE : sans Promises
 
 La solution immédiate : **nommer les fonctions** et les sortir du callback.
 
@@ -175,11 +175,11 @@ function surJoueurRecu(err, joueur) {
 obtenirJoueur(id, surJoueurRecu)
 ```
 
-C'est mieux. Mais t'as maintenant des variables partagées entre les fonctions — `joueurEnMemoire` — ce qui crée d'autres problèmes. C'est pour ça qu'on a inventé les Promises.
+C'est mieux. Mais t'as maintenant des variables partagées entre les fonctions : `joueurEnMemoire` —> ce qui crée d'autres problèmes. C'est pour ça qu'on a inventé les Promises.
 
 ---
 
-## 5) INVERSION OF CONTROL — le vrai problème des callbacks
+## 5) INVERSION OF CONTROL : le vrai problème des callbacks
 
 Y'a un problème plus profond que l'imbrication.
 
@@ -209,9 +209,9 @@ C'est ce qu'on appelle l'**inversion of control** : tu donnes le pouvoir à quel
 
 L'API du stade est ancienne. Elle utilise des callbacks. Tu dois récupérer les stats d'un match en 3 étapes séquentielles :
 
-1. `obtenirMatch(matchId, callback)` — retourne `{ id, equipe1Id, equipe2Id }`
-2. `obtenirEquipe(equipeId, callback)` — retourne `{ id, nom, joueurs }`
-3. `calculerMVP(equipe1, equipe2, callback)` — retourne `{ nom, buts, passes }`
+1. `obtenirMatch(matchId, callback)` : retourne `{ id, equipe1Id, equipe2Id }`
+2. `obtenirEquipe(equipeId, callback)` : retourne `{ id, nom, joueurs }`
+3. `calculerMVP(equipe1, equipe2, callback)` : retourne `{ nom, buts, passes }`
 
 Implémente la séquence complète avec gestion d'erreur error-first sur chaque étape. Le rapport final affiche : `"MVP du match : [nom] - [buts] buts, [passes] passes"`.
 
@@ -230,7 +230,7 @@ Lance les 3 appels en parallèle. Quand les 3 sont finis, affiche le classement 
 
 Contrainte : pas de librairie externe. Juste des callbacks et un compteur.
 
-(Indice : un compteur qui décremente à chaque callback reçu — quand il atteint 0, tout est arrivé)
+(Indice : un compteur qui décremente à chaque callback reçu : quand il atteint 0, tout est arrivé)
 
 ## EXO 3 : L'ESCAPE ROOM
 
@@ -259,4 +259,4 @@ chargerProfil("kakashi", function(profil) {
 
 # RÉSUMÉ
 
-Un callback c'est une fonction passée à une autre pour être appelée plus tard. La convention error-first est non négociable en Node : le premier argument est toujours l'erreur. Le callback hell naît de l'imbrication en séquence — la solution courte est de nommer les fonctions, la vraie solution c'est les Promises. Le problème fondamental des callbacks c'est l'inversion of control : tu cèdes le contrôle à du code extérieur, sans garantie sur quand ni combien de fois ton code sera appelé.
+Un callback c'est une fonction passée à une autre pour être appelée plus tard. La convention error-first est non négociable en Node : le premier argument est toujours l'erreur. Le callback hell naît de l'imbrication en séquence : la solution courte est de nommer les fonctions, la vraie solution c'est les Promises. Le problème fondamental des callbacks c'est l'inversion of control : tu cèdes le contrôle à du code extérieur, sans garantie sur quand ni combien de fois ton code sera appelé.
