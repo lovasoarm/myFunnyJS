@@ -137,7 +137,7 @@ Pour les systèmes extensibles. Un module "core" (le coeur) expose une méthode 
 
 ```js
 // core/jutsuRegistry.js
-const _registry = new Map()
+const _registry = new Map()   // ← ça, c'est l'unique instance (singleton)
 
 export const register = (nom, fn) => {
   if (_registry.has(nom)) throw new Error(`Jutsu "${nom}" déjà enregistré`)
