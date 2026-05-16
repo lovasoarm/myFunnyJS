@@ -133,7 +133,7 @@ Danger : si `_config` est un objet et que tu le retournes directement (sans spre
 
 ## 4) PLUGIN PATTERN : un module qui s'enregistre lui-même
 
-Pour les systèmes extensibles. Un module "core" expose une méthode `register`. Les plugins s'enregistrent eux-mêmes.
+Pour les systèmes extensibles. Un module "core" expose une méthode `register`. Les plugins (des fonctionnalités) s'enregistrent eux-mêmes.
 
 ```js
 // core/jutsuRegistry.js
