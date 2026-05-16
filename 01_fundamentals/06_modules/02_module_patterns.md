@@ -181,7 +181,7 @@ L'import de `rasengan.js` déclenche son exécution, qui appelle `register`. Le 
 Mauvais pattern :
 
 ```js
-// player.js — expose trop
+// player.js : expose trop
 export let score = 0
 export let vie = 100
 export const nom = "Eren"
