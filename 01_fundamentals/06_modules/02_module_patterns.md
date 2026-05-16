@@ -93,6 +93,8 @@ L'utilisateur de `combat.js` appelle `lancerAttaque`. Il ne sait pas et n'a pas 
 
 ## 3) SINGLETON MODULE : une instance partagée
 
+_*Note: Un singleton, c'est une façon de s'assurer qu'il n'existe qu'un seul exemplaire d'un truc dans tout ton code, et que tout le monde utilise le même. (ex:partager une seule et même chose (connexion BDD, config, etc.) sans risquer d'en créer plusieurs par erreur.)*_
+
 En ES6, un module est chargé une seule fois. Si deux fichiers importent le même module, ils obtiennent la même instance. Pas une copie : la même.
 
 ```js
