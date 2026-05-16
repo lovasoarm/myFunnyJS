@@ -195,7 +195,7 @@ export const nom = "Eren"
 Meilleur pattern :
 
 ```js
-// player.js — interface contrôlée
+// player.js : interface contrôlée
 let score = 0
 let vie = 100
 const nom = "Eren"
