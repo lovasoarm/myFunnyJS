@@ -188,7 +188,7 @@ export const nom = "Eren"
 
 // n'importe qui peut faire :
 // import { score } de "./player.js"
-// score = 9999   <- ERREUR en strict mode pour les live bindings
+// score = 9999   <- ERREUR en strict mode pour les live bindings (le lien en direct entre ton import et la variable originale dans le module)
 // mais une valeur mutable exposée crée une dépendance sur l'implémentation interne
 ```
 
