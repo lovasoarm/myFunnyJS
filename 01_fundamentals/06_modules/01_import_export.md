@@ -149,7 +149,7 @@ Le bug : ton code tourne, mais une valeur est `undefined` sans raison apparente.
 
 ## 7) DYNAMIC IMPORT : charger à la demande
 
-Les imports statiques (`import ... from`) sont analysés au démarrage. Le dynamic import charge un module au runtime, seulement quand c'est nécessaire.
+Les imports statiques (`import ... from`) sont analysés au démarrage. Le dynamic import charge un module au runtime, seulement quand c'est nécessaire (ex: Charger un truc seulement sur un clic utilisateur). Alléger le chargement initial de ta page
 
 ```js
 const chargerModule = async (mode) => {
