@@ -2,7 +2,7 @@
 
 Deux fonctions qui font la même chose. L'une tourne en 2ms sur 1000 éléments. L'autre tourne en 14 minutes sur 1 million. Même résultat. Coût radicalement différent.
 
-Big O, c'est le langage qui décrit ce coût. Pas en millisecondes — les millisecondes dépendent de la machine. En **croissance** : comment le temps d'exécution augmente quand la taille des données augmente. C'est ça qui compte en prod, sur de vraies données, à vraie échelle.
+Big O, c'est le langage qui décrit ce coût. Pas en millisecondes, les millisecondes dépendent de la machine. En **croissance** : comment le temps d'exécution augmente quand la taille des données augmente. C'est ça qui compte en prod, sur de vraies données, à vraie échelle.
 
 ---
 
@@ -30,19 +30,19 @@ O(2)        → simplifié en O(1)
 
 ---
 
-## 2) O(1) — TEMPS CONSTANT
+## 2) O(1) : TEMPS CONSTANT
 
 L'opération prend le même temps, quelle que soit la taille des données.
 
 ```js
 // Accès à un élément d'un tableau par index
 function getPlayer(roster, index) {
-  return roster[index]   // O(1) — index direct, pas de parcours
+  return roster[index]   // O(1) : index direct, pas de parcours
 }
 
 // Accès à une propriété d'objet (hash map)
 function getKillers(stats, type) {
-  return stats[type]     // O(1) — lookup en hash table
+  return stats[type]     // O(1) : lookup en hash table
 }
 
 // push sur un tableau (amortized O(1))
@@ -60,7 +60,7 @@ Courbe : ────────────── (plate)
 
 ---
 
-## 3) O(n) — TEMPS LINÉAIRE
+## 3) O(n) : TEMPS LINÉAIRE
 
 L'opération grandit proportionnellement à la taille des données.
 
@@ -96,7 +96,7 @@ Courbe :       /
 
 ---
 
-## 4) O(n²) — TEMPS QUADRATIQUE
+## 4) O(n²) : TEMPS QUADRATIQUE
 
 L'opération utilise une boucle dans une boucle. Chaque élément est comparé à tous les autres.
 
@@ -121,7 +121,7 @@ function findMatchingPairs(ninjas) {
 ```
 
 ```js
-// Bubble sort — l'exemple classique de O(n²)
+// Bubble sort : l'exemple classique de O(n²)
 function bubbleSort(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
@@ -148,7 +148,7 @@ Courbe :            /
 
 ---
 
-## 5) O(log n) — TEMPS LOGARITHMIQUE
+## 5) O(log n) : TEMPS LOGARITHMIQUE
 
 À chaque étape, on élimine la moitié des possibilités. Très efficace sur de grandes données.
 
@@ -186,7 +186,7 @@ Courbe :
 
 ---
 
-## 6) O(n log n) — LE MEILLEUR SORT POSSIBLE
+## 6) O(n log n) : LE MEILLEUR SORT POSSIBLE
 
 Les meilleurs algorithmes de tri (merge sort, quick sort) ont cette complexité. C'est aussi ce que fait `Array.sort()` en JS.
 
@@ -233,8 +233,8 @@ Exemple de lecture rapide :
 function mystery(arr) {
   const result = {}                    // O(1)
 
-  for (const item of arr) {           // O(n) — boucle unique
-    if (!result[item]) {              // O(1) — accès hash
+  for (const item of arr) {           // O(n) : boucle unique
+    if (!result[item]) {              // O(1) : accès hash
       result[item] = 0               // O(1)
     }
     result[item]++                    // O(1)
@@ -249,7 +249,7 @@ function mystery(arr) {
 ```js
 function suspicious(arr) {
   for (let i = 0; i < arr.length; i++) {        // O(n)
-    for (let j = 0; j < arr.length; j++) {      // O(n) — imbriqué
+    for (let j = 0; j < arr.length; j++) {      // O(n) : imbriqué
       if (arr[i] === arr[j] && i !== j) {
         console.log(`doublon : ${arr[i]}`)
       }
@@ -319,7 +319,7 @@ function processAll(arr) {
 Walter White a besoin de vérifier si deux listes de distributeurs ont des éléments en commun. La version actuelle est O(n²). Ta mission : la réécrire en O(n).
 
 ```js
-// Version O(n²) — à optimiser
+// Version O(n²) : à optimiser
 function hasCommonDistributor(listA, listB) {
   for (const a of listA) {
     for (const b of listB) {
@@ -362,4 +362,4 @@ function analyzeSquad(ninjas) {
 
 # RÉSUMÉ
 
-Big O mesure comment un algorithme se comporte quand les données grossissent — pas à quelle vitesse il tourne sur ta machine. O(1) est constant, O(n) linéaire, O(n²) quadratique. Une boucle unique sur n éléments donne O(n). Deux boucles imbriquées donnent O(n²). Diviser par 2 à chaque étape donne O(log n). Les constantes et termes mineurs disparaissent : seule la forme de la croissance compte. Reconnaître le Big O d'un code en le lisant, sans le tester, c'est l'une des compétences qui distinguent un dev senior.
+Big O mesure comment un algorithme se comporte quand les données grossissent, pas à quelle vitesse il tourne sur ta machine. O(1) est constant, O(n) linéaire, O(n²) quadratique. Une boucle unique sur n éléments donne O(n). Deux boucles imbriquées donnent O(n²). Diviser par 2 à chaque étape donne O(log n). Les constantes et termes mineurs disparaissent : seule la forme de la croissance compte. Reconnaître le Big O d'un code en le lisant, sans le tester, c'est l'une des compétences qui distinguent un dev senior.
