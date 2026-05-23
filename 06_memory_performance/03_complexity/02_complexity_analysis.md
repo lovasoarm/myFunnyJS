@@ -96,7 +96,7 @@ Un appel de fonction cache sa complexité. Il faut regarder ce qu'il fait.
 
 ```js
 function processTeam(team) {
-  team.sort(...)             // O(n log n) — caché derrière .sort()
+  team.sort(...)             // O(n log n) : caché derrière .sort()
   team.forEach(p => {        // O(n)
     if (team.includes(p)) {  // includes = O(n) → O(n) dans une boucle O(n) = O(n²) !
       console.log(p)
@@ -114,25 +114,25 @@ function processTeam(team) {
 
   team.sort(...)                  // O(n log n)
   team.forEach(p => {             // O(n)
-    if (teamSet.has(p)) {         // O(1) — lookup Set
+    if (teamSet.has(p)) {         // O(1) : lookup Set
       console.log(p)
     }
   })
 }
-// Complexité totale : O(n log n) — dominé par le sort
+// Complexité totale : O(n log n) - dominé par le sort
 ```
 
 Méthodes JS et leur complexité réelle :
 
 ```
-arr.indexOf(x)       → O(n)  — parcours linéaire
-arr.includes(x)      → O(n)  — idem
+arr.indexOf(x)       → O(n)  : parcours linéaire
+arr.includes(x)      → O(n)  : idem
 arr.find(fn)         → O(n)
 arr.filter(fn)       → O(n)
 arr.map(fn)          → O(n)
 arr.sort()           → O(n log n)
-arr[i]               → O(1)  — accès direct
-obj[key]             → O(1)  — hash lookup
+arr[i]               → O(1)  : accès direct
+obj[key]             → O(1)  : hash lookup
 set.has(x)           → O(1)
 map.get(x)           → O(1)
 ```
@@ -143,7 +143,7 @@ map.get(x)           → O(1)
 
 La récursion demande une étape supplémentaire : comprendre l'arbre des appels.
 
-### Récursion linéaire — O(n)
+### Récursion linéaire : O(n)
 
 ```js
 // Calculer la somme de tous les chakras dans une chaîne de ninjas
@@ -164,10 +164,10 @@ n appels en chaîne → O(n)
 
 ---
 
-### Récursion binaire — O(2ⁿ)
+### Récursion binaire : O(2ⁿ)
 
 ```js
-// Fibonacci naïf — le classique à éviter
+// Fibonacci naïf : le classique à éviter
 function fib(n) {
   if (n <= 1) return n
   return fib(n - 1) + fib(n - 2)  // 2 appels récursifs
@@ -186,7 +186,7 @@ fib(5)
     └── fib(1)
 
 À chaque niveau : 2× plus d'appels
-→ O(2ⁿ) — explose à partir de n=40
+→ O(2ⁿ) : explose à partir de n=40
 ```
 
 La même chose mémoïsée :
@@ -203,7 +203,7 @@ function fib(n, memo = {}) {
 
 ---
 
-### Diviser pour régner — O(n log n)
+### Diviser pour régner : O(n log n)
 
 ```js
 // Merge sort
@@ -279,13 +279,13 @@ p = nombre de joueurs
 
 Étape 1 : O(e)
 Étape 2 : O(e)
-Étape 3 : O(p × e/p) = O(e) — chaque event touché une fois en tout
+Étape 3 : O(p × e/p) = O(e) : chaque event touché une fois en tout
 Étape 4 : O(p²)
 
 Total : O(e + e + e + p²) = O(e + p²)
 
 Si p << e (peu de joueurs, beaucoup d'events) → O(e)
-Si p et e sont du même ordre → O(p²) ou O(e²) — à surveiller
+Si p et e sont du même ordre → O(p²) ou O(e²) : à surveiller
 ```
 
 **Signal d'alerte :** l'étape 4 génère tous les matchups. Pour 22 joueurs, c'est 484 comparaisons. Pour 1000 joueurs (catalogue complet), c'est 1 000 000. À repenser si p est grand.
