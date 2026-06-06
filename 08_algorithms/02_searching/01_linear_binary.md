@@ -23,9 +23,9 @@ console.log(linearSearch(buts, 5)) // -1
 ```
 
 **Complexité :**
-- Meilleur cas : O(1) — le premier élément est la cible
+- Meilleur cas : O(1) - le premier élément est la cible
 - Moyen : O(n/2) = O(n)
-- Pire : O(n) — cible absente ou en dernière position
+- Pire : O(n) - cible absente ou en dernière position
 
 **Quand l'utiliser :**
 - tableau non trié
