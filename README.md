@@ -206,7 +206,14 @@ MyFunnyJS/
 │       ├── 02_regex_combat_solution.js                        # Les regex qui tiennent face aux données du monde réel
 │       ├── 03_regex_extractor.md                              # Capturer, remplacer, splitter comme un sniper
 │       ├── 03_regex_extractor_solution.js                     # Groups, backreferences, lookahead : l'artillerie lourde
-│       └── 04_regex_grimoire.md                               # Tous les symboles, tous les flags, tous les pièges — en un seul endroit
+│       └── 04_regex_grimoire.md                               # Tous les symboles, tous les flags, tous les pièges - en un seul endroit
+│   └── 08_problem_solving/                                         # Concevoir avant de coder : le cerveau que la syntaxe ne donne pas
+│       ├── 01_decompose.md                                         # Couper un système complexe en pièces qui tiennent seules
+│       ├── 02_model_before_code.md                                 # Penser en structures et contrats avant d'ouvrir l'éditeur
+│       ├── 03_choose_an_approach.md                                # Comparer deux solutions avant d'en écrire une seule ligne
+│       ├── 04_read_fuzzy_requirements.md                           # Transformer "ça marche pas" en problème précis et attaquable
+│       ├── 05_design_for_change.md                                 # Concevoir pour ce qui va changer, pas pour ce qui est stable aujourd'hui
+│       └── 06_problem_solving_grimoire.md                          # domaine, contrat, couplage, cohésion : le lexique du dev qui conçoit
 │
 ├── 02_async/                                                   # Le coeur invisible de JS : rien ne bloque, tout se séquence
 │   ├── 01_callbacks/                                           # L'ancêtre de l'async : on part de là pour comprendre pourquoi on a changé
