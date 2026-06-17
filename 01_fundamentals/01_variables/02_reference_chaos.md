@@ -16,16 +16,16 @@ let arr2 = arr1;
 JS ne duplique pas le tableau. Il copie **l'adresse mémoire**.
 
 ```
-arr1 ──┐
-       ├──→ [ 1, 2, 3 ]  (en mémoire, un seul objet)
-arr2 ──┘
+arr1 --+
+       |--> [ 1, 2, 3 ]  (en mémoire, un seul objet)
+arr2 --+
 ```
 
 Donc :
 
 ```js
 arr2.push(4);
-console.log(arr1); // [1, 2, 3, 4] —> arr1 aussi
+console.log(arr1); // [1, 2, 3, 4] --> arr1 aussi
 ```
 
 Même adresse = même tableau = même chaos.
@@ -58,8 +58,8 @@ let newObj = { ...obj1 };   // idem pour les objets
 Maintenant `newArr` et `arr1` sont deux tableaux distincts.
 
 ```
-arr1   ──→ [ 1, 2, 3 ]  (original)
-newArr ──→ [ 1, 2, 3 ]  (copie : adresse différente)
+arr1   --> [ 1, 2, 3 ]  (original)
+newArr --> [ 1, 2, 3 ]  (copie : adresse différente)
 ```
 
 **Mais attention** : c'est une copie **superficielle**. Si le tableau contient des objets, leurs références internes restent partagées. On appelle ça le **shallow copy**. Le niveau suivant ? `03_mutation_madness.md`.
@@ -93,12 +93,12 @@ let team = [
 ### Résultat attendu
 
 ```
-team[0].hp      → 150   // boosté via backupTeam
-team[1].hp      → 0     // détruit via team
-backupTeam[0].hp → 150  // même référence : même résultat
-backupTeam[1].hp → 0    // idem
+team[0].hp      --> 150   // boosté via backupTeam
+team[1].hp      --> 0     // détruit via team
+backupTeam[0].hp --> 150  // même référence : même résultat
+backupTeam[1].hp --> 0    // idem
 
-team === backupTeam → true
+team === backupTeam --> true
 ```
 
 > `backupTeam` et `team` sont le **même tableau**. Le backup n'en est pas un.

@@ -1,10 +1,10 @@
-# SCOPE : Où Vit Ta Variable ?
+# SCOPE : OÙ VIT TA VARIABLE ?
 
-> Chaque variable a une zone de vie. En dehors de cette zone, elle n'existe plus. Elle est morte. ReferenceError. Game over.
+> Chaque variable a une zone de vie. En dehors de cette zone, elle n'existe plus. Elle est morte. ReferenceError (erreur de référence : variable inexistante). Game over.
 
 ---
 
-## 1. Global Scope : La Variable Qui Traîne Partout
+## 1) GLOBAL SCOPE : LA VARIABLE QUI TRAÎNE PARTOUT
 
 Elle est déclarée dehors, elle vit partout. Toutes les fonctions peuvent la voir.
 
@@ -23,7 +23,7 @@ console.log(hero); // "Link" : accessible dehors aussi
 
 ---
 
-## 2. Local Scope : Ce Qui Se Passe Dans La Fonction Reste Dans La Fonction
+## 2) LOCAL SCOPE : CE QUI SE PASSE DANS LA FONCTION RESTE DANS LA FONCTION
 
 Une variable déclarée dans une fonction meurt quand la fonction se termine.
 
@@ -39,7 +39,7 @@ console.log(weapon); // ReferenceError : weapon est morte
 
 ---
 
-## 3. Block Scope : `let` et `const` Respectent les `{}`
+## 3) BLOCK SCOPE : `let` et `const` Respectent les `{}`
 
 Un bloc c'est tout ce qui est entre `{}` : `if`, `for`, `while`.
 
@@ -72,12 +72,12 @@ console.log(ghost); // "Je fuis partout" : var ignore le bloc
 
 ---
 
-## 4. Pourquoi c'est crucial
+## 4) POURQUOI C'EST CRUCIAL
 
 Sans scope control :
 - Une variable globale se fait écraser sans prévenir
 - Un bug dans une boucle contamine tout le reste
-- Les closures et l'async deviennent un enfer
+- Les closures (fonctions qui capturent leur environnement lexical) et l'async (programmation asynchrone : exécution de code différée sans bloquer le thread principal) deviennent un enfer
 
 Avec scope control : chaque variable vit exactement là où elle doit vivre. Pas plus loin.
 
@@ -126,8 +126,8 @@ adventure();
 
 ```
 Dans la fonction : Link Sword
-ReferenceError: weapon is not defined   ← hors fonction
-ReferenceError: potion is not defined   ← hors bloc
+ReferenceError: weapon is not defined   <-- hors fonction
+ReferenceError: potion is not defined   <-- hors bloc
 ```
 
 > **Scope = zone de vie de ta variable.** C'est la base de tout ce qui vient après : closures, async, architecture.

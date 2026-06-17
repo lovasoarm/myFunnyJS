@@ -1,11 +1,11 @@
-# SCOPE ESCAPE ROOM : La Porte Est Fermée. Le Code Est La Clé.
+# SCOPE ESCAPE ROOM : LA PORTE EST FERMÉE. LE CODE EST LA CLÉ.
 
 > Ici tu ne codes pas juste. Tu réfléchis.
 > Qui garde quoi ? Quelle variable vit où ? Laquelle disparaît... ou fait semblant ?
 
 ---
 
-## NIVEAU 1 : LE COFFRE SECRET
+## 1) NIVEAU 1 : LE COFFRE SECRET
 
 ### Instructions
 
@@ -30,17 +30,17 @@ vault2("dragon");  // Access denied
 
 > **Question :** Pourquoi chaque coffre garde son propre secret après la mort de `createVault` ?
 >
-> `createVault` est morte, mais `secret` survit dans la closure —> comme un fantôme utile. Chaque appel crée son propre environnement mémoire isolé.
+> `createVault` est morte, but `secret` survit dans la closure --> comme un fantôme utile. Chaque appel crée son propre environnement mémoire isolé.
 
 ---
 
-## NIVEAU 2 : LE PIÈGE DU COMPTEUR
+## 2) NIVEAU 2 : LE PIÈGE DU COMPTEUR
 
 ### Instructions
 
 1. Crée `createLimitedCounter(limit)` avec `count = 0` à l'intérieur
 2. Retourne une fonction qui incrémente `count`
-3. Si `count > limit` → affiche `"Limit reached"`, sinon affiche la valeur
+3. Si `count > limit` --> affiche `"Limit reached"`, sinon affiche la valeur
 4. Crée deux compteurs avec deux limites différentes
 5. Observe qu'ils ne se contaminent pas
 
@@ -53,7 +53,7 @@ const counter2 = createLimitedCounter(4);
 counter1(); // 1
 counter1(); // 2
 counter1(); // Limit reached
-counter2(); // 1  ← pas de contamination
+counter2(); // 1  <-- pas de contamination
 counter2(); // 2
 ```
 
@@ -63,7 +63,7 @@ counter2(); // 2
 
 ---
 
-## NIVEAU 3 : LA BOUCLE MAUDITE
+## 3) NIVEAU 3 : LA BOUCLE MAUDITE
 
 Lis ce code. **Ne le lance pas encore. Réfléchis d'abord.**
 
@@ -77,7 +77,7 @@ for (var i = 1; i <= 3; i++) {
 
 > **Question :** Qu'est-ce qui s'affiche et pourquoi ?
 >
-> `var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent —> `i` vaut déjà `4`. Toutes les portes s'ouvrent sur la même pièce vide.
+> `var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent --> `i` vaut déjà `4`. Toutes les portes s'ouvrent sur la même pièce vide.
 
 **Résultat :**
 ```
@@ -107,7 +107,7 @@ Door number: 3
 
 ---
 
-## MISSION FINALE : Explique Sans Regarder Tes Notes
+## 4) MISSION FINALE : EXPLIQUE SANS REGARDER TES NOTES
 
 Réponds à ces quatre questions avec tes propres mots. Si tu bloques sur une, relis le module avant de continuer.
 
@@ -120,11 +120,11 @@ Réponds à ces quatre questions avec tes propres mots. Si tu bloques sur une, r
 
 **Closure** : Une fonction qui se souvient des variables de son environnement extérieur, même après que la fonction parente soit terminée. Elle garde une référence mémoire, pas une copie.
 
-**Function scope** : Une variable déclarée avec `var` vit dans toute la fonction. Pas dans le bloc, pas dans le `if`, pas dans la boucle —> toute la fonction. Elle n'est pas accessible en dehors.
+**Function scope** : Une variable déclarée avec `var` vit dans toute la fonction. Pas dans le bloc, pas dans le `if`, pas dans la boucle --> toute la fonction. Elle n'est pas accessible en dehors.
 
 **Block scope** : Une variable déclarée avec `let` ou `const` vit uniquement dans le bloc `{}` où elle est créée. Elle meurt à la fermeture du bloc.
 
-**`var` en async** : `var` a une portée fonction : toutes les itérations partagent la même variable. Quand le code async s'exécute plus tard, la boucle est déjà finie et la variable a sa valeur finale. Résultat : toutes les callbacks lisent la même valeur. Avec `let`, chaque itération a sa propre variable —> chaque callback lit la bonne.
+**`var` en async** : `var` a une portée fonction : toutes les itérations partagent la même variable. Quand le code async s'exécute plus tard, la boucle est déjà finie et la variable a sa valeur finale. Résultat : toutes les callbacks lisent la même valeur. Avec `let`, chaque itération a sa propre variable --> chaque callback lit la bonne.
 
 ---
 

@@ -1,10 +1,10 @@
-# CLOSURE TRAP : La Fonction Qui N'Oublie Jamais
+# CLOSURE TRAP : LA FONCTION QUI N'OUBLIE JAMAIS
 
 > Une closure c'est une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée. Comme un fantôme utile.
 
 ---
 
-## 1. Closure Basique : Le Compteur Immortel
+## 1) CLOSURE BASIQUE : LE COMPTEUR IMMORTEL
 
 ```js
 function makeCounter() {
@@ -21,13 +21,13 @@ console.log(counter()); // 2
 console.log(counter()); // 3
 ```
 
-`makeCounter` est terminée. Mais `count` survit —> la fonction retournée la garde en mémoire. C'est ça une closure : une fonction avec une boîte mémoire privée.
+`makeCounter` est terminée. Mais `count` survit --> la fonction retournée la garde en mémoire. C'est ça une closure : une fonction avec une boîte mémoire privée.
 
 > Crée un deuxième compteur `counter2 = makeCounter()` et observe qu'il repart de 0. Deux appels = deux boîtes séparées.
 
 ---
 
-## 2. Le Piège Classique : `var` Dans Une Boucle Async
+## 2) LE PIÈGE CLASSIQUE : `var` DANS UNE BOUCLE ASYNC
 
 ```js
 for (var i = 1; i <= 3; i++) {
@@ -49,16 +49,16 @@ i vaut : 4
 
 ```
 GLOBAL ENV
-└── i ──────────────► 4
-         ↑
-   callback #1 ───────┤
-   callback #2 ───────┤  ← toutes pointent sur le même i
-   callback #3 ───────┘
+|-- i ------------> 4
+         ^
+   callback #1 -------|
+   callback #2 -------|  <-- toutes pointent sur le même i
+   callback #3 -------|
 ```
 
 ---
 
-## 3. Comment Résoudre
+## 3) COMMENT RÉSOUDRE
 
 **Solution 1 : `let` à la place de `var` :**
 
@@ -73,9 +73,9 @@ for (let i = 1; i <= 3; i++) {
 `let` crée une nouvelle variable `i` à chaque itération. Chaque callback capture sa propre copie.
 
 ```
-BLOCK ENV #1 → i = 1  ← callback #1 capture ça
-BLOCK ENV #2 → i = 2  ← callback #2 capture ça
-BLOCK ENV #3 → i = 3  ← callback #3 capture ça
+BLOCK ENV #1 --> i = 1  <-- callback #1 capture ça
+BLOCK ENV #2 --> i = 2  <-- callback #2 capture ça
+BLOCK ENV #3 --> i = 3  <-- callback #3 capture ça
 ```
 
 **Solution 2 : IIFE pour capturer la valeur :**
@@ -94,7 +94,7 @@ L'IIFE crée un nouveau scope à chaque itération et capture la valeur courante
 
 ---
 
-## 4. Pourquoi Les Closures C'est Puissant ?
+## 4) POURQUOI LES CLOSURES C'EST PUISSANT ?
 
 Les closures c'est pas juste un concept à connaître pour les entretiens. C'est ce qui fait fonctionner :
 
@@ -128,7 +128,7 @@ Si tu rates les closures, tu rates la moitié de comment JS fonctionne réelleme
 3. Crée **deux équipes distinctes** avec `makeTeam()`
 4. Ajoute deux joueurs dans chaque équipe
 5. Observe que chaque équipe garde sa propre mémoire
-6. Refais un mini `for` avec `var` puis `let` —> observe la différence
+6. Refais un mini `for` with `var` puis `let` --> observe la différence
 
 ### Code de départ
 

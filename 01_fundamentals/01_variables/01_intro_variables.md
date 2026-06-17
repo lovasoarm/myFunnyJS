@@ -165,20 +165,20 @@ console.log(config.env); // "prod" : la config est compromise
 ### Niveau 3 : celui qui casse en prod
 
 ```js
-function applyDiscount(cart) {
-  cart.total = cart.total * 0.9;  // mutation directe de l'objet reçu
-  return cart;
+function applyVirus(horde) {
+  horde.count = Math.floor(horde.count * 1.5);  // mutation directe de l'objet reçu
+  return horde;
 }
 
-const myCart = { items: ["tshirt", "hoodie"], total: 200 };
-const discounted = applyDiscount(myCart);
+const localHorde = { sectors: ["sector_A", "sector_B"], count: 200 };
+const mutated = applyVirus(localHorde);
 
-console.log(myCart.total);        // 180 : la fonction a muté l'original
-console.log(discounted.total);    // 180 : les deux pointent vers le même objet
-// résultat : impossible de savoir ce que valait le panier avant la remise
+console.log(localHorde.count);    // 300 : la fonction a muté l'original
+console.log(mutated.count);       // 300 : les deux pointent vers le même objet
+// résultat : impossible de savoir quelle était la taille de la horde avant la mutation
 ```
 
-La fonction ne fait pas une copie du panier : elle reçoit l'adresse et modifie l'objet directement. Le code compile. Le code tourne. Le bug est silencieux jusqu'à ce qu'un utilisateur appuie deux fois sur "Appliquer le code promo" et se retrouve avec une remise de 81%.
+La fonction ne fait pas une copie de la horde : elle reçoit l'adresse et modifie l'objet directement. Le code compile. Le code tourne. Le bug est silencieux jusqu'à ce que le système de détection applique la mutation deux fois de suite et déclenche une fausse alerte de niveau de menace rouge catastrophique.
 
 Ce pattern s'appelle une **mutation non intentionnelle**. C'est le sujet de `03_mutation_madness.md`.
 

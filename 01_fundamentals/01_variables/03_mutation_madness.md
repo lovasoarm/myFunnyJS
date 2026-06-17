@@ -1,10 +1,10 @@
-# MUTATION MADNESS : Shallow vs Deep Copy
+# MUTATION MADNESS : SHALLOW VS DEEP COPY
 
 > Tu croyais avoir copié. T'as juste dupliqué le chaos.
 
 ---
 
-## 1. Le problème du shallow copy avec des objets imbriqués
+## 1) LE PROBLÈME DU SHALLOW COPY (COPIE SUPERFICIELLE) AVEC DES OBJETS IMBRIQUÉS
 
 ```js
 let monsters = [
@@ -18,8 +18,8 @@ let shallowMonsters = [...monsters];
 Le tableau est nouveau. Mais les objets à l'intérieur ? **Même référence.**
 
 ```
-monsters       ──→ [ obj1, obj2 ]
-shallowMonsters ──→ [ obj1, obj2 ]  ← mêmes objets, pas des copies
+monsters        --> [ obj1, obj2 ]
+shallowMonsters --> [ obj1, obj2 ]  <-- mêmes objets, pas des copies
 ```
 
 Donc :
@@ -31,7 +31,7 @@ console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 
 ---
 
-## 2. Shallow vs Deep : le tableau de vérité
+## 2) SHALLOW VS DEEP : LE TABLEAU DE VÉRITÉ
 
 | Type         | Tableau | Objets internes | Objets imbriqués |
 | ------------ | ------- | --------------- | ---------------- |
@@ -40,7 +40,7 @@ console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 
 ---
 
-## 3. Comment faire une vraie Deep Copy
+## 3) COMMENT FAIRE UNE VRAIE DEEP COPY (COPIE EN PROFONDEUR)
 
 **Manuelle avec `map` + spread** : quand t'as un niveau d'imbrication :
 
@@ -102,12 +102,12 @@ let monsters = [
 
 ```
 // Après partie 1
-monsters[0].attack.dmg      → 30   // modifié : shallow copy piégé
-shallowMonsters[0].attack.dmg → 30 // idem : même référence
+monsters[0].attack.dmg      --> 30   // modifié : shallow copy piégé
+shallowMonsters[0].attack.dmg --> 30 // idem : même référence
 
 // Après partie 2
-monsters[1].attack.dmg      → 30   // intact : deep copy protège l'original
-deepMonsters[1].attack.dmg  → 10   // modifié uniquement ici
+monsters[1].attack.dmg      --> 30   // intact : deep copy protège l'original
+deepMonsters[1].attack.dmg  --> 10   // modifié uniquement ici
 ```
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.

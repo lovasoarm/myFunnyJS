@@ -1,10 +1,10 @@
-# THE CONST TRAP : `const` ne veut pas dire immuable
+# THE CONST TRAP : CONST NE VEUT PAS DIRE IMMUABLE
 
 > Tu crois que `const` protège ton objet. Il protège juste la clé, pas la maison.
 
 ---
 
-## 1. Ce que `const` fait vraiment
+## 1) CE QUE CONST FAIT VRAIMENT
 
 `const` bloque la **réassignation** de la variable. Pas la modification du contenu.
 
@@ -13,17 +13,18 @@ const team = [{ name: "Zombie1", hp: 100 }];
 
 team[0].hp = 0;     //  autorisé : on modifie le contenu
 team.push({ name: "Zombie2", hp: 80 });   //  autorisé : on modifie le tableau
-team = [];          //  TypeError : on réassigne la variable
+team = [];          //  TypeError (erreur de type : opération incompatible avec le type de donnée) : on réassigne la variable
 ```
 
 ---
 
-## 2. Le schéma mental
+## 2) LE SCHÉMA MENTAL
 
 ```
-const team ──→ [ adresse mémoire ]
-               ↓
-          [ { name, hp }, ... ]  ← ce contenu, tu peux le modifier
+const team --> [ adresse mémoire ]
+               |
+               v
+          [ { name, hp }, ... ]  <-- ce contenu, tu peux le modifier
 ```
 
 `const` dit : **cette variable pointera toujours vers la même adresse**.
@@ -31,7 +32,7 @@ Il ne dit pas : **le contenu à cette adresse ne changera pas**.
 
 ---
 
-## 3. Comparaison `let` vs `const` avec objets
+## 3) COMPARAISON LET VS CONST AVEC OBJETS
 
 ```js
 let arr1 = [1, 2, 3];
@@ -44,9 +45,9 @@ arr2.push(4);         // le contenu reste modifiable : tu vas à l'adresse 0x1A 
 
 ---
 
-## 4. Pour vraiment freezer un objet
+## 4) POUR VRAIMENT FREEZER UN OBJET
 
-Si tu veux qu'un objet soit **vraiment immuable**, utilise `Object.freeze` :
+Si tu veux qu'un objet soit **vraiment immuable**, utilise `Object.freeze (gel d'objet : méthode empêchant toute modification de ses propriétés directes)` :
 
 ```js
 const config = Object.freeze({ env: "production", debug: false });
@@ -74,8 +75,8 @@ config.database.port = 9999;  // passe à travers : objet imbriqué vivant
 
 ```
 config
-  ├── env      → "production"   ← gelé, intouchable
-  └── database → [ adresse ]    ← l'adresse est gelée... pas ce qu'elle pointe
+  |-- env      --> "production"   <-- gelé, intouchable
+  |-- database --> [ adresse ]    <-- l'adresse est gelée... pas ce qu'elle pointe
 ```
 
 Il protège la **clé**, pas la **maison derrière la clé**. Même arnaque que le shallow copy.
@@ -107,11 +108,11 @@ heroes[1].hp = 0;          // ligne D
 ### Réponse attendue
 
 ```
-Ligne A → autorisé : on modifie le contenu d'un objet
-Ligne B → autorisé : on modifie le tableau (pas la variable)
-Ligne C → TypeError : Assignment to constant variable
+Ligne A --> autorisé : on modifie le contenu d'un objet
+Ligne B --> autorisé : on modifie le tableau (pas la variable)
+Ligne C --> TypeError : Assignment to constant variable
            const bloque la réassignation, pas la mutation
-Ligne D → ne s'exécute jamais : le crash vient avant (jamais atteinte : le crash a déjà tué l'exécution. Tout ce qui vient après le mur n'existe plus.)
+Ligne D --> ne s'exécute jamais : le crash vient avant (jamais atteinte : le crash a déjà tué l'exécution. Tout ce qui vient après le mur n'existe plus.)
 ```
 
 ---
