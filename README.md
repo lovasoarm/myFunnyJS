@@ -532,7 +532,6 @@ MyFunnyJS/
 │   └── 05_edge_cases_grimoire.md
 │
 ├── 28_oop_js/
-    ├── 00_why_oop_js.md                  # pourquoi la POO en JS, pourquoi c'est différent des autres langages
     ├── 01_prototype_chain_raw.md         # Object.create, [[Prototype]] : la chaîne brute, sans aucun sucre
     ├── 02_constructor_functions.md       # new, this, .prototype : la façon old school avant "class"
     ├── 03_class_syntax_sugar.md          # preuve que class = wrapper sur tout ce qu'on vient de voir
