@@ -531,7 +531,17 @@ MyFunnyJS/
 │   ├── 04_prototype_chain_dark.md                             # La chaîne prototype dans ses zones sombres : __proto__, hasOwnProperty, pollution
 │   └── 05_edge_cases_grimoire.md
 │
-├── 28_oop_js/                                                  # prototype, classes, héritage : la face cachée de JS
+├── 28_oop_js/
+    ├── 01_prototype_chain_raw.md         # Object.create, [[Prototype]] : la chaîne brute, sans aucun sucre
+    ├── 02_constructor_functions.md       # new, this, .prototype : la façon old school avant "class"
+    ├── 03_class_syntax_sugar.md          # preuve que class = wrapper sur tout ce qu'on vient de voir
+    ├── 04_this_keyword_rules.md          # this selon le call-site : méthode, fonction libre, arrow
+    ├── 05_call_apply_bind.md             # emprunter une fonction, figer this
+    ├── 06_inheritance_extends_super.md   # extends/super, et pourquoi les hiérarchies profondes piègent
+    ├── 07_encapsulation_privacy.md       # # private fields vs closures : ce qu'on protège vraiment
+    ├── 08_static_getters_setters.md      # static, get/set : logique cachée derrière une syntaxe d'attribut
+    ├── 09_composition_vs_inheritance.md  # mixins, "has-a" vs "is-a" : la vraie décision senior
+    └── 10_oop_js_grimoire.md
 │
 ├── 29_mini_projects/                                           # Assembler tout ça pour de vrai : pas des exercices, des systèmes
 │   ├── 01_rasengan_engine/
