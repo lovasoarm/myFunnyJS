@@ -1,208 +1,167 @@
-# TS COMPILER CONFIG : TSCONFIG.JSON : CHAQUE OPTION EXPLIQUÉE AVEC SON IMPACT RÉEL
+# DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES
 
-Un plan d'évasion sans règles précises, c'est le chaos. "On sort par où on peut, quand on peut" : ça finit mal. `tsconfig.json` c'est le règlement strict du plan : qui a le droit de faire quoi, qu'est-ce qui est toléré, qu'est-ce qui fait tout annuler. Une option mal comprise dans ce fichier, c'est une faille dans le plan que personne a vue venir.
-
----
-
-## 1) LA STRUCTURE DE BASE
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "strict": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
-}
-```
-
-```
-compilerOptions  --> le coeur : comment TS doit compiler et vérifier ton code
-include           --> quels fichiers le compilateur doit considérer
-exclude           --> quels fichiers il doit ignorer complètement
-```
-
-**Technique :** `tsc` (le compilateur TypeScript) lit ce fichier avant de toucher à un seul fichier source. Chaque option change soit la SORTIE (le JS généré), soit la VÉRIFICATION (ce qui est accepté ou rejeté à la compilation).
+Michael a accès au plan de Fox River, mais c'est un vieux plan, dessiné à la main, sans légende. Il sait que chaque salle existe, mais pas ce qu'elle contient exactement. Un fichier `.d.ts` c'est cette légende qu'on rajoute par-dessus : ça décrit la FORME de quelque chose qui existe déjà, sans le réécrire.
 
 ---
 
-## 2) TARGET ET MODULE : OÙ TON CODE VA VIVRE
-
-```json
-{
-  "target": "ES2022",   // quelle version de JS le code COMPILÉ doit utiliser
-  "module": "ESNext"    // quel système de modules le code COMPILÉ doit utiliser
-}
-```
-
-```ts
-// Ton code source TypeScript :
-const verifierAcces = (niveau: number) => niveau >= 3;
-
-// Avec target: "ES5" (très ancien), TS transforme les arrow functions :
-var verifierAcces = function (niveau) { return niveau >= 3; };
-
-// Avec target: "ES2022" (moderne), TS garde quasi tel quel :
-const verifierAcces = (niveau) => niveau >= 3;
-```
-
-**Pourquoi ça compte :** `target` détermine la compatibilité avec les environnements d'exécution. Un `target` trop ancien génère du code verbeux et parfois moins performant pour des environnements qui n'en ont plus besoin. Un `target` trop récent peut générer du code que d'anciens navigateurs ou d'anciennes versions de Node ne comprennent pas.
-
-```
-TIP D'ÉVOLUTION : avant, on visait souvent ES5 par défaut pour une compatibilité maximale.
-Maintenant, en 2026, viser ES2022 (voire plus récent) pour du code backend Node est devenu
-le standard, parce que les vieux navigateurs IE sont quasi inexistants, et Node supporte
-nativement les fonctionnalités modernes depuis longtemps. Le choix dépend de ta cible réelle,
-pas d'une habitude héritée.
-```
-
----
-
-## 3) STRICT : LE RÈGLEMENT QUI CHANGE TOUT
-
-```json
-{
-  "strict": true   // active TOUTES les vérifications strictes d'un coup
-}
-```
-
-`strict: true` n'est pas une seule option : c'est un interrupteur qui en active plusieurs en même temps.
-
-```
-strictNullChecks         --> null et undefined doivent être gérés explicitement
-noImplicitAny             --> interdit les types "any" implicites (non déclarés)
-strictFunctionTypes       --> vérifie la compatibilité des types de fonctions plus rigoureusement
-strictPropertyInitialization --> force l'initialisation des propriétés de classe
-alwaysStrict               --> émet du JS en mode strict ("use strict")
-```
-
-```ts
-// SANS strictNullChecks :
-function trouverPrisonnier(id: number): string {
-  const prisonniers = { 1: "Michael", 2: "Lincoln" };
-  return prisonniers[id]; // peut retourner undefined, mais TS te laisse faire
-}
-
-// AVEC strictNullChecks :
-function trouverPrisonnier(id: number): string | undefined {
-  const prisonniers: Record<number, string> = { 1: "Michael", 2: "Lincoln" };
-  return prisonniers[id]; // TS T'OBLIGE à déclarer "| undefined", sinon erreur de compilation
-}
-```
-
-**Qui casse en prod sans strict :** une fonction censée toujours retourner un `string` qui retourne en fait `undefined` dans un cas limite. Sans `strictNullChecks`, TypeScript laisse passer ça sans broncher. Le crash arrive en prod, là où ça coûte vraiment cher, alors que `strict: true` l'aurait bloqué à la compilation, gratuitement.
-
-```
-RÈGLE D'OR : démarre TOUJOURS un nouveau projet avec strict: true.
-Désactiver une option stricte ponctuellement, après réflexion, c'est différent
-de jamais l'avoir activée. La première approche est un choix. La seconde est une négligence.
-```
-
----
-
-## 4) ALLOWJS ET CHECKJS : LE PONT ENTRE JS ET TS
-
-```json
-{
-  "allowJs": true,    // autorise les fichiers .js à coexister dans un projet TS
-  "checkJs": true      // applique la vérification de type MÊME sur les fichiers .js
-}
-```
+## 1) LE CONCEPT : DÉCRIRE SANS IMPLÉMENTER
 
 ```js
-// fichier.js, dans un projet avec allowJs + checkJs activés
-
-/**
- * @param {number} distance
- * @param {number} vitesse
- * @returns {number}
- */
-function calculerTemps(distance, vitesse) {
+// Une lib JS classique, sans aucun type, genre "fox-river-utils.js"
+function calculerTempsEvasion(distance, vitesse) {
   return distance / vitesse;
 }
 
-calculerTemps("200", 50); // TS hurle, MÊME dans ce fichier .js, grâce à checkJs + JSDoc
-```
-
-**Technique :** `checkJs` combiné aux commentaires JSDoc (annotations de type dans les commentaires) permet de bénéficier de la vérification de type TypeScript SANS renommer le fichier en `.ts`. C'est le mécanisme central d'une migration progressive : tu gagnes en sécurité de type avant même d'avoir migré la syntaxe.
-
----
-
-## 5) PATHS ET BASEURL : LES RACCOURCIS DU PLAN
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@plans/*": ["plans/*"],
-      "@comms/*": ["communications/*"]
-    }
-  }
-}
+module.exports = { calculerTempsEvasion };
 ```
 
 ```ts
-// SANS paths, des imports relatifs qui deviennent vite illisibles :
-import { RadioCrypte } from '../../../communications/radio';
+// Le fichier de déclaration correspondant : "fox-river-utils.d.ts"
+// Note : AUCUNE implémentation ici, juste la FORME de la fonction
+declare function calculerTempsEvasion(distance: number, vitesse: number): number;
 
-// AVEC paths configurés :
-import { RadioCrypte } from '@comms/radio';
+export { calculerTempsEvasion };
 ```
 
-**Qui casse en prod :** configurer `paths` dans `tsconfig.json` sans configurer l'équivalent côté bundler (Vite, Webpack) ou côté runtime Node. TypeScript compile sans erreur (il comprend `@comms/radio`), mais à l'exécution, Node ou le bundler ne savent pas résoudre cet alias, et ça plante avec un "module not found". `paths` est une info pour le compilateur TS, pas automatiquement pour tout le reste de la chaîne d'outils.
+```
+fichier .js   --> contient le VRAI code qui s'exécute
+fichier .d.ts --> contient SEULEMENT la description des types, jamais exécuté
+```
+
+**Technique :** un fichier `.d.ts` n'est jamais compilé en JS, jamais exécuté. Il existe uniquement pour que le compilateur TypeScript (et ton éditeur via le LSP) sache à quoi s'attendre. C'est de la pure information statique (analysée sans exécution), zéro runtime (exécution réelle).
+
+**Qui casse en prod :** un `.d.ts` qui ment sur la vraie signature de la fonction JS qu'il décrit. TypeScript te dit "c'est sûr, ça retourne un `number`", mais le JS réel retourne parfois `undefined` dans un cas que le `.d.ts` a pas prévu. Le compilateur te fait confiance aveuglément sur ce fichier, et plante en silence à l'exécution.
 
 ---
 
-## 6) UN PROFIL DE CONFIG SELON LE CONTEXTE
+## 2) D'OÙ VIENNENT LES TYPES D'UNE LIB EXTERNE
+
+Trois situations possibles quand t'importes une lib npm :
 
 ```
-PROJET GREENFIELD (parti de zéro), backend Node :
-{
-  "target": "ES2022",
-  "module": "NodeNext",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true
-}
+SITUATION 1 : la lib inclut ses propres types
+package.json de la lib --> "types": "dist/index.d.ts"
+Rien à faire, ça marche directement.
 
-PROJET DE MIGRATION PROGRESSIVE :
-{
-  "allowJs": true,
-  "checkJs": false,        // active fichier par fichier via JSDoc, pas globalement au début
-  "strict": false,         // active progressivement, option par option, pas d'un coup
-  "noImplicitAny": false   // souvent le dernier interrupteur qu'on active, le plus douloureux
-}
+SITUATION 2 : la lib n'a pas de types, mais la communauté en a écrit
+npm install --save-dev @types/nom-de-la-lib
+DefinitelyTyped (le plus gros repo de types communautaires) maintient ça.
 
-LIBRAIRIE PUBLIÉE SUR NPM :
-{
-  "declaration": true,     // génère automatiquement les .d.ts pour les consommateurs
-  "declarationMap": true,  // permet de naviguer du .d.ts vers le .ts source en debug
-  "strict": true
-}
+SITUATION 3 : aucun type n'existe nulle part
+Tu écris ton propre .d.ts, ou tu déclares un module en mode "boîte noire"
 ```
 
-**Pourquoi ça compte :** il existe pas UN bon tsconfig universel. La config reflète où en est ton projet : un projet neuf peut se permettre toute la rigueur dès le départ, un projet en migration doit avancer par étapes pour pas tout bloquer d'un coup, une lib publiée a des besoins spécifiques (générer des `.d.ts` pour ses utilisateurs).
+```ts
+// SITUATION 3 : déclaration minimale "boîte noire" pour faire taire TS
+// (utile en dépannage, pas en solution finale propre)
+declare module 'lib-sans-types-du-tout';
+
+// Maintenant TypeScript accepte l'import, mais tout est typé "any" implicitement
+import { uneFonction } from 'lib-sans-types-du-tout';
+```
+
+**Pourquoi ça compte :** la situation 3, déclarer un module en boîte noire, c'est un pansement, pas un traitement. Ça fait taire l'erreur de compilation, mais ça te prive de tout l'intérêt de TypeScript sur cette lib. À utiliser en dernier recours, jamais comme habitude.
+
+---
+
+## 3) ÉCRIRE UN .D.TS RÉEL : LE PLAN DÉTAILLÉ DE LA SALLE
+
+```js
+// fox-river-comms.js (le vrai code JS de la lib, sans types)
+class RadioCrypte {
+  constructor(frequence) {
+    this.frequence = frequence;
+    this.historique = [];
+  }
+
+  envoyer(message) {
+    this.historique.push(message);
+    return true;
+  }
+
+  recevoir() {
+    return this.historique.pop() || null;
+  }
+}
+
+module.exports = { RadioCrypte };
+```
+
+```ts
+// fox-river-comms.d.ts (le plan détaillé, écrit à côté)
+declare class RadioCrypte {
+  constructor(frequence: number);
+
+  frequence: number;
+  historique: string[];
+
+  envoyer(message: string): boolean;
+  recevoir(): string | null;
+}
+
+export { RadioCrypte };
+```
+
+```ts
+// Maintenant, côté consommateur, TypeScript connaît TOUT de RadioCrypte
+import { RadioCrypte } from './fox-river-comms';
+
+const radio = new RadioCrypte(145.500);
+radio.envoyer("Le plan est en mouvement"); // autocomplétion ET vérification de type
+const dernierMessage = radio.recevoir(); // TS sait que c'est "string | null"
+```
+
+**Technique :** le mot-clé `declare` indique à TypeScript "fais-moi confiance, cette chose existe quelque part au runtime (à l'exécution), décris juste sa forme, t'as pas besoin de l'implémenter ici". C'est ce qui sépare un `.d.ts` d'un fichier `.ts` normal.
+
+**Risque réel :** `recevoir()` retourne `string | null` dans le `.d.ts`, ce qui force chaque appelant à gérer le cas `null`. Si le `.d.ts` avait juste dit `string` (en mentant), TypeScript laisserait passer du code qui plante à l'exécution sur `null`. La précision du `.d.ts` EST la protection.
+
+---
+
+## 4) AMBIENT DECLARATIONS : QUAND TS NE SAIT MÊME PAS QUE LE TRUC EXISTE
+
+Certaines choses n'ont jamais été des modules importables : des variables globales injectées par un script externe, des propriétés ajoutées à `window` par une lib tierce chargée en `<script>`.
+
+```ts
+// global.d.ts
+// On dit à TypeScript : "il existe une variable globale FOX_RIVER_CONFIG,
+// injectée par un script chargé avant le tien, fais-lui confiance"
+declare global {
+  interface Window {
+    FOX_RIVER_CONFIG: {
+      planActif: boolean;
+      niveauAlerte: number;
+    };
+  }
+}
+
+export {}; // nécessaire pour que ce fichier soit traité comme un module
+```
+
+```ts
+// N'importe où dans ton code, maintenant typé correctement :
+if (window.FOX_RIVER_CONFIG.planActif) {
+  console.log(`Niveau d'alerte : ${window.FOX_RIVER_CONFIG.niveauAlerte}`);
+}
+// Sans ce .d.ts, TypeScript hurlerait : "Property 'FOX_RIVER_CONFIG' does not exist on type 'Window'"
+```
+
+**Pourquoi ça marche :** `declare global` étend une interface existante de TypeScript (ici `Window`) au lieu d'en créer une nouvelle. C'est une fusion de déclarations (declaration merging), une fonctionnalité propre à TS qui permet d'ajouter des propriétés à des types déjà définis ailleurs, y compris dans les types natifs du navigateur.
 
 ---
 
 ## EXERCICES
 
-EXO 1 : Le règlement activé d'un coup :
-Prends un petit projet TS avec `strict: false`, active `strict: true`, et compte combien d'erreurs de compilation apparaissent. Corrige-les une par une et note quel type d'erreur reviens le plus souvent (probablement `strictNullChecks` ou `noImplicitAny`).
+EXO 1 : Le plan retrouvé :
+Prends une petite lib JS sans types (écris-en une toi-même, genre 2-3 fonctions utilitaires), écris son `.d.ts` correspondant, puis importe-la dans un fichier `.ts` et vérifie que l'autocomplétion et la vérification de type fonctionnent.
 
-EXO 2 : Le pont JS vers TS :
-Crée un fichier `.js` avec des annotations JSDoc, active `allowJs` et `checkJs` dans ton `tsconfig.json`, et vérifie que TypeScript détecte bien une erreur de type dans ce fichier `.js` sans qu'il ait été renommé en `.ts`.
+EXO 2 : Le plan qui ment :
+Dans le `.d.ts` que tu viens d'écrire, fais mentir volontairement une signature (genre une fonction qui peut retourner `undefined` mais que tu déclares comme retournant toujours un `string`). Écris du code qui exploite ce mensonge et observe le crash silencieux à l'exécution, malgré une compilation TS réussie.
 
-EXO 3 : L'alias qui casse à l'exécution :
-Configure un alias dans `paths` (genre `@utils/*`), utilise-le dans un import, vérifie que `tsc` compile sans erreur. Puis essaie d'exécuter le JS compilé directement avec `node` (sans passer par un bundler qui résout les alias) et observe l'erreur "module not found". Explique en une phrase pourquoi `tsconfig.json` seul ne suffit pas pour que les alias fonctionnent partout.
+EXO 3 : La variable globale planquée :
+Crée un `global.d.ts` qui déclare une propriété custom sur `window` (ou sur `globalThis` si t'es en environnement Node). Vérifie que TypeScript accepte ton code une fois la déclaration en place, et qu'il le refusait avant.
 
 ---
 
 ## RÉSUMÉ
 
-`tsconfig.json` détermine deux choses séparées : la sortie JS générée (`target`, `module`) et la rigueur de vérification (`strict` et ses sous-options). `strict: true` active plusieurs protections d'un coup, et désactiver une option stricte doit être un choix réfléchi, jamais un défaut négligé. `allowJs` et `checkJs` permettent une migration progressive en typant du JS via JSDoc sans renommage immédiat. `paths` est une info pour le compilateur TS uniquement : il faut la répliquer côté bundler ou runtime pour que ça fonctionne réellement à l'exécution. Le bon tsconfig dépend toujours du contexte du projet, pas d'un copier-coller universel.
+Un `.d.ts` décrit la forme de quelque chose qui existe déjà ailleurs, il n'implémente jamais rien et n'est jamais exécuté. `declare` dit à TypeScript de te faire confiance sur l'existence d'une chose au runtime. La précision d'un `.d.ts` est ta seule protection : un type trop optimiste te fait perdre exactement ce que TypeScript est censé t'apporter. `declare global` étend des types existants via la fusion de déclarations, utile pour les variables globales injectées de l'extérieur. Un `.d.ts` mal écrit, c'est un plan de Fox River qui ment sur l'emplacement d'un mur : tu fonces dedans en pensant qu'il y a une porte.
