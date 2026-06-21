@@ -633,6 +633,12 @@ MyFunnyJS/
 │       └── 03_ts_migration_guide.md                           # Migrer du JS pur vers TypeScript : sans tout réécrire en une nuit
 │
 └── 31_tools/                                                   # Les gadgets maison pour aller plus vite : réutilisables dans tous les modules
+    └── 00_why_tools.md                  
+    ├── 01_logger_structure.md           
+    ├── 02_benchmark_kit.md              
+    ├── 03_debug_toolkit.md              
+    ├── 04_cli_scaffolder.md             
+    └── 05_tools_grimoire.md             
 ```
 
 ---
