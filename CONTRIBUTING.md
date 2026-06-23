@@ -60,7 +60,7 @@ Si ton code est difficile à lire, c'est qu'il est mal pensé.
 
 ---
 
-## Structure obligatoire d'un mini-projet (`28_mini_projects`)
+## Structure obligatoire d'un mini-projet (`29_mini_projects`)
 
 Les mini-projets sont des projets intégrateurs : ils consolident plusieurs modules à la fois dans un contexte fun et concret. Chaque projet suit cette structure stricte :
 
