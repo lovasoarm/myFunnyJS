@@ -21,8 +21,8 @@ src/
 
 ```js
 // index.js
-import { gererInventaire } from './camp/inventaire.js';
-import { calculerRations } from './camp/rations.js';
+import { gererInventaire } from './camp/inventaire.js'
+import { calculerRations } from './camp/rations.js'
 ```
 
 Le navigateur PEUT charger des modules ESM (ES Modules) nativement aujourd'hui. Mais à grande échelle, ça pose des problèmes concrets :
@@ -30,6 +30,7 @@ Le navigateur PEUT charger des modules ESM (ES Modules) nativement aujourd'hui. 
 ```
 sans bundler  --> le navigateur fait une requête HTTP PAR fichier importé
                   100 fichiers = 100 requêtes réseau au chargement de la page
+                  chaque requête a sa propre latence
 
 avec bundler  --> tout est regroupé en 1 ou quelques fichiers optimisés
                   100 fichiers = 1 requête réseau
@@ -37,27 +38,26 @@ avec bundler  --> tout est regroupé en 1 ou quelques fichiers optimisés
 
 **Technique :** un bundler construit un graphe de dépendances (qui importe quoi) en partant d'un point d'entrée, puis assemble tout dans un ordre cohérent, en éliminant ce qui n'est jamais utilisé.
 
-**Qui casse en prod sans bundler :** un site avec 200 fichiers JS non bundlés sur une connexion lente. Chaque fichier est une requête séparée, avec sa latence propre. Le temps de chargement explose, le LCP (Largest Contentful Paint, métrique de performance) est catastrophique.
+**Qui casse en prod sans bundler :** un site avec 200 fichiers JS non bundlés sur une connexion lente. Chaque fichier est une requête séparée, avec sa latence propre. Le temps de chargement explose, le LCP (Largest Contentful Paint : métrique de performance mesurant quand le contenu principal est visible) est catastrophique.
 
 ---
 
 ## 2) TREE SHAKING : ÉLIMINER LE CODE MORT
 
 ```js
-// utils/math.js
-export function additionner(a, b) { return a + b; }
-export function soustraire(a, b) { return a - b; }
-export function multiplier(a, b) { return a * b; }
+// utils/survival.js
+export function calculerRations(nourriture, personnes) { return nourriture / personnes }
+export function calculerMenace(zombies, distance) { return zombies / distance }
+export function calculerMoral(événements, temps) { return événements / temps }
 
-// index.js
-import { additionner } from './utils/math.js';
-console.log(additionner(2, 3));
-// On utilise SEULEMENT additionner
+// index.js : on utilise SEULEMENT calculerRations
+import { calculerRations } from './utils/survival.js'
+console.log(calculerRations(48, 12))
 ```
 
 ```
-sans tree shaking --> le bundle final contient additionner, soustraire ET multiplier
-avec tree shaking --> le bundle final contient SEULEMENT additionner
+sans tree shaking --> le bundle final contient les 3 fonctions
+avec tree shaking --> le bundle final contient SEULEMENT calculerRations
 ```
 
 **Pourquoi ça marche :** le tree shaking (secouer l'arbre pour faire tomber les feuilles mortes) analyse statiquement (sans exécuter le code) quels exports sont réellement importés ailleurs, et supprime le reste du bundle final. Ça fonctionne uniquement avec des imports/exports ESM, écrits de façon analysable statiquement.
@@ -67,8 +67,8 @@ avec tree shaking --> le bundle final contient SEULEMENT additionner
 ```js
 // Cette forme EMPÊCHE le tree shaking, le bundler peut pas savoir
 // statiquement ce qui sera importé
-const moduleName = condition ? './a.js' : './b.js';
-import(moduleName); // import dynamique avec variable, imprévisible à l'analyse
+const utilName = condition ? './camp.js' : './horde.js'
+import(utilName) // import dynamique avec variable : imprévisible à l'analyse statique
 ```
 
 ---
@@ -78,83 +78,123 @@ import(moduleName); // import dynamique avec variable, imprévisible à l'analys
 ### Webpack : le vétéran complet, mais lent
 
 ```
-Webpack bundle TOUT, même en dev, avant de servir une seule page.
-Sur un gros projet : plusieurs secondes (voire dizaines) avant de voir le premier résultat.
+Forces : écosystème énorme, configurable à l'extrême, loaders pour tout (CSS, images, fonts)
+Faiblesses : config complexe, rebuild lent sur les gros projets
+Usage : applications complexes qui ont besoin de configurations avancées, projets legacy
 ```
 
-### Vite : dev rapide grâce aux modules natifs du navigateur
+```js
+// webpack.config.js — le minimum pour une app Node/JS
+const path = require('path')
 
-```
-En dev, Vite sert le code QUASI TEL QUEL au navigateur, via ESM natif.
-Pas de bundling complet en dev : juste ce qui est demandé, transformé à la volée.
-En build (production), Vite utilise Rollup en interne pour optimiser le bundle final.
-```
-
-```
-démarrage Webpack (gros projet)  --> peut prendre 10-30 secondes
-démarrage Vite (même projet)     --> souvent moins d'1 seconde
-```
-
-**Technique :** la différence vient de QUAND le travail est fait. Webpack bundle tout AVANT de servir quoi que ce soit. Vite sert les fichiers individuellement en dev (le navigateur gère nativement les imports ESM) et ne bundle vraiment qu'au moment du build final pour la prod.
-
-### esbuild : la vitesse brute, écrit dans un langage compilé
-
-```
-esbuild est écrit en Go (langage compilé, pas interprété comme JS)
-Résultat : il peut être 10 à 100x plus rapide que des bundlers écrits en JS pur
-Souvent utilisé COMME MOTEUR à l'intérieur d'autres outils (Vite l'utilise pour certaines transformations)
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  mode: 'production'  // active tree shaking, minification, optimisations automatiques
+}
 ```
 
-### Rollup : la précision pour les librairies
+### Vite : le rapide pour le dev moderne
 
 ```
-Rollup excelle pour bundler des LIBRAIRIES (du code destiné à être réutilisé)
-Tree shaking historiquement très précis, sortie très propre
-C'est le moteur de build interne de Vite pour la production
+Forces : démarrage quasi-instantané (pas de bundle en dev, ESM natif), HMR ultra-rapide
+Faiblesses : basé sur Rollup pour le build prod, moins configurable que Webpack sur les cas extrêmes
+Usage : projets Vue, React, Svelte modernes — devenu le standard de facto en 2024-2026
 ```
 
-```
-TABLEAU DE DÉCISION RAPIDE :
+**Pourquoi Vite est rapide en dev :** Vite ne bundle pas en développement. Il sert les fichiers directement au navigateur via ESM natif. Le navigateur charge ce dont il a besoin à la demande. Le rebuild n'est que le fichier modifié, pas toute l'app. Sur un projet de 500 fichiers, le démarrage reste sous la seconde.
 
-application web classique en 2026     --> Vite (dev rapide + build optimisé via Rollup)
-librairie à publier sur npm           --> Rollup directement, sortie plus prévisible
-projet legacy déjà sur Webpack        --> reste sur Webpack sauf raison forte de migrer
-besoin de vitesse brute en script CLI --> esbuild directement
+```bash
+# créer un projet avec Vite
+npm create vite@latest mon-camp -- --template vanilla
+cd mon-camp && npm install && npm run dev
+```
+
+### esbuild : le bulldozer de la compilation
+
+```
+Forces : 10-100x plus rapide que Webpack sur la compilation pure (écrit en Go, pas JS)
+Faiblesses : moins de features (pas de CSS modules natifs, HMR limité), API bas niveau
+Usage : outil de compilation interne dans d'autres outils (Vite l'utilise en production)
+```
+
+### Rollup : le spécialiste des librairies
+
+```
+Forces : excellent tree shaking, génère des bundles propres, supporte CJS + ESM en sortie
+Faiblesses : moins adapté aux apps web complexes (pas de HMR), moins de plugins que Webpack
+Usage : créer des librairies JS (pas des apps) — utilisé par Vue, React, lodash pour leur build
 ```
 
 ---
 
-## 4) CE QUI A CHANGÉ, ET POURQUOI
+## 4) CHOISIR LE BON BUNDLER EN 2026
 
 ```
-AVANT (2015-2020) : Webpack dominait sans vraie alternative sérieuse.
-                     Configuration lourde, mais c'était le seul jeu en ville.
-
-MAINTENANT (2026) : Vite a pris une bonne partie du terrain pour les apps.
-                     Pourquoi : DX (developer experience) largement supérieure en dev,
-                     démarrage quasi instantané, hot reload (rechargement à chaud) plus fiable.
-
-Webpack reste utile : projets legacy, besoin de plugins très spécifiques
-                       que l'écosystème Webpack a accumulés depuis 10 ans.
+Tu construis une app web (React, Vue, Svelte...) → Vite
+Tu reprends un projet legacy avec Webpack → reste sur Webpack (migration = risque)
+Tu crées une librairie JS publiée sur npm → Rollup
+Tu as besoin de vitesse de compilation maximale en CI → esbuild ou Vite (qui l'utilise)
+Tu as des besoins très spécifiques (Workers, Module Federation...) → Webpack
 ```
 
-Le switch s'est fait pour une raison concrète : le temps de feedback (de "je sauvegarde" à "je vois le résultat") est devenu le facteur de productivité numéro un en dev. Un bundler lent, c'est des développeurs qui attendent, qui perdent le fil, qui changent de fenêtre en attendant. Vite a gagné du terrain en attaquant directement ce problème.
+Règle générale : commence par Vite pour les nouveaux projets. Si tu hits une limitation, tu migres. La migration Vite → Webpack est rare. La migration Webpack → Vite est fréquente et voulue.
+
+---
+
+## 5) CE QU'UN BUNDLER FAIT EN PLUS DU BUNDLING
+
+Un bundler moderne fait souvent bien plus que concaténer des fichiers :
+
+```
+Minification         → supprime les espaces, raccourcit les noms de variables
+                       "function calculerRations(nourriture, personnes)" → "function a(b,c)"
+                       réduit souvent de 40-60% la taille du fichier final
+
+Source maps          → fichiers qui relient le code minifié au code source original
+                       quand une erreur arrive en prod, la stack trace pointe vers le bon fichier
+
+Code splitting       → diviser le bundle en morceaux chargés à la demande
+                       la page de classement n'a pas besoin du code de vote au chargement initial
+
+Asset processing     → images compressées, CSS transpilé, fonts sous-ensemble
+
+Environment variables → remplacer process.env.NODE_ENV par "production" dans le bundle
+                        toutes les branches "if dev" disparaissent du bundle final
+```
 
 ---
 
 ## EXERCICES
 
-EXO 1 : Le sac qui pèse trop lourd :
-Prends un petit projet avec 3-4 fichiers utilitaires dont certaines fonctions exportées ne sont jamais utilisées. Build-le avec un bundler ayant le tree shaking activé, et vérifie dans le fichier de sortie que les fonctions inutilisées ont bien disparu.
+### EXO 1 : le premier bundle du camp
 
-EXO 2 : Le import qui sabote tout :
-Reproduis volontairement un import dynamique avec une variable (comme l'exemple qui casse le tree shaking plus haut). Observe dans le bundle final que le code "mort" est quand même présent, et explique en une phrase pourquoi le bundler n'a pas pu l'éliminer.
+Prends le code de `03_walking_dead_protocol` (ou un projet JS simple à toi). Configure Vite en mode vanilla (sans framework). Lance le serveur de dev. Modifie un fichier et observe la vitesse de rechargement. Lance ensuite `npm run build` et inspecte le contenu du dossier `dist/` : que contient-il ? Quelle est la taille du fichier final ?
 
-EXO 3 : Le chronomètre du camp :
-Si t'as accès à un projet existant sur Webpack (ou crée un petit projet basique sur les deux), chronomètre le temps de démarrage du serveur de dev sur Webpack vs Vite. Note la différence et formule en une phrase la cause technique de cet écart.
+---
+
+### EXO 2 : le code mort à éliminer
+
+Crée un fichier `utils/camp-tools.js` avec 5 fonctions exportées (calculer des rations, des niveaux de menace, de la durée de garde, des stocks, des distances). Dans `index.js`, n'en importe que 2. Lance le build avec tree shaking activé. Vérifie dans le bundle final que les 3 fonctions non utilisées ont bien disparu.
+
+(Indice : cherche les noms des fonctions dans le bundle minifié — si elles sont absentes, le tree shaking a fonctionné)
+
+---
+
+### EXO 3 : Webpack vs Vite sur ton projet
+
+Si tu as un projet existant avec Webpack, note le temps de démarrage du serveur de dev (`npm start` ou `webpack serve`). Crée un projet équivalent minimal avec Vite. Compare les temps de démarrage et de rebuild. Note les différences et les cas où Webpack aurait encore l'avantage.
 
 ---
 
 ## RÉSUMÉ
 
-Un bundler regroupe des fichiers épars en un livrable optimisé pour le navigateur, en partant d'un graphe de dépendances. Le tree shaking élimine le code jamais utilisé, mais seulement si les imports/exports sont analysables statiquement. Webpack bundle tout avant de servir, Vite sert en natif pendant le dev et bundle seulement au build final, esbuild mise sur la vitesse brute, Rollup excelle pour les librairies. Le choix dépend du contexte : app web, librairie, ou legacy à maintenir. Pas de meilleur outil dans l'absolu, juste le bon outil pour le bon job.
+Un bundler regroupe des dizaines de fichiers JS en un ou quelques fichiers optimisés pour le navigateur.
+Le tree shaking élimine le code non utilisé : ça fonctionne seulement avec des imports ESM statiques.
+Vite est le choix par défaut pour les apps modernes : démarrage quasi-instantané, HMR rapide.
+Webpack reste pertinent pour les gros projets legacy ou les besoins très spécifiques.
+Rollup est le bon choix pour créer des librairies JS publiées sur npm.
+esbuild est un moteur de compilation ultra-rapide utilisé en interne par d'autres outils (Vite notamment).
