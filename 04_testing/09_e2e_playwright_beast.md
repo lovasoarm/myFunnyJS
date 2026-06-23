@@ -4,8 +4,9 @@ Un unit test vérifie une fonction.
 Un test d'intégration vérifie plusieurs modules.
 Un test E2E vérifie ce que l'utilisateur voit et fait : du clic jusqu'à la base de données.
 
-Playwright lance un vrai navigateur (Chromium, Firefox, WebKit), clique, tape, attend, et vérifie.
-Si un humain peut le faire sur ton app, Playwright peut le tester.
+Le soir de la cérémonie du Ballon d'Or, des milliers de journalistes accèdent à la plateforme de vote en même temps. Chacun clique, sélectionne, confirme. Si le bouton "Voter" plante pour 5% d'entre eux à cause d'un bug de timing, personne ne l'a vu venir en unit test. Playwright l'aurait vu.
+
+Playwright lance un vrai navigateur (Chromium, Firefox, WebKit), clique, tape, attend, et vérifie. Si un humain peut le faire sur ton app, Playwright peut le tester.
 
 ---
 
@@ -31,7 +32,7 @@ module.exports = defineConfig({
 
 ---
 
-## 2) PREMIER TEST E2E
+## 2) PREMIER TEST E2E : LE VOTE DU BALLON D'OR
 
 ```js
 // tests/e2e/vote.spec.js
@@ -55,7 +56,7 @@ test('un journaliste peut voter pour le Ballon d\'Or', async ({ page }) => {
 })
 ```
 
-Playwright ouvre un vrai navigateur, fait exactement ce qu'un utilisateur ferait.
+Playwright ouvre un vrai navigateur, fait exactement ce qu'un journaliste ferait le soir de la cérémonie.
 
 ---
 
@@ -93,25 +94,25 @@ Mais pour les assertions, tu dois explicitement attendre.
 // automatique : Playwright attend que l'élément soit cliquable
 await page.click('button')
 
-// attendre qu'un élément apparaisse (animations, chargement async)
-await expect(page.locator('[data-testid="résultats"]')).toBeVisible()
+// attendre qu'un élément apparaisse (animations, chargement du classement)
+await expect(page.locator('[data-testid="classement"]')).toBeVisible()
 
 // attendre qu'un texte soit présent
 await expect(page.locator('[data-testid="classement"]')).toContainText('Messi')
 
-// attendre une navigation
+// attendre une navigation vers la page de confirmation
 await page.click('[data-testid="voir-classement"]')
 await page.waitForURL('/classement')
 
-// timeout personnalisé si une opération est lente
-await expect(page.locator('[data-testid="résultats"]')).toBeVisible({ timeout: 10000 })
+// timeout personnalisé si une opération est lente (ex: calcul du vainqueur)
+await expect(page.locator('[data-testid="vainqueur"]')).toBeVisible({ timeout: 10000 })
 ```
 
 ---
 
 ## 5) FIXTURES : PRÉPARER L'ÉTAT
 
-Les tests E2E ont besoin d'un état cohérent. Playwright permet de préparer cet état avant chaque test.
+Les tests E2E ont besoin d'un état cohérent. Un journaliste non authentifié ne peut pas voter. Playwright permet de préparer cet état avant chaque test.
 
 ```js
 // tests/e2e/fixtures.js
@@ -121,8 +122,8 @@ const { test: baseTest } = require('@playwright/test')
 const test = baseTest.extend({
   journalisteConnecté: async ({ page }, use) => {
     await page.goto('/login')
-    await page.fill('[data-testid="email"]', 'test@ballon-dor.fr')
-    await page.fill('[data-testid="password"]', 'test1234')
+    await page.fill('[data-testid="email"]', 'jean@lequipe.fr')
+    await page.fill('[data-testid="password"]', 'pass1234')
     await page.click('[data-testid="btn-login"]')
     await page.waitForURL('/dashboard')
     // maintenant le contexte est authentifié pour tout le test
@@ -141,7 +142,8 @@ const { expect } = require('@playwright/test')
 test('un journaliste connecté peut voter', async ({ journalisteConnecté: page }) => {
   await page.goto('/vote')
   // page est déjà authentifiée grâce à la fixture
-  await page.click('[data-testid="btn-voter"]')
+  await page.selectOption('[data-testid="choix-joueur"]', 'messi')
+  await page.click('[data-testid="bouton-voter"]')
   await expect(page.locator('[data-testid="confirmation"]')).toBeVisible()
 })
 ```
@@ -151,15 +153,15 @@ test('un journaliste connecté peut voter', async ({ journalisteConnecté: page 
 ## 6) CE QUE L'E2E ATTRAPE QUE PERSONNE D'AUTRE NE VOIT
 
 ```
-Exemple : système de vote Ballon d'Or
+Exemple : soir de la cérémonie Ballon d'Or
 
-Unit tests : validVote() retourne true ✓
+Unit tests : validerVote() retourne true ✓
 Intégration : vote stocké en DB ✓
 Contract : format de réponse API respecté ✓
 
 E2E : le bouton "Voter" est désactivé après un vote, mais
-      si l'utilisateur clique très vite deux fois (double-click),
-      deux votes sont envoyés.
+      si le journaliste clique très vite deux fois (double-click),
+      deux votes sont envoyés depuis le même compte.
       Aucun des tests précédents ne pouvait voir ça.
       Playwright le voit en 30 secondes.
 ```
@@ -178,9 +180,9 @@ En CI/CD, les règles pratiques :
 - E2E : sur les PRs et avant deploy, pas sur chaque commit
 
 Et ne teste en E2E que les **flux critiques** :
-- inscription / connexion
-- paiement
-- action principale de l'app (voter, publier, commander)
+- connexion du journaliste
+- vote et confirmation
+- affichage du classement final
 
 Pas besoin d'E2E sur chaque bouton. Les unit tests couvrent les détails.
 
@@ -188,26 +190,26 @@ Pas besoin d'E2E sur chaque bouton. Les unit tests couvrent les détails.
 
 # EXERCICES
 
-## EXO 1 : ton premier test E2E
+## EXO 1 : le classement en direct
 
 Tu as une page `/classement` qui liste les joueurs avec leurs points.
 
 Écris un test Playwright qui :
 1. navigue vers `/classement`
-2. vérifie que le titre de la page contient "Classement"
+2. vérifie que le titre de la page contient "Classement Ballon d'Or"
 3. vérifie que la liste contient au moins un joueur
-4. clique sur le premier joueur et vérifie qu'on navigue vers sa page de détail
+4. clique sur le premier joueur et vérifie qu'on navigue vers sa fiche de stats
 
 ---
 
-## EXO 2 : tester un formulaire complet
+## EXO 2 : le formulaire de vote complet
 
 Page `/vote` avec : un champ texte pour le nom du journaliste, un select pour le joueur, un bouton "Voter".
 
 Écris trois tests :
 - le flux complet qui réussit → message de confirmation affiché
 - le flux avec champ nom vide → message d'erreur affiché, pas de navigation
-- le flux qui soumet deux fois → le second vote est rejeté (bouton désactivé après le premier)
+- le flux qui tente un double vote → le second vote est rejeté (bouton désactivé après le premier)
 
 ---
 
