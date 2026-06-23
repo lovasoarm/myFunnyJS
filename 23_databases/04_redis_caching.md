@@ -1,6 +1,6 @@
 # Se souvenir vite pour ne pas redemander à chaque fois
 
-Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 users demandent la même donnée à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
+Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 shinobis demandent le même profil de mission à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
 
 Redis (Remote Dictionary Server) est la DB clé-valeur en mémoire (RAM) la plus utilisée pour ça. Vu dans `02_nosql_basics` côté famille clé-valeur, ici on rentre dans le concret : comment l'utiliser sans se tirer une balle dans le pied.
 
@@ -34,21 +34,21 @@ Retourne la donnée
 ```
 
 ```js
-async function getProduct(id) {
-  const cacheKey = `product:${id}`
+async function getMission(id) {
+  const cacheKey = `mission:${id}`
   const cached = await redis.get(cacheKey)
 
   if (cached) {
     return JSON.parse(cached) // cache HIT, pas de requête DB du tout
   }
 
-  const product = await db.query('SELECT * FROM products WHERE id = $1', [id])
-  await redis.set(cacheKey, JSON.stringify(product), 'EX', 3600) // TTL 1h
-  return product
+  const mission = await db.query('SELECT * FROM missions WHERE id = $1', [id])
+  await redis.set(cacheKey, JSON.stringify(mission), 'EX', 3600) // TTL 1h
+  return mission
 }
 ```
 
-Le pourquoi : la première requête paie le coût DB, toutes les suivantes (pendant la durée du cache) sont quasi gratuites. Sur un produit consulté 50 000 fois par jour, tu passes de 50 000 requêtes DB à potentiellement 1 par heure.
+Le pourquoi : la première requête paie le coût DB, toutes les suivantes (pendant la durée du cache) sont quasi gratuites. Sur une mission consultée 50 000 fois par jour, tu passes de 50 000 requêtes DB à potentiellement 1 par heure.
 
 ---
 
@@ -57,9 +57,9 @@ Le pourquoi : la première requête paie le coût DB, toutes les suivantes (pend
 TTL (time to live : durée de vie) définit combien de temps une clé reste valide avant expiration automatique.
 
 ```js
-await redis.set('session:abc123', data, 'EX', 3600)   // expire en 1h
-await redis.set('cache:homepage', html, 'EX', 60)      // expire en 1 minute
-await redis.set('otp:user42', '482913', 'EX', 300)     // code OTP, expire en 5 min
+await redis.set('session:abc123', data, 'EX', 3600)    // expire en 1h
+await redis.set('cache:ranking', json, 'EX', 60)        // expire en 1 minute
+await redis.set('otp:ninja:42', '482913', 'EX', 300)    // code OTP, expire en 5 min
 ```
 
 Le pourquoi : sans TTL, une clé reste en RAM pour toujours, même si la donnée sous-jacente a changé en DB depuis longtemps. Tu finis par servir des données complètement obsolètes (stale data) à l'infini, ou par saturer la RAM avec des clés mortes que personne ne nettoie.
@@ -72,7 +72,7 @@ AVEC TTL :
 clé créée --> expire automatiquement --> RAM se libère --> cycle de vie sain
 ```
 
-Le risque réel : un TTL trop long sur une donnée qui change souvent (prix, stock) donne l'impression à l'utilisateur que le produit est dispo alors qu'il est épuisé depuis 10 minutes. Un TTL trop court annule l'intérêt du cache (tu recharges la DB en permanence). Le bon TTL dépend de la fréquence de changement réelle de la donnée, pas d'un chiffre arbitraire copié d'un tuto.
+Le risque réel : un TTL trop long sur une donnée qui change souvent (classement du Ballon d'Or en direct, niveau de danger d'une zone) donne des informations périmées à quelqu'un qui prend une décision critique. Un TTL trop court annule l'intérêt du cache. Le bon TTL dépend de la fréquence de changement réelle de la donnée, pas d'un chiffre arbitraire copié d'un tuto.
 
 ---
 
@@ -81,11 +81,11 @@ Le risque réel : un TTL trop long sur une donnée qui change souvent (prix, sto
 Il y a une blague connue chez les devs : "il y a deux choses difficiles en informatique : le cache invalidation, le nommage des variables, et les erreurs off-by-one." La blague marche parce que c'est vrai.
 
 ```js
-// Le produit change de prix en DB
-await db.query('UPDATE products SET price = $1 WHERE id = $2', [39.99, productId])
+// La mission change de statut en DB
+await db.query('UPDATE missions SET status = $1 WHERE id = $2', ['completed', missionId])
 
-// Si tu oublies ÇA, le cache sert encore l'ancien prix jusqu'à expiration du TTL
-await redis.del(`product:${productId}`) // invalide le cache immédiatement
+// Si tu oublies ÇA, le cache sert encore l'ancien statut jusqu'à expiration du TTL
+await redis.del(`mission:${missionId}`) // invalide le cache immédiatement
 ```
 
 ```
@@ -96,7 +96,7 @@ AVEC invalidation à l'écriture :
 DB mise à jour --> cache supprimé immédiatement --> prochaine lecture recharge le frais
 ```
 
-Le risque réel (exemple qui casse) : un user paie 39.99€ pour un produit, mais le cache encore actif lui montrait 29.99€ pendant qu'il naviguait. Incohérence visible, ticket support, perte de confiance. La règle d'or : **toute écriture qui change une donnée cachée doit invalider (ou mettre à jour) le cache correspondant, dans la même opération logique**.
+Le risque réel (exemple qui casse) : un ninja accepte une mission marquée "disponible" dans le cache, alors qu'elle vient d'être assignée à quelqu'un d'autre en DB depuis 20 minutes. Deux ninjas sur la même mission : conflit, chaos, ticket support. La règle d'or : toute écriture qui change une donnée cachée doit invalider (ou mettre à jour) le cache correspondant, dans la même opération logique.
 
 ---
 
@@ -106,23 +106,24 @@ Redis n'est pas qu'un dictionnaire clé/string. Il a des structures natives qui 
 
 ```js
 // String : la base
-await redis.set('user:1:name', 'aramis')
+await redis.set('ninja:1:name', 'Kakashi')
 
 // Hash : un objet avec plusieurs champs, sans tout sérialiser en JSON
-await redis.hset('user:1', { name: 'aramis', role: 'admin' })
-await redis.hget('user:1', 'role')
+await redis.hset('ninja:1', { name: 'Kakashi', rank: 'Jonin', village: 'Konoha' })
+await redis.hget('ninja:1', 'rank')
 
 // List : une file ou une pile (vu dans 07_data_structures/03_stack et 04_queue)
-await redis.lpush('queue:emails', JSON.stringify({ to: 'a@b.com' }))
-await redis.rpop('queue:emails')
+await redis.lpush('queue:missions', JSON.stringify({ id: 99, type: 'infiltration' }))
+await redis.rpop('queue:missions')
 
 // Set : des valeurs uniques, opérations d'ensemble natives
-await redis.sadd('online:users', 'user:1', 'user:2')
-await redis.sismember('online:users', 'user:1') // true
+await redis.sadd('online:ninjas', 'ninja:1', 'ninja:2')
+await redis.sismember('online:ninjas', 'ninja:1') // true
 
-// Sorted Set : comme un Set mais avec un score, parfait pour un leaderboard
-await redis.zadd('leaderboard', 1500, 'player:1')
-await redis.zrevrange('leaderboard', 0, 9) // top 10
+// Sorted Set : comme un Set mais avec un score, parfait pour un classement
+await redis.zadd('ninja:ranking', 1500, 'kakashi')
+await redis.zadd('ninja:ranking', 2200, 'naruto')
+await redis.zrevrange('ninja:ranking', 0, 9) // top 10 des ninjas
 ```
 
 Le pourquoi : utiliser la bonne structure native évite de tout faire en JSON stringifié (coûteux à parser/sérialiser à chaque accès) et profite d'opérations atomiques (qui s'exécutent sans interruption possible) déjà optimisées par Redis lui-même.
@@ -157,39 +158,42 @@ Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through q
 
 ```js
 // exemple minimal : ça marche tranquille en dev
-async function getHomepage() {
-  const cached = await redis.get('homepage')
-  if (cached) return cached
-  const html = await renderExpensiveHomepage() // coûte 2 secondes à générer
-  await redis.set('homepage', html, 'EX', 60)
-  return html
+async function getNinjaRanking() {
+  const cached = await redis.get('ninja:ranking:full')
+  if (cached) return JSON.parse(cached)
+  const ranking = await computeExpensiveRanking() // coûte 2 secondes à générer
+  await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
+  return ranking
 }
 
-// exemple réaliste : 10 000 users arrivent en même temps PILE quand le cache expire
+// exemple réaliste : 10 000 shinobis arrivent sur le tableau de classement
+// pile quand le cache expire après le résultat d'un tournoi
+
 // exemple qui casse (cache stampede / thundering herd) :
 // les 10 000 requêtes voient TOUTES "cache vide" en même temps
-// les 10 000 lancent TOUTES renderExpensiveHomepage() en parallèle
-// ton serveur DB/CPU prend 10 000 calculs de 2 secondes d'un coup --> il tombe
+// les 10 000 lancent TOUTES computeExpensiveRanking() en parallèle
+// ton serveur prend 10 000 calculs de 2 secondes d'un coup --> il tombe
+// c'est le Bijuu Mode déclenché par 10 000 Naruto en même temps : personne ne survit
 ```
 
 La correction : un verrou (lock) qui dit "une seule requête recalcule, les autres attendent ou reçoivent l'ancienne version" :
 
 ```js
-async function getHomepage() {
-  const cached = await redis.get('homepage')
-  if (cached) return cached
+async function getNinjaRanking() {
+  const cached = await redis.get('ninja:ranking:full')
+  if (cached) return JSON.parse(cached)
 
-  const lockAcquired = await redis.set('homepage:lock', '1', 'NX', 'EX', 5) // NX = only if not exists
+  const lockAcquired = await redis.set('ranking:lock', '1', 'NX', 'EX', 5) // NX = only if not exists
   if (!lockAcquired) {
     // une autre requête recalcule déjà : on attend un peu et on relit le cache
     await sleep(100)
-    return await redis.get('homepage') ?? await renderExpensiveHomepage()
+    return JSON.parse(await redis.get('ninja:ranking:full') ?? '[]')
   }
 
-  const html = await renderExpensiveHomepage()
-  await redis.set('homepage', html, 'EX', 60)
-  await redis.del('homepage:lock')
-  return html
+  const ranking = await computeExpensiveRanking()
+  await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
+  await redis.del('ranking:lock')
+  return ranking
 }
 ```
 
@@ -204,16 +208,18 @@ Avant, beaucoup de devs géraient leur "cache" à la main avec un simple objet J
 ## EXERCICES
 
 **EXO 1 : Calibrer le TTL**
-Pour chacune de ces données, propose un TTL et justifie : (a) le profil public d'un user (photo, bio), (b) le stock disponible d'un produit, (c) un token de réinitialisation de mot de passe, (d) le classement général d'un jeu mis à jour en continu. (15 minutes)
+Pour chacune de ces données, propose un TTL et justifie : (a) le profil public d'un ninja (rang, village, spécialité), (b) le nombre de missions disponibles dans un secteur donné, (c) un token de confirmation d'identité shinobi, (d) le classement en direct du tournoi Chunin mis à jour après chaque combat. (15 minutes)
 
 **EXO 2 : Trouve le bug d'invalidation**
-Un système cache le nombre de followers d'un user avec un TTL de 24h. Un user gagne 10 000 followers suite à une viralité. Décris le problème UX exact que ça crée pendant les 24h, et propose 2 corrections différentes (pas juste "réduire le TTL"). (15 minutes)
+Un système cache le nombre de victoires d'un ninja avec un TTL de 24h. Le ninja gagne 5 combats consécutifs lors d'un tournoi surprise. Décris le problème UX exact que ça crée pendant les 24h, et propose 2 corrections différentes (pas juste "réduire le TTL"). (15 minutes)
 
 **EXO 3 : Simuler le stampede**
-Reprends l'exemple de la homepage avec lock du point 6. Explique ce qui se passerait si tu retirais le `EX` (expiration) du lock lui-même, et pourquoi c'est dangereux si le process qui détient le lock crash avant de faire `redis.del`. (10 minutes)
+Reprends l'exemple du classement avec lock du point 6. Explique ce qui se passerait si tu retirais le `EX` (expiration) du lock lui-même, et pourquoi c'est dangereux si le process qui détient le lock crash avant de faire `redis.del`. (10 minutes)
 
 ---
 
 ## RÉSUMÉ
 
 Redis cache pour éviter de recalculer ou re-requêter ce qui a déjà une réponse connue, en l'échange contre une fraîcheur relative qu'on contrôle via le TTL. Le vrai défi n'est jamais "comment je cache", c'est "comment j'invalide proprement" et "comment j'évite que 10 000 requêtes recalculent en même temps quand le cache expire". Un cache sans stratégie d'invalidation claire n'est pas un cache, c'est une source de bugs à retardement.
+
+> Note : 9/10 : cycle complet, stampede expliqué en détail, structures Redis couvertes, analogies Naruto et Ballon d'Or intégrées. Moins 1 : la section write-behind mériterait un exemple de code pour montrer concrètement comment la sync async vers la DB fonctionne.
