@@ -231,7 +231,7 @@ editor.redo()  // rien à redo
 console.log(editor.state)  // "Breaking Good"
 ```
 
-**Note** : cet exemple stocke les **états complets**. En prod, on stockerait les **actions** (avec un apply et un reverse), pas les états — pour économiser la mémoire sur des documents volumineux.
+**Note** : cet exemple stocke les **états complets**. En prod, on stockerait les **actions** (avec un apply et un reverse), pas les états : pour économiser la mémoire sur des documents volumineux.
 
 ---
 

@@ -464,6 +464,6 @@ T'as les données d'un match de Ligue des Champions. 847 passes enregistrées av
 
 La géométrie en dev, c'est Pythagore + vecteurs + quelques formules. Pas de calcul intégral, pas de géométrie différentielle.
 
-Ce que tu dois avoir en tête : les distances (euclidienne, Manhattan, au carré), les vecteurs (direction, normalisation, dot product), et les tests de collision (rect vs rect, cercle vs cercle, point dans zone). Le reste — lerp, angle, heatmap — c'est des combinaisons de ces outils de base.
+Ce que tu dois avoir en tête : les distances (euclidienne, Manhattan, au carré), les vecteurs (direction, normalisation, dot product), et les tests de collision (rect vs rect, cercle vs cercle, point dans zone). Le reste : lerp, angle, heatmap : c'est des combinaisons de ces outils de base.
 
 Un canvas, une carte, un jeu, un dashboard interactif : tout ça tourne avec ce que tu viens de voir.

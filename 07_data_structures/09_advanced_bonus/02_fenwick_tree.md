@@ -14,10 +14,10 @@ Tableau de stats de passes par minute pendant un match :
  0  1  2  3  4  5  6  7
 
 Requête : somme entre minute 2 et minute 5 ?
-Naïf : arr[2] + arr[3] + arr[4] + arr[5] = 4+1+5+9 = 19 — O(n)
+Naïf : arr[2] + arr[3] + arr[4] + arr[5] = 4+1+5+9 = 19 : O(n)
 
 Update : Messi vient de faire 3 passes de plus à la minute 3 → arr[3] += 3
-Tableau de préfixes : il faut tout recalculer — O(n)
+Tableau de préfixes : il faut tout recalculer : O(n)
 
 Fenwick Tree :
   update(3, +3) : O(log n)

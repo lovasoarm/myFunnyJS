@@ -1,6 +1,6 @@
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
 
-`T extends U ? X : Y` — c'est un ternaire, mais pour les types. Si `T` est assignable à `U`, le type résultant est `X`. Sinon c'est `Y`.
+`T extends U ? X : Y` : c'est un ternaire, mais pour les types. Si `T` est assignable à `U`, le type résultant est `X`. Sinon c'est `Y`.
 
 C'est l'outil qui permet à TS de faire de l'inférence avancée : le type de sortie d'une fonction peut dépendre du type d'entrée, de manière dynamique et précise. Sans conditional types, les utility types natifs de TS (`ReturnType`, `Awaited`, `NonNullable`) n'existeraient pas.
 
@@ -236,10 +236,10 @@ Crée `SerializedConfig<T>` avec des conditional types imbriqués. Test avec tou
 ## EXO 4 : le type guard conditionnel
 Dans Walking Dead, les items d'inventaire peuvent être `"weapon"`, `"food"`, `"medical"`, ou `"tool"`. Les weapons ont `damage`. Les foods ont `calories`. Les medicals ont `healAmount`. Les tools ont `durability`.
 
-Crée `ItemData<T extends ItemType>` qui retourne le bon type de données selon T — via conditional type. Écris une fonction `useItem<T extends ItemType>(type: T, data: ItemData<T>): string`.
+Crée `ItemData<T extends ItemType>` qui retourne le bon type de données selon T : via conditional type. Écris une fonction `useItem<T extends ItemType>(type: T, data: ItemData<T>): string`.
 
 ---
 
 # RÉSUMÉ
 
-`T extends U ? X : Y` — le ternaire des types. Les conditional types se distribuent automatiquement sur les unions (chaque membre est évalué séparément). `infer R` extrait un type depuis la structure de `T` pour l'utiliser dans la branche then. `ReturnType`, `Awaited`, `Extract`, `Exclude`, `NonNullable` sont tous des conditional types sous le capot. Les types récursifs (`DeepReadonly`) combinent mapped types et conditional types. Piège principal : la distributivité non voulue sur les unions — `[T] extends [U]` la désactive si besoin.
+`T extends U ? X : Y` : le ternaire des types. Les conditional types se distribuent automatiquement sur les unions (chaque membre est évalué séparément). `infer R` extrait un type depuis la structure de `T` pour l'utiliser dans la branche then. `ReturnType`, `Awaited`, `Extract`, `Exclude`, `NonNullable` sont tous des conditional types sous le capot. Les types récursifs (`DeepReadonly`) combinent mapped types et conditional types. Piège principal : la distributivité non voulue sur les unions : `[T] extends [U]` la désactive si besoin.

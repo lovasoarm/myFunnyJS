@@ -2,7 +2,7 @@
 
 T'as modifié un objet. T'as rien d'autre touché. Et pourtant, trois fonctions différentes dans trois fichiers différents ont un comportement bizarre depuis ce matin.
 
-C'est le champ de mines de la mutation. Pas de crash. Pas d'erreur. Juste un état qui dérive sans qu'on sache pourquoi — parce que plusieurs parties du code partagent silencieusement le même objet.
+C'est le champ de mines de la mutation. Pas de crash. Pas d'erreur. Juste un état qui dérive sans qu'on sache pourquoi : parce que plusieurs parties du code partagent silencieusement le même objet.
 
 Ce fichier, c'est la carte du champ. On repère les mines. On apprend à traverser sans exploser.
 
@@ -10,7 +10,7 @@ Ce fichier, c'est la carte du champ. On repère les mines. On apprend à travers
 
 ## 1) LA MUTATION SILENCIEUSE
 
-Une mutation, c'est modifier un objet existant en place. Le problème : si plusieurs variables ou fonctions pointent vers cet objet, elles voient toutes la modification — même celles qui ne devaient pas.
+Une mutation, c'est modifier un objet existant en place. Le problème : si plusieurs variables ou fonctions pointent vers cet objet, elles voient toutes la modification : même celles qui ne devaient pas.
 
 ```js
 // Le squad de l'Attaque des Titans
@@ -52,7 +52,7 @@ Tous les trois pointent vers le même objet muté.
 
 ## 2) LES MINES LES PLUS COURANTES
 
-### Mine #1 — Modifier un paramètre objet
+### Mine #1 : Modifier un paramètre objet
 
 ```js
 // Mauvais
@@ -69,7 +69,7 @@ function addBonus(player, bonus) {
 
 ---
 
-### Mine #2 — Pusher dans un tableau partagé
+### Mine #2 : Pusher dans un tableau partagé
 
 ```js
 // Les logs de Fox River — partagés entre modules
@@ -98,7 +98,7 @@ function getLogs() {
 
 ---
 
-### Mine #3 — L'initialisation d'objet partagée
+### Mine #3 : L'initialisation d'objet partagée
 
 ```js
 // Piège classique avec des valeurs par défaut en objet
@@ -124,7 +124,7 @@ function createNinja(name, options = {}) {
 
 ---
 
-### Mine #4 — Sort qui mute le tableau original
+### Mine #4 : Sort qui mute le tableau original
 
 ```js
 const scores = [85, 92, 78, 95, 88]
@@ -151,7 +151,7 @@ Les méthodes mutantes à connaître :
 
 ---
 
-### Mine #5 — La closure qui capture et mute
+### Mine #5 : La closure qui capture et mute
 
 ```js
 // Système de statistiques de match
@@ -345,10 +345,10 @@ Dans le système de config du serveur de Fox River, n'importe quel module peut a
 2. Retourne un proxy qui log un message précis si quelqu'un essaie de modifier quelque chose
 3. Fonctionne sur des objets imbriqués
 
-*(Indice : `Proxy` avec un trap `set` qui retourne `false` en strict mode lève une `TypeError` — ça te permettra de donner un meilleur message d'erreur que le freeze seul)*
+*(Indice : `Proxy` avec un trap `set` qui retourne `false` en strict mode lève une `TypeError` : ça te permettra de donner un meilleur message d'erreur que le freeze seul)*
 
 ---
 
 # RÉSUMÉ
 
-En JS, passer un objet à une fonction ou l'assigner à une variable ne le copie pas : ça partage la même référence. Toute modification touche tous ceux qui la pointent. Les méthodes `sort()`, `reverse()`, `push()`, `splice()` mutent en place : il faut copier avant. `Object.freeze` protège le premier niveau — `deepFreeze` protège tout. Le pattern immutable consiste à toujours retourner un nouvel objet plutôt que de modifier l'existant : c'est ce qui rend le code prévisible, testable, et debuggable.
+En JS, passer un objet à une fonction ou l'assigner à une variable ne le copie pas : ça partage la même référence. Toute modification touche tous ceux qui la pointent. Les méthodes `sort()`, `reverse()`, `push()`, `splice()` mutent en place : il faut copier avant. `Object.freeze` protège le premier niveau : `deepFreeze` protège tout. Le pattern immutable consiste à toujours retourner un nouvel objet plutôt que de modifier l'existant : c'est ce qui rend le code prévisible, testable, et debuggable.

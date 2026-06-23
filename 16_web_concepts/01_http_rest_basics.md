@@ -12,7 +12,7 @@ Et si tu ne peux pas debugger une API, tu ne peux pas travailler en prod.
 ## 1) CE QU'EST HTTP
 
 HTTP (HyperText Transfer Protocol) : protocole de transfert de données sur le web.
-Stateless (sans état) : chaque requête est indépendante — le serveur ne se souvient pas de la précédente.
+Stateless (sans état) : chaque requête est indépendante : le serveur ne se souvient pas de la précédente.
 
 Le cycle minimal :
 

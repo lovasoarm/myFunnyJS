@@ -283,7 +283,7 @@ Crée `createSpy(obj)` qui retourne un Proxy qui :
 - log chaque écriture (property, ancienne valeur, nouvelle valeur)
 - expose une méthode `getAccessLog()` qui retourne l'historique complet des accès
 
-(indice : `getAccessLog` est une propriété spéciale du Proxy lui-même, pas de l'objet wrappé — il faut l'intercepter dans `get`)
+(indice : `getAccessLog` est une propriété spéciale du Proxy lui-même, pas de l'objet wrappé : il faut l'intercepter dans `get`)
 
 ---
 
@@ -305,7 +305,7 @@ proxy.score = 1           // censé logger
 proxy.players.push("CR7") // censé logger
 ```
 
-(indice : il y a deux bugs distincts — un sur le `set`, un sur la mutation profonde)
+(indice : il y a deux bugs distincts : un sur le `set`, un sur la mutation profonde)
 
 ---
 

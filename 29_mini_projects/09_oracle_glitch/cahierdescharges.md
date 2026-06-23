@@ -17,7 +17,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 # Lancer une analyse
 $ node src/cli.js analyze src/target.js
 
-# Lancer les tests (n'appellent PAS l'API réelle — streamingClient est mocké)
+# Lancer les tests (n'appellent PAS l'API réelle : streamingClient est mocké)
 $ npm test
 ```
 

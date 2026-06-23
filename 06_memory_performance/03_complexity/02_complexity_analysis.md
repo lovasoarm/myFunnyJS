@@ -73,11 +73,11 @@ function analyzeChain(routes, blacklist, threshold) {
 Lecture bloc par bloc :
 
 ```
-Bloc A : O(m)        — construire le Set
-Bloc B : O(n)        — filter avec lookup O(1) dans le Set
-Bloc C : O(n)        — map transforme chaque élément une fois
-Bloc D : O(n log n)  — sort
-Bloc E : O(n²)       — double boucle imbriquée
+Bloc A : O(m)        : construire le Set
+Bloc B : O(n)        : filter avec lookup O(1) dans le Set
+Bloc C : O(n)        : map transforme chaque élément une fois
+Bloc D : O(n log n)  : sort
+Bloc E : O(n²)       : double boucle imbriquée
 
 Combinaison (séquence) :
 O(m + n + n + n log n + n²)
@@ -323,7 +323,7 @@ Bonus : propose une réécriture qui descend d'un ordre de complexité sur la pa
 
 ---
 
-### EXO 2 : RÉCURSION — COMPTER LES APPELS
+### EXO 2 : RÉCURSION : COMPTER LES APPELS
 
 Pour `fib(6)` non mémoïsé, dessine l'arbre d'appels et compte le nombre total d'appels effectués. Vérifier que le résultat correspond à la formule O(2ⁿ).
 

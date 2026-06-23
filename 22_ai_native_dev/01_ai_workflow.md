@@ -236,20 +236,20 @@ RÈGLES D'ÉQUIPE QUI ÉVITENT LE CHAOS :
 Voici la progression qui te rend difficile à remplacer, même avec l'IA :
 
 ```
-NIVEAU 1 — Tu utilises l'IA comme un moteur de recherche amélioré
+NIVEAU 1 : Tu utilises l'IA comme un moteur de recherche amélioré
   --> tu demandes des exemples, tu les recopies, ça marche parfois
 
-NIVEAU 2 — Tu décomposes le problème avant de prompter
+NIVEAU 2 : Tu décomposes le problème avant de prompter
   --> tu sais ce que tu veux, l'IA t'économise le temps de l'écrire
 
-NIVEAU 3 — Tu valides et tu corriges la sortie
+NIVEAU 3 : Tu valides et tu corriges la sortie
   --> tu lis le code, tu vois les bugs, tu améliores
 
-NIVEAU 4 — Tu utilises l'IA comme sparring partner
+NIVEAU 4 : Tu utilises l'IA comme sparring partner
   --> tu lui soumets TES solutions pour challenger tes choix
   --> tu lui demandes "qu'est-ce que j'ai raté ?"
 
-NIVEAU 5 — Tu arbitres entre plusieurs approches
+NIVEAU 5 : Tu arbitres entre plusieurs approches
   --> tu lui demandes 3 solutions différentes, tu choisis en connaissance de cause
   --> tu sais pourquoi tu choisis, pas juste laquelle choisir
 ```

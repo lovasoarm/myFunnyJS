@@ -52,7 +52,7 @@ Avant, gérer les erreurs voulait souvent dire vérifier un code de retour ou un
 
 Avec les Promises et `async/await`, le `try/catch` est devenu central : une erreur async se catch comme une erreur synchrone. Mais ça a introduit un nouveau piège : les erreurs dans des Promises non attendues (sans `await`, sans `.catch()`) qui tombent en silence total si on n'ajoute pas un handler global (`unhandledRejection`).
 
-La tendance actuelle va vers des erreurs typées et structurées — avec TypeScript, avec des classes d'erreur custom riches en contexte — parce qu'un message générique "Error" ne suffit plus dans un système distribué où il faut tracer une erreur à travers plusieurs services.
+La tendance actuelle va vers des erreurs typées et structurées : avec TypeScript, avec des classes d'erreur custom riches en contexte : parce qu'un message générique "Error" ne suffit plus dans un système distribué où il faut tracer une erreur à travers plusieurs services.
 
 ---
 

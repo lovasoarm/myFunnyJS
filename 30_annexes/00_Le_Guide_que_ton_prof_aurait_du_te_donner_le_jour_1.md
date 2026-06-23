@@ -1155,7 +1155,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 
 **Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'utilisateur), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
-> **Tip méconnu :** un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN fonctionne. (CDN = réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques. Sans CDN : un user à Tokyo télécharge tes images depuis Paris — lent. Avec CDN : depuis Tokyo — rapide.) Pas juste "faire joli".
+> **Tip méconnu :** un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN fonctionne. (CDN = réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques. Sans CDN : un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide.) Pas juste "faire joli".
 
 ---
 
@@ -2033,23 +2033,23 @@ Adapter     : brancher une interface incompatible sur une autre
 | **Ne jamais committer** | "Je commit quand c'est fini" : spoiler : c'est jamais fini | Le laptop meurt. 3 semaines de travail partent à la poubelle |
 | **Dépendances circulaires** | Le module A importe B, B importe A, personne sait qui démarre en premier | Erreurs cryptiques au runtime, build qui plante sans raison claire |
 
-> **Requêtes séquentielles** : faire un `await fetchUser()` puis `await fetchOrders()` alors que les deux peuvent partir en même temps avec `Promise.all` — comme aller chercher ta pizza ET ta boisson en deux voyages alors que t'as deux mains.
+> **Requêtes séquentielles** : faire un `await fetchUser()` puis `await fetchOrders()` alors que les deux peuvent partir en même temps avec `Promise.all` : comme aller chercher ta pizza ET ta boisson en deux voyages alors que t'as deux mains.
 
-> **God Object** : `UserManager.js` qui gère l'auth, les emails, les paiements, les rapports et accessoirement ton karma — comme un employé qui est à la fois caissier, cuisinier, livreur et comptable. Il est partout. Il est nulle part. Il démissionne.
+> **God Object** : `UserManager.js` qui gère l'auth, les emails, les paiements, les rapports et accessoirement ton karma : comme un employé qui est à la fois caissier, cuisinier, livreur et comptable. Il est partout. Il est nulle part. Il démissionne.
 
-> **Hardcoding** : `if (currency === "EUR")` écrit en dur partout. Le client veut ajouter le dollar, bonne chance — comme tatouer ton numéro de téléphone sur ton front. Tu déménages. Problème.
+> **Hardcoding** : `if (currency === "EUR")` écrit en dur partout. Le client veut ajouter le dollar, bonne chance : comme tatouer ton numéro de téléphone sur ton front. Tu déménages. Problème.
 
-> **Callback Hell** : `getData(fn(a) { getMore(a, fn(b) { save(b, fn(c) { ... }) }) })` — des poupées russes, mais chaque poupée contient une tâche urgente et une mauvaise surprise.
+> **Callback Hell** : `getData(fn(a) { getMore(a, fn(b) { save(b, fn(c) { ... }) }) })` : des poupées russes, mais chaque poupée contient une tâche urgente et une mauvaise surprise.
 
-> **Avaler les erreurs** : un try/catch vide sur un appel API critique. L'appel plante, l'app continue comme si de rien n'était, les données sont corrompues — comme recevoir une lettre d'huissier, la mettre à la poubelle sans lire, et s'étonner que la police débarque.
+> **Avaler les erreurs** : un try/catch vide sur un appel API critique. L'appel plante, l'app continue comme si de rien n'était, les données sont corrompues : comme recevoir une lettre d'huissier, la mettre à la poubelle sans lire, et s'étonner que la police débarque.
 
-> **Tout mettre dans le front** : calculer le prix final côté React et envoyer juste le total au serveur sans vérification — comme confier à l'acheteur le soin d'écrire lui-même le prix sur le ticket de caisse.
+> **Tout mettre dans le front** : calculer le prix final côté React et envoyer juste le total au serveur sans vérification : comme confier à l'acheteur le soin d'écrire lui-même le prix sur le ticket de caisse.
 
 ---
 
 **4. Compréhension des systèmes**
 
-Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS — ex : une requête fetch passe par DNS pour résoudre le domaine, TCP pour établir la connexion, HTTP pour transporter les données), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID — ex : un index sur user_id utilise un B-tree pour trouver la ligne en O(log n) au lieu de scanner toute la table).
+Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS : ex : une requête fetch passe par DNS pour résoudre le domaine, TCP pour établir la connexion, HTTP pour transporter les données), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID : ex : un index sur user_id utilise un B-tree pour trouver la ligne en O(log n) au lieu de scanner toute la table).
 
 > **Livre de référence :** *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
 
@@ -2493,7 +2493,7 @@ tu trouves toi-même la réponse avant qu'elle réponde.
 C'est le rubber duck debugging version IA. Ça marche vraiment.
 ```
 
-#### Tip 6 : l'hallucination — le bug invisible
+#### Tip 6 : l'hallucination : le bug invisible
 
 ```javascript
 // Tu demandes : "Comment utiliser .flatDeep() en JavaScript ?"

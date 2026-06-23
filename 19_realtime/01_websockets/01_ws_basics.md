@@ -1,16 +1,16 @@
-# 01_WS_BASICS — LE CYCLE DE VIE D'UNE WEBSOCKET
+# 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET
 
 HTTP est un contrat unidirectionnel : tu demandes, le serveur répond, la connexion meurt.
 WebSocket, c'est un tunnel qui reste ouvert.
 Le serveur peut te parler sans que tu aies rien demandé.
 C'est ça le vrai temps réel.
 
-Sans WebSocket : ton app doit poller (interroger à intervalles réguliers) le serveur toutes les X secondes — du gaspillage pur.
+Sans WebSocket : ton app doit poller (interroger à intervalles réguliers) le serveur toutes les X secondes : du gaspillage pur.
 Avec WebSocket : le serveur envoie quand ça change. Zéro polling. Zéro gaspillage.
 
 ---
 
-## 1) LE TUNNEL — CLIENT ET SERVEUR EN MÊME TEMPS
+## 1) LE TUNNEL : CLIENT ET SERVEUR EN MÊME TEMPS
 
 Avant d'écrire une ligne, comprendre qui parle à qui.
 Une WebSocket c'est deux bouts : le navigateur et le serveur Node.js.
@@ -36,7 +36,7 @@ Navigateur (client)                     Node.js (serveur)
 Les deux côtés ont la même interface de base : `send()`, `on('message')`, `on('close')`.
 C'est intentionnel. Tu raisonnes pareil des deux côtés.
 
-**Côté serveur minimal — ce qui doit tourner avant que le client se connecte :**
+**Côté serveur minimal : ce qui doit tourner avant que le client se connecte :**
 
 ```js
 import { WebSocketServer } from 'ws'; // bibliothèque Node.js : npm install ws
@@ -71,7 +71,7 @@ Sans lui : `new WebSocket('ws://localhost:8080')` échoue silencieusement avec u
 
 ---
 
-## 2) L'HANDSHAKE — COMMENT ÇA COMMENCE
+## 2) L'HANDSHAKE : COMMENT ÇA COMMENCE
 
 Une WebSocket démarre comme une requête HTTP classique, puis demande un "upgrade".
 Le serveur accepte. La connexion bascule en protocole WebSocket.
@@ -150,7 +150,7 @@ socket.addEventListener('message', (event) => {
   console.log('Message reçu :', data);
 
   if (data.type === 'horror_alert') {
-    console.log(`Horror détecté à ${data.location} — envoyer Leon`);
+    console.log(`Horror détecté à ${data.location} : envoyer Leon`);
   }
 });
 ```
@@ -160,13 +160,13 @@ Accéder à `data.type` sans parser : `undefined` partout, crash silencieux.
 
 ---
 
-## 6) LES ERREURS — CE QUI ARRIVE EN VRAI
+## 6) LES ERREURS : CE QUI ARRIVE EN VRAI
 
 ```js
 socket.addEventListener('error', (event) => {
   // L'event error ne donne pas de détails par design (raison de sécurité navigateur)
   // Pour le vrai message d'erreur : onglet Network > WS dans DevTools
-  console.error('Erreur WebSocket — vérifier Network tab');
+  console.error('Erreur WebSocket : vérifier Network tab');
 });
 ```
 
@@ -186,11 +186,11 @@ Les erreurs les plus fréquentes en prod :
 socket.close(1000, 'Mission terminée');
 
 socket.addEventListener('close', (event) => {
-  console.log(`Connexion fermée — code : ${event.code}, raison : ${event.reason}`);
+  console.log(`Connexion fermée : code : ${event.code}, raison : ${event.reason}`);
   // wasClean : true si la fermeture était intentionnelle et propre
   // wasClean : false si la connexion a été coupée brutalement
   if (!event.wasClean) {
-    console.log('Coupure brutale — prévoir une reconnexion');
+    console.log('Coupure brutale : prévoir une reconnexion');
   }
 });
 ```
@@ -203,7 +203,7 @@ Codes importants :
 
 ---
 
-## 8) RECONNEXION — CE QUE TOUT LE MONDE OUBLIE
+## 8) RECONNEXION : CE QUE TOUT LE MONDE OUBLIE
 
 Une WebSocket ne se reconnecte pas toute seule.
 Si le serveur redémarre, ta connexion meurt et c'est tout.
@@ -224,7 +224,7 @@ function createSocket(url, onMessage) {
   socket.addEventListener('close', (event) => {
     if (!event.wasClean) {
       // connexion perdue sans fermeture propre — on retente dans 3 secondes
-      console.log('Connexion perdue — retry dans 3s');
+      console.log('Connexion perdue : retry dans 3s');
       setTimeout(() => createSocket(url, onMessage), 3000);
     }
   });
@@ -238,7 +238,7 @@ const socket = createSocket('wss://ton-serveur.com/ws', (data) => {
 ```
 
 En prod : backoff exponentiel (délai qui double à chaque tentative) pour ne pas saturer le serveur si tous les clients se reconnectent simultanément.
-`Math.min(1000 * 2 ** retries, 30000)` — capé à 30s.
+`Math.min(1000 * 2 ** retries, 30000)` : capé à 30s.
 
 ---
 
@@ -262,7 +262,7 @@ Implémente :
 - côté client : affiche l'alerte dès réception avec le nom du Horror et sa localisation
 
 Contrainte : si la connexion est perdue, le client doit retenter automatiquement.
-(Indice : `wss.clients` est un Set de toutes les connexions actives — itère et vérifie `readyState === 1` avant chaque `send()`)
+(Indice : `wss.clients` est un Set de toutes les connexions actives : itère et vérifie `readyState === 1` avant chaque `send()`)
 
 ---
 
@@ -275,4 +275,4 @@ Implémente une fonction `safeSocket(url, message)` qui :
 - rejette si la connexion échoue ou se ferme avant la réponse
 
 Contrainte : la fonction doit fonctionner même si appelée immédiatement, sans attendre `open` manuellement.
-(Indice : vérifie `readyState === 1` avant d'envoyer, sinon écoute `open` en premier — `{ once: true }` pour ne l'écouter qu'une fois)
+(Indice : vérifie `readyState === 1` avant d'envoyer, sinon écoute `open` en premier : `{ once: true }` pour ne l'écouter qu'une fois)

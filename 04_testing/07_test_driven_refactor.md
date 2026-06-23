@@ -1,4 +1,4 @@
-# TEST-DRIVEN REFACTOR — CHANGER TOUT SANS RIEN CASSER
+# TEST-DRIVEN REFACTOR : CHANGER TOUT SANS RIEN CASSER
 
 Refactorer du code sans tests : c'est désamorcer une bombe les yeux bandés.
 Tu changes quelque chose. Tu espères que rien d'autre ne casse. Tu vérifies à la main. Tu oublies la moitié des cas.
@@ -109,7 +109,7 @@ Tous verts. Maintenant on peut refactoriser en sécurité.
 
 ---
 
-## 3) REFACTORISER — AVEC LE FILET
+## 3) REFACTORISER : AVEC LE FILET
 
 ```js
 // gestionCamp.js — version refactorisée

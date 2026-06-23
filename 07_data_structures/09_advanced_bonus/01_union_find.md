@@ -1,6 +1,6 @@
 # UNION-FIND : GROUPER CE QUI EST CONNECTÉ EN O(α(n))
 
-Problème : tu as N éléments. Des connexions arrivent une par une. À chaque étape tu dois répondre : "ces deux éléments sont-ils dans le même groupe ?" BFS ou DFS peuvent le faire, mais en O(V+E) à chaque requête. Union-Find répond en O(α(n)) — quasi O(1) — avec deux optimisations.
+Problème : tu as N éléments. Des connexions arrivent une par une. À chaque étape tu dois répondre : "ces deux éléments sont-ils dans le même groupe ?" BFS ou DFS peuvent le faire, mais en O(V+E) à chaque requête. Union-Find répond en O(α(n)) : quasi O(1) : avec deux optimisations.
 
 α(n) c'est la fonction inverse d'Ackermann. Pour n'importe quel N réel ou imaginable, α(n) ≤ 5. En pratique : O(1).
 
@@ -246,4 +246,4 @@ Implémente Kruskal avec Union-Find. Retourne les arêtes du MST et le coût tot
 
 # RÉSUMÉ
 
-Union-Find maintient des groupes dynamiques avec deux opérations : `find` (quel groupe ?) et `union` (fusionner deux groupes). Path compression + union by rank donnent O(α(n)) amorti — quasi O(1). Idéal pour les problèmes de connectivité dynamique, la détection de cycle en O(E), et Kruskal's MST. Quand BFS/DFS répondent à "sont-ils connectés ?" en O(V+E), Union-Find répond en O(α(n)).
+Union-Find maintient des groupes dynamiques avec deux opérations : `find` (quel groupe ?) et `union` (fusionner deux groupes). Path compression + union by rank donnent O(α(n)) amorti : quasi O(1). Idéal pour les problèmes de connectivité dynamique, la détection de cycle en O(E), et Kruskal's MST. Quand BFS/DFS répondent à "sont-ils connectés ?" en O(V+E), Union-Find répond en O(α(n)).

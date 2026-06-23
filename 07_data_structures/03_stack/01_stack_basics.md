@@ -1,4 +1,4 @@
-# STACK : LIFO — LE DERNIER ENTRÉ EST LE PREMIER SORTI
+# STACK : LIFO : LE DERNIER ENTRÉ EST LE PREMIER SORTI
 
 Tu as déjà utilisé une stack sans le savoir. La call stack de JS en est une. L'historique de navigation dans ton navigateur en est une. Le Ctrl+Z de ton éditeur en est une.
 

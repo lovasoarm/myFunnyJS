@@ -1,4 +1,4 @@
-# MATH GRIMOIRE — 05_MATH_BASICS
+# MATH GRIMOIRE : 05_MATH_BASICS
 
 Les maths qu'un dev croise vraiment. Pas celles d'un manuel de terminale.
 Chaque terme ici apparaît dans du vrai code, dans de vraies prods, dans de vrais bugs.
@@ -9,8 +9,8 @@ Chaque terme ici apparaît dans du vrai code, dans de vraies prods, dans de vrai
 |-------|------------|------|-----------|
 | **Opérateur logique AND** | Retourne `true` si les deux opérandes sont vrais. En JS, retourne la première valeur falsy ou la dernière valeur. | `true && "ok"` → `"ok"` / `null && fn()` → `null` | Verrou à deux clés : les deux doivent tourner / Deux gardiens : les deux doivent valider |
 | **Opérateur logique OR** | Retourne `true` si au moins un opérande est vrai. En JS, retourne la première valeur truthy ou la dernière. | `null \|\| "défaut"` → `"défaut"` / `"val" \|\| "défaut"` → `"val"` | Porte avec deux entrées : une seule suffit / Sélection du premier candidat disponible |
-| **Court-circuit (short-circuit)** | `&&` arrête dès qu'il trouve un falsy. `\|\|` arrête dès qu'il trouve un truthy. La suite n'est pas évaluée. | `user && user.nom` — si `user` est null, `user.nom` n'est jamais lu | Sécurité de Kakashi qui n'ouvre pas le Sharingan si ennemi déjà KO / Fuse électrique : coupe avant que ça brûle |
-| **Nullish coalescing `??`** | Retourne le côté droit uniquement si le gauche est `null` ou `undefined`. Contrairement à `\|\|`, laisse passer `0`, `""`, `false`. | `score ?? 0` — si score = 0, retourne 0 (pas le fallback) | Différence entre "absent" et "vide" / Remplaçant qui entre que si le titulaire est blessé, pas juste fatigué |
+| **Court-circuit (short-circuit)** | `&&` arrête dès qu'il trouve un falsy. `\|\|` arrête dès qu'il trouve un truthy. La suite n'est pas évaluée. | `user && user.nom` : si `user` est null, `user.nom` n'est jamais lu | Sécurité de Kakashi qui n'ouvre pas le Sharingan si ennemi déjà KO / Fuse électrique : coupe avant que ça brûle |
+| **Nullish coalescing `??`** | Retourne le côté droit uniquement si le gauche est `null` ou `undefined`. Contrairement à `\|\|`, laisse passer `0`, `""`, `false`. | `score ?? 0` : si score = 0, retourne 0 (pas le fallback) | Différence entre "absent" et "vide" / Remplaçant qui entre que si le titulaire est blessé, pas juste fatigué |
 | **Valeurs falsy** | Les 8 valeurs que JS considère comme `false` dans un contexte booléen : `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. | `if (0)` ne s'exécute pas / `Boolean("")` → `false` | Les 8 disqualifiés du match / Les zéros qui ne comptent pas dans le classement |
 | **Lois de De Morgan** | `!(A && B)` est équivalent à `(!A \|\| !B)`. `!(A \|\| B)` est équivalent à `(!A && !B)`. Permet de simplifier les conditions complexes. | `!(estAdmin && estActif)` ↔ `!estAdmin \|\| !estActif` | Inverser "les deux gagnent" = "au moins un perd" / Négation du contrat collectif |
 | **Modulo `%`** | Retourne le reste de la division entière. Si `a % n`, le résultat est dans `[0, n-1]` pour des positifs. | `7 % 3` → `1` / `index % tableau.length` → index cyclique | Aiguille d'une horloge : toujours entre 0 et 11 / Rotation de garde : chaque soldat reprend son tour |

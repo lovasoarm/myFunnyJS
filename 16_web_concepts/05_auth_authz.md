@@ -311,7 +311,7 @@ Implémente les deux middlewares pour gérer ces deux cas.
 ## RÉSUMÉ
 
 Authentification : qui tu es. Autorisation : ce que tu peux faire. Confondre les deux = bug de sécurité.
-JWT : payload signé, vérifié par signature. Pas besoin de DB pour vérifier — mais tu perds le contrôle de révocation.
+JWT : payload signé, vérifié par signature. Pas besoin de DB pour vérifier : mais tu perds le contrôle de révocation.
 Access token court + refresh token long : le meilleur équilibre sécurité/expérience utilisateur.
 `HttpOnly` cookie > `localStorage` pour stocker les tokens. XSS ne peut pas lire les cookies HttpOnly.
 401 = non authentifié. 403 = non autorisé. Deux erreurs différentes, deux raisons différentes.

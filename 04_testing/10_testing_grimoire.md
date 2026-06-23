@@ -57,7 +57,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|
 | Coverage | Pourcentage de lignes/branches/fonctions exécutées par les tests, révèle les zones non testées | `jest --coverage` | carte thermique des zones visitées / audit qui montre les parties non inspectées |
-| AAA | Arrange-Act-Assert : les trois phases d'un test — préparer les données, appeler le code, vérifier le résultat | commentaires `// ARRANGE / ACT / ASSERT` | avant le match / pendant le match / après le match |
+| AAA | Arrange-Act-Assert : les trois phases d'un test : préparer les données, appeler le code, vérifier le résultat | commentaires `// ARRANGE / ACT / ASSERT` | avant le match / pendant le match / après le match |
 | Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du produit qu'il commande / l'acheteur qui rédige le cahier des charges |
 | Playwright locator | Référence à un élément UI dans Playwright, préférer les sélecteurs sémantiques aux CSS | `page.getByRole('button', { name: 'Voter' })` | description d'une personne par son rôle plutôt que son numéro de siège / chercher "le caissier" plutôt que "siège 14-C" |
 | Test pyramid | Distribution idéale des tests : beaucoup d'unit (bas) → moins d'intégration → peu d'E2E (haut) | 80% unit / 15% intégration / 5% E2E | pyramid alimentaire : base large de légumes, sommet étroit de sucre / architecture : fondations larges, toit étroit |

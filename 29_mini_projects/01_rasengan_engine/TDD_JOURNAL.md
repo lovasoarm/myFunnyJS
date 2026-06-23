@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits, pas l'or
 
 ---
 
-## ÉTAPE 1 : `rng.js` — le socle déterministe
+## ÉTAPE 1 : `rng.js` : le socle déterministe
 
 **Premier test écrit, avant tout le reste :**
 
@@ -77,7 +77,7 @@ Aucune surprise ici : ce sont des fonctions pures testées isolément, exactemen
 
 ---
 
-## ÉTAPE 4 : `fighterFactory.js` — premier vrai test d'immutabilité
+## ÉTAPE 4 : `fighterFactory.js` : premier vrai test d'immutabilité
 
 ```js
 test('crée un fighter Naruto avec les bonnes stats de base', () => {
@@ -98,7 +98,7 @@ Le deuxième test a immédiatement attrapé un bug : la première version de `cr
 
 ---
 
-## ÉTAPE 5 : `turnResolver.js` — la zone de résistance annoncée
+## ÉTAPE 5 : `turnResolver.js` : la zone de résistance annoncée
 
 Le cahier des charges prévenait : c'est ici que la tentation de muter directement est la plus forte. Premier réflexe (mauvais, corrigé avant commit) :
 
@@ -127,7 +127,7 @@ Ce test a été écrit AVANT l'implémentation finale, volontairement, pour forc
 
 ---
 
-## ÉTAPE 6 : `combat.js` — la condition d'arrêt
+## ÉTAPE 6 : `combat.js` : la condition d'arrêt
 
 ```js
 test('le combat s\'arrête quand un fighter atteint 0 chakra', () => {

@@ -23,7 +23,7 @@ Un modulo ne calcule pas un reste. Il te dit **où tu es dans un cycle**.
 1 % 4 = 1  →  position 1
 2 % 4 = 2  →  position 2
 3 % 4 = 3  →  position 3
-4 % 4 = 0  →  retour en position 0 — le cycle recommence
+4 % 4 = 0  →  retour en position 0 : le cycle recommence
 5 % 4 = 1  →  position 1 à nouveau
 ```
 
@@ -121,7 +121,7 @@ class RingBuffer {
 
 ## 3) LE PIÈGE AVEC LES NOMBRES NÉGATIFS
 
-En JS, `%` peut retourner un nombre négatif si l'opérande gauche est négatif. Ce n'est pas un bug JS — c'est le comportement standard de C. Mais ça casse les cycles.
+En JS, `%` peut retourner un nombre négatif si l'opérande gauche est négatif. Ce n'est pas un bug JS : c'est le comportement standard de C. Mais ça casse les cycles.
 
 ```js
 -1 % 4   // -1 en JS  — pas 3 comme en maths
@@ -218,4 +218,4 @@ Dans un jeu de foot, les 10 dernières actions sont gardées en mémoire pour le
 
 # RÉSUMÉ
 
-Le modulo calcule une position dans un cycle. C'est son vrai rôle : pas juste pair/impair. Les cycles, la pagination, les cooldowns, les distributions équilibrées, les ring buffers — tout ça repose sur `a % n`. Attention aux négatifs : utilise `((a % n) + n) % n` pour un modulo toujours positif. Et retiens que le modulo est la base des hash tables : ramener une valeur dans une plage, c'est toujours `hash % taille`.
+Le modulo calcule une position dans un cycle. C'est son vrai rôle : pas juste pair/impair. Les cycles, la pagination, les cooldowns, les distributions équilibrées, les ring buffers : tout ça repose sur `a % n`. Attention aux négatifs : utilise `((a % n) + n) % n` pour un modulo toujours positif. Et retiens que le modulo est la base des hash tables : ramener une valeur dans une plage, c'est toujours `hash % taille`.

@@ -1,4 +1,4 @@
-# INTEGRATION REACTOR — QUAND L'ISOLATION NE SUFFIT PLUS
+# INTEGRATION REACTOR : QUAND L'ISOLATION NE SUFFIT PLUS
 
 Chaque pièce est testée unitairement. Tout est vert.
 Tu branches les pièces ensemble. Ça explose.
@@ -85,7 +85,7 @@ describe('pipeline de vote complet', () => {
 
 ---
 
-## 3) IN-MEMORY VS VRAIE BASE — COMMENT CHOISIR
+## 3) IN-MEMORY VS VRAIE BASE : COMMENT CHOISIR
 
 Pour les tests d'intégration, tu as besoin de quelque chose qui ressemble à la prod sans être la prod.
 
@@ -142,7 +142,7 @@ async function stockeVote(vote) {
 }
 ```
 
-Ce genre de mismatch d'interface — A retourne `joueur`, B attend `playerId` — est exactement ce que les unit tests ne peuvent pas attraper. L'intégration le voit immédiatement.
+Ce genre de mismatch d'interface : A retourne `joueur`, B attend `playerId` : est exactement ce que les unit tests ne peuvent pas attraper. L'intégration le voit immédiatement.
 
 ---
 
@@ -209,6 +209,6 @@ function logueMission(mission) {
 # RÉSUMÉ
 
 Les unit tests vérifient que chaque pièce marche. Les tests d'intégration vérifient que les pièces marchent ensemble.
-Le mismatch d'interface — A retourne un champ que B n'attend pas — n'est visible qu'en intégration.
+Le mismatch d'interface : A retourne un champ que B n'attend pas : n'est visible qu'en intégration.
 In-memory store pour les tests rapides, vraie DB pour les tests de persistance critique.
 Les tests d'intégration ne remplacent pas les unit tests : ils les complètent.

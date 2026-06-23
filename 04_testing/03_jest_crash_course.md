@@ -1,7 +1,7 @@
-# JEST CRASH COURSE — DE ZÉRO À OPÉRATIONNEL
+# JEST CRASH COURSE : DE ZÉRO À OPÉRATIONNEL
 
 Jest est le framework de test le plus utilisé en JS.
-Pas parce qu'il est parfait : parce qu'il marche, qu'il est rapide, et qu'il a tout intégré — assertions, mocks, coverage, watch mode.
+Pas parce qu'il est parfait : parce qu'il marche, qu'il est rapide, et qu'il a tout intégré : assertions, mocks, coverage, watch mode.
 
 Ce fichier te rend opérationnel. Pas expert Jest, opérationnel.
 La doc officielle fait 200 pages. On va couvrir les 20% qui résolvent 80% des situations.
@@ -60,11 +60,11 @@ describe('calculeKDA', () => {
 ```
 
 `describe` peut être imbriqué pour organiser des cas complexes.
-`it` et `test` sont synonymes — utilise `it` pour les phrases en "il..."
+`it` et `test` sont synonymes : utilise `it` pour les phrases en "il..."
 
 ---
 
-## 3) LES MATCHERS — CE QUE JEST SAIT COMPARER
+## 3) LES MATCHERS : CE QUE JEST SAIT COMPARER
 
 ```js
 // valeurs primitives
@@ -165,7 +165,7 @@ Important : sans `async/await`, Jest peut considérer un test comme passé même
 
 ---
 
-## 6) COVERAGE — VOIR CE QUI N'EST PAS TESTÉ
+## 6) COVERAGE : VOIR CE QUI N'EST PAS TESTÉ
 
 ```bash
 npm run test:coverage
@@ -240,5 +240,5 @@ Identifie une fonction qui a moins de 80% de coverage sur les branches.
 Jest s'installe en une commande. Il trouve les fichiers `*.test.js` automatiquement.
 `describe` groupe, `it` décrit, `expect` vérifie.
 `toBe` pour les primitives, `toEqual` pour les objets.
-Les fonctions async se testent avec `async/await` — sans ça, Jest peut passer un test cassé.
+Les fonctions async se testent avec `async/await` : sans ça, Jest peut passer un test cassé.
 Le coverage montre les branches non testées : c'est là que vivent les bugs.

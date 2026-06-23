@@ -76,7 +76,7 @@ serialized.forEach(val => newBst.insert(val))
 // l'arbre reconstruit a exactement la même forme
 ```
 
-Avec inOrder tu obtiendrais [1, 3, 4, 6, 7, 8, 10, 13, 14] — insérer dans cet ordre produit un arbre dégénéré.
+Avec inOrder tu obtiendrais [1, 3, 4, 6, 7, 8, 10, 13, 14] : insérer dans cet ordre produit un arbre dégénéré.
 
 ---
 
@@ -222,7 +222,7 @@ Naruto et Sasuke ont chacun un BST de leurs jutsu triés par puissance. Pour vé
 
 Implémente `isSameValues(bst1, bst2)` : retourne `true` si les deux BST contiennent exactement les mêmes valeurs (même ensemble, peu importe la forme de l'arbre).
 
-(Contrainte : utilise le traversal le plus adapté — lequel garantit un résultat comparable entre deux arbres de formes différentes ?)
+(Contrainte : utilise le traversal le plus adapté : lequel garantit un résultat comparable entre deux arbres de formes différentes ?)
 
 ---
 

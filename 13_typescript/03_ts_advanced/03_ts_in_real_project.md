@@ -99,7 +99,7 @@ La migration brutale (tout convertir d'un coup) est risquée. La migration progr
 PHASE 1 : préparation
 ├── ajouter tsconfig.json avec allowJs: true, checkJs: false
 ├── renommer les fichiers critiques de .js à .ts un par un
-└── garder les autres en .js — TS les ignore
+└── garder les autres en .js : TS les ignore
 
 PHASE 2 : typage de la surface
 ├── typer les interfaces et types de données d'abord
@@ -112,7 +112,7 @@ PHASE 3 : élimination des any
 └── ajouter les type guards sur les données externes
 
 PHASE 4 : strict complet
-└── activer strict: true — corriger ce qui casse
+└── activer strict: true : corriger ce qui casse
 ```
 
 ```ts
@@ -367,4 +367,4 @@ Le projet `oracle_glitch` utilise Anthropic SDK (qui a des types) + une lib de p
 
 # RÉSUMÉ
 
-`tsconfig.json` — `strict: true` en premier, `target` et `module` selon ton runtime. La migration progressive passe par `allowJs: true`, puis le typage de la surface, puis l'élimination des `any`. Les boundaries du système (API, formulaires, JSON externe) demandent le typage le plus rigoureux. `as` est acceptable après une validation manuelle — inacceptable pour faire taire TS sans comprendre. Les interfaces pour les objets, les types pour les unions et les compositions. Les `.d.ts` pour typer du JS externe sans types. Préfère les unions de string literals aux enums pour éviter le runtime overhead.
+`tsconfig.json` : `strict: true` en premier, `target` et `module` selon ton runtime. La migration progressive passe par `allowJs: true`, puis le typage de la surface, puis l'élimination des `any`. Les boundaries du système (API, formulaires, JSON externe) demandent le typage le plus rigoureux. `as` est acceptable après une validation manuelle : inacceptable pour faire taire TS sans comprendre. Les interfaces pour les objets, les types pour les unions et les compositions. Les `.d.ts` pour typer du JS externe sans types. Préfère les unions de string literals aux enums pour éviter le runtime overhead.

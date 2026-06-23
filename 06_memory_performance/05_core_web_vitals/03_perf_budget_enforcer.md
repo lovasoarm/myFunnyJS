@@ -142,7 +142,7 @@ jobs:
 Résultat : chaque PR affiche un commentaire avec les scores et bloque le merge si un seuil est dépassé.
 
 ```
-PR #47 — "Add analytics widget"
+PR #47 : "Add analytics widget"
 ----------------------------------------
   LCP:   3.1s   ❌  budget: 2.5s
   CLS:   0.08   ✅
@@ -222,7 +222,7 @@ function checkBundleSize() {
   const distDir = path.join(__dirname, '../dist/js')
 
   if (!fs.existsSync(distDir)) {
-    console.error('dist/ introuvable — lance le build d\'abord')
+    console.error('dist/ introuvable : lance le build d\'abord')
     process.exit(1)
   }
 

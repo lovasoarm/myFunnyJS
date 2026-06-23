@@ -1,9 +1,9 @@
-# 02_SSE_LIVE_FEED — LE DASHBOARD DE MATCH EN TEMPS RÉEL
+# 02_SSE_LIVE_FEED : LE DASHBOARD DE MATCH EN TEMPS RÉEL
 
 Objectif concret : un dashboard live pour suivre un match de foot.
 Possession, xG (expected goals : buts attendus selon la qualité des occasions), tirs, alertes de but.
 Les données arrivent via SSE depuis un serveur de stats.
-Les ultras regardent le dashboard — si ça lag ou ça freeze, c'est la catastrophe.
+Les ultras regardent le dashboard : si ça lag ou ça freeze, c'est la catastrophe.
 
 On construit quelque chose qui tient sous charge et qui se comporte proprement quand la connexion flanche.
 
@@ -31,7 +31,7 @@ Le SSE handler les pousse à tous les clients.
 
 ---
 
-## 2) LE SERVEUR — STRUCTURÉ ET ROBUSTE
+## 2) LE SERVEUR : STRUCTURÉ ET ROBUSTE
 
 ```js
 import express from 'express';
@@ -179,7 +179,7 @@ app.listen(3000, () => console.log('Dashboard SSE actif sur port 3000'));
 
 ---
 
-## 3) LE CLIENT — LE DASHBOARD
+## 3) LE CLIENT : LE DASHBOARD
 
 ```js
 class MatchDashboard {
@@ -226,7 +226,7 @@ class MatchDashboard {
 
     this.source.addEventListener('error', () => {
       // EventSource retente automatiquement — on signale juste l'état
-      console.log('Connexion perdue — reconnexion en cours...');
+      console.log('Connexion perdue : reconnexion en cours...');
     });
 
     this.source.addEventListener('open', () => {
@@ -239,7 +239,7 @@ class MatchDashboard {
 
     // dans un vrai dashboard : mettre à jour le DOM ici
     console.clear();
-    console.log(`MATCH — ${this.state.status.toUpperCase()}`);
+    console.log(`MATCH : ${this.state.status.toUpperCase()}`);
     console.log(`Score : ${this.state.score.home} - ${this.state.score.away}`);
     console.log(`Possession : ${this.state.possession.home}% / ${this.state.possession.away}%`);
     console.log(`xG : ${this.state.xG.home.toFixed(2)} / ${this.state.xG.away.toFixed(2)}`);
@@ -260,7 +260,7 @@ const dashboard = new MatchDashboard('http://localhost:3000/match/live');
 
 ---
 
-## 4) LE HEARTBEAT — POURQUOI C'EST OBLIGATOIRE EN PROD
+## 4) LE HEARTBEAT : POURQUOI C'EST OBLIGATOIRE EN PROD
 
 Sans heartbeat, les proxies et load balancers coupent les connexions inactives après 30 à 60 secondes.
 La connexion SSE est coupée, l'EventSource reconnecte, le client rate peut-être des events.
@@ -281,7 +281,7 @@ C'est de la plomberie serveur pure.
 
 ---
 
-## 5) GESTION DE LA CHARGE — PREVIEW POUR 10K CLIENTS
+## 5) GESTION DE LA CHARGE : PREVIEW POUR 10K CLIENTS
 
 > **Note** : cette section anticipe des concepts traités en détail dans `24_scalability`.
 > L'objectif ici est de voir le problème, pas d'implémenter la solution complète.
@@ -327,7 +327,7 @@ C'est exactement ce que couvre `24_scalability/04_message_queues.md`.
 
 Un live feed SSE tient sur trois piliers : le state sync au connect (pas d'attente du prochain event), le heartbeat contre les timeouts de proxy, et la reprise sur `Last-Event-ID` après reconnexion.
 La difficulté à l'échelle, c'est le broadcast synchrone qui bloque l'event loop sur 10k+ clients.
-Pour un dashboard de match où seul le serveur parle : SSE est la bonne décision — WebSocket serait du sur-engineering ici.
+Pour un dashboard de match où seul le serveur parle : SSE est la bonne décision : WebSocket serait du sur-engineering ici.
 
 ---
 
@@ -350,5 +350,5 @@ Modifie le client pour qu'il :
 - affiche "Reprise depuis l'event N" quand il se reconnecte avec un `Last-Event-ID`
 - compte et affiche le nombre de reconnexions depuis l'ouverture de la page
 
-Contrainte : sans modifier le serveur — tout se passe dans le code client.
+Contrainte : sans modifier le serveur : tout se passe dans le code client.
 (Indice : tracker `this.reconnectCount` et écouter les events `open` et `error` sur EventSource)

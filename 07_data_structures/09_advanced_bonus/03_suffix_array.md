@@ -220,7 +220,7 @@ Le LCP array permet de trouver la plus longue sous-string répétée, de compter
 ```
 Construction naïve    : O(n² log n)  en temps, O(n) en espace
 Construction efficace : O(n log² n)  en temps, O(n) en espace
-SA-IS (optimal)       : O(n)         — hors scope
+SA-IS (optimal)       : O(n)         : hors scope
 Recherche de pattern  : O(m log n)   après construction
 LCP array             : O(n)         après suffix array
 ```
@@ -266,4 +266,4 @@ Teste sur `"abracadabra"` et `"aaabaaab"`.
 
 # RÉSUMÉ
 
-Le Suffix Array trie les indices des suffixes d'une string. Une fois construit, chercher un pattern prend O(m log n) via recherche binaire — contre O(n*m) en brute force. Construction naïve en O(n² log n), prefix doubling en O(n log² n). Le LCP array complète la structure pour les requêtes sur les préfixes communs. Idéal quand un même corpus est interrogé par de nombreux patterns différents : construire l'index une fois, chercher des milliers de fois.
+Le Suffix Array trie les indices des suffixes d'une string. Une fois construit, chercher un pattern prend O(m log n) via recherche binaire : contre O(n*m) en brute force. Construction naïve en O(n² log n), prefix doubling en O(n log² n). Le LCP array complète la structure pour les requêtes sur les préfixes communs. Idéal quand un même corpus est interrogé par de nombreux patterns différents : construire l'index une fois, chercher des milliers de fois.

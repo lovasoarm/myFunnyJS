@@ -122,7 +122,7 @@ Le pourquoi : tracer 100% des commandes d'une opération qui en traite des milli
 ## 4) LIRE UN WATERFALL : LE GRAPHIQUE QUI RACONTE L'HISTOIRE
 
 ```
-TRACE cmd-7f3a9b — durée totale : 195min
+TRACE cmd-7f3a9b : durée totale : 195min
 
 Labo              [====]                                              20min
 Grossiste              [==]                                           15min

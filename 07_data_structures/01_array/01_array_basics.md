@@ -35,7 +35,7 @@ console.log(crew[3])  // "Sanji"
 
 ## 2) INDEXING, SLICING, SPREADING : LES COÛTS
 
-### Indexing — O(1)
+### Indexing : O(1)
 
 ```js
 const scores = [88, 95, 72, 61, 99]
@@ -47,7 +47,7 @@ const best = scores[4]  // 99
 scores[2] = 80  // on écrase directement la case mémoire
 ```
 
-### Slicing — O(k) où k = taille du slice
+### Slicing : O(k) où k = taille du slice
 
 `slice` ne modifie pas le tableau original : il crée une **copie** de la portion.
 
@@ -62,7 +62,7 @@ const recon = squad.slice(1, 4)
 // O(k) : proportionnel au nombre d'éléments copiés
 ```
 
-### Spreading — O(n)
+### Spreading : O(n)
 
 Le spread `[...arr]` crée une shallow copy complète. Tout le tableau est parcouru.
 
@@ -185,7 +185,7 @@ Contrainte : utilise `slice` et le spread. Pas de `splice` sur l'original.
 ## EXO 2 : Le camp de Rick Grimes
 Le camp a une liste de survivants. Un zombie attaque depuis la gauche (index 0). Un nouveau survivant arrive toujours à la fin. Mesure avec `performance.now()` la différence entre 10 000 `unshift` et 10 000 `push` sur un tableau de 1000 éléments. Explique le résultat en une phrase.
 
-(indice : regarde le tableau des coûts ci-dessus — la réponse y est)
+(indice : regarde le tableau des coûts ci-dessus : la réponse y est)
 
 ## EXO 3 : Le tableau qui ment
 Ce code a un bug silencieux. Trouve-le avant de l'exécuter, explique ce qui se passe, et corrige-le.

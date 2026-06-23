@@ -6,7 +6,7 @@ Module A appelle Module B. Module B appelle Module C. C'est du spaghetti câblé
 
 Event-driven change ça : personne n'appelle personne.
 Tout le monde écoute. Tout le monde émet.
-Comme des Chevaliers de Garo qui ne connaissent pas les autres unités — ils reçoivent juste un signal d'alerte, et ils réagissent.
+Comme des Chevaliers de Garo qui ne connaissent pas les autres unités : ils reçoivent juste un signal d'alerte, et ils réagissent.
 
 Résultat : le couplage (dépendance directe entre modules) tombe à zéro.
 
@@ -126,7 +126,7 @@ unsubscribe();
 ```
 
 Le pattern `return () => off()` est essentiel.
-Sans ça, les listeners s'accumulent en mémoire — c'est une fuite mémoire (memory leak) silencieuse.
+Sans ça, les listeners s'accumulent en mémoire : c'est une fuite mémoire (memory leak) silencieuse.
 
 ---
 
@@ -275,7 +275,7 @@ Le Conseil s'abonne aux trois. Simule une séquence complète d'un incident.
 Rick a un système d'alerte zombie : chaque alerte ajoute un listener.
 Après 100 alertes, son app plante (trop de listeners en mémoire).
 Identifie le bug, propose la fix, et vérifie avec `emitter.listenerCount('event')`.
-(Indice : EventEmitter a une limite par défaut de 10 listeners par event — regarde `setMaxListeners`)
+(Indice : EventEmitter a une limite par défaut de 10 listeners par event : regarde `setMaxListeners`)
 
 **EXO 3 : Le Pub/Sub du Ballon d'Or**
 Trois services s'abonnent au channel `votes` : le classement en direct, les analytics de vote, et le système anti-fraude.
@@ -288,6 +288,6 @@ Implémente le tout avec un Pub/Sub, et simule 10 votes dont 2 suspects.
 
 Event-driven, c'est choisir la réaction plutôt que le câblage direct.
 Le coup d'oeil de Garo : personne ne sait qui combat à côté, tout le monde réagit au même signal.
-Le vrai gain : tu peux ajouter un service, l'enlever, le modifier — sans toucher au reste.
+Le vrai gain : tu peux ajouter un service, l'enlever, le modifier : sans toucher au reste.
 Le vrai risque : la cascade d'events et les listeners qui s'accumulent en mémoire.
 La règle d'or : toujours retourner une fonction de désabonnement. Toujours.

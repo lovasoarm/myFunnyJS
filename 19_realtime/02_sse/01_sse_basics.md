@@ -1,4 +1,4 @@
-# 01_SSE_BASICS — LE SERVEUR QUI PARLE EN PREMIER
+# 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER
 
 WebSocket c'est un tunnel bidirectionnel.
 SSE (Server-Sent Events : événements envoyés par le serveur) c'est différent : le serveur parle, le client écoute.
@@ -13,7 +13,7 @@ Cas parfait pour SSE : notifications, feeds live, dashboards de score, logs en t
 
 ---
 
-## 1) LE PROTOCOLE SSE — TROIS LIGNES C'EST TOUT
+## 1) LE PROTOCOLE SSE : TROIS LIGNES C'EST TOUT
 
 SSE utilise du HTTP/1.1 classique. La connexion reste ouverte.
 Le serveur envoie des "events" dans un format texte ultra simple.
@@ -38,7 +38,7 @@ C'est tout. Pas de handshake custom, pas de format binaire. Du texte HTTP.
 
 ---
 
-## 2) CÔTÉ SERVEUR — EXPRESS
+## 2) CÔTÉ SERVEUR : EXPRESS
 
 ```js
 import express from 'express';
@@ -59,7 +59,7 @@ app.get('/events', (req, res) => {
 
   // enregistrer ce client
   clients.add(res);
-  console.log(`Client SSE connecté — total : ${clients.size}`);
+  console.log(`Client SSE connecté : total : ${clients.size}`);
 
   // envoyer un event de confirmation de connexion
   res.write(`data: ${JSON.stringify({ type: 'connected' })}\n\n`);
@@ -67,7 +67,7 @@ app.get('/events', (req, res) => {
   // nettoyer quand le client se déconnecte
   req.on('close', () => {
     clients.delete(res);
-    console.log(`Client SSE déconnecté — restants : ${clients.size}`);
+    console.log(`Client SSE déconnecté : restants : ${clients.size}`);
   });
 });
 
@@ -100,7 +100,7 @@ app.listen(3000, () => console.log('SSE serveur actif sur port 3000'));
 
 ---
 
-## 3) CÔTÉ CLIENT — EventSource
+## 3) CÔTÉ CLIENT : EventSource
 
 ```js
 // EventSource : l'API native du navigateur pour SSE
@@ -116,7 +116,7 @@ source.addEventListener('message', (event) => {
 // events typés — le type correspond au champ "event:" envoyé par le serveur
 source.addEventListener('match_update', (event) => {
   const update = JSON.parse(event.data);
-  console.log(`Minute ${update.minute} — possession home : ${update.possession.home}%`);
+  console.log(`Minute ${update.minute} : possession home : ${update.possession.home}%`);
 });
 
 source.addEventListener('goal', (event) => {
@@ -134,7 +134,7 @@ source.addEventListener('error', (event) => {
   if (event.readyState === EventSource.CLOSED) {
     console.log('Connexion SSE fermée définitivement');
   } else {
-    console.log('Erreur SSE — retry automatique en cours...');
+    console.log('Erreur SSE : retry automatique en cours...');
     // le navigateur va retenter tout seul dans quelques secondes
   }
 });
@@ -145,7 +145,7 @@ source.addEventListener('error', (event) => {
 
 ---
 
-## 4) RECONNEXION AUTOMATIQUE — LE CADEAU DU PROTOCOLE
+## 4) RECONNEXION AUTOMATIQUE : LE CADEAU DU PROTOCOLE
 
 C'est là que SSE est plus pratique que WebSocket pour des cas simples.
 Le navigateur reconnecte automatiquement si la connexion tombe.
@@ -180,7 +180,7 @@ app.get('/events', (req, res) => {
 
 ---
 
-## 5) SSE VS WEBSOCKET — QUAND CHOISIR QUOI
+## 5) SSE VS WEBSOCKET : QUAND CHOISIR QUOI
 
 ```
                     SSE                         WebSocket
@@ -202,17 +202,17 @@ Le chat a besoin de WebSocket. Le feed de score d'un match : SSE est parfait.
 ## 6) LE PIÈGE DU BUFFERING
 
 Le problème le plus fréquent avec SSE en prod : les proxies qui bufferisent les réponses HTTP.
-Nginx, par exemple, peut accumuler les events avant de les envoyer d'un coup — ce qui casse complètement le temps réel.
+Nginx, par exemple, peut accumuler les events avant de les envoyer d'un coup : ce qui casse complètement le temps réel.
 
 ```nginx
-# config Nginx pour SSE — obligatoire en prod
+# config Nginx pour SSE : obligatoire en prod
 location /events {
     proxy_pass http://localhost:3000;
     proxy_http_version 1.1;
     proxy_set_header Connection '';     # désactiver keep-alive sur le proxy
-    proxy_buffering off;                # désactiver le buffering — CRITIQUE
+    proxy_buffering off;                # désactiver le buffering : CRITIQUE
     proxy_cache off;                    # pas de cache
-    proxy_read_timeout 86400;          # 24h — garder la connexion ouverte
+    proxy_read_timeout 86400;          # 24h : garder la connexion ouverte
 }
 ```
 
@@ -235,7 +235,7 @@ Le vrai risque : le buffering des proxies qui détruit le temps réel si `proxy_
 
 Implémente un serveur SSE qui diffuse des alertes Horror générées aléatoirement.
 Chaque alerte contient : nom du Horror, ville, niveau de menace (1 à 5), timestamp.
-Côté client : affiche chaque alerte dans la console au format `[ALERTE] NomHorror — Ville (niveau 3)`.
+Côté client : affiche chaque alerte dans la console au format `[ALERTE] NomHorror : Ville (niveau 3)`.
 
 Contrainte : utiliser des events typés (`event: horror_alert`) plutôt que le type `message` par défaut.
 (Indice : `source.addEventListener('horror_alert', handler)` côté client)

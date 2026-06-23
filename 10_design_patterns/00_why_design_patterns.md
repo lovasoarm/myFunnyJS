@@ -46,7 +46,7 @@ Observer est littéralement le mécanisme derrière les events DOM et la plupart
 
 ## 4) MODERNE, LEGACY, OU INTEMPOREL ?
 
-Intemporel. Les design patterns classiques — formalisés par 4 ingénieurs (Gang of Four) dans les années 90 — décrivent des structures de résolution de problèmes qui restent valides peu importe le langage ou l'époque, parce qu'ils répondent à des problèmes structurels universels : comment créer, comment composer, comment faire communiquer des objets sans les coupler trop fort.
+Intemporel. Les design patterns classiques : formalisés par 4 ingénieurs (Gang of Four) dans les années 90 : décrivent des structures de résolution de problèmes qui restent valides peu importe le langage ou l'époque, parce qu'ils répondent à des problèmes structurels universels : comment créer, comment composer, comment faire communiquer des objets sans les coupler trop fort.
 
 ---
 

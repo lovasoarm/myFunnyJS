@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. En TypeS
 
 ---
 
-## ÉTAPE 1 : Types d'abord — aucun test, mais la fondation
+## ÉTAPE 1 : Types d'abord : aucun test, mais la fondation
 
 Avant d'écrire le premier test, les types sont définis. Ce n'est pas du code qui tourne, mais si les types sont faux, tout le reste l'est aussi.
 
@@ -26,7 +26,7 @@ Test de compilation : `npx tsc --noImplicitAny --noEmit`. Zero erreur = les type
 
 ---
 
-## ÉTAPE 2 : `validateStage.ts` — premier test réel
+## ÉTAPE 2 : `validateStage.ts` : premier test réel
 
 ```typescript
 test('accepte un event avec xG entre 0 et 1', () => {
@@ -120,7 +120,7 @@ test('closeSpan() enregistre la durée', () => {
 
 ---
 
-## ÉTAPE 6 : `pipelineRunner.ts` — tests d'intégration
+## ÉTAPE 6 : `pipelineRunner.ts` : tests d'intégration
 
 ```typescript
 test('un event valide passe tous les stages et sort enrichi', async () => {

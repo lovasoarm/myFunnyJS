@@ -318,7 +318,7 @@ const raw = {
 displayPlayer(adaptPlayer(raw))
 ```
 
-(indice : l'Adapter mappe les mauvais noms de champs — c'est le bug le plus commun en production)
+(indice : l'Adapter mappe les mauvais noms de champs : c'est le bug le plus commun en production)
 
 ---
 

@@ -5,7 +5,7 @@ Avantage : changement isolé, pas de réaction en chaîne. Inconvénient : si tu
 
 ---
 
-## 1) S — SINGLE RESPONSIBILITY PRINCIPLE
+## 1) S : SINGLE RESPONSIBILITY PRINCIPLE
 
 Une classe ou une fonction a UNE seule raison de changer.
 
@@ -48,7 +48,7 @@ class FightHistory {
 
 ---
 
-## 2) O — OPEN/CLOSED PRINCIPLE
+## 2) O : OPEN/CLOSED PRINCIPLE
 
 Ton code doit être ouvert à l'extension, fermé à la modification. Tu ajoutes du comportement sans réécrire l'existant.
 
@@ -87,7 +87,7 @@ castJutsu --> lookup dans jutsus --> exécution
 
 ---
 
-## 3) L — LISKOV SUBSTITUTION PRINCIPLE
+## 3) L : LISKOV SUBSTITUTION PRINCIPLE
 
 Si `B` hérite de `A`, tu dois pouvoir utiliser `B` partout où `A` est attendu, sans surprise.
 
@@ -133,7 +133,7 @@ function startBattle(chevalier) {
 
 ---
 
-## 4) I — INTERFACE SEGREGATION PRINCIPLE
+## 4) I : INTERFACE SEGREGATION PRINCIPLE
 
 Pas d'interface fourre-tout. Personne ne doit dépendre de méthodes qu'il n'utilise jamais.
 
@@ -179,7 +179,7 @@ Si une classe a des méthodes qui throw "pas implémenté" ou "pas mon rôle" : 
 
 ---
 
-## 5) D — DEPENDENCY INVERSION PRINCIPLE
+## 5) D : DEPENDENCY INVERSION PRINCIPLE
 
 Le code de haut niveau ne doit pas dépendre du détail d'implémentation, mais d'une abstraction.
 

@@ -273,14 +273,14 @@ Le système d'inventaire du camp de Rick Grimes a besoin d'une fonction généri
 
 Écris `pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>`.
 
-(indice : `Pick<T, K>` est un utility type natif TS — ici tu le réimplémente toi-même avec un generic contraint)
+(indice : `Pick<T, K>` est un utility type natif TS : ici tu le réimplémente toi-même avec un generic contraint)
 
 ## EXO 4 : le comparateur de la Ligue des Champions
 La Ligue des Champions a besoin de trier n'importe quelle collection par n'importe quelle propriété numérique.
 
 Écris `sortBy<T>(arr: T[], key: keyof T): T[]` avec la contrainte que `T[key]` soit un number.
 
-(indice : `T extends Record<K, number>` peut aider — ou bien une approche avec `as number` après un check runtime)
+(indice : `T extends Record<K, number>` peut aider : ou bien une approche avec `as number` après un check runtime)
 
 ---
 

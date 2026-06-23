@@ -2,7 +2,7 @@
 
 `async/await` rend l'async lisible. Mais "lisible" ne veut pas dire "correct".
 Le vrai piège : le code a l'air synchrone alors qu'il ne l'est pas.
-Et selon comment tu écris ta boucle, tu peux diviser ton temps d'exécution par 10 — ou le multiplier par 10.
+Et selon comment tu écris ta boucle, tu peux diviser ton temps d'exécution par 10 : ou le multiplier par 10.
 
 ---
 

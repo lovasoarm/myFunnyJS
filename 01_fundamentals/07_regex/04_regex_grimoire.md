@@ -9,8 +9,8 @@
 | **Flag `g`** | Global. Trouve toutes les occurrences, pas seulement la première. | `"aaa".match(/a/g)` → `["a","a","a"]` | scanner tout le village, pas juste l'entrée / relire tout le rapport, pas juste le titre |
 | **Flag `m`** | Multiline. `^` et `$` matchent chaque début/fin de ligne, pas juste la chaîne entière. | `/^\d/m` matche le premier chiffre de chaque ligne | inspecter chaque étage d'un bâtiment / relire chaque fiche ninja séparément |
 | **`\d`** | Classe de caractère : un chiffre entre 0 et 9. Équivalent à `[0-9]`. | `/\d+/` matche "42" | un chiffre dans le registre du village / un numéro de bib dans une course |
-| **`\w`** | Classe de caractère : un caractère de mot — lettres, chiffres, underscore. Équivalent à `[a-zA-Z0-9_]`. | `/\w+/` matche "naruto_123" | un caractère d'identifiant / une lettre dans un nom de code ninja |
-| **`\s`** | Classe de caractère : un espace blanc — espace, tab, saut de ligne. | `/\s+/` matche des espaces multiples | un silence dans un discours / une pause entre deux jutsu |
+| **`\w`** | Classe de caractère : un caractère de mot : lettres, chiffres, underscore. Équivalent à `[a-zA-Z0-9_]`. | `/\w+/` matche "naruto_123" | un caractère d'identifiant / une lettre dans un nom de code ninja |
+| **`\s`** | Classe de caractère : un espace blanc : espace, tab, saut de ligne. | `/\s+/` matche des espaces multiples | un silence dans un discours / une pause entre deux jutsu |
 | **`.` (point)** | N'importe quel caractère sauf le saut de ligne `\n` (sauf avec flag `s`). | `/n.ruto/` matche "naruto" ou "n3ruto" | un joker / "peu importe qui" dans une liste |
 | **`^` et `$`** | Ancres : `^` = début de chaîne, `$` = fin de chaîne. Forcent le pattern à couvrir toute la chaîne avec `^...$`. | `/^\d+$/` valide que toute la chaîne est des chiffres | les gardes à l'entrée ET à la sortie du village / vérifier qu'un rapport commence ET finit correctement |
 | **`+`** | Quantificateur : 1 ou plusieurs fois. La chose doit apparaître au moins une fois. | `/\d+/` matche "1", "42", "9999" | au moins un ninja dans l'équipe / pas de mission si l'équipe est vide |

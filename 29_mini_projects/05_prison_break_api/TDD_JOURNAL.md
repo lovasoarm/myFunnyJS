@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Le cahie
 
 ---
 
-## ÉTAPE 1 : `authService.js` — JWT sign et verify
+## ÉTAPE 1 : `authService.js` : JWT sign et verify
 
 Avant de toucher Express, le service d'auth est testé isolément.
 
@@ -27,7 +27,7 @@ Le deuxième test a forcé de définir `AuthError` avant `authService`. Bonne d�
 
 ---
 
-## ÉTAPE 2 : `sanitizer.js` — T-Bag essaie d'injecter
+## ÉTAPE 2 : `sanitizer.js` : T-Bag essaie d'injecter
 
 Le sanitizer est testé séparément, sans serveur.
 
@@ -51,7 +51,7 @@ Premier implémentation : trop permissive, le test XSS passait avec des guilleme
 
 ---
 
-## ÉTAPE 3 : `rateLimiter.js` — bloquer T-Bag avant qu'il brute-force
+## ÉTAPE 3 : `rateLimiter.js` : bloquer T-Bag avant qu'il brute-force
 
 ```js
 test('bloque après 5 tentatives depuis la même IP', () => {

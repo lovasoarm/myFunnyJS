@@ -8,7 +8,7 @@ Le match commence.
 
 ---
 
-## 1) map — transformer sans muter
+## 1) map : transformer sans muter
 
 `map` prend un tableau, applique une fonction sur chaque élément, et retourne un **nouveau tableau** de même longueur. L'original n'est jamais touché.
 
@@ -41,7 +41,7 @@ players.map(p => console.log(p.name))
 
 ---
 
-## 2) forEach — itérer pour les effets de bord
+## 2) forEach : itérer pour les effets de bord
 
 `forEach` parcourt chaque élément et exécute une fonction. Il ne retourne rien. `undefined`. Toujours.
 
@@ -70,7 +70,7 @@ const result = scores.forEach(x => x * 2)
 
 ---
 
-## 3) for...of — itérer avec contrôle total
+## 3) for...of : itérer avec contrôle total
 
 `for...of` c'est le retour du for classique, mais propre. Il marche sur tout ce qui est itérable : tableaux, strings, Map, Set, générateurs.
 
@@ -114,7 +114,7 @@ for (const name of names) {
 
 ---
 
-## 4) reduce — accumuler en une seule passe
+## 4) reduce : accumuler en une seule passe
 
 `reduce` prend un tableau et le réduit à une seule valeur. Cette valeur peut être un nombre, un objet, un tableau, une string : n'importe quoi.
 

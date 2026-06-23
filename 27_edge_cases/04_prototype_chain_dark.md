@@ -54,7 +54,7 @@ console.log(ninja.village)  // "Konoha" — hérité de sensei
    Le moteur a compilé la structure de l'objet. Tu la changes ? Il recompile.
    
 2. La propriété __proto__ est une propriété accessor sur Object.prototype
-   Elle peut être shadowed (masquée) ou supprimée — comportement imprévisible
+   Elle peut être shadowed (masquée) ou supprimée : comportement imprévisible
 
 3. Les objets créés avec Object.create(null) n'ont pas __proto__
    Donc ton code qui compte dessus explose sur ces objets
@@ -122,7 +122,7 @@ Object.hasOwn(malicious, "anything")  // false — plus propre, plus sûr
 
 ## 4) PROTOTYPE POLLUTION : L'ATTAQUE QUI MODIFIE TOUT
 
-C'est une vraie vulnérabilité de sécurité. Elle apparaît dans les CVEs (Common Vulnerabilities and Exposures — liste publique des failles connues) de bibliothèques JS populaires.
+C'est une vraie vulnérabilité de sécurité. Elle apparaît dans les CVEs (Common Vulnerabilities and Exposures : liste publique des failles connues) de bibliothèques JS populaires.
 
 **Le principe :**
 Si tu permets à du code externe de modifier `Object.prototype`, toutes les instances de `Object` dans l'application héritent des propriétés injectées.
@@ -266,7 +266,7 @@ delete naruto.chakra        // on supprime la propriété directe
 console.log(naruto.chakra)  // 100 — le prototype est de nouveau visible
 ```
 
-Le shadow avec `Object.defineProperty` peut rendre une propriété non-énumérable, non-configurable, ou non-modifiable — et ça interagit avec la chaîne prototype de façon non intuitive :
+Le shadow avec `Object.defineProperty` peut rendre une propriété non-énumérable, non-configurable, ou non-modifiable : et ça interagit avec la chaîne prototype de façon non intuitive :
 
 ```js
 const proto = {}

@@ -2,7 +2,7 @@
 
 Tu as un type avec 10 propriétés. Tu veux une version readonly de ce type. Une version optionnelle. Une version où chaque valeur est une fonction plutôt qu'une donnée brute. Sans les mapped types, tu réécris tout à la main. Avec les mapped types, tu le génères en une ligne.
 
-C'est le mécanisme derrière `Readonly`, `Partial`, `Required`, `Record` — tous les utility types du fichier 02. Ici on comprend comment ils fonctionnent, et on en crée de nouveaux.
+C'est le mécanisme derrière `Readonly`, `Partial`, `Required`, `Record` : tous les utility types du fichier 02. Ici on comprend comment ils fonctionnent, et on en crée de nouveaux.
 
 ---
 
@@ -332,4 +332,4 @@ Crée `StateDiff<T>` et une fonction `computeDiff<T>(before: T, after: T): State
 
 # RÉSUMÉ
 
-`{ [K in keyof T]: ... }` itère sur les clés de T et génère un nouveau type. `readonly`, `?`, et leurs versions avec `-` modifient les modificateurs de chaque propriété. `as` dans le mapping renomme les clés — `as never` filtre des clés. Les conditional types dans le corps du mapping décident du type de chaque valeur selon ce qu'il était. Les mapped types récursifs descendent dans les objets imbriqués. Piège : `keyof (A | B)` ne donne que les propriétés communes — si tu veux tout, mappe les types séparément.
+`{ [K in keyof T]: ... }` itère sur les clés de T et génère un nouveau type. `readonly`, `?`, et leurs versions avec `-` modifient les modificateurs de chaque propriété. `as` dans le mapping renomme les clés : `as never` filtre des clés. Les conditional types dans le corps du mapping décident du type de chaque valeur selon ce qu'il était. Les mapped types récursifs descendent dans les objets imbriqués. Piège : `keyof (A | B)` ne donne que les propriétés communes : si tu veux tout, mappe les types séparément.

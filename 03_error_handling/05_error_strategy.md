@@ -1,4 +1,4 @@
-# ERROR STRATEGY — FAIL-FAST, FALLBACK, RETRY
+# ERROR STRATEGY : FAIL-FAST, FALLBACK, RETRY
 
 Catcher une erreur c'est la partie facile. Décider quoi faire ensuite : c'est là que tu montres si t'es un dev ou juste quelqu'un qui code.
 
@@ -17,10 +17,10 @@ function initialisationApp(config) {
   if (!config.dbUrl) {
     // pas de DB = pas d'app
     // continuer serait pire : on démarrerait un serveur inutilisable
-    throw new Error("config.dbUrl manquant — démarrage impossible")
+    throw new Error("config.dbUrl manquant : démarrage impossible")
   }
   if (!config.jwtSecret) {
-    throw new Error("config.jwtSecret manquant — auth impossible, démarrage bloqué")
+    throw new Error("config.jwtSecret manquant : auth impossible, démarrage bloqué")
   }
   // tout est là : on continue
   return demarrerServeur(config)
@@ -98,7 +98,7 @@ async function obtenirSupplies(ingredient) {
     }
   }
 
-  throw new Error(`Impossible d'obtenir ${ingredient} — tous les fournisseurs KO`)
+  throw new Error(`Impossible d'obtenir ${ingredient} : tous les fournisseurs KO`)
 }
 ```
 
@@ -106,7 +106,7 @@ async function obtenirSupplies(ingredient) {
 
 ---
 
-## 3) RETRY — RÉESSAYER AVEC STRATÉGIE
+## 3) RETRY : RÉESSAYER AVEC STRATÉGIE
 
 Stratégie : l'erreur est transitoire. Attendre et réessayer a une chance de réussir.
 
@@ -223,7 +223,7 @@ NotFoundError         -->  fail-fast (pas de retry, pas de fallback)
 
 ---
 
-## 5) CIRCUIT BREAKER — NE PAS FRAPPER UN MORT
+## 5) CIRCUIT BREAKER : NE PAS FRAPPER UN MORT
 
 Pattern avancé : si un service externe échoue trop souvent, arrête de l'appeler. Donne-lui le temps de se rétablir.
 
@@ -240,7 +240,7 @@ class CircuitBreaker {
   async executer(fn) {
     if (this.etat === "OUVERT") {
       if (Date.now() < this.prochainTest) {
-        throw new Error("Circuit ouvert — service indisponible, pas de tentative")
+        throw new Error("Circuit ouvert : service indisponible, pas de tentative")
       }
       this.etat = "SEMI-OUVERT"
     }
@@ -265,7 +265,7 @@ class CircuitBreaker {
     if (this.echecs >= this.seuil) {
       this.etat = "OUVERT"
       this.prochainTest = Date.now() + this.timeout
-      console.error(`Circuit OUVERT après ${this.echecs} échecs — pause de ${this.timeout}ms`)
+      console.error(`Circuit OUVERT après ${this.echecs} échecs : pause de ${this.timeout}ms`)
     }
   }
 }
@@ -323,7 +323,7 @@ Implémente `getProfil(chevalierId)` avec :
 
 ## EXO 2 : LE RETRY INTELLIGENT
 
-Modifie `retryAsync` pour accepter un paramètre `onRetry(tentative, erreur, prochainDelai)` — un callback appelé avant chaque nouvelle tentative.
+Modifie `retryAsync` pour accepter un paramètre `onRetry(tentative, erreur, prochainDelai)` : un callback appelé avant chaque nouvelle tentative.
 
 Utilise-le pour logger proprement chaque retry avec le contexte.
 

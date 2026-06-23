@@ -6,7 +6,7 @@ Ces trois problèmes ont quelque chose en commun : la solution naïve est évide
 
 ---
 
-## 1) INVERSER UNE LISTE — O(n) en temps, O(1) en mémoire
+## 1) INVERSER UNE LISTE : O(n) en temps, O(1) en mémoire
 
 La version naïve : convertir en tableau, inverser, reconstruire. O(n) en mémoire supplémentaire.
 
@@ -70,7 +70,7 @@ Résultat : null <-- [A] <-- [B] <-- [C]
 
 ---
 
-## 2) DÉTECTER UN CYCLE — L'ALGORITHME DE FLOYD
+## 2) DÉTECTER UN CYCLE : L'ALGORITHME DE FLOYD
 
 Une liste avec un cycle ressemble à ça :
 
@@ -122,7 +122,7 @@ Ce n'est pas de la magie. C'est de la physique : deux coureurs en rond, le plus 
 
 ---
 
-## 3) TROUVER LE MILIEU — DEUX POINTEURS ENCORE
+## 3) TROUVER LE MILIEU : DEUX POINTEURS ENCORE
 
 Approche naïve : compter les nodes, diviser par 2, retraverser jusqu'au milieu. O(n) mais deux passes.
 

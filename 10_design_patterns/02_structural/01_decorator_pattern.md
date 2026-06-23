@@ -334,7 +334,7 @@ await cachedFetch("messi")   // censé hitter le cache
 Le Decorator wrape une fonction ou un objet pour y ajouter du comportement sans modifier l'original.
 Chaque Decorator fait une seule chose : on compose pour en faire plusieurs.
 Contrairement à l'héritage, la composition Decorator s'adapte à l'exécution : on décore ce dont on a besoin, quand on en a besoin.
-En prod : middleware, HOC, cache layers, retry logic — tout ça, c'est du Decorator.
+En prod : middleware, HOC, cache layers, retry logic : tout ça, c'est du Decorator.
 Le signe que tu as besoin d'un Decorator : tu modifies une fonction pour la dixième fois pour y ajouter un comportement orthogonal au core.
 
 **Note : 10/10**

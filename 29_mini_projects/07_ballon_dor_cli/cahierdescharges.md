@@ -5,7 +5,7 @@
 ```
 Node.js        : v20+
 npm            : v10+
-Docker         : v24+ (pour la containerisation — optionnel pour commencer)
+Docker         : v24+ (pour la containerisation : optionnel pour commencer)
 Variables env  : aucune
 Outils externes: Docker (en dernier, une fois que tout tourne en local)
 
@@ -39,9 +39,9 @@ $ node src/cli.js vote --player "Rodri" --journalist "France Football" --points 
 
 $ node src/cli.js rank
 [CLASSEMENT BALLON D'OR 2026]
-1. Rodri (Manchester City)  — 847 pts
-2. Vinicius Jr (Real Madrid) — 761 pts
-3. Lamine Yamal (Barcelone) — 698 pts
+1. Rodri (Manchester City)  : 847 pts
+2. Vinicius Jr (Real Madrid) : 761 pts
+3. Lamine Yamal (Barcelone) : 698 pts
 
 $ node src/cli.js simulate --journalists 180 --players 30
 [SIMULATE] 180 journalistes votent... done (1240ms)
@@ -63,7 +63,7 @@ Ce projet a deux versions qui coexistent dans le repo : `legacy/ballonDorV1.js` 
 Ce projet teste la capacité à comprendre un codebase existant, à le corriger sans le réécrire d'un coup, et à le rendre opérationnel comme un vrai outil :
 
 - **refactorer du code procédural en modules SOLID sans tout casser** : le v1 est un script procédural avec des variables globales, des conditions imbriquées, et une seule responsabilité éparpillée partout. La v2 sépare le CLI de la logique métier de la persistance. Chaque couche a une seule raison de changer.
-- **gérer des erreurs dans un contexte CLI** : un CLI a deux types de sorties — stdout pour les résultats, stderr pour les erreurs. Un vote invalide ne doit pas planter le processus avec une stacktrace. Il doit afficher un message clair et sortir avec le bon code de sortie (`process.exit(1)`).
+- **gérer des erreurs dans un contexte CLI** : un CLI a deux types de sorties : stdout pour les résultats, stderr pour les erreurs. Un vote invalide ne doit pas planter le processus avec une stacktrace. Il doit afficher un message clair et sortir avec le bon code de sortie (`process.exit(1)`).
 - **automatiser un outil de bout en bout** : containeriser avec Docker, lancer les tests en CI à chaque push, exporter les résultats en CSV. Un outil CLI "qui tourne sur ma machine" n'est pas un livrable.
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE

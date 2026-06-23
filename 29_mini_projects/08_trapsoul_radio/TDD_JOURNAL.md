@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce proje
 
 ---
 
-## ÉTAPE 1 : Types de traduction — test de compilation
+## ÉTAPE 1 : Types de traduction : test de compilation
 
 ```typescript
 // types/i18n.ts

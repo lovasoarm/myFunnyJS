@@ -1,8 +1,8 @@
 # Découpler pour ne pas tout bloquer en chaîne
 
-Un user upload une vidéo. Ton serveur doit : sauvegarder le fichier, générer une miniature, compresser la vidéo, envoyer une notification. Si tu fais tout ça dans la même requête HTTP, le user attend 45 secondes devant un écran de chargement, et si une étape échoue, tout échoue avec elle.
+Rick Grimes enregistre un nouveau survivant au camp : le serveur doit sauvegarder le profil, générer une carte d'accès, notifier Daryl pour la garde, et envoyer une alerte radio au conseil. Si tu fais tout ça dans la même requête HTTP, le survivant attend 45 secondes devant un écran de chargement pendant que des Walkers approchent, et si la génération de carte échoue, tout échoue avec elle.
 
-Une message queue (file de messages) dit : fais le strict minimum tout de suite, mets le reste dans une file, et un autre processus s'en occupera quand il pourra.
+Une message queue (file de messages) dit : enregistre le profil tout de suite, mets le reste dans une file, un autre processus s'en occupe quand il peut. Rick a sa confirmation en 200ms.
 
 Pourquoi ça compte : c'est la différence entre une appli qui répond en 200ms et une appli qui timeout, pour exactement la même quantité de travail au final.
 
@@ -203,14 +203,14 @@ Avant, beaucoup d'équipes géraient des tâches asynchrones avec des tables SQL
 
 ## EXERCICES
 
-**EXO 1 : Découpe la tâche**
-Pour un système d'inscription qui doit : créer le compte en DB, envoyer un email de bienvenue, générer un avatar par défaut, et notifier l'équipe marketing : identifie ce qui DOIT être synchrone (avant de répondre au user) et ce qui PEUT partir en file asynchrone. Justifie. (15 minutes)
+**EXO 1 : Découpe l'inscription au Camp des Survivants**
+Rick Grimes met en place un système d'inscription pour le camp : créer le profil du survivant en DB, envoyer une alerte radio au conseil de sécurité, générer une carte d'accès, et notifier Daryl pour l'affectation de garde. Identifie ce qui DOIT être synchrone (avant de confirmer l'inscription au survivant) et ce qui PEUT partir en file asynchrone. Justifie : une erreur sur quoi est inacceptable vs acceptable ? (15 minutes)
 
-**EXO 2 : Rends-le idempotent**
-Reprends l'exemple `processPayment` de la section 3. Sans regarder la correction donnée, écris ta propre version idempotente, puis compare. Qu'est-ce que tu as fait pareil, différemment ? (15 minutes)
+**EXO 2 : Rends le paiement de Michonne idempotent**
+Le réseau radio du camp est instable. Michonne soumet un échange de ressources, le serveur reçoit la requête, commence le traitement, crash avant de répondre. Son client retente 3 fois. Sans idempotence, les ressources sont déduites 4 fois. Reprends l'exemple `processPayment` de la section 3, écris ta propre version idempotente, puis compare. (15 minutes)
 
-**EXO 3 : Diagnostique la file qui explose**
-Une équipe constate que les notifications push arrivent avec 3 heures de retard depuis ce matin. Décris les 3 premières choses à vérifier (métriques, logs) pour identifier si c'est un problème de producteur, de file, ou de consommateur. (15 minutes)
+**EXO 3 : Diagnostique la file qui accumule les alertes**
+Le camp de Rick reçoit les alertes de zombies avec 3 heures de retard depuis ce matin. Des survivants sont en danger parce que les notifications push n'arrivent plus. Décris les 3 premières choses à vérifier (métriques, logs) pour identifier si c'est un problème de producteur (capteurs), de file (broker), ou de consommateur (workers d'alerte). (15 minutes)
 
 ---
 

@@ -5,7 +5,7 @@ Il doit transmettre des instructions précises à ses distributeurs sans erreur 
 Un mauvais format de message : mauvaise quantité, mauvais timing, catastrophe.
 
 Sérialisation (serialization) : convertir des données en mémoire en un format transportable (string, bytes).
-Désérialisation (deserialization) : l'inverse — reconstruire les données depuis le format transporté.
+Désérialisation (deserialization) : l'inverse : reconstruire les données depuis le format transporté.
 
 Tu fais de la sérialisation à chaque `JSON.stringify()`. Tu en fais aussi à chaque `fetch()`.
 La question n'est pas "est-ce que je sérialise" mais "est-ce que je sérialise correctement".

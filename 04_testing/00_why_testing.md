@@ -64,7 +64,7 @@ Oui, explicitement dans le noyau dur : "03 + 04, Error Handling + Testing : sans
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Le besoin de prouver que ton code fonctionne ne disparaîtra jamais, peu importe les outils. Et avec la montée du code généré par IA — qui peut sembler correct mais contenir des bugs subtils — savoir écrire un test précis et savoir lire un test généré pour vérifier qu'il teste vraiment quelque chose devient une compétence encore plus stratégique qu'avant.
+Le besoin de prouver que ton code fonctionne ne disparaîtra jamais, peu importe les outils. Et avec la montée du code généré par IA : qui peut sembler correct mais contenir des bugs subtils : savoir écrire un test précis et savoir lire un test généré pour vérifier qu'il teste vraiment quelque chose devient une compétence encore plus stratégique qu'avant.
 
 ---
 

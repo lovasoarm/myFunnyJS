@@ -1,6 +1,6 @@
 # GC SIMULATOR : RENDRE VISIBLE CE QUE LE RUNTIME CACHE
 
-Le GC travaille en silence. Tu ne le vois jamais. Tu ne sais pas quand il passe, ni combien d'objets il détruit. Ça marche — jusqu'au moment où ça ne marche plus, et là t'as aucun outil mental pour comprendre pourquoi.
+Le GC travaille en silence. Tu ne le vois jamais. Tu ne sais pas quand il passe, ni combien d'objets il détruit. Ça marche : jusqu'au moment où ça ne marche plus, et là t'as aucun outil mental pour comprendre pourquoi.
 
 Ce fichier, c'est le correctif. On simule le GC à la main : on crée des objets, on trace les références, on voit ce qui survit et ce qui meurt. Quand tu auras fait tourner ce simulateur dans ta tête, le vrai GC n'aura plus de secret.
 
@@ -24,17 +24,17 @@ const obj = {
 Le simulateur va recréer le cycle mark-and-sweep complet :
 
 ```
-Phase 1 — MARK
+Phase 1 : MARK
   Partir des roots (variables actives)
   Parcourir toutes les références
   Marquer chaque objet atteignable
 
-Phase 2 — SWEEP
+Phase 2 : SWEEP
   Parcourir tous les objets alloués
   Détruire ceux qui ne sont pas marqués
   Libérer la mémoire
 
-Phase 3 — RAPPORT
+Phase 3 : RAPPORT
   Afficher ce qui a survécu et pourquoi
 ```
 
@@ -100,13 +100,13 @@ function runGC() {
   console.log("\n─── GC CYCLE START ───")
   mark()
   sweep()
-  console.log(`─── GC CYCLE END — ${heap.length} objet(s) en vie ───\n`)
+  console.log(`─── GC CYCLE END : ${heap.length} objet(s) en vie ───\n`)
 }
 ```
 
 ---
 
-## 3) SIMULATION 1 — LES NINJAS DE KONOHA
+## 3) SIMULATION 1 : LES NINJAS DE KONOHA
 
 ```js
 // Créer les ninjas
@@ -143,7 +143,7 @@ roots
 
 ---
 
-## 4) SIMULATION 2 — OROCHIMARU LÂCHÉ DANS LA NATURE
+## 4) SIMULATION 2 : OROCHIMARU LÂCHÉ DANS LA NATURE
 
 ```js
 // Un ennemi arrive — il n'est référencé par personne d'utile
@@ -175,7 +175,7 @@ roots
 
 ---
 
-## 5) SIMULATION 3 — LA FUITE QUI SE CACHE
+## 5) SIMULATION 3 : LA FUITE QUI SE CACHE
 
 ```js
 // Un tableau global garde une référence cachée
@@ -206,7 +206,7 @@ runGC()
 roots
   ├──► Kakashi ──► ...
   └──► missionLog ──► mission1 (survit)
-                  └──► mission3 (survit — fuite cachée)
+                  └──► mission3 (survit : fuite cachée)
 
 mission2 (isolé → détruit)
 ```
@@ -329,4 +329,4 @@ for (let i = 0; i < 10_000; i++) {
 
 # RÉSUMÉ
 
-Le GC suit toujours le même chemin : partir des roots, marquer ce qui est atteignable, détruire le reste. Les cycles entre objets ne posent pas de problème si aucune root ne les atteint — mark-and-sweep les détruit quand même. Une fuite mémoire, c'est une root qui garde involontairement un objet en vie : tableau global, listener non retiré, closure qui capture. Simuler le GC à la main force à voir les références là où le code semble "propre".
+Le GC suit toujours le même chemin : partir des roots, marquer ce qui est atteignable, détruire le reste. Les cycles entre objets ne posent pas de problème si aucune root ne les atteint : mark-and-sweep les détruit quand même. Une fuite mémoire, c'est une root qui garde involontairement un objet en vie : tableau global, listener non retiré, closure qui capture. Simuler le GC à la main force à voir les références là où le code semble "propre".

@@ -1,4 +1,4 @@
-# ASYNC ERROR TRAPS — LES ERREURS QUI TOMBENT EN SILENCE
+# ASYNC ERROR TRAPS : LES ERREURS QUI TOMBENT EN SILENCE
 
 En synchrone, une erreur non catchée crash le programme immédiatement. Tu vois le problème.
 
@@ -43,7 +43,7 @@ call stack :
 
 ## 2) TRY/CATCH AVEC ASYNC/AWAIT
 
-La syntaxe qui rend l'async lisible — et qui récupère les erreurs naturellement.
+La syntaxe qui rend l'async lisible : et qui récupère les erreurs naturellement.
 
 ```js
 async function chargerStatsMatch(id) {
@@ -121,7 +121,7 @@ async function traiterEnParallele(ids) {
 
 ---
 
-## 4) PROMISE.ALL — UN ÉCHEC COULE TOUT
+## 4) PROMISE.ALL : UN ÉCHEC COULE TOUT
 
 ```js
 // Promise.all rejette dès qu'une seule Promise rejette
@@ -301,7 +301,7 @@ Utilise-la pour wrapper `chargerStats` et teste avec un match existant et un ine
 
 # RÉSUMÉ
 
-En async, les erreurs ne crashent pas forcément — elles disparaissent. C'est pire.
+En async, les erreurs ne crashent pas forcément : elles disparaissent. C'est pire.
 
 `forEach` avec `async` : les erreurs sont perdues. Utilise `for...of` ou `Promise.allSettled`.
 

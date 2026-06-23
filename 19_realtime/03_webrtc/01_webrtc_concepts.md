@@ -1,4 +1,4 @@
-# 01_WEBRTC_CONCEPTS — LE VOCABULAIRE SANS LA PEUR
+# 01_WEBRTC_CONCEPTS : LE VOCABULAIRE SANS LA PEUR
 
 WebRTC c'est le seul endroit dans le web où deux navigateurs se parlent directement.
 Pas de serveur intermédiaire pour les données. Peer-to-peer pur.
@@ -7,11 +7,11 @@ Appels vidéo, partage d'écran, fichiers : tout ça sans passer par un serveur 
 Pourquoi c'est complexe : deux machines sur internet ne se connaissent pas.
 Elles sont derrière des NATs (Network Address Translation : traduction d'adresses réseau), des firewalls.
 WebRTC résout ce problème. Avec beaucoup de protocoles.
-Ce module décompose chaque pièce du puzzle. Le code réel — connexion, DataChannel, gestion des états — c'est dans `02_webrtc_demo.md`.
+Ce module décompose chaque pièce du puzzle. Le code réel : connexion, DataChannel, gestion des états : c'est dans `02_webrtc_demo.md`.
 
 ---
 
-## 1) L'IDÉE DE BASE — CE QUI SE PASSE VRAIMENT
+## 1) L'IDÉE DE BASE : CE QUI SE PASSE VRAIMENT
 
 ```
 Alice (navigateur) ---------- [internet + NATs] ---------- Bob (navigateur)
@@ -32,12 +32,12 @@ Deux phases distinctes :
 
 ---
 
-## 2) SDP — LA CARTE D'IDENTITÉ D'UNE CONNEXION
+## 2) SDP : LA CARTE D'IDENTITÉ D'UNE CONNEXION
 
 SDP (Session Description Protocol : protocole de description de session) c'est un bloc de texte qui décrit une connexion.
 
 Ce qu'il contient :
-- les codecs (algorithmes de compression/décompression audio et vidéo) supportés — H.264, VP8, Opus...
+- les codecs (algorithmes de compression/décompression audio et vidéo) supportés : H.264, VP8, Opus...
 - la résolution et le bitrate (débit binaire : quantité de données transmises par seconde) souhaités
 - les paramètres de chiffrement
 - les ICE candidates (voir section suivante)
@@ -72,7 +72,7 @@ Alice                    Serveur Signaling               Bob
 
 ---
 
-## 3) ICE — COMMENT DEUX MACHINES SE TROUVENT VRAIMENT
+## 3) ICE : COMMENT DEUX MACHINES SE TROUVENT VRAIMENT
 
 ICE (Interactive Connectivity Establishment : établissement interactif de connectivité) c'est le mécanisme qui résout le problème du NAT.
 
@@ -101,7 +101,7 @@ C'est automatique. Tu dois juste transporter les candidates via ton signaling.
 
 ---
 
-## 4) STUN — DÉCOUVRIR SON IP PUBLIQUE
+## 4) STUN : DÉCOUVRIR SON IP PUBLIQUE
 
 STUN (Session Traversal Utilities for NAT) c'est simple : un serveur qui te dit quelle est ton IP publique et ton port depuis l'extérieur.
 
@@ -132,7 +132,7 @@ Là il faut TURN.
 
 ---
 
-## 5) TURN — LE PLAN B QUAND TOUT ÉCHOUE
+## 5) TURN : LE PLAN B QUAND TOUT ÉCHOUE
 
 TURN (Traversal Using Relays around NAT) c'est un serveur relais.
 Si Alice et Bob ne peuvent pas se connecter directement, les flux passent par le serveur TURN.
@@ -194,7 +194,7 @@ Six étapes clés :
 3. Alice envoie l'offer à Bob via le signaling
 4. Bob répond avec une answer SDP
 5. Les deux échangent les ICE candidates via le signaling
-6. La connexion P2P s'établit — le signaling n'est plus utilisé
+6. La connexion P2P s'établit : le signaling n'est plus utilisé
 
 ---
 
@@ -203,7 +203,7 @@ Six étapes clés :
 WebRTC = deux phases. Signaling (qui passe par ton serveur) puis data (qui passe directement entre les pairs).
 SDP décrit la session. ICE candidates décrivent les chemins réseau possibles. STUN découvre l'IP publique. TURN relaie quand tout le reste échoue.
 Ce qui rend WebRTC complexe : c'est pas le code, c'est la plomberie réseau. Comprendre NAT, STUN, TURN : c'est comprendre pourquoi WebRTC marche dans 100% des cas et pas juste 80%.
-Le code complet — connexion, DataChannel, gestion des états ICE — c'est dans `02_webrtc_demo.md`.
+Le code complet : connexion, DataChannel, gestion des états ICE : c'est dans `02_webrtc_demo.md`.
 
 ---
 
@@ -215,7 +215,7 @@ Sans écrire de code WebRTC, dessine en ASCII le flux complet d'une connexion en
 Jesse est derrière un NAT symétrique. Walter est sur une IP publique.
 Quels serveurs sont nécessaires ? Quel chemin prennent les données ?
 
-(Indice : STUN échoue pour Jesse côté entrant — il faut TURN)
+(Indice : STUN échoue pour Jesse côté entrant : il faut TURN)
 
 ---
 
@@ -244,4 +244,4 @@ a=fmtp:97 apt=96
 a=rtpmap:98 VP9/90000
 ```
 
-(Pas d'indice — lecture de format texte structuré)
+(Pas d'indice : lecture de format texte structuré)

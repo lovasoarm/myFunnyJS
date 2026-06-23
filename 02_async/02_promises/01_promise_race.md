@@ -201,9 +201,9 @@ Teste avec une Promise qui met 5 secondes et un timeout de 2 secondes.
 
 Quatre combinators, quatre situations.
 `all` : synchronisation totale, tout ou rien.
-`race` : premier arrivé, premier servi — utilisé massivement pour les timeouts.
+`race` : premier arrivé, premier servi : utilisé massivement pour les timeouts.
 `allSettled` : rapport complet, aucune information perdue.
-`any` : résilience — un seul succès suffit.
+`any` : résilience : un seul succès suffit.
 
 La plupart du temps en prod, tu utilises `all` ou `allSettled`.
 `race` sort pour les timeouts. `any` sort pour les systèmes redondants.

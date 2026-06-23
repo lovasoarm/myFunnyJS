@@ -1,4 +1,4 @@
-# MOCKING MADNESS — REMPLACER CE QU'ON NE CONTRÔLE PAS
+# MOCKING MADNESS : REMPLACER CE QU'ON NE CONTRÔLE PAS
 
 Ton code appelle une API externe. Il envoie un email. Il lit un fichier sur le disque.
 Tu ne peux pas laisser ça tourner dans tes tests : c'est lent, imprévisible, et ça coûte parfois de l'argent.
@@ -9,7 +9,7 @@ Résultat : le test reste rapide, prévisible, isolé.
 
 ---
 
-## 1) TROIS TYPES DE DOUBLURES — LA DISTINCTION QUI COMPTE
+## 1) TROIS TYPES DE DOUBLURES : LA DISTINCTION QUI COMPTE
 
 ```
 Stub   →  remplace une fonction par une valeur fixe
@@ -26,7 +26,7 @@ En pratique avec Jest, `jest.fn()` couvre les trois cas selon comment tu l'utili
 
 ---
 
-## 2) `jest.fn()` — LE MOCK DE BASE
+## 2) `jest.fn()` : LE MOCK DE BASE
 
 ```js
 // une fonction mock vide
@@ -158,7 +158,7 @@ it('gère une réponse d\'API en erreur', async () => {
 
 ---
 
-## 5) SPY — SURVEILLER SANS REMPLACER
+## 5) SPY : SURVEILLER SANS REMPLACER
 
 Parfois tu veux que la vraie implémentation tourne, mais tu veux vérifier comment elle a été appelée.
 

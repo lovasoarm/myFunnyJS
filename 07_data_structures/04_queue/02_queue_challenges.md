@@ -33,7 +33,7 @@ class TicketSystem {
       soumisA: Date.now()
     }
     this.queue.enqueue(ticket)
-    console.log(`Ticket soumis par ${chevalier} — position : ${this.queue.size}`)
+    console.log(`Ticket soumis par ${chevalier} : position : ${this.queue.size}`)
     return ticket.id
   }
 
@@ -167,7 +167,7 @@ Résultat : boucles infinies sur les graphes avec cycles.
 ## 3) CHEMIN LE PLUS COURT AVEC BFS
 
 BFS garantit le chemin le plus court en nombre d'arêtes (graphe non pondéré).
-Dijkstra c'est pour les graphes pondérés — on verra ça dans `08_algorithms`.
+Dijkstra c'est pour les graphes pondérés : on verra ça dans `08_algorithms`.
 Pour les grilles, les labyrinthes, les réseaux sans poids : BFS est la bonne arme.
 
 ```js
@@ -378,7 +378,7 @@ Implémenter :
 - `distanceMinimale(graphe, depart, arrivee)` : nombre d'arêtes du chemin le plus court
 - `composantsConnexes(graphe)` : grouper les villes en groupes connectés entre eux
 
-(Indice pour les composants connexes : BFS depuis chaque noeud non visité — chaque BFS complète = un composant.)
+(Indice pour les composants connexes : BFS depuis chaque noeud non visité : chaque BFS complète = un composant.)
 
 ---
 
@@ -400,7 +400,7 @@ Structure d'un event : `{ minute: 45, type: "but", joueur: "Mbappé", equipe: "P
 # RÉSUMÉ
 
 La queue n'est pas juste une structure : c'est un mécanisme d'ordonnancement.
-BFS utilise une queue pour garantir l'ordre par niveau — c'est pour ça qu'il trouve le chemin le plus court.
+BFS utilise une queue pour garantir l'ordre par niveau : c'est pour ça qu'il trouve le chemin le plus court.
 Marquer les noeuds visités à l'enqueue, pas au dequeue : erreur classique, conséquences graves.
 Task scheduler = queue + compteur de slots : base de tout système de jobs concurrent en Node.
-Grille 2D = graphe implicite : chaque cellule a 4 voisins — BFS s'applique directement.
+Grille 2D = graphe implicite : chaque cellule a 4 voisins : BFS s'applique directement.

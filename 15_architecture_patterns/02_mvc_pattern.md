@@ -117,7 +117,7 @@ class SurvivorView {
     this.#container.innerHTML = survivors
       .map(s => `
         <div class="survivor" data-id="${s.id}">
-          <strong>${s.name}</strong> — ${s.role}
+          <strong>${s.name}</strong> : ${s.role}
           <button class="remove-btn" data-id="${s.id}">Éliminer</button>
         </div>
       `)
@@ -243,7 +243,7 @@ Controller.#handleRemove(id)
         |
         | délègue au Model
         v
-Model.remove(id)  — vérifie, supprime, lève une erreur si introuvable
+Model.remove(id)  : vérifie, supprime, lève une erreur si introuvable
         |
         | succès
         v
@@ -251,7 +251,7 @@ Controller.#refresh()
         |
         | lit le Model mis à jour
         v
-View.renderList(survivors)   — DOM mis à jour
+View.renderList(survivors)   : DOM mis à jour
 ```
 
 Daryl est éliminé. Alexandria continue. Le cycle se ferme proprement.
@@ -328,4 +328,4 @@ Transforme le `SurvivorModel` de la leçon pour qu'il étende `EventTarget`. Le 
 
 ## RÉSUMÉ
 
-MVC ne résout pas tous les problèmes. Il résout un problème précis : qui est responsable de quoi quand le code grossit. Le Model ne voit pas l'UI. La View ne connaît pas les règles métier. Le Controller est le seul à connaître les deux — et il délègue à chacun ce qui lui appartient. Quand un dev touche MVC sans respecter cette frontière, le Controller grossit, avale tout, et un jour personne ne veut plus l'ouvrir.
+MVC ne résout pas tous les problèmes. Il résout un problème précis : qui est responsable de quoi quand le code grossit. Le Model ne voit pas l'UI. La View ne connaît pas les règles métier. Le Controller est le seul à connaître les deux : et il délègue à chacun ce qui lui appartient. Quand un dev touche MVC sans respecter cette frontière, le Controller grossit, avale tout, et un jour personne ne veut plus l'ouvrir.

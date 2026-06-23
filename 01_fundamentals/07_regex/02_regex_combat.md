@@ -69,13 +69,13 @@ const validerEmail = (email) => {
 Décortiqué :
 
 ```
-^                     — commence ici, nulle part ailleurs
-[a-zA-Z0-9._%+-]+    — partie locale : lettres, chiffres, et ces symboles, au moins 1 fois
-@                     — le @ obligatoire
-[a-zA-Z0-9.-]+       — domaine : lettres, chiffres, points, tirets
-\.                    — un point littéral (échappé)
-[a-zA-Z]{2,}         — extension : au moins 2 lettres (com, fr, io, dev...)
-$                     — finit ici
+^                     : commence ici, nulle part ailleurs
+[a-zA-Z0-9._%+-]+    : partie locale : lettres, chiffres, et ces symboles, au moins 1 fois
+@                     : le @ obligatoire
+[a-zA-Z0-9.-]+       : domaine : lettres, chiffres, points, tirets
+\.                    : un point littéral (échappé)
+[a-zA-Z]{2,}         : extension : au moins 2 lettres (com, fr, io, dev...)
+$                     : finit ici
 ```
 
 ```js
@@ -106,13 +106,13 @@ const validerUrl = (url) => {
 Décortiqué :
 
 ```
-^          — début
-https?     — "http" ou "https" (le s est optionnel)
-:\/\/      — "://" (les slashes sont échappés)
-[^\s/$.?#] — premier caractère du domaine : pas un espace ni ces symboles
-.          — n'importe quel caractère (au moins un dans le domaine)
-[^\s]*     — le reste de l'URL : n'importe quoi sauf un espace
-$          — fin
+^          : début
+https?     : "http" ou "https" (le s est optionnel)
+:\/\/      : "://" (les slashes sont échappés)
+[^\s/$.?#] : premier caractère du domaine : pas un espace ni ces symboles
+.          : n'importe quel caractère (au moins un dans le domaine)
+[^\s]*     : le reste de l'URL : n'importe quoi sauf un espace
+$          : fin
 ```
 
 ```js
@@ -142,14 +142,14 @@ const validerTel = (tel) => {
 Décortiqué :
 
 ```
-^                 — début
-(?:\+33|0)        — groupe non-capturant : "+33" ou "0"
-[1-9]             — premier chiffre après l'indicatif : 1 à 9 (pas 0)
-(?:[\s.-]?\d{2}) — groupe non-capturant répété 4 fois :
-  [\s.-]?         — séparateur optionnel : espace, point, ou tiret
-  \d{2}           — exactement 2 chiffres
-{4}               — ce groupe se répète 4 fois = 8 chiffres restants
-$                 — fin
+^                 : début
+(?:\+33|0)        : groupe non-capturant : "+33" ou "0"
+[1-9]             : premier chiffre après l'indicatif : 1 à 9 (pas 0)
+(?:[\s.-]?\d{2}) : groupe non-capturant répété 4 fois :
+  [\s.-]?         : séparateur optionnel : espace, point, ou tiret
+  \d{2}           : exactement 2 chiffres
+{4}               : ce groupe se répète 4 fois = 8 chiffres restants
+$                 : fin
 ```
 
 ```js

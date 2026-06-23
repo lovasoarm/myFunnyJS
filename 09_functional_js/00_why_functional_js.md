@@ -10,7 +10,7 @@ La programmation fonctionnelle ne te demande pas de devenir mathématicien. Elle
 
 Le bug le plus difficile à tracer en JS n'est pas une erreur de syntaxe : c'est une mutation d'objet partagé. Deux fonctions reçoivent la même référence vers le même objet, l'une le modifie, et l'autre se retrouve avec une donnée différente de celle qu'elle attendait, sans qu'aucune erreur ne soit levée. Le bug se manifeste loin de sa cause réelle, ce qui rend le debugging infernal.
 
-La programmation fonctionnelle (FP : functional programming) attaque ce problème à la racine avec deux règles simples : une fonction pure retourne toujours le même résultat pour les mêmes arguments, sans jamais modifier quoi que ce soit en dehors d'elle-même ; et l'immutabilité (immutability) interdit de muter une donnée existante — on en crée une nouvelle à chaque changement.
+La programmation fonctionnelle (FP : functional programming) attaque ce problème à la racine avec deux règles simples : une fonction pure retourne toujours le même résultat pour les mêmes arguments, sans jamais modifier quoi que ce soit en dehors d'elle-même ; et l'immutabilité (immutability) interdit de muter une donnée existante : on en crée une nouvelle à chaque changement.
 
 Avec ces deux règles respectées, un bug devient traçable : si une fonction est pure, le bug ne peut venir que de ses arguments d'entrée, jamais d'un effet de bord caché ailleurs dans le code. Tu réduis l'espace de recherche du bug de "partout dans l'app" à "cette fonction précise, avec ces arguments précis".
 
@@ -62,12 +62,12 @@ Indirectement essentiel : `09_functional_js` dépend de `01_fundamentals/03_func
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Plus les apps deviennent complexes, plus la prévisibilité devient précieuse. Une fonction pure reste une fonction pure peu importe le framework qui l'entoure. Apprendre à coder sans effets de bord cachés, c'est apprendre à écrire du code que n'importe quel dev — toi inclus, six mois plus tard — peut comprendre sans reconstruire tout le contexte d'exécution dans sa tête.
+Plus les apps deviennent complexes, plus la prévisibilité devient précieuse. Une fonction pure reste une fonction pure peu importe le framework qui l'entoure. Apprendre à coder sans effets de bord cachés, c'est apprendre à écrire du code que n'importe quel dev : toi inclus, six mois plus tard : peut comprendre sans reconstruire tout le contexte d'exécution dans sa tête.
 
 ---
 
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
-La mutation incontrôlée est la source silencieuse de la majorité des bugs difficiles à tracer en JS. Ce module te donne les outils pour l'éliminer : fonctions pures, immutabilité, composition. Sans cette discipline, ton code fonctionne jusqu'à ce qu'il ne fonctionne plus — sans que personne ne sache pourquoi.
+La mutation incontrôlée est la source silencieuse de la majorité des bugs difficiles à tracer en JS. Ce module te donne les outils pour l'éliminer : fonctions pures, immutabilité, composition. Sans cette discipline, ton code fonctionne jusqu'à ce qu'il ne fonctionne plus : sans que personne ne sache pourquoi.
 
 Maintenant, ouvre `01_pure_functions.md`. Et arrête de laisser tes fonctions changer des choses dans ton dos.

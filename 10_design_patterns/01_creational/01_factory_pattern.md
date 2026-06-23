@@ -61,7 +61,7 @@ function createKnight(rank, name, armorName, power) {
     ...rankStats,
     // méthode générée selon le rang : pas exposée dans l'appelant
     summonArmor() {
-      console.log(`${name} invoque ${armorName} — durée max : ${rankStats.maxArmorTime}s`)
+      console.log(`${name} invoque ${armorName} : durée max : ${rankStats.maxArmorTime}s`)
     }
   }
 }

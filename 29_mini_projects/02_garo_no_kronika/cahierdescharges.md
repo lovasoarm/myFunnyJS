@@ -72,7 +72,7 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `missionRunner.js`.
 **Pourquoi c'est nécessaire ici** : `ArmorCollapseError`, `HorrorEscapeError`, `KnightDownError` sont des erreurs distinctes qui demandent des traitements distincts. Les absorber toutes dans un `catch (e) { console.log(e) }` est un crime. Le Conseil doit savoir exactement ce qui s'est passé.
 
-### `19_realtime` : SSE (Server-Sent Events) — flux d'événements unidirectionnels
+### `19_realtime` : SSE (Server-Sent Events) : flux d'événements unidirectionnels
 **Où ça se voit** : `src/council/streamReceiver.js`, `src/knight/streamEmitter.js`.
 **Pourquoi c'est nécessaire ici** : le Conseil reçoit les événements de combat en temps réel, pas à la fin du combat. Chaque coup, chaque changement de statut, chaque seconde critique : streamé. C'est le pattern SSE (Server-Sent Events : flux d'événements envoyés du serveur vers le client, unidirectionnel) simulé en JS pur ici.
 
@@ -283,7 +283,7 @@ describe('dispatcher', () => {
 
 1. **Zéro `catch` vide.** Chaque erreur est catchée, classée, et remontée ou loggée. Un `catch (e) {}` sans contenu est interdit.
 2. **Le Conseil ne connaît pas les méthodes internes des Chevaliers.** `council.js` ne fait jamais `knight.attack()` ou `knight.defend()`. Il écoute des événements, c'est tout.
-3. **Chaque erreur custom a ses métadonnées.** `new ArmorCollapseError({ knight: 'leon', duration: 102 })` — pas juste un message texte.
+3. **Chaque erreur custom a ses métadonnées.** `new ArmorCollapseError({ knight: 'leon', duration: 102 })` : pas juste un message texte.
 
 ## CE QUE TU NE FAIS PAS DANS CE PROJET
 

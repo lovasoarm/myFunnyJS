@@ -250,7 +250,7 @@ v2 : PlaylistManager (tracks) + PlaylistHistory (logs) + bug corrigé + tests ve
 
 ---
 
-## 6) ÉTAPE 5 : LE `shuffle()` BIAISÉ — TU L'AS REPÉRÉ ?
+## 6) ÉTAPE 5 : LE `shuffle()` BIAISÉ : TU L'AS REPÉRÉ ?
 
 `this.tracks.sort(() => Math.random() - 0.5)` est un classique du "ça a l'air random mais ça ne l'est pas". Le tri par comparaison n'est pas conçu pour ça, et le résultat favorise certains ordres selon l'implémentation du moteur JS.
 

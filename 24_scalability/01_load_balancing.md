@@ -1,6 +1,6 @@
 # Un seul serveur ne suffit jamais longtemps
 
-10 users tapent sur ton serveur Node, ça tient sans problème. 100 000 users tapent sur le même serveur, il fume. Le load balancer (répartiteur de charge) c'est le mec à l'entrée du club qui dit "toi tu vas à ce comptoir, toi à celui-là" : il distribue le trafic entrant sur plusieurs serveurs au lieu d'en saturer un seul.
+Le soir du match final, des milliers d'ultras tapent sur le serveur du dashboard en simultané. Ce matin ça tenait sans problème avec 10 requêtes, là c'est 100 000 en 30 secondes et le serveur fume. Le load balancer (répartiteur de charge) c'est le mec à l'entrée du stade qui dit "toi tu vas à cette tribune, toi à celle-là" : il distribue le trafic entrant sur plusieurs serveurs au lieu d'en saturer un seul.
 
 Pourquoi ça compte vraiment en prod : un serveur qui tombe sous la charge, c'est pas un bug de code, c'est un problème d'architecture. Tu peux avoir le code le plus propre du monde, si tout le trafic frappe une seule machine, elle va lâcher à un moment.
 
@@ -181,14 +181,14 @@ Avant, le load balancing se configurait souvent à la main avec Nginx ou HAProxy
 
 ## EXERCICES
 
-**EXO 1 : Choisis ton algo**
-Pour chacun de ces services, choisis round-robin ou least connections et justifie : (a) une API qui retourne toujours une réponse en moins de 100ms, (b) un service de génération de rapports PDF qui prend entre 1 et 30 secondes selon la taille, (c) un endpoint d'upload de fichiers volumineux. (15 minutes)
+**EXO 1 : Le QG des Chevaliers Garo distribue les missions**
+Le Conseil de Makai reçoit des alertes Horror depuis 3 villes simultanément. Chaque Chevalier (= serveur) n'a pas la même charge : Léon est en combat prolongé, Alfonso vient de terminer. Pour chacun de ces scénarios, choisis round-robin ou least connections et justifie : (a) des alertes de détection rapide qui prennent toutes le même temps (< 100ms), (b) des missions d'exorcisme qui prennent entre 1 et 90 secondes selon l'intensité du Horror, (c) l'upload du rapport de combat (fichier vidéo lourd). (15 minutes)
 
-**EXO 2 : Détecte le piège du health check**
-On te donne un endpoint `/health` qui fait juste `return res.status(200).send('OK')` sans rien vérifier d'autre. Liste 3 scénarios de panne réelle que ce health check ne détecterait JAMAIS, et propose une version corrigée. (15 minutes)
+**EXO 2 : Le faux health check du QG**
+Le Conseil utilise un endpoint `/health` qui fait `return res.status(200).send('OK')` et rien d'autre. Alfonso répond encore "OK" mais met 8 secondes à chaque mission au lieu de 200ms : une bête de niveau A bloque sa connexion DB. Le load balancer continue de lui envoyer du trafic. Liste 3 scénarios de panne réelle que ce health check ne détecterait JAMAIS, et propose une version corrigée qui teste vraiment la santé du Chevalier. (15 minutes)
 
-**EXO 3 : Sticky session ou stateless**
-Une appli stocke les sessions en mémoire locale sur chaque serveur. Le trafic explose, on passe de 1 à 5 serveurs. Décris le bug exact qui va apparaître pour les utilisateurs, et les deux solutions possibles (sticky session vs store partagé), avec les compromis de chacune. (15 minutes)
+**EXO 3 : Les sessions de Honoo no Kokuin**
+L'appli du Conseil stocke l'état de chaque Chevalier (armure active, position, énergie restante) en mémoire locale sur son serveur dédié. Le trafic explose lors d'une invasion massive, on passe de 1 à 5 serveurs. Décris le bug exact qui va apparaître (un Chevalier perd son état en cours de mission), et les deux solutions possibles (sticky session vs store partagé via Redis), avec les compromis de chacune. (15 minutes)
 
 ---
 

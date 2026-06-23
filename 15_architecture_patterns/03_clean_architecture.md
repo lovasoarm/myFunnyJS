@@ -53,7 +53,7 @@ Le domaine ne connaît pas les adapters. Les adapters ne connaissent pas les fra
 
 **Use Cases (cas d'usage)** : les actions que l'application peut faire. Ils orchestrent les entities. Ils définissent des interfaces (contrats) pour ce dont ils ont besoin.
 
-**Adapters** : convertissent les données du monde extérieur vers le format que le domaine attend — et vice-versa.
+**Adapters** : convertissent les données du monde extérieur vers le format que le domaine attend : et vice-versa.
 
 **Frameworks & Drivers** : Express, MongoDB, React. Ils sont aux bords. Remplaçables.
 
@@ -103,7 +103,7 @@ class Prisoner {
 
   transfer(newBlockId) {
     if (this.status !== "incarcerated") {
-      throw new Error(`${this.name} ne peut pas être transféré — statut : ${this.status}`)
+      throw new Error(`${this.name} ne peut pas être transféré : statut : ${this.status}`)
     }
     return new Prisoner({ ...this, blockId: newBlockId })  // immuabilité : on retourne une nouvelle entity
   }
@@ -122,7 +122,7 @@ class EscapePlan {
   }
 
   activate() {
-    if (this.riskLevel > 7) throw new Error("Plan trop risqué — Michael doit revoir ça")
+    if (this.riskLevel > 7) throw new Error("Plan trop risqué : Michael doit revoir ça")
     return { ...this, status: "active" }
   }
 }
@@ -163,7 +163,7 @@ class AddPrisonerUseCase {
 
     // logique post-save : appartient au use case, pas à l'entity ni à l'adapter
     if (prisoner.isHighRisk()) {
-      console.warn(`ALERTE SÉCURITÉ : ${prisoner.name} — risque niveau ${prisoner.escapeRisk}`)
+      console.warn(`ALERTE SÉCURITÉ : ${prisoner.name} : risque niveau ${prisoner.escapeRisk}`)
     }
 
     return saved

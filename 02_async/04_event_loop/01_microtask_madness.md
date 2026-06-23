@@ -224,7 +224,7 @@ setTimeout(() => console.log("7"), 0)
 Écris l'ordre attendu, puis lance le code et compare.
 Si tu t'es trompé : identifie exactement quelle règle tu as ratée.
 
-(indice : les setTimeout vont dans la macrotask queue — ils passent APRÈS toutes les microtasks)
+(indice : les setTimeout vont dans la macrotask queue : ils passent APRÈS toutes les microtasks)
 
 ---
 

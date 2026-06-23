@@ -219,7 +219,7 @@ Implémente la séquence complète avec gestion d'erreur error-first sur chaque 
 
 ## EXO 2 : LE PARALLEL LOADER
 
-Tu veux charger les stats de 3 joueurs en même temps — pas l'un après l'autre. Si t'attends en séquence, ça prend 3x plus longtemps.
+Tu veux charger les stats de 3 joueurs en même temps : pas l'un après l'autre. Si t'attends en séquence, ça prend 3x plus longtemps.
 
 ```js
 // pseudo-API disponible

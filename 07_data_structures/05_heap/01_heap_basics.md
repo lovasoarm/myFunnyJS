@@ -42,7 +42,7 @@ Ce que cette structure ne garantit PAS :
 
 ## 2) REPRÉSENTATION EN TABLEAU : L'ASTUCE QUI SIMPLIFIE TOUT
 
-On stocke le heap dans un tableau. L'arbre est implicite — pas de pointeurs.
+On stocke le heap dans un tableau. L'arbre est implicite : pas de pointeurs.
 
 ```
 Arbre :
@@ -412,6 +412,6 @@ Le heap est un arbre binaire dans un tableau : parent(i) = floor((i-1)/2), enfan
 Max-heap : parent >= enfants. Min-heap : parent <= enfants.
 Insert : on ajoute en fin, on bubbleUp. O(log n).
 ExtractMax/Min : on prend la racine, on met la dernière feuille à la place, on siftDown. O(log n).
-Peek : accès au max/min en O(1) — c'est la raison d'être du heap.
+Peek : accès au max/min en O(1) : c'est la raison d'être du heap.
 Heapify depuis un tableau existant : O(n), pas O(n log n).
 Le heap ne trie pas tout : il garantit juste l'accès rapide au meilleur.

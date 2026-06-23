@@ -68,7 +68,7 @@ Les mini-projets sont des projets intégrateurs : ils consolident plusieurs modu
 nom_du_projet/
 ├── cahierdescharges.md   # Specs fonctionnelles et techniques complètes
 ├── README.md             # Contexte, objectifs, modules couverts
-├── TDD_JOURNAL.md        # Tests écrits AVANT le code — obligatoire
+├── TDD_JOURNAL.md        # Tests écrits AVANT le code : obligatoire
 ├── POSTMORTEM.md         # Ce qui a cassé, pourquoi, ce qu'on ferait mieux
 ├── src/
 └── tests/

@@ -1,4 +1,4 @@
-# 02_WS_CHAT_ROOM — LE CHAT ROOM QUI TIENT EN PROD
+# 02_WS_CHAT_ROOM : LE CHAT ROOM QUI TIENT EN PROD
 
 Un chat room WebSocket c'est le test de feu de tout ce qu'on a vu.
 Multi-utilisateurs. Rooms séparées. Broadcast (diffusion à tous). Historique qui persiste.
@@ -28,7 +28,7 @@ Le Room Manager doit :
 
 ---
 
-## 2) LE ROOM MANAGER — LE COEUR DU SYSTÈME
+## 2) LE ROOM MANAGER : LE COEUR DU SYSTÈME
 
 ```js
 // rooms est une Map : clé = nom de la room, valeur = Set de WebSockets
@@ -48,7 +48,7 @@ function joinRoom(roomName, ws) {
   // utile pour le nettoyer au close sans itérer toutes les rooms
   ws.currentRoom = roomName;
 
-  console.log(`Client rejoint "${roomName}" — membres : ${rooms.get(roomName).size}`);
+  console.log(`Client rejoint "${roomName}" : membres : ${rooms.get(roomName).size}`);
 }
 
 function leaveRoom(ws) {
@@ -60,7 +60,7 @@ function leaveRoom(ws) {
   // nettoyer la room si elle est vide — pas de Map qui grossit à l'infini
   if (rooms.get(roomName).size === 0) {
     rooms.delete(roomName);
-    console.log(`Room "${roomName}" supprimée — plus personne`);
+    console.log(`Room "${roomName}" supprimée : plus personne`);
   }
 }
 
@@ -218,7 +218,7 @@ class ChatClient {
         // délai qui double à chaque tentative, plafonné à 30s
         const delay = Math.min(1000 * 2 ** this._retries, 30000);
         this._retries = (this._retries || 0) + 1;
-        console.log(`Déconnecté — retry dans ${delay}ms`);
+        console.log(`Déconnecté : retry dans ${delay}ms`);
         setTimeout(() => this._connect(), delay);
       }
     });
@@ -269,7 +269,7 @@ chat
   });
 
 chat.join('Valiante', 'Leon');
-chat.sendMessage('Horror détecté dans le quartier nord — je pars maintenant');
+chat.sendMessage('Horror détecté dans le quartier nord : je pars maintenant');
 ```
 
 ---
@@ -319,7 +319,7 @@ Contrainte : pas de bibliothèque externe, juste Node.js + `ws`.
 
 > **Dépendance** : cet exercice utilise `fs.promises` pour lire et écrire des fichiers.
 > Si tu n'as pas encore fait `14_runtime_env/06_node_cli_scripts/02_filesystem_ops.md`, lis au minimum la section sur `readFile` et `writeFile` avant de commencer.
-> L'exercice reste faisable sans le module complet — l'indice te donne les deux fonctions clés.
+> L'exercice reste faisable sans le module complet : l'indice te donne les deux fonctions clés.
 
 Le système actuel perd l'historique si le serveur redémarre.
 Implémente un mécanisme simple :
@@ -328,4 +328,4 @@ Implémente un mécanisme simple :
 - limiter à 50 messages par room dans le fichier
 
 Contrainte : opérations fichier asynchrones uniquement (`fs.promises`).
-(Indice : `await fs.writeFile(path, JSON.stringify(data))` pour écrire, `JSON.parse(await fs.readFile(path, 'utf8'))` pour lire — wrapper le readFile dans un try/catch pour le cas où le fichier n'existe pas encore)
+(Indice : `await fs.writeFile(path, JSON.stringify(data))` pour écrire, `JSON.parse(await fs.readFile(path, 'utf8'))` pour lire : wrapper le readFile dans un try/catch pour le cas où le fichier n'existe pas encore)

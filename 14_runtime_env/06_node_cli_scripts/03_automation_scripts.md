@@ -188,8 +188,8 @@ async function generateReport(votes, outputPath) {
 
   // générer le markdown
   const lines = [
-    '# Ballon d\'Or 2026 — Classement provisoire',
-    `> Généré le ${new Date().toLocaleDateString('fr-FR')} — ${votes.length} votes comptabilisés`,
+    '# Ballon d\'Or 2026 : Classement provisoire',
+    `> Généré le ${new Date().toLocaleDateString('fr-FR')} : ${votes.length} votes comptabilisés`,
     '',
     '| # | Joueur | Points | Votes |',
     '|---|--------|--------|-------|',
@@ -287,4 +287,4 @@ Chaque étape doit logger son avancement. Si une étape échoue : les étapes su
 
 Un script d'automatisation fait une chose, bien, de manière reproductible. Le pattern ETL (Extract-Transform-Load) structure la plupart des scripts de données : lire la source, transformer, écrire ailleurs. Pour orchestrer plusieurs scripts : une boucle sur des étapes nommées, chaque étape peut fail-fast. La règle : si tu le fais deux fois à la main, tu l'automatises. Si tu l'automatises, tu le testes.
 
-> Note : 9/10 — l'orchestrateur avec les steps nommées est un pattern très réel qu'on voit dans les pipelines pro. Bien inclus. Moins 1 : un exemple avec `child_process.exec` pour appeler des commandes externes (git, curl, ffmpeg) aurait complété le module.
+> Note : 9/10 : l'orchestrateur avec les steps nommées est un pattern très réel qu'on voit dans les pipelines pro. Bien inclus. Moins 1 : un exemple avec `child_process.exec` pour appeler des commandes externes (git, curl, ffmpeg) aurait complété le module.

@@ -259,6 +259,6 @@ Utilise `\r` pour réécrire la même ligne. Teste avec un `setInterval` qui inc
 
 # RÉSUMÉ
 
-Un CLI Node lit ses arguments depuis `process.argv.slice(2)`. Les flags `--key value` se parsent manuellement ou avec une lib. `stdout` pour les outputs normaux, `stderr` pour les erreurs — toujours les deux séparément. Les codes de sortie (`process.exit(0)` / `process.exit(1)`) sont la convention que les pipelines bash et les CI/CD attendent. Les codes ANSI donnent les couleurs, mais toujours avec un check `isTTY` pour ne pas polluer les pipes.
+Un CLI Node lit ses arguments depuis `process.argv.slice(2)`. Les flags `--key value` se parsent manuellement ou avec une lib. `stdout` pour les outputs normaux, `stderr` pour les erreurs : toujours les deux séparément. Les codes de sortie (`process.exit(0)` / `process.exit(1)`) sont la convention que les pipelines bash et les CI/CD attendent. Les codes ANSI donnent les couleurs, mais toujours avec un check `isTTY` pour ne pas polluer les pipes.
 
-> Note : 9/10 — les codes de sortie et la distinction stdout/stderr sont deux points rarement enseignés ensemble. Solide. Moins 1 : l'exercice 2 demande le filesystem sans l'avoir couvert — la dépendance est dans le module suivant, mais ça crée un trou. À noter pour le séquençage.
+> Note : 9/10 : les codes de sortie et la distinction stdout/stderr sont deux points rarement enseignés ensemble. Solide. Moins 1 : l'exercice 2 demande le filesystem sans l'avoir couvert : la dépendance est dans le module suivant, mais ça crée un trou. À noter pour le séquençage.

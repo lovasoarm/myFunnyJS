@@ -1,8 +1,8 @@
-# PROPAGATION D'ERREURS — QUI CATCH QUOI ET À QUEL NIVEAU
+# PROPAGATION D'ERREURS : QUI CATCH QUOI ET À QUEL NIVEAU
 
 Une erreur levée quelque part dans ton code ne disparaît pas. Elle remonte la call stack jusqu'à ce que quelqu'un la catch. Si personne ne la catch : le programme crash.
 
-Le vrai problème c'est pas "est-ce que je catch" — c'est "est-ce que je catch au bon niveau, avec la bonne réaction".
+Le vrai problème c'est pas "est-ce que je catch" : c'est "est-ce que je catch au bon niveau, avec la bonne réaction".
 
 ---
 
@@ -65,7 +65,7 @@ niveau API (controller)  : catcher et transformer en réponse HTTP
 niveau app (main)        : catcher et logger sans crash
 ```
 
-Mauvais pattern — catch sans action :
+Mauvais pattern : catch sans action :
 
 ```js
 function chargerJoueurs(matchId) {
@@ -81,7 +81,7 @@ function chargerJoueurs(matchId) {
 
 `chargerJoueurs` a avalé l'erreur. L'appelant reçoit `undefined` et continue comme si de rien n'était. Le bug apparaît plus loin, sans contexte. Impossible à debugger.
 
-Bon pattern — laisser remonter ou transformer :
+Bon pattern : laisser remonter ou transformer :
 
 ```js
 function chargerJoueurs(matchId) {
@@ -102,7 +102,7 @@ function chargerJoueurs(matchId) {
 
 ---
 
-## 3) RETHROWING — ATTRAPER PUIS RELANCER
+## 3) RETHROWING : ATTRAPER PUIS RELANCER
 
 Pattern courant : tu catches pour inspecter, tu relances ce qui n'est pas de ton ressort.
 
@@ -140,7 +140,7 @@ catch (e) {
 
 ---
 
-## 4) WRAPPING — ENRICHIR AVANT DE RELANCER
+## 4) WRAPPING : ENRICHIR AVANT DE RELANCER
 
 Parfois tu veux ajouter du contexte sans perdre l'original.
 
@@ -339,7 +339,7 @@ Teste avec un id valide et un id inexistant.
 
 Une erreur remonte jusqu'à ce que quelqu'un la catch. Si personne ne la catch, le programme crash.
 
-Tu catches seulement si tu peux agir. Sinon tu relances avec `throw e` — ou tu enrichis avec `cause` avant de relancer.
+Tu catches seulement si tu peux agir. Sinon tu relances avec `throw e` : ou tu enrichis avec `cause` avant de relancer.
 
 Ne jamais avaler silencieusement. Un catch vide est pire qu'un crash : tu sais même plus que ça a cassé.
 

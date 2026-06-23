@@ -1,8 +1,8 @@
 # LE GARBAGE COLLECTOR : LE NETTOYEUR QUE TU N'ENTENDS JAMAIS
 
-JS gère la mémoire à ta place. Ça a l'air cool. Et ça l'est — jusqu'au moment où ça ne l'est pas.
+JS gère la mémoire à ta place. Ça a l'air cool. Et ça l'est : jusqu'au moment où ça ne l'est pas.
 
-Le GC libère les objets que plus personne n'utilise. Mais si quelque chose garde encore une référence vers cet objet — même involontairement — il ne part jamais. Il s'accumule. Et un jour, l'app ralentit, le navigateur transpire, le serveur Node crashe à 3h du matin.
+Le GC libère les objets que plus personne n'utilise. Mais si quelque chose garde encore une référence vers cet objet : même involontairement : il ne part jamais. Il s'accumule. Et un jour, l'app ralentit, le navigateur transpire, le serveur Node crashe à 3h du matin.
 
 Comprendre le GC, c'est comprendre pourquoi certains bugs n'ont pas de stacktrace.
 
@@ -36,13 +36,13 @@ Le GC de V8 (le moteur JS de Chrome et Node) utilise mark-and-sweep.
 Le principe est brutal et efficace :
 
 ```
-ÉTAPE 1 — MARK
+ÉTAPE 1 : MARK
 ───────────────
 Le GC part des "roots" (variables globales, stack active)
 et parcourt toutes les références atteignables.
 Chaque objet trouvé est "marqué" : il vit.
 
-ÉTAPE 2 — SWEEP
+ÉTAPE 2 : SWEEP
 ────────────────
 Tout ce qui N'est PAS marqué est détruit.
 La mémoire est libérée.
@@ -140,7 +140,7 @@ L'ancien algorithme (reference counting) plantait sur les cycles. C'était la ca
 
 Une fuite mémoire, c'est un objet qu'on ne veut plus, mais que le GC ne peut pas supprimer parce qu'une référence l'en empêche.
 
-### Fuite #1 — Le tableau global qui grossit
+### Fuite #1 : Le tableau global qui grossit
 
 ```js
 // Le système de logs de Fox River
@@ -167,7 +167,7 @@ function logEvent(event) {
 
 ---
 
-### Fuite #2 — Le listener qu'on oublie de retirer
+### Fuite #2 : Le listener qu'on oublie de retirer
 
 ```js
 // Chaque fois qu'un Chevalier de la Flamme entre en combat
@@ -197,7 +197,7 @@ stop()  // on libère
 
 ---
 
-### Fuite #3 — La closure qui garde trop
+### Fuite #3 : La closure qui garde trop
 
 ```js
 // Le cache de métriques du dashboard des ultras

@@ -243,8 +243,8 @@ Crée une classe `Inventory` avec :
 - `readonly campId: string`
 - `private items: Map<string, number>` (item name → quantity)
 - méthode `add(item: string, qty: number): void`
-- méthode `consume(item: string, qty: number): void` — lance une `InsufficientSupplyError` si pas assez
-- méthode `report(): { item: string; qty: number }[]` — retour typé, pas d'`any`
+- méthode `consume(item: string, qty: number): void` : lance une `InsufficientSupplyError` si pas assez
+- méthode `report(): { item: string; qty: number }[]` : retour typé, pas d'`any`
 
 Bonus : crée une interface `Auditable` avec `audit(): string` et fais implémenter `Inventory`.
 

@@ -35,7 +35,7 @@ require('./match-utils')
 Node cherche le fichier
    |
    v
-Node l'exécute entièrement (synchrone — bloquant)
+Node l'exécute entièrement (synchrone : bloquant)
    |
    v
 Il retourne module.exports
@@ -255,4 +255,4 @@ console.log(config)
 
 CommonJS est synchrone, dynamique, et utilise `require`. ESM est statique, compatible tree shaking, et utilise `import/export`. En 2026, ESM est le standard : nouveau projet Node → `"type": "module"` dans `package.json`, extensions `.js` explicites sur les imports. `__dirname` n'existe pas en ESM natif : on le reconstruit avec `import.meta.url`. Les packages ESM-only ne peuvent pas être importés avec `require`.
 
-> Note : 9/10 — la table CJS vs ESM est claire, les erreurs fréquentes sont couvertes. Moins 1 : un mini-exemple sur le dual package en pratique complète (avec tsup ou rollup) aurait rendu le module plus opérationnel.
+> Note : 9/10 : la table CJS vs ESM est claire, les erreurs fréquentes sont couvertes. Moins 1 : un mini-exemple sur le dual package en pratique complète (avec tsup ou rollup) aurait rendu le module plus opérationnel.

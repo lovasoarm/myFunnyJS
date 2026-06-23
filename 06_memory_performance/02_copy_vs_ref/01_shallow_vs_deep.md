@@ -4,7 +4,7 @@ Tu copies un objet. Tu modifies la copie. Et l'original change aussi.
 
 Bienvenue dans le bug le plus silencieux de JavaScript. Pas d'erreur. Pas de warning. Juste un état corrompu que tu découvres trois heures plus tard en mode panique.
 
-La raison : copier un objet en JS ne signifie pas forcément copier ce qu'il contient. Ça dépend de si tu copies en surface ou en profondeur — et par défaut, JS copie en surface.
+La raison : copier un objet en JS ne signifie pas forcément copier ce qu'il contient. Ça dépend de si tu copies en surface ou en profondeur : et par défaut, JS copie en surface.
 
 ---
 
@@ -118,7 +118,7 @@ console.log(squad[0].name)  // → "Rock Lee" — partagé
 
 Une deep copy duplique l'objet **et tous les objets imbriqués**. Aucune référence n'est partagée avec l'original.
 
-### structuredClone — la méthode moderne
+### structuredClone : la méthode moderne
 
 ```js
 const ninja = {
@@ -160,7 +160,7 @@ Chaque niveau est un objet distinct. Aucune référence partagée.
 - `undefined` (converti en propriété manquante)
 - prototypes personnalisés (l'objet copié sera un plain object)
 
-### JSON.parse + JSON.stringify — l'ancienne méthode (avec ses pièges)
+### JSON.parse + JSON.stringify : l'ancienne méthode (avec ses pièges)
 
 ```js
 const deepCopyJson = JSON.parse(JSON.stringify(ninja))
@@ -301,9 +301,9 @@ const campState = {
 ```
 
 **Ta mission :**
-1. Écrire `consumeFood(state, amount)` : retire `amount` cans, retourne un nouvel état (shallow suffit ici — pourquoi ?)
-2. Écrire `addWeapon(state, weapon)` : ajoute une arme, retourne un nouvel état (shallow suffit aussi — pourquoi ?)
-3. Écrire `promoteSurvivor(state, name, newRole)` : change le rôle d'un survivant, retourne un nouvel état (shallow ne suffit plus — pourquoi ?)
+1. Écrire `consumeFood(state, amount)` : retire `amount` cans, retourne un nouvel état (shallow suffit ici : pourquoi ?)
+2. Écrire `addWeapon(state, weapon)` : ajoute une arme, retourne un nouvel état (shallow suffit aussi : pourquoi ?)
+3. Écrire `promoteSurvivor(state, name, newRole)` : change le rôle d'un survivant, retourne un nouvel état (shallow ne suffit plus : pourquoi ?)
 4. Vérifier que `campState` est toujours intact après chaque opération.
 
 ---
@@ -317,7 +317,7 @@ const campState = {
 - `null` et `undefined`
 - primitives
 
-Ne pas gérer `Date`, `Map`, `Set`, `Function` — les ignorer ou les copier par référence en les signalant.
+Ne pas gérer `Date`, `Map`, `Set`, `Function` : les ignorer ou les copier par référence en les signalant.
 
 *(Indice : `Array.isArray()` te sauvera la vie. Et pense aux cas limite : que faire si `obj` est une primitive ?)*
 

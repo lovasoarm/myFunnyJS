@@ -1,8 +1,8 @@
-# E2E PLAYWRIGHT BEAST — SIMULER UN VRAI UTILISATEUR
+# E2E PLAYWRIGHT BEAST : SIMULER UN VRAI UTILISATEUR
 
 Un unit test vérifie une fonction.
 Un test d'intégration vérifie plusieurs modules.
-Un test E2E vérifie ce que l'utilisateur voit et fait — du clic jusqu'à la base de données.
+Un test E2E vérifie ce que l'utilisateur voit et fait : du clic jusqu'à la base de données.
 
 Playwright lance un vrai navigateur (Chromium, Firefox, WebKit), clique, tape, attend, et vérifie.
 Si un humain peut le faire sur ton app, Playwright peut le tester.
@@ -59,7 +59,7 @@ Playwright ouvre un vrai navigateur, fait exactement ce qu'un utilisateur ferait
 
 ---
 
-## 3) LES LOCATORS — TROUVER LES ÉLÉMENTS
+## 3) LES LOCATORS : TROUVER LES ÉLÉMENTS
 
 Playwright a plusieurs façons de trouver un élément. Certaines sont meilleures que d'autres.
 
@@ -84,7 +84,7 @@ Les sélecteurs CSS et XPath cassent à la première restructuration du HTML.
 
 ---
 
-## 4) ATTENTES — PLAYWRIGHT EST ASYNC PAR DÉFAUT
+## 4) ATTENTES : PLAYWRIGHT EST ASYNC PAR DÉFAUT
 
 Playwright attend automatiquement que les éléments soient prêts avant d'interagir.
 Mais pour les assertions, tu dois explicitement attendre.
@@ -109,7 +109,7 @@ await expect(page.locator('[data-testid="résultats"]')).toBeVisible({ timeout: 
 
 ---
 
-## 5) FIXTURES — PRÉPARER L'ÉTAT
+## 5) FIXTURES : PRÉPARER L'ÉTAT
 
 Les tests E2E ont besoin d'un état cohérent. Playwright permet de préparer cet état avant chaque test.
 
@@ -168,7 +168,7 @@ L'E2E teste le produit comme un utilisateur l'utilise. Les comportements liés a
 
 ---
 
-## 7) E2E EN CI — NE PAS EN ABUSER
+## 7) E2E EN CI : NE PAS EN ABUSER
 
 Les tests E2E sont lents (10-60 secondes par test). Sur une suite de 50 tests E2E : plusieurs minutes.
 

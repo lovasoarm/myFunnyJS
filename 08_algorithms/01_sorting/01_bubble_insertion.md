@@ -182,7 +182,7 @@ La courbe n'est pas linéaire. Elle explose. C'est ça le O(n²) dans la vraie v
 # EXERCICES
 
 ## EXO 1 : Le classement des Ballon d'Or
-Tu reçois un tableau de joueurs avec leurs scores de vote. Implémente un **insertion sort** qui les trie par score décroissant. Contrainte : stable — si deux joueurs ont le même score, l'ordre original est préservé.
+Tu reçois un tableau de joueurs avec leurs scores de vote. Implémente un **insertion sort** qui les trie par score décroissant. Contrainte : stable : si deux joueurs ont le même score, l'ordre original est préservé.
 
 ```js
 const candidats = [

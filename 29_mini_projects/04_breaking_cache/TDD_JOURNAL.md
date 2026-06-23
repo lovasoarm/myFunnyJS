@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Le cahie
 
 ---
 
-## ÉTAPE 1 : `minHeap.js` — la structure qui priorise
+## ÉTAPE 1 : `minHeap.js` : la structure qui priorise
 
 Le heap est utilisé par Dijkstra. Si Dijkstra est testé avant le heap, les tests du heap vont être écrits sous pression de faire passer l'intégration. Mauvaise idée. Heap d'abord.
 
@@ -67,7 +67,7 @@ Le deuxième test a révélé un crash : premier implémentation faisait `return
 
 ---
 
-## ÉTAPE 3 : `dijkstra.js` — la zone de résistance principale
+## ÉTAPE 3 : `dijkstra.js` : la zone de résistance principale
 
 Le cahier des charges prévenait : Dijkstra est l'algo le plus complexe du projet. Tester le cas simple d'abord.
 
@@ -144,7 +144,7 @@ Le test de stabilité de `mergeSort` a confirmé un choix d'implémentation : ut
 
 ---
 
-## ÉTAPE 6 : `stockOptimizer.js` — dynamic programming
+## ÉTAPE 6 : `stockOptimizer.js` : dynamic programming
 
 ```js
 test('knapsack retourne la valeur maximale sous la contrainte de poids', () => {

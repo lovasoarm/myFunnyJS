@@ -48,7 +48,7 @@ Ces maths apparaissent dans des endroits que tu ne soupçonnes pas : un cache LR
 
 ## 4) MODERNE, LEGACY, OU INTEMPOREL ?
 
-Intemporel, sans exception. Le modulo fonctionne pareil depuis l'invention de l'arithmétique. La logique booléenne ne changera jamais : AND reste AND. Ce qui change, ce sont les contextes où tu les utilises — avant : jeux et systèmes embarqués, aujourd'hui : aussi le frontend avec des animations, des calculs de layout, des systèmes de scoring.
+Intemporel, sans exception. Le modulo fonctionne pareil depuis l'invention de l'arithmétique. La logique booléenne ne changera jamais : AND reste AND. Ce qui change, ce sont les contextes où tu les utilises : avant : jeux et systèmes embarqués, aujourd'hui : aussi le frontend avec des animations, des calculs de layout, des systèmes de scoring.
 
 ---
 
@@ -68,7 +68,7 @@ Pas dans les "6 blocs prioritaires", mais c'est un module de soutien que tu vas 
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Ces maths sont la couche la plus stable de tout le métier. Un modulo en 2026 fonctionne exactement comme un modulo en 1990, et fonctionnera pareil en 2040. Contrairement à un framework qui se réinvente, ces outils décrivent des relations logiques et numériques universelles — pas des choix d'implémentation d'un outil particulier. C'est la partie de ton bagage technique qui ne périme jamais.
+Ces maths sont la couche la plus stable de tout le métier. Un modulo en 2026 fonctionne exactement comme un modulo en 1990, et fonctionnera pareil en 2040. Contrairement à un framework qui se réinvente, ces outils décrivent des relations logiques et numériques universelles : pas des choix d'implémentation d'un outil particulier. C'est la partie de ton bagage technique qui ne périme jamais.
 
 ---
 

@@ -1,7 +1,7 @@
 # ORCHESTRER SANS PERDRE LE FIL
 
 T'as compris ce qu'est un callback. T'as vu le labyrinthe.
-Maintenant on code dedans — avec les contraintes du monde réel.
+Maintenant on code dedans : avec les contraintes du monde réel.
 
 Séquence, parallèle, timeout, annulation. Les quatre situations que tu vas croiser dans du code legacy ou des APIs tierces qui n'ont pas migré vers les Promises. Si tu sais pas les gérer, t'es bloqué.
 
@@ -49,7 +49,7 @@ La pyramide est cassée. Chaque étape est lisible. L'erreur remonte proprement 
 
 ---
 
-## 2) PARALLÈLE — plusieurs opérations en même temps
+## 2) PARALLÈLE : plusieurs opérations en même temps
 
 Quand les opérations sont indépendantes les unes des autres, les faire en séquence c'est juste gaspiller du temps.
 
@@ -83,11 +83,11 @@ joueurs.forEach(function(id) {
 
 Le `compteur` est le mécanisme de synchronisation. Chaque callback qui arrive décrémente. Quand il atteint 0 : tout est là.
 
-Attention : l'ordre d'arrivée est imprévisible. `vinicius` peut arriver avant `mbappe`. T'utilises un objet `resultats` indexé par id — pas un tableau — pour éviter ce problème.
+Attention : l'ordre d'arrivée est imprévisible. `vinicius` peut arriver avant `mbappe`. T'utilises un objet `resultats` indexé par id : pas un tableau : pour éviter ce problème.
 
 ---
 
-## 3) TIMEOUT — ne pas attendre indéfiniment
+## 3) TIMEOUT : ne pas attendre indéfiniment
 
 Un callback peut ne jamais arriver. API qui plante, réseau coupé, serveur qui répond pas. Si tu gères pas ça, ton code tourne et attend pour toujours.
 
@@ -118,11 +118,11 @@ chargerAvecTimeout("mbappe", 3000, function(err, stats) {
 })
 ```
 
-Le booléen `estTermine` garantit que le callback est appelé une seule fois — soit par le résultat, soit par le timeout. Jamais les deux.
+Le booléen `estTermine` garantit que le callback est appelé une seule fois : soit par le résultat, soit par le timeout. Jamais les deux.
 
 ---
 
-## 4) RETRY — réessayer en cas d'échec
+## 4) RETRY : réessayer en cas d'échec
 
 Une API instable. Un réseau capricieux. Des fois tu réessaies plutôt que d'abandonner directement.
 
@@ -165,7 +165,7 @@ Le `setTimeout(essayer, tentative * 500)` crée un délai croissant : 500ms, 100
 
 ---
 
-## 5) QUEUE — ne pas tout lancer en même temps
+## 5) QUEUE : ne pas tout lancer en même temps
 
 Le problème inverse du parallèle : tu veux contrôler combien d'opérations tournent simultanément.
 
@@ -220,10 +220,10 @@ chargerEnQueue(ids, 2, function(err, stats) {
 
 Un club veut finaliser le transfert d'un joueur. Les étapes sont obligatoirement séquentielles :
 
-1. `verifierDisponibilite(joueurId, callback)` — retourne `{ disponible: true/false }`
-2. `calculerPrix(joueurId, callback)` — retourne `{ prix, currency }`
-3. `validerBudget(prix, clubId, callback)` — retourne `{ valide: true/false }`
-4. `finaliserTransfert(joueurId, clubId, callback)` — retourne `{ confirmation }`
+1. `verifierDisponibilite(joueurId, callback)` : retourne `{ disponible: true/false }`
+2. `calculerPrix(joueurId, callback)` : retourne `{ prix, currency }`
+3. `validerBudget(prix, clubId, callback)` : retourne `{ valide: true/false }`
+4. `finaliserTransfert(joueurId, clubId, callback)` : retourne `{ confirmation }`
 
 Si n'importe quelle étape échoue, le transfert est annulé et une erreur descriptive est retournée. Implémente le pipeline complet sans pyramide.
 

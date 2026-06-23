@@ -1,6 +1,6 @@
 # Grossir un serveur ou en ajouter dix
 
-Ton serveur sature. Deux options : tu lui donnes plus de RAM et de CPU (scale up), ou tu ajoutes d'autres serveurs à côté (scale out). Ça paraît être un détail d'infra, c'est en fait une décision d'architecture qui impacte tout ton code derrière.
+Walter White a un labo unique. Il l'agrandit (scale up : plus de paillasses, meilleur équipement) jusqu'à ne plus pouvoir agrandir le bâtiment. Ou il ouvre des labos dans plusieurs villes (scale out : plus de sites, même capacité chacun). En infra, le choix change tout ce qu'il y a derrière : un seul labo énorme reste un seul point de panne, cinq labos distribués survivent à la perte d'un site.
 
 Pourquoi ça compte : si t'as codé ton appli en supposant qu'elle tourne sur UN seul serveur (état en mémoire locale, fichiers écrits sur le disque local), scale out ne marche pas tel quel. Tu dois corriger le code avant de pouvoir ajouter des machines.
 
@@ -144,14 +144,14 @@ Avant, scale up était souvent le réflexe par défaut, parce que gérer plusieu
 
 ## EXERCICES
 
-**EXO 1 : Le diagnostic avant le choix**
-On te donne une appli avec : sessions en mémoire locale par serveur, pas de cache, une seule DB PostgreSQL. Elle doit absorber 10x son trafic actuel le mois prochain. Liste, dans l'ordre, ce qu'il faut corriger AVANT de pouvoir scale out efficacement. (15 minutes)
+**EXO 1 : Walter White diagnostique avant de scale**
+L'infrastructure de distribution de Walter a : les prix de la marchandise stockés en mémoire locale par serveur, pas de cache partagé, une seule DB PostgreSQL. La demande va x10 le mois prochain (nouveau territoire). Liste, dans l'ordre, ce qu'il faut corriger AVANT de pouvoir ajouter des serveurs sans créer une incohérence dans les stocks et les prix. (15 minutes)
 
-**EXO 2 : Calcule le plafond**
-Une tâche de calcul (genre un traitement d'image) prend 2 secondes sur 1 CPU et se parallélise mal (elle ne peut pas être découpée facilement). Explique pourquoi scale out n'aide pas ici autant qu'on pourrait l'espérer, et ce que scale up apporte à la place. (10 minutes)
+**EXO 2 : Le plafond du labo de Walter**
+Une tâche d'analyse chimique (calcul de pureté sur un lot) prend 2 secondes sur 1 CPU et ne se parallélise pas (elle doit être faite d'un seul bloc). Explique pourquoi scale out n'aide pas ici autant qu'on pourrait l'espérer, et ce que scale up apporte à la place. (10 minutes)
 
-**EXO 3 : Trouve l'incohérence**
-Reprends l'exemple du cache local du point 5. Propose la correction technique exacte (avec le nom de la techno) pour que les 4 serveurs partagent une vérité unique sur le prix d'un produit. (10 minutes)
+**EXO 3 : L'incohérence dans le réseau de distribution**
+Reprends l'exemple du cache local du point 5. Le prix d'un lot change chez Gus, mais seulement 2 des 4 serveurs de distribution reçoivent la mise à jour (race condition lors du redémarrage). Propose la correction technique exacte (avec le nom de la techno) pour que les 4 serveurs partagent une vérité unique sur le prix. (10 minutes)
 
 ---
 

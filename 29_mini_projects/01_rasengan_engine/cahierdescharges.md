@@ -279,7 +279,7 @@ describe('combat', () => {
 
 Ces cas doivent avoir un test chacun. Sans eux, le moteur a des angles morts :
 
-1. **Combat avec deux fighters identiques** : `startCombat(naruto, naruto)` — le moteur ne doit pas boucler infiniment ni planter.
+1. **Combat avec deux fighters identiques** : `startCombat(naruto, naruto)` : le moteur ne doit pas boucler infiniment ni planter.
 2. **Jutsu avec cooldown actif** : un jutsu demandé alors que son cooldown n'est pas terminé doit être remplacé par l'attaque de base, pas ignoré.
 3. **Chakra à 0 avant la fin** : si un fighter tombe à 0 chakra, le combat s'arrête immédiatement, même si le tour n'est pas terminé.
 4. **RNG en mode déterministe pour les tests** : `rng.js` doit accepter une seed (valeur initiale fixe) ou un mode "test" qui retourne des valeurs prédéfinies, pour que les tests de combat ne soient pas aléatoires.
@@ -338,7 +338,7 @@ Le moteur appelle la fonction sans savoir ce qu'elle fait.
 [ ] un combat complet s'affiche dans la console avec le format exact montré en intro
 [ ] les 4 fichiers de tests passent avec au moins 50 tests au total
 [ ] aucune mutation directe d'état nulle part dans src/
-[ ] rng.js supporte un mode déterministe (seed ou mock injectable) — vérifié dans rng.test.js
+[ ] rng.js supporte un mode déterministe (seed ou mock injectable) : vérifié dans rng.test.js
 [ ] les tests de combat sont stables (relancer npm test 3 fois : toujours le même résultat)
 [ ] les 4 cas limites listés ont chacun un test
 [ ] fighterFactory crée des fighters indépendants (pas de référence partagée)

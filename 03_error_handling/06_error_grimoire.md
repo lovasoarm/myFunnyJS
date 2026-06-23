@@ -1,4 +1,4 @@
-# GRIMOIRE DES ERREURS — LE BESTIAIRE COMPLET
+# GRIMOIRE DES ERREURS : LE BESTIAIRE COMPLET
 
 Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies.
 
@@ -12,7 +12,7 @@ Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies
 | **RangeError** | Valeur hors des limites acceptables. | `new Array(-1) // RangeError` | dépasser la jauge de chakra maximale / prendre plus d'argent qu'il n'y a dans la caisse |
 | **SyntaxError** | Code JS malformé, détecté à la phase de parsing. | `eval("if (")` | règle de match mal rédigée / partition musicale avec une note impossible |
 | **URIError** | Encodage/décodage d'URI malformé. | `decodeURIComponent("%")` | URL de transfert corrompue / QR code illisible |
-| **EvalError** | Erreur liée à `eval()` — rare, historique. | héritage JS — évite eval | règle de compétition obsolète / loi abrogée toujours dans les textes |
+| **EvalError** | Erreur liée à `eval()` : rare, historique. | héritage JS : évite eval | règle de compétition obsolète / loi abrogée toujours dans les textes |
 | **AggregateError** | Groupe plusieurs erreurs en une seule. Utilisée par `Promise.any`. | `new AggregateError([e1, e2], "tous KO")` | rapport d'incidents multiple / synthèse post-match de toutes les blessures |
 | **Custom Error** | Sous-classe d'Error avec contexte métier supplémentaire. | `class ValidationError extends Error {}` | carton rouge avec rapport détaillé / alerte Garo avec coordonnées du Horror |
 | **throw** | Instruction qui lève une exception et interrompt l'exécution courante. | `throw new Error("msg")` | sifflet de l'arbitre / déclenchement de l'alarme de la prison |
@@ -32,10 +32,10 @@ Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies
 | **instanceof** | Teste si un objet est une instance d'une classe (et de ses parents). | `e instanceof ValidationError` | vérifier le grade d'un Chevalier / vérifier le type de carton avant la sanction |
 | **error.name** | Propriété string du nom de la classe d'erreur. À définir explicitement. | `this.name = "ValidationError"` | nom sur le dossier d'incident / identifiant du jutsu dans le registre |
 | **error.message** | Description textuelle de ce qui s'est passé. | `e.message` | description sur le carton / message d'alerte du Conseil |
-| **error.code** | Propriété custom — code HTTP ou code métier attaché à l'erreur. | `this.code = 404` | numéro de règle enfreinte / code de cellule à Fox River |
+| **error.code** | Propriété custom : code HTTP ou code métier attaché à l'erreur. | `this.code = 404` | numéro de règle enfreinte / code de cellule à Fox River |
 | **Catch sélectif** | Ne catcher qu'un type précis d'erreur, relancer les autres. | `if (e instanceof X) { } else throw e` | gérer son propre cas, remonter le reste / Chevalier gère ses Horror, passe les Demons au Conseil |
-| **Global error handler** | Handler process pour les erreurs non catchées — dernier filet. | `process.on("unhandledRejection", ...)` | filet sous le filet / arbitre de secours en cas de défaillance de l'arbitre principal |
-| **Promise.allSettled** | Attend toutes les Promises — succès ou échec — et retourne chaque résultat. | `await Promise.allSettled([...])` | rapport de tous les matchs du week-end, même les annulés / état de tous les Chevaliers en mission |
+| **Global error handler** | Handler process pour les erreurs non catchées : dernier filet. | `process.on("unhandledRejection", ...)` | filet sous le filet / arbitre de secours en cas de défaillance de l'arbitre principal |
+| **Promise.allSettled** | Attend toutes les Promises : succès ou échec : et retourne chaque résultat. | `await Promise.allSettled([...])` | rapport de tous les matchs du week-end, même les annulés / état de tous les Chevaliers en mission |
 | **safeAsync / Result type** | Wrapper qui retourne `{ ok, valeur }` ou `{ ok: false, erreur }` sans throw. | `return { ok: true, valeur: data }` | rapport structuré sans alarme / fiche de mission avec case "statut" plutôt qu'alerte |
 
 ---

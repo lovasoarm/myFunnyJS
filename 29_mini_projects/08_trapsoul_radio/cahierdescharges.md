@@ -55,7 +55,7 @@ $ npx lighthouse http://localhost:3000 --only-categories=performance,accessibili
 - La track en cours change avec le nom, l'artiste, la durée
 - En changeant la langue vers 日本語, tous les labels basculent
 - Tab jusqu'au bouton "Piste suivante" : focus visible, espace pour déclencher
-- Un lecteur d'écran annonce "En lecture : Bryson Tiller — Exchange"
+- Un lecteur d'écran annonce "En lecture : Bryson Tiller : Exchange"
 ```
 
 Ce projet est le seul qui mixe TypeScript, accessibilité, et internationalisation ensemble. Ce n'est pas par accident : en prod, ces trois contraintes arrivent rarement séparément.

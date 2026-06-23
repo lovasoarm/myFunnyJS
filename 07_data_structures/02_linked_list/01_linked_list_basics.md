@@ -61,7 +61,7 @@ Pour atteindre Nami, il faut partir de `head` et suivre les pointeurs. Pas de ra
 
 ---
 
-## 3) APPEND : AJOUTER À LA FIN — O(1)
+## 3) APPEND : AJOUTER À LA FIN : O(1)
 
 ```js
 append(value) {
@@ -98,7 +98,7 @@ O(1) car on a une référence directe vers `tail`. Pas de traversal.
 
 ---
 
-## 4) PREPEND : AJOUTER AU DÉBUT — O(1)
+## 4) PREPEND : AJOUTER AU DÉBUT : O(1)
 
 ```js
 prepend(value) {
@@ -134,7 +134,7 @@ Comparer avec `unshift` sur un tableau : O(1) ici vs O(n) pour un tableau. C'est
 
 ---
 
-## 5) DELETE : SUPPRIMER UN NODE — O(n)
+## 5) DELETE : SUPPRIMER UN NODE : O(n)
 
 Pour supprimer, il faut d'abord trouver le node. Et pour le trouver, il faut traverser depuis `head`. Une fois trouvé, on redirige le pointeur du node précédent.
 
@@ -179,7 +179,7 @@ delete("Nami")
 
 ---
 
-## 6) TRAVERSAL : PARCOURIR TOUTE LA LISTE — O(n)
+## 6) TRAVERSAL : PARCOURIR TOUTE LA LISTE : O(n)
 
 ```js
 print() {

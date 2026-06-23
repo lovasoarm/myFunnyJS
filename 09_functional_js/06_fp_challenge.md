@@ -191,7 +191,7 @@ Pour que ce challenge soit réussi à 10/10 :
 ```
 ✓ Aucun let hors des fonctions
 ✓ Aucune mutation d'objet ou de tableau existant
-✓ Aucun for/while — uniquement map, filter, reduce
+✓ Aucun for/while : uniquement map, filter, reduce
 ✓ Chaque fonction est pure (testable sans mock)
 ✓ calculerScore est curryfiée (coefficients fixés séparément)
 ✓ Le pipeline est assemblé avec pipe

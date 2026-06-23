@@ -227,7 +227,7 @@ const garde3 = { badge: true, shiftActif: true, superviseur: true, alerteActive:
 // garde1 => true, garde2 => true, garde3 => false
 ```
 
-(indice : commence par l'alerte — si elle est active, tout s'arrête là)
+(indice : commence par l'alerte : si elle est active, tout s'arrête là)
 
 ---
 

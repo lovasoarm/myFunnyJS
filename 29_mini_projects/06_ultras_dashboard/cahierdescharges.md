@@ -35,16 +35,16 @@ Ce que tu dois voir tourner à la fin :
 ```
 $ npm run start
 
-[SERVER] Ultras Dashboard — écoute sur le port 4000
-[INGEST] Pipeline prêt — buffer: 0 events
+[SERVER] Ultras Dashboard : écoute sur le port 4000
+[INGEST] Pipeline prêt : buffer: 0 events
 [METRICS] Dashboard http://localhost:4000/metrics
 
 --- (simulation de match lancée) ---
 
-[EVENT] But de Mbappé (32') — xG: 0.73 — possession: 58%
+[EVENT] But de Mbappé (32') : xG: 0.73 : possession: 58%
 [TRACE] req-id: e7f2a1 | ingest -> process -> store -> broadcast | 12ms total
-[ALERT] Latence P99 > 200ms depuis 30s — threshold dépassé
-[SENTRY] Exception capturée : broadcastError — context: { matchId: 'PSG-OM', turn: 67 }
+[ALERT] Latence P99 > 200ms depuis 30s : threshold dépassé
+[SENTRY] Exception capturée : broadcastError : context: { matchId: 'PSG-OM', turn: 67 }
 [METRICS] events_total: 1420 | errors_total: 3 | p99_latency_ms: 187
 
 $ npm test

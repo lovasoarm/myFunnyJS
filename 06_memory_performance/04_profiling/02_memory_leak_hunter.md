@@ -255,7 +255,7 @@ leon.cleanup() // sans ça : leon reste en mémoire tant que alertEmitter existe
 
 ---
 
-## 5) `WeakRef` ET `FinalizationRegistry` — LES OUTILS AVANCÉS
+## 5) `WeakRef` ET `FinalizationRegistry` : LES OUTILS AVANCÉS
 
 Depuis ES2021, JS a des outils pour les caches qui doivent laisser le GC travailler.
 
@@ -277,7 +277,7 @@ function getOrLoad(key, loader) {
 
 // FinalizationRegistry : être notifié quand un objet est collecté
 const registry = new FinalizationRegistry((key) => {
-  console.log(`L'objet associé à "${key}" a été collecté — nettoyage de la Map`)
+  console.log(`L'objet associé à "${key}" a été collecté : nettoyage de la Map`)
   cache.delete(key)
 })
 
@@ -334,7 +334,7 @@ const radio = new RadioTrapSoul()
 // l'app ajoute un listener à chaque fois que l'utilisateur change de page
 function changerDePage(pageId) {
   radio.onEvent('track-ajoutee', (track) => {
-    console.log(`Page ${pageId} : nouvelle track — ${track.titre}`)
+    console.log(`Page ${pageId} : nouvelle track : ${track.titre}`)
   })
 }
 
@@ -343,7 +343,7 @@ for (let i = 0; i < 50; i++) {
   changerDePage(i)
 }
 
-radio.ajouterTrack({ titre: 'Bryson Tiller — Exchange' })
+radio.ajouterTrack({ titre: 'Bryson Tiller : Exchange' })
 // combien de fois ce log s'affiche ? c'est le bug.
 ```
 

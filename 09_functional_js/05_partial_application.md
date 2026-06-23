@@ -255,7 +255,7 @@ const haaland = { buts: 60, passes: 8, aCL: true }
 
 ---
 
-## EXO 3 : partial vs curry — même résultat, deux chemins
+## EXO 3 : partial vs curry : même résultat, deux chemins
 
 Implémente `filtrerEtTrier(seuil, critere, joueurs)` qui filtre les joueurs avec buts >= seuil, puis les trie par critère.
 

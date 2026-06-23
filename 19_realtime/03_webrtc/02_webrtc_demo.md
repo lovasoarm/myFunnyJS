@@ -1,8 +1,8 @@
-# 02_WEBRTC_DEMO — L'APPEL VIDÉO PEER-TO-PEER
+# 02_WEBRTC_DEMO : L'APPEL VIDÉO PEER-TO-PEER
 
 Les concepts du fichier précédent, maintenant en vrai code.
 On construit un appel vidéo entre deux navigateurs.
-Contexte : Léon et Alfonso de Garo Honoo no Kokuin ont besoin de se coordonner en secret — pas de serveur central pour les données vidéo.
+Contexte : Léon et Alfonso de Garo Honoo no Kokuin ont besoin de se coordonner en secret : pas de serveur central pour les données vidéo.
 
 Ce qu'on construit :
 - un serveur de signaling WebSocket (juste pour coordonner)
@@ -72,7 +72,7 @@ Il reçoit un message et le forward (transfère) au bon pair. C'est tout son rô
 
 ---
 
-## 2) LA CLASSE DE SIGNALING — ISOLER LA COMMUNICATION
+## 2) LA CLASSE DE SIGNALING : ISOLER LA COMMUNICATION
 
 ```js
 // signaling.js — gère la connexion WebSocket de signaling
@@ -124,7 +124,7 @@ class SignalingClient {
 
 ---
 
-## 3) LA CONNEXION WEBRTC — L'APPELANT
+## 3) LA CONNEXION WEBRTC : L'APPELANT
 
 ```js
 // caller.js — le pair qui initie l'appel (Léon)
@@ -138,7 +138,7 @@ class Caller {
     // écouter la réponse de l'autre pair
     this.signaling.on('answer', async ({ answer }) => {
       await this.pc.setRemoteDescription(new RTCSessionDescription(answer));
-      console.log('Answer reçue — connexion en cours...');
+      console.log('Answer reçue : connexion en cours...');
     });
 
     // recevoir et ajouter les ICE candidates de l'autre pair
@@ -223,7 +223,7 @@ class Caller {
 
 ---
 
-## 4) LA CONNEXION WEBRTC — LE RECEVEUR
+## 4) LA CONNEXION WEBRTC : LE RECEVEUR
 
 ```js
 // callee.js — le pair qui reçoit l'appel (Alfonso)
@@ -300,7 +300,7 @@ class Callee {
 
 ---
 
-## 5) LE DATACHANNEL — DONNÉES PEER-TO-PEER SANS SERVEUR
+## 5) LE DATACHANNEL : DONNÉES PEER-TO-PEER SANS SERVEUR
 
 `RTCDataChannel` c'est une WebSocket entre les deux pairs, sans passer par le serveur.
 Même connexion P2P que la vidéo. Zéro serveur dans la boucle pour les messages.
@@ -314,8 +314,8 @@ Léon                         Alfonso
 ```
 
 Deux règles critiques :
-1. Créer le DataChannel **avant** `createOffer()` — sinon il n'est pas dans le SDP et Alfonso ne reçoit jamais `ondatachannel`
-2. Vérifier `readyState === 'open'` avant d'envoyer — exactement comme `readyState === 1` pour les WebSockets
+1. Créer le DataChannel **avant** `createOffer()` : sinon il n'est pas dans le SDP et Alfonso ne reçoit jamais `ondatachannel`
+2. Vérifier `readyState === 'open'` avant d'envoyer : exactement comme `readyState === 1` pour les WebSockets
 
 ```js
 // les états possibles d'un DataChannel
@@ -323,25 +323,25 @@ Deux règles critiques :
 
 dataChannel.onopen = () => {
   // maintenant on peut envoyer
-  dataChannel.send('Canal sécurisé ouvert — Garo est en route');
+  dataChannel.send('Canal sécurisé ouvert : Garo est en route');
 };
 
 dataChannel.onclose = () => {
-  console.log('Canal fermé — appel terminé');
+  console.log('Canal fermé : appel terminé');
 };
 ```
 
 ---
 
-## 6) LES ÉTATS DE CONNEXION ICE — CE QU'ILS SIGNIFIENT
+## 6) LES ÉTATS DE CONNEXION ICE : CE QU'ILS SIGNIFIENT
 
 ```
 new          --> connexion créée, pas encore démarrée
 checking     --> test des ICE candidates en cours
 connected    --> connexion établie (tous les tests réussis)
 completed    --> meilleure route sélectionnée
-disconnected --> perte temporaire — peut revenir à "connected"
-failed       --> connexion impossible — recommencer depuis zéro
+disconnected --> perte temporaire : peut revenir à "connected"
+failed       --> connexion impossible : recommencer depuis zéro
 closed       --> connexion fermée volontairement
 ```
 
@@ -358,7 +358,7 @@ this.pc.oniceconnectionstatechange = () => {
 
   if (state === 'disconnected') {
     // temporaire : attendre quelques secondes avant de conclure
-    console.log('Déconnexion temporaire — attente...');
+    console.log('Déconnexion temporaire : attente...');
   }
 };
 ```
@@ -439,7 +439,7 @@ this.pc.oniceconnectionstatechange = () => {
 
 Un appel WebRTC c'est deux parties : le signaling (ton serveur WebSocket qui transporte SDP et ICE candidates) et la connexion P2P (le navigateur qui gère tout après).
 Le code se décompose en quatre responsabilités : `SignalingClient` (transport des messages), `Caller`/`Callee` (logique de connexion), `RTCDataChannel` (données texte P2P), et la page HTML (media et UI).
-Deux règles qui sauvent tout : créer le DataChannel avant `createOffer()`, et ne jamais ignorer les erreurs `addIceCandidate()` — elles cassent la connexion silencieusement.
+Deux règles qui sauvent tout : créer le DataChannel avant `createOffer()`, et ne jamais ignorer les erreurs `addIceCandidate()` : elles cassent la connexion silencieusement.
 Ce qui rate le plus souvent en prod : le TURN manquant pour les NATs symétriques (20% des utilisateurs qui voient `failed` sans comprendre pourquoi).
 
 ---
@@ -456,7 +456,7 @@ Implémente une fonction qui affiche toutes les 2 secondes :
 - le round-trip time (temps aller-retour des paquets)
 
 Contrainte : utiliser uniquement `getStats()`, pas de bibliothèque externe.
-(Indice : `getStats()` retourne une `Promise<RTCStatsReport>` — itérer les entries avec `.forEach()`, filtrer par `type === 'inbound-rtp'` et `type === 'outbound-rtp'`)
+(Indice : `getStats()` retourne une `Promise<RTCStatsReport>` : itérer les entries avec `.forEach()`, filtrer par `type === 'inbound-rtp'` et `type === 'outbound-rtp'`)
 
 ---
 
@@ -466,7 +466,7 @@ La connexion vidéo peut tomber. Mais le DataChannel doit rester ouvert.
 Implémente un système de "heartbeat DataChannel" :
 - Léon envoie `{ type: 'ping', ts: Date.now() }` toutes les 5 secondes via le DataChannel
 - Alfonso répond `{ type: 'pong', ts: Date.now(), latency: ... }` avec la latence calculée
-- si Léon ne reçoit pas de pong dans les 10 secondes : logger `'DataChannel inactif — vérifier la connexion'`
+- si Léon ne reçoit pas de pong dans les 10 secondes : logger `'DataChannel inactif : vérifier la connexion'`
 
 Contrainte : ne pas toucher à la logique vidéo, uniquement le DataChannel.
 (Indice : `setInterval` pour les pings, `clearTimeout`/`setTimeout` pour le timeout de pong)

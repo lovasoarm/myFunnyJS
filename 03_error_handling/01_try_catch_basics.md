@@ -1,8 +1,8 @@
-# TRY/CATCH — CE QU'IL ATTRAPE ET CE QU'IL LAISSE FILER
+# TRY/CATCH : CE QU'IL ATTRAPE ET CE QU'IL LAISSE FILER
 
 Le code casse. Toujours. La question c'est : est-ce que toi tu le vois avant l'utilisateur ?
 
-`try/catch` c'est ton filet de sécurité. Mais il a des trous. Et si tu sais pas où ils sont, les bugs tombent en silence — en prod, la nuit, pendant un match décisif.
+`try/catch` c'est ton filet de sécurité. Mais il a des trous. Et si tu sais pas où ils sont, les bugs tombent en silence : en prod, la nuit, pendant un match décisif.
 
 Ce fichier : comprendre exactement ce que `try/catch` intercepte, ce qu'il loupe, et pourquoi.
 
@@ -28,9 +28,9 @@ try {
 
 Trois blocs. Trois rôles précis :
 
-- `try` : la zone de danger — ce qui peut lever une erreur
-- `catch` : le plan B — ce qu'on fait quand ça casse
-- `finally` : le plan de nettoyage — il tourne quoi qu'il arrive
+- `try` : la zone de danger : ce qui peut lever une erreur
+- `catch` : le plan B : ce qu'on fait quand ça casse
+- `finally` : le plan de nettoyage : il tourne quoi qu'il arrive
 
 Le `finally` est optionnel. Mais quand tu as des ressources à libérer (connexion DB, fichier ouvert), c'est là que ça va.
 
@@ -302,7 +302,7 @@ try {
 
 ## EXO 3 : LE FINALLY QUI NETTOIE
 
-Simule l'ouverture d'une "connexion" (un objet avec `{ ouverte: true }`), exécute une opération qui peut échouer, et assure-toi que la connexion est toujours fermée (`ouverte: false`) — succès ou échec.
+Simule l'ouverture d'une "connexion" (un objet avec `{ ouverte: true }`), exécute une opération qui peut échouer, et assure-toi que la connexion est toujours fermée (`ouverte: false`) : succès ou échec.
 
 Teste avec une opération qui réussit et une qui explose.
 
@@ -314,6 +314,6 @@ Teste avec une opération qui réussit et une qui explose.
 
 L'objet `error` a trois propriétés essentielles : `name`, `message`, `stack`. La `stack` c'est ton GPS de debug.
 
-`finally` tourne toujours — c'est là que vont les nettoyages garantis.
+`finally` tourne toujours : c'est là que vont les nettoyages garantis.
 
 Si une erreur n'est pas de ton ressort : `throw e`. Ne jamais avaler silencieusement ce qu'on ne comprend pas.

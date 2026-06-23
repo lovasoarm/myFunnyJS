@@ -1,6 +1,6 @@
 # Protéger ton API sans punir les gens honnêtes
 
-Ton endpoint `/login` peut recevoir 5 tentatives par seconde d'un seul user qui a oublié son mot de passe, ou 5000 tentatives par seconde d'un bot qui essaie de bruteforcer (deviner) un mot de passe. Rate limiting (limitation de débit) c'est la règle qui dit "passé un certain nombre de requêtes dans un temps donné, je bloque ou je ralentis".
+T-Bag essaie de bruteforcer l'API de Fox River : 5000 tentatives par seconde sur `/login`. Sans protection, il fait tomber le serveur et coupe l'accès à TOUS les détenus : Michael Scofield compris, qui avait besoin de cet endpoint pour sa vraie mission. Rate limiting (limitation de débit) c'est la règle qui dit "passé un certain nombre de requêtes dans un temps donné, je bloque ou je ralentis" : les légitimes restent, l'abus trinque.
 
 Pourquoi ça compte : sans rate limiting, un seul client (malveillant ou juste buggé, genre une boucle infinie côté front) peut saturer ton serveur à lui seul, et empêcher TOUS les autres users d'accéder au service. C'est littéralement une porte ouverte au déni de service (DoS : denial of service).
 
@@ -172,14 +172,14 @@ Avant, le rate limiting se codait souvent à la main, en mémoire locale du proc
 
 ## EXERCICES
 
-**EXO 1 : Calibre tes limites**
-Pour une API publique, propose une limite (nombre + fenêtre de temps) et l'algorithme (fixed window, sliding window, token bucket) pour : (a) `/login`, (b) `/search`, (c) `/upload-photo` (opération lourde), (d) un webhook reçu d'un partenaire de confiance. Justifie chaque choix. (20 minutes)
+**EXO 1 : Calibre les limites de la prison**
+Michael Scofield a besoin que l'API de Fox River soit accessible sans qu'aucun gardien ne détecte une activité suspecte. Propose une limite (nombre + fenêtre de temps) et l'algorithme (fixed window, sliding window, token bucket) pour : (a) `/login`, (b) `/search` (recherche dans les plans), (c) `/upload-photo` (transfert de documents lourds), (d) un webhook reçu du réseau Bagwell (partenaire de confiance). Justifie chaque choix. (20 minutes)
 
-**EXO 2 : Le bug du fixed window**
-Démontre avec un exemple chiffré précis (comme dans la section 2) comment une limite de "1000 requêtes par heure" en fixed window peut laisser passer 2000 requêtes en seulement 2 minutes. (10 minutes)
+**EXO 2 : Le bug du fixed window dans la prison**
+Démontre avec un exemple chiffré précis (comme dans la section 2) comment une limite de "1000 requêtes par heure" en fixed window peut laisser passer 2000 requêtes en seulement 2 minutes : exactement le genre de pic que les détecteurs d'anomalies de Fox River repéreraient. (10 minutes)
 
-**EXO 3 : Le piège du NAT**
-Une appli B2B impose une limite stricte par IP. Un client se plaint que "50 personnes de mon équipe sont bloquées alors qu'on vient juste de commencer à utiliser le produit". Diagnostique le problème exact et propose la correction. (15 minutes)
+**EXO 3 : Le piège du NAT dans l'équipe de Michael**
+L'API impose une limite stricte par IP. T-Bag se plaint : "50 membres de mon réseau sont bloqués alors qu'on vient juste de commencer à utiliser le système." Tout le réseau de T-Bag passe par un seul point NAT (un seul routeur, donc une seule IP sortante). Diagnostique le problème exact et propose la correction : rate limit par user token plutôt que par IP. (15 minutes)
 
 ---
 

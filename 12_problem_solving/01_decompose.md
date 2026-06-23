@@ -145,7 +145,7 @@ Décompose ce système en 5 à 7 modules indépendants.
 Pour chaque module : une responsabilité, une entrée, une sortie.
 Dessine les dépendances entre modules (format `A --> B`).
 
-*(indice : commence par "qu'est-ce que ce système doit faire ?" — pas "comment")*
+*(indice : commence par "qu'est-ce que ce système doit faire ?" : pas "comment")*
 
 ---
 

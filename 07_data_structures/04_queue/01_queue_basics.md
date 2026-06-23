@@ -2,7 +2,7 @@
 
 T'as déjà regardé un match et vu les ultras faire la queue pour rentrer dans le stade ?
 Le premier en ligne, c'est le premier à entrer. Pas de passe-droit. Pas de favoritisme.
-C'est ça une queue : **FIFO — First In, First Out**.
+C'est ça une queue : **FIFO : First In, First Out**.
 
 En dev, tu l'utilises partout sans le savoir :
 les requêtes HTTP qui attendent leur tour, les jobs asynchrones, les événements du navigateur, le BFS sur un graphe.
@@ -13,8 +13,8 @@ Si tu ne maîtrises pas la queue, t'es un dev qui improvise.
 ## 1) LA STRUCTURE : DEUX EXTRÉMITÉS, UNE SEULE DIRECTION
 
 Une queue a deux bouts :
-- **tail (arrière)** : là où les éléments rentrent — c'est `enqueue`
-- **head (avant)** : là où les éléments sortent — c'est `dequeue`
+- **tail (arrière)** : là où les éléments rentrent : c'est `enqueue`
+- **head (avant)** : là où les éléments sortent : c'est `dequeue`
 
 ```
 enqueue -->  [ D | C | B | A ]  --> dequeue
@@ -186,7 +186,7 @@ Règle simple :
 
 ## 5) LE RING BUFFER : LA QUEUE QUI TOURNE
 
-Quand tu connais la taille max à l'avance, le ring buffer donne du O(1) strict — pas de réallocation, pas de shift, pas de noeuds dynamiques.
+Quand tu connais la taille max à l'avance, le ring buffer donne du O(1) strict : pas de réallocation, pas de shift, pas de noeuds dynamiques.
 
 L'idée : un tableau fixe avec deux pointeurs (`head`, `tail`) qui avancent en boucle.
 
@@ -303,6 +303,6 @@ Implémenter `EventReplay` :
 
 Une queue c'est FIFO : le premier entré est le premier sorti.
 Linked list pour la queue : enqueue et dequeue en O(1), pas de réindexage.
-Tableau pour les cas simples : acceptable, mais `shift()` est O(n) — à surveiller.
+Tableau pour les cas simples : acceptable, mais `shift()` est O(n) : à surveiller.
 Ring buffer quand la taille max est connue : O(1) strict, zéro allocation dynamique.
 Le bug classique : oublier de nullifier `tail` quand la queue se vide.

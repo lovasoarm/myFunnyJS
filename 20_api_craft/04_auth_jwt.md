@@ -35,6 +35,35 @@ JWT n'est PAS chiffré : le payload est lisible par n'importe qui.
 JWT est SIGNÉ : le payload ne peut pas être modifié sans invalider la signature.
 Ne jamais mettre de données sensibles dans le payload (mot de passe, numéro de carte).
 
+```
+COMMENT LE SERVEUR SIGNE ET VÉRIFIE
+
+SIGN (à la création du token) :
+header_b64 + "." + payload_b64
+    |
+    v
+HMAC-SHA256(header_b64 + "." + payload_b64, SECRET_KEY)
+    |
+    v
+signature_b64
+    |
+    v
+token = header_b64 + "." + payload_b64 + "." + signature_b64
+
+VERIFY (à chaque requête protégée) :
+token reçu --> split sur "."
+    |
+    v
+recalcule HMAC-SHA256(header + "." + payload, SECRET_KEY)
+    |
+    v
+compare avec la signature reçue
+    |
+    +---> match    --> token valide, check exp --> lire le payload
+    +---> no match --> token falsifié, rejeter (401)
+    +---> exp < now --> token expiré, rejeter (401) --> client doit refresh
+```
+
 ---
 
 ## 2) LE CYCLE COMPLET : LOGIN → ACCESS → REFRESH

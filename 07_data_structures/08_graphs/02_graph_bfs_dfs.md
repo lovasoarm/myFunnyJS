@@ -143,7 +143,7 @@ A --> B --> D (cul-de-sac, revient) --> E (cul-de-sac, revient) --> C --> F
 Ordre de visite : A, B, D, E, C, F
 ```
 
-Outil : une stack (LIFO) — ou simplement la call stack via récursion.
+Outil : une stack (LIFO) : ou simplement la call stack via récursion.
 
 ```js
 // version récursive

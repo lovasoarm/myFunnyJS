@@ -315,7 +315,7 @@ Définis :
 ## EXO 2 : le classement du Ballon d'Or
 Le vote du Ballon d'Or a des joueurs avec `id`, `name`, `nationality`, `goals`, `assists`, `votesReceived`, `salary`. Le classement public affiche seulement `name`, `nationality`, `votesReceived`. L'admin voit tout.
 
-Crée les types `PublicRanking` et `AdminView` en utilisant les utility types — sans réécrire les propriétés manuellement.
+Crée les types `PublicRanking` et `AdminView` en utilisant les utility types : sans réécrire les propriétés manuellement.
 
 ## EXO 3 : le cache de Trapsoul Radio
 La radio a des tracks avec `id`, `title`, `artist`, `duration`, `fileUrl`, `licenseKey`, `uploadedBy`. Le cache public ne stocke jamais `fileUrl` ni `licenseKey`. Le cache admin stocke tout en readonly.
@@ -333,4 +333,4 @@ Le camp a des événements de type `"attack" | "scavenge" | "rest" | "medical" |
 
 # RÉSUMÉ
 
-`Partial` rend tout optionnel. `Required` rend tout obligatoire. `Pick` garde certaines clés. `Omit` en supprime. `Record` crée des dictionnaires typés. `Readonly` bloque la mutation au niveau des types. `Extract`/`Exclude` filtrent les unions. `ReturnType`/`Parameters` introspectent les fonctions. Ils se combinent : `Readonly<Pick<T, K>>`, `Partial<Omit<T, "id">>`. Le piège : `Partial` est shallow — il ne descend pas dans les objets imbriqués.
+`Partial` rend tout optionnel. `Required` rend tout obligatoire. `Pick` garde certaines clés. `Omit` en supprime. `Record` crée des dictionnaires typés. `Readonly` bloque la mutation au niveau des types. `Extract`/`Exclude` filtrent les unions. `ReturnType`/`Parameters` introspectent les fonctions. Ils se combinent : `Readonly<Pick<T, K>>`, `Partial<Omit<T, "id">>`. Le piège : `Partial` est shallow : il ne descend pas dans les objets imbriqués.

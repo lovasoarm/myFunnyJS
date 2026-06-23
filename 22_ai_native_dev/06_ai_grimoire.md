@@ -166,20 +166,20 @@ Ollama              -->  LLM en local : aucun token envoyé à l'extérieur
 ## NIVEAUX DE MATURITÉ AI-NATIVE
 
 ```
-NIVEAU 1 — Utilisateur
+NIVEAU 1 : Utilisateur
   Copie-colle. Ne lit pas. Ça marche jusqu'à ce que ça casse. T-Bag qui suit le plan de Michael.
 
-NIVEAU 2 — Conscient
+NIVEAU 2 : Conscient
   Lit le code. Comprend ce qui est généré. Corrige les red flags évidents.
 
-NIVEAU 3 — Structuré
+NIVEAU 3 : Structuré
   Prompt depuis des specs. Valide avec Zod. Écrit des tests additionnels.
 
-NIVEAU 4 — Partenaire
+NIVEAU 4 : Partenaire
   Utilise l'IA comme sparring partner. La challenge. Arbitre entre ses propositions.
   Sait quand ne pas lui faire confiance. Michael Scofield avec son plan.
 
-NIVEAU 5 — Architecte
+NIVEAU 5 : Architecte
   Conçoit des pipelines LLM complets avec validation, monitoring, fallbacks.
   Comprend les limites de chaque modèle. Prend des décisions d'architecture informées.
   Kakashi qui calibre l'équipe selon la mission.

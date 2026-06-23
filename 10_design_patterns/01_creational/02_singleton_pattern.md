@@ -54,7 +54,7 @@ class LabManager {
 
   addBatch(purity, quantity) {
     this.batches.push({ purity, quantity, timestamp: Date.now() })
-    console.log(`Nouveau lot : ${purity}% — ${quantity}kg`)
+    console.log(`Nouveau lot : ${purity}% : ${quantity}kg`)
   }
 
   getStatus() {

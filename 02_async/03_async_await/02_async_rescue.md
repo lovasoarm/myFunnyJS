@@ -32,7 +32,7 @@ async function getKnight() {
 ```
 
 Le `catch` attrape n'importe quelle erreur qui se passe dans le `try` :
-rejets de Promise, erreurs réseau, erreurs de parsing JSON — tout.
+rejets de Promise, erreurs réseau, erreurs de parsing JSON : tout.
 
 ---
 

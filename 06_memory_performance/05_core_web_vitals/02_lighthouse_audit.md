@@ -310,7 +310,7 @@ Opportunities :
 
 ## EXO 3 : DIAGNOSTIC D'IMAGE
 
-Lighthouse te dit : "Properly size images — potential savings: 1.4s" sur une page qui affiche des cartes de joueurs.
+Lighthouse te dit : "Properly size images : potential savings: 1.4s" sur une page qui affiche des cartes de joueurs.
 
 La page contient :
 ```html

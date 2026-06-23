@@ -1,4 +1,4 @@
-# CUSTOM ERRORS — LES ERREURS QUI RACONTENT UNE HISTOIRE
+# CUSTOM ERRORS : LES ERREURS QUI RACONTENT UNE HISTOIRE
 
 Une `Error` générique c'est comme un carton rouge sans explication : tu sais que c'est mauvais, tu sais pas pourquoi.
 
@@ -34,8 +34,8 @@ try {
 ```
 
 Deux règles :
-1. `super(message)` obligatoire — sinon le message est vide et la stack trace est cassée
-2. `this.name = "NomDeLaClasse"` obligatoire — sinon tu perds le nom en catch
+1. `super(message)` obligatoire : sinon le message est vide et la stack trace est cassée
+2. `this.name = "NomDeLaClasse"` obligatoire : sinon tu perds le nom en catch
 
 ---
 
@@ -353,6 +353,6 @@ Une custom error = `extends Error` + `super(message)` + `this.name` + propriét�
 
 La hiérarchie permet le catch par niveau : `instanceof ValidationError` vs `instanceof AppError`.
 
-Les erreurs ne se sérialisent pas seules en JSON — tu construis une fonction de sérialisation explicite.
+Les erreurs ne se sérialisent pas seules en JSON : tu construis une fonction de sérialisation explicite.
 
 Un log sans contexte, c'est un rapport de match sans les statistiques : tu sais que ça s'est passé, tu sais pas ce qui s'est passé.

@@ -64,7 +64,7 @@ test('write puis read retourne les mêmes données', async () => {
 
 Vert rapidement avec `fs.promises`. Zéro dépendance comme prévu.
 
-## `inventoryService.js` — le premier vrai test rouge du TDD
+## `inventoryService.js` : le premier vrai test rouge du TDD
 
 Red d'abord, volontairement, avant toute implémentation :
 
@@ -87,7 +87,7 @@ test('consume ne mute pas l\'inventaire original', () => {
 
 Ce test a forcé `consume` à retourner un nouvel objet (`{ ...inv, food: { ...inv.food, units: inv.food.units - amount } }`) plutôt que de muter l'inventaire reçu. Cohérent avec la règle du projet : les services ne mutent jamais, ils retournent un nouvel état.
 
-## `guardService.js` — le cas limite du poste vacant
+## `guardService.js` : le cas limite du poste vacant
 
 Test du cas limite 2 du cahier des charges, écrit avant l'implémentation :
 
@@ -112,7 +112,7 @@ test('status affiche les ressources du camp', () => {
 
 Vert une fois le routeur branché correctement. Pas de surprise architecturale ici : le pattern handler/router est direct.
 
-## `threatSimulator.js` (Worker Thread) — la zone de résistance annoncée
+## `threatSimulator.js` (Worker Thread) : la zone de résistance annoncée
 
 ```js
 test('le thread principal reçoit un événement threat du Worker', (done) => {

@@ -2,7 +2,7 @@
 
 TS vérifie les types à la compilation. Mais la data arrive à runtime : depuis une API, un formulaire, un fichier JSON. TS ne peut pas deviner ce que l'API t'envoie vraiment.
 
-Les type guards sont les vérifications que tu fais à runtime pour prouver à TS ce que tu as entre les mains. TS lit ces checks et rétrécit le type dans la branche concernée — c'est ce qu'on appelle le narrowing.
+Les type guards sont les vérifications que tu fais à runtime pour prouver à TS ce que tu as entre les mains. TS lit ces checks et rétrécit le type dans la branche concernée : c'est ce qu'on appelle le narrowing.
 
 C'est le pont entre le monde statique de TS et le monde chaotique du runtime.
 
@@ -313,4 +313,4 @@ Le camp reçoit des events radio de type inconnu (`unknown`). Un event `AttackEv
 
 # RÉSUMÉ
 
-`typeof` pour les primitifs. `instanceof` pour les classes. `in` pour la présence d'une propriété. Les type predicates (`value is Type`) permettent des fonctions de validation custom que TS comprend — si elles retournent `true`, TS rétrécit le type. Les assertion functions (`asserts value is Type`) lancent une erreur si la valeur ne correspond pas, et TS intègre l'assertion pour le code qui suit. Le piège critique : un type predicate qui ment laisse TS croire qu'un type est valide alors qu'il ne l'est pas — les bugs arrivent à runtime, là où TS ne peut plus t'aider.
+`typeof` pour les primitifs. `instanceof` pour les classes. `in` pour la présence d'une propriété. Les type predicates (`value is Type`) permettent des fonctions de validation custom que TS comprend : si elles retournent `true`, TS rétrécit le type. Les assertion functions (`asserts value is Type`) lancent une erreur si la valeur ne correspond pas, et TS intègre l'assertion pour le code qui suit. Le piège critique : un type predicate qui ment laisse TS croire qu'un type est valide alors qu'il ne l'est pas : les bugs arrivent à runtime, là où TS ne peut plus t'aider.

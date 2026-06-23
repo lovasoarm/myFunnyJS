@@ -1,4 +1,4 @@
-# TDD ARENA — LE TEST EN PREMIER, TOUJOURS
+# TDD ARENA : LE TEST EN PREMIER, TOUJOURS
 
 La plupart des devs écrivent du code, puis pensent aux tests.
 TDD inverse ça : t'écris le test d'abord, le code ensuite.
@@ -31,13 +31,13 @@ Chaque nouvelle feature : un nouveau cycle. Chaque bug corrigé : commencer par 
 
 ---
 
-## 2) UN VRAI CYCLE — PAS À PAS
+## 2) UN VRAI CYCLE : PAS À PAS
 
 On va coder un système de vote pour le Ballon d'Or. Pas tout d'un coup : test par test.
 
 ### Cycle 1 : créer un votant
 
-**RED** — le test d'abord :
+**RED** : le test d'abord :
 ```js
 // ballonDor.test.js
 const { creerVotant } = require('./ballonDor')
@@ -52,7 +52,7 @@ it('crée un votant avec son pays', () => {
 
 On lance. Ça échoue. `creerVotant` n'existe pas. **C'est normal. C'est le but.**
 
-**GREEN** — le minimum pour passer :
+**GREEN** : le minimum pour passer :
 ```js
 // ballonDor.js
 function creerVotant(pays, nom) {
@@ -63,7 +63,7 @@ module.exports = { creerVotant }
 
 On lance. Vert.
 
-**REFACTOR** — rien à nettoyer ici. On passe au cycle suivant.
+**REFACTOR** : rien à nettoyer ici. On passe au cycle suivant.
 
 ---
 
@@ -142,7 +142,7 @@ Dev avec TDD : pense à l'interface → écrit le test → code → interface pr
 
 Un bug signalé : "le vote est accepté même si le joueur est vide."
 
-**RED** — reproduis le bug d'abord :
+**RED** : reproduis le bug d'abord :
 ```js
 it('rejette un vote avec un joueur vide', () => {
   const votant = creerVotant('France', 'Jean')

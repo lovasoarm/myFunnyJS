@@ -6,7 +6,7 @@ Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel d
 
 ---
 
-## 1) LCP — LARGEST CONTENTFUL PAINT
+## 1) LCP : LARGEST CONTENTFUL PAINT
 
 ### Ce que ça mesure
 
@@ -85,7 +85,7 @@ observer.observe({ type: 'largest-contentful-paint', buffered: true })
 
 ---
 
-## 2) INP — INTERACTION TO NEXT PAINT
+## 2) INP : INTERACTION TO NEXT PAINT
 
 ### Ce que ça mesure
 
@@ -182,7 +182,7 @@ observer.observe({ type: 'event', durationThreshold: 16, buffered: true })
 
 ---
 
-## 3) CLS — CUMULATIVE LAYOUT SHIFT
+## 3) CLS : CUMULATIVE LAYOUT SHIFT
 
 ### Ce que ça mesure
 
@@ -315,14 +315,14 @@ import { onLCP, onINP, onCLS } from 'web-vitals'
 
 function sendToAnalytics({ name, value, rating }) {
   // rating : "good" | "needs-improvement" | "poor"
-  console.log(`${name}: ${Math.round(value)}ms — ${rating}`)
+  console.log(`${name}: ${Math.round(value)}ms : ${rating}`)
 }
 
 onLCP(sendToAnalytics)
 onINP(sendToAnalytics)
 onCLS(({ name, value, rating }) => {
   // CLS est un score sans unité, pas une durée
-  console.log(`${name}: ${value.toFixed(3)} — ${rating}`)
+  console.log(`${name}: ${value.toFixed(3)} : ${rating}`)
 })
 ```
 
@@ -366,7 +366,7 @@ Identifie les 4 sources de CLS. Corrige-les une par une. Mesure le CLS avant et 
 - affiche un résumé avec le rating de chaque métrique (`good` / `needs-improvement` / `poor`)
 - loggue une alerte si au moins une métrique est dans le rouge
 
-(Sans utiliser la lib `web-vitals` — uniquement `PerformanceObserver` natif)
+(Sans utiliser la lib `web-vitals` : uniquement `PerformanceObserver` natif)
 
 ---
 

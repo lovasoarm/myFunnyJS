@@ -20,7 +20,7 @@ Avec les fondamentaux, tu sais à l'avance ce qu'une ligne va faire avant de l'e
 
 Le dev qui ne maîtrise pas les fondamentaux souffre en silence pendant des mois. Il code, ça marche en dev, ça casse en prod sur un cas qu'il n'avait pas prévu : deux variables qui pointent vers le même objet, une fonction qui ferme sur une variable de boucle et capture toujours la même valeur, une coercition de type qui transforme `"5" + 3` en `"53"` au lieu de `8`.
 
-Le pire : ces bugs ne crashent pas toujours. Ils corrompent silencieusement une donnée. Imagine un moteur de combat comme celui du `01_rasengan_engine` : les stats de chakra d'un ninja mutent par accident parce que deux fonctions partagent la même référence. Le bug n'explose pas — il calcule en silence des dégâts faux pendant 3 tours.
+Le pire : ces bugs ne crashent pas toujours. Ils corrompent silencieusement une donnée. Imagine un moteur de combat comme celui du `01_rasengan_engine` : les stats de chakra d'un ninja mutent par accident parce que deux fonctions partagent la même référence. Le bug n'explose pas : il calcule en silence des dégâts faux pendant 3 tours.
 
 L'équipe entière souffre aussi. Un dev qui ne comprend pas le scope (portée d'une variable : l'endroit où elle est visible et accessible) écrit du code qui fuit des variables globales, qui pollue des modules, qui rend chaque review plus longue parce que personne ne sait si telle variable est safe à modifier.
 

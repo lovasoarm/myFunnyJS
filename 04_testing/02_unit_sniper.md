@@ -40,9 +40,9 @@ const result = formatPlayerName('lionel', 'messi', 10)
 
 ---
 
-## 2) ANATOMIE D'UN UNIT TEST — LES 3 PHASES
+## 2) ANATOMIE D'UN UNIT TEST : LES 3 PHASES
 
-Tout bon test unitaire suit ce pattern : **AAA — Arrange, Act, Assert**
+Tout bon test unitaire suit ce pattern : **AAA : Arrange, Act, Assert**
 
 ```js
 // ARRANGE : prépare les données

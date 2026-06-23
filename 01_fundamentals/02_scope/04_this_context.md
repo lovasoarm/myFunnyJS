@@ -53,4 +53,4 @@ Règle : dans un callback passé à `setTimeout`, `addEventListener`, `map`, etc
 
 ---
 
-> Pour la suite complète : `bind`, `call`, `apply`, le fonctionnement interne du `this` dans les classes, les pièges avec le prototype — tout ça est dans **`28_oop_js/04_this_keyword_rules.md`**. Tu reviendras ici après ce module et tout fera sens.
+> Pour la suite complète : `bind`, `call`, `apply`, le fonctionnement interne du `this` dans les classes, les pièges avec le prototype : tout ça est dans **`28_oop_js/04_this_keyword_rules.md`**. Tu reviendras ici après ce module et tout fera sens.

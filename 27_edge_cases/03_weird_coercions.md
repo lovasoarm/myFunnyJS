@@ -110,7 +110,7 @@ if (input == false) {   // true — et là tu penses avoir catché le cas "pas d
 
 // Fix : toujours === en prod
 if (input === "") {
-  console.log("input vide — exactement ça et rien d'autre")
+  console.log("input vide : exactement ça et rien d'autre")
 }
 ```
 
@@ -161,7 +161,7 @@ undefined
 NaN
 ```
 
-Tout le reste est **truthy** — y compris des choses surprenantes :
+Tout le reste est **truthy** : y compris des choses surprenantes :
 ```js
 if ([])    // true  — un tableau vide est truthy
 if ({})    // true  — un objet vide est truthy

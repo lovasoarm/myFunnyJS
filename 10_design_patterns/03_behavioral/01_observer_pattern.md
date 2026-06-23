@@ -325,6 +325,6 @@ Observer découple le Publisher de ses Subscribers : la source n'a pas besoin de
 L'implémentation JS de base : `Map<event, callback[]>` + méthodes `on/off/emit`.
 Le pattern réactif avancé (store + watch) est la base de Vue, MobX, les signals.
 Le piège systématique : oublier de se désabonner crée des memory leaks.
-En prod : partout où un changement d'état doit déclencher plusieurs réactions indépendantes — c'est Observer.
+En prod : partout où un changement d'état doit déclencher plusieurs réactions indépendantes : c'est Observer.
 
 **Note : 10/10**

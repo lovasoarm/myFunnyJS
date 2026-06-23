@@ -1,4 +1,4 @@
-# MICROSERVICES : DÉCOUPER OU SOUFFRIR — MAIS PAS N'IMPORTE COMMENT
+# MICROSERVICES : DÉCOUPER OU SOUFFRIR : MAIS PAS N'IMPORTE COMMENT
 
 La prison de Fox River était une architecture monolithique.
 Tout était dans le même bâtiment : les cellules, la cuisine, l'administration, le couloir de la mort.
@@ -284,6 +284,6 @@ Ajoute un middleware de logging qui log (enregistre) chaque requête avec son ti
 
 Microservices n'est pas une architecture pour être moderne. C'est un outil pour des problèmes spécifiques.
 Le vrai problème que ça résout : des équipes qui se bloquent mutuellement et des services avec des besoins radicalement différents.
-Le piège principal : croire que découper résout les problèmes de code. Non — ça distribue les problèmes.
+Le piège principal : croire que découper résout les problèmes de code. Non : ça distribue les problèmes.
 Un monolithe propre avec des modules découplés vaut mieux que des microservices mal conçus.
 La règle qui sauve : une DB par service, jamais partagée. Sans ça, c'est un monolithe déguisé.

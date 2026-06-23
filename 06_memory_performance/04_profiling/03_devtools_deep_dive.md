@@ -103,13 +103,13 @@ function genererHeatmap(events) {
 Dans le flamegraph, tu verrais :
 
 ```
-[mettreAJourDashboard — 117ms]
-  [calculerStats — 30ms]  [genererHeatmap — 80ms]  [trierJoueurs — 5ms]
+[mettreAJourDashboard : 117ms]
+  [calculerStats : 30ms]  [genererHeatmap : 80ms]  [trierJoueurs : 5ms]
                             [estDansZone x 10000]
 ```
 
 La heatmap prend 80ms sur 117ms. Et c'est `estDansZone` appelé 10 000 fois.
-Solution : O(n) au lieu de O(n²) — trier les events par zone une fois, pas à chaque zone.
+Solution : O(n) au lieu de O(n²) : trier les events par zone une fois, pas à chaque zone.
 
 ```js
 function genererHeatmapOptimisee(events) {
@@ -125,7 +125,7 @@ function genererHeatmapOptimisee(events) {
 }
 ```
 
-Résultat dans DevTools après : `genererHeatmap — 4ms`.
+Résultat dans DevTools après : `genererHeatmap : 4ms`.
 
 ---
 
@@ -234,11 +234,11 @@ function mettreAJourCarteJoueurs(joueurs) {
 Voici une représentation simplifiée d'un flamegraph. Réponds aux questions.
 
 ```
-[handleMatchEvent — 143ms]
-  [mettreAJourStats — 12ms]  [calculerXG — 118ms]           [logEvent — 2ms]
-                               [evaluerTirs x 200 — 115ms]
-                                 [distanceAuBut — 80ms]
-                                   [Math.sqrt x 200 — 78ms]
+[handleMatchEvent : 143ms]
+  [mettreAJourStats : 12ms]  [calculerXG : 118ms]           [logEvent : 2ms]
+                               [evaluerTirs x 200 : 115ms]
+                                 [distanceAuBut : 80ms]
+                                   [Math.sqrt x 200 : 78ms]
 ```
 
 Questions :

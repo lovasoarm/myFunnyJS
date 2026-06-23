@@ -1,4 +1,4 @@
-# CONTRACT TESTING — LA PAIX ENTRE LES ÉQUIPES
+# CONTRACT TESTING : LA PAIX ENTRE LES ÉQUIPES
 
 Deux équipes. Deux services. L'équipe A construit l'API. L'équipe B la consomme.
 L'équipe A refactorise un endpoint. Elle ne prévient pas. L'équipe B déploie. Ça explose en prod.
@@ -8,7 +8,7 @@ Le contract testing le résout avant que le problème arrive.
 
 ---
 
-## 1) LE PROBLÈME — POURQUOI L'INTÉGRATION CLASSIQUE NE SUFFIT PAS
+## 1) LE PROBLÈME : POURQUOI L'INTÉGRATION CLASSIQUE NE SUFFIT PAS
 
 Dans une architecture avec plusieurs services, chaque service a ses propres tests.
 Mais qui vérifie que le format que le service A retourne est bien celui que le service B attend ?
@@ -43,7 +43,7 @@ C'est une inversion de responsabilité importante : **c'est le consommateur qui 
 
 ---
 
-## 3) CONCEPT SANS PACT — COMPRENDRE LA MÉCANIQUE
+## 3) CONCEPT SANS PACT : COMPRENDRE LA MÉCANIQUE
 
 Avant d'installer un framework, comprendre ce qu'on fait.
 
@@ -81,7 +81,7 @@ Si la réponse ne matche pas : le provider sait qu'il a cassé quelque chose pou
 
 ---
 
-## 4) IMPLÉMENTER LE CONTRACT TESTING AVEC JEST — SANS FRAMEWORK EXTERNE
+## 4) IMPLÉMENTER LE CONTRACT TESTING AVEC JEST : SANS FRAMEWORK EXTERNE
 
 Pour des projets JS simples, on peut valider des contrats sans Pact.
 
@@ -128,7 +128,7 @@ Si l'équipe A renomme `name` en `fullName` : ce test casse immédiatement, avan
 
 ---
 
-## 5) PACT — LE FRAMEWORK POUR LES ÉQUIPES SÉRIEUSES
+## 5) PACT : LE FRAMEWORK POUR LES ÉQUIPES SÉRIEUSES
 
 Pour des architectures complexes avec plusieurs consumers par provider, [Pact](https://pact.io) automatise tout ça.
 

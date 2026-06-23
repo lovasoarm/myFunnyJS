@@ -28,7 +28,7 @@ Pas de serveur web. Le camp se gère depuis la ligne de commande. Playwright tes
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code existe déjà — `legacy/campV1.js`. Il a été écrit en pleine nuit, sous la pression des morts-vivants. C'est du spaghetti. Une seule fonction de 300 lignes. Des variables globales partout. Zéro test. Personne ne sait ce qu'il fait vraiment.
+Le groupe de Rick Grimes a besoin d'un système de gestion de camp : inventaire de ressources, rotations de garde, rations alimentaires, niveaux de sécurité par périmètre. Le code existe déjà : `legacy/campV1.js`. Il a été écrit en pleine nuit, sous la pression des morts-vivants. C'est du spaghetti. Une seule fonction de 300 lignes. Des variables globales partout. Zéro test. Personne ne sait ce qu'il fait vraiment.
 
 Ton boulot : ne jamais ajouter de feature avant d'avoir des tests. Refactorer sans rien casser. Transformer ce camp en forteresse de code propre.
 
@@ -36,7 +36,7 @@ Ce que tu dois voir tourner à la fin :
 
 ```
 $ node src/cli.js status
-[CAMP RICK] Alexandria — jour 47
+[CAMP RICK] Alexandria : jour 47
 [SECURITE] Périmètre nord : OK | Périmètre sud : ALERTE (niveau 3)
 [INVENTAIRE] Nourriture : 14 jours | Munitions : 847 | Médicaments : CRITIQUE (3 unités)
 [GARDES] Rotation suivante dans 4h | Poste A : Daryl | Poste B : Michonne
@@ -51,7 +51,7 @@ $ node src/cli.js consume --resource food --amount 3
 
 $ node src/cli.js add-threat --level 4 --perimeter south
 [SECURITE] Menace enregistrée : périmètre sud, niveau 4
-[ALERTE] Niveau critique — évacuation possible dans 2h
+[ALERTE] Niveau critique : évacuation possible dans 2h
 
 $ npm test
 PASS  tests/inventory.test.js (22 tests)
@@ -117,7 +117,7 @@ terminal: node src/cli.js consume --resource food --amount 3
         --> renderer.print(result)            // affiche dans stdout
   --> process.exit(0)
 
-(Worker Thread — tourne en arrière-plan pendant les simulations)
+(Worker Thread : tourne en arrière-plan pendant les simulations)
 threatSimulator
   --> parentPort.postMessage({ type: 'threat', level, perimeter })
   --> securityService.registerThreat(threat)
@@ -128,7 +128,7 @@ threatSimulator
 
 ```
 legacy/
-└── campV1.js                       # le spaghetti original — jamais modifié
+└── campV1.js                       # le spaghetti original : jamais modifié
 
 src/
 ├── cli.js                          # point d'entrée, branche les commandes
@@ -218,7 +218,7 @@ mocks/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-PHASE 1 — couvrir le legacy avant de toucher quoi que ce soit
+PHASE 1 : couvrir le legacy avant de toucher quoi que ce soit
 
 1. Lire et comprendre legacy/campV1.js entièrement
 2. Écrire tests/inventory.test.js sur le comportement observé du v1 (sans modifier v1)
@@ -226,7 +226,7 @@ PHASE 1 — couvrir le legacy avant de toucher quoi que ce soit
 4. Écrire tests/security.test.js idem
    => à ce stade : les tests décrivent le legacy. Ils sont verts sur v1.
 
-PHASE 2 — construire la v2 module par module, test vert à chaque étape
+PHASE 2 : construire la v2 module par module, test vert à chaque étape
 
 5. src/store/fileStore.js        --> zéro dépendance, mockable immédiatement
 6. src/logger/structuredLogger.js --> zéro dépendance
@@ -369,7 +369,7 @@ test('workflow rotation de garde : assign, rotate, verify', () => {
 
 1. **Consommation supérieure au stock** : `consume --resource food --amount 9999` doit throw `InsufficientResourceError`, stderr propre, exit 1. Le stock ne bouge pas.
 2. **Rotation de garde avec un poste vacant** : si un garde est absent (malade, KO), la rotation doit remplir le poste vacant en priorité plutôt que de tourner normalement.
-3. **Alerte multiple simultanée** : menace niveau 4 + médicaments CRITIQUE en même temps — le CLI doit afficher les deux alertes, pas seulement la plus récente.
+3. **Alerte multiple simultanée** : menace niveau 4 + médicaments CRITIQUE en même temps : le CLI doit afficher les deux alertes, pas seulement la plus récente.
 4. **Reset confirme avant d'effacer** : `node src/cli.js reset` sans `--confirm` doit demander une confirmation, pas effacer immédiatement. `node src/cli.js reset --confirm` efface sans demander.
 5. **Worker Thread qui plante** : si le `threatSimulator` lance une exception, le thread principal doit logger l'erreur et continuer. Le camp ne doit pas crasher parce qu'une simulation de zombie a échoué.
 

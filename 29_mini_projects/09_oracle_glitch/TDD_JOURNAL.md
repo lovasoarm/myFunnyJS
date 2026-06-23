@@ -4,7 +4,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce proje
 
 ---
 
-## ÉTAPE 1 : `schemas/analysisSchema.js` — définir ce qu'on attend
+## ÉTAPE 1 : `schemas/analysisSchema.js` : définir ce qu'on attend
 
 Avant de coder le validator, définir le schéma exact. C'est lui qui est la source de vérité.
 
@@ -28,7 +28,7 @@ Pas de test Jest ici : le schéma est validé implicitement dans les tests du va
 
 ---
 
-## ÉTAPE 2 : `LLMOutputValidator.js` — tester les cas qui cassent
+## ÉTAPE 2 : `LLMOutputValidator.js` : tester les cas qui cassent
 
 ```js
 test('accepte une sortie IA valide', () => {
@@ -55,7 +55,7 @@ test('rejette si severite n\'est pas dans l\'enum autorisé', () => {
 
 ---
 
-## ÉTAPE 3 : Edge cases — les pièges réels de l'IA
+## ÉTAPE 3 : Edge cases : les pièges réels de l'IA
 
 ```js
 // NaN : l'IA confond souvent NaN === NaN et Number.isNaN()
@@ -106,7 +106,7 @@ test('rejette un tableau fixes contenant undefined', () => {
 
 ---
 
-## ÉTAPE 4 : `streamingClient.js` — mocking de l'API
+## ÉTAPE 4 : `streamingClient.js` : mocking de l'API
 
 ```js
 // Le mock simule le streaming token par token
@@ -142,7 +142,7 @@ test('lève LLMTimeoutError si l\'IA ne répond plus après 3s', async () => {
 
 ---
 
-## ÉTAPE 5 : `CodeAnalyzer.js` — analyse statique
+## ÉTAPE 5 : `CodeAnalyzer.js` : analyse statique
 
 ```js
 test('détecte un == au lieu de === dans le code cible', () => {

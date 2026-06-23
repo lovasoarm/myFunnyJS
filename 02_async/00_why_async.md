@@ -18,7 +18,7 @@ Sans comprendre ce mécanisme, le code async devient une boîte noire : tu écri
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-Le dev qui ne comprend pas l'event loop écrit du code qui semble fonctionner... jusqu'à ce qu'il ne fonctionne plus. Une boucle `forEach` avec un `await` dedans qui ne fait pas ce qu'il croit — `forEach` ignore les promises retournées, donc tes opérations s'enchaînent dans le désordre. Un `setTimeout` à 0ms qui s'exécute après tous les `.then()`, et personne ne comprend pourquoi.
+Le dev qui ne comprend pas l'event loop écrit du code qui semble fonctionner... jusqu'à ce qu'il ne fonctionne plus. Une boucle `forEach` avec un `await` dedans qui ne fait pas ce qu'il croit : `forEach` ignore les promises retournées, donc tes opérations s'enchaînent dans le désordre. Un `setTimeout` à 0ms qui s'exécute après tous les `.then()`, et personne ne comprend pourquoi.
 
 Dans `02_garo_no_kronika`, les Chevaliers d'Or doivent répondre à plusieurs alertes Horror en parallèle. Un dev qui ne maîtrise pas `Promise.allSettled` et `Promise.race` va soit bloquer chaque combat l'un après l'autre, soit rater la limite des 99.9 secondes d'armure sans le voir venir. Pas de crash : juste un système qui fonctionne de travers.
 

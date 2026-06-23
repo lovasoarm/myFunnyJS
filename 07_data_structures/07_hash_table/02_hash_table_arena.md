@@ -159,7 +159,7 @@ const topArtist = [...freq.entries()].reduce((a, b) => a[1] > b[1] ? a : b)
 // ["SZA", 4]
 ```
 
-Extension : "two arrays have same frequency" — vérifier si deux tableaux ont les mêmes fréquences d'éléments.
+Extension : "two arrays have same frequency" : vérifier si deux tableaux ont les mêmes fréquences d'éléments.
 
 ```js
 function sameFrequency(arr1, arr2) {
@@ -255,7 +255,7 @@ const scores = [-4, -1, -1, 0, 1, 2]
 
 Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-4, 2, 2], [-1, -1, 2], [-1, 0, 1]]` (exemple fictif selon les valeurs).
 
-(Contrainte : O(n²) est acceptable ici — two pointers + hash pour les doublons. Pas de triplets dupliqués dans le résultat)
+(Contrainte : O(n²) est acceptable ici : two pointers + hash pour les doublons. Pas de triplets dupliqués dans le résultat)
 
 ---
 

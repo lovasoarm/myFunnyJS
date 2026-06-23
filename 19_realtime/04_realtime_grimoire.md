@@ -1,7 +1,7 @@
-# 04_REALTIME GRIMOIRE — LE LEXIQUE DU WEB QUI RESPIRE
+# 04_REALTIME GRIMOIRE : LE LEXIQUE DU WEB QUI RESPIRE
 
 Tout ce qu'un dev doit avoir en tête sur le temps réel en JS.
-Pas un résumé du module — un référentiel complet : les termes, les décisions, les pièges, les patterns de production.
+Pas un résumé du module : un référentiel complet : les termes, les décisions, les pièges, les patterns de production.
 
 ---
 
@@ -32,7 +32,7 @@ Pas un résumé du module — un référentiel complet : les termes, les décisi
 | **RTCPeerConnection** | L'objet principal de WebRTC. Gère la négociation SDP, la collecte ICE, et les flux média entre deux pairs. | `new RTCPeerConnection({ iceServers })` | Le moteur complet de l'armure de Garo / la connexion principale entre deux Chevaliers |
 | **RTCDataChannel** | Canal de données bidirectionnel peer-to-peer dans WebRTC. Fonctionne comme une WebSocket mais sans passer par un serveur. | `pc.createDataChannel('chat')` | Un téléphone direct entre deux joueurs / une ligne rouge entre deux chefs d'état |
 | **getUserMedia** | API navigateur qui capture l'audio et la vidéo depuis la caméra et le micro. Retourne un `MediaStream`. | `await navigator.mediaDevices.getUserMedia({ video, audio })` | Allumer la caméra et le micro pour la première fois / équiper l'armure de Leon avant un combat |
-| **NAT** (Network Address Translation : traduction d'adresses réseau) | Mécanisme réseau qui permet à plusieurs machines sur un réseau local de partager une seule IP publique. Complique les connexions P2P car les machines ne sont pas directement accessibles depuis internet. | (pas de code — couche réseau) | Un immeuble avec une seule adresse postale pour tous les appartements / une boîte aux lettres collective |
+| **NAT** (Network Address Translation : traduction d'adresses réseau) | Mécanisme réseau qui permet à plusieurs machines sur un réseau local de partager une seule IP publique. Complique les connexions P2P car les machines ne sont pas directement accessibles depuis internet. | (pas de code : couche réseau) | Un immeuble avec une seule adresse postale pour tous les appartements / une boîte aux lettres collective |
 | **Bitrate** (débit binaire) | Quantité de données transmises par seconde (en bits/s). En WebRTC : plus le bitrate est élevé, meilleure est la qualité vidéo, plus la bande passante consommée est grande. | `a=maxpbrrate:2500000` (dans un SDP) | La vitesse de transit des données / la résolution à laquelle Garo voit ses ennemis |
 | **Codec** (compresseur-décompresseur) | Algorithme qui encode/décode les flux audio ou vidéo. Exemples : H.264, VP8, VP9 pour la vidéo ; Opus, PCMU pour l'audio. Négocié via SDP. | `a=rtpmap:96 VP8/90000` (dans un SDP) | Le dialecte choisi pour parler / le format d'armure sélectionné pour le combat |
 | **Packet loss** (perte de paquets) | Pourcentage de paquets réseau qui n'arrivent pas à destination. En WebRTC : au-dessus de 5%, la qualité vidéo dégrade visiblement. Visible via `getStats()`. | `await pc.getStats()` | Des balles qui n'atteignent pas la cible / des messages qui se perdent en chemin |

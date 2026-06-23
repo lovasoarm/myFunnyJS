@@ -1,6 +1,6 @@
 # BST : L'ARBRE QUI CHERCHE EN O(log n)
 
-Un tableau trie ou non. Un hash table trouve en O(1) mais ne trie pas. Le BST fait les deux : chercher, insérer, supprimer en O(log n) — et les données restent ordonnées dans la structure.
+Un tableau trie ou non. Un hash table trouve en O(1) mais ne trie pas. Le BST fait les deux : chercher, insérer, supprimer en O(log n) : et les données restent ordonnées dans la structure.
 
 Condition : l'arbre doit rester équilibré. Sinon O(log n) dégénère en O(n). C'est le piège principal de cette structure.
 
@@ -151,7 +151,7 @@ Chercher 6 dans l'arbre :
 
 ---
 
-## 5) DELETE : O(log n) — le cas qui pique
+## 5) DELETE : O(log n) : le cas qui pique
 
 Supprimer un noeud dans un BST a trois cas distincts.
 
@@ -212,7 +212,7 @@ _findMin(node) {
 }
 ```
 
-Trace sur le cas 3 — supprimer le noeud 3 :
+Trace sur le cas 3 : supprimer le noeud 3 :
 
 ```
 Avant :             Après :
@@ -253,7 +253,7 @@ Recherche : O(n), pas O(log n)
 
 Walter White qui insère ses distributeurs par ordre alphabétique : son BST devient une file droite. Dijkstra pleure.
 
-Correction : utiliser un arbre équilibré (AVL, Red-Black Tree). Ce n'est pas couvert dans ce module — voir `08_algorithms` pour les arbres AVL. Pour l'instant, retiens que le BST de base ne se rééquilibre pas.
+Correction : utiliser un arbre équilibré (AVL, Red-Black Tree). Ce n'est pas couvert dans ce module : voir `08_algorithms` pour les arbres AVL. Pour l'instant, retiens que le BST de base ne se rééquilibre pas.
 
 ---
 
@@ -285,7 +285,7 @@ const characters = ["Walter", "Jesse", "Skyler", "Hank", "Mike", "Saul", "Gus"]
 
 BST alphabétique (compare les strings). Implémente `search(name)` qui retourne `true/false`. Démontre que l'ordre d'insertion change la forme de l'arbre mais pas les résultats de recherche.
 
-(Contrainte : écris les deux insertions — ordre alphabétique vs ordre de la liste — et montre la différence de hauteur d'arbre)
+(Contrainte : écris les deux insertions : ordre alphabétique vs ordre de la liste : et montre la différence de hauteur d'arbre)
 
 ---
 
@@ -297,10 +297,10 @@ Implémente :
 - `insertOrUpdate(playerName, score)` : insère si absent, met à jour si présent
 - `findTopK(k)` : retourne les k meilleurs scores (sans convertir en tableau via traversal d'abord)
 
-(Indice pour findTopK : pense au parcours in-order — il donne les valeurs dans l'ordre croissant)
+(Indice pour findTopK : pense au parcours in-order : il donne les valeurs dans l'ordre croissant)
 
 ---
 
 # RÉSUMÉ
 
-Le BST stocke les données de façon ordonnée et permet insert, search, delete en O(log n) — si l'arbre reste équilibré. La règle : gauche < noeud < droite, appliquée à chaque noeud. Le delete a trois cas, le troisième (deux enfants) utilise le successeur in-order. Le piège principal : des insertions triées produisent un arbre dégénéré en O(n). En prod, on utilise des variantes auto-équilibrées (AVL, Red-Black).
+Le BST stocke les données de façon ordonnée et permet insert, search, delete en O(log n) : si l'arbre reste équilibré. La règle : gauche < noeud < droite, appliquée à chaque noeud. Le delete a trois cas, le troisième (deux enfants) utilise le successeur in-order. Le piège principal : des insertions triées produisent un arbre dégénéré en O(n). En prod, on utilise des variantes auto-équilibrées (AVL, Red-Black).

@@ -10,7 +10,7 @@ Ce projet n'ajoute aucune feature avant d'avoir des tests. Il refactore le legac
 
 ```
 $ node src/cli.js status
-[CAMP RICK] Alexandria — jour 47
+[CAMP RICK] Alexandria : jour 47
 [SECURITE] Périmètre nord : OK | Périmètre sud : ALERTE (niveau 3)
 [INVENTAIRE] Nourriture : 14 jours | Munitions : 847 | Médicaments : CRITIQUE (3 unités)
 [GARDES] Rotation suivante dans 4h | Poste A : Daryl | Poste B : Michonne
@@ -51,14 +51,14 @@ Pas de serveur web : le camp se gère en ligne de commande. Playwright teste le 
 
 ```
 legacy/
-└── campV1.js              # le spaghetti original — JAMAIS modifié, référence comportementale
+└── campV1.js              # le spaghetti original : JAMAIS modifié, référence comportementale
 
 src/
 ├── cli.js                  # point d'entrée
 ├── parser/argsParser.js    # parse process.argv
 ├── router/commandRouter.js # route vers le bon handler
 ├── handlers/               # statusHandler, consumeHandler, rotateGuardsHandler, addThreatHandler, resetHandler
-├── services/               # inventoryService, guardService, securityService — état pur, zéro fs direct
+├── services/               # inventoryService, guardService, securityService : état pur, zéro fs direct
 ├── store/fileStore.js      # seul point d'accès au filesystem (fs.promises)
 ├── alerts/alertService.js  # seuils et alertes
 ├── workers/threatSimulator.js  # Worker Thread, simulation de vagues de menaces

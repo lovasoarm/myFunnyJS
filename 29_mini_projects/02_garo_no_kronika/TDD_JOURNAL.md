@@ -2,7 +2,7 @@
 
 ---
 
-## ÉTAPE 1 : `errors/` — les trois erreurs custom, en premier
+## ÉTAPE 1 : `errors/` : les trois erreurs custom, en premier
 
 Avant d'écrire la moindre logique async, les trois classes d'erreur sont testées seules :
 
@@ -20,7 +20,7 @@ Vert immédiatement. Aucune surprise : ce sont des classes simples étendant `Er
 
 ---
 
-## ÉTAPE 2 : `armor.js` — premier vrai test async
+## ÉTAPE 2 : `armor.js` : premier vrai test async
 
 ```js
 test('equip() résout quand le délai de préparation est écoulé', async () => {
@@ -91,7 +91,7 @@ Vert. Fonction async simple, pas de surprise.
 
 ---
 
-## ÉTAPE 5 : `missionRunner.js` — la zone de résistance annoncée
+## ÉTAPE 5 : `missionRunner.js` : la zone de résistance annoncée
 
 Le test le plus important du projet, écrit avant l'implémentation finale, pour forcer la bonne structure :
 
@@ -121,7 +121,7 @@ Ce test a confirmé que `Promise.race` fait bien la distinction attendue par con
 
 ---
 
-## ÉTAPE 6 : `dispatcher.js` — allSettled, pas all
+## ÉTAPE 6 : `dispatcher.js` : allSettled, pas all
 
 ```js
 test('allSettled retourne les deux résultats même si une mission échoue', async () => {

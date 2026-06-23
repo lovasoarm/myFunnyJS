@@ -25,7 +25,7 @@ Comment les définir :
 PORT=8080 NODE_ENV=production node server.js
 
 # dans un fichier .env (avec dotenv)
-# ne jamais commit ce fichier — toujours dans .gitignore
+# ne jamais commit ce fichier : toujours dans .gitignore
 ```
 
 ```js
@@ -62,7 +62,7 @@ function getConfig() {
   const apiKey = process.env.API_KEY
 
   if (!apiKey) {
-    throw new Error('API_KEY manquante — configure la variable d\'environnement')
+    throw new Error('API_KEY manquante : configure la variable d\'environnement')
   }
 
   return { port, debug, apiKey }
@@ -238,4 +238,4 @@ Le script `vote.js` accepte ces flags :
 
 `process.env` donne accès aux variables d'environnement : toujours des strings, à valider et convertir à l'entrée. `process.argv` donne les arguments de la ligne de commande : `argv[0]` et `argv[1]` c'est Node et le script, tes args commencent à `argv[2]`. `process.exit(1)` pour les erreurs, `process.exit(0)` pour le succès. `uncaughtException` et `unhandledRejection` : toujours gérer dans les CLIs pour éviter les crashs silencieux.
 
-> Note : 9/10 — le piège `'false'` truthy est rarement expliqué clairement, bonne catch. Moins 1 : l'intégration avec un `.env.example` commité (la convention pro) aurait bien complété la section dotenv.
+> Note : 9/10 : le piège `'false'` truthy est rarement expliqué clairement, bonne catch. Moins 1 : l'intégration avec un `.env.example` commité (la convention pro) aurait bien complété la section dotenv.

@@ -12,8 +12,8 @@ En prod, 80% des bugs viennent de fonctions qui mutent l'état global ou qui dé
 
 Deux règles. Deux seulement.
 
-**Règle 1 — Déterminisme** : le même input produit toujours le même output.
-**Règle 2 — Sans effets de bord** : la fonction ne touche rien en dehors d'elle-même.
+**Règle 1 : Déterminisme** : le même input produit toujours le même output.
+**Règle 2 : Sans effets de bord** : la fonction ne touche rien en dehors d'elle-même.
 
 ```js
 // PURE : déterministe, zéro effet de bord

@@ -185,31 +185,31 @@ L'erreur HTTP est convertie manuellement en rejection parce que `fetch` ne rejet
 ## EXO 1 : le pipeline de vote du Ballon d'Or
 
 La cérémonie approche. Le pipeline doit :
-1. `fetchVotes()` — récupère la liste brute des votes (Promise qui résout un tableau)
+1. `fetchVotes()` : récupère la liste brute des votes (Promise qui résout un tableau)
 2. filtrer : garder uniquement les votes valides (champ `joueur` non vide, `points` entre 1 et 10)
 3. agréger : calculer le total de points par joueur
 4. trier : du plus au moins de points
-5. `afficherClassement(classement)` — affiche le top 10
+5. `afficherClassement(classement)` : affiche le top 10
 
 Implémente le pipeline complet avec `.then()`.
 Gère les erreurs : si `fetchVotes()` rejette, log l'erreur et retourne un tableau vide (la cérémonie continue avec 0 votes).
 
 ---
 
-## EXO 2 : le labo de Walter — nettoyage garanti
+## EXO 2 : le labo de Walter : nettoyage garanti
 
 Walter prépare un lot. Le processus :
-1. `initialiserEquipement()` — peut échouer si le matériel est défectueux
-2. `preparerIngredients()` — peut échouer si un ingrédient manque
-3. `cuire()` — 45 minutes de cuisson
-4. `conditionner()` — mettre en sachets
+1. `initialiserEquipement()` : peut échouer si le matériel est défectueux
+2. `preparerIngredients()` : peut échouer si un ingrédient manque
+3. `cuire()` : 45 minutes de cuisson
+4. `conditionner()` : mettre en sachets
 
 Peu importe où ça échoue : `nettoyerLabo()` et `fermerGaz()` doivent toujours être appelées.
 Si ça échoue à l'étape 1 ou 2, log l'étape précise qui a craqué.
 
 ---
 
-## EXO 3 : le rapport de mission — avec récupération partielle
+## EXO 3 : le rapport de mission : avec récupération partielle
 
 Tu fetches des données depuis trois endpoints différents :
 - `/mission/objectif`
