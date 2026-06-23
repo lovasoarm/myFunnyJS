@@ -1,10 +1,10 @@
-# L'IA dans ton flux : outil, pas béquille
+# L'IA DANS TON FLUX : OUTIL, PAS BÉQUILLE
 
 En 2026, tout le monde "utilise l'IA". La moitié copie-colle du code qu'elle ne comprend pas. L'autre moitié refuse l'outil par principe. Les deux ont tort.
 
 Un dev qui sait utiliser l'IA sans lui faire confiance aveuglément est plus dangereux qu'un dev qui l'ignore. Pas parce que l'IA code vite : parce que ce dev reste le cerveau de l'équation.
 
-Ce module couvre le comment. Pas le "est-ce que l'IA va remplacer les devs" : ça, c'est pour les journalistes.
+Pense au Chevalier Léon dans Garo : il a une armure surpuissante, mais c'est lui qui dirige la bataille. L'armure ne décide pas. Si elle décidait seule, ce serait une catastrophe. L'IA, c'est ton armure.
 
 ---
 
@@ -71,6 +71,8 @@ COMPRENDS pourquoi ça marche
 
 Le point qui tue 80% des devs débutants : **sauter l'étape "comprends"** avant et après.
 
+C'est le même réflexe que Rick Grimes dans Walking Dead : avant de bouger dans un couloir inconnu, il vérifie. Il n'envoie pas Daryl en éclaireur parce que Daryl est plus rapide. Il envoie Daryl parce qu'il comprend la mission et qu'il peut évaluer ce que Daryl va lui rapporter.
+
 Si tu ne comprends pas ce que tu demandes, tu ne vas pas comprendre ce qu'elle génère. Et si tu ne comprends pas ce qu'elle génère, t'as une bombe à retardement dans ton codebase.
 
 ---
@@ -92,7 +94,7 @@ ZONE ORANGE (confiance modérée, review sérieuse) :
 - Logique de calcul (les maths qu'elle invente parfois)
 - Gestion des erreurs
 
-ZONE ROUGE (confiance basse, tu réécris ou tu validates à fond) :
+ZONE ROUGE (confiance basse, tu réécris ou tu valides à fond) :
 - Auth et tokens
 - Permissions et rôles
 - Chiffrement
@@ -105,13 +107,15 @@ ZONE ROUGE (confiance basse, tu réécris ou tu validates à fond) :
 const deepClone = (obj) => JSON.parse(JSON.stringify(obj))
 // OK mais attention : perd les fonctions, les Map, les Date
 
-// Zone rouge : tu ré-écris toi-même ou tu audites ligne par ligne
+// Zone rouge : tu réécris toi-même ou tu audites ligne par ligne
 async function verifyToken(token) {
   // L'IA va produire quelque chose qui "fonctionne"
   // mais va rater la vérification de l'expiration, l'audience, l'issuer
   // si tu ne lui dis pas explicitement
 }
 ```
+
+Dans Naruto, Kakashi ne confie pas la mission d'infiltration de la village de la brume à Naruto parce que Naruto est capable de beaucoup de choses. Il calibre les missions selon le niveau de risque. Tu fais pareil avec l'IA.
 
 ---
 
@@ -139,13 +143,15 @@ Ce que tu peux déléguer à l'IA :
 
 La règle : **utilise l'IA pour aller plus vite, pas pour éviter de penser**.
 
+C'est la différence entre Michael Scofield (Prison Break) et T-Bag. Michael utilise les outils, les ressources, les autres personnages : mais le plan, c'est dans sa tête. T-Bag suit en espérant que ça marche. Tu veux être Michael, pas T-Bag.
+
 Si tu utilises l'IA parce que tu ne sais pas, c'est un signal : apprends d'abord, délègue ensuite.
 
 ---
 
 ## 5) COÛT ET QUOTAS API : LA FACTURE QUE PERSONNE NE LIT
 
-Tu intègres un LLM (large language model : modèle de langage) dans ton app, genre un chatbot support ou un générateur de résumés. Ça marche en dev. Tu déploies. Un mois plus tard, la facture API arrive et elle a trois fois la taille que t'avais prévu.
+Tu intègres un LLM (large language model : modèle de langage) dans ton app. Ça marche en dev. Tu déploies. Un mois plus tard, la facture API arrive et elle a trois fois la taille que t'avais prévu.
 
 Ce qui s'est passé : t'as pensé en "est-ce que ça marche", jamais en "combien ça coûte à chaque appel".
 
@@ -161,21 +167,21 @@ Le piège classique : tu renvoies tout l'historique de chat à chaque message po
 
 ```js
 // Dangereux : pas de limite, pas de contrôle
-async function askAI(conversationHistory, newMessage) {
+async function demanderAOracle(historique, nouveauMessage) {
   return await client.messages.create({
     model: "claude-sonnet-4-6",
-    messages: [...conversationHistory, newMessage] // grossit à l'infini
+    messages: [...historique, nouveauMessage]  // grossit à l'infini
   })
 }
 
 // Mieux : tu gères la fenêtre toi-même
-async function askAI(conversationHistory, newMessage) {
-  const MAX_HISTORY = 10 // tu décides combien de tours tu gardes
-  const trimmedHistory = conversationHistory.slice(-MAX_HISTORY)
+async function demanderAOracle(historique, nouveauMessage) {
+  const MAX_HISTORIQUE = 10                         // tu décides combien de tours tu gardes
+  const historiqueReduit = historique.slice(-MAX_HISTORIQUE)
   return await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 1000, // tu plafonnes aussi la sortie : sinon elle peut écrire un roman
-    messages: [...trimmedHistory, newMessage]
+    max_tokens: 1000,                               // tu plafonnes aussi la sortie
+    messages: [...historiqueReduit, nouveauMessage]
   })
 }
 ```
@@ -195,8 +201,6 @@ Trois réflexes à prendre avant de brancher un LLM en prod :
    --> coût par utilisateur actif, pas juste coût total
    --> alerte si un seul compte génère 1000x la conso moyenne (bug ou abus)
 ```
-
-Un dev qui ignore cette section code un truc qui marche très bien jusqu'au jour où le service est coupé parce que le quota mensuel a sauté en plein pic de trafic. Pense au coût comme à une contrainte technique, pas comme à un détail business qui regarde quelqu'un d'autre.
 
 ---
 
@@ -235,7 +239,7 @@ Voici la progression qui te rend difficile à remplacer, même avec l'IA :
 NIVEAU 1 — Tu utilises l'IA comme un moteur de recherche amélioré
   --> tu demandes des exemples, tu les recopies, ça marche parfois
 
-NIVEAU 2 — Tu décompose le problème avant de prompter
+NIVEAU 2 — Tu décomposes le problème avant de prompter
   --> tu sais ce que tu veux, l'IA t'économise le temps de l'écrire
 
 NIVEAU 3 — Tu valides et tu corriges la sortie
@@ -256,17 +260,17 @@ L'objectif de MyFunnyJS : t'emmener au niveau 4-5. Pas juste t'apprendre à prom
 
 ## EXERCICES
 
-**EXO 1 : Cartographie de confiance**
-Prends un projet existant ou invente-en un simple (todo app, calculatrice). Liste 10 fonctions ou modules. Classe chacun en zone verte / orange / rouge selon les critères vus ici. Justifie chaque classement en une phrase. (15 minutes)
+**EXO 1 : La cartographie de confiance dans la cuisine de Walter**
+Walter White a un pipeline de traitement : calcul de pureté du produit, gestion des stocks de précurseurs, routage des livraisons, authentification des distributeurs. Classe chacune de ces 4 fonctions en zone verte / orange / rouge selon les critères vus ici. Justifie chaque classement en une phrase. (15 minutes)
 
-**EXO 2 : Le audit de sortie IA**
-Demande à un LLM de générer une fonction `parseUserInput(input)` qui valide et nettoie une entrée utilisateur (email, age, username). Lis le code. Trouve au moins 3 cas que la fonction rate. Corrige-les. (20 minutes)
+**EXO 2 : L'audit de sortie de l'oracle**
+Demande à un LLM de générer une fonction `analyserSurvivant(survivant)` qui valide et classe un survivant de Walking Dead selon ses attributs (force, furtivité, expérience, groupe d'appartenance). Lis le code. Trouve au moins 3 cas que la fonction rate (Negan sans groupe ? Un survivant blessé ? Un enfant ?). Corrige-les. (20 minutes)
 
 **EXO 3 : Le test de mémoire musculaire**
 Sans IA, sans documentation, écris une fonction `debounce(fn, delay)` depuis ta mémoire. Ensuite demande à l'IA la même chose. Compare les deux. Qu'est-ce qu'elle a que t'as pas ? Qu'est-ce que t'as qu'elle n'a pas ? (10 minutes)
 
 **EXO 4 : La facture qui fait peur**
-Prends ton EXO 2 (le `parseUserInput`). Imagine que cette fonction tourne en fait via un appel LLM (et pas du code classique), appelée 50 000 fois par jour, avec en moyenne 200 tokens en entrée et 100 en sortie. Cherche le prix par token d'un modèle actuel et calcule le coût mensuel. Propose une optimisation pour le réduire de moitié sans perdre en qualité. (15 minutes)
+Le pipeline Oracle Glitch du mini-projet `09_oracle_glitch` est appelé 50 000 fois par jour, avec en moyenne 200 tokens en entrée et 100 en sortie. Cherche le prix par token d'un modèle actuel et calcule le coût mensuel. Propose une optimisation pour le réduire de moitié sans perdre en qualité. (15 minutes)
 
 ---
 
