@@ -57,6 +57,22 @@ Le domaine ne connaît pas les adapters. Les adapters ne connaissent pas les fra
 
 **Frameworks & Drivers** : Express, MongoDB, React. Ils sont aux bords. Remplaçables.
 
+Le schéma précédent montre la structure statique (qui peut dépendre de qui). Mais une vraie requête HTTP, elle, traverse ces couches dans un ordre précis, à l'exécution :
+
+```
+requête HTTP entrante
+  --> FRAMEWORK (Express reçoit la requête brute)
+    --> ADAPTER : Controller (traduit HTTP en appel de use case)
+      --> USE CASE (orchestre, appelle les entities, appelle le repository via son port)
+        --> ENTITY (applique les règles métier pures : valide, calcule, décide)
+      <-- USE CASE (retourne un résultat au controller)
+    <-- ADAPTER : Controller (traduit le résultat en réponse HTTP)
+  <-- FRAMEWORK (Express envoie la réponse)
+réponse HTTP sortante
+```
+
+Remarque le mouvement : ça descend vers le domaine (`-->`), puis ça remonte (`<--`). Le domaine ne sait jamais qu'Express existe. Il reçoit des arguments simples, il retourne des résultats simples. Tout ce qui parle HTTP, SQL, ou JSON reste à l'extérieur de cette flèche descendante.
+
 ---
 
 ## 3) IMPLÉMENTATION : PRISON BREAK API
