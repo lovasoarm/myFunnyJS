@@ -1,8 +1,8 @@
-# L'IA génère des tests : toi tu vérifies qu'ils testent vraiment quelque chose
+# L'IA GÉNÈRE DES TESTS : TOI TU VÉRIFIES QU'ILS TESTENT VRAIMENT QUELQUE CHOSE
 
 L'IA peut générer des tests qui passent sans rien vérifier. C'est le pire type de faux sentiment de sécurité : ton CI est vert, ta couverture est à 95%, et le bug est là depuis le début. Un test qui passe toujours, même si la fonction est cassée, n'est pas un test : c'est de la décoration.
 
-Ce module couvre comment utiliser l'IA pour générer des tests utiles, et comment s'assurer qu'ils le sont vraiment.
+Dans le pipeline Oracle Glitch, l'IA détecte des bugs dans ton code. L'ironie : si les tests qui valident ce pipeline sont eux-mêmes inutiles, l'Oracle se surveille avec de faux yeux. Ce module couvre comment éviter ça.
 
 ---
 
@@ -11,19 +11,20 @@ Ce module couvre comment utiliser l'IA pour générer des tests utiles, et comme
 L'IA génère des tests en observant le code. Ça crée un problème fondamental : elle teste ce que le code fait, pas ce que le code devrait faire.
 
 ```js
-// La fonction
-function applyDiscount(price, percent) {
-  return price * percent / 100 // BUG : devrait être price - (price * percent / 100)
+// La fonction de l'Oracle
+function calculerDommagesJutsu(puissance, multiplicateur) {
+  return puissance * multiplicateur / 100  // BUG : devrait être puissance + (puissance * multiplicateur / 100)
 }
 
-// Le test que l'IA génère en observant la fonction
-test('applies discount', () => {
-  expect(applyDiscount(100, 10)).toBe(10) // passe ! mais 10 c'est faux : le prix final devrait être 90
+// Le test que l'IA génère en observant la fonction :
+test('calcule les dommages', () => {
+  expect(calculerDommagesJutsu(500, 10)).toBe(50)  // passe ! mais 50 c'est faux
+  // le résultat attendu était 550 (500 de base + 10% de bonus)
 })
 
 // Le test que tu dois écrire en partant du comportement attendu :
-test('returns price after discount is removed', () => {
-  expect(applyDiscount(100, 10)).toBe(90) // prix de 100 avec 10% de remise = 90
+test('ajoute le bonus de multiplicateur à la puissance de base', () => {
+  expect(calculerDommagesJutsu(500, 10)).toBe(550)  // 500 + 10% de 500
   // CE TEST ÉCHOUE. C'est normal. C'est lui qui a trouvé le bug.
 })
 ```
@@ -47,18 +48,15 @@ Bon prompt :
 "Tu vas écrire des tests Jest pour cette fonction.
 
 SPÉCIFICATION (ce que la fonction DOIT faire, indépendamment de son implémentation) :
-- calculateShipping(weight, destination) retourne le coût de livraison en euros
-- Les colis <= 1kg coûtent 5€ quelle que soit la destination
-- Les colis > 1kg et <= 5kg : 5€ + 2€ par kg supplémentaire au-delà du premier
-- Les colis > 5kg : 5€ + 2€/kg pour les 4 premiers kg supplémentaires, puis 1.5€/kg au-delà
-- Un poids négatif ou nul doit lever une InvalidWeightError
-- Une destination non supportée doit lever une UnsupportedDestinationError
-
-Les destinations supportées : 'france', 'europe', 'international'
-Pour l'instant, le coût est identique quelle que soit la destination (sera modifié en v2).
+- attribuerMission(chevalier, horror, zone) retourne une mission ou lève une erreur
+- Un chevalier sans armure active ne peut pas recevoir de mission : lève KnightUnarmedError
+- Une zone déjà couverte par un autre chevalier ne peut pas être reassignée : lève ZoneConflictError
+- Un horror de niveau 5+ exige un chevalier de rang 'or' minimum : lève InsufficientRankError si le rang ne convient pas
+- La mission retournée contient : id (UUID), chevalier, horror, zone, timestamp de début
+- Un horror null ou un chevalier null lève une TypeError
 
 N'utilise pas la fonction pour déduire le comportement. Utilise uniquement cette spec.
-Couvre les cas nominaux, les limites exactes (1kg, 5kg), et les cas d'erreur."
+Couvre les cas nominaux, les limites exactes (niveau 5, rang 'or'), et les cas d'erreur."
 ```
 
 Ce prompt force l'IA à partir de la spécification. Elle va trouver des bugs dans l'implémentation.
@@ -72,76 +70,81 @@ Quand tu génères ou écris des tests, tu vises ces 5 catégories. Checklist à
 ```
 1. CAS NOMINAL
    --> le chemin heureux, l'input standard
-   --> test(calcule 10% de discount sur 100€)
+   --> test(chevalier d'or contre horror niveau 3, mission créée correctement)
 
 2. CAS LIMITE (boundary)
    --> les valeurs exactement aux bords des conditions
-   --> test(colis exactement à 1kg), test(colis exactement à 5kg)
-   --> pas 0.9kg, pas 1.1kg : exactement 1kg
+   --> test(horror niveau 5 exactement, test(chevalier rang 'or' exactement)
+   --> pas niveau 4, pas niveau 6 : exactement 5
 
 3. CAS D'ERREUR
    --> les inputs invalides, les états impossibles
-   --> test(poids négatif), test(destination inconnue), test(prix null)
+   --> test(chevalier null), test(horror niveau 5 avec chevalier d'argent), test(zone déjà couverte)
 
 4. CAS EDGE (comportement inattendu)
    --> les situations que la spec n'a peut-être pas prévues
-   --> test(poids = 0), test(discount = 100%), test(tableau vide)
+   --> test(zone vide string), test(horror niveau 0), test(même chevalier assigné deux fois)
 
 5. CAS DE RÉGRESSION
    --> les bugs qu'on a déjà eus, devenus des tests permanents
-   --> test('bug #142 : le discount premium était appliqué deux fois')
+   --> test('bug #23 : le rang chevalier était case-sensitive, "Or" vs "or" échouait')
 ```
 
 ```js
-// Exemple complet sur calculateShipping :
+// Exemple complet sur attribuerMission :
 
-describe('calculateShipping', () => {
+describe('attribuerMission', () => {
   // 1. CAS NOMINAL
-  test('returns base rate for packages under 1kg', () => {
-    expect(calculateShipping(0.5, 'france')).toBe(5)
-  })
+  test('crée une mission valide pour un chevalier d\'or contre un horror standard', () => {
+    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+    const horror = { id: 'h1', niveau: 3 }
+    const mission = attribuerMission(chevalier, horror, 'secteur-nord')
 
-  test('calculates surcharge for packages between 1kg and 5kg', () => {
-    expect(calculateShipping(3, 'france')).toBe(9) // 5 + (2kg * 2€)
+    expect(mission.id).toBeDefined()
+    expect(mission.chevalier).toBe('leon')
+    expect(mission.timestamp).toBeInstanceOf(Date)
   })
 
   // 2. CAS LIMITE
-  test('applies base rate at exactly 1kg (boundary)', () => {
-    expect(calculateShipping(1, 'france')).toBe(5) // 1kg <= 1kg : pas de surcharge
+  test('autorise un chevalier d\'or contre un horror niveau 5 exactement (boundary)', () => {
+    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+    const horror = { id: 'h2', niveau: 5 }
+    expect(() => attribuerMission(chevalier, horror, 'secteur-est')).not.toThrow()
   })
 
-  test('applies first tier at exactly 1.001kg (just over boundary)', () => {
-    expect(calculateShipping(1.001, 'france')).toBeCloseTo(5.002, 2)
-  })
-
-  test('applies correct rate at exactly 5kg (boundary)', () => {
-    expect(calculateShipping(5, 'france')).toBe(13) // 5 + (4kg * 2€)
+  test('refuse un chevalier d\'argent contre un horror niveau 5 exactement (boundary)', () => {
+    const chevalier = { id: 'ryuga', rang: 'argent', armureActive: true }
+    const horror = { id: 'h3', niveau: 5 }
+    expect(() => attribuerMission(chevalier, horror, 'secteur-ouest')).toThrow(InsufficientRankError)
   })
 
   // 3. CAS D'ERREUR
-  test('throws InvalidWeightError for negative weight', () => {
-    expect(() => calculateShipping(-1, 'france')).toThrow(InvalidWeightError)
+  test('lève KnightUnarmedError si l\'armure est inactive', () => {
+    const chevalier = { id: 'leon', rang: 'or', armureActive: false }
+    const horror = { id: 'h4', niveau: 2 }
+    expect(() => attribuerMission(chevalier, horror, 'secteur-sud')).toThrow(KnightUnarmedError)
   })
 
-  test('throws InvalidWeightError for zero weight', () => {
-    expect(() => calculateShipping(0, 'france')).toThrow(InvalidWeightError)
-  })
-
-  test('throws UnsupportedDestinationError for unknown destination', () => {
-    expect(() => calculateShipping(1, 'mars')).toThrow(UnsupportedDestinationError)
+  test('lève TypeError si le chevalier est null', () => {
+    expect(() => attribuerMission(null, { id: 'h5', niveau: 1 }, 'secteur-nord')).toThrow(TypeError)
   })
 
   // 4. CAS EDGE
-  test('handles very large packages with correct tier calculation', () => {
-    // 10kg = 5€ + (4kg * 2€) + (5kg * 1.5€) = 5 + 8 + 7.5 = 20.5
-    expect(calculateShipping(10, 'france')).toBeCloseTo(20.5, 2)
+  test('gère un horror de niveau 0', () => {
+    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+    const horror = { id: 'h6', niveau: 0 }
+    // Niveau 0 : acceptable ou erreur ? La spec ne dit pas : à décider, à tester
+    expect(() => attribuerMission(chevalier, horror, 'secteur-nord')).not.toThrow()
   })
 
-  // 5. CAS DE RÉGRESSION (exemple fictif)
-  test('regression: does not apply surcharge twice for international packages', () => {
-    const france = calculateShipping(3, 'france')
-    const international = calculateShipping(3, 'international')
-    expect(international).toBe(france) // même prix pour l'instant (v1)
+  // 5. CAS DE RÉGRESSION
+  test('regression bug #23 : le rang n\'est pas case-sensitive', () => {
+    const chevalier1 = { id: 'leon', rang: 'or', armureActive: true }
+    const chevalier2 = { id: 'ryuga', rang: 'Or', armureActive: true }
+    const horror = { id: 'h7', niveau: 5 }
+    // les deux doivent passer, peu importe la casse
+    expect(() => attribuerMission(chevalier1, horror, 'zone-a')).not.toThrow()
+    expect(() => attribuerMission(chevalier2, horror, 'zone-b')).not.toThrow()
   })
 })
 ```
@@ -172,23 +175,23 @@ npm install --save-dev @stryker-mutator/core @stryker-mutator/jest-runner
 npx stryker run
 ```
 
-Ce que Stryker fait :
+Ce que Stryker fait sur le code de Naruto :
 
 ```js
 // Ta fonction originale
-function isAdult(age) {
-  return age >= 18
+function estChunin(experience) {
+  return experience >= 2  // 2 ans minimum pour le rang chunin
 }
 
 // Mutant 1 : Stryker change >= en >
-function isAdult(age) {
-  return age > 18 // 18 ans n'est plus adulte
+function estChunin(experience) {
+  return experience > 2   // 2 ans n'est plus chunin : Naruto lui-même échoue
 }
-// Si ton test n'inclut pas test('18 ans est adulte') : ce mutant SURVIT. Bug non détecté.
+// Si ton test n'inclut pas test('2 ans = chunin') : ce mutant SURVIT. Bug non détecté.
 
 // Mutant 2 : Stryker inverse la condition
-function isAdult(age) {
-  return age < 18
+function estChunin(experience) {
+  return experience < 2
 }
 // Si tes tests couvrent bien les deux côtés, ce mutant EST tué. Test efficace.
 ```
@@ -226,7 +229,7 @@ Tu corriges les bugs révélés
 Tous les tests passent
     |
     v
-Tu lances Stryker (ou équivalent) : score de mutation
+Tu lances Stryker : score de mutation
     |
     v
 Tu corriges les tests faibles révélés par les mutants survivants
@@ -240,29 +243,29 @@ L'IA est utile pour brainstormer les cas de test qu'on n'a pas imaginés. Pas po
 
 ```
 Prompt :
-"Je vais écrire des tests pour parseAmount(input), qui convertit une entrée utilisateur
-en nombre valide ou lève une erreur.
+"Je vais écrire des tests pour analyserSortieLLM(texte), qui valide la réponse
+d'un LLM et retourne un objet structuré ou lève une erreur.
 
 Liste les 15 inputs les plus intéressants à tester, en te concentrant sur les cas limites,
 les edge cases et les pièges classiques JS.
 Ne génère pas de code de test : juste la liste des inputs avec le résultat attendu."
 
 Réponse possible :
-- "100"         --> 100
-- "100.50"      --> 100.5
-- "1 000"       --> 1000 (espace comme séparateur de milliers) ou erreur ?
-- "1,000"       --> 1000 ou erreur ? (virgule comme séparateur ?)
-- "-100"        --> -100 ou erreur ?
-- "0"           --> 0
-- ""            --> erreur
-- " "           --> erreur
-- "NaN"         --> erreur
-- "Infinity"    --> erreur ou Infinity ?
-- "1e3"         --> 1000 ou erreur ?
-- "0x1A"        --> erreur (notation hexadécimale)
-- null          --> erreur
-- undefined     --> erreur
-- "100abc"      --> erreur
+- JSON valide et complet         --> objet parsé correctement
+- JSON valide mais vide {}       --> erreur ou objet vide ? (à décider)
+- JSON avec virgule en trop      --> erreur de parsing
+- JSON enveloppé dans ```json    --> nettoyage avant parsing
+- Réponse tronquée à mi-JSON    --> erreur de parsing
+- Réponse null                   --> TypeError
+- Réponse undefined              --> TypeError
+- String vide ""                 --> erreur
+- String "null"                  --> JSON.parse("null") = null, pas une erreur
+- Très longue réponse (> 10k)    --> performance, timeout ?
+- NaN dans un champ numérique    --> Zod doit le rejeter
+- Infinity dans un champ         --> Zod doit le rejeter
+- Champ attendu absent           --> Zod doit le rejeter
+- Type incorrect (string à la place de number) --> Zod doit le rejeter
+- Caractères unicode bizarres    --> le parsing tient ?
 ```
 
 Maintenant toi tu décides : lesquels la spec couvre ? Lesquels doivent lever une erreur ? Et tu écris les tests.
@@ -271,15 +274,14 @@ Maintenant toi tu décides : lesquels la spec couvre ? Lesquels doivent lever un
 
 ## EXERCICES
 
-**EXO 1 : Le test depuis la spec**
-Voici la spec : "formatCurrency(amount, locale, currency) retourne un string formaté selon la locale (fr-FR, en-US, ja-JP). Un montant négatif doit être affiché avec un signe moins. Un montant null ou non-numérique doit lever une TypeError. Le symbole de la devise doit apparaître selon les conventions de la locale."
-Écris les tests Jest SANS regarder une implémentation. Ensuite écris l'implémentation. Combien de tes tests échouent d'emblée ? (25 minutes)
+**EXO 1 : Le test depuis la spec de Banshee**
+Voici la spec : "attribuerTerritory(sheriff, zone, risque) attribue une zone à un sheriff. Un sheriff suspendu ne peut pas recevoir de zone. Le risque va de 1 à 10 : au-delà de 7, exige l'approbation du chef. Un risque négatif ou > 10 lève une RangeError. La zone déjà assignée lève un ConflictError." Écris les tests Jest SANS regarder une implémentation. Ensuite écris l'implémentation. Combien de tes tests échouent d'emblée ? (25 minutes)
 
-**EXO 2 : La couverture trompeuse**
-Génère avec l'IA une fonction simple (tri, recherche ou transformation de tableau). Demande à l'IA de générer aussi des tests pour cette fonction. Vérifie la couverture avec Jest (`--coverage`). Maintenant brise délibérément un comportement edge de la fonction. Les tests détectent-ils le problème ? Écris le test qui aurait détecté le bug. (20 minutes)
+**EXO 2 : La couverture trompeuse de l'Oracle**
+Génère avec l'IA une fonction simple de classement de ninjas. Demande à l'IA de générer aussi des tests. Vérifie la couverture avec Jest (`--coverage`). Maintenant casse délibérément un comportement edge de la fonction. Les tests détectent-ils le problème ? Écris le test qui aurait détecté le bug. (20 minutes)
 
-**EXO 3 : Le brainstorm de cas**
-Choisis une fonction non triviale (validation de numéro de téléphone international, calcul de date d'expiration, parsing de CSV). Demande à l'IA de lister 20 inputs intéressants à tester. Classe-les en catégories (nominal, limite, erreur, edge). Écris les tests pour les 10 plus importants. (20 minutes)
+**EXO 3 : Le brainstorm de cas sur une fonction de score**
+Choisis une fonction de scoring non triviale (score Ballon d'Or pondéré par matchs joués, buts, passes décisives, et trophées). Demande à l'IA de lister 20 inputs intéressants à tester. Classe-les en catégories. Écris les tests pour les 10 plus importants. (20 minutes)
 
 ---
 
