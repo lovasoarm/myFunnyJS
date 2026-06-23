@@ -1,32 +1,94 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TESTING
 
-"Ça marche chez moi" n'a jamais sauvé personne en prod. Tu peux tester ta fonction à la main une fois, voir qu'elle retourne le bon résultat, et te dire que c'est bon. Six mois plus tard, quelqu'un (toi, probablement) modifie une ligne à 3 endroits de là, et cette fonction casse sans que personne ne le voie avant que le client s'en plaigne.
+T'as déjà pushé un fix qui cassait autre chose ?
+T'as déjà dit "ça marche sur ma machine" et eu tort ?
+T'as déjà refactoré un truc et paniqué parce que t'avais aucun filet ?
 
-Un test, c'est une preuve qui reste vraie même quand tu as oublié pourquoi tu l'as écrite.
+Un test, c'est une preuve qui reste vraie même quand tu as oublié pourquoi tu l'as écrite. Ce module répond à ces questions. Et il te donne les outils pour transformer "j'espère que ça marche" en "je peux le prouver".
 
 ---
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Sans tests, valider que ton code fonctionne veut dire le relancer manuellement, encore et encore, à chaque modification. C'est lent, c'est faillible (tu oublies toujours un cas), et ça ne scale pas dès que le projet dépasse 10 fichiers.
+Sans tests, valider que ton code fonctionne veut dire le relancer manuellement, encore et encore, à chaque modification. C'est lent, faillible (tu oublies toujours un cas), et ça ne scale pas dès que le projet dépasse 10 fichiers.
+
+```js
+// calculeScore.js
+function calculeScore(kills, assists, deaths) {
+  return (kills * 3 + assists) / deaths
+}
+
+// Ça marche.
+// Sauf si deaths === 0.
+// Division par zéro. NaN. Silencieux.
+// Ton dashboard affiche NaN depuis 3 semaines.
+// Personne n'a remarqué.
+```
+
+Un test aurait attrapé ça le jour J.
 
 Les tests automatisent cette vérification. Tu écris une fois ce que ta fonction doit faire dans tel cas, et cette vérification tourne à chaque modification, en quelques secondes, sans intervention humaine. Tu sais immédiatement si ton changement a cassé quelque chose ailleurs, avant même de pousser ton code.
 
-C'est aussi un outil de design : écrire un test avant le code (TDD : test-driven development, développement piloté par les tests) t'oblige à clarifier ce que la fonction doit vraiment faire avant de l'écrire, ce qui évite des heures de code qui répond à la mauvaise question.
+---
+
+## 2) UN TEST, C'EST QUOI CONCRÈTEMENT
+
+Un test c'est une fonction qui :
+1. prépare un contexte (données d'entrée)
+2. appelle ton code
+3. vérifie que la sortie correspond à ce que t'attends
+
+```js
+// test brut, sans framework, juste pour voir
+function calculeScore(kills, assists, deaths) {
+  if (deaths === 0) return 0
+  return (kills * 3 + assists) / deaths
+}
+
+const resultat = calculeScore(10, 5, 2)
+const attendu = 12.5
+
+if (resultat !== attendu) {
+  console.error(`FAIL : attendu ${attendu}, reçu ${resultat}`)
+} else {
+  console.log('PASS : calculeScore fonctionne correctement')
+}
+
+// test edge case
+const scoreZeroDeath = calculeScore(10, 5, 0)
+if (scoreZeroDeath !== 0) {
+  console.error(`FAIL : division par zéro mal gérée`)
+} else {
+  console.log('PASS : division par zéro gérée')
+}
+```
+
+C'est ça un test. Pas de magie. Juste : j'appelle, je vérifie.
+Les frameworks (Jest, Vitest) font exactement ça, mais avec de meilleures erreurs et plus d'outils.
 
 ---
 
-## 2) QUI SOUFFRE QUAND ÇA MANQUE
+## 3) LES QUATRE TYPES DE TESTS : LA PYRAMIDE
 
-Le dev sans tests vit dans la peur permanente de toucher au code existant. Chaque modification devient un pari : "est-ce que ça va casser autre chose que je ne vois pas ?" Cette peur ralentit tout. Le dev évite de refactorer du code pourri parce qu'il n'a aucune garantie que ça ne va pas tout casser silencieusement.
+```
+          /\
+         /  \   E2E (Playwright, Cypress)
+        /    \  lent, coûteux, réaliste
+       /------\
+      /        \  Intégration
+     /          \  plusieurs modules ensemble
+    /------------\
+   /              \  Unit tests
+  /                \  une fonction, isolée, rapide
+ /------------------\
+```
 
-Dans `03_walking_dead_protocol`, le code du camp de Rick existe déjà. Il fonctionne. Mais il est illisible, et personne ne sait ce qui casse si on touche à la rotation des gardes. Sans tests, refactorer c'est jouer à la roulette. Avec une suite de tests complète, chaque modification est vérifiée en quelques secondes.
+Règle d'or : plus c'est en bas de la pyramide, plus t'en veux.
+- Unit tests : 80% de ta suite
+- Intégration : 15%
+- E2E : 5%
 
-L'équipe souffre encore plus : sans suite de tests, chaque déploiement en prod est un coup de dé. Les régressions (bugs réapparus sur un comportement qui marchait avant) passent inaperçues jusqu'à ce qu'un utilisateur les signale. Le temps gagné en "codant vite sans tests" se transforme en temps perdu en debugging, en rollback (annulation de déploiement), et en confiance perdue.
-
----
-
-## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
+Pourquoi ? Parce que les unit tests sont instantanés. Les E2E prennent des minutes. Si tout est E2E, tu passes ta vie à attendre.
 
 ```
 fonction de calcul métier       --> unit test      --> vérifie le résultat isolé
@@ -36,35 +98,49 @@ appel à une API externe         --> mock           --> teste sans dépendre du 
 contrat entre deux services     --> contract test  --> garantit la compatibilité
 ```
 
-Un système sans tests n'est pas "plus rapide à livrer" : il est juste plus rapide à livrer une fois, puis de plus en plus lent et risqué à faire évoluer après. Les tests sont l'investissement qui paie sur la durée, pas sur le sprint en cours.
+---
+
+## 4) QUI SOUFFRE QUAND ÇA MANQUE
+
+Le dev sans tests vit dans la peur permanente de toucher au code existant. Chaque modification devient un pari : "est-ce que ça va casser autre chose que je ne vois pas ?" Cette peur ralentit tout. Le dev évite de refactorer du code pourri parce qu'il n'a aucune garantie que ça ne va pas tout casser silencieusement.
+
+Dans `03_walking_dead_protocol`, le code du camp de Rick existe déjà. Il fonctionne. Mais il est illisible, et personne ne sait ce qui casse si on touche à la rotation des gardes. Sans tests, refactorer c'est jouer à la roulette. Avec une suite de tests complète, chaque modification est vérifiée en quelques secondes.
+
+```
+Dev sans tests :
+  écriture --> "ça marche" --> push --> espoir --> bug en prod
+
+Dev avec tests :
+  écriture --> test vert --> refacto --> test toujours vert --> push serein
+```
 
 ---
 
-## 4) MODERNE, LEGACY, OU INTEMPOREL ?
+## 5) LE COÛT DE NE PAS TESTER
 
-Le principe est intemporel : vérifier que ton code fait ce qu'il doit faire, de façon répétable. Les outils changent (Jest aujourd'hui, autre chose demain), mais le concept de unit test, integration test, E2E test (end-to-end : test simulant un parcours utilisateur complet) reste stable depuis des décennies dans l'industrie du logiciel.
+Y'a un mythe tenace : "écrire des tests prend trop de temps."
 
----
+En réalité :
+- trouver un bug en test : 5 minutes
+- trouver le même bug en prod à 23h un vendredi : 3 heures + tu dors mal
 
-## 5) CE QUI A CHANGÉ AU FIL DES ANNÉES
-
-Avant, beaucoup de projets traitaient les tests comme une option de luxe, ajoutée (ou pas) à la fin si le temps le permettait. Résultat : des codebases (bases de code) immenses sans aucune garantie de stabilité, où chaque déploiement était un acte de foi.
-
-La discipline TDD a inversé la logique : le test arrive avant le code, pas après. Ça force une meilleure conception dès le départ, parce que tu dois savoir précisément ce que ta fonction doit faire avant de l'écrire.
-
-Les outils ont aussi évolué vers plus d'intégration et de rapidité : exécution en parallèle, watch mode (relance automatique des tests à chaque sauvegarde), mocking plus simple. Et avec l'arrivée de l'IA générative, une nouvelle question est apparue : peut-on faire confiance à des tests générés automatiquement, ou faut-il toujours les valider à la main pour s'assurer qu'ils testent vraiment quelque chose ?
+Le temps passé à écrire des tests est toujours récupéré. Souvent dès le premier bug qu'ils t'évitent.
 
 ---
 
-## 6) NOYAU DUR DU MÉTIER ?
+## 6) MODERNE, LEGACY, OU INTEMPOREL ?
+
+Le principe est intemporel : vérifier que ton code fait ce qu'il doit faire, de façon répétable. Les outils changent (Jest aujourd'hui, Vitest demain), mais le concept de unit test, integration test, E2E test reste stable depuis des décennies.
+
+La discipline TDD (test-driven development : développement piloté par les tests) a inversé la logique : le test arrive avant le code, pas après. Ça force une meilleure conception dès le départ, parce que tu dois savoir précisément ce que ta fonction doit faire avant de l'écrire.
+
+Avec la montée du code généré par IA : qui peut sembler correct mais contenir des bugs subtils : savoir écrire un test précis et savoir lire un test généré pour vérifier qu'il teste vraiment quelque chose devient une compétence encore plus stratégique qu'avant.
+
+---
+
+## 7) NOYAU DUR DU MÉTIER ?
 
 Oui, explicitement dans le noyau dur : "03 + 04, Error Handling + Testing : sans ça, t'es imprudent". `04_testing` dépend de `01_fundamentals` et `02_async`, et il devient un prérequis implicite pour tout module de refactoring sérieux : tu ne peux pas refactorer en confiance sans filet de sécurité.
-
----
-
-## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
-
-Le besoin de prouver que ton code fonctionne ne disparaîtra jamais, peu importe les outils. Et avec la montée du code généré par IA : qui peut sembler correct mais contenir des bugs subtils : savoir écrire un test précis et savoir lire un test généré pour vérifier qu'il teste vraiment quelque chose devient une compétence encore plus stratégique qu'avant.
 
 ---
 
@@ -72,4 +148,4 @@ Le besoin de prouver que ton code fonctionne ne disparaîtra jamais, peu importe
 
 Sans tests, chaque modification de code est un pari et chaque déploiement un acte de foi. Ce module te donne les outils pour transformer ça en certitude vérifiable. Le principe ne se démode pas, même si les outils changent.
 
-Maintenant, ouvre `01_why_testing_or_die.md`. Et arrête d'espérer que ton code marche : commence à le prouver.
+Maintenant, ouvre `02_unit_sniper.md`. Et arrête d'espérer que ton code marche : commence à le prouver.
