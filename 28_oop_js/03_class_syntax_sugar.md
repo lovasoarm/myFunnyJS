@@ -186,8 +186,12 @@ ES2022 a ajouté les class fields (y compris `#private`). Avant ça, la "privacy
 
 ## EXERCICES
 
-**EXO 1 : preuve par la console**
-Écris une `class Garde` avec un `constructor` et une méthode. Affiche `typeof Garde`, `Garde.prototype`, et `Object.getOwnPropertyNames(Garde.prototype)`. Commente chaque résultat pour expliquer ce que `class` a réellement posé en mémoire. (10 minutes)
+**EXO 1 : le mensonge de la syntaxe**
+Un junior de l'équipe Walking Dead affirme que `class` crée un "vrai" système orienté objet différent du prototype chain. Il a lu un article Medium. Il est convaincu.
+
+Ta mission : le tort avec du code.
+
+Écris une `class Garde` avec un `constructor` et une méthode `patrouiller()`. Puis prouve via `typeof Garde`, `Garde.prototype`, et `Object.getOwnPropertyNames(Garde.prototype)` que `class` est du sucre syntaxique pur : montre que le moteur a posé exactement les mêmes briques qu'une fonction constructeur classique. Commente chaque résultat avec l'explication technique qui cloue le bec. (10 minutes)
 
 **EXO 2 : le crash volontaire**
 Écris une `class Sentinelle` puis essaie de l'appeler sans `new`. Capture l'erreur avec un `try/catch`, affiche son message, et explique en commentaire en quoi ce comportement diffère d'une fonction constructeur classique. (10 minutes)
