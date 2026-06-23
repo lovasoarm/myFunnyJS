@@ -6,6 +6,8 @@ Tous les modules précédents t'apprennent UN concept : closures, event loop, SO
 
 C'est l'établi du camp. Pas une leçon sur le marteau. Le marteau lui-même, prêt à frapper.
 
+Dans Walking Dead, Rick Grimes aurait pu partir explorer sans lampe, sans radio, sans couteau. Il aurait survécu... peut-être. Mais chaque sortie aurait coûté dix fois plus cher. Ces 4 outils, c'est ton kit de survie de dev : optionnel sur un exercice de 5 minutes, indispensable sur un mini-projet entier.
+
 ---
 
 ## CE QUE C'EST VRAIMENT

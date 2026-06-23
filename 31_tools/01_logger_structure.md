@@ -23,7 +23,7 @@ problèmes concrets :
 - impossible à chercher : si t'as 10 000 lignes, bonne chance pour trouver ce qui compte
 ```
 
-**Pourquoi ça casse en prod :** un crash arrive à 3h du matin. Tu ouvres les logs. Tu as 50 000 lignes de `console.log` sans horodatage clair ni niveau de gravité. Tu sais pas par où chercher. Le logger structuré existe pour que ce moment-là dure 2 minutes au lieu de 2 heures.
+**Pourquoi ça casse en prod :** un crash arrive à 3h du matin. Tu ouvres les logs. Tu as 50 000 lignes de `console.log` sans horodatage clair ni niveau de gravité. Tu sais pas par où chercher. Le logger structuré existe pour que ce moment-là dure 2 minutes au lieu de 2 heures. C'est le Sharingan de Kakashi appliqué aux logs : tu vois tout, dans le bon ordre, avec le contexte exact : au lieu de tâtonner à l'aveugle.
 
 ---
 
@@ -155,7 +155,7 @@ logger.error("erreur de connexion radio", {
 });
 ```
 
-**Technique :** le contexte, c'est l'objet JS passé en deuxième argument. Il transforme un log d'une phrase vague en un instantané complet de la situation. Un bon réflexe : à chaque `logger.error`, demande-toi "si je lis CE log dans 6 mois sans aucun autre contexte, je comprends ce qui s'est passé ?".
+**Technique :** le contexte, c'est l'objet JS passé en deuxième argument. Il transforme un log d'une phrase vague en un instantané complet de la situation. Un bon réflexe : à chaque `logger.error`, demande-toi "si je lis CE log dans 6 mois sans aucun autre contexte, je comprends ce qui s'est passé ?". Michael Scofield dans Prison Break ne note pas "problème dans le couloir". Il note le numéro du couloir, l'heure, le garde en poste, et l'alternative disponible. Toi pareil dans tes logs.
 
 ---
 

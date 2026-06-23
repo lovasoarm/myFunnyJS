@@ -16,7 +16,7 @@ cd ..
 # Répété 9 fois, avec le risque d'oublier un dossier ou de mal nommer un fichier
 ```
 
-**Risque réel :** sur 9 répétitions manuelles, un dossier `ADR` oublié, ou un fichier nommé `TDD_journal.md` au lieu de `TDD_JOURNAL.md` (incohérence de casse), passe souvent inaperçu jusqu'à ce qu'un script ou un outil qui s'attend à la structure exacte plante dessus.
+**Risque réel :** sur 9 répétitions manuelles, un dossier `ADR` oublié, ou un fichier nommé `TDD_journal.md` au lieu de `TDD_JOURNAL.md` (incohérence de casse), passe souvent inaperçu jusqu'à ce qu'un script ou un outil qui s'attend à la structure exacte plante dessus. Dans Garo, le Chevalier ne reforge pas son armure à la main à chaque combat : la structure est définie, le processus est reproductible, le résultat est garanti. Ton scaffolder, c'est pareil pour les mini-projets.
 
 ---
 
@@ -187,4 +187,4 @@ Transforme ton scaffolder en script CLI utilisable avec `node cli.js <nom>`. Tes
 
 ## RÉSUMÉ
 
-Un scaffolder élimine le risque d'erreur humaine sur une structure de projet répétée plusieurs fois, en s'appuyant sur `fs` et `path` pour créer dossiers et fichiers de façon fiable et compatible entre systèmes. Vérifier l'existence avant de créer protège contre l'écrasement silencieux de contenu déjà rempli. Transformé en script CLI avec gestion de `process.argv` et de codes de sortie corrects, l'outil devient utilisable en une seule commande, intégrable dans n'importe quel pipeline. Le but : que créer un nouveau mini-projet prenne 2 secondes et zéro risque d'oubli, au lieu de 5 minutes et un risque de structure incohérente.
+Un scaffolder élimine le risque d'erreur humaine sur une structure de projet répétée plusieurs fois, en s'appuyant sur `fs` et `path` pour créer dossiers et fichiers de façon fiable et compatible entre systèmes. Vérifier l'existence avant de créer protège contre l'écrasement silencieux de contenu déjà rempli. Transformé en script CLI avec gestion de `process.argv` et de codes de sortie corrects, l'outil devient utilisable en une seule commande, intégrable dans n'importe quel pipeline. Le but : que créer un nouveau mini-projet prenne 2 secondes et zéro risque d'oubli, au lieu de 5 minutes et un risque de structure incohérente. Michael Scofield a le plan de Fox River tatoué sur lui, toujours identique, toujours complet. Ton scaffolder, c'est ça : la structure du projet, reproductible à la commande, sans dépendre de ta mémoire du moment.

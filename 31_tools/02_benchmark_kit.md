@@ -23,7 +23,7 @@ function filtrerAvecBoucle(tableau) {
 
 Sans mesure, t'as que des intuitions. Et les intuitions sur la perf JS sont souvent fausses : le moteur JS optimise (JIT : compilation à la volée) des patterns différemment selon le contexte, la taille des données, le navigateur ou la version de Node.
 
-**Risque réel :** passer 2 heures à "optimiser" une fonction qui représente 0.01% du temps d'exécution total, pendant qu'une vraie lenteur ailleurs (une requête réseau, une boucle imbriquée sur de grosses données) reste invisible parce que jamais mesurée.
+**Risque réel :** passer 2 heures à "optimiser" une fonction qui représente 0.01% du temps d'exécution total, pendant qu'une vraie lenteur ailleurs (une requête réseau, une boucle imbriquée sur de grosses données) reste invisible parce que jamais mesurée. C'est l'erreur de Vegeta contre Cell : il s'entraîne sur les mauvaises choses pendant que la vraie menace grossit en silence. Mesure d'abord, optimise ensuite.
 
 ---
 
@@ -169,4 +169,4 @@ Trouve ou invente deux implémentations où l'une est mesurée "3x plus rapide" 
 
 ## RÉSUMÉ
 
-Un benchmark transforme une intuition ("ça a l'air rapide") en mesure vérifiable. `performance.now()` donne la précision nécessaire, mais une seule mesure reste peu fiable : il faut moyenner sur plusieurs itérations et chauffer le moteur JS avant de mesurer pour de vrai. Le facteur comparatif rend les résultats lisibles d'un coup d'oeil, mais un facteur élevé sur une différence absolue minuscule ne veut souvent rien dire en pratique. Mesurer avant d'optimiser, toujours, sinon tu optimises à l'aveugle ce qui te semble lent au lieu de ce qui l'est vraiment.
+Un benchmark transforme une intuition ("ça a l'air rapide") en mesure vérifiable. `performance.now()` donne la précision nécessaire, mais une seule mesure reste peu fiable : il faut moyenner sur plusieurs itérations et chauffer le moteur JS avant de mesurer pour de vrai. Le facteur comparatif rend les résultats lisibles d'un coup d'oeil, mais un facteur élevé sur une différence absolue minuscule ne veut souvent rien dire en pratique. Mesurer avant d'optimiser, toujours, sinon tu optimises à l'aveugle ce qui te semble lent au lieu de ce qui l'est vraiment. Dans Breaking Bad, Walter White ne touche jamais à une formule sans en valider les paramètres. Il mesure, compare, ajuste. Toi pareil avec ton code.

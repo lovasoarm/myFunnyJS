@@ -71,7 +71,7 @@ calculerRations([], 50);
 // Le bug est identifié INSTANTANÉMENT, avec la cause exacte, pas une valeur à interpréter
 ```
 
-**Technique :** une assertion ne te montre pas un état, elle vérifie qu'un état respecte une attente, et plante immédiatement avec un message clair si c'est faux. C'est la différence entre observer passivement ("voilà la valeur, débrouille-toi") et vérifier activement ("voici ce qui devait être vrai, et c'est faux, voici pourquoi").
+**Technique :** une assertion ne te montre pas un état, elle vérifie qu'un état respecte une attente, et plante immédiatement avec un message clair si c'est faux. C'est la différence entre observer passivement ("voilà la valeur, débrouille-toi") et vérifier activement ("voici ce qui devait être vrai, et c'est faux, voici pourquoi"). C'est le réflexe de Luca Hood dans Banshee : avant d'entrer quelque part, il vérifie que les conditions sont réunies. Si elles ne le sont pas, il n'entre pas. Ton `assert` fait pareil avec ton code.
 
 **Pourquoi ça vaut mieux que console.log :** une assertion qui échoue te montre EXACTEMENT où l'hypothèse casse, au lieu de te montrer 10 valeurs et te laisser comparer toi-même ce qui cloche.
 
@@ -165,7 +165,7 @@ function evaluerMenace(secteur) {
 }
 ```
 
-**Pourquoi ça aide sur un bug de logique complexe :** un bug du genre "le résultat final est faux, mais je sais pas à quelle étape ça part en vrille" se résout direct avec une trace : tu vois CHAQUE étape, dans l'ordre, avec les données du moment. Le problème saute aux yeux au lieu d'être deviné.
+**Pourquoi ça aide sur un bug de logique complexe :** un bug du genre "le résultat final est faux, mais je sais pas à quelle étape ça part en vrille" se résout direct avec une trace : tu vois CHAQUE étape, dans l'ordre, avec les données du moment. Le problème saute aux yeux au lieu d'être deviné. C'est le jutsu de Naruto pour analyser un combat après coup : il rejoue chaque échange dans sa tête, étape par étape, pour comprendre où la stratégie a cassé. Le traceur fait ça pour ton code.
 
 ---
 
