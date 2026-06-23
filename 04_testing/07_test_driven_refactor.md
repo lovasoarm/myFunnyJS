@@ -175,28 +175,34 @@ Dans le second, les tests sont une documentation qui s'adapte.
 
 # EXERCICES
 
-## EXO 1 : filet sur code spaghetti
+## EXO 1 : le code de Rick qu'il faut pas toucher sans filet
 
-Ce code fonctionne mais est illisible :
+Daryl a transmis ce module du camp Walking Dead. Il calcule un score de dangerosité pour décider qui garde la porte la nuit. Le code tourne depuis 3 mois. Personne ne sait exactement ce qu'il fait. Zéro test.
 
 ```js
-function score(j) {
-  return j.k > 0 ? ((j.k * 3 + (j.a || 0)) / (j.d > 0 ? j.d : 1)).toFixed(1) : '0.0'
+function score(g) {
+  return g.k > 0 ? ((g.k * 3 + (g.a || 0)) / (g.d > 0 ? g.d : 1)).toFixed(1) : '0.0'
 }
 ```
 
-Étape 1 : écris les tests qui capturent tous les comportements (déduis-les du code).
-Étape 2 : refactorise le code pour qu'il soit lisible.
-Étape 3 : vérifie que tous les tests passent.
+Rick veut refactoriser ça pour que ce soit lisible. Mais si tu casses le calcul, le mauvais gardien prend la mauvaise porte, et tout le monde crève.
+
+Ta mission : poser le filet avant de toucher quoi que ce soit.
+
+Étape 1 : déduis tous les comportements du code et écris les tests qui les capturent.
+Étape 2 : refactorise pour que la fonction soit lisible par un humain fatigué à 3h du matin.
+Étape 3 : tous les tests passent — sans en avoir modifié un seul.
+
+(Indice : `k`, `a`, `d` — cherche ce que ça peut vouloir dire dans un contexte de survie. La logique du calcul te donnera les cas de test.)
 
 ---
 
-## EXO 2 : refacto avec extraction
+## EXO 2 : le module qui fait trop de choses
 
-Ce module a un problème de responsabilité. Il fait trop de choses dans une seule fonction.
+L'équipe de comptage du Ballon d'Or a une seule fonction qui agrège les votes, classe les joueurs, et formate le message de cérémonie. Trois responsabilités dans une seule fonction : si la cérémonie est retransmise en direct et que le format du message change au dernier moment, tu touches tout et tu casses tout.
 
 ```js
-function publierRésultatsBallon(votes, joueurs) {
+function publierRésultatsBallon(votes) {
   const totaux = {}
   for (const vote of votes) {
     totaux[vote.joueur] = (totaux[vote.joueur] || 0) + vote.points
@@ -211,9 +217,11 @@ function publierRésultatsBallon(votes, joueurs) {
 }
 ```
 
-Étape 1 : écris les tests.
-Étape 2 : extrait deux fonctions séparées (`agrègeVotes` et `formateMessage`).
-Étape 3 : ajoute des tests unitaires pour les fonctions extraites.
+Ta mission : rendre chaque responsabilité modifiable sans risque.
+
+Étape 1 : écris les tests sur la fonction existante. Tous verts avant de toucher le code.
+Étape 2 : extrait `agrègeVotes` et `formateMessage` comme fonctions séparées. Les tests d'origine passent toujours.
+Étape 3 : ajoute des tests unitaires ciblés sur chaque fonction extraite — prouve que tu peux changer le format du message sans toucher à l'agrégation.
 
 ---
 
