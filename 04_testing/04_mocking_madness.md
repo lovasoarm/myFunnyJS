@@ -3,9 +3,9 @@
 Ton code appelle une API externe. Il envoie un email. Il lit un fichier sur le disque.
 Tu ne peux pas laisser ça tourner dans tes tests : c'est lent, imprévisible, et ça coûte parfois de l'argent.
 
-La solution : les mocks.
-Un mock remplace une dépendance réelle par une version qu'on contrôle totalement.
-Résultat : le test reste rapide, prévisible, isolé.
+Le système de vote du Ballon d'Or envoie des emails de confirmation à chaque journaliste qui vote. Si les tests appellent le vrai service d'email, t'envoies 500 emails à chaque `npm test`. La FIFA va t'appeler.
+
+La solution : les mocks. Un mock remplace une dépendance réelle par une version qu'on contrôle totalement. Résultat : le test reste rapide, prévisible, isolé.
 
 ---
 
@@ -41,11 +41,11 @@ const envoyerEmail = jest.fn().mockImplementation((destinataire) => {
 })
 
 // utilisation dans un test
-envoyerEmail('mikasa@mur.sc')
+envoyerEmail('journaliste.fr@ballon-dor.com')
 
 // vérifications
 expect(envoyerEmail).toHaveBeenCalled()
-expect(envoyerEmail).toHaveBeenCalledWith('mikasa@mur.sc')
+expect(envoyerEmail).toHaveBeenCalledWith('journaliste.fr@ballon-dor.com')
 expect(envoyerEmail).toHaveBeenCalledTimes(1)
 ```
 
@@ -59,18 +59,18 @@ Quand ton code importe un module externe (API, base de données, service tiers) 
 
 ```js
 // notificationService.js
-const emailClient = require('./emailClient') // dépendance externe
+const emailClient = require('./emailClient') // dépendance externe : 500 emails en test sinon
 
-function notifierVictoire(joueur) {
+function notifierVotant(journaliste) {
   emailClient.envoyer({
-    destinataire: joueur.email,
-    sujet: 'Tu as gagné le Ballon d\'Or',
-    corps: `Félicitations ${joueur.nom}`
+    destinataire: journaliste.email,
+    sujet: 'Votre vote Ballon d\'Or a été enregistré',
+    corps: `Merci ${journaliste.nom}, votre voix compte.`
   })
   return true
 }
 
-module.exports = { notifierVictoire }
+module.exports = { notifierVotant }
 ```
 
 ```js
@@ -80,28 +80,28 @@ module.exports = { notifierVictoire }
 jest.mock('./emailClient')
 
 const emailClient = require('./emailClient')
-const { notifierVictoire } = require('./notificationService')
+const { notifierVotant } = require('./notificationService')
 
-describe('notifierVictoire', () => {
+describe('notifierVotant', () => {
   beforeEach(() => {
     // reset les compteurs d'appels entre chaque test
     jest.clearAllMocks()
   })
 
-  it('envoie un email au joueur', () => {
-    const joueur = { nom: 'Messi', email: 'leo@fcb.es' }
+  it('envoie un email de confirmation au journaliste', () => {
+    const journaliste = { nom: 'Jean Dupont', email: 'jean@lequipe.fr' }
 
-    notifierVictoire(joueur)
+    notifierVotant(journaliste)
 
     expect(emailClient.envoyer).toHaveBeenCalledWith({
-      destinataire: 'leo@fcb.es',
-      sujet: 'Tu as gagné le Ballon d\'Or',
-      corps: 'Félicitations Messi'
+      destinataire: 'jean@lequipe.fr',
+      sujet: 'Votre vote Ballon d\'Or a été enregistré',
+      corps: 'Merci Jean Dupont, votre voix compte.'
     })
   })
 
   it('retourne true après notification', () => {
-    const résultat = notifierVictoire({ nom: 'Messi', email: 'leo@fcb.es' })
+    const résultat = notifierVotant({ nom: 'Jean', email: 'jean@lequipe.fr' })
     expect(résultat).toBe(true)
   })
 })
@@ -113,14 +113,14 @@ describe('notifierVictoire', () => {
 
 ## 4) MOCKER DES VALEURS DE RETOUR ASYNC
 
-Ton code fait des appels API ? Pas question d'appeler la vraie API dans les tests.
+Le système de vote récupère les stats des joueurs via une API FIFA. Pas question d'appeler la vraie API dans les tests.
 
 ```js
 // joueurAPI.js
 const fetch = require('node-fetch')
 
 async function recupStats(joueurId) {
-  const res = await fetch(`https://api.ballon-dor.com/joueurs/${joueurId}`)
+  const res = await fetch(`https://api.fifa.com/joueurs/${joueurId}`)
   const data = await res.json()
   return data.stats
 }
@@ -133,23 +133,23 @@ const fetch = require('node-fetch')
 const { recupStats } = require('./joueurAPI')
 
 it('retourne les stats du joueur', async () => {
-  // on contrôle ce que fetch "retourne"
+  // on contrôle ce que fetch "retourne" : pas d'appel réseau réel
   fetch.mockResolvedValue({
     json: jest.fn().mockResolvedValue({
-      stats: { buts: 700, passes: 300 }
+      stats: { buts: 45, passes: 18, matchs: 52 }
     })
   })
 
-  const stats = await recupStats('messi-10')
+  const stats = await recupStats('mbappe-7')
 
-  expect(stats.buts).toBe(700)
-  expect(fetch).toHaveBeenCalledWith('https://api.ballon-dor.com/joueurs/messi-10')
+  expect(stats.buts).toBe(45)
+  expect(fetch).toHaveBeenCalledWith('https://api.fifa.com/joueurs/mbappe-7')
 })
 
 it('gère une réponse d\'API en erreur', async () => {
-  fetch.mockRejectedValue(new Error('API indisponible'))
+  fetch.mockRejectedValue(new Error('API FIFA indisponible'))
 
-  await expect(recupStats('messi-10')).rejects.toThrow('API indisponible')
+  await expect(recupStats('mbappe-7')).rejects.toThrow('API FIFA indisponible')
 })
 ```
 
@@ -160,18 +160,18 @@ it('gère une réponse d\'API en erreur', async () => {
 
 ## 5) SPY : SURVEILLER SANS REMPLACER
 
-Parfois tu veux que la vraie implémentation tourne, mais tu veux vérifier comment elle a été appelée.
+Le logger de la cérémonie doit enregistrer chaque vote important. On veut vérifier qu'il a bien été appelé, sans couper le vrai logging.
 
 ```js
 const logger = require('./logger')
 
-it('log un avertissement si le joueur est blessé', () => {
+it('log un avertissement si un vote arrive hors délai', () => {
   // espionne logger.warn sans le remplacer
   const spy = jest.spyOn(logger, 'warn')
 
-  analyseJoueur({ nom: 'Neymar', blessure: true })
+  enregistrerVote({ journaliste: 'marc', horodatage: Date.now() + 99999 })
 
-  expect(spy).toHaveBeenCalledWith(expect.stringContaining('blessé'))
+  expect(spy).toHaveBeenCalledWith(expect.stringContaining('hors délai'))
 
   // important : remettre l'original après le test
   spy.mockRestore()
@@ -202,19 +202,19 @@ Piège 3 : ne pas vérifier les arguments
 
 # EXERCICES
 
-## EXO 1 : le mock du système de récompenses
+## EXO 1 : le mock du virement FIFA
 
-Tu as cette fonction :
+La fonction distribue le prix au vainqueur du Ballon d'Or :
 
 ```js
 const paiementService = require('./paiementService')
 
-function distribuerPrimeBallon(joueur) {
+function distribuerPrixBallon(joueur) {
   if (joueur.rang === 1) {
     paiementService.virer({ montant: 500000, destinataire: joueur.id })
-    return 'prime versée'
+    return 'prix versé'
   }
-  return 'pas de prime'
+  return 'pas de prix'
 }
 ```
 
@@ -224,21 +224,21 @@ function distribuerPrimeBallon(joueur) {
 
 ---
 
-## EXO 2 : mock async d'API
+## EXO 2 : mock async de l'API FIFA
 
 Écris le test pour cette fonction avec un mock de `fetch` :
 
 ```js
-async function estEligibleFIFA(joueurId) {
+async function estEligibleCeremonie(joueurId) {
   const res = await fetch(`https://api.fifa.com/joueurs/${joueurId}`)
   const data = await res.json()
-  return data.licenceActive === true
+  return data.licenceActive === true && data.matchsJoues >= 15
 }
 ```
 
 Teste :
-- un joueur avec licence active → `true`
-- un joueur sans licence → `false`
+- un joueur éligible (licence active + assez de matchs) → `true`
+- un joueur inéligible (licence inactive) → `false`
 - une API qui explose → que se passe-t-il ?
 
 ---
