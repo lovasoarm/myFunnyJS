@@ -1,12 +1,8 @@
 # INTEGRATION REACTOR : QUAND L'ISOLATION NE SUFFIT PLUS
 
-Chaque pièce est testée unitairement. Tout est vert.
-Tu branches les pièces ensemble. Ça explose.
+Chaque section de Fox River est sécurisée indépendamment. Chaque gardien sait son couloir par coeur. Mais personne n'a testé ce qui se passe quand les sections sont traversées en séquence, dans le bon ordre, avec les vrais délais entre deux portes. Michael Scofield sait que c'est là que le plan casse vraiment.
 
-C'est ça le problème des unit tests seuls : ils vérifient que chaque pièce fonctionne.
-Ils ne vérifient pas que les pièces fonctionnent ensemble.
-
-Les tests d'intégration comblent ce trou.
+Les tests d'intégration c'est ça : chaque pièce est testée unitairement. Tout est vert. Tu branches les pièces ensemble. Ça explose. C'est pas un bug d'une pièce : c'est un bug d'assemblage.
 
 ---
 
@@ -45,8 +41,6 @@ Le test d'intégration vérifie les **contrats entre modules** : est-ce que A pr
 ```js
 // vote.integration.test.js
 
-// ici on n'est pas obligé de tout mocker
-// on utilise une vraie DB de test, ou un in-memory store
 const { validateVote } = require('./validateVote')
 const { stockeVote, getVotes } = require('./stockeVote')
 const { calculClassement } = require('./calculClassement')
@@ -57,27 +51,27 @@ describe('pipeline de vote complet', () => {
     clearTestStore()
   })
 
-  it('un vote valide finit dans le classement', async () => {
+  it('un vote valide de journaliste finit dans le classement', async () => {
     // ARRANGE
-    const vote = { journaliste: 'john-doe', joueur: 'messi', points: 10 }
+    const vote = { journaliste: 'jean-dupont', joueur: 'Messi', points: 10 }
 
-    // ACT : pipeline complet
+    // ACT : pipeline complet, comme en prod
     const voteValidé = validateVote(vote)
     await stockeVote(voteValidé)
     const classement = await calculClassement()
 
     // ASSERT : résultat de bout en bout
-    expect(classement[0].nom).toBe('messi')
+    expect(classement[0].joueur).toBe('messi') // normalisé en lowercase
     expect(classement[0].totalPoints).toBe(10)
   })
 
   it('un vote invalide ne corrompt pas le classement', async () => {
-    const voteInvalide = { journaliste: null, joueur: 'neymar', points: 999 }
+    const voteInvalide = { journaliste: null, joueur: 'Neymar', points: 999 }
 
     expect(() => validateVote(voteInvalide)).toThrow('Journaliste requis')
 
     const classement = await calculClassement()
-    // aucun vote invalide ne doit être dans le classement
+    // aucun vote invalide ne doit polluer le classement
     expect(classement).toHaveLength(0)
   })
 })
@@ -95,7 +89,7 @@ Option 1 : in-memory store
            inconvénient : ne teste pas la vraie DB
            usage : logique d'intégration entre modules JS
 
-Option 2 : vraie DB de test (SQLite, MongoDB in-memory via mongomock)
+Option 2 : vraie DB de test (SQLite, MongoDB in-memory)
            avantage : teste vraiment la persistance
            inconvénient : plus lent, setup requis
            usage : quand la couche de persistance est critique
@@ -130,6 +124,7 @@ function validateVote(vote) {
   return {
     ...vote,
     joueur: vote.joueur.toLowerCase().trim() // normalisé
+    // retourne : { joueur: 'messi', journaliste: ..., points: ... }
   }
 }
 
@@ -138,7 +133,7 @@ async function stockeVote(vote) {
   await db.insert({ playerId: vote.playerId, points: vote.points })
   // BUG : vote.playerId n'existe pas, validate retourne vote.joueur
   // unit tests de stockeVote ne le voient pas (vote mocké avec playerId)
-  // test d'intégration le voit : playerId est undefined
+  // test d'intégration le voit : playerId est undefined → bug révélé
 }
 ```
 
@@ -165,7 +160,7 @@ Ce qu'ils ne testent pas :
 
 # EXERCICES
 
-## EXO 1 : brancher deux modules
+## EXO 1 : le pipeline de candidature Ballon d'Or
 
 Tu as ces deux modules :
 
@@ -177,32 +172,34 @@ function formateJoueur(raw) {
 
 // module B : filtreEligibles
 function filtreEligibles(joueurs) {
-  return joueurs.filter(j => j.buts >= 10)
+  return joueurs.filter(j => j.buts >= 15 && j.nom.length > 0)
 }
 ```
 
 Écris le test unitaire pour chacun séparément.
 Puis écris un test d'intégration qui vérifie le pipeline `raw → formateJoueur → filtreEligibles`.
 
-Invente des données raw avec des noms padding et des buts variés.
+Invente des données raw avec des noms avec espaces superflus et des buts variés (0, 14, 15, 30).
 
 ---
 
-## EXO 2 : trouver le mismatch
+## EXO 2 : le contrat brisé
 
 Ces deux fonctions ont un bug d'interface. Écris le test d'intégration qui le révèle.
 
 ```js
-function prepareMission(nomMission) {
-  return { missionName: nomMission, timestamp: Date.now() }
+function preparerVote(nomJournaliste) {
+  return { voterName: nomJournaliste, timestamp: Date.now() }
 }
 
-function logueMission(mission) {
-  // attend un objet avec un champ 'name', pas 'missionName'
-  console.log(`Mission lancée : ${mission.name}`)
-  return mission.name !== undefined
+function loguerVote(vote) {
+  // attend un objet avec un champ 'journalist', pas 'voterName'
+  console.log(`Vote de : ${vote.journalist}`)
+  return vote.journalist !== undefined
 }
 ```
+
+(Indice : ecris le test qui appelle les deux fonctions en pipeline, vérifie le résultat final, et regarde pourquoi il est `false` alors qu'un journaliste a bien voté)
 
 ---
 
