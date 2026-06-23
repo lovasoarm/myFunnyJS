@@ -1,8 +1,10 @@
-# MODULE FACTORY : ORGANISER SON CODE WEB SANS FRAMEWORK
+# SCOPE ISOLÉ : ARRÊTER DE POLLUER LE GLOBAL
 
-Le problème c'est simple : tu as 5 fichiers `.js` dans ta page. Tout le monde déclare des variables dans le global. `window.data` écrase `window.data`. Deux scripts parlent de `user` mais ce ne sont pas les mêmes. Le résultat : un dépôt de déchets toxiques dans `window`. Un bug qui vient de nulle part. Et toi qui te demandes quel script est responsable.
+Le problème c'est simple : tu as 5 fichiers `.js` dans ta page. Tout le monde déclare des variables dans le global. `window.data` écrase `window.data`. Deux scripts parlent de `chakra` mais ce ne sont pas les mêmes. Le résultat : un dépôt de déchets toxiques dans `window`. Un bug qui vient de nulle part. Et toi qui te demandes quel script est responsable.
 
-C'est ça, le code web non structuré. Le Module Factory Pattern résout ça sans framework, sans build tool, sans rien. Juste des fonctions et du scope.
+C'est ça, le code web non structuré. La solution tient en deux mots : scope isolé. Pas besoin de framework, pas besoin de build tool. Juste des fonctions et du scope, bien utilisés.
+
+> **Pour aller plus loin :** ce fichier couvre la base (IIFE, scope isolé). La version complète : Factory Pattern, Revealing Module Pattern, organisation à grande échelle, c'est dans `10_design_patterns/01_creational/01_factory_pattern.md`. Tu reviens ici une fois que tu as vu les closures et les fonctions en profondeur, et tout prend son sens.
 
 Vraie utilité : tout projet vanilla JS (sans framework), tout legacy à maintenir, toute extension navigateur, tout script embarqué dans un CMS. Comprendre ça, c'est aussi comprendre POURQUOI les frameworks comme React ou Vue existent.
 
@@ -12,23 +14,22 @@ Vraie utilité : tout projet vanilla JS (sans framework), tout legacy à mainten
 
 ```html
 <!-- index.html -->
-<script src="user.js"></script>
-<script src="cart.js"></script>
-<script src="payment.js"></script>
+<script src="ninja.js"></script>
+<script src="combat.js"></script>
 ```
 
 ```js
-// user.js
-var data = { name: "Luffy", role: "captain" }; // pollue window.data
+// ninja.js
+var data = { name: "Naruto", role: "genin" }; // pollue window.data
 var init = function () {
   /* ... */
 }; // pollue window.init
 
-// cart.js
-var data = { items: [], total: 0 }; // ECRASE window.data de user.js
+// combat.js
+var data = { jutsus: [], degats: 0 }; // ECRASE window.data de ninja.js
 var init = function () {
   /* ... */
-}; // ECRASE window.init de user.js
+}; // ECRASE window.init de ninja.js
 ```
 
 Tout ce qui n'est pas encapsulé (enfermé dans une portée) finit dans `window`. C'est la zone partagée entre tous tes scripts. Résultat : collision garantie sur les noms, bugs silencieux, debugging cauchemardesque.
@@ -55,11 +56,11 @@ Pourquoi les deux paires de parenthèses ? La première `()` crée l'expression 
 ### Appliqué au problème du scope global
 
 ```js
-// user.js
-var UserModule = (function () {
-  // une seule variable dans window : UserModule
-  var data = { name: "Luffy" }; // privé : invisible de l'extérieur
-  var role = "captain"; // privé
+// ninja.js
+var NinjaModule = (function () {
+  // une seule variable dans window : NinjaModule
+  var data = { name: "Naruto" }; // privé : invisible de l'extérieur
+  var role = "genin"; // privé
 
   function getDisplayName() {
     // privé
@@ -78,17 +79,17 @@ var UserModule = (function () {
   };
 })();
 
-// cart.js
-var CartModule = (function () {
-  // une seule variable dans window : CartModule
-  var items = []; // privé
+// combat.js
+var CombatModule = (function () {
+  // une seule variable dans window : CombatModule
+  var jutsus = []; // privé
 
   return {
-    add: function (item) {
-      items.push(item);
+    add: function (jutsu) {
+      jutsus.push(jutsu);
     },
     getCount: function () {
-      return items.length;
+      return jutsus.length;
     },
   };
 })();
@@ -96,8 +97,8 @@ var CartModule = (function () {
 
 ```
 AVANT                      APRÈS
-window.data     <-- clash  window.UserModule.getName()
-window.data     <-- clash  window.CartModule.add()
+window.data     <-- clash  window.NinjaModule.getName()
+window.data     <-- clash  window.CombatModule.add()
 window.init     <-- clash
 window.init     <-- clash
 ```
@@ -106,15 +107,14 @@ Un seul nom exposé par module. Tout le reste est encapsulé.
 
 ---
 
-## 3) LE MODULE FACTORY : CRÉER DES INSTANCES
+## 3) UN AVANT-GOÛT DE LA FACTORY : INSTANCES INDÉPENDANTES
 
-L'IIFE crée un singleton (une seule instance). Le Factory Pattern crée des instances multiples du même module.
+L'IIFE crée un singleton (une seule instance). Mais parfois tu veux plusieurs instances indépendantes du même genre d'objet, chacune avec ses propres données privées. C'est le rôle d'une fonction factory.
 
 ```js
-// Ninja factory : chaque appel retourne un ninja indépendant
+// Chaque appel retourne un ninja indépendant
 function createNinja(name, chakra) {
   // données privées : dans la closure (portée fermée de la fonction)
-  let _health = 100; // convention _ = "privé par convention"
   let _chakra = chakra;
   let _name = name;
 
@@ -123,17 +123,12 @@ function createNinja(name, chakra) {
     getName() {
       return _name; // accès aux données privées via closure
     },
-
     useJutsu(jutsuName, cost) {
       if (_chakra < cost) {
         return `${_name} n'a plus assez de chakra`;
       }
       _chakra -= cost; // modification de l'état privé
       return `${_name} utilise ${jutsuName} (chakra restant : ${_chakra})`;
-    },
-
-    getStats() {
-      return { name: _name, health: _health, chakra: _chakra };
     },
   };
 }
@@ -147,122 +142,36 @@ console.log(sasuke.useJutsu("Chidori", 300)); // Sasuke utilise Chidori (chakra 
 console.log(naruto._chakra); // undefined : vraiment privé, pas accessible de dehors
 ```
 
-Chaque ninja est indépendant. Ses données vivent dans la closure de sa factory. Tu ne peux pas accéder à `_chakra` depuis l'extérieur même en essayant.
+Chaque ninja est indépendant. Ses données vivent dans la closure de sa fonction. Tu ne peux pas accéder à `_chakra` depuis l'extérieur même en essayant.
+
+Ce réflexe (une fonction qui fabrique des objets avec un état privé isolé) a un nom officiel et une famille entière de variantes : c'est le **Factory Pattern**. Tu le retrouveras en profondeur, avec ses cousins (Revealing Module Pattern, Builder, Singleton), dans `10_design_patterns`.
 
 ---
 
-## 4) LE REVEALING MODULE PATTERN
+## 4) L'ÉVOLUTION : VERS LES MODULES ES6
 
-Variante courante : toutes les fonctions sont déclarées en privé, et on expose uniquement ce qu'on choisit.
-
-```js
-const CartService = (function () {
-  // tout est privé par défaut
-  let _items = [];
-  let _discount = 0;
-
-  function _calculateTotal() {
-    // fonction privée
-    return _items.reduce((acc, item) => acc + item.price, 0) * (1 - _discount);
-  }
-
-  function addItem(item) {
-    // sera exposé
-    _items.push(item);
-  }
-
-  function applyDiscount(percent) {
-    // sera exposé
-    _discount = percent / 100;
-  }
-
-  function getCart() {
-    // sera exposé
-    return {
-      items: [..._items], // copie pour ne pas exposer le tableau original
-      total: _calculateTotal(),
-    };
-  }
-
-  // on révèle seulement ce qu'on décide d'exposer
-  return { addItem, applyDiscount, getCart };
-})();
-
-CartService.addItem({ name: "hoodie", price: 50 });
-CartService.addItem({ name: "tshirt", price: 30 });
-CartService.applyDiscount(10);
-
-console.log(CartService.getCart());
-// { items: [...], total: 72 }
-
-console.log(CartService._items); // undefined : vraiment privé
-console.log(CartService._calculateTotal); // undefined : vraiment privé
-```
-
-L'avantage du Revealing Module : tu listes explicitement ce que tu exposes. Lire le `return` suffit pour comprendre l'API publique du module.
-
----
-
-## 5) NAMESPACE : ORGANISER PLUSIEURS MODULES
-
-Pour un projet plus grand, un namespace (espace de noms) évite les collisions entre modules.
+L'IIFE a dominé pendant des années pour isoler le scope. ES6 a introduit `import/export` en 2015 et propose une solution native au même problème.
 
 ```js
-// Déclarer le namespace une seule fois au départ
-var MyApp = MyApp || {}; // si MyApp existe déjà, on le garde ; sinon on crée
-
-// Chaque module s'accroche au namespace
-MyApp.UserModule = (function () {
+// AVANT (IIFE)
+var CombatModule = (function () {
+  let jutsus = [];
   return {
-    /* ... */
-  };
-})();
-
-MyApp.CartModule = (function () {
-  return {
-    /* ... */
-  };
-})();
-
-MyApp.PaymentModule = (function () {
-  return {
-    /* ... */
-  };
-})();
-
-// usage
-MyApp.CartModule.add(item);
-MyApp.UserModule.getName();
-```
-
-Une seule variable dans `window` : `MyApp`. Tout le reste est structuré en dessous.
-
----
-
-## 6) L'ÉVOLUTION : VERS LES MODULES ES6
-
-Le Module Factory Pattern a dominé pendant des années. ES6 a introduit `import/export` en 2015 et propose une solution native au même problème.
-
-```js
-// AVANT (IIFE / Factory)
-var CartModule = (function () {
-  let items = [];
-  return {
-    add(item) {
-      items.push(item);
+    add(jutsu) {
+      jutsus.push(jutsu);
     },
   };
 })();
 
 // APRÈS (ES Module)
-// cart.js
-let items = [];
-export function add(item) {
-  items.push(item);
+// combat.js
+let jutsus = [];
+export function add(jutsu) {
+  jutsus.push(jutsu);
 }
 
 // main.js
-import { add } from "./cart.js";
+import { add } from "./combat.js";
 ```
 
 Avantages des ES Modules par rapport aux IIFE :
@@ -272,57 +181,48 @@ Avantages des ES Modules par rapport aux IIFE :
 - tree shaking (élimination du code mort) possible par les bundlers
 - analyse statique (erreur à la compilation si l'import n'existe pas)
 
-Quand tu utilises encore le Module Factory Pattern : legacy sans bundler, extensions navigateur, scripts embarqués dans un environnement sans module support, injection dans des pages tiers. Ce n'est pas mort, c'est contexte-dépendant.
+Quand tu utilises encore l'IIFE : legacy sans bundler, extensions navigateur, scripts embarqués dans un environnement sans module support, injection dans des pages tiers. Ce n'est pas mort, c'est contexte-dépendant.
 
 ---
 
 ## EXERCICES
 
-**EXO 1 : La salle des opérations de Banshee**
+**EXO 1 : La salle de garde de Banshee**
 
-Le shérif Lucas Hood a besoin d'un module `IntelService` pour gérer les informations sensibles sur les criminels de Banshee. Les données ne doivent jamais être exposées directement : tout accès passe par des méthodes contrôlées.
+Le shérif Lucas Hood a besoin d'un scope isolé pour gérer une liste de suspects en planque, sans que rien ne fuite dans le global.
 
 ```js
-const IntelService = (function () {
+var WatchModule = (function () {
   // à compléter
 })();
 
-IntelService.addTarget("Proctor");
-IntelService.addTarget("Rabbit");
-IntelService.flag("Rabbit", "priority");
-
-console.log(IntelService.getTargets()); // les deux targets
-console.log(IntelService.getPriority()); // seulement "Rabbit"
-// IntelService._targets => undefined : vraiment privé
+WatchModule.addSuspect("Proctor");
+WatchModule.addSuspect("Rabbit");
+console.log(WatchModule.getCount()); // 2
+// WatchModule._suspects => undefined : vraiment privé
 ```
 
-Contrainte technique : implémenter avec le Revealing Module Pattern. Les données `_targets` ne doivent jamais être accessibles directement depuis l'extérieur.
+Contrainte technique : implémenter avec une IIFE. Le tableau interne des suspects ne doit jamais être accessible directement depuis l'extérieur.
 
 ---
 
-**EXO 2 : Le camp de Prison Break**
+**EXO 2 : Le clone qui se souvient**
 
-Michael Scofield a besoin de créer un module factory pour chaque prisonnier. Chaque prisonnier a un profil privé et expose uniquement ce dont il a besoin pour le plan.
+Crée une fonction `createClone(nom, chakraDepart)` qui fabrique des clones indépendants façon Kage Bunshin. Chaque clone garde son propre niveau de chakra en mémoire (closure), expose `getChakra()` et `consommer(montant)`, et refuse de descendre sous zéro.
 
 ```js
-function createPrisoner(name, role) {
-  // à compléter
-}
+const clone1 = createClone("Clone-A", 100);
+const clone2 = createClone("Clone-B", 50);
 
-const michael = createPrisoner("Michael", "architect");
-const lincoln = createPrisoner("Lincoln", "muscle");
-
-michael.updatePlan("T-Bag doit rester à l'écart");
-console.log(michael.getPlan()); // le plan de Michael
-console.log(lincoln.getPlan()); // le plan de Lincoln (indépendant)
-
-// michael._plan => undefined
+clone1.consommer(30);
+console.log(clone1.getChakra()); // 70
+console.log(clone2.getChakra()); // 50 (indépendant de clone1)
 ```
 
-Contrainte technique : chaque instance est complètement indépendante. Les plans ne se partagent pas entre instances.
+Contrainte technique : aucune variable partagée entre deux clones. Chaque instance doit être totalement indépendante.
 
 ---
 
 ## RÉSUMÉ
 
-Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module. Le Module Factory Pattern crée des instances multiples avec des données vraiment privées via les closures. Le Revealing Module Pattern rend l'API publique lisible au premier regard. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre les factories et les IIFE, c'est comprendre POURQUOI les modules existent. La structure continue dans `07_web_grimoire.md`.
+Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module : une seule variable exposée dans `window`, tout le reste encapsulé. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre l'IIFE et les closures, c'est comprendre POURQUOI les modules existent. La structure continue dans `07_web_grimoire.md`, et le Factory Pattern en entier t'attend dans `10_design_patterns`.
