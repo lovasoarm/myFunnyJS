@@ -1,290 +1,216 @@
-# FETCH ADVENTURE : MISSIONS RÉSEAU POUR CERVEAU CURIEUX
+# FETCH : QUAND TON CODE PARLE À INTERNET
 
-Bienvenue dans un autre monde du JavaScript.
+Les vrais programmes ne vivent pas en isolation. Ils parlent à des serveurs, récupèrent des données en direct, envoient des résultats ailleurs. C'est ce que fait `fetch` : ton code envoie une requête HTTP (le protocole de communication du web) vers un serveur, et le serveur répond.
 
-Jusqu'ici tu manipulais des variables, des tableaux, le DOM. Mais les vraies applications font autre chose.
-
-**Elles parlent à Internet.**
-
-Quand ton app récupère des utilisateurs, des posts, des données météo, des scores : elle fait une **requête HTTP**.
-
-**HTTP** = protocole de communication du web. Ton programme envoie une requête → un serveur répond.
-
-En JavaScript moderne, l'outil pour ça s'appelle **FETCH**.
+Pourquoi ça compte dès maintenant : sans `fetch`, ton app ne lit que ce qu'elle a déjà en mémoire. Avec, elle peut accéder à n'importe quelle donnée du monde.
 
 ---
 
-## 1) FETCH : PARLER À UN SERVEUR
-
-```javascript
-fetch("https://jsonplaceholder.typicode.com/users");
-```
-
-Cette ligne envoie une requête **GET** (GET = demander des données).
-
-Mais `fetch` ne retourne **pas** directement les données. Il retourne une **Promise**.
-
-**Promise** = valeur qui arrivera plus tard.
-
-Pourquoi ? Parce que le réseau prend du temps. JS dit : _"Ok je lance la requête, la réponse arrivera après."_ Et il continue à exécuter le reste du code sans bloquer.
+> **Note importante** : cette leçon utilise `async/await` et les Promises. Ces concepts sont introduits ici de façon minimale pour que tu puisses faire quelque chose d'utile maintenant. Le fonctionnement complet (event loop, microtasks, Promise.all, gestion fine des erreurs async) est traité en profondeur dans `02_async`. Si quelque chose semble mystérieux ici : c'est normal, et prévu.
 
 ---
 
-## 2) PROMISE : LA VALEUR DU FUTUR
+## 1) CE QUE FETCH FAIT
 
-Quand tu fais `fetch(url)`, tu reçois une `Promise<Response>`.
-
-`Response` = objet représentant la réponse du serveur. Pour lire les données :
-
-```javascript
-response.json();
-```
-
-Pourquoi ? Parce que la plupart des APIs renvoient du **JSON** : un format texte pour transporter des objets.
-
-Exemple complet avec `.then()` :
-
-```javascript
+```js
 fetch("https://jsonplaceholder.typicode.com/users")
-  .then((response) => response.json())
+```
+
+Cette ligne envoie une requête GET (GET = demander des données) au serveur. Mais `fetch` ne retourne pas directement les données : il retourne une **Promise** (promesse que la valeur arrivera bientôt).
+
+Pourquoi ? Le réseau prend du temps. Pendant que la réponse voyage, JS continue à exécuter autre chose. Quand la réponse arrive, il reprend. C'est le coeur de l'asynchronicité de JS, vu en détail dans `02_async`.
+
+---
+
+## 2) LIRE LA RÉPONSE : DEUX ÉTAPES
+
+```js
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then((response) => response.json())   // étape 1 : décoder la réponse en objet JS
   .then((data) => {
-    console.log(data);
-  });
+    console.log(data)                    // étape 2 : utiliser les données
+  })
 ```
 
-Ce code signifie : envoie la requête → quand la réponse arrive → transforme en JSON → utilise les données.
+`.then()` = "quand la réponse est prête, fais ça". Les APIs retournent du JSON (format texte standard pour transporter des objets), `response.json()` le transforme en vrai objet JS.
 
 ---
 
-## 3) VERSION MODERNE : ASYNC / AWAIT
+## 3) ASYNC / AWAIT : LA VERSION LISIBLE
 
-Les ingénieurs modernes préfèrent `async/await`. Pourquoi ? Parce que ça ressemble à du code normal : plus de chaîne de `.then()`.
+`async/await` est du sucre syntaxique (syntactic sugar : syntaxe plus lisible qui fait la même chose) au-dessus des Promises. Tu n'as pas besoin de tout comprendre maintenant, mais tu vas le voir partout :
 
-```javascript
-async function loadUsers() {
-  let response = await fetch("https://jsonplaceholder.typicode.com/users");
-  let data = await response.json(); //C'est aussi asynchrone parce que les données peuvent arriver en plusieurs morceaux (streaming). Il faut attendre que tout soit reçu et converti en objet JS.
-  console.log(data);
+```js
+async function chargerJoueurs() {          // async = cette fonction peut attendre
+  const response = await fetch(            // await = attendre que fetch réponde
+    "https://jsonplaceholder.typicode.com/users"
+  )
+  const data = await response.json()       // await encore : décoder le JSON prend aussi du temps
+  console.log(data)
 }
 
-loadUsers();
+chargerJoueurs()
 ```
 
-`await` = attendre la réponse avant de passer à la ligne suivante. Uniquement utilisable dans une fonction `async`.
+`await` = "attends ce résultat avant de continuer". Uniquement utilisable dans une fonction marquée `async`. Le reste de JS continue de tourner pendant l'attente, il ne bloque pas.
 
 ---
 
-## 4) STRUCTURE D'UNE RÉPONSE
+## 4) VÉRIFIER QUE ÇA S'EST BIEN PASSÉ
 
-L'objet `Response` expose des propriétés importantes :
+Le réseau peut répondre avec une erreur (serveur down, URL incorrecte, etc.). L'objet `Response` expose ce qu'on a besoin de savoir :
 
-```javascript
-response.ok; // true si HTTP 200-299, false sinon
-response.status; // code HTTP : 200, 404, 500...
-response.json(); // transformer la réponse en données JS
-```
+```js
+async function chargerJoueurs() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users")
 
-Exemple propre avec vérification :
-
-```javascript
-async function loadUsers() {
-  let response = await fetch("https://jsonplaceholder.typicode.com/users");
-
-  if (!response.ok) {
-    console.log("Erreur serveur :", response.status);
-    return; // sort de la fonction —> l'exécution s'arrête ici
+  if (!response.ok) {                      // ok = true si code HTTP entre 200 et 299
+    console.log("Erreur serveur :", response.status)  // 404, 500, etc.
+    return
   }
 
-  let users = await response.json();
-  console.log(users);
+  const joueurs = await response.json()
+  console.log(joueurs)
 }
+```
+
+```
+response.ok      --> true si le serveur a bien répondu (200-299), false sinon
+response.status  --> le code HTTP exact : 200, 201, 404, 500...
+response.json()  --> transforme le texte JSON reçu en objet JS utilisable
 ```
 
 ---
 
-## 5) GESTION DES ERREURS : TRY / CATCH / FINALLY
+## 5) QUAND QUELQUE CHOSE PLANTE : TRY / CATCH
 
-Le réseau peut casser. On protège avec `try/catch`.
+Le réseau peut totalement échouer (pas de connexion, serveur injoignable). `try/catch` attrape ces pannes :
 
-```javascript
-async function loadUsers() {
+```js
+async function chargerAvecProtection() {
   try {
-    let response = await fetch("https://jsonplaceholder.typicode.com/users");
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log("Réseau cassé :", error);
-  }
-}
-```
+    const response = await fetch("https://jsonplaceholder.typicode.com/users")
 
-Structure complète avec `finally` :
+    if (!response.ok) {
+      throw new Error("Serveur en galère : " + response.status)
+      //               ^ crée une erreur et la lance vers le catch
+    }
 
-```javascript
-try {
-  // code qui peut planter
-} catch (e) {
-  // si ça plante → on arrive ici
-} finally {
-  // s'exécute TOUJOURS, que ça plante ou pas
-}
-```
-
-```javascript
-async function loadData() {
-  console.log("Chargement...");
-
-  try {
-    let response = await fetch("https://jsonplaceholder.typicode.com/users");
-    if (!response.ok) throw new Error("Erreur HTTP : " + response.status); //ce texte devient e.message
-
-    let data = await response.json();
-    console.log("Données reçues :", data.length, "users");
-  } catch (e) { //e.message —> soit ton message custom du throw, soit le message automatique de JS.
-    console.log("Erreur :", e.message); //"Erreur : Erreur HTTP : 404" si ça plante
+    const data = await response.json()
+    console.log("Données :", data.length, "entrées")
+  } catch (erreur) {
+    console.log("Panne réseau ou serveur :", erreur.message)
   } finally {
-    console.log("Chargement terminé."); // s'affiche toujours
+    console.log("Requête terminée (succès ou pas)")
+    // finally s'exécute TOUJOURS : utile pour cacher un spinner, fermer une connexion
   }
 }
 ```
 
-Ce qui s'affiche si tout va bien :
-
 ```
-Chargement...
-Données reçues : 10 users
-Chargement terminé.
+try     -->  ce qui peut planter
+catch   -->  si ça plante : on arrive ici avec l'erreur
+finally -->  s'exécute dans tous les cas, erreur ou pas
+throw   -->  lance une erreur manuellement vers le catch
 ```
-
-Ce qui s'affiche si erreur :
-
-```
-Chargement...
-Erreur : Erreur HTTP : 404
-Chargement terminé.  ← finally s'exécute quand même
-```
-
-**`throw` vs retour silencieux :**
-
-```javascript
-// Sans throw : l'erreur passe inaperçue
-if (!response.ok) return; // on sort silencieusement
-
-// Avec throw : on force le catch à se déclencher
-if (!response.ok) throw new Error("Erreur HTTP : " + response.status);
-//                                     ↑ catch(e) reçoit ce message dans e.message
-```
-
-| Bloc      | Rôle                                             |
-| --------- | ------------------------------------------------ |
-| `try`     | code risqué                                      |
-| `catch`   | plan B si ça plante(catche n'importe quel erreur)|
-| `finally` | s'exécute **toujours** : spinner, log, nettoyage |
-| `throw`   | lancer manuellement une erreur vers le `catch`   |
-
-> `finally` est fait pour les tâches de nettoyage : cacher un spinner de chargement, fermer une connexion base de données, logger la fin d'une opération : peu importe si ça a réussi ou échoué.
 
 ---
 
-## 6) POST : ENVOYER DES DONNÉES
+## 6) ENVOYER DES DONNÉES : POST
 
-`fetch` peut aussi envoyer des données, pas seulement en recevoir :
+`fetch` peut aussi envoyer, pas seulement recevoir :
 
-```javascript
-fetch("https://jsonplaceholder.typicode.com/users", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    name: "Blob",
-    power: "CrazyDev",
-  }),
-});
+```js
+async function signalerMenace(data) {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",   // on dit au serveur ce qu'on envoie
+    },
+    body: JSON.stringify(data),             // objet JS -> texte JSON pour le transport
+  })
+
+  const resultat = await response.json()
+  console.log("Enregistré :", resultat)
+}
+
+signalerMenace({ menace: "Titan Colossal", niveau: "CRITIQUE", secteur: "Mur Maria" })
 ```
 
-`JSON.stringify` = transformer un objet JS en texte JSON pour le transport.
+`JSON.stringify` = transformer un objet JS en texte JSON. L'inverse de `response.json()`.
 
 ---
 
-## 7) LA RÈGLE MENTALE
+## 7) LA CARTE MENTALE
 
 ```
-Fetch =
-1) envoyer requête
-2) attendre réponse
-3) transformer JSON
-4) utiliser données
+FETCH :\
+
+1) envoyer requête  -->  fetch(url, options)
+2) attendre réponse -->  await ou .then()
+3) vérifier status  -->  response.ok
+4) décoder JSON     -->  await response.json()
+5) utiliser données -->  le reste de ta fonction
+6) gérer les pannes -->  try/catch autour de tout ça
 ```
 
-C'est tout. Mais c'est la base de : React apps, mobile apps, dashboards, SaaS, APIs, microservices. Tout.
+---
+
+## MISSIONS
+
+### MISSION 1 : LE RADAR DE RECONNAISSANCE
+
+Endpoint disponible : `https://jsonplaceholder.typicode.com/users`
+
+L'équipe de reconnaissance a besoin d'un rapport. Récupère les données, affiche les noms de chaque entrée, et indique le total en fin de rapport.
 
 ---
 
-# MISSIONS
+### MISSION 2 : FILTRAGE D'ALERTE
 
-## MISSION 1 : LE RADAR À JOUEURS
-
-Endpoint : `https://jsonplaceholder.typicode.com/users`
-
-1. Récupère les utilisateurs
-2. Affiche leurs noms
-3. Affiche combien il y en a
-
-_Indice : `data.length`_
+Même endpoint. Certaines cibles ont un `id > 5` : elles sont prioritaires. Filtre-les avec `filter()` et affiche seulement leurs noms. Les autres n'existent pas pour toi.
 
 ---
 
-## MISSION 2 : FILTRAGE CHAOTIQUE
+### MISSION 3 : TRANSFORMATION DE DOSSIER
 
-Avec les mêmes users, trouve ceux dont `id > 5`. Utilise `filter()` et affiche seulement leurs noms.
+Transforme chaque entrée en dossier structuré avec `map` :
 
----
-
-## MISSION 3 : TRANSFORMATION CRAZY
-
-Transforme les utilisateurs avec `map` en cette structure :
-
-```javascript
+```js
 {
-  heroName: name,
-  secretCity: address.city
+  codenom: name,      // le nom devient le nom de code
+  zone: address.city  // la ville devient la zone d'opération
 }
 ```
 
-Affiche le nouveau tableau.
+Affiche le tableau transformé.
 
 ---
 
-## MISSION 4 : FABRIQUE DE MONSTRES
+### MISSION 4 : RAPPORT D'INCIDENT
 
-Envoie un POST avec ce corps :
+Envoie un POST avec ce payload :
 
-```javascript
-{
-  name: "Blobzilla",
-  danger: 9000
-}
+```js
+{ incident: "Percée du Mur Maria", niveau: 9000, secteur: "Nord" }
 ```
 
 Affiche la réponse du serveur.
 
 ---
 
-## MISSION 5 : CHAOS NETWORK
+### MISSION 5 : TEST DE RÉSISTANCE
 
-Teste une URL cassée :
+Lance `fetch` sur une URL intentionnellement cassée :
 
-```javascript
-fetch("https://jsonplaceholder.typicode.com/WRONG");
+```js
+fetch("https://jsonplaceholder.typicode.com/INEXISTANT")
 ```
 
-Observe `response.ok` et `response.status`. Comprends comment détecter et gérer une erreur réseau proprement.
+Observe `response.ok` et `response.status`. Écris le code qui détecte l'échec et affiche un message d'erreur clair, sans faire planter le programme.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
-Fetch = communication réseau. Tu envoies une requête. Le serveur répond. Tu transformes la réponse. Tu utilises les données.
-
-Sans fetch : pas d'app moderne. Juste des pages mortes.
+`fetch` est la porte entre ton code et le monde extérieur. Tu envoies une requête, tu attends la réponse, tu la décode, tu la protèges avec try/catch. `async/await` rend tout ça lisible. La mécanique complète derrière (pourquoi `await` ne bloque pas, comment JS jongle plusieurs opérations en même temps) : c'est le sujet entier de `02_async`, et ça vaut le détour.
