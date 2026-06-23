@@ -3,7 +3,7 @@
 La plupart des devs écrivent du code, puis pensent aux tests.
 TDD inverse ça : t'écris le test d'abord, le code ensuite.
 
-Au début ça semble bizarre. Après trois sessions : t'as du mal à coder autrement.
+Au début ça semble bizarre. La cérémonie du Ballon d'Or a ses règles : tu sais d'avance quel comportement le système doit avoir avant d'écrire une seule ligne. Tu définies d'abord ce qui doit arriver, et le code suit. Après trois sessions TDD : t'as du mal à coder autrement.
 
 ---
 
@@ -33,7 +33,7 @@ Chaque nouvelle feature : un nouveau cycle. Chaque bug corrigé : commencer par 
 
 ## 2) UN VRAI CYCLE : PAS À PAS
 
-On va coder un système de vote pour le Ballon d'Or. Pas tout d'un coup : test par test.
+On va coder le système de vote du Ballon d'Or. Pas tout d'un coup : test par test.
 
 ### Cycle 1 : créer un votant
 
@@ -42,10 +42,11 @@ On va coder un système de vote pour le Ballon d'Or. Pas tout d'un coup : test p
 // ballonDor.test.js
 const { creerVotant } = require('./ballonDor')
 
-it('crée un votant avec son pays', () => {
-  const votant = creerVotant('France', 'Jean Dupont')
+it('crée un votant avec son pays et son journal', () => {
+  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
   expect(votant.pays).toBe('France')
   expect(votant.nom).toBe('Jean Dupont')
+  expect(votant.journal).toBe('L\'Équipe')
   expect(votant.aVoté).toBe(false)
 })
 ```
@@ -55,8 +56,8 @@ On lance. Ça échoue. `creerVotant` n'existe pas. **C'est normal. C'est le but.
 **GREEN** : le minimum pour passer :
 ```js
 // ballonDor.js
-function creerVotant(pays, nom) {
-  return { pays, nom, aVoté: false }
+function creerVotant(pays, nom, journal) {
+  return { pays, nom, journal, aVoté: false }
 }
 module.exports = { creerVotant }
 ```
@@ -74,7 +75,7 @@ On lance. Vert.
 const { creerVotant, voter } = require('./ballonDor')
 
 it('enregistre le vote et marque le votant comme ayant voté', () => {
-  const votant = creerVotant('France', 'Jean Dupont')
+  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
   const résultat = voter(votant, 'Messi')
   expect(résultat.choix).toBe('Messi')
   expect(résultat.votant.aVoté).toBe(true)
@@ -99,11 +100,11 @@ function voter(votant, joueur) {
 
 **RED** :
 ```js
-it('rejette un double vote', () => {
-  const votant = creerVotant('France', 'Jean Dupont')
+it('rejette un double vote : un journaliste ne vote qu\'une fois', () => {
+  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
   const votantAyantVoté = voter(votant, 'Messi').votant
 
-  expect(() => voter(votantAyantVoté, 'Neymar')).toThrow('Votant a déjà voté')
+  expect(() => voter(votantAyantVoté, 'Vinicius')).toThrow('Votant a déjà voté')
 })
 ```
 
@@ -140,12 +141,12 @@ Dev avec TDD : pense à l'interface → écrit le test → code → interface pr
 
 ## 4) TDD SUR UN BUG
 
-Un bug signalé : "le vote est accepté même si le joueur est vide."
+Bug signalé par la FIFA : "un vote est accepté même si le nom du joueur est vide."
 
 **RED** : reproduis le bug d'abord :
 ```js
-it('rejette un vote avec un joueur vide', () => {
-  const votant = creerVotant('France', 'Jean')
+it('rejette un vote avec un joueur vide ou null', () => {
+  const votant = creerVotant('France', 'Jean', 'L\'Équipe')
   expect(() => voter(votant, '')).toThrow('Joueur requis')
   expect(() => voter(votant, null)).toThrow('Joueur requis')
 })
@@ -165,7 +166,7 @@ function voter(votant, joueur) {
 }
 ```
 
-Tous les tests sont verts. Le bug ne peut plus revenir : le test est là pour le life.
+Tous les tests sont verts. Le bug ne peut plus revenir : le test est là pour la vie.
 
 ---
 
@@ -174,7 +175,7 @@ Tous les tests sont verts. Le bug ne peut plus revenir : le test est là pour le
 TDD est un outil. Pas un dogme.
 
 Y'a des cas où il aide vraiment :
-- logique métier complexe
+- logique métier complexe (calculs de pondération du Ballon d'Or, règles de vote)
 - algorithmes avec des edge cases nombreux
 - refactoring d'une feature existante
 
@@ -203,7 +204,7 @@ Cycle obligatoire : RED → GREEN → REFACTOR pour chaque comportement.
 
 ---
 
-## EXO 2 : TDD sur un bug réel
+## EXO 2 : TDD sur un bug réel du système de vote
 
 Ce code a un bug silencieux. Trouve-le via TDD :
 1. écris d'abord le test qui le reproduit (rouge)
@@ -216,6 +217,7 @@ function calculePourcentageVotes(votesJoueur, totalVotes) {
 }
 // usage attendu : calculePourcentageVotes(3, 10) → "30.00"
 // mais que retourne calculePourcentageVotes(0, 0) ?
+// et que retourne calculePourcentageVotes(1, 3) ? Comparer avec 0.1 + 0.2...
 ```
 
 ---
