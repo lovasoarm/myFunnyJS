@@ -1,8 +1,10 @@
-# L'IA en sparring partner : challenger, pas remplaçant
+# L'IA EN SPARRING PARTNER : CHALLENGER, PAS REMPLAÇANT
 
 Le refactoring (restructuration du code sans changer son comportement) c'est l'exercice le plus risqué en dev. Tu touches du code qui fonctionne. Une erreur et tu régresses. Faire ça seul c'est dur : t'as des angles morts sur ton propre code.
 
-L'IA est un très bon sparring partner pour le refactoring. Pas parce qu'elle refactore mieux que toi : parce qu'elle a zéro attachement émotionnel à ton code et qu'elle voit des patterns que tu nes plus car tu les regardes depuis trop longtemps.
+L'IA est un très bon sparring partner pour le refactoring. Pas parce qu'elle refactore mieux que toi : parce qu'elle a zéro attachement émotionnel à ton code et qu'elle voit des patterns que tu ne vois plus car tu les regardes depuis trop longtemps.
+
+C'est ce que fait Hershel dans Walking Dead avec Rick. Il ne prend pas les décisions à sa place. Mais il dit "Rick, tu n'as pas dormi depuis 3 jours et tu viens de décider de confier le camp à un inconnu". Un regard extérieur, sans les angles morts. C'est ça, l'IA en mode refactoring.
 
 ---
 
@@ -63,25 +65,25 @@ La règle : **tu restes le juge**. Elle propose, tu décides, tu comprends, tu t
 La plupart des devs demandent à l'IA de refactorer directement. Erreur. Demande d'abord ce qui cloche.
 
 ```js
-// Code à analyser
-function handleOrder(order, user, config, db) {
-  if (order && order.items && order.items.length > 0) {
-    let total = 0
-    for (let i = 0; i < order.items.length; i++) {
-      if (order.items[i].inStock) {
-        total += order.items[i].price * order.items[i].quantity
-        if (user.membership === 'premium') {
-          total = total * 0.9
+// Le code du camp de survie de Rick, version spaghetti
+function gererSurvivant(survivant, camp, config, db) {
+  if (survivant && survivant.competences && survivant.competences.length > 0) {
+    let score = 0
+    for (let i = 0; i < survivant.competences.length; i++) {
+      if (survivant.competences[i].active) {
+        score += survivant.competences[i].valeur * survivant.competences[i].niveau
+        if (survivant.rang === 'veteran') {
+          score = score * 1.3
         }
       }
     }
-    if (total > 0) {
-      db.orders.insert({ userId: user.id, total: total, date: new Date() })
-      config.emailService.send(user.email, 'Order confirmed', `Total: ${total}`)
-      return { success: true, total: total }
+    if (score > 0) {
+      db.survivants.insert({ campId: camp.id, score: score, date: new Date() })
+      config.notifService.send(camp.responsable, 'Survivant intégré', `Score : ${score}`)
+      return { succes: true, score: score }
     }
   }
-  return { success: false }
+  return { succes: false }
 }
 ```
 
@@ -94,11 +96,11 @@ Ne propose pas de solution encore."
 
 L'IA va identifier :
 - violation du SRP (Single Responsibility Principle) : cette fonction fait tout
-- discount premium appliqué par item (bug logique possible)
-- mutation de `total` dans une boucle qui dépend de conditions
+- le bonus vétéran appliqué par compétence (bug logique possible : devrait s'appliquer sur le total)
+- mutation de `score` dans une boucle conditionnelle
 - couplage fort avec `db` et `config` (difficile à tester)
-- pas de gestion d'erreur si db.insert échoue
-- retour `{ success: false }` sans raison (debug impossible)
+- pas de gestion d'erreur si `db.insert` échoue
+- retour `{ succes: false }` sans raison (impossible à debugger)
 
 Maintenant tu décides quoi corriger en premier. L'IA ne décide pas.
 
@@ -109,29 +111,32 @@ Maintenant tu décides quoi corriger en premier. L'IA ne décide pas.
 Une fois le diagnostic fait, on refactore en tranches. Chaque tranche change une chose.
 
 ```js
-// ÉTAPE 1 : Extraire le calcul du total (SRP)
-function calculateOrderTotal(items: OrderItem[], isMembershipPremium: boolean): number {
-  const itemsInStock = items.filter(item => item.inStock)
+// ÉTAPE 1 : Extraire le calcul du score (SRP)
+function calculerScoreSurvivant(
+  competences: Competence[],
+  estVeteran: boolean
+): number {
+  const competencesActives = competences.filter(c => c.active)
 
-  const subtotal = itemsInStock.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+  const sousTotal = competencesActives.reduce(
+    (sum, c) => sum + c.valeur * c.niveau,
     0
   )
 
-  return isMembershipPremium ? subtotal * 0.9 : subtotal
-  // le discount s'applique sur le total, pas sur chaque item
+  // le bonus vétéran s'applique sur le total, pas sur chaque compétence
   // c'est un bug fix ET un refactoring en même temps : à noter dans le commit
+  return estVeteran ? sousTotal * 1.3 : sousTotal
 }
 
 // Test de ÉTAPE 1 avant de continuer
-test('calculates total without discount', () => {
-  const items = [{ price: 10, quantity: 2, inStock: true }]
-  expect(calculateOrderTotal(items, false)).toBe(20)
+test('calcule le score sans bonus', () => {
+  const competences = [{ valeur: 10, niveau: 2, active: true }]
+  expect(calculerScoreSurvivant(competences, false)).toBe(20)
 })
 
-test('applies 10% premium discount on total', () => {
-  const items = [{ price: 10, quantity: 2, inStock: true }]
-  expect(calculateOrderTotal(items, true)).toBe(18) // 20 * 0.9
+test('applique le bonus vétéran sur le total', () => {
+  const competences = [{ valeur: 10, niveau: 2, active: true }]
+  expect(calculerScoreSurvivant(competences, true)).toBeCloseTo(26, 1) // 20 * 1.3
 })
 
 // Les tests passent. On continue.
@@ -139,47 +144,42 @@ test('applies 10% premium discount on total', () => {
 
 ```js
 // ÉTAPE 2 : Extraire la persistance (SRP + injectabilité)
-async function saveOrder(
-  repository: OrderRepository,  // interface, pas l'objet db directement
-  userId: string,
-  total: number
-): Promise<Order> {
-  return repository.insert({
-    userId,
-    total,
-    date: new Date(),
-    status: 'confirmed',
-  })
+async function enregistrerSurvivant(
+  repository: SurvivantRepository,  // interface, pas l'objet db directement
+  campId: string,
+  score: number
+): Promise<void> {
+  await repository.insert({ campId, score, date: new Date() })
 }
 ```
 
 ```js
 // ÉTAPE 3 : La fonction principale devient un orchestrateur propre
-async function processOrder(
-  order: Order,
-  user: User,
-  deps: { repository: OrderRepository; emailService: EmailService }
-): Promise<ProcessOrderResult> {
-  if (!order.items?.length) {
-    return { success: false, reason: 'Order has no items' }
+async function integrerSurvivant(
+  survivant: Survivant,
+  camp: Camp,
+  deps: { repository: SurvivantRepository; notifService: NotifService }
+): Promise<ResultatIntegration> {
+  if (!survivant.competences?.length) {
+    return { succes: false, raison: 'Aucune compétence déclarée' }
     // maintenant l'appelant sait pourquoi ça a raté
   }
 
-  const total = calculateOrderTotal(order.items, user.membership === 'premium')
+  const score = calculerScoreSurvivant(survivant.competences, survivant.rang === 'veteran')
 
-  if (total === 0) {
-    return { success: false, reason: 'No items in stock' }
+  if (score === 0) {
+    return { succes: false, raison: 'Toutes les compétences sont inactives' }
   }
 
-  const savedOrder = await saveOrder(deps.repository, user.id, total)
+  await enregistrerSurvivant(deps.repository, camp.id, score)
 
-  await deps.emailService.send(
-    user.email,
-    'Order confirmed',
-    `Total: ${total}`
+  await deps.notifService.send(
+    camp.responsable,
+    'Survivant intégré',
+    `Score : ${score}`
   )
 
-  return { success: true, orderId: savedOrder.id, total }
+  return { succes: true, score }
 }
 ```
 
@@ -193,27 +193,27 @@ Le code dupliqué (DRY : Don't Repeat Yourself) est difficile à voir quand t'es
 
 ```js
 // Tu montres ces deux fonctions à l'IA :
-function validateAdminUser(user) {
-  if (!user.email || !user.email.includes('@')) {
-    throw new Error('Invalid email')
+function validerChimisteCuisinier(chimiste) {
+  if (!chimiste.nom || chimiste.nom.length < 2) {
+    throw new Error('Nom invalide')
   }
-  if (!user.password || user.password.length < 8) {
-    throw new Error('Password too short')
+  if (!chimiste.specialite || chimiste.specialite.length < 3) {
+    throw new Error('Spécialité invalide')
   }
-  if (user.role !== 'admin') {
-    throw new Error('Not an admin')
+  if (chimiste.role !== 'cuisinier') {
+    throw new Error('Pas un cuisinier')
   }
 }
 
-function validateRegularUser(user) {
-  if (!user.email || !user.email.includes('@')) {
-    throw new Error('Invalid email')
+function validerChimisteAssistant(chimiste) {
+  if (!chimiste.nom || chimiste.nom.length < 2) {
+    throw new Error('Nom invalide')
   }
-  if (!user.password || user.password.length < 8) {
-    throw new Error('Password too short')
+  if (!chimiste.specialite || chimiste.specialite.length < 3) {
+    throw new Error('Spécialité invalide')
   }
-  if (!['user', 'moderator'].includes(user.role)) {
-    throw new Error('Invalid role')
+  if (!['assistant', 'stagiaire'].includes(chimiste.role)) {
+    throw new Error('Rôle invalide')
   }
 }
 
@@ -224,7 +224,7 @@ function validateRegularUser(user) {
 
 L'IA va proposer quelque chose. Toi tu évalues : est-ce que cette abstraction est plus claire ou plus obscure ? Est-ce qu'elle sacrifie la lisibilité pour l'élégance ?
 
-Parfois la bonne réponse c'est : "la duplication est acceptable ici parce que les deux validations vont diverger dans le futur". L'IA ne sait pas ça. Toi tu décides.
+Parfois la bonne réponse c'est : "la duplication est acceptable ici parce que les deux validations vont diverger dans le futur". L'IA ne sait pas ça. Walter White aurait des règles très différentes pour chacun. Toi tu décides.
 
 ---
 
@@ -254,14 +254,14 @@ GARANTIR QUE SON REFACTORING EST ÉQUIVALENT
 
 ## EXERCICES
 
-**EXO 1 : Le diagnostic avant la chirurgie**
-Écris (ou copie) une fonction de 30 à 50 lignes qui mélange logique métier, accès DB et formatage de réponse. Montre-la à l'IA avec le prompt "diagnostique uniquement, ne réécris pas". Liste les problèmes qu'elle identifie. Classe-les : lesquels t'avais vus, lesquels t'avais pas vus ? (15 minutes)
+**EXO 1 : Le diagnostic avant la chirurgie sur le camp**
+Écris (ou copie) une fonction du système de gestion du camp de Walking Dead : 30 à 50 lignes qui mélangent calcul de rations, alerte de sécurité et log d'événement. Montre-la à l'IA avec le prompt "diagnostique uniquement, ne réécris pas". Liste les problèmes qu'elle identifie. Classe-les : lesquels t'avais vus, lesquels t'avais pas vus ? (15 minutes)
 
-**EXO 2 : Le refactoring en 3 commits**
-Prends le diagnostic de l'EXO 1. Choisis 3 problèmes. Résous-les avec l'IA, un par un, avec les tests qui passent entre chaque étape. Écris un message de commit distinct pour chaque étape. (25 minutes)
+**EXO 2 : Le refactoring en 3 commits dans la cuisine**
+Prends une fonction de calcul de la production de Breaking Bad (rendement, quantité de précurseur, purification). 3 problèmes, 3 commits, tests qui passent entre chaque. Un message de commit distinct par étape. (25 minutes)
 
 **EXO 3 : L'abstraction à évaluer**
-Génère deux fonctions similaires avec de la duplication. Demande à l'IA de proposer une abstraction. Évalue sa proposition : est-elle plus lisible ? Plus testable ? Est-ce qu'elle introduit du couplage inutile ? Écris ton verdict en 5 phrases. (15 minutes)
+Génère deux fonctions de validation similaires (ninja de village de la feuille, ninja de village de la brume) avec de la duplication. Demande à l'IA de proposer une abstraction. Évalue sa proposition : est-elle plus lisible ? Plus testable ? Est-ce qu'elle introduit du couplage inutile ? Écris ton verdict en 5 phrases. (15 minutes)
 
 ---
 
