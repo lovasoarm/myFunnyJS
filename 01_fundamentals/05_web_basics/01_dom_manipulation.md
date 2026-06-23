@@ -169,8 +169,8 @@ const span = document.createElement("span");
 span.textContent = "3 articles";
 span.style.fontWeight = "bold";
 
-résumé.append("Tu as ", span, " dans ton panier.");
-// → Tu as 3 articles dans ton panier.  (3 articles en gras)
+résumé.append("Score : ", span, " points marqués.");
+// → Score : 3 points marqués.  (3 en gras)
 ```
 
 ---
