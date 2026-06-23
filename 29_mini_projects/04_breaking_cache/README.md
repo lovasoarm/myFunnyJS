@@ -1,28 +1,22 @@
-# PRISON BREAK API
+# BREAKING CACHE
 
-Fox River State Penitentiary. Michael Scofield a tatoué le plan sur son corps. Maintenant il faut l'infrastructure. Profils de prisonniers, access logs par section, phases d'évasion séquentielles. T-Bag essaie d'injecter du SQL depuis l'intérieur. L'API doit tenir sous pression et ne jamais exposer ce qui doit rester secret.
+Réseau de distribution de Walter White. Des villes, des routes pondérées par le coût et le risque, des distributeurs à prioriser, des lots à trier avant livraison. Chaque décision se prend avec des données mesurées, pas avec des intuitions.
+
+Zéro bibliothèque d'algorithmes externe. Dijkstra, Heap, BFS, Quick Sort, Merge Sort : tout est écrit from scratch. Et tout tourne sous profilage.
 
 ---
 
 ## CE QUE ÇA FAIT
 
 ```
-$ curl -X POST http://localhost:3000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"code": "scofield-83712", "pin": "S0a0r0i3"}'
+$ node src/index.js
 
-{ "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "role": "inmate" }
-
-$ curl http://localhost:3000/plan/phase/2 \
-  -H "Authorization: Bearer eyJhbGc..."
-
-{ "phase": 2, "objectif": "Infirmerie", "acces": ["couloir-C", "ventilation-3"] }
-
-$ curl -X POST http://localhost:3000/auth/login \
-  -d '{"code": "tbag"; DROP TABLE prisonniers; --", "pin": "x"}'
-
-{ "error": "InvalidCredentialsError", "code": 401 }
-// T-Bag n'a rien cassé
+[RESEAU] 12 villes chargées, 31 routes indexées
+[DIJKSTRA] Route la plus sûre ABQ --> Juarez : cout total 47, risque 2.3
+[HEAP] Distributeur prioritaire : Albuquerque Sud (stock critique)
+[TRI] 5000 lots triés par QuickSort : 12ms
+[TRI] 5000 lots triés par MergeSort : 18ms
+[BENCHMARK] O(n log n) confirmé sur 10k, 100k, 1M éléments
 ```
 
 ---
@@ -32,15 +26,17 @@ $ curl -X POST http://localhost:3000/auth/login \
 ```
 Node.js        : v20+
 npm            : v10+
-Variables env  : PORT (optionnel, défaut 3000)
-Outils externes: aucun (SQLite embedded via better-sqlite3)
+Variables env  : aucune
+Outils externes: aucun
 ```
 
 ```bash
 npm install
-node src/server.js   # démarre l'API
-npm test              # tests (ne pas lancer le serveur en parallèle)
+node src/index.js   # charge le graphe, lance tous les algos, écrit les benchmarks
+npm test             # lance la suite de tests
 ```
+
+Pas de build step. Le code tourne tel qu'il est écrit.
 
 ---
 
@@ -48,54 +44,51 @@ npm test              # tests (ne pas lancer le serveur en parallèle)
 
 ```
 src/
-├── server.js               # point d'entrée Express
+├── graph/
+│   ├── graphBuilder.js     # construit le graphe depuis les données brutes
+│   ├── adjacencyList.js    # représentation par liste d'adjacence
+│   └── graphData.js        # villes et routes du réseau Walter White
 │
-├── routes/
-│   ├── authRoutes.js       # POST /auth/login, POST /auth/refresh
-│   ├── prisonnierRoutes.js # CRUD sur les profils
-│   ├── planRoutes.js       # GET /plan/phase/:n (auth requise)
-│   └── sectionRoutes.js    # GET /sections/:id/logs (accès restreint)
+├── algorithms/
+│   ├── dijkstra.js         # chemin le plus sûr dans un graphe pondéré
+│   ├── bfs.js              # détection de routes compromises
+│   └── dfs.js              # exploration complète du réseau
 │
-├── middleware/
-│   ├── authMiddleware.js   # vérifie et décode le JWT
-│   ├── rateLimiter.js      # 5 tentatives max / 15min par IP sur /login
-│   ├── sanitizer.js        # nettoyage des inputs contre XSS et injection SQL
-│   └── errorHandler.js     # handler global : format d'erreur uniforme
+├── structures/
+│   ├── minHeap.js          # min-heap pour prioriser les urgences
+│   └── priorityQueue.js    # abstraction au-dessus du heap
 │
-├── services/
-│   ├── authService.js      # sign, verify, refresh du JWT
-│   ├── prisonnierService.js
-│   └── planService.js
+├── sorting/
+│   ├── quickSort.js        # rapide en pratique, unstable
+│   ├── mergeSort.js        # stable, garanti O(n log n)
+│   └── sortingRace.js      # comparaison sur 10k, 100k, 1M éléments
 │
-├── db/
-│   ├── connection.js       # connexion SQLite unique (singleton)
-│   ├── schema.sql          # DDL : tables, indexes, contraintes
-│   └── seed.js             # données initiales (Fox River prêt à l'emploi)
+├── dp/
+│   └── stockOptimizer.js   # knapsack : maximiser le stock sous contraintes
 │
-└── errors/
-    ├── AuthError.js
-    ├── NotFoundError.js
-    └── ForbiddenError.js
+├── profiling/
+│   └── benchmarker.js      # performance.now() sur chaque algo
+│
+└── index.js                # point d'entrée : lance tout, sort les résultats
 
 tests/
-├── auth.test.js
-├── prisonniers.test.js
-├── plan.test.js
-└── security.test.js
+├── graph.test.js
+├── dijkstra.test.js
+├── heap.test.js
+├── sorting.test.js
+└── dp.test.js
 ```
 
-Flux d'une requête :
+Flux d'appel principal :
 
 ```
-client
-  --> rateLimiter (bloque si trop de tentatives)
-  --> sanitizer (nettoie l'input)
-  --> authMiddleware (vérifie le JWT si route protégée)
-  --> route handler
-  --> service
-  --> db
-  --> errorHandler (si ça plante)
-  --> client
+index.js
+  --> graphBuilder.build(graphData)
+  --> dijkstra.shortestPath(graph, "ABQ", "Juarez")
+  --> minHeap.extractMin()           # distributeur le plus urgent
+  --> sortingRace.compare(lots)      # quickSort vs mergeSort
+  --> stockOptimizer.knapsack(stock, contraintes)
+  --> benchmarker.report()
 ```
 
 ---
@@ -104,21 +97,19 @@ client
 
 | Module | Où ça se voit |
 |---|---|
-| `20_api_craft` | Express complet, CRUD, error middleware, OpenAPI |
-| `21_security` | JWT, bcrypt, rate limiting, sanitization XSS/SQL |
-| `23_databases` | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `16_web_concepts` | HTTP verbes, status codes, browser render pipeline |
+| `07_data_structures` | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js` |
+| `08_algorithms` | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
+| `06_memory_performance` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé |
 
 ---
 
 ## RÈGLES NON-NÉGOCIABLES DE CE PROJET
 
 ```
-1. Zéro mot de passe en clair dans la DB : bcrypt uniquement, coût minimum 12
-2. Chaque endpoint protégé vérifie le JWT avant tout traitement
-3. Rate limiter actif sur /auth/login avant même de chercher le prisonnier en DB
-4. Tous les inputs de l'utilisateur passent par le sanitizer avant d'atteindre la DB
-5. Les erreurs ne leak jamais de stack trace ni de détail interne vers le client
+1. Aucune bibliothèque d'algorithmes externe (pas de graphlib, pas de heap npm)
+2. Chaque algo est profilé : performance.now() avant et après, résultat loggé
+3. La complexité Big-O de chaque algo est documentée en commentaire dans le fichier
+4. Les benchmarks tournent sur au moins trois tailles d'input : 1k, 10k, 100k
 ```
 
 ---
