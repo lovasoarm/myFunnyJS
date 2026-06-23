@@ -198,22 +198,37 @@ Le contract testing est un outil d'équipe, pas un outil solo.
 
 # EXERCICES
 
-## EXO 1 : écrire le contrat du consumer
+## EXO 1 : le contrat que personne n'a écrit
 
-Tu es le dashboard qui consomme l'API Prison Break.
-L'API retourne les profils des prisonniers.
+L'équipe backend de Prison Break vient de renommer `cellule` en `cellBlock` dans la réponse de l'API — "parce que c'est plus clair en anglais". L'équipe frontend qui affiche le plan d'évasion de Scofield déploie le lendemain. Résultat : toutes les cellules s'affichent comme `undefined`. L'évasion est compromise.
 
-Définis le contrat en JSON : quels champs tu attends, de quel type.
-Puis écris le `contractValidator` qui vérifie ce contrat contre une réponse mockée.
+Le problème : personne n'avait formalisé ce que le consumer attendait.
+
+Ta mission : poser le contrat avant que ça arrive.
+
+Étape 1 : définis en JSON le contrat que le dashboard d'évasion attend de l'API — quels champs, quels types, quelles contraintes.
+Étape 2 : écris le `contractValidator` qui vérifie ce contrat.
+Étape 3 : écris le test de contrat qui casse si le provider retourne `cellBlock` à la place de `cellule`.
+
+Le test doit casser **avant le déploiement**, pas après.
 
 ---
 
-## EXO 2 : casser et détecter
+## EXO 2 : le bug qui dort dans le mock
 
-Tu as un contrat qui attend `{ nom: string, kills: number }`.
+L'équipe du Scout Regiment utilise un dashboard pour tracker les kills de chaque soldat. Le dashboard a des tests qui passent tous au vert depuis des semaines. Mais les tests utilisent un mock qui retourne `{ nom: 'Levi', kills: 200 }`.
 
-Écris la fonction provider qui retourne `{ nom: 'Levi', killCount: 200 }` (mauvais nom de champ).
-Puis le test de contrat qui le détecte avant prod.
+Le vrai service, lui, retourne `{ nom: 'Levi', killCount: 200 }`.
+
+Les tests passent. La prod est cassée. Personne ne l'a vu venir.
+
+Ta mission : écrire le test de contrat qui aurait détecté ça.
+
+Étape 1 : écris le contrat consumer — ce que le dashboard attend.
+Étape 2 : écris le test de contrat qui appelle le **vrai** provider (pas le mock) et vérifie le contrat.
+Étape 3 : fais passer le provider incorrect — prouve que le test casse. Puis corrige le provider — prouve que le test passe.
+
+(Indice : le contract test doit pointer vers la vraie implémentation du provider, pas un mock. C'est là toute la différence.)
 
 ---
 
