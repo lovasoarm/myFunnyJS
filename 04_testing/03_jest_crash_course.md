@@ -6,6 +6,8 @@ Pas parce qu'il est parfait : parce qu'il marche, qu'il est rapide, et qu'il a t
 Ce fichier te rend opérationnel. Pas expert Jest, opérationnel.
 La doc officielle fait 200 pages. On va couvrir les 20% qui résolvent 80% des situations.
 
+Le contexte : le système de vote du Ballon d'Or. Journalistes du monde entier, votes pondérés, classement en direct. Le code doit tenir. Chaque bug en prod, c'est un scandale public.
+
 ---
 
 ## 1) INSTALLER ET CONFIGURER
@@ -30,8 +32,11 @@ C'est tout. Jest trouve automatiquement les fichiers `*.test.js` ou `*.spec.js`.
 Structure recommandée :
 ```
 src/
-  calculeKDA.js
-  calculeKDA.test.js   ← jest le détecte automatiquement
+  vote/
+    calculeKDA.js
+    calculeKDA.test.js   ← jest le détecte automatiquement
+    classement.js
+    classement.test.js
 ```
 
 ---
@@ -39,22 +44,22 @@ src/
 ## 2) STRUCTURE D'UN FICHIER DE TEST
 
 ```js
-// calculeKDA.test.js
+// classement.test.js
 
-const { calculeKDA } = require('./calculeKDA')
-// ou avec ESM :
-// import { calculeKDA } from './calculeKDA.js'
+const { calculerScore } = require('./classement')
 
-describe('calculeKDA', () => {
+describe('calculerScore', () => {
   // describe = grouper les tests d'une même unité
 
-  it('calcule le KDA standard', () => {
+  it('calcule le score pondéré d\'un vote journaliste', () => {
     // it = un test, une phrase qui décrit le comportement
-    expect(calculeKDA(10, 5, 2)).toBe(6.25)
+    // un journaliste français vote pour Messi : 10 points → pondération pays × 1.0 → 10
+    expect(calculerScore({ points: 10, ponderation: 1.0 })).toBe(10)
   })
 
-  it('retourne 0 si zéro kill et zéro assist', () => {
-    expect(calculeKDA(0, 0, 5)).toBe(0)
+  it('applique la pondération correctement', () => {
+    // zone de vote avec pondération 0.8 → 10 points → 8 points effectifs
+    expect(calculerScore({ points: 10, ponderation: 0.8 })).toBe(8)
   })
 })
 ```
@@ -72,10 +77,10 @@ expect(score).toBe(25)              // égalité stricte (===)
 expect(score).not.toBe(0)           // négation
 
 // objets et tableaux (comparaison profonde)
-expect(joueur).toEqual({ nom: 'Eren', kills: 10 })
+expect(joueur).toEqual({ nom: 'Messi', points: 613 })
 // toBe échouerait sur les objets (référence différente)
 
-// nombres flottants
+// nombres flottants : le classique 0.1 + 0.2 !== 0.3
 expect(0.1 + 0.2).toBeCloseTo(0.3)  // jamais toBe avec des flottants
 
 // valeurs d'existence
@@ -85,16 +90,16 @@ expect(valeur).toBeTruthy()
 expect(valeur).toBeFalsy()
 
 // tableaux
-expect(liste).toHaveLength(3)
-expect(liste).toContain('Messi')
+expect(classement).toHaveLength(3)
+expect(classement).toContain('Messi')
 
 // strings
 expect(message).toMatch(/erreur/)   // regex
 
 // erreurs
 expect(() => {
-  fonctionQuiExplose(null)
-}).toThrow('message attendu')
+  validerVote(null)
+}).toThrow('Journaliste requis')
 ```
 
 Règle simple : `toBe` pour les primitives, `toEqual` pour les objets/arrays.
@@ -103,40 +108,42 @@ Règle simple : `toBe` pour les primitives, `toEqual` pour les objets/arrays.
 
 ## 4) SETUP ET TEARDOWN
 
-Parfois tu as besoin de préparer un contexte avant les tests et de le nettoyer après.
+Avant le vote du Ballon d'Or, on prépare la salle. Après le dépouillement, on efface le tableau.
+`beforeEach` et `afterEach` font pareil pour les tests.
 
 ```js
-describe('gestion des joueurs', () => {
-  let joueurs
+describe('gestion des votes Ballon d\'Or', () => {
+  let votes
 
   beforeEach(() => {
-    // s'exécute avant CHAQUE test
-    joueurs = ['Levi', 'Mikasa', 'Armin']
+    // s'exécute avant CHAQUE test : repart d'un classement vide
+    votes = [
+      { journaliste: 'john', joueur: 'Messi', points: 10 },
+      { journaliste: 'jane', joueur: 'Ronaldo', points: 10 }
+    ]
   })
 
   afterEach(() => {
-    // s'exécute après CHAQUE test
-    // utile pour nettoyer des effets de bord (timers, mocks...)
-    joueurs = null
+    // s'exécute après CHAQUE test : nettoie les effets de bord
+    votes = null
   })
 
   beforeAll(() => {
-    // s'exécute une seule fois avant tous les tests du describe
-    // pour des setups coûteux (connexion DB simulée, etc.)
+    // une seule fois avant tous les tests : connexion DB simulée, etc.
   })
 
   afterAll(() => {
     // une seule fois après tous les tests
   })
 
-  it('contient 3 joueurs', () => {
-    expect(joueurs).toHaveLength(3)
+  it('contient 2 votes initiaux', () => {
+    expect(votes).toHaveLength(2)
   })
 
-  it('peut ajouter un joueur', () => {
-    joueurs.push('Eren')
-    expect(joueurs).toHaveLength(4)
-    // le beforeEach remet joueurs à 3 pour le test suivant
+  it('peut ajouter un vote', () => {
+    votes.push({ journaliste: 'marc', joueur: 'Vinicius', points: 8 })
+    expect(votes).toHaveLength(3)
+    // le beforeEach remet votes à 2 pour le test suivant
   })
 })
 ```
@@ -145,23 +152,23 @@ describe('gestion des joueurs', () => {
 
 ## 5) TESTER LES FONCTIONS ASYNC
 
-Deux façons : `async/await` (recommandée) ou les callbacks Jest.
+Le calcul du classement final implique des appels async : agrégation, DB, calculs pondérés.
+Une seule règle : toujours `await` dans les tests async. Sans ça, Jest peut passer un test cassé.
 
 ```js
 // RECOMMANDÉ : async/await propre
-it('charge les stats du joueur', async () => {
-  const stats = await chargeStats('messi')
-  expect(stats.buts).toBe(700)
+it('agrège les votes de tous les journalistes', async () => {
+  const classement = await aggregerVotes('saison-2025')
+  expect(classement[0].joueur).toBe('Messi')
 })
 
 // si la fonction rejette une Promise :
-it('lance une erreur si joueur inconnu', async () => {
-  await expect(chargeStats('joueur_inexistant')).rejects.toThrow('Joueur non trouvé')
+it('rejette si la saison n\'existe pas', async () => {
+  await expect(aggregerVotes('saison-1900')).rejects.toThrow('Saison introuvable')
 })
 ```
 
-Important : sans `async/await`, Jest peut considérer un test comme passé même si la Promise rejette.
-→ Toujours `await` les Promises dans les tests. Toujours.
+Important : sans `async/await`, Jest peut considérer un test comme passé même si la Promise rejette. Le test "passe" et le bug reste invisible.
 
 ---
 
@@ -177,14 +184,14 @@ Jest génère un rapport qui montre :
 - quelles fonctions n'ont jamais été appelées
 
 ```
-----------|---------|----------|---------|---------|
-File      | % Stmts | % Branch | % Funcs | % Lines |
-----------|---------|----------|---------|---------|
-calcule.js|   85.71 |    66.67 |     100 |   85.71 |
+-------------|---------|----------|---------|---------
+File         | % Stmts | % Branch | % Funcs | % Lines
+-------------|---------|----------|---------|---------
+classement.js|   85.71 |    66.67 |     100 |   85.71
 ```
 
 66.67% sur Branch veut dire qu'une branche `if` ou `else` n'a jamais été testée.
-C'est souvent là que le bug se cache.
+C'est là que vivent les bugs qui surgissent le soir de la cérémonie.
 
 Objectif réaliste : 80% de coverage sur la logique métier.
 Ne pas chasser le 100% : certaines lignes sont du glue code qui ne mérite pas de test dédié.
@@ -193,43 +200,44 @@ Ne pas chasser le 100% : certaines lignes sont du glue code qui ne mérite pas d
 
 # EXERCICES
 
-## EXO 1 : ton premier vrai test Jest
+## EXO 1 : le premier test du comité de sélection
 
-Crée une fonction `estMVP(stats)` qui retourne `true` si le joueur a plus de 8 buts ET plus de 5 passes décisives.
+Le comité Ballon d'Or veut valider les candidats. Une fonction `estEligible(joueur)` retourne `true` si le joueur a marqué plus de 15 buts ET joué plus de 20 matchs cette saison.
 
 Écris le fichier test avec :
-- le cas MVP
-- le cas non-MVP (buts suffisants mais passes insuffisantes)
-- le cas non-MVP (inverse)
+- le cas éligible (les deux critères remplis)
+- le cas non-éligible : buts suffisants mais matchs insuffisants
+- le cas non-éligible inverse : matchs ok, buts insuffisants
 - le cas où les deux critères échouent
 
 Lance `npm test` et assure-toi que tout passe.
 
 ---
 
-## EXO 2 : tester une fonction async
+## EXO 2 : tester l'agrégation des votes (async)
 
 Tu as cette fonction :
 
 ```js
-async function recupClassement(saison) {
-  if (!saison) throw new Error('Saison requise')
-  // simule un appel async
+async function recupVotesParPays(codePays) {
+  if (!codePays) throw new Error('Code pays requis')
   return new Promise(resolve => {
-    setTimeout(() => resolve([{ nom: 'Messi', points: 613 }]), 10)
+    setTimeout(() => resolve([
+      { journaliste: 'jean', joueur: 'Mbappé', points: 10 }
+    ]), 10)
   })
 }
 ```
 
 Écris les tests pour :
-- le cas normal : retourne un tableau avec au moins un joueur
-- le cas d'erreur : saison null/undefined → doit rejeter avec "Saison requise"
+- le cas normal : retourne un tableau avec au moins un vote
+- le cas d'erreur : code pays null → doit rejeter avec "Code pays requis"
 
 ---
 
 ## EXO 3 : coverage detective
 
-Lance `npm test -- --coverage` sur tes fichiers du module 01_fundamentals.
+Lance `npm test -- --coverage` sur tes fichiers existants.
 Identifie une fonction qui a moins de 80% de coverage sur les branches.
 Écris les tests manquants pour couvrir les branches oubliées.
 
