@@ -190,26 +190,29 @@ Pas besoin d'E2E sur chaque bouton. Les unit tests couvrent les détails.
 
 # EXERCICES
 
-## EXO 1 : le classement en direct
+## EXO 1 : le bug du soir de cérémonie
 
-Tu as une page `/classement` qui liste les joueurs avec leurs points.
+Tu hérites d'un rapport de bug soumis le soir de la cérémonie : "Des journalistes disent avoir voté mais leur vote n'apparaît pas dans le classement en direct." Ton unit test passe. Ton test d'intégration passe. Quelque chose se passe entre le clic et le serveur.
 
-Écris un test Playwright qui :
-1. navigue vers `/classement`
-2. vérifie que le titre de la page contient "Classement Ballon d'Or"
-3. vérifie que la liste contient au moins un joueur
-4. clique sur le premier joueur et vérifie qu'on navigue vers sa fiche de stats
+Écris un test Playwright qui reproduit le chemin complet : connexion → vote → vérification que le vote est visible dans le classement en direct. Si ce test passe, le bug est ailleurs. S'il échoue, tu viens de localiser le problème à l'interface.
+
+Contrainte : utilise `getByRole` et `getByLabel` pour tous les sélecteurs. Aucun sélecteur CSS, aucun `data-testid` inventé. Construis le test comme si l'interface existait, et commente ce que chaque sélecteur cherche.
+
+(Indice : la page de classement met peut-être 2-3 secondes à se mettre à jour après le vote. `await expect(...).toBeVisible({ timeout: 5000 })` est ton filet.)
 
 ---
 
-## EXO 2 : le formulaire de vote complet
+## EXO 2 : simuler la pression du jour J
 
-Page `/vote` avec : un champ texte pour le nom du journaliste, un select pour le joueur, un bouton "Voter".
+Le soir de la cérémonie, des milliers de journalistes votent en même temps. Playwright peut pas simuler 1000 utilisateurs, mais il peut simuler un cas de concurrence : deux votes du même compte depuis deux onglets différents.
 
-Écris trois tests :
-- le flux complet qui réussit → message de confirmation affiché
-- le flux avec champ nom vide → message d'erreur affiché, pas de navigation
-- le flux qui tente un double vote → le second vote est rejeté (bouton désactivé après le premier)
+Écris un test qui :
+1. ouvre deux contextes de navigateur distincts (`browser.newContext()`)
+2. dans les deux contextes, connecte le même journaliste
+3. lance les deux votes quasi-simultanément avec `Promise.all`
+4. vérifie que le système n'a enregistré qu'un seul vote (le deuxième doit être rejeté ou ignoré)
+
+C'est ça, un test E2E qui teste autre chose que le flux normal. Et c'est exactement ce que les unit tests ne peuvent pas voir.
 
 ---
 

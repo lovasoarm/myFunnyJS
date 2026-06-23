@@ -200,46 +200,49 @@ Ne pas chasser le 100% : certaines lignes sont du glue code qui ne mérite pas d
 
 # EXERCICES
 
-## EXO 1 : le premier test du comité de sélection
+## EXO 1 : détecter la fraude avant la cérémonie
 
-Le comité Ballon d'Or veut valider les candidats. Une fonction `estEligible(joueur)` retourne `true` si le joueur a marqué plus de 15 buts ET joué plus de 20 matchs cette saison.
+La FIFA suspecte du vote frauduleux : certains journalistes ont voté deux fois depuis des pays différents avec le même compte. La fonction `detecterFraude(votes, journalisteId)` doit retourner `true` si le journaliste a voté plus d'une fois, `false` sinon.
 
-Écris le fichier test avec :
-- le cas éligible (les deux critères remplis)
-- le cas non-éligible : buts suffisants mais matchs insuffisants
-- le cas non-éligible inverse : matchs ok, buts insuffisants
-- le cas où les deux critères échouent
+Tu dois tester :
+- un journaliste avec un seul vote : doit retourner `false`
+- un journaliste avec deux votes depuis deux pays différents : doit retourner `true`
+- un tableau de votes vide : doit retourner `false` sans exploser
+- un `journalisteId` à `null` : doit lever une `Error("ID journaliste requis")`, pas silencieusement retourner `false`
 
-Lance `npm test` et assure-toi que tout passe.
+Le quatrième cas est le seul qui vérifie vraiment si tu comprends la différence entre "rien ne s'est passé" et "quelque chose d'illégal s'est passé". Ne saute pas ce cas.
+
+(Indice : `expect(() => detecterFraude(votes, null)).toThrow("ID journaliste requis")`)
 
 ---
 
-## EXO 2 : tester l'agrégation des votes (async)
+## EXO 2 : la nuit du dépouillement (async)
 
-Tu as cette fonction :
+Le soir de la cérémonie, le classement final se calcule de façon asynchrone : `calculerClassementFinal(annee)` agrège les votes, les pondère selon la zone géographique des journalistes, et retourne un tableau trié.
+
+Tu as cette spec : si l'année n'a pas de votes enregistrés, la fonction doit rejeter avec `"Aucun vote pour cette année"`. Si elle a des votes, le premier élément du classement doit avoir plus de points que le deuxième.
+
+Écris les deux tests. Le deuxième test vérifie une propriété d'ordre, pas une valeur absolue : Messi peut ne pas être premier dans ton jeu de données de test, mais le premier doit toujours dominer le second.
+
+(Indice : `expect(classement[0].points).toBeGreaterThan(classement[1].points)`)
+
+---
+
+## EXO 3 : le bug invisible
+
+Lance coverage sur ce fichier :
 
 ```js
-async function recupVotesParPays(codePays) {
-  if (!codePays) throw new Error('Code pays requis')
-  return new Promise(resolve => {
-    setTimeout(() => resolve([
-      { journaliste: 'jean', joueur: 'Mbappé', points: 10 }
-    ]), 10)
-  })
+function validerVoteJournaliste(vote) {
+  if (!vote) return { valide: false, raison: 'vote manquant' }
+  if (!vote.journalisteId) return { valide: false, raison: 'id manquant' }
+  if (vote.points < 1 || vote.points > 10) return { valide: false, raison: 'points hors limite' }
+  if (vote.annee !== 2025) return { valide: false, raison: 'mauvaise annee' }
+  return { valide: true }
 }
 ```
 
-Écris les tests pour :
-- le cas normal : retourne un tableau avec au moins un vote
-- le cas d'erreur : code pays null → doit rejeter avec "Code pays requis"
-
----
-
-## EXO 3 : coverage detective
-
-Lance `npm test -- --coverage` sur tes fichiers existants.
-Identifie une fonction qui a moins de 80% de coverage sur les branches.
-Écris les tests manquants pour couvrir les branches oubliées.
+Sans toucher à la fonction, écris une suite de tests pour atteindre 100% de branch coverage. Identifie chaque branche, teste chaque cas, et vérifie avec `--coverage` que toutes les branches sont couvertes. Si tu arrives à 100% avec 3 tests, tu as probablement oublié un cas.
 
 ---
 

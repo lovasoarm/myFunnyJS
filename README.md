@@ -50,23 +50,6 @@ ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 
 ---
 
-## Les règles du jeu
-
-**Lis chaque fichier du début à la fin** avant de coder. Les `.md` contiennent la leçon. Ne les saute pas.
-
-**Code toi-même.** Copier-coller une solution depuis l'IA sans la comprendre, c'est comme
-regarder quelqu'un faire des pompes à ta place. Ton cerveau ne se renforce pas.
-
-**Utilise l'IA comme un copilote**, pas comme un chauffeur. Elle génère, tu valides. Elle
-propose, tu décides. Le module `22_ai_native_dev` t'apprend exactement comment faire ça bien.
-
-**Finis les mini-projets.** Les modules t'apprennent des concepts. Les mini-projets te
-forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les saute pas.
-
-**Remplis les TDD_JOURNAL et les POSTMORTEM.** Ce ne sont pas des formalités. C'est
-l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils
-ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
-
 ---
 
 ## ROADMAP : DANS L'ORDRE, SANS SAUTER D'ÉTAPE
