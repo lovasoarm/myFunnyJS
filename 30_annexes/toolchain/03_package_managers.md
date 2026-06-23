@@ -1,6 +1,8 @@
 # PACKAGE MANAGERS : NPM, YARN, PNPM, LES DIFFÉRENCES QUI COMPTENT VRAIMENT EN 2026
 
-Le camp dépend de fournitures extérieures : médicaments, munitions, essence. Personne ne fabrique tout soi-même, c'est impossible. Un package manager (gestionnaire de paquets) c'est exactement ça : il gère tout le code écrit par d'autres dont ton projet dépend, sans que t'aies à le retaper.
+Le camp dépend de fournitures extérieures : médicaments, munitions, essence. Personne ne fabrique tout soi-même, c'est impossible. Daryl peut piéger du gibier, mais il fabrique pas ses carreaux d'arbalète depuis zéro : il prend ce que le monde a déjà produit et il l'intègre à son arsenal.
+
+Un package manager (gestionnaire de paquets) c'est exactement ça : il gère tout le code écrit par d'autres dont ton projet dépend, sans que t'aies à le retaper. npm, Yarn, pnpm : même mission, trois stratégies différentes.
 
 ---
 
@@ -18,7 +20,7 @@ Trois jobs, pas un seul :
 // package.json déclare ce dont ton projet a besoin
 {
   "dependencies": {
-    "express": "^4.18.0"  // ^ veut dire : accepte les mises à jour mineures et patch, pas majeures
+    "express": "^4.18.0"  // ^ = accepte les mises à jour mineures et patch, pas majeures
   }
 }
 
@@ -40,18 +42,18 @@ La vraie différence entre les trois en 2026 c'est pas la syntaxe des commandes 
 node_modules/
 ├── package-a/
 │   └── node_modules/
-│       └── lodash@4.17.0/    <-- copie complète
+│       └── lodash@4.17.0/    ← copie complète
 ├── package-b/
 │   └── node_modules/
-│       └── lodash@4.17.0/    <-- même version, copiée AUSSI
+│       └── lodash@4.17.0/    ← même version, copiée AUSSI
 ```
 
-Si deux paquets utilisent la même version de `lodash`, npm classique en stocke parfois plusieurs copies physiques selon la profondeur de l'arbre. Ça gonfle le disque.
+Si deux paquets utilisent la même version de `lodash`, npm classique en stocke parfois plusieurs copies physiques selon la profondeur de l'arbre. Ça gonfle le disque : l'équivalent de dupliquer les mêmes munitions dans chaque sacoche de chaque survivant.
 
 ### pnpm : stockage centralisé avec liens symboliques
 
 ```
-~/.pnpm-store/             <-- UN SEUL endroit sur la machine, pour TOUS les projets
+~/.pnpm-store/             ← UN SEUL endroit sur la machine, pour TOUS les projets
 └── lodash@4.17.0/
 
 projet-A/node_modules/lodash --> lien symbolique vers le store global
@@ -63,9 +65,9 @@ npm/yarn classique  --> chaque projet duplique ses dépendances
 pnpm                --> un seul exemplaire physique par version, partagé entre TOUS tes projets
 ```
 
-**Pourquoi ça compte concrètement :** si t'as 15 projets Node sur ta machine et qu'ils utilisent tous `react`, npm classique stocke `react` 15 fois sur le disque. pnpm le stocke une fois et fait des liens symboliques (raccourcis pointant vers le même fichier physique). Gain de place réel, gain de vitesse d'installation aussi (pas besoin de re-télécharger ce qui existe déjà dans le store).
+**Pourquoi ça compte concrètement :** si t'as 15 projets Node sur ta machine et qu'ils utilisent tous `react`, npm classique stocke `react` 15 fois sur le disque. pnpm le stocke une fois et fait des liens symboliques (raccourcis pointant vers le même fichier physique). Gain de place réel, gain de vitesse d'installation aussi.
 
-**Qui casse en prod :** les liens symboliques de pnpm créent une structure de `node_modules` plus stricte. Un paquet qui accédait à une dépendance qu'il avait pas déclarée explicitement (mais qui traînait "par hasard" dans node_modules grâce à un autre paquet) plante avec pnpm, alors qu'il marchait avec npm. C'est en fait une bonne chose : ça révèle des dépendances cachées non déclarées, un vrai bug de configuration que npm laissait passer.
+**Qui casse en prod :** les liens symboliques de pnpm créent une structure de `node_modules` plus stricte. Un paquet qui accédait à une dépendance qu'il n'avait pas déclarée explicitement (mais qui traînait "par hasard" dans node_modules grâce à un autre paquet) plante avec pnpm, alors qu'il marchait avec npm. C'est en fait une bonne chose : ça révèle des dépendances cachées non déclarées, un vrai bug de configuration que npm laissait passer.
 
 ---
 
@@ -79,66 +81,111 @@ pnpm                --> un seul exemplaire physique par version, partagé entre 
 Mais ça, c'est une plage de versions, pas une version précise. Sans lockfile, deux installations à des moments différents pourraient récupérer des versions légèrement différentes.
 
 ```
-package-lock.json   --> npm
-yarn.lock           --> yarn
-pnpm-lock.yaml       --> pnpm
+package-lock.json (npm)
+yarn.lock (Yarn)
+pnpm-lock.yaml (pnpm)
+```
+
+Le lockfile fige les versions exactes de chaque dépendance, directe ET transitive (dépendances de dépendances). Résultat : `npm ci` (install depuis le lockfile, jamais de résolution) garantit que tout le camp reçoit exactement les mêmes fournitures dans la même quantité.
+
+```
+RÈGLE : toujours committer le lockfile dans Git
+        le .gitignore ne doit jamais l'exclure
+        sans lui, deux devs avec des dates d'install différentes ont des versions différentes
 ```
 
 ```js
-// Le lockfile fige la version EXACTE de chaque dépendance ET sous-dépendance
-// "express": "4.18.2" précisément, pas "^4.18.0"
-// Si Daryl installe le projet aujourd'hui et Glenn dans 2 mois,
-// ils obtiennent EXACTEMENT les mêmes versions, à la lettre près
-```
-
-**Technique :** le lockfile résout le problème de la reproductibilité (obtenir le même résultat à chaque installation, peu importe quand ou où). Sans lui, ton projet pourrait fonctionner aujourd'hui et planter dans 3 mois juste parce qu'une dépendance a publié une nouvelle version mineure avec un bug.
-
-**Qui casse en prod :** committer pas le lockfile dans Git. Résultat, chaque environnement (ta machine, le serveur CI, la prod) peut installer des versions légèrement différentes. Un bug apparaît en prod, introuvable en local, parce que la version exacte d'une dépendance diffère silencieusement.
-
-```
-RÈGLE D'OR : le lockfile se committe TOUJOURS. Sans exception.
+// npm install   : résout + peut mettre à jour le lockfile
+// npm ci        : installe EXACTEMENT le lockfile, échoue si le lockfile est absent
+// usage en CI/CD : toujours npm ci, jamais npm install
 ```
 
 ---
 
-## 4) SEMVER : LIRE UNE VERSION COMME UN CONTRAT
+## 4) VERSIONS : COMPRENDRE LE SEMVER
 
 ```
-4  .  18  .  2
-^     ^      ^
-|     |      |
-MAJOR MINOR  PATCH
+1.2.3
+│ │ │
+│ │ └── patch : bug fix, rétrocompatible → npm peut mettre à jour automatiquement
+│ └──── minor : nouvelle feature, rétrocompatible → ^ autorise ça
+└────── major : breaking change → ^ bloque ça
 ```
 
-```
-MAJOR --> changement qui casse la compatibilité (breaking change)
-MINOR --> nouvelle fonctionnalité, mais rétrocompatible
-PATCH --> correction de bug, rétrocompatible
-```
-
-```js
-"express": "^4.18.0"   // accepte 4.18.0 jusqu'à (mais pas) 5.0.0
-"express": "~4.18.0"   // accepte 4.18.0 jusqu'à (mais pas) 4.19.0, plus strict
-"express": "4.18.0"    // EXACTEMENT cette version, aucune tolérance
+```json
+"express": "^4.18.0"  // accepte 4.18.x, 4.19.x, mais pas 5.x.x
+"express": "~4.18.0"  // accepte seulement 4.18.x (tilde plus restrictif que caret)
+"express": "4.18.2"   // version exacte, aucune mise à jour automatique
 ```
 
-**Pourquoi ça compte :** semver (versionnage sémantique) c'est une promesse, pas une garantie technique. Rien n'empêche un auteur de paquet de publier un breaking change en version mineure par erreur. Le symbole `^` te protège en théorie, mais pas en pratique à 100%. D'où l'importance du lockfile, qui fige la réalité plutôt que de faire confiance à la promesse.
+**Qui casse en prod :** une dépendance qui ne respecte pas le semver (semantic versioning : convention de numérotation des versions) et introduit un breaking change dans une version mineure. Ça arrive. Le lockfile te protège si tu committes et utilises `npm ci` en prod.
+
+---
+
+## 5) COMMANDES ESSENTIELLES
+
+```bash
+# installer toutes les dépendances du projet (depuis package.json)
+npm install
+
+# installer depuis le lockfile EXACTEMENT (pour CI/CD)
+npm ci
+
+# ajouter une dépendance
+npm install express
+npm install --save-dev jest   # dépendance de dev uniquement
+
+# supprimer une dépendance
+npm uninstall express
+
+# voir ce qui est outdated
+npm outdated
+
+# mettre à jour dans la plage autorisée par package.json
+npm update
+
+# auditer les vulnérabilités connues
+npm audit
+npm audit fix   # corrige automatiquement ce qui peut l'être
+```
+
+Les commandes Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).
 
 ---
 
 ## EXERCICES
 
-EXO 1 : Le grand nettoyage du camp :
-Prends un petit projet Node existant avec npm, supprime `node_modules`, installe-le avec pnpm à la place. Compare la taille du `node_modules` généré (commande `du -sh node_modules`) entre les deux approches sur le même projet.
+### EXO 1 : le camp et ses fournitures
 
-EXO 2 : Le lockfile oublié :
-Simule le chaos : modifie légèrement la plage de version d'une dépendance dans `package.json` (genre passer de `^4.17.0` à `^4.18.0`), supprime le lockfile, réinstalle. Observe comment le lockfile change et explique en une phrase pourquoi committer ce fichier protège toute l'équipe.
+Tu prends en main un projet JS (`03_walking_dead_protocol`) qui a un `package.json` mais pas de `node_modules` et pas de lockfile. Le projet liste des dépendances avec des plages de versions.
 
-EXO 3 : Audit de dépendances fantômes :
-Dans un projet avec plusieurs dépendances, identifie un import dans le code qui utilise un paquet jamais déclaré dans `package.json` (il "marche" seulement parce qu'il traîne dans node_modules grâce à une autre dépendance). Corrige en l'ajoutant explicitement aux dépendances déclarées.
+Installe les dépendances. Génère le lockfile. Vérifie avec `npm outdated` si des dépendances ont des mises à jour disponibles. Note quelle version a été installée vs celle autorisée par `package.json`. Explique pourquoi le lockfile est indispensable avant que Carol rejoigne l'équipe avec sa propre machine.
+
+---
+
+### EXO 2 : la fourniture suspecte
+
+Lance `npm audit` sur un projet Node que tu as sur ta machine. Si des vulnérabilités sont détectées, note leur niveau de sévérité (low, moderate, high, critical) et ce que `npm audit fix` peut corriger automatiquement vs ce qui nécessite une intervention manuelle.
+
+(Indice : un projet avec des dépendances anciennes aura probablement des alertes. C'est normal et pédagogique.)
+
+---
+
+### EXO 3 : la migration pnpm
+
+Prends un projet npm existant (lockfile `package-lock.json` présent). Migre-le vers pnpm :
+1. installe pnpm globalement si nécessaire
+2. supprime `node_modules` et `package-lock.json`
+3. lance `pnpm install`
+4. vérifie que le projet fonctionne toujours
+5. note une dépendance qui a planté à cause de la structure stricte de pnpm (si c'est le cas), et explique pourquoi
 
 ---
 
 ## RÉSUMÉ
 
-Un package manager résout, télécharge et organise les dépendances : trois jobs distincts, pas une simple commande magique. npm, yarn et pnpm font le même boulot mais stockent différemment sur le disque : pnpm centralise et économise l'espace via des liens symboliques. Le lockfile fige des versions exactes et se committe toujours, sans exception, parce que semver est une promesse, pas une garantie absolue. Sans ça, "ça marche chez moi" devient une phrase que tu répètes en boucle.
+Un package manager fait trois choses : résoudre les dépendances, télécharger, organiser sur le disque.
+npm, Yarn, pnpm ont la même mission mais des stratégies de stockage différentes : pnpm est le plus efficace en espace disque.
+Le lockfile est un contrat de version exacte : toujours le committer, toujours utiliser `npm ci` en CI/CD.
+Le semver définit ce qu'une mise à jour peut casser : `^` autorise les mineures, `~` seulement les patchs.
+`npm audit` révèle les vulnérabilités dans tes dépendances : à lancer régulièrement.
