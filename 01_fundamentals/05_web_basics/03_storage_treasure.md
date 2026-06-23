@@ -125,7 +125,7 @@ LocalStorage reste côté navigateur. Les cookies font l'aller-retour avec le se
 
 - Sauvegarder un thème dark/light
 - Garder un token de connexion
-- Stocker un panier e-commerce
+- Stocker la progression d'un jeu
 - Mémoriser les préférences utilisateur
 - Sauvegarder une progression de jeu
 
