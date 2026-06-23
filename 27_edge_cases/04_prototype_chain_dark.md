@@ -1,6 +1,7 @@
 # LA CHAÎNE PROTOTYPE DANS SES ZONES SOMBRES
 
-Tu connais déjà `prototype`. Tu sais qu'un objet hérite des méthodes de son prototype.
+> **Prérequis :** ce fichier suppose que tu sais ce qu'est un prototype et comment fonctionne l'héritage en JS. Si ce n'est pas encore le cas, le cours complet est dans `28_oop_js/01_prototype_chain_raw.md`. Tu peux quand même lire ce qui suit avec le rappel express ci-dessous, mais le module 28 reste la référence pour les bases.
+
 Ce fichier couvre ce qui arrive quand ce mécanisme est exploité, mal utilisé, ou carrément détourné.
 `__proto__`, `hasOwnProperty`, et prototype pollution : trois sujets que 90% des devs ne comprennent pas assez pour les éviter en prod.
 
@@ -139,7 +140,7 @@ function merge(cible, source) {
 const payload = JSON.parse('{"__proto__": {"admin": true}}')
 
 // On merge ce payload dans un objet quelconque
-const user = merge({}, payload)
+const profilNinja = merge({}, payload)
 
 // Résultat catastrophique
 const autreObjet = {}
