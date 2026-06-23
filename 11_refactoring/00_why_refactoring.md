@@ -70,4 +70,27 @@ Le code legacy n'est pas une catégorie qui va disparaître : c'est une catégor
 
 Du code qui marche aujourd'hui n'est pas automatiquement du code qui durera. Ça casse de trois façons sans refactoring : dette technique qui s'accumule, features qui coûtent de plus en plus cher, équipe qui n'ose plus toucher au code existant. Ces principes restent valides peu importe le langage ou le framework.
 
+---
+
+## LA FRONTIÈRE AVEC 12_PROBLEM_SOLVING
+
+Ces deux modules sont proches mais ils n'opèrent pas au même moment ni sur le même matériel.
+
+```
+11_refactoring       -->  du code qui EXISTE déjà
+                          tu lis, tu diagnoses, tu restructures
+                          le problème est posé : le code est là
+
+12_problem_solving   -->  un problème qui n'a pas encore de code
+                          tu décomposes, tu modélises, tu choisis une approche
+                          le problème n'est pas encore traduit en code
+```
+
+En pratique :
+
+- tu ouvres une PR, tu vois un god class de 800 lignes : **c'est du refactoring**
+- un client t'explique un besoin flou et tu dois décider comment l'attaquer : **c'est du problem solving**
+
+Les deux compétences se nourrissent : un bon problem solver évite de créer du code à refactoriser. Un bon refactoriseur comprend les décisions passées et peut les remettre en question. Mais l'ordre est important : d'abord concevoir correctement (`12`), ensuite corriger ce qui a mal vieilli (`11`).
+
 Maintenant, ouvre `01_clean_code_basics.md`. Et commence à voir ton propre code comme quelqu'un d'autre devra le lire dans 6 mois.
