@@ -68,4 +68,24 @@ Cette compétence devient plus précieuse à mesure que les outils automatisent 
 
 La syntaxe ne suffit pas si tu ne sais pas penser le problème avant de coder. Ça casse de trois façons sans cette méthode : mauvais départs répétés, fonctions géantes impossibles à tester, solutions qui ne survivent pas au premier changement. Cette compétence devient encore plus stratégique à l'ère de l'IA générative.
 
+---
+
+## LA FRONTIÈRE AVEC 11_REFACTORING
+
+Ces deux modules ont l'air proches. Ils ne font pas la même chose.
+
+```
+12_problem_solving   -->  avant le code
+                          tu n'as pas encore de fichier ouvert
+                          tu décomposes un besoin, tu modélises, tu choisis
+
+11_refactoring       -->  après le code
+                          le fichier est ouvert, le code tourne
+                          tu diagnoses, tu restructures, tu sécurises avec des tests
+```
+
+Le problem solving intervient **en amont** : c'est lui qui décide de l'architecture initiale, qui choisit l'approche avant d'écrire la première ligne. Le refactoring intervient **en aval** : c'est lui qui répare les décisions passées qui ont mal vieilli.
+
+En pratique : si tu fais bien `12`, tu as moins besoin de `11`. Mais tu auras toujours besoin de `11`, parce que les exigences changent et que personne ne conçoit parfaitement du premier coup.
+
 Maintenant, ouvre `01_decompose.md`. Et arrête de foncer dans l'éditeur avant d'avoir compris le vrai problème.
