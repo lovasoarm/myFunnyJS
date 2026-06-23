@@ -1,8 +1,10 @@
-# Prompter comme un dev, pas comme un utilisateur
+# PROMPTER COMME UN DEV, PAS COMME UN UTILISATEUR
 
 L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle répond quelque chose de plausible. Plausible n'est pas correct. Plausible c'est ce qui ressemble à correct sans l'être.
 
 La différence entre un bon prompt et un mauvais prompt, c'est pas la magie : c'est la précision. Un bon prompt te donne du code utile. Un mauvais prompt te donne du code qui compile.
+
+C'est exactement le problème de Reiner dans Attack on Titan quand il planifie une attaque. Un briefing flou donne une exécution approximative. Un briefing précis donne le résultat voulu. Sauf qu'avec l'IA, personne ne meurt si tu te rates : t'as juste du code bugué en prod.
 
 ---
 
@@ -51,11 +53,10 @@ Si tu ne lui donnes pas le contexte, elle invente un contexte par défaut : Expr
 
 /*
 CONTEXTE DU PROJET :
-- API REST Node.js / Express
-- Base de données : PostgreSQL via Prisma
-- Auth : JWT avec refresh tokens
-- Style de code : pas de var, arrow functions partout, async/await (pas .then())
-- Gestion d'erreurs : custom errors qui étendent Error, jamais throw string
+- Pipeline d'analyse Oracle Glitch (détection d'hallucinations LLM)
+- Stack : Node.js / TypeScript / Zod pour la validation
+- Conventions : async/await partout, custom errors qui étendent Error, pas de any
+- Patterns : validate-in validate-out sur chaque frontière de module
 - Tests : Jest avec ts-jest
 */
 
@@ -63,7 +64,7 @@ CONTEXTE DU PROJET :
 // L'IA va s'aligner sur TON codebase, pas inventer le sien.
 ```
 
-Astuce pour les gros projets : crée un fichier `AI_CONTEXT.md` à la racine. Il contient ton stack, tes conventions, tes patterns. Tu le copies en début de prompt. 10 secondes, résultats bien meilleurs.
+Astuce : crée un fichier `AI_CONTEXT.md` à la racine. Il contient ton stack, tes conventions, tes patterns. Tu le copies en début de prompt. 10 secondes, résultats bien meilleurs.
 
 ---
 
@@ -78,7 +79,7 @@ Quand tu n'es pas sûr de l'approche :
 Pour chacune : les avantages, les limites, dans quel cas tu choisirais cette option."
 ```
 
-Tu forces l'IA à te montrer les compromis. Toi tu arbitres. C'est ça, le niveau 4 du workflow.
+Tu forces l'IA à te montrer les compromis. Toi tu arbitres. C'est ça, le niveau 4 du workflow vu en `01_ai_workflow`.
 
 ### Pattern 2 : Le challenger
 
@@ -91,6 +92,8 @@ Quand t'as déjà une solution et tu veux la tester :
 Qu'est-ce qui peut casser ? Qu'est-ce que j'ai raté ?
 Ne réécris pas tout : liste juste les problèmes avec des explications."
 ```
+
+C'est ce que Léon fait dans Garo quand il teste une nouvelle technique de combat contre Mendoza. Il ne demande pas à son mentor de faire à sa place. Il exécute, il montre, il demande ce qui n'allait pas.
 
 ### Pattern 3 : Le step-by-step
 
@@ -114,7 +117,7 @@ Ensuite, montre un exemple minimal qui casse (le cas d'erreur).
 Ensuite, montre la solution correcte."
 ```
 
-Ce pattern force la structure intuition --> risque --> solution.
+Ce pattern force la structure intuition --> risque --> solution : exactement le cycle pédagogique de MyFunnyJS.
 
 ---
 
@@ -150,13 +153,13 @@ Le few-shot (quelques exemples) : la technique la plus sous-utilisée par les de
 Au lieu d'expliquer ce que tu veux, tu montres des exemples de ce que tu veux.
 
 ```
-"Voici comment on gère les erreurs dans ce projet :
+"Voici comment on gère les erreurs dans le projet Oracle Glitch :
 
 // Mauvais (ce qu'on ne fait pas) :
-throw 'user not found'
+throw 'analyse échouée'
 
 // Bon (ce qu'on fait) :
-throw new NotFoundError('User', userId)
+throw new LLMOutputError('OutputValidator', 'réponse tronquée à mi-JSON')
 
 // Mauvais :
 try {
@@ -169,11 +172,11 @@ try {
 try {
   ...
 } catch(e) {
-  logger.error({ error: e.message, context: 'createUser' })
-  throw new DatabaseError('Failed to create user', { cause: e })
+  logger.error({ error: e.message, context: 'validateOutput', model: 'claude-sonnet-4-6' })
+  throw new ValidationError('Sortie LLM invalide', { cause: e })
 }
 
-Maintenant écris la fonction deleteUser(userId) en suivant ces patterns."
+Maintenant écris la fonction detectHallucination(output) en suivant ces patterns."
 ```
 
 L'IA va s'aligner sur TES exemples. C'est bien plus efficace que de décrire les règles en langage naturel.
@@ -182,17 +185,16 @@ L'IA va s'aligner sur TES exemples. C'est bien plus efficace que de décrire les
 
 ## 6) PROMPT POUR DU CODE SÉCURISÉ
 
-La sécurité nécessite des prompts explicites. L'IA ne va pas automatically penser à tout.
+La sécurité nécessite des prompts explicites. L'IA ne va pas penser à tout automatiquement.
 
 ```
-"Écris la route POST /api/users en Express.
+"Écris la route POST /api/chevaliers en Express.
 Elle doit :
 1. Valider le body avec Zod (schema fourni plus bas)
 2. Sanitiser les inputs avant insertion en DB (pas de prototype pollution possible)
-3. Hasher le mot de passe avec bcrypt avant de sauvegarder
-4. Ne jamais retourner le hash dans la réponse
-5. Rate limiter : 5 tentatives max par IP par heure (middleware express-rate-limit)
-6. Logger la tentative avec l'IP mais SANS le mot de passe en clair
+3. Ne jamais retourner le token d'armure dans la réponse
+4. Rate limiter : 5 tentatives max par IP par heure (middleware express-rate-limit)
+5. Logger la tentative avec l'IP mais SANS les données sensibles en clair
 
 Schema Zod : [...]
 "
@@ -214,7 +216,7 @@ Tu lis, tu identifies ce qui manque ou ce qui est faux
     |
     v
 Tour 2 : tu corriges de façon ciblée
---> "Ta version ne gère pas le cas où userId est undefined. Corrige ça seulement."
+--> "Ta version ne gère pas le cas où la réponse LLM est tronquée. Corrige ça seulement."
     |
     v
 Tu lis encore
@@ -252,14 +254,14 @@ Un bon prompt te donne une meilleure matière première. C'est tout. La transfor
 
 ## EXERCICES
 
-**EXO 1 : Le re-prompt chirurgical**
-Demande à un LLM de te générer une fonction `fetchUserById(id)` en Node.js. Identifie 3 problèmes dans le résultat (cas d'erreur non géré, typage manquant, etc.). Corrige avec 3 prompts ciblés, un par problème. Ne refais pas tout en un seul prompt. (20 minutes)
+**EXO 1 : Le re-prompt chirurgical sur l'Oracle**
+Demande à un LLM de générer une fonction `validerSortieLLM(output)` qui vérifie qu'une réponse JSON d'un LLM est conforme à un schéma. Identifie 3 problèmes dans le résultat (cas d'erreur non géré, typage manquant, réponse tronquée non détectée). Corrige avec 3 prompts ciblés, un par problème. Ne refais pas tout en un seul prompt. (20 minutes)
 
-**EXO 2 : Le few-shot sur tes propres patterns**
-Prends 2 exemples de fonctions que t'as déjà écrites dans un projet (ou inventes-en avec des patterns cohérents). Utilise-les comme few-shot pour faire générer une 3e fonction similaire. Compare avec ce que tu obtiens sans few-shot. (15 minutes)
+**EXO 2 : Le few-shot sur les patterns de Garo**
+Voici le contexte du projet Garo no Kronika : chaque erreur a un type précis (`HorrorEscapeError`, `ArmorCollapseError`, `KnightDownError`), on log toujours avec le nom du Chevalier et la zone de patrouille, on ne catch jamais silencieusement. Crée 2 exemples few-shot complets (mauvais / bon), puis demande à l'IA de générer la fonction `gererIncident(knight, horror)` en respectant ces patterns. Compare avec ce que tu obtiens sans few-shot. (15 minutes)
 
-**EXO 3 : Le comparatif d'approches**
-Demande 3 implémentations différentes d'un même problème : une fonction qui déduplique un tableau d'objets selon une propriété. Force l'IA à te donner les compromis de chaque approche. Choisis une, justifie ton choix par écrit en 3 phrases. (15 minutes)
+**EXO 3 : Le comparatif d'approches sur la déduplication**
+Demande 3 implémentations différentes d'une fonction qui déduplique un tableau de ninjas selon leur identifiant de clan. Force l'IA à te donner les compromis de chaque approche. Choisis une, justifie ton choix par écrit en 3 phrases. (15 minutes)
 
 ---
 
