@@ -246,7 +246,7 @@ En prod : backoff exponentiel (délai qui double à chaque tentative) pour ne pa
 
 Une WebSocket c'est un tunnel bidirectionnel persistant. Deux bouts : navigateur et serveur Node.js. Les deux doivent tourner.
 Le cycle de vie : `CONNECTING --> OPEN --> send/receive --> CLOSING --> CLOSED`. Vérifier `readyState` avant chaque `send()`.
-Ce qu'on oublie toujours : la reconnexion est manuelle, `wss://` est obligatoire en prod, et les erreurs WebSocket sont peu verboses — aller dans l'onglet Network pour le vrai message.
+Ce qu'on oublie toujours : la reconnexion est manuelle, `wss://` est obligatoire en prod, et les erreurs WebSocket sont peu verboses : aller dans l'onglet Network pour le vrai message.
 La puissance réelle : le serveur initie la communication sans que le client demande. C'est ce qui change tout.
 
 ---

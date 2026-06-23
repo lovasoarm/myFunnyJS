@@ -2244,7 +2244,7 @@ Frontend senior                           71 000 – 120 000 $ / an
   React/Next.js + TypeScript + perf
 ```
 
-> Les certifications cloud (AWS, GCP, Azure) ajoutent en moyenne **20 000 – 40 000 $** au salaire. C'est documenté sur l'ensemble du marché remote 2025-2026 : pas une légende.
+> Les certifications cloud (AWS, GCP, Azure) ajoutent en moyenne **20 000 : 40 000 $** au salaire. C'est documenté sur l'ensemble du marché remote 2025-2026 : pas une légende.
 
 ---
 

@@ -180,7 +180,7 @@ Prends le code de `03_walking_dead_protocol` (ou un projet JS simple à toi). Co
 
 Crée un fichier `utils/camp-tools.js` avec 5 fonctions exportées (calculer des rations, des niveaux de menace, de la durée de garde, des stocks, des distances). Dans `index.js`, n'en importe que 2. Lance le build avec tree shaking activé. Vérifie dans le bundle final que les 3 fonctions non utilisées ont bien disparu.
 
-(Indice : cherche les noms des fonctions dans le bundle minifié — si elles sont absentes, le tree shaking a fonctionné)
+(Indice : cherche les noms des fonctions dans le bundle minifié : si elles sont absentes, le tree shaking a fonctionné)
 
 ---
 

@@ -209,7 +209,7 @@ Résultat : deux instances de la "même" classe avec un comportement différent.
 
 ### EXO 1 : usine à chevaliers de Garo
 
-Écris une fonction constructeur `Chevalier(nom, flamme)` avec une méthode `invoquer()` sur le prototype qui renvoie `"${nom} invoque l'armure : ${flamme}"`. Crée 3 chevaliers et vérifie qu'ils partagent la même fonction `invoquer` en mémoire (indice : compare deux méthodes avec `===` — elles doivent être identiques, pas juste équivalentes).
+Écris une fonction constructeur `Chevalier(nom, flamme)` avec une méthode `invoquer()` sur le prototype qui renvoie `"${nom} invoque l'armure : ${flamme}"`. Crée 3 chevaliers et vérifie qu'ils partagent la même fonction `invoquer` en mémoire (indice : compare deux méthodes avec `===` : elles doivent être identiques, pas juste équivalentes).
 
 ---
 

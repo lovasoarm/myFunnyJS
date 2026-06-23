@@ -72,8 +72,8 @@ Les premiers tests de `edgeCases.test.js` vérifiaient surtout des cas de malfor
 
 | Décision initiale | Tenu ? | Résultat |
 |---|---|---|
-| streamingClient mocké dans tous les tests | ✅ Tenu | 0 appel API réel, tests instantanés |
-| Zod sur toute sortie IA sans exception | ✅ Tenu | Aucune donnée non-validée dans le pipeline |
-| Timeout unique de 3s | ❌ Abandonné | Remplacé par first-token/inter-token séparés |
-| `LLMOutputValidator` hérite de `StrictValidator` | ✅ Tenu | Ajout de règles propre sans régression |
-| ADR avant chaque décision majeure | ✅ Tenu | 4 ADR rédigés, pipeline lisible a posteriori |
+| streamingClient mocké dans tous les tests | OUI Tenu | 0 appel API réel, tests instantanés |
+| Zod sur toute sortie IA sans exception | OUI Tenu | Aucune donnée non-validée dans le pipeline |
+| Timeout unique de 3s | NON Abandonné | Remplacé par first-token/inter-token séparés |
+| `LLMOutputValidator` hérite de `StrictValidator` | OUI Tenu | Ajout de règles propre sans régression |
+| ADR avant chaque décision majeure | OUI Tenu | 4 ADR rédigés, pipeline lisible a posteriori |
