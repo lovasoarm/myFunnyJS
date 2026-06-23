@@ -3,8 +3,7 @@
 Un fusil à pompe tire dans tous les sens. Il touche, mais il détruit aussi beaucoup de choses utiles.
 Un sniper vise une cible précise. Un seul coup. Pas de dégâts collatéraux.
 
-Un unit test c'est un sniper : une fonction, une responsabilité, un test isolé.
-Le problème de la plupart des devs qui "testent" : ils tirent à la pompe sans le savoir.
+Daryl Dixon est sniper. Il ne vide pas un chargeur sur une horde. Il compte ses carreaux, il vise, et chaque tir doit compter. Un unit test c'est exactement ça : une fonction, une responsabilité, un test isolé. Le problème de la plupart des devs qui "testent" : ils tirent à la pompe sans le savoir.
 
 ---
 
@@ -19,23 +18,23 @@ Ce qu'il ne fait **pas** :
 - toucher le filesystem
 - dépendre du résultat d'une autre fonction non testée
 
-Si ton test fait ça, c'est un test d'intégration (→ voir `05_integration_reactor.md`).
+Si ton test fait ça, c'est un test d'intégration (voir `05_integration_reactor.md`).
 
 ```js
 // PAS un unit test : dépend d'une API externe
-async function testGetPlayer() {
-  const player = await fetch('/api/players/10') // appel réseau réel
-  assert(player.name === 'Messi')
+async function testGetSurvivor() {
+  const survivor = await fetch('/api/survivors/rick') // appel réseau réel
+  assert(survivor.name === 'Rick')
 }
 
 // UNIT TEST : la fonction est pure, isolée, prévisible
-function formatPlayerName(prenom, nom, numero) {
-  return `#${numero} ${prenom.toUpperCase()} ${nom}`
+function formatSurvivorName(prenom, rang, camp) {
+  return `[${rang.toUpperCase()}] ${prenom} · ${camp}`
 }
 
 // test :
-const result = formatPlayerName('lionel', 'messi', 10)
-// attendu : "#10 LIONEL messi"
+const result = formatSurvivorName('rick', 'leader', 'Alexandria')
+// attendu : "[LEADER] rick · Alexandria"
 ```
 
 ---
@@ -46,15 +45,15 @@ Tout bon test unitaire suit ce pattern : **AAA : Arrange, Act, Assert**
 
 ```js
 // ARRANGE : prépare les données
-const kills = 15
-const assists = 7
-const deaths = 3
+const nourriture = 48       // rations disponibles au camp
+const survivants = 12       // bouches à nourrir
+const joursPrevu = 3        // durée de la mission
 
 // ACT : appelle la fonction testée
-const score = calculeKDA(kills, assists, deaths)
+const rations = calculeRationsJournalieres(nourriture, survivants, joursPrevu)
 
 // ASSERT : vérifie le résultat
-expect(score).toBe(12.33) // (15 + 7/2) / 3 arrondi à 2 décimales
+expect(rations).toBe(4) // 48 / 12 / 3 = 4 rations par survivant par jour... à peine
 ```
 
 Simple. Toujours dans cet ordre. Jamais mélangé.
@@ -69,26 +68,26 @@ Le cas normal, tout le monde le teste. Les edge cases, personne.
 C'est pourtant là que les bugs vivent.
 
 ```js
-function diviseChakra(chakraTotal, nombreNinjas) {
-  return chakraTotal / nombreNinjas
+function calculeRationsJournalieres(nourriture, survivants, jours) {
+  return nourriture / survivants / jours
 }
 ```
 
 Les tests qu'un dev pressé écrit :
 ```js
-expect(diviseChakra(100, 4)).toBe(25) // normal
+expect(calculeRationsJournalieres(48, 12, 3)).toBe(4) // cas normal, journée tranquille
 ```
 
-Les tests qu'un sniper écrit :
+Les tests que Daryl écrit avant de partir en mission :
 ```js
-expect(diviseChakra(100, 4)).toBe(25)       // cas normal
-expect(diviseChakra(0, 4)).toBe(0)           // numerateur zéro
-expect(diviseChakra(100, 0)).toBe(Infinity)  // division par zéro → Infinity en JS
-expect(diviseChakra(-100, 4)).toBe(-25)      // valeur négative
-expect(diviseChakra(1, 3)).toBeCloseTo(0.33) // flottant → pas toBe, mais toBeCloseTo
+expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)       // cas normal
+expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)         // plus de nourriture : 0
+expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity)  // 0 survivant : division par zéro → Infinity
+expect(calculeRationsJournalieres(48, 12, 0)).toBe(Infinity) // 0 jours : même problème
+expect(calculeRationsJournalieres(1, 3, 1)).toBeCloseTo(0.33) // flottant : pas toBe, mais toBeCloseTo
 ```
 
-Chaque edge case est un futur bug évité.
+Chaque edge case est un vendredi soir en prod évité.
 
 ---
 
@@ -98,17 +97,17 @@ Un bon test est une documentation vivante.
 En lisant le test, tu comprends ce que la fonction est censée faire : même sans regarder son implémentation.
 
 ```js
-describe('calculeKDA', () => {
-  it('retourne le ratio KDA standard', () => {
-    expect(calculeKDA(10, 5, 2)).toBe(6.25)
+describe('calculeRationsJournalieres', () => {
+  it('retourne les rations correctes pour un camp normal', () => {
+    expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)
   })
 
-  it('retourne 0 si aucun kill ni assist', () => {
-    expect(calculeKDA(0, 0, 5)).toBe(0)
+  it('retourne 0 si le camp est vide de nourriture', () => {
+    expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)
   })
 
-  it('retourne Infinity si deaths est 0', () => {
-    expect(calculeKDA(10, 5, 0)).toBe(Infinity)
+  it('retourne Infinity si personne à nourrir (division par zéro)', () => {
+    expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity)
   })
 })
 ```
@@ -121,36 +120,36 @@ Si le test échoue et que quelqu'un le lit, il comprend immédiatement ce qui es
 
 ## 5) ISOLATION : POURQUOI C'EST OBLIGATOIRE
 
-Un test unitaire qui dépend d'un autre test : c'est une bombe à retardement.
+Un test unitaire qui dépend d'un autre test : c'est une bombe à retardement. Si quelqu'un s'incruste dans le camp entre les deux tests, tout s'effondre.
 
 ```js
 // DANGEREUX : test 2 dépend du résultat de test 1
-let joueurs = []
+let survivants = []
 
-it('ajoute un joueur', () => {
-  joueurs.push('Levi')
-  expect(joueurs).toHaveLength(1)
+it('ajoute un survivant au camp', () => {
+  survivants.push('Carol')
+  expect(survivants).toHaveLength(1)
 })
 
-it('supprime un joueur', () => {
-  // si test 1 n'a pas tourné, joueurs est vide, ce test explose
-  joueurs.pop()
-  expect(joueurs).toHaveLength(0)
+it('retire un survivant du camp', () => {
+  // si test 1 n'a pas tourné, survivants est vide, ce test explose
+  survivants.pop()
+  expect(survivants).toHaveLength(0)
 })
 ```
 
 ```js
 // CORRECT : chaque test gère son propre état
-it('ajoute un joueur', () => {
-  const joueurs = []
-  joueurs.push('Levi')
-  expect(joueurs).toHaveLength(1)
+it('ajoute un survivant au camp', () => {
+  const survivants = []
+  survivants.push('Carol')
+  expect(survivants).toHaveLength(1)
 })
 
-it('supprime un joueur', () => {
-  const joueurs = ['Levi']
-  joueurs.pop()
-  expect(joueurs).toHaveLength(0)
+it('retire un survivant du camp', () => {
+  const survivants = ['Carol']
+  survivants.pop()
+  expect(survivants).toHaveLength(0)
 })
 ```
 
@@ -160,54 +159,55 @@ Règle : un test ne doit jamais supposer qu'un autre a déjà tourné avant lui.
 
 # EXERCICES
 
-## EXO 1 : le sniper de Levi
+## EXO 1 : le sniper de Daryl
 
-La fonction suivante calcule si un soldat du Corps d'Exploration peut participer à une mission :
+La fonction suivante vérifie si un survivant peut partir en mission de reconnaissance :
 
 ```js
-function peutParticiper(soldatStats) {
-  return soldatStats.stamina > 50 && soldatStats.blessures === 0
+function peutPartirEnMission(survivant) {
+  return survivant.stamina > 60 && survivant.blessures === 0 && survivant.munitions > 0
 }
 ```
 
 Écris les tests unitaires pour cette fonction en suivant AAA :
-- le cas où le soldat peut participer
+- le cas où le survivant peut partir
 - le cas où la stamina est trop basse
 - le cas où il a des blessures
-- le cas où les deux conditions échouent en même temps
+- le cas où les munitions sont épuisées
+- le cas où les trois conditions échouent en même temps
 
 ---
 
 ## EXO 2 : trouver les edge cases
 
-Pour cette fonction :
+Pour cette fonction de calcul de menace du camp :
 
 ```js
-function trancheNom(nom, longueur) {
-  return nom.slice(0, longueur)
+function niveauMenace(zombiesDetectes, distancePérimètre) {
+  return zombiesDetectes / distancePérimètre
 }
 ```
 
 Liste tous les edge cases auxquels tu penses.
 Puis écris un test pour chacun.
 
-(Indice : qu'est-ce qui se passe si `longueur` est plus grand que `nom.length` ? Et si c'est négatif ? Et si `nom` est une chaîne vide ?)
+(Indice : que se passe-t-il si `distancePérimètre` est 0 ? Et si les deux sont 0 ? Et si les valeurs sont négatives ?)
 
 ---
 
 ## EXO 3 : réécrire un mauvais test
 
-Ce test teste trop de choses. Coupe-le en tests unitaires propres :
+Ce test teste trop de choses à la fois. Coupe-le en tests unitaires propres :
 
 ```js
-it('gère un joueur complet', () => {
-  const joueur = { nom: 'Eren', kills: 10, deaths: 2 }
-  const nomFormaté = formatNom(joueur.nom)
-  const kda = calculeKDA(joueur.kills, 0, joueur.deaths)
-  const badge = assigneBadge(kda)
-  expect(nomFormaté).toBe('EREN')
-  expect(kda).toBe(5)
-  expect(badge).toBe('gold')
+it('gère un survivant complet', () => {
+  const survivant = { nom: 'Michonne', kills: 40, blessures: 0 }
+  const nomFormaté = formatNom(survivant.nom)
+  const efficacite = calculeEfficacite(survivant.kills, survivant.blessures)
+  const rang = attribueRang(efficacite)
+  expect(nomFormaté).toBe('MICHONNE')
+  expect(efficacite).toBe(40)
+  expect(rang).toBe('elite')
 })
 ```
 
