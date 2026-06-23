@@ -145,8 +145,12 @@ Crée `Ninja` avec `nom` et `attaquer()`, puis `NinjaSensei extends Ninja` qui a
 EXO 2 : étendre sans dupliquer :
 Sur l'exemple de la section 3, ajoute un troisième niveau `NinjaSenseiLegendaire extends NinjaSensei` qui utilise `super.attaquer()` pour construire sa propre version, sans recopier le texte de la méthode parente.
 
-EXO 3 : audit de profondeur :
-Construis une hiérarchie à 4 niveaux sur le thème de Walking Dead (`Survivant` --> `Combattant` --> `ChefDeGroupe` --> `Leader`). Modifie une propriété du niveau le plus haut, puis liste en commentaire tous les niveaux qu'il faudrait vérifier manuellement pour être sûr de ne rien avoir cassé.
+EXO 3 : le coût caché de la profondeur :
+L'équipe a une hiérarchie à 4 niveaux : `Survivant` --> `Combattant` --> `ChefDeGroupe` --> `Leader`. Rick veut modifier la logique de `attaquer()` dans `Combattant` pour gérer un nouveau type de menace.
+
+Ta mission : ne pas construire la hiérarchie pour la construire — construis-la pour identifier le problème.
+
+Implémente les 4 niveaux. Chaque niveau ajoute ou surcharge quelque chose. Puis réponds en commentaire : si tu changes `Combattant.attaquer()`, quels niveaux peuvent silencieusement casser ? Combien de classes dois-tu ouvrir pour savoir ? Propose une alternative concrète (composition, hook method, ou autre) qui évite cette fragilité en cascade.
 
 ## RÉSUMÉ
 
