@@ -17,13 +17,13 @@ Avant refacto :
   ✓ vote valide accepté
   ✓ double vote rejeté
   ✓ joueur vide rejeté
-  → tu refactorises l'implémentation interne
+  --> tu refactorises l'implémentation interne
 
 Après refacto :
   ✓ vote valide accepté         (toujours)
   ✓ double vote rejeté          (toujours)
   ✓ joueur vide rejeté          (toujours)
-  → comportement préservé
+  --> comportement préservé
 ```
 
 Si un test change pendant un refacto, deux cas : soit le test était mal écrit, soit tu as changé un comportement sans t'en rendre compte. Dans les deux cas : stop et analyse.
@@ -40,7 +40,7 @@ La situation classique : tu hérites d'un module spaghetti. Zéro test. Tu dois 
 
 ```js
 // gestionCamp.js — version spaghetti Walking Dead
-// Rick a codé ça en pleine attaque zombie
+// Rick a codé ça en pleine attaque zombie. Ça tourne. Personne n'ose y toucher.
 
 function traiterRation(inventaire, personnages) {
   let total = 0
@@ -59,6 +59,7 @@ function traiterRation(inventaire, personnages) {
 ```
 
 Avant de refactoriser : écrire les tests qui capturent le comportement actuel.
+Ces tests ne testent pas une belle architecture : ils testent ce que le code fait, ici, maintenant.
 
 ```js
 // gestionCamp.test.js
@@ -113,7 +114,7 @@ Tous verts. Maintenant on peut refactoriser en sécurité.
 
 ```js
 // gestionCamp.js — version refactorisée
-// même comportement, code lisible
+// même comportement, code lisible. Rick peut dormir.
 
 function calculerRationsNécessaires(personnages) {
   return personnages
@@ -135,8 +136,7 @@ function traiterRation(inventaire, personnages) {
 ```
 
 On lance les tests. Tout vert. Le refacto est valide.
-
-La logique `calculerRationsNécessaires` est maintenant extraite et testable séparément.
+`calculerRationsNécessaires` est maintenant extraite et testable séparément.
 
 ---
 
@@ -164,8 +164,8 @@ Exemple : tu renommes un paramètre, tu changes le format de retour.
 Dans ce cas, les tests doivent changer aussi. Mais c'est un changement conscient, pas accidentel.
 
 ```
-Comportement préservé → tests ne changent pas
-Interface modifiée intentionnellement → tests se mettent à jour, mais on sait pourquoi
+Comportement préservé    --> tests ne changent pas
+Interface modifiée intentionnellement --> tests se mettent à jour, on sait pourquoi
 ```
 
 La différence : dans le premier cas, les tests sont un garde-fou.
@@ -175,59 +175,65 @@ Dans le second, les tests sont une documentation qui s'adapte.
 
 # EXERCICES
 
-## EXO 1 : le code de Rick qu'il faut pas toucher sans filet
+## EXO 1 : le camp tombe, le code pas
 
-Daryl a transmis ce module du camp Walking Dead. Il calcule un score de dangerosité pour décider qui garde la porte la nuit. Le code tourne depuis 3 mois. Personne ne sait exactement ce qu'il fait. Zéro test.
+Daryl a laissé un module de rotation des gardes dans l'état suivant.
+Le camp tourne dessus depuis 3 semaines. Personne n'a de tests. T-Dog vient de signaler un bug : parfois un poste reste sans garde. Tu dois refactoriser sans introduire de régression.
 
 ```js
-function score(g) {
-  return g.k > 0 ? ((g.k * 3 + (g.a || 0)) / (g.d > 0 ? g.d : 1)).toFixed(1) : '0.0'
+function planifierGardes(gardes, postes) {
+  const plan = {}
+  for (let i = 0; i < postes.length; i++) {
+    const g = gardes[i % gardes.length]
+    if (g && g.disponible !== false) {
+      plan[postes[i]] = g.nom
+    }
+  }
+  return plan
 }
 ```
 
-Rick veut refactoriser ça pour que ce soit lisible. Mais si tu casses le calcul, le mauvais gardien prend la mauvaise porte, et tout le monde crève.
+Étape 1 : déduis le comportement exact du code (y compris les cas limites).
+Étape 2 : écris les tests qui documentent ce comportement. Tous verts avant de toucher le code.
+Étape 3 : refactorise pour que le module soit lisible et testable séparément.
+Étape 4 : si tu trouves un comportement suspect (un garde "indisponible" laisse le poste vide sans signal), documente-le dans un test explicite, mais ne le corrige pas encore : correction = nouveau commit, après le refacto.
 
-Ta mission : poser le filet avant de toucher quoi que ce soit.
-
-Étape 1 : déduis tous les comportements du code et écris les tests qui les capturent.
-Étape 2 : refactorise pour que la fonction soit lisible par un humain fatigué à 3h du matin.
-Étape 3 : tous les tests passent — sans en avoir modifié un seul.
-
-(Indice : `k`, `a`, `d` — cherche ce que ça peut vouloir dire dans un contexte de survie. La logique du calcul te donnera les cas de test.)
+(Indice : concentre-toi sur les cas `gardes.length < postes.length` et `disponible === false`)
 
 ---
 
-## EXO 2 : le module qui fait trop de choses
+## EXO 2 : le classement Ballon d'Or en chirurgie
 
-L'équipe de comptage du Ballon d'Or a une seule fonction qui agrège les votes, classe les joueurs, et formate le message de cérémonie. Trois responsabilités dans une seule fonction : si la cérémonie est retransmise en direct et que le format du message change au dernier moment, tu touches tout et tu casses tout.
+Cette fonction tourne en production chez un média sportif depuis 2 ans. Elle agrège les votes de 173 journalistes et publie le classement en direct. Zéro test. Un nouveau développeur a proposé de la "simplifier". Tu dois l'empêcher de toucher quoi que ce soit avant que des tests existent.
 
 ```js
-function publierRésultatsBallon(votes) {
+function publierClassement(votes, joueurs) {
   const totaux = {}
-  for (const vote of votes) {
-    totaux[vote.joueur] = (totaux[vote.joueur] || 0) + vote.points
+  for (const v of votes) {
+    if (!joueurs.find(j => j.id === v.joueurId)) continue
+    totaux[v.joueurId] = (totaux[v.joueurId] || 0) + v.points
   }
   const classement = Object.entries(totaux)
     .sort((a, b) => b[1] - a[1])
-    .map(([nom, points], index) => ({ rang: index + 1, nom, points }))
-
-  const vainqueur = classement[0]
-  const message = `Le vainqueur du Ballon d'Or est ${vainqueur.nom} avec ${vainqueur.points} points`
-  return { classement, message }
+    .map(([id, points], i) => ({
+      rang: i + 1,
+      joueur: joueurs.find(j => j.id === Number(id)).nom,
+      points
+    }))
+  return { classement, vainqueur: classement[0]?.joueur ?? null }
 }
 ```
 
-Ta mission : rendre chaque responsabilité modifiable sans risque.
-
-Étape 1 : écris les tests sur la fonction existante. Tous verts avant de toucher le code.
-Étape 2 : extrait `agrègeVotes` et `formateMessage` comme fonctions séparées. Les tests d'origine passent toujours.
-Étape 3 : ajoute des tests unitaires ciblés sur chaque fonction extraite — prouve que tu peux changer le format du message sans toucher à l'agrégation.
+Étape 1 : écris les tests qui couvrent tous les comportements observables, y compris les cas limites : vote pour un joueur inexistant, liste de votes vide, ex-aequo.
+Étape 2 : extrait `agrégerVotes(votes, joueurs)` et `formaterClassement(totaux, joueurs)` en fonctions séparées.
+Étape 3 : ajoute des tests unitaires sur les fonctions extraites.
+Le classement final doit être identique avant et après le refacto.
 
 ---
 
 # RÉSUMÉ
 
-Refactoriser sans tests = espoir. Avec tests = certitude.
+Refactoriser sans tests : espoir. Avec tests : certitude.
 Avant de refactoriser du code sans tests : écrire les tests d'abord, tout vert, puis refactoriser.
 Les tests ne bougent pas pendant un refacto : si un test change, c'est un changement de comportement, pas un refacto.
 Petits commits : chaque étape du refacto est vérifiable et réversible.
