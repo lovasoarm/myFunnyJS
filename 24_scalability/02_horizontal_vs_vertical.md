@@ -136,6 +136,50 @@ La leçon : scale out un serveur qui a de l'état local (cache, session, compteu
 
 ---
 
+## 5.5) QUAND SCALER : LES VRAIS SEUILS
+
+Le tableau de décision de la section 3 dit quoi choisir. Ce qui manque : à quel moment de la vie d'un produit est-ce que la question se pose vraiment ?
+
+```
+PHASE 0 : 0 à 100 users actifs
+  --> un seul serveur, taille raisonnable
+  --> scale up si ça rame, mais d'abord profiler (le problème est souvent dans le code)
+  --> scale out ici = over-engineering certain
+
+PHASE 1 : 100 à 10 000 users
+  --> première vraie question : est-ce que mon DB tient ?
+  --> scale up le serveur DB en premier (souvent le vrai goulot)
+  --> si un serveur app suffit avec 90% CPU : scale up avant scale out
+  --> c'est ici qu'on prépare le code stateless, pas qu'on scale out
+
+PHASE 2 : 10 000 à 1 million users
+  --> scale out devient pertinent : un seul serveur ne peut plus absorber
+  --> load balancer + plusieurs instances app (vues dans 01_load_balancing)
+  --> DB : lire/écrire répartis (read replicas), pas juste plus gros
+  --> le code stateless payé en phase 1 est rentabilisé ici
+
+PHASE 3 : 1 million+ users
+  --> plus une question de scale unique : architecture distribués, sharding,
+      CDN pour les assets, caches multiples (Redis vu dans 23_databases/04)
+  --> à ce stade les décisions d'architecture precèdent les décisions d'infra
+```
+
+Le signal concret pour scaler : pas un seuil en nombre d'users, mais des métriques.
+
+```
+CPU > 70% en moyenne sur 10 minutes            --> il faut scale
+Temps de réponse p99 > 500ms                   --> quelque chose ne scale plus
+DB connections pool saturé                     --> la DB est le goulot, pas l'app
+Memory > 85% utilisée en régime normal         --> fuite ou machine trop petite
+```
+
+La règle qui évite de scale trop tôt : mesure d'abord. Un `console.time()` ou
+un profiling basique (vu en `06_memory_performance/04_profiling`) révèle souvent
+qu'une requête DB non-indexée ou un calcul O(n²) est la vraie cause de la lenteur.
+Scaler un serveur lent ne le rend pas rapide : ça te donne juste plusieurs serveurs lents.
+
+---
+
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
 Avant, scale up était souvent le réflexe par défaut, parce que gérer plusieurs serveurs à la main (déploiement, synchronisation, load balancing) était lourd opérationnellement. Maintenant, avec les conteneurs (Docker, vu dans `30_annexes/toolchain/05_docker_basics`) et les orchestrateurs (Kubernetes), ajouter ou retirer des instances est devenu une opération quasi automatique (auto-scaling : le nombre de serveurs s'ajuste seul selon la charge mesurée). Le switch existe parce que l'outillage a rattrapé la complexité opérationnelle du scale out, pas parce que le scale up serait devenu inutile : il reste pertinent pour des charges de travail qui ne se parallélisent pas bien (calcul intensif sur une seule grosse tâche).

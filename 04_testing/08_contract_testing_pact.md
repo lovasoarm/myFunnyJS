@@ -220,25 +220,40 @@ Ton boulot :
 
 ---
 
-## EXO 2 : le contrat qui survit à la refacto
+## EXO 2 : le classement qui perd ses stats en prod
 
-Tu hérites d'un contrat qui attend `{ joueur: string, buts: number, assists: number }`.
+L'équipe du `stats-provider` (le service qui alimente le dashboard Ballon d'Or) a fait une PR vendredi soir. Elle a passé les reviews. Elle est partie en prod samedi matin, jour de cérémonie.
 
-Le provider a refactorisé sans prévenir et retourne maintenant :
+Le consumer `awards-dashboard` commence à remonter des erreurs : des champs sont `undefined` dans l'affichage des statistiques. Les tests unitaires du dashboard passent tous. Les tests du stats-provider aussi. L'incident dure 40 minutes avant qu'on identifie la cause.
 
-```js
-{ joueur: string, stats: { buts: number, assists: number } }
+**Ce que tu trouves dans les logs du consumer :**
+
+```
+TypeError: Cannot read properties of undefined (reading 'buts')
+  at formatStatligne (awards-dashboard/src/renderer.js:42)
 ```
 
-Le consumer n'a pas encore été mis à jour. En prod : `buts` et `assists` sont `undefined` partout.
+**Le contrat que le consumer avait documenté (et mocké dans ses tests) :**
 
-Écris :
+```js
+// awards-dashboard/tests/mocks/statsMock.js
+const mockJoueur = {
+  joueur: 'Vinicius Jr',
+  buts: 22,
+  assists: 11
+}
+```
 
-- Le test de contrat qui aurait détecté ce breaking change avant le déploiement.
-- Une fonction `adaptateur(réponseNouveau)` qui transforme le nouveau format vers l'ancien, pour permettre une migration progressive sans bloquer le consumer.
-- Un test qui prouve que l'adaptateur préserve le contrat original.
+**Ce que le stats-provider retourne maintenant en réponse réelle :**
+Tu ne le sais pas encore. Tu dois le découvrir.
 
-(Le pattern "adaptateur de contrat" vaut le coup dans une migration de plusieurs services : on ne peut pas tout migrer en même temps.)
+Ton boulot :
+
+1. Écris le test de contrat qui aurait détecté cet incident avant le déploiement. Il doit tester la réponse réelle du provider, pas le mock.
+2. Lance le test contre le mock existant : il passe. Maintenant imagine que le provider a changé sa structure. Écris une nouvelle réponse mockée qui ferait casser ton test de contrat. C'est ça le breaking change.
+3. Une fois le breaking change identifié : propose la stratégie de migration qui permet au consumer de continuer à fonctionner sans bloquer l'équipe provider dans sa refacto. (Indice : les deux équipes ne peuvent pas déployer en même temps, et il n'y a pas de rollback prévu côté provider.)
+
+(Le pattern qui résout le point 3 a un nom. Identifie-le et documente-le dans un commentaire.)
 
 ---
 

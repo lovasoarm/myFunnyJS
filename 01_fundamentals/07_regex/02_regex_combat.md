@@ -18,9 +18,9 @@ const texte = "Naruto a 17 ans et Sasuke a 17 ans aussi"
 
 // avec groupes : capturer la valeur
 const match = texte.match(/(\w+) a (\d+) ans/)
-// match[0] : "Naruto a 17 ans"  — le match complet
-// match[1] : "Naruto"           — groupe 1
-// match[2] : "17"               — groupe 2
+// match[0] : "Naruto a 17 ans"  : le match complet
+// match[1] : "Naruto"           : groupe 1
+// match[2] : "17"               : groupe 2
 ```
 
 Avec le flag `g`, `.match()` retourne toutes les occurrences mais sans les groupes. Pour extraire les groupes sur plusieurs matches, on utilise `.matchAll()` :
