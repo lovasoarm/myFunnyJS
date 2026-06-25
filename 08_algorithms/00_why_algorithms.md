@@ -62,7 +62,7 @@ La montée de l'IA générative a aussi changé la donne : un LLM peut générer
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend entièrement de `07_data_structures` : tu ne peux pas comprendre Dijkstra sans comprendre les graphes et les heaps, tu ne peux pas comprendre un tri efficace sans comprendre la notion de complexité vue plus tôt dans le curriculum.
+Oui, explicitement : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend entièrement de `07_data_structures` : tu ne peux pas comprendre Dijkstra sans comprendre les graphes et les heaps (`07_data_structures/05_heap` et `07_data_structures/08_graphs`), tu ne peux pas comprendre un tri efficace sans comprendre la notion de complexité vue en `06_memory_performance/03_complexity`. Si tu n'as pas ces modules derrière toi : finis-les d'abord.
 
 ---
 
