@@ -186,24 +186,65 @@ ES2022 a ajouté les class fields (y compris `#private`). Avant ça, la "privacy
 
 ## EXERCICES
 
-**EXO 1 : le mensonge de la syntaxe**
-Un junior de l'équipe Walking Dead affirme que `class` crée un "vrai" système orienté objet différent du prototype chain. Il a lu un article Medium. Il est convaincu.
+**EXO 1 : l'architecte devant le junior**
 
-Ta mission : le tort avec du code.
+Un junior de l'équipe affirme : "les classes c'est juste une autre façon d'écrire les fonctions constructeurs, c'est exactement pareil, j'utilise ce que je veux".
 
-Écris une `class Garde` avec un `constructor` et une méthode `patrouiller()`. Puis prouve via `typeof Garde`, `Garde.prototype`, et `Object.getOwnPropertyNames(Garde.prototype)` que `class` est du sucre syntaxique pur : montre que le moteur a posé exactement les mêmes briques qu'une fonction constructeur classique. Commente chaque résultat avec l'explication technique qui cloue le bec. (10 minutes)
+Tu dois lui prouver qu'il a tort sur trois points précis : le comportement sans `new`, l'énumérabilité des méthodes, et le mode strict.
 
-**EXO 2 : le crash volontaire**
-Écris une `class Sentinelle` puis essaie de l'appeler sans `new`. Capture l'erreur avec un `try/catch`, affiche son message, et explique en commentaire en quoi ce comportement diffère d'une fonction constructeur classique. (10 minutes)
+Écris le code qui démontre chaque différence, et pour chaque cas note en commentaire : quel est le vrai risque en prod si on l'ignore ? (15 minutes)
 
-**EXO 3 : traduire à l'envers**
-Prends une `class` de ton choix avec 2 méthodes et un `constructor`, et réécris-la entièrement en syntaxe fonction constructeur + `.prototype`, sans utiliser `class` une seule fois. Le comportement observable doit être identique (sauf l'erreur sans `new`). (15 minutes)
+---
 
-**EXO 4 : le tableau partagé, en vrai**
-Crée une classe `Equipe` avec une propriété `membres`. Version A : initialise `membres` dans le `constructor`. Version B : initialise `membres` en class field. Crée deux instances de chaque, push un élément sur l'instance 1, et affiche `instance2.membres`. Explique la différence et identifie quelle version produit un bug silencieux. (15 minutes)
+**EXO 2 : diagnostiquer le bug silencieux**
 
-**EXO 5 : champ privé vs TS readonly**
-Crée une `class Chevalier` avec un `#rang` privé (JS) et une méthode publique `getRang()`. Tente d'accéder à `#rang` depuis l'extérieur, note l'erreur. Compare avec ce que ferait un `readonly rang` TypeScript : lequel protège à l'exécution, lequel protège à la compilation ? Écris ta réponse en commentaire. (15 minutes)
+Une feature a été livrée en prod. Les tests passent. Mais un utilisateur signale que son historique de missions est partagé avec les autres utilisateurs de l'équipe.
+
+```js
+class Ninja {
+  constructor(nom) {
+    this.nom = nom
+  }
+}
+Ninja.prototype.missions = []  // posé à la main sur le prototype
+
+const n1 = new Ninja('Naruto')
+const n2 = new Ninja('Sasuke')
+n1.missions.push('Mission C')
+console.log(n2.missions) // ['Mission C'] — bug en prod
+```
+
+Ta mission :
+- Explique exactement pourquoi ce bug existe (chaîne prototype + référence partagée).
+- Corrige le bug en utilisant les class fields ES2022.
+- Prouve que la correction fonctionne en montrant que `n2.missions` est bien vide après le push sur `n1`.
+- Explique pourquoi `class` ne protège pas automatiquement contre ça si tu oublies les class fields. (15 minutes)
+
+---
+
+**EXO 3 : choisir la bonne protection**
+
+Le tech lead te demande de choisir entre deux approches pour protéger la propriété `niveau` d'un Chevalier Garo :
+
+```js
+// Option A : champ privé JS
+class Chevalier {
+  #niveau = 1
+  getNiveau() { return this.#niveau }
+}
+
+// Option B : readonly TypeScript
+class Chevalier {
+  readonly niveau: number = 1
+}
+```
+
+Ton tech lead veut une réponse claire avec justification. Écris un programme qui :
+- Tente de modifier `niveau` depuis l'extérieur sur les deux versions.
+- Note exactement à quel moment chaque protection intervient (runtime vs compilation).
+- Conclut quel choix est plus sûr en production, et dans quel cas l'autre reste utile.
+
+(20 minutes)
 
 ## RÉSUMÉ
 
