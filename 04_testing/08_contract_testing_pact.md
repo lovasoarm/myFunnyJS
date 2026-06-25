@@ -15,13 +15,13 @@ Mais qui vérifie que le format que le service A retourne est bien celui que le 
 
 ```
 Service A (API joueurs) :
-  GET /joueurs/:id → { id, name, stats }
-  ← "j'ai changé 'name' en 'fullName' parce que c'est plus clair"
+  GET /joueurs/:id --> { id, name, stats }
+  <-- "j'ai changé 'name' en 'fullName' parce que c'est plus clair"
 
 Service B (dashboard) :
   attend { id, name, stats }
-  ← tous ses tests passent, ils utilisent des mocks
-  ← en prod : name est undefined partout
+  <-- tous ses tests passent, ils utilisent des mocks
+  <-- en prod : name est undefined partout
 ```
 
 Les tests unitaires et d'intégration de chaque service passent. Le bug n'est visible qu'en prod.
@@ -33,8 +33,8 @@ Les tests unitaires et d'intégration de chaque service passent. Le bug n'est vi
 Un contrat c'est un accord formel entre deux services : "voici ce que je fournis, voici ce que j'attends".
 
 ```
-Consumer (B) → définit ce dont il a besoin
-Provider (A) → s'engage à le fournir
+Consumer (B) --> définit ce dont il a besoin
+Provider (A) --> s'engage à le fournir
 
 Consumer-driven contract : B écrit le contrat, A le vérifie
 ```
@@ -116,7 +116,7 @@ const contratJoueur = {
   buts: 'number'
 }
 
-describe('Contrat : joueurs-api → dashboard', () => {
+describe('Contrat : joueurs-api --> dashboard', () => {
   it('GET /joueurs/:id respecte le contrat du consumer', async () => {
     const réponse = await getJoueur(10)
     expect(() => validContrat(réponse, contratJoueur)).not.toThrow()
@@ -135,7 +135,7 @@ Pour des architectures complexes avec plusieurs consumers par provider, [Pact](h
 Concept clé de Pact :
 
 ```
-1. Consumer écrit ses tests → génère un fichier pact (le contrat)
+1. Consumer écrit ses tests --> génère un fichier pact (le contrat)
 2. Ce fichier est partagé avec le Provider (via Pact Broker ou dépôt Git)
 3. Provider tourne ses "provider verification tests" contre le fichier pact
 4. Si les tests provider passent : le contrat est respecté, déploiement safe
@@ -171,7 +171,7 @@ describe('consumer contract', () => {
       })
   })
 })
-// → génère un fichier pact que le provider vérifie
+// --> génère un fichier pact que le provider vérifie
 ```
 
 Pour ce curriculum, la mécanique manuelle suffit pour comprendre le concept. Pact est mentionné pour le contexte prod.
@@ -198,37 +198,43 @@ Le contract testing est un outil d'équipe, pas un outil solo.
 
 # EXERCICES
 
-## EXO 1 : le contrat que personne n'a écrit
+## EXO 1 : le contrat de Scofield tient, ou pas
 
-L'équipe backend de Prison Break vient de renommer `cellule` en `cellBlock` dans la réponse de l'API — "parce que c'est plus clair en anglais". L'équipe frontend qui affiche le plan d'évasion de Scofield déploie le lendemain. Résultat : toutes les cellules s'affichent comme `undefined`. L'évasion est compromise.
+Michael Scofield a construit deux services pour l'évasion : le service `plans-api` expose les plans de sections de la prison, et le service `execution-dashboard` les consomme pour afficher les checkpoints en temps réel.
 
-Le problème : personne n'avait formalisé ce que le consumer attendait.
+La `plans-api` retourne actuellement :
+```js
+{ sectionId: number, nom: string, accès: string, gardien: string }
+```
 
-Ta mission : poser le contrat avant que ça arrive.
+L'équipe de Lincoln veut renommer `gardien` en `responsable` pour "plus de clarté".
+T-Bag, lui, veut carrément supprimer le champ `accès` parce qu'il "n'en a pas besoin".
 
-Étape 1 : définis en JSON le contrat que le dashboard d'évasion attend de l'API — quels champs, quels types, quelles contraintes.
-Étape 2 : écris le `contractValidator` qui vérifie ce contrat.
-Étape 3 : écris le test de contrat qui casse si le provider retourne `cellBlock` à la place de `cellule`.
-
-Le test doit casser **avant le déploiement**, pas après.
+Ton boulot :
+- Écris le contrat que `execution-dashboard` attendrait dans ce format (en JSON ou en schéma JS).
+- Écris le `contractValidator` qui vérifie ce contrat contre une réponse mockée.
+- Écris deux tests : un qui passe avec le format actuel, un qui casse avec la proposition de T-Bag.
+- Explique en commentaire quel changement (Lincoln vs T-Bag) est un breaking change, et lequel peut se négocier.
 
 ---
 
-## EXO 2 : le bug qui dort dans le mock
+## EXO 2 : le contrat qui survit à la refacto
 
-L'équipe du Scout Regiment utilise un dashboard pour tracker les kills de chaque soldat. Le dashboard a des tests qui passent tous au vert depuis des semaines. Mais les tests utilisent un mock qui retourne `{ nom: 'Levi', kills: 200 }`.
+Tu hérites d'un contrat qui attend `{ joueur: string, buts: number, assists: number }`.
 
-Le vrai service, lui, retourne `{ nom: 'Levi', killCount: 200 }`.
+Le provider a refactorisé sans prévenir et retourne maintenant :
+```js
+{ joueur: string, stats: { buts: number, assists: number } }
+```
 
-Les tests passent. La prod est cassée. Personne ne l'a vu venir.
+Le consumer n'a pas encore été mis à jour. En prod : `buts` et `assists` sont `undefined` partout.
 
-Ta mission : écrire le test de contrat qui aurait détecté ça.
+Écris :
+- Le test de contrat qui aurait détecté ce breaking change avant le déploiement.
+- Une fonction `adaptateur(réponseNouveau)` qui transforme le nouveau format vers l'ancien, pour permettre une migration progressive sans bloquer le consumer.
+- Un test qui prouve que l'adaptateur préserve le contrat original.
 
-Étape 1 : écris le contrat consumer — ce que le dashboard attend.
-Étape 2 : écris le test de contrat qui appelle le **vrai** provider (pas le mock) et vérifie le contrat.
-Étape 3 : fais passer le provider incorrect — prouve que le test casse. Puis corrige le provider — prouve que le test passe.
-
-(Indice : le contract test doit pointer vers la vraie implémentation du provider, pas un mock. C'est là toute la différence.)
+(Le pattern "adaptateur de contrat" vaut le coup dans une migration de plusieurs services : on ne peut pas tout migrer en même temps.)
 
 ---
 
