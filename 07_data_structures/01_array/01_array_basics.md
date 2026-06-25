@@ -24,11 +24,11 @@ Accéder à `arr[2]` = aller directement à `adresse_base + (2 * taille_slot)`.
 Pas de recherche. Pas de boucle. Juste un calcul.
 
 ```js
-const crew = ["Luffy", "Zoro", "Nami", "Sanji"]
+const crew = ["Luffy", "Zoro", "Nami", "Sanji"];
 
 // O(1) : accès direct, peu importe la taille du tableau
-console.log(crew[0])  // "Luffy"
-console.log(crew[3])  // "Sanji"
+console.log(crew[0]); // "Luffy"
+console.log(crew[3]); // "Sanji"
 ```
 
 ---
@@ -38,13 +38,13 @@ console.log(crew[3])  // "Sanji"
 ### Indexing : O(1)
 
 ```js
-const scores = [88, 95, 72, 61, 99]
+const scores = [88, 95, 72, 61, 99];
 
 // lire un élément : instantané
-const best = scores[4]  // 99
+const best = scores[4]; // 99
 
 // modifier un élément : aussi instantané
-scores[2] = 80  // on écrase directement la case mémoire
+scores[2] = 80; // on écrase directement la case mémoire
 ```
 
 ### Slicing : O(k) où k = taille du slice
@@ -52,10 +52,10 @@ scores[2] = 80  // on écrase directement la case mémoire
 `slice` ne modifie pas le tableau original : il crée une **copie** de la portion.
 
 ```js
-const squad = ["Eren", "Mikasa", "Armin", "Levi", "Hange", "Erwin"]
+const squad = ["Eren", "Mikasa", "Armin", "Levi", "Hange", "Erwin"];
 
 // copie des éléments 1 à 3 (sans inclure 4)
-const recon = squad.slice(1, 4)
+const recon = squad.slice(1, 4);
 // recon = ["Mikasa", "Armin", "Levi"]
 // squad est intact
 
@@ -67,12 +67,12 @@ const recon = squad.slice(1, 4)
 Le spread `[...arr]` crée une shallow copy complète. Tout le tableau est parcouru.
 
 ```js
-const original = ["Gon", "Killua", "Kurapika"]
+const original = ["Gon", "Killua", "Kurapika"];
 
 // shallow copy : O(n), recopie chaque référence
-const copy = [...original]
+const copy = [...original];
 
-copy.push("Leorio")
+copy.push("Leorio");
 // original n'est pas touché : ["Gon", "Killua", "Kurapika"]
 // copy : ["Gon", "Killua", "Kurapika", "Leorio"]
 ```
@@ -99,18 +99,18 @@ Après :   [ Z | A | B | C | D ]
 ```
 
 ```js
-const jugadores = ["Messi", "Neymar", "Mbappé"]
+const jugadores = ["Messi", "Neymar", "Mbappé"];
 
 // fin du tableau : O(1) amortized
-jugadores.push("Benzema")
+jugadores.push("Benzema");
 // ["Messi", "Neymar", "Mbappé", "Benzema"]
 
-// début du tableau : O(n) — tout décale
-jugadores.unshift("Ronaldo")
+// début du tableau : O(n):tout décale
+jugadores.unshift("Ronaldo");
 // ["Ronaldo", "Messi", "Neymar", "Mbappé", "Benzema"]
 
-// milieu du tableau : O(n) — splice recale tout ce qui suit
-jugadores.splice(2, 0, "De Bruyne")
+// milieu du tableau : O(n):splice recale tout ce qui suit
+jugadores.splice(2, 0, "De Bruyne");
 // ["Ronaldo", "Messi", "De Bruyne", "Neymar", "Mbappé", "Benzema"]
 ```
 
@@ -137,17 +137,17 @@ slice                n'importe    O(k)
 JS te laisse faire ça. Il devrait pas.
 
 ```js
-const sparse = []
-sparse[100] = "Walter White"
+const sparse = [];
+sparse[100] = "Walter White";
 
-console.log(sparse.length)  // 101
-console.log(sparse[0])      // undefined
+console.log(sparse.length); // 101
+console.log(sparse[0]); // undefined
 
 // Le tableau a 101 cases. 100 sont vides.
 // forEach, map, filter : ces cases vides sont IGNORÉES
 // mais elles occupent de la mémoire
 
-sparse.forEach(x => console.log(x))  // affiche seulement "Walter White"
+sparse.forEach((x) => console.log(x)); // affiche seulement "Walter White"
 ```
 
 Un tableau épars c'est un bug qui dort. Ne jamais assigner par index sur un tableau vide.
@@ -159,16 +159,16 @@ Un tableau épars c'est un bug qui dort. Ne jamais assigner par index sur un tab
 Pas de magie. Si le tableau n'est pas trié, la seule option c'est de regarder chaque élément.
 
 ```js
-const tracks = ["Codeine Dreaming", "Location", "Frozen", "2 Cups"]
+const tracks = ["Codeine Dreaming", "Location", "Frozen", "2 Cups"];
 
 // indexOf : cherche depuis le début, O(n) dans le pire cas
-const idx = tracks.indexOf("Frozen")  // 2
+const idx = tracks.indexOf("Frozen"); // 2
 
 // find : pareil, mais avec une condition plus riche
-const trap = tracks.find(t => t.includes("Cup"))  // "2 Cups"
+const trap = tracks.find((t) => t.includes("Cup")); // "2 Cups"
 
 // includes : O(n), retourne un booléen
-const exists = tracks.includes("Location")  // true
+const exists = tracks.includes("Location"); // true
 ```
 
 Si tu fais ça sur 100k éléments en boucle, c'est O(n²). C'est là que ça tombe.
@@ -178,29 +178,32 @@ Si tu fais ça sur 100k éléments en boucle, c'est O(n²). C'est là que ça to
 # EXERCICES
 
 ## EXO 1 : Roster de l'équipe nationale
+
 Tu as un tableau de 22 joueurs (formation 4-4-2). Extrais les 11 titulaires sans modifier le tableau d'origine. Puis crée une copie du squad avec un remplaçant en moins à l'index 15. Vérifie que l'original est intact.
 
 Contrainte : utilise `slice` et le spread. Pas de `splice` sur l'original.
 
 ## EXO 2 : Le camp de Rick Grimes
+
 Le camp a une liste de survivants. Un zombie attaque depuis la gauche (index 0). Un nouveau survivant arrive toujours à la fin. Mesure avec `performance.now()` la différence entre 10 000 `unshift` et 10 000 `push` sur un tableau de 1000 éléments. Explique le résultat en une phrase.
 
 (indice : regarde le tableau des coûts ci-dessus : la réponse y est)
 
 ## EXO 3 : Le tableau qui ment
+
 Ce code a un bug silencieux. Trouve-le avant de l'exécuter, explique ce qui se passe, et corrige-le.
 
 ```js
 function buildDropTable(size) {
-  const drops = []
-  drops[size - 1] = "Legendary Sword"
-  drops[0] = "Common Stone"
-  return drops
+  const drops = [];
+  drops[size - 1] = "Legendary Sword";
+  drops[0] = "Common Stone";
+  return drops;
 }
 
-const loot = buildDropTable(5)
-const rareItems = loot.filter(item => item !== undefined)
-console.log(rareItems.length)  // qu'est-ce qui s'affiche ?
+const loot = buildDropTable(5);
+const rareItems = loot.filter((item) => item !== undefined);
+console.log(rareItems.length); // qu'est-ce qui s'affiche ?
 ```
 
 ---

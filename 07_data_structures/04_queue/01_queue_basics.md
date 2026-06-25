@@ -13,6 +13,7 @@ Si tu ne maîtrises pas la queue, t'es un dev qui improvise.
 ## 1) LA STRUCTURE : DEUX EXTRÉMITÉS, UNE SEULE DIRECTION
 
 Une queue a deux bouts :
+
 - **tail (arrière)** : là où les éléments rentrent : c'est `enqueue`
 - **head (avant)** : là où les éléments sortent : c'est `dequeue`
 
@@ -38,57 +39,57 @@ Enqueue en queue, dequeue en head : les deux sont O(1).
 ```js
 class Node {
   constructor(value) {
-    this.value = value
-    this.next = null
+    this.value = value;
+    this.next = null;
     // juste une boîte avec une valeur et un pointeur vers la prochaine
   }
 }
 
 class Queue {
   constructor() {
-    this.head = null  // le prochain à sortir
-    this.tail = null  // le dernier entré
-    this.size = 0
+    this.head = null; // le prochain à sortir
+    this.tail = null; // le dernier entré
+    this.size = 0;
   }
 
   enqueue(value) {
-    const node = new Node(value)
+    const node = new Node(value);
 
     if (!this.tail) {
       // queue vide : head et tail pointent vers le seul noeud
-      this.head = node
-      this.tail = node
+      this.head = node;
+      this.tail = node;
     } else {
       // on branche le nouveau noeud à la fin, puis on déplace tail
-      this.tail.next = node
-      this.tail = node
+      this.tail.next = node;
+      this.tail = node;
     }
 
-    this.size++
+    this.size++;
   }
 
   dequeue() {
-    if (!this.head) return null  // queue vide : rien à sortir
+    if (!this.head) return null; // queue vide : rien à sortir
 
-    const value = this.head.value
-    this.head = this.head.next  // on avance head d'un cran
+    const value = this.head.value;
+    this.head = this.head.next; // on avance head d'un cran
 
     if (!this.head) {
       // si la queue est devenue vide, tail aussi doit être null
-      this.tail = null
+      this.tail = null;
     }
 
-    this.size--
-    return value
+    this.size--;
+    return value;
   }
 
   peek() {
     // regarder sans toucher : qui passe en premier ?
-    return this.head ? this.head.value : null
+    return this.head ? this.head.value : null;
   }
 
   isEmpty() {
-    return this.size === 0
+    return this.size === 0;
   }
 }
 ```
@@ -136,12 +137,12 @@ dequeue() {
 Ce que ça donne :
 
 ```js
-const q = new Queue()
-q.enqueue("Walter")
-q.dequeue()             // head = null MAIS tail = ancien noeud Walter
+const q = new Queue();
+q.enqueue("Walter");
+q.dequeue(); // head = null MAIS tail = ancien noeud Walter
 
-q.enqueue("Jesse")      // this.tail.next = Jesse... mais tail pointe vers un fantôme
-q.peek()                // null — Jesse a disparu dans le vide
+q.enqueue("Jesse"); // this.tail.next = Jesse... mais tail pointe vers un fantôme
+q.peek(); // null:Jesse a disparu dans le vide
 ```
 
 Le fix : vérifier si `this.head` est devenu null après le dequeue, et nullifier tail si c'est le cas.
@@ -157,28 +158,29 @@ Mais tu dois savoir ce que tu sacrifies.
 ```js
 class SimpleQueue {
   constructor() {
-    this.items = []
+    this.items = [];
   }
 
   enqueue(value) {
-    this.items.push(value)     // O(1) amorti
+    this.items.push(value); // O(1) amorti
   }
 
   dequeue() {
-    return this.items.shift()  // O(n) — réindexe tout le tableau
+    return this.items.shift(); // O(n):réindexe tout le tableau
   }
 
   peek() {
-    return this.items[0] ?? null
+    return this.items[0] ?? null;
   }
 
   get size() {
-    return this.items.length
+    return this.items.length;
   }
 }
 ```
 
 Règle simple :
+
 - queue de 10-100 éléments, usage ponctuel : tableau ok
 - queue de 10k+ éléments ou haute fréquence : linked list obligatoire
 
@@ -216,35 +218,35 @@ enqueue("F") :  tail revient à 0
 ```js
 class RingBuffer {
   constructor(capacity) {
-    this.capacity = capacity
-    this.buffer = new Array(capacity)
-    this.head = 0      // prochain à sortir
-    this.tail = 0      // prochain emplacement libre
-    this.size = 0
+    this.capacity = capacity;
+    this.buffer = new Array(capacity);
+    this.head = 0; // prochain à sortir
+    this.tail = 0; // prochain emplacement libre
+    this.size = 0;
   }
 
   enqueue(value) {
     if (this.size === this.capacity) {
-      throw new Error("RingBuffer plein : t'as dépassé la limite")
+      throw new Error("RingBuffer plein : t'as dépassé la limite");
     }
 
-    this.buffer[this.tail] = value
-    this.tail = (this.tail + 1) % this.capacity  // boucle avec modulo
-    this.size++
+    this.buffer[this.tail] = value;
+    this.tail = (this.tail + 1) % this.capacity; // boucle avec modulo
+    this.size++;
   }
 
   dequeue() {
-    if (this.size === 0) return null
+    if (this.size === 0) return null;
 
-    const value = this.buffer[this.head]
-    this.buffer[this.head] = undefined  // libérer la référence
-    this.head = (this.head + 1) % this.capacity
-    this.size--
-    return value
+    const value = this.buffer[this.head];
+    this.buffer[this.head] = undefined; // libérer la référence
+    this.head = (this.head + 1) % this.capacity;
+    this.size--;
+    return value;
   }
 
   peek() {
-    return this.size > 0 ? this.buffer[this.head] : null
+    return this.size > 0 ? this.buffer[this.head] : null;
   }
 }
 ```
@@ -277,6 +279,7 @@ Walter a un système de livraison. Les commandes arrivent dans une queue.
 Chaque commande a un `id`, un `client`, et une `quantite`.
 
 Règles :
+
 - Si la queue dépasse 10 commandes, les nouvelles sont rejetées avec une erreur `"OverflowError"`
 - `processNext()` retire et retourne la prochaine commande à traiter
 - `status()` retourne `{ enAttente: N, capaciteRestante: M }`
@@ -291,6 +294,7 @@ Tu reçois un stream d'events de match (buts, cartons, remplacements).
 Chaque event a un `type`, un `joueur`, et une `minute`.
 
 Implémenter `EventReplay` :
+
 - `record(event)` : enregistre l'event dans une queue de taille max 50 (ring buffer)
 - `replayFrom(minute)` : retourne tous les events dont la minute >= `minute`
 - `latest(n)` : retourne les `n` derniers events enregistrés

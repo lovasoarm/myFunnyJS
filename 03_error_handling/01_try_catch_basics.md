@@ -15,14 +15,14 @@ La structure de base :
 ```js
 try {
   // le code qui peut exploser
-  const result = riskyOperation()
-  console.log(result)
+  const result = riskyOperation();
+  console.log(result);
 } catch (error) {
   // ce qui se passe quand ça explose
-  console.error("ça a pété :", error.message)
+  console.error("ça a pété :", error.message);
 } finally {
-  // ce qui tourne TOUJOURS — succès ou explosion
-  console.log("nettoyage garanti")
+  // ce qui tourne TOUJOURS:succès ou explosion
+  console.log("nettoyage garanti");
 }
 ```
 
@@ -42,26 +42,26 @@ Tout ce qui lève une exception synchrone :
 
 ```js
 try {
-  null.property         // TypeError : t'essaies d'accéder à une prop de null
+  null.property; // TypeError : t'essaies d'accéder à une prop de null
 } catch (e) {
-  console.log(e.name)   // "TypeError"
-  console.log(e.message) // "Cannot read properties of null"
+  console.log(e.name); // "TypeError"
+  console.log(e.message); // "Cannot read properties of null"
 }
 ```
 
 ```js
 try {
-  undeclaredVariable    // ReferenceError : variable inexistante
+  undeclaredVariable; // ReferenceError : variable inexistante
 } catch (e) {
-  console.log(e.name)   // "ReferenceError"
+  console.log(e.name); // "ReferenceError"
 }
 ```
 
 ```js
 try {
-  throw new Error("Sasuke a abandonné Konoha")  // erreur manuelle
+  throw new Error("Sasuke a abandonné Konoha"); // erreur manuelle
 } catch (e) {
-  console.log(e.message) // "Sasuke a abandonné Konoha"
+  console.log(e.message); // "Sasuke a abandonné Konoha"
 }
 ```
 
@@ -78,15 +78,15 @@ Voilà où les gens se font avoir.
 ```js
 try {
   setTimeout(() => {
-    throw new Error("Titan Colossal en approche")
+    throw new Error("Titan Colossal en approche");
     // cette erreur est levée APRÈS que le try/catch a fini de tourner
     // le catch ne la voit jamais
-  }, 1000)
+  }, 1000);
 } catch (e) {
-  console.log("jamais exécuté")
+  console.log("jamais exécuté");
 }
 
-// l'erreur tombe dans le vide — uncaught exception
+// l'erreur tombe dans le vide:uncaught exception
 ```
 
 Pourquoi ? Le `try/catch` tourne, puis rend la main à l'event loop. Quand le timeout s'exécute 1 seconde plus tard, le `try/catch` n'existe plus.
@@ -102,12 +102,12 @@ event loop :
 
 ```js
 try {
-  fetch("https://api.inexistante.io/joueurs")
-    // fetch retourne une Promise
-    // une Promise rejetée n'est pas une exception synchrone
-    // le try/catch ne la voit pas
+  fetch("https://api.inexistante.io/joueurs");
+  // fetch retourne une Promise
+  // une Promise rejetée n'est pas une exception synchrone
+  // le try/catch ne la voit pas
 } catch (e) {
-  console.log("jamais exécuté")
+  console.log("jamais exécuté");
 }
 ```
 
@@ -120,11 +120,11 @@ Solution : `.catch()` sur la Promise, ou `async/await` avec `try/catch`.
 ```js
 try {
   document.querySelector("#btn").addEventListener("click", () => {
-    throw new Error("clic qui explose")
+    throw new Error("clic qui explose");
     // cette erreur sort du try/catch
-  })
+  });
 } catch (e) {
-  console.log("jamais exécuté")
+  console.log("jamais exécuté");
 }
 ```
 
@@ -138,11 +138,11 @@ Quand tu `catch(e)`, `e` c'est un objet. Ses propriétés utiles :
 
 ```js
 try {
-  undefined.length
+  undefined.length;
 } catch (e) {
-  console.log(e.name)     // "TypeError"
-  console.log(e.message)  // "Cannot read properties of undefined"
-  console.log(e.stack)    // la stack trace complète — l'or en debug
+  console.log(e.name); // "TypeError"
+  console.log(e.message); // "Cannot read properties of undefined"
+  console.log(e.stack); // la stack trace complète:l'or en debug
 }
 ```
 
@@ -164,10 +164,10 @@ Tu lis de bas en haut : `main` a appelé `processMatch`, qui a appelé `getPlaye
 Tu peux lever une erreur toi-même, avec n'importe quoi :
 
 ```js
-throw new Error("message")      // la façon propre
-throw "une string"               // techniquement valide, évite-le
-throw 42                         // pareil, évite
-throw { message: "custom" }     // ça marche mais sans stack trace
+throw new Error("message"); // la façon propre
+throw "une string"; // techniquement valide, évite-le
+throw 42; // pareil, évite
+throw { message: "custom" }; // ça marche mais sans stack trace
 ```
 
 Toujours utiliser `new Error()` ou une sous-classe. Pourquoi ? Stack trace. Sans objet Error, tu perds la trace d'exécution.
@@ -175,16 +175,16 @@ Toujours utiliser `new Error()` ou une sous-classe. Pourquoi ? Stack trace. Sans
 ```js
 function calculerXG(tirs) {
   if (!Array.isArray(tirs)) {
-    throw new Error("tirs doit être un tableau, reçu : " + typeof tirs)
+    throw new Error("tirs doit être un tableau, reçu : " + typeof tirs);
     // message explicite = debug rapide
   }
-  return tirs.reduce((sum, tir) => sum + tir.probabilite, 0)
+  return tirs.reduce((sum, tir) => sum + tir.probabilite, 0);
 }
 
 try {
-  calculerXG("Messi")
+  calculerXG("Messi");
 } catch (e) {
-  console.log(e.message)
+  console.log(e.message);
   // "tirs doit être un tableau, reçu : string"
 }
 ```
@@ -195,19 +195,19 @@ try {
 
 ```js
 function chargerDonneeesMatch(id) {
-  let connexion = null
+  let connexion = null;
 
   try {
-    connexion = ouvrirConnexion()
-    const data = connexion.query(`SELECT * FROM matchs WHERE id = ${id}`)
-    return data
+    connexion = ouvrirConnexion();
+    const data = connexion.query(`SELECT * FROM matchs WHERE id = ${id}`);
+    return data;
   } catch (e) {
-    console.error("erreur pendant la requête :", e.message)
-    return null
+    console.error("erreur pendant la requête :", e.message);
+    return null;
   } finally {
     // peu importe ce qui s'est passé dans try ou catch
     // on ferme la connexion
-    if (connexion) connexion.close()
+    if (connexion) connexion.close();
   }
 }
 ```
@@ -219,15 +219,15 @@ Attention à ça :
 ```js
 function piege() {
   try {
-    return "valeur du try"
+    return "valeur du try";
   } finally {
-    return "valeur du finally"
+    return "valeur du finally";
     // le finally écrase le return du try
     // résultat : "valeur du finally"
   }
 }
 
-console.log(piege()) // "valeur du finally"
+console.log(piege()); // "valeur du finally"
 ```
 
 Évite les `return` dans `finally`. Ça surprend tout le monde.
@@ -241,22 +241,22 @@ JS n'a pas de multi-catch natif comme Java. Tu gères avec `instanceof` ou en li
 ```js
 function traiterJoueur(id) {
   try {
-    const joueur = trouverJoueur(id)
-    const stats = chargerStats(joueur)
-    return stats
+    const joueur = trouverJoueur(id);
+    const stats = chargerStats(joueur);
+    return stats;
   } catch (e) {
     if (e instanceof TypeError) {
       // données malformées
-      console.error("données invalides :", e.message)
-      return null
+      console.error("données invalides :", e.message);
+      return null;
     }
     if (e.name === "NotFoundError") {
       // joueur inexistant
-      console.error("joueur introuvable :", id)
-      return null
+      console.error("joueur introuvable :", id);
+      return null;
     }
     // erreur non gérée ici : on la propage
-    throw e
+    throw e;
   }
 }
 ```
@@ -270,6 +270,7 @@ Le `throw e` à la fin : si l'erreur n'est pas de ton ressort, tu la relances. N
 ## EXO 1 : L'ANALYSTE QUI TIENT SON PIPELINE
 
 Écris une fonction `analyserMatch(data)` qui :
+
 - vérifie que `data` est un objet non-null
 - vérifie que `data.tirs` est un tableau non vide
 - calcule la moyenne de `data.tirs` (somme / longueur)
@@ -289,10 +290,10 @@ Explique pourquoi ce code ne catch pas l'erreur, puis corrige-le :
 ```js
 try {
   setTimeout(() => {
-    throw new Error("Gear 5 activé trop tôt")
-  }, 500)
+    throw new Error("Gear 5 activé trop tôt");
+  }, 500);
 } catch (e) {
-  console.log("attrapé :", e.message)
+  console.log("attrapé :", e.message);
 }
 ```
 

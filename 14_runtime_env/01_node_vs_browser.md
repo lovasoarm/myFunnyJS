@@ -39,39 +39,39 @@ Le navigateur ajoute des APIs UI : DOM, rendu, interactions utilisateur, stockag
 
 ```js
 // le DOM : accès direct à la page HTML
-document.querySelector('.card').addEventListener('click', () => {
+document.querySelector(".card").addEventListener("click", () => {
   // l'utilisateur a cliqué : on réagit
-  document.title = 'clicked'
-})
+  document.title = "clicked";
+});
 
 // le stockage web : persistance sans fichier
-localStorage.setItem('token', 'abc123')
-const token = localStorage.getItem('token')
+localStorage.setItem("token", "abc123");
+const token = localStorage.getItem("token");
 
 // fetch : HTTP depuis le navigateur (intégré, pas besoin d'import)
-const data = await fetch('https://api.foot.com/matches').then(r => r.json())
+const data = await fetch("https://api.foot.com/matches").then((r) => r.json());
 
-// window : l'objet global — il contient TOUT dans le navigateur
-console.log(window === globalThis) // true
+// window : l'objet global:il contient TOUT dans le navigateur
+console.log(window === globalThis); // true
 ```
 
 **Dans Node :**
 
 ```js
 // fs : lire et écrire des fichiers sur le disque
-import { readFile } from 'node:fs/promises'
-const content = await readFile('./data.json', 'utf-8')
+import { readFile } from "node:fs/promises";
+const content = await readFile("./data.json", "utf-8");
 
 // process : infos sur le processus en cours
-console.log(process.env.NODE_ENV)   // 'development' ou 'production'
-console.log(process.argv)           // les arguments passés en ligne de commande
+console.log(process.env.NODE_ENV); // 'development' ou 'production'
+console.log(process.argv); // les arguments passés en ligne de commande
 
 // os : infos sur la machine
-import os from 'node:os'
-console.log(os.cpus().length)       // combien de coeurs CPU sur cette machine
+import os from "node:os";
+console.log(os.cpus().length); // combien de coeurs CPU sur cette machine
 
 // globalThis : l'objet global dans Node (pas window, pas document)
-console.log(globalThis === global)  // true — mais window n'existe pas ici
+console.log(globalThis === global); // true:mais window n'existe pas ici
 ```
 
 ---
@@ -82,16 +82,16 @@ console.log(globalThis === global)  // true — mais window n'existe pas ici
 // ---- cas 1 : du code navigateur exécuté dans Node ----
 
 // tu importes une lib qui fait ça :
-const el = document.getElementById('app')
+const el = document.getElementById("app");
 // ReferenceError: document is not defined
 // Node ne sait pas ce qu'est un DOM
 
 // ---- cas 2 : du code Node exécuté dans le navigateur ----
 
-import { readFileSync } from 'fs'
-// ModuleNotFoundError — 'fs' n'existe pas dans le navigateur
+import { readFileSync } from "fs";
+// ModuleNotFoundError:'fs' n'existe pas dans le navigateur
 
-// ---- cas 3 : fetch — l'exception qui piège tout le monde ----
+// ---- cas 3 : fetch:l'exception qui piège tout le monde ----
 
 // fetch est natif dans le navigateur depuis toujours
 // fetch est natif dans Node depuis v18 seulement
@@ -103,15 +103,15 @@ import { readFileSync } from 'fs'
 // ---- cas 4 : l'objet global ----
 
 // navigateur :
-console.log(typeof window)     // 'object'
-console.log(typeof global)     // 'undefined'
+console.log(typeof window); // 'object'
+console.log(typeof global); // 'undefined'
 
 // Node :
-console.log(typeof window)     // 'undefined'
-console.log(typeof global)     // 'object'
+console.log(typeof window); // 'undefined'
+console.log(typeof global); // 'object'
 
 // les deux :
-console.log(typeof globalThis) // 'object' — c'est l'API universelle depuis ES2020
+console.log(typeof globalThis); // 'object':c'est l'API universelle depuis ES2020
 ```
 
 ---
@@ -193,6 +193,7 @@ Contrainte : zero try/catch. Utilise uniquement des checks `typeof` et des accè
 ## EXO 2 : la lib qui s'adapte
 
 T'écris une fonction `readData(key)` qui :
+
 - dans Node : lit depuis un fichier JSON nommé `key + '.json'` dans le dossier courant
 - dans le navigateur : lit depuis `localStorage.getItem(key)`
 - dans les deux cas : retourne l'objet parsé, ou `null` si la donnée n'existe pas
@@ -206,13 +207,13 @@ Teste avec deux exports séparés si tu veux séparer les responsabilités.
 Ce code plante. T'as 3 bugs liés au mauvais environnement :
 
 ```js
-import fs from 'fs'
+import fs from "fs";
 
 export function saveSession(userId, data) {
-  window.sessionId = userId
-  localStorage.setItem('user', JSON.stringify(data))
-  fs.writeFileSync(`./sessions/${userId}.json`, JSON.stringify(data))
-  document.title = `Session : ${userId}`
+  window.sessionId = userId;
+  localStorage.setItem("user", JSON.stringify(data));
+  fs.writeFileSync(`./sessions/${userId}.json`, JSON.stringify(data));
+  document.title = `Session : ${userId}`;
 }
 ```
 

@@ -12,15 +12,15 @@ Les utility types de TS transforment des types existants. C'est du méta-typage 
 
 ```ts
 interface Player {
-  id: number
-  name: string
-  goals: number
-  club: string
-  nationality: string
+  id: number;
+  name: string;
+  goals: number;
+  club: string;
+  nationality: string;
 }
 
 // formulaire de mise à jour : on n'envoie que ce qui change
-type PlayerUpdate = Partial<Player>
+type PlayerUpdate = Partial<Player>;
 // équivalent à :
 // {
 //   id?: number
@@ -34,9 +34,9 @@ function updatePlayer(id: number, changes: Partial<Player>): Player {
   // implementation
 }
 
-updatePlayer(1, { goals: 32 })           // OK — seulement goals
-updatePlayer(1, { club: "PSG" })         // OK — seulement club
-updatePlayer(1, { rating: 99 })          // ERREUR — rating n'existe pas sur Player
+updatePlayer(1, { goals: 32 }); // OK:seulement goals
+updatePlayer(1, { club: "PSG" }); // OK:seulement club
+updatePlayer(1, { rating: 99 }); // ERREUR:rating n'existe pas sur Player
 ```
 
 ---
@@ -45,13 +45,13 @@ updatePlayer(1, { rating: 99 })          // ERREUR — rating n'existe pas sur P
 
 ```ts
 interface DraftPlayer {
-  name: string
-  goals?: number
-  club?: string
+  name: string;
+  goals?: number;
+  club?: string;
 }
 
 // version finale où tout doit être renseigné
-type ConfirmedPlayer = Required<DraftPlayer>
+type ConfirmedPlayer = Required<DraftPlayer>;
 // {
 //   name: string
 //   goals: number     <- plus de ?
@@ -70,15 +70,15 @@ function savePlayer(player: Required<DraftPlayer>): void {
 
 ```ts
 interface Player {
-  id: number
-  name: string
-  goals: number
-  salary: number      // donnée sensible
-  privatePhone: string // donnée sensible
+  id: number;
+  name: string;
+  goals: number;
+  salary: number; // donnée sensible
+  privatePhone: string; // donnée sensible
 }
 
 // profil public : seulement ce qu'on affiche
-type PublicProfile = Pick<Player, "id" | "name" | "goals">
+type PublicProfile = Pick<Player, "id" | "name" | "goals">;
 // {
 //   id: number
 //   name: string
@@ -89,9 +89,9 @@ function getPublicProfile(player: Player): PublicProfile {
   return {
     id: player.id,
     name: player.name,
-    goals: player.goals
-    // salary et privatePhone ne passent pas — TS le garantit
-  }
+    goals: player.goals,
+    // salary et privatePhone ne passent pas:TS le garantit
+  };
 }
 ```
 
@@ -101,14 +101,14 @@ function getPublicProfile(player: Player): PublicProfile {
 
 ```ts
 interface Player {
-  id: number
-  name: string
-  goals: number
-  salary: number
+  id: number;
+  name: string;
+  goals: number;
+  salary: number;
 }
 
 // tout sauf l'id (pour la création, avant que la DB génère un id)
-type CreatePlayerPayload = Omit<Player, "id">
+type CreatePlayerPayload = Omit<Player, "id">;
 // {
 //   name: string
 //   goals: number
@@ -116,10 +116,10 @@ type CreatePlayerPayload = Omit<Player, "id">
 // }
 
 // tout sauf les données sensibles
-type SafePlayer = Omit<Player, "salary">
+type SafePlayer = Omit<Player, "salary">;
 
 // Omit avec plusieurs clés
-type MinimalPlayer = Omit<Player, "salary" | "id">
+type MinimalPlayer = Omit<Player, "salary" | "id">;
 ```
 
 `Pick` et `Omit` sont les deux faces d'une même pièce. Pick dit ce qu'on garde. Omit dit ce qu'on enlève. Pour beaucoup de champs à garder : Omit. Pour peu de champs à garder : Pick.
@@ -130,38 +130,38 @@ type MinimalPlayer = Omit<Player, "salary" | "id">
 
 ```ts
 // Record<K, V> = un objet dont les clés sont de type K et les valeurs de type V
-type ClubRecord = Record<string, Player[]>
+type ClubRecord = Record<string, Player[]>;
 
 const ligue1: ClubRecord = {
-  "PSG": [{ id: 1, name: "Mbappé", goals: 35, salary: 1000000 }],
-  "Lyon": [{ id: 2, name: "Lacazette", goals: 12, salary: 400000 }]
-}
+  PSG: [{ id: 1, name: "Mbappé", goals: 35, salary: 1000000 }],
+  Lyon: [{ id: 2, name: "Lacazette", goals: 12, salary: 400000 }],
+};
 
 // avec des clés union : parfait pour les config strictes
-type Position = "attaquant" | "milieu" | "défenseur" | "gardien"
-type TeamSheet = Record<Position, Player[]>
+type Position = "attaquant" | "milieu" | "défenseur" | "gardien";
+type TeamSheet = Record<Position, Player[]>;
 
 const squad: TeamSheet = {
   attaquant: [],
   milieu: [],
   défenseur: [],
-  gardien: []
+  gardien: [],
   // si tu oublies une position : erreur TS
-}
+};
 ```
 
 ```ts
 // Record pour les dictionnaires de config
-type ChakraType = "feu" | "eau" | "vent" | "terre" | "foudre"
-type ChakraDamage = Record<ChakraType, number>
+type ChakraType = "feu" | "eau" | "vent" | "terre" | "foudre";
+type ChakraDamage = Record<ChakraType, number>;
 
 const damages: ChakraDamage = {
   feu: 100,
   eau: 80,
   vent: 90,
   terre: 70,
-  foudre: 120
-}
+  foudre: 120,
+};
 ```
 
 ---
@@ -170,11 +170,11 @@ const damages: ChakraDamage = {
 
 ```ts
 interface Config {
-  apiUrl: string
-  timeout: number
+  apiUrl: string;
+  timeout: number;
 }
 
-type FrozenConfig = Readonly<Config>
+type FrozenConfig = Readonly<Config>;
 // {
 //   readonly apiUrl: string
 //   readonly timeout: number
@@ -182,17 +182,17 @@ type FrozenConfig = Readonly<Config>
 
 const config: FrozenConfig = {
   apiUrl: "https://api.myfunnyjs.dev",
-  timeout: 5000
-}
+  timeout: 5000,
+};
 
-config.timeout = 3000 // ERREUR TS : Cannot assign to 'timeout' because it is a read-only property
+config.timeout = 3000; // ERREUR TS : Cannot assign to 'timeout' because it is a read-only property
 ```
 
 ```ts
 // ReadonlyArray : même idée pour les tableaux
-const rankings: ReadonlyArray<string> = ["Messi", "Haaland", "Mbappé"]
-rankings.push("Ronaldo") // ERREUR : Property 'push' does not exist on type 'readonly string[]'
-rankings[0] = "Ronaldo"  // ERREUR : Index signature in type 'readonly string[]' only permits reading
+const rankings: ReadonlyArray<string> = ["Messi", "Haaland", "Mbappé"];
+rankings.push("Ronaldo"); // ERREUR : Property 'push' does not exist on type 'readonly string[]'
+rankings[0] = "Ronaldo"; // ERREUR : Index signature in type 'readonly string[]' only permits reading
 ```
 
 ---
@@ -200,14 +200,14 @@ rankings[0] = "Ronaldo"  // ERREUR : Index signature in type 'readonly string[]'
 ## 7) EXTRACT ET EXCLUDE : FILTRER DES UNIONS
 
 ```ts
-type AllEvents = "goal" | "assist" | "yellowCard" | "redCard" | "substitution"
+type AllEvents = "goal" | "assist" | "yellowCard" | "redCard" | "substitution";
 
 // Extract : garder seulement ce qui matche
-type CriticalEvents = Extract<AllEvents, "goal" | "redCard">
+type CriticalEvents = Extract<AllEvents, "goal" | "redCard">;
 // "goal" | "redCard"
 
 // Exclude : enlever ce qui matche
-type NonCardEvents = Exclude<AllEvents, "yellowCard" | "redCard">
+type NonCardEvents = Exclude<AllEvents, "yellowCard" | "redCard">;
 // "goal" | "assist" | "substitution"
 ```
 
@@ -220,20 +220,22 @@ function getPlayerStats(id: number, season: string) {
   return {
     goals: 31,
     assists: 12,
-    rating: 8.5
-  }
+    rating: 8.5,
+  };
 }
 
 // extraire le type de retour sans le réécrire
-type Stats = ReturnType<typeof getPlayerStats>
+type Stats = ReturnType<typeof getPlayerStats>;
 // { goals: number, assists: number, rating: number }
 
 // extraire le type des paramètres
-type GetStatsParams = Parameters<typeof getPlayerStats>
+type GetStatsParams = Parameters<typeof getPlayerStats>;
 // [id: number, season: string]
 
 // utile quand tu veux wrapper une fonction existante
-function cachedGetPlayerStats(...args: Parameters<typeof getPlayerStats>): ReturnType<typeof getPlayerStats> {
+function cachedGetPlayerStats(
+  ...args: Parameters<typeof getPlayerStats>
+): ReturnType<typeof getPlayerStats> {
   // check cache, appelle getPlayerStats, retourne
 }
 ```
@@ -244,25 +246,32 @@ function cachedGetPlayerStats(...args: Parameters<typeof getPlayerStats>): Retur
 
 ```ts
 interface FullPlayerProfile {
-  id: number
-  name: string
-  goals: number
-  salary: number
-  privatePhone: string
-  createdAt: Date
-  updatedAt: Date
+  id: number;
+  name: string;
+  goals: number;
+  salary: number;
+  privatePhone: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 // payload pour créer un joueur : sans id ni dates (générés côté serveur), sans données sensibles
-type CreatePlayerInput = Omit<FullPlayerProfile, "id" | "salary" | "privatePhone" | "createdAt" | "updatedAt">
+type CreatePlayerInput = Omit<
+  FullPlayerProfile,
+  "id" | "salary" | "privatePhone" | "createdAt" | "updatedAt"
+>;
 // { name: string, goals: number }
 
 // payload de mise à jour : tout optionnel sauf l'id
-type UpdatePlayerInput = Partial<Omit<FullPlayerProfile, "id">> & { id: number }
+type UpdatePlayerInput = Partial<Omit<FullPlayerProfile, "id">> & {
+  id: number;
+};
 // { id: number, name?: string, goals?: number, ... }
 
 // version publique readonly
-type PublicPlayerView = Readonly<Pick<FullPlayerProfile, "id" | "name" | "goals">>
+type PublicPlayerView = Readonly<
+  Pick<FullPlayerProfile, "id" | "name" | "goals">
+>;
 ```
 
 ---
@@ -272,14 +281,14 @@ type PublicPlayerView = Readonly<Pick<FullPlayerProfile, "id" | "name" | "goals"
 ```ts
 // Partial ne descend pas en profondeur (shallow)
 interface Team {
-  name: string
+  name: string;
   stats: {
-    wins: number
-    losses: number
-  }
+    wins: number;
+    losses: number;
+  };
 }
 
-type PartialTeam = Partial<Team>
+type PartialTeam = Partial<Team>;
 // {
 //   name?: string
 //   stats?: {          <- stats devient optionnel
@@ -289,14 +298,14 @@ type PartialTeam = Partial<Team>
 // }
 
 const t: PartialTeam = {
-  stats: { wins: 5 } // ERREUR : losses manque — Partial n'a pas touché au nested object
-}
+  stats: { wins: 5 }, // ERREUR : losses manque:Partial n'a pas touché au nested object
+};
 
 // si tu veux un Partial profond, il faut le faire à la main ou utiliser une lib
 type DeepPartial<T> = {
-  [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K]
-}
-// (mapped types — prochain fichier)
+  [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+};
+// (mapped types:prochain fichier)
 ```
 
 ---
@@ -304,25 +313,30 @@ type DeepPartial<T> = {
 # EXERCICES
 
 ## EXO 1 : le formulaire d'évasion de Michael Scofield
+
 Michael a un plan d'évasion avec 8 champs obligatoires. Le formulaire de saisie ne demande que `name`, `targetSection`, et `exitPoint`. Le draft peut avoir n'importe quelle combinaison. La version finale est en lecture seule une fois validée.
 
 Définis :
+
 - `EscapePlan` : le type complet (8+ propriétés)
 - `EscapeFormInput` : seulement les 3 champs du formulaire
 - `EscapeDraft` : toutes les propriétés optionnelles
 - `FinalPlan` : version readonly
 
 ## EXO 2 : le classement du Ballon d'Or
+
 Le vote du Ballon d'Or a des joueurs avec `id`, `name`, `nationality`, `goals`, `assists`, `votesReceived`, `salary`. Le classement public affiche seulement `name`, `nationality`, `votesReceived`. L'admin voit tout.
 
 Crée les types `PublicRanking` et `AdminView` en utilisant les utility types : sans réécrire les propriétés manuellement.
 
 ## EXO 3 : le cache de Trapsoul Radio
+
 La radio a des tracks avec `id`, `title`, `artist`, `duration`, `fileUrl`, `licenseKey`, `uploadedBy`. Le cache public ne stocke jamais `fileUrl` ni `licenseKey`. Le cache admin stocke tout en readonly.
 
 Modélise les deux types de cache et une fonction `getCachedTrack<T>(id: string): T | undefined` générique sur le type de cache.
 
 ## EXO 4 : le dispatcher du camp de Rick
+
 Le camp a des événements de type `"attack" | "scavenge" | "rest" | "medical" | "guard"`. Chaque événement a une priorité (number) et un responsable (string).
 
 - Crée `EventPriorityMap` avec `Record`

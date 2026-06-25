@@ -18,25 +18,25 @@ Deux règles. Deux seulement.
 ```js
 // PURE : déterministe, zéro effet de bord
 function calculerDegats(force, defense) {
-  return Math.max(0, force - defense)
+  return Math.max(0, force - defense);
 }
 
 // appelle-la 1000 fois avec les mêmes args : tu obtiens 1000 fois le même résultat
-calculerDegats(80, 30) // 50, toujours 50
-calculerDegats(80, 30) // 50
-calculerDegats(80, 30) // 50
+calculerDegats(80, 30); // 50, toujours 50
+calculerDegats(80, 30); // 50
+calculerDegats(80, 30); // 50
 ```
 
 ```js
 // IMPURE : dépend de quelque chose externe
-let bonusMondial = 10
+let bonusMondial = 10;
 
 function calculerDegatsImpure(force, defense) {
-  return Math.max(0, force - defense + bonusMondial) // bonusMondial peut changer
+  return Math.max(0, force - defense + bonusMondial); // bonusMondial peut changer
 }
 
-bonusMondial = 50
-calculerDegatsImpure(80, 30) // 100 maintenant — même args, résultat différent
+bonusMondial = 50;
+calculerDegatsImpure(80, 30); // 100 maintenant:même args, résultat différent
 ```
 
 ---
@@ -46,28 +46,29 @@ calculerDegatsImpure(80, 30) // 100 maintenant — même args, résultat différ
 Un effet de bord c'est n'importe quelle action qui touche le monde en dehors de la fonction.
 
 ```js
-const joueurs = ["Messi", "Neymar", "Mbappé"]
+const joueurs = ["Messi", "Neymar", "Mbappé"];
 
 // EFFET DE BORD : mutation du tableau original
 function ajouterJoueurImpure(liste, joueur) {
-  liste.push(joueur) // on modifie le tableau qui existe dehors
-  return liste
+  liste.push(joueur); // on modifie le tableau qui existe dehors
+  return liste;
 }
 
-ajouterJoueurImpure(joueurs, "Haaland")
-console.log(joueurs) // ["Messi", "Neymar", "Mbappé", "Haaland"] — surprise
+ajouterJoueurImpure(joueurs, "Haaland");
+console.log(joueurs); // ["Messi", "Neymar", "Mbappé", "Haaland"]:surprise
 
 // PURE : on crée un nouveau tableau, on ne touche pas l'original
 function ajouterJoueurPure(liste, joueur) {
-  return [...liste, joueur] // nouveau tableau, original intact
+  return [...liste, joueur]; // nouveau tableau, original intact
 }
 
-const nouveauxJoueurs = ajouterJoueurPure(joueurs, "Haaland")
-console.log(joueurs)         // ["Messi", "Neymar", "Mbappé"] — intact
-console.log(nouveauxJoueurs) // ["Messi", "Neymar", "Mbappé", "Haaland"]
+const nouveauxJoueurs = ajouterJoueurPure(joueurs, "Haaland");
+console.log(joueurs); // ["Messi", "Neymar", "Mbappé"]:intact
+console.log(nouveauxJoueurs); // ["Messi", "Neymar", "Mbappé", "Haaland"]
 ```
 
 Autres effets de bord courants à éviter dans une fonction pure :
+
 - écrire dans une DB ou un fichier
 - faire un appel réseau
 - modifier une variable globale
@@ -78,6 +79,7 @@ Autres effets de bord courants à éviter dans une fonction pure :
 ## 3) POURQUOI C'EST PUISSANT EN PROD
 
 Une fonction pure est :
+
 - **testable** : t'as besoin de zéro mock, zéro setup
 - **prévisible** : le bug est dans la fonction ou dans l'argument, pas ailleurs
 - **composable** : tu peux la combiner avec n'importe quelle autre (→ voir `03_composition.md`)
@@ -86,14 +88,14 @@ Une fonction pure est :
 ```js
 // tester une fonction pure : trivial
 test("calculerDegats retourne 50", () => {
-  expect(calculerDegats(80, 30)).toBe(50)
-})
+  expect(calculerDegats(80, 30)).toBe(50);
+});
 
 // tester une fonction impure : galère
 test("calculerDegatsImpure retourne 50", () => {
-  bonusMondial = 0 // faut reset le state global avant chaque test
-  expect(calculerDegatsImpure(80, 30)).toBe(50)
-})
+  bonusMondial = 0; // faut reset le state global avant chaque test
+  expect(calculerDegatsImpure(80, 30)).toBe(50);
+});
 // et si quelqu'un oublie le reset ? le test passe ou rate selon l'ordre d'exécution
 ```
 
@@ -106,22 +108,22 @@ test("calculerDegatsImpure retourne 50", () => {
 ```js
 // IMPURE : résultat différent à chaque appel
 function genererCritique(degatsBase) {
-  const multiplicateur = Math.random() > 0.7 ? 2 : 1 // non déterministe
-  return degatsBase * multiplicateur
+  const multiplicateur = Math.random() > 0.7 ? 2 : 1; // non déterministe
+  return degatsBase * multiplicateur;
 }
 
 // PURE : on injecte le random en paramètre
 function genererCritique(degatsBase, facteurAleatoire) {
-  const multiplicateur = facteurAleatoire > 0.7 ? 2 : 1
-  return degatsBase * multiplicateur
+  const multiplicateur = facteurAleatoire > 0.7 ? 2 : 1;
+  return degatsBase * multiplicateur;
 }
 
 // l'appelant contrôle le random
-genererCritique(50, Math.random())
+genererCritique(50, Math.random());
 
 // en test : tu passes un facteur fixe, résultat prévisible
-genererCritique(50, 0.9) // toujours 100
-genererCritique(50, 0.5) // toujours 50
+genererCritique(50, 0.9); // toujours 100
+genererCritique(50, 0.5); // toujours 50
 ```
 
 C'est ça l'injection de dépendance en version FP : repousser l'impureté vers les bords du système, pas la cacher au milieu.
@@ -161,13 +163,13 @@ dépend de this                                      ✗ (souvent)
 Tu as cette fonction qui calcule un score de candidature Ballon d'Or :
 
 ```js
-let saison = 2024
-let bonus = { championsLeague: 30, nombreButs: 0.5 }
+let saison = 2024;
+let bonus = { championsLeague: 30, nombreButs: 0.5 };
 
 function scoreBallonDor(joueur) {
-  const scoreBase = joueur.buts * bonus.nombreButs + joueur.passes * 0.3
-  const titreBonus = joueur.aCL ? bonus.championsLeague : 0
-  return scoreBase + titreBonus + (saison - 2020) * 2
+  const scoreBase = joueur.buts * bonus.nombreButs + joueur.passes * 0.3;
+  const titreBonus = joueur.aCL ? bonus.championsLeague : 0;
+  return scoreBase + titreBonus + (saison - 2020) * 2;
 }
 ```
 
@@ -184,15 +186,15 @@ const survivants = [
   { nom: "Daryl", force: 85, estCombattant: false },
   { nom: "Michonne", force: 92, estCombattant: false },
   { nom: "Carl", force: 40, estCombattant: false },
-]
+];
 
 function recruterCombattants(liste) {
   for (let i = 0; i < liste.length; i++) {
     if (liste[i].force >= 70) {
-      liste[i].estCombattant = true // mutation directe
+      liste[i].estCombattant = true; // mutation directe
     }
   }
-  return liste
+  return liste;
 }
 ```
 
@@ -206,11 +208,11 @@ Ces deux fonctions semblent pures. L'une ne l'est pas vraiment. Trouve laquelle 
 
 ```js
 function calculerXG(tirs) {
-  return tirs.reduce((total, tir) => total + tir.probabilite, 0)
+  return tirs.reduce((total, tir) => total + tir.probabilite, 0);
 }
 
 function trierJoueursParButs(joueurs) {
-  return joueurs.sort((a, b) => b.buts - a.buts)
+  return joueurs.sort((a, b) => b.buts - a.buts);
 }
 ```
 
@@ -224,12 +226,12 @@ Walter White génère des lots de produit. La quantité varie selon un facteur a
 
 ```js
 function genererLot(recette) {
-  const facteur = Math.random() * 0.3 + 0.85 // entre 0.85 et 1.15
+  const facteur = Math.random() * 0.3 + 0.85; // entre 0.85 et 1.15
   return {
     produit: recette.nom,
     quantite: Math.round(recette.quantiteBase * facteur),
-    timestamp: Date.now()
-  }
+    timestamp: Date.now(),
+  };
 }
 ```
 

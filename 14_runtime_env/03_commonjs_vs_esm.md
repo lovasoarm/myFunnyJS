@@ -15,19 +15,20 @@ En 2026, ESM est le standard. Mais CJS est toujours là, dans des millions de pa
 
 module.exports = {
   formatScore: (home, away) => `${home} - ${away}`,
-  parseLineup: (str) => str.split(',').map(s => s.trim())
-}
+  parseLineup: (str) => str.split(",").map((s) => s.trim()),
+};
 
 // version raccourcie : exports est un alias de module.exports
-exports.formatScore = (home, away) => `${home} - ${away}`
+exports.formatScore = (home, away) => `${home} - ${away}`;
 
 // ---- importer ----
-const { formatScore } = require('./match-utils')
-const fs = require('fs')           // module natif Node
-const express = require('express') // package npm
+const { formatScore } = require("./match-utils");
+const fs = require("fs"); // module natif Node
+const express = require("express"); // package npm
 ```
 
 Ce qui se passe sous le capot :
+
 ```
 require('./match-utils')
    |
@@ -53,22 +54,25 @@ Synchrone. Bloquant. L'exécution s'arrête jusqu'à ce que le fichier soit char
 ```js
 // ---- exporter ----
 export function formatScore(home, away) {
-  return `${home} - ${away}`
+  return `${home} - ${away}`;
 }
 
-export const MATCH_DURATION = 90
+export const MATCH_DURATION = 90;
 
 // export default : un seul par fichier
-export default class MatchEngine { /* ... */ }
+export default class MatchEngine {
+  /* ... */
+}
 
 // ---- importer ----
-import { formatScore, MATCH_DURATION } from './match-utils.js'
-// extension obligatoire en ESM Node — pas optionnelle
-import MatchEngine from './match-engine.js'
-import * as utils from './match-utils.js'  // namespace import
+import { formatScore, MATCH_DURATION } from "./match-utils.js";
+// extension obligatoire en ESM Node:pas optionnelle
+import MatchEngine from "./match-engine.js";
+import * as utils from "./match-utils.js"; // namespace import
 ```
 
 Ce qui se passe sous le capot :
+
 ```
 import { formatScore } from './match-utils.js'
    |
@@ -108,17 +112,17 @@ Le `__dirname` qui disparaît en ESM, ça piège beaucoup de devs :
 
 ```js
 // CJS : __dirname disponible directement
-const config = require(path.join(__dirname, 'config.json'))
+const config = require(path.join(__dirname, "config.json"));
 
 // ESM : __dirname n'existe plus
-import { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url)  // chemin du fichier actuel
-const __dirname = dirname(__filename)               // on le reconstruit manuellement
+const __filename = fileURLToPath(import.meta.url); // chemin du fichier actuel
+const __dirname = dirname(__filename); // on le reconstruit manuellement
 
-import { readFileSync } from 'node:fs'
-const config = JSON.parse(readFileSync(`${__dirname}/config.json`, 'utf-8'))
+import { readFileSync } from "node:fs";
+const config = JSON.parse(readFileSync(`${__dirname}/config.json`, "utf-8"));
 ```
 
 ---
@@ -153,20 +157,20 @@ Extension   type:module absent   type:module présent
 // certains packages modernes (chalk v5, node-fetch v3...) sont ESM-only
 // ils n'exportent plus de version CJS
 
-const chalk = require('chalk')  // ERR_REQUIRE_ESM
+const chalk = require("chalk"); // ERR_REQUIRE_ESM
 // solution : migrer ton projet vers ESM, ou utiliser une version plus ancienne
 
 // ---- erreur 2 : ESM importe CJS sans default ----
 // les modules CJS s'importent différemment en ESM
-import { specific } from 'some-cjs-package'  // peut marcher ou pas selon le package
+import { specific } from "some-cjs-package"; // peut marcher ou pas selon le package
 
 // la façon fiable :
-import cjsModule from 'some-cjs-package'  // default import
-const { specific } = cjsModule            // destructuration après
+import cjsModule from "some-cjs-package"; // default import
+const { specific } = cjsModule; // destructuration après
 
 // ---- erreur 3 : dynamic import dans le mauvais sens ----
 // en ESM, on peut importer du CJS dynamiquement
-const { default: module } = await import('./legacy-module.cjs')
+const { default: module } = await import("./legacy-module.cjs");
 
 // en CJS, on ne peut pas faire d'await au top level
 // donc pas d'import() sans être dans une fonction async
@@ -208,17 +212,17 @@ Pour un package npm qui doit supporter les deux :
 Ce module CJS gère des stats de matchs. Convertis-le en ESM sans changer la logique :
 
 ```js
-const { mean } = require('./math-utils')
+const { mean } = require("./math-utils");
 
 function analyzeMatch(events) {
-  const goals = events.filter(e => e.type === 'goal')
+  const goals = events.filter((e) => e.type === "goal");
   return {
     total: goals.length,
-    avgMinute: mean(goals.map(g => g.minute))
-  }
+    avgMinute: mean(goals.map((g) => g.minute)),
+  };
 }
 
-module.exports = { analyzeMatch }
+module.exports = { analyzeMatch };
 ```
 
 Contrainte : gère le `__dirname` si tu en as besoin, utilise les extensions `.js` sur les imports.
@@ -242,11 +246,11 @@ Ce projet crash au démarrage. Identifie pourquoi et comment le corriger :
 
 ```js
 // index.js
-const path = require('path')
-const { readFileSync } = require('fs')
+const path = require("path");
+const { readFileSync } = require("fs");
 
-const config = JSON.parse(readFileSync(__dirname + '/config.json', 'utf-8'))
-console.log(config)
+const config = JSON.parse(readFileSync(__dirname + "/config.json", "utf-8"));
+console.log(config);
 ```
 
 ---

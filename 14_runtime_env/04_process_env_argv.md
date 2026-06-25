@@ -12,10 +12,10 @@ Hard-coder une clé API dans le code, c'est l'erreur de débutant qui finit sur 
 // process.env = un objet qui contient les variables d'environnement du système
 // elles sont injectées au démarrage du processus, pas dans le code
 
-console.log(process.env.NODE_ENV)    // 'development' | 'production' | 'test'
-console.log(process.env.PORT)        // '3000' — toujours une string, jamais un number
-console.log(process.env.DB_URL)      // 'postgresql://localhost:5432/mydb'
-console.log(process.env.API_KEY)     // undefined si non définie
+console.log(process.env.NODE_ENV); // 'development' | 'production' | 'test'
+console.log(process.env.PORT); // '3000':toujours une string, jamais un number
+console.log(process.env.DB_URL); // 'postgresql://localhost:5432/mydb'
+console.log(process.env.API_KEY); // undefined si non définie
 ```
 
 Comment les définir :
@@ -30,10 +30,10 @@ PORT=8080 NODE_ENV=production node server.js
 
 ```js
 // avec dotenv : charger un fichier .env dans process.env
-import 'dotenv/config'
+import "dotenv/config";
 // ou
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
 // maintenant process.env.API_KEY est disponible si .env contient :
 // API_KEY=secret123
@@ -47,29 +47,33 @@ Le piège : `process.env` retourne toujours une string ou `undefined`. Jamais un
 
 ```js
 // mauvais : on fait confiance à ce qui arrive
-const port = process.env.PORT
-app.listen(port)  // port est une string '3000', pas le number 3000
-                  // Express coerce ça... mais d'autres libs ne le font pas
+const port = process.env.PORT;
+app.listen(port); // port est une string '3000', pas le number 3000
+// Express coerce ça... mais d'autres libs ne le font pas
 
 // mauvais : boolean piège classique
-const debug = process.env.DEBUG
-if (debug) { /* ... */ }  // 'false' est truthy — le string 'false' n'est pas false
+const debug = process.env.DEBUG;
+if (debug) {
+  /* ... */
+} // 'false' est truthy:le string 'false' n'est pas false
 
 // bon : on valide et on convertit à l'entrée
 function getConfig() {
-  const port = parseInt(process.env.PORT ?? '3000', 10)
-  const debug = process.env.DEBUG === 'true'
-  const apiKey = process.env.API_KEY
+  const port = parseInt(process.env.PORT ?? "3000", 10);
+  const debug = process.env.DEBUG === "true";
+  const apiKey = process.env.API_KEY;
 
   if (!apiKey) {
-    throw new Error('API_KEY manquante : configure la variable d\'environnement')
+    throw new Error(
+      "API_KEY manquante : configure la variable d'environnement",
+    );
   }
 
-  return { port, debug, apiKey }
+  return { port, debug, apiKey };
 }
 
 // toutes les erreurs de config éclatent au démarrage, pas en cours de route
-const config = getConfig()
+const config = getConfig();
 ```
 
 ---
@@ -83,7 +87,7 @@ const config = getConfig()
 // argv[2+] = tes arguments
 
 // commande : node ballon-dor.js --player "Messi" --year 2026
-console.log(process.argv)
+console.log(process.argv);
 // [
 //   '/usr/bin/node',      -- argv[0] : l'exécutable node
 //   '/app/ballon-dor.js', -- argv[1] : ton script
@@ -94,7 +98,7 @@ console.log(process.argv)
 // ]
 
 // récupérer uniquement tes args (sans node et le script)
-const args = process.argv.slice(2)
+const args = process.argv.slice(2);
 // ['--player', 'Messi', '--year', '2026']
 ```
 
@@ -105,35 +109,35 @@ const args = process.argv.slice(2)
 ```js
 // parser basique pour comprendre la mécanique
 function parseArgs(argv) {
-  const args = {}
-  const raw = argv.slice(2)  // on enlève node et le script
+  const args = {};
+  const raw = argv.slice(2); // on enlève node et le script
 
   for (let i = 0; i < raw.length; i++) {
-    const current = raw[i]
+    const current = raw[i];
 
-    if (current.startsWith('--')) {
-      const key = current.slice(2)          // '--player' -> 'player'
-      const next = raw[i + 1]
+    if (current.startsWith("--")) {
+      const key = current.slice(2); // '--player' -> 'player'
+      const next = raw[i + 1];
 
-      if (!next || next.startsWith('--')) {
+      if (!next || next.startsWith("--")) {
         // flag sans valeur : --verbose
-        args[key] = true
+        args[key] = true;
       } else {
         // flag avec valeur : --player Messi
-        args[key] = next
-        i++  // on saute la valeur, on l'a déjà consommée
+        args[key] = next;
+        i++; // on saute la valeur, on l'a déjà consommée
       }
     }
   }
 
-  return args
+  return args;
 }
 
 // node vote.js --player "Lamine Yamal" --year 2026 --verbose
-const { player, year, verbose } = parseArgs(process.argv)
-console.log(player)   // 'Lamine Yamal'
-console.log(year)     // '2026' — string, à convertir si besoin
-console.log(verbose)  // true — flag sans valeur
+const { player, year, verbose } = parseArgs(process.argv);
+console.log(player); // 'Lamine Yamal'
+console.log(year); // '2026':string, à convertir si besoin
+console.log(verbose); // true:flag sans valeur
 ```
 
 ---
@@ -142,28 +146,28 @@ console.log(verbose)  // true — flag sans valeur
 
 ```js
 // process.stdout : écrire dans le terminal (sans newline automatique)
-process.stdout.write('Calcul en cours...')
+process.stdout.write("Calcul en cours...");
 // après traitement
-process.stdout.write(' OK\n')
+process.stdout.write(" OK\n");
 
 // process.stderr : pour les erreurs (séparé de stdout)
 // utile pour rediriger les erreurs indépendamment
-process.stderr.write('Erreur critique : fichier introuvable\n')
+process.stderr.write("Erreur critique : fichier introuvable\n");
 
 // process.stdin : lire depuis le terminal (interactif)
-process.stdin.setEncoding('utf-8')
-process.stdin.on('data', (input) => {
-  const vote = input.trim()
-  console.log(`Vote enregistré : ${vote}`)
-})
+process.stdin.setEncoding("utf-8");
+process.stdin.on("data", (input) => {
+  const vote = input.trim();
+  console.log(`Vote enregistré : ${vote}`);
+});
 
 // lire stdin en mode pipe (données provenant d'une autre commande)
 // cat players.txt | node process-votes.js
 if (!process.stdin.isTTY) {
   // les données arrivent depuis un pipe, pas depuis un clavier
-  let data = ''
-  process.stdin.on('data', chunk => data += chunk)
-  process.stdin.on('end', () => processVotes(data))
+  let data = "";
+  process.stdin.on("data", (chunk) => (data += chunk));
+  process.stdin.on("end", () => processVotes(data));
 }
 ```
 
@@ -173,26 +177,26 @@ if (!process.stdin.isTTY) {
 
 ```js
 // sortir du processus avec un code
-process.exit(0)   // succès
-process.exit(1)   // erreur — convention universelle
+process.exit(0); // succès
+process.exit(1); // erreur:convention universelle
 // ne jamais utiliser process.exit() dans une lib : uniquement dans les CLIs et scripts
 
 // gérer les erreurs non catchées
-process.on('uncaughtException', (err) => {
-  console.error('Exception non catchée :', err.message)
-  process.exit(1)  // on quitte proprement plutôt que de continuer dans un état cassé
-})
+process.on("uncaughtException", (err) => {
+  console.error("Exception non catchée :", err.message);
+  process.exit(1); // on quitte proprement plutôt que de continuer dans un état cassé
+});
 
-process.on('unhandledRejection', (reason) => {
-  console.error('Promise non gérée :', reason)
-  process.exit(1)
-})
+process.on("unhandledRejection", (reason) => {
+  console.error("Promise non gérée :", reason);
+  process.exit(1);
+});
 
 // infos sur le processus
-console.log(process.pid)       // PID du processus
-console.log(process.platform)  // 'linux' | 'darwin' | 'win32'
-console.log(process.cwd())     // répertoire de travail courant
-console.log(process.memoryUsage().heapUsed)  // mémoire consommée par V8
+console.log(process.pid); // PID du processus
+console.log(process.platform); // 'linux' | 'darwin' | 'win32'
+console.log(process.cwd()); // répertoire de travail courant
+console.log(process.memoryUsage().heapUsed); // mémoire consommée par V8
 ```
 
 ---
@@ -202,6 +206,7 @@ console.log(process.memoryUsage().heapUsed)  // mémoire consommée par V8
 ## EXO 1 : le loader de config sécurisé
 
 Écris `loadConfig()` qui lit ces variables d'environnement :
+
 - `PORT` (number, défaut 3000)
 - `NODE_ENV` ('development' | 'production' | 'test', défaut 'development')
 - `DB_URL` (string, obligatoire)
@@ -214,6 +219,7 @@ Si une variable obligatoire manque : throw une erreur claire avec le nom de la v
 ## EXO 2 : le parser d'arguments du vote
 
 Le script `vote.js` accepte ces flags :
+
 - `--player <nom>` (obligatoire)
 - `--points <number>` (obligatoire, entre 1 et 15)
 - `--journalist <nom>` (optionnel)
@@ -226,6 +232,7 @@ Le script `vote.js` accepte ces flags :
 ## EXO 3 : le script qui lit stdin
 
 Écris un script `count-goals.js` qui :
+
 - reçoit des lignes JSON sur stdin (une par ligne)
 - chaque ligne : `{"player": "Messi", "type": "goal", "minute": 23}`
 - filtre uniquement les events de type `goal`

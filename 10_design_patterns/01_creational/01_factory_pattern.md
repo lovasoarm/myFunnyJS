@@ -19,9 +19,9 @@ Sans factory, chaque fois que tu crées un objet, t'es obligé de connaître sa 
 
 ```js
 // sans factory : couplage fort, répétition, fragilité
-const leon   = new KnightGold({ name: "Leon", armor: "Garo", power: 95 })
-const rei    = new KnightSilver({ name: "Rei", armor: "Zero", power: 88 })
-const kouga  = new KnightGold({ name: "Kouga", armor: "Garo", power: 92 })
+const leon = new KnightGold({ name: "Leon", armor: "Garo", power: 95 });
+const rei = new KnightSilver({ name: "Rei", armor: "Zero", power: 88 });
+const kouga = new KnightGold({ name: "Kouga", armor: "Garo", power: 92 });
 ```
 
 Trois `new` différents. Trois imports différents. Trois endroits à modifier si la structure change.
@@ -41,16 +41,18 @@ function createKnight(rank, name, armorName, power) {
   // l'appelant n'a pas à le savoir
 
   const baseStats = {
-    gold:   { maxArmorTime: 99.9, title: "Makai Knight Gold" },
+    gold: { maxArmorTime: 99.9, title: "Makai Knight Gold" },
     silver: { maxArmorTime: 99.9, title: "Makai Knight Silver" },
-    bronze: { maxArmorTime: 30,   title: "Makai Knight Bronze" },
-  }
+    bronze: { maxArmorTime: 30, title: "Makai Knight Bronze" },
+  };
 
-  const rankStats = baseStats[rank]
+  const rankStats = baseStats[rank];
 
   if (!rankStats) {
     // fail-fast : un rang inconnu ne passe pas
-    throw new Error(`Rang inconnu : ${rank}. Leon s'en sortirait mieux que toi.`)
+    throw new Error(
+      `Rang inconnu : ${rank}. Leon s'en sortirait mieux que toi.`,
+    );
   }
 
   return {
@@ -61,18 +63,20 @@ function createKnight(rank, name, armorName, power) {
     ...rankStats,
     // méthode générée selon le rang : pas exposée dans l'appelant
     summonArmor() {
-      console.log(`${name} invoque ${armorName} : durée max : ${rankStats.maxArmorTime}s`)
-    }
-  }
+      console.log(
+        `${name} invoque ${armorName} : durée max : ${rankStats.maxArmorTime}s`,
+      );
+    },
+  };
 }
 
 // l'appelant ne sait rien de la logique interne
-const leon  = createKnight("gold",   "Leon",  "Garo", 95)
-const rei   = createKnight("silver", "Rei",   "Zero", 88)
-const kouga = createKnight("gold",   "Kouga", "Garo", 92)
+const leon = createKnight("gold", "Leon", "Garo", 95);
+const rei = createKnight("silver", "Rei", "Zero", 88);
+const kouga = createKnight("gold", "Kouga", "Garo", 92);
 
-leon.summonArmor()
-// Leon invoque Garo — durée max : 99.9s
+leon.summonArmor();
+// Leon invoque Garo:durée max : 99.9s
 ```
 
 Un seul endroit crée des Chevaliers.
@@ -88,17 +92,17 @@ Quand la logique de création doit être partagée, configurée, ou mockée dans
 class NinjaFactory {
   constructor(village) {
     // la factory est configurée pour un contexte précis
-    this.village = village
-    this.createdCount = 0
+    this.village = village;
+    this.createdCount = 0;
   }
 
   create(name, rank, jutsus = []) {
-    this.createdCount++
+    this.createdCount++;
 
     // logique interne : rang valide ? village reconnu ?
-    const allowedRanks = ["genin", "chunin", "jonin", "kage"]
+    const allowedRanks = ["genin", "chunin", "jonin", "kage"];
     if (!allowedRanks.includes(rank)) {
-      throw new Error(`Rang ${rank} n'existe pas au village ${this.village}`)
+      throw new Error(`Rang ${rank} n'existe pas au village ${this.village}`);
     }
 
     // on assemble l'objet : l'appelant ne voit pas cette cuisine
@@ -109,22 +113,25 @@ class NinjaFactory {
       village: this.village,
       jutsus,
       chakra: this._baseChakra(rank),
-    }
+    };
   }
 
   _baseChakra(rank) {
     // méthode privée : personne n'appelle ça de l'extérieur
-    const chakraMap = { genin: 100, chunin: 250, jonin: 500, kage: 1000 }
-    return chakraMap[rank]
+    const chakraMap = { genin: 100, chunin: 250, jonin: 500, kage: 1000 };
+    return chakraMap[rank];
   }
 }
 
-const konohaFactory = new NinjaFactory("Konoha")
+const konohaFactory = new NinjaFactory("Konoha");
 
-const naruto = konohaFactory.create("Naruto", "jonin", ["rasengan", "shadow_clone"])
-const sakura = konohaFactory.create("Sakura", "jonin", ["medical_ninjutsu"])
+const naruto = konohaFactory.create("Naruto", "jonin", [
+  "rasengan",
+  "shadow_clone",
+]);
+const sakura = konohaFactory.create("Sakura", "jonin", ["medical_ninjutsu"]);
 
-console.log(naruto)
+console.log(naruto);
 // { id: "Konoha-1", name: "Naruto", rank: "jonin", village: "Konoha", jutsus: [...], chakra: 500 }
 ```
 
@@ -142,11 +149,11 @@ Exemple : un match de Champions League génère des événements différents sel
 // chaque "factory" produit une famille cohérente d'objets liés
 function createMatchFactory(phase) {
   const factories = {
-
     group: {
       createMatch: (home, away) => ({
         type: "group",
-        home, away,
+        home,
+        away,
         points: { win: 3, draw: 1, loss: 0 },
         extraTime: false,
       }),
@@ -160,7 +167,8 @@ function createMatchFactory(phase) {
     final: {
       createMatch: (home, away) => ({
         type: "final",
-        home, away,
+        home,
+        away,
         points: null, // pas de points en finale
         extraTime: true,
         penaltyShootout: true,
@@ -171,16 +179,16 @@ function createMatchFactory(phase) {
         heatmap: true, // tout est tracé en finale
       }),
     },
-  }
+  };
 
-  if (!factories[phase]) throw new Error(`Phase inconnue : ${phase}`)
-  return factories[phase]
+  if (!factories[phase]) throw new Error(`Phase inconnue : ${phase}`);
+  return factories[phase];
 }
 
 // l'appelant reçoit une famille complète : match + stats cohérents entre eux
-const groupFactory = createMatchFactory("group")
-const match  = groupFactory.createMatch("PSG", "Man City")
-const stats  = groupFactory.createStats()
+const groupFactory = createMatchFactory("group");
+const match = groupFactory.createMatch("PSG", "Man City");
+const stats = groupFactory.createStats();
 
 // impossible de mélanger un match de finale avec des stats de groupe
 // la factory garantit la cohérence
@@ -207,11 +215,11 @@ createMatchFactory("final")
 ```js
 // piège classique : factory qui fait trop
 function createEverything(type, ...args) {
-  if (type === "ninja")    return new Ninja(...args)
-  if (type === "horror")   return new Horror(...args)
-  if (type === "knight")   return new Knight(...args)
-  if (type === "village")  return new Village(...args)
-  if (type === "jutsu")    return new Jutsu(...args)
+  if (type === "ninja") return new Ninja(...args);
+  if (type === "horror") return new Horror(...args);
+  if (type === "knight") return new Knight(...args);
+  if (type === "village") return new Village(...args);
+  if (type === "jutsu") return new Jutsu(...args);
   // ... 30 autres cas
 }
 ```
@@ -224,9 +232,9 @@ Si tu te retrouves avec 15 `if/else` dans ta factory : découpe.
 
 ```js
 // correct : factories spécialisées
-const ninjaFactory  = createNinjaFactory(village)
-const horrorFactory = createHorrorFactory(region)
-const knightFactory = createKnightFactory(rank)
+const ninjaFactory = createNinjaFactory(village);
+const horrorFactory = createHorrorFactory(region);
+const knightFactory = createKnightFactory(rank);
 ```
 
 ---
@@ -238,18 +246,18 @@ const knightFactory = createKnightFactory(rank)
 // sans toucher au code métier qui appelle la factory
 
 function runMission(knight, horrorFactory) {
-  const horror = horrorFactory.create("Forest Horror", { power: 70 })
-  return knight.fight(horror)
+  const horror = horrorFactory.create("Forest Horror", { power: 70 });
+  return knight.fight(horror);
 }
 
 // en prod
-runMission(leon, realHorrorFactory)
+runMission(leon, realHorrorFactory);
 
 // en test : tu injectes une factory qui retourne exactement ce que tu veux
 const mockHorrorFactory = {
-  create: () => ({ name: "Mock Horror", power: 10, defeated: false })
-}
-runMission(leon, mockHorrorFactory)
+  create: () => ({ name: "Mock Horror", power: 10, defeated: false }),
+};
+runMission(leon, mockHorrorFactory);
 // le test contrôle exactement ce que la factory produit
 ```
 
@@ -266,6 +274,7 @@ Dans Attack on Titan, chaque type de Titan a des capacités différentes.
 Le Titan Colossal fait 60m, le Titan Blindé résiste aux lames, le Titan Dansant peut transformer les humains.
 
 Crée une `titanFactory` qui accepte un type parmi `"colossal"`, `"armored"`, `"dancing"`, `"founding"` et retourne un objet Titan avec :
+
 - `name`, `type`, `heightMeters`, `ability`, et une méthode `roar()` qui log une phrase en fonction du type
 
 Si le type est inconnu : throw une erreur avec un message fun.
@@ -280,6 +289,7 @@ La radio trapsoul de SZA et Bryson Tiller reçoit des tracks de plusieurs labels
 Chaque label a ses propres règles : format audio différent, durée max différente, métadonnées requises différentes.
 
 Crée une `TrackFactory` (classe) qui :
+
 - est instanciée avec un `label` parmi `"rca"`, `"def_jam"`, `"independent"`
 - expose une méthode `createTrack(title, artist, durationSec)` qui valide les règles du label et retourne un objet track complet
 - throw si la durée dépasse le max du label (`rca: 300s`, `def_jam: 240s`, `independent: 420s`)
@@ -293,6 +303,7 @@ Walter White a trois types de livraisons : `"local"`, `"interstate"`, `"internat
 Chaque type a ses propres règles de risque, de délai, et de coût.
 
 Utilise l'Abstract Factory : crée une `createDeliveryFactory(type)` qui retourne un objet avec deux méthodes :
+
 - `createDelivery(origin, destination, quantity)` : retourne un objet livraison avec les règles du type
 - `createRiskAssessment()` : retourne un objet d'évaluation de risque adapté au type
 
@@ -305,11 +316,25 @@ Teste les trois types. Vérifie qu'un `international` a bien des règles différ
 Voici du code réel (mal écrit) :
 
 ```js
-function createGameObject(type, name, level, team, weapon, armor, speed, magic, range) {
-  if (type === "attacker")  return { name, level, team, weapon, speed, attack: level * 10 }
-  if (type === "defender")  return { name, level, team, armor, defense: level * 8 }
-  if (type === "mage")      return { name, level, team, magic, spell_power: level * 12 }
-  if (type === "ranger")    return { name, level, team, weapon, range, precision: level * 9 }
+function createGameObject(
+  type,
+  name,
+  level,
+  team,
+  weapon,
+  armor,
+  speed,
+  magic,
+  range,
+) {
+  if (type === "attacker")
+    return { name, level, team, weapon, speed, attack: level * 10 };
+  if (type === "defender")
+    return { name, level, team, armor, defense: level * 8 };
+  if (type === "mage")
+    return { name, level, team, magic, spell_power: level * 12 };
+  if (type === "ranger")
+    return { name, level, team, weapon, range, precision: level * 9 };
 }
 ```
 

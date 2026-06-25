@@ -21,8 +21,8 @@ src/
 
 ```js
 // index.js
-import { gererInventaire } from './camp/inventaire.js'
-import { calculerRations } from './camp/rations.js'
+import { gererInventaire } from "./camp/inventaire.js";
+import { calculerRations } from "./camp/rations.js";
 ```
 
 Le navigateur PEUT charger des modules ESM (ES Modules) nativement aujourd'hui. Mais à grande échelle, ça pose des problèmes concrets :
@@ -46,13 +46,19 @@ avec bundler  --> tout est regroupé en 1 ou quelques fichiers optimisés
 
 ```js
 // utils/survival.js
-export function calculerRations(nourriture, personnes) { return nourriture / personnes }
-export function calculerMenace(zombies, distance) { return zombies / distance }
-export function calculerMoral(événements, temps) { return événements / temps }
+export function calculerRations(nourriture, personnes) {
+  return nourriture / personnes;
+}
+export function calculerMenace(zombies, distance) {
+  return zombies / distance;
+}
+export function calculerMoral(événements, temps) {
+  return événements / temps;
+}
 
 // index.js : on utilise SEULEMENT calculerRations
-import { calculerRations } from './utils/survival.js'
-console.log(calculerRations(48, 12))
+import { calculerRations } from "./utils/survival.js";
+console.log(calculerRations(48, 12));
 ```
 
 ```
@@ -67,8 +73,8 @@ avec tree shaking --> le bundle final contient SEULEMENT calculerRations
 ```js
 // Cette forme EMPÊCHE le tree shaking, le bundler peut pas savoir
 // statiquement ce qui sera importé
-const utilName = condition ? './camp.js' : './horde.js'
-import(utilName) // import dynamique avec variable : imprévisible à l'analyse statique
+const utilName = condition ? "./camp.js" : "./horde.js";
+import(utilName); // import dynamique avec variable : imprévisible à l'analyse statique
 ```
 
 ---
@@ -84,17 +90,17 @@ Usage : applications complexes qui ont besoin de configurations avancées, proje
 ```
 
 ```js
-// webpack.config.js — le minimum pour une app Node/JS
-const path = require('path')
+// webpack.config.js:le minimum pour une app Node/JS
+const path = require("path");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
-  mode: 'production'  // active tree shaking, minification, optimisations automatiques
-}
+  mode: "production", // active tree shaking, minification, optimisations automatiques
+};
 ```
 
 ### Vite : le rapide pour le dev moderne
@@ -102,7 +108,7 @@ module.exports = {
 ```
 Forces : démarrage quasi-instantané (pas de bundle en dev, ESM natif), HMR ultra-rapide
 Faiblesses : basé sur Rollup pour le build prod, moins configurable que Webpack sur les cas extrêmes
-Usage : projets Vue, React, Svelte modernes — devenu le standard de facto en 2024-2026
+Usage : projets Vue, React, Svelte modernes:devenu le standard de facto en 2024-2026
 ```
 
 **Pourquoi Vite est rapide en dev :** Vite ne bundle pas en développement. Il sert les fichiers directement au navigateur via ESM natif. Le navigateur charge ce dont il a besoin à la demande. Le rebuild n'est que le fichier modifié, pas toute l'app. Sur un projet de 500 fichiers, le démarrage reste sous la seconde.
@@ -126,7 +132,7 @@ Usage : outil de compilation interne dans d'autres outils (Vite l'utilise en pro
 ```
 Forces : excellent tree shaking, génère des bundles propres, supporte CJS + ESM en sortie
 Faiblesses : moins adapté aux apps web complexes (pas de HMR), moins de plugins que Webpack
-Usage : créer des librairies JS (pas des apps) — utilisé par Vue, React, lodash pour leur build
+Usage : créer des librairies JS (pas des apps):utilisé par Vue, React, lodash pour leur build
 ```
 
 ---

@@ -22,6 +22,7 @@ Client D (room: Aldana)  ---|-->  [Room Manager] --> broadcast room Aldana
 ```
 
 Le Room Manager doit :
+
 - savoir dans quelle room est chaque client
 - diffuser un message à tous les membres d'une room
 - nettoyer une room quand un client se déconnecte
@@ -48,7 +49,9 @@ function joinRoom(roomName, ws) {
   // utile pour le nettoyer au close sans itérer toutes les rooms
   ws.currentRoom = roomName;
 
-  console.log(`Client rejoint "${roomName}" : membres : ${rooms.get(roomName).size}`);
+  console.log(
+    `Client rejoint "${roomName}" : membres : ${rooms.get(roomName).size}`,
+  );
 }
 
 function leaveRoom(ws) {
@@ -57,7 +60,7 @@ function leaveRoom(ws) {
 
   rooms.get(roomName).delete(ws);
 
-  // nettoyer la room si elle est vide — pas de Map qui grossit à l'infini
+  // nettoyer la room si elle est vide:pas de Map qui grossit à l'infini
   if (rooms.get(roomName).size === 0) {
     rooms.delete(roomName);
     console.log(`Room "${roomName}" supprimée : plus personne`);
@@ -84,11 +87,11 @@ function broadcastToRoom(roomName, message, excludeWs = null) {
 ## 3) LE SERVEUR COMPLET
 
 ```js
-import { WebSocketServer } from 'ws';
+import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
 
-// historique des messages par room — 50 derniers messages max
+// historique des messages par room:50 derniers messages max
 const history = new Map();
 
 function addToHistory(roomName, message) {
@@ -99,59 +102,62 @@ function addToHistory(roomName, message) {
   const roomHistory = history.get(roomName);
   roomHistory.push(message);
 
-  // slice(-50) retourne les 50 derniers éléments — pas de tableau qui grossit sans limite
+  // slice(-50) retourne les 50 derniers éléments:pas de tableau qui grossit sans limite
   if (roomHistory.length > 50) {
     history.set(roomName, roomHistory.slice(-50));
   }
 }
 
-wss.on('connection', (ws) => {
-  console.log('Nouveau client connecté');
+wss.on("connection", (ws) => {
+  console.log("Nouveau client connecté");
 
-  ws.on('message', (data) => {
+  ws.on("message", (data) => {
     let message;
 
     try {
       message = JSON.parse(data.toString());
     } catch {
       // JSON malformé : on ignore plutôt que de crasher le serveur
-      ws.send(JSON.stringify({ type: 'error', reason: 'invalid_json' }));
+      ws.send(JSON.stringify({ type: "error", reason: "invalid_json" }));
       return;
     }
 
     switch (message.type) {
-
-      case 'join': {
+      case "join": {
         // quitter la room précédente si le client en avait une
         if (ws.currentRoom) leaveRoom(ws);
 
         joinRoom(message.room, ws);
-        ws.username = message.username || 'Anonyme';
+        ws.username = message.username || "Anonyme";
 
         // envoyer l'historique à ce client uniquement
         const roomHistory = history.get(message.room) || [];
-        ws.send(JSON.stringify({ type: 'history', messages: roomHistory }));
+        ws.send(JSON.stringify({ type: "history", messages: roomHistory }));
 
         // notifier les autres membres
-        broadcastToRoom(message.room, {
-          type: 'system',
-          text: `${ws.username} a rejoint la room`,
-          timestamp: Date.now()
-        }, ws); // on exclut le client lui-même
+        broadcastToRoom(
+          message.room,
+          {
+            type: "system",
+            text: `${ws.username} a rejoint la room`,
+            timestamp: Date.now(),
+          },
+          ws,
+        ); // on exclut le client lui-même
         break;
       }
 
-      case 'message': {
+      case "message": {
         if (!ws.currentRoom) {
-          ws.send(JSON.stringify({ type: 'error', reason: 'not_in_room' }));
+          ws.send(JSON.stringify({ type: "error", reason: "not_in_room" }));
           return;
         }
 
         const chatMessage = {
-          type: 'message',
+          type: "message",
           username: ws.username,
           text: message.text,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         };
 
         addToHistory(ws.currentRoom, chatMessage);
@@ -163,30 +169,34 @@ wss.on('connection', (ws) => {
       }
 
       default:
-        ws.send(JSON.stringify({ type: 'error', reason: 'unknown_type' }));
+        ws.send(JSON.stringify({ type: "error", reason: "unknown_type" }));
     }
   });
 
-  ws.on('close', () => {
+  ws.on("close", () => {
     if (ws.currentRoom) {
-      broadcastToRoom(ws.currentRoom, {
-        type: 'system',
-        text: `${ws.username} a quitté la room`,
-        timestamp: Date.now()
-      }, ws);
+      broadcastToRoom(
+        ws.currentRoom,
+        {
+          type: "system",
+          text: `${ws.username} a quitté la room`,
+          timestamp: Date.now(),
+        },
+        ws,
+      );
 
       leaveRoom(ws);
     }
   });
 
-  ws.on('error', (err) => {
+  ws.on("error", (err) => {
     // logger l'erreur mais ne pas crasher le processus Node
-    console.error('Erreur client WebSocket :', err.message);
+    console.error("Erreur client WebSocket :", err.message);
     leaveRoom(ws);
   });
 });
 
-console.log('Conseil de Garo actif sur le port 8080');
+console.log("Conseil de Garo actif sur le port 8080");
 ```
 
 ---
@@ -205,14 +215,14 @@ class ChatClient {
   _connect() {
     this.socket = new WebSocket(this.url);
 
-    this.socket.addEventListener('message', (event) => {
+    this.socket.addEventListener("message", (event) => {
       const message = JSON.parse(event.data);
       const handler = this.handlers.get(message.type);
       // si un handler est enregistré pour ce type, on l'appelle
       if (handler) handler(message);
     });
 
-    this.socket.addEventListener('close', (event) => {
+    this.socket.addEventListener("close", (event) => {
       if (!event.wasClean) {
         // reconnexion automatique avec backoff exponentiel
         // délai qui double à chaque tentative, plafonné à 30s
@@ -223,7 +233,7 @@ class ChatClient {
       }
     });
 
-    this.socket.addEventListener('open', () => {
+    this.socket.addEventListener("open", () => {
       this._retries = 0; // reset le compteur de tentatives après succès
     });
   }
@@ -235,11 +245,11 @@ class ChatClient {
   }
 
   join(room, username) {
-    this._sendWhenOpen({ type: 'join', room, username });
+    this._sendWhenOpen({ type: "join", room, username });
   }
 
   sendMessage(text) {
-    this._sendWhenOpen({ type: 'message', text });
+    this._sendWhenOpen({ type: "message", text });
   }
 
   _sendWhenOpen(data) {
@@ -247,29 +257,33 @@ class ChatClient {
       this.socket.send(JSON.stringify(data));
     } else {
       // socket pas encore prête : attendre open puis envoyer
-      this.socket.addEventListener('open', () => {
-        this.socket.send(JSON.stringify(data));
-      }, { once: true }); // once:true = handler auto-supprimé après premier appel
+      this.socket.addEventListener(
+        "open",
+        () => {
+          this.socket.send(JSON.stringify(data));
+        },
+        { once: true },
+      ); // once:true = handler auto-supprimé après premier appel
     }
   }
 }
 
 // Usage
-const chat = new ChatClient('wss://conseil-garo.com/ws');
+const chat = new ChatClient("wss://conseil-garo.com/ws");
 
 chat
-  .on('history', ({ messages }) => {
-    messages.forEach(m => console.log(`[${m.username}] ${m.text}`));
+  .on("history", ({ messages }) => {
+    messages.forEach((m) => console.log(`[${m.username}] ${m.text}`));
   })
-  .on('message', ({ username, text }) => {
+  .on("message", ({ username, text }) => {
     console.log(`${username} : ${text}`);
   })
-  .on('system', ({ text }) => {
+  .on("system", ({ text }) => {
     console.log(`-- ${text} --`);
   });
 
-chat.join('Valiante', 'Leon');
-chat.sendMessage('Horror détecté dans le quartier nord : je pars maintenant');
+chat.join("Valiante", "Leon");
+chat.sendMessage("Horror détecté dans le quartier nord : je pars maintenant");
 ```
 
 ---
@@ -306,6 +320,7 @@ Le piège classique : utiliser `wss.clients` pour broadcaster au lieu du Room Ma
 Le Conseil surveille trois villes : Valiante, Aldana, et León.
 Chaque Chevalier se connecte et rejoint la room de sa ville.
 Implémente un serveur complet qui :
+
 - gère les trois rooms
 - limite à 5 chevaliers max par room (rejeter la connexion si full)
 - affiche côté client le nombre de chevaliers présents dans la room au join
@@ -323,6 +338,7 @@ Contrainte : pas de bibliothèque externe, juste Node.js + `ws`.
 
 Le système actuel perd l'historique si le serveur redémarre.
 Implémente un mécanisme simple :
+
 - sauvegarder l'historique dans un fichier JSON à chaque nouveau message
 - recharger l'historique depuis le fichier au démarrage du serveur
 - limiter à 50 messages par room dans le fichier

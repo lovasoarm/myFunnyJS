@@ -41,40 +41,40 @@ Le test d'intégration vérifie les **contrats entre modules** : est-ce que A pr
 ```js
 // vote.integration.test.js
 
-const { validateVote } = require('./validateVote')
-const { stockeVote, getVotes } = require('./stockeVote')
-const { calculClassement } = require('./calculClassement')
+const { validateVote } = require("./validateVote");
+const { stockeVote, getVotes } = require("./stockeVote");
+const { calculClassement } = require("./calculClassement");
 
-describe('pipeline de vote complet', () => {
+describe("pipeline de vote complet", () => {
   beforeEach(() => {
     // vider le store de test entre les runs
-    clearTestStore()
-  })
+    clearTestStore();
+  });
 
-  it('un vote valide de journaliste finit dans le classement', async () => {
+  it("un vote valide de journaliste finit dans le classement", async () => {
     // ARRANGE
-    const vote = { journaliste: 'jean-dupont', joueur: 'Messi', points: 10 }
+    const vote = { journaliste: "jean-dupont", joueur: "Messi", points: 10 };
 
     // ACT : pipeline complet, comme en prod
-    const voteValidé = validateVote(vote)
-    await stockeVote(voteValidé)
-    const classement = await calculClassement()
+    const voteValidé = validateVote(vote);
+    await stockeVote(voteValidé);
+    const classement = await calculClassement();
 
     // ASSERT : résultat de bout en bout
-    expect(classement[0].joueur).toBe('messi') // normalisé en lowercase
-    expect(classement[0].totalPoints).toBe(10)
-  })
+    expect(classement[0].joueur).toBe("messi"); // normalisé en lowercase
+    expect(classement[0].totalPoints).toBe(10);
+  });
 
-  it('un vote invalide ne corrompt pas le classement', async () => {
-    const voteInvalide = { journaliste: null, joueur: 'Neymar', points: 999 }
+  it("un vote invalide ne corrompt pas le classement", async () => {
+    const voteInvalide = { journaliste: null, joueur: "Neymar", points: 999 };
 
-    expect(() => validateVote(voteInvalide)).toThrow('Journaliste requis')
+    expect(() => validateVote(voteInvalide)).toThrow("Journaliste requis");
 
-    const classement = await calculClassement()
+    const classement = await calculClassement();
     // aucun vote invalide ne doit polluer le classement
-    expect(classement).toHaveLength(0)
-  })
-})
+    expect(classement).toHaveLength(0);
+  });
+});
 ```
 
 ---
@@ -103,14 +103,16 @@ Option 3 : Docker avec une DB réelle
 Pour ce curriculum, on utilise un in-memory store simple :
 
 ```js
-// testStore.js — store en mémoire pour les tests d'intégration
-let store = []
+// testStore.js:store en mémoire pour les tests d'intégration
+let store = [];
 
 module.exports = {
   add: (item) => store.push(item),
   getAll: () => [...store],
-  clear: () => { store = [] }
-}
+  clear: () => {
+    store = [];
+  },
+};
 ```
 
 ---
@@ -120,17 +122,17 @@ module.exports = {
 ```js
 // validateVote retourne un vote avec les données normalisées
 function validateVote(vote) {
-  if (!vote.journaliste) throw new Error('Journaliste requis')
+  if (!vote.journaliste) throw new Error("Journaliste requis");
   return {
     ...vote,
-    joueur: vote.joueur.toLowerCase().trim() // normalisé
+    joueur: vote.joueur.toLowerCase().trim(), // normalisé
     // retourne : { joueur: 'messi', journaliste: ..., points: ... }
-  }
+  };
 }
 
 // stockeVote attend un champ 'playerId', pas 'joueur'
 async function stockeVote(vote) {
-  await db.insert({ playerId: vote.playerId, points: vote.points })
+  await db.insert({ playerId: vote.playerId, points: vote.points });
   // BUG : vote.playerId n'existe pas, validate retourne vote.joueur
   // unit tests de stockeVote ne le voient pas (vote mocké avec playerId)
   // test d'intégration le voit : playerId est undefined → bug révélé
@@ -147,11 +149,13 @@ Les tests d'intégration **ne remplacent pas** les unit tests.
 Ils **s'ajoutent** à la pyramide.
 
 Ce qu'ils testent :
+
 - le contrat entre modules (format de données, erreurs propagées)
 - les flux complets à travers plusieurs couches
 - les effets de bord qui émergent de la combinaison
 
 Ce qu'ils ne testent pas :
+
 - les edge cases de chaque fonction (ça, c'est le boulot des unit tests)
 - la performance (trop de variables en jeu)
 - le comportement de l'UI (ça, c'est l'E2E)
@@ -167,12 +171,12 @@ Tu as ces deux modules :
 ```js
 // module A : formateJoueur
 function formateJoueur(raw) {
-  return { id: raw._id, nom: raw.name.trim(), buts: raw.goals ?? 0 }
+  return { id: raw._id, nom: raw.name.trim(), buts: raw.goals ?? 0 };
 }
 
 // module B : filtreEligibles
 function filtreEligibles(joueurs) {
-  return joueurs.filter(j => j.buts >= 15 && j.nom.length > 0)
+  return joueurs.filter((j) => j.buts >= 15 && j.nom.length > 0);
 }
 ```
 
@@ -189,13 +193,13 @@ Ces deux fonctions ont un bug d'interface. Écris le test d'intégration qui le 
 
 ```js
 function preparerVote(nomJournaliste) {
-  return { voterName: nomJournaliste, timestamp: Date.now() }
+  return { voterName: nomJournaliste, timestamp: Date.now() };
 }
 
 function loguerVote(vote) {
   // attend un objet avec un champ 'journalist', pas 'voterName'
-  console.log(`Vote de : ${vote.journalist}`)
-  return vote.journalist !== undefined
+  console.log(`Vote de : ${vote.journalist}`);
+  return vote.journalist !== undefined;
 }
 ```
 

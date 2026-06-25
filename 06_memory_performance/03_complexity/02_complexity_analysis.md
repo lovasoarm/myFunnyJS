@@ -42,31 +42,34 @@ Walter White analyse sa supply chain. Voici l'algorithme complet. On le lit bloc
 ```js
 function analyzeChain(routes, blacklist, threshold) {
   // Bloc A : construire un Set depuis blacklist
-  const blocked = new Set(blacklist)                   // O(m) — m = taille blacklist
+  const blocked = new Set(blacklist); // O(m):m = taille blacklist
 
   // Bloc B : filtrer les routes valides
-  const valid = routes.filter(r => !blocked.has(r.id)) // O(n) — n = taille routes
+  const valid = routes.filter((r) => !blocked.has(r.id)); // O(n):n = taille routes
 
   // Bloc C : calculer le score de chaque route
-  const scored = valid.map(route => ({                 // O(n)
+  const scored = valid.map((route) => ({
+    // O(n)
     ...route,
-    score: route.distance * route.risk
-  }))
+    score: route.distance * route.risk,
+  }));
 
   // Bloc D : trier par score
-  const sorted = scored.sort((a, b) => a.score - b.score)  // O(n log n)
+  const sorted = scored.sort((a, b) => a.score - b.score); // O(n log n)
 
   // Bloc E : trouver les paires de routes qui se complètent
-  const pairs = []
-  for (let i = 0; i < sorted.length; i++) {           // O(n)
-    for (let j = i + 1; j < sorted.length; j++) {     // O(n)
+  const pairs = [];
+  for (let i = 0; i < sorted.length; i++) {
+    // O(n)
+    for (let j = i + 1; j < sorted.length; j++) {
+      // O(n)
       if (sorted[i].score + sorted[j].score < threshold) {
-        pairs.push([sorted[i], sorted[j]])
+        pairs.push([sorted[i], sorted[j]]);
       }
     }
   }
 
-  return pairs
+  return pairs;
 }
 ```
 
@@ -148,8 +151,8 @@ La récursion demande une étape supplémentaire : comprendre l'arbre des appels
 ```js
 // Calculer la somme de tous les chakras dans une chaîne de ninjas
 function sumChain(ninja) {
-  if (!ninja) return 0
-  return ninja.chakra + sumChain(ninja.next)  // 1 appel récursif
+  if (!ninja) return 0;
+  return ninja.chakra + sumChain(ninja.next); // 1 appel récursif
 }
 ```
 
@@ -169,8 +172,8 @@ n appels en chaîne → O(n)
 ```js
 // Fibonacci naïf : le classique à éviter
 function fib(n) {
-  if (n <= 1) return n
-  return fib(n - 1) + fib(n - 2)  // 2 appels récursifs
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2); // 2 appels récursifs
 }
 ```
 
@@ -193,10 +196,10 @@ La même chose mémoïsée :
 
 ```js
 function fib(n, memo = {}) {
-  if (n in memo) return memo[n]   // O(1) si déjà calculé
-  if (n <= 1) return n
-  memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
-  return memo[n]
+  if (n in memo) return memo[n]; // O(1) si déjà calculé
+  if (n <= 1) return n;
+  memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+  return memo[n];
 }
 // Chaque valeur calculée une seule fois → O(n)
 ```
@@ -208,13 +211,13 @@ function fib(n, memo = {}) {
 ```js
 // Merge sort
 function mergeSort(arr) {
-  if (arr.length <= 1) return arr
+  if (arr.length <= 1) return arr;
 
-  const mid = Math.floor(arr.length / 2)
-  const left = mergeSort(arr.slice(0, mid))   // O(log n) niveaux de récursion
-  const right = mergeSort(arr.slice(mid))
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid)); // O(log n) niveaux de récursion
+  const right = mergeSort(arr.slice(mid));
 
-  return merge(left, right)                    // O(n) par niveau
+  return merge(left, right); // O(n) par niveau
 }
 ```
 
@@ -236,38 +239,42 @@ Voici un extrait du système de scoring des Ultras. Analyse complète.
 ```js
 function buildMatchReport(events, players, config) {
   // 1. Filtrer les events valides
-  const valid = events.filter(e => e.minute <= 90)      // O(e)
+  const valid = events.filter((e) => e.minute <= 90); // O(e)
 
   // 2. Grouper par joueur
-  const byPlayer = {}
-  for (const event of valid) {                          // O(e)
+  const byPlayer = {};
+  for (const event of valid) {
+    // O(e)
     if (!byPlayer[event.playerId]) {
-      byPlayer[event.playerId] = []
+      byPlayer[event.playerId] = [];
     }
-    byPlayer[event.playerId].push(event)                // O(1) amortized
+    byPlayer[event.playerId].push(event); // O(1) amortized
   }
 
   // 3. Calculer les stats de chaque joueur
-  const stats = players.map(player => {                 // O(p)
-    const playerEvents = byPlayer[player.id] || []      // O(1)
+  const stats = players.map((player) => {
+    // O(p)
+    const playerEvents = byPlayer[player.id] || []; // O(1)
     return {
       ...player,
-      goals: playerEvents.filter(e => e.type === "goal").length,    // O(e/p) moyen
-      shots: playerEvents.filter(e => e.type === "shot").length
-    }
-  })
+      goals: playerEvents.filter((e) => e.type === "goal").length, // O(e/p) moyen
+      shots: playerEvents.filter((e) => e.type === "shot").length,
+    };
+  });
 
   // 4. Trouver les matchups (chaque joueur vs chaque adversaire)
-  const matchups = []
-  for (let i = 0; i < stats.length; i++) {             // O(p)
-    for (let j = 0; j < stats.length; j++) {           // O(p)
+  const matchups = [];
+  for (let i = 0; i < stats.length; i++) {
+    // O(p)
+    for (let j = 0; j < stats.length; j++) {
+      // O(p)
       if (stats[i].team !== stats[j].team) {
-        matchups.push({ a: stats[i], b: stats[j] })
+        matchups.push({ a: stats[i], b: stats[j] });
       }
     }
   }
 
-  return { stats, matchups }
+  return { stats, matchups };
 }
 ```
 
@@ -300,22 +307,22 @@ Donne la complexité temporelle de cet algorithme et identifie le goulot d'étra
 
 ```js
 function detectCheatersInTournament(scores, knownCheaters) {
-  const cheaterSet = new Set(knownCheaters)
+  const cheaterSet = new Set(knownCheaters);
 
-  const clean = scores.filter(s => !cheaterSet.has(s.playerId))
+  const clean = scores.filter((s) => !cheaterSet.has(s.playerId));
 
-  const ranked = clean.sort((a, b) => b.score - a.score)
+  const ranked = clean.sort((a, b) => b.score - a.score);
 
-  const suspicious = []
+  const suspicious = [];
   for (let i = 0; i < ranked.length; i++) {
     for (let j = 0; j < ranked.length; j++) {
       if (i !== j && Math.abs(ranked[i].score - ranked[j].score) < 0.001) {
-        suspicious.push([ranked[i].playerId, ranked[j].playerId])
+        suspicious.push([ranked[i].playerId, ranked[j].playerId]);
       }
     }
   }
 
-  return suspicious.slice(0, 10)
+  return suspicious.slice(0, 10);
 }
 ```
 
@@ -335,15 +342,17 @@ Ce code prétend être O(n). Prouve qu'il ne l'est pas et donne sa vraie complex
 
 ```js
 function findCommonElements(arr1, arr2) {
-  const result = []
+  const result = [];
 
-  for (const item of arr1) {            // O(n)
-    if (arr2.includes(item)) {          // ???
-      result.push(item)
+  for (const item of arr1) {
+    // O(n)
+    if (arr2.includes(item)) {
+      // ???
+      result.push(item);
     }
   }
 
-  return result
+  return result;
 }
 ```
 

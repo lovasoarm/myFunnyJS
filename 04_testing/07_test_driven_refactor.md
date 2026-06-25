@@ -39,22 +39,22 @@ La situation classique : tu hérites d'un module spaghetti. Zéro test. Tu dois 
 Étape 3 : refactoriser
 
 ```js
-// gestionCamp.js — version spaghetti Walking Dead
+// gestionCamp.js:version spaghetti Walking Dead
 // Rick a codé ça en pleine attaque zombie. Ça tourne. Personne n'ose y toucher.
 
 function traiterRation(inventaire, personnages) {
-  let total = 0
+  let total = 0;
   for (let i = 0; i < personnages.length; i++) {
-    if (personnages[i].statut !== 'mort') {
-      total += personnages[i].faim > 7 ? 2 : 1
+    if (personnages[i].statut !== "mort") {
+      total += personnages[i].faim > 7 ? 2 : 1;
     }
   }
   if (total > inventaire.rations) {
-    inventaire.alerte = true
-    return { ok: false, manque: total - inventaire.rations }
+    inventaire.alerte = true;
+    return { ok: false, manque: total - inventaire.rations };
   }
-  inventaire.rations -= total
-  return { ok: true }
+  inventaire.rations -= total;
+  return { ok: true };
 }
 ```
 
@@ -63,47 +63,47 @@ Ces tests ne testent pas une belle architecture : ils testent ce que le code fai
 
 ```js
 // gestionCamp.test.js
-describe('traiterRation', () => {
-  it('distribue 1 ration par personne standard', () => {
-    const inventaire = { rations: 10 }
+describe("traiterRation", () => {
+  it("distribue 1 ration par personne standard", () => {
+    const inventaire = { rations: 10 };
     const personnages = [
-      { statut: 'vivant', faim: 3 },
-      { statut: 'vivant', faim: 5 }
-    ]
-    const résultat = traiterRation(inventaire, personnages)
-    expect(résultat.ok).toBe(true)
-    expect(inventaire.rations).toBe(8)
-  })
+      { statut: "vivant", faim: 3 },
+      { statut: "vivant", faim: 5 },
+    ];
+    const résultat = traiterRation(inventaire, personnages);
+    expect(résultat.ok).toBe(true);
+    expect(inventaire.rations).toBe(8);
+  });
 
-  it('distribue 2 rations si faim > 7', () => {
-    const inventaire = { rations: 10 }
-    const personnages = [{ statut: 'vivant', faim: 9 }]
-    traiterRation(inventaire, personnages)
-    expect(inventaire.rations).toBe(8)
-  })
+  it("distribue 2 rations si faim > 7", () => {
+    const inventaire = { rations: 10 };
+    const personnages = [{ statut: "vivant", faim: 9 }];
+    traiterRation(inventaire, personnages);
+    expect(inventaire.rations).toBe(8);
+  });
 
-  it('ignore les morts', () => {
-    const inventaire = { rations: 10 }
+  it("ignore les morts", () => {
+    const inventaire = { rations: 10 };
     const personnages = [
-      { statut: 'mort', faim: 9 },
-      { statut: 'vivant', faim: 3 }
-    ]
-    traiterRation(inventaire, personnages)
-    expect(inventaire.rations).toBe(9)
-  })
+      { statut: "mort", faim: 9 },
+      { statut: "vivant", faim: 3 },
+    ];
+    traiterRation(inventaire, personnages);
+    expect(inventaire.rations).toBe(9);
+  });
 
-  it('lève une alerte si rations insuffisantes', () => {
-    const inventaire = { rations: 1 }
+  it("lève une alerte si rations insuffisantes", () => {
+    const inventaire = { rations: 1 };
     const personnages = [
-      { statut: 'vivant', faim: 3 },
-      { statut: 'vivant', faim: 3 }
-    ]
-    const résultat = traiterRation(inventaire, personnages)
-    expect(résultat.ok).toBe(false)
-    expect(résultat.manque).toBe(1)
-    expect(inventaire.alerte).toBe(true)
-  })
-})
+      { statut: "vivant", faim: 3 },
+      { statut: "vivant", faim: 3 },
+    ];
+    const résultat = traiterRation(inventaire, personnages);
+    expect(résultat.ok).toBe(false);
+    expect(résultat.manque).toBe(1);
+    expect(inventaire.alerte).toBe(true);
+  });
+});
 ```
 
 Tous verts. Maintenant on peut refactoriser en sécurité.
@@ -113,25 +113,25 @@ Tous verts. Maintenant on peut refactoriser en sécurité.
 ## 3) REFACTORISER : AVEC LE FILET
 
 ```js
-// gestionCamp.js — version refactorisée
+// gestionCamp.js:version refactorisée
 // même comportement, code lisible. Rick peut dormir.
 
 function calculerRationsNécessaires(personnages) {
   return personnages
-    .filter(p => p.statut !== 'mort')
-    .reduce((total, p) => total + (p.faim > 7 ? 2 : 1), 0)
+    .filter((p) => p.statut !== "mort")
+    .reduce((total, p) => total + (p.faim > 7 ? 2 : 1), 0);
 }
 
 function traiterRation(inventaire, personnages) {
-  const rationsNécessaires = calculerRationsNécessaires(personnages)
+  const rationsNécessaires = calculerRationsNécessaires(personnages);
 
   if (rationsNécessaires > inventaire.rations) {
-    inventaire.alerte = true
-    return { ok: false, manque: rationsNécessaires - inventaire.rations }
+    inventaire.alerte = true;
+    return { ok: false, manque: rationsNécessaires - inventaire.rations };
   }
 
-  inventaire.rations -= rationsNécessaires
-  return { ok: true }
+  inventaire.rations -= rationsNécessaires;
+  return { ok: true };
 }
 ```
 
@@ -182,14 +182,14 @@ Le camp tourne dessus depuis 3 semaines. Personne n'a de tests. T-Dog vient de s
 
 ```js
 function planifierGardes(gardes, postes) {
-  const plan = {}
+  const plan = {};
   for (let i = 0; i < postes.length; i++) {
-    const g = gardes[i % gardes.length]
+    const g = gardes[i % gardes.length];
     if (g && g.disponible !== false) {
-      plan[postes[i]] = g.nom
+      plan[postes[i]] = g.nom;
     }
   }
-  return plan
+  return plan;
 }
 ```
 
@@ -208,19 +208,19 @@ Cette fonction tourne en production chez un média sportif depuis 2 ans. Elle ag
 
 ```js
 function publierClassement(votes, joueurs) {
-  const totaux = {}
+  const totaux = {};
   for (const v of votes) {
-    if (!joueurs.find(j => j.id === v.joueurId)) continue
-    totaux[v.joueurId] = (totaux[v.joueurId] || 0) + v.points
+    if (!joueurs.find((j) => j.id === v.joueurId)) continue;
+    totaux[v.joueurId] = (totaux[v.joueurId] || 0) + v.points;
   }
   const classement = Object.entries(totaux)
     .sort((a, b) => b[1] - a[1])
     .map(([id, points], i) => ({
       rang: i + 1,
-      joueur: joueurs.find(j => j.id === Number(id)).nom,
-      points
-    }))
-  return { classement, vainqueur: classement[0]?.joueur ?? null }
+      joueur: joueurs.find((j) => j.id === Number(id)).nom,
+      points,
+    }));
+  return { classement, vainqueur: classement[0]?.joueur ?? null };
 }
 ```
 

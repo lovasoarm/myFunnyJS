@@ -20,15 +20,15 @@ objet lui-même
 ```
 
 ```js
-const ninja = { nom: "Naruto", chakra: 1000 }
+const ninja = { nom: "Naruto", chakra: 1000 };
 
 // ninja n'a pas de méthode toString()
 // mais JS remonte la chaîne et trouve Object.prototype.toString
-ninja.toString()  // "[object Object]"
+ninja.toString(); // "[object Object]"
 
 // Visualiser la chaîne
-console.log(Object.getPrototypeOf(ninja) === Object.prototype)  // true
-console.log(Object.getPrototypeOf(Object.prototype))            // null : fin de chaîne
+console.log(Object.getPrototypeOf(ninja) === Object.prototype); // true
+console.log(Object.getPrototypeOf(Object.prototype)); // null : fin de chaîne
 ```
 
 ---
@@ -38,13 +38,13 @@ console.log(Object.getPrototypeOf(Object.prototype))            // null : fin de
 `__proto__` est une propriété qui expose directement le lien vers le prototype d'un objet. Elle est là depuis les débuts de JS, elle a été standardisée tardivement, et elle pose des problèmes sérieux.
 
 ```js
-const ninja = { nom: "Naruto" }
-const sensei = { village: "Konoha" }
+const ninja = { nom: "Naruto" };
+const sensei = { village: "Konoha" };
 
 // Modifier le prototype à la volée : faisable, mais catastrophique pour les perfs
-ninja.__proto__ = sensei
+ninja.__proto__ = sensei;
 
-console.log(ninja.village)  // "Konoha" : hérité de sensei
+console.log(ninja.village); // "Konoha" : hérité de sensei
 ```
 
 **Pourquoi ne pas utiliser `__proto__` :**
@@ -52,7 +52,7 @@ console.log(ninja.village)  // "Konoha" : hérité de sensei
 ```
 1. Modification de prototype à runtime = dés-optimisation du moteur JS
    Le moteur a compilé la structure de l'objet. Tu la changes ? Il recompile.
-   
+
 2. La propriété __proto__ est une propriété accessor sur Object.prototype
    Elle peut être shadowed (masquée) ou supprimée : comportement imprévisible
 
@@ -62,12 +62,12 @@ console.log(ninja.village)  // "Konoha" : hérité de sensei
 
 ```js
 // Alternative correcte : Object.getPrototypeOf et Object.setPrototypeOf
-const proto = Object.getPrototypeOf(ninja)  // accès en lecture, propre
+const proto = Object.getPrototypeOf(ninja); // accès en lecture, propre
 // Object.setPrototypeOf(ninja, sensei)     // modification, mais à éviter quand même
 
 // Encore mieux : définir le prototype à la création
-const ninja = Object.create(sensei)
-ninja.nom = "Naruto"
+const ninja = Object.create(sensei);
+ninja.nom = "Naruto";
 // ninja hérite de sensei, mais le prototype n'est jamais modifié après coup
 ```
 
@@ -78,44 +78,44 @@ ninja.nom = "Naruto"
 `hasOwnProperty` vérifie si une propriété appartient à l'objet lui-même ou si elle vient de la chaîne prototype.
 
 ```js
-const sensei = { village: "Konoha" }
-const ninja = Object.create(sensei)
-ninja.nom = "Naruto"
+const sensei = { village: "Konoha" };
+const ninja = Object.create(sensei);
+ninja.nom = "Naruto";
 
 // Qu'est-ce qui appartient à ninja ?
-console.log(ninja.hasOwnProperty("nom"))     // true : propriété directe
-console.log(ninja.hasOwnProperty("village")) // false : héritée de sensei
+console.log(ninja.hasOwnProperty("nom")); // true : propriété directe
+console.log(ninja.hasOwnProperty("village")); // false : héritée de sensei
 
 // Le for...in parcourt aussi les propriétés héritées
 for (const key in ninja) {
-  console.log(key)  // "nom", "village" : les deux
+  console.log(key); // "nom", "village" : les deux
 }
 
 // Pour itérer seulement sur les propriétés directes :
 for (const key in ninja) {
   if (ninja.hasOwnProperty(key)) {
-    console.log(key)  // "nom" seulement
+    console.log(key); // "nom" seulement
   }
 }
 
 // Ou simplement :
-Object.keys(ninja)      // ["nom"] : propriétés propres enumérables
-Object.values(ninja)    // ["Naruto"]
-Object.entries(ninja)   // [["nom", "Naruto"]]
+Object.keys(ninja); // ["nom"] : propriétés propres enumérables
+Object.values(ninja); // ["Naruto"]
+Object.entries(ninja); // [["nom", "Naruto"]]
 ```
 
 **Le piège de `hasOwnProperty` :**
 
 ```js
 // Si un objet a sa propre propriété "hasOwnProperty", ça casse
-const malicious = { hasOwnProperty: () => true }
-malicious.hasOwnProperty("anything")  // toujours true : la méthode est shadowed
+const malicious = { hasOwnProperty: () => true };
+malicious.hasOwnProperty("anything"); // toujours true : la méthode est shadowed
 
 // Fix : appel via Object.prototype directement
-Object.prototype.hasOwnProperty.call(malicious, "anything")  // false : correct
+Object.prototype.hasOwnProperty.call(malicious, "anything"); // false : correct
 
 // Ou en ES2022 :
-Object.hasOwn(malicious, "anything")  // false : plus propre, plus sûr
+Object.hasOwn(malicious, "anything"); // false : plus propre, plus sûr
 ```
 
 ---
@@ -131,24 +131,25 @@ Si tu permets à du code externe de modifier `Object.prototype`, toutes les inst
 // Cas simple : une fonction de merge naïve
 function merge(cible, source) {
   for (const key in source) {
-    cible[key] = source[key]  // aucune vérification sur la clé
+    cible[key] = source[key]; // aucune vérification sur la clé
   }
-  return cible
+  return cible;
 }
 
 // Payload d'attaque reçu depuis une API ou un formulaire
-const payload = JSON.parse('{"__proto__": {"admin": true}}')
+const payload = JSON.parse('{"__proto__": {"admin": true}}');
 
 // On merge ce payload dans un objet quelconque
-const profilNinja = merge({}, payload)
+const profilNinja = merge({}, payload);
 
 // Résultat catastrophique
-const autreObjet = {}
-console.log(autreObjet.admin)  // true : Object.prototype est pollué
-console.log({}.admin)          // true : tous les objets sont affectés
+const autreObjet = {};
+console.log(autreObjet.admin); // true : Object.prototype est pollué
+console.log({}.admin); // true : tous les objets sont affectés
 ```
 
 Le diagramme :
+
 ```
 payload.__proto__ = Object.prototype
 merge() écrit sur payload.__proto__
@@ -163,15 +164,16 @@ TOUS les {} dans l'app ont maintenant admin = true
 > C'est T-Bag qui injecte son code dans le système de Fox River. Une seule faille dans `merge()`, et il a les droits admin de tout le système.
 
 **Comment ça arrive en prod :**
+
 ```js
 // Librairie de merge, de clonage profond, ou de parsing de query string
 // Si elle itère sur les clés sans vérification :
 function deepMerge(cible, source) {
   for (const key in source) {
-    if (typeof source[key] === 'object') {
-      deepMerge(cible[key], source[key])  // récursion sans vérifier si key = "__proto__"
+    if (typeof source[key] === "object") {
+      deepMerge(cible[key], source[key]); // récursion sans vérifier si key = "__proto__"
     } else {
-      cible[key] = source[key]
+      cible[key] = source[key];
     }
   }
 }
@@ -185,23 +187,23 @@ function mergeSafe(cible, source) {
   for (const key in source) {
     // Bloquer les clés dangereuses
     if (key === "__proto__" || key === "constructor" || key === "prototype") {
-      continue  // on ignore ces clés — jamais de bypass ici
+      continue; // on ignore ces clés:jamais de bypass ici
     }
     if (Object.prototype.hasOwnProperty.call(source, key)) {
-      cible[key] = source[key]
+      cible[key] = source[key];
     }
   }
-  return cible
+  return cible;
 }
 
 // Fix 2 : utiliser Object.create(null) pour les objets qui stockent des données externes
 // Ces objets n'ont PAS de prototype : donc pas de chaîne à polluer
-const store = Object.create(null)
-store.__proto__ = "attaque"       // c'est juste une propriété normale, pas le prototype
-console.log(Object.getPrototypeOf(store))  // null : aucun prototype à polluer
+const store = Object.create(null);
+store.__proto__ = "attaque"; // c'est juste une propriété normale, pas le prototype
+console.log(Object.getPrototypeOf(store)); // null : aucun prototype à polluer
 
 // Fix 3 : Object.freeze sur Object.prototype (radical, mais efficace pour certains cas)
-Object.freeze(Object.prototype)
+Object.freeze(Object.prototype);
 // Toute tentative de modification de Object.prototype échoue silencieusement
 // (ou lève une erreur en strict mode)
 ```
@@ -214,36 +216,42 @@ La propriété `constructor` sur un objet pointe vers la fonction qui l'a créé
 
 ```js
 function Ninja(nom) {
-  this.nom = nom
+  this.nom = nom;
 }
 
-const naruto = new Ninja("Naruto")
-console.log(naruto.constructor === Ninja)    // true
-console.log(naruto.constructor === Object)   // false
+const naruto = new Ninja("Naruto");
+console.log(naruto.constructor === Ninja); // true
+console.log(naruto.constructor === Object); // false
 
 // Recréer un objet du même type sans connaître sa classe
-const kage = new naruto.constructor("Minato")  // new Ninja("Minato")
-console.log(kage.nom)  // "Minato"
+const kage = new naruto.constructor("Minato"); // new Ninja("Minato")
+console.log(kage.nom); // "Minato"
 ```
 
 Le problème : quand tu redéfinis `prototype`, tu perds `constructor`.
 
 ```js
-function Ninja(nom) { this.nom = nom }
+function Ninja(nom) {
+  this.nom = nom;
+}
 
 // Mauvaise pratique : remplacement total du prototype
 Ninja.prototype = {
-  attaquer() { return `${this.nom} attaque` }
-}
+  attaquer() {
+    return `${this.nom} attaque`;
+  },
+};
 // constructor est maintenant Object, pas Ninja
-console.log(new Ninja("Naruto").constructor === Ninja)   // false
-console.log(new Ninja("Naruto").constructor === Object)  // true
+console.log(new Ninja("Naruto").constructor === Ninja); // false
+console.log(new Ninja("Naruto").constructor === Object); // true
 
 // Fix : restaurer constructor manuellement
 Ninja.prototype = {
-  constructor: Ninja,  // on restaure le lien
-  attaquer() { return `${this.nom} attaque` }
-}
+  constructor: Ninja, // on restaure le lien
+  attaquer() {
+    return `${this.nom} attaque`;
+  },
+};
 ```
 
 ---
@@ -254,32 +262,32 @@ Une propriété directe sur un objet masque la propriété de même nom sur son 
 
 ```js
 function Ninja() {}
-Ninja.prototype.chakra = 100
+Ninja.prototype.chakra = 100;
 
-const naruto = new Ninja()
-console.log(naruto.chakra)  // 100 : hérité
+const naruto = new Ninja();
+console.log(naruto.chakra); // 100 : hérité
 
-naruto.chakra = 9000        // shadow : propriété directe créée sur naruto
-console.log(naruto.chakra)  // 9000 : propriété directe masque le prototype
+naruto.chakra = 9000; // shadow : propriété directe créée sur naruto
+console.log(naruto.chakra); // 9000 : propriété directe masque le prototype
 
-delete naruto.chakra        // on supprime la propriété directe
-console.log(naruto.chakra)  // 100 : le prototype est de nouveau visible
+delete naruto.chakra; // on supprime la propriété directe
+console.log(naruto.chakra); // 100 : le prototype est de nouveau visible
 ```
 
 Le shadow avec `Object.defineProperty` peut rendre une propriété non-énumérable, non-configurable, ou non-modifiable : et ça interagit avec la chaîne prototype de façon non intuitive :
 
 ```js
-const proto = {}
+const proto = {};
 Object.defineProperty(proto, "niveau", {
   value: 1,
-  writable: false   // lecture seule sur le prototype
-})
+  writable: false, // lecture seule sur le prototype
+});
 
-const objet = Object.create(proto)
+const objet = Object.create(proto);
 
 // Tentative d'écriture sur l'objet : ça rate silencieusement (ou lève en strict mode)
-objet.niveau = 99
-console.log(objet.niveau)  // 1 : la propriété n'a pas été shadowée
+objet.niveau = 99;
+console.log(objet.niveau); // 1 : la propriété n'a pas été shadowée
 // Parce que writable: false sur le prototype bloque aussi le shadow
 ```
 
@@ -289,35 +297,35 @@ console.log(objet.niveau)  // 1 : la propriété n'a pas été shadowée
 
 ```js
 // 1. JSON.parse et __proto__
-const data = JSON.parse('{"__proto__": {"polluted": true}}')
+const data = JSON.parse('{"__proto__": {"polluted": true}}');
 // Depuis ES2015, JSON.parse ne pollue PAS le prototype
 // __proto__ ici est traité comme une clé normale
 // Mais si tu passes data dans une fonction de merge naïve : pollution
 
 // 2. Objet sans prototype ne répond pas à hasOwnProperty
-const bare = Object.create(null)
-bare.nom = "Walter"
-bare.hasOwnProperty("nom")  // TypeError : pas de prototype, pas de méthode
+const bare = Object.create(null);
+bare.nom = "Walter";
+bare.hasOwnProperty("nom"); // TypeError : pas de prototype, pas de méthode
 // Fix :
-Object.prototype.hasOwnProperty.call(bare, "nom")  // true
-Object.hasOwn(bare, "nom")  // true
+Object.prototype.hasOwnProperty.call(bare, "nom"); // true
+Object.hasOwn(bare, "nom"); // true
 
 // 3. for...in sur un prototype pollué
-Object.prototype.debug = true  // pollution simulée
+Object.prototype.debug = true; // pollution simulée
 
-const stats = { buts: 10 }
+const stats = { buts: 10 };
 for (const key in stats) {
-  console.log(key)  // "buts", "debug" : debug vient de Object.prototype
+  console.log(key); // "buts", "debug" : debug vient de Object.prototype
 }
 // Fix : toujours filtrer avec hasOwn ou Object.keys dans les for...in critiques
 
 // 4. instanceof et prototype modifié à la volée
 function Chevalier() {}
-const garo = new Chevalier()
+const garo = new Chevalier();
 
-Chevalier.prototype = {}  // prototype modifié après coup
+Chevalier.prototype = {}; // prototype modifié après coup
 
-console.log(garo instanceof Chevalier)  // false : le lien est cassé
+console.log(garo instanceof Chevalier); // false : le lien est cassé
 // instanceof vérifie si Chevalier.prototype est dans la chaîne de garo
 // Mais on l'a remplacé, donc ce n'est plus le cas
 ```

@@ -13,15 +13,16 @@ Prérequis : `02_mvc_pattern.md`, `10_design_patterns/02_structural/02_adapter_p
 ```js
 // MAUVAIS : la logique métier dépend de la DB (base de données)
 const addSurvivor = async (name, role) => {
-  // validation mélangée avec du SQL — le métier connaît l'outil
-  if (!name) throw new Error("Nom requis")
+  // validation mélangée avec du SQL:le métier connaît l'outil
+  if (!name) throw new Error("Nom requis");
 
-  const result = await db.query(   // si tu changes de DB, tu réécrits cette fonction
+  const result = await db.query(
+    // si tu changes de DB, tu réécrits cette fonction
     "INSERT INTO survivors (name, role) VALUES (?, ?)",
-    [name, role]
-  )
-  return result.rows[0]
-}
+    [name, role],
+  );
+  return result.rows[0];
+};
 ```
 
 Si tu migres de MySQL vers MongoDB demain, tu modifies la logique métier. Une migration d'infrastructure casse ton domaine. C'est exactement ce que la Clean Architecture interdit.
@@ -87,43 +88,48 @@ Contexte : Fox River. Des prisonniers. Des plans d'évasion. Une API.
 
 class Prisoner {
   constructor({ id, name, blockId, escapeRisk }) {
-    if (!name || typeof name !== "string") throw new TypeError("Nom de prisonnier invalide")
-    if (escapeRisk < 0 || escapeRisk > 10) throw new RangeError("Risque d'évasion entre 0 et 10")
+    if (!name || typeof name !== "string")
+      throw new TypeError("Nom de prisonnier invalide");
+    if (escapeRisk < 0 || escapeRisk > 10)
+      throw new RangeError("Risque d'évasion entre 0 et 10");
 
-    this.id = id
-    this.name = name
-    this.blockId = blockId
-    this.escapeRisk = escapeRisk
-    this.status = "incarcerated"
+    this.id = id;
+    this.name = name;
+    this.blockId = blockId;
+    this.escapeRisk = escapeRisk;
+    this.status = "incarcerated";
   }
 
   isHighRisk() {
-    return this.escapeRisk >= 8   // règle métier pure : aucun outil externe n'entre ici
+    return this.escapeRisk >= 8; // règle métier pure : aucun outil externe n'entre ici
   }
 
   transfer(newBlockId) {
     if (this.status !== "incarcerated") {
-      throw new Error(`${this.name} ne peut pas être transféré : statut : ${this.status}`)
+      throw new Error(
+        `${this.name} ne peut pas être transféré : statut : ${this.status}`,
+      );
     }
-    return new Prisoner({ ...this, blockId: newBlockId })  // immuabilité : on retourne une nouvelle entity
+    return new Prisoner({ ...this, blockId: newBlockId }); // immuabilité : on retourne une nouvelle entity
   }
 }
 
 class EscapePlan {
   constructor({ id, createdBy, route, riskLevel }) {
     if (!Array.isArray(route) || route.length < 2) {
-      throw new Error("Un plan d'évasion nécessite au moins 2 étapes")
+      throw new Error("Un plan d'évasion nécessite au moins 2 étapes");
     }
-    this.id = id
-    this.createdBy = createdBy
-    this.route = route
-    this.riskLevel = riskLevel
-    this.status = "draft"
+    this.id = id;
+    this.createdBy = createdBy;
+    this.route = route;
+    this.riskLevel = riskLevel;
+    this.status = "draft";
   }
 
   activate() {
-    if (this.riskLevel > 7) throw new Error("Plan trop risqué : Michael doit revoir ça")
-    return { ...this, status: "active" }
+    if (this.riskLevel > 7)
+      throw new Error("Plan trop risqué : Michael doit revoir ça");
+    return { ...this, status: "active" };
   }
 }
 ```
@@ -131,7 +137,7 @@ class EscapePlan {
 ```js
 // =====================
 // COUCHE 2 : USE CASES (ce que l'application peut faire)
-// Le use case définit un port (interface) pour le stockage — il ne sait pas comment c'est stocké
+// Le use case définit un port (interface) pour le stockage:il ne sait pas comment c'est stocké
 // =====================
 
 // PORT : contrat que l'adapter devra respecter
@@ -147,141 +153,145 @@ class AddPrisonerUseCase {
   // le use case reçoit son repository par injection de dépendance (dependency injection)
   // il ne sait pas si c'est MongoDB, Postgres, ou un tableau en mémoire
   constructor(prisonerRepository) {
-    this.repo = prisonerRepository
+    this.repo = prisonerRepository;
   }
 
   async execute({ name, blockId, escapeRisk }) {
-    // la validation métier vient de l'entity — le use case orchestre
+    // la validation métier vient de l'entity:le use case orchestre
     const prisoner = new Prisoner({
       id: crypto.randomUUID(),
       name,
       blockId,
-      escapeRisk
-    })
+      escapeRisk,
+    });
 
-    const saved = await this.repo.save(prisoner)
+    const saved = await this.repo.save(prisoner);
 
     // logique post-save : appartient au use case, pas à l'entity ni à l'adapter
     if (prisoner.isHighRisk()) {
-      console.warn(`ALERTE SÉCURITÉ : ${prisoner.name} : risque niveau ${prisoner.escapeRisk}`)
+      console.warn(
+        `ALERTE SÉCURITÉ : ${prisoner.name} : risque niveau ${prisoner.escapeRisk}`,
+      );
     }
 
-    return saved
+    return saved;
   }
 }
 
 class GetHighRiskPrisonersUseCase {
   constructor(prisonerRepository) {
-    this.repo = prisonerRepository
+    this.repo = prisonerRepository;
   }
 
   async execute() {
-    const all = await this.repo.findAll()
-    // filtrage métier dans le use case — pas dans le controller, pas dans la DB
-    return all.filter(p => p.isHighRisk())
+    const all = await this.repo.findAll();
+    // filtrage métier dans le use case:pas dans le controller, pas dans la DB
+    return all.filter((p) => p.isHighRisk());
   }
 }
 ```
 
 ```js
 // =====================
-// COUCHE 3 : ADAPTERS — Repository en mémoire (pour les tests, le dev)
+// COUCHE 3 : ADAPTERS:Repository en mémoire (pour les tests, le dev)
 // =====================
 
 class InMemoryPrisonerRepository {
   // adapte l'interface du port à un stockage en mémoire
-  #store = new Map()
+  #store = new Map();
 
   async save(prisoner) {
-    this.#store.set(prisoner.id, prisoner)
-    return prisoner
+    this.#store.set(prisoner.id, prisoner);
+    return prisoner;
   }
 
   async findById(id) {
-    return this.#store.get(id) ?? null
+    return this.#store.get(id) ?? null;
   }
 
   async findAll() {
-    return Array.from(this.#store.values())
+    return Array.from(this.#store.values());
   }
 }
 
-// Adapter MongoDB — même interface, autre implémentation
+// Adapter MongoDB:même interface, autre implémentation
 class MongoPrisonerRepository {
   constructor(collection) {
-    this.collection = collection   // connexion MongoDB injectée
+    this.collection = collection; // connexion MongoDB injectée
   }
 
   async save(prisoner) {
-    await this.collection.insertOne(prisoner)
-    return prisoner
+    await this.collection.insertOne(prisoner);
+    return prisoner;
   }
 
   async findById(id) {
-    return this.collection.findOne({ id }) ?? null
+    return this.collection.findOne({ id }) ?? null;
   }
 
   async findAll() {
-    return this.collection.find({}).toArray()
+    return this.collection.find({}).toArray();
   }
 }
 ```
 
 ```js
 // =====================
-// COUCHE 3 : ADAPTERS — Controller Express
+// COUCHE 3 : ADAPTERS:Controller Express
 // =====================
 
 class PrisonerController {
   constructor(addUseCase, getHighRiskUseCase) {
-    this.addUseCase = addUseCase
-    this.getHighRiskUseCase = getHighRiskUseCase
+    this.addUseCase = addUseCase;
+    this.getHighRiskUseCase = getHighRiskUseCase;
   }
 
   // le controller traduit HTTP → use case → HTTP
   async handleAdd(req, res) {
     try {
-      const prisoner = await this.addUseCase.execute(req.body)
-      res.status(201).json(prisoner)
+      const prisoner = await this.addUseCase.execute(req.body);
+      res.status(201).json(prisoner);
     } catch (error) {
       // erreur de domaine → réponse HTTP appropriée
       if (error instanceof TypeError || error instanceof RangeError) {
-        return res.status(400).json({ error: error.message })
+        return res.status(400).json({ error: error.message });
       }
-      res.status(500).json({ error: "Erreur interne" })
+      res.status(500).json({ error: "Erreur interne" });
     }
   }
 
   async handleGetHighRisk(req, res) {
-    const prisoners = await this.getHighRiskUseCase.execute()
-    res.json(prisoners)
+    const prisoners = await this.getHighRiskUseCase.execute();
+    res.json(prisoners);
   }
 }
 ```
 
 ```js
 // =====================
-// COUCHE 4 : FRAMEWORKS & DRIVERS — Composition root (point d'entrée unique)
+// COUCHE 4 : FRAMEWORKS & DRIVERS:Composition root (point d'entrée unique)
 // C'est ICI qu'on branche tout ensemble. Nulle part ailleurs.
 // =====================
 
-import express from "express"
+import express from "express";
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
 // choix du repository : changer cette ligne = changer toute l'infrastructure
 // const repo = new MongoPrisonerRepository(mongoCollection)
-const repo = new InMemoryPrisonerRepository()   // pour le dev local
+const repo = new InMemoryPrisonerRepository(); // pour le dev local
 
-const addUseCase         = new AddPrisonerUseCase(repo)
-const highRiskUseCase    = new GetHighRiskPrisonersUseCase(repo)
-const prisonerController = new PrisonerController(addUseCase, highRiskUseCase)
+const addUseCase = new AddPrisonerUseCase(repo);
+const highRiskUseCase = new GetHighRiskPrisonersUseCase(repo);
+const prisonerController = new PrisonerController(addUseCase, highRiskUseCase);
 
-app.post("/prisoners",      (req, res) => prisonerController.handleAdd(req, res))
-app.get("/prisoners/risks", (req, res) => prisonerController.handleGetHighRisk(req, res))
+app.post("/prisoners", (req, res) => prisonerController.handleAdd(req, res));
+app.get("/prisoners/risks", (req, res) =>
+  prisonerController.handleGetHighRisk(req, res),
+);
 
-app.listen(3000)
+app.listen(3000);
 ```
 
 ---
@@ -294,22 +304,26 @@ app.listen(3000)
 
 describe("AddPrisonerUseCase", () => {
   it("refuse un prisonnier avec un risque > 10", async () => {
-    const repo = new InMemoryPrisonerRepository()
-    const useCase = new AddPrisonerUseCase(repo)
+    const repo = new InMemoryPrisonerRepository();
+    const useCase = new AddPrisonerUseCase(repo);
 
     await expect(
-      useCase.execute({ name: "T-Bag", blockId: "B2", escapeRisk: 11 })
-    ).rejects.toThrow(RangeError)
-  })
+      useCase.execute({ name: "T-Bag", blockId: "B2", escapeRisk: 11 }),
+    ).rejects.toThrow(RangeError);
+  });
 
   it("sauvegarde un prisonnier valide", async () => {
-    const repo = new InMemoryPrisonerRepository()
-    const useCase = new AddPrisonerUseCase(repo)
+    const repo = new InMemoryPrisonerRepository();
+    const useCase = new AddPrisonerUseCase(repo);
 
-    const result = await useCase.execute({ name: "Michael Scofield", blockId: "A1", escapeRisk: 9 })
-    expect(result.name).toBe("Michael Scofield")
-  })
-})
+    const result = await useCase.execute({
+      name: "Michael Scofield",
+      blockId: "A1",
+      escapeRisk: 9,
+    });
+    expect(result.name).toBe("Michael Scofield");
+  });
+});
 ```
 
 Aucun serveur. Aucune vraie DB. Tests instantanés. La logique métier est isolée.

@@ -23,16 +23,16 @@ La différence : un `package.json` bien configuré, un `bin` qui pointe vers le 
 // - gestion des erreurs
 // - tout ça sans écrire 200 lignes de parsing
 
-import { Command } from 'commander'
+import { Command } from "commander";
 
-const program = new Command()
+const program = new Command();
 
 program
-  .name('ballon-dor')
-  .description('CLI pour gérer le vote du Ballon d\'Or')
-  .version('1.0.0')
+  .name("ballon-dor")
+  .description("CLI pour gérer le vote du Ballon d'Or")
+  .version("1.0.0");
 
-program.parse()
+program.parse();
 // node ballon-dor.js --help --> aide générée automatiquement
 // node ballon-dor.js --version --> 1.0.0
 ```
@@ -42,76 +42,80 @@ program.parse()
 ## 2) DÉFINIR DES SOUS-COMMANDES
 
 ```js
-import { Command } from 'commander'
-import { castVote, getRanking, resetVotes } from './votes.js'
+import { Command } from "commander";
+import { castVote, getRanking, resetVotes } from "./votes.js";
 
-const program = new Command()
+const program = new Command();
 
 program
-  .name('ballon-dor')
-  .description('Système de vote du Ballon d\'Or 2026')
-  .version('1.0.0')
+  .name("ballon-dor")
+  .description("Système de vote du Ballon d'Or 2026")
+  .version("1.0.0");
 
 // commande vote
 program
-  .command('vote')
-  .description('Enregistrer un vote de journaliste')
-  .requiredOption('-p, --player <nom>', 'Nom du joueur')
-  .requiredOption('-n, --points <nombre>', 'Points attribués (1-15)', parseInt)
-  .option('-j, --journalist <nom>', 'Nom du journaliste', 'Anonyme')
-  .option('--dry-run', 'Simuler sans sauvegarder')
+  .command("vote")
+  .description("Enregistrer un vote de journaliste")
+  .requiredOption("-p, --player <nom>", "Nom du joueur")
+  .requiredOption("-n, --points <nombre>", "Points attribués (1-15)", parseInt)
+  .option("-j, --journalist <nom>", "Nom du journaliste", "Anonyme")
+  .option("--dry-run", "Simuler sans sauvegarder")
   .action(async (options) => {
     // options = { player: 'Messi', points: 12, journalist: 'Dupont', dryRun: false }
     if (options.points < 1 || options.points > 15) {
-      console.error('Les points doivent être entre 1 et 15')
-      process.exit(1)
+      console.error("Les points doivent être entre 1 et 15");
+      process.exit(1);
     }
 
     if (!options.dryRun) {
-      await castVote(options)
-      console.log(`Vote enregistré : ${options.player} (${options.points} pts)`)
+      await castVote(options);
+      console.log(
+        `Vote enregistré : ${options.player} (${options.points} pts)`,
+      );
     } else {
-      console.log(`[DRY RUN] Vote simulé : ${options.player} (${options.points} pts)`)
+      console.log(
+        `[DRY RUN] Vote simulé : ${options.player} (${options.points} pts)`,
+      );
     }
-  })
+  });
 
 // commande rank
 program
-  .command('rank')
-  .description('Afficher le classement actuel')
-  .option('-n, --top <nombre>', 'Nombre de joueurs à afficher', parseInt, 10)
-  .option('--json', 'Sortie en JSON')
+  .command("rank")
+  .description("Afficher le classement actuel")
+  .option("-n, --top <nombre>", "Nombre de joueurs à afficher", parseInt, 10)
+  .option("--json", "Sortie en JSON")
   .action(async (options) => {
-    const ranking = await getRanking()
-    const top = ranking.slice(0, options.top)
+    const ranking = await getRanking();
+    const top = ranking.slice(0, options.top);
 
     if (options.json) {
-      console.log(JSON.stringify(top, null, 2))
+      console.log(JSON.stringify(top, null, 2));
     } else {
       top.forEach((entry, i) => {
-        console.log(`${i + 1}. ${entry.player.padEnd(20)} ${entry.points} pts`)
-      })
+        console.log(`${i + 1}. ${entry.player.padEnd(20)} ${entry.points} pts`);
+      });
     }
-  })
+  });
 
 // commande reset
 program
-  .command('reset')
-  .description('Remettre tous les votes à zéro')
-  .option('--force', 'Réinitialiser sans confirmation')
+  .command("reset")
+  .description("Remettre tous les votes à zéro")
+  .option("--force", "Réinitialiser sans confirmation")
   .action(async (options) => {
     if (!options.force) {
-      const { confirm } = await prompt('Effacer tous les votes ? (oui/non) : ')
-      if (confirm.toLowerCase() !== 'oui') {
-        console.log('Annulé.')
-        return
+      const { confirm } = await prompt("Effacer tous les votes ? (oui/non) : ");
+      if (confirm.toLowerCase() !== "oui") {
+        console.log("Annulé.");
+        return;
       }
     }
-    await resetVotes()
-    console.log('Tous les votes ont été réinitialisés.')
-  })
+    await resetVotes();
+    console.log("Tous les votes ont été réinitialisés.");
+  });
 
-program.parse()
+program.parse();
 ```
 
 ---
@@ -134,7 +138,7 @@ program.parse()
 ```
 
 ```js
-// src/index.js — le shebang est obligatoire pour que le terminal sache comment exécuter
+// src/index.js:le shebang est obligatoire pour que le terminal sache comment exécuter
 #!/usr/bin/env node
 
 import { Command } from 'commander'
@@ -224,9 +228,7 @@ npm pack --dry-run  # voir les fichiers qui seraient publiés
   "bin": {
     "ballon-dor": "./src/index.js"
   },
-  "files": [
-    "src/"
-  ],
+  "files": ["src/"],
   "engines": {
     "node": ">=18.0.0"
   },
@@ -263,37 +265,37 @@ ballon-dor --help
 
 // src/lib/ranking.js
 export function computeRanking(votes) {
-  const totals = {}
+  const totals = {};
   votes.forEach(({ player, points }) => {
-    totals[player] = (totals[player] ?? 0) + points
-  })
+    totals[player] = (totals[player] ?? 0) + points;
+  });
   return Object.entries(totals)
     .sort(([, a], [, b]) => b - a)
-    .map(([player, points], i) => ({ rank: i + 1, player, points }))
+    .map(([player, points], i) => ({ rank: i + 1, player, points }));
 }
 
 // tests/ranking.test.js
-import { describe, it, expect } from 'vitest'
-import { computeRanking } from '../src/lib/ranking.js'
+import { describe, it, expect } from "vitest";
+import { computeRanking } from "../src/lib/ranking.js";
 
-describe('computeRanking', () => {
-  it('trie par points décroissants', () => {
+describe("computeRanking", () => {
+  it("trie par points décroissants", () => {
     const votes = [
-      { player: 'Messi', points: 8 },
-      { player: 'Vini', points: 12 },
-      { player: 'Messi', points: 5 },
-    ]
-    const result = computeRanking(votes)
-    expect(result[0].player).toBe('Vini')
-    expect(result[0].points).toBe(12)
-    expect(result[1].player).toBe('Messi')
-    expect(result[1].points).toBe(13)  // 8 + 5
-  })
+      { player: "Messi", points: 8 },
+      { player: "Vini", points: 12 },
+      { player: "Messi", points: 5 },
+    ];
+    const result = computeRanking(votes);
+    expect(result[0].player).toBe("Vini");
+    expect(result[0].points).toBe(12);
+    expect(result[1].player).toBe("Messi");
+    expect(result[1].points).toBe(13); // 8 + 5
+  });
 
-  it('retourne un tableau vide si pas de votes', () => {
-    expect(computeRanking([])).toEqual([])
-  })
-})
+  it("retourne un tableau vide si pas de votes", () => {
+    expect(computeRanking([])).toEqual([]);
+  });
+});
 ```
 
 ---
@@ -309,6 +311,7 @@ Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers com
 ## EXO 2 : les sous-commandes imbriquées
 
 Ajoute une commande `player` avec deux sous-commandes :
+
 - `player add --name <nom> --country <pays>` : ajouter un joueur à la liste
 - `player list` : afficher tous les joueurs enregistrés
 
@@ -319,6 +322,7 @@ Stocke les joueurs dans un fichier séparé `players.json`.
 ## EXO 3 : le package publiable
 
 Prépare le CLI pour publication npm :
+
 - `package.json` avec tous les champs requis (name, version, bin, files, engines)
 - `.npmignore` ou champ `files` pour exclure les tests et les fichiers de dev
 - Un `README.md` avec les instructions d'installation et d'usage

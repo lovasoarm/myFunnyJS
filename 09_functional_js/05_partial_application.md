@@ -10,21 +10,21 @@ En pratique : tu as une fonction qui prend 3 arguments. Tu fixes le premier main
 ## 1) LA DIFFÉRENCE AVEC LE CURRYING
 
 ```js
-// curry : f(a, b, c)  ->  f(a)(b)(c)  — chaque arg séparé, obligatoirement
-// partial : f(a, b, c) avec a=10  ->  g(b, c)  — le reste ensemble ou séparé
+// curry : f(a, b, c)  ->  f(a)(b)(c) :chaque arg séparé, obligatoirement
+// partial : f(a, b, c) avec a=10  ->  g(b, c) :le reste ensemble ou séparé
 
 // curry
-const add = a => b => a + b
-add(10)(5) // 15 — forcément séquentiel
+const add = (a) => (b) => a + b;
+add(10)(5); // 15:forcément séquentiel
 
 // partial application
 function additionner(a, b, c) {
-  return a + b + c
+  return a + b + c;
 }
 
-const additionnerA10 = additionner.bind(null, 10)
-additionnerA10(5, 3)  // 18 — b et c passés ensemble
-additionnerA10(5)(3)  // TypeError : additionnerA10(5) retourne 15, pas une fonction
+const additionnerA10 = additionner.bind(null, 10);
+additionnerA10(5, 3); // 18:b et c passés ensemble
+additionnerA10(5)(3); // TypeError : additionnerA10(5) retourne 15, pas une fonction
 ```
 
 Curry = chaque argument génère une fonction.
@@ -38,15 +38,15 @@ Partial = tu fixes des arguments, le reste est appelé normalement.
 
 ```js
 function calculerSalaire(tauxBase, heures, primes) {
-  return tauxBase * heures + primes
+  return tauxBase * heures + primes;
 }
 
 // on fixe le taux de base
-const salaireDev = calculerSalaire.bind(null, 85)  // taux fixé à 85
-const salaireDesigner = calculerSalaire.bind(null, 70)
+const salaireDev = calculerSalaire.bind(null, 85); // taux fixé à 85
+const salaireDesigner = calculerSalaire.bind(null, 70);
 
-salaireDev(40, 500)     // 85 * 40 + 500 = 3900
-salaireDesigner(35, 300) // 70 * 35 + 300 = 2750
+salaireDev(40, 500); // 85 * 40 + 500 = 3900
+salaireDesigner(35, 300); // 70 * 35 + 300 = 2750
 ```
 
 `null` en premier argument de `bind` : c'est la valeur de `this`. En FP pure on s'en fout de `this`, donc `null`.
@@ -60,23 +60,25 @@ salaireDesigner(35, 300) // 70 * 35 + 300 = 2750
 ```js
 // partial basique
 function partial(fn, ...argsFixés) {
-  return function(...autresArgs) {
-    return fn(...argsFixés, ...autresArgs)
-  }
+  return function (...autresArgs) {
+    return fn(...argsFixés, ...autresArgs);
+  };
 }
 
 // exemple Ballon d'Or
 function calculerScore(bonusButs, bonusPasses, bonusCL, joueur) {
-  return joueur.buts * bonusButs
-    + joueur.passes * bonusPasses
-    + (joueur.aCL ? bonusCL : 0)
+  return (
+    joueur.buts * bonusButs +
+    joueur.passes * bonusPasses +
+    (joueur.aCL ? bonusCL : 0)
+  );
 }
 
 // on fixe les coefficients, pas le joueur
-const scorerJoueur = partial(calculerScore, 0.5, 0.3, 30)
+const scorerJoueur = partial(calculerScore, 0.5, 0.3, 30);
 
-scorerJoueur({ buts: 45, passes: 20, aCL: true  }) // 45*0.5 + 20*0.3 + 30 = 58.5
-scorerJoueur({ buts: 60, passes: 8,  aCL: false }) // 60*0.5 + 8*0.3  + 0  = 32.4
+scorerJoueur({ buts: 45, passes: 20, aCL: true }); // 45*0.5 + 20*0.3 + 30 = 58.5
+scorerJoueur({ buts: 60, passes: 8, aCL: false }); // 60*0.5 + 8*0.3  + 0  = 32.4
 ```
 
 ---
@@ -92,24 +94,24 @@ async function apiCall(baseURL, token, endpoint, body) {
     method: body ? "POST" : "GET",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: body ? JSON.stringify(body) : undefined
-  })
-  return response.json()
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  return response.json();
 }
 
 // configuration fixée selon l'environnement
 const prisonBreakAPI = partial(
   apiCall,
   "https://api.foxriver.com",
-  process.env.AUTH_TOKEN
-)
+  process.env.AUTH_TOKEN,
+);
 
 // utilisation : plus besoin de répéter base URL et token
-const getPrisonniers = () => prisonBreakAPI("/prisonniers")
-const getSection     = id => prisonBreakAPI(`/sections/${id}`)
-const ajouterAlert   = data => prisonBreakAPI("/alertes", data)
+const getPrisonniers = () => prisonBreakAPI("/prisonniers");
+const getSection = (id) => prisonBreakAPI(`/sections/${id}`);
+const ajouterAlert = (data) => prisonBreakAPI("/alertes", data);
 
 // propre, sans duplication, sans avoir à curry la fonction apiCall
 ```
@@ -133,17 +135,18 @@ PARTIAL quand :
 
 ```js
 // curry : composition directe dans pipe
-const filtrerParZone = zone => missions => missions.filter(m => m.zone === zone)
+const filtrerParZone = (zone) => (missions) =>
+  missions.filter((m) => m.zone === zone);
 
 pipe(
-  filtrerParZone("nord"),  // s'insère naturellement
+  filtrerParZone("nord"), // s'insère naturellement
   trierParPriorite,
-  prendreTop(2)
-)(missions)
+  prendreTop(2),
+)(missions);
 
 // partial : configuration d'une fonction existante
-import { format } from "date-fns"
-const formatDate = partial(format, new Date(), "dd/MM/yyyy")
+import { format } from "date-fns";
+const formatDate = partial(format, new Date(), "dd/MM/yyyy");
 // on fixe la date maintenant, le format peut changer
 ```
 
@@ -156,31 +159,36 @@ Parfois tu veux fixer le 2e argument mais pas le premier. Standard libraries (Ra
 Version maison minimale :
 
 ```js
-const _ = Symbol("placeholder")
+const _ = Symbol("placeholder");
 
 function partialWithHoles(fn, ...argsFixés) {
-  return function(...autresArgs) {
-    let idxAutres = 0
-    const argsComplets = argsFixés.map(arg =>
-      arg === _ ? autresArgs[idxAutres++] : arg
-    )
+  return function (...autresArgs) {
+    let idxAutres = 0;
+    const argsComplets = argsFixés.map((arg) =>
+      arg === _ ? autresArgs[idxAutres++] : arg,
+    );
     // ajoute les args restants pas encore utilisés
     while (idxAutres < autresArgs.length) {
-      argsComplets.push(autresArgs[idxAutres++])
+      argsComplets.push(autresArgs[idxAutres++]);
     }
-    return fn(...argsComplets)
-  }
+    return fn(...argsComplets);
+  };
 }
 
 function dispatcherMission(chevalier, niveauHorreur, zone) {
-  return { chevalier, niveauHorreur, zone, urgence: niveauHorreur >= 4 ? "critique" : "standard" }
+  return {
+    chevalier,
+    niveauHorreur,
+    zone,
+    urgence: niveauHorreur >= 4 ? "critique" : "standard",
+  };
 }
 
 // on fixe la zone (3e arg) mais pas le chevalier (1er)
-const missionNord = partialWithHoles(dispatcherMission, _, _, "nord")
+const missionNord = partialWithHoles(dispatcherMission, _, _, "nord");
 
-missionNord("Leon", 5)   // { chevalier: "Leon", niveauHorreur: 5, zone: "nord", urgence: "critique" }
-missionNord("Rei", 2)    // { chevalier: "Rei",  niveauHorreur: 2, zone: "nord", urgence: "standard" }
+missionNord("Leon", 5); // { chevalier: "Leon", niveauHorreur: 5, zone: "nord", urgence: "critique" }
+missionNord("Rei", 2); // { chevalier: "Rei",  niveauHorreur: 2, zone: "nord", urgence: "standard" }
 ```
 
 ---
@@ -194,24 +202,24 @@ const joueur = {
   nom: "Messi",
   buts: 45,
   décrire() {
-    return `${this.nom} a marqué ${this.buts} buts`
-  }
-}
+    return `${this.nom} a marqué ${this.buts} buts`;
+  },
+};
 
-const décrirePartiel = joueur.décrire.bind(null) // this = null
-décrirePartiel() // TypeError ou "undefined a marqué undefined buts"
+const décrirePartiel = joueur.décrire.bind(null); // this = null
+décrirePartiel(); // TypeError ou "undefined a marqué undefined buts"
 
 // fix : passer l'objet comme this
-const décrireAvecContexte = joueur.décrire.bind(joueur)
-décrireAvecContexte() // "Messi a marqué 45 buts"
+const décrireAvecContexte = joueur.décrire.bind(joueur);
+décrireAvecContexte(); // "Messi a marqué 45 buts"
 ```
 
 En FP pure, on évite les méthodes sur `this`. On préfère des fonctions qui prennent l'objet en argument.
 
 ```js
 // mieux en FP
-const décrireJoueur = joueur => `${joueur.nom} a marqué ${joueur.buts} buts`
-const décrireMessi = partial(décrireJoueur, { nom: "Messi", buts: 45 })
+const décrireJoueur = (joueur) => `${joueur.nom} a marqué ${joueur.buts} buts`;
+const décrireMessi = partial(décrireJoueur, { nom: "Messi", buts: 45 });
 ```
 
 ---
@@ -225,8 +233,8 @@ function créerMission(serveur, token, niveau, chevalier, zone) {
   return {
     url: `${serveur}/missions`,
     auth: token,
-    payload: { niveau, chevalier, zone }
-  }
+    payload: { niveau, chevalier, zone },
+  };
 }
 
 // 1. Utilise partial pour créer missionServeurProd (serveur et token fixés)
@@ -243,14 +251,16 @@ function créerMission(serveur, token, niveau, chevalier, zone) {
 // Saison monde : bonusButs=0.7, bonusPasses=0.2, bonusCL=50
 
 function calculerScore(bonusButs, bonusPasses, bonusCL, joueur) {
-  return joueur.buts * bonusButs
-    + joueur.passes * bonusPasses
-    + (joueur.aCL ? bonusCL : 0)
+  return (
+    joueur.buts * bonusButs +
+    joueur.passes * bonusPasses +
+    (joueur.aCL ? bonusCL : 0)
+  );
 }
 
 // Crée scorerSaisonReg et scorerSaisonMonde avec partial
 // Applique les deux sur ce joueur et compare les scores
-const haaland = { buts: 60, passes: 8, aCL: true }
+const haaland = { buts: 60, passes: 8, aCL: true };
 ```
 
 ---
@@ -260,6 +270,7 @@ const haaland = { buts: 60, passes: 8, aCL: true }
 Implémente `filtrerEtTrier(seuil, critere, joueurs)` qui filtre les joueurs avec buts >= seuil, puis les trie par critère.
 
 Implémentes-la :
+
 1. En version normale
 2. En version curryfiée (utilisable dans pipe)
 3. En version partial application (seuil et critère fixés ensemble)
@@ -273,11 +284,12 @@ Montre les 3 usages. Explique lequel tu utiliserais dans un pipe et pourquoi.
 ```js
 function formatLog(service, niveau, correlationId, message) {
   return JSON.stringify({
-    service, niveau,
+    service,
+    niveau,
     correlationId,
     message,
-    timestamp: new Date().toISOString()
-  })
+    timestamp: new Date().toISOString(),
+  });
 }
 
 // Crée des loggers spécialisés avec partial :

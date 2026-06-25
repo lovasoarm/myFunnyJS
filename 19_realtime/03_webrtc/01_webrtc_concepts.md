@@ -27,6 +27,7 @@ Alice (navigateur) ---------- [internet + NATs] ---------- Bob (navigateur)
 ```
 
 Deux phases distinctes :
+
 1. **Signaling** (coordination) : Alice et Bob doivent se trouver et négocier les paramètres de connexion. Ça passe par un serveur (ton serveur). WebRTC ne spécifie pas le protocole : WebSocket, HTTP, SMS, ça marche.
 2. **Data transfer** (transfert de données) : une fois connectés, les flux audio/vidéo/data passent directement entre les pairs. Le serveur signaling n'est plus dans la boucle.
 
@@ -37,6 +38,7 @@ Deux phases distinctes :
 SDP (Session Description Protocol : protocole de description de session) c'est un bloc de texte qui décrit une connexion.
 
 Ce qu'il contient :
+
 - les codecs (algorithmes de compression/décompression audio et vidéo) supportés : H.264, VP8, Opus...
 - la résolution et le bitrate (débit binaire : quantité de données transmises par seconde) souhaités
 - les paramètres de chiffrement
@@ -59,6 +61,7 @@ Le navigateur le génère via `RTCPeerConnection.createOffer()` et `createAnswer
 Ce que tu fais : le transporter via ton serveur de signaling d'Alice à Bob et vice-versa.
 
 L'échange SDP :
+
 ```
 Alice                    Serveur Signaling               Bob
   |                            |                          |
@@ -77,6 +80,7 @@ Alice                    Serveur Signaling               Bob
 ICE (Interactive Connectivity Establishment : établissement interactif de connectivité) c'est le mécanisme qui résout le problème du NAT.
 
 Ton ordinateur peut avoir plusieurs IPs :
+
 - l'IP locale (`192.168.1.42`) : visible seulement sur ton réseau
 - l'IP publique (`203.0.113.1`) : visible depuis internet
 - une IP relayée par un serveur TURN si tout le reste échoue
@@ -89,8 +93,8 @@ peerConnection.onicecandidate = (event) => {
   if (event.candidate) {
     // envoyer ce candidate à l'autre pair via le signaling server
     signalingServer.send({
-      type: 'ice_candidate',
-      candidate: event.candidate
+      type: "ice_candidate",
+      candidate: event.candidate,
     });
   }
 };
@@ -118,9 +122,9 @@ Google fournit des serveurs STUN publics gratuits :
 ```js
 const config = {
   iceServers: [
-    { urls: 'stun:stun.l.google.com:19302' },
-    { urls: 'stun:stun1.l.google.com:19302' }
-  ]
+    { urls: "stun:stun.l.google.com:19302" },
+    { urls: "stun:stun1.l.google.com:19302" },
+  ],
 };
 
 const peerConnection = new RTCPeerConnection(config);
@@ -147,13 +151,13 @@ Inconvénient : ça coûte de la bande passante côté serveur. TURN est ton bud
 ```js
 const config = {
   iceServers: [
-    { urls: 'stun:stun.l.google.com:19302' },
+    { urls: "stun:stun.l.google.com:19302" },
     {
-      urls: 'turn:ton-serveur-turn.com:3478',
-      username: 'alice',        // credentials TURN — obligatoires
-      credential: 'motdepasse'
-    }
-  ]
+      urls: "turn:ton-serveur-turn.com:3478",
+      username: "alice", // credentials TURN:obligatoires
+      credential: "motdepasse",
+    },
+  ],
 };
 ```
 
@@ -189,6 +193,7 @@ Alice                          Signaling              Bob
 ```
 
 Six étapes clés :
+
 1. Alice crée une `RTCPeerConnection` et capture son media avec `getUserMedia()`
 2. Alice crée une offer SDP et la définit comme description locale
 3. Alice envoie l'offer à Bob via le signaling
@@ -222,6 +227,7 @@ Quels serveurs sont nécessaires ? Quel chemin prennent les données ?
 **EXO 2 : Analyser un SDP**
 
 Le navigateur génère ce bloc SDP. Identifie :
+
 - quel codec audio est proposé en priorité
 - le bitrate maximum configuré
 - si la session supporte la vidéo

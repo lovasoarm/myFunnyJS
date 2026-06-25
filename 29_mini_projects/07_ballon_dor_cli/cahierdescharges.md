@@ -69,18 +69,22 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `14_runtime_env` : CLI Node.js, process.argv, filesystem
+
 **Où ça se voit** : `src/cli.js`, `src/parser/argsParser.js`, `src/export/csvExporter.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour lire les flags (`--player`, `--points`). `process.exit(code)` pour le code de sortie. `fs.writeFileSync` pour l'export CSV. C'est le kit de base du CLI Node.
 
 ### `11_refactoring` : SOLID sur du code CLI procédural
+
 **Où ça se voit** : tout le passage de `legacy/ballonDorV1.js` vers `src/`.
 **Pourquoi c'est nécessaire ici** : le v1 viole SRP (Single Responsibility Principle : une classe/fonction = une responsabilité) à chaque fonction. La v2 sépare le parsing des args, la validation des votes, l'agrégation des scores, et l'affichage. Chaque module peut changer sans toucher les autres.
 
 ### `03_error_handling` : custom errors, propagation, exit codes
+
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `cli.js`.
 **Pourquoi c'est nécessaire ici** : `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` permettent de répondre différemment selon le type d'erreur. Un vote invalide = message d'erreur + exit 1. Un joueur introuvable = suggestion de correction + exit 1. Une erreur système = stacktrace sur stderr + exit 2.
 
 ### `30_annexes` : Git workflow, Docker, GitHub Actions
+
 **Où ça se voit** : `Dockerfile`, `.github/workflows/ci.yml`, conventions de commits.
 **Pourquoi c'est nécessaire ici** : un outil CLI sans containerisation ne peut pas être distribué à 180 journalistes avec des environnements différents. Sans CI : les tests passent en local, échouent chez les autres, personne ne sait.
 
@@ -157,31 +161,37 @@ tests/
 ```
 
 ### `src/parser/argsParser.js`
+
 **Ce que ça fait** : transforme `process.argv` brut en un objet structuré lisible.
 **Entrée** : `['node', 'cli.js', 'vote', '--player', 'Rodri', '--points', '15']`.
 **Sortie** : `{ command: 'vote', player: 'Rodri', points: 15, journalist: undefined }`.
 
 ### `src/services/voteService.js`
+
 **Ce que ça fait** : toute la logique métier des votes. Valide les points (entre 1 et 15), vérifie que le journaliste n'a pas déjà voté, agrège les scores.
 **Entrée** : un objet vote `{ player, journalist, points }`.
 **Sortie** : le vote enregistré, ou une exception typée.
 
 ### `src/services/rankingService.js`
+
 **Ce que ça fait** : calcule le classement à partir des votes stockés. Trie par points décroissants. Gère les ex-aequo.
 **Entrée** : rien (lit depuis le store).
 **Sortie** : un tableau trié `[{ rank, player, club, points }]`.
 
 ### `src/store/jsonStore.js`
+
 **Ce que ça fait** : lit et écrit l'état des votes dans un fichier JSON local. Interface simple : `read()` et `write(data)`.
 **Entrée** : pour write, les données à persister.
 **Sortie** : pour read, l'état actuel.
 
 ### `src/export/csvExporter.js`
+
 **Ce que ça fait** : prend le classement et l'écrit dans un fichier CSV.
 **Entrée** : un tableau de résultats et un chemin de fichier.
 **Sortie** : un fichier CSV créé sur le filesystem.
 
 ### `src/renderer/cliRenderer.js`
+
 **Ce que ça fait** : formate et affiche les résultats dans stdout. Sépare la présentation de la logique métier.
 **Entrée** : des données brutes (classement, vote enregistré, etc.).
 **Sortie** : texte formaté dans stdout.
@@ -207,16 +217,16 @@ tests/
 
 **Durée totale estimée** : 14 à 20 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| errors + parser | 1h30 | Faible |
-| store + validators | 2h | Faible |
-| voteService + rankingService | 3h | Moyenne : les edge cases de vote (quota, ex-aequo) |
-| handlers + router | 2h | Faible |
-| cli.js + renderer | 1h30 | Faible |
-| csvExporter | 1h | Faible |
-| Dockerfile + CI | 2-3h | **Haute** si c'est la première fois qu'on containerise |
-| Tests | 2-3h | Moyenne : tester un CLI avec process.argv est inhabituel |
+| Étape                        | Durée estimée | Zone de résistance                                       |
+| ---------------------------- | ------------- | -------------------------------------------------------- |
+| errors + parser              | 1h30          | Faible                                                   |
+| store + validators           | 2h            | Faible                                                   |
+| voteService + rankingService | 3h            | Moyenne : les edge cases de vote (quota, ex-aequo)       |
+| handlers + router            | 2h            | Faible                                                   |
+| cli.js + renderer            | 1h30          | Faible                                                   |
+| csvExporter                  | 1h            | Faible                                                   |
+| Dockerfile + CI              | 2-3h          | **Haute** si c'est la première fois qu'on containerise   |
+| Tests                        | 2-3h          | Moyenne : tester un CLI avec process.argv est inhabituel |
 
 Le Dockerfile et la CI sont le point de résistance pour quelqu'un qui ne l'a jamais fait. Commence par faire tourner le CLI sans Docker. Une fois que tout est vert en local, containerise.
 
@@ -224,45 +234,53 @@ Le Dockerfile et la CI sont le point de résistance pour quelqu'un qui ne l'a ja
 
 ```js
 // tests/voteService.test.js
-import { submitVote } from '../src/services/voteService.js';
-import { resetStore } from '../src/store/jsonStore.js';
+import { submitVote } from "../src/services/voteService.js";
+import { resetStore } from "../src/store/jsonStore.js";
 
 beforeEach(() => resetStore()); // repart d'un état propre avant chaque test
 
-describe('voteService.submitVote', () => {
-  test('enregistre un vote valide', () => {
-    const result = submitVote({ player: 'Rodri', journalist: 'FF', points: 15 });
+describe("voteService.submitVote", () => {
+  test("enregistre un vote valide", () => {
+    const result = submitVote({
+      player: "Rodri",
+      journalist: "FF",
+      points: 15,
+    });
     expect(result.recorded).toBe(true);
-    expect(result.player).toBe('Rodri');
+    expect(result.player).toBe("Rodri");
   });
 
-  test('throw QuotaExceededError si le même journaliste vote deux fois', () => {
-    submitVote({ player: 'Rodri', journalist: 'FF', points: 15 });
-    expect(() => submitVote({ player: 'Vinicius', journalist: 'FF', points: 12 }))
-      .toThrow('QuotaExceededError');
+  test("throw QuotaExceededError si le même journaliste vote deux fois", () => {
+    submitVote({ player: "Rodri", journalist: "FF", points: 15 });
+    expect(() =>
+      submitVote({ player: "Vinicius", journalist: "FF", points: 12 }),
+    ).toThrow("QuotaExceededError");
   });
 
-  test('throw InvalidVoteError si les points sont hors de 1-15', () => {
-    expect(() => submitVote({ player: 'Rodri', journalist: 'FF', points: 20 }))
-      .toThrow('InvalidVoteError');
+  test("throw InvalidVoteError si les points sont hors de 1-15", () => {
+    expect(() =>
+      submitVote({ player: "Rodri", journalist: "FF", points: 20 }),
+    ).toThrow("InvalidVoteError");
   });
 });
 
-// tests/cli.test.js — tester le CLI lui-même
-import { execSync } from 'child_process';
+// tests/cli.test.js:tester le CLI lui-même
+import { execSync } from "child_process";
 
-test('exit code 0 pour un vote valide', () => {
+test("exit code 0 pour un vote valide", () => {
   const result = execSync(
     'node src/cli.js vote --player "Rodri" --journalist "Test" --points 10',
-    { encoding: 'utf-8' }
+    { encoding: "utf-8" },
   );
-  expect(result).toContain('Rodri');
+  expect(result).toContain("Rodri");
 });
 
-test('exit code 1 pour un vote invalide', () => {
-  expect(() => execSync(
-    'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99'
-  )).toThrow(); // execSync throw si exit code != 0
+test("exit code 1 pour un vote invalide", () => {
+  expect(() =>
+    execSync(
+      'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99',
+    ),
+  ).toThrow(); // execSync throw si exit code != 0
 });
 ```
 
@@ -301,21 +319,25 @@ Exemple rempli :
 # ADR 002 : Exit codes distincts pour erreur métier vs erreur système
 
 ## Contexte
+
 Un CLI peut échouer pour deux raisons très différentes : une règle métier non
 respectée (vote invalide, quota dépassé) ou une erreur technique (fichier JSON
 corrompu, permission refusée sur le filesystem).
 
 ## Décision
+
 Exit code 1 pour les erreurs métier (l'utilisateur a fait quelque chose de
 invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 
 ## Alternatives considérées
+
 - Un seul code exit 1 pour tout : rejeté car dans un script qui appelle le CLI,
   on ne peut pas distinguer "le vote était invalide" de "le filesystem est cassé".
 - Des codes spécifiques par type d'erreur (10, 11, 12...) : rejeté, sur-ingénierie.
   La convention Unix établit 0/1/2, pas plus.
 
 ## Conséquences
+
 - La CI peut détecter les erreurs système (exit 2) et alerter séparément des
   erreurs de validation (exit 1).
 - Les scripts qui wrappent ce CLI peuvent brancher leur logique sur ces codes.

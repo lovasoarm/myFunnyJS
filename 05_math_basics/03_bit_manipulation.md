@@ -17,9 +17,10 @@ Un nombre entier en mémoire est une séquence de bits. En JS, les opérations b
 ```
 
 **Convertir :**
+
 ```js
-(13).toString(2)    // "1101" — décimal vers binaire
-parseInt("1101", 2) // 13    — binaire vers décimal
+(13).toString(2); // "1101":décimal vers binaire
+parseInt("1101", 2); // 13   :binaire vers décimal
 ```
 
 ---
@@ -34,12 +35,12 @@ parseInt("1101", 2) // 13    — binaire vers décimal
 // ----
 // 1000 (8)
 
-13 & 10  // 8
+13 & 10; // 8
 
-// Usage classique : masquage — garder seulement certains bits
-const MASK_ROUGE = 0xFF0000  // 1111 1111 0000 0000 0000 0000
-const couleur = 0xFF6B35     // une couleur RGBA quelconque
-const rouge = (couleur & MASK_ROUGE) >> 16  // extraire le canal rouge
+// Usage classique : masquage:garder seulement certains bits
+const MASK_ROUGE = 0xff0000; // 1111 1111 0000 0000 0000 0000
+const couleur = 0xff6b35; // une couleur RGBA quelconque
+const rouge = (couleur & MASK_ROUGE) >> 16; // extraire le canal rouge
 ```
 
 ### OR `|` : au moins un bit est 1
@@ -50,15 +51,15 @@ const rouge = (couleur & MASK_ROUGE) >> 16  // extraire le canal rouge
 // ----
 // 1111 (15)
 
-10 | 5  // 15
+10 | 5; // 15
 
 // Usage : activer un flag
-let permissions = 0b0000  // aucune permission
-const LIRE   = 0b0001
-const ECRIRE = 0b0010
+let permissions = 0b0000; // aucune permission
+const LIRE = 0b0001;
+const ECRIRE = 0b0010;
 
-permissions = permissions | LIRE    // 0b0001 — peut lire
-permissions = permissions | ECRIRE  // 0b0011 — peut lire et écrire
+permissions = permissions | LIRE; // 0b0001:peut lire
+permissions = permissions | ECRIRE; // 0b0011:peut lire et écrire
 ```
 
 ### XOR `^` : exactement un bit est 1
@@ -69,28 +70,28 @@ permissions = permissions | ECRIRE  // 0b0011 — peut lire et écrire
 // ----
 // 0110 (6)
 
-10 ^ 12  // 6
+10 ^ 12; // 6
 
-// XOR avec lui-même = 0 — utilisé pour annuler
-5 ^ 5  // 0
+// XOR avec lui-même = 0:utilisé pour annuler
+5 ^ 5; // 0
 
 // XOR pour toggle : si le bit est 1, il passe à 0 et vice versa
-let flag = 0b0101
-flag = flag ^ 0b0100  // toggle le bit 2 : 0b0101 ^ 0b0100 = 0b0001
+let flag = 0b0101;
+flag = flag ^ 0b0100; // toggle le bit 2 : 0b0101 ^ 0b0100 = 0b0001
 ```
 
 ### NOT `~` : inverse tous les bits
 
 ```js
-~5   // -6 en JS (complément à deux)
-~0   // -1
+~5; // -6 en JS (complément à deux)
+~0; // -1
 
 // usage courant : ~indexOf retourne 0 si non trouvé (falsy)
-const liste = ["Rick", "Daryl", "Michonne"]
+const liste = ["Rick", "Daryl", "Michonne"];
 if (~liste.indexOf("Daryl")) {
-  console.log("Daryl est dans le groupe")
+  console.log("Daryl est dans le groupe");
 }
-// mais en pratique : utilise .includes() — c'est plus lisible
+// mais en pratique : utilise .includes():c'est plus lisible
 ```
 
 ### Left Shift `<<` : décale les bits vers la gauche
@@ -98,19 +99,19 @@ if (~liste.indexOf("Daryl")) {
 Chaque décalage d'un bit = multiplication par 2.
 
 ```js
-1 << 0   // 1    = 1
-1 << 1   // 2    = 1 * 2
-1 << 2   // 4    = 1 * 4
-1 << 3   // 8    = 1 * 8
-1 << 10  // 1024 = 1 * 1024
+1 << 0; // 1    = 1
+1 << 1; // 2    = 1 * 2
+1 << 2; // 4    = 1 * 4
+1 << 3; // 8    = 1 * 8
+1 << 10; // 1024 = 1 * 1024
 
 // utile pour définir des flags proprement
 const PERMISSIONS = {
-  LIRE:     1 << 0,   // 0001
-  ECRIRE:   1 << 1,   // 0010
-  EXECUTER: 1 << 2,   // 0100
-  ADMIN:    1 << 3,   // 1000
-}
+  LIRE: 1 << 0, // 0001
+  ECRIRE: 1 << 1, // 0010
+  EXECUTER: 1 << 2, // 0100
+  ADMIN: 1 << 3, // 1000
+};
 ```
 
 ### Right Shift `>>` : décale vers la droite
@@ -118,9 +119,9 @@ const PERMISSIONS = {
 Chaque décalage = division entière par 2.
 
 ```js
-8 >> 1   // 4
-8 >> 2   // 2
-8 >> 3   // 1
+8 >> 1; // 4
+8 >> 2; // 2
+8 >> 3; // 1
 ```
 
 ---
@@ -132,37 +133,38 @@ C'est l'usage le plus courant en prod. Un seul nombre entier encode plusieurs é
 ```js
 // chaque permission = un bit différent
 const PERM = {
-  LIRE:       0b0001,  // 1
-  ECRIRE:     0b0010,  // 2
-  SUPPRIMER:  0b0100,  // 4
-  ADMIN:      0b1000,  // 8
-}
+  LIRE: 0b0001, // 1
+  ECRIRE: 0b0010, // 2
+  SUPPRIMER: 0b0100, // 4
+  ADMIN: 0b1000, // 8
+};
 
 // Activer une permission
-const activer = (permissions, flag) => permissions | flag
+const activer = (permissions, flag) => permissions | flag;
 
 // Désactiver une permission
-const desactiver = (permissions, flag) => permissions & ~flag
+const desactiver = (permissions, flag) => permissions & ~flag;
 
 // Vérifier si une permission est active
-const aPermission = (permissions, flag) => (permissions & flag) !== 0
+const aPermission = (permissions, flag) => (permissions & flag) !== 0;
 
 // Toggle
-const toggle = (permissions, flag) => permissions ^ flag
+const toggle = (permissions, flag) => permissions ^ flag;
 
 // --- En action ---
-let user = 0  // aucune permission
+let user = 0; // aucune permission
 
-user = activer(user, PERM.LIRE)     // 0001
-user = activer(user, PERM.ECRIRE)   // 0011
+user = activer(user, PERM.LIRE); // 0001
+user = activer(user, PERM.ECRIRE); // 0011
 
-aPermission(user, PERM.LIRE)        // true
-aPermission(user, PERM.SUPPRIMER)   // false — pas de permission suppression
+aPermission(user, PERM.LIRE); // true
+aPermission(user, PERM.SUPPRIMER); // false:pas de permission suppression
 
-user = desactiver(user, PERM.ECRIRE) // 0001 — revient à lire seulement
+user = desactiver(user, PERM.ECRIRE); // 0001:revient à lire seulement
 ```
 
 Ce pattern est partout :
+
 - permissions Unix (rwx = 3 bits)
 - flags CSS (`font-style: bold | italic | underline`)
 - états de composants React
@@ -176,22 +178,22 @@ Les couleurs en HTML sont souvent stockées comme un seul entier 32 bits.
 
 ```js
 // couleur #FF6B35 = rouge:255, vert:107, bleu:53
-const rgb = (r, g, b) => (r << 16) | (g << 8) | b
+const rgb = (r, g, b) => (r << 16) | (g << 8) | b;
 
-const orange = rgb(255, 107, 53)  // 16LE3535... peu importe la valeur
+const orange = rgb(255, 107, 53); // 16LE3535... peu importe la valeur
 // 255 << 16 = FF0000
 // 107 << 8  = 006B00
 // 53         = 000035
 // OR ensemble => FF6B35
 
 // Extraire les composantes
-const rouge = (couleur) => (couleur >> 16) & 0xFF
-const vert  = (couleur) => (couleur >> 8)  & 0xFF
-const bleu  = (couleur) => couleur         & 0xFF
+const rouge = (couleur) => (couleur >> 16) & 0xff;
+const vert = (couleur) => (couleur >> 8) & 0xff;
+const bleu = (couleur) => couleur & 0xff;
 
-rouge(orange)  // 255
-vert(orange)   // 107
-bleu(orange)   // 53
+rouge(orange); // 255
+vert(orange); // 107
+bleu(orange); // 53
 ```
 
 ---
@@ -205,11 +207,11 @@ bleu(orange)   // 53
 // n & (n-1) enlève le bit le plus bas
 // si le résultat est 0, il n'y avait qu'un seul bit => puissance de 2
 
-const estPuissanceDe2 = (n) => n > 0 && (n & (n - 1)) === 0
+const estPuissanceDe2 = (n) => n > 0 && (n & (n - 1)) === 0;
 
-estPuissanceDe2(4)   // true  : 0100 & 0011 = 0
-estPuissanceDe2(8)   // true  : 1000 & 0111 = 0
-estPuissanceDe2(6)   // false : 0110 & 0101 = 0100 ≠ 0
+estPuissanceDe2(4); // true  : 0100 & 0011 = 0
+estPuissanceDe2(8); // true  : 1000 & 0111 = 0
+estPuissanceDe2(6); // false : 0110 & 0101 = 0100 ≠ 0
 ```
 
 ### Compter les bits à 1 (popcount)
@@ -217,26 +219,27 @@ estPuissanceDe2(6)   // false : 0110 & 0101 = 0100 ≠ 0
 ```js
 // utile pour les systèmes de votes, les distances de Hamming
 const compterBits = (n) => {
-  let count = 0
+  let count = 0;
   while (n > 0) {
-    count += n & 1  // vérifie le bit de droite
-    n >>= 1         // décale vers la droite
+    count += n & 1; // vérifie le bit de droite
+    n >>= 1; // décale vers la droite
   }
-  return count
-}
+  return count;
+};
 
-compterBits(7)   // 3 : 0111 => 3 bits à 1
-compterBits(13)  // 3 : 1101 => 3 bits à 1
+compterBits(7); // 3 : 0111 => 3 bits à 1
+compterBits(13); // 3 : 1101 => 3 bits à 1
 ```
 
 ### Swap sans variable temporaire
 
 ```js
 // XOR swap : classique des entretiens
-let a = 5, b = 9
-a = a ^ b   // a = 5^9 = 12
-b = a ^ b   // b = 12^9 = 5  (b récupère l'ancienne valeur de a)
-a = a ^ b   // a = 12^5 = 9  (a récupère l'ancienne valeur de b)
+let a = 5,
+  b = 9;
+a = a ^ b; // a = 5^9 = 12
+b = a ^ b; // b = 12^9 = 5  (b récupère l'ancienne valeur de a)
+a = a ^ b; // a = 12^5 = 9  (a récupère l'ancienne valeur de b)
 // résultat : a=9, b=5
 ```
 
@@ -247,17 +250,19 @@ a = a ^ b   // a = 12^5 = 9  (a récupère l'ancienne valeur de b)
 ## EXO 1 : Le système de jutsu de Naruto
 
 Chaque ninja a des capacités encodées dans un seul entier :
+
 ```js
 const CAPACITES = {
-  NINJUTSU:   1 << 0,
-  TAIJUTSU:   1 << 1,
-  GENJUTSU:   1 << 2,
-  SENJUTSU:   1 << 3,
-  KURAMA:     1 << 4,
-}
+  NINJUTSU: 1 << 0,
+  TAIJUTSU: 1 << 1,
+  GENJUTSU: 1 << 2,
+  SENJUTSU: 1 << 3,
+  KURAMA: 1 << 4,
+};
 ```
 
 Implémenter :
+
 - `creerNinja(capacites)` : prend un tableau de flags, retourne l'entier encodé
 - `peutUtiliser(ninja, capacite)` : retourne `true/false`
 - `apprendreCapacite(ninja, capacite)` : retourne le nouveau ninja

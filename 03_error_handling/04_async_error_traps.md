@@ -11,18 +11,18 @@ C'est ça le vrai danger de l'async.
 ## 1) LE PIÈGE CLASSIQUE : PROMISE NON CATCHÉE
 
 ```js
-// ce code "fonctionne" — il ne crash pas
+// ce code "fonctionne":il ne crash pas
 function chargerStatsMatch(id) {
   fetch(`/api/matchs/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log("stats reçues :", data)
-    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("stats reçues :", data);
+    });
   // pas de .catch()
   // si fetch échoue : l'erreur disparaît en silence
 }
 
-chargerStatsMatch(99999) // ID inexistant
+chargerStatsMatch(99999); // ID inexistant
 // la Promise rejette
 // personne ne l'attrape
 // Node émet un warning "UnhandledPromiseRejection"
@@ -48,20 +48,20 @@ La syntaxe qui rend l'async lisible : et qui récupère les erreurs naturellemen
 ```js
 async function chargerStatsMatch(id) {
   try {
-    const res = await fetch(`/api/matchs/${id}`)
+    const res = await fetch(`/api/matchs/${id}`);
     if (!res.ok) {
-      throw new NotFoundError("Match", id)
-      // fetch ne lève pas d'erreur sur les 404 — tu dois le faire toi-même
+      throw new NotFoundError("Match", id);
+      // fetch ne lève pas d'erreur sur les 404:tu dois le faire toi-même
     }
-    const data = await res.json()
-    return data
+    const data = await res.json();
+    return data;
   } catch (e) {
     if (e instanceof NotFoundError) {
-      console.log(`Match ${id} introuvable`)
-      return null
+      console.log(`Match ${id} introuvable`);
+      return null;
     }
     // erreur réseau ou autre
-    throw e
+    throw e;
   }
 }
 ```
@@ -73,29 +73,29 @@ Attention : `fetch` ne rejette la Promise que sur des erreurs réseau (pas de co
 ## 3) LE PIÈGE DU FOREACH ASYNC
 
 ```js
-const matchIds = [1, 2, 3, 4, 5]
+const matchIds = [1, 2, 3, 4, 5];
 
-// MAUVAIS — le forEach n'attend pas les Promises
+// MAUVAIS:le forEach n'attend pas les Promises
 matchIds.forEach(async (id) => {
-  const stats = await chargerStats(id)  // retourne une Promise
-  console.log(stats)
+  const stats = await chargerStats(id); // retourne une Promise
+  console.log(stats);
   // si ça throw ici : l'erreur est dans une Promise que forEach ignore
-})
+});
 
-console.log("terminé")
-// s'affiche AVANT les stats — forEach n'attend pas
+console.log("terminé");
+// s'affiche AVANT les stats:forEach n'attend pas
 // les erreurs dans les callbacks async : perdues
 ```
 
 ```js
-// BON — for...of attend vraiment chaque itération
+// BON:for...of attend vraiment chaque itération
 async function traiterTousLesMatchs(ids) {
   for (const id of ids) {
     try {
-      const stats = await chargerStats(id)
-      console.log(stats)
+      const stats = await chargerStats(id);
+      console.log(stats);
     } catch (e) {
-      console.error(`Erreur match ${id} :`, e.message)
+      console.error(`Erreur match ${id} :`, e.message);
       // on continue avec les autres
     }
   }
@@ -103,19 +103,19 @@ async function traiterTousLesMatchs(ids) {
 ```
 
 ```js
-// BON — Promise.all pour les traitements en parallèle
+// BON:Promise.all pour les traitements en parallèle
 async function traiterEnParallele(ids) {
   const resultats = await Promise.all(
     ids.map(async (id) => {
       try {
-        return await chargerStats(id)
+        return await chargerStats(id);
       } catch (e) {
-        return { erreur: e.message, id }
+        return { erreur: e.message, id };
         // chaque résultat est soit les stats soit l'erreur wrappée
       }
-    })
-  )
-  return resultats
+    }),
+  );
+  return resultats;
 }
 ```
 
@@ -126,30 +126,30 @@ async function traiterEnParallele(ids) {
 ```js
 // Promise.all rejette dès qu'une seule Promise rejette
 const [statsA, statsB, statsC] = await Promise.all([
-  chargerStats(1),    // ok
-  chargerStats(999),  // rejette
-  chargerStats(3),    // ok, mais jamais utilisé
-])
+  chargerStats(1), // ok
+  chargerStats(999), // rejette
+  chargerStats(3), // ok, mais jamais utilisé
+]);
 // si chargerStats(999) rejette :
 // les résultats de 1 et 3 sont perdus
 // même si ils ont réussi
 ```
 
 ```js
-// Promise.allSettled — chaque résultat individuellement
+// Promise.allSettled:chaque résultat individuellement
 const resultats = await Promise.allSettled([
   chargerStats(1),
   chargerStats(999),
   chargerStats(3),
-])
+]);
 
 resultats.forEach((r, i) => {
   if (r.status === "fulfilled") {
-    console.log(`Match ${i + 1} :`, r.value)
+    console.log(`Match ${i + 1} :`, r.value);
   } else {
-    console.error(`Match ${i + 1} a échoué :`, r.reason.message)
+    console.error(`Match ${i + 1} a échoué :`, r.reason.message);
   }
-})
+});
 // les trois résultats, succès ou échec, tous disponibles
 ```
 
@@ -160,18 +160,18 @@ Règle : tu veux que tout réussisse ou rien → `Promise.all`. Tu veux traiter 
 ## 5) LE PIÈGE DU EVENT EMITTER ASYNC
 
 ```js
-const EventEmitter = require("events")
-const emitter = new EventEmitter()
+const EventEmitter = require("events");
+const emitter = new EventEmitter();
 
 emitter.on("data", async (payload) => {
   // ce handler est async
-  const result = await traiterPayload(payload)
+  const result = await traiterPayload(payload);
   // si traiterPayload rejette :
   // la Promise retournée par le handler est perdue dans le vide
   // EventEmitter ne la surveille pas
-})
+});
 
-emitter.emit("data", { matchId: 42 })
+emitter.emit("data", { matchId: 42 });
 // les erreurs async dans les handlers EventEmitter : non catchées par défaut
 ```
 
@@ -180,16 +180,16 @@ Solution :
 ```js
 emitter.on("data", async (payload) => {
   try {
-    const result = await traiterPayload(payload)
-    console.log(result)
+    const result = await traiterPayload(payload);
+    console.log(result);
   } catch (e) {
-    emitter.emit("error", e)  // déléguer au handler d'erreur de l'emitter
+    emitter.emit("error", e); // déléguer au handler d'erreur de l'emitter
   }
-})
+});
 
 emitter.on("error", (e) => {
-  console.error("erreur dans le pipeline :", e.message)
-})
+  console.error("erreur dans le pipeline :", e.message);
+});
 ```
 
 ---
@@ -200,17 +200,17 @@ Dans les modules ES (`type: "module"` ou `.mjs`), tu peux `await` au niveau modu
 
 ```js
 // index.mjs
-const config = await chargerConfig()
+const config = await chargerConfig();
 // si chargerConfig() rejette et qu'il n'y a pas de try/catch
 // le module entier échoue au chargement
 
 // version solide
 try {
-  const config = await chargerConfig()
-  demarrerApp(config)
+  const config = await chargerConfig();
+  demarrerApp(config);
 } catch (e) {
-  console.error("Impossible de charger la config :", e.message)
-  process.exit(1)  // crash propre avec message clair
+  console.error("Impossible de charger la config :", e.message);
+  process.exit(1); // crash propre avec message clair
 }
 ```
 
@@ -223,22 +223,22 @@ Inspiré de Rust. Au lieu de throw, tu retournes un objet `{ ok, valeur, erreur 
 ```js
 async function chargerStatsSafe(matchId) {
   try {
-    const data = await chargerStats(matchId)
-    return { ok: true, valeur: data }
+    const data = await chargerStats(matchId);
+    return { ok: true, valeur: data };
   } catch (e) {
-    return { ok: false, erreur: e }
+    return { ok: false, erreur: e };
   }
 }
 
-// utilisation — zéro throw, zéro try/catch à l'extérieur
-const result = await chargerStatsSafe(42)
+// utilisation:zéro throw, zéro try/catch à l'extérieur
+const result = await chargerStatsSafe(42);
 
 if (!result.ok) {
-  console.error("stats indisponibles :", result.erreur.message)
-  return
+  console.error("stats indisponibles :", result.erreur.message);
+  return;
 }
 
-console.log("xG :", result.valeur.xG)
+console.log("xG :", result.valeur.xG);
 ```
 
 Avantage : le code appelant n'a pas à se soucier des try/catch. L'erreur est une valeur normale.
@@ -267,12 +267,12 @@ setTimeout callback   -->  hors du try/catch externe  -->  try/catch dans le cal
 Ce code a un bug silencieux. Identifie-le et corrige-le :
 
 ```js
-const joueurIds = [7, 10, 11, 99999, 9]
+const joueurIds = [7, 10, 11, 99999, 9];
 
 joueurIds.forEach(async (id) => {
-  const joueur = await fetchJoueur(id)  // peut rejeter sur 99999
-  console.log(joueur.nom)
-})
+  const joueur = await fetchJoueur(id); // peut rejeter sur 99999
+  console.log(joueur.nom);
+});
 ```
 
 Corrige pour que les erreurs soient loggées et que le traitement continue pour les autres IDs.
@@ -284,6 +284,7 @@ Corrige pour que les erreurs soient loggées et que le traitement continue pour 
 Tu as 5 matchs à charger. Certains peuvent échouer (API instable pendant le tournoi).
 
 Utilise `Promise.allSettled` pour charger tous les matchs en parallèle et retourner :
+
 - la liste des matchs réussis
 - la liste des IDs qui ont échoué avec leur message d'erreur
 
@@ -292,6 +293,7 @@ Utilise `Promise.allSettled` pour charger tous les matchs en parallèle et retou
 ## EXO 3 : SAFE WRAPPER
 
 Écris une fonction générique `safeAsync(fn, ...args)` qui :
+
 - exécute `fn(...args)` dans un try/catch
 - retourne `{ ok: true, valeur }` ou `{ ok: false, erreur }`
 

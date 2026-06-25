@@ -14,21 +14,22 @@ Et selon comment tu écris ta boucle, tu peux diviser ton temps d'exécution par
 ```js
 // sans async/await
 function getKnight() {
-  return fetch('/api/knight/leon')
-    .then(res => res.json())
-    .then(data => data)
+  return fetch("/api/knight/leon")
+    .then((res) => res.json())
+    .then((data) => data);
 }
 
 // avec async/await
-// c'est la même chose — la syntaxe change, pas le comportement
+// c'est la même chose:la syntaxe change, pas le comportement
 async function getKnight() {
-  const res = await fetch('/api/knight/leon')
-  const data = await res.json()
-  return data
+  const res = await fetch("/api/knight/leon");
+  const data = await res.json();
+  return data;
 }
 ```
 
 Ce que le moteur JS fait réellement :
+
 ```
 appel à getKnight()
   --> la fonction démarre
@@ -53,12 +54,12 @@ Deux Knights partent en mission. Tu veux les résultats des deux.
 ```js
 async function getMissions() {
   // Leon attend sa mission
-  const missionLeon = await fetchMission('leon')   // 2 secondes
+  const missionLeon = await fetchMission("leon"); // 2 secondes
   // Zaruba attend que Leon finisse, puis attend sa mission
-  const missionZaruba = await fetchMission('zaruba') // 2 secondes
+  const missionZaruba = await fetchMission("zaruba"); // 2 secondes
   // total : 4 secondes
 
-  return [missionLeon, missionZaruba]
+  return [missionLeon, missionZaruba];
 }
 ```
 
@@ -71,12 +72,12 @@ Mais avec deux `await` en séquence, tu les forces à faire la queue.
 async function getMissions() {
   // les deux fetches démarrent EN MÊME TEMPS
   const [missionLeon, missionZaruba] = await Promise.all([
-    fetchMission('leon'),
-    fetchMission('zaruba')
-  ])
+    fetchMission("leon"),
+    fetchMission("zaruba"),
+  ]);
   // total : 2 secondes (le temps du plus lent)
 
-  return [missionLeon, missionZaruba]
+  return [missionLeon, missionZaruba];
 }
 ```
 
@@ -90,15 +91,15 @@ Si une échoue : tout échoue. Si tu veux les résultats même si certains raten
 ### `forEach` + `await` : le combo qui ne fait pas ce qu'on croit
 
 ```js
-const knights = ['leon', 'zaruba', 'rei']
+const knights = ["leon", "zaruba", "rei"];
 
 // PIÈGE : ça a l'air d'attendre chaque knight, mais non
 knights.forEach(async (knight) => {
-  const mission = await fetchMission(knight)
-  console.log(mission)
-})
+  const mission = await fetchMission(knight);
+  console.log(mission);
+});
 
-console.log('missions terminées') // s'affiche EN PREMIER
+console.log("missions terminées"); // s'affiche EN PREMIER
 // forEach ignore les Promises retournées par le callback
 // les awaits tournent, mais personne n'attend leur résultat
 ```
@@ -111,8 +112,8 @@ console.log('missions terminées') // s'affiche EN PREMIER
 // chaque knight attend que le précédent soit fini
 // lent, mais prévisible et correct
 for (const knight of knights) {
-  const mission = await fetchMission(knight)
-  console.log(mission) // dans l'ordre garanti
+  const mission = await fetchMission(knight);
+  console.log(mission); // dans l'ordre garanti
 }
 ```
 
@@ -122,10 +123,10 @@ for (const knight of knights) {
 // tous les fetches partent en même temps
 // on attend que tout soit résolu
 const missions = await Promise.all(
-  knights.map(knight => fetchMission(knight))
-)
+  knights.map((knight) => fetchMission(knight)),
+);
 // missions = [missionLeon, missionZaruba, missionRei]
-// dans le même ordre que le tableau de départ — garanti
+// dans le même ordre que le tableau de départ:garanti
 ```
 
 Le résumé visuel :
@@ -148,15 +149,15 @@ Parfois, le séquentiel est obligatoire. Si tu dois utiliser le résultat d'une 
 
 async function executePlan() {
   // étape 1 : infiltrer la salle des gardes
-  const accessCode = await infiltrateGuardRoom()
+  const accessCode = await infiltrateGuardRoom();
 
   // accessCode est nécessaire pour l'étape 2
-  const tunnel = await digTunnel(accessCode)
+  const tunnel = await digTunnel(accessCode);
 
   // tunnel est nécessaire pour l'étape 3
-  const exit = await reachExit(tunnel.coordinates)
+  const exit = await reachExit(tunnel.coordinates);
 
-  return exit
+  return exit;
 }
 ```
 
@@ -168,17 +169,17 @@ Ici, pas le choix : chaque `await` dépend du précédent. Le séquentiel est le
 
 ```js
 // ERREUR : SyntaxError
-const data = await fetch('/api/data')
+const data = await fetch("/api/data");
 
 // correct : on emballe dans async
 async function loadData() {
-  const data = await fetch('/api/data')
-  return data
+  const data = await fetch("/api/data");
+  return data;
 }
 
 // ou en top-level dans un module ES
 // (ça marche dans les modules, pas dans tous les contextes)
-const data = await fetch('/api/data') // ok en ESM top-level
+const data = await fetch("/api/data"); // ok en ESM top-level
 ```
 
 ---
@@ -191,9 +192,9 @@ Le Conseil de Surveillance de Garo doit récupérer les rapports de 5 Chevaliers
 
 ```js
 function fetchReport(knight) {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(`Rapport de ${knight} : mission accomplie`), 1000)
-  })
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(`Rapport de ${knight} : mission accomplie`), 1000);
+  });
 }
 ```
 
@@ -208,14 +209,14 @@ function fetchReport(knight) {
 Ce code a l'air juste. Il est cassé.
 
 ```js
-const horrors = ['Fetalis', 'Angelia', 'Kiba Galin']
+const horrors = ["Fetalis", "Angelia", "Kiba Galin"];
 
 horrors.forEach(async (horror) => {
-  const result = await eliminateHorror(horror)
-  console.log(`${horror} éliminé : ${result}`)
-})
+  const result = await eliminateHorror(horror);
+  console.log(`${horror} éliminé : ${result}`);
+});
 
-console.log('Tous les Horrors ont été éliminés')
+console.log("Tous les Horrors ont été éliminés");
 ```
 
 **Mission :** Explique pourquoi ce code est cassé. Propose deux corrections : une séquentielle avec `for...of`, une parallèle avec `Promise.all`. Laquelle est adaptée si l'ordre d'élimination compte ? Laquelle si ça n'a pas d'importance ?

@@ -12,18 +12,18 @@ En prod, la mutation cachée est la cause numéro 1 des bugs qui "arrivent d'eux
 JS passe les objets et tableaux par référence. Pas par valeur.
 
 ```js
-const statsNaruto = { chakra: 100, force: 85, vitesse: 70 }
+const statsNaruto = { chakra: 100, force: 85, vitesse: 70 };
 
 // tu passes l'objet à une fonction
 function augmenterForce(stats) {
-  stats.force += 20 // mutation directe sur l'original
-  return stats
+  stats.force += 20; // mutation directe sur l'original
+  return stats;
 }
 
-const statsApres = augmenterForce(statsNaruto)
+const statsApres = augmenterForce(statsNaruto);
 
-console.log(statsNaruto.force) // 105 — l'original est corrompu
-console.log(statsApres === statsNaruto) // true — c'est le même objet
+console.log(statsNaruto.force); // 105:l'original est corrompu
+console.log(statsApres === statsNaruto); // true:c'est le même objet
 ```
 
 `statsNaruto` et `statsApres` pointent vers le même objet en mémoire. Y'a pas de copie. La mutation est globale.
@@ -41,17 +41,17 @@ console.log(statsApres === statsNaruto) // true — c'est le même objet
 La solution la plus courante : spread.
 
 ```js
-const statsNaruto = { chakra: 100, force: 85, vitesse: 70 }
+const statsNaruto = { chakra: 100, force: 85, vitesse: 70 };
 
 function augmenterForce(stats, bonus) {
-  return { ...stats, force: stats.force + bonus } // nouvel objet, original intact
+  return { ...stats, force: stats.force + bonus }; // nouvel objet, original intact
 }
 
-const statsApres = augmenterForce(statsNaruto, 20)
+const statsApres = augmenterForce(statsNaruto, 20);
 
-console.log(statsNaruto.force) // 85 — intact
-console.log(statsApres.force)  // 105 — nouvel objet
-console.log(statsApres === statsNaruto) // false — deux objets distincts
+console.log(statsNaruto.force); // 85:intact
+console.log(statsApres.force); // 105:nouvel objet
+console.log(statsApres === statsNaruto); // false:deux objets distincts
 ```
 
 Pour les tableaux :
@@ -59,12 +59,12 @@ Pour les tableaux :
 ```js
 const classement = ["Messi", "Haaland", "Mbappé"]
 
-// MUTATION — interdit en FP
+// MUTATION:interdit en FP
 classement.push("Bellingham")    // modifie l'original
 classement.splice(1, 1)          // modifie l'original
 classement.sort(...)             // modifie l'original
 
-// IMMUTABLE — on crée un nouveau tableau
+// IMMUTABLE:on crée un nouveau tableau
 const avecBellingham = [...classement, "Bellingham"]
 const sansMessi = classement.filter(j => j !== "Messi")
 const triés = [...classement].sort() // sort sur une copie
@@ -79,15 +79,15 @@ Spread ne copie qu'un niveau. Si l'objet est imbriqué, les références des sou
 ```js
 const joueur = {
   nom: "Goku",
-  stats: { force: 9000, vitesse: 8500 } // objet imbriqué
-}
+  stats: { force: 9000, vitesse: 8500 }, // objet imbriqué
+};
 
-const copie = { ...joueur }
+const copie = { ...joueur };
 
-copie.nom = "Vegeta" // ok, string = primitif, pas de partage
-copie.stats.force = 1 // DANGER : modifie aussi joueur.stats.force
+copie.nom = "Vegeta"; // ok, string = primitif, pas de partage
+copie.stats.force = 1; // DANGER : modifie aussi joueur.stats.force
 
-console.log(joueur.stats.force) // 1 — corrompu
+console.log(joueur.stats.force); // 1:corrompu
 ```
 
 ```
@@ -105,19 +105,19 @@ function mettreAJourForce(joueur, nouvelleForce) {
     ...joueur,
     stats: {
       ...joueur.stats,
-      force: nouvelleForce
-    }
-  }
+      force: nouvelleForce,
+    },
+  };
 }
 
 // structuredClone : deep copy native (Node 17+, navigateurs modernes)
 function mettreAJourForceDeep(joueur, nouvelleForce) {
-  const copie = structuredClone(joueur)
-  copie.stats.force = nouvelleForce
-  return copie
+  const copie = structuredClone(joueur);
+  copie.stats.force = nouvelleForce;
+  return copie;
 }
 
-// les deux sont valides — spread est plus lisible sur des objets peu profonds
+// les deux sont valides:spread est plus lisible sur des objets peu profonds
 ```
 
 ---
@@ -130,11 +130,11 @@ function mettreAJourForceDeep(joueur, nouvelleForce) {
 const config = Object.freeze({
   apiUrl: "https://foxriver.prison.com",
   timeout: 5000,
-  maxRetries: 3
-})
+  maxRetries: 3,
+});
 
-config.timeout = 9999 // silencieux en mode normal, erreur en strict mode
-console.log(config.timeout) // 5000 — la mutation n'a pas eu lieu
+config.timeout = 9999; // silencieux en mode normal, erreur en strict mode
+console.log(config.timeout); // 5000:la mutation n'a pas eu lieu
 ```
 
 Limite : `freeze` est shallow. Objets imbriqués restent mutables.
@@ -142,19 +142,19 @@ Limite : `freeze` est shallow. Objets imbriqués restent mutables.
 ```js
 const personnage = Object.freeze({
   nom: "Walter White",
-  stats: { danger: 100 } // pas freeze
-})
+  stats: { danger: 100 }, // pas freeze
+});
 
-personnage.nom = "Heisenberg"  // ignoré
-personnage.stats.danger = 9000 // OK, stats n'est pas freezé
+personnage.nom = "Heisenberg"; // ignoré
+personnage.stats.danger = 9000; // OK, stats n'est pas freezé
 
 // deep freeze si t'en as vraiment besoin
 function deepFreeze(obj) {
-  Object.getOwnPropertyNames(obj).forEach(name => {
-    const val = obj[name]
-    if (val && typeof val === "object") deepFreeze(val)
-  })
-  return Object.freeze(obj)
+  Object.getOwnPropertyNames(obj).forEach((name) => {
+    const val = obj[name];
+    if (val && typeof val === "object") deepFreeze(val);
+  });
+  return Object.freeze(obj);
 }
 ```
 
@@ -167,30 +167,31 @@ Cas réel : mettre à jour un combattant dans une liste sans muter la liste.
 ```js
 const chevaliers = [
   { id: "leon", armure: 100, actif: true },
-  { id: "rei",  armure: 80,  actif: true },
-  { id: "kouga", armure: 95, actif: true }
-]
+  { id: "rei", armure: 80, actif: true },
+  { id: "kouga", armure: 95, actif: true },
+];
 
-// MUTATION — interdit
+// MUTATION:interdit
 function blesserChevalier(liste, id, degats) {
-  const chevalier = liste.find(c => c.id === id)
-  chevalier.armure -= degats // mutation de l'objet original
-  return liste
+  const chevalier = liste.find((c) => c.id === id);
+  chevalier.armure -= degats; // mutation de l'objet original
+  return liste;
 }
 
-// IMMUTABLE — on crée une nouvelle liste avec le chevalier mis à jour
+// IMMUTABLE:on crée une nouvelle liste avec le chevalier mis à jour
 function blesserChevalier(liste, id, degats) {
-  return liste.map(c =>
-    c.id === id
-      ? { ...c, armure: c.armure - degats } // nouvel objet pour le chevalier ciblé
-      : c                                    // les autres sont réutilisés tels quels
-  )
+  return liste.map(
+    (c) =>
+      c.id === id
+        ? { ...c, armure: c.armure - degats } // nouvel objet pour le chevalier ciblé
+        : c, // les autres sont réutilisés tels quels
+  );
 }
 
-const apresAttaque = blesserChevalier(chevaliers, "leon", 30)
+const apresAttaque = blesserChevalier(chevaliers, "leon", 30);
 
-console.log(chevaliers[0].armure)   // 100 — intact
-console.log(apresAttaque[0].armure) // 70 — nouveau tableau, nouvel objet
+console.log(chevaliers[0].armure); // 100:intact
+console.log(apresAttaque[0].armure); // 70:nouveau tableau, nouvel objet
 ```
 
 ---
@@ -201,24 +202,24 @@ Les méthodes JS qui mutent en place : `push`, `pop`, `shift`, `unshift`, `splic
 
 ```js
 function classerParButs(joueurs) {
-  return joueurs.sort((a, b) => b.buts - a.buts) // mute l'original
+  return joueurs.sort((a, b) => b.buts - a.buts); // mute l'original
 }
 
 const candidats = [
   { nom: "Messi", buts: 45 },
   { nom: "Mbappé", buts: 52 },
-  { nom: "Haaland", buts: 60 }
-]
+  { nom: "Haaland", buts: 60 },
+];
 
-const classés = classerParButs(candidats)
-console.log(candidats[0].nom) // "Haaland" — l'original est réordonné
+const classés = classerParButs(candidats);
+console.log(candidats[0].nom); // "Haaland":l'original est réordonné
 ```
 
 Fix en une ligne :
 
 ```js
 function classerParButs(joueurs) {
-  return [...joueurs].sort((a, b) => b.buts - a.buts) // spread avant sort
+  return [...joueurs].sort((a, b) => b.buts - a.buts); // spread avant sort
 }
 ```
 
@@ -235,9 +236,9 @@ const inventaire = {
   medicaments: 8,
   survivants: [
     { nom: "Daryl", role: "chasseur" },
-    { nom: "Michonne", role: "guerrière" }
-  ]
-}
+    { nom: "Michonne", role: "guerrière" },
+  ],
+};
 
 // Ta mission : écrire 3 fonctions pures
 // 1. consommerNourriture(inventaire, quantite) -> nouvel inventaire avec nourriture réduite
@@ -259,8 +260,8 @@ const statsMatch = {
   score: 0,
   possession: 50,
   tirs: [],
-  joueurs: []
-}
+  joueurs: [],
+};
 
 // Écris ces fonctions en immutable :
 // marquerBut(stats) -> score + 1
@@ -278,13 +279,13 @@ const configAPI = Object.freeze({
   base: "https://api.ballondor.com",
   headers: {
     Authorization: "Bearer token_messi",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   },
-  retries: 3
-})
+  retries: 3,
+});
 
-// 1. Essaie de modifier configAPI.retries — que se passe-t-il ?
-// 2. Essaie de modifier configAPI.headers.Authorization — que se passe-t-il ?
+// 1. Essaie de modifier configAPI.retries:que se passe-t-il ?
+// 2. Essaie de modifier configAPI.headers.Authorization:que se passe-t-il ?
 // 3. Explique pourquoi le comportement est différent
 // 4. Implémente deepFreeze et applique-le à configAPI
 ```
@@ -295,12 +296,15 @@ const configAPI = Object.freeze({
 
 ```js
 const bracket = [
-  { round: 1, combats: [
-    { id: "c1", ninja1: "Naruto", ninja2: "Sasuke", gagnant: null },
-    { id: "c2", ninja1: "Gaara",  ninja2: "Rock Lee", gagnant: null }
-  ]},
-  { round: 2, combats: [] }
-]
+  {
+    round: 1,
+    combats: [
+      { id: "c1", ninja1: "Naruto", ninja2: "Sasuke", gagnant: null },
+      { id: "c2", ninja1: "Gaara", ninja2: "Rock Lee", gagnant: null },
+    ],
+  },
+  { round: 2, combats: [] },
+];
 
 // Écris declareGagnant(bracket, combatId, gagnant)
 // Elle doit retourner un nouveau bracket avec le gagnant mis à jour

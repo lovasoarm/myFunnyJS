@@ -22,7 +22,7 @@ function NinjaOldSchool(nom, village) {
   this.nom = nom;
   this.village = village;
 }
-NinjaOldSchool.prototype.presenter = function() {
+NinjaOldSchool.prototype.presenter = function () {
   return `${this.nom}, ninja du village ${this.village}`;
 };
 ```
@@ -46,7 +46,9 @@ Contrairement à une fonction constructeur classique (fichier 02, section 3), un
 
 ```js
 class Test {
-  presenter() { return "salut"; }
+  presenter() {
+    return "salut";
+  }
 }
 console.log(Object.keys(Test.prototype)); // []
 ```
@@ -103,34 +105,34 @@ ES2022 a ajouté les class fields : la propriété déclarée directement dans l
 // AVANT ES2022 : toutes les propriétés passaient par le constructor
 class NinjaOld {
   constructor(nom) {
-    this.nom = nom
-    this.chakra = 100      // propriété initialisée dans le constructor
-    this.missions = []     // tableau partagé... ou pas ? (on y revient)
+    this.nom = nom;
+    this.chakra = 100; // propriété initialisée dans le constructor
+    this.missions = []; // tableau partagé... ou pas ? (on y revient)
   }
 }
 
 // AVEC ES2022 : class fields, posées directement dans la classe
 class Ninja {
-  chakra = 100             // chaque instance a SA PROPRE valeur chakra = 100
-  missions = []            // chaque instance a son PROPRE tableau (pas partagé)
-  #secret = "clé secrète"  // # : champ privé, inaccessible de l'extérieur
+  chakra = 100; // chaque instance a SA PROPRE valeur chakra = 100
+  missions = []; // chaque instance a son PROPRE tableau (pas partagé)
+  #secret = "clé secrète"; // # : champ privé, inaccessible de l'extérieur
 
   constructor(nom) {
-    this.nom = nom         // le constructor ne gère plus que les params dynamiques
+    this.nom = nom; // le constructor ne gère plus que les params dynamiques
   }
 
   révéler() {
-    return this.#secret    // accessible uniquement ici
+    return this.#secret; // accessible uniquement ici
   }
 }
 
-const n1 = new Ninja("Naruto")
-const n2 = new Ninja("Sasuke")
+const n1 = new Ninja("Naruto");
+const n2 = new Ninja("Sasuke");
 
-n1.missions.push("Mission A")
-console.log(n2.missions)  // [] : tableau indépendant, pas le même objet
+n1.missions.push("Mission A");
+console.log(n2.missions); // [] : tableau indépendant, pas le même objet
 
-console.log(n1.#secret)   // SyntaxError : champ privé inaccessible de l'extérieur
+console.log(n1.#secret); // SyntaxError : champ privé inaccessible de l'extérieur
 ```
 
 **Le piège classique résolu** : avant les class fields, si tu mettais `this.missions = []` dans le prototype (par accident ou par habitude), TOUTES les instances partageaient le MÊME tableau. Avec `missions = []` en class field, chaque instance obtient son propre tableau à la création. Plus de partage accidentel.
@@ -203,18 +205,19 @@ Une feature a été livrée en prod. Les tests passent. Mais un utilisateur sign
 ```js
 class Ninja {
   constructor(nom) {
-    this.nom = nom
+    this.nom = nom;
   }
 }
-Ninja.prototype.missions = []  // posé à la main sur le prototype
+Ninja.prototype.missions = []; // posé à la main sur le prototype
 
-const n1 = new Ninja('Naruto')
-const n2 = new Ninja('Sasuke')
-n1.missions.push('Mission C')
-console.log(n2.missions) // ['Mission C'] — bug en prod
+const n1 = new Ninja("Naruto");
+const n2 = new Ninja("Sasuke");
+n1.missions.push("Mission C");
+console.log(n2.missions); // ['Mission C']:bug en prod
 ```
 
 Ta mission :
+
 - Explique exactement pourquoi ce bug existe (chaîne prototype + référence partagée).
 - Corrige le bug en utilisant les class fields ES2022.
 - Prouve que la correction fonctionne en montrant que `n2.missions` est bien vide après le push sur `n1`.
@@ -240,6 +243,7 @@ class Chevalier {
 ```
 
 Ton tech lead veut une réponse claire avec justification. Écris un programme qui :
+
 - Tente de modifier `niveau` depuis l'extérieur sur les deux versions.
 - Note exactement à quel moment chaque protection intervient (runtime vs compilation).
 - Conclut quel choix est plus sûr en production, et dans quel cas l'autre reste utile.

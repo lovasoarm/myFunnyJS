@@ -50,7 +50,7 @@ Avant d'installer un framework, comprendre ce qu'on fait.
 Un contrat basique, à la main :
 
 ```js
-// contract.json — le contrat défini par le Consumer (service B)
+// contract.json:le contrat défini par le Consumer (service B)
 {
   "consumer": "dashboard",
   "provider": "joueurs-api",
@@ -86,42 +86,42 @@ Si la réponse ne matche pas : le provider sait qu'il a cassé quelque chose pou
 Pour des projets JS simples, on peut valider des contrats sans Pact.
 
 ```js
-// contractValidator.js — validateur de contrat maison
+// contractValidator.js:validateur de contrat maison
 function validContrat(réponseRéelle, schémaAttendu) {
   for (const [clé, typeAttendu] of Object.entries(schémaAttendu)) {
     if (!(clé in réponseRéelle)) {
-      throw new Error(`Contrat cassé : champ '${clé}' absent de la réponse`)
+      throw new Error(`Contrat cassé : champ '${clé}' absent de la réponse`);
     }
     if (typeof réponseRéelle[clé] !== typeAttendu) {
       throw new Error(
-        `Contrat cassé : '${clé}' doit être ${typeAttendu}, reçu ${typeof réponseRéelle[clé]}`
-      )
+        `Contrat cassé : '${clé}' doit être ${typeAttendu}, reçu ${typeof réponseRéelle[clé]}`,
+      );
     }
   }
-  return true
+  return true;
 }
 
-module.exports = { validContrat }
+module.exports = { validContrat };
 ```
 
 ```js
 // joueurAPI.contract.test.js
-const { validContrat } = require('./contractValidator')
-const { getJoueur } = require('./joueurAPI') // la vraie implémentation
+const { validContrat } = require("./contractValidator");
+const { getJoueur } = require("./joueurAPI"); // la vraie implémentation
 
 // Le contrat : ce que le consumer dashboard attend
 const contratJoueur = {
-  id: 'number',
-  name: 'string',    // si l'API retourne 'fullName', ce test casse
-  buts: 'number'
-}
+  id: "number",
+  name: "string", // si l'API retourne 'fullName', ce test casse
+  buts: "number",
+};
 
-describe('Contrat : joueurs-api --> dashboard', () => {
-  it('GET /joueurs/:id respecte le contrat du consumer', async () => {
-    const réponse = await getJoueur(10)
-    expect(() => validContrat(réponse, contratJoueur)).not.toThrow()
-  })
-})
+describe("Contrat : joueurs-api --> dashboard", () => {
+  it("GET /joueurs/:id respecte le contrat du consumer", async () => {
+    const réponse = await getJoueur(10);
+    expect(() => validContrat(réponse, contratJoueur)).not.toThrow();
+  });
+});
 ```
 
 Si l'équipe A renomme `name` en `fullName` : ce test casse immédiatement, avant le déploiement.
@@ -143,34 +143,34 @@ Concept clé de Pact :
 
 ```js
 // Côté Consumer (avec @pact-foundation/pact)
-const { PactV3, MatchersV3 } = require('@pact-foundation/pact')
+const { PactV3, MatchersV3 } = require("@pact-foundation/pact");
 
 const provider = new PactV3({
-  consumer: 'dashboard',
-  provider: 'joueurs-api',
-})
+  consumer: "dashboard",
+  provider: "joueurs-api",
+});
 
-describe('consumer contract', () => {
-  it('peut récupérer un joueur', async () => {
+describe("consumer contract", () => {
+  it("peut récupérer un joueur", async () => {
     await provider
       .addInteraction({
-        uponReceiving: 'une requête pour un joueur par ID',
-        withRequest: { method: 'GET', path: '/joueurs/10' },
+        uponReceiving: "une requête pour un joueur par ID",
+        withRequest: { method: "GET", path: "/joueurs/10" },
         willRespondWith: {
           status: 200,
           body: {
             id: MatchersV3.integer(10),
-            name: MatchersV3.string('Lionel Messi'),
-            buts: MatchersV3.integer(700)
-          }
-        }
+            name: MatchersV3.string("Lionel Messi"),
+            buts: MatchersV3.integer(700),
+          },
+        },
       })
       .executeTest(async (mockProvider) => {
-        const joueur = await getJoueur(mockProvider.url, 10)
-        expect(joueur.name).toBe('Lionel Messi')
-      })
-  })
-})
+        const joueur = await getJoueur(mockProvider.url, 10);
+        expect(joueur.name).toBe("Lionel Messi");
+      });
+  });
+});
 // --> génère un fichier pact que le provider vérifie
 ```
 
@@ -203,6 +203,7 @@ Le contract testing est un outil d'équipe, pas un outil solo.
 Michael Scofield a construit deux services pour l'évasion : le service `plans-api` expose les plans de sections de la prison, et le service `execution-dashboard` les consomme pour afficher les checkpoints en temps réel.
 
 La `plans-api` retourne actuellement :
+
 ```js
 { sectionId: number, nom: string, accès: string, gardien: string }
 ```
@@ -211,6 +212,7 @@ L'équipe de Lincoln veut renommer `gardien` en `responsable` pour "plus de clar
 T-Bag, lui, veut carrément supprimer le champ `accès` parce qu'il "n'en a pas besoin".
 
 Ton boulot :
+
 - Écris le contrat que `execution-dashboard` attendrait dans ce format (en JSON ou en schéma JS).
 - Écris le `contractValidator` qui vérifie ce contrat contre une réponse mockée.
 - Écris deux tests : un qui passe avec le format actuel, un qui casse avec la proposition de T-Bag.
@@ -223,6 +225,7 @@ Ton boulot :
 Tu hérites d'un contrat qui attend `{ joueur: string, buts: number, assists: number }`.
 
 Le provider a refactorisé sans prévenir et retourne maintenant :
+
 ```js
 { joueur: string, stats: { buts: number, assists: number } }
 ```
@@ -230,6 +233,7 @@ Le provider a refactorisé sans prévenir et retourne maintenant :
 Le consumer n'a pas encore été mis à jour. En prod : `buts` et `assists` sont `undefined` partout.
 
 Écris :
+
 - Le test de contrat qui aurait détecté ce breaking change avant le déploiement.
 - Une fonction `adaptateur(réponseNouveau)` qui transforme le nouveau format vers l'ancien, pour permettre une migration progressive sans bloquer le consumer.
 - Un test qui prouve que l'adaptateur préserve le contrat original.

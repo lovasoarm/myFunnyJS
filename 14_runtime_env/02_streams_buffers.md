@@ -12,20 +12,20 @@ Un Buffer, c'est un bloc de mémoire brute en dehors du heap V8. Il stocke des d
 
 ```js
 // créer un buffer depuis une string
-const buf = Buffer.from('Ballon dOrient', 'utf-8')
+const buf = Buffer.from("Ballon dOrient", "utf-8");
 // les octets bruts : [66, 97, 108, 108, 111, 110, ...]
-console.log(buf)
+console.log(buf);
 
 // lire la longueur en octets (pas en caractères)
-console.log(buf.length)   // 14 octets pour 14 caractères ASCII
-                          // mais un 'é' UTF-8 = 2 octets, pas 1
+console.log(buf.length); // 14 octets pour 14 caractères ASCII
+// mais un 'é' UTF-8 = 2 octets, pas 1
 
 // convertir en string
-console.log(buf.toString('utf-8'))  // 'Ballon dOrient'
+console.log(buf.toString("utf-8")); // 'Ballon dOrient'
 
 // buffer depuis un tableau d'octets
-const raw = Buffer.from([0x48, 0x65, 0x6c, 0x6c, 0x6f])
-console.log(raw.toString())  // 'Hello'
+const raw = Buffer.from([0x48, 0x65, 0x6c, 0x6c, 0x6f]);
+console.log(raw.toString()); // 'Hello'
 ```
 
 Le buffer existe parce que V8 ne gère pas efficacement les données binaires massives. Pour les fichiers, les sockets, les streams réseau : tout passe par des Buffers avant de devenir des strings.
@@ -42,28 +42,28 @@ Transform   -->  on reçoit, on transforme, on renvoie (compression gzip, chiffr
 ```
 
 ```js
-import { createReadStream, createWriteStream } from 'node:fs'
+import { createReadStream, createWriteStream } from "node:fs";
 
 // lire un fichier de log en stream
 // jamais chargé entièrement en mémoire : chunk par chunk
-const reader = createReadStream('./logs/match.log', {
-  encoding: 'utf-8',
-  highWaterMark: 64 * 1024  // taille des chunks : 64KB à la fois
-})
+const reader = createReadStream("./logs/match.log", {
+  encoding: "utf-8",
+  highWaterMark: 64 * 1024, // taille des chunks : 64KB à la fois
+});
 
-reader.on('data', (chunk) => {
+reader.on("data", (chunk) => {
   // chunk = un morceau du fichier, pas le fichier entier
-  process.stdout.write(chunk)
-})
+  process.stdout.write(chunk);
+});
 
-reader.on('end', () => {
-  console.log('fichier lu complètement')
-})
+reader.on("end", () => {
+  console.log("fichier lu complètement");
+});
 
-reader.on('error', (err) => {
+reader.on("error", (err) => {
   // si le fichier n'existe pas, si les permissions manquent
-  console.error('erreur lecture :', err.message)
-})
+  console.error("erreur lecture :", err.message);
+});
 ```
 
 ---
@@ -71,20 +71,20 @@ reader.on('error', (err) => {
 ## 3) LE PIPE : BRANCHER UN STREAM SUR UN AUTRE
 
 ```js
-import { createReadStream, createWriteStream } from 'node:fs'
-import { createGzip } from 'node:zlib'
+import { createReadStream, createWriteStream } from "node:fs";
+import { createGzip } from "node:zlib";
 
 // compresser un fichier de 500MB sans jamais le charger en mémoire
 // chaque chunk est lu --> compressé --> écrit immédiatement
-createReadStream('./replays/finale.mp4')
-  .pipe(createGzip())                        // transform : compresse à la volée
-  .pipe(createWriteStream('./replays/finale.mp4.gz'))
-  .on('finish', () => {
-    console.log('compression terminée')
-  })
+createReadStream("./replays/finale.mp4")
+  .pipe(createGzip()) // transform : compresse à la volée
+  .pipe(createWriteStream("./replays/finale.mp4.gz"))
+  .on("finish", () => {
+    console.log("compression terminée");
+  });
 
 // ce qui se passe en mémoire pendant l'opération :
-// pas 500MB — juste 64KB de buffer à la fois
+// pas 500MB:juste 64KB de buffer à la fois
 // le reste : toujours sur le disque
 ```
 
@@ -93,24 +93,24 @@ createReadStream('./replays/finale.mp4')
 ## 4) STREAM AVEC ASYNC ITERATOR : LA FAÇON MODERNE
 
 ```js
-import { createReadStream } from 'node:fs'
-import { createInterface } from 'node:readline'
+import { createReadStream } from "node:fs";
+import { createInterface } from "node:readline";
 
 // lire un fichier CSV ligne par ligne
 // sans jamais charger tout le CSV en mémoire
 async function processMatchStats(filepath) {
-  const stream = createReadStream(filepath)
-  const lines = createInterface({ input: stream })
+  const stream = createReadStream(filepath);
+  const lines = createInterface({ input: stream });
 
-  const results = []
+  const results = [];
 
   for await (const line of lines) {
     // chaque ligne arrive une par une
-    const [joueur, buts, passes] = line.split(',')
-    results.push({ joueur, buts: +buts, passes: +passes })
+    const [joueur, buts, passes] = line.split(",");
+    results.push({ joueur, buts: +buts, passes: +passes });
   }
 
-  return results
+  return results;
 }
 
 // sur un CSV de 1M de lignes : mémoire stable
@@ -123,30 +123,30 @@ async function processMatchStats(filepath) {
 
 ```js
 // le problème : le readable envoie plus vite que le writable peut consommer
-const fastReader = createReadStream('./big_file.bin')
-const slowWriter = createWriteStream('./output.bin')
+const fastReader = createReadStream("./big_file.bin");
+const slowWriter = createWriteStream("./output.bin");
 
 // mauvaise version : on ignore le signal "stop"
-fastReader.on('data', (chunk) => {
-  slowWriter.write(chunk)  // write() retourne false si le buffer est plein
-                           // on ignore ça -> la mémoire explose
-})
+fastReader.on("data", (chunk) => {
+  slowWriter.write(chunk); // write() retourne false si le buffer est plein
+  // on ignore ça -> la mémoire explose
+});
 
 // bonne version : on respecte la backpressure
-fastReader.on('data', (chunk) => {
-  const canContinue = slowWriter.write(chunk)
+fastReader.on("data", (chunk) => {
+  const canContinue = slowWriter.write(chunk);
   if (!canContinue) {
     // le writer est saturé : on pause le reader
-    fastReader.pause()
-    slowWriter.once('drain', () => {
+    fastReader.pause();
+    slowWriter.once("drain", () => {
       // le writer a vidé son buffer : on reprend
-      fastReader.resume()
-    })
+      fastReader.resume();
+    });
   }
-})
+});
 
 // version encore plus simple : pipe() gère la backpressure automatiquement
-fastReader.pipe(slowWriter)
+fastReader.pipe(slowWriter);
 ```
 
 La backpressure c'est le mécanisme qui empêche un stream rapide de noyer un stream lent. `pipe()` le gère pour toi. Si tu gères les events manuellement : t'as besoin de le gérer toi-même.
@@ -156,32 +156,30 @@ La backpressure c'est le mécanisme qui empêche un stream rapide de noyer un st
 ## 6) STREAM TRANSFORM : FABRIQUER LE SIEN
 
 ```js
-import { Transform } from 'node:stream'
+import { Transform } from "node:stream";
 
 // un transformer qui compte les buts dans un flux de données de match
 class GoalCounter extends Transform {
   constructor() {
-    super({ objectMode: true })  // on travaille avec des objets, pas des buffers
-    this.goals = 0
+    super({ objectMode: true }); // on travaille avec des objets, pas des buffers
+    this.goals = 0;
   }
 
   _transform(event, encoding, callback) {
     // event = un objet JS qui représente un event du match
-    if (event.type === 'goal') {
-      this.goals++
-      this.push({ ...event, totalGoals: this.goals })  // on enrichit et on passe
+    if (event.type === "goal") {
+      this.goals++;
+      this.push({ ...event, totalGoals: this.goals }); // on enrichit et on passe
     } else {
-      this.push(event)  // on laisse passer sans modifier
+      this.push(event); // on laisse passer sans modifier
     }
-    callback()  // "j'ai fini, envoie le prochain chunk"
+    callback(); // "j'ai fini, envoie le prochain chunk"
   }
 }
 
 // usage
-const counter = new GoalCounter()
-matchEventStream
-  .pipe(counter)
-  .pipe(destinationStream)
+const counter = new GoalCounter();
+matchEventStream.pipe(counter).pipe(destinationStream);
 ```
 
 ---
@@ -205,12 +203,12 @@ T'as un fichier de logs bruts. Chaque ligne est un event JSON. Écris un Transfo
 Ce code fonctionne sur un fichier de 10MB. Il crash sur un fichier de 2GB avec un `Heap out of memory`. Pourquoi ? Comment le corriger ?
 
 ```js
-import { readFile, writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from "node:fs/promises";
 
 async function processLog(input, output) {
-  const content = await readFile(input, 'utf-8')
-  const lines = content.split('\n').filter(l => l.includes('ERROR'))
-  await writeFile(output, lines.join('\n'))
+  const content = await readFile(input, "utf-8");
+  const lines = content.split("\n").filter((l) => l.includes("ERROR"));
+  await writeFile(output, lines.join("\n"));
 }
 ```
 

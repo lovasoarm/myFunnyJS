@@ -70,28 +70,28 @@ Tout le reste disparaît.
 
 ## 3) LES RÉFÉRENCES : LE SEUL CRITÈRE QUI COMPTE
 
-Le GC ne regarde pas si tu *utilises encore* un objet.
-Il regarde si quelque chose *pointe encore* vers cet objet.
+Le GC ne regarde pas si tu _utilises encore_ un objet.
+Il regarde si quelque chose _pointe encore_ vers cet objet.
 
 ```js
 // Naruto crée son clone
-let clone = { name: "Kage Bunshin", power: 100 }
+let clone = { name: "Kage Bunshin", power: 100 };
 
-// Le clone disparaît — la mémoire peut être libérée
-clone = null
+// Le clone disparaît:la mémoire peut être libérée
+clone = null;
 // ✓ plus aucune référence → le GC peut nettoyer
 
 // ---
 
 // Sasuke garde une référence dans une liste globale
-const activeNinjas = []
-let ennemi = { name: "T-Bag" }  // oui, T-Bag, il s'est infiltré
-activeNinjas.push(ennemi)
+const activeNinjas = [];
+let ennemi = { name: "T-Bag" }; // oui, T-Bag, il s'est infiltré
+activeNinjas.push(ennemi);
 
-ennemi = null
+ennemi = null;
 // ✗ la mémoire ne sera PAS libérée
 // activeNinjas[0] pointe encore vers l'objet
-// T-Bag reste en mémoire — pour l'éternité
+// T-Bag reste en mémoire:pour l'éternité
 ```
 
 **C'est le piège numéro un.** Tu "supprimes" une variable, mais l'objet vit encore ailleurs.
@@ -104,15 +104,15 @@ Un cycle, c'est quand A pointe vers B, et B pointe vers A.
 
 ```js
 // Goku et Végéta se référencent mutuellement
-const goku = { name: "Goku" }
-const vegeta = { name: "Végéta" }
+const goku = { name: "Goku" };
+const vegeta = { name: "Végéta" };
 
-goku.rival = vegeta
-vegeta.rival = goku
+goku.rival = vegeta;
+vegeta.rival = goku;
 
 // On "supprime" les deux
-goku = null  // ← impossible, const — mais pour l'exemple
-vegeta = null
+goku = null; // ← impossible, const:mais pour l'exemple
+vegeta = null;
 ```
 
 ```
@@ -144,10 +144,10 @@ Une fuite mémoire, c'est un objet qu'on ne veut plus, mais que le GC ne peut pa
 
 ```js
 // Le système de logs de Fox River
-const prisonLogs = []
+const prisonLogs = [];
 
 function logEvent(event) {
-  prisonLogs.push({ event, timestamp: Date.now() })
+  prisonLogs.push({ event, timestamp: Date.now() });
   // on ajoute, on n'enlève jamais
   // après 100 000 events : 100 000 objets en mémoire, pour toujours
 }
@@ -156,12 +156,12 @@ function logEvent(event) {
 Correction : limiter la taille ou utiliser un ring buffer.
 
 ```js
-const MAX_LOGS = 500
-const prisonLogs = []
+const MAX_LOGS = 500;
+const prisonLogs = [];
 
 function logEvent(event) {
-  if (prisonLogs.length >= MAX_LOGS) prisonLogs.shift()
-  prisonLogs.push({ event, timestamp: Date.now() })
+  if (prisonLogs.length >= MAX_LOGS) prisonLogs.shift();
+  prisonLogs.push({ event, timestamp: Date.now() });
 }
 ```
 
@@ -172,7 +172,7 @@ function logEvent(event) {
 ```js
 // Chaque fois qu'un Chevalier de la Flamme entre en combat
 function startCombat(knight) {
-  document.addEventListener('keydown', knight.handleInput)
+  document.addEventListener("keydown", knight.handleInput);
   // le combat finit... mais le listener reste attaché
   // chaque nouveau combat en ajoute un autre
   // Walter White dirait : c'est de la mauvaise chimie
@@ -183,16 +183,16 @@ Correction : retirer le listener quand on n'en a plus besoin.
 
 ```js
 function startCombat(knight) {
-  document.addEventListener('keydown', knight.handleInput)
+  document.addEventListener("keydown", knight.handleInput);
 
   return function cleanup() {
-    document.removeEventListener('keydown', knight.handleInput)
-  }
+    document.removeEventListener("keydown", knight.handleInput);
+  };
 }
 
-const stop = startCombat(knight)
+const stop = startCombat(knight);
 // ... combat terminé ...
-stop()  // on libère
+stop(); // on libère
 ```
 
 ---
@@ -202,30 +202,30 @@ stop()  // on libère
 ```js
 // Le cache de métriques du dashboard des ultras
 function createCache() {
-  const bigData = new Array(1_000_000).fill("stat")
+  const bigData = new Array(1_000_000).fill("stat");
 
   return function getMetric(id) {
     // cette closure capture bigData en entier
     // bigData vivra aussi longtemps que getMetric est en vie
-    return bigData[id]
-  }
+    return bigData[id];
+  };
 }
 
-const cache = createCache()
-// cache garde bigData en vie — même si on n'en utilise que 3 valeurs
+const cache = createCache();
+// cache garde bigData en vie:même si on n'en utilise que 3 valeurs
 ```
 
 Correction : extraire seulement ce dont on a besoin.
 
 ```js
 function createCache() {
-  const bigData = new Array(1_000_000).fill("stat")
-  const needed = { 0: bigData[0], 1: bigData[1], 2: bigData[2] }
+  const bigData = new Array(1_000_000).fill("stat");
+  const needed = { 0: bigData[0], 1: bigData[1], 2: bigData[2] };
   // bigData peut maintenant être collecté par le GC
 
   return function getMetric(id) {
-    return needed[id]
-  }
+    return needed[id];
+  };
 }
 ```
 
@@ -239,15 +239,15 @@ function createCache() {
 // Stocker des données liées à des objets DOM
 // sans empêcher la libération quand l'élément est retiré du DOM
 
-const metadata = new WeakMap()
+const metadata = new WeakMap();
 
-let bouton = document.getElementById('attack-btn')
-metadata.set(bouton, { clicks: 0, lastUsed: Date.now() })
+let bouton = document.getElementById("attack-btn");
+metadata.set(bouton, { clicks: 0, lastUsed: Date.now() });
 
 // Quand bouton est retiré du DOM et dereferencé :
-bouton = null
+bouton = null;
 // la clé disparaît du WeakMap automatiquement
-// les metadata aussi — le GC peut tout nettoyer
+// les metadata aussi:le GC peut tout nettoyer
 ```
 
 Avec un `Map` classique : la clé survit, les données survivent, l'objet DOM survit. Fuite mémoire garantie si tu fais ça sur 10 000 éléments.
@@ -271,26 +271,26 @@ map ── ~ ──► { key: bouton } (référence faible)
 T-Bag s'est infiltré dans le système de Fox River. À chaque connexion, on crée un objet `session`. Le problème : les sessions ne sont jamais supprimées. Après 10 000 connexions de T-Bag, le serveur meurt.
 
 ```js
-const sessions = {}
+const sessions = {};
 
 function createSession(userId) {
   sessions[userId] = {
     userId,
     token: Math.random().toString(36),
     createdAt: Date.now(),
-    data: new Array(10_000).fill("payload")
-  }
-  return sessions[userId].token
+    data: new Array(10_000).fill("payload"),
+  };
+  return sessions[userId].token;
 }
 
 function getSession(userId) {
-  return sessions[userId]
+  return sessions[userId];
 }
 ```
 
 **Ta mission :** identifier la fuite, corriger `createSession` avec une fonction `deleteSession`, et ajouter une expiration automatique après 30 minutes.
 
-*(Indice : `Date.now()` retourne des millisecondes)*
+_(Indice : `Date.now()` retourne des millisecondes)_
 
 ---
 
@@ -302,10 +302,10 @@ Dans le dashboard des ultras, chaque fois qu'un nouveau match commence, on attac
 function startLiveMatch(matchId) {
   const handler = (event) => {
     if (event.detail.matchId === matchId) {
-      updateScore(event.detail)
+      updateScore(event.detail);
     }
-  }
-  window.addEventListener('matchEvent', handler)
+  };
+  window.addEventListener("matchEvent", handler);
 }
 ```
 
@@ -318,22 +318,22 @@ function startLiveMatch(matchId) {
 Voici deux implémentations d'un système de cache pour les ninjas actifs en combat.
 
 ```js
-// Version A — Map classique
-const ninjaCache = new Map()
+// Version A:Map classique
+const ninjaCache = new Map();
 
 function registerNinja(ninja) {
-  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 })
+  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
 }
 
-// Version B — WeakMap
-const ninjaCache = new WeakMap()
+// Version B:WeakMap
+const ninjaCache = new WeakMap();
 
 function registerNinja(ninja) {
-  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 })
+  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
 }
 ```
 
-**Ta mission :** expliquer dans quels scénarios chaque version cause une fuite mémoire. Écrire un test qui démontre la différence. *(Indice : que se passe-t-il si `ninja` est un objet DOM ? Un objet long-lived ? Un objet temporaire ?)*
+**Ta mission :** expliquer dans quels scénarios chaque version cause une fuite mémoire. Écrire un test qui démontre la différence. _(Indice : que se passe-t-il si `ninja` est un objet DOM ? Un objet long-lived ? Un objet temporaire ?)_
 
 ---
 

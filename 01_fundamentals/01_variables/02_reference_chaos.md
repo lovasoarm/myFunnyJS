@@ -51,8 +51,8 @@ console.log(team[0].hp); // 150 —> ton "backup" a modifié l'original
 Pour créer un **nouveau** tableau ou objet :
 
 ```js
-let newArr = [...arr1];      // spread operator
-let newObj = { ...obj1 };   // idem pour les objets
+let newArr = [...arr1]; // spread operator
+let newObj = { ...obj1 }; // idem pour les objets
 ```
 
 Maintenant `newArr` et `arr1` sont deux tableaux distincts.
@@ -69,6 +69,7 @@ newArr --> [ 1, 2, 3 ]  (copie : adresse différente)
 ## MISSION : Team Crazy Zombies
 
 ### Objectif
+
 Voir concrètement que deux variables peuvent pointer sur le même tableau.
 
 ### Instructions

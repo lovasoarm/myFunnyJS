@@ -33,40 +33,40 @@ L'idée : un noeud peut être traité quand tous ses prédécesseurs ont été t
 function topoSortKahn(graph) {
   // graph : Map<node, Set<neighbor>> (arêtes sortantes)
   // calculer l'in-degree de chaque noeud
-  const inDegree = new Map()
-  for (const node of graph.keys()) inDegree.set(node, 0)
+  const inDegree = new Map();
+  for (const node of graph.keys()) inDegree.set(node, 0);
 
   for (const [, neighbors] of graph) {
     for (const neighbor of neighbors) {
-      inDegree.set(neighbor, (inDegree.get(neighbor) || 0) + 1)
+      inDegree.set(neighbor, (inDegree.get(neighbor) || 0) + 1);
     }
   }
 
   // queue : tous les noeuds sans prédécesseur
-  const queue = []
+  const queue = [];
   for (const [node, degree] of inDegree) {
-    if (degree === 0) queue.push(node)
+    if (degree === 0) queue.push(node);
   }
 
-  const result = []
+  const result = [];
 
   while (queue.length > 0) {
-    const node = queue.shift()
-    result.push(node)
+    const node = queue.shift();
+    result.push(node);
 
-    for (const neighbor of (graph.get(node) || [])) {
-      inDegree.set(neighbor, inDegree.get(neighbor) - 1)
+    for (const neighbor of graph.get(node) || []) {
+      inDegree.set(neighbor, inDegree.get(neighbor) - 1);
       // ce voisin est maintenant libre si tous ses prédécesseurs sont traités
-      if (inDegree.get(neighbor) === 0) queue.push(neighbor)
+      if (inDegree.get(neighbor) === 0) queue.push(neighbor);
     }
   }
 
   // si result n'a pas tous les noeuds : il y avait un cycle
   if (result.length !== graph.size) {
-    throw new Error("Cycle détecté : topological sort impossible")
+    throw new Error("Cycle détecté : topological sort impossible");
   }
 
-  return result
+  return result;
 }
 ```
 
@@ -77,28 +77,29 @@ function topoSortKahn(graph) {
 ```js
 // Modules et leurs dépendances (A dépend de B => arête A→B)
 const modules = new Map([
-  ["app",      new Set(["router", "store", "utils"])],
-  ["router",   new Set(["utils"])],
-  ["store",    new Set(["api", "utils"])],
-  ["api",      new Set(["utils", "config"])],
-  ["utils",    new Set(["config"])],
-  ["config",   new Set()],
-])
+  ["app", new Set(["router", "store", "utils"])],
+  ["router", new Set(["utils"])],
+  ["store", new Set(["api", "utils"])],
+  ["api", new Set(["utils", "config"])],
+  ["utils", new Set(["config"])],
+  ["config", new Set()],
+]);
 
-console.log(topoSortKahn(modules))
+console.log(topoSortKahn(modules));
 // ["config", "utils", "api", "router", "store", "app"]
 // ou une autre permutation valide
 // contrainte : config avant utils, utils avant api, etc.
 ```
 
 **Trace :**
+
 ```
-in-degrees : config=0, utils=1, api=1, router=1, store=1, app=0... 
+in-degrees : config=0, utils=1, api=1, router=1, store=1, app=0...
              config=0 (personne ne dépend de config comme source? Si, utils dépend de config)
              Recalcul :
              config : in=0 (personne ne pointe vers config)
              utils  : in=2 (router et app et store... non)
-             
+
 Arêtes : app→router, app→store, app→utils
          router→utils
          store→api, store→utils
@@ -144,36 +145,37 @@ DFS post-order : explorer récursivement, ajouter un noeud au résultat **après
 
 ```js
 function topoSortDFS(graph) {
-  const visited = new Set()
-  const onStack = new Set() // pour détecter les cycles
-  const result = []
+  const visited = new Set();
+  const onStack = new Set(); // pour détecter les cycles
+  const result = [];
 
   function dfs(node) {
     if (onStack.has(node)) {
-      throw new Error(`Cycle détecté au noeud: ${node}`)
+      throw new Error(`Cycle détecté au noeud: ${node}`);
     }
-    if (visited.has(node)) return
+    if (visited.has(node)) return;
 
-    onStack.add(node)
-    visited.add(node)
+    onStack.add(node);
+    visited.add(node);
 
-    for (const neighbor of (graph.get(node) || [])) {
-      dfs(neighbor)
+    for (const neighbor of graph.get(node) || []) {
+      dfs(neighbor);
     }
 
-    onStack.delete(node)
-    result.push(node) // post-order : après avoir visité tous les voisins
+    onStack.delete(node);
+    result.push(node); // post-order : après avoir visité tous les voisins
   }
 
   for (const node of graph.keys()) {
-    if (!visited.has(node)) dfs(node)
+    if (!visited.has(node)) dfs(node);
   }
 
-  return result.reverse() // inverser pour avoir l'ordre topologique
+  return result.reverse(); // inverser pour avoir l'ordre topologique
 }
 ```
 
 **Différence Kahn vs DFS :**
+
 ```
 Kahn (BFS) :
 + Détecte le cycle clairement (résultat incomplet)
@@ -193,27 +195,29 @@ DFS :
 
 ```js
 function hasCycle(graph) {
-  const WHITE = 0, GRAY = 1, BLACK = 2
-  const color = new Map()
-  for (const node of graph.keys()) color.set(node, WHITE)
+  const WHITE = 0,
+    GRAY = 1,
+    BLACK = 2;
+  const color = new Map();
+  for (const node of graph.keys()) color.set(node, WHITE);
 
   function dfs(node) {
-    color.set(node, GRAY) // en cours de traitement
+    color.set(node, GRAY); // en cours de traitement
 
-    for (const neighbor of (graph.get(node) || [])) {
-      if (color.get(neighbor) === GRAY) return true  // back edge = cycle
-      if (color.get(neighbor) === WHITE && dfs(neighbor)) return true
+    for (const neighbor of graph.get(node) || []) {
+      if (color.get(neighbor) === GRAY) return true; // back edge = cycle
+      if (color.get(neighbor) === WHITE && dfs(neighbor)) return true;
     }
 
-    color.set(node, BLACK) // traitement terminé
-    return false
+    color.set(node, BLACK); // traitement terminé
+    return false;
   }
 
   for (const node of graph.keys()) {
-    if (color.get(node) === WHITE && dfs(node)) return true
+    if (color.get(node) === WHITE && dfs(node)) return true;
   }
 
-  return false
+  return false;
 }
 
 // Exemple avec cycle
@@ -221,8 +225,8 @@ const cyclic = new Map([
   ["A", new Set(["B"])],
   ["B", new Set(["C"])],
   ["C", new Set(["A"])], // cycle !
-])
-console.log(hasCycle(cyclic)) // true
+]);
+console.log(hasCycle(cyclic)); // true
 ```
 
 ---
@@ -233,31 +237,36 @@ Problème classique d'entretien : `n` cours, `prerequisites[[a,b]]` signifie "su
 
 ```js
 function canFinish(numCourses, prerequisites) {
-  const graph = new Map()
-  for (let i = 0; i < numCourses; i++) graph.set(i, new Set())
+  const graph = new Map();
+  for (let i = 0; i < numCourses; i++) graph.set(i, new Set());
 
   for (const [course, prereq] of prerequisites) {
-    graph.get(course).add(prereq)
+    graph.get(course).add(prereq);
   }
 
   try {
-    topoSortDFS(graph)
-    return true // pas de cycle = on peut tout terminer
+    topoSortDFS(graph);
+    return true; // pas de cycle = on peut tout terminer
   } catch {
-    return false // cycle = impossible
+    return false; // cycle = impossible
   }
 }
 
 // Plus propre : utiliser hasCycle directement
 function canFinishClean(numCourses, prerequisites) {
-  const graph = new Map()
-  for (let i = 0; i < numCourses; i++) graph.set(i, new Set())
-  for (const [a, b] of prerequisites) graph.get(a).add(b)
-  return !hasCycle(graph)
+  const graph = new Map();
+  for (let i = 0; i < numCourses; i++) graph.set(i, new Set());
+  for (const [a, b] of prerequisites) graph.get(a).add(b);
+  return !hasCycle(graph);
 }
 
-console.log(canFinishClean(2, [[1,0]]))       // true : 0 avant 1, pas de cycle
-console.log(canFinishClean(2, [[1,0],[0,1]])) // false : 0 avant 1 et 1 avant 0 = cycle
+console.log(canFinishClean(2, [[1, 0]])); // true : 0 avant 1, pas de cycle
+console.log(
+  canFinishClean(2, [
+    [1, 0],
+    [0, 1],
+  ]),
+); // false : 0 avant 1 et 1 avant 0 = cycle
 ```
 
 ---
@@ -268,47 +277,49 @@ Kahn révèle quelque chose de puissant : à chaque étape, tous les noeuds avec
 
 ```js
 function parallelSchedule(graph) {
-  const inDegree = new Map()
-  for (const node of graph.keys()) inDegree.set(node, 0)
+  const inDegree = new Map();
+  for (const node of graph.keys()) inDegree.set(node, 0);
   for (const [, neighbors] of graph) {
-    for (const n of neighbors) inDegree.set(n, (inDegree.get(n) || 0) + 1)
+    for (const n of neighbors) inDegree.set(n, (inDegree.get(n) || 0) + 1);
   }
 
-  const waves = [] // chaque wave = ensemble de tâches parallélisables
-  let queue = [...inDegree.entries()].filter(([,d]) => d === 0).map(([n]) => n)
+  const waves = []; // chaque wave = ensemble de tâches parallélisables
+  let queue = [...inDegree.entries()]
+    .filter(([, d]) => d === 0)
+    .map(([n]) => n);
 
   while (queue.length > 0) {
-    waves.push([...queue])
-    const nextQueue = []
+    waves.push([...queue]);
+    const nextQueue = [];
 
     for (const node of queue) {
-      for (const neighbor of (graph.get(node) || [])) {
-        inDegree.set(neighbor, inDegree.get(neighbor) - 1)
-        if (inDegree.get(neighbor) === 0) nextQueue.push(neighbor)
+      for (const neighbor of graph.get(node) || []) {
+        inDegree.set(neighbor, inDegree.get(neighbor) - 1);
+        if (inDegree.get(neighbor) === 0) nextQueue.push(neighbor);
       }
     }
 
-    queue = nextQueue
+    queue = nextQueue;
   }
 
-  return waves
+  return waves;
 }
 
 // Pipeline CI/CD de Fox River Prison
 const pipeline = new Map([
-  ["lint",     new Set(["test"])],
+  ["lint", new Set(["test"])],
   ["type-check", new Set(["test"])],
-  ["test",     new Set(["build"])],
-  ["build",    new Set(["deploy"])],
-  ["e2e",      new Set(["deploy"])],
-  ["deploy",   new Set()],
-])
+  ["test", new Set(["build"])],
+  ["build", new Set(["deploy"])],
+  ["e2e", new Set(["deploy"])],
+  ["deploy", new Set()],
+]);
 
-console.log(parallelSchedule(pipeline))
-// Wave 1 : ["lint", "type-check"]     — en parallèle
-// Wave 2 : ["test"]                   — après lint ET type-check
-// Wave 3 : ["build", "e2e"]           — en parallèle après test
-// Wave 4 : ["deploy"]                 — après build ET e2e
+console.log(parallelSchedule(pipeline));
+// Wave 1 : ["lint", "type-check"]    :en parallèle
+// Wave 2 : ["test"]                  :après lint ET type-check
+// Wave 3 : ["build", "e2e"]          :en parallèle après test
+// Wave 4 : ["deploy"]                :après build ET e2e
 // Temps min : 4 waves au lieu de 5 si séquentiel
 ```
 
@@ -321,14 +332,21 @@ console.log(parallelSchedule(pipeline))
 La mission S-rank de Naruto a des sous-tâches avec des dépendances. Implémenter `orderMissions(tasks, deps)` qui retourne l'ordre d'exécution. Lever une erreur si les dépendances forment un cycle.
 
 ```js
-const tasks = ["briefing", "equipement", "transport", "infiltration", "combat", "extraction"]
+const tasks = [
+  "briefing",
+  "equipement",
+  "transport",
+  "infiltration",
+  "combat",
+  "extraction",
+];
 const deps = [
-  ["equipement", "briefing"],    // briefing avant equipement
+  ["equipement", "briefing"], // briefing avant equipement
   ["transport", "equipement"],
   ["infiltration", "transport"],
   ["combat", "infiltration"],
   ["extraction", "combat"],
-]
+];
 ```
 
 ---
@@ -352,14 +370,14 @@ Chaque étape du pipeline a une durée (en secondes). Calculer le temps minimum 
 
 ```js
 const stages = {
-  "lint": 30,
+  lint: 30,
   "type-check": 45,
   "unit-tests": 60,
-  "integration": 120,
-  "build": 90,
-  "e2e": 180,
-  "deploy": 30,
-}
+  integration: 120,
+  build: 90,
+  e2e: 180,
+  deploy: 30,
+};
 const deps = [
   ["unit-tests", "lint"],
   ["unit-tests", "type-check"],
@@ -368,7 +386,7 @@ const deps = [
   ["e2e", "build"],
   ["deploy", "integration"],
   ["deploy", "e2e"],
-]
+];
 ```
 
 Implémenter `minPipelineTime(stages, deps)`. Retourner le temps minimum et les waves de parallélisation.
@@ -387,7 +405,7 @@ const broken = new Map([
   ["D", new Set(["B"])], // cycle : B→C→D→B
   ["E", new Set(["F"])],
   ["F", new Set()],
-])
+]);
 // résultat attendu : ["B", "C", "D"] ou rotation du cycle
 ```
 

@@ -85,18 +85,18 @@ Imagine ce code sur le dashboard live :
 ```js
 function mettreAJourDashboard(events) {
   // appelée 200 fois par minute pendant un match
-  const stats = calculerStats(events)           // 30ms ?
-  const heatmap = genererHeatmap(events)         // 80ms ?
-  const classement = trierJoueurs(stats)         // 5ms ?
+  const stats = calculerStats(events); // 30ms ?
+  const heatmap = genererHeatmap(events); // 80ms ?
+  const classement = trierJoueurs(stats); // 5ms ?
 
-  afficherDashboard(stats, heatmap, classement)  // 2ms
+  afficherDashboard(stats, heatmap, classement); // 2ms
 }
 
 function genererHeatmap(events) {
-  // boucle naïve : O(n²) — passe chaque event contre chaque zone
-  return zones.map(zone => {
-    return events.filter(e => estDansZone(e, zone)).length
-  })
+  // boucle naïve : O(n²):passe chaque event contre chaque zone
+  return zones.map((zone) => {
+    return events.filter((e) => estDansZone(e, zone)).length;
+  });
 }
 ```
 
@@ -114,14 +114,14 @@ Solution : O(n) au lieu de O(n²) : trier les events par zone une fois, pas à c
 ```js
 function genererHeatmapOptimisee(events) {
   // O(n) : un seul passage sur les events
-  const comptes = {}
+  const comptes = {};
 
   for (const event of events) {
-    const zone = determinerZone(event) // O(1)
-    comptes[zone] = (comptes[zone] || 0) + 1
+    const zone = determinerZone(event); // O(1)
+    comptes[zone] = (comptes[zone] || 0) + 1;
   }
 
-  return zones.map(zone => comptes[zone] || 0)
+  return zones.map((zone) => comptes[zone] || 0);
 }
 ```
 
@@ -136,20 +136,20 @@ C'est utile pour identifier ta propre logique dans le flux d'exécution.
 
 ```js
 // le pipeline de validation de oracle_glitch
-performance.mark('validation-debut')
+performance.mark("validation-debut");
 
-const parsed = parseOutput(rawLLMOutput)
-performance.mark('parse-ok')
+const parsed = parseOutput(rawLLMOutput);
+performance.mark("parse-ok");
 
-const validated = validateWithZod(parsed)
-performance.mark('zod-ok')
+const validated = validateWithZod(parsed);
+performance.mark("zod-ok");
 
-const sanitized = sanitizeOutput(validated)
-performance.mark('sanitize-ok')
+const sanitized = sanitizeOutput(validated);
+performance.mark("sanitize-ok");
 
-performance.measure('étape-parse', 'validation-debut', 'parse-ok')
-performance.measure('étape-zod', 'parse-ok', 'zod-ok')
-performance.measure('étape-sanitize', 'zod-ok', 'sanitize-ok')
+performance.measure("étape-parse", "validation-debut", "parse-ok");
+performance.measure("étape-zod", "parse-ok", "zod-ok");
+performance.measure("étape-sanitize", "zod-ok", "sanitize-ok");
 ```
 
 Dans DevTools Performance, tu verras tes markers comme des balises colorées dans la timeline.
@@ -165,12 +165,12 @@ juste après avoir modifié le DOM. Le browser est forcé de recalculer tout le 
 ```js
 // code qui force un reflow à chaque itération
 function mettreAJourCarteJoueurs(joueurs) {
-  joueurs.forEach(joueur => {
-    const el = document.getElementById(`joueur-${joueur.id}`)
-    el.style.width = '200px'                  // write : invalide le layout
-    const hauteur = el.offsetHeight           // read : force le recalcul immédiat
-    el.style.height = hauteur * 1.5 + 'px'   // write à nouveau
-  })
+  joueurs.forEach((joueur) => {
+    const el = document.getElementById(`joueur-${joueur.id}`);
+    el.style.width = "200px"; // write : invalide le layout
+    const hauteur = el.offsetHeight; // read : force le recalcul immédiat
+    el.style.height = hauteur * 1.5 + "px"; // write à nouveau
+  });
 }
 // 50 joueurs = 50 reflows forcés
 ```
@@ -181,17 +181,17 @@ Dans DevTools, tu verras un triangle rouge "Forced reflow" dans la tâche.
 // correction : séparer les reads des writes
 function mettreAJourCarteJoueurs(joueurs) {
   // phase READ : tout lire d'abord
-  const hauteurs = joueurs.map(joueur => {
-    const el = document.getElementById(`joueur-${joueur.id}`)
-    return el.offsetHeight // lecture batch
-  })
+  const hauteurs = joueurs.map((joueur) => {
+    const el = document.getElementById(`joueur-${joueur.id}`);
+    return el.offsetHeight; // lecture batch
+  });
 
   // phase WRITE : tout écrire ensuite
   joueurs.forEach((joueur, i) => {
-    const el = document.getElementById(`joueur-${joueur.id}`)
-    el.style.width = '200px'
-    el.style.height = hauteurs[i] * 1.5 + 'px'
-  })
+    const el = document.getElementById(`joueur-${joueur.id}`);
+    el.style.width = "200px";
+    el.style.height = hauteurs[i] * 1.5 + "px";
+  });
 }
 // 1 reflow au lieu de 50
 ```
@@ -242,6 +242,7 @@ Voici une représentation simplifiée d'un flamegraph. Réponds aux questions.
 ```
 
 Questions :
+
 - Quelle fonction est le coupable principal ?
 - Quelle est la complexité probable de `evaluerTirs` ?
 - Que ferais-tu pour optimiser `distanceAuBut` qui appelle `Math.sqrt` 200 fois ?
@@ -256,16 +257,16 @@ Ce code provoque des reflows forcés. Identifie-les et réécris sans reflow.
 ```js
 function animerClassementBallonDor(candidats) {
   candidats.forEach((candidat, index) => {
-    const el = document.querySelector(`[data-id="${candidat.id}"]`)
-    const largeurActuelle = el.offsetWidth  // lecture
-    const position = el.getBoundingClientRect().top  // lecture
+    const el = document.querySelector(`[data-id="${candidat.id}"]`);
+    const largeurActuelle = el.offsetWidth; // lecture
+    const position = el.getBoundingClientRect().top; // lecture
 
-    el.style.transform = `translateY(${index * 60}px)`  // écriture
-    el.style.width = largeurActuelle > 200 ? '200px' : largeurActuelle + 'px'  // écriture
+    el.style.transform = `translateY(${index * 60}px)`; // écriture
+    el.style.width = largeurActuelle > 200 ? "200px" : largeurActuelle + "px"; // écriture
 
-    const nouvelleLargeur = el.offsetWidth  // lecture après écriture = reflow forcé
-    console.log(`${candidat.nom} : ${nouvelleLargeur}px`)
-  })
+    const nouvelleLargeur = el.offsetWidth; // lecture après écriture = reflow forcé
+    console.log(`${candidat.nom} : ${nouvelleLargeur}px`);
+  });
 }
 ```
 
@@ -279,24 +280,24 @@ Prédit ce que tu verrais dans un flamegraph pour chacune.
 ```js
 const matchEvents = Array.from({ length: 5000 }, (_, i) => ({
   id: i,
-  type: ['passe', 'tir', 'duel', 'faute'][i % 4],
+  type: ["passe", "tir", "duel", "faute"][i % 4],
   x: Math.random() * 100,
   y: Math.random() * 100,
-  joueur: `Joueur_${i % 22}`
-}))
+  joueur: `Joueur_${i % 22}`,
+}));
 
 // version A : O(n²)
 function analyserMatchV1(events) {
-  return events.map(event => {
-    const eventsDuJoueur = events.filter(e => e.joueur === event.joueur)
+  return events.map((event) => {
+    const eventsDuJoueur = events.filter((e) => e.joueur === event.joueur);
     return {
       ...event,
-      totalActionsJoueur: eventsDuJoueur.length
-    }
-  })
+      totalActionsJoueur: eventsDuJoueur.length,
+    };
+  });
 }
 
-// version B : O(n) — à toi de l'implémenter
+// version B : O(n):à toi de l'implémenter
 function analyserMatchV2(events) {
   // précalculer les comptes par joueur d'abord
   // puis construire le résultat en un seul passage

@@ -12,14 +12,14 @@ Prérequis : `01_fundamentals` complet, notamment les closures (01/02_closure_tr
 
 ```js
 // variables balancées dans le scope global (accessible partout dans le programme)
-let clubName = "Barça"
-let budget = 500_000_000
-let secretTactics = "4-3-3 contre-attaque"
+let clubName = "Barça";
+let budget = 500_000_000;
+let secretTactics = "4-3-3 contre-attaque";
 
 // n'importe quelle fonction peut lire ET modifier ces données
 function anyFunction() {
-  budget = 0           // oops — quelqu'un vient de ruiner le club
-  secretTactics = ""   // oops — les tactiques fuitent
+  budget = 0; // oops:quelqu'un vient de ruiner le club
+  secretTactics = ""; // oops:les tactiques fuitent
 }
 ```
 
@@ -31,19 +31,20 @@ Quand tout est accessible de partout, rien n'est protégé. Modifier une variabl
 ## 2) LE MODULE PATTERN : IIFE + CLOSURE
 
 Le Module Pattern classique combine deux mécanismes :
+
 - **IIFE (Immediately Invoked Function Expression : fonction invoquée immédiatement)** : une fonction qui s'exécute toute seule à sa déclaration
 - **closure** : les variables internes restent vivantes même après la fin de la fonction
 
 ```js
 const ClubBarça = (() => {
   // --- PRIVÉ : personne n'y accède directement ---
-  let budget = 500_000_000        // le coffre — invisible de l'extérieur
-  let secretTactics = "4-3-3 contre-attaque"   // classé confidentiel
+  let budget = 500_000_000; // le coffre:invisible de l'extérieur
+  let secretTactics = "4-3-3 contre-attaque"; // classé confidentiel
 
   const _validateTransfer = (amount) => {
     // préfixe _ = convention pour "privé, touche pas"
-    return amount > 0 && amount <= budget
-  }
+    return amount > 0 && amount <= budget;
+  };
 
   // --- PUBLIC : ce qu'on expose volontairement ---
   return {
@@ -51,25 +52,27 @@ const ClubBarça = (() => {
 
     transfer: (playerName, amount) => {
       if (!_validateTransfer(amount)) {
-        throw new Error(`Transfert refusé : budget insuffisant ou montant invalide`)
+        throw new Error(
+          `Transfert refusé : budget insuffisant ou montant invalide`,
+        );
       }
-      budget -= amount    // mutation contrôlée, uniquement via cette méthode
-      return `${playerName} signé pour ${amount}M€`
+      budget -= amount; // mutation contrôlée, uniquement via cette méthode
+      return `${playerName} signé pour ${amount}M€`;
     },
 
-    getBudget: () => budget    // lecture autorisée, modification interdite depuis l'extérieur
-  }
-})()  // les () à la fin : ça s'exécute immédiatement
+    getBudget: () => budget, // lecture autorisée, modification interdite depuis l'extérieur
+  };
+})(); // les () à la fin : ça s'exécute immédiatement
 
 // ce qui est accessible
-console.log(ClubBarça.getClubName())          // "FC Barcelona"
-console.log(ClubBarça.transfer("Yamal", 50))  // "Yamal signé pour 50M€"
-console.log(ClubBarça.getBudget())            // 499_950_000
+console.log(ClubBarça.getClubName()); // "FC Barcelona"
+console.log(ClubBarça.transfer("Yamal", 50)); // "Yamal signé pour 50M€"
+console.log(ClubBarça.getBudget()); // 499_950_000
 
 // ce qui est bloqué
-console.log(ClubBarça.budget)          // undefined — le coffre est fermé
-console.log(ClubBarça.secretTactics)   // undefined — les tactiques restent secrètes
-ClubBarça._validateTransfer(100)       // undefined — méthode interne, invisible
+console.log(ClubBarça.budget); // undefined:le coffre est fermé
+console.log(ClubBarça.secretTactics); // undefined:les tactiques restent secrètes
+ClubBarça._validateTransfer(100); // undefined:méthode interne, invisible
 ```
 
 Diagramme :
@@ -98,33 +101,33 @@ Même pattern, mais configurable à l'initialisation :
 ```js
 const createClub = (name, initialBudget) => {
   // factory de modules : chaque club a son propre scope privé
-  let budget = initialBudget
-  let transfers = []   // historique privé des transferts
+  let budget = initialBudget;
+  let transfers = []; // historique privé des transferts
 
   return {
     name,
 
     sign: (player, fee) => {
-      if (fee > budget) throw new Error(`${name} : fonds insuffisants`)
-      budget -= fee
-      transfers.push({ player, fee })   // on mutate uniquement en interne
-      return `${player} rejoint ${name}`
+      if (fee > budget) throw new Error(`${name} : fonds insuffisants`);
+      budget -= fee;
+      transfers.push({ player, fee }); // on mutate uniquement en interne
+      return `${player} rejoint ${name}`;
     },
 
-    getTransferHistory: () => [...transfers],  // copie défensive — on donne une copie, pas la référence
-    getBudget: () => budget
-  }
-}
+    getTransferHistory: () => [...transfers], // copie défensive:on donne une copie, pas la référence
+    getBudget: () => budget,
+  };
+};
 
-const psg  = createClub("PSG", 800_000_000)
-const om   = createClub("OM", 100_000_000)
+const psg = createClub("PSG", 800_000_000);
+const om = createClub("OM", 100_000_000);
 
-psg.sign("Mbappé", 180)   // "Mbappé rejoint PSG"
-om.sign("Payet", 15)      // "Payet rejoint OM"
+psg.sign("Mbappé", 180); // "Mbappé rejoint PSG"
+om.sign("Payet", 15); // "Payet rejoint OM"
 
-// chaque module a son propre état — ils ne partagent rien
-console.log(psg.getBudget())   // 799_999_820
-console.log(om.getBudget())    // 99_999_985
+// chaque module a son propre état:ils ne partagent rien
+console.log(psg.getBudget()); // 799_999_820
+console.log(om.getBudget()); // 99_999_985
 ```
 
 Chaque appel à `createClub` crée un **scope isolé**. `psg.budget` et `om.budget` ne sont pas la même variable. Elles vivent dans des closures séparées.
@@ -137,27 +140,27 @@ Avec les modules ES (ESM, disponibles nativement dans les navigateurs modernes e
 
 ```js
 // club.js
-let budget = 500_000_000     // privé : non exporté, inaccessible de l'extérieur
+let budget = 500_000_000; // privé : non exporté, inaccessible de l'extérieur
 
-const _validateTransfer = (amount) => amount > 0 && amount <= budget
+const _validateTransfer = (amount) => amount > 0 && amount <= budget;
 
-export const getClubName = () => "FC Barcelona"   // public : exporté explicitement
+export const getClubName = () => "FC Barcelona"; // public : exporté explicitement
 
 export const transfer = (player, amount) => {
-  if (!_validateTransfer(amount)) throw new Error("Transfert refusé")
-  budget -= amount
-  return `${player} signé`
-}
+  if (!_validateTransfer(amount)) throw new Error("Transfert refusé");
+  budget -= amount;
+  return `${player} signé`;
+};
 ```
 
 ```js
 // main.js
-import { getClubName, transfer } from "./club.js"
+import { getClubName, transfer } from "./club.js";
 
-console.log(getClubName())             // "FC Barcelona"
-console.log(transfer("Pedri", 80))    // "Pedri signé"
+console.log(getClubName()); // "FC Barcelona"
+console.log(transfer("Pedri", 80)); // "Pedri signé"
 
-// budget est inaccessible ici — il n'est pas exporté
+// budget est inaccessible ici:il n'est pas exporté
 ```
 
 Pas besoin d'IIFE. Le fichier lui-même est le module. Ce qui n'est pas `export` est privé.
@@ -168,26 +171,26 @@ Pas besoin d'IIFE. Le fichier lui-même est le module. Ce qui n'est pas `export`
 
 ```js
 const createTeam = () => {
-  const players = ["Ter Stegen", "Araújo", "Pedri"]
+  const players = ["Ter Stegen", "Araújo", "Pedri"];
 
   return {
     // DANGER : on retourne la référence directe au tableau
     getPlayersDangerous: () => players,
 
-    // SAFE : on retourne une copie — l'état interne ne peut pas être muté de l'extérieur
-    getPlayersSafe: () => [...players]
-  }
-}
+    // SAFE : on retourne une copie:l'état interne ne peut pas être muté de l'extérieur
+    getPlayersSafe: () => [...players],
+  };
+};
 
-const team = createTeam()
+const team = createTeam();
 
 // via la méthode dangereuse
-const roster = team.getPlayersDangerous()
-roster.push("Hacker FC")   // mutation de l'état interne du module — le tableau original est modifié
+const roster = team.getPlayersDangerous();
+roster.push("Hacker FC"); // mutation de l'état interne du module:le tableau original est modifié
 
 // via la méthode safe
-const roster2 = team.getPlayersSafe()
-roster2.push("Still Hacker")   // ne touche pas au tableau interne — c'est une copie
+const roster2 = team.getPlayersSafe();
+roster2.push("Still Hacker"); // ne touche pas au tableau interne:c'est une copie
 ```
 
 Exposer une référence directe à un objet ou tableau interne, c'est ouvrir une backdoor (porte dérobée) dans ton encapsulation.

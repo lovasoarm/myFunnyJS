@@ -34,23 +34,23 @@ Le SSE handler les pousse à tous les clients.
 ## 2) LE SERVEUR : STRUCTURÉ ET ROBUSTE
 
 ```js
-import express from 'express';
+import express from "express";
 
 const app = express();
 app.use(express.json());
 
-// structure du state de match — tout est immutable, on ne mute pas directement
+// structure du state de match:tout est immutable, on ne mute pas directement
 let matchState = {
-  id: 'ultras-vs-rivaux-2026',
+  id: "ultras-vs-rivaux-2026",
   minute: 0,
   score: { home: 0, away: 0 },
   possession: { home: 50, away: 50 },
   xG: { home: 0, away: 0 },
   shots: { home: 0, away: 0 },
-  status: 'pre_match' // pre_match | live | half_time | full_time
+  status: "pre_match", // pre_match | live | half_time | full_time
 };
 
-// event log — chaque event du match conservé dans l'ordre
+// event log:chaque event du match conservé dans l'ordre
 const eventLog = [];
 let eventIdCounter = 0;
 
@@ -78,7 +78,7 @@ function broadcastEvent(eventType, data) {
     try {
       res.write(payload);
     } catch (err) {
-      // le client a disparu sans fermeture propre — on le retire
+      // le client a disparu sans fermeture propre:on le retire
       sseClients.delete(res);
     }
   });
@@ -86,19 +86,19 @@ function broadcastEvent(eventType, data) {
 
 // ---- Endpoint SSE ----
 
-app.get('/match/live', (req, res) => {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*'); // CORS pour le dashboard
+app.get("/match/live", (req, res) => {
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.setHeader("Access-Control-Allow-Origin", "*"); // CORS pour le dashboard
   res.flushHeaders();
 
-  const lastEventId = req.headers['last-event-id']
-    ? parseInt(req.headers['last-event-id'])
+  const lastEventId = req.headers["last-event-id"]
+    ? parseInt(req.headers["last-event-id"])
     : null;
 
-  // envoyer le state courant immédiatement — pas d'attente du prochain event
-  res.write(formatSSEPayload('state_sync', matchState, 0));
+  // envoyer le state courant immédiatement:pas d'attente du prochain event
+  res.write(formatSSEPayload("state_sync", matchState, 0));
 
   // rejouer les events manqués si le client se reconnecte
   if (lastEventId !== null) {
@@ -112,10 +112,10 @@ app.get('/match/live', (req, res) => {
 
   // heartbeat toutes les 30s pour éviter les timeouts de proxy
   const heartbeat = setInterval(() => {
-    res.write(': heartbeat\n\n'); // ligne de commentaire SSE — ignorée par EventSource
+    res.write(": heartbeat\n\n"); // ligne de commentaire SSE:ignorée par EventSource
   }, 30000);
 
-  req.on('close', () => {
+  req.on("close", () => {
     clearInterval(heartbeat);
     sseClients.delete(res);
   });
@@ -123,58 +123,58 @@ app.get('/match/live', (req, res) => {
 
 // ---- Endpoints pour mettre à jour le match ----
 
-app.post('/match/event', (req, res) => {
+app.post("/match/event", (req, res) => {
   const { type, payload } = req.body;
 
   switch (type) {
-    case 'goal': {
-      const side = payload.team === 'home' ? 'home' : 'away';
+    case "goal": {
+      const side = payload.team === "home" ? "home" : "away";
       matchState = {
         ...matchState, // immutabilité : on crée un nouvel objet
-        score: { ...matchState.score, [side]: matchState.score[side] + 1 }
+        score: { ...matchState.score, [side]: matchState.score[side] + 1 },
       };
 
-      broadcastEvent('goal', {
+      broadcastEvent("goal", {
         team: payload.team,
         player: payload.player,
         minute: matchState.minute,
-        score: matchState.score
+        score: matchState.score,
       });
       break;
     }
 
-    case 'possession_update': {
+    case "possession_update": {
       matchState = {
         ...matchState,
-        possession: payload
+        possession: payload,
       };
-      broadcastEvent('possession_update', payload);
+      broadcastEvent("possession_update", payload);
       break;
     }
 
-    case 'xg_update': {
+    case "xg_update": {
       matchState = {
         ...matchState,
-        xG: payload
+        xG: payload,
       };
-      broadcastEvent('xg_update', payload);
+      broadcastEvent("xg_update", payload);
       break;
     }
 
-    case 'status_change': {
+    case "status_change": {
       matchState = { ...matchState, status: payload.status };
-      broadcastEvent('status_change', { status: payload.status });
+      broadcastEvent("status_change", { status: payload.status });
       break;
     }
 
     default:
-      return res.status(400).json({ error: 'event type inconnu' });
+      return res.status(400).json({ error: "event type inconnu" });
   }
 
   res.json({ ok: true, clients: sseClients.size });
 });
 
-app.listen(3000, () => console.log('Dashboard SSE actif sur port 3000'));
+app.listen(3000, () => console.log("Dashboard SSE actif sur port 3000"));
 ```
 
 ---
@@ -194,43 +194,43 @@ class MatchDashboard {
     this.source = new EventSource(this.sseUrl);
 
     // state initial ou resync après reconnexion
-    this.source.addEventListener('state_sync', (event) => {
+    this.source.addEventListener("state_sync", (event) => {
       this.state = JSON.parse(event.data);
       this._render();
     });
 
-    this.source.addEventListener('goal', (event) => {
+    this.source.addEventListener("goal", (event) => {
       const goal = JSON.parse(event.data);
       this.state = { ...this.state, score: goal.score };
       this._renderGoalAlert(goal);
       this._render();
     });
 
-    this.source.addEventListener('possession_update', (event) => {
+    this.source.addEventListener("possession_update", (event) => {
       const possession = JSON.parse(event.data);
       this.state = { ...this.state, possession };
       this._render();
     });
 
-    this.source.addEventListener('xg_update', (event) => {
+    this.source.addEventListener("xg_update", (event) => {
       const xG = JSON.parse(event.data);
       this.state = { ...this.state, xG };
       this._render();
     });
 
-    this.source.addEventListener('status_change', (event) => {
+    this.source.addEventListener("status_change", (event) => {
       const { status } = JSON.parse(event.data);
       this.state = { ...this.state, status };
       this._render();
     });
 
-    this.source.addEventListener('error', () => {
-      // EventSource retente automatiquement — on signale juste l'état
-      console.log('Connexion perdue : reconnexion en cours...');
+    this.source.addEventListener("error", () => {
+      // EventSource retente automatiquement:on signale juste l'état
+      console.log("Connexion perdue : reconnexion en cours...");
     });
 
-    this.source.addEventListener('open', () => {
-      console.log('Dashboard connecté au flux SSE');
+    this.source.addEventListener("open", () => {
+      console.log("Dashboard connecté au flux SSE");
     });
   }
 
@@ -241,8 +241,12 @@ class MatchDashboard {
     console.clear();
     console.log(`MATCH : ${this.state.status.toUpperCase()}`);
     console.log(`Score : ${this.state.score.home} - ${this.state.score.away}`);
-    console.log(`Possession : ${this.state.possession.home}% / ${this.state.possession.away}%`);
-    console.log(`xG : ${this.state.xG.home.toFixed(2)} / ${this.state.xG.away.toFixed(2)}`);
+    console.log(
+      `Possession : ${this.state.possession.home}% / ${this.state.possession.away}%`,
+    );
+    console.log(
+      `xG : ${this.state.xG.home.toFixed(2)} / ${this.state.xG.away.toFixed(2)}`,
+    );
   }
 
   _renderGoalAlert({ player, team, minute }) {
@@ -255,7 +259,7 @@ class MatchDashboard {
 }
 
 // Usage
-const dashboard = new MatchDashboard('http://localhost:3000/match/live');
+const dashboard = new MatchDashboard("http://localhost:3000/match/live");
 ```
 
 ---
@@ -267,13 +271,13 @@ La connexion SSE est coupée, l'EventSource reconnecte, le client rate peut-êtr
 
 ```js
 // côté serveur : envoyer un commentaire SSE régulièrement
-// un commentaire commence par ':' — EventSource l'ignore, le proxy voit de l'activité
+// un commentaire commence par ':':EventSource l'ignore, le proxy voit de l'activité
 const heartbeat = setInterval(() => {
-  res.write(': ping\n\n');
-}, 25000); // 25 secondes — en dessous du timeout typique de 30s
+  res.write(": ping\n\n");
+}, 25000); // 25 secondes:en dessous du timeout typique de 30s
 
 // ne pas oublier de clear l'interval au close
-req.on('close', () => clearInterval(heartbeat));
+req.on("close", () => clearInterval(heartbeat));
 ```
 
 Côté client : EventSource ne voit pas les commentaires. Aucun code à ajouter.
@@ -287,6 +291,7 @@ C'est de la plomberie serveur pure.
 > L'objectif ici est de voir le problème, pas d'implémenter la solution complète.
 
 Avec 10,000 clients SSE :
+
 - chaque `res.write()` est synchrone dans Node.js
 - un broadcast naïf = boucle de 10,000 writes dans le thread principal
 - résultat : le serveur freeze pendant le broadcast, les autres requêtes attendent
@@ -346,6 +351,7 @@ Contrainte : le dashboard SSE doit refléter le match en direct, pas avoir besoi
 **EXO 2 : Le dashboard qui survit à une coupure**
 
 Modifie le client pour qu'il :
+
 - affiche un indicateur "Reconnexion..." pendant que la connexion est coupée
 - affiche "Reprise depuis l'event N" quand il se reconnecte avec un `Last-Event-ID`
 - compte et affiche le nombre de reconnexions depuis l'ouverture de la page

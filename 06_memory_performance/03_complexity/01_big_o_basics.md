@@ -37,17 +37,17 @@ L'opération prend le même temps, quelle que soit la taille des données.
 ```js
 // Accès à un élément d'un tableau par index
 function getPlayer(roster, index) {
-  return roster[index]   // O(1) : index direct, pas de parcours
+  return roster[index]; // O(1) : index direct, pas de parcours
 }
 
 // Accès à une propriété d'objet (hash map)
 function getKillers(stats, type) {
-  return stats[type]     // O(1) : lookup en hash table
+  return stats[type]; // O(1) : lookup en hash table
 }
 
 // push sur un tableau (amortized O(1))
-const events = []
-events.push({ type: "goal", player: "Mbappe" })  // O(1)
+const events = [];
+events.push({ type: "goal", player: "Mbappe" }); // O(1)
 ```
 
 ```
@@ -67,10 +67,11 @@ L'opération grandit proportionnellement à la taille des données.
 ```js
 // Chercher un ninja par son nom dans un tableau
 function findNinja(ninjas, name) {
-  for (const ninja of ninjas) {   // on parcourt tous les éléments dans le pire cas
-    if (ninja.name === name) return ninja
+  for (const ninja of ninjas) {
+    // on parcourt tous les éléments dans le pire cas
+    if (ninja.name === name) return ninja;
   }
-  return null
+  return null;
 }
 // Si 100 ninjas : max 100 vérifications
 // Si 100 000 ninjas : max 100 000 vérifications
@@ -79,7 +80,7 @@ function findNinja(ninjas, name) {
 ```js
 // Calculer la somme de toutes les stats
 function totalPower(ninjas) {
-  return ninjas.reduce((sum, n) => sum + n.power, 0)  // touche chaque élément une fois
+  return ninjas.reduce((sum, n) => sum + n.power, 0); // touche chaque élément une fois
 }
 ```
 
@@ -103,17 +104,19 @@ L'opération utilise une boucle dans une boucle. Chaque élément est comparé �
 ```js
 // Trouver tous les duos de ninjas avec la même somme de stats
 function findMatchingPairs(ninjas) {
-  const pairs = []
+  const pairs = [];
 
-  for (let i = 0; i < ninjas.length; i++) {          // n
-    for (let j = i + 1; j < ninjas.length; j++) {    // n
+  for (let i = 0; i < ninjas.length; i++) {
+    // n
+    for (let j = i + 1; j < ninjas.length; j++) {
+      // n
       if (ninjas[i].power + ninjas[j].power === 100) {
-        pairs.push([ninjas[i], ninjas[j]])
+        pairs.push([ninjas[i], ninjas[j]]);
       }
     }
   }
 
-  return pairs
+  return pairs;
 }
 // 100 ninjas   → ~5 000 vérifications
 // 1 000 ninjas → ~500 000 vérifications
@@ -126,11 +129,11 @@ function bubbleSort(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -155,18 +158,19 @@ Courbe :            /
 ```js
 // Recherche binaire sur un tableau trié
 function binarySearch(arr, target) {
-  let left = 0
-  let right = arr.length - 1
+  let left = 0;
+  let right = arr.length - 1;
 
   while (left <= right) {
-    const mid = Math.floor((left + right) / 2)
+    const mid = Math.floor((left + right) / 2);
 
-    if (arr[mid] === target) return mid
-    if (arr[mid] < target) left = mid + 1    // éliminer la moitié gauche
-    else right = mid - 1                      // éliminer la moitié droite
+    if (arr[mid] === target) return mid;
+    if (arr[mid] < target)
+      left = mid + 1; // éliminer la moitié gauche
+    else right = mid - 1; // éliminer la moitié droite
   }
 
-  return -1
+  return -1;
 }
 // 1 000 000 éléments → max 20 vérifications (log₂(1 000 000) ≈ 20)
 ```
@@ -195,10 +199,10 @@ Les meilleurs algorithmes de tri (merge sort, quick sort) ont cette complexité.
 const scorers = [
   { name: "Mbappe", goals: 28 },
   { name: "Haaland", goals: 35 },
-  { name: "Benzema", goals: 20 }
-]
+  { name: "Benzema", goals: 20 },
+];
 
-scorers.sort((a, b) => b.goals - a.goals)  // O(n log n)
+scorers.sort((a, b) => b.goals - a.goals); // O(n log n)
 // Optimal pour le tri général. Impossible de faire mieux sur un tableau non trié.
 ```
 
@@ -231,16 +235,18 @@ Exemple de lecture rapide :
 
 ```js
 function mystery(arr) {
-  const result = {}                    // O(1)
+  const result = {}; // O(1)
 
-  for (const item of arr) {           // O(n) : boucle unique
-    if (!result[item]) {              // O(1) : accès hash
-      result[item] = 0               // O(1)
+  for (const item of arr) {
+    // O(n) : boucle unique
+    if (!result[item]) {
+      // O(1) : accès hash
+      result[item] = 0; // O(1)
     }
-    result[item]++                    // O(1)
+    result[item]++; // O(1)
   }
 
-  return result                       // O(1)
+  return result; // O(1)
 }
 // Complexité totale : O(n)
 // La boucle domine. Tout ce qui est à l'intérieur est O(1).
@@ -248,10 +254,12 @@ function mystery(arr) {
 
 ```js
 function suspicious(arr) {
-  for (let i = 0; i < arr.length; i++) {        // O(n)
-    for (let j = 0; j < arr.length; j++) {      // O(n) : imbriqué
+  for (let i = 0; i < arr.length; i++) {
+    // O(n)
+    for (let j = 0; j < arr.length; j++) {
+      // O(n) : imbriqué
       if (arr[i] === arr[j] && i !== j) {
-        console.log(`doublon : ${arr[i]}`)
+        console.log(`doublon : ${arr[i]}`);
       }
     }
   }
@@ -271,43 +279,43 @@ Pour chaque fonction, donner sa complexité et justifier.
 ```js
 // Fonction A
 function sumFirst(arr) {
-  return arr[0] + arr[1]
+  return arr[0] + arr[1];
 }
 
 // Fonction B
 function hasDuplicate(arr) {
-  const seen = new Set()
+  const seen = new Set();
   for (const item of arr) {
-    if (seen.has(item)) return true
-    seen.add(item)
+    if (seen.has(item)) return true;
+    seen.add(item);
   }
-  return false
+  return false;
 }
 
 // Fonction C
 function pairSum(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length; j++) {
-      if (arr[i] + arr[j] === target) return [i, j]
+      if (arr[i] + arr[j] === target) return [i, j];
     }
   }
-  return null
+  return null;
 }
 
 // Fonction D
 function logPowers(n) {
-  let i = 1
+  let i = 1;
   while (i < n) {
-    console.log(i)
-    i *= 2    // ← indice clé
+    console.log(i);
+    i *= 2; // ← indice clé
   }
 }
 
 // Fonction E
 function processAll(arr) {
-  const sorted = [...arr].sort()  // ← quelle complexité pour sort ?
+  const sorted = [...arr].sort(); // ← quelle complexité pour sort ?
   for (const item of sorted) {
-    console.log(item)
+    console.log(item);
   }
 }
 ```
@@ -323,14 +331,14 @@ Walter White a besoin de vérifier si deux listes de distributeurs ont des élé
 function hasCommonDistributor(listA, listB) {
   for (const a of listA) {
     for (const b of listB) {
-      if (a.id === b.id) return true
+      if (a.id === b.id) return true;
     }
   }
-  return false
+  return false;
 }
 ```
 
-*(Indice : quelle structure de données offre un lookup en O(1) ?)*
+_(Indice : quelle structure de données offre un lookup en O(1) ?)_
 
 ---
 
@@ -340,19 +348,22 @@ Pour ce code, compter le nombre exact d'opérations en fonction de `n`, puis sim
 
 ```js
 function analyzeSquad(ninjas) {
-  let total = 0                          // 1 opération
+  let total = 0; // 1 opération
 
-  for (let i = 0; i < ninjas.length; i++) {   // n itérations
-    total += ninjas[i].power             // 1 opération par itération
+  for (let i = 0; i < ninjas.length; i++) {
+    // n itérations
+    total += ninjas[i].power; // 1 opération par itération
   }
 
-  for (let i = 0; i < ninjas.length; i++) {   // n itérations
-    for (let j = 0; j < 10; j++) {            // TOUJOURS 10 — pas n
-      total += ninjas[i].stats[j] || 0  // 1 opération
+  for (let i = 0; i < ninjas.length; i++) {
+    // n itérations
+    for (let j = 0; j < 10; j++) {
+      // TOUJOURS 10:pas n
+      total += ninjas[i].stats[j] || 0; // 1 opération
     }
   }
 
-  return total                           // 1 opération
+  return total; // 1 opération
 }
 ```
 

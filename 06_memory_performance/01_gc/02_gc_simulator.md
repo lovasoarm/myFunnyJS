@@ -9,6 +9,7 @@ Ce fichier, c'est le correctif. On simule le GC à la main : on crée des objets
 ## 1) LE MODÈLE MENTAL : OBJETS ET RÉFÉRENCES
 
 Chaque objet en mémoire a deux propriétés qui comptent :
+
 - ses **références sortantes** : les objets vers lesquels il pointe
 - son **état de vie** : est-il atteignable depuis une root ?
 
@@ -16,9 +17,9 @@ Chaque objet en mémoire a deux propriétés qui comptent :
 // On modélise un objet vivant
 const obj = {
   id: "A",
-  ref: null,      // référence vers un autre objet (ou null)
-  alive: true     // le GC le verra-t-il encore ?
-}
+  ref: null, // référence vers un autre objet (ou null)
+  alive: true, // le GC le verra-t-il encore ?
+};
 ```
 
 Le simulateur va recréer le cycle mark-and-sweep complet :
@@ -45,62 +46,62 @@ Phase 3 : RAPPORT
 ```js
 // Le registre de tous les objets alloués
 // Dans le vrai runtime, c'est le heap. Ici, c'est notre tableau.
-const heap = []
+const heap = [];
 
 // Les roots : points de départ du mark
 // Dans le vrai runtime : variables globales + stack active
-let roots = []
+let roots = [];
 
 // Allouer un objet et l'enregistrer dans le heap
 function allocate(id, refs = []) {
-  const obj = { id, refs, marked: false }
-  heap.push(obj)
-  console.log(`[ALLOC] ${id} créé`)
-  return obj
+  const obj = { id, refs, marked: false };
+  heap.push(obj);
+  console.log(`[ALLOC] ${id} créé`);
+  return obj;
 }
 
 // Phase MARK : parcourir depuis les roots et marquer
 function mark() {
-  const queue = [...roots]
+  const queue = [...roots];
 
   while (queue.length > 0) {
-    const obj = queue.shift()
-    if (obj.marked) continue  // déjà vu, on évite les cycles infinis
+    const obj = queue.shift();
+    if (obj.marked) continue; // déjà vu, on évite les cycles infinis
 
-    obj.marked = true
-    console.log(`[MARK]  ${obj.id} → atteignable`)
+    obj.marked = true;
+    console.log(`[MARK]  ${obj.id} → atteignable`);
 
     // on ajoute ses références à visiter
     for (const ref of obj.refs) {
-      if (!ref.marked) queue.push(ref)
+      if (!ref.marked) queue.push(ref);
     }
   }
 }
 
 // Phase SWEEP : détruire ce qui n'est pas marqué
 function sweep() {
-  const survivors = []
+  const survivors = [];
 
   for (const obj of heap) {
     if (obj.marked) {
-      obj.marked = false  // reset pour le prochain cycle GC
-      survivors.push(obj)
+      obj.marked = false; // reset pour le prochain cycle GC
+      survivors.push(obj);
     } else {
-      console.log(`[SWEEP] ${obj.id} → détruit (mémoire libérée)`)
+      console.log(`[SWEEP] ${obj.id} → détruit (mémoire libérée)`);
     }
   }
 
   // le heap ne contient plus que les survivants
-  heap.length = 0
-  heap.push(...survivors)
+  heap.length = 0;
+  heap.push(...survivors);
 }
 
 // Lancer un cycle GC complet
 function runGC() {
-  console.log("\n─── GC CYCLE START ───")
-  mark()
-  sweep()
-  console.log(`─── GC CYCLE END : ${heap.length} objet(s) en vie ───\n`)
+  console.log("\n─── GC CYCLE START ───");
+  mark();
+  sweep();
+  console.log(`─── GC CYCLE END : ${heap.length} objet(s) en vie ───\n`);
 }
 ```
 
@@ -110,21 +111,21 @@ function runGC() {
 
 ```js
 // Créer les ninjas
-const naruto  = allocate("Naruto")
-const sasuke  = allocate("Sasuke")
-const sakura  = allocate("Sakura")
-const kakashi = allocate("Kakashi")
+const naruto = allocate("Naruto");
+const sasuke = allocate("Sasuke");
+const sakura = allocate("Sakura");
+const kakashi = allocate("Kakashi");
 
 // Kakashi référence ses élèves
-kakashi.refs = [naruto, sasuke, sakura]
+kakashi.refs = [naruto, sasuke, sakura];
 
 // Naruto référence son rival
-naruto.refs = [sasuke]
+naruto.refs = [sasuke];
 
 // Les roots : seul Kakashi est accessible depuis le programme actif
-roots = [kakashi]
+roots = [kakashi];
 
-runGC()
+runGC();
 // → Naruto : marqué (via Kakashi)
 // → Sasuke : marqué (via Kakashi ET via Naruto)
 // → Sakura : marquée (via Kakashi)
@@ -146,17 +147,17 @@ roots
 ## 4) SIMULATION 2 : OROCHIMARU LÂCHÉ DANS LA NATURE
 
 ```js
-// Un ennemi arrive — il n'est référencé par personne d'utile
-const orochimaru = allocate("Orochimaru")
-const kabuto     = allocate("Kabuto")
+// Un ennemi arrive:il n'est référencé par personne d'utile
+const orochimaru = allocate("Orochimaru");
+const kabuto = allocate("Kabuto");
 
-orochimaru.refs = [kabuto]
-kabuto.refs     = [orochimaru]  // cycle entre eux deux
+orochimaru.refs = [kabuto];
+kabuto.refs = [orochimaru]; // cycle entre eux deux
 
 // Les roots ne changent pas : seulement Kakashi
 // Orochimaru et Kabuto ne sont atteignables par personne
 
-runGC()
+runGC();
 // → Orochimaru : NON marqué → détruit
 // → Kabuto     : NON marqué → détruit
 // Le cycle entre eux n'empêche pas leur destruction
@@ -179,14 +180,14 @@ roots
 
 ```js
 // Un tableau global garde une référence cachée
-const missionLog = []  // jamais nettoyé → c'est une root permanente
+const missionLog = []; // jamais nettoyé → c'est une root permanente
 
-const mission1 = allocate("Mission-A-rang")
-const mission2 = allocate("Mission-S-rang")
-const mission3 = allocate("Mission-Cachée")  // on pense l'avoir supprimé
+const mission1 = allocate("Mission-A-rang");
+const mission2 = allocate("Mission-S-rang");
+const mission3 = allocate("Mission-Cachée"); // on pense l'avoir supprimé
 
-missionLog.push(mission1)
-missionLog.push(mission3)  // mission3 est dans le log — pour toujours
+missionLog.push(mission1);
+missionLog.push(mission3); // mission3 est dans le log:pour toujours
 
 // On "supprime" les références locales
 // mission1 = null  (simulation)
@@ -194,12 +195,12 @@ missionLog.push(mission3)  // mission3 est dans le log — pour toujours
 // mission3 = null
 
 // Les roots : Kakashi + missionLog
-roots = [kakashi, ...missionLog]
+roots = [kakashi, ...missionLog];
 
-runGC()
-// → mission1  : marquée (dans missionLog) — SURVIT alors qu'on pensait l'avoir supprimée
+runGC();
+// → mission1  : marquée (dans missionLog):SURVIT alors qu'on pensait l'avoir supprimée
 // → mission2  : NON marquée → détruite (personne ne la référence)
-// → mission3  : marquée (dans missionLog) — SURVIT. C'est la fuite.
+// → mission3  : marquée (dans missionLog):SURVIT. C'est la fuite.
 ```
 
 ```
@@ -238,15 +239,15 @@ Indicateur rapide en Node :
 ```js
 // Snapshot de la mémoire utilisée à ce moment précis
 function memSnapshot(label) {
-  const used = process.memoryUsage().heapUsed
-  console.log(`[MEM] ${label} : ${(used / 1024 / 1024).toFixed(2)} MB`)
+  const used = process.memoryUsage().heapUsed;
+  console.log(`[MEM] ${label} : ${(used / 1024 / 1024).toFixed(2)} MB`);
 }
 
-memSnapshot("avant allocation")
-const bigArray = new Array(100_000).fill({ stat: "xG", value: 0.34 })
-memSnapshot("après allocation")
-bigArray.length = 0  // vide le tableau — les objets peuvent être collectés
-memSnapshot("après nettoyage")
+memSnapshot("avant allocation");
+const bigArray = new Array(100_000).fill({ stat: "xG", value: 0.34 });
+memSnapshot("après allocation");
+bigArray.length = 0; // vide le tableau:les objets peuvent être collectés
+memSnapshot("après nettoyage");
 ```
 
 ---
@@ -277,12 +278,14 @@ OrphanObj → refs: []              ← totalement isolé
 ### EXO 2 : IMPLÉMENTER `collectGarbage()`
 
 En utilisant le modèle du simulateur vu dans ce fichier, implémente une version complète avec :
+
 - `allocate(id, refs)` : crée un objet dans le heap
 - `addRoot(obj)` : ajoute un objet aux roots
 - `removeRoot(obj)` : retire un objet des roots
 - `collectGarbage()` : lance mark + sweep + affiche un rapport
 
 **Ta mission :** simuler ce scénario :
+
 1. Créer 5 objets (Rick, Daryl, Glenn, Negan, Gouverneur)
 2. Rick et Daryl sont roots
 3. Rick référence Glenn
@@ -300,28 +303,28 @@ Ce code tourne en Node. Après 10 000 itérations, l'app utilise 800 MB de RAM. 
 const eventBus = {
   listeners: {},
   on(event, fn) {
-    if (!this.listeners[event]) this.listeners[event] = []
-    this.listeners[event].push(fn)
+    if (!this.listeners[event]) this.listeners[event] = [];
+    this.listeners[event].push(fn);
   },
   emit(event, data) {
-    (this.listeners[event] || []).forEach(fn => fn(data))
-  }
-}
+    (this.listeners[event] || []).forEach((fn) => fn(data));
+  },
+};
 
 // Système de scoring pour chaque épisode de Walking Dead
 function processEpisode(episodeId) {
-  const scores = new Array(50_000).fill(0)
+  const scores = new Array(50_000).fill(0);
 
-  eventBus.on('score_update', (data) => {
+  eventBus.on("score_update", (data) => {
     // capture scores par closure
-    scores[data.index] = data.value
-  })
+    scores[data.index] = data.value;
+  });
 
-  return scores.reduce((a, b) => a + b, 0)
+  return scores.reduce((a, b) => a + b, 0);
 }
 
 for (let i = 0; i < 10_000; i++) {
-  processEpisode(i)
+  processEpisode(i);
 }
 ```
 

@@ -2,6 +2,7 @@
 
 Tu connais la structure. Maintenant t'as besoin de savoir quand et comment t'en servir.
 La queue résout trois types de problèmes distincts :
+
 - simuler un système de traitement ordonné (tickets, missions, jobs)
 - parcourir un graphe en largeur (BFS)
 - gérer des streams d'événements sans perdre l'ordre
@@ -19,10 +20,10 @@ Un opérateur traite un rapport à la fois. Si le Conseil est surchargé, les ra
 ```js
 class TicketSystem {
   constructor(operateurs = 1) {
-    this.queue = new Queue()         // les tickets en attente
-    this.operateurs = operateurs     // capacité de traitement parallèle
-    this.enTraitement = []           // tickets actifs
-    this.traites = []                // historique
+    this.queue = new Queue(); // les tickets en attente
+    this.operateurs = operateurs; // capacité de traitement parallèle
+    this.enTraitement = []; // tickets actifs
+    this.traites = []; // historique
   }
 
   soumettre(chevalier, rapport) {
@@ -30,49 +31,51 @@ class TicketSystem {
       id: Date.now() + Math.random(),
       chevalier,
       rapport,
-      soumisA: Date.now()
-    }
-    this.queue.enqueue(ticket)
-    console.log(`Ticket soumis par ${chevalier} : position : ${this.queue.size}`)
-    return ticket.id
+      soumisA: Date.now(),
+    };
+    this.queue.enqueue(ticket);
+    console.log(
+      `Ticket soumis par ${chevalier} : position : ${this.queue.size}`,
+    );
+    return ticket.id;
   }
 
   traiterProchain() {
     if (this.queue.isEmpty()) {
-      console.log("Aucun rapport en attente")
-      return null
+      console.log("Aucun rapport en attente");
+      return null;
     }
 
     if (this.enTraitement.length >= this.operateurs) {
-      console.log("Tous les opérateurs sont occupés")
-      return null
+      console.log("Tous les opérateurs sont occupés");
+      return null;
     }
 
-    const ticket = this.queue.dequeue()
-    ticket.debutTraitement = Date.now()
-    this.enTraitement.push(ticket)
+    const ticket = this.queue.dequeue();
+    ticket.debutTraitement = Date.now();
+    this.enTraitement.push(ticket);
 
     // simuler un traitement asynchrone
     setTimeout(() => {
-      this.finaliser(ticket.id)
-    }, Math.random() * 1000)
+      this.finaliser(ticket.id);
+    }, Math.random() * 1000);
 
-    return ticket
+    return ticket;
   }
 
   finaliser(id) {
-    const index = this.enTraitement.findIndex(t => t.id === id)
-    if (index === -1) return
+    const index = this.enTraitement.findIndex((t) => t.id === id);
+    if (index === -1) return;
 
-    const ticket = this.enTraitement.splice(index, 1)[0]
-    ticket.finTraitement = Date.now()
-    ticket.duree = ticket.finTraitement - ticket.debutTraitement
-    this.traites.push(ticket)
+    const ticket = this.enTraitement.splice(index, 1)[0];
+    ticket.finTraitement = Date.now();
+    ticket.duree = ticket.finTraitement - ticket.debutTraitement;
+    this.traites.push(ticket);
 
-    console.log(`Rapport de ${ticket.chevalier} traité en ${ticket.duree}ms`)
+    console.log(`Rapport de ${ticket.chevalier} traité en ${ticket.duree}ms`);
 
     // automatiquement on prend le suivant
-    this.traiterProchain()
+    this.traiterProchain();
   }
 
   stats() {
@@ -81,9 +84,12 @@ class TicketSystem {
       enTraitement: this.enTraitement.length,
       traites: this.traites.length,
       tempsMovenMs: this.traites.length
-        ? Math.round(this.traites.reduce((sum, t) => sum + t.duree, 0) / this.traites.length)
-        : 0
-    }
+        ? Math.round(
+            this.traites.reduce((sum, t) => sum + t.duree, 0) /
+              this.traites.length,
+          )
+        : 0,
+    };
   }
 }
 ```
@@ -121,40 +127,40 @@ ordre de visite : A --> B --> C --> D --> E --> F
 function bfs(graphe, depart) {
   // graphe = { "A": ["B", "C"], "B": ["D", "E"], "C": ["F"], ... }
 
-  const queue = new Queue()
-  const visites = new Set()    // éviter les cycles
-  const ordre = []
+  const queue = new Queue();
+  const visites = new Set(); // éviter les cycles
+  const ordre = [];
 
-  queue.enqueue(depart)
-  visites.add(depart)
+  queue.enqueue(depart);
+  visites.add(depart);
 
   while (!queue.isEmpty()) {
-    const noeud = queue.dequeue()
-    ordre.push(noeud)
+    const noeud = queue.dequeue();
+    ordre.push(noeud);
 
-    const voisins = graphe[noeud] || []
+    const voisins = graphe[noeud] || [];
 
     for (const voisin of voisins) {
       if (!visites.has(voisin)) {
-        visites.add(voisin)       // marquer AVANT d'enqueue
-        queue.enqueue(voisin)     // pas après — sinon doublons possibles
+        visites.add(voisin); // marquer AVANT d'enqueue
+        queue.enqueue(voisin); // pas après:sinon doublons possibles
       }
     }
   }
 
-  return ordre
+  return ordre;
 }
 
 // Exemple : réseau de Chevaliers d'Or
 const reseau = {
-  "Leon":    ["Alfonso", "Mendoza"],
-  "Alfonso": ["Ryuga", "German"],
-  "Mendoza": ["German"],
-  "Ryuga":   [],
-  "German":  ["Ryuga"]
-}
+  Leon: ["Alfonso", "Mendoza"],
+  Alfonso: ["Ryuga", "German"],
+  Mendoza: ["German"],
+  Ryuga: [],
+  German: ["Ryuga"],
+};
 
-bfs(reseau, "Leon")
+bfs(reseau, "Leon");
 // => ["Leon", "Alfonso", "Mendoza", "Ryuga", "German"]
 ```
 
@@ -172,54 +178,54 @@ Pour les grilles, les labyrinthes, les réseaux sans poids : BFS est la bonne ar
 
 ```js
 function cheminLePlusCourt(graphe, depart, arrivee) {
-  if (depart === arrivee) return [depart]
+  if (depart === arrivee) return [depart];
 
-  const queue = new Queue()
-  const visites = new Set()
+  const queue = new Queue();
+  const visites = new Set();
   // stocker le chemin complet jusqu'à chaque noeud
   // pas juste le noeud
-  const chemins = new Map()
+  const chemins = new Map();
 
-  queue.enqueue(depart)
-  visites.add(depart)
-  chemins.set(depart, [depart])
+  queue.enqueue(depart);
+  visites.add(depart);
+  chemins.set(depart, [depart]);
 
   while (!queue.isEmpty()) {
-    const noeud = queue.dequeue()
-    const cheminActuel = chemins.get(noeud)
+    const noeud = queue.dequeue();
+    const cheminActuel = chemins.get(noeud);
 
-    const voisins = graphe[noeud] || []
+    const voisins = graphe[noeud] || [];
 
     for (const voisin of voisins) {
       if (!visites.has(voisin)) {
-        const nouveauChemin = [...cheminActuel, voisin]
-        chemins.set(voisin, nouveauChemin)
+        const nouveauChemin = [...cheminActuel, voisin];
+        chemins.set(voisin, nouveauChemin);
 
         if (voisin === arrivee) {
-          return nouveauChemin  // on arrête dès qu'on trouve
+          return nouveauChemin; // on arrête dès qu'on trouve
         }
 
-        visites.add(voisin)
-        queue.enqueue(voisin)
+        visites.add(voisin);
+        queue.enqueue(voisin);
       }
     }
   }
 
-  return null  // pas de chemin entre depart et arrivee
+  return null; // pas de chemin entre depart et arrivee
 }
 
 // Trouver le chemin entre deux ninjas dans le réseau de Konoha
 const konoha = {
-  "Naruto":  ["Sasuke", "Sakura", "Kakashi"],
-  "Sasuke":  ["Naruto", "Orochimaru"],
-  "Sakura":  ["Naruto", "Tsunade"],
-  "Kakashi": ["Naruto", "Minato"],
-  "Minato":  ["Kakashi"],
-  "Tsunade": ["Sakura"],
-  "Orochimaru": ["Sasuke"]
-}
+  Naruto: ["Sasuke", "Sakura", "Kakashi"],
+  Sasuke: ["Naruto", "Orochimaru"],
+  Sakura: ["Naruto", "Tsunade"],
+  Kakashi: ["Naruto", "Minato"],
+  Minato: ["Kakashi"],
+  Tsunade: ["Sakura"],
+  Orochimaru: ["Sasuke"],
+};
 
-cheminLePlusCourt(konoha, "Minato", "Orochimaru")
+cheminLePlusCourt(konoha, "Minato", "Orochimaru");
 // => ["Minato", "Kakashi", "Naruto", "Sasuke", "Orochimaru"]
 ```
 
@@ -235,54 +241,61 @@ function labyrintheBFS(grille, depart, arrivee) {
   // grille[ligne][col] : 0 = libre, 1 = mur
   // depart / arrivee : [ligne, col]
 
-  const lignes = grille.length
-  const cols = grille[0].length
-  const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]  // haut, bas, gauche, droite
+  const lignes = grille.length;
+  const cols = grille[0].length;
+  const directions = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ]; // haut, bas, gauche, droite
 
-  const queue = new Queue()
-  const visites = new Set()
-  const parent = new Map()  // pour reconstruire le chemin
+  const queue = new Queue();
+  const visites = new Set();
+  const parent = new Map(); // pour reconstruire le chemin
 
-  const cle = (l, c) => `${l},${c}`
+  const cle = (l, c) => `${l},${c}`;
 
-  queue.enqueue(depart)
-  visites.add(cle(...depart))
+  queue.enqueue(depart);
+  visites.add(cle(...depart));
 
   while (!queue.isEmpty()) {
-    const [l, c] = queue.dequeue()
+    const [l, c] = queue.dequeue();
 
     if (l === arrivee[0] && c === arrivee[1]) {
       // reconstruire le chemin depuis la destination
-      const chemin = []
-      let pos = cle(l, c)
+      const chemin = [];
+      let pos = cle(l, c);
 
       while (pos) {
-        chemin.unshift(pos.split(",").map(Number))
-        pos = parent.get(pos)
+        chemin.unshift(pos.split(",").map(Number));
+        pos = parent.get(pos);
       }
 
-      return chemin
+      return chemin;
     }
 
     for (const [dl, dc] of directions) {
-      const nl = l + dl
-      const nc = c + dc
-      const k = cle(nl, nc)
+      const nl = l + dl;
+      const nc = c + dc;
+      const k = cle(nl, nc);
 
       if (
-        nl >= 0 && nl < lignes &&
-        nc >= 0 && nc < cols &&
+        nl >= 0 &&
+        nl < lignes &&
+        nc >= 0 &&
+        nc < cols &&
         grille[nl][nc] === 0 &&
         !visites.has(k)
       ) {
-        visites.add(k)
-        parent.set(k, cle(l, c))
-        queue.enqueue([nl, nc])
+        visites.add(k);
+        parent.set(k, cle(l, c));
+        queue.enqueue([nl, nc]);
       }
     }
   }
 
-  return null  // aucun chemin
+  return null; // aucun chemin
 }
 
 // Le plan d'évasion de Michael Scofield
@@ -291,10 +304,10 @@ const prison = [
   [0, 1, 0, 1, 0],
   [0, 0, 0, 1, 0],
   [1, 1, 0, 0, 0],
-  [0, 0, 0, 1, 0]
-]
+  [0, 0, 0, 1, 0],
+];
 
-labyrintheBFS(prison, [0, 0], [4, 4])
+labyrintheBFS(prison, [0, 0], [4, 4]);
 // => [[0,0], [1,0], [2,0], [2,1], [2,2], [3,2], [4,2], [4,3]... ]
 ```
 
@@ -308,43 +321,43 @@ La queue absorbe le surplus. Les workers traitent à leur rythme.
 ```js
 class TaskScheduler {
   constructor(concurrence = 3) {
-    this.queue = new Queue()
-    this.actifs = 0
-    this.concurrence = concurrence  // max tasks simultanées
+    this.queue = new Queue();
+    this.actifs = 0;
+    this.concurrence = concurrence; // max tasks simultanées
   }
 
   ajouter(task) {
     // task = fonction async qui retourne une Promise
-    this.queue.enqueue(task)
-    this.traiter()  // essaye de démarrer si un slot est libre
+    this.queue.enqueue(task);
+    this.traiter(); // essaye de démarrer si un slot est libre
   }
 
   async traiter() {
-    if (this.actifs >= this.concurrence || this.queue.isEmpty()) return
+    if (this.actifs >= this.concurrence || this.queue.isEmpty()) return;
 
-    this.actifs++
-    const task = this.queue.dequeue()
+    this.actifs++;
+    const task = this.queue.dequeue();
 
     try {
-      await task()
+      await task();
     } catch (err) {
-      console.error("Task échouée :", err.message)
+      console.error("Task échouée :", err.message);
     } finally {
-      this.actifs--
-      this.traiter()  // on prend la suivante dès qu'on libère un slot
+      this.actifs--;
+      this.traiter(); // on prend la suivante dès qu'on libère un slot
     }
   }
 }
 
 // Exemple : 10 analyses de code, max 3 en parallèle
-const scheduler = new TaskScheduler(3)
+const scheduler = new TaskScheduler(3);
 
 for (let i = 1; i <= 10; i++) {
   scheduler.ajouter(async () => {
-    const duree = Math.random() * 500 + 100
-    await new Promise(resolve => setTimeout(resolve, duree))
-    console.log(`Analyse ${i} terminée (${Math.round(duree)}ms)`)
-  })
+    const duree = Math.random() * 500 + 100;
+    await new Promise((resolve) => setTimeout(resolve, duree));
+    console.log(`Analyse ${i} terminée (${Math.round(duree)}ms)`);
+  });
 }
 ```
 
@@ -357,10 +370,12 @@ C'est le coeur de `p-limit`, `bottleneck`, `async-pool` : une queue + un compteu
 ## EXO 1 : LE SYSTÈME DE MISSIONS DE L'ESCOUADE
 
 L'escouade de Levi reçoit des missions contre les Titans. Chaque mission a :
+
 - un `id`, un `cible` (type de Titan), une `priorite` (1 à 5)
 - un `temps` de traitement simulé (en ms)
 
 Implémenter `MissionDispatcher` :
+
 - `soumettre(mission)` : ajoute en queue
 - `dispatchProchaine()` : retire et "exécute" la prochaine mission (setTimeout sur le `temps`)
 - `dispatchTout(concurrence)` : exécute toutes les missions avec N workers max en parallèle
@@ -374,6 +389,7 @@ Walter White a un réseau de distribution : les villes sont des noeuds, les rout
 Certaines routes sont bloquées (Hank est dans le coin).
 
 Implémenter :
+
 - `trouverTousLesChemins(graphe, depart, arrivee)` : retourne TOUS les chemins possibles (pas juste le plus court)
 - `distanceMinimale(graphe, depart, arrivee)` : nombre d'arêtes du chemin le plus court
 - `composantsConnexes(graphe)` : grouper les villes en groupes connectés entre eux
@@ -388,6 +404,7 @@ Un système de replay de match. Les events arrivent dans une queue.
 La simulation tourne à vitesse x2 (chaque minute de match dure 500ms réel).
 
 Implémenter `MatchReplay` :
+
 - `charger(events)` : charge une liste d'events ordonnés par minute dans la queue
 - `demarrer()` : démarre la simulation, emit chaque event au bon moment
 - `pause()` / `reprendre()` : stoppe et reprend sans perdre d'events

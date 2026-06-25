@@ -13,7 +13,7 @@ TS en prod n'est pas TS dans un tuto. Les contraintes changent tout.
   "compilerOptions": {
     // target : vers quelle version JS TS compile
     "target": "ES2022",
-    // ES2022 en 2026 = safe — tu as les features récentes sans polyfills inutiles
+    // ES2022 en 2026 = safe:tu as les features récentes sans polyfills inutiles
 
     // module : format des modules générés
     "module": "NodeNext",
@@ -28,9 +28,9 @@ TS en prod n'est pas TS dans un tuto. Les contraintes changent tout.
     //          strictBindCallApply, strictPropertyInitialization, noImplicitThis
 
     // strictNullChecks : null et undefined sont des types séparés
-    // sans ça : string et string | null sont interchangeables — tu perds 50% de l'intérêt de TS
+    // sans ça : string et string | null sont interchangeables:tu perds 50% de l'intérêt de TS
 
-    // noImplicitAny : TS refuse d'inférer any — tu dois typer explicitement
+    // noImplicitAny : TS refuse d'inférer any:tu dois typer explicitement
     // sans ça : TS te laisse glisser vers any silencieusement
 
     "outDir": "./dist",
@@ -43,7 +43,7 @@ TS en prod n'est pas TS dans un tuto. Les contraintes changent tout.
     // tu importes "@/utils/player" au lieu de "../../utils/player"
 
     "declaration": true,
-    // génère les .d.ts — nécessaire si tu publies une lib
+    // génère les .d.ts:nécessaire si tu publies une lib
 
     "sourceMap": true,
     // sourcemaps pour debugger le TS original depuis le JS compilé
@@ -118,8 +118,8 @@ PHASE 4 : strict complet
 ```ts
 // technique : any temporaire avec TODO
 function processLegacyData(data: any): ProcessedData {
-  // TODO: typer correctement — ticket #234
-  return data as ProcessedData
+  // TODO: typer correctement:ticket #234
+  return data as ProcessedData;
 }
 
 // au moins tu sais où regarder quand tu reviens dessus
@@ -143,24 +143,24 @@ Intérieur du module (typer avec pragmatisme) :
 ```
 
 ```ts
-// boundary : réponse API — typer et valider
+// boundary : réponse API:typer et valider
 async function fetchPlayer(id: number): Promise<Player> {
-  const res = await fetch(`/api/players/${id}`)
-  const raw: unknown = await res.json()
+  const res = await fetch(`/api/players/${id}`);
+  const raw: unknown = await res.json();
 
   if (!isPlayer(raw)) {
-    throw new TypeError(`Invalid player data: ${JSON.stringify(raw)}`)
+    throw new TypeError(`Invalid player data: ${JSON.stringify(raw)}`);
   }
 
-  return raw  // TS sait que c'est Player
+  return raw; // TS sait que c'est Player
 }
 
 // intérieur : laisser inférer
 function computePoints(player: Player) {
-  const base = player.goals * 3         // TS infère number
-  const bonus = player.assists           // TS infère number
-  const total = base + bonus             // TS infère number
-  return total                           // TS infère number — pas besoin de typer le retour
+  const base = player.goals * 3; // TS infère number
+  const bonus = player.assists; // TS infère number
+  const total = base + bonus; // TS infère number
+  return total; // TS infère number:pas besoin de typer le retour
 }
 ```
 
@@ -172,20 +172,20 @@ function computePoints(player: Player) {
 
 ```ts
 // as = "crois-moi TS, je sais ce que je fais"
-// c'est un contrat oral — si tu mens, les bugs arrivent à runtime
+// c'est un contrat oral:si tu mens, les bugs arrivent à runtime
 
 // acceptable : quand tu viens de valider manuellement
-const raw: unknown = JSON.parse(data)
+const raw: unknown = JSON.parse(data);
 if (isPlayer(raw)) {
-  const player = raw  // TS sait déjà — pas besoin de as
+  const player = raw; // TS sait déjà:pas besoin de as
 }
 
 // acceptable : quand tu construis une valeur progressivement
-const partial = {} as Player  // dangereux — aucune garantie que les champs seront remplis
+const partial = {} as Player; // dangereux:aucune garantie que les champs seront remplis
 // préférer : const partial: Partial<Player> = {}
 
 // inacceptable : pour faire taire TS sans comprendre pourquoi il se plaint
-const score = getScore() as number  // si TS pense que c'est string | number, il a peut-être raison
+const score = getScore() as number; // si TS pense que c'est string | number, il a peut-être raison
 ```
 
 ### Quand utiliser `any`
@@ -202,7 +202,7 @@ function processExternal(data: unknown): string {
 
 // avec any explicitement commenté
 function legacyBridge(data: any): void {
-  // any ici : lib externe sans types — attendre @types/libname v3.2
+  // any ici : lib externe sans types:attendre @types/libname v3.2
   // issue créée : github.com/.../issues/1234
 }
 ```
@@ -212,26 +212,26 @@ function legacyBridge(data: any): void {
 ```ts
 // interface : préférable pour les objets et les classes
 interface Player {
-  name: string
-  goals: number
+  name: string;
+  goals: number;
 }
 
 // type : nécessaire pour les unions, intersections, primitifs, tuples
-type EventType = "goal" | "card" | "substitution"
-type Coordinate = [number, number]
-type PlayerOrTeam = Player | Team
+type EventType = "goal" | "card" | "substitution";
+type Coordinate = [number, number];
+type PlayerOrTeam = Player | Team;
 
-// les deux peuvent être étendus — différemment
+// les deux peuvent être étendus:différemment
 interface AdminPlayer extends Player {
-  permissions: string[]
+  permissions: string[];
 }
 
-type AdminPlayer = Player & { permissions: string[] }
+type AdminPlayer = Player & { permissions: string[] };
 
 // déclaration merging : seulement avec interface
 // utile pour étendre des types de libs externes
 interface Window {
-  analytics: Analytics  // ajoute analytics à la Window globale
+  analytics: Analytics; // ajoute analytics à la Window globale
 }
 ```
 
@@ -254,31 +254,31 @@ src/
 ```
 
 ```ts
-// types/api.ts — types partagés pour toutes les réponses API
+// types/api.ts:types partagés pour toutes les réponses API
 export interface ApiResponse<T> {
-  data: T
-  status: number
-  timestamp: string
+  data: T;
+  status: number;
+  timestamp: string;
 }
 
 export interface ApiError {
-  code: string
-  message: string
-  details?: Record<string, string>
+  code: string;
+  message: string;
+  details?: Record<string, string>;
 }
 
-export type ApiResult<T> = ApiResponse<T> | ApiError
+export type ApiResult<T> = ApiResponse<T> | ApiError;
 
 // types/player.ts
 export interface Player {
-  id: number
-  name: string
-  goals: number
+  id: number;
+  name: string;
+  goals: number;
 }
 
-export type CreatePlayerInput = Omit<Player, "id">
-export type UpdatePlayerInput = Partial<Omit<Player, "id">> & { id: number }
-export type PublicPlayer = Pick<Player, "id" | "name" | "goals">
+export type CreatePlayerInput = Omit<Player, "id">;
+export type UpdatePlayerInput = Partial<Omit<Player, "id">> & { id: number };
+export type PublicPlayer = Pick<Player, "id" | "name" | "goals">;
 ```
 
 ---
@@ -292,19 +292,19 @@ export type PublicPlayer = Pick<Player, "id" | "name" | "goals">
 // legacy-lib.d.ts
 declare module "legacy-football-stats" {
   export interface StatsResult {
-    playerName: string
-    totalGoals: number
-    season: string
+    playerName: string;
+    totalGoals: number;
+    season: string;
   }
 
-  export function fetchStats(playerId: string): Promise<StatsResult>
-  export function formatStats(stats: StatsResult): string
+  export function fetchStats(playerId: string): Promise<StatsResult>;
+  export function formatStats(stats: StatsResult): string;
 }
 
 // maintenant tu importes la lib avec des types
-import { fetchStats } from "legacy-football-stats"
-const result = await fetchStats("messi-1")
-result.totalGoals  // TS sait que c'est number
+import { fetchStats } from "legacy-football-stats";
+const result = await fetchStats("messi-1");
+result.totalGoals; // TS sait que c'est number
 ```
 
 ---
@@ -316,29 +316,29 @@ result.totalGoals  // TS sait que c'est number
 enum Position {
   Attaquant = "attaquant",
   Milieu = "milieu",
-  Defenseur = "défenseur"
+  Defenseur = "défenseur",
 }
-// enum génère du JS à runtime — Position est un objet en mémoire
+// enum génère du JS à runtime:Position est un objet en mémoire
 // peut causer des problèmes en tree-shaking et avec les ESM
 
 // préférer : union de string literals + const object
 const Position = {
   Attaquant: "attaquant",
   Milieu: "milieu",
-  Defenseur: "défenseur"
-} as const
+  Defenseur: "défenseur",
+} as const;
 
-type Position = typeof Position[keyof typeof Position]
-// "attaquant" | "milieu" | "défenseur" — type union pur, pas de runtime overhead
+type Position = (typeof Position)[keyof typeof Position];
+// "attaquant" | "milieu" | "défenseur":type union pur, pas de runtime overhead
 ```
 
 ```ts
 // type assertion double (le double as)
-const evil = unknownValue as unknown as Player
-// contourne toutes les vérifications TS — si tu vois ça dans un codebase, c'est une dette
+const evil = unknownValue as unknown as Player;
+// contourne toutes les vérifications TS:si tu vois ça dans un codebase, c'est une dette
 
 // structuredClone perd les types
-const clone = structuredClone(player)
+const clone = structuredClone(player);
 // clone est typed Player par TS, mais en runtime les méthodes de classe sont perdues
 // si Player est une classe avec méthodes : clone.calculateRating() risque de throw
 ```
@@ -348,19 +348,23 @@ const clone = structuredClone(player)
 # EXERCICES
 
 ## EXO 1 : la config du projet Trapsoul Radio
+
 Écris un `tsconfig.json` pour un projet Node.js avec Express + TS. Justifie chaque option que tu mets. Active `strict`. Configure les paths pour `@/` → `src/`. Configure `declaration: true` (le package sera publié en interne).
 
 ## EXO 2 : les boundaries du projet Prison Break API
+
 Le serveur reçoit des corps de requête depuis Express. `req.body` est typé `any` par défaut. Définis les types `CreatePrisonerInput`, `UpdatePrisonerInput`, `PrisonerResponse`. Écris les type guards pour valider `req.body` avant utilisation.
 
 Écris un middleware Express `validateBody<T>(guard: (v: unknown) => v is T)` qui valide et type `req.body`.
 
 ## EXO 3 : la migration du camp de Rick
+
 Le camp a un fichier `inventory.js` avec 200 lignes non typées. Il y a un `Item` (avec `id`, `name`, `quantity`, `category`), un `Inventory` (liste d'items + fonctions de recherche), et des erreurs custom.
 
 Planifie la migration en 3 phases. Écris les types de base, le type guard `isItem`, et montre comment le fichier `.js` peut coexister avec le `.ts` pendant la transition.
 
 ## EXO 4 : le type global du projet oracle_glitch
+
 Le projet `oracle_glitch` utilise Anthropic SDK (qui a des types) + une lib de parsing maison sans types. Crée un fichier `custom-parser.d.ts` qui déclare les types de la lib maison : `parse(raw: string): ParseResult`, `ParseResult` avec `tokens: Token[]`, `errors: string[]`, `Token` avec `type` et `value`.
 
 ---

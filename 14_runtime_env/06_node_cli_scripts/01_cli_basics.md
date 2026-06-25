@@ -22,7 +22,7 @@ C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal
 // [7] = '--journalist'
 // [8] = 'Mbappe'
 
-const [,, command, ...flags] = process.argv
+const [, , command, ...flags] = process.argv;
 // command = 'vote'
 // flags = ['--player', 'Lamine Yamal', '--points', '12', '--journalist', 'Mbappe']
 ```
@@ -34,35 +34,35 @@ const [,, command, ...flags] = process.argv
 ```js
 // parser les flags --key value et les boolean flags --verbose
 function parseFlags(args) {
-  const flags = {}
-  let i = 0
+  const flags = {};
+  let i = 0;
 
   while (i < args.length) {
-    const arg = args[i]
+    const arg = args[i];
 
-    if (arg.startsWith('--')) {
-      const key = arg.slice(2)  // '--player' -> 'player'
-      const next = args[i + 1]
+    if (arg.startsWith("--")) {
+      const key = arg.slice(2); // '--player' -> 'player'
+      const next = args[i + 1];
 
-      if (!next || next.startsWith('--')) {
+      if (!next || next.startsWith("--")) {
         // flag booléen : --verbose sans valeur
-        flags[key] = true
-        i++
+        flags[key] = true;
+        i++;
       } else {
         // flag avec valeur : --player "Messi"
-        flags[key] = next
-        i += 2
+        flags[key] = next;
+        i += 2;
       }
     } else {
-      i++
+      i++;
     }
   }
 
-  return flags
+  return flags;
 }
 
-const [,, command, ...rawFlags] = process.argv
-const flags = parseFlags(rawFlags)
+const [, , command, ...rawFlags] = process.argv;
+const flags = parseFlags(rawFlags);
 
 // node vote.js vote --player "Messi" --points 10 --dry-run
 // command = 'vote'
@@ -75,19 +75,19 @@ const flags = parseFlags(rawFlags)
 
 ```js
 // stdout : la sortie normale
-// stderr : les erreurs — séparé, redirectable indépendamment
+// stderr : les erreurs:séparé, redirectable indépendamment
 
 // console.log écrit dans stdout avec \n automatique
-console.log('Classement mis à jour')
+console.log("Classement mis à jour");
 
 // process.stdout.write : contrôle total, pas de \n automatique
-process.stdout.write('Calcul en cours...')
+process.stdout.write("Calcul en cours...");
 // ... traitement ...
-process.stdout.write(' OK\n')
+process.stdout.write(" OK\n");
 
 // pour les erreurs : stderr
-console.error('Erreur : joueur introuvable')          // stderr
-process.stderr.write('Erreur critique : sortie\n')    // stderr
+console.error("Erreur : joueur introuvable"); // stderr
+process.stderr.write("Erreur critique : sortie\n"); // stderr
 
 // pourquoi séparer stdout et stderr :
 // l'utilisateur peut faire : node vote.js 2>errors.log
@@ -101,34 +101,34 @@ process.stderr.write('Erreur critique : sortie\n')    // stderr
 ```js
 // les codes ANSI : séquences d'échappement que le terminal interprète comme des couleurs
 const COLORS = {
-  reset:  '\x1b[0m',
-  bold:   '\x1b[1m',
-  red:    '\x1b[31m',
-  green:  '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue:   '\x1b[34m',
-  cyan:   '\x1b[36m',
-}
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  cyan: "\x1b[36m",
+};
 
 function colorize(text, ...codes) {
-  return codes.map(c => COLORS[c]).join('') + text + COLORS.reset
+  return codes.map((c) => COLORS[c]).join("") + text + COLORS.reset;
 }
 
-console.log(colorize('Ballon d\'Or 2026', 'bold', 'yellow'))
-console.log(colorize(' Erreur : joueur introuvable', 'red'))
-console.log(colorize(' Vote enregistré', 'green'))
+console.log(colorize("Ballon d'Or 2026", "bold", "yellow"));
+console.log(colorize(" Erreur : joueur introuvable", "red"));
+console.log(colorize(" Vote enregistré", "green"));
 
 // détecter si le terminal supporte les couleurs
 // (pour éviter les codes ANSI dans les fichiers de log ou les pipes)
 function supportsColor() {
-  return process.stdout.isTTY && process.env.TERM !== 'dumb'
+  return process.stdout.isTTY && process.env.TERM !== "dumb";
 }
 
 function print(text, color = null) {
   if (color && supportsColor()) {
-    console.log(colorize(text, color))
+    console.log(colorize(text, color));
   } else {
-    console.log(text)  // version sans couleur pour les pipes et les fichiers
+    console.log(text); // version sans couleur pour les pipes et les fichiers
   }
 }
 ```
@@ -156,38 +156,38 @@ Options :
 Exemples :
   node ballon-dor.js vote --player "Messi" --points 12
   node ballon-dor.js rank
-`
+`;
 
 function validateArgs(command, flags) {
-  const errors = []
+  const errors = [];
 
-  if (command === 'vote') {
-    if (!flags.player) errors.push('--player est requis pour la commande vote')
-    if (!flags.points) errors.push('--points est requis pour la commande vote')
+  if (command === "vote") {
+    if (!flags.player) errors.push("--player est requis pour la commande vote");
+    if (!flags.points) errors.push("--points est requis pour la commande vote");
 
-    const points = parseInt(flags.points, 10)
+    const points = parseInt(flags.points, 10);
     if (isNaN(points) || points < 1 || points > 15) {
-      errors.push('--points doit être un nombre entre 1 et 15')
+      errors.push("--points doit être un nombre entre 1 et 15");
     }
   }
 
-  return errors
+  return errors;
 }
 
 // point d'entrée principal
-const [,, command, ...rawFlags] = process.argv
-const flags = parseFlags(rawFlags)
+const [, , command, ...rawFlags] = process.argv;
+const flags = parseFlags(rawFlags);
 
 if (flags.help || !command) {
-  process.stdout.write(USAGE)
-  process.exit(0)
+  process.stdout.write(USAGE);
+  process.exit(0);
 }
 
-const errors = validateArgs(command, flags)
+const errors = validateArgs(command, flags);
 if (errors.length > 0) {
-  errors.forEach(e => console.error(colorize(` ${e}`, 'red')))
-  process.stderr.write('\nUtilise --help pour voir les options disponibles\n')
-  process.exit(1)
+  errors.forEach((e) => console.error(colorize(` ${e}`, "red")));
+  process.stderr.write("\nUtilise --help pour voir les options disponibles\n");
+  process.exit(1);
 }
 ```
 
@@ -210,11 +210,11 @@ if (errors.length > 0) {
 // si le script sort avec un code != 0 : le pipeline échoue automatiquement
 
 try {
-  await runCommand(command, flags)
-  process.exit(0)  // succès
+  await runCommand(command, flags);
+  process.exit(0); // succès
 } catch (err) {
-  console.error(colorize(` ${err.message}`, 'red'))
-  process.exit(1)  // erreur
+  console.error(colorize(` ${err.message}`, "red"));
+  process.exit(1); // erreur
 }
 ```
 
@@ -225,6 +225,7 @@ try {
 ## EXO 1 : le parser complet
 
 Écris `parseArgs(argv)` qui supporte :
+
 - les flags `--key value`
 - les flags boolean `--verbose`
 - les flags `--key=value` (avec signe égal, sans espace)
@@ -237,6 +238,7 @@ Retourne `{ command, flags, positionals }`.
 ## EXO 2 : le CLI de vote minimal
 
 Crée un script `vote.js` avec ces commandes :
+
 - `vote --player <nom> --points <n>` : enregistre un vote en mémoire
 - `rank` : affiche le top 5 des joueurs triés par points
 - `reset` : remet les votes à zéro

@@ -18,14 +18,14 @@ Certaines ressources doivent exister en un seul exemplaire dans tout le processu
 
 ```js
 // sans singleton : deux connexions DB différentes, deux états différents
-const db1 = new DatabaseConnection({ host: "localhost", db: "foxriver" })
-const db2 = new DatabaseConnection({ host: "localhost", db: "foxriver" })
+const db1 = new DatabaseConnection({ host: "localhost", db: "foxriver" });
+const db2 = new DatabaseConnection({ host: "localhost", db: "foxriver" });
 
 // db1 et db2 sont deux objets distincts
 // si db1 ouvre une transaction, db2 ne le sait pas
 // résultat : états incohérents, fuites de connexions, chaos
 
-console.log(db1 === db2) // false — catastrophe
+console.log(db1 === db2); // false:catastrophe
 ```
 
 Le Singleton fixe ça : une seule connexion, partagée par tout le code qui en a besoin.
@@ -39,42 +39,42 @@ class LabManager {
   constructor(cook, location) {
     // si une instance existe déjà, on la retourne directement
     if (LabManager._instance) {
-      return LabManager._instance
+      return LabManager._instance;
     }
 
     // première instanciation : on construit vraiment
-    this.cook     = cook
-    this.location = location
-    this.batches  = []
-    this.status   = "operational"
+    this.cook = cook;
+    this.location = location;
+    this.batches = [];
+    this.status = "operational";
 
     // on stocke la référence sur la classe elle-même
-    LabManager._instance = this
+    LabManager._instance = this;
   }
 
   addBatch(purity, quantity) {
-    this.batches.push({ purity, quantity, timestamp: Date.now() })
-    console.log(`Nouveau lot : ${purity}% : ${quantity}kg`)
+    this.batches.push({ purity, quantity, timestamp: Date.now() });
+    console.log(`Nouveau lot : ${purity}% : ${quantity}kg`);
   }
 
   getStatus() {
-    return `${this.cook} @ ${this.location} : ${this.batches.length} lots produits`
+    return `${this.cook} @ ${this.location} : ${this.batches.length} lots produits`;
   }
 
   // réinitialiser l'instance (utile en test uniquement)
   static reset() {
-    LabManager._instance = null
+    LabManager._instance = null;
   }
 }
 
-const lab1 = new LabManager("Walter White", "Superlab")
-const lab2 = new LabManager("Gustavo", "Autre endroit") // ignoré : instance déjà là
+const lab1 = new LabManager("Walter White", "Superlab");
+const lab2 = new LabManager("Gustavo", "Autre endroit"); // ignoré : instance déjà là
 
-console.log(lab1 === lab2) // true : même objet
-console.log(lab2.cook)     // "Walter White" : le second new n'a rien écrasé
+console.log(lab1 === lab2); // true : même objet
+console.log(lab2.cook); // "Walter White" : le second new n'a rien écrasé
 
-lab1.addBatch(99.1, 50)
-console.log(lab2.getStatus()) // voit aussi le lot ajouté via lab1
+lab1.addBatch(99.1, 50);
+console.log(lab2.getStatus()); // voit aussi le lot ajouté via lab1
 // "Walter White @ Superlab : 1 lots produits"
 ```
 
@@ -99,53 +99,55 @@ new LabManager()   -->  _instance existe ?
 En JS moderne, le module pattern donne un Singleton naturel : un module est chargé une seule fois, son état persiste pour toute la durée du processus.
 
 ```js
-// config.js — chargé une seule fois par le runtime Node
+// config.js:chargé une seule fois par le runtime Node
 // tous les imports de ce fichier reçoivent le même objet
 
-let _initialized = false
-let _config = {}
+let _initialized = false;
+let _config = {};
 
 function init(overrides = {}) {
   if (_initialized) {
     // deuxième init : on refuse, on ne silencieuse pas
-    throw new Error("Config déjà initialisée : appeler init() deux fois c'est suspect")
+    throw new Error(
+      "Config déjà initialisée : appeler init() deux fois c'est suspect",
+    );
   }
 
   _config = {
-    env:      process.env.NODE_ENV || "development",
+    env: process.env.NODE_ENV || "development",
     logLevel: process.env.LOG_LEVEL || "info",
-    dbHost:   process.env.DB_HOST || "localhost",
+    dbHost: process.env.DB_HOST || "localhost",
     ...overrides,
-  }
+  };
 
-  _initialized = true
-  console.log(`Config initialisée pour l'env : ${_config.env}`)
+  _initialized = true;
+  console.log(`Config initialisée pour l'env : ${_config.env}`);
 }
 
 function get(key) {
   if (!_initialized) {
-    throw new Error(`Config non initialisée. Appelle init() d'abord.`)
+    throw new Error(`Config non initialisée. Appelle init() d'abord.`);
   }
-  return _config[key]
+  return _config[key];
 }
 
 function getAll() {
-  return { ..._config } // copie : personne ne modifie l'interne
+  return { ..._config }; // copie : personne ne modifie l'interne
 }
 
-export { init, get, getAll }
+export { init, get, getAll };
 ```
 
 ```js
 // main.js
-import { init, get } from "./config.js"
+import { init, get } from "./config.js";
 
-init({ env: "production", logLevel: "warn" })
-console.log(get("env")) // "production"
+init({ env: "production", logLevel: "warn" });
+console.log(get("env")); // "production"
 
 // ailleurs dans le code
-import { get } from "./config.js"
-console.log(get("env")) // toujours "production" : même module, même état
+import { get } from "./config.js";
+console.log(get("env")); // toujours "production" : même module, même état
 ```
 
 C'est la forme la plus propre de Singleton en JS.
@@ -156,54 +158,56 @@ Pas de classe. Pas de `_instance`. Juste le système de modules qui fait le boul
 ## 4) SINGLETON EN PRATIQUE : LE LOGGER
 
 ```js
-// logger.js — un seul logger pour toute l'app
-const levels = { debug: 0, info: 1, warn: 2, error: 3 }
+// logger.js:un seul logger pour toute l'app
+const levels = { debug: 0, info: 1, warn: 2, error: 3 };
 
-let _level   = "info"
-let _history = []
+let _level = "info";
+let _history = [];
 
 const logger = {
   setLevel(lvl) {
-    if (!levels[lvl]) throw new Error(`Niveau inconnu : ${lvl}`)
-    _level = lvl
+    if (!levels[lvl]) throw new Error(`Niveau inconnu : ${lvl}`);
+    _level = lvl;
   },
 
   log(level, message, context = {}) {
-    if (levels[level] < levels[_level]) return // filtré selon le niveau actuel
+    if (levels[level] < levels[_level]) return; // filtré selon le niveau actuel
 
     const entry = {
       timestamp: new Date().toISOString(),
       level,
       message,
       ...context,
-    }
+    };
 
-    _history.push(entry)
-    console.log(JSON.stringify(entry))
+    _history.push(entry);
+    console.log(JSON.stringify(entry));
   },
 
-  info:  (msg, ctx) => logger.log("info",  msg, ctx),
-  warn:  (msg, ctx) => logger.log("warn",  msg, ctx),
+  info: (msg, ctx) => logger.log("info", msg, ctx),
+  warn: (msg, ctx) => logger.log("warn", msg, ctx),
   error: (msg, ctx) => logger.log("error", msg, ctx),
 
   getHistory: () => [..._history], // copie défensive
-  clear:      () => { _history = [] }, // pour les tests
-}
+  clear: () => {
+    _history = [];
+  }, // pour les tests
+};
 
 // on exporte l'objet directement : c'est le singleton
-export default logger
+export default logger;
 ```
 
 ```js
 // n'importe où dans l'app
-import logger from "./logger.js"
+import logger from "./logger.js";
 
-logger.info("Connexion DB établie", { host: "localhost" })
-logger.warn("Rate limit atteint", { endpoint: "/api/vote" })
+logger.info("Connexion DB établie", { host: "localhost" });
+logger.warn("Rate limit atteint", { endpoint: "/api/vote" });
 
 // dans un autre fichier, même import, même objet, même historique
-import logger from "./logger.js"
-logger.getHistory() // contient les deux entrées précédentes
+import logger from "./logger.js";
+logger.getHistory(); // contient les deux entrées précédentes
 ```
 
 ---
@@ -214,12 +218,12 @@ logger.getHistory() // contient les deux entrées précédentes
 
 ```js
 // n'importe quelle fonction peut accéder et modifier le state global
-import userState from "./userState.js" // singleton
+import userState from "./userState.js"; // singleton
 
 function processPayment(amount) {
   // cette fonction modifie le state global sans que l'appelant le sache
-  userState.set("lastPayment", amount)
-  userState.set("sessionDirty", true)
+  userState.set("lastPayment", amount);
+  userState.set("sessionDirty", true);
   // et si une autre fonction lit userState.sessionDirty au mauvais moment ?
 }
 ```
@@ -231,13 +235,13 @@ Les fonctions semblent indépendantes : elles ne le sont pas.
 
 ```js
 // test A modifie le singleton
-import config from "./config.js"
-config.set("env", "test-a")
+import config from "./config.js";
+config.set("env", "test-a");
 
 // test B lit le singleton modifié par A
 // si les tests tournent dans le même processus : test B voit l'état de test A
-import config from "./config.js"
-console.log(config.get("env")) // "test-a" — bug de test non obvious
+import config from "./config.js";
+console.log(config.get("env")); // "test-a":bug de test non obvious
 ```
 
 C'est pour ça que chaque Singleton sérieux expose une méthode `reset()` pour les tests.
@@ -264,26 +268,30 @@ Le Singleton est souvent le premier réflexe. L'injection de dépendances est so
 class PlayerService {
   getTopScorer() {
     // dbConnection est global, impossible à remplacer en test
-    return dbConnection.query("SELECT * FROM players ORDER BY goals DESC LIMIT 1")
+    return dbConnection.query(
+      "SELECT * FROM players ORDER BY goals DESC LIMIT 1",
+    );
   }
 }
 
 // injection : découplé, testable, flexible
 class PlayerService {
   constructor(db) {
-    this.db = db // injecté : peut être le vrai ou un mock
+    this.db = db; // injecté : peut être le vrai ou un mock
   }
 
   getTopScorer() {
-    return this.db.query("SELECT * FROM players ORDER BY goals DESC LIMIT 1")
+    return this.db.query("SELECT * FROM players ORDER BY goals DESC LIMIT 1");
   }
 }
 
 // en prod : vrai DB
-const service = new PlayerService(realDb)
+const service = new PlayerService(realDb);
 
 // en test : mock DB
-const service = new PlayerService({ query: () => [{ name: "Mbappé", goals: 32 }] })
+const service = new PlayerService({
+  query: () => [{ name: "Mbappé", goals: 32 }],
+});
 ```
 
 Règle : si le Singleton est utilisé dans du code qui doit être testé, préfère l'injection.
@@ -299,6 +307,7 @@ Le camp des survivants dans The Walking Dead a un seul `CampManager`.
 Il gère l'inventaire global, le nombre de survivants, le niveau d'alerte (0 à 5).
 
 Crée ce Singleton avec :
+
 - `addSurvivor(name)` : ajoute un survivant
 - `removeSupply(item, quantity)` : retire une quantité d'un item de l'inventaire (throw si stock insuffisant)
 - `setAlertLevel(level)` : 0 à 5 uniquement (throw sinon)
@@ -317,6 +326,7 @@ Michael Scofield n'initialise le plan d'évasion qu'une seule fois.
 Après ça, tous les détenus qui consultent le plan voient la même version.
 
 Crée un module `escapePlan.js` (Singleton module pattern) avec :
+
 - `init(prisonName, cellBlock, totalPhases)` : initialise le plan (throw si déjà initialisé)
 - `addPhase(description, responsible)` : ajoute une phase au plan
 - `completePhase(index)` : marque une phase comme complétée
@@ -334,10 +344,14 @@ Voici un Singleton de cache partagé :
 ```js
 const cache = {
   _data: {},
-  set(key, value) { this._data[key] = value },
-  get(key) { return this._data[key] },
-}
-export default cache
+  set(key, value) {
+    this._data[key] = value;
+  },
+  get(key) {
+    return this._data[key];
+  },
+};
+export default cache;
 ```
 
 Identifie deux problèmes concrets que ce cache peut causer dans une app multi-fonctions.

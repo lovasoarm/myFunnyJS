@@ -13,32 +13,32 @@ L'avantage concret : tu peux "pré-remplir" les premiers arguments et obtenir un
 ```js
 // fonction normale : 2 arguments
 function multiplier(facteur, valeur) {
-  return facteur * valeur
+  return facteur * valeur;
 }
 
-multiplier(2, 50) // 100
-multiplier(3, 50) // 150
+multiplier(2, 50); // 100
+multiplier(3, 50); // 150
 
 // version curryfiée : une fonction qui retourne une fonction
 function multiplier(facteur) {
-  return function(valeur) {
-    return facteur * valeur
-  }
+  return function (valeur) {
+    return facteur * valeur;
+  };
 }
 
 // ou en arrow
-const multiplier = facteur => valeur => facteur * valeur
+const multiplier = (facteur) => (valeur) => facteur * valeur;
 
-multiplier(2)(50)  // 100
-multiplier(3)(50)  // 150
+multiplier(2)(50); // 100
+multiplier(3)(50); // 150
 
 // mais surtout : tu peux créer des versions spécialisées
-const doubler  = multiplier(2)  // facteur fixé à 2
-const tripler  = multiplier(3)  // facteur fixé à 3
+const doubler = multiplier(2); // facteur fixé à 2
+const tripler = multiplier(3); // facteur fixé à 3
 
-doubler(50)   // 100
-tripler(50)   // 150
-doubler(80)   // 160
+doubler(50); // 100
+tripler(50); // 150
+doubler(80); // 160
 ```
 
 ---
@@ -49,35 +49,34 @@ Le vrai pouvoir : créer des fonctions spécialisées à partir d'une fonction g
 
 ```js
 // fonction générale de filtrage
-const filtrerParSeuil = seuil => joueurs => joueurs.filter(j => j.buts >= seuil)
+const filtrerParSeuil = (seuil) => (joueurs) =>
+  joueurs.filter((j) => j.buts >= seuil);
 
 // spécialisations
-const filtrerMeilleursButteurs   = filtrerParSeuil(50)
-const filtrerButteursRaisonnables = filtrerParSeuil(30)
-const filtrerTout                 = filtrerParSeuil(0)
+const filtrerMeilleursButteurs = filtrerParSeuil(50);
+const filtrerButteursRaisonnables = filtrerParSeuil(30);
+const filtrerTout = filtrerParSeuil(0);
 
 // chaque spécialisation est une fonction unaire : se compose directement
-pipe(
-  filtrerMeilleursButteurs,
-  calculerScore,
-  trierParScore
-)(joueurs)
+pipe(filtrerMeilleursButteurs, calculerScore, trierParScore)(joueurs);
 ```
 
 ```js
 // pattern fréquent : currying + composition pour construire des pipelines flexibles
-const ajouterChamp = (nomChamp, calculer) => objet => ({
+const ajouterChamp = (nomChamp, calculer) => (objet) => ({
   ...objet,
-  [nomChamp]: calculer(objet)
-})
+  [nomChamp]: calculer(objet),
+});
 
-const ajouterScore = ajouterChamp("score", j => j.buts * 0.5 + j.passes * 0.3)
-const ajouterNiveau = ajouterChamp("niveau", j => j.score > 50 ? "elite" : "standard")
+const ajouterScore = ajouterChamp(
+  "score",
+  (j) => j.buts * 0.5 + j.passes * 0.3,
+);
+const ajouterNiveau = ajouterChamp("niveau", (j) =>
+  j.score > 50 ? "elite" : "standard",
+);
 
-pipe(
-  ajouterScore,
-  ajouterNiveau
-)(joueur)
+pipe(ajouterScore, ajouterNiveau)(joueur);
 ```
 
 ---
@@ -92,33 +91,33 @@ function curry(fn) {
   return function curryé(...args) {
     if (args.length >= fn.length) {
       // on a tous les arguments : on exécute
-      return fn(...args)
+      return fn(...args);
     }
     // il manque des arguments : on retourne une fonction qui attend la suite
-    return (...autresArgs) => curryé(...args, ...autresArgs)
-  }
+    return (...autresArgs) => curryé(...args, ...autresArgs);
+  };
 }
 
 // une fonction normale
 function calculerDegats(force, defense, multiplicateur) {
-  return Math.max(0, (force - defense) * multiplicateur)
+  return Math.max(0, (force - defense) * multiplicateur);
 }
 
-const calculerDegatsC = curry(calculerDegats)
+const calculerDegatsC = curry(calculerDegats);
 
 // appel classique
-calculerDegatsC(80, 30, 1.5)       // 75
+calculerDegatsC(80, 30, 1.5); // 75
 
 // appel curryifié
-calculerDegatsC(80)(30)(1.5)       // 75
+calculerDegatsC(80)(30)(1.5); // 75
 
 // spécialisation partielle
-const attaquantForce80 = calculerDegatsC(80)
-const vs30Defense      = attaquantForce80(30)
+const attaquantForce80 = calculerDegatsC(80);
+const vs30Defense = attaquantForce80(30);
 
-vs30Defense(1.0)   // 50
-vs30Defense(1.5)   // 75
-vs30Defense(2.0)   // 100
+vs30Defense(1.0); // 50
+vs30Defense(1.5); // 75
+vs30Defense(2.0); // 100
 ```
 
 ---
@@ -129,45 +128,48 @@ Le currying brille sur les fonctions de config, de requête, de transformation.
 
 ```js
 // construction de requêtes pour la Prison Break API
-const creerRequete = methode => endpoint => corps => ({
+const creerRequete = (methode) => (endpoint) => (corps) => ({
   method: methode,
   url: `https://api.foxriver.prison${endpoint}`,
   body: corps ? JSON.stringify(corps) : undefined,
-  headers: { "Content-Type": "application/json" }
-})
+  headers: { "Content-Type": "application/json" },
+});
 
-const GET    = creerRequete("GET")
-const POST   = creerRequete("POST")
-const DELETE = creerRequete("DELETE")
+const GET = creerRequete("GET");
+const POST = creerRequete("POST");
+const DELETE = creerRequete("DELETE");
 
 // endpoints spécialisés
-const getPrisonniers    = GET("/prisonniers")
-const getSection        = GET("/sections")
-const ajouterPrisonnier = POST("/prisonniers")
+const getPrisonniers = GET("/prisonniers");
+const getSection = GET("/sections");
+const ajouterPrisonnier = POST("/prisonniers");
 
 // utilisation
-const requêteListePrisonniers = getPrisonniers(null)
-const requêteAjoutMichael     = ajouterPrisonnier({ nom: "Scofield", cellule: "A08" })
+const requêteListePrisonniers = getPrisonniers(null);
+const requêteAjoutMichael = ajouterPrisonnier({
+  nom: "Scofield",
+  cellule: "A08",
+});
 ```
 
 ```js
 // logger curryifié
-const log = niveau => contexte => message => ({
+const log = (niveau) => (contexte) => (message) => ({
   niveau,
   contexte,
   message,
-  timestamp: new Date().toISOString()
-})
+  timestamp: new Date().toISOString(),
+});
 
-const error = log("ERROR")
-const warn  = log("WARN")
-const info  = log("INFO")
+const error = log("ERROR");
+const warn = log("WARN");
+const info = log("INFO");
 
-const errorAuth = error("AUTH")
-const infoDispatch = info("DISPATCH")
+const errorAuth = error("AUTH");
+const infoDispatch = info("DISPATCH");
 
-errorAuth("Token expiré")        // { niveau: "ERROR", contexte: "AUTH", ... }
-infoDispatch("Mission reçue")    // { niveau: "INFO", contexte: "DISPATCH", ... }
+errorAuth("Token expiré"); // { niveau: "ERROR", contexte: "AUTH", ... }
+infoDispatch("Mission reçue"); // { niveau: "INFO", contexte: "DISPATCH", ... }
 ```
 
 ---
@@ -178,14 +180,14 @@ La fonction `curry` automatique se base sur `fn.length` pour savoir combien d'ar
 
 ```js
 function maFonction(a, b, c = 10) {
-  return a + b + c
+  return a + b + c;
 }
 
-maFonction.length // 2 — JS ne compte pas c car il a une valeur par défaut
+maFonction.length; // 2:JS ne compte pas c car il a une valeur par défaut
 
-const curryée = curry(maFonction)
-curryée(1)(2) // exécuté avec c = 10 (défaut), résultat 13
-curryée(1)(2)(5) // aussi 13 — curry pense que c'est 2 args, le 3e est ignoré
+const curryée = curry(maFonction);
+curryée(1)(2); // exécuté avec c = 10 (défaut), résultat 13
+curryée(1)(2)(5); // aussi 13:curry pense que c'est 2 args, le 3e est ignoré
 ```
 
 Fix : évite les valeurs par défaut dans les fonctions que tu curries. Passe toujours les valeurs explicitement.
@@ -206,12 +208,12 @@ partial application : f(a, b, c) avec a fixé => g(b, c)
 
 ```js
 // curry : chaque argument est séparé
-const additionner = a => b => a + b
-additionner(10)(5) // 15
+const additionner = (a) => (b) => a + b;
+additionner(10)(5); // 15
 
 // partial application : on fixe certains args, le reste ensemble
-const additionnerA10 = additionner.bind(null, 10)
-additionnerA10(5) // 15
+const additionnerA10 = additionner.bind(null, 10);
+additionnerA10(5); // 15
 
 // en FP, curry est plus composable car chaque appel retourne une fonction unaire
 ```
@@ -241,6 +243,7 @@ Transforme ces fonctions en versions curryfiées manuellement (sans `curry` gén
 
 Implémente ta propre version de `curry(fn)`.
 Vérifie qu'elle fonctionne sur :
+
 - une fonction à 2 args
 - une fonction à 3 args
 - l'appel partiel (ex: `curryée(1)(2)` et `curryée(1, 2)` donnent le même résultat)
@@ -251,10 +254,10 @@ Vérifie qu'elle fonctionne sur :
 
 ```js
 const candidats = [
-  { nom: "Messi",   buts: 45, passes: 20, aCL: true,  equipe: "Inter Miami" },
-  { nom: "Mbappé",  buts: 52, passes: 15, aCL: false, equipe: "Real Madrid" },
-  { nom: "Haaland", buts: 60, passes: 8,  aCL: true,  equipe: "Man City"    }
-]
+  { nom: "Messi", buts: 45, passes: 20, aCL: true, equipe: "Inter Miami" },
+  { nom: "Mbappé", buts: 52, passes: 15, aCL: false, equipe: "Real Madrid" },
+  { nom: "Haaland", buts: 60, passes: 8, aCL: true, equipe: "Man City" },
+];
 
 // Construis un pipeline avec des fonctions curryfiées :
 // filtrerParEquipe(equipe)(joueurs)

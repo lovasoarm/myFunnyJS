@@ -12,14 +12,15 @@ Comprendre la logique booléenne, c'est comprendre pourquoi certaines conditions
 
 ```js
 // Eren peut attaquer seulement s'il a de l'énergie ET qu'il est transformé
-const peutAttaquer = aDeEnergie && estTransforme
+const peutAttaquer = aDeEnergie && estTransforme;
 
 // si le premier est false : JS ne regarde même pas le second
-// c'est le short-circuit — il stoppe dès que c'est perdu
-false && quelqueChoseDeCoûteux()  // quelqueChoseDeCoûteux() n'est jamais appelé
+// c'est le short-circuit:il stoppe dès que c'est perdu
+false && quelqueChoseDeCoûteux(); // quelqueChoseDeCoûteux() n'est jamais appelé
 ```
 
 **Table de vérité AND :**
+
 ```
 true  && true  => true
 true  && false => false
@@ -31,13 +32,14 @@ false && false => false
 
 ```js
 // le joueur marque si c'est un tir cadré OU une déviation malheureuse
-const butValide = tirCadre || deviationAdverse
+const butValide = tirCadre || deviationAdverse;
 
 // short-circuit inverse : stoppe dès que c'est gagné
-true || quelqueChoseDeCoûteux()  // idem, jamais évalué
+true || quelqueChoseDeCoûteux(); // idem, jamais évalué
 ```
 
 **Table de vérité OR :**
+
 ```
 true  || true  => true   // stoppe ici
 true  || false => true   // stoppe ici
@@ -48,12 +50,12 @@ false || false => false
 ### NOT (`!`) : inverse la valeur
 
 ```js
-const estConnecte = true
-const estDeconnecte = !estConnecte  // false
+const estConnecte = true;
+const estDeconnecte = !estConnecte; // false
 
 // double négation : utile pour forcer un booléen
-const valeurDouteuse = "Naruto"
-!!valeurDouteuse  // true — convertit en vrai booléen
+const valeurDouteuse = "Naruto";
+!!valeurDouteuse; // true:convertit en vrai booléen
 ```
 
 ### XOR : l'un ou l'autre, mais pas les deux
@@ -62,15 +64,15 @@ JS n'a pas d'opérateur XOR logique natif, mais le bitwise `^` existe. Pour les 
 
 ```js
 // XOR maison : exactement un des deux doit être vrai
-const xor = (a, b) => (a || b) && !(a && b)
+const xor = (a, b) => (a || b) && !(a && b);
 
-xor(true, false)  // true — un seul est vrai
-xor(true, true)   // false — les deux sont vrais, c'est trop
-xor(false, false) // false — aucun n'est vrai
+xor(true, false); // true:un seul est vrai
+xor(true, true); // false:les deux sont vrais, c'est trop
+xor(false, false); // false:aucun n'est vrai
 
 // cas d'usage réel : un interrupteur qui toggle
 // on veut que la lumière soit allumée si UN seul interrupteur est ON
-const lumiere = xor(interrupteur1, interrupteur2)
+const lumiere = xor(interrupteur1, interrupteur2);
 ```
 
 ---
@@ -81,32 +83,32 @@ Le short-circuit est utilisé partout comme raccourci d'écriture. C'est pratiqu
 
 ```js
 // valeur par défaut avec ||
-const pseudo = joueur.pseudo || "Anonyme"
+const pseudo = joueur.pseudo || "Anonyme";
 // si joueur.pseudo est falsy (null, undefined, "", 0, false) => "Anonyme"
 
 // PIÈGE : 0 est falsy
-const score = joueur.score || 100
+const score = joueur.score || 100;
 // si score vaut 0 (joueur n'a pas encore marqué), il devient 100
-// c'est faux — le joueur a un score, il vaut juste 0
+// c'est faux:le joueur a un score, il vaut juste 0
 ```
 
 **La solution : nullish coalescing `??`**
 
 ```js
 // ?? ne remplace que null et undefined, pas les autres falsy
-const score = joueur.score ?? 100
-// 0 reste 0 — only null et undefined déclenchent le fallback
+const score = joueur.score ?? 100;
+// 0 reste 0:only null et undefined déclenchent le fallback
 ```
 
 **Optional chaining `?.` + short-circuit**
 
 ```js
 // accéder à une propriété qui peut ne pas exister
-const ville = joueur?.profil?.adresse?.ville
+const ville = joueur?.profil?.adresse?.ville;
 // si n'importe quel maillon est null/undefined => undefined, pas d'erreur
 
 // combiné avec ??
-const ville = joueur?.profil?.adresse?.ville ?? "Inconnue"
+const ville = joueur?.profil?.adresse?.ville ?? "Inconnue";
 ```
 
 ---
@@ -116,36 +118,38 @@ const ville = joueur?.profil?.adresse?.ville ?? "Inconnue"
 JS ne travaille pas qu'avec des vrais booléens. N'importe quelle valeur peut être évaluée comme vraie ou fausse.
 
 **Falsy : ces 7 valeurs sont considérées comme false**
+
 ```js
-false
-0
--0
-0n          // BigInt zéro
-""          // chaîne vide
-null
-undefined
-NaN
+false;
+0 - 0;
+0n; // BigInt zéro
+(""); // chaîne vide
+null;
+undefined;
+NaN;
 ```
 
 **Tout le reste est truthy**, y compris :
+
 ```js
-[]          // tableau vide : TRUTHY — attention
-{}          // objet vide : TRUTHY — attention
-"0"         // la chaîne "0" : TRUTHY
--1          // n'importe quel nombre non-zéro
+[]; // tableau vide : TRUTHY:attention
+{
+} // objet vide : TRUTHY:attention
+"0" - // la chaîne "0" : TRUTHY
+  1; // n'importe quel nombre non-zéro
 ```
 
 ```js
 // le piège classique
 if ([]) {
-  console.log("tableau vide = truthy")  // s'exécute
+  console.log("tableau vide = truthy"); // s'exécute
 }
 
 if ([] == false) {
-  console.log("mais == false aussi")    // s'exécute aussi
+  console.log("mais == false aussi"); // s'exécute aussi
 }
 // JS fait de la coercition avec ==
-// avec === ça ne passerait pas — utilise toujours ===
+// avec === ça ne passerait pas:utilise toujours ===
 ```
 
 ---
@@ -162,21 +166,21 @@ Deux règles qui permettent de réécrire n'importe quelle condition négative :
 ```js
 // version illisible
 if (!(estAdmin && estActif)) {
-  refuserAcces()
+  refuserAcces();
 }
 
-// version De Morgan — même logique, plus lisible
+// version De Morgan:même logique, plus lisible
 if (!estAdmin || !estActif) {
-  refuserAcces()
+  refuserAcces();
 }
 
 // autre exemple : bloquer si pas ninja ET pas Hokage
 if (!(estNinja || estHokage)) {
-  bloquerEntree()
+  bloquerEntree();
 }
 // devient :
 if (!estNinja && !estHokage) {
-  bloquerEntree()
+  bloquerEntree();
 }
 ```
 
@@ -195,16 +199,20 @@ C'est utile en code review. Si quelqu'un écrit `!(a && b)`, tu proposes `!a || 
 
 ```js
 // sans parenthèses : peut surprendre
-true || false && false
-// => true || (false && false)  => true || false  => true
-// && est évalué avant ||
+true ||
+  (false &&
+    false(
+      // => true || (false && false)  => true || false  => true
+      // && est évalué avant ||
 
-// avec parenthèses : explicite
-(true || false) && false
+      // avec parenthèses : explicite
+      true || false,
+    ) &&
+    false);
 // => true && false  => false
 
 // règle : si tu mixes && et || sans parenthèses, tu joues avec le feu
-// ajoute des parenthèses — le compilateur te remercie pas mais tes collègues oui
+// ajoute des parenthèses:le compilateur te remercie pas mais tes collègues oui
 ```
 
 ---
@@ -214,6 +222,7 @@ true || false && false
 ## EXO 1 : Le système d'accès de Fox River
 
 La prison Fox River a un système d'accès électronique. Un garde peut ouvrir une porte si :
+
 - il a un badge valide ET son shift est actif
 - OU s'il est superviseur (bypass total)
 - MAIS jamais si une alerte de sécurité est active (override de tout)
@@ -221,9 +230,24 @@ La prison Fox River a un système d'accès électronique. Un garde peut ouvrir u
 Implémenter la fonction `peutOuvrirPorte(garde)` qui retourne `true` ou `false`.
 
 ```js
-const garde1 = { badge: true, shiftActif: true, superviseur: false, alerteActive: false }
-const garde2 = { badge: false, shiftActif: true, superviseur: true, alerteActive: false }
-const garde3 = { badge: true, shiftActif: true, superviseur: true, alerteActive: true }
+const garde1 = {
+  badge: true,
+  shiftActif: true,
+  superviseur: false,
+  alerteActive: false,
+};
+const garde2 = {
+  badge: false,
+  shiftActif: true,
+  superviseur: true,
+  alerteActive: false,
+};
+const garde3 = {
+  badge: true,
+  shiftActif: true,
+  superviseur: true,
+  alerteActive: true,
+};
 // garde1 => true, garde2 => true, garde3 => false
 ```
 
@@ -238,13 +262,13 @@ Walter White reçoit des données de ses distributeurs. Certaines valeurs sont i
 Écrire `estValide(valeur)` sans utiliser de library externe.
 
 ```js
-estValide(0)        // false — falsy
-estValide("")       // false — falsy
-estValide([])       // false — tableau vide
-estValide({})       // false — objet vide
-estValide([1, 2])   // true
-estValide({ q: 5 }) // true
-estValide("heisenberg") // true
+estValide(0); // false:falsy
+estValide(""); // false:falsy
+estValide([]); // false:tableau vide
+estValide({}); // false:objet vide
+estValide([1, 2]); // true
+estValide({ q: 5 }); // true
+estValide("heisenberg"); // true
 ```
 
 ---

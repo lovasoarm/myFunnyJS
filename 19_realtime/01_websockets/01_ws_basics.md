@@ -39,31 +39,31 @@ C'est intentionnel. Tu raisonnes pareil des deux côtés.
 **Côté serveur minimal : ce qui doit tourner avant que le client se connecte :**
 
 ```js
-import { WebSocketServer } from 'ws'; // bibliothèque Node.js : npm install ws
+import { WebSocketServer } from "ws"; // bibliothèque Node.js : npm install ws
 
 const wss = new WebSocketServer({ port: 8080 });
 // wss écoute les connexions entrantes
 
-wss.on('connection', (ws) => {
+wss.on("connection", (ws) => {
   // ws = la WebSocket individuelle de CE client précis
   // chaque nouveau client déclenche ce callback avec sa propre ws
-  console.log('Nouveau client connecté');
+  console.log("Nouveau client connecté");
 
-  ws.on('message', (data) => {
-    // data est un Buffer en Node.js — .toString() pour avoir la string
+  ws.on("message", (data) => {
+    // data est un Buffer en Node.js:.toString() pour avoir la string
     const message = JSON.parse(data.toString());
-    console.log('Reçu du client :', message);
+    console.log("Reçu du client :", message);
 
     // Répondre à ce client uniquement
-    ws.send(JSON.stringify({ type: 'ack', received: message.type }));
+    ws.send(JSON.stringify({ type: "ack", received: message.type }));
   });
 
-  ws.on('close', () => {
-    console.log('Client déconnecté');
+  ws.on("close", () => {
+    console.log("Client déconnecté");
   });
 });
 
-console.log('Serveur WebSocket actif sur port 8080');
+console.log("Serveur WebSocket actif sur port 8080");
 ```
 
 Ce serveur doit tourner avant que le client essaie de se connecter.
@@ -121,16 +121,16 @@ Envoyer sur une socket `CONNECTING` ou `CLOSED` : le message est perdu, parfois 
 ## 4) OUVRIR UNE CONNEXION CÔTÉ CLIENT
 
 ```js
-// 'ws://' pour HTTP, 'wss://' pour HTTPS — utiliser wss en prod, toujours
-const socket = new WebSocket('wss://ton-serveur.com/ws');
+// 'ws://' pour HTTP, 'wss://' pour HTTPS:utiliser wss en prod, toujours
+const socket = new WebSocket("wss://ton-serveur.com/ws");
 
 // open : le tunnel est établi, on peut parler
-socket.addEventListener('open', () => {
-  console.log('Tunnel ouvert');
+socket.addEventListener("open", () => {
+  console.log("Tunnel ouvert");
 
   // send accepte : string, ArrayBuffer, Blob
   // JSON.stringify pour envoyer des objets structurés
-  socket.send(JSON.stringify({ type: 'hello', payload: 'Garo Leon' }));
+  socket.send(JSON.stringify({ type: "hello", payload: "Garo Leon" }));
 });
 ```
 
@@ -142,14 +142,14 @@ Vérifier `socket.readyState === 1` si tu envoies en dehors du callback `open`.
 ## 5) RECEVOIR DES MESSAGES
 
 ```js
-socket.addEventListener('message', (event) => {
+socket.addEventListener("message", (event) => {
   // event.data est une string côté navigateur (sauf binaire explicite)
   // JSON.parse obligatoire si le serveur envoie du JSON
   const data = JSON.parse(event.data);
 
-  console.log('Message reçu :', data);
+  console.log("Message reçu :", data);
 
-  if (data.type === 'horror_alert') {
+  if (data.type === "horror_alert") {
     console.log(`Horror détecté à ${data.location} : envoyer Leon`);
   }
 });
@@ -163,14 +163,15 @@ Accéder à `data.type` sans parser : `undefined` partout, crash silencieux.
 ## 6) LES ERREURS : CE QUI ARRIVE EN VRAI
 
 ```js
-socket.addEventListener('error', (event) => {
+socket.addEventListener("error", (event) => {
   // L'event error ne donne pas de détails par design (raison de sécurité navigateur)
   // Pour le vrai message d'erreur : onglet Network > WS dans DevTools
-  console.error('Erreur WebSocket : vérifier Network tab');
+  console.error("Erreur WebSocket : vérifier Network tab");
 });
 ```
 
 Les erreurs les plus fréquentes en prod :
+
 - serveur coupé sans fermeture propre
 - proxy qui tue les connexions longues (timeout de 30 à 60s typique)
 - CORS mal configuré sur le serveur WebSocket
@@ -182,20 +183,23 @@ Les erreurs les plus fréquentes en prod :
 
 ```js
 // Fermeture initiée par le client
-// code 1000 = fermeture normale — c'est le code standard
-socket.close(1000, 'Mission terminée');
+// code 1000 = fermeture normale:c'est le code standard
+socket.close(1000, "Mission terminée");
 
-socket.addEventListener('close', (event) => {
-  console.log(`Connexion fermée : code : ${event.code}, raison : ${event.reason}`);
+socket.addEventListener("close", (event) => {
+  console.log(
+    `Connexion fermée : code : ${event.code}, raison : ${event.reason}`,
+  );
   // wasClean : true si la fermeture était intentionnelle et propre
   // wasClean : false si la connexion a été coupée brutalement
   if (!event.wasClean) {
-    console.log('Coupure brutale : prévoir une reconnexion');
+    console.log("Coupure brutale : prévoir une reconnexion");
   }
 });
 ```
 
 Codes importants :
+
 - `1000` = fermeture normale
 - `1001` = le client est parti (navigation vers une autre page)
 - `1006` = connexion coupée brutalement (pas de frame de fermeture reçue)
@@ -213,18 +217,18 @@ Tu dois implémenter la reconnexion toi-même.
 function createSocket(url, onMessage) {
   const socket = new WebSocket(url);
 
-  socket.addEventListener('open', () => {
-    console.log('Connecté');
+  socket.addEventListener("open", () => {
+    console.log("Connecté");
   });
 
-  socket.addEventListener('message', (event) => {
+  socket.addEventListener("message", (event) => {
     onMessage(JSON.parse(event.data));
   });
 
-  socket.addEventListener('close', (event) => {
+  socket.addEventListener("close", (event) => {
     if (!event.wasClean) {
-      // connexion perdue sans fermeture propre — on retente dans 3 secondes
-      console.log('Connexion perdue : retry dans 3s');
+      // connexion perdue sans fermeture propre:on retente dans 3 secondes
+      console.log("Connexion perdue : retry dans 3s");
       setTimeout(() => createSocket(url, onMessage), 3000);
     }
   });
@@ -232,8 +236,8 @@ function createSocket(url, onMessage) {
   return socket;
 }
 
-const socket = createSocket('wss://ton-serveur.com/ws', (data) => {
-  console.log('Reçu :', data);
+const socket = createSocket("wss://ton-serveur.com/ws", (data) => {
+  console.log("Reçu :", data);
 });
 ```
 
@@ -257,6 +261,7 @@ La puissance réelle : le serveur initie la communication sans que le client dem
 
 Le Conseil de Surveillance de Garo veut un système simple : quand un Horror est détecté, une alerte est envoyée à tous les clients connectés.
 Implémente :
+
 - un serveur WebSocket Node.js qui accepte les connexions
 - un endpoint simulé `POST /horror` (Express ou simple `setInterval`) qui envoie un message à tous les clients connectés
 - côté client : affiche l'alerte dès réception avec le nom du Horror et sa localisation
@@ -269,6 +274,7 @@ Contrainte : si la connexion est perdue, le client doit retenter automatiquement
 **EXO 2 : Le détecteur de readyState**
 
 Implémente une fonction `safeSocket(url, message)` qui :
+
 - crée une WebSocket
 - envoie `message` seulement quand la connexion est vraiment ouverte
 - retourne une Promise qui resolve avec la première réponse du serveur

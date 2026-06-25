@@ -15,15 +15,15 @@ Avant de changer une ligne, tu mesures. Après avoir changé, tu remesures. C'es
 
 ```js
 // mauvais : précision en ms, pas assez fin
-const start = Date.now()
-doSomething()
-console.log(Date.now() - start) // "3ms" — et si c'est 0.7ms ? tu verras 0
+const start = Date.now();
+doSomething();
+console.log(Date.now() - start); // "3ms":et si c'est 0.7ms ? tu verras 0
 
 // correct : précision sub-milliseconde
-const start = performance.now()
-doSomething()
-const duration = performance.now() - start
-console.log(`${duration.toFixed(3)}ms`) // "0.712ms" — là tu vois quelque chose
+const start = performance.now();
+doSomething();
+const duration = performance.now() - start;
+console.log(`${duration.toFixed(3)}ms`); // "0.712ms":là tu vois quelque chose
 ```
 
 La différence compte dès que t'as des fonctions rapides.
@@ -37,13 +37,13 @@ Même principe, syntaxe plus simple. Utile pour des mesures rapides pendant le d
 
 ```js
 // Eren veut savoir combien de temps ça prend de transformer en titan
-console.time('transformation')
+console.time("transformation");
 
 for (let i = 0; i < 100_000; i++) {
-  transformEnTitan(i)
+  transformEnTitan(i);
 }
 
-console.timeEnd('transformation')
+console.timeEnd("transformation");
 // "transformation: 47.231ms"
 ```
 
@@ -52,16 +52,16 @@ Limite : tu ne récupères pas la valeur pour la comparer ou la logger.
 
 ```js
 // version avancée : console.timeLog pour mesurer des étapes intermédiaires
-console.time('mission-naruto')
+console.time("mission-naruto");
 
-chargerChakra()
-console.timeLog('mission-naruto', 'chakra chargé')  // "mission-naruto: 12ms chakra chargé"
+chargerChakra();
+console.timeLog("mission-naruto", "chakra chargé"); // "mission-naruto: 12ms chakra chargé"
 
-invoquerRasengan()
-console.timeLog('mission-naruto', 'rasengan prêt')  // "mission-naruto: 38ms rasengan prêt"
+invoquerRasengan();
+console.timeLog("mission-naruto", "rasengan prêt"); // "mission-naruto: 38ms rasengan prêt"
 
-frapper()
-console.timeEnd('mission-naruto')                   // "mission-naruto: 41ms"
+frapper();
+console.timeEnd("mission-naruto"); // "mission-naruto: 41ms"
 ```
 
 Là tu vois que `chargerChakra` prend 12ms et `invoquerRasengan` prend 26ms.
@@ -77,37 +77,39 @@ Tu mesures minimum 10 fois. Tu prends la médiane, pas la moyenne.
 ```js
 // Walter White benchmark ses recettes avant de les scaler
 function benchmark(label, fn, runs = 10) {
-  const times = []
+  const times = [];
 
   // warm-up : le JIT a besoin de quelques runs pour optimiser
-  for (let i = 0; i < 3; i++) fn()
+  for (let i = 0; i < 3; i++) fn();
 
   // mesures réelles
   for (let i = 0; i < runs; i++) {
-    const start = performance.now()
-    fn()
-    times.push(performance.now() - start)
+    const start = performance.now();
+    fn();
+    times.push(performance.now() - start);
   }
 
-  times.sort((a, b) => a - b)
-  const median = times[Math.floor(runs / 2)]
-  const min = times[0]
-  const max = times[runs - 1]
+  times.sort((a, b) => a - b);
+  const median = times[Math.floor(runs / 2)];
+  const min = times[0];
+  const max = times[runs - 1];
 
-  console.log(`[${label}] median: ${median.toFixed(3)}ms | min: ${min.toFixed(3)}ms | max: ${max.toFixed(3)}ms`)
+  console.log(
+    `[${label}] median: ${median.toFixed(3)}ms | min: ${min.toFixed(3)}ms | max: ${max.toFixed(3)}ms`,
+  );
 }
 
 // comparer deux implémentations
-const data = Array.from({ length: 10_000 }, (_, i) => i)
+const data = Array.from({ length: 10_000 }, (_, i) => i);
 
-benchmark('for loop', () => {
-  let sum = 0
-  for (let i = 0; i < data.length; i++) sum += data[i]
-})
+benchmark("for loop", () => {
+  let sum = 0;
+  for (let i = 0; i < data.length; i++) sum += data[i];
+});
 
-benchmark('reduce', () => {
-  data.reduce((acc, n) => acc + n, 0)
-})
+benchmark("reduce", () => {
+  data.reduce((acc, n) => acc + n, 0);
+});
 
 // résultat possible :
 // [for loop] median: 0.041ms | min: 0.038ms | max: 0.112ms
@@ -126,20 +128,20 @@ Les premiers appels d'une fonction sont plus lents que les suivants.
 
 ```js
 function calculerDegats(attaque, defense) {
-  return Math.max(0, attaque - defense) * 1.5
+  return Math.max(0, attaque - defense) * 1.5;
 }
 
 // premier appel : le moteur interprète
-console.time('run 1')
-calculerDegats(100, 40)
-console.timeEnd('run 1') // "run 1: 0.089ms"
+console.time("run 1");
+calculerDegats(100, 40);
+console.timeEnd("run 1"); // "run 1: 0.089ms"
 
 // après 1000 appels : le moteur a compilé et optimisé
-for (let i = 0; i < 1000; i++) calculerDegats(100, 40)
+for (let i = 0; i < 1000; i++) calculerDegats(100, 40);
 
-console.time('run 1001')
-calculerDegats(100, 40)
-console.timeEnd('run 1001') // "run 1001: 0.003ms"
+console.time("run 1001");
+calculerDegats(100, 40);
+console.timeEnd("run 1001"); // "run 1001: 0.003ms"
 ```
 
 C'est pour ça que le benchmark ci-dessus fait un warm-up de 3 runs avant de mesurer.
@@ -153,22 +155,26 @@ En prod, tu ne mets pas de `console.time` partout. Tu utilises l'API de marqueur
 
 ```js
 // Rick Grimes mesure combien de temps ça prend pour sécuriser le camp
-performance.mark('securisation-debut')
+performance.mark("securisation-debut");
 
-await verifierPerimetre()
-performance.mark('perimetre-ok')
+await verifierPerimetre();
+performance.mark("perimetre-ok");
 
-await compterSurvivants()
-performance.mark('survivants-ok')
+await compterSurvivants();
+performance.mark("survivants-ok");
 
-performance.measure('temps-perimetre', 'securisation-debut', 'perimetre-ok')
-performance.measure('temps-survivants', 'perimetre-ok', 'survivants-ok')
-performance.measure('securisation-totale', 'securisation-debut', 'survivants-ok')
+performance.measure("temps-perimetre", "securisation-debut", "perimetre-ok");
+performance.measure("temps-survivants", "perimetre-ok", "survivants-ok");
+performance.measure(
+  "securisation-totale",
+  "securisation-debut",
+  "survivants-ok",
+);
 
-const mesures = performance.getEntriesByType('measure')
-mesures.forEach(m => {
-  console.log(`${m.name}: ${m.duration.toFixed(2)}ms`)
-})
+const mesures = performance.getEntriesByType("measure");
+mesures.forEach((m) => {
+  console.log(`${m.name}: ${m.duration.toFixed(2)}ms`);
+});
 
 // "temps-perimetre: 234.12ms"
 // "temps-survivants: 89.44ms"
@@ -189,19 +195,21 @@ Il veut savoir laquelle est le goulot d'étranglement.
 
 ```js
 function preparerIngredients(quantite) {
-  let total = 0
-  for (let i = 0; i < quantite * 1000; i++) total += Math.sqrt(i)
-  return total
+  let total = 0;
+  for (let i = 0; i < quantite * 1000; i++) total += Math.sqrt(i);
+  return total;
 }
 
 function cuire(lot) {
-  let resultat = lot
-  for (let i = 0; i < 500_000; i++) resultat = resultat * 0.9999 + 0.0001
-  return resultat
+  let resultat = lot;
+  for (let i = 0; i < 500_000; i++) resultat = resultat * 0.9999 + 0.0001;
+  return resultat;
 }
 
 function conditionner(produit) {
-  return JSON.parse(JSON.stringify({ produit, timestamp: Date.now(), batch: Math.random() }))
+  return JSON.parse(
+    JSON.stringify({ produit, timestamp: Date.now(), batch: Math.random() }),
+  );
 }
 ```
 
@@ -219,19 +227,19 @@ Tu as une liste de 50 000 joueurs. Tu dois trouver un joueur par son nom.
 const joueurs = Array.from({ length: 50_000 }, (_, i) => ({
   id: i,
   nom: `Joueur_${i}`,
-  score: Math.floor(Math.random() * 100)
-}))
+  score: Math.floor(Math.random() * 100),
+}));
 
 // version A : chercher dans un tableau
 function chercherDansTableau(joueurs, nom) {
-  return joueurs.find(j => j.nom === nom)
+  return joueurs.find((j) => j.nom === nom);
 }
 
 // version B : chercher dans une Map (à toi de la construire)
-const joueurMap = new Map(joueurs.map(j => [j.nom, j]))
+const joueurMap = new Map(joueurs.map((j) => [j.nom, j]));
 
 function chercherDansMap(map, nom) {
-  return map.get(nom)
+  return map.get(nom);
 }
 ```
 
@@ -249,16 +257,16 @@ Prends la fonction suivante :
 ```js
 function analyserMatchNaruto(techniques) {
   return techniques
-    .filter(t => t.chakra > 50)
-    .map(t => ({ ...t, degats: t.chakra * t.multiplicateur }))
-    .reduce((acc, t) => acc + t.degats, 0)
+    .filter((t) => t.chakra > 50)
+    .map((t) => ({ ...t, degats: t.chakra * t.multiplicateur }))
+    .reduce((acc, t) => acc + t.degats, 0);
 }
 
 const techniques = Array.from({ length: 1000 }, (_, i) => ({
   nom: `Technique_${i}`,
   chakra: Math.random() * 100,
-  multiplicateur: Math.random() * 3
-}))
+  multiplicateur: Math.random() * 3,
+}));
 ```
 
 Mesure cette fonction sans warm-up, puis avec 100 appels de warm-up avant.
