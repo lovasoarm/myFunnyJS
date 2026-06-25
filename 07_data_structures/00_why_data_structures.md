@@ -57,7 +57,7 @@ La demande pour ces compétences a aussi augmenté : avec la montée des entreti
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement dans le noyau dur : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend de `01_fundamentals` et de la notion de complexité vue en `06_memory_performance`, et il devient à son tour le prérequis complet de `08_algorithms`. Sans cette base, tu ne peux pas comprendre pourquoi Dijkstra utilise un min-heap, ou pourquoi un BFS utilise une queue et un DFS une pile.
+Oui, explicitement dans le noyau dur : "07 + 08, Data Structures + Algos : sans ça, t'es limité". Ce module dépend de `01_fundamentals` et de la notion de complexité vue en `06_memory_performance/03_complexity` (Big-O, O(1), O(n), O(log n) : si ces notations ne sont pas claires, ouvre `06_memory_performance/03_complexity/01_big_o_basics.md` avant de continuer ici), et il devient à son tour le prérequis complet de `08_algorithms`. Sans cette base, tu ne peux pas comprendre pourquoi Dijkstra utilise un min-heap, ou pourquoi un BFS utilise une queue et un DFS une pile.
 
 ---
 
