@@ -28,7 +28,7 @@ ninja.toString()  // "[object Object]"
 
 // Visualiser la chaîne
 console.log(Object.getPrototypeOf(ninja) === Object.prototype)  // true
-console.log(Object.getPrototypeOf(Object.prototype))            // null — fin de chaîne
+console.log(Object.getPrototypeOf(Object.prototype))            // null : fin de chaîne
 ```
 
 ---
@@ -41,10 +41,10 @@ console.log(Object.getPrototypeOf(Object.prototype))            // null — fin 
 const ninja = { nom: "Naruto" }
 const sensei = { village: "Konoha" }
 
-// Modifier le prototype à la volée — faisable, mais catastrophique pour les perfs
+// Modifier le prototype à la volée : faisable, mais catastrophique pour les perfs
 ninja.__proto__ = sensei
 
-console.log(ninja.village)  // "Konoha" — hérité de sensei
+console.log(ninja.village)  // "Konoha" : hérité de sensei
 ```
 
 **Pourquoi ne pas utiliser `__proto__` :**
@@ -83,12 +83,12 @@ const ninja = Object.create(sensei)
 ninja.nom = "Naruto"
 
 // Qu'est-ce qui appartient à ninja ?
-console.log(ninja.hasOwnProperty("nom"))     // true — propriété directe
-console.log(ninja.hasOwnProperty("village")) // false — héritée de sensei
+console.log(ninja.hasOwnProperty("nom"))     // true : propriété directe
+console.log(ninja.hasOwnProperty("village")) // false : héritée de sensei
 
 // Le for...in parcourt aussi les propriétés héritées
 for (const key in ninja) {
-  console.log(key)  // "nom", "village" — les deux
+  console.log(key)  // "nom", "village" : les deux
 }
 
 // Pour itérer seulement sur les propriétés directes :
@@ -99,7 +99,7 @@ for (const key in ninja) {
 }
 
 // Ou simplement :
-Object.keys(ninja)      // ["nom"] — propriétés propres enumérables
+Object.keys(ninja)      // ["nom"] : propriétés propres enumérables
 Object.values(ninja)    // ["Naruto"]
 Object.entries(ninja)   // [["nom", "Naruto"]]
 ```
@@ -109,13 +109,13 @@ Object.entries(ninja)   // [["nom", "Naruto"]]
 ```js
 // Si un objet a sa propre propriété "hasOwnProperty", ça casse
 const malicious = { hasOwnProperty: () => true }
-malicious.hasOwnProperty("anything")  // toujours true — la méthode est shadowed
+malicious.hasOwnProperty("anything")  // toujours true : la méthode est shadowed
 
 // Fix : appel via Object.prototype directement
-Object.prototype.hasOwnProperty.call(malicious, "anything")  // false — correct
+Object.prototype.hasOwnProperty.call(malicious, "anything")  // false : correct
 
 // Ou en ES2022 :
-Object.hasOwn(malicious, "anything")  // false — plus propre, plus sûr
+Object.hasOwn(malicious, "anything")  // false : plus propre, plus sûr
 ```
 
 ---
@@ -144,8 +144,8 @@ const profilNinja = merge({}, payload)
 
 // Résultat catastrophique
 const autreObjet = {}
-console.log(autreObjet.admin)  // true — Object.prototype est pollué
-console.log({}.admin)          // true — tous les objets sont affectés
+console.log(autreObjet.admin)  // true : Object.prototype est pollué
+console.log({}.admin)          // true : tous les objets sont affectés
 ```
 
 Le diagramme :
@@ -195,10 +195,10 @@ function mergeSafe(cible, source) {
 }
 
 // Fix 2 : utiliser Object.create(null) pour les objets qui stockent des données externes
-// Ces objets n'ont PAS de prototype — donc pas de chaîne à polluer
+// Ces objets n'ont PAS de prototype : donc pas de chaîne à polluer
 const store = Object.create(null)
 store.__proto__ = "attaque"       // c'est juste une propriété normale, pas le prototype
-console.log(Object.getPrototypeOf(store))  // null — aucun prototype à polluer
+console.log(Object.getPrototypeOf(store))  // null : aucun prototype à polluer
 
 // Fix 3 : Object.freeze sur Object.prototype (radical, mais efficace pour certains cas)
 Object.freeze(Object.prototype)
@@ -257,13 +257,13 @@ function Ninja() {}
 Ninja.prototype.chakra = 100
 
 const naruto = new Ninja()
-console.log(naruto.chakra)  // 100 — hérité
+console.log(naruto.chakra)  // 100 : hérité
 
 naruto.chakra = 9000        // shadow : propriété directe créée sur naruto
-console.log(naruto.chakra)  // 9000 — propriété directe masque le prototype
+console.log(naruto.chakra)  // 9000 : propriété directe masque le prototype
 
 delete naruto.chakra        // on supprime la propriété directe
-console.log(naruto.chakra)  // 100 — le prototype est de nouveau visible
+console.log(naruto.chakra)  // 100 : le prototype est de nouveau visible
 ```
 
 Le shadow avec `Object.defineProperty` peut rendre une propriété non-énumérable, non-configurable, ou non-modifiable : et ça interagit avec la chaîne prototype de façon non intuitive :
@@ -277,9 +277,9 @@ Object.defineProperty(proto, "niveau", {
 
 const objet = Object.create(proto)
 
-// Tentative d'écriture sur l'objet — ça rate silencieusement (ou lève en strict mode)
+// Tentative d'écriture sur l'objet : ça rate silencieusement (ou lève en strict mode)
 objet.niveau = 99
-console.log(objet.niveau)  // 1 — la propriété n'a pas été shadowée
+console.log(objet.niveau)  // 1 : la propriété n'a pas été shadowée
 // Parce que writable: false sur le prototype bloque aussi le shadow
 ```
 
@@ -297,7 +297,7 @@ const data = JSON.parse('{"__proto__": {"polluted": true}}')
 // 2. Objet sans prototype ne répond pas à hasOwnProperty
 const bare = Object.create(null)
 bare.nom = "Walter"
-bare.hasOwnProperty("nom")  // TypeError — pas de prototype, pas de méthode
+bare.hasOwnProperty("nom")  // TypeError : pas de prototype, pas de méthode
 // Fix :
 Object.prototype.hasOwnProperty.call(bare, "nom")  // true
 Object.hasOwn(bare, "nom")  // true
@@ -307,7 +307,7 @@ Object.prototype.debug = true  // pollution simulée
 
 const stats = { buts: 10 }
 for (const key in stats) {
-  console.log(key)  // "buts", "debug" — debug vient de Object.prototype
+  console.log(key)  // "buts", "debug" : debug vient de Object.prototype
 }
 // Fix : toujours filtrer avec hasOwn ou Object.keys dans les for...in critiques
 
@@ -317,7 +317,7 @@ const garo = new Chevalier()
 
 Chevalier.prototype = {}  // prototype modifié après coup
 
-console.log(garo instanceof Chevalier)  // false — le lien est cassé
+console.log(garo instanceof Chevalier)  // false : le lien est cassé
 // instanceof vérifie si Chevalier.prototype est dans la chaîne de garo
 // Mais on l'a remplacé, donc ce n'est plus le cas
 ```
