@@ -2,20 +2,7 @@
 
 Tu codes une interface. Elle marche nickel sur ton écran, avec ta souris, tes yeux qui voient bien. Sauf que des millions de gens n'utilisent ni souris, ni vue normale, ni les deux mains. Si ton code les ignore, tu n'as pas codé "le web" : tu as codé une version pour toi-même. L'accessibilité (a11y, abréviation de "accessibility" avec 11 lettres entre le a et le y), c'est s'assurer que ton appli marche pour tout le monde, pas juste pour ceux qui te ressemblent.
 
-## 1) LES CHIFFRES QUI FONT RÉFLÉCHIR
-
-Environ 1 personne sur 6 dans le monde vit avec une forme de handicap, selon l'OMS (Organisation Mondiale de la Santé). Ça inclut la vue (daltonisme, basse vision, cécité), l'audition, la motricité (tremblements, paralysie, amputation), et le cognitif (dyslexie, TDAH, troubles de l'attention).
-
-```js
-// Ce code marche "bien"... pour qui exactement ?
-function afficherAlerte() {
-  document.getElementById('alert').style.color = 'red'; // (rouge = danger, mais pour un daltonique ?)
-}
-```
-
-Un daltonique sur 12 hommes ne voit pas la différence entre rouge et vert clairement. Si ton seul signal d'erreur c'est la couleur rouge, une partie de tes utilisateurs voit juste... du texte normal. Pas d'alerte du tout.
-
-## 2) LES LOIS : CE N'EST PAS QU'UNE QUESTION DE GENTILLESSE
+## 1) LES LOIS : CE N'EST PAS QU'UNE QUESTION DE GENTILLESSE
 
 ```
 WCAG (Web Content Accessibility Guidelines) --> le standard technique international
@@ -25,7 +12,7 @@ EAA (European Accessibility Act)             --> loi UE, obligatoire pour le sec
 
 Des entreprises comme Domino's Pizza ou Target ont été traînées en justice aux US pour des sites web inaccessibles. Pas une légende urbaine : un vrai procès, une vraie amende. L'accessibilité, c'est un risque légal réel, pas juste une "bonne pratique" qu'on coche si on a le temps.
 
-## 3) LES GENS RÉELS DERRIÈRE LES CHIFFRES
+## 2) LES GENS RÉELS DERRIÈRE LES CHIFFRES
 
 Imagine Rick Grimes après avoir perdu sa main : il navigue au clavier, pas à la souris. Si ton menu déroulant ne réagit qu'au survol de souris (`:hover`), Rick reste bloqué devant un menu qu'il ne peut jamais ouvrir.
 
@@ -44,7 +31,7 @@ menu.addEventListener('keydown', (e) => {
 });
 ```
 
-## 4) CE QUE ÇA COÛTE DE L'IGNORER
+## 3) CE QUE ÇA COÛTE DE L'IGNORER
 
 ```
 Coder accessible dès le départ  --> coût faible, intégré au design
@@ -54,7 +41,7 @@ Ignorer complètement              --> procès, perte d'utilisateurs, mauvaise r
 
 L'accessibilité ressemble à la dette technique du module 11_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton produit.
 
-## 5) CE QUE LE RESTE DU MODULE COUVRE
+## 4) CE QUE LE RESTE DU MODULE COUVRE
 
 ```
 02_aria_basics            --> parler aux lecteurs d'écran

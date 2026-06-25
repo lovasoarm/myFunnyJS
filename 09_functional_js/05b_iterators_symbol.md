@@ -1,3 +1,7 @@
+Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
+
+---
+
 # ITERATORS ET SYMBOL.ITERATOR : CRÉER DES STRUCTURES QUI SE PARCOURENT
 
 Tu utilises `for...of` sur des arrays, des strings, des Maps. Mais qu'est-ce qui fait qu'un objet est "itérable" (parcourable avec for...of) ? Ce n'est pas une propriété magique réservée aux built-ins : c'est un protocole (un contrat) que n'importe quel objet peut implémenter. Ce fichier explique ce mécanisme de bout en bout.

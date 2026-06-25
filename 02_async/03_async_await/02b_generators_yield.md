@@ -1,3 +1,7 @@
+Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
+
+---
+
 # GENERATORS ET YIELD : LA FONCTION QUI FAIT PAUSE
 
 Une fonction normale s'exécute de A à Z sans interruption. Un generator (function* : notation d'une fonction génératrice) peut s'arrêter en plein milieu, rendre la main, et reprendre exactement où elle en était au prochain appel. C'est une autre façon de gérer des séquences d'opérations, en particulier asynchrones.

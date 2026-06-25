@@ -62,7 +62,13 @@ Indirectement, oui : ce module est un prérequis explicite pour `07_data_structu
 
 ---
 
-## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
+## 7) POURQUOI LES CORE WEB VITALS VIVENT ICI ET PAS DANS 16_WEB_CONCEPTS
+
+Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 16_web_concepts qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
+
+---
+
+## 8) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
 Les machines deviennent plus puissantes, mais les volumes de données augmentent encore plus vite. Un algorithme en O(n²) qui passait avec 10 000 lignes en 2020 devient un problème avec 10 millions de lignes en 2026. La performance n'est jamais "résolue définitivement" par le matériel : elle reste une compétence de compréhension, pas de chance.
 

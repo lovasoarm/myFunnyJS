@@ -1,3 +1,7 @@
+Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
+
+---
+
 # ABORTCONTROLLER : ANNULER CE QUI NE DOIT PLUS SE TERMINER
 
 Tu lances un fetch. L'utilisateur navigue ailleurs. Le fetch continue quand même, consomme de la bande passante, et si la réponse arrive, ton callback s'exécute sur un composant qui n'existe plus. C'est un memory leak classique, et c'est évitable depuis ES2020 avec `AbortController`.

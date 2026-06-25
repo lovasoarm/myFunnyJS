@@ -1,5 +1,7 @@
 # FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE
 
+Challenge de synthèse du module 09_functional_js. Pas une leçon, pas un exercice guidé : un système complet à construire seul avec tout ce que tu as appris dans ce module.
+
 T'as appris les pièces séparément : fonctions pures, immutabilité, composition, curry, partial.
 Maintenant t'assembles tout ça en un seul système cohérent.
 

@@ -28,7 +28,7 @@ En **1843**, une femme nommée **Ada Lovelace** écrit ce qu'on considère aujou
 
 C'est pour ça que le langage **Ada** (utilisé encore aujourd'hui dans l'aviation et l'armée) porte son prénom.
 
-> **Tip :** Ada Lovelace était aussi la fille du poète Lord Byron. La programmation et la poésie, c'est pas si différent finalement.
+Byron était son père. L'histoire de la programmation, c'est de la poésie appliquée dès le départ.
 
 Mais un "vrai" langage de programmation au sens moderne, ça arrive bien plus tard.
 
@@ -83,7 +83,7 @@ C'est exactement comme un traducteur lors d'une conférence internationale. Toi 
 2022+ ------- Zig, Carbon : nouveaux challengers qui visent C/C++
 ```
 
-> **Anecdote :** en 1995, Java, JavaScript et PHP sont tous les trois sortis la même année. C'est comme si Ferrari, Lamborghini et Bugatti avaient tous sorti leur voiture le même jour.
+En 1995, Java, JavaScript et PHP sont sortis la même année. Ferrari, Lamborghini et Bugatti le même jour : aucun des trois n'a gagné définitivement, mais chacun a dominé son terrain.
 
 ---
 
@@ -96,7 +96,7 @@ PREMIER LANGAGE MASSIVEMENT UTILISÉ : John Backus avec FORTRAN (1957)
 PREMIER LANGAGE WEB                 : Brendan Eich avec JavaScript (1995, en 10 jours)
 ```
 
-> Oui, JavaScript a été créé en **10 jours**. Et ça explique beaucoup de choses.
+JavaScript a été créé en 10 jours. Ça explique beaucoup de choses.
 
 ---
 
@@ -129,7 +129,7 @@ Analogie :
   Tu peux quand même tout contrôler si tu veux, mais t'as pas besoin.
 ```
 
-> **Tip :** "bas niveau" et "haut niveau" ne veulent pas dire "mauvais" et "bon". C'est juste le niveau d'abstraction. Les deux ont leur place.
+"Bas niveau" et "haut niveau" ne veulent pas dire "mauvais" et "bon" : c'est juste le degré d'abstraction. Les deux ont leur place selon le contexte.
 
 ---
 
@@ -205,7 +205,7 @@ ma_voiture.presenter()
 # Sortie : Je suis une Toyota, je vais jusqu'à 180 km/h
 ```
 
-> **Tip important :** la plupart des langages modernes supportent PLUSIEURS paradigmes. Python est impératif, fonctionnel et orienté objet selon ce que tu choisis de faire. T'as pas à choisir un camp.
+La plupart des langages modernes supportent plusieurs paradigmes. Python est impératif, fonctionnel et orienté objet selon ce que tu fais : t'as pas à choisir un camp.
 
 ---
 
@@ -1155,7 +1155,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 
 **Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'utilisateur), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
-> **Tip méconnu :** un bon frontend dev en 2026 comprend le réseau. Il sait pourquoi une page charge lentement, ce qu'est un cache HTTP, et comment un CDN fonctionne. (CDN = réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques. Sans CDN : un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide.) Pas juste "faire joli".
+Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
 
 ---
 

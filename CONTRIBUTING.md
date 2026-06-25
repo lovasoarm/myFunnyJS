@@ -1,12 +1,3 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,100:c9973a&height=120&section=header" />
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=c9973a&center=true&vCenter=true&width=700&lines=Bienvenue+dans+le+labo.;Tu+contribues+%3F+Respect.;Un+fichier+%3D+un+concept+pr%C3%A9cis.;Le+fun+ne+remplace+jamais+la+rigueur.;Comprendre+avant+de+coder%2C+toujours.)](https://github.com/lovasoarm)
-
-</div>
-
-
 ## Règle numéro 1 : comprendre avant de coder
 
 Chaque contribution doit :
@@ -137,8 +128,3 @@ On forme des ingénieurs capables de :
 
 Si tu contribues dans cet esprit, tu es exactement au bon endroit.
 
-<div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:c9973a,100:1a1a2e&height=80&section=footer" />
-
-**Lovasoa RM**
-</div>
