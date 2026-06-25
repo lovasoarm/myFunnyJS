@@ -16,17 +16,15 @@ sans honte.
  
 ---
  
-## CE QUE TU VAS DEVENIR EN FINISSANT CE CURRICULUM
- 
-Un développeur qui comprend ce qui se passe sous le capot.
-Quelqu'un qui peut lire du code inconnu et en extraire le sens en moins d'une heure.
-Un dev qui teste avant de coder, observe ce qui se passe en production, écrit du
-code que les autres peuvent maintenir.
- 
-En 2026, la valeur d'un développeur ne vient plus de sa vitesse à taper du code. Elle vient
-de sa capacité à comprendre le problème, choisir le bon pattern, sécuriser ce qu'il
-construit, et travailler avec les autres sans tout casser. L'IA produit du code. Elle ne
-réfléchit pas. Toi oui.
+## CE QUE ÇA CHANGE CONCRÈTEMENT
+
+Tu vas comprendre ce qui se passe sous le capot au lieu de copier-coller en croisant les doigts.
+Lire du code inconnu sans paniquer. Tester avant que la prod te le fasse payer. Observer ce qui
+se passe en production plutôt que d'attendre qu'un client te le signale.
+
+En 2026, taper du code vite vaut plus rien : l'IA le fait déjà. Ce qui reste rare, c'est
+comprendre le problème, choisir le bon pattern, sécuriser ce qu'on construit, et travailler
+avec d'autres sans tout casser. L'IA génère. Elle ne réfléchit pas. Ce curriculum sert à ça.
  
 ---
  
@@ -47,8 +45,6 @@ forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les
 **Remplis les TDD_JOURNAL et les POSTMORTEM.** Ce ne sont pas des formalités. C'est
 l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils
 ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
-
----
 
 ---
 
@@ -75,7 +71,7 @@ ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 18  i18n                    =>  parler toutes les langues sans tout réécrire
 19  Real-Time               =>  WebSockets, SSE, WebRTC : le web qui respire en direct
 20  API Craft               =>  construire ce que le monde consomme
-21  Security                =>  ne jamais être la faille que quelqu'on exploite
+21  Security                =>  ne jamais être la faille que quelqu'un exploite
 22  AI Native Dev           =>  utiliser l'IA sans perdre le contrôle
 23  Databases               =>  persister intelligemment dans le temps
 24  Scalability             =>  tenir quand ça devient sérieux
@@ -167,6 +163,7 @@ MyFunnyJS/
 ├── CONTRIBUTING.md                                             # Les règles du camp : pas de PR qui pue
 │
 ├── 01_fundamentals/
+│   ├── 00_why_fundamentals.md                      # Pourquoi ce socle conditionne tout le reste : sans lui, le reste s'effondre
 │   ├── 01_variables/
 │   │   ├── 01_intro_variables.md                  # Ce qu'une variable est vraiment en mémoire
 │   │   ├── 02_reference_chaos.md                  # Quand deux variables pointent vers le même enfer
@@ -208,6 +205,7 @@ MyFunnyJS/
 │       └── 04_regex_grimoire.md
 │
 ├── 02_async/                                                   # Le coeur invisible de JS : rien ne bloque, tout se séquence
+│   ├── 00_why_async.md                                         # Pourquoi comprendre l'asynchrone n'est pas optionnel en JS
 │   ├── 01_callbacks/
 │   │   ├── 01_callback_maze.md                                # Le labyrinthe du callback hell : entrer est facile, sortir est une leçon
 │   │   ├── 02_callback_challenge.md                           # Orchestrer plusieurs callbacks sans perdre le fil
@@ -219,6 +217,8 @@ MyFunnyJS/
 │   ├── 03_async_await/
 │   │   ├── 01_async_jungle.md                                 # loops, parallel, sequential : les différences comptent
 │   │   ├── 02_async_rescue.md                                 # Sauver une opération async qui part en vrille
+│   │   ├── 02b_generators_yield.md                            # function* et yield : la fonction qui fait pause et reprend
+│   │   ├── 02c_abort_controller.md                            # AbortController : annuler ce qui ne doit plus se terminer
 │   │   └── 03_async_grimoire.md
 │   └── 04_event_loop/
 │       ├── 01_microtask_madness.md                            # microtasks vs macrotasks : l'ordre d'exécution qui surprend toujours
@@ -226,6 +226,7 @@ MyFunnyJS/
 │       └── 03_event_loop_grimoire.md                          # call stack, heap, queue, microtask : le moteur JS expliqué sans magie
 │
 ├── 03_error_handling/                                          # Les erreurs arrivent : la question c'est si tu les vois avant l'utilisateur
+│   ├── 00_why_error_handling.md                                # Pourquoi une erreur mal gérée coûte plus cher qu'une erreur évitée
 │   ├── 01_try_catch_basics.md                                 # try/catch en profondeur : ce qu'il attrape et ce qu'il laisse passer
 │   ├── 02_custom_errors.md                                    # Créer ses propres erreurs pour que les logs racontent une histoire
 │   ├── 03_error_propagation.md                                # Qui catch quoi et à quel niveau : la discipline de propagation
@@ -234,7 +235,7 @@ MyFunnyJS/
 │   └── 06_error_grimoire.md                                   # Error, TypeError, RangeError, custom errors : le bestiaire complet
 │
 ├── 04_testing/                                                 # On teste avant de coder : pas après, pas en option
-│   ├── 01_why_testing_or_die.md                               # Pourquoi les tests ne sont pas optionnels quand le code va en prod
+│   ├── 00_why_testing.md                                      # Pourquoi les tests ne sont pas optionnels quand le code va en prod
 │   ├── 02_unit_sniper.md                                      # Tester une fonction précisément : comme un sniper, pas comme un fusil à pompe
 │   ├── 03_jest_crash_course.md                                # Jest de zéro à opérationnel : sans lire la doc de 200 pages
 │   ├── 04_mocking_madness.md                                  # Mocker un module, une API, une dépendance : sans tout casser
@@ -246,6 +247,7 @@ MyFunnyJS/
 │   └── 10_testing_grimoire.md                                 # unit, integration, E2E, mock, spy, stub : chaque terme à sa place
 │
 ├── 05_math_basics/                                             # Les maths utiles au dev : pas les inutiles
+│   ├── 00_why_math.md                                          # Pourquoi un dev a besoin de maths même sans faire de calcul savant
 │   ├── 01_boolean_logic.md                                    # AND, OR, NOT, XOR : la logique qui pilote chaque condition
 │   ├── 02_modular_arithmetic.md                               # Le modulo et ses usages : cycles, cooldowns, distributions
 │   ├── 03_bit_manipulation.md                                 # Bits, masques, flags : manipuler les données à l'os
@@ -256,6 +258,7 @@ MyFunnyJS/
 │   └── 08_math_grimoire.md
 │
 ├── 06_memory_performance/                                      # Ce qui coûte cher en mémoire et en CPU : et comment l'éviter
+│   ├── 00_why_memory_performance.md                            # Pourquoi ignorer la mémoire et la perf finit toujours par te rattraper
 │   ├── 01_gc/
 │   │   ├── 01_gc_basics.md                                    # mark-and-sweep, références, cycles : comprendre sans peur
 │   │   └── 02_gc_simulator.md                                 # Simuler le comportement du GC sur des objets qui vivent et meurent
@@ -277,6 +280,7 @@ MyFunnyJS/
 │   └── 06_memory_perf_grimoire.md
 │
 ├── 07_data_structures/                                         # Les structures qui font que certains devs résolvent les problèmes 10x plus vite
+│   ├── 00_why_data_structures.md                               # Pourquoi choisir la bonne structure compte plus que l'algo lui-même
 │   ├── 01_array/
 │   │   ├── 01_array_basics.md                                 # Indexing, slicing, spreading : ce que chaque opération coûte vraiment
 │   │   └── 02_array_methods_battle.md                         # map vs forEach vs for...of vs reduce : le match qui détermine le vrai niveau
@@ -303,12 +307,14 @@ MyFunnyJS/
 │   │   ├── 02_graph_bfs_dfs.md                                # BFS vs DFS : deux façons de traverser, deux cas d'usage différents
 │   │   └── 03_graph_challenges.md                             # Détecter un cycle, composants connexes, topological sort
 │   ├── 09_advanced_bonus/
+│   │   ├── README.md                                          # HORS SCOPE : niveau algo compétitif, lis ça avant d'entrer
 │   │   ├── 01_union_find.md                                   # Union-Find : grouper des éléments connectés en O(α(n)) quasi constant
 │   │   ├── 02_fenwick_tree.md                                  # Fenwick Tree : somme de préfixes en O(log n)
 │   │   └── 03_suffix_array.md                                  # Suffix Array : chercher dans des strings comme un moteur de texte
 │   └── 10_data_structures_grimoire.md
 │
 ├── 08_algorithms/                                              # Les patterns qui résolvent 90% des problèmes : si tu les reconnais à temps
+│   ├── 00_why_algorithms.md                                    # Pourquoi reconnaître un pattern d'algo te fait gagner des heures
 │   ├── 01_sorting/
 │   │   ├── 01_bubble_insertion.md                             # O(n²) : comprendre les algos lents pour apprécier les rapides
 │   │   ├── 02_merge_sort.md                                    # Divide and conquer : couper pour mieux fusionner en O(n log n)
@@ -334,15 +340,18 @@ MyFunnyJS/
 │   └── 07_algorithms_grimoire.md
 │
 ├── 09_functional_js/                                           # Coder sans effets de bord : et dormir tranquille la nuit
+│   ├── 00_why_functional_js.md                                 # Pourquoi le code sans effet de bord te sauve d'un bug à 3h du matin
 │   ├── 01_pure_functions.md                                   # Même input, même output, toujours : et pas de mutation cachée
 │   ├── 02_immutability.md                                     # Ne jamais muter l'état : le créer, pas le changer
 │   ├── 03_composition.md                                      # Composer des fonctions comme des Lego : chaque pièce fait une chose
 │   ├── 04_currying.md                                         # Transformer une fonction multi-args en fonctions unaires enchaînées
 │   ├── 05_partial_application.md                              # Fixer certains arguments maintenant, passer les autres plus tard
+│   ├── 05b_iterators_symbol.md                                # Symbol.iterator : créer des structures qui se parcourent avec for...of
 │   ├── 06_fp_challenge.md                                     # Construire un pipeline de transformation de données 100% fonctionnel
 │   └── 07_fp_grimoire.md
 │
 ├── 10_design_patterns/                                         # Les recettes de cuisine du code solide
+│   ├── 00_why_design_patterns.md                               # Pourquoi un pattern existe avant de l'apprendre par coeur
 │   ├── 01_creational/
 │   │   ├── 01_factory_pattern.md                              # Factory : créer sans exposer la logique de construction
 │   │   ├── 02_singleton_pattern.md                            # Singleton : une seule instance, point final : et ses dangers
@@ -358,6 +367,7 @@ MyFunnyJS/
 │   └── 04_patterns_grimoire.md
 │
 ├── 11_refactoring/                                             # Transformer du code qui fonctionne en code qui dure
+│   ├── 00_why_refactoring.md                                   # Pourquoi du code qui marche aujourd'hui peut quand même être une dette
 │   ├── 01_clean_code_basics.md                                # Nommage, fonctions courtes, commentaires utiles : les règles qui changent tout
 │   ├── 02_solid_principles.md                                  # SRP, OCP, LSP, ISP, DIP : les cinq principes qui structurent un codebase
 │   ├── 03_code_smells.md                                      # God class, feature envy, long method : reconnaître ce qui pue avant que ça explose
@@ -366,6 +376,7 @@ MyFunnyJS/
 │   └── 06_refacto_grimoire.md                                 # SOLID, smells, DRY, YAGNI, KISS : le vocabulaire du code propre
 │
 ├── 12_problem_solving/                                         # Concevoir avant de coder : le cerveau que la syntaxe ne donne pas
+│   ├── 00_why_problem_solving.md                               # Pourquoi foncer dans le code sans réfléchir coûte plus de temps que ça en fait gagner
 │   ├── 01_decompose.md                                        # Couper un système complexe en pièces qui tiennent seules
 │   ├── 02_model_before_code.md                                # Penser en structures et contrats avant d'ouvrir l'éditeur
 │   ├── 03_choose_an_approach.md                               # Comparer deux solutions avant d'en écrire une seule ligne
@@ -374,6 +385,7 @@ MyFunnyJS/
 │   └── 06_problem_solving_grimoire.md                         # domaine, contrat, couplage, cohésion : le lexique du dev qui conçoit
 │
 ├── 13_typescript/                                              # JS avec un casque et une armure : obligatoire en prod en 2026
+│   ├── 00_why_typescript.md                                    # Pourquoi TS n'est plus une option en 2026, même pour un petit projet
 │   ├── 01_ts_basics/
 │   │   ├── 01_types_and_interfaces.md                         # type vs interface : pas la même chose, pas interchangeables
 │   │   ├── 02_functions_typed.md                              # Typer les fonctions : params, retour, overloads, callbacks
@@ -390,6 +402,7 @@ MyFunnyJS/
 │   └── 04_typescript_grimoire.md
 │
 ├── 14_runtime_env/                                             # Savoir où ton code vit vraiment : Node, navigateur, workers
+│   ├── 00_why_runtime_env.md                                   # Pourquoi le même JS se comporte différemment selon où il tourne
 │   ├── 01_node_vs_browser.md                                  # Même JS, deux environnements différents : des APIs qui ne se partagent pas
 │   ├── 02_streams_buffers.md                                   # Lire des données en flux sans charger tout en mémoire
 │   ├── 03_commonjs_vs_esm.md                                   # require vs import : l'histoire, les différences, et ce qu'on utilise en 2026
@@ -403,6 +416,7 @@ MyFunnyJS/
 │   └── 07_runtime_grimoire.md
 │
 ├── 15_architecture_patterns/                                   # Construire grand sans tout effondrer en ajoutant une feature
+│   ├── 00_why_architecture_patterns.md                         # Pourquoi un projet sans architecture s'effondre sous son propre poids
 │   ├── 01_module_pattern.md                                   # Encapsuler, exposer ce qui doit l'être, cacher le reste
 │   ├── 02_mvc_pattern.md                                      # Model, View, Controller : séparer les responsabilités avant de s'y noyer
 │   ├── 03_clean_architecture.md                               # Domaine au centre, infra à l'extérieur : le code qui ne dépend pas de ses outils
@@ -411,6 +425,7 @@ MyFunnyJS/
 │   └── 06_architecture_grimoire.md
 │
 ├── 16_web_concepts/                                            # Tout ce qu'un ingénieur web doit avoir en tête : pas juste dans les doigts
+│   ├── 00_why_web_concepts.md                                  # Pourquoi connaître le web derrière le framework te rend irremplaçable
 │   ├── 01_http_rest_basics.md                                 # HTTP, verbes, status codes, headers : lire une requête comme un professionnel
 │   ├── 02_browser_render_pipeline.md                          # De l'HTML brut au pixel affiché : ce qui se passe entre les deux
 │   ├── 03_state_and_dataflow.md                               # L'état d'une app web : qui le possède, qui le lit, qui le modifie
@@ -421,6 +436,7 @@ MyFunnyJS/
 │   └── 08_web_concepts_grimoire.md
 │
 ├── 17_accessibility/                                           # Coder pour tout le monde : pas juste pour les utilisateurs qui te ressemblent
+│   ├── 00_why_accessibility.md                                 # Pourquoi ignorer l'accessibilité coûte des utilisateurs et parfois un procès
 │   ├── 01_a11y_why_it_matters.md                              # L'accessibilité n'est pas une option : les chiffres, les lois, et les gens réels
 │   ├── 02_aria_basics.md                                      # ARIA roles, states, properties : communiquer avec les lecteurs d'écran
 │   ├── 03_keyboard_navigation.md                              # tab order, focus management, skip links : naviguer sans souris
@@ -430,6 +446,7 @@ MyFunnyJS/
 │   └── 07_a11y_grimoire.md
 │
 ├── 18_i18n/                                                    # Parler toutes les langues sans tout réécrire
+│   ├── 00_why_i18n.md                                          # Pourquoi coder en pensant "une seule langue" te coûte cher plus tard
 │   ├── 01_i18n_basics.md                                      # Clés de traduction, namespaces, fallbacks : l'architecture i18n de base
 │   ├── 02_dates_timezones.md                                  # Les dates à travers les fuseaux horaires : le cauchemar et comment le résoudre
 │   ├── 03_number_formats.md                                   # 1,234.56 vs 1.234,56 : les formats numériques selon les pays
@@ -438,6 +455,7 @@ MyFunnyJS/
 │   └── 06_i18n_grimoire.md
 │
 ├── 19_realtime/                                                # Le web qui respire en direct : WebSockets, SSE, WebRTC
+│   ├── 00_why_realtime.md                                      # Pourquoi le polling classique ne suffit plus dès que ça doit être live
 │   ├── 01_websockets/
 │   │   ├── 01_ws_basics.md                                    # Ouvrir, envoyer, recevoir, fermer : le cycle de vie d'une WebSocket
 │   │   └── 02_ws_chat_room.md                                  # Construire un chat room avec rooms, broadcast, historique
@@ -450,6 +468,7 @@ MyFunnyJS/
 │   └── 04_realtime_grimoire.md
 │
 ├── 20_api_craft/                                               # Construire ce que le monde consomme : et qui ne tombe pas en prod
+│   ├── 00_why_api_craft.md                                     # Pourquoi une API mal pensée se paie en bugs pour tous ses clients
 │   ├── 01_express_from_scratch.md                             # Monter un serveur Express depuis zéro : pas de boilerplate, juste la logique
 │   ├── 02_rest_crud_complete.md                               # CRUD complet sur une ressource : GET, POST, PUT, PATCH, DELETE
 │   ├── 03_error_handling_api.md                               # Les erreurs d'API : status codes, formats d'erreur, middleware global
@@ -460,6 +479,7 @@ MyFunnyJS/
 │   └── 08_api_grimoire.md
 │
 ├── 21_security/                                                # Ne jamais être la faille que quelqu'un exploite
+│   ├── 00_why_security.md                                      # Pourquoi "ça arrive qu'aux autres" est la phrase avant le piratage
 │   ├── 01_xss_injection.md                                    # XSS et injection SQL : les deux attaques qui touchent le plus d'apps en prod
 │   ├── 02_csrf_cors.md                                        # CSRF et CORS : comprendre les deux avant de misconfigurer l'un ou l'autre
 │   ├── 03_prototype_pollution.md                              # Polluer Object.prototype depuis un input utilisateur : pourquoi c'est catastrophique
@@ -469,6 +489,7 @@ MyFunnyJS/
 │   └── 07_security_grimoire.md
 │
 ├── 22_ai_native_dev/                                           # Utiliser l'IA sans perdre le contrôle : ni son jugement
+│   ├── 00_why_ai_native_dev.md                                 # Pourquoi savoir utiliser l'IA correctement devient une compétence à part
 │   ├── 01_ai_workflow.md                                      # Comment intégrer l'IA dans son workflow sans devenir dépendant
 │   ├── 02_prompt_engineering.md                               # Prompter pour obtenir du code utile : pas du code plausible
 │   ├── 03_validate_ai_output.md                               # Valider ce que l'IA génère : typage, parsing, tests automatiques
@@ -477,6 +498,7 @@ MyFunnyJS/
 │   └── 06_ai_grimoire.md
 │
 ├── 23_databases/                                               # Persister intelligemment dans le temps : et retrouver rapidement
+│   ├── 00_why_databases.md                                     # Pourquoi le choix de la DB conditionne tout ce qui vient après
 │   ├── 01_sql_basics.md                                       # SELECT, JOIN, INDEX, EXPLAIN : lire et interroger une DB relationnelle
 │   ├── 02_nosql_basics.md                                     # Document, clé-valeur, graphe : choisir la bonne DB pour le bon problème
 │   ├── 03_data_modeling.md                                    # Modéliser des données : normalisation, dénormalisation, quand faire quoi
@@ -485,6 +507,7 @@ MyFunnyJS/
 │   └── 06_databases_grimoire.md
 │
 ├── 24_scalability/                                             # Tenir quand ça devient sérieux : 10 users vs 10 millions c'est pas le même code
+│   ├── 00_why_scalability.md                                   # Pourquoi le code qui marche à 10 utilisateurs crash à 10 000
 │   ├── 01_load_balancing.md                                   # Distribuer le trafic : round-robin, least connections, sticky sessions
 │   ├── 02_horizontal_vs_vertical.md                           # Scale up vs scale out : deux stratégies, deux contextes, deux coûts
 │   ├── 03_rate_limiting.md                                    # Limiter les requêtes sans bloquer les utilisateurs légitimes
@@ -492,6 +515,7 @@ MyFunnyJS/
 │   └── 05_scalability_grimoire.md
 │
 ├── 25_observability/                                           # Voir ce qui se passe en prod : avant que l'utilisateur le signale
+│   ├── 00_why_observability.md                                 # Pourquoi attendre le ticket utilisateur pour savoir que ça casse, c'est trop tard
 │   ├── 01_structured_logging.md                               # Log en JSON avec correlation ID : les logs qu'on peut chercher et analyser
 │   ├── 02_distributed_tracing.md                              # Suivre une requête à travers plusieurs services : sans perdre le fil
 │   ├── 03_metrics_alerting.md                                  # Compteurs, gauges, histogrammes : les métriques qui annoncent les problèmes
@@ -500,6 +524,7 @@ MyFunnyJS/
 │   └── 06_observability_grimoire.md
 │
 ├── 26_team_craft/                                              # Coder avec des humains : pas juste avec une machine
+│   ├── 00_why_team_craft.md                                    # Pourquoi le meilleur code du monde ne sert à rien si l'équipe ne le comprend pas
 │   ├── 01_code_review.md                                      # Reviewer sans écraser, commenter sans blesser, approuver sans se planquer
 │   ├── 02_adr_writing.md                                      # ADR : documenter une décision technique avant de coder, pas après
 │   ├── 03_technical_writing.md                                # Écrire pour des devs : README, docs, runbooks : clair et utilisable
@@ -508,23 +533,25 @@ MyFunnyJS/
 │   └── 06_team_grimoire.md
 │
 ├── 27_edge_cases/                                              # JS qui se rebelle : et comment y survivre
+│   ├── 00_why_edge_cases.md                                    # Pourquoi connaître les bizarreries de JS t'évite de perdre 3h sur un bug absurde
 │   ├── 01_nan_undefined_null.md                               # NaN, undefined, null : trois façons différentes de dire "rien" : et leurs pièges
 │   ├── 02_floating_point.md                                   # 0.1 + 0.2 !== 0.3 : l'arithmétique flottante et pourquoi elle surprend toujours
 │   ├── 03_weird_coercions.md                                  # [] + {} = ?, {} + [] = ? : les coercions qui font rire et qui font mal
 │   ├── 04_prototype_chain_dark.md                             # La chaîne prototype dans ses zones sombres : __proto__, hasOwnProperty, pollution
 │   └── 05_edge_cases_grimoire.md
 │
-├── 28_oop_js/
-    ├── 01_prototype_chain_raw.md         # Object.create, [[Prototype]] : la chaîne brute, sans aucun sucre
-    ├── 02_constructor_functions.md       # new, this, .prototype : la façon old school avant "class"
-    ├── 03_class_syntax_sugar.md          # preuve que class = wrapper sur tout ce qu'on vient de voir
-    ├── 04_this_keyword_rules.md          # this selon le call-site : méthode, fonction libre, arrow
-    ├── 05_call_apply_bind.md             # emprunter une fonction, figer this
-    ├── 06_inheritance_extends_super.md   # extends/super, et pourquoi les hiérarchies profondes piègent
-    ├── 07_encapsulation_privacy.md       # # private fields vs closures : ce qu'on protège vraiment
-    ├── 08_static_getters_setters.md      # static, get/set : logique cachée derrière une syntaxe d'attribut
-    ├── 09_composition_vs_inheritance.md  # mixins, "has-a" vs "is-a" : la vraie décision senior
-    └── 10_oop_js_grimoire.md
+├── 28_oop_js/                                                  # prototype, classes, héritage : la face cachée de JS
+│   ├── 00_why_oop_js.md                                        # Pourquoi l'OOP en JS n'est qu'un déguisement sur le prototype
+│   ├── 01_prototype_chain_raw.md                              # Object.create, [[Prototype]] : la chaîne brute, sans aucun sucre
+│   ├── 02_constructor_functions.md                            # new, this, .prototype : la façon old school avant "class"
+│   ├── 03_class_syntax_sugar.md                               # preuve que class = wrapper sur tout ce qu'on vient de voir
+│   ├── 04_this_keyword_rules.md                                # this selon le call-site : méthode, fonction libre, arrow
+│   ├── 05_call_apply_bind.md                                   # emprunter une fonction, figer this
+│   ├── 06_inheritance_extends_super.md                         # extends/super, et pourquoi les hiérarchies profondes piègent
+│   ├── 07_encapsulation_privacy.md                             # # private fields vs closures : ce qu'on protège vraiment
+│   ├── 08_static_getters_setters.md                            # static, get/set : logique cachée derrière une syntaxe d'attribut
+│   ├── 09_composition_vs_inheritance.md                        # mixins, "has-a" vs "is-a" : la vraie décision senior
+│   └── 10_oop_js_grimoire.md
 │
 ├── 29_mini_projects/                                           # Assembler tout ça pour de vrai : pas des exercices, des systèmes
 │   ├── 01_rasengan_engine/
@@ -604,24 +631,27 @@ MyFunnyJS/
 │   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md
 │   ├── 01_system_design_grimoire.md
 │   ├── toolchain/                                           
+│   │   ├── 00_why_toolchain.md                                # Pourquoi maîtriser sa chaîne d'outils avant d'en subir les effets
 │   │   ├── 01_git_survival.md                                 # Git sans pleurer : branches, rebase, conflits, bisect
 │   │   ├── 02_vscode_setup.md                                 # VSCode configuré pour un dev JS/TS sérieux : pas pour faire joli
 │   │   ├── 03_package_managers.md                             # npm, yarn, pnpm : les différences qui comptent vraiment en 2026
 │   │   ├── 04_bundlers.md                                     # Webpack, Vite, esbuild, Rollup : choisir sans subir
 │   │   ├── 05_docker_basics.md                                # Containeriser une app Node : Dockerfile, compose, multi-stage builds
-│   │   └── 06_cicd_basics.md                                  # GitHub Actions de zéro : tester, builder, déployer à chaque push
+│   │   ├── 06_cicd_basics.md                                  # GitHub Actions de zéro : tester, builder, déployer à chaque push
+│   │   └── 07_toolchain_grimoire.md                           # Le vocabulaire de la chaîne : chaque terme à sa place
 │   └── typescript_advanced/
+│       ├── 00_why_typescript_advanced.md                       # Pourquoi le TS "de base" ne suffit plus sur un vrai projet qui grandit
 │       ├── 01_declaration_files.md                            # .d.ts : écrire les types pour du JS sans types
 │       ├── 02_ts_compiler_config.md                           # tsconfig.json : chaque option expliquée avec son impact réel
 │       └── 03_ts_migration_guide.md                           # Migrer du JS pur vers TypeScript : sans tout réécrire en une nuit
 │
 └── 31_tools/                                                   # Les gadgets maison pour aller plus vite : réutilisables dans tous les modules
-    └── 00_why_tools.md                  
-    ├── 01_logger_structure.md           
-    ├── 02_benchmark_kit.md              
-    ├── 03_debug_toolkit.md              
-    ├── 04_cli_scaffolder.md             
-    └── 05_tools_grimoire.md             
+    ├── 00_why_tools.md                                         # Pourquoi se construire une boîte à outils plutôt que tout réécrire chaque fois
+    ├── 01_logger_structure.md                                  # Logger structuré réutilisable : la base de l'observabilité maison
+    ├── 02_benchmark_kit.md                                     # Mesurer la perf de n'importe quel bout de code sans réinventer la roue
+    ├── 03_debug_toolkit.md                                     # Le kit de debug qu'on rebranche sur chaque projet
+    ├── 04_cli_scaffolder.md                                    # Générer la structure d'un nouveau projet en une commande
+    └── 05_tools_grimoire.md
 ```
 
 ---
@@ -711,13 +741,79 @@ C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
 ---
  
 ## GUIDE DE LECTURE POUR DÉBUTANT
- 
+
 Si tu arrives de zéro : lis `30_annexes/00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md`.
 Ce guide couvre le contexte du dev en 2026, les outils, les métiers, et comment aborder
-ce curriculum sans se perdre.
- 
-Commence ensuite par `01_fundamentals/`. Dans l'ordre. Sans sauter.
- 
+ce curriculum sans se perdre. C'est l'étape 0, avant l'étape 0.
+
+Ensuite, dans l'ordre. `01_fundamentals/` en premier. Sans sauter. La ROADMAP plus haut
+te donne la séquence complète : c'est pas une suggestion, c'est l'ordre dans lequel les
+concepts s'empilent sans laisser de trou.
+
+### Lis le 00_why avant le 01
+
+Chaque module commence par un `00_why_<module>.md`. C'est pas une intro qu'on saute pour
+aller au code. C'est le fichier qui te dit pourquoi ce module existe et ce qui pue dans
+un projet qui l'ignore. Si tu sautes direct au `01_`, tu vas apprendre la technique sans
+savoir pourquoi elle compte. Et un truc appris sans raison s'oublie vite.
+
+### Comment gérer la charge mentale
+
+T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
+
+- **Un module à la fois, jusqu'au bout.** Pas trois modules en parallèle "pour varier".
+  Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui
+  en termine un avant d'ouvrir le suivant.
+- **Le grimoire en fin de module, c'est ton check de compréhension.** Si tu le lis et que
+  des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
+  Grave de continuer en faisant semblant d'avoir compris.
+- **Les mini-projets (`29_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
+  isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
+  savoir qui ne se connectent pas entre eux.
+- **Stagner sur un concept, c'est normal.** Closures, event loop, prototype chain : tout le
+  monde galère dessus la première fois. Le `02_scope/03_scope_escape_room.md` et compagnie
+  sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
+  deux essais.
+
+### Repérer les modules denses (ralentis volontairement ici)
+
+Tous les modules ne se valent pas en charge cognitive. Ceux-là méritent plus de temps, pas
+une lecture en diagonale :
+
+```
+02_async              =>  l'event loop tord le cerveau la première fois, c'est normal
+06_memory_performance =>  beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
+07_data_structures    =>  08_algorithms en dépend direct, bâcler l'un casse l'autre
+13_typescript         =>  le système de types a son propre raisonnement, différent de JS
+15_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
+21_security           =>  chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
+28_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
+```
+
+Sur ces modules-là : ralentis. Fais les trois niveaux d'exemple (minimal, réaliste, qui casse)
+sans en sauter un. C'est exactement là que se joue la différence entre "j'ai lu" et "j'ai compris".
+
+### Temps estimé (ordre de grandeur, pas un chronomètre)
+
+```
+01-06   Fondamentaux              =>  le socle, prends ton temps, tout le reste s'appuie dessus
+07-13   Structures et pratiques   =>  bloc dense, data structures + algos + TS demandent de la pratique répétée
+14-21   Système web complet       =>  large mais plus horizontal, beaucoup de modules courts et ciblés
+22-27   Ingénierie senior         =>  plus rapide à lire, mais demande déjà les blocs précédents pour faire sens
+29      Mini-projets               =>  le vrai test : ça prend autant de temps que tu acceptes d'y mettre
+```
+
+Pas de nombre d'heures donné ici : ça dépend trop de ton rythme, de ton niveau de départ, et
+du temps que tu mets vraiment à coder (pas juste à lire). Le seul vrai indicateur : si tu finis
+un module et que t'arrives pas à expliquer le concept à quelqu'un d'autre avec tes propres mots,
+t'as lu trop vite.
+
+### Si tu bloques
+
+Relis le `00_why` du module. Souvent le blocage vient pas de la technique, mais du fait que tu
+as perdu le pourquoi en cours de route. Et si après ça tu bloques encore : c'est probablement
+un module en amont mal digéré. Remonte d'un cran avant d'insister sur celui qui résiste.
+
 ---
 
 **Lovasoarm AKA Aramis**
