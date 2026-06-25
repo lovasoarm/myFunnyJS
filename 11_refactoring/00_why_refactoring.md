@@ -70,27 +70,22 @@ Le code legacy n'est pas une catégorie qui va disparaître : c'est une catégor
 
 Du code qui marche aujourd'hui n'est pas automatiquement du code qui durera. Ça casse de trois façons sans refactoring : dette technique qui s'accumule, features qui coûtent de plus en plus cher, équipe qui n'ose plus toucher au code existant. Ces principes restent valides peu importe le langage ou le framework.
 
+Maintenant, ouvre `01_clean_code_basics.md`. Et commence à voir ton propre code comme quelqu'un d'autre devra le lire dans 6 mois.
+
 ---
 
-## LA FRONTIÈRE AVEC 12_PROBLEM_SOLVING
+## CE MODULE VS LE SUIVANT : FRONTIÈRE AVEC `12_PROBLEM_SOLVING`
 
-Ces deux modules sont proches mais ils n'opèrent pas au même moment ni sur le même matériel.
+Ces deux modules ont l'air proches. Ils ne font pas la même chose.
 
-```
-11_refactoring       -->  du code qui EXISTE déjà
-                          tu lis, tu diagnoses, tu restructures
-                          le problème est posé : le code est là
+| Ce module (`11_refactoring`)          | Le suivant (`12_problem_solving`)        |
+|---------------------------------------|------------------------------------------|
+| Tu as du code existant                | Tu n'as pas encore de code               |
+| Tu améliores la structure interne     | Tu conçois la structure avant d'écrire   |
+| Le comportement ne change pas         | Tu choisis quel comportement implémenter |
+| Outils : SOLID, smells, extraction    | Outils : décomposition, modélisation     |
+| Question : "comment améliorer ça ?"   | Question : "comment attaquer ça ?"       |
 
-12_problem_solving   -->  un problème qui n'a pas encore de code
-                          tu décomposes, tu modélises, tu choisis une approche
-                          le problème n'est pas encore traduit en code
-```
+En pratique : tu fais du `12_problem_solving` avant d'ouvrir l'éditeur. Tu fais du `11_refactoring` après, sur le code livré qui a grossi.
 
-En pratique :
-
-- tu ouvres une PR, tu vois un god class de 800 lignes : **c'est du refactoring**
-- un client t'explique un besoin flou et tu dois décider comment l'attaquer : **c'est du problem solving**
-
-Les deux compétences se nourrissent : un bon problem solver évite de créer du code à refactoriser. Un bon refactoriseur comprend les décisions passées et peut les remettre en question. Mais l'ordre est important : d'abord concevoir correctement (`12`), ensuite corriger ce qui a mal vieilli (`11`).
-
-Maintenant, ouvre `01_clean_code_basics.md`. Et commence à voir ton propre code comme quelqu'un d'autre devra le lire dans 6 mois.
+Les deux compétences coexistent dans le quotidien d'un dev. Ce ne sont pas des alternatives : ce sont deux moments différents dans le cycle de vie du code.
