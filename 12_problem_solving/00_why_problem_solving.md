@@ -68,24 +68,22 @@ Cette compétence devient plus précieuse à mesure que les outils automatisent 
 
 La syntaxe ne suffit pas si tu ne sais pas penser le problème avant de coder. Ça casse de trois façons sans cette méthode : mauvais départs répétés, fonctions géantes impossibles à tester, solutions qui ne survivent pas au premier changement. Cette compétence devient encore plus stratégique à l'ère de l'IA générative.
 
+Maintenant, ouvre `01_decompose.md`. Et arrête de foncer dans l'éditeur avant d'avoir compris le vrai problème.
+
 ---
 
-## LA FRONTIÈRE AVEC 11_REFACTORING
+## CE MODULE VS LE PRÉCÉDENT : FRONTIÈRE AVEC `11_REFACTORING`
 
-Ces deux modules ont l'air proches. Ils ne font pas la même chose.
+Ces deux modules se croisent souvent dans la tête des apprenants. La frontière est simple.
 
-```
-12_problem_solving   -->  avant le code
-                          tu n'as pas encore de fichier ouvert
-                          tu décomposes un besoin, tu modélises, tu choisis
+| Le précédent (`11_refactoring`)       | Ce module (`12_problem_solving`)         |
+|---------------------------------------|------------------------------------------|
+| Le code existe déjà                   | Le code n'existe pas encore              |
+| Tu améliores ce qui tourne            | Tu conçois ce qui va tourner             |
+| Comportement externe inchangé         | Tu définis le comportement cible         |
+| Outils : SOLID, code smells           | Outils : décomposition, modélisation     |
+| Question : "comment rendre ça propre ?"| Question : "comment structurer ça ?"    |
 
-11_refactoring       -->  après le code
-                          le fichier est ouvert, le code tourne
-                          tu diagnoses, tu restructures, tu sécurises avec des tests
-```
+`11_refactoring` s'applique après livraison, sur du code qui a vécu. `12_problem_solving` s'applique avant la première ligne, sur un problème qui n'a pas encore de solution.
 
-Le problem solving intervient **en amont** : c'est lui qui décide de l'architecture initiale, qui choisit l'approche avant d'écrire la première ligne. Le refactoring intervient **en aval** : c'est lui qui répare les décisions passées qui ont mal vieilli.
-
-En pratique : si tu fais bien `12`, tu as moins besoin de `11`. Mais tu auras toujours besoin de `11`, parce que les exigences changent et que personne ne conçoit parfaitement du premier coup.
-
-Maintenant, ouvre `01_decompose.md`. Et arrête de foncer dans l'éditeur avant d'avoir compris le vrai problème.
+En pratique, les deux alternent en permanence : tu décomposes un problème (`12`), tu codes, tu refactorises ce que tu as produit (`11`), tu décomposes la prochaine feature (`12`). Ce sont deux réflexes complémentaires, pas deux modules en compétition.
