@@ -11,16 +11,16 @@ C'est le genre de comportement qui te fait passer 3 heures à debugger une condi
 
 **Coercition explicite** (conversion délibérée) :
 ```js
-Number("42")     // 42 — tu choisis de convertir
-String(true)     // "true" — tu décides
-Boolean(0)       // false — intentionnel
+Number("42")     // 42 - tu choisis de convertir
+String(true)     // "true" - tu décides
+Boolean(0)       // false - intentionnel
 ```
 
 **Coercition implicite** (JS décide à ta place) :
 ```js
-"5" + 3          // "53" — JS transforme 3 en string
-"5" - 3          // 2   — JS transforme "5" en number
-true + true      // 2   — JS transforme les booléens en numbers
+"5" + 3          // "53" - JS transforme 3 en string
+"5" - 3          // 2   - JS transforme "5" en number
+true + true      // 2   - JS transforme les booléens en numbers
 ```
 
 La règle de JS :
@@ -81,12 +81,12 @@ Le diagramme :
 `==` applique des règles de conversion avant de comparer. `===` compare directement sans conversion.
 
 ```js
-0 == false        // true  — false converti en 0
-0 == ""           // true  — "" converti en 0
-"" == false       // true  — "" → 0, false → 0, donc 0 == 0
-null == undefined // true  — cas spécial dans la spec JS
-null == 0         // false — null ne se compare qu'à undefined avec ==
-NaN == NaN        // false — NaN n'est jamais égal à lui-même
+0 == false        // true  - false converti en 0
+0 == ""           // true  - "" converti en 0
+"" == false       // true  - "" → 0, false → 0, donc 0 == 0
+null == undefined // true  - cas spécial dans la spec JS
+null == 0         // false - null ne se compare qu'à undefined avec ==
+NaN == NaN        // false - NaN n'est jamais égal à lui-même
 ```
 
 L'algorithme de `==` en simplifié :
@@ -101,7 +101,7 @@ Si object et primitive → object converti via valueOf() ou toString()
 ```js
 // Piège classique en prod
 const input = ""        // input vide d'un formulaire
-if (input == false) {   // true — et là tu penses avoir catché le cas "pas d'input"
+if (input == false) {   // true : et là tu penses avoir catché le cas "pas d'input"
   console.log("aucune valeur")
 }
 // Mais input == 0 aussi...
@@ -119,16 +119,16 @@ if (input === "") {
 ## 4) ADDITION DE TYPES MIXTES : LA TABLE DES HORREURS
 
 ```js
-true + true          // 2      — booleans → numbers
+true + true          // 2      : booleans → numbers
 true + false         // 1
 false + false        // 0
-true + "1"           // "true1" — + string = concaténation
-[] + []              // ""     — deux arrays vides → deux strings vides → concat
+true + "1"           // "true1" : + string = concaténation
+[] + []              // ""     : deux arrays vides → deux strings vides → concat
 [] + {}              // "[object Object]"
 {} + []              // 0 (en statement) ou "[object Object]" (en expression)
-null + 1             // 1      — null → 0
-undefined + 1        // NaN    — undefined → NaN
-undefined + "x"      // "undefinedx" — string gagne encore
+null + 1             // 1      : null → 0
+undefined + 1        // NaN    : undefined → NaN
+undefined + "x"      // "undefinedx" : string gagne encore
 "" + null            // "null"
 "" + undefined       // "undefined"
 "" + false           // "false"
@@ -163,10 +163,10 @@ NaN
 
 Tout le reste est **truthy** : y compris des choses surprenantes :
 ```js
-if ([])    // true  — un tableau vide est truthy
-if ({})    // true  — un objet vide est truthy
-if ("0")   // true  — la string "0" est truthy
-if ("false") // true — la string "false" est truthy
+if ([])    // true  : un tableau vide est truthy
+if ({})    // true  : un objet vide est truthy
+if ("0")   // true  : la string "0" est truthy
+if ("false") // true : la string "false" est truthy
 ```
 
 ```js
@@ -174,7 +174,7 @@ if ("false") // true — la string "false" est truthy
 const scores = []
 
 if (scores) {
-  console.log("il y a des scores")  // s'exécute — [] est truthy
+  console.log("il y a des scores")  // s'exécute - [] est truthy
 }
 
 // Fix : vérifier la longueur
@@ -191,14 +191,14 @@ if (scores.length > 0) {
 
 ```js
 // || retourne le premier opérande truthy, ou le dernier si tous falsy
-"Naruto" || "Sasuke"    // "Naruto" — truthy trouvé en premier
-0 || "Sasuke"           // "Sasuke" — 0 est falsy, donc on continue
-0 || null               // null     — les deux falsy, retourne le dernier
+"Naruto" || "Sasuke"    // "Naruto" : truthy trouvé en premier
+0 || "Sasuke"           // "Sasuke" : 0 est falsy, donc on continue
+0 || null               // null     : les deux falsy, retourne le dernier
 null || undefined       // undefined
 
 // && retourne le premier opérande falsy, ou le dernier si tous truthy
-"Naruto" && "Sasuke"    // "Sasuke" — tous truthy, retourne le dernier
-0 && "Sasuke"           // 0        — falsy trouvé, retour immédiat
+"Naruto" && "Sasuke"    // "Sasuke" : tous truthy, retourne le dernier
+0 && "Sasuke"           // 0        : falsy trouvé, retour immédiat
 "Naruto" && 0           // 0
 ```
 
@@ -210,8 +210,8 @@ const chakra = player.chakra || 100  // si chakra est 0 ou undefined, on prend 1
 const chakra = 0
 const displayChakra = chakra || 100  // 100 — MAUVAIS, 0 est une valeur valide
 
-// Fix : opérateur ?? (nullish coalescing — fusion de nullité)
-const displayChakra = chakra ?? 100  // 0 — correct, ?? ignore seulement null et undefined
+// Fix : opérateur ?? (nullish coalescing : fusion de nullité)
+const displayChakra = chakra ?? 100  // 0 : correct, ?? ignore seulement null et undefined
 ```
 
 ---
@@ -235,25 +235,25 @@ Pas de crash. Juste une conversion silencieuse qui produit quelque chose que tu 
 
 ```js
 // 1. Comparaison entre 0 et chaîne vide
-"" == 0        // true  — les deux valent 0 après conversion
-"" === 0       // false — types différents, pas de conversion
+"" == 0        // true  : les deux valent 0 après conversion
+"" === 0       // false : types différents, pas de conversion
 
 // 2. Array converti en number
 +[]            // 0
 +[1]           // 1
-+[1, 2]        // NaN — plusieurs éléments → string "1,2" → NaN
++[1, 2]        // NaN : plusieurs éléments → string "1,2" → NaN
 
 // 3. Additions avec null et undefined dans un calcul
 function total(a, b) {
   return a + b
 }
-total(5, undefined)   // NaN — undefined casse tout ce qu'il touche avec les maths
-total(5, null)        // 5   — null = 0, donc ça passe
+total(5, undefined)   // NaN : undefined casse tout ce qu'il touche avec les maths
+total(5, null)        // 5   : null = 0, donc ça passe
 
 // 4. La string "0" qui n'est pas falsy
 const input = "0"
-if (input) console.log("truthy")    // s'exécute — "0" est truthy
-if (+input) console.log("truthy")   // ne s'exécute PAS — +input = 0 = falsy
+if (input) console.log("truthy")    // s'exécute : "0" est truthy
+if (+input) console.log("truthy")   // ne s'exécute PAS : +input = 0 = falsy
 ```
 
 ---
