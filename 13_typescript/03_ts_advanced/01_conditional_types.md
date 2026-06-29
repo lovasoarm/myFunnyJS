@@ -1,5 +1,11 @@
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
 
+> Ce fichier est niveau avancé.
+> Prérequis minimum : `01_ts_basics/` complet + `02_ts_intermediate/` complet.
+> Si tu découvres TypeScript : reviens ici après avoir utilisé les generics et les utility types
+> sur un vrai projet. Ces concepts deviennent évidents après six mois de TS quotidien.
+> Avant : ils paraissent absurdes.
+
 `T extends U ? X : Y` : c'est un ternaire, mais pour les types. Si `T` est assignable à `U`, le type résultant est `X`. Sinon c'est `Y`.
 
 C'est l'outil qui permet à TS de faire de l'inférence avancée : le type de sortie d'une fonction peut dépendre du type d'entrée, de manière dynamique et précise. Sans conditional types, les utility types natifs de TS (`ReturnType`, `Awaited`, `NonNullable`) n'existeraient pas.

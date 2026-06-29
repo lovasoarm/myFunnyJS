@@ -70,6 +70,10 @@ Les systèmes deviennent de plus en plus distribués (microservices, queues, API
 
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
+> Prérequis : avant d'aller plus loin ici, assure-toi d'avoir fait
+> `01_fundamentals/08_debugging/01_read_stack_trace.md`.
+> Tout ce module suppose que tu sais déjà lire une stack trace.
+
 Une erreur non gérée n'est pas juste un bug : c'est un système qui ment sur son propre état. Ce module te donne la discipline pour l'anticiper, la contenir, et la communiquer clairement. Sans lui, tu découvres les problèmes quand l'utilisateur te les signale. Avec lui, tu les vois venir.
 
 Maintenant, ouvre `01_try_catch_basics.md`. Et apprends ce que `try/catch` attrape vraiment, et ce qu'il laisse filer.
