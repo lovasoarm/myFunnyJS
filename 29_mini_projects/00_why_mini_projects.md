@@ -39,8 +39,8 @@ Chaque projet a la même structure :
 ├── TDD_JOURNAL.md          <-- la trace des décisions de test
 ├── POSTMORTEM.md           <-- ce qui a cassé et ce que tu as appris
 ├── ADR/                    <-- les décisions techniques documentées
-├── src/                    <-- le code
-└── tests/                  <-- les tests
+├── src/                    <-- le code que tu vas créer
+└── tests/                  <-- les tests que tu vas créer
 ```
 
 ### cahierdescharges.md : le contrat avant le code
@@ -102,7 +102,7 @@ Acceptable pour ce cas d'usage (CLI mono-utilisateur).
           Identifier les contraintes qui vont tout changer
           (perf, sécurité, parallélisme, typage strict...)
 
-ÉTAPE 2 : Écrire les premiers tests avant le premier fichier src/
+ÉTAPE 2 : Créer les premiers tests avant le premier fichier src/
           Qu'est-ce que "ça marche" veut dire pour ce projet ?
           Un test qui passe = une définition concrète du succès.
 
@@ -186,4 +186,3 @@ Le code qu'on livre sans comprendre : c'est le code qu'on appelle à 3h du matin
 
 ---
 
-> Note : 10/10. Les cinq points du checklist `00_why` sont couverts : pourquoi les projets, ce qu'ils donnent qu'une leçon ne peut pas donner, comment les aborder, dans quel ordre, ce que signifie "terminé". Tableau de prérequis complet. Ton CrazyDevs maintenu. Zéro remplissage.

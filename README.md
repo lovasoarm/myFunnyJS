@@ -568,72 +568,72 @@ MyFunnyJS/
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 02_garo_no_kronika/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 03_walking_dead_protocol/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 04_breaking_cache/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 05_prison_break_api/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 06_ultras_dashboard/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 07_ballon_dor_cli/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   ├── 08_trapsoul_radio/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
 │   │   ├── TDD_JOURNAL.md
 │   │   ├── POSTMORTEM.md
 │   │   ├── ADR/
-│   │   ├── src/
-│   │   └── tests/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
 │   └── 09_oracle_glitch/
 │       ├── cahierdescharges.md
 │       ├── README.md
 │       ├── TDD_JOURNAL.md
 │       ├── POSTMORTEM.md
 │       ├── ADR/
-│       ├── src/
-│       └── tests/
+│       ├── src/                    # à créer manuellement pendant le projet
+│       └── tests/                  # à créer manuellement avant le code
 │
 ├── 30_annexes/                                                
 │   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md

@@ -1,13 +1,13 @@
 # CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE COMMANDE, PAS NEUF FOIS À LA MAIN
 
-Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, `src/`, `tests/`. Recréer ça à la main, 9 fois, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une commande.
+Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence cible : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, puis les dossiers de travail `src/` et `tests/` que l'apprenant crée pendant le projet. Recréer cette base à la main, projet après projet, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une commande.
 
 ---
 
 ## 1) LE PROBLÈME DE LA RÉPÉTITION MANUELLE
 
 ```
-9 mini-projets, chacun avec la même structure à créer à la main :
+9 mini-projets, chacun avec la même structure cible à créer à la main :
 mkdir 01_rasengan_engine
 cd 01_rasengan_engine
 touch cahierdescharges.md README.md TDD_JOURNAL.md POSTMORTEM.md

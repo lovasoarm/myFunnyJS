@@ -61,13 +61,13 @@ nom_du_projet/
 ├── README.md             # Contexte, objectifs, modules couverts
 ├── TDD_JOURNAL.md        # Tests écrits AVANT le code : obligatoire
 ├── POSTMORTEM.md         # Ce qui a cassé, pourquoi, ce qu'on ferait mieux
-├── src/
-└── tests/
+├── src/                 # à créer par l'apprenant pendant le projet
+└── tests/               # à créer par l'apprenant avant le code
 ```
 
 Règles pour un mini-projet :
 
-- Le `TDD_JOURNAL.md` doit être rempli **avant** d'écrire la moindre ligne de `src/`
+- Le `TDD_JOURNAL.md` doit être commencé **avant** d'écrire la moindre ligne de `src/`
 - Le `cahierdescharges.md` doit préciser les modules MyFunnyJS couverts
 - Le `POSTMORTEM.md` se remplit **après** : honnêtement, sans filtre
 - Aucune duplication de mécanique core entre projets (pas deux projets WebSocket, pas deux CLI, etc.)
