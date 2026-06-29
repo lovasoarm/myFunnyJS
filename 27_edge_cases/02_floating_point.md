@@ -191,6 +191,48 @@ console.log(1000000 + 0.1);      // 1000000.1 -- exact
 
 ---
 
+
+## 6) CAS QUI CASSE (mais fun)
+
+```javascript
+// La comparaison qui échoue en silence
+const price = 0.1 + 0.2             // 0.30000000000000004
+if (price === 0.3) {
+  console.log("transaction OK")
+}
+// Ne s'affiche jamais.
+// Si c'est un système de paiement : le bug passe en prod, personne ne comprend pourquoi les transactions "échouent"
+
+// Le fix :
+Math.abs(price - 0.3) < Number.EPSILON  // true
+```
+
+```javascript
+// toFixed qui ment
+(1.005).toFixed(2)  // --> "1.00" pas "1.01"
+// 1.005 n'est pas représentable exactement en IEEE 754
+// il vaut 1.00499999... en binaire, donc toFixed arrondit à 1.00
+
+// en prod : un affichage de prix qui arrondit mal sur certaines valeurs
+// le fix : travailler en centimes (entiers), convertir uniquement pour l'affichage
+```
+
+```javascript
+// Le bug des grandes boucles
+let total = 0
+for (let i = 0; i < 1_000_000; i++) {
+  total += 0.1
+}
+// Expected : 100000
+// Got      : 100000.00000133288...
+// L'erreur s'accumule à chaque addition
+
+// En stats, en jeux, en simulations : cette dérive est réelle
+// Fix : Kahan summation algorithm, ou travailler en entiers
+```
+
+---
+
 ## EXERCICES
 
 **EXO 1 : le système de paiement de la prison**

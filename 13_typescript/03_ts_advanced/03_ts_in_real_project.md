@@ -348,22 +348,30 @@ const clone = structuredClone(player);
 # EXERCICES
 
 ## EXO 1 : la config du projet Trapsoul Radio
+_~20 min_
+
 
 Écris un `tsconfig.json` pour un projet Node.js avec Express + TS. Justifie chaque option que tu mets. Active `strict`. Configure les paths pour `@/` → `src/`. Configure `declaration: true` (le package sera publié en interne).
 
 ## EXO 2 : les boundaries du projet Prison Break API
+_~20 min_
+
 
 Le serveur reçoit des corps de requête depuis Express. `req.body` est typé `any` par défaut. Définis les types `CreatePrisonerInput`, `UpdatePrisonerInput`, `PrisonerResponse`. Écris les type guards pour valider `req.body` avant utilisation.
 
 Écris un middleware Express `validateBody<T>(guard: (v: unknown) => v is T)` qui valide et type `req.body`.
 
 ## EXO 3 : la migration du camp de Rick
+_~25 min_
+
 
 Le camp a un fichier `inventory.js` avec 200 lignes non typées. Il y a un `Item` (avec `id`, `name`, `quantity`, `category`), un `Inventory` (liste d'items + fonctions de recherche), et des erreurs custom.
 
 Planifie la migration en 3 phases. Écris les types de base, le type guard `isItem`, et montre comment le fichier `.js` peut coexister avec le `.ts` pendant la transition.
 
 ## EXO 4 : le type global du projet oracle_glitch
+_~25 min_
+
 
 Le projet `oracle_glitch` utilise Anthropic SDK (qui a des types) + une lib de parsing maison sans types. Crée un fichier `custom-parser.d.ts` qui déclare les types de la lib maison : `parse(raw: string): ParseResult`, `ParseResult` avec `tokens: Token[]`, `errors: string[]`, `Token` avec `type` et `value`.
 

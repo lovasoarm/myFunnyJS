@@ -127,3 +127,13 @@ Ligne D --> ne s'exécute jamais : le crash vient avant (jamais atteinte : le cr
 | Freezer avec `Object.freeze`  | ok      | ok    |
 
 > `const` = la clé est soudée à ta main. Mais la maison, tu peux toujours la repeindre.
+
+---
+
+## RÉSUMÉ
+
+`const` interdit la réassignation de la variable : tu ne peux pas pointer vers un autre objet. Mais il n'empêche pas de modifier le contenu de l'objet déjà pointé.
+
+Si tu veux un objet vraiment immuable : `Object.freeze()`. Et `freeze` ne gèle que le premier niveau, donc les objets imbriqués restent mutables.
+
+La règle : `const` = référence verrouillée. Pas objet immuable.

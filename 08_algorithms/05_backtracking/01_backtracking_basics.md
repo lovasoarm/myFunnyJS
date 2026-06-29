@@ -325,6 +325,8 @@ Quand le backtracking a une mémoïsation complète sur tous les sous-problèmes
 # EXERCICES
 
 ## EXO 1 : LES CLÉS DE FOX RIVER
+_~15 min_
+
 
 Michael Scofield a besoin de toutes les combinaisons possibles de 3 chiffres parmi `[1, 2, 3, 4, 5]` pour tester les serrures. Les chiffres ne se répètent pas dans une combinaison. Ordre compte (123 ≠ 321).
 
@@ -335,6 +337,8 @@ Implémenter `generateCombinations(digits, k)`. Retourner toutes les combinaison
 ---
 
 ## EXO 2 : LA FORMATION D'ATTAQUE DE L'ESCOUADE
+_~20 min_
+
 
 Sasuke doit former une équipe de 3 ninjas parmi 6 disponibles. Peu importe l'ordre (Naruto+Sakura+Kakashi = Kakashi+Naruto+Sakura). Générer toutes les formations possibles.
 
@@ -347,6 +351,8 @@ Implémenter `formSquads(ninjas, size)`. Retourner tous les sous-ensembles de ta
 ---
 
 ## EXO 3 : TITAN WALLS N-QUEENS VARIANT
+_~20 min_
+
 
 L'humanité doit placer N tours de défense sur une grille N×N. Contrainte : deux tours ne peuvent pas partager la même ligne, colonne, ou diagonale (mêmes règles que les reines aux échecs).
 
@@ -357,6 +363,8 @@ Ajouter un compteur du nombre de branches pruned vs total de branches explorées
 ---
 
 ## EXO 4 : COMBINATION SUM SANS RÉUTILISATION
+_~25 min_
+
 
 Variante de `combinationSum` : chaque candidat ne peut être utilisé **qu'une seule fois**. Le tableau peut contenir des doublons : les solutions dupliquées sont interdites.
 

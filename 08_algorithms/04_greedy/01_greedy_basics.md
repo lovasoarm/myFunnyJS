@@ -232,6 +232,8 @@ La règle : si le problème a une **dépendance entre les choix** qui rend un ch
 # EXERCICES
 
 ## EXO 1 : LE PLANNING DES CHEVALIERS DE GARO
+_~15 min_
+
 
 Cinq Chevaliers de la Flamme. Chacun peut prendre une mission par nuit. Les missions ont des horaires de début et de fin. Objectif : affecter le maximum de missions au total (tous Chevaliers confondus).
 
@@ -253,6 +255,8 @@ Implémenter `assignMissions(missions, knightCount)`. Retourner un objet `{ knig
 ---
 
 ## EXO 2 : LA SUPPLY CHAIN DE WALTER
+_~20 min_
+
 
 Walter a des livraisons à faire. Chaque livraison a un bénéfice et un poids. Le véhicule peut transporter `W` kg. Les livraisons sont divisibles (on peut livrer une fraction). Maximiser le bénéfice total.
 
@@ -261,6 +265,8 @@ Implémenter `optimizeDelivery(capacity, deliveries)` avec le fractional knapsac
 ---
 
 ## EXO 3 : FUITE DE FOX RIVER
+_~20 min_
+
 
 Michael Scofield doit traverser des couloirs de la prison. Chaque cellule du couloir a un nombre : le nombre de pas maximum qu'il peut faire depuis là. Peut-il atteindre la sortie (dernière position) ?
 
@@ -275,6 +281,8 @@ Implémenter `canEscape(corridor)` avec l'approche greedy `maxReach`.
 ---
 
 ## EXO 4 : PIÈGE GREEDY
+_~25 min_
+
 
 Montrer par l'exemple que greedy échoue sur ce problème de pièces.
 

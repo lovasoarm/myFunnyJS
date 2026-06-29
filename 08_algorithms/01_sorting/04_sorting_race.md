@@ -187,16 +187,22 @@ La différence entre O(n²) et O(n log n) n'est pas abstraite. Sur 100k élémen
 # EXERCICES
 
 ## EXO 1 : La race complète
+_~20 min_
+
 Implémente le benchmark complet avec tous les algos sur les 4 types de données (aléatoire, trié, inversé, doublons) pour n = 10k et n = 100k. Documente les résultats dans un tableau Markdown. Identifie quel algo gagne sur quel type de données et explique pourquoi.
 
 ---
 
 ## EXO 2 : Trouver le break-even
+_~15 min_
+
 À partir de quelle taille de tableau Merge sort commence-t-il à battre Insertion sort de manière significative (>2x) ? Écris un script qui trouve ce seuil empiriquement en testant n = 10, 20, 50, 100, 500, 1000, 5000.
 
 ---
 
 ## EXO 3 : Trier les stats de la Champions League
+_~25 min_
+
 Tu reçois un tableau de 100 000 entrées de match avec `{ équipe, buts, passes, minutes }`. Tu dois les trier par `buts` décroissant, avec `passes` comme critère de départage. Le tri doit être stable. Choisis le bon algo et justifie ton choix dans un commentaire.
 
 ```js

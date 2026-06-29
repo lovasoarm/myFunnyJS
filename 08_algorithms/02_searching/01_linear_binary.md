@@ -211,6 +211,8 @@ console.log(lowerBound(scores, 85)) // 8 (past-the-end : tous sont < 85)
 # EXERCICES
 
 ## EXO 1 : Binary search sur le classement des buteurs
+_~10 min_
+
 Tu as un tableau trié de joueurs `{ nom, goals }` trié par `goals` croissant. Trouve l'index du joueur avec exactement N buts. Si aucun joueur n'a ce nombre exact, retourne -1.
 
 ```js
@@ -228,6 +230,8 @@ findByGoals(buteurs, 25)  // -1
 ---
 
 ## EXO 2 : Première et dernière occurrence
+_~12 min_
+
 Dans un tableau trié avec doublons, trouve l'index de la première ET de la dernière occurrence de `target`. Utilise deux binary searches modifiés.
 
 ```js
@@ -242,6 +246,8 @@ findRange(butsPar, 6)  // [-1, -1] (absent)
 ---
 
 ## EXO 3 : Comparaison de performance
+_~15 min_
+
 Génère un tableau de 1 million d'entiers triés. Effectue 10 000 recherches aléatoires avec `linearSearch` puis avec `binarySearch`. Mesure le temps total des 10 000 recherches pour chaque méthode. Le rapport de vitesse doit approcher n / log(n) = 1 000 000 / 20 = 50 000x. Vérifie-le.
 
 ---

@@ -103,3 +103,11 @@ team === backupTeam --> true
 ```
 
 > `backupTeam` et `team` sont le **même tableau**. Le backup n'en est pas un.
+
+---
+
+## RÉSUMÉ
+
+Deux variables qui pointent vers le même objet, c'est un seul objet avec deux noms. Modifier l'un modifie l'autre. Un spread ou un `slice()` copie la surface, pas les objets imbriqués.
+
+La règle à graver : en JS, les objets et les tableaux ne se copient jamais par valeur. Ils se partagent. Si tu veux une vraie copie, tu dois la créer explicitement.

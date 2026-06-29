@@ -187,6 +187,8 @@ joueurs.sort((a, b) => b.goals - a.goals)
 # EXERCICES
 
 ## EXO 1 : Merge sort sur des objets
+_~15 min_
+
 Implémente `mergeSortByScore` qui trie des joueurs de foot par `score` décroissant. Le tri doit être stable.
 
 ```js
@@ -203,6 +205,8 @@ const classement = [
 ---
 
 ## EXO 2 : Compter les inversions
+_~20 min_
+
 Une "inversion" c'est une paire `(i, j)` où `i < j` mais `arr[i] > arr[j]`. C'est une mesure du désordre.
 
 Modifie `mergeSort` pour qu'il retourne `{ sorted, inversions }`. Pendant la fusion, chaque fois qu'un élément de `right` passe devant un élément de `left`, compte le nombre d'éléments restants dans `left` : c'est autant d'inversions.
@@ -215,6 +219,8 @@ countInversions([3, 1, 2]) // { sorted: [1, 2, 3], inversions: 2 }
 ---
 
 ## EXO 3 : Merge de K listes triées
+_~15 min_
+
 T'as K listes déjà triées. Tu dois les fusionner en une seule liste triée.
 
 Approche naïve : concat tout, puis sort. O(n log n) mais tu jettes l'information "déjà trié".

@@ -206,6 +206,8 @@ Plan d'évasion de Fox River :
 # EXERCICES
 
 ## EXO 1 : le réseau social de Konoha
+_~15 min_
+
 
 Construis un graphe non dirigé des relations d'amitié entre ninjas :
 
@@ -226,6 +228,8 @@ Implémente :
 ---
 
 ## EXO 2 : les dépendances du projet CrazyDevs
+_~12 min_
+
 
 Tu as un fichier de dépendances entre modules :
 
@@ -247,6 +251,8 @@ Construis un graphe dirigé. Implémente `canBuild(module)` : retourne `true` si
 ---
 
 ## EXO 3 : convertir liste → matrice et matrice → liste
+_~20 min_
+
 
 Tu reçois parfois des graphes dans un format, tu as besoin de l'autre.
 

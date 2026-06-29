@@ -131,3 +131,13 @@ ReferenceError: potion is not defined   <-- hors bloc
 ```
 
 > **Scope = zone de vie de ta variable.** C'est la base de tout ce qui vient après : closures, async, architecture.
+
+---
+
+## RÉSUMÉ
+
+Le scope (portée) définit où une variable est accessible. Une variable déclarée dans une fonction n'existe que dans cette fonction. Une variable déclarée dans un bloc `{}` avec `let` ou `const` n'existe que dans ce bloc.
+
+`var` a une portée fonction, pas bloc : elle remonte à la fonction parente même si déclarée dans un `if` ou une boucle. C'est un piège classique.
+
+Le scope global est la dernière chose à laquelle JS fait appel. Si une variable n'est pas trouvée dans le scope local, puis le scope parent, JS remonte jusqu'au global. Si elle n'est nulle part : `ReferenceError`.

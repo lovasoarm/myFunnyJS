@@ -365,6 +365,8 @@ Le heap, c'est pour accéder au max/min **sans avoir besoin du reste trié**.
 # EXERCICES
 
 ## EXO 1 : LE CLASSEMENT DE L'ÉQUIPE
+_~15 min_
+
 
 T'as un tableau de joueurs `{ nom, buts, passes }`.
 Implémenter un `MaxHeap` qui compare par `buts + passes` (contributions totales).
@@ -377,6 +379,8 @@ Implémenter un `MaxHeap` qui compare par `buts + passes` (contributions totales
 ---
 
 ## EXO 2 : LE STREAM DE DONNÉES
+_~20 min_
+
 
 Tu reçois un stream de valeurs une par une (simulation de données live d'un match).
 À chaque nouvelle valeur, tu dois pouvoir répondre : "quelle est la médiane actuelle ?"
@@ -396,6 +400,8 @@ Implémenter `MedianTracker` :
 ---
 
 ## EXO 3 : HEAP SORT
+_~25 min_
+
 
 Implémenter `heapSort(arr)` en utilisant `heapify` + `extractMax` successifs.
 L'algorithme doit trier en place sans tableau auxiliaire.

@@ -81,3 +81,13 @@ Ces deux fonctions **ne se connaissent pas**. Modifier l'une ne touche pas l'aut
 ```
 
 > Chaque fonction créée est un **clone indépendant**. Même mémoire parente, univers séparés. La factory a fait son travail : maintenant les clones vivent leur vie.
+
+---
+
+## RÉSUMÉ
+
+Une factory (usine) est une fonction qui retourne une autre fonction. Chaque appel à la factory crée une closure indépendante : son propre environnement mémoire, ses propres valeurs capturées.
+
+C'est la base des currying, des middlewares, des configurations dynamiques. Une factory + une closure = un comportement paramétrable sans objet ni classe.
+
+Si tu veux des fonctions avec des comportements différents basés sur le même template : utilise une factory.

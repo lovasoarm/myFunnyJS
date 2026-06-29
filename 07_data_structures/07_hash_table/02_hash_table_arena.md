@@ -246,6 +246,8 @@ Voir `20_security` pour prototype pollution en détail.
 # EXERCICES
 
 ## EXO 1 : Three Sum
+_~15 min_
+
 
 Variante de Two Sum. Dans le tableau de scores d'un tournoi de foot :
 
@@ -260,6 +262,8 @@ Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-4
 ---
 
 ## EXO 2 : la playlist sans répétition
+_~15 min_
+
 
 Un utilisateur de Trapsoul Radio veut la plus longue sous-séquence de chansons sans artiste répété.
 
@@ -273,6 +277,8 @@ Implémente `longestUniqueArtistRun(queue)` avec sliding window + Map. Retourne 
 ---
 
 ## EXO 3 : les combinaisons d'évasion
+_~20 min_
+
 
 Michael Scofield a besoin de savoir combien de façons il peut atteindre l'étage N d'une prison en montant 1 ou 2 marches à la fois. Utilise la mémoïzation avec une Map pour ne jamais recalculer la même valeur.
 

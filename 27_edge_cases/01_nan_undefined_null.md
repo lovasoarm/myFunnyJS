@@ -205,6 +205,46 @@ En 2026 : utilise ?? quand tu veux une valeur par défaut pour "absent"
 
 ---
 
+
+## 7) CAS QUI CASSE (mais fun)
+
+```javascript
+// Le parseInt silencieux
+parseInt("9 chakra units") // --> 9   (pas d'erreur, juste silencieux)
+parseInt("chakra 9")       // --> NaN (le premier char n'est pas un chiffre)
+
+// ça entre dans un calcul :
+const damage = parseInt(userInput) + 10
+// si userInput = "forte attaque" : NaN + 10 --> NaN
+// si userInput = "5 coups"       : 5 + 10 --> 15  (surprise)
+// le fix : Number(userInput) échoue proprement sur "5 coups" : NaN
+```
+
+```javascript
+// L'addition avec null qui surprend
+null + 1        // --> 1   (null est coercé en 0)
+undefined + 1   // --> NaN (undefined est coercé en NaN)
+null + "score"  // --> "nullscore" (null est coercé en string "null")
+undefined + "score" // --> "undefinedscore" (même chose)
+
+// en prod : une propriété manquante sur un objet API + une opération arithmétique
+// = résultat silencieusement faux pendant des semaines
+```
+
+```javascript
+// NaN dans un tableau sort() : l'ordre devient aléatoire
+const scores = [8.5, NaN, 7, NaN, 9]
+scores.sort((a, b) => a - b)
+// [8.5, NaN, 7, NaN, 9] ou [7, 8.5, 9, NaN, NaN] selon l'implémentation
+// le comportement est undefined : NaN casse le tri
+
+// Le fix : filtrer les NaN avant de trier
+const valid = scores.filter(Number.isFinite)
+valid.sort((a, b) => a - b) // --> [7, 8.5, 9]
+```
+
+---
+
 ## EXERCICES
 
 **EXO 1 : le calculateur de score qui ment**

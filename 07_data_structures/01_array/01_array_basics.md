@@ -178,18 +178,24 @@ Si tu fais ça sur 100k éléments en boucle, c'est O(n²). C'est là que ça to
 # EXERCICES
 
 ## EXO 1 : Roster de l'équipe nationale
+_~10 min_
+
 
 Tu as un tableau de 22 joueurs (formation 4-4-2). Extrais les 11 titulaires sans modifier le tableau d'origine. Puis crée une copie du squad avec un remplaçant en moins à l'index 15. Vérifie que l'original est intact.
 
 Contrainte : utilise `slice` et le spread. Pas de `splice` sur l'original.
 
 ## EXO 2 : Le camp de Rick Grimes
+_~8 min_
+
 
 Le camp a une liste de survivants. Un zombie attaque depuis la gauche (index 0). Un nouveau survivant arrive toujours à la fin. Mesure avec `performance.now()` la différence entre 10 000 `unshift` et 10 000 `push` sur un tableau de 1000 éléments. Explique le résultat en une phrase.
 
 (indice : regarde le tableau des coûts ci-dessus : la réponse y est)
 
 ## EXO 3 : Le tableau qui ment
+_~12 min_
+
 
 Ce code a un bug silencieux. Trouve-le avant de l'exécuter, explique ce qui se passe, et corrige-le.
 

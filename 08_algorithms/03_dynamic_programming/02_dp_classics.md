@@ -284,6 +284,8 @@ Si ça ressemble à "atteindre une somme/cible avec des unités" : Coin Change
 # EXERCICES
 
 ## EXO 1 : Budget de transfert mercato
+_~25 min_
+
 Tu as un budget de 100M€. Tu as une liste de joueurs avec leur coût et leur "impact" (note de 1 à 10). Maximise l'impact total sans dépasser le budget.
 
 ```js
@@ -307,6 +309,8 @@ const joueurs = [
 ---
 
 ## EXO 2 : Edit distance (Levenshtein)
+_~20 min_
+
 Nombre minimum d'opérations (insertion, suppression, substitution) pour transformer `s1` en `s2`.
 
 ```js
@@ -320,6 +324,8 @@ editDistance("", "abc")         // 3
 ---
 
 ## EXO 3 : Longest Increasing Subsequence
+_~25 min_
+
 Trouve la longueur de la plus longue sous-séquence strictement croissante.
 
 ```js

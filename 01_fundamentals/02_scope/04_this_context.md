@@ -54,3 +54,13 @@ Règle : dans un callback passé à `setTimeout`, `addEventListener`, `map`, etc
 ---
 
 > Pour la suite complète : `bind`, `call`, `apply`, le fonctionnement interne du `this` dans les classes, les pièges avec le prototype : tout ça est dans **`28_oop_js/04_this_keyword_rules.md`**. Tu reviendras ici après ce module et tout fera sens.
+
+---
+
+## RÉSUMÉ
+
+`this` ne dépend pas de l'endroit où la fonction est définie. Il dépend de l'endroit où elle est appelée. C'est la règle numéro un.
+
+Dans un callback standard (pas arrow), `this` change selon l'appelant. Dans une arrow function, `this` est capturé à la création : il garde le `this` de la fonction englobante.
+
+Ce fichier couvre l'essentiel pour démarrer. Le comportement complet de `this` avec `bind`, `call`, `apply`, les classes et le prototype est dans `28_oop_js`.

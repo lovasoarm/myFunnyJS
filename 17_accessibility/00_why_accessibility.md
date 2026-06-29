@@ -69,6 +69,20 @@ Les technologies d'assistance vont continuer d'évoluer, mais le principe fondam
 
 ---
 
+---
+
+## CE MODULE DANS LE CURRICULUM
+
+**Prérequis directs :** `16_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `01_fundamentals/05_web_basics/01_dom_manipulation.md`.
+
+**Ce qui en dépend :** `29_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir — ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
+
+**Position dans la roadmap :** Module 17 sur 31. Il arrive après les web concepts (16) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède l'i18n (18) parce que les deux partagent la même philosophie : un produit qui ne fonctionne que pour certains n'est pas fini.
+
+**Lien avec les autres modules :** `13_typescript` si tu types tes composants — les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `04_testing` — les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
+
+---
+
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
 Un site qui marche "pour toi" peut être totalement inutilisable pour quelqu'un avec un besoin différent, et ce n'est jamais un détail marginal. Ça casse de trois façons sans cette discipline : lecteur d'écran qui ne comprend rien, navigation clavier bloquée, contraste illisible. Cette exigence se renforce dans le temps, jamais l'inverse.

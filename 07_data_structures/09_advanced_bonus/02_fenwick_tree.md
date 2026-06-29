@@ -196,6 +196,8 @@ Fenwick Tree vs Segment Tree : le Fenwick est plus simple à implémenter et plu
 # EXERCICES
 
 ## EXO 1 : classement live du Ballon d'Or
+_~20 min_
+
 
 8 candidats ont des scores qui s'accumulent pendant la cérémonie. Les votes arrivent en temps réel.
 
@@ -215,6 +217,8 @@ Simule 5 updates en temps réel et affiche le total à chaque étape.
 ---
 
 ## EXO 2 : fréquence des artistes dans une playlist
+_~25 min_
+
 
 Une playlist trapsoul reçoit des écoutes en temps réel. Chaque artiste a un index.
 
@@ -226,6 +230,8 @@ Implémente un système qui :
 ---
 
 ## EXO 3 : inversion count
+_~20 min_
+
 
 Problème classique de sorting : compter le nombre d'inversions dans un tableau (paires i < j où arr[i] > arr[j]). Une mesure du "désordre" du tableau.
 

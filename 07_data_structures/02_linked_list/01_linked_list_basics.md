@@ -310,12 +310,18 @@ Recherche          O(n)       O(n)           les deux traversent
 # EXERCICES
 
 ## EXO 1 : La queue des survivants
+_~15 min_
+
 Rick Grimes gère l'ordre de garde du camp. Les survivants sont dans une linked list. Implémente `insertAt(index, value)` qui insère un survivant à une position précise. Gère les cas : position 0, position fin, et position hors limites.
 
 ## EXO 2 : Le détective de la liste
+_~10 min_
+
 Écris une méthode `get(index)` qui retourne la valeur à un index donné. Si l'index est négatif ou trop grand, retourne `null`. Pas d'accès direct comme un tableau : tu dois traverser.
 
 ## EXO 3 : Compte à rebours
+_~20 min_
+
 Écris une méthode `toArray()` qui convertit la linked list en tableau JS. Puis l'inverse : une fonction statique `fromArray(arr)` qui construit une LinkedList depuis un tableau. Les deux doivent respecter l'ordre original.
 
 ---

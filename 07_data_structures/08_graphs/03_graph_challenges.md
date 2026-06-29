@@ -308,6 +308,8 @@ analyzeBuildPipeline(pipeline)
 # EXERCICES
 
 ## EXO 1 : validation des imports MyFunnyJS
+_~20 min_
+
 
 Tu as les dépendances entre fichiers du projet. Détecte les imports circulaires avant de lancer le build.
 
@@ -327,6 +329,8 @@ Implémente `detectCircularImports(imports)` : retourne `null` si aucun cycle, o
 ---
 
 ## EXO 2 : les îlots de résistance dans Walking Dead
+_~25 min_
+
 
 La carte du territoire post-apocalyptique est un graphe. Certaines zones sont coupées des autres par des hordes de zombies. Les survivants dans des zones isolées ne savent pas que Rick existe.
 
@@ -346,6 +350,8 @@ Trouve tous les composants connexes. Affiche combien de groupes sont isolés du 
 ---
 
 ## EXO 3 : le pipeline de production de Gus Fring
+_~20 min_
+
 
 Gus a un pipeline de production en 8 étapes. Certaines étapes doivent être terminées avant d'autres. Il veut paralléliser au maximum.
 

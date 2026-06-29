@@ -199,6 +199,8 @@ console.log(history.isEmpty())  // true
 # EXERCICES
 
 ## EXO 1 : Stack basique, cas limites
+_~10 min_
+
 Implémente la Stack (version tableau ou linked list, au choix). Teste ces cas :
 - `pop()` sur une stack vide : doit retourner `null`, pas crasher
 - `peek()` sur une stack vide : même chose
@@ -206,6 +208,8 @@ Implémente la Stack (version tableau ou linked list, au choix). Teste ces cas :
 - `size` après chaque opération
 
 ## EXO 2 : La call stack à la main
+_~15 min_
+
 Donne la séquence exacte d'état de la call stack pour ce code. Note chaque push et chaque pop, dans l'ordre.
 
 ```js
@@ -224,6 +228,8 @@ countdown(3)
 Qu'est-ce qui se passe si tu appelles `countdown` sans condition d'arrêt ?
 
 ## EXO 3 : Inverser un string avec une stack
+_~10 min_
+
 Sans utiliser `split().reverse().join()`, inverse un string en utilisant uniquement une Stack. Contrainte : chaque caractère est poussé un par un, puis retiré un par un dans un nouveau string.
 
 ---

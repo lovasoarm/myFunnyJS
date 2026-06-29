@@ -294,24 +294,32 @@ function getAdmin(user: User): string[] | null {
 # EXERCICES
 
 ## EXO 1 : le pipeline d'events de la CL
+_~10 min_
+
 
 La Ligue des Champions a des events : `Goal`, `Card`, `Substitution`, `Injury`. Chacun a un `type` (discriminant), un `minute`, et des propriétés spécifiques.
 
 Définis les 4 types, crée l'union `CLEvent`, et écris `formatEvent(event: CLEvent): string` qui retourne une description selon le type. Ajoute `assertNever` pour garantir l'exhaustivité.
 
 ## EXO 2 : l'état du fetch des stats
+_~15 min_
+
 
 Tu fetch les stats d'un joueur depuis une API. L'état peut être `idle`, `loading`, `success`, `error`. En `success`, tu as les données. En `error`, un message et un code.
 
 Modélise `FetchState<T>` comme une discriminated union. Écris `renderState<T>(state: FetchState<T>, render: (data: T) => string): string` qui gère tous les cas.
 
 ## EXO 3 : le personnage hybride de Garo
+_~20 min_
+
 
 Dans Garo, certains personnages sont à la fois des guerriers et des sorciers. Un guerrier a `strength` et `weapon`. Un sorcier a `mana` et `spells[]`. Un Chevalier d'Or est les deux.
 
 Crée les types `Warrior`, `Sorcerer`, et `GoldenKnight = Warrior & Sorcerer`. Écris une fonction `powerLevel(char: Warrior | Sorcerer | GoldenKnight): number` qui calcule le niveau selon ce que le personnage est.
 
 ## EXO 4 : le système de log de Breaking Bad
+_~20 min_
+
 
 Le réseau de Walter a 3 types de logs : `SupplyLog` (produit, quantité, warehouse), `DeliveryLog` (destination, courrier, heure), `AlertLog` (niveau de menace, raison, action prise).
 

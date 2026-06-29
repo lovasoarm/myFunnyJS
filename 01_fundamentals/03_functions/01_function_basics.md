@@ -206,3 +206,13 @@ Si tu ne comprends pas ça, tu **subis** le langage.
 ```
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis à la **référence** : deux noms, un seul objet en mémoire.
+
+---
+
+## RÉSUMÉ
+
+Une fonction en JS est un objet de première classe : elle peut être assignée à une variable, passée en argument, retournée depuis une autre fonction, stockée dans un tableau.
+
+Declaration vs expression vs arrow : trois syntaxes, trois comportements différents sur le hoisting (remontée de déclaration) et sur `this`. Les arrows n'ont pas leur propre `this`.
+
+Deux variables qui référencent la même fonction pointent vers le même objet. Copier une référence de fonction ne copie pas la fonction.

@@ -133,3 +133,13 @@ résultat : 26
 ```
 
 > Les trois retournent toujours de **nouvelles valeurs** : l'original ne bouge pas. Si tu modifies l'original, tu fais quelque chose de travers.
+
+---
+
+## RÉSUMÉ
+
+`map` transforme chaque élément et retourne un nouveau tableau de même taille. `filter` garde les éléments qui passent le test et retourne un tableau plus petit ou égal. `reduce` accumule tout en une seule valeur.
+
+Les trois ne mutent jamais l'original. Si tu touches l'original à l'intérieur d'un `map`, tu fais quelque chose de travers.
+
+`map + filter` enchaînés créent deux tableaux intermédiaires. Si la perf compte, `reduce` peut tout faire en un seul passage.

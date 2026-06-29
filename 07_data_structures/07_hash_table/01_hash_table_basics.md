@@ -229,6 +229,8 @@ En prod, utilise `Map`. Implémente ta propre hash table pour comprendre ce qui 
 # EXERCICES
 
 ## EXO 1 : le cache des jutsu
+_~10 min_
+
 
 Implémente un `JutsuCache` en utilisant ta HashTable. Les jutsu de Naruto ont un nom (string) et un coût en chakra (number).
 
@@ -243,6 +245,8 @@ Teste avec au moins 6 jutsu. Démontre une collision (deux noms qui hashent au m
 ---
 
 ## EXO 2 : compter les occurrences
+_~20 min_
+
 
 Tu as une tracklist d'une playlist trapsoul. Certains artistes apparaissent plusieurs fois.
 
@@ -258,6 +262,8 @@ Sans utiliser `.filter` + `.length` : utilise uniquement une HashTable pour comp
 ---
 
 ## EXO 3 : détecter le doublon
+_~15 min_
+
 
 T-Bag a essayé de s'infiltrer dans la prison avec deux faux noms. Tu as la liste complète des entrées (certaines en double).
 

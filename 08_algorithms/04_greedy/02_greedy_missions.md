@@ -321,6 +321,8 @@ Quand une décision greedy affecte les options futures de façon non triviale, g
 # EXERCICES
 
 ## EXO 1 : LE TOURNOI DES CAPITAINES DE CHAMPIONS LEAGUE
+_~20 min_
+
 
 8 équipes. Chaque équipe a un match de qualification dans les prochaines 5 semaines. Un match prend 1 semaine. Chaque match a un gain de points UEFA. Chaque équipe ne peut jouer qu'un match par semaine. Maximiser les points totaux pour chaque équipe.
 
@@ -339,6 +341,8 @@ Implémenter `optimizeMatchSchedule(calendar)`. Pour chaque équipe, planifier l
 ---
 
 ## EXO 2 : LA RADIO TRAPSOUL
+_~15 min_
+
 
 La radio trapsoul doit programmer des sessions d'artistes. Chaque session a :
 
@@ -365,6 +369,8 @@ Implémenter `programRadio(sessions, totalMinutes)`. Retourner la liste des sess
 ---
 
 ## EXO 3 : BENCHMARK GREEDY VS DP
+_~25 min_
+
 
 Implémenter les deux versions du weighted interval scheduling (greedy et DP). Générer 100 intervalles aléatoires avec des profits aléatoires. Comparer les résultats des deux approches sur 20 instances. Dans combien de cas greedy donne l'optimal ? Dans combien de cas il sous-performe ?
 

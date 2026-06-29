@@ -228,9 +228,13 @@ const topAliveOptimized = survivors.reduce((acc, s) => {
 # EXERCICES
 
 ## EXO 1 : Stats de match
+_~15 min_
+
 Tu as un tableau d'événements de match (buts, passes, cartons). Avec une seule passe sur le tableau, calcule : le nombre de buts total, le nombre de cartons rouges, et le nom du premier buteur. Pas de filtre chaîné. Un seul `reduce`.
 
 ## EXO 2 : Le bug async
+_~10 min_
+
 Ce code est cassé. Trouve le bug avant de l'exécuter, explique pourquoi les résultats sont dans le mauvais ordre, et corrige avec `for...of`.
 
 ```js
@@ -248,6 +252,8 @@ console.log(episodes) // qu'est-ce qui s'affiche vraiment ?
 ```
 
 ## EXO 3 : Ballon d'Or groupby
+_~20 min_
+
 Tu as un tableau de 30 joueurs avec `{ name, country, position, votes }`. Groupe-les par `position` avec un seul `reduce`. Le résultat doit être `{ "Forward": [...], "Midfielder": [...], ... }`. Chaque groupe trié par votes décroissants.
 
 ---

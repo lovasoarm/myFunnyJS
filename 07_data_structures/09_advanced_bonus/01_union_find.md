@@ -204,6 +204,8 @@ Les deux ensemble    : find O(α(n)), union O(α(n))  ← quasi O(1)
 # EXERCICES
 
 ## EXO 1 : les équipes du tournoi de Konoha
+_~20 min_
+
 
 Un tournoi ninja forme des équipes au fur et à mesure des victoires. Deux ninjas fusionnent leurs équipes quand l'un bat l'autre.
 
@@ -222,6 +224,8 @@ Après chaque battle, `union` les deux équipes. Implémente `teamOf(ninja)` : r
 ---
 
 ## EXO 2 : réseau d'amis de Konoha
+_~20 min_
+
 
 Tu reçois un flux de connexions entre ninjas, une par une. Implémente `friendNetwork` avec :
 - `connect(a, b)` : connecte a et b
@@ -233,6 +237,8 @@ Teste avec 10 ninjas et 8 connexions. Démontre que `areConnected` est O(α(n)) 
 ---
 
 ## EXO 3 : Kruskal's MST (Minimum Spanning Tree)
+_~25 min_
+
 
 Algorithme de Kruskal : construit le spanning tree de coût minimal en triant les arêtes par poids et en ajoutant celles qui ne créent pas de cycle.
 

@@ -255,6 +255,8 @@ Dès que tu peux aller dans 4 directions (haut, bas, gauche, droite), la DP tabu
 # EXERCICES
 
 ## EXO 1 : LA ROUTE DE L'EXPÉDITION TITAN
+_~20 min_
+
 
 L'escouade de reconnaissance doit traverser une zone contrôlée par les Titans. La zone est une grille `5x5`. Chaque cellule a un niveau de danger entre 1 et 9. Le trajet part du coin nord-ouest (départ du Mur Maria) et doit atteindre le coin sud-est (la forêt de Shiganshina). Objectif : minimiser l'exposition totale au danger.
 
@@ -265,6 +267,8 @@ Implémenter `minDangerPath(grid)`. Retourner la somme minimale du chemin. Mouve
 ---
 
 ## EXO 2 : COMPTER LES ITINÉRAIRES DE JESSE
+_~20 min_
+
 
 Jesse Pinkman doit livrer la marchandise. La ville est une grille `m x n`. Certaines cases sont des checkpoints de police (obstacle = 1). Walter veut savoir combien d'itinéraires distincts existent du départ à l'arrivée pour calibrer le risque.
 
@@ -275,6 +279,8 @@ Implémenter `countSafeRoutes(grid)`. `grid[i][j] = 1` = checkpoint à éviter.
 ---
 
 ## EXO 3 : LE TERRAIN DE JEU DE GARO
+_~25 min_
+
 
 León Luis doit traverser un terrain infesté de Horreurs en collectant des points de force. Grille `m x n`, chaque cellule a une valeur positive ou nulle. Mouvements : bas et droite. Objectif : maximiser la somme collectée.
 
@@ -283,6 +289,8 @@ Implémenter `maxPowerPath(grid)`. Même structure que `minPathSum`, mais avec `
 ---
 
 ## EXO 4 : MÉMOIRE OPTIMISÉE
+_~25 min_
+
 
 Reprendre la solution de l'EXO 1 et la réécrire pour n'utiliser qu'un seul tableau de taille `n` au lieu d'une grille `m x n` complète. Vérifier que le résultat est identique.
 

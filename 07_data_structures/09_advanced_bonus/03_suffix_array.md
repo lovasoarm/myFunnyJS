@@ -241,6 +241,8 @@ LCP array             : O(n)         après suffix array
 # EXERCICES
 
 ## EXO 1 : autocomplétion des jutsu
+_~25 min_
+
 
 Naruto a une liste de 20 jutsu. Il tape les premiers caractères et veut l'autocomplétion.
 
@@ -254,6 +256,8 @@ Construis le suffix array sur ce corpus. Implémente `autocomplete(prefix)` : re
 ---
 
 ## EXO 2 : détection de plagiat
+_~20 min_
+
 
 Deux joueurs ont soumis leurs analyses de match. Tu veux savoir si l'un a copié sur l'autre.
 
@@ -268,6 +272,8 @@ Construis un suffix array sur la concaténation `analyse1 + "#" + analyse2` (le 
 ---
 
 ## EXO 3 : compression LZ77
+_~25 min_
+
 
 LZ77 (base de gzip) cherche la plus longue correspondance dans une fenêtre glissante. Implémente une version simplifiée :
 

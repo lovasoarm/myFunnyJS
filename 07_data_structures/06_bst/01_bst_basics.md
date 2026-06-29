@@ -260,6 +260,8 @@ Correction : utiliser un arbre équilibré (AVL, Red-Black Tree). Ce n'est pas c
 # EXERCICES
 
 ## EXO 1 : les joueurs du Ballon d'Or
+_~15 min_
+
 
 Tu as les scores de candidats au Ballon d'Or (nombre de buts + assists) :
 
@@ -276,6 +278,8 @@ Insère-les dans un BST. Ensuite :
 ---
 
 ## EXO 2 : le répertoire de personnages de Breaking Bad
+_~12 min_
+
 
 Tu construis un annuaire de personnages trié par nom :
 
@@ -290,6 +294,8 @@ BST alphabétique (compare les strings). Implémente `search(name)` qui retourne
 ---
 
 ## EXO 3 : le classement live d'un match
+_~20 min_
+
 
 Pendant un match, les joueurs accumulent des points de performance (passes, tacles, tirs). Chaque update insère ou met à jour un joueur dans le BST.
 

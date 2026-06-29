@@ -232,6 +232,8 @@ console.log(quickSortThreeWay([...beaucoupDeDoublons]))
 # EXERCICES
 
 ## EXO 1 : Quick sort sur les stats de match
+_~15 min_
+
 Tu as un tableau de joueurs avec `{ nom, goals, assists }`. Implémente un quick sort qui trie par `goals + assists` décroissant (contributions totales). Utilise un pivot aléatoire.
 
 ```js
@@ -246,6 +248,8 @@ const joueurs = [
 ---
 
 ## EXO 2 : Kième plus petit élément
+_~20 min_
+
 Quick select : une variante de Quick sort pour trouver le kième plus petit élément en O(n) en moyenne, sans trier tout le tableau.
 
 Algorithme : après partition, si le pivot tombe à l'index k, c'est notre réponse. Sinon on récurse seulement sur la moitié qui contient k.
@@ -258,6 +262,8 @@ quickSelect([7, 2, 1, 6, 5, 3, 4], 1) // 1 (le minimum)
 ---
 
 ## EXO 3 : Détecter le pire cas
+_~20 min_
+
 Génère 5 tableaux de taille 1000 :
 - trié croissant
 - trié décroissant

@@ -234,6 +234,8 @@ La priority queue gagne dès que tu as beaucoup d'insertions ET de défilages in
 # EXERCICES
 
 ## EXO 1 : la salle de triage de l'hôpital de Konoha
+_~20 min_
+
 
 L'hôpital ninja reçoit des blessés après la bataille de Pain. Chaque blessé a un niveau de gravité de 1 (contusion légère) à 10 (urgence vitale). Tsunade traite toujours le plus grave en premier.
 
@@ -247,6 +249,8 @@ Implémente un système qui :
 ---
 
 ## EXO 2 : le scheduler de tâches de Saul Goodman
+_~15 min_
+
 
 Saul a une liste de tâches juridiques avec des deadlines et des priorités. Deux règles :
 - une tâche de priorité haute passe avant une basse, peu importe la deadline
@@ -259,6 +263,8 @@ Implémente une `LegalPriorityQueue` qui respecte ces deux règles. La méthode 
 ---
 
 ## EXO 3 : Dijkstra sur un réseau de métro
+_~25 min_
+
 
 Tu as un graphe de 5 stations de métro représenté en adjacency list avec des poids (temps de trajet en minutes). Utilise une MinPriorityQueue pour implémenter Dijkstra et trouver le chemin le plus rapide depuis la station A vers toutes les autres.
 

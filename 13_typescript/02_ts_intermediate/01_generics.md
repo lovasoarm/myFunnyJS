@@ -247,6 +247,8 @@ function sum<T extends number>(arr: T[]): number {
 # EXERCICES
 
 ## EXO 1 : le cache générique de Levi
+_~15 min_
+
 
 Le bataillon de Levi a besoin d'un système de cache universel. Il stocke des plans d'attaque (objets), des coordonnées (numbers), des noms de cibles (strings). Le même cache, le même code, des types différents.
 
@@ -260,6 +262,8 @@ Implémente une classe `Cache<T>` avec :
 Contrainte : pas de `any` ou `object` dans l'implémentation.
 
 ## EXO 2 : le pipeline de transformation
+_~20 min_
+
 
 Walter White optimise sa supply chain. Il a des données brutes qui passent par plusieurs étapes de transformation.
 
@@ -273,6 +277,8 @@ Test avec :
 TS doit inférer le type de sortie final sans que tu le précises.
 
 ## EXO 3 : le détecteur de propriété
+_~20 min_
+
 
 Le système d'inventaire du camp de Rick Grimes a besoin d'une fonction générique qui extrait plusieurs propriétés d'un objet en une seule fois.
 
@@ -281,6 +287,8 @@ Le système d'inventaire du camp de Rick Grimes a besoin d'une fonction généri
 (indice : `Pick<T, K>` est un utility type natif TS : ici tu le réimplémente toi-même avec un generic contraint)
 
 ## EXO 4 : le comparateur de la Ligue des Champions
+_~25 min_
+
 
 La Ligue des Champions a besoin de trier n'importe quelle collection par n'importe quelle propriété numérique.
 

@@ -271,6 +271,8 @@ BFS n'aurait retourné qu'un seul chemin. DFS les trouve tous.
 # EXERCICES
 
 ## EXO 1 : la propagation du virus dans le camp de Rick
+_~20 min_
+
 
 Le camp de Rick a un graphe de contacts entre survivants (non dirigé). Si un survivant est infecté, tous ses contacts directs sont exposés au jour 1, leurs contacts au jour 2, etc.
 
@@ -289,6 +291,8 @@ Implémente `spreadInfection(start)` qui retourne un objet `{ noeud: jouréExpos
 ---
 
 ## EXO 2 : est-ce que la prison est évadable ?
+_~15 min_
+
 
 Michael a un graphe de sections de la prison. Certaines sections sont bloquées (liste noire). Il veut savoir si la sortie est atteignable depuis sa cellule sans passer par les sections bloquées.
 
@@ -297,6 +301,8 @@ Implémente `canEscape(graph, start, end, blockedSections)`. Utilise DFS. Retour
 ---
 
 ## EXO 3 : le réseau des Champions League
+_~20 min_
+
 
 Un graphe dirigé représente les résultats de matchs aller du groupe A :
 

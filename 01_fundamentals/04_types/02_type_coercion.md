@@ -164,3 +164,13 @@ Comprends pourquoi ça passe ou pas. `"0"` n'est pas `0`.
 ```
 
 > Ici tu ne dois pas juste voir le résultat. Tu dois comprendre la conversion. JS ne devine pas : il applique des règles. Et ces règles, tu dois les dominer.
+
+---
+
+## RÉSUMÉ
+
+La coercition implicite (conversion automatique) : JS convertit les types selon des règles précises quand les opérandes ne correspondent pas. Ces règles ne sont pas aléatoires, elles sont spécifiées, mais elles surprennent si tu ne les connais pas.
+
+`==` applique la coercition. `===` ne convertit rien : compare type ET valeur. En prod, `===` partout sauf cas exceptionnels.
+
+Falsy values : `0`, `""`, `null`, `undefined`, `NaN`, `false`. Tout le reste est truthy — y compris `"0"`, `[]`, `{}`.

@@ -178,6 +178,8 @@ window.myCustomThing(); // TypeScript : ok. Runtime : crash
 # EXERCICES
 
 ## EXO 1 : le vestiaire de l'équipe
+_~10 min_
+
 
 Tu construis le système de gestion d'une équipe de foot.
 Un joueur a un nom, un numéro, un poste, et une nationalité.
@@ -188,6 +190,8 @@ Un capitaine est un joueur avec une propriété `armband: true` et un `yearsOfEx
 - Bonus : essaie de mettre `value: string` dans Player et `value: number` dans Captain via `extends`. Lis l'erreur. Comprends pourquoi.
 
 ## EXO 2 : le réseau de distribution de Walter
+_~12 min_
+
 
 Tu modélises les noeuds d'un réseau.
 Un noeud a un `id: string`, un `location: string`, et un `riskLevel: "low" | "medium" | "high"`.
@@ -198,6 +202,8 @@ Certains noeuds sont des `DistributionHub` : ils ont en plus un `capacity: numbe
 - Essaie la même chose avec une interface. Observe le résultat.
 
 ## EXO 3 : le bug silencieux
+_~15 min_
+
 
 ```ts
 type EntityA = { id: string; score: number };

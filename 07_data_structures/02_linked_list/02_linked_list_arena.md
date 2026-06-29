@@ -270,14 +270,20 @@ console.log(arc.hasCycle())
 # EXERCICES
 
 ## EXO 1 : La liste palindrome
+_~20 min_
+
 Écris une fonction `isPalindrome(list)` qui vérifie si les valeurs d'une linked list sont les mêmes dans les deux sens. Contrainte : tu peux utiliser `findMiddle` et `reverse` comme sous-fonctions. Teste sur `[1, 2, 3, 2, 1]` (palindrome) et `[1, 2, 3]` (non palindrome).
 
 ## EXO 2 : Supprimer le Nème depuis la fin
+_~15 min_
+
 Écris `removeNthFromEnd(n)` qui supprime le Nème node en partant de la fin. Contrainte : une seule passe. Pas de comptage préalable.
 
 (indice : deux pointeurs avec un écart de N nodes entre eux)
 
 ## EXO 3 : Le noeud de jonction
+_~25 min_
+
 Deux linked lists fusionnent à un certain point et partagent la suite. Trouve le premier node commun sans utiliser de Set.
 
 ```

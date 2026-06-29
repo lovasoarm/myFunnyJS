@@ -182,10 +182,14 @@ Règle : si tu te retrouves à écrire `any`, c'est le signe que tu as besoin d'
 # EXERCICES
 
 ## EXO 1 : le système de stats d'un match
+_~10 min_
+
 Tu construis une fonction `computeStats` qui prend une liste de tirs (`{ onTarget: boolean, power: number }[]`) et retourne un objet `{ totalShots: number, onTargetRate: number, avgPower: number }`.
 Signe la fonction complètement. Pas d'inférence laissée au hasard.
 
 ## EXO 2 : le dispatcher de missions de Garo
+_~15 min_
+
 Une fonction `dispatchMission` reçoit un type de Horror (`"low" | "medium" | "high"`) et retourne :
 - si `"low"` : `{ knight: string, eta: number }`
 - si `"medium"` ou `"high"` : `{ knight: string, backup: string, eta: number }`
@@ -193,6 +197,8 @@ Une fonction `dispatchMission` reçoit un type de Horror (`"low" | "medium" | "h
 Modélise ça avec des overloads. Sans overloads, TypeScript ne peut pas distinguer les deux cas de retour.
 
 ## EXO 3 : le callback de vote
+_~15 min_
+
 Tu construis un système de vote pour le Ballon d'Or.
 Une fonction `registerVote` prend :
 - `playerId: string`

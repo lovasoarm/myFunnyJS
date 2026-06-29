@@ -182,6 +182,8 @@ La courbe n'est pas linéaire. Elle explose. C'est ça le O(n²) dans la vraie v
 # EXERCICES
 
 ## EXO 1 : Le classement des Ballon d'Or
+_~10 min_
+
 Tu reçois un tableau de joueurs avec leurs scores de vote. Implémente un **insertion sort** qui les trie par score décroissant. Contrainte : stable : si deux joueurs ont le même score, l'ordre original est préservé.
 
 ```js
@@ -198,6 +200,8 @@ const candidats = [
 ---
 
 ## EXO 2 : Bubble sort avec compteur de swaps
+_~15 min_
+
 Modifie bubble sort pour qu'il retourne `{ sorted: [...], swaps: N }`. Lance-le sur ces trois tableaux et compare les swaps :
 - `[1, 2, 3, 4, 5]` (déjà trié)
 - `[3, 1, 4, 1, 5, 9, 2, 6]` (aléatoire)
@@ -208,6 +212,8 @@ Modifie bubble sort pour qu'il retourne `{ sorted: [...], swaps: N }`. Lance-le 
 ---
 
 ## EXO 3 : Le cas qui casse tout
+_~12 min_
+
 Crée un tableau de 50 000 entiers aléatoires. Mesure le temps d'exécution de `insertionSort` vs `[...arr].sort((a, b) => a - b)` (le sort natif JS). Note la différence. Explique en deux lignes pourquoi le sort natif écrase insertion sort sur ce cas.
 
 ---

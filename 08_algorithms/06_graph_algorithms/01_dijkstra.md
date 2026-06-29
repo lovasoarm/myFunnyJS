@@ -270,6 +270,8 @@ function dijkstraKShortest(graph, start, target, k) {
 # EXERCICES
 
 ## EXO 1 : LE GPS DE LEON LUIS
+_~20 min_
+
 
 León Luis (Garo) patrouille la ville. La ville est un graphe de quartiers connectés par des rues (poids = temps de trajet en minutes). Implémenter `fastestRoute(city, start, target)` qui retourne le chemin et la durée minimale.
 
@@ -289,6 +291,8 @@ Afficher le chemin complet et la durée totale.
 ---
 
 ## EXO 2 : DIJKSTRA AVEC CONTRAINTE DE CARBURANT
+_~25 min_
+
 
 Même graphe, mais le véhicule a une autonomie maximale `maxFuel`. Chaque arête a un coût de carburant (pas forcément égal au temps). Trouver le chemin le plus rapide qui ne dépasse jamais `maxFuel` entre deux points consécutifs.
 
@@ -297,6 +301,8 @@ Même graphe, mais le véhicule a une autonomie maximale `maxFuel`. Chaque arêt
 ---
 
 ## EXO 3 : RÉSEAU DE DISTRIBUTION WALKING DEAD
+_~20 min_
+
 
 Rick Grimes doit approvisionner plusieurs camps à partir d'Alexandria. Le réseau routier est un graphe pondéré (distance en km). Implémenter Dijkstra depuis Alexandria et retourner les distances minimales vers tous les camps.
 
@@ -315,6 +321,8 @@ const roads = new Map([
 ---
 
 ## EXO 4 : COMPARAISON NAIVE VS HEAP
+_~25 min_
+
 
 Implémenter deux versions de Dijkstra : une avec un array simple (trouver le minimum par scan linéaire O(V)), une avec un min-heap. Générer un graphe aléatoire de 100 noeuds et 500 arêtes. Mesurer et comparer les temps d'exécution avec `performance.now()`.
 

@@ -226,6 +226,8 @@ Pour une vraie protection : `#` natif JavaScript, ou une closure au lieu d'une c
 # EXERCICES
 
 ## EXO 1 : le Chevalier d'Or
+_~15 min_
+
 Modélise un `GoldKnight` avec :
 - `name` : public, readonly
 - `energy` : protected (accessible dans la sous-classe `SilverKnight`)
@@ -237,6 +239,8 @@ Crée une sous-classe `SilverKnight extends GoldKnight` qui implémente `fight()
 Vérifie qu'on ne peut pas accéder à `#secretTechnique` depuis `SilverKnight`.
 
 ## EXO 2 : le système d'inventaire du camp
+_~15 min_
+
 Inspiré de Walking Dead. Le camp a un inventaire.
 
 Crée une classe `Inventory` avec :
@@ -249,6 +253,8 @@ Crée une classe `Inventory` avec :
 Bonus : crée une interface `Auditable` avec `audit(): string` et fais implémenter `Inventory`.
 
 ## EXO 3 : le bug de l'any
+_~20 min_
+
 ```ts
 class SecureVault {
   private pin: string = "1234"

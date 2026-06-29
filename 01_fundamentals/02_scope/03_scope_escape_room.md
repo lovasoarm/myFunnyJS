@@ -129,3 +129,13 @@ Réponds à ces quatre questions avec tes propres mots. Si tu bloques sur une, r
 ---
 
 > Ne passe pas au module suivant si tu ne peux pas reformuler ces quatre réponses sans regarder. Le scope c'est la fondation. Rater ça, c'est construire une maison sur du sable... qui est aussi en feu.
+
+---
+
+## RÉSUMÉ
+
+Le scope d'une variable définit sa zone de vie. `let` et `const` : portée bloc. `var` : portée fonction, ce qui casse les boucles async et les closures imbriquées.
+
+Une closure est une fonction qui garde une référence vivante à ses variables parentes — pas une copie. Deux closures créées par deux appels séparés ont des environnements mémoire séparés.
+
+`var` dans une boucle async partage une seule variable entre toutes les itérations. `let` crée une variable distincte par itération. C'est la différence entre un bug subtil et du code prévisible.

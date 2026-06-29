@@ -238,6 +238,8 @@ const waypointGraph = new Map([
 # EXERCICES
 
 ## EXO 1 : LA CHASSE AUX HORREURS DE LEON
+_~20 min_
+
 
 León reçoit une alerte : une Horreur est détectée aux coordonnées `[7, 12]`. León est en `[0, 0]`. La carte de la ville est une grille `15×20` avec des zones inaccessibles (bâtiments, rivières). Implémenter `findPath(map, start, target)` avec A* et la distance Manhattan.
 
@@ -246,6 +248,8 @@ Afficher : le chemin complet, le nombre de noeuds explorés, la longueur du chem
 ---
 
 ## EXO 2 : TERRAINS VARIÉS : LA ROUTE DE L'ATTAQUE DES TITANS
+_~20 min_
+
 
 L'escouade de reconnaissance doit traverser un territoire avec différents types de terrain. Chaque type a un coût différent.
 
@@ -265,6 +269,8 @@ Implémenter `findCheapestPath(territory, start, goal)`. Le coût d'un chemin = 
 ---
 
 ## EXO 3 : DIJKSTRA VS A* BENCHMARK
+_~25 min_
+
 
 Générer une grille `50×50` avec 30% d'obstacles aléatoires. Lancer Dijkstra et A* depuis `[0,0]` vers `[49,49]` 100 fois sur des grilles différentes. Comparer :
 - temps d'exécution moyen
@@ -274,6 +280,8 @@ Générer une grille `50×50` avec 30% d'obstacles aléatoires. Lancer Dijkstra 
 ---
 
 ## EXO 4 : A* AVEC 8 DIRECTIONS
+_~25 min_
+
 
 Modifier A* pour autoriser les mouvements en diagonale (8 directions). Le coût d'un mouvement diagonal = `√2 ≈ 1.414`. L'heuristique correcte pour 8 directions = distance Chebyshev : `max(|dr|, |dc|)`.
 

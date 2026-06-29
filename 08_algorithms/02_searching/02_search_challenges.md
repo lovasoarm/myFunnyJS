@@ -295,6 +295,8 @@ console.log(searchRotatedWithDuplicates([2, 5, 6, 0, 0, 1, 2], 3)) // false
 # EXERCICES
 
 ## EXO 1 : Trouver le minimum dans un tableau rotaté
+_~20 min_
+
 Le tableau a été rotaté k fois (k inconnu). Trouve le minimum en O(log n).
 
 ```js
@@ -306,6 +308,8 @@ findMin([11, 13, 15, 17])  // 11 (pas rotaté)
 ---
 
 ## EXO 2 : Recherche multi-cibles dans une matrice
+_~15 min_
+
 Tu as la matrice triée ligne+colonne (type II). Trouve toutes les positions de plusieurs cibles en une seule traversée de la matrice.
 
 ```js
@@ -317,6 +321,8 @@ searchMultiple(matrix, [5, 9, 20])
 ---
 
 ## EXO 3 : Peak element
+_~20 min_
+
 Un "peak element" est un élément plus grand que ses voisins. Trouve l'index d'un peak en O(log n). Il peut y en avoir plusieurs, retourne n'importe lequel.
 
 ```js

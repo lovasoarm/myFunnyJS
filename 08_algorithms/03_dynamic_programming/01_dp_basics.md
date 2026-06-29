@@ -247,6 +247,8 @@ console.log(climbStairsK(4, 3))
 # EXERCICES
 
 ## EXO 1 : Naruto's chakra path
+_~20 min_
+
 Naruto monte une séquence de checkpoints chakra. Au checkpoint i, il peut récupérer `chakra[i]` points. Contrainte : il ne peut pas utiliser deux checkpoints adjacents (trop visible). Trouve le maximum de chakra récupérable.
 
 ```js
@@ -260,6 +262,8 @@ maxChakra([1])               // 1
 ---
 
 ## EXO 2 : Nombre de chemins dans une grille
+_~15 min_
+
 T'as une grille m x n. Tu pars du coin supérieur gauche, tu veux arriver au coin inférieur droit. Tu peux seulement aller à droite ou en bas. Combien de chemins différents ?
 
 ```js
@@ -271,6 +275,8 @@ uniquePaths(1, 1)  // 1
 ---
 
 ## EXO 3 : Comparer mémo vs tabulation sur Fibonacci
+_~20 min_
+
 Implémente `fibMemo`, `fibTab`, et `fibOptimal`. Mesure le temps pour n = 100, 1000, 10000. Compare la mémoire utilisée (compte les entrées dans le Map/Array). Identifie à partir de quel n l'optimisation d'espace devient significative.
 
 ---

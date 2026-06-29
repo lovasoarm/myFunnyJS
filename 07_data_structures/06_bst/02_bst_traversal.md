@@ -187,6 +187,8 @@ BFS        (niveaux)     :  8  3  10  1  6  14  4  7  13
 # EXERCICES
 
 ## EXO 1 : reconstruire depuis le néant
+_~10 min_
+
 
 Tu as reçu deux listes qui représentent le même arbre :
 
@@ -205,6 +207,8 @@ Sans reconstruire l'arbre en mémoire, détermine :
 ---
 
 ## EXO 2 : les stats du match en temps réel
+_~15 min_
+
 
 Un BST contient les performances des joueurs (score entre 0 et 100) pendant un match de Champions League. À la mi-temps, l'entraîneur veut :
 
@@ -217,6 +221,8 @@ Implémente les trois. Pour le troisième, un simple DFS qui trace le chemin suf
 ---
 
 ## EXO 3 : la symétrie de l'arbre
+_~20 min_
+
 
 Naruto et Sasuke ont chacun un BST de leurs jutsu triés par puissance. Pour vérifier qu'ils ont exactement les mêmes capacités (pas le même arbre, les mêmes valeurs), tu dois comparer les deux arbres.
 

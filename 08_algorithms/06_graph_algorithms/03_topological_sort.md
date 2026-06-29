@@ -328,6 +328,8 @@ console.log(parallelSchedule(pipeline));
 # EXERCICES
 
 ## EXO 1 : LE GESTIONNAIRE DE MISSIONS DE L'ESCOUADE
+_~15 min_
+
 
 La mission S-rank de Naruto a des sous-tâches avec des dépendances. Implémenter `orderMissions(tasks, deps)` qui retourne l'ordre d'exécution. Lever une erreur si les dépendances forment un cycle.
 
@@ -352,6 +354,8 @@ const deps = [
 ---
 
 ## EXO 2 : RÉSOUDRE UN COURS SCHEDULE
+_~20 min_
+
 
 Implémenter `courseScheduleOrder(n, prerequisites)` qui retourne l'ordre dans lequel il faut suivre les cours, ou `null` si c'est impossible.
 
@@ -365,6 +369,8 @@ Implémenter `courseScheduleOrder(n, prerequisites)` qui retourne l'ordre dans l
 ---
 
 ## EXO 3 : PIPELINE CI/CD AVEC DURÉES
+_~25 min_
+
 
 Chaque étape du pipeline a une durée (en secondes). Calculer le temps minimum d'exécution si les étapes parallélisables tournent en parallèle.
 
@@ -394,6 +400,8 @@ Implémenter `minPipelineTime(stages, deps)`. Retourner le temps minimum et les 
 ---
 
 ## EXO 4 : TROUVER LE CYCLE
+_~20 min_
+
 
 Dans le graphe suivant, la tâche "déploiement" ne peut jamais être exécutée à cause d'un cycle. Implémenter `findCycle(graph)` qui retourne les noeuds formant le cycle.
 

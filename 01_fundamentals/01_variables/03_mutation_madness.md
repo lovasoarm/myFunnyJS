@@ -115,3 +115,13 @@ deepMonsters[1].attack.dmg  --> 10   // modifié uniquement ici
 ```
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.
+
+---
+
+## RÉSUMÉ
+
+Shallow copy (copie superficielle) : la structure de premier niveau est copiée, mais les objets imbriqués restent partagés. Modifier `copy.stats.hp` modifie l'original aussi.
+
+Deep copy (copie profonde) : tout l'arbre est dupliqué. `structuredClone()` est la solution native en 2026. `JSON.parse(JSON.stringify(...))` fonctionne mais tue les `undefined`, les fonctions, et les `Date`.
+
+Le bon réflexe : avant de muter un objet reçu en paramètre, demande-toi si tu travailles sur l'original ou sur une copie.

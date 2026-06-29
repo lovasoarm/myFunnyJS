@@ -259,6 +259,57 @@ const proxied = new Proxy({ x: 1, y: 2 }, { get(t, p) { return t[p] } })
 
 ---
 
+## 7) CAS QUI CASSE (mais fun)
+
+```js
+// Proxy sur une classe : le `this` part en vrille
+class Knight {
+  constructor(name) {
+    this.name = name
+    this._health = 100
+  }
+  takeDamage(dmg) {
+    // `this` ici est le Proxy, pas l'instance Knight
+    this._health -= dmg        // OK pour les primitives
+    return this._health
+  }
+}
+
+const leon = new Proxy(new Knight("León"), {
+  get(target, prop) {
+    const val = target[prop]
+    // si c'est une méthode, on la bind sur le Proxy... pas sur la vraie instance
+    return typeof val === 'function' ? val.bind(target) : val
+    // sans ce bind : `this` dans takeDamage est le Proxy
+    // avec ce bind : `this` est l'instance → ça marche
+    // oublier le bind : le Proxy intercepte ses propres set depuis les méthodes internes
+  }
+})
+
+// Sans bind : leon.takeDamage(10) peut planter ou produire un comportement inattendu
+// selon comment le handler set est configuré
+leon.takeDamage(20) // OK avec bind, bug silencieux sans
+```
+
+Le bug classique : un Proxy sur une instance de classe, et les méthodes internes n'arrivent plus à accéder à leurs propres propriétés. La solution : toujours binder les fonctions extraites sur l'objet target, pas sur le Proxy.
+
+Deuxième cas : `Proxy.revocable()` — le Proxy révocable qui est révoqué trop tôt.
+
+```js
+const { proxy, revoke } = Proxy.revocable({ chakra: 500 }, {
+  get(t, p) { return t[p] }
+})
+
+revoke() // l'armure se désintègre
+
+proxy.chakra // TypeError: Cannot perform 'get' on a proxy that has been revoked
+// Naruto essaie d'accéder à sa stat après que le Proxy ait été révoqué : crash immédiat
+```
+
+`Proxy.revocable()` est utile pour des accès temporaires contrôlés. Mais si une référence au proxy survit à la révocation : crash garanti.
+
+---
+
 # EXERCICES
 
 ## EXO 1 : L'ARMURE PROXY DE GARO

@@ -368,6 +368,8 @@ C'est le coeur de `p-limit`, `bottleneck`, `async-pool` : une queue + un compteu
 # EXERCICES
 
 ## EXO 1 : LE SYSTÈME DE MISSIONS DE L'ESCOUADE
+_~15 min_
+
 
 L'escouade de Levi reçoit des missions contre les Titans. Chaque mission a :
 
@@ -384,6 +386,8 @@ Implémenter `MissionDispatcher` :
 ---
 
 ## EXO 2 : BFS SUR UN RÉSEAU DE DISTRIBUTION
+_~20 min_
+
 
 Walter White a un réseau de distribution : les villes sont des noeuds, les routes sont des arêtes.
 Certaines routes sont bloquées (Hank est dans le coin).
@@ -399,6 +403,8 @@ Implémenter :
 ---
 
 ## EXO 3 : LE REPLAY EN TEMPS RÉEL
+_~20 min_
+
 
 Un système de replay de match. Les events arrivent dans une queue.
 La simulation tourne à vitesse x2 (chaque minute de match dure 500ms réel).

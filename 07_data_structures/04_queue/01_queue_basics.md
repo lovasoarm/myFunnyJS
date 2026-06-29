@@ -260,6 +260,8 @@ Pas de malloc, pas de GC, pas de surprise.
 # EXERCICES
 
 ## EXO 1 : LA FILE D'ENTRÉE DU STADE
+_~10 min_
+
 
 Le stade de la Juventus ouvre les portes. Les supporters arrivent dans l'ordre.
 Les supporters VIP arrivent avec un tag `"vip"`. Ils passent en premier, toujours.
@@ -274,6 +276,8 @@ une pour les VIP, une pour les normaux.
 ---
 
 ## EXO 2 : LE DISPATCHER DE WALTER WHITE
+_~15 min_
+
 
 Walter a un système de livraison. Les commandes arrivent dans une queue.
 Chaque commande a un `id`, un `client`, et une `quantite`.
@@ -289,6 +293,8 @@ Utilise le RingBuffer vu plus haut. Adapte-le pour les commandes.
 ---
 
 ## EXO 3 : LE REPLAY D'UN MATCH
+_~12 min_
+
 
 Tu reçois un stream d'events de match (buts, cartons, remplacements).
 Chaque event a un `type`, un `joueur`, et une `minute`.

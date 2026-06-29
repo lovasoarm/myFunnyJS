@@ -34,22 +34,6 @@ Si tu changes de DB, le Domain ne bouge pas d'un pixel.
 ```
 
 ## 1) LE PROBLÈME : LE CODE QUI DÉPEND DE SES OUTILS
-|         Interface  /  Controllers             |  <- adapte le monde externe au domaine
-|  +----------------------------------------+  |
-|  |        Use Cases  /  Application        |  |  <- orchestre les règles métier
-|  |  +----------------------------------+  |  |
-|  |  |   Domain  /  Entities  (coeur)  |  |  |  <- zéro dépendances externes
-|  |  +----------------------------------+  |  |
-|  +----------------------------------------+  |
-|         Infrastructure  /  DB  /  API         |  <- détails techniques, outils
-+----------------------------------------------+
-
-Règle unique : les flèches de dépendance pointent toujours vers le centre.
-Domain ne connaît pas Infrastructure. Jamais.
-Si tu changes de DB, le Domain ne bouge pas d'un pixel.
-```
-
-## 1) LE PROBLÈME : LE CODE QUI DÉPEND DE SES OUTILS
 
 ```js
 // MAUVAIS : la logique métier dépend de la DB (base de données)

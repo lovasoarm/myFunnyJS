@@ -383,6 +383,8 @@ function wordSearchBuggy(board, word) {
 # EXERCICES
 
 ## EXO 1 : LE BINGO DE REINER
+_~20 min_
+
 
 Reiner doit résoudre un Sudoku pour décoder le message du Roi Karl. Implémenter `solveSudoku(board)` complet avec la vérification ligne + colonne + bloc 3×3. La grille est modifiée in-place.
 
@@ -391,6 +393,8 @@ Ajouter un compteur d'appels récursifs. Puis ajouter l'optimisation MRV (minimu
 ---
 
 ## EXO 2 : LES MOTS CACHÉS DE WALTER WHITE
+_~25 min_
+
 
 Walter cache des messages dans des grilles de lettres. Implémenter `findAllWords(board, wordList)` : donner tous les mots de `wordList` présents dans la grille.
 
@@ -410,6 +414,8 @@ const wordList = ["oath", "pea", "eat", "rain"];
 ---
 
 ## EXO 3 : LES CODES DE CHAKRA DE NARUTO
+_~25 min_
+
 
 Le système de scellement ninja utilise des séquences de signes de main. Chaque chiffre 2-9 correspond à des signes. Générer toutes les séquences de signes possibles pour le numéro de sceau `"2367"`.
 
@@ -418,6 +424,8 @@ Implémenter `letterCombinations(digits)`. Puis étendre : `letterCombinationsFi
 ---
 
 ## EXO 4 : ROBOT UNIQUE PATH AVEC OBSTACLES ET COLLECTION
+_~20 min_
+
 
 Un robot part de `(0,0)` d'une grille `m×n`. Il peut aller bas ou droite. Certaines cellules sont des obstacles. D'autres contiennent des cristaux (valeur > 0). Trouver **tous les chemins** qui collectent au moins `minCrystals` cristaux.
 

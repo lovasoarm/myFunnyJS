@@ -169,3 +169,13 @@ i vaut : 3
 ```
 
 > Deux appels à `makeTeam()` = deux boîtes mémoire séparées. C'est exactement ça une closure.
+
+---
+
+## RÉSUMÉ
+
+Une closure est une fonction qui garde accès aux variables de son environnement parent, même après que la fonction parente soit terminée. Elle ne copie pas les valeurs : elle garde une référence vivante.
+
+Le piège classique avec `var` dans les boucles async : toutes les closures partagent la même variable `i` qui vaut sa valeur finale au moment de l'exécution. Avec `let`, chaque itération crée sa propre variable.
+
+Deux appels à la même factory = deux closures séparées = deux environnements mémoire distincts. Jamais partagés.

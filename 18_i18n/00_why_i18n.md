@@ -66,6 +66,20 @@ Tant qu'il existera des produits qui visent plus d'un marché linguistique (et �
 
 ---
 
+---
+
+## CE MODULE DANS LE CURRICULUM
+
+**Prérequis directs :** `01_fundamentals/04_types` (Intl.DateTimeFormat et Intl.NumberFormat manipulent des types JS natifs), `16_web_concepts/06_serialization.md` (les clés de traduction sont souvent en JSON — tu dois savoir les parser proprement).
+
+**Ce qui en dépend :** `29_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache — pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
+
+**Position dans la roadmap :** Module 18 sur 31. Après l'accessibilité (17) parce que les deux répondent à la même question : "est-ce que ce produit fonctionne pour tous les utilisateurs ?". Avant le realtime (19) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
+
+**Lien avec les autres modules :** `13_typescript` — les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `23_databases` — les préférences de langue des utilisateurs sont souvent persistées en base.
+
+---
+
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
 L'i18n n'est pas juste de la traduction, c'est une architecture entière qui doit être pensée dès le départ. Ça casse de trois façons sans elle : textes en dur impossibles à extraire, dates et prix mal interprétés selon la région, pluralisation qui explose dès qu'une langue a des règles différentes. Ce besoin ne disparaît pas tant qu'un produit vise plusieurs marchés.

@@ -169,3 +169,13 @@ Ensuite :
 ```
 
 > Primitive = copie réelle. Objet = copie référence. La mémoire décide tout.
+
+---
+
+## RÉSUMÉ
+
+Les primitives (string, number, boolean, null, undefined, symbol, BigInt) se copient par valeur : chaque variable a sa propre case mémoire.
+
+Les objets et tableaux se passent par référence : plusieurs variables peuvent pointer vers le même espace mémoire. Modifier l'un modifie tous les autres.
+
+`typeof null === 'object'` est un bug historique de JS qui n'a jamais été corrigé pour des raisons de rétrocompatibilité. Tu dois le connaître. Ne jamais tester `null` avec `typeof`.

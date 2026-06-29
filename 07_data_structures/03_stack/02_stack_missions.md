@@ -252,6 +252,8 @@ La stack c'est la mémoire du passé récent. Elle garde l'ordre chronologique i
 # EXERCICES
 
 ## EXO 1 : HTML validator
+_~15 min_
+
 Étends `isBalanced` pour valider du HTML simplifié. Les balises `<div>`, `<p>`, `<span>` doivent être ouvertes et fermées dans le bon ordre. Parse le string pour extraire les balises (commence par `<`, se ferme avec `>`). Gère les balises auto-fermantes comme `<br>` et `<img>`.
 
 ```
@@ -261,11 +263,15 @@ La stack c'est la mémoire du passé récent. Elle garde l'ordre chronologique i
 ```
 
 ## EXO 2 : Historique limité
+_~20 min_
+
 Le navigateur de Sanji a une mémoire limitée : il ne peut stocker que 10 pages dans l'historique back. Si on dépasse 10 visites, la plus ancienne est effacée. Modifie la classe `Browser` pour supporter cette contrainte.
 
 (indice : vérifie la taille de `backStack` avant de push)
 
 ## EXO 3 : Undo avec snapshots optimisés
+_~25 min_
+
 L'éditeur actuel stocke l'état complet du texte à chaque modification. Pour un texte de 100 000 caractères, c'est problématique. Réimplémente l'undo/redo en stockant des **actions** plutôt que des états : chaque action a un `apply()` et un `revert()`.
 
 Structure suggérée :
