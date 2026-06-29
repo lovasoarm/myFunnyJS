@@ -35,6 +35,31 @@ naruto a "esquiver" ? NON
 naruto.[[Prototype]] (= ninja) a "esquiver" ? OUI --> exécution
 ```
 
+Chaîne complète dans le cas d'une classe :
+
+```
+instance (ex : monNinja)
+        |
+        |  [[Prototype]]  (accès via __proto__ ou Object.getPrototypeOf)
+        v
+MaClasse.prototype
+    (méthodes partagées par toutes les instances : attack(), defend()...)
+        |
+        |  [[Prototype]]
+        v
+Object.prototype
+    (toString, hasOwnProperty, valueOf, isPrototypeOf...)
+        |
+        |  [[Prototype]]
+        v
+      null
+   (fin de chaîne : le moteur s'arrête ici)
+
+JS remonte la chaîne à chaque accès de propriété ou méthode.
+Si c'est introuvable jusqu'à null : retourne undefined. Pas d'erreur, juste silence.
+C'est pourquoi accéder à une propriété inexistante ne plante pas, mais utiliser son résultat plante.
+```
+
 ---
 
 ## 2) LA CHAÎNE EXISTE VRAIMENT, ELLE A UNE FIN

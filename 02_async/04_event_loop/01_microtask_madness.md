@@ -32,6 +32,24 @@ call stack vide --> vider toute la microtask queue --> prendre UNE macrotask -->
 
 C'est ça l'event loop.
 
+```
+CALL STACK              WEB APIs / Node APIs        TASK QUEUES
+----------              --------------------        -----------
+|  fn()  |  ---------> | fetch (réseau)   |         Microtask :  [ resolvePromise() ]
+|  main()|             | setTimeout       | -------> Macrotask :  [ setTimeout_cb()  ]
+----------             | fs.readFile      |         -----------
+     ^                  --------------------               |
+     |                                                     |
+     +-------------------- EVENT LOOP --------------------+
+                     (call stack vide ?
+                      oui -> microtask en premier,
+                             puis UNE macrotask,
+                             puis recommence)
+
+Ordre de priorité : Microtask AVANT Macrotask, toujours.
+Une Promise résolue passe devant un setTimeout(fn, 0), sans exception.
+```
+
 ---
 
 ## 2) CALL STACK : LA PILE D'EXÉCUTION

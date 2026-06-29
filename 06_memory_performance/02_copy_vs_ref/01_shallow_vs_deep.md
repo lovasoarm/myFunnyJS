@@ -12,6 +12,20 @@ La raison : copier un objet en JS ne signifie pas forcément copier ce qu'il con
 
 En JS, les données se divisent en deux catégories :
 
+```
+STACK (valeurs primitives)          HEAP (objets, tableaux, fonctions)
+--------------------------          ----------------------------------
+| score    = 42          |          | { hp: 100,                     |
+| level    = 7           |          |   name: "Naruto",              |
+| ninja ----> [ ref ] ---+--------> |   jutsus: ["Rasengan", ...]    |
+--------------------------          | }                              |
+                                    ----------------------------------
+
+Copier score  : nouvelle valeur indépendante. Changer l'une ne change pas l'autre.
+Copier ninja  : même objet dans le heap. Modifier depuis deux endroits = même objet muté.
+C'est pour ça que deux variables peuvent "bouger ensemble" sans qu'on l'ait demandé.
+```
+
 **Primitives** : copiées par valeur. Chaque variable a sa propre copie.
 
 ```js

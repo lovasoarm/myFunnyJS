@@ -20,6 +20,34 @@ Le cycle minimal :
 Client  --[REQUEST]-->  Serveur  --[RESPONSE]-->  Client
 ```
 
+Flux complet avec couches :
+
+```
+CLIENT (navigateur / app mobile / autre service)
+        |
+        |  HTTP Request : GET /api/match/stats
+        |  Headers : Authorization: Bearer <token>, Content-Type: application/json
+        v
+API SERVER (Express / Node / autre runtime)
+        |
+        |  parse la requête, vérifie l'auth, appelle la logique métier
+        v
+DATABASE (SQL / NoSQL)   ou   CACHE (Redis)
+        |
+        |  retourne rows ou JSON
+        v
+API SERVER
+        |
+        |  HTTP Response : 200 OK
+        |  Body : { "possession": 58, "xG": 1.7, "goals": 2 }
+        v
+CLIENT
+
+Chaque couche a une responsabilité. Aucune ne court-circuite l'autre.
+L'API ne parle jamais directement au client de ce que la DB lui a renvoyé :
+elle transforme, valide, formate avant de répondre.
+```
+
 Une requête HTTP contient :
 ```
 [MÉTHODE] [URL] HTTP/[VERSION]

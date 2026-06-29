@@ -6,7 +6,48 @@ La question que ce pattern répond : comment écrire du code qui survit au chang
 
 Prérequis : `02_mvc_pattern.md`, `10_design_patterns/02_structural/02_adapter_pattern.md`, `11_refactoring/02_solid_principles.md`.
 
+> Ce module s'appuie sur le principe de Responsabilité Unique (SRP) et de découplage (couplage : degré de dépendance entre deux modules).
+> La source de vérité pour SRP et couplage est `11_refactoring/02_solid_principles.md`.
+> Ici on les applique à l'échelle d'un système entier. On ne les réexplique pas.
+
+> Ce fichier construit directement sur `14_runtime_env`.
+> Si tu ne sais pas encore comment Node gère les modules et pourquoi ESM et CJS coexistent :
+> fais `14_runtime_env/01_node_vs_browser.md` + `14_runtime_env/03_commonjs_vs_esm.md` avant de continuer.
+
 ---
+
+```
++----------------------------------------------+
+|         Interface  /  Controllers             |  <- adapte le monde externe au domaine
+|  +----------------------------------------+  |
+|  |        Use Cases  /  Application        |  |  <- orchestre les règles métier
+|  |  +----------------------------------+  |  |
+|  |  |   Domain  /  Entities  (coeur)  |  |  |  <- zéro dépendances externes
+|  |  +----------------------------------+  |  |
+|  +----------------------------------------+  |
+|         Infrastructure  /  DB  /  API         |  <- détails techniques, outils
++----------------------------------------------+
+
+Règle unique : les flèches de dépendance pointent toujours vers le centre.
+Domain ne connaît pas Infrastructure. Jamais.
+Si tu changes de DB, le Domain ne bouge pas d'un pixel.
+```
+
+## 1) LE PROBLÈME : LE CODE QUI DÉPEND DE SES OUTILS
+|         Interface  /  Controllers             |  <- adapte le monde externe au domaine
+|  +----------------------------------------+  |
+|  |        Use Cases  /  Application        |  |  <- orchestre les règles métier
+|  |  +----------------------------------+  |  |
+|  |  |   Domain  /  Entities  (coeur)  |  |  |  <- zéro dépendances externes
+|  |  +----------------------------------+  |  |
+|  +----------------------------------------+  |
+|         Infrastructure  /  DB  /  API         |  <- détails techniques, outils
++----------------------------------------------+
+
+Règle unique : les flèches de dépendance pointent toujours vers le centre.
+Domain ne connaît pas Infrastructure. Jamais.
+Si tu changes de DB, le Domain ne bouge pas d'un pixel.
+```
 
 ## 1) LE PROBLÈME : LE CODE QUI DÉPEND DE SES OUTILS
 
