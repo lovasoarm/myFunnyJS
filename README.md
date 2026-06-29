@@ -138,7 +138,7 @@ Chaque module a des prérequis. Sauter un prérequis, c'est construire sur du sa
  
 ```
 02_async              =>  prérequis : 01_fundamentals complet
-03_error_handling     =>  prérequis : 01_fundamentals + 02_async
+03_error_handling     =>  prérequis : 01_fundamentals + 02_async + 01_fundamentals/08_debugging
 04_testing            =>  prérequis : 01_fundamentals + 02_async
 07_data_structures    =>  prérequis : 01_fundamentals + 06_memory_performance/03_complexity
 08_algorithms         =>  prérequis : 07_data_structures complet
@@ -150,7 +150,9 @@ Chaque module a des prérequis. Sauter un prérequis, c'est construire sur du sa
 20_api_craft          =>  prérequis : 14_runtime_env + 16_web_concepts + 03_error_handling
 21_security           =>  prérequis : 20_api_craft + 16_web_concepts
 22_ai_native_dev      =>  prérequis : aucun bloquant, profite de tout le reste
+24_scalability        =>  prérequis : 20_api_craft + 21_security + 15_architecture_patterns
 25_observability      =>  prérequis : 14_runtime_env + 20_api_craft
+28_oop_js             =>  prérequis : 01_fundamentals complet (27_edge_cases recommandé)
 ```
 
 ---
@@ -198,11 +200,15 @@ MyFunnyJS/
 │   │   ├── 01_import_export.md                    # named, default, namespace : les trois formes et quand les utiliser
 │   │   ├── 02_module_patterns.md                  # Barrel exports, circular deps, lazy loading : les pièges du monde réel
 │   │   └── 03_modules_grimoire.md                 # ESM vs CJS, bundlers, tree shaking
-│   └── 07_regex/
-│       ├── 01_regex_basics.md                     # Lire et écrire un pattern sans avoir peur
-│       ├── 02_regex_combat.md                     # Validation d'emails, numéros, URLs : les vraies batailles
-│       ├── 03_regex_extractor.md                  # Capturer, remplacer, splitter comme un sniper
-│       └── 04_regex_grimoire.md
+│   ├── 07_regex/
+│   │   ├── 01_regex_basics.md                     # Lire et écrire un pattern sans avoir peur
+│   │   ├── 02_regex_combat.md                     # Validation d'emails, numéros, URLs : les vraies batailles
+│   │   ├── 03_regex_extractor.md                  # Capturer, remplacer, splitter comme un sniper
+│   │   └── 04_regex_grimoire.md
+│   └── 08_debugging/
+│       ├── 01_read_stack_trace.md                 # Anatomie d'une stack trace : lire de bas en haut, identifier la ligne qui t'appartient
+│       ├── 02_debug_methodology.md                # Reproduire, isoler, corriger, vérifier : le process en quatre étapes sans raccourci
+│       └── 03_devtools_debugger.md                # Breakpoints, watch expressions, step over/into/out : débugger sans toucher le code
 │
 ├── 02_async/                                                   # Le coeur invisible de JS : rien ne bloque, tout se séquence
 │   ├── 00_why_async.md                                         # JS tourne sur un seul thread : comprendre l'event loop ou coder avec un fantôme
@@ -272,7 +278,8 @@ MyFunnyJS/
 │   ├── 04_profiling/
 │   │   ├── 01_profiling_basics.md                             # performance.now(), console.time() : les outils qui mesurent sans mentir
 │   │   ├── 02_memory_leak_hunter.md                           # Traquer une fuite mémoire dans DevTools : la chasse au fantôme
-│   │   └── 03_devtools_deep_dive.md                           # DevTools Performance tab : lire un flamegraph sans se perdre
+│   │   ├── 03_devtools_deep_dive.md                           # DevTools Performance tab : lire un flamegraph sans se perdre
+│   │   └── 04_node_cpu_profiling.md                           # node --prof : mesurer le CPU côté Node sur des scripts réels
 │   ├── 05_core_web_vitals/
 │   │   ├── 01_lcp_inp_cls_basics.md                           # LCP, INP, CLS : ce que chaque métrique mesure et ce qui les fait sauter
 │   │   ├── 02_lighthouse_audit.md                             # Lire un rapport Lighthouse sans se noyer dans les chiffres
@@ -554,6 +561,7 @@ MyFunnyJS/
 │   └── 10_oop_js_grimoire.md
 │
 ├── 29_mini_projects/                                           # Assembler tout ça pour de vrai : pas des exercices, des systèmes
+│   ├── 00_why_mini_projects.md                                 # Pourquoi des projets et pas juste des exercices : tableau de prérequis par projet, comment aborder le premier
 │   ├── 01_rasengan_engine/
 │   │   ├── cahierdescharges.md
 │   │   ├── README.md
