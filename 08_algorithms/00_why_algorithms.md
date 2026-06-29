@@ -6,6 +6,16 @@ Les algorithmes, c'est une bibliothèque de patterns déjà résolus. Tu n'inven
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- toutes les structures de `07_data_structures` : complet
+- analyse de complexité ligne par ligne : voir `06_memory_performance/03_complexity/02_complexity_analysis.md`
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Sans bagage algorithmique, chaque problème ressemble à un problème nouveau, même quand ce n'est pas le cas. Trier une liste de 100 000 éléments avec un tri à bulles (O(n²)) au lieu d'un merge sort (O(n log n)), c'est la différence entre 2 secondes et 3 minutes d'exécution sur le même volume. Chercher un élément dans une liste triée avec une recherche linéaire au lieu d'une recherche binaire (binary search), c'est la différence entre O(n) et O(log n) : littéralement des milliers de fois plus rapide sur de gros volumes.

@@ -6,6 +6,17 @@ L'architecture, c'est la décision qui se prend une fois, mais qui détermine le
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- design patterns créationnels et structuraux : voir `10_design_patterns/`
+- principes SOLID (SRP, OCP, DIP) : voir `11_refactoring/02_solid_principles.md`
+- comment Node charge un module : voir `14_runtime_env/01_node_vs_browser.md` et `14_runtime_env/03_commonjs_vs_esm.md`
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Sans architecture pensée, un projet qui grandit devient un plat de spaghetti : chaque fichier dépend de chaque autre fichier, une modification dans un coin du code casse une fonctionnalité dans un coin complètement différent, et personne ne comprend plus pourquoi ces deux parties sont liées.

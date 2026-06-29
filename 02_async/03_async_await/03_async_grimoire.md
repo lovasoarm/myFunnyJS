@@ -1,7 +1,7 @@
 # ASYNC GRIMOIRE
 
-async, await, try/catch async, top-level await, et tout ce qui gravite autour.
-Le dictionnaire des concepts que tu croises dès que le code sort du synchrone.
+async, await, generators, AbortController, et tout ce qui gravite autour.
+Le dictionnaire complet des concepts du module `03_async_await` : fichiers 01, 02, 02b, 02c.
 
 ---
 
@@ -24,6 +24,18 @@ Le dictionnaire des concepts que tu croises dès que le code sort du synchrone.
 | Timeout | Wrapping d'une Promise avec `Promise.race` contre un timer. Si l'opération prend plus longtemps que le seuil : erreur de timeout. | `Promise.race([fetch(), new Promise((_, r) => setTimeout(() => r(new Error('Timeout')), 3000))])` | L'armure de Garo : si le combat dépasse 99.9 secondes, elle se désintègre / la minuterie du four qui coupe même si la cuisson n'est pas finie |
 | Fallback | Plan B exécuté si le plan A échoue. Permet de retourner un résultat dégradé plutôt que de propager l'erreur. | `try { return await primary() } catch { return await backup() }` | Si Leon est indispo, Rei prend la mission / si le serveur principal est down, le miroir prend le relais |
 | `async/await` vs `.then()` | Même comportement, syntaxe différente. `async/await` : plus lisible pour les chaînes longues. `.then()` : parfois plus concis pour les transformations simples. Les deux peuvent être mélangés. | `const x = await fn()` == `fn().then(x => ...)` | Deux façons d'écrire la même lettre : à la main ou à la machine / deux routes qui mènent au même point |
+
+| `function*` | Générateur (generator function) : fonction qui peut suspendre son exécution avec `yield` et reprendre exactement là où elle s'est arrêtée au prochain `.next()`. Retourne un objet iterator, pas une valeur. | `function* gen() { yield 1; yield 2; }` : chaque `yield` est une pause | un conteur qui s'arrête après chaque chapitre et attend qu'on tourne la page / Scofield qui exécute son plan d'évasion une étape à la fois, sans jamais avancer sans confirmation |
+| `yield` | Suspend le générateur et retourne une valeur à l'appelant. La prochaine fois que `.next()` est appelé, l'exécution reprend juste après le `yield`. Peut aussi recevoir une valeur via `.next(valeur)`. | `yield valeur` : sort la valeur, gèle le générateur jusqu'au prochain appel | une pause chakra entre deux attaques : le ninja reprend exactement là où il en était / un musicien qui marque une pause mid-improvisation et reprend au même accord |
+| `Generator.next()` | Reprend l'exécution du générateur jusqu'au prochain `yield` ou `return`. Retourne toujours `{ value, done }` : `value` = la valeur yielded ou retournée, `done` = `true` si le générateur est épuisé. | `const g = gen(); g.next()` : `{ value: 1, done: false }` | appuyer sur "lecture" après une pause / un Chevalier qui reçoit l'ordre d'avancer après avoir attendu la confirmation du Conseil |
+| `{ value, done }` | Objet retourné par chaque appel à `.next()`. `value` contient ce que le `yield` ou le `return` a produit. `done: true` signifie que le générateur est terminé, épuisé : les appels suivants retournent `{ value: undefined, done: true }`. | `const { value, done } = gen.next()` | le rapport de mission : "voilà ce que j'ai trouvé" + "est-ce que la mission est finie ou pas" / un livreur qui annonce sa livraison partielle et indique s'il en a encore |
+| `for...of` (generator) | Itère automatiquement sur tous les `yield` d'un générateur jusqu'à `done: true`. Appelle `.next()` en coulisse à chaque itération. Consomme proprement sans gérer `done` manuellement. | `for (const v of gen()) { console.log(v) }` | lire un carnet de bord page par page sans avoir à tourner soi-même / écouter un album trapsoul track par track sans skip et sans avoir à appuyer sur "suivant" |
+| `async function*` | Async generator : combine `async` et `function*`. Chaque `yield` peut être précédé d'un `await`. Produit des valeurs de façon asynchrone, une à la fois. À consommer avec `for await...of`. | `async function* stream() { yield await fetch('/chunk/1'); yield await fetch('/chunk/2') }` | un coursier qui fait des pauses à chaque livraison et attend la signature avant de repartir / un stream vidéo qui charge chunk par chunk avant d'afficher |
+| `for await...of` | Itère sur un async generator ou tout objet async iterable. Attend la résolution de chaque valeur avant de passer à la suivante. Doit être utilisé dans un contexte `async`. | `for await (const chunk of stream()) { process(chunk) }` | attendre chaque notification d'un épisode Attack on Titan avant de passer au suivant / traiter chaque alerte Horror une à la fois à la réception, sans en louper une |
+| `AbortController` | API web qui crée un mécanisme d'annulation. Possède un `.signal` (à passer aux opérations à contrôler) et un `.abort()` (pour déclencher l'annulation depuis n'importe où). Disponible en navigateur et Node 15+. | `const ctrl = new AbortController(); fetch(url, { signal: ctrl.signal })` | le chef de mission qui peut rappeler tous ses agents d'un coup / Levi qui ordonne la retraite : tout le monde s'arrête en même temps, sans exception |
+| `AbortSignal` | L'objet signal attaché à un `AbortController`. Passé à `fetch`, `addEventListener`, ou tout code qui doit répondre à l'annulation. `signal.aborted` vaut `true` après l'appel à `.abort()`. | `ctrl.signal.aborted // true si abort() a été appelé` | le signal radio que tous les agents écoutent en permanence / le sifflet d'arbitre que les joueurs entendent sur tout le terrain |
+| `controller.abort()` | Déclenche l'annulation : toutes les opérations liées au signal reçoivent un `AbortError`. Le signal ne peut pas être réutilisé après : créer un nouveau `AbortController` pour chaque opération annulable. | `controller.abort()` : déclenche `DOMException: AbortError` dans les listeners | l'ordre d'évacuation immédiate : tout s'arrête, pas de discussion / le carton rouge : la partie s'arrête, aucun recours |
+| `AbortError` | Erreur lancée quand une opération est annulée via `AbortController`. Nom : `'AbortError'`. À traiter séparément des vraies erreurs réseau : une annulation est intentionnelle, pas un échec. | `catch (e) { if (e.name === 'AbortError') return; throw e; }` | la différence entre un abandon volontaire et une vraie catastrophe : Scofield qui annule lui-même une étape vs une étape qui merde indépendamment / sortir proprement vs être éjecté |
 
 ---
 
@@ -89,3 +101,56 @@ PARALLÈLE (Promise.all)
 
 Le gain = (somme des temps) - (temps du plus lent).
 Sur 3 fetches de 2s chacun : 6s en séquentiel, 2s en parallèle.
+
+---
+
+## PIÈGES GENERATORS ET ABORT
+
+```js
+// PIÈGE 4 : appeler une function* sans .next() — rien ne s'exécute
+function* compterChakra() {
+  console.log('début')  // jamais affiché si on ne fait pas .next()
+  yield 1
+}
+
+const gen = compterChakra()  // crée le generator : zéro exécution
+// sans gen.next() : rien ne se passe
+gen.next()  // là seulement : affiche 'début', retourne { value: 1, done: false }
+
+// PIÈGE 5 : oublier AbortError dans le catch — traiter l'annulation comme une erreur
+async function rechercherJoueur(nom, signal) {
+  try {
+    const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
+    return await res.json()
+  } catch (e) {
+    // MAUVAIS : on traite l'annulation comme une erreur réseau
+    console.error('Erreur réseau:', e)  // AbortError n'est pas une erreur réseau
+    afficherMessageErreur()             // l'utilisateur voit un message d'erreur pour rien
+  }
+}
+
+// CORRECT : distinguer annulation et vrai échec
+async function rechercherJoueurV2(nom, signal) {
+  try {
+    const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
+    return await res.json()
+  } catch (e) {
+    if (e.name === 'AbortError') return null  // annulation intentionnelle : on ignore
+    throw e                                    // vrai échec : on propage
+  }
+}
+
+// PIÈGE 6 : réutiliser un AbortController après abort()
+const ctrl = new AbortController()
+ctrl.abort()
+
+// signal.aborted est déjà true : ce fetch est annulé immédiatement
+await fetch('/api/data', { signal: ctrl.signal })  // AbortError immédiat
+
+// CORRECT : nouveau controller pour chaque opération
+function creerRequeteAnnulable(url) {
+  const ctrl = new AbortController()
+  const promesse = fetch(url, { signal: ctrl.signal })
+  return { promesse, annuler: () => ctrl.abort() }
+}
+```

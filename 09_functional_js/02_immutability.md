@@ -5,6 +5,9 @@ Immutabilité c'est : tu prends l'original, tu crées une copie avec les changem
 
 En prod, la mutation cachée est la cause numéro 1 des bugs qui "arrivent d'eux-mêmes". Tu modifies un objet à un endroit, un autre composant qui référence le même objet voit des données corrompues, et t'as aucune idée d'où ça vient.
 
+> Le mécanisme de copie par référence (pourquoi deux variables peuvent pointer vers le même objet) est traité en profondeur dans `06_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`.
+> Ici on travaille l'immutabilité comme discipline de code. Là-bas on explique le moteur.
+
 ---
 
 ## 1) LE PROBLÈME DE LA RÉFÉRENCE PARTAGÉE

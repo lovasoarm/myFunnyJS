@@ -6,6 +6,16 @@ Choisir la bonne structure, c'est la différence entre un dev qui résout un pro
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- complexité O(n) et notation Big-O : voir `06_memory_performance/03_complexity/01_big_o_basics.md`
+- copie par référence vs par valeur : voir `06_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Un tableau (array) est pratique, mais il a des coûts cachés selon l'opération : chercher un élément précis dans un tableau non trié coûte O(n) (il faut potentiellement tout parcourir). Une hash table (table de hachage) fait la même recherche en O(1) dans la majorité des cas. Une queue (file) garantit un ordre FIFO (first in, first out) sans réinventer la roue à chaque fois. Un heap (tas) garde toujours l'élément le plus prioritaire accessible instantanément, sans trier toute la liste à chaque ajout.

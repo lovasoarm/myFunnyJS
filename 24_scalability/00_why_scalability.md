@@ -6,6 +6,20 @@ La scalabilité, c'est la discipline qui te dit comment grandir sans tout recons
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- une API REST fonctionnelle : voir `20_api_craft/`
+- sécurité de base (rate limiting, auth) : voir `21_security/`
+- comment les responsabilités se découpent entre services : voir `15_architecture_patterns/`
+- bases de l'observabilité : voir `25_observability/` — ou lire les deux en parallèle
+
+Sans API qui tourne et sans notion d'architecture, le load balancing et les queues de messages n'ont pas de contexte réel. Ces deux concepts sont des réponses à un problème qu'on ne voit que quand on a déjà un système en prod.
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Un système conçu pour 100 utilisateurs simultanés ne se comporte pas juste "un peu moins bien" à 100 000 utilisateurs : il peut s'effondrer complètement si l'architecture n'a jamais anticipé cette croissance. Une seule instance de serveur a une limite de CPU et de mémoire. Une seule base de données a une limite de débit de requêtes. Sans stratégie de scalabilité, chaque pic de trafic devient un risque de panne totale.

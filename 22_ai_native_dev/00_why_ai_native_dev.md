@@ -6,6 +6,15 @@ Coder avec l'IA en 2026, ce n'est pas la laisser coder à ta place. C'est appren
 
 ---
 
+## PRÉREQUIS
+
+Ce module n'a pas de prérequis bloquant.
+Il devient plus utile si tu as déjà fait `04_testing`, `20_api_craft`, et `21_security`.
+Mais il peut être attaqué dès que les fondamentaux sont solides : le contexte prod
+rend les exercices plus parlants, pas les concepts eux-mêmes.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 L'IA générative produit du code avec un défaut structurel important : elle peut halluciner (inventer une information fausse avec la même confiance qu'une information vraie) une fonction qui n'existe pas dans une bibliothèque, retourner un JSON malformé, ou affirmer qu'un comportement JS fonctionne d'une certaine façon alors que c'est faux. Le code généré a souvent l'air parfaitement crédible, ce qui rend l'erreur encore plus dangereuse : un bug évident se détecte vite, un bug plausible se glisse en prod.

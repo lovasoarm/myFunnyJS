@@ -6,6 +6,17 @@ Une API mal construite, c'est une dette qui se paie pour toujours, parce que des
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- Node.js, process, streams : voir `14_runtime_env/`
+- HTTP, verbes, status codes, headers : voir `16_web_concepts/01_http_rest_basics.md`
+- gestion d'erreurs async : voir `03_error_handling/04_async_error_traps.md`
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Construire une API qui marche pour un cas de test, c'est facile. Construire une API qui reste stable, sécurisée, et compréhensible alors que des dizaines de clients différents (apps mobile, frontend web, autres services internes) en dépendent, c'est une discipline complète.

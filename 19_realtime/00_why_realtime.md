@@ -6,6 +6,16 @@ Le HTTP classique (requête, réponse, fin) ne suffit plus pour ça. Le temps r�
 
 ---
 
+## PRÉREQUIS
+
+Ce module suppose que tu maîtrises :
+- tout `02_async` : complet, event loop incluse
+- HTTP, headers, stateless : voir `16_web_concepts/01_http_rest_basics.md`
+
+Si ces bases ne sont pas là : reviens ici après.
+
+---
+
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
 Le modèle HTTP classique fonctionne en requête-réponse : le client demande, le serveur répond, la connexion se ferme. Pour savoir si quelque chose a changé, le client doit redemander, encore et encore (polling : interroger le serveur à intervalle régulier), ce qui gaspille de la bande passante et introduit toujours un délai entre le moment où l'événement arrive et le moment où le client le voit.

@@ -87,3 +87,6 @@ Ces deux modules se croisent souvent dans la tête des apprenants. La frontière
 `11_refactoring` s'applique après livraison, sur du code qui a vécu. `12_problem_solving` s'applique avant la première ligne, sur un problème qui n'a pas encore de solution.
 
 En pratique, les deux alternent en permanence : tu décomposes un problème (`12`), tu codes, tu refactorises ce que tu as produit (`11`), tu décomposes la prochaine feature (`12`). Ce sont deux réflexes complémentaires, pas deux modules en compétition.
+
+> Les concepts de couplage et de cohésion utilisés dans ce module sont définis et expliqués dans `11_refactoring/02_solid_principles.md`.
+> Ici on les mobilise pour concevoir. On ne les réexplique pas depuis zéro.
