@@ -71,8 +71,10 @@ Document
 ```html
 <!-- Le navigateur parse l'HTML... -->
 <p>Début</p>
-<script src="gros-script.js"></script>  <!-- STOP : attend le téléchargement et l'exécution -->
-<p>Suite</p>                            <!-- Ce paragraphe n'est pas rendu avant la fin du script -->
+<script src="gros-script.js"></script>
+<!-- STOP : attend le téléchargement et l'exécution -->
+<p>Suite</p>
+<!-- Ce paragraphe n'est pas rendu avant la fin du script -->
 ```
 
 Solution : `defer` ou `async`.
@@ -96,24 +98,43 @@ Le rendu est bloqué (render-blocking) jusqu'à ce que le CSSOM soit complet.
 
 ```css
 /* Le navigateur lit ça et construit un arbre de règles */
-.camp { background: #333; }
-.camp h1 { color: white; font-size: 2rem; }
-.camp ul li { padding: 8px; }
+.camp {
+  background: #333;
+}
+.camp h1 {
+  color: white;
+  font-size: 2rem;
+}
+.camp ul li {
+  padding: 8px;
+}
 ```
 
 Pourquoi le rendu est bloqué ? Parce que le navigateur ne peut pas savoir l'apparence d'un élément avant d'avoir toutes les règles CSS.
 
 Optimisation :
+
 ```html
 <!-- CSS critique (above-the-fold : ce qui est visible sans scroll) en inline -->
 <style>
   /* seulement les styles essentiels pour afficher ce que l'user voit en premier */
-  body { margin: 0; font-family: sans-serif; }
-  .hero { height: 100vh; background: #000; }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .hero {
+    height: 100vh;
+    background: #000;
+  }
 </style>
 
 <!-- Le reste chargé en async (non bloquant) -->
-<link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+<link
+  rel="preload"
+  href="styles.css"
+  as="style"
+  onload="this.rel='stylesheet'"
+/>
 ```
 
 ---
@@ -124,22 +145,24 @@ Optimisation :
 Le navigateur répond à : "où est cet élément ? Quelle est sa taille ?"
 
 Ce qui déclenche un Layout :
+
 ```js
 // Modifier les propriétés qui affectent la géométrie = Layout systématique
-element.style.width = '300px';       // change la taille
-element.style.margin = '20px';       // change la position
-element.style.fontSize = '18px';     // change le flux du texte
-document.body.appendChild(newNode);  // ajoute un noeud dans le flux
+element.style.width = "300px"; // change la taille
+element.style.margin = "20px"; // change la position
+element.style.fontSize = "18px"; // change le flux du texte
+document.body.appendChild(newNode); // ajoute un noeud dans le flux
 ```
 
 Layout est coûteux. Il recalcule potentiellement tout l'arbre.
 
 **Paint :** dessiner les pixels (couleurs, textes, ombres, borders).
 Ce qui déclenche un Paint (mais pas forcément un Layout) :
+
 ```js
-element.style.color = 'red';              // change la couleur du texte
-element.style.backgroundColor = 'blue';  // change le fond
-element.style.boxShadow = '0 2px 4px #000'; // ajoute une ombre
+element.style.color = "red"; // change la couleur du texte
+element.style.backgroundColor = "blue"; // change le fond
+element.style.boxShadow = "0 2px 4px #000"; // ajoute une ombre
 ```
 
 **Composite :** assembler les layers et envoyer au GPU.
@@ -148,12 +171,12 @@ Ce sont les propriétés à privilégier pour les animations.
 
 ```js
 // Ces propriétés passent directement au Composite (GPU) : ultra rapides
-element.style.transform = 'translateX(100px)'; // déplacer sans Layout ni Paint
-element.style.opacity = '0.5';                 // transparence sans Layout ni Paint
+element.style.transform = "translateX(100px)"; // déplacer sans Layout ni Paint
+element.style.opacity = "0.5"; // transparence sans Layout ni Paint
 
 // Ces propriétés déclenchent Layout + Paint + Composite : lentes en animation
-element.style.left = '100px';   // Layout : recalcule le flux
-element.style.width = '200px';  // Layout : change la géométrie
+element.style.left = "100px"; // Layout : recalcule le flux
+element.style.width = "200px"; // Layout : change la géométrie
 ```
 
 ---
@@ -165,20 +188,20 @@ Chaque lecture force le navigateur à recalculer le Layout avant de répondre.
 
 ```js
 // MAUVAIS : lecture + écriture alternées = Layout forcé à chaque tour
-const boxes = document.querySelectorAll('.box');
+const boxes = document.querySelectorAll(".box");
 
 for (const box of boxes) {
-  const width = box.offsetWidth;       // LECTURE : force un Layout
-  box.style.width = width * 2 + 'px'; // ÉCRITURE : invalide le Layout
+  const width = box.offsetWidth; // LECTURE : force un Layout
+  box.style.width = width * 2 + "px"; // ÉCRITURE : invalide le Layout
   // => sur la prochaine lecture, Layout recalculé depuis zéro
 }
 // Sur 100 boîtes : 100 Layouts forcés = page qui freeze
 
 // CORRECT : batch (regrouper) les lectures, puis les écritures séparément
-const widths = [...boxes].map(box => box.offsetWidth); // TOUTES les lectures d'abord
+const widths = [...boxes].map((box) => box.offsetWidth); // TOUTES les lectures d'abord
 
 widths.forEach((width, i) => {
-  boxes[i].style.width = width * 2 + 'px'; // TOUTES les écritures ensuite
+  boxes[i].style.width = width * 2 + "px"; // TOUTES les écritures ensuite
 });
 // => 1 seul Layout au moment des lectures, 1 seul Paint après toutes les écritures
 ```
@@ -201,27 +224,28 @@ Pour les animations : toujours `transform` et `opacity`. Jamais `left/top/width`
 
 ```js
 // Animation CORRECTE : transform passe par le GPU
-element.style.transition = 'transform 0.3s ease';
-element.style.transform = 'translateX(200px)'; // smooth, sans reflow
+element.style.transition = "transform 0.3s ease";
+element.style.transform = "translateX(200px)"; // smooth, sans reflow
 
 // Animation INCORRECTE : left force un reflow à chaque frame
-element.style.transition = 'left 0.3s ease';
-element.style.left = '200px'; // reflow à chaque frame de l'animation
+element.style.transition = "left 0.3s ease";
+element.style.left = "200px"; // reflow à chaque frame de l'animation
 ```
 
 ---
 
 ## 7) LES CORE WEB VITALS EN PRATIQUE
 
-Google mesure trois métriques (module 06 pour le détail, résumé rapide ici) :
+Google mesure trois métriques (module 08 pour le détail, résumé rapide ici) :
 
 **LCP (Largest Contentful Paint) :** temps pour afficher le plus grand élément visible.
 Objectif : < 2.5s.
 
 ```html
 <!-- Précharger (preload) l'image hero pour accélérer le LCP -->
-<link rel="preload" href="/hero.webp" as="image" fetchpriority="high">
-<img src="/hero.webp" alt="Hero" loading="eager">  <!-- ne pas lazy-loader le LCP -->
+<link rel="preload" href="/hero.webp" as="image" fetchpriority="high" />
+<img src="/hero.webp" alt="Hero" loading="eager" />
+<!-- ne pas lazy-loader le LCP -->
 ```
 
 **INP (Interaction to Next Paint) :** délai entre l'action de l'utilisateur et la mise à jour visuelle.
@@ -229,10 +253,10 @@ Objectif : < 200ms.
 
 ```js
 // Éviter le travail long dans les event handlers (gestionnaires d'événements)
-button.addEventListener('click', async () => {
+button.addEventListener("click", async () => {
   // Mise à jour visuelle immédiate d'abord
   button.disabled = true;
-  button.textContent = 'Chargement...';
+  button.textContent = "Chargement...";
 
   // Travail lourd ensuite (ou délégué à un Worker)
   const data = await fetchHeavyData();
@@ -262,14 +286,16 @@ img {
 
 **EXO 1 : Auditer le camp de Rick**
 Tu reçois ce code :
+
 ```js
-const survivors = document.querySelectorAll('.survivor');
+const survivors = document.querySelectorAll(".survivor");
 for (const s of survivors) {
   const h = s.offsetHeight;
-  s.style.height = h + 20 + 'px';
-  s.style.backgroundColor = s.classList.contains('guard') ? 'green' : 'red';
+  s.style.height = h + 20 + "px";
+  s.style.backgroundColor = s.classList.contains("guard") ? "green" : "red";
 }
 ```
+
 Identifie tous les problèmes de performance du pipeline de rendu.
 Réécris le code sans layout thrashing et sans repaint inutile.
 
