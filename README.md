@@ -166,8 +166,10 @@ Chaque module a des prérequis. Sauter un prérequis, c'est construire sur du sa
 
 ## MINI-PROJETS : CE QUE TU CONSTRUIS VRAIMENT
 
-9 projets. Chacun couvre 3 à 4 modules. Pas des exercices théoriques. Des systèmes
-qui ont une raison d'exister, des contraintes qui forcent de vraies décisions.
+9 projets construits depuis zéro, chacun couvrant 3 à 4 modules, plus un 10e à part :
+`10_legacy_dungeon`, qui ne fait pas construire mais investiguer, sur du code que tu
+n'as pas écrit. Pas des exercices théoriques. Des systèmes qui ont une raison d'exister,
+des contraintes qui forcent de vraies décisions.
 
 Le détail complet (pitch, contraintes, ADR, POSTMORTEM) est dans chaque dossier
 `29_mini_projects/0X_xxx/README.md`. Ici, juste la carte.
@@ -191,13 +193,16 @@ Le détail complet (pitch, contraintes, ADR, POSTMORTEM) est dans chaque dossier
                               radio web accessible et multilingue, zéro auditeur exclu
 09_oracle_glitch         =>  22_ai_native_dev + 28_oop_js + 26_team_craft + 27_edge_cases
                               pipeline qui surveille et valide un LLM qui hallucine
+10_legacy_dungeon        =>  26_team_craft (navigation de codebase appliquée pour de vrai)
+                              vrai dépôt OSS non-documenté à cartographier, bug imposé à corriger
 ```
 
 ### Les 5 missions de synthèse (`29_mini_projects/_synthesis/`)
 
 Si t'en es encore au module 01 ou 02 : passe ce bloc, reviens-y plus tard. Contrairement
-aux 9 projets ci-dessus (3-4 modules), chaque synthèse mobilise un bloc entier d'un coup.
-C'est le test qui dit si t'as vraiment digéré le bloc ou juste enchaîné des leçons.
+aux 9 projets de construction ci-dessus (3-4 modules chacun), chaque synthèse mobilise
+un bloc entier d'un coup. C'est le test qui dit si t'as vraiment digéré le bloc ou juste
+enchaîné des leçons.
 
 ```
 synthese_A  =>  après 01-04   runtime + async + erreurs + tests
