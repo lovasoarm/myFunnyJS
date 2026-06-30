@@ -164,6 +164,9 @@ MyFunnyJS/
 ├── README.md                                                   # La carte du territoire : lis ça avant de toucher quoi que ce soit
 ├── CONTRIBUTING.md                                             # Les règles du camp : pas de PR qui pue
 │
+├── 00_referentiel/                                             # Pas un module à suivre : une carte pour te situer, à consulter quand tu veux
+│   └── competences.md                                          # 4 axes (Runtime, Lecture, Debug, Architecture), 4 niveaux chacun : où t'en es vraiment
+│
 ├── 01_fundamentals/
 │   ├── 00_why_fundamentals.md                      # Sans ces bases, tu codes au feeling et tu pries pour que ça remarche
 │   ├── 01_variables/
@@ -626,18 +629,25 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/                    # à créer manuellement pendant le projet
 │   │   └── tests/                  # à créer manuellement avant le code
-│   └── 09_oracle_glitch/
-│       ├── cahierdescharges.md
-│       ├── README.md
-│       ├── TDD_JOURNAL.md
-│       ├── POSTMORTEM.md
-│       ├── ADR/
-│       ├── src/                    # à créer manuellement pendant le projet
-│       └── tests/                  # à créer manuellement avant le code
+│   ├── 09_oracle_glitch/
+│   │   ├── cahierdescharges.md
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md
+│   │   ├── POSTMORTEM.md
+│   │   ├── ADR/
+│   │   ├── src/                    # à créer manuellement pendant le projet
+│   │   └── tests/                  # à créer manuellement avant le code
+│   └── _synthesis/                                             # Les 5 missions qui te forcent à croiser plusieurs blocs de modules d'un coup
+│       ├── synthese_A.md                                       # Après 01-04 : runtime + async + erreurs + tests
+│       ├── synthese_B.md                                       # Après 05-09 : perf + structures + algos + FP
+│       ├── synthese_C.md                                       # Après 10-13 : patterns + refactor + résolution + TS
+│       ├── synthese_D.md                                       # Après 14-21 : runtime web + archi + sécurité
+│       └── synthese_E.md                                       # Après 22-28 : IA + data + scale + observabilité + OOP
 │
 ├── 30_annexes/                                                
 │   ├── 00_Le_Guide_que_ton_prof_aurait_du_te_donner_le_jour_1.md
 │   ├── 01_system_design_grimoire.md
+│   ├── ascii_charte.md                                         # 8 schémas canoniques (call stack, event loop, heap/stack, etc.) : une seule version, partout
 │   ├── toolchain/                                           
 │   │   ├── 00_why_toolchain.md                                # Un dev qui code bien mais maîtrise pas sa toolchain, c'est un survivant sans radio
 │   │   ├── 01_git_survival.md                                 # Git sans pleurer : branches, rebase, conflits, bisect
@@ -746,6 +756,25 @@ elle a raison. Parfois elle invente des fonctions qui n'existent pas. Ton boulot
 le pipeline qui la surveille, la valide, et la remet à sa place quand elle délire.
  
 C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
+
+### Les 5 missions de synthèse (`29_mini_projects/_synthesis/`)
+
+Les 9 projets ci-dessus croisent 3 à 4 modules chacun. Les missions de synthèse vont plus
+loin : elles te forcent à mobiliser un bloc entier de modules d'un coup, pas un sous-ensemble
+choisi à l'avance. C'est le test qui dit si t'as vraiment digéré un bloc ou si t'as juste
+enchaîné des leçons sans les relier entre elles.
+
+```
+synthese_A  =>  après 01-04   runtime + async + erreurs + tests
+synthese_B  =>  après 05-09   perf + structures + algos + FP
+synthese_C  =>  après 10-13   patterns + refactor + résolution + TS
+synthese_D  =>  après 14-21   runtime web + archi + sécurité (la plus grosse, prévois du temps)
+synthese_E  =>  après 22-28   IA + data + scale + observabilité + OOP
+```
+
+Fais-les dans l'ordre, après le bloc de modules correspondant, pas avant. Une synthèse
+attaquée trop tôt te montre juste que t'as encore des trous : c'est normal, c'est exactement
+à ça qu'elle sert.
  
 ---
  
@@ -783,6 +812,14 @@ T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
   monde galère dessus la première fois. Le `02_scope/03_scope_escape_room.md` et compagnie
   sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
   deux essais.
+- **Le référentiel (`00_referentiel/competences.md`) n'est pas un quiz à remplir.** C'est
+  une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
+  (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
+  ton score. T'es le seul à le lire.
+- **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
+  `30_annexes/ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
+  une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
+  c'est voulu.
 
 ### Repérer les modules denses (ralentis volontairement ici)
 
