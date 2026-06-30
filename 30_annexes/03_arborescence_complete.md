@@ -494,11 +494,11 @@ MyFunnyJS/
 │       ├── synthese_D.md                                       # Après 14-21 : runtime web + archi + sécurité
 │       └── synthese_E.md                                       # Après 22-28 : IA + data + scale + observabilité + OOP
 │
-├── 30_annexes/                                                
+├── 30_annexes/
 │   ├── 01_system_design_grimoire.md
-│   ├── 03_arborescence_complete.md                             # Ce fichier-ci : la carte complète du dépôt
+│   ├── 02_arborescence_complete.md                             # Ce fichier-ci : la carte complète du dépôt
 │   ├── ascii_charte.md                                         # 8 schémas canoniques (call stack, event loop, heap/stack, etc.) : une seule version, partout
-│   ├── toolchain/                                           
+│   ├── toolchain/
 │   │   ├── 00_why_toolchain.md                                # Un dev qui code bien mais maîtrise pas sa toolchain, c'est un survivant sans radio
 │   │   ├── 01_git_survival.md                                 # Git sans pleurer : branches, rebase, conflits, bisect
 │   │   ├── 02_vscode_setup.md                                 # VSCode configuré pour un dev JS/TS sérieux : pas pour faire joli
@@ -524,4 +524,3 @@ MyFunnyJS/
 ```
 
 ---
-

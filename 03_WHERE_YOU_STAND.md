@@ -40,12 +40,14 @@ N4   Tu sais lire un flamegraph et dire où le CPU part en fumée
 
 **Test rapide pour savoir où tu te situes :**
 Tu donnes ce code à un pote, il doit dire l'ordre d'affichage sans l'exécuter :
+
 ```js
-console.log('A')
-setTimeout(() => console.log('B'), 0)
-Promise.resolve().then(() => console.log('C'))
-console.log('D')
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+Promise.resolve().then(() => console.log("C"));
+console.log("D");
 ```
+
 Si tu hésites entre B et C : t'es encore en N1-N2. Si tu réponds A, D, C, B direct : t'es en N3 minimum.
 
 ---
@@ -175,7 +177,7 @@ T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
   c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
-  `30_annexes/03_arborescence_complete.md` liste tout, dossier par dossier, fichier par
+  `30_annexes/02_arborescence_complete.md` liste tout, dossier par dossier, fichier par
   fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
