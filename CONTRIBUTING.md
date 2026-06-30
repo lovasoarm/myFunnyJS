@@ -75,6 +75,26 @@ Règles pour un mini-projet :
 
 ---
 
+## Les artefacts transversaux : on touche pas à la légère
+
+Trois fichiers/dossiers sortent du moule classique leçon + exercice + grimoire :
+
+```
+00_referentiel/competences.md         # 4 axes, 4 niveaux : où t'en es vraiment
+30_annexes/ascii_charte.md            # 8 schémas canoniques, une seule version pour tout le curriculum
+29_mini_projects/_synthesis/          # 5 missions qui croisent un bloc entier de modules
+```
+
+Ce sont des fichiers de structure, pas des leçons. Du coup :
+
+- Le **référentiel** ne reçoit jamais de système de notation automatique greffé dessus. Il reste une carte qu'on lit seul, pas un quiz.
+- La **charte ASCII** est la version unique des 8 schémas. Si une leçon a besoin d'un de ces schémas, elle recopie la version canonique, elle en invente pas une autre à côté. Un 9e schéma transversal candidat se propose ici, jamais en solo dans un module.
+- Les **missions de synthèse** suivent un format fixe (contexte, livrables, contraintes par module, checklist). Si t'en ajoutes une nouvelle, garde exactement ce squelette : la rigidité du format, c'est ce qui les rend reconnaissables d'un coup d'oeil.
+
+Ces trois artefacts ne sont pas des modules numérotés à suivre dans l'ordre. Ils existent pour relier ce qui est déjà là, pas pour empiler du contenu en plus.
+
+---
+
 ## Esprit du projet
 
 MyFunnyJS est sérieux.  
@@ -127,4 +147,3 @@ On forme des ingénieurs capables de :
 - Penser en profondeur avant d'écrire la première ligne
 
 Si tu contribues dans cet esprit, tu es exactement au bon endroit.
-
