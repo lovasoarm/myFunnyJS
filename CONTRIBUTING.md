@@ -80,7 +80,7 @@ Règles pour un mini-projet :
 Trois fichiers/dossiers sortent du moule classique leçon + exercice + grimoire :
 
 ```
-00_referentiel/competences.md         # 4 axes, 4 niveaux : où t'en es vraiment
+03_WHERE_YOU_STAND.md                 # 4 axes, 4 niveaux : où t'en es vraiment (racine du repo)
 30_annexes/ascii_charte.md            # 8 schémas canoniques, une seule version pour tout le curriculum
 29_mini_projects/_synthesis/          # 5 missions qui croisent un bloc entier de modules
 ```
