@@ -4,7 +4,7 @@ Le problème c'est simple : tu as 5 fichiers `.js` dans ta page. Tout le monde d
 
 C'est ça, le code web non structuré. La solution tient en deux mots : scope isolé. Pas besoin de framework, pas besoin de build tool. Juste des fonctions et du scope, bien utilisés.
 
-> **Pour aller plus loin :** ce fichier couvre la base (IIFE, scope isolé). La version complète : Factory Pattern, Revealing Module Pattern, organisation à grande échelle, c'est dans `10_design_patterns/01_creational/01_factory_pattern.md`. Tu reviens ici une fois que tu as vu les closures et les fonctions en profondeur, et tout prend son sens.
+> **Pour aller plus loin :** ce fichier couvre la base (IIFE, scope isolé). La version complète : Factory Pattern, Revealing Module Pattern, organisation à grande échelle, c'est dans `12_design_patterns/01_creational/01_factory_pattern.md`. Tu reviens ici une fois que tu as vu les closures et les fonctions en profondeur, et tout prend son sens.
 
 Vraie utilité : tout projet vanilla JS (sans framework), tout legacy à maintenir, toute extension navigateur, tout script embarqué dans un CMS. Comprendre ça, c'est aussi comprendre POURQUOI les frameworks comme React ou Vue existent.
 
@@ -144,7 +144,7 @@ console.log(naruto._chakra); // undefined : vraiment privé, pas accessible de d
 
 Chaque ninja est indépendant. Ses données vivent dans la closure de sa fonction. Tu ne peux pas accéder à `_chakra` depuis l'extérieur même en essayant.
 
-Ce réflexe (une fonction qui fabrique des objets avec un état privé isolé) a un nom officiel et une famille entière de variantes : c'est le **Factory Pattern**. Tu le retrouveras en profondeur, avec ses cousins (Revealing Module Pattern, Builder, Singleton), dans `10_design_patterns`.
+Ce réflexe (une fonction qui fabrique des objets avec un état privé isolé) a un nom officiel et une famille entière de variantes : c'est le **Factory Pattern**. Tu le retrouveras en profondeur, avec ses cousins (Revealing Module Pattern, Builder, Singleton), dans `12_design_patterns`.
 
 ---
 
@@ -225,4 +225,4 @@ Contrainte technique : aucune variable partagée entre deux clones. Chaque insta
 
 ## RÉSUMÉ
 
-Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module : une seule variable exposée dans `window`, tout le reste encapsulé. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre l'IIFE et les closures, c'est comprendre POURQUOI les modules existent. La structure continue dans `07_web_grimoire.md`, et le Factory Pattern en entier t'attend dans `10_design_patterns`.
+Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module : une seule variable exposée dans `window`, tout le reste encapsulé. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre l'IIFE et les closures, c'est comprendre POURQUOI les modules existent. La structure continue dans `07_web_grimoire.md`, et le Factory Pattern en entier t'attend dans `12_design_patterns`.

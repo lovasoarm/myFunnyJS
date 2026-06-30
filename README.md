@@ -38,7 +38,7 @@ Ne les saute pas.
 comme regarder quelqu'un faire des pompes à ta place. Ton cerveau ne se renforce pas.
  
 **Utilise l'IA comme un copilote**, pas comme un chauffeur. Elle génère, tu valides.
-Elle propose, tu décides. Le module `22_ai_native_dev` t'apprend exactement comment faire ça bien.
+Elle propose, tu décides. Le module `23_ai_native_dev` t'apprend exactement comment faire ça bien.
  
 **Finis les mini-projets.** Les modules t'apprennent des concepts. Les mini-projets te
 forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les saute pas.
@@ -47,12 +47,12 @@ forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les
 l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils
 ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 
-**Tiens `DEPENDENCY_LEDGER.md` à jour.** 4 fois dans le curriculum (après 04, 11, 20, 28),
+**Tiens `DEPENDENCY_LEDGER.md` à jour.** 4 fois dans le curriculum (après 06, 14, 22, 29),
 tu rejoues un drill court qui mesure ta dépendance réelle à l'IA, pas ce que tu crois.
-Le protocole complet est dans `22_ai_native_dev/07_solo_vs_copilot_drill.md`. Une règle non
+Le protocole complet est dans `23_ai_native_dev/07_solo_vs_copilot_drill.md`. Une règle non
 mesurée reste une croyance.
 
-**Si tu débarques de zéro, ignore `29_mini_projects/_synthesis/` pour l'instant.** Tu vas
+**Si tu débarques de zéro, ignore `30_mini_projects/_synthesis/` pour l'instant.** Tu vas
 le croiser dans l'arborescence en scrollant, c'est normal, c'est pas pour aujourd'hui. Les
 missions de synthèse demandent plusieurs modules déjà digérés. Avant ça, ouvrir ces fichiers,
 c'est juste du bruit qui te perd pour rien. Elles sont mentionnées plus loin dans ce README,
@@ -129,15 +129,15 @@ projet grandit pas : il pourrit.
         PRIORITÉ ABSOLUE
 ________________|________________
                 |
-    01_fundamentals + 02_async         <=  sans ça, t'es aveugle
+    01_fundamentals + 03_async         <=  sans ça, t'es aveugle
                 |
-    03_error_handling + 04_testing     <=  sans ça, t'es imprudent
+    04_error_handling + 06_testing     <=  sans ça, t'es imprudent
                 |
-    07_data_structures + 08_algos      <=  sans ça, t'es limité
+    09_data_structures + 08_algos      <=  sans ça, t'es limité
                 |
-    10_design_patterns + 11_refacto    <=  sans ça, t'es un risque pour ton équipe
+    12_design_patterns + 11_refacto    <=  sans ça, t'es un risque pour ton équipe
                 |
-           13_typescript               <=  sans ça, t'es hors marché en 2026
+           14_typescript               <=  sans ça, t'es hors marché en 2026
                 |
     15_architecture + 20_api           <=  sans ça, t'es junior à vie
 ```
@@ -149,22 +149,22 @@ ________________|________________
 Chaque module a des prérequis. Sauter un prérequis, c'est construire sur du sable.
  
 ```
-02_async              =>  prérequis : 01_fundamentals complet
-03_error_handling     =>  prérequis : 01_fundamentals + 02_async + 01_fundamentals/08_debugging
-04_testing            =>  prérequis : 01_fundamentals + 02_async
-07_data_structures    =>  prérequis : 01_fundamentals + 06_memory_performance/03_complexity
-08_algorithms         =>  prérequis : 07_data_structures complet
-09_functional_js      =>  prérequis : 01_fundamentals/03_functions
-10_design_patterns    =>  prérequis : 09_functional_js
-13_typescript         =>  prérequis : 01_fundamentals complet (peut démarrer en parallèle de 02_async)
-15_architecture       =>  prérequis : 10_design_patterns + 11_refactoring
-19_realtime           =>  prérequis : 02_async complet + 16_web_concepts
-20_api_craft          =>  prérequis : 14_runtime_env + 16_web_concepts + 03_error_handling
-21_security           =>  prérequis : 20_api_craft + 16_web_concepts
-22_ai_native_dev      =>  prérequis : aucun bloquant, profite de tout le reste
-24_scalability        =>  prérequis : 20_api_craft + 21_security + 15_architecture_patterns
-25_observability      =>  prérequis : 14_runtime_env + 20_api_craft
-28_oop_js             =>  prérequis : 01_fundamentals complet (27_edge_cases recommandé)
+03_async              =>  prérequis : 01_fundamentals complet
+04_error_handling     =>  prérequis : 01_fundamentals + 03_async + 05_debugging
+06_testing            =>  prérequis : 01_fundamentals + 03_async
+09_data_structures    =>  prérequis : 01_fundamentals + 08_memory_performance/03_complexity
+10_algorithms         =>  prérequis : 09_data_structures complet
+11_functional_js      =>  prérequis : 01_fundamentals/03_functions
+12_design_patterns    =>  prérequis : 11_functional_js
+14_typescript         =>  prérequis : 01_fundamentals complet (peut démarrer en parallèle de 03_async)
+15_architecture       =>  prérequis : 12_design_patterns + 13_refactoring
+20_realtime           =>  prérequis : 03_async complet + 17_web_concepts
+21_api_craft          =>  prérequis : 15_runtime_env + 17_web_concepts + 04_error_handling
+22_security           =>  prérequis : 21_api_craft + 17_web_concepts
+23_ai_native_dev      =>  prérequis : aucun bloquant, profite de tout le reste
+25_scalability        =>  prérequis : 21_api_craft + 22_security + 16_architecture_patterns
+26_observability      =>  prérequis : 15_runtime_env + 21_api_craft
+29_oop_js             =>  prérequis : 01_fundamentals complet (28_edge_cases recommandé)
 ```
 
 ---
@@ -177,32 +177,32 @@ n'as pas écrit. Pas des exercices théoriques. Des systèmes qui ont une raison
 des contraintes qui forcent de vraies décisions.
 
 Le détail complet (pitch, contraintes, ADR, POSTMORTEM) est dans chaque dossier
-`29_mini_projects/0X_xxx/README.md`. Ici, juste la carte.
+`30_mini_projects/0X_xxx/README.md`. Ici, juste la carte.
 
 ```
-01_rasengan_engine       =>  01_fundamentals + 05_math + 09_functional_js + 10_design_patterns
+01_rasengan_engine       =>  01_fundamentals + 05_math + 11_functional_js + 12_design_patterns
                               moteur de combat Naruto, zéro mutation d'état
-02_garo_no_kronika       =>  02_async + 03_error_handling + 19_realtime + 15_architecture
+02_garo_no_kronika       =>  03_async + 04_error_handling + 20_realtime + 15_architecture
                               alertes async sur des Chevaliers Garo, deadline de 99.9s
-03_walking_dead_protocol =>  04_testing + 11_refactoring + 14_runtime_env + 31_tools
+03_walking_dead_protocol =>  06_testing + 13_refactoring + 15_runtime_env + 32_tools
                               code spaghetti zombie à tester puis refactorer sans rien casser
-04_breaking_cache        =>  07_data_structures + 08_algorithms + 06_memory_performance
+04_breaking_cache        =>  09_data_structures + 10_algorithms + 08_memory_performance
                               supply chain façon Walter White, graphe + heap + profiling
-05_prison_break_api      =>  20_api_craft + 21_security + 23_databases + 16_web_concepts
+05_prison_break_api      =>  21_api_craft + 22_security + 24_databases + 17_web_concepts
                               API sécurisée façon Fox River, T-Bag teste l'injection
-06_ultras_dashboard      =>  25_observability + 24_scalability + 13_typescript
+06_ultras_dashboard      =>  26_observability + 25_scalability + 14_typescript
                               dashboard temps réel d'un club de foot, 200 events/min
-07_ballon_dor_cli        =>  14_runtime_env + 11_refactoring + 03_error_handling + 30_annexes
+07_ballon_dor_cli        =>  15_runtime_env + 13_refactoring + 04_error_handling + 31_annexes
                               CLI de vote v1 spaghetti à réécrire proprement en v2
-08_trapsoul_radio        =>  13_typescript + 16_web_concepts + 17_accessibility + 18_i18n
+08_trapsoul_radio        =>  14_typescript + 17_web_concepts + 18_accessibility + 19_i18n
                               radio web accessible et multilingue, zéro auditeur exclu
-09_oracle_glitch         =>  22_ai_native_dev + 28_oop_js + 26_team_craft + 27_edge_cases
+09_oracle_glitch         =>  23_ai_native_dev + 29_oop_js + 27_team_craft + 28_edge_cases
                               pipeline qui surveille et valide un LLM qui hallucine
-10_legacy_dungeon        =>  26_team_craft (navigation de codebase appliquée pour de vrai)
+10_legacy_dungeon        =>  27_team_craft (navigation de codebase appliquée pour de vrai)
                               vrai dépôt OSS non-documenté à cartographier, bug imposé à corriger
 ```
 
-### Les 5 missions de synthèse (`29_mini_projects/_synthesis/`)
+### Les 5 missions de synthèse (`30_mini_projects/_synthesis/`)
 
 Si t'en es encore au module 01 ou 02 : passe ce bloc, reviens-y plus tard. Contrairement
 aux 9 projets de construction ci-dessus (3-4 modules chacun), chaque synthèse mobilise

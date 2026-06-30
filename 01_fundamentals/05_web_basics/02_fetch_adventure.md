@@ -6,7 +6,7 @@ Pourquoi ça compte dès maintenant : sans `fetch`, ton app ne lit que ce qu'ell
 
 ---
 
-> **Note importante** : cette leçon utilise `async/await` et les Promises. Ces concepts sont introduits ici de façon minimale pour que tu puisses faire quelque chose d'utile maintenant. Le fonctionnement complet (event loop, microtasks, Promise.all, gestion fine des erreurs async) est traité en profondeur dans `02_async`. Si quelque chose semble mystérieux ici : c'est normal, et prévu.
+> **Note importante** : cette leçon utilise `async/await` et les Promises. Ces concepts sont introduits ici de façon minimale pour que tu puisses faire quelque chose d'utile maintenant. Le fonctionnement complet (event loop, microtasks, Promise.all, gestion fine des erreurs async) est traité en profondeur dans `03_async`. Si quelque chose semble mystérieux ici : c'est normal, et prévu.
 
 ---
 
@@ -18,7 +18,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
 
 Cette ligne envoie une requête GET (GET = demander des données) au serveur. Mais `fetch` ne retourne pas directement les données : il retourne une **Promise** (promesse que la valeur arrivera bientôt).
 
-Pourquoi ? Le réseau prend du temps. Pendant que la réponse voyage, JS continue à exécuter autre chose. Quand la réponse arrive, il reprend. C'est le coeur de l'asynchronicité de JS, vu en détail dans `02_async`.
+Pourquoi ? Le réseau prend du temps. Pendant que la réponse voyage, JS continue à exécuter autre chose. Quand la réponse arrive, il reprend. C'est le coeur de l'asynchronicité de JS, vu en détail dans `03_async`.
 
 ---
 
@@ -213,4 +213,4 @@ Observe `response.ok` et `response.status`. Écris le code qui détecte l'échec
 
 ## RÉSUMÉ
 
-`fetch` est la porte entre ton code et le monde extérieur. Tu envoies une requête, tu attends la réponse, tu la décode, tu la protèges avec try/catch. `async/await` rend tout ça lisible. La mécanique complète derrière (pourquoi `await` ne bloque pas, comment JS jongle plusieurs opérations en même temps) : c'est le sujet entier de `02_async`, et ça vaut le détour.
+`fetch` est la porte entre ton code et le monde extérieur. Tu envoies une requête, tu attends la réponse, tu la décode, tu la protèges avec try/catch. `async/await` rend tout ça lisible. La mécanique complète derrière (pourquoi `await` ne bloque pas, comment JS jongle plusieurs opérations en même temps) : c'est le sujet entier de `03_async`, et ça vaut le détour.

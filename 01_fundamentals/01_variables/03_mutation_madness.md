@@ -3,7 +3,7 @@
 > Tu croyais avoir copié. T'as juste dupliqué le chaos.
 
 > Ce fichier introduit la mutation et la copie superficielle.
-> Le mécanisme complet (Stack vs Heap, deep clone, structuredClone) est traité en profondeur dans `06_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`.
+> Le mécanisme complet (Stack vs Heap, deep clone, structuredClone) est traité en profondeur dans `08_memory_performance/02_copy_vs_ref/01_shallow_vs_deep.md`.
 > Ici on pose le problème. Là-bas on va au fond.
 
 ---

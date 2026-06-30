@@ -1,14 +1,14 @@
 # DEPENDENCY LEDGER : LE JOURNAL DE TA DÉPENDANCE À L'IA
 
-> Rempli au fil du curriculum, pas en une fois. Voir `22_ai_native_dev/07_solo_vs_copilot_drill.md` pour le protocole complet avant de remplir quoi que ce soit ici.
+> Rempli au fil du curriculum, pas en une fois. Voir `23_ai_native_dev/07_solo_vs_copilot_drill.md` pour le protocole complet avant de remplir quoi que ce soit ici.
 
-Ce fichier vit à la racine, pas dans `22_ai_native_dev/`, parce que ce qu'il mesure traverse tout le curriculum. Tu le rouvres à 4 moments précis : après le bloc 01-04, après le bloc 07-13, après le bloc 14-20, après le bloc 22-28. Quatre entrées, une courbe, pas un instantané.
+Ce fichier vit à la racine, pas dans `23_ai_native_dev/`, parce que ce qu'il mesure traverse tout le curriculum. Tu le rouvres à 4 moments précis : après le bloc 01-06, après le bloc 07-14, après le bloc 15-22, après le bloc 23-29. Quatre entrées, une courbe, pas un instantané.
 
 Chaque entrée suit le même protocole : une tâche calibrée, un round solo chronométré, un round copilot chronométré, une comparaison honnête.
 
 ---
 
-## SESSION 1 : APRÈS LE BLOC 01-04 (fondamentaux, async, erreurs, tests)
+## SESSION 1 : APRÈS LE BLOC 01-06 (fondamentaux, problem solving, async, erreurs, debugging, tests)
 
 ```
 Date :
@@ -41,7 +41,7 @@ Module à relire avant la prochaine session :
 
 ---
 
-## SESSION 2 : APRÈS LE BLOC 07-13 (data structures, algos, FP, patterns, refacto, problem solving, TS)
+## SESSION 2 : APRÈS LE BLOC 07-14 (math, perf mémoire, data structures, algos, FP, patterns, refacto, TS)
 
 ```
 Date :
@@ -80,7 +80,7 @@ Le CAS identifié est-il le même qu'en Session 1, ou différent ?
 
 ---
 
-## SESSION 3 : APRÈS LE BLOC 14-21 (runtime, archi, web concepts, a11y, i18n, realtime, API, sécurité)
+## SESSION 3 : APRÈS LE BLOC 15-22 (runtime, archi, web concepts, a11y, i18n, realtime, API, sécurité)
 
 ```
 Date :
@@ -118,7 +118,7 @@ Tendance sur 3 points de mesure : (autonomie qui monte / stagne / descend)
 
 ---
 
-## SESSION 4 : APRÈS LE BLOC 22-28 (IA native, databases, scalabilité, observabilité, team craft, edge cases, OOP)
+## SESSION 4 : APRÈS LE BLOC 23-29 (IA native, databases, scalabilité, observabilité, team craft, edge cases, OOP)
 
 ```
 Date :

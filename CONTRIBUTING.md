@@ -51,7 +51,7 @@ Si ton code est difficile à lire, c'est qu'il est mal pensé.
 
 ---
 
-## Structure obligatoire d'un mini-projet (`29_mini_projects`)
+## Structure obligatoire d'un mini-projet (`30_mini_projects`)
 
 Les mini-projets sont des projets intégrateurs : ils consolident plusieurs modules à la fois dans un contexte fun et concret. Chaque projet suit cette structure stricte :
 
@@ -81,8 +81,8 @@ Trois fichiers/dossiers sortent du moule classique leçon + exercice + grimoire 
 
 ```
 03_WHERE_YOU_STAND.md                 # 4 axes, 4 niveaux : où t'en es vraiment (racine du repo)
-30_annexes/01_ascii_charte.md            # 8 schémas canoniques, une seule version pour tout le curriculum
-29_mini_projects/_synthesis/          # 5 missions qui croisent un bloc entier de modules
+31_annexes/01_ascii_charte.md            # 8 schémas canoniques, une seule version pour tout le curriculum
+30_mini_projects/_synthesis/          # 5 missions qui croisent un bloc entier de modules
 ```
 
 Ce sont des fichiers de structure, pas des leçons. Du coup :

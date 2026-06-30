@@ -27,4 +27,4 @@ Si tu ne maîtrises pas ces termes, tu codes à l'aveugle.
 
 ---
 
-> **Pure Function, Currying, Partial Application, Composition, Memoization** : ces concepts ont leurs propres leçons dans `09_functional_js`. Ils seront là quand tu seras prêt pour eux.
+> **Pure Function, Currying, Partial Application, Composition, Memoization** : ces concepts ont leurs propres leçons dans `11_functional_js`. Ils seront là quand tu seras prêt pour eux.

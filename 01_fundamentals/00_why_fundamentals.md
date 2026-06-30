@@ -64,7 +64,7 @@ La détection de type a aussi mûri : on est passé d'un usage abusif de `typeof
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, sans discussion. Ce bloc fait partie des "6 blocs prioritaires" du curriculum pour une raison simple : tout le reste en dépend. `02_async`, `07_data_structures`, `09_functional_js` : chacun de ces modules suppose que tu maîtrises déjà closures, scope, types, fonctions. Sauter ce module, c'est construire un immeuble sans fondations et espérer que ça tienne au 5ème étage.
+Oui, sans discussion. Ce bloc fait partie des "6 blocs prioritaires" du curriculum pour une raison simple : tout le reste en dépend. `03_async`, `09_data_structures`, `11_functional_js` : chacun de ces modules suppose que tu maîtrises déjà closures, scope, types, fonctions. Sauter ce module, c'est construire un immeuble sans fondations et espérer que ça tienne au 5ème étage.
 
 ---
 
