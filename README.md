@@ -46,6 +46,13 @@ forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les
 l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils
 ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 
+**Si tu débarques de zéro, ignore `00_referentiel/` et `29_mini_projects/_synthesis/`
+pour l'instant.** Tu vas les croiser dans l'arborescence en scrollant, c'est normal, c'est
+pas pour aujourd'hui. Le référentiel sert à te situer une fois que t'as déjà du chemin
+derrière toi. Les missions de synthèse demandent plusieurs modules déjà digérés. Avant ça,
+ouvrir ces fichiers, c'est juste du bruit qui te perd pour rien. Ils sont mentionnés plus
+loin dans ce README, au bon moment.
+
 ---
 
 ## ROADMAP : DANS L'ORDRE, SANS SAUTER D'ÉTAPE
@@ -759,6 +766,9 @@ C'est ça, coder avec l'IA en 2026. Pas la croire. La contrôler.
 
 ### Les 5 missions de synthèse (`29_mini_projects/_synthesis/`)
 
+Si t'en es encore au module 01 ou 02 : passe ce bloc, reviens-y plus tard. Ces missions
+demandent un bloc entier déjà digéré, pas une lecture en avance pour voir à quoi ça ressemble.
+
 Les 9 projets ci-dessus croisent 3 à 4 modules chacun. Les missions de synthèse vont plus
 loin : elles te forcent à mobiliser un bloc entier de modules d'un coup, pas un sous-ensemble
 choisi à l'avance. C'est le test qui dit si t'as vraiment digéré un bloc ou si t'as juste
@@ -815,7 +825,8 @@ T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
 - **Le référentiel (`00_referentiel/competences.md`) n'est pas un quiz à remplir.** C'est
   une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
   (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
-  ton score. T'es le seul à le lire.
+  ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
+  sinon les 4 axes te parlent encore de rien de concret.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
   `30_annexes/ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
