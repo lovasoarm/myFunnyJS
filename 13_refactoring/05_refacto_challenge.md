@@ -243,7 +243,7 @@ class PlaylistManager {
 }
 ```
 
-Le `console.log` a disparu : c'est maintenant l'historique (ou un futur logger injecté, cf module 10 sur les patterns) qui porte l'info, pas une sortie console qui pollue tout.
+Le `console.log` a disparu : c'est maintenant l'historique (ou un futur logger injecté, cf module 12 sur les patterns) qui porte l'info, pas une sortie console qui pollue tout.
 
 ```
 v1 : god class + bug NaN + console.log partout

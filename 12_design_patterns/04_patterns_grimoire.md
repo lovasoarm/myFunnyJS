@@ -1,6 +1,6 @@
 # GRIMOIRE : DESIGN PATTERNS
 
-Le vocabulaire de tout le module 10. Si un terme te bloque dans une leçon, il est ici.
+Le vocabulaire de tout le module 12. Si un terme te bloque dans une leçon, il est ici.
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|

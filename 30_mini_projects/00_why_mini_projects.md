@@ -136,13 +136,13 @@ Tu n'as pas besoin de finir tous les modules avant de commencer : chaque projet 
 ```
 | Projet                    | Modules requis          | Moment recommandé       |
 |---------------------------|-------------------------|-------------------------|
-| 01_rasengan_engine        | 01 + 07 + 11 + 12       | Après module 12         |
-| 02_garo_no_kronika        | 03 + 04 + 16 + 20       | Après module 20         |
-| 03_walking_dead_protocol  | 06 + 13 + 15 + 32       | Après module 15         |
+| 01_rasengan_engine        | 01 + 05 + 11 + 12       | Après module 12         |
+| 02_garo_no_kronika        | 03 + 04 + 15 + 20       | Après module 20         |
+| 03_walking_dead_protocol  | 06 + 13 + 15 + 32       | Après module 32         |
 | 04_breaking_cache         | 08 + 09 + 10            | Après module 10         |
 | 05_prison_break_api       | 17 + 21 + 22 + 24       | Après module 24         |
 | 06_ultras_dashboard       | 14 + 25 + 26            | Après module 26         |
-| 07_ballon_dor_cli         | 04 + 13 + 15 + 31       | Après module 15         |
+| 07_ballon_dor_cli         | 04 + 13 + 15 + 31       | Après module 31         |
 | 08_trapsoul_radio         | 14 + 17 + 18 + 19       | Après module 19         |
 | 09_oracle_glitch          | 23 + 27 + 28 + 29       | Après module 29         |
 ```

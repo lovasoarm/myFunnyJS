@@ -122,7 +122,7 @@ Ce qui compte : savoir où sont tes trous, pas viser le 4/4/4/4.
 PROFIL TYPIQUE D'UN JUNIOR        Runtime N1   Lecture N1   Debug N1   Architecture N1
 PROFIL TYPIQUE APRÈS 01-08        Runtime N2   Lecture N2   Debug N2   Architecture N1
 PROFIL TYPIQUE APRÈS 09-15        Runtime N2   Lecture N2   Debug N2   Architecture N3
-PROFIL TYPIQUE APRÈS 22-28        Runtime N3   Lecture N3   Debug N3   Architecture N3
+PROFIL TYPIQUE APRÈS 22-29        Runtime N3   Lecture N3   Debug N3   Architecture N3
 ```
 
 Ces profils sont des repères, pas des objectifs à cocher. Si t'es Runtime N3 dès le module 04 parce que t'as déjà fait du Node avant : tant mieux, avance.

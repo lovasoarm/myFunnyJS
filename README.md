@@ -204,7 +204,7 @@ Le détail complet (pitch, contraintes, ADR, POSTMORTEM) est dans chaque dossier
 
 ### Les 5 missions de synthèse (`30_mini_projects/_synthesis/`)
 
-Si t'en es encore au module 01 ou 02 : passe ce bloc, reviens-y plus tard. Contrairement
+Si t'as pas encore fini le bloc 01-04 : passe ce bloc, reviens-y plus tard. Contrairement
 aux 9 projets de construction ci-dessus (3-4 modules chacun), chaque synthèse mobilise
 un bloc entier d'un coup. C'est le test qui dit si t'as vraiment digéré le bloc ou juste
 enchaîné des leçons.
@@ -214,7 +214,7 @@ synthese_A  =>  après 01-04   runtime + async + erreurs + tests
 synthese_B  =>  après 05-09   perf + structures + algos + FP
 synthese_C  =>  après 10-13   patterns + refactor + résolution + TS
 synthese_D  =>  après 14-21   runtime web + archi + sécurité (la plus grosse, prévois du temps)
-synthese_E  =>  après 22-28   IA + data + scale + observabilité + OOP
+synthese_E  =>  après 22-29   IA + data + scale + observabilité + OOP
 ```
 
 Fais-les après le bloc correspondant, pas avant.

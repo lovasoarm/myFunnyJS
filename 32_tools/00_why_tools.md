@@ -84,7 +84,7 @@ Ce module vit PAS dans le flux normal de progression. Il vit À CÔTÉ, comme un
                                     ou scaffolder un nouveau projet
 ```
 
-C'est pour ça que ce module a pas vraiment de "moment" dans la progression. Tu peux le consulter dès le module 04 (testing), ou attendre le mini-projet 1. Les deux sont valides.
+C'est pour ça que ce module a pas vraiment de "moment" dans la progression. Tu peux le consulter dès le module 06 (testing), ou attendre le mini-projet 1. Les deux sont valides.
 
 ---
 

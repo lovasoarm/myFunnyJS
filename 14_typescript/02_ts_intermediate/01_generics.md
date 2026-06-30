@@ -88,7 +88,7 @@ const response: ApiResponse<Player> = {
 ```
 
 ```ts
-// generic pour une pile (stack):on en a parlé en module 07
+// generic pour une pile (stack):on en a parlé en module 09
 interface Stack<T> {
   push(item: T): void;
   pop(): T | undefined;

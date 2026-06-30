@@ -1,6 +1,6 @@
 # PROTOTYPE CHAIN RAW : LA CHAÎNE BRUTE, SANS SUCRE
 
-Un objet JS qui ne trouve pas une propriété ne renvoie pas direct `undefined`. Il va chercher chez son parent. Puis chez le parent du parent. Jusqu'à la racine. Cette chaîne, c'est le moteur entier de l'OOP en JS. `class` n'existe pas sans elle. Si tu comprends ça, tout le reste du module 28 devient de la syntaxe au-dessus d'un mécanisme que tu connais déjà.
+Un objet JS qui ne trouve pas une propriété ne renvoie pas direct `undefined`. Il va chercher chez son parent. Puis chez le parent du parent. Jusqu'à la racine. Cette chaîne, c'est le moteur entier de l'OOP en JS. `class` n'existe pas sans elle. Si tu comprends ça, tout le reste du module 29 devient de la syntaxe au-dessus d'un mécanisme que tu connais déjà.
 
 ---
 

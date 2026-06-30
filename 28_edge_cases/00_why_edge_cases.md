@@ -148,7 +148,7 @@ Ce qui ne bougera pas :
 
 ## NOYAU DUR OU PÉRIPHÉRIQUE ?
 
-Périphérique dans la progression (module 27 sur 31).
+Périphérique dans la progression (module 28 sur 32).
 Mais les comportements couverts ici sont présents depuis le module 01.
 
 La différence : au début du curriculum, on les évite. Ici, on les comprend.

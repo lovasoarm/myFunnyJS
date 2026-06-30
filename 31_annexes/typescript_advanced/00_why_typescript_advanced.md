@@ -79,7 +79,7 @@ Un projet TypeScript en prod, c'est jamais 100% du code écrit par toi avec des 
 ## QUAND ÇA DEVIENT IMPORTANT, QUAND ÇA DEVIENT INDISPENSABLE
 
 ```
-tu écris du TS sur un projet greenfield (parti de zéro)     --> les bases (module 13) suffisent
+tu écris du TS sur un projet greenfield (parti de zéro)     --> les bases (module 14) suffisent
 tu utilises une lib sans types officiels                     --> .d.ts devient nécessaire
 ton équipe se dispute sur le niveau de strictness du projet  --> tsconfig.json devient un sujet politique
 tu hérites d'un projet JS de 50 000 lignes à migrer           --> stratégie de migration obligatoire
@@ -150,7 +150,7 @@ contribution open source  --> tu sais écrire un .d.ts pour proposer des types �
 - mettre `any` dès qu'une erreur de type apparaît, sans comprendre pourquoi elle apparaît
 - copier un tsconfig.json trouvé en ligne sans lire une seule option
 - vouloir migrer un projet JS entier en TS en un seul gros commit
-- confondre `type` et `interface` au moment d'écrire un .d.ts (vu dans le module 13, mais l'erreur revient ici)
+- confondre `type` et `interface` au moment d'écrire un .d.ts (vu dans le module 14, mais l'erreur revient ici)
 - désactiver `strict: true` parce que "ça génère trop d'erreurs", au lieu de les corriger une par une
 ```
 
