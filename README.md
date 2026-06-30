@@ -1,4 +1,4 @@
-# MyFunnyJS
+![MyFunnyJS](./assets/title.svg)
 
 ---
 Ce projet, c'est le chemin complet pour passer de "je connais quelques trucs en JS"
