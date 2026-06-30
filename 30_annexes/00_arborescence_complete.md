@@ -16,6 +16,7 @@ MyFunnyJS/
 ├── 03_WHERE_YOU_STAND.md                                        # 4 axes (Runtime, Lecture, Debug, Architecture), 4 niveaux chacun : où t'en es vraiment
 ├── README.md                                                   # La roadmap des 31 modules, dans l'ordre
 ├── CONTRIBUTING.md                                             # Les règles du camp : pas de PR qui pue
+├── DEPENDENCY_LEDGER.md                                        # Journal transversal : drill solo-vs-copilot rejoué à 4 moments du curriculum, voir 22_ai_native_dev/07
 │
 ├── 01_fundamentals/
 │   ├── 00_why_fundamentals.md                      # Sans ces bases, tu codes au feeling et tu pries pour que ça remarche
@@ -355,7 +356,9 @@ MyFunnyJS/
 │   ├── 03_validate_ai_output.md                               # Valider ce que l'IA génère : typage, parsing, tests automatiques
 │   ├── 04_ai_refactor_partner.md                              # Utiliser l'IA comme partenaire de refactoring : pas comme remplaçant
 │   ├── 05_ai_test_generator.md                                # Générer des tests avec l'IA : et vérifier qu'ils testent vraiment quelque chose
-│   └── 06_ai_grimoire.md
+│   ├── 07_solo_vs_copilot_drill.md                            # Mesurer ta dépendance à l'IA dans le temps : pas une croyance, une donnée datée
+│   ├── 08_ai_code_review_arena.md                             # 5 snippets piégés à reviewer : patterns IA vs patterns humains, corrigé en spoiler
+│   └── 09_ai_grimoire.md
 │
 ├── 23_databases/                                               # Persister intelligemment dans le temps : et retrouver rapidement
 │   ├── 00_why_databases.md                                     # Une requête à 5ms sur 1000 lignes peut en prendre 8s sur 10 millions, juste parce qu'il manque un index
@@ -398,7 +401,8 @@ MyFunnyJS/
 │   ├── 02_floating_point.md                                   # 0.1 + 0.2 !== 0.3 : l'arithmétique flottante et pourquoi elle surprend toujours
 │   ├── 03_weird_coercions.md                                  # [] + {} = ?, {} + [] = ? : les coercions qui font rire et qui font mal
 │   ├── 04_prototype_chain_dark.md                             # La chaîne prototype dans ses zones sombres : __proto__, hasOwnProperty, pollution
-│   └── 05_edge_cases_grimoire.md
+│   ├── 05_edge_cases_grimoire.md
+│   └── 06_heisenbug_arena.md                                   # 5 bugs intermittents fournis : non-déterministes dans leur timing, déterministes dans leur cause
 │
 ├── 28_oop_js/                                                  # prototype, classes, héritage : la face cachée de JS
 │   ├── 00_why_oop_js.md                                        # class en JS, c'est une façade : derrière, c'est la chaîne de prototypes qui tient toute la baraque
@@ -487,6 +491,15 @@ MyFunnyJS/
 │   │   ├── ADR/
 │   │   ├── src/                    # à créer manuellement pendant le projet
 │   │   └── tests/                  # à créer manuellement avant le code
+│   ├── 10_legacy_dungeon/                                      # Pas de src/ ni tests/ : tu investigues un repo cloné à côté, pas écrit ici
+│   │   ├── cahierdescharges.md                                 # les 4 critères de choix du repo, les 3 étapes, les candidats de départ
+│   │   ├── README.md
+│   │   ├── TDD_JOURNAL.md                                      # journal d'investigation (partie 1) + TDD classique du bugfix (partie 2)
+│   │   ├── POSTMORTEM.md
+│   │   ├── ADR/
+│   │   │   └── ADR-001_pourquoi_ce_code_est_ce_quil_est.md     # gabarit avec exemple rempli (Express), décision déduite après coup
+│   │   ├── MAP.md                  # à créer manuellement (Étape 1 : cartographie, 2h chrono)
+│   │   └── BUGFIX.md               # à créer manuellement (Étape 2 : preuve avant/après)
 │   └── _synthesis/                                             # Les 5 missions qui te forcent à croiser plusieurs blocs de modules d'un coup
 │       ├── synthese_A.md                                       # Après 01-04 : runtime + async + erreurs + tests
 │       ├── synthese_B.md                                       # Après 05-09 : perf + structures + algos + FP

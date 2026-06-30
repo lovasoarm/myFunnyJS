@@ -47,6 +47,11 @@ forcent à les assembler pour de vrai. C'est là que tout se concrétise. Ne les
 l'expérience capturée par écrit. Les meilleurs développeurs savent exactement pourquoi ils
 ont pris telle décision, ce qui a cassé, et ce qu'ils feraient différemment.
 
+**Tiens `DEPENDENCY_LEDGER.md` à jour.** 4 fois dans le curriculum (après 04, 11, 20, 28),
+tu rejoues un drill court qui mesure ta dépendance réelle à l'IA, pas ce que tu crois.
+Le protocole complet est dans `22_ai_native_dev/07_solo_vs_copilot_drill.md`. Une règle non
+mesurée reste une croyance.
+
 **Si tu débarques de zéro, ignore `29_mini_projects/_synthesis/` pour l'instant.** Tu vas
 le croiser dans l'arborescence en scrollant, c'est normal, c'est pas pour aujourd'hui. Les
 missions de synthèse demandent plusieurs modules déjà digérés. Avant ça, ouvrir ces fichiers,
