@@ -173,11 +173,11 @@ T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
   ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
   sinon les 4 axes te parlent encore de rien de concret.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
-  `30_annexes/ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
+  `30_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
   c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
-  `30_annexes/02_arborescence_complete.md` liste tout, dossier par dossier, fichier par
+  `30_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
   fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
