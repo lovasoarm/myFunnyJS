@@ -1,4 +1,3 @@
-
 # ADR-001 : architecture fonctionnelle pure sans classe ni mutation d'état
 
 ## Statut
@@ -35,7 +34,7 @@ On utilise une architecture 100% fonctionnelle. Chaque fonction de combat prend 
 
 - Avantages : `ninja.takeDamage(50)` se lit naturellement, correspond à l'intuition d'un objet "vivant"
 
-- Limites : les tests deviennent fragiles dès qu'on mute l'état entre deux assertions — le ninja après le tour 1 n'est plus dans son état initial, chaque test doit reconstruire l'état de zéro
+- Limites : les tests deviennent fragiles dès qu'on mute l'état entre deux assertions : le ninja après le tour 1 n'est plus dans son état initial, chaque test doit reconstruire l'état de zéro
 
 - Rejeté parce que : les tests unitaires par tour deviennent des cas de setup lourd ; la reproductibilité est compromise ; et ce projet est précisément l'occasion d'apprendre à penser fonctionnel sur un vrai système de combat
 
@@ -45,7 +44,7 @@ On utilise une architecture 100% fonctionnelle. Chaque fonction de combat prend 
 
 - Limites : la frontière entre ce qui mute et ce qui ne mute pas devient floue ; le bénéfice pédagogique de l'immutabilité totale est dilué
 
-- Rejeté parce que : l'objectif pédagogique de ce module est de démontrer qu'un système complet peut fonctionner sans mutation — un hybride brouille ce message
+- Rejeté parce que : l'objectif pédagogique de ce module est de démontrer qu'un système complet peut fonctionner sans mutation : un hybride brouille ce message
 
 ## Conséquences
 
@@ -59,7 +58,7 @@ Gains :
 
 Sacrifices :
 
-- les spread successifs (`{ ...état, chakra: état.chakra - coût }`) créent plus d'objets en mémoire qu'une mutation directe — acceptable sur ce périmètre, problématique sur 100k itérations avec de gros objets
+- les spread successifs (`{ ...état, chakra: état.chakra - coût }`) créent plus d'objets en mémoire qu'une mutation directe : acceptable sur ce périmètre, problématique sur 100k itérations avec de gros objets
 
 - la lisibilité peut surprendre un dev habitué à l'OOP : `const newState = appliquerDégâts(state, 50)` est moins intuitif que `ninja.takeDamage(50)` pour un lecteur qui ne connaît pas le style fonctionnel
 
@@ -68,4 +67,3 @@ Décisions liées :
 - ADR-002 portera sur le choix de l'algorithme de résolution des esquives (probabiliste vs déterministe selon le seed)
 
 - si le moteur doit un jour gérer des états persistés (sauvegarde de partie), l'immutabilité facilite la sérialisation : l'état est déjà une valeur pure, pas un graphe d'objets circulaires
-

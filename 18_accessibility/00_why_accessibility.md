@@ -11,6 +11,7 @@ L'accessibilité (a11y : raccourci pour "accessibility", 9 lettres entre le "a" 
 Une grande partie des sites web ne sont tout simplement pas utilisables par les personnes en situation de handicap : contraste insuffisant pour les malvoyants, navigation impossible au clavier pour les personnes avec un handicap moteur, structure illisible pour les lecteurs d'écran utilisés par les personnes aveugles. Ce n'est pas un détail marginal : ça représente une part significative de la population mondiale, et dans plusieurs pays, c'est devenu une obligation légale, pas juste une bonne pratique.
 
 L'accessibilité résout ce problème en donnant des règles concrètes :
+
 - les rôles et propriétés ARIA (Accessible Rich Internet Applications : attributs qui décrivent le rôle et l'état d'un élément) pour communiquer avec les lecteurs d'écran
 - l'ordre de tabulation et la gestion du focus pour permettre une navigation complète au clavier
 - le ratio de contraste WCAG (Web Content Accessibility Guidelines : recommandations internationales d'accessibilité) pour garantir que le texte reste lisible pour les malvoyants
@@ -75,11 +76,11 @@ Les technologies d'assistance vont continuer d'évoluer, mais le principe fondam
 
 **Prérequis directs :** `17_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `01_fundamentals/05_web_basics/01_dom_manipulation.md`.
 
-**Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir — ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
+**Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
 
 **Position dans la roadmap :** Module 17 sur 31. Il arrive après les web concepts (16) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède l'i18n (18) parce que les deux partagent la même philosophie : un produit qui ne fonctionne que pour certains n'est pas fini.
 
-**Lien avec les autres modules :** `14_typescript` si tu types tes composants — les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `06_testing` — les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
+**Lien avec les autres modules :** `14_typescript` si tu types tes composants : les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `06_testing` : les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
 
 ---
 

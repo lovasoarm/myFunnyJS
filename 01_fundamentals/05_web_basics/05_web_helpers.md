@@ -188,6 +188,6 @@ Crée une fonction `spawnMonster(name)` qui crée un élément, lui donne un tex
 
 `debounce` retarde l'exécution jusqu'à ce que l'utilisateur arrête de déclencher l'événement. `throttle` impose un délai minimum entre deux exécutions. Les deux servent à contrôler la fréquence des appels coûteux sur des événements haute fréquence.
 
-`deepClone` via `structuredClone()` duplique un objet entier, structure imbriquée incluse. C'est la solution native — plus besoin de JSON.parse/stringify.
+`deepClone` via `structuredClone()` duplique un objet entier, structure imbriquée incluse. C'est la solution native : plus besoin de JSON.parse/stringify.
 
 Ces helpers ne sont pas des luxes. Ils font partie du kit de survie de tout dev frontend qui comprend ce qui se passe sous le capot des frameworks.

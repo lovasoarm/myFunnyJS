@@ -36,13 +36,13 @@ Vrai calcul intensif (IA, vidéo, gros batch)   -->  cher par nature, mais au mo
 // Mauvais : un cron qui poll une API externe toutes les 10 secondes, 24h/24, pour une donnée qui change une fois par jour
 setInterval(async () => {
   const data = await fetchExternalRanking();
-  await cache.set('ranking', data);
+  await cache.set("ranking", data);
 }, 10_000); // 8640 appels par jour pour une donnée qui bouge... une fois par jour
 
 // Correct : la fréquence colle au taux de changement réel de la donnée
 setInterval(async () => {
   const data = await fetchExternalRanking();
-  await cache.set('ranking', data);
+  await cache.set("ranking", data);
 }, 3_600_000); // une fois par heure suffit largement, le coût d'appel chute de 99%
 ```
 
@@ -52,16 +52,16 @@ Le problème numéro un en FinOps n'est pas "on dépense trop", c'est "on ne sai
 
 ```js
 // Une ressource sans tag est une dépense fantôme, impossible à attribuer à une équipe
-const instance = await cloud.createInstance({ type: 't3.medium' });
+const instance = await cloud.createInstance({ type: "t3.medium" });
 
 // Une ressource taguée devient traçable : qui l'a créée, pourquoi, jusqu'à quand
 const instance = await cloud.createInstance({
-  type: 't3.medium',
+  type: "t3.medium",
   tags: {
-    team: 'ultras-dashboard',
-    environment: 'staging',
-    owner: 'backend-team',
-    expiresAt: '2026-09-01', // une ressource de staging sans date d'expiration finit oubliée pour toujours
+    team: "ultras-dashboard",
+    environment: "staging",
+    owner: "backend-team",
+    expiresAt: "2026-09-01", // une ressource de staging sans date d'expiration finit oubliée pour toujours
   },
 });
 ```
@@ -84,20 +84,20 @@ Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par l'uti
 
 ```js
 // Mauvais : recalculer un classement complet à chaque requête, même si rien n'a changé
-app.get('/ranking', async (req, res) => {
+app.get("/ranking", async (req, res) => {
   const allMatches = await db.matches.findAll(); // charge tout, à chaque appel
   const ranking = computeFullRanking(allMatches); // recalcul intégral, à chaque appel
   res.json(ranking);
 });
 
 // Correct : on calcule une fois, on sert depuis le cache tant que rien n'a changé
-app.get('/ranking', async (req, res) => {
-  const cached = await cache.get('ranking');
+app.get("/ranking", async (req, res) => {
+  const cached = await cache.get("ranking");
   if (cached) return res.json(cached); // zéro calcul CPU, zéro accès DB, zéro watt gaspillé
 
   const allMatches = await db.matches.findAll();
   const ranking = computeFullRanking(allMatches);
-  await cache.set('ranking', ranking, { ttl: 300 });
+  await cache.set("ranking", ranking, { ttl: 300 });
   res.json(ranking);
 });
 ```
@@ -108,11 +108,11 @@ Une optimisation moins connue : l'intensité carbone du réseau électrique vari
 
 ```js
 // Un batch job lourd, lancé sans réflexion sur le timing
-cron.schedule('0 2 * * *', runNightlyReportGeneration); // 2h du matin, choisi au hasard
+cron.schedule("0 2 * * *", runNightlyReportGeneration); // 2h du matin, choisi au hasard
 
 // Un batch carbon-aware, décalé vers une fenêtre où le mix électrique est plus propre
 // (ex : décalage vers les heures de forte production solaire dans la région d'hébergement)
-cron.schedule('0 13 * * *', runNightlyReportGeneration); // tâche non urgente, déplacée en milieu de journée
+cron.schedule("0 13 * * *", runNightlyReportGeneration); // tâche non urgente, déplacée en milieu de journée
 ```
 
 ---
@@ -130,9 +130,9 @@ node --prof (déjà vu en 08)        -->  identifier le code qui consomme le plu
 
 ```js
 // Mesurer avant d'affirmer qu'une fonction "coûte cher" : l'intuition se trompe souvent
-console.time('computeFullRanking');
+console.time("computeFullRanking");
 const ranking = computeFullRanking(allMatches);
-console.timeEnd('computeFullRanking'); // computeFullRanking: 842ms — voilà la vraie cible à optimiser
+console.timeEnd("computeFullRanking"); // computeFullRanking: 842ms : voilà la vraie cible à optimiser
 ```
 
 ---

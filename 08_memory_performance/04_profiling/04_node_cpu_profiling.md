@@ -13,25 +13,25 @@ Prérequis : `01_profiling_basics.md`, `03_devtools_deep_dive.md`.
 Node.js génère un fichier `.cpuprofile` directement sans bibliothèque externe.
 
 ```js
-// script.js — traitement de données Walking Dead
+// script.js : traitement de données Walking Dead
 // on simule une supply chain qui calcule les rations pour 300 survivants
 const survivors = Array.from({ length: 300 }, (_, i) => ({
   id: i,
   name: `Survivor_${i}`,
   calories: Math.floor(Math.random() * 2000) + 1500,
-}))
+}));
 
 function calculateDailyNeed(group) {
   // O(n²) naïf : pour chaque survivant, on recalcule la moyenne du groupe entier
-  return group.map(s => {
-    const avg = group.reduce((sum, x) => sum + x.calories, 0) / group.length
-    return { ...s, surplus: s.calories - avg }
-  })
+  return group.map((s) => {
+    const avg = group.reduce((sum, x) => sum + x.calories, 0) / group.length;
+    return { ...s, surplus: s.calories - avg };
+  });
 }
 
 // Appel 10 000 fois pour simuler une charge réelle
 for (let i = 0; i < 10_000; i++) {
-  calculateDailyNeed(survivors)
+  calculateDailyNeed(survivors);
 }
 ```
 
@@ -52,25 +52,27 @@ Ce que tu vois dans le flamegraph : `calculateDailyNeed` → `reduce` → les mi
 Tu n'as pas Chrome sur le serveur. Ou tu veux parser programmatiquement.
 
 ```js
-// analyser-profil.js — lecture directe du fichier .cpuprofile
-const fs = require('fs')
+// analyser-profil.js : lecture directe du fichier .cpuprofile
+const fs = require("fs");
 
-const profile = JSON.parse(fs.readFileSync('./mon_profil.cpuprofile', 'utf-8'))
+const profile = JSON.parse(fs.readFileSync("./mon_profil.cpuprofile", "utf-8"));
 
 // Les nodes contiennent la call tree (arbre d'appels)
-const nodes = profile.nodes
+const nodes = profile.nodes;
 
 // Trouver les fonctions les plus coûteuses (hitCount élevé)
 const hotNodes = nodes
-  .filter(n => n.hitCount > 0)
+  .filter((n) => n.hitCount > 0)
   .sort((a, b) => b.hitCount - a.hitCount)
-  .slice(0, 10)
+  .slice(0, 10);
 
 // Afficher les 10 plus coûteuses
-hotNodes.forEach(n => {
-  const fn = n.callFrame
-  console.log(`[${n.hitCount} hits] ${fn.functionName || '(anonymous)'} — ${fn.url}:${fn.lineNumber}`)
-})
+hotNodes.forEach((n) => {
+  const fn = n.callFrame;
+  console.log(
+    `[${n.hitCount} hits] ${fn.functionName || "(anonymous)"} : ${fn.url}:${fn.lineNumber}`,
+  );
+});
 ```
 
 `hitCount` : combien de fois le profiler a "vu" cette fonction active pendant les samples. Plus c'est haut, plus cette fonction mange du CPU.
@@ -116,29 +118,29 @@ La différence entre `clinic flame` et `--cpu-prof` : clinic génère un flamegr
 Le cas le plus fréquent en prod Node : une opération CPU-intensive qui bloque l'event loop.
 
 ```js
-// server.js — Walking Dead camp management API
-const http = require('http')
+// server.js : Walking Dead camp management API
+const http = require("http");
 
 function computeOptimalRotation(survivors) {
   // Tri + calcul : opération synchrone coûteuse
   // Sur 10 000 survivants, ça prend ~200ms
   return survivors
     .sort((a, b) => a.fatigue - b.fatigue)
-    .map((s, i) => ({ ...s, shift: i % 3 }))
+    .map((s, i) => ({ ...s, shift: i % 3 }));
 }
 
 const server = http.createServer((req, res) => {
-  if (req.url === '/rotate') {
+  if (req.url === "/rotate") {
     // PROBLÈME : cette opération bloque pendant ~200ms
     // pendant ce temps, AUCUNE autre requête ne peut être traitée
-    const rotation = computeOptimalRotation(generateSurvivors(10_000))
-    res.end(JSON.stringify(rotation))
+    const rotation = computeOptimalRotation(generateSurvivors(10_000));
+    res.end(JSON.stringify(rotation));
   } else {
-    res.end('camp is up')
+    res.end("camp is up");
   }
-})
+});
 
-server.listen(3000)
+server.listen(3000);
 ```
 
 ```bash
@@ -182,13 +184,14 @@ Troisième cas : le profil qui montre `(program)` partout.
 [12 hits] calculateSurvivorNeeds
 ```
 
-`(program)` avec un hitCount très élevé = l'overhead du runtime JS lui-même. Ça n'indique pas de hotspot dans ton code. Si tu vois ça : ton vrai problème est peut-être dans les I/O, pas dans le CPU — utilise `clinic bubbleprof` à la place de `clinic flame`.
+`(program)` avec un hitCount très élevé = l'overhead du runtime JS lui-même. Ça n'indique pas de hotspot dans ton code. Si tu vois ça : ton vrai problème est peut-être dans les I/O, pas dans le CPU : utilise `clinic bubbleprof` à la place de `clinic flame`.
 
 ---
 
 # EXERCICES
 
 ## EXO 1 : DIAGNOSTIQUER LA SUPPLY CHAIN
+
 _~20 min_
 
 La supply chain de Breaking Bad calcule les routes optimales pour 500 points de distribution. Sur 50 000 recalculs, ça prend 8 secondes.
@@ -202,6 +205,7 @@ Contrainte : tu ne peux pas changer l'algorithme de base. Tu dois d'abord mesure
 ---
 
 ## EXO 2 : EVENT LOOP BLOCKED
+
 _~15 min_
 
 Un serveur Express calcule un classement de joueurs de façon synchrone à chaque requête. Il semble lent sous charge mais les logs ne disent rien.
@@ -213,6 +217,7 @@ Utilise `clinic doctor` ou `clinic flame` pour identifier le blocage. Documente 
 ---
 
 ## EXO 3 : LIRE UN PROFIL À LA MAIN
+
 _~10 min_
 
 Ouvre le fichier `.cpuprofile` généré dans l'EXO 1 directement dans un éditeur. Structure JSON.
