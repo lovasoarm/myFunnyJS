@@ -5,7 +5,7 @@
 **MyFunnyJS · Thor Edition : 32 modules + 16 mini-projets, apprenable seul.**
 _Version v2026.2 : corrigée post-audit 10/10._
 
-> 🚀 **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
+> **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
 
 ---

@@ -17,9 +17,9 @@ for i in 1 2 3; do
   EXP="$(dirname "$0")/expected/drill_${i}.txt"
   OUT="$(node "$SOL" < "$IN" 2>/dev/null || true)"
   if [ "$OUT" = "$(cat "$EXP")" ]; then
-    echo "drill $i  ✅"; PASS=$((PASS+1))
+    echo "drill $i  OK"; PASS=$((PASS+1))
   else
-    echo "drill $i  ❌"; FAIL=$((FAIL+1))
+    echo "drill $i  FAILED"; FAIL=$((FAIL+1))
   fi
 done
 echo "---"; echo "PASS=$PASS FAIL=$FAIL"
