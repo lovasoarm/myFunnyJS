@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# verify.sh — filet de sécurité déterministe
+# verify.sh : filet de sécurité déterministe
 # Usage: bash verify.sh <chemin_vers_ta_solution>
 set -e
 # --- [3.12] Vérification version Node (>=20) ---

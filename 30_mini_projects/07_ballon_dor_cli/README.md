@@ -4,7 +4,8 @@
 [ATELIER]
 
 # BALLON D'OR CLI
-⏱️ ~6 min
+
+-> ~6 min
 
 Les journalistes du monde entier votent. Les points s'agrègent. Le classement se met à jour. La v1 a été codée en une nuit par un stagiaire pressé : elle fonctionne, mais personne n'ose la toucher. La v2, c'est toi qui l'écris. Et cette fois, elle est testée, refactorisée, containerisée.
 
@@ -111,12 +112,12 @@ cli.js --> parseArgs()
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `16_runtime_env` | `process.argv`, `fs`, Worker Threads pour la simulation |
-| `14_refactoring` | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission |
+| Module              | Où ça se voit                                                   |
+| ------------------- | --------------------------------------------------------------- |
+| `16_runtime_env`    | `process.argv`, `fs`, Worker Threads pour la simulation         |
+| `14_refactoring`    | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission      |
 | `04_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
-| `31_annexes` | Git workflow, Docker, CI/CD sur chaque push |
+| `31_annexes`        | Git workflow, Docker, CI/CD sur chaque push                     |
 
 ---
 
@@ -157,18 +158,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

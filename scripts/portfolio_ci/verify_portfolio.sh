@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# verify_portfolio.sh — vérifie qu'un dépôt d'apprenant MyFunnyJS a les livrables
+# verify_portfolio.sh : vérifie qu'un dépôt d'apprenant MyFunnyJS a les livrables
 # clefs. Sortie : JSON avec le score et les items manquants.
 #
 # Usage : ./verify_portfolio.sh <chemin-dépôt> > score.json

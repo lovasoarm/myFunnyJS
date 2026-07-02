@@ -1,9 +1,10 @@
 [INTEMPOREL]
 
 # 02 : DAY ONE · Environnement (installation)
-⏱️ ~5 min
 
-> 🗿 **INTEMPOREL** : les ordres_mission changent, l'idée non : un environnement
+-> ~5 min
+
+> **INTEMPOREL** : les ordres_mission changent, l'idée non : un environnement
 > reproductible, versionné, vérifiable.
 
 Le pas-à-pas complet (Windows / macOS / Linux) est dans

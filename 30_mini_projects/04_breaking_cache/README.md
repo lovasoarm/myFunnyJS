@@ -2,7 +2,8 @@
 [PORTFOLIO]
 
 # BREAKING CACHE
-⏱️ ~6 min
+
+-> ~6 min
 
 Réseau de distribution de Walter White. Des villes, des routes pondérées par le coût et le risque, des distributeurs à prioriser, des lots à trier avant livraison. Chaque décision se prend avec des données mesurées, pas avec des intuitions.
 
@@ -99,11 +100,11 @@ index.js
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `09_data_structures` | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js` |
-| `10_algorithms` | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
-| `08_memory_performance` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé |
+| Module                  | Où ça se voit                                                                |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `09_data_structures`    | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js`          |
+| `10_algorithms`         | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
+| `08_memory_performance` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé        |
 
 ---
 
@@ -143,18 +144,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

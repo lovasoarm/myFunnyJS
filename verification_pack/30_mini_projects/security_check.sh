@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# security_check.sh — [2.9] gate sécurité pour les mini-projets
+# security_check.sh : [2.9] gate sécurité pour les mini-projets
 # Usage: bash security_check.sh <chemin_vers_ton_projet>
 # Vérifie que les exigences OWASP contextuelles du cahier des charges sont traitées.
 set -e

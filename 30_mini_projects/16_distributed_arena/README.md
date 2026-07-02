@@ -3,7 +3,8 @@
 [ATELIER]
 
 # 16 : DISTRIBUTED ARENA
-⏱️ ~8h (réparties sur 3 sessions)
+
+-> ~8h (réparties sur 3 sessions)
 
 Tu ne montes pas Kubernetes. Tu ne loues pas un cloud. Tu écris un système à N
 processus Node qui parlent entre eux, en local, et tu prouves qu'il survit à :
@@ -54,8 +55,7 @@ $ node verify.js
 5. `ADR-001-idempotence.md` : pourquoi tu as choisi une clé UUID par op et pas un
    compteur monotone par worker. Trade-offs.
 
-Bonus (mais fortement recommandé) :
-6. `POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
+Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
 
 ---
 
@@ -70,7 +70,7 @@ Bonus (mais fortement recommandé) :
 
 ---
 
-## ⚠️ PIÈGES CONNUS (ne pas les éviter, les traverser)
+## PIÈGES CONNUS (ne pas les éviter, les traverser)
 
 - **Le retry naïf casse tout.** Un `retry` sans clé d'idempotence double le compteur
   au premier drop réseau. Tu vas le voir. C'est la leçon.

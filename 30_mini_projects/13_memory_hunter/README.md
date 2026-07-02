@@ -3,7 +3,8 @@
 [PORTFOLIO]
 
 # 13 : MEMORY HUNTER
-⏱️ ~5 min
+
+-> ~5 min
 
 Un mini-serveur Node volontairement pourri. Cinq fuites cachées. Ton job : les traquer, les tuer, les documenter.
 
@@ -41,6 +42,6 @@ Ce projet prouve que je sais lire un heap snapshot, corréler une allocation à 
 
 Corriger sans mesurer, c'est deviner. Snapshot avant, snapshot après, sinon ça compte pas.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.

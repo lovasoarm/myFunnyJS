@@ -1,7 +1,8 @@
 [INTEMPOREL]
 
 # Tests
-⏱️ ~5 min
+
+-> ~5 min
 
 ```bash
 node --test tests/

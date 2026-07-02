@@ -1,7 +1,8 @@
 [INTEMPOREL]
 
 # RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT
-⏱️ ~12 min
+
+-> ~12 min
 
 > Pas un quiz. Pas une note sur 20. Une carte.
 > Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.

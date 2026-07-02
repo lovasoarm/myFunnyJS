@@ -4,7 +4,8 @@
 [ATELIER]
 
 # TRAPSOUL RADIO
-⏱️ ~6 min
+
+-> ~6 min
 
 Plateforme de radio web dédiée au trapsoul, au RnB et au country underground. Des artistes du monde entier. Des auditeurs de toutes les langues. Une interface qui doit fonctionner au clavier, à la souris, aux lecteurs d'écran, et en 4 langues sans que le code parte en vrille.
 
@@ -93,12 +94,12 @@ tests/
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `15_typescript` | Clés de traduction typées, `Track<T>`, types stricts sur tout le player |
-| `18_web_concepts` | Browser render pipeline, LCP/CLS optimisés, métadonnées SEO |
-| `19_web_inclusive` | ARIA complet, navigation clavier, contraste WCAG AA vérifié |
-| `19_web_inclusive/i18n` | 4 locales, `Intl.DateTimeFormat`, pluralisation, fallback |
+| Module                  | Où ça se voit                                                           |
+| ----------------------- | ----------------------------------------------------------------------- |
+| `15_typescript`         | Clés de traduction typées, `Track<T>`, types stricts sur tout le player |
+| `18_web_concepts`       | Browser render pipeline, LCP/CLS optimisés, métadonnées SEO             |
+| `19_web_inclusive`      | ARIA complet, navigation clavier, contraste WCAG AA vérifié             |
+| `19_web_inclusive/i18n` | 4 locales, `Intl.DateTimeFormat`, pluralisation, fallback               |
 
 ---
 
@@ -139,18 +140,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

@@ -1,9 +1,10 @@
 [INTEMPOREL]
 
 # 02 : DAY ONE · Intro (facultatif mais motivant)
-⏱️ ~5 min
 
-> 🗿 **INTEMPOREL** : pourquoi tu es là.
+-> ~5 min
+
+> **INTEMPOREL** : pourquoi tu es là.
 
 Ce fichier ne t'apprend rien de technique. Il t'ancre. Si tu es déjà motivé,
 saute-le et va directement à `02_DAY_ONE_environment.md`.

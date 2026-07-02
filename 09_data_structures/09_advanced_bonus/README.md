@@ -1,7 +1,8 @@
 [INTEMPOREL]
 
 # HORS SCOPE DU CURRICULUM PRINCIPAL
-⏱️ ~5 min
+
+-> ~5 min
 
 Ce dossier n'est pas dans ta progression normale.
 
@@ -12,6 +13,7 @@ PRÉREQUIS : avoir fini 09_data_structures COMPLET + 10_algorithms COMPLET
 ```
 
 Ce que tu trouveras ici (Union-Find, Fenwick Tree, Suffix Array) ne t'est pas nécessaire pour :
+
 - passer un entretien dev standard
 - construire les 9 mini-projets du curriculum
 - finir les modules 14 à 28

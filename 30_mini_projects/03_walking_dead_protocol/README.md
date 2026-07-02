@@ -2,7 +2,8 @@
 [PORTFOLIO]
 
 # WALKING DEAD PROTOCOL
-⏱️ ~6 min
+
+-> ~6 min
 
 Le groupe de Rick Grimes gère un camp : inventaire de ressources, rotations de garde, niveaux de sécurité par périmètre. Le code existe déjà dans `legacy/campV1.js` : écrit en pleine nuit sous pression, une fonction de 300 lignes, des variables globales partout, zéro test. Personne ne sait exactement ce qu'il fait.
 
@@ -92,12 +93,12 @@ node src/cli.js consume --resource food --amount 3
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `06_testing` | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/` |
-| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés |
+| Module           | Où ça se voit                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| `06_testing`     | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`                         |
+| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés                                  |
 | `16_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
-| `32_tools` | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs) |
+| `32_tools`       | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)                 |
 
 ---
 
@@ -137,18 +138,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

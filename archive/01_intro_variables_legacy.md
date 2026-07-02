@@ -1,5 +1,6 @@
 # INTRO VARIABLES : CE QUI SE PASSE VRAIMENT EN MÉMOIRE
-⏱️ ~9 min
+
+-> ~9 min
 
 Tu penses que `let x = 5` c'est juste "mettre 5 dans x". En surface oui. Sous le capot non. Une variable c'est un **binding** (une liaison entre un nom et un emplacement mémoire). Ce concept est le sol de tout le reste. Si tu zappes ça, les bugs de mutation que tu verras en prod te sembleront de la magie noire.
 
@@ -13,14 +14,14 @@ Vraie utilité : comprendre pourquoi un objet "se modifie tout seul" ailleurs da
 
 ```js
 function example() {
-  var score = 10;           // score vit dans la fonction entière, pas juste ici
+  var score = 10; // score vit dans la fonction entière, pas juste ici
 
   if (true) {
-    var score = 42;         // MÊME variable : pas une nouvelle : écrase l'ancienne
-    console.log(score);     // 42
+    var score = 42; // MÊME variable : pas une nouvelle : écrase l'ancienne
+    console.log(score); // 42
   }
 
-  console.log(score);       // 42 : le if a crasé le score d'en haut
+  console.log(score); // 42 : le if a crasé le score d'en haut
 }
 ```
 
@@ -35,11 +36,11 @@ function example() {
   let score = 10;
 
   if (true) {
-    let score = 42;         // NOUVELLE variable, locale au bloc du if
-    console.log(score);     // 42
+    let score = 42; // NOUVELLE variable, locale au bloc du if
+    console.log(score); // 42
   }
 
-  console.log(score);       // 10 : pas touché, le if avait sa propre copie
+  console.log(score); // 10 : pas touché, le if avait sa propre copie
 }
 ```
 
@@ -49,11 +50,11 @@ function example() {
 
 ```js
 const chakra = 100;
-chakra = 200;                // TypeError : Assignment to constant variable
-                             // le binding lui-même est verrouillé
+chakra = 200; // TypeError : Assignment to constant variable
+// le binding lui-même est verrouillé
 
 const ninja = { name: "Kakashi", chakra: 1000 };
-ninja.chakra = 500;          // ok : le binding pointe toujours vers le même objet
+ninja.chakra = 500; // ok : le binding pointe toujours vers le même objet
 ninja = { name: "Naruto" }; // TypeError : le binding ne peut pas changer de cible
 ```
 
@@ -76,12 +77,12 @@ Durée de vie = bloc / fonction   Durée de vie gérée par le GC (ramasse-miett
 ### Primitives sur le Stack
 
 ```js
-let a = 42;        // 42 est stocké directement dans a, sur le stack
-let b = a;         // b reçoit une COPIE de 42 : deux cases mémoire indépendantes
+let a = 42; // 42 est stocké directement dans a, sur le stack
+let b = a; // b reçoit une COPIE de 42 : deux cases mémoire indépendantes
 b = 100;
 
-console.log(a);    // 42 : pas touché
-console.log(b);    // 100 : sa propre copie
+console.log(a); // 42 : pas touché
+console.log(b); // 100 : sa propre copie
 ```
 
 Chaque variable primitive est autonome. Modifier `b` ne touche pas à `a`.
@@ -99,7 +100,7 @@ let alias = hero;
 
 alias.power = "Reversed Infinity";
 
-console.log(hero.power);   // "Reversed Infinity" : même objet, même adresse
+console.log(hero.power); // "Reversed Infinity" : même objet, même adresse
 ```
 
 Schéma mémoire :
@@ -125,14 +126,14 @@ Object     -->  la variable stocke une adresse  -->  l'objet est sur le Heap
 ## 3) TYPEOF : LIRE LE TYPE D'UNE VARIABLE
 
 ```js
-typeof 42            // "number"
-typeof "hello"       // "string"
-typeof true          // "boolean"
-typeof undefined     // "undefined"
-typeof null          // "object"   <-- bug historique : null N'EST PAS un objet
-typeof {}            // "object"
-typeof []            // "object"   <-- les arrays sont des objets en JS
-typeof function(){}  // "function"
+typeof 42; // "number"
+typeof "hello"; // "string"
+typeof true; // "boolean"
+typeof undefined; // "undefined"
+typeof null; // "object"   <-- bug historique : null N'EST PAS un objet
+typeof {}; // "object"
+typeof []; // "object"   <-- les arrays sont des objets en JS
+typeof function () {}; // "function"
 ```
 
 `null` retourne `"object"` : c'est un bug de la première implémentation de JS en 1995, jamais corrigé pour ne pas casser la rétrocompatibilité (ancien code existant). Pour tester `null`, tu compares explicitement : `x === null`.
@@ -150,7 +151,7 @@ Risque en prod : une fonction qui reçoit `null` et fait `typeof x === "object"`
 let x = 1;
 let y = x;
 y = 2;
-console.log(x);        // 1 : pas touché
+console.log(x); // 1 : pas touché
 ```
 
 ### Niveau 2 : réaliste
@@ -158,7 +159,7 @@ console.log(x);        // 1 : pas touché
 ```js
 // Objet : partage de référence
 const config = { env: "dev", port: 3000 };
-const local = config;   // même adresse, pas une copie
+const local = config; // même adresse, pas une copie
 local.env = "prod";
 console.log(config.env); // "prod" : la config est compromise
 ```
@@ -167,15 +168,15 @@ console.log(config.env); // "prod" : la config est compromise
 
 ```js
 function applyVirus(horde) {
-  horde.count = Math.floor(horde.count * 1.5);  // mutation directe de l'objet reçu
+  horde.count = Math.floor(horde.count * 1.5); // mutation directe de l'objet reçu
   return horde;
 }
 
 const localHorde = { sectors: ["sector_A", "sector_B"], count: 200 };
 const mutated = applyVirus(localHorde);
 
-console.log(localHorde.count);    // 300 : la fonction a muté l'original
-console.log(mutated.count);       // 300 : les deux pointent vers le même objet
+console.log(localHorde.count); // 300 : la fonction a muté l'original
+console.log(mutated.count); // 300 : les deux pointent vers le même objet
 // résultat : impossible de savoir quelle était la taille de la horde avant la mutation
 ```
 
@@ -206,18 +207,18 @@ Contrainte : explique pourquoi `inventory.bullets` vaut maintenant 40. Corrige l
 **EXO 2 : Les jutsus de Naruto**
 
 ```js
-var chakra = 100;               // chakra global
+var chakra = 100; // chakra global
 
 function useJutsu() {
   if (true) {
-    var chakra = 50;            // nouvelle variable ou même ?
-    console.log(chakra);        // prédit : ?
+    var chakra = 50; // nouvelle variable ou même ?
+    console.log(chakra); // prédit : ?
   }
-  console.log(chakra);          // prédit : ?
+  console.log(chakra); // prédit : ?
 }
 
 useJutsu();
-console.log(chakra);            // prédit : ?
+console.log(chakra); // prédit : ?
 ```
 
 Contrainte : sans exécuter le code, prédis chaque `console.log` avec `var`. Explique pourquoi. Réécris ensuite avec `let` pour que le comportement soit celui qu'on attendrait : le chakra de l'intérieur du if ne touche pas au chakra global.
@@ -230,7 +231,7 @@ Contrainte : sans exécuter le code, prédis chaque `console.log` avec `var`. Ex
 const defaults = { timeout: 3000, retries: 3, env: "production" };
 
 function createServiceConfig(overrides) {
-  defaults.env = overrides.env || defaults.env;         // problème ici
+  defaults.env = overrides.env || defaults.env; // problème ici
   defaults.timeout = overrides.timeout || defaults.timeout;
   return defaults;
 }
@@ -238,8 +239,8 @@ function createServiceConfig(overrides) {
 const serviceA = createServiceConfig({ env: "staging", timeout: 5000 });
 const serviceB = createServiceConfig({ env: "test" });
 
-console.log(serviceA.env);     // ?
-console.log(serviceB.env);     // ?
+console.log(serviceA.env); // ?
+console.log(serviceB.env); // ?
 ```
 
 Contrainte : identifie pourquoi `serviceA.env` ne vaut plus "staging" à la fin. Corrige `createServiceConfig` pour qu'elle retourne un nouvel objet sans jamais modifier `defaults`. (Indice : `{ ...defaults, ...overrides }`)

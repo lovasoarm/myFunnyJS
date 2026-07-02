@@ -4,7 +4,8 @@
 [ATELIER]
 
 # ORACLE GLITCH
-⏱️ ~6 min
+
+-> ~6 min
 
 L'IA se prend pour un génie. Elle analyse ton code JS, détecte des bugs, propose des fixes, génère des tests. Parfois elle a raison. Parfois elle invente des fonctions qui n'existent pas, retourne du JSON malformé à mi-chemin, ou te jure qu'un `NaN === NaN` est `true`. Ton boulot : construire le pipeline qui la surveille.
 
@@ -107,12 +108,12 @@ cli.js --> CodeAnalyzer.analyze(fichier)
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering |
-| `12_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
-| `27_team_craft` | ADR pour chaque décision d'architecture, code review outillée |
-| `28_edge_cases` | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array |
+| Module             | Où ça se voit                                                                  |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering                        |
+| `12_oop_js`        | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
+| `27_team_craft`    | ADR pour chaque décision d'architecture, code review outillée                  |
+| `28_edge_cases`    | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array            |
 
 ---
 
@@ -153,18 +154,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

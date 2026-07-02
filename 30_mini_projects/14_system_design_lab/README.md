@@ -1,9 +1,11 @@
 [PORTFOLIO]
 
 # 14 : SYSTEM DESIGN LAB
-⏱️ ~15 h
+
+-> ~15 h
 
 ## PITCH 3 LIGNES
+
 Deux services qui se parlent via une queue, avec retry, idempotence et tracing. Tu chaos-testes le tout et tu écris le postmortem. Le mini-projet qui prouve que tu penses en systèmes, pas en fonctions.
 
 ## MISSION
@@ -17,6 +19,7 @@ Tu construis un mini-écosystème :
 ```
 
 Contraintes non négociables :
+
 - Docker Compose : 3 services minimum (front, broker, worker).
 - Retry avec backoff exponentiel côté worker.
 - Idempotence : rejouer un message ne double PAS l'effet.
@@ -31,7 +34,7 @@ Contraintes non négociables :
 5. `POSTMORTEM.md` : ce qui a cassé, ce que t'as appris, ce que tu changerais.
 6. Dépôt GitHub public, lien dans le `DEPENDENCY_LEDGER.md`.
 
-## ⚠️ CE QUE LE PROJET CACHE
+## CE QUE LE PROJET CACHE
 
 L'idempotence a l'air simple ("juste un id unique"). En vrai, tu dois choisir OÙ tu stockes les ids vus, TTL, comment tu gères les collisions, quoi faire si le stockage d'idempotence tombe. Trois lignes de spec, deux jours de galère.
 

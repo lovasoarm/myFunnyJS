@@ -3,13 +3,12 @@
 ![MyFunnyJS](./assets/title.svg)
 
 **MyFunnyJS · Thor Edition : 32 modules + 16 mini-projets, apprenable seul.**
-*Version v2026.2 : corrigée post-audit 10/10.*
+_Version v2026.2 : corrigée post-audit 10/10._
 
 > 🚀 **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
 
 ---
-
 
 > **AVANT TOUT** : si tu n'as jamais installé Node de ta vie, va faire [`00_getting_started/01_install.md`](00_getting_started/01_install.md) d'abord. Reviens ici après.
 
@@ -40,11 +39,11 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 08 → 11    Memory · Data Structures · Algorithms · Functional
 12 → 16    OOP · Patterns · Refactoring · TypeScript · Runtime
 17 → 22    Architecture · Web · Inclusive · Realtime · API · Security
-23 → 23bis AI-Native Dev  →  AI Agents & Autonomy       ⏳ périssable
+23 → 23bis AI-Native Dev  →  AI Agents & Autonomy         périssable
 24 → 28    Databases · Scalability · Observability · Team · Edge Cases
 30         16 mini-projets (dont Legacy Dungeon, Memory Hunter, Distributed Arena)
 31         Annexes : transférabilité, interview, portfolio, career, éthique
-32         Tools                                          ⏳ périssable (2026)
+32         Tools                                            périssable (2026)
 ```
 
 Arborescence complète, dépendances entre modules et noyau dur détaillé : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).

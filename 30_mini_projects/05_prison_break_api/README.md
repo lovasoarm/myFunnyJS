@@ -2,7 +2,8 @@
 [PORTFOLIO]
 
 # PRISON BREAK API
-⏱️ ~6 min
+
+-> ~6 min
 
 Fox River State Penitentiary. Michael Scofield a tatoué le plan sur son corps. Maintenant il faut l'infrastructure. Profils de prisonniers, access logs par section, phases d'évasion séquentielles. T-Bag essaie d'injecter du SQL depuis l'intérieur. L'API doit tenir sous pression et ne jamais exposer ce qui doit rester secret.
 
@@ -106,12 +107,12 @@ client
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `21_api_craft` | Express complet, CRUD, error middleware, OpenAPI |
-| `22_security` | JWT, bcrypt, rate limiting, sanitization XSS/SQL |
-| `24_databases` | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `18_web_concepts` | HTTP verbes, status codes, browser render pipeline |
+| Module            | Où ça se voit                                            |
+| ----------------- | -------------------------------------------------------- |
+| `21_api_craft`    | Express complet, CRUD, error middleware, OpenAPI         |
+| `22_security`     | JWT, bcrypt, rate limiting, sanitization XSS/SQL         |
+| `24_databases`    | SQLite, modélisation, indexes, Redis cache sur les plans |
+| `18_web_concepts` | HTTP verbes, status codes, browser render pipeline       |
 
 ---
 
@@ -152,18 +153,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue

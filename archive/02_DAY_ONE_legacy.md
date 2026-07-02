@@ -1,5 +1,7 @@
-⏱️ ~78 min
+-> ~78 min
+
 > 📦 **Fichier archivé.** Découpé en 3 étapes plus digestes :
+>
 > - `02_DAY_ONE_intro.md` (motivation)
 > - `02_DAY_ONE_environment.md` (installation express)
 > - `02_DAY_ONE_first_steps.md` (premier code)
@@ -281,7 +283,7 @@ RANG   LANGAGE      PART ESTIMÉE   USAGE PRINCIPAL                TENDANCE
 10     C#                ~5%       Jeux Unity, Windows, enterprise Stable
 ```
 
-*Les pourcentages sont des estimations relatives basées sur plusieurs indices croisés, pas des chiffres officiels absolus. C'est une tendance, pas une loi.*
+_Les pourcentages sont des estimations relatives basées sur plusieurs indices croisés, pas des chiffres officiels absolus. C'est une tendance, pas une loi._
 
 ---
 
@@ -307,7 +309,7 @@ Pourquoi il domine : l'IA. ChatGPT, Gemini, tous les modèles d'IA sont entraîn
 ```javascript
 // JavaScript : partout, tout le temps
 const devs = ["Alice", "Bob", "Prometheus"];
-const message = devs.map(dev => `${dev} code en JS`);
+const message = devs.map((dev) => `${dev} code en JS`);
 console.log(message);
 // ["Alice code en JS", "Bob code en JS", "Prometheus code en JS"]
 ```
@@ -337,10 +339,10 @@ Pourquoi il reste : les grandes banques, assurances, et entreprises ont des mill
 ```typescript
 // TypeScript : JS avec des types. Beaucoup moins de bugs stupides.
 function calculerAge(anneeNaissance: number): number {
-    return 2026 - anneeNaissance;
+  return 2026 - anneeNaissance;
 }
 
-const age = calculerAge(2000);   // OK : 26
+const age = calculerAge(2000); // OK : 26
 const bug = calculerAge("2000"); // ERREUR détectée avant même d'exécuter
 ```
 
@@ -605,7 +607,7 @@ for prenom in prenoms:
 ```javascript
 // JavaScript : presque aussi lisible
 const prenoms = ["Alice", "Bob", "Prometheus"];
-prenoms.forEach(prenom => console.log(`Bonjour ${prenom}`));
+prenoms.forEach((prenom) => console.log(`Bonjour ${prenom}`));
 ```
 
 ```java
@@ -1067,14 +1069,14 @@ Les frameworks changent tous les 3 ans. Angular, React, Vue, Svelte, Solid... da
 
 ---
 
-> *Ces informations sont des tendances, pas des chiffres officiels absolus.*
-> *Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante.*
+> _Ces informations sont des tendances, pas des chiffres officiels absolus._
+> _Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante._
 
 ---
 
 ## 8. Les métiers du dev : la carte au trésor que personne t'a donnée
 
-> *"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : Quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"*
+> _"J'apprends à coder comme quelqu'un qui vient de découvrir une porte secrète dans un donjon. Je sais qu'il y a des trésors derrière... mais je veux comprendre : Quels sont TOUS les chemins possibles, qui les emprunte, avec quels outils, et lequel me rend riche ou heureux : idéalement les deux ?"_
 
 Ok. T'as appris à coder. Bonne nouvelle : t'as maintenant accès à l'une des industries les plus larges, les plus diverses, et les mieux payées de la planète. Mauvaise nouvelle : Y'a tellement de métiers que la plupart des gens ne savent même pas qu'ils existent.
 
@@ -1155,11 +1157,19 @@ Styles       :  Tailwind CSS, CSS Modules, Styled Components
 // "c'est juste un bouton centré, simple"
 
 // Ce que le frontend dev a eu à gérer en vrai
-const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) => {
+const Button = ({
+  label,
+  onClick,
+  isLoading,
+  isDisabled,
+  variant,
+  size,
+  icon,
+}) => {
   // 47 lignes plus tard...
   // fonctionne sur Chrome, Firefox, Safari, et le Nokia 3310 du client
-  return <button>...</button>
-}
+  return <button>...</button>;
+};
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
@@ -1201,11 +1211,11 @@ Cloud            :  AWS/GCP/Azure (basiques)
 
 ```javascript
 // Ce que le frontend pense que l'API fait
-fetch('/api/user/42')
+fetch("/api/user/42");
 // -> renvoie les données de l'shinobi, boom, done
 
 // Ce que le backend dev a réellement écrit
-app.get('/api/user/:id', async (req, res) => {
+app.get("/api/user/:id", async (req, res) => {
   // vérifie que t'es authentifié
   // vérifie que t'as le droit de voir CET shinobi (pas juste n'importe lequel)
   // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
@@ -1215,7 +1225,7 @@ app.get('/api/user/:id', async (req, res) => {
   // gère 14 cas d'erreur différents
   // renvoie les données
   // et si c'est vendredi soir : prie pour que rien ne casse le weekend
-})
+});
 ```
 
 **Compétences clés** : conception de bases de données (schémas, indexation, migrations), sécurité (authentification, JWT, OAuth2, HTTPS), design d'API (REST, GraphQL, gRPC), performance et scalabilité, logging et monitoring en production.
@@ -1470,20 +1480,20 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
 
 #### Résumé
 
-| Rôle | Responsabilité |
-|---|---|
-| Dev Web / Mobile | Construit ce que l'shinobi voit et utilise |
-| Data Engineer | Collecte et prépare les données |
-| Data Analyst | Explique ce qui s'est passé |
-| Data Scientist | Prédit ce qui va se passer |
-| DevOps | Déploie et maintient l'app en ligne |
-| Security Engineer | Protège l'app et ses shinobis |
+| Rôle              | Responsabilité                             |
+| ----------------- | ------------------------------------------ |
+| Dev Web / Mobile  | Construit ce que l'shinobi voit et utilise |
+| Data Engineer     | Collecte et prépare les données            |
+| Data Analyst      | Explique ce qui s'est passé                |
+| Data Scientist    | Prédit ce qui va se passer                 |
+| DevOps            | Déploie et maintient l'app en ligne        |
+| Security Engineer | Protège l'app et ses shinobis              |
 
 ---
 
 ### Les rôles d'évolution de carrière
 
-> *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"*
+> _"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"_
 
 ```
 ANNÉE 1-3       ANNÉE 3-6        ANNÉE 6-10       ANNÉE 10+
@@ -1510,7 +1520,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 
 #### WORKFLOW avec un exemple : "Meme Mashup Generator"
 
-> *Tu uploads des images ou du texte -> l'app combine tout aléatoirement -> MEME WTF généré.*
+> _Tu uploads des images ou du texte -> l'app combine tout aléatoirement -> MEME WTF généré._
 
 ---
 
@@ -1630,7 +1640,7 @@ Vercel             Héberger le projet, déploiement         Railway, Render, VP
 
 ### Qui fait quoi dans la vraie vie ?
 
-#### Junior Dev *(0–2 ans)*
+#### Junior Dev _(0–2 ans)_
 
 Il code les pièces simples. Il apprend.
 
@@ -1650,7 +1660,7 @@ CE QU'ON NE LUI DEMANDE PAS ENCORE
 
 ---
 
-#### Mid-Level Dev *(3–5 ans)*
+#### Mid-Level Dev _(3–5 ans)_
 
 Il comprend le pourquoi, pas juste le comment.
 
@@ -1674,11 +1684,11 @@ Résout le bug de l'image              Anticipe que les PNG transparents
 
 ---
 
-#### Senior Dev *(6–8 ans)*
+#### Senior Dev _(6–8 ans)_
 
 Il dit **non** quand il le faut.
 
-> *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
+> _"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."_
 
 ```
                            CE QU'IL APPORTE SUR CE PROJET
@@ -1704,7 +1714,7 @@ Il dit **non** quand il le faut.
 
 ---
 
-#### Tech Lead *(Senior qui guide l'équipe)*
+#### Tech Lead _(Senior qui guide l'équipe)_
 
 Il code encore, mais il passe du temps à débloquer les autres.
 
@@ -1724,7 +1734,7 @@ Pose les règles de code review         de génération / on le fait en v2"
 
 ---
 
-#### Software Architect *(Décisions d'ensemble)*
+#### Software Architect _(Décisions d'ensemble)_
 
 Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système.
 
@@ -1759,7 +1769,7 @@ Il ne code pas le MEME Engine. Il décide comment il s'intègre dans le système
 
 ---
 
-#### Engineering Manager *(Management, pas code)*
+#### Engineering Manager _(Management, pas code)_
 
 ```
 CE QU'IL FAIT                          CE QU'IL NE FAIT PAS
@@ -1824,7 +1834,7 @@ Entrepreneur       Tout. Le jutsu, les users, les coûts, la survie.
 
 ---
 
-> *"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"*
+> _"Dans 10 ans, je suis encore en train d'écrire des boucles for dans mon coin ?"_
 > Peut-être. Mais si tu sais **pourquoi** tu les écris, **pour qui**, et **quels compromis** tu fais,
 > tu n'es plus junior. Tu décides où tu vas.
 
@@ -1832,17 +1842,17 @@ Entrepreneur       Tout. Le jutsu, les users, les coûts, la survie.
 
 ### Les grandes spécialisations : dans quel donjon tu veux aller ?
 
-| Spécialisation | Difficulté | Marché | Salaire | Tendance |
-|---|---|---|---|---|
-| Web | Moyenne | Mondial | Bon | Stable |
-| Mobile | Moyenne | Mondial | Bon | Hausse |
-| Cloud / DevOps | Élevée | Mondial | Très bon | Forte hausse |
-| IA / ML | Très élevée | Mondial | Excellent | Explosion |
-| Data Engineering | Élevée | Mondial | Très bon | Forte hausse |
-| Cybersécurité | Très élevée | Mondial | Excellent | Explosion |
-| Jeux vidéo | Élevée | Concentré | Correct | Stable |
-| Blockchain | Élevée | Volatile | Bon | Instable |
-| Systèmes / Kernel | Très élevée | Niche | Excellent | Stable (rare) |
+| Spécialisation    | Difficulté  | Marché    | Salaire   | Tendance      |
+| ----------------- | ----------- | --------- | --------- | ------------- |
+| Web               | Moyenne     | Mondial   | Bon       | Stable        |
+| Mobile            | Moyenne     | Mondial   | Bon       | Hausse        |
+| Cloud / DevOps    | Élevée      | Mondial   | Très bon  | Forte hausse  |
+| IA / ML           | Très élevée | Mondial   | Excellent | Explosion     |
+| Data Engineering  | Élevée      | Mondial   | Très bon  | Forte hausse  |
+| Cybersécurité     | Très élevée | Mondial   | Excellent | Explosion     |
+| Jeux vidéo        | Élevée      | Concentré | Correct   | Stable        |
+| Blockchain        | Élevée      | Volatile  | Bon       | Instable      |
+| Systèmes / Kernel | Très élevée | Niche     | Excellent | Stable (rare) |
 
 ---
 
@@ -1902,7 +1912,7 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 
 ### Comment choisir sa spécialisation intelligemment ?
 
-> *"Si tu entres dans un donjon au hasard, t'as peut-être choisi celui qui donne sur une décharge. Voilà comment choisir le bon couloir."*
+> _"Si tu entres dans un donjon au hasard, t'as peut-être choisi celui qui donne sur une décharge. Voilà comment choisir le bon couloir."_
 
 ```
 ÉTAPE 1 : COUPE CE QUI TE DÉPLAÎT VRAIMENT
@@ -1930,7 +1940,7 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 
 ### Ce qui différencie un dev moyen d'un excellent dev
 
-> *"La plupart des devs savent coder. Les bons devs savent résoudre des problèmes. Les excellents devs savent résoudre les bons problèmes."*
+> _"La plupart des devs savent coder. Les bons devs savent résoudre des problèmes. Les excellents devs savent résoudre les bons problèmes."_
 
 **1. Algorithmique et structures de données**
 
@@ -1946,21 +1956,21 @@ Technologies : Solidity (Ethereum), Rust (Solana), Go. Le marché suit les cycle
 ```javascript
 // Dev moyen : ça marche, personne sait pourquoi, personne ose y toucher
 function f(x, y, z) {
-  if (z === 1) return x * 1.1
-  if (z === 2) return x * 1.2
-  return x + y
+  if (z === 1) return x * 1.1;
+  if (z === 2) return x * 1.2;
+  return x + y;
 }
 
 // Dev excellent : ça se lit comme une phrase
 const TAX_RATES = {
-  reduced: 1.10,
-  standard: 1.20,
-}
+  reduced: 1.1,
+  standard: 1.2,
+};
 
 function calculateTotalPrice(basePrice, shippingCost, taxType) {
   // si le type de taxe existe, on l'applique. sinon, on ajoute juste les frais de port.
-  const rate = TAX_RATES[taxType]
-  return rate ? basePrice * rate : basePrice + shippingCost
+  const rate = TAX_RATES[taxType];
+  return rate ? basePrice * rate : basePrice + shippingCost;
 }
 
 // Six mois plus tard, un nouveau dev lit ça et comprend en 10 secondes.
@@ -1976,30 +1986,30 @@ Les patterns sont des solutions documentées à des problèmes récurrents. Savo
 // ou que le state management dans React
 class EventBus {
   constructor() {
-    this.listeners = {}
+    this.listeners = {};
   }
 
   on(event, callback) {
-    if (!this.listeners[event]) this.listeners[event] = []
-    this.listeners[event].push(callback)
+    if (!this.listeners[event]) this.listeners[event] = [];
+    this.listeners[event].push(callback);
   }
 
   emit(event, data) {
-    (this.listeners[event] || []).forEach(cb => cb(data))
+    (this.listeners[event] || []).forEach((cb) => cb(data));
   }
 }
 
-const bus = new EventBus()
+const bus = new EventBus();
 
-bus.on('pizza:commandee', ({ saveur }) => {
-  console.log(`Le four se prépare pour une pizza ${saveur}`)
-})
+bus.on("pizza:commandee", ({ saveur }) => {
+  console.log(`Le four se prépare pour une pizza ${saveur}`);
+});
 
-bus.on('pizza:commandee', ({ client }) => {
-  console.log(`SMS envoyé à ${client} : votre pizza est en préparation`)
-})
+bus.on("pizza:commandee", ({ client }) => {
+  console.log(`SMS envoyé à ${client} : votre pizza est en préparation`);
+});
 
-bus.emit('pizza:commandee', { saveur: 'Regina', client: 'Bob' })
+bus.emit("pizza:commandee", { saveur: "Regina", client: "Bob" });
 // -> Le four se prépare pour une pizza Regina
 // -> SMS envoyé à Bob : votre pizza est en préparation
 
@@ -2030,18 +2040,18 @@ Adapter     : brancher une interface incompatible sur une autre
 
 #### Anti-patterns classiques
 
-| Anti-pattern | C'est quoi | Conséquence |
-|---|---|---|
-| **Requêtes séquentielles indépendantes** | Tu lances deux requêtes l'une après l'autre alors qu'elles ont aucun lien | 200ms au lieu de 100ms. Multiplie par 10M req/jour et pleure |
-| **God Object** | Une classe / un fichier qui fait absolument tout | 3000 lignes, personne n'ose toucher, le fichier a sa propre légende urbaine |
-| **Hardcoding** | Des valeurs magiques collées directement dans le code au lieu de variables ou configs | Le client veut changer une valeur. Tu cherches dans 47 fichiers. Tu souffres |
-| **Callback Hell** | Des fonctions imbriquées les unes dans les autres à l'infini | Code illisible, debugging cauchemardesque, tes collègues te détestent |
-| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. Le user, lui, il sait. Depuis 3 semaines |
-| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 users. Le vrai goulot d'étranglement était ailleurs |
-| **Copier-coller au lieu d'abstraire** | Le même bloc de 30 lignes existe en 6 endroits dans le codebase | Tu corriges le bug dans 3 endroits. Les 3 autres attendent leur tour patiemment |
-| **Tout mettre dans le front** | Logique métier, validation, calcul de prix : tout dans le client JS | N'importe qui ouvre DevTools, modifie les variables, achète à 0€ |
-| **Ne jamais committer** | "Je commit quand c'est fini" : spoiler : c'est jamais fini | Le laptop meurt. 3 semaines de travail partent à la poubelle |
-| **Dépendances circulaires** | Le module A importe B, B importe A, personne sait qui démarre en premier | Erreurs cryptiques au runtime, build qui plante sans raison claire |
+| Anti-pattern                             | C'est quoi                                                                            | Conséquence                                                                      |
+| ---------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Requêtes séquentielles indépendantes** | Tu lances deux requêtes l'une après l'autre alors qu'elles ont aucun lien             | 200ms au lieu de 100ms. Multiplie par 10M req/jour et pleure                     |
+| **God Object**                           | Une classe / un fichier qui fait absolument tout                                      | 3000 lignes, personne n'ose toucher, le fichier a sa propre légende urbaine      |
+| **Hardcoding**                           | Des valeurs magiques collées directement dans le code au lieu de variables ou configs | Le client veut changer une valeur. Tu cherches dans 47 fichiers. Tu souffres     |
+| **Callback Hell**                        | Des fonctions imbriquées les unes dans les autres à l'infini                          | Code illisible, debugging cauchemardesque, tes collègues te détestent            |
+| **Avaler les erreurs**                   | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée                       | Le bug existe. T'en sais rien. Le user, lui, il sait. Depuis 3 semaines          |
+| **Optimisation prématurée**              | T'optimises pour des problèmes que t'as pas encore                                    | 3 semaines de boulot pour 12 users. Le vrai goulot d'étranglement était ailleurs |
+| **Copier-coller au lieu d'abstraire**    | Le même bloc de 30 lignes existe en 6 endroits dans le codebase                       | Tu corriges le bug dans 3 endroits. Les 3 autres attendent leur tour patiemment  |
+| **Tout mettre dans le front**            | Logique métier, validation, calcul de prix : tout dans le client JS                   | N'importe qui ouvre DevTools, modifie les variables, achète à 0€                 |
+| **Ne jamais committer**                  | "Je commit quand c'est fini" : spoiler : c'est jamais fini                            | Le laptop meurt. 3 semaines de travail partent à la poubelle                     |
+| **Dépendances circulaires**              | Le module A importe B, B importe A, personne sait qui démarre en premier              | Erreurs cryptiques au runtime, build qui plante sans raison claire               |
 
 > **Requêtes séquentielles** : faire un `await fetchUser()` puis `await fetchOrders()` alors que les deux peuvent partir en même temps avec `Promise.all` : comme aller chercher ta pizza ET ta boisson en deux voyages alors que t'as deux mains.
 
@@ -2061,7 +2071,7 @@ Adapter     : brancher une interface incompatible sur une autre
 
 Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctionne le réseau (TCP/IP, HTTP, DNS : ex : une requête fetch passe par DNS pour résoudre le domaine, TCP pour établir la connexion, HTTP pour transporter les données), la mémoire (stack vs heap, garbage collector), le système de fichiers, un OS (processus, threads, signaux), une base de données en dessous (B-trees, ACID : ex : un index sur user_id utilise un B-tree pour trouver la ligne en O(log n) au lieu de scanner toute la table).
 
-> **Livre de référence :** *Designing Data-Intensive Applications* de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
+> **Livre de référence :** _Designing Data-Intensive Applications_ de Martin Kleppmann. Si t'en lis un seul dans ta carrière, c'est celui-là.
 
 **5. Architecture logicielle : "l'art de prendre des décisions structurelles aujourd'hui pour ne pas les regretter demain"**
 
@@ -2122,32 +2132,32 @@ ANNÉES 8-15 : LA FORCE TRANQUILLE
 
 ### Le tableau de synthèse final
 
-| Métier | Difficulté d'accès | Salaire global | Remote | Stabilité |
-|---|---|---|---|---|
-| Frontend Dev | Moyenne | Bon | Très fort | Solide |
-| Backend Dev | Moyenne | Bon | Très fort | Solide |
-| Full-Stack Dev | Moyenne | Bon | Très fort | Solide |
-| Mobile Dev | Moyenne | Bon | Fort | Solide |
-| DevOps / SRE | Élevée | Très bon | Très fort | Excellent |
-| Data Engineer | Élevée | Très bon | Très fort | Excellent |
-| ML / AI Engineer | Très élevée | Excellent | Très fort | Excellent |
-| Security Engineer | Très élevée | Excellent | Fort | Excellent |
-| Game Dev | Élevée | Correct | Faible | Moyen |
-| Software Architect | Très élevée | Excellent | Fort | Excellent |
+| Métier             | Difficulté d'accès | Salaire global | Remote    | Stabilité |
+| ------------------ | ------------------ | -------------- | --------- | --------- |
+| Frontend Dev       | Moyenne            | Bon            | Très fort | Solide    |
+| Backend Dev        | Moyenne            | Bon            | Très fort | Solide    |
+| Full-Stack Dev     | Moyenne            | Bon            | Très fort | Solide    |
+| Mobile Dev         | Moyenne            | Bon            | Fort      | Solide    |
+| DevOps / SRE       | Élevée             | Très bon       | Très fort | Excellent |
+| Data Engineer      | Élevée             | Très bon       | Très fort | Excellent |
+| ML / AI Engineer   | Très élevée        | Excellent      | Très fort | Excellent |
+| Security Engineer  | Très élevée        | Excellent      | Fort      | Excellent |
+| Game Dev           | Élevée             | Correct        | Faible    | Moyen     |
+| Software Architect | Très élevée        | Excellent      | Fort      | Excellent |
 
-*Estimations basées sur les tendances du marché global 2026. Les salaires varient énormément selon le pays, l'entreprise et l'expérience.*
+_Estimations basées sur les tendances du marché global 2026. Les salaires varient énormément selon le pays, l'entreprise et l'expérience._
 
 ---
 
 > Il n'y a pas de "bon" métier dans le développement. Il y a des métiers qui correspondent à ce que tu es. Si t'aimes voir les choses apparaître à l'écran : frontend. Si t'aimes comprendre comment les systèmes fonctionnent : backend ou DevOps. Si t'aimes les maths et l'optimisation : IA/ML. Si t'aimes l'adversaire et le défi : sécurité. Le reste, c'est une question de chemin et de temps.
 >
-> *"Le meilleur métier dev c'est celui dans lequel tu n'as pas l'impression de travailler... jusqu'au vendredi soir où t'es encore là à déboguer à 23h parce que tu peux pas t'arrêter."*
+> _"Le meilleur métier dev c'est celui dans lequel tu n'as pas l'impression de travailler... jusqu'au vendredi soir où t'es encore là à déboguer à 23h parce que tu peux pas t'arrêter."_
 
 ---
 
 ## 9. Ce que ça vaut vraiment : salaires et le levier remote
 
-> *"Ok, je sais ce que je veux faire. Maintenant la question que tout le monde pense mais que personne n'ose poser en cours : ça paie combien ?"*
+> _"Ok, je sais ce que je veux faire. Maintenant la question que tout le monde pense mais que personne n'ose poser en cours : ça paie combien ?"_
 
 Réponse honnête : ça dépend de trois choses : le métier, le niveau, et surtout **à qui tu vends tes compétences**. C'est ce dernier point qui fait toute la différence.
 
@@ -2326,20 +2336,20 @@ function construireCarriereRemote(dev) {
     "première mission Upwork (peu importe le tarif, c'est pour les reviews)",
     "deuxième mission avec un vrai tarif",
     "réputation construite -> les clients viennent vers toi",
-  ]
+  ];
 
   for (const etape of etapes) {
-    dev.faire(etape)  // pas de raccourci, pas de magie
+    dev.faire(etape); // pas de raccourci, pas de magie
   }
 
-  return dev.salaire * 3  // minimum
+  return dev.salaire * 3; // minimum
 }
 // La seule variable : à qui tu factures.
 ```
 
-> *"Un dev peut gagner 5 000 $ / an. Le même dev, avec les mêmes compétences, peut gagner 80 000 $ / an. La seule variable, c'est à qui il facture."*
+> _"Un dev peut gagner 5 000 $ / an. Le même dev, avec les mêmes compétences, peut gagner 80 000 $ / an. La seule variable, c'est à qui il facture."_
 >
-> *Les salaires sont indicatifs et varient selon le pays, l'entreprise et l'expérience.*
+> _Les salaires sont indicatifs et varient selon le pays, l'entreprise et l'expérience._
 
 ---
 
@@ -2421,9 +2431,9 @@ Tu réinventes la roue               -->   Tu pars d'une base solide générée
 ```javascript
 // L'IA génère ça en 3 secondes
 async function fetchUserOrders(userId) {
-  const user   = await db.users.findById(userId)
-  const orders = await db.orders.findByUserId(userId)
-  return { user, orders }
+  const user = await db.users.findById(userId);
+  const orders = await db.orders.findByUserId(userId);
+  return { user, orders };
 }
 
 // L'IA peut PAS savoir :
@@ -2508,7 +2518,7 @@ C'est le rubber duck debugging version IA. Ça marche vraiment.
 ```javascript
 // Tu demandes : "Comment utiliser .flatDeep() en JavaScript ?"
 // L'IA répond avec une confiance absolue :
-const result = [1, [2, [3]]].flatDeep(2) // -> [1, 2, 3]
+const result = [1, [2, [3]]].flatDeep(2); // -> [1, 2, 3]
 // "flatDeep() prend un paramètre de profondeur..."
 
 // PROBLÈME : flatDeep() n'existe pas.
@@ -2692,17 +2702,15 @@ Savoir dire "je sais pas encore" c'est une compétence. Pas un aveu de faiblesse
 ```javascript
 // Ce code "marche"
 function f(a, b, c) {
-  return c ? a * (c === 1 ? 1.1 : 1.2) : a + b
+  return c ? a * (c === 1 ? 1.1 : 1.2) : a + b;
 }
 
 // Ce code vit longtemps
-const TAX = { reduced: 1.10, standard: 1.20 }
+const TAX = { reduced: 1.1, standard: 1.2 };
 
 function calculateFinalPrice(basePrice, shipping, taxType) {
-  const rate = TAX[taxType]
-  return rate
-    ? basePrice * rate
-    : basePrice + shipping
+  const rate = TAX[taxType];
+  return rate ? basePrice * rate : basePrice + shipping;
 }
 
 // Dans 6 mois, un dev (peut-être toi) ouvre ce fichier.
@@ -2850,25 +2858,25 @@ Les frameworks meurent. Les langages évoluent. Ces choses, jamais.
 ```javascript
 const leDevDe2026 = {
   // IA
-  utiliseLIA           : true,   // outil, pas cerveau de remplacement
-  valideceQuIlGenere   : true,   // jamais copier-coller aveuglément
-  promptAvecContexte   : true,   // garbage in, garbage out
+  utiliseLIA: true, // outil, pas cerveau de remplacement
+  valideceQuIlGenere: true, // jamais copier-coller aveuglément
+  promptAvecContexte: true, // garbage in, garbage out
 
   // Technique
-  construitLesBases    : true,   // algo, systèmes, réseau : l'IA aide pas là-dessus
-  litLaDoc             : true,   // pas juste quand ça plante
-  testeSonCode         : true,   // pas "ça marche sur ma machine"
+  construitLesBases: true, // algo, systèmes, réseau : l'IA aide pas là-dessus
+  litLaDoc: true, // pas juste quand ça plante
+  testeSonCode: true, // pas "ça marche sur ma machine"
 
   // Métier
-  communiqueBien       : true,   // le code seul ne suffit pas
-  estimeProprement     : true,   // honnêteté > optimisme
-  ditNonSiNecessaire   : true,   // une feature inutile bien codée reste inutile
+  communiqueBien: true, // le code seul ne suffit pas
+  estimeProprement: true, // honnêteté > optimisme
+  ditNonSiNecessaire: true, // une feature inutile bien codée reste inutile
 
   // Carrière
-  resteCurieux         : true,   // tout change vite, faut suivre
-  saitLAnglais         : true,   // accès au marché remote = x3 sur le salaire
-  construitEnPublic    : true,   // GitHub, portfolio, réputation : ça se construit tôt
-}
+  resteCurieux: true, // tout change vite, faut suivre
+  saitLAnglais: true, // accès au marché remote = x3 sur le salaire
+  construitEnPublic: true, // GitHub, portfolio, réputation : ça se construit tôt
+};
 
 // La seule chose que l'IA peut pas faire à ta place :
 // comprendre ton problème. Vraiment le comprendre.
@@ -2895,10 +2903,10 @@ Attend qu'on lui dise quoi faire   ->  Voit ce qui manque et le fait
 
 ---
 
-> *"L'IA c'est le meilleur pair programmer que t'auras jamais.*
-> *Rapide, disponible, patient, jamais de mauvaise humeur.*
-> *Mais il a besoin de toi pour savoir ce qu'il fait vraiment.*
-> *C'est toi le dev. Lui c'est l'outil."*
+> _"L'IA c'est le meilleur pair programmer que t'auras jamais._
+> _Rapide, disponible, patient, jamais de mauvaise humeur._
+> _Mais il a besoin de toi pour savoir ce qu'il fait vraiment._
+> _C'est toi le dev. Lui c'est l'outil."_
 
 ---
 
@@ -2967,12 +2975,12 @@ DANS TOUS LES CAS      ->   Construis les fondamentaux.
 
 La différence entre ceux qui réussissent dans ce métier et ceux qui abandonnent n'est pas le talent. C'est la régularité. Une heure par jour, tous les jours, pendant deux ans : tu es employable. Pendant cinq ans : tu es crédible. Pendant dix ans : tu décides où tu vas.
 
-> *"Le code que tu écris aujourd'hui, tu t'en souviendras plus dans 3 ans.*
-> *Ce que tu comprends aujourd'hui, personne ne peut te le prendre."*
+> _"Le code que tu écris aujourd'hui, tu t'en souviendras plus dans 3 ans._
+> _Ce que tu comprends aujourd'hui, personne ne peut te le prendre."_
 
 ---
 
-*Ces informations sont des tendances basées sur l'état du marché en 2026. Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante.*
+_Ces informations sont des tendances basées sur l'état du marché en 2026. Les technos évoluent vite : toujours vérifier les sources récentes avant une décision importante._
 
 ---
 

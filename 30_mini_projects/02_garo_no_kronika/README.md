@@ -2,7 +2,8 @@
 [PORTFOLIO]
 
 # GARO NO KRONIKA
-⏱️ ~6 min
+
+-> ~6 min
 
 Des Horrors apparaissent simultanément dans plusieurs quartiers. Le Conseil de Surveillance dispatche des Chevaliers d'Or disponibles. Chaque Chevalier prépare son armure (ça prend du temps), combat, et streame le résultat en direct vers le Conseil. L'armure tient 99,9 secondes maximum : au-delà, elle se désintègre, et la mission échoue.
 
@@ -104,12 +105,12 @@ Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel :
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module | Où ça se voit |
-|---|---|
-| `03_async` | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout) |
-| `04_error_handling` | `errors/` (erreurs custom typées), propagation dans `missionRunner.js` |
-| `20_realtime` | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
-| `17_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven) |
+| Module                     | Où ça se voit                                                           |
+| -------------------------- | ----------------------------------------------------------------------- |
+| `03_async`                 | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)       |
+| `04_error_handling`        | `errors/` (erreurs custom typées), propagation dans `missionRunner.js`  |
+| `20_realtime`              | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
+| `17_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven)        |
 
 ---
 
@@ -148,18 +149,16 @@ trade-off chiffré :
 Sans chiffres, ce n'est pas une décision, c'est une préférence.
 Voir `08_memory_performance/00_measure_first.md`.
 
-
 ## Pitch 3 lignes
 
 Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
-
 
 ## Empreinte carbone (critère d'acceptation)
 
 Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
 
-
 ## THÈME NEUTRE (optionnel)
+
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
 
 ## Structure attendue
