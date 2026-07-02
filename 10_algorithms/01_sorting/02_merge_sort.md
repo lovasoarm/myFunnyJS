@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MERGE SORT : DIVISER POUR RÉGNER EN O(n log n)
+Temps de lecture ~8 min
 
 Bubble sort te demandait de comparer chaque paire. Merge sort fait quelque chose de plus malin : il coupe le problème en deux, résout chaque moitié, puis fusionne les résultats.
 

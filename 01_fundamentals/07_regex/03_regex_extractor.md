@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # REGEX EXTRACTOR : CAPTURER, REMPLACER, SPLITTER
+Temps de lecture ~9 min
 
 La validation c'est le niveau 1. Le niveau 2 : transformer des données. Parser du texte brut en structures utilisables. Remplacer des patterns de façon chirurgicale. Découper des chaînes sur des frontières complexes.
 

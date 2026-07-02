@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI DES PROJETS : LA DIFFÉRENCE ENTRE SAVOIR ET POUVOIR
+Temps de lecture ~9 min
 
 Tu peux connaître `Promise.all` par coeur. Savoir ce que c'est. Savoir l'expliquer.
 Et rater complètement l'implémentation dès que le contexte est réel.
@@ -89,7 +92,7 @@ JSON sur le filesystem.
 
 ## Conséquences
 Risque : lecture/écriture concurrente si plusieurs processus tournent en même temps.
-Acceptable pour ce cas d'usage (CLI mono-utilisateur).
+Acceptable pour ce cas d'usage (CLI mono-shinobi).
 ```
 
 ---

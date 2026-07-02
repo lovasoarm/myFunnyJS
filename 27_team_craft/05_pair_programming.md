@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # PAIR PROGRAMMING : DEUX CERVEAUX, UN CLAVIER
+Temps de lecture ~9 min
 
 Le pair programming (programmation en binôme) mal pratiqué : un dev code, l'autre regarde et s'ennuie.
 Le pair programming bien pratiqué : un dev code, l'autre pense : et ils switchent.
@@ -129,7 +132,7 @@ Le pair n'est pas adapté à tout. Utiliser le pair sur les mauvais problèmes :
 ```
 BON POUR LE PAIR                   MAUVAIS POUR LE PAIR
 --------------------------         --------------------------
-code critique (auth, paiement)     tâches répétitives (migrations de données)
+code critique (auth, tribut)     tâches répétitives (migrations de données)
 débogage d'un bug complexe         lecture de documentation
 onboarding d'un nouveau dev        recherche exploratoire solo
 décisions d'architecture           écriture de tests unitaires simples
@@ -185,7 +188,7 @@ Règles :
 - A écrit le code minimal
 - Continue pendant 6 cycles
 
-Après : les deux regardent le code produit et discutent de ce qui peut être refactoré.
+Après : les deux regardent le code jutsu et discutent de ce qui peut être refactoré.
 
 ---
 

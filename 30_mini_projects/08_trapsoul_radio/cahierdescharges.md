@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : TRAPSOUL RADIO
+Temps de lecture ~14 min
 
 ## PRÉREQUIS
 
@@ -70,29 +73,29 @@ Ce projet teste un réflexe que les devs n'ont pas naturellement : penser l'inte
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `14_typescript` : types stricts, generics, utility types
+### `15_typescript` : types stricts, generics, utility types
 **Où ça se voit** : tous les fichiers `.ts`. Les clés de traduction typées dans `i18n/types.ts`. Les generics sur les playlists `Playlist<Track>`.
 **Pourquoi c'est nécessaire ici** : `TranslationKey` est un type union de toutes les clés valides. Si tu écris `t('player.now_playing_typo')` et que la clé n'existe pas : erreur à la compilation.
 
-### `17_web_concepts` : browser render pipeline, LCP, INP, CLS
+### `18_web_concepts` : browser render pipeline, LCP, INP, CLS
 **Où ça se voit** : les optimisations de performance dans `src/player/`, les metadata dynamiques dans `src/pages/`.
 **Pourquoi c'est nécessaire ici** : un changement de track déclenche un re-render. Si ce re-render fait sauter le CLS (Cumulative Layout Shift : décalage cumulatif de la mise en page), les scores Lighthouse s'effondrent.
 
-### `18_accessibility` : ARIA, navigation clavier, contraste WCAG
+### `19_web_inclusive` : ARIA, navigation clavier, contraste WCAG
 **Où ça se voit** : chaque composant HTML dans `src/components/`. Les ARIA roles, les skip links, le focus management dans les modals.
 **Pourquoi c'est nécessaire ici** : les composants audio custom (bouton play, slider de progression, sélecteur de track) n'ont pas de comportement clavier natif. Il faut le construire explicitement.
 
-### `19_i18n` : Intl, pluralisation, namespaces, locale detection
+### `19_web_inclusive/i18n` : Intl, pluralisation, namespaces, locale detection
 **Où ça se voit** : `src/i18n/` entier.
 **Pourquoi c'est nécessaire ici** : 4 locales, pluralisation différente par langue, dates et durées formatées selon la locale, sans bibliothèque externe.
 
 ### Résumé visuel
 
 ```
-14_typescript   --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
-17_web_concepts --> LCP < 2.5s, CLS < 0.1, INP < 200ms, metadata dynamiques
-18_accessibility --> ARIA roles, navigation clavier, skip links, contraste WCAG AA
-19_i18n         --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
+15_typescript   --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
+18_web_concepts --> LCP < 2.5s, CLS < 0.1, INP < 200ms, metadata dynamiques
+19_web_inclusive --> ARIA roles, navigation clavier, skip links, contraste WCAG AA
+19_web_inclusive/i18n         --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -104,14 +107,14 @@ Navigateur charge la page
   --> player.init(playlist)            // initialise le lecteur avec la playlist
   --> render(AppShell)                 // rendu initial de l'interface
 
-Utilisateur clique "Piste suivante" (ou appuie sur espace)
+Shinobi clique "Piste suivante" (ou appuie sur espace)
   --> player.next()                    // passe à la track suivante
   --> player.updateState(newTrack)     // met à jour l'état
   --> render(NowPlaying, newTrack)     // re-render le composant maintenant-en-lecture
   --> aria.announce(newTrack.title)    // annonce au lecteur d'écran via aria-live
   --> document.title = t('now_playing', { track: newTrack }) // met à jour le titre de l'onglet
 
-Utilisateur change la langue
+Shinobi change la langue
   --> i18n.setLocale('ja')             // bascule vers le japonais
   --> i18n.reloadAll()                 // recharge toutes les traductions
   --> render(FullApp)                  // re-render complet de l'interface
@@ -180,7 +183,7 @@ tests/
 
 ### `src/player/player.ts`
 **Ce que ça fait** : gère l'état du lecteur (track en cours, position, volume, état play/pause). Ne touche pas au DOM directement.
-**Entrée** : des commandes (`play()`, `pause()`, `next()`, `prev()`, `seek(position)`).
+**Entrée** : des ordres_mission (`play()`, `pause()`, `next()`, `prev()`, `seek(position)`).
 **Sortie** : un état `PlayerState` mis à jour.
 
 ### `src/components/NowPlaying.ts`
@@ -365,3 +368,22 @@ servant de référence). Toute nouvelle locale doit satisfaire ce type.
 [ ] les 3 ADR sont remplis avec contexte, décision, alternatives, conséquences
 [ ] POSTMORTEM.md documente la violation a11y la plus difficile à corriger
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Validation d'upload/stream (OWASP A03) : valider le type et la taille des flux entrants.
+- Rate limiting (OWASP A04) : borner les requêtes par client pour protéger le stream.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

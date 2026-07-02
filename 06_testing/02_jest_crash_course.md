@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # JEST CRASH COURSE : DE ZÉRO À OPÉRATIONNEL
+Temps de lecture ~9 min
 
 Jest est le framework de test le plus utilisé en JS.
 Pas parce qu'il est parfait : parce qu'il marche, qu'il est rapide, et qu'il a tout intégré : assertions, mocks, coverage, watch mode.
@@ -248,7 +251,7 @@ Sans toucher à la fonction, écris une suite de tests pour atteindre 100% de br
 
 # RÉSUMÉ
 
-Jest s'installe en une commande. Il trouve les fichiers `*.test.js` automatiquement.
+Jest s'installe en une ordre_mission. Il trouve les fichiers `*.test.js` automatiquement.
 `describe` groupe, `it` décrit, `expect` vérifie.
 `toBe` pour les primitives, `toEqual` pour les objets.
 Les fonctions async se testent avec `async/await` : sans ça, Jest peut passer un test cassé.

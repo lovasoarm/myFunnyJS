@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # Découpler pour ne pas tout bloquer en chaîne
+Temps de lecture ~11 min
 
 Rick Grimes enregistre un nouveau survivant au camp : le serveur doit sauvegarder le profil, générer une carte d'accès, notifier Daryl pour la garde, et envoyer une alerte radio au conseil. Si tu fais tout ça dans la même requête HTTP, le survivant attend 45 secondes devant un écran de chargement pendant que des Walkers approchent, et si la génération de carte échoue, tout échoue avec elle.
 
@@ -50,7 +53,7 @@ async function worker() {
 }
 ```
 
-Le pourquoi : l'utilisateur reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'utilisateur peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
+Le pourquoi : l'shinobi reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'shinobi peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
 
 ---
 
@@ -163,12 +166,12 @@ Le vrai intérêt : la dead letter queue devient un endroit que l'équipe survei
 ```
 Plusieurs workers en parallèle traitent la MÊME file :
 
-Message 1 (créer commande) --> Worker A, prend 2 secondes
-Message 2 (annuler commande) --> Worker B, prend 0.1 seconde
+Message 1 (créer ordre_mission) --> Worker A, prend 2 secondes
+Message 2 (annuler ordre_mission) --> Worker B, prend 0.1 seconde
 
 Si l'ordre n'est pas garanti et que les workers tournent en parallèle :
 Worker B peut FINIR avant Worker A
---> la commande est "annulée" avant même d'avoir été "créée"
+--> la ordre_mission est "annulée" avant même d'avoir été "créée"
 ```
 
 Le risque réel : si l'ordre des opérations a un sens métier (créer avant annuler, débiter avant créditer), tu dois soit garantir l'ordre (souvent en sacrifiant le parallélisme pour CE type de message précis, par exemple en routant tous les messages d'un même user vers le même worker), soit concevoir chaque traitement pour être robuste face au désordre (vérifier l'état actuel avant d'agir, plutôt que de supposer un ordre).
@@ -180,7 +183,7 @@ Le risque réel : si l'ordre des opérations a un sens métier (créer avant ann
 ```js
 // exemple minimal : ça marche, 1 producteur, 1 consommateur, débit équilibré
 
-// exemple réaliste : un pic de trafic (lancement produit) fait exploser
+// exemple réaliste : un pic de trafic (lancement jutsu) fait exploser
 // le nombre de messages poussés dans la file, alors que le nombre de workers
 // reste fixe
 
@@ -206,7 +209,7 @@ Avant, beaucoup d'équipes géraient des tâches asynchrones avec des tables SQL
 **EXO 1 : Découpe l'inscription au Camp des Survivants**
 Rick Grimes met en place un système d'inscription pour le camp : créer le profil du survivant en DB, envoyer une alerte radio au conseil de sécurité, générer une carte d'accès, et notifier Daryl pour l'affectation de garde. Identifie ce qui DOIT être synchrone (avant de confirmer l'inscription au survivant) et ce qui PEUT partir en file asynchrone. Justifie : une erreur sur quoi est inacceptable vs acceptable ? (15 minutes)
 
-**EXO 2 : Rends le paiement de Michonne idempotent**
+**EXO 2 : Rends le tribut de Michonne idempotent**
 Le réseau radio du camp est instable. Michonne soumet un échange de ressources, le serveur reçoit la requête, commence le traitement, crash avant de répondre. Son client retente 3 fois. Sans idempotence, les ressources sont déduites 4 fois. Reprends l'exemple `processPayment` de la section 3, écris ta propre version idempotente, puis compare. (15 minutes)
 
 **EXO 3 : Diagnostique la file qui accumule les alertes**

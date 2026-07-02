@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MICROTASK MADNESS
+Temps de lecture ~9 min
 
 JS ne fait qu'une chose à la fois.
 Mais il fait des choix sur l'ordre dans lequel il fait ces choses.
@@ -304,3 +307,38 @@ Quand la call stack est vide : toutes les microtasks tournent d'abord, puis une 
 `Promise.then()` et `await` créent des microtasks.
 `setTimeout`, `setInterval` créent des macrotasks : ils passent toujours après.
 Prédire l'ordre d'exécution sans lancer le code : c'est le vrai test de compréhension du moteur JS.
+
+
+## Schéma : timeline complète
+
+Code :
+```js
+console.log("A")
+setTimeout(() => console.log("B"), 0)
+Promise.resolve().then(() => console.log("C"))
+queueMicrotask(() => console.log("D"))
+Promise.resolve().then(() => console.log("E"))
+console.log("F")
+```
+
+Timeline :
+```
+t=0  | STACK       | MICROTASK Q      | MACROTASK Q
+-----|-------------|------------------|-------------------
+     | log("A")    |                  | setTimeout(cb_B)
+     | log("F")    | then(cb_C)       |
+     |             | queueMT(cb_D)    |
+     |             | then(cb_E)       |
+-----|-------------|------------------|-------------------
+     | drain micro | -> log C         |
+     |             | -> log D         |
+     |             | -> log E         |
+-----|-------------|------------------|-------------------
+     | macro tick  |                  | -> log B
+```
+
+Sortie : `A F C D E B`.
+
+### Ce que l'analogie cache
+
+La microtask queue est **drainée entièrement** entre deux macrotasks. Une microtask qui en ajoute une autre = boucle infinie qui bloque le rendu. Le navigateur ne rendra jamais un frame.

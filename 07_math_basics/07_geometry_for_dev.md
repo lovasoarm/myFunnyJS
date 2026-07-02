@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GÉOMÉTRIE POUR DÉVELOPPEUR
+Temps de lecture ~13 min
 
 T'as pas besoin d'être Pythagore.
 Tu as besoin de savoir calculer une distance entre deux points sur une carte, détecter si un clic tombe dans une zone, orienter un sprite, ou positionner des éléments dans un canvas.
@@ -134,7 +137,7 @@ spawn (0,0) -----> dir {x:3, y:4} -----> cible (3,4)
 
 ---
 
-## 4) PRODUIT SCALAIRE (DOT PRODUCT)
+## 4) JUTSU SCALAIRE (DOT PRODUCT)
 
 Deux vecteurs. Un seul nombre. Ce nombre dit si les vecteurs pointent dans la même direction.
 
@@ -372,7 +375,7 @@ distance au carré     --> comparaison relative sans besoin de la valeur exacte
 
 ## 10) HEATMAP BASIQUE : AGRÉGER DES POINTS
 
-Cas réel : tu as des milliers de clics utilisateur sur une page. Tu veux savoir quelles zones sont les plus touchées.
+Cas réel : tu as des milliers de clics shinobi sur une page. Tu veux savoir quelles zones sont les plus touchées.
 
 ```js
 function genererHeatmap(clics, largeur, hauteur, resolution = 50) {

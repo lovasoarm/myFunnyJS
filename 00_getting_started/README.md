@@ -1,0 +1,32 @@
+[INTEMPOREL]
+
+# 00_getting_started : lis-moi avant de coder
+
+Ce dossier est un **module de mise en route**, pas une lecon de code.
+Il n'a volontairement **pas de `00_why_getting_started.md`**.
+
+Raisons :
+- Tu n'es pas encore prêt à te demander "pourquoi ce module" : tu n'as même pas Node d'installé.
+- La vraie question ici est mécanique : **installer, ouvrir un shell, lancer un fichier `.js`**.
+- Le "pourquoi" arrive au module `01_fundamentals` : c'est là que ton cerveau prend le contrôle.
+
+## Ordre de lecture
+
+1. `01_install.md` : Node 20+, Git, éditeur.
+2. `02_shell_survival.md` : 12 ordres_mission pour survivre.
+3. `03_git_101.md` : clone, add, commit, push, revert.
+4. `04_package_managers.md` : npm vs pnpm vs bun, en 15 min.
+5. `05_devsec_perso.md` : ne pas fuiter tes secrets dès le jour 1.
+
+## Sortie du module
+
+Tu dois être capable de :
+- ouvrir un terminal, `cd`, `ls`, `node -v` retourne `v20.x` ou plus,
+- créer un dépôt local, faire un commit, l'annuler,
+- installer un paquet, le supprimer, comprendre `package.json`.
+
+Ensuite, direction `01_fundamentals/`.
+
+## Ce module reutilise
+
+Rien (c'est le point d'entrée).

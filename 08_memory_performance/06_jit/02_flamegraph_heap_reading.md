@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LIRE UN FLAMEGRAPH ET UN HEAP SNAPSHOT : VOIR CE QUE LE JIT FAIT VRAIMENT
+Temps de lecture ~8 min
 
 Comprendre Ignition, TurboFan, les hidden classes : c'est la théorie. Mais sur du vrai code, en vraie prod, tu ne devines jamais où le CPU part ni où la mémoire fuit. Tu le lis. Et ça se lit dans deux outils précis : le flamegraph (graphique en flammes) pour le CPU, le heap snapshot pour la mémoire.
 

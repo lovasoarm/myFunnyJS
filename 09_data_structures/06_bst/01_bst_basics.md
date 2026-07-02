@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BST : L'ARBRE QUI CHERCHE EN O(log n)
+Temps de lecture ~9 min
 
 Un tableau trie ou non. Un hash table trouve en O(1) mais ne trie pas. Le BST fait les deux : chercher, insérer, supprimer en O(log n) : et les données restent ordonnées dans la structure.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MOCKING MADNESS : REMPLACER CE QU'ON NE CONTRÔLE PAS
+Temps de lecture ~8 min
 
 Ton code appelle une API externe. Il envoie un email. Il lit un fichier sur le disque.
 Tu ne peux pas laisser ça tourner dans tes tests : c'est lent, imprévisible, et ça coûte parfois de l'argent.

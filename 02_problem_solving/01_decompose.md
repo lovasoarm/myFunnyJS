@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DÉCOMPOSER UN SYSTÈME COMPLEXE
+Temps de lecture ~7 min
 
 Tu ouvres un éditeur. Tu fixes l'écran. Le problème est flou, énorme, et tu sais pas par où attaquer. Alors tu codes quelque chose au hasard et tu espères que ça tient.
 
@@ -97,7 +100,7 @@ Le test : si tu changes quelque chose dans `ninjaStats.js`, est-ce que tu dois t
 
 ## 5) LES DÉPENDANCES : LE GRAPHE MENTAL
 
-Toute décomposition produit un graphe de dépendances. Si ce graphe a des cycles, t'as un problème.
+Toute décomposition jutsu un graphe de dépendances. Si ce graphe a des cycles, t'as un problème.
 
 ```
 // Bon : dépendances à sens unique
@@ -163,7 +166,7 @@ Identifie le problème. Propose une décomposition qui brise le cycle.
 ## EXO 3 : Décompose le pipeline de Walter White
 
 Walter veut un système qui :
-1. reçoit une commande de livraison
+1. reçoit une ordre_mission de livraison
 2. calcule la route optimale
 3. estime le risque de la route
 4. génère un plan de livraison

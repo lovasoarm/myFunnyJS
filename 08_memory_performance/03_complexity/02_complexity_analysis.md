@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ANALYSER UN ALGORITHME LIGNE PAR LIGNE
+Temps de lecture ~10 min
 
 Donner le Big O d'un algorithme complet sans formule magique. Juste une lecture attentive du code, ligne par ligne, et une règle simple pour combiner les complexités.
 

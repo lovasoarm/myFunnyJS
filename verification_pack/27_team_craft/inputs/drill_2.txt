@@ -1,0 +1,2 @@
+# drill 2 for 27_team_craft
+# input contract décrit dans README.md

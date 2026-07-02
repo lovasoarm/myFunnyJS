@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES FONDAMENTAUX
+Temps de lecture ~8 min
 
 Tu peux écrire `const x = 5` sans savoir ce qui se passe en mémoire. Ça marche. Jusqu'au jour où ton state mute tout seul, où ta closure garde une variable vivante alors que la fonction est morte, où ton `===` te trahit. Là, tu ne débugges plus : tu pries.
 
@@ -35,7 +38,7 @@ state d'une app React/Vue     --> mutation accidentelle  --> bug de rendu fantô
 config partagée entre modules --> référence partagée     --> un module casse un autre
 boucle for avec var           --> closure capte la mauvaise valeur
 cache en mémoire              --> deep vs shallow copy   --> données corrompues
-parsing d'input utilisateur   --> coercition de type     --> comparaison qui foire
+parsing d'input shinobi   --> coercition de type     --> comparaison qui foire
 ```
 
 Un bug de fondamentaux n'est jamais isolé. Il se propage parce que toute ton app repose sur des variables qui se passent de la donnée entre elles. Si la base est pourrie, chaque étage au-dessus hérite du problème.

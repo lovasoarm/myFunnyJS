@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TYPE TRANSFORMERS
+Temps de lecture ~7 min
 
 _Transformer. Vérifier. Survivre._
 
@@ -172,7 +175,7 @@ Number(ageInput);   // NaN ← refuse car ce n'est pas propre
 
 Selon le contexte :
 - **Donnée propre attendue** → `Number()`
-- **Donnée sale utilisateur** → `parseInt()` + validation
+- **Donnée sale shinobi** → `parseInt()` + validation
 
 Toujours comprendre le contexte. Toujours.
 

@@ -1,4 +1,9 @@
+[DÉCENNIE]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT
+
+> Ce module reutilise : erreurs (05_error_handling), securite (22_security).
+Temps de lecture ~8 min
 
 N'importe qui peut écrire `app.get('/route', () => res.send('ok'))`. Construire une API que d'autres équipes vont consommer pendant des années, faire évoluer sans tout casser, et documenter pour qu'un dev externe la comprenne sans te demander : ça, c'est un métier à part entière.
 
@@ -9,8 +14,8 @@ Une API mal construite, c'est une dette qui se paie pour toujours, parce que des
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- Node.js, process, streams : voir `15_runtime_env/`
-- HTTP, verbes, status codes, headers : voir `17_web_concepts/01_http_rest_basics.md`
+- Node.js, process, streams : voir `16_runtime_env/`
+- HTTP, verbes, status codes, headers : voir `18_web_concepts/01_http_rest_basics.md`
 - gestion d'erreurs async : voir `04_error_handling/04_async_error_traps.md`
 
 Si ces bases ne sont pas là : reviens ici après.
@@ -47,7 +52,7 @@ Sans versioning, modifier la forme d'une réponse pour "l'améliorer" casse sile
 ```
 ressource à créer/lire/modifier/supprimer       --> CRUD REST          --> verbes HTTP cohérents (GET, POST, PUT, PATCH, DELETE)
 erreur d'API mal formée                         --> error handling API --> format uniforme et status codes corrects
-utilisateur qui doit prouver son identité        --> JWT                --> sign/verify/refresh sécurisé
+shinobi qui doit prouver son identité        --> JWT                --> sign/verify/refresh sécurisé
 nouvelle version de l'API qui change la réponse  --> API versioning     --> anciens clients non cassés
 intégration par une équipe externe               --> OpenAPI/Swagger    --> contrat documenté et exploitable
 ```
@@ -72,7 +77,7 @@ GraphQL a aussi introduit une alternative sérieuse à REST pour certains cas d'
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `15_runtime_env` + `17_web_concepts` + `04_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `22_security`.
+Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `16_runtime_env` + `18_web_concepts` + `04_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `22_security`.
 
 ---
 
@@ -87,3 +92,14 @@ Construire des systèmes qui communiquent entre eux via des APIs ne va pas dispa
 Une API n'est jamais juste "un endpoint qui marche" : c'est un contrat public dont d'autres dépendent durablement. Ça casse de trois façons sans cette discipline : erreurs incohérentes, clients cassés silencieusement par un changement non versionné, sécurité JWT fragile qui laisse un token volé valide pour toujours. Ce module fait partie du noyau dur qui distingue un junior d'un senior.
 
 Maintenant, ouvre `01_express_from_scratch.md`. Et construis une API comme quelqu'un qui sait que d'autres vont en dépendre.
+
+> Ce module réutilise : les web concepts du module 18 (`18_web_concepts`), l'architecture en couches du module 17 (`17_architecture_patterns`).
+
+---
+
+## AILLEURS QUE JS
+
+- **Python (FastAPI)** : validation Pydantic, OpenAPI auto-genere.
+- **Go (chi, gin)** : middleware compose, contexte propage. Meme grammaire.
+- **Rust (axum)** : type-safety a la compilation pour les routes.
+- **Partout** : versionnage, idempotence, retry, timeout, backpressure sont les memes 5 sujets.

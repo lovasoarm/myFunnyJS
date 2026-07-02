@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # VARIABLE GRIMOIRE : LES MOTS QUE TU DOIS MAÎTRISER
+Temps de lecture ~5 min
 
 > Ce module, c'est la mémoire. Si tu ne comprends pas ces termes, tu ne comprends pas ce que JS fait avec tes données.
 

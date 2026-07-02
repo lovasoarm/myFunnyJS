@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # STACK MISSIONS : PARENTHÈSES, HISTORIQUE, UNDO/REDO
+Temps de lecture ~9 min
 
 La stack n'est pas juste une structure académique. Elle résout trois catégories de problèmes réels que tu croises en prod ou en entretien.
 

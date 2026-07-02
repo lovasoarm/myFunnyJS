@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MUTATION MINEFIELD : TOUCHER UN OBJET ET TOUT CASSER AILLEURS
+Temps de lecture ~9 min
 
 T'as modifié un objet. T'as rien d'autre touché. Et pourtant, trois fonctions différentes dans trois fichiers différents ont un comportement bizarre depuis ce matin.
 
@@ -321,7 +324,7 @@ function createRequest(url, options = defaultConfig) {
   options.url = url;
   return options;
 }
-createRequest("/api/login");
+createRequest("/api/enter_dojo");
 createRequest("/api/data");
 ```
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GRAPH CHALLENGES : CYCLES, COMPOSANTS, TOPO SORT
+Temps de lecture ~10 min
 
 Trois problèmes classiques sur les graphes. Chacun a un algorithme précis. Chacun apparaît dans des contextes réels : détecter une dépendance circulaire avant de lancer un build, trouver les îlots isolés dans un réseau, déterminer l'ordre d'exécution d'un pipeline. Reconnaître le problème suffit à choisir l'algo.
 

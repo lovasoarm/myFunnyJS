@@ -1,0 +1,28 @@
+/* STOP.
+   As-tu fini l'exercice sans regarder ?
+   As-tu écrit ton propre exemple ?
+   Peux-tu réexpliquer sans regarder ce fichier ?
+   Si non, ferme ce fichier maintenant. */
+<!-- ====================================================== -->
+<!-- STOP. AVERTISSEMENT FORT. NE LIS PAS SANS AVOIR ESSAYÉ. -->
+<!-- CHECKLIST AVANT DE LIRE -->
+<!-- As-tu terminé l'exercice sans regarder ? -->
+<!-- As-tu écrit un exemple personnel ? -->
+<!-- Peux-tu réexpliquer le concept sans le code ? -->
+<!-- Si non, referme ce fichier et essaie encore. -->
+<!-- ====================================================== -->
+
+function attack() {
+  console.log("Slash");
+}
+let move = attack;
+move();
+attack.damage = 50;
+console.log(attack.damage);
+let skills = [];
+skills.push(attack);
+skills[0]();
+let otherVariable = attack;
+if (attack === move && move === otherVariable) {
+  console.log("yes");
+}

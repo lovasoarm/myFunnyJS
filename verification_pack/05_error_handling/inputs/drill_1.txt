@@ -1,0 +1,2 @@
+# drill 1 for 05_error_handling
+# input contract décrit dans README.md

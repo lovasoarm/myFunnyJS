@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SORTING RACE : BUBBLE VS MERGE VS QUICK SUR DES VRAIS VOLUMES
+Temps de lecture ~8 min
 
 T'as vu les algos en isolation. Maintenant on les fait se battre.
 
@@ -200,7 +203,7 @@ _~15 min_
 
 ---
 
-## EXO 3 : Trier les stats de la Champions League
+## EXO 3 : Départager 100 000 lignes de stats sans planter le site en pleine soirée de match
 _~25 min_
 
 Tu reçois un tableau de 100 000 entrées de match avec `{ équipe, buts, passes, minutes }`. Tu dois les trier par `buts` décroissant, avec `passes` comme critère de départage. Le tri doit être stable. Choisis le bon algo et justifie ton choix dans un commentaire.

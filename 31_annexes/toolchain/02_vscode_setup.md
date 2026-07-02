@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # VSCODE SETUP : TON CAMP DE BASE, CONFIGURÉ POUR TENIR
+Temps de lecture ~8 min
 
 Daryl a sa moto réglée au millimètre : il sait exactement comment elle réagit, où sont ses limites, ce qu'elle tolère. Ton éditeur c'est pareil. Tu vas passer des milliers d'heures dedans. Un setup par défaut, c'est une moto jamais réglée : elle roule, mais elle te trahit au pire moment.
 

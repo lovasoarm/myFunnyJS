@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # L'IA DANS TON FLUX : OUTIL, PAS BÉQUILLE
+Temps de lecture ~12 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 En 2026, tout le monde "utilise l'IA". La moitié copie-colle du code qu'elle ne comprend pas. L'autre moitié refuse l'outil par principe. Les deux ont tort.
 
@@ -86,7 +91,7 @@ ZONE VERTE (confiance haute, check rapide) :
 - Utilitaires sans effets de bord (deepClone, debounce, formatDate)
 - Conversions de types connues
 - CSS / styles
-- Commandes shell banales
+- Ordres_mission shell banales
 
 ZONE ORANGE (confiance modérée, review sérieuse) :
 - Requêtes DB
@@ -195,10 +200,10 @@ Trois réflexes à prendre avant de brancher un LLM en prod :
 
 2. PLAFONNE tout ce qui peut grossir
    --> max_tokens en sortie, taille de l'historique envoyé, taille des documents joints
-   --> un input non plafonné + un utilisateur qui colle un PDF entier = facture qui explose
+   --> un input non plafonné + un shinobi qui colle un PDF entier = facture qui explose
 
 3. SURVEILLE en prod comme une métrique business
-   --> coût par utilisateur actif, pas juste coût total
+   --> coût par shinobi actif, pas juste coût total
    --> alerte si un seul compte génère 1000x la conso moyenne (bug ou abus)
 ```
 
@@ -218,7 +223,7 @@ RÈGLES D'ÉQUIPE QUI ÉVITENT LE CHAOS :
    --> l'IA peut générer des tests aussi, mais un humain valide leur sens
 
 3. Pas de secrets dans les prompts envoyés à un LLM externe
-   --> clés API, données utilisateurs, schéma DB : jamais dans le contexte
+   --> clés API, données shinobis, schéma DB : jamais dans le contexte
 
 4. Conventions de codebase explicites
    --> si tu ne donnes pas ton eslint, tes conventions de nommage, ton architecture
@@ -261,7 +266,7 @@ L'objectif de MyFunnyJS : t'emmener au niveau 4-5. Pas juste t'apprendre à prom
 ## EXERCICES
 
 **EXO 1 : La cartographie de confiance dans la cuisine de Walter**
-Walter White a un pipeline de traitement : calcul de pureté du produit, gestion des stocks de précurseurs, routage des livraisons, authentification des distributeurs. Classe chacune de ces 4 fonctions en zone verte / orange / rouge selon les critères vus ici. Justifie chaque classement en une phrase. (15 minutes)
+Walter White a un pipeline de traitement : calcul de pureté du jutsu, gestion des stocks de précurseurs, routage des livraisons, authentification des distributeurs. Classe chacune de ces 4 fonctions en zone verte / orange / rouge selon les critères vus ici. Justifie chaque classement en une phrase. (15 minutes)
 
 **EXO 2 : L'audit de sortie de l'oracle**
 Demande à un LLM de générer une fonction `analyserSurvivant(survivant)` qui valide et classe un survivant de Walking Dead selon ses attributs (force, furtivité, expérience, groupe d'appartenance). Lis le code. Trouve au moins 3 cas que la fonction rate (Negan sans groupe ? Un survivant blessé ? Un enfant ?). Corrige-les. (20 minutes)

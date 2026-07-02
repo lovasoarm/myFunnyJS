@@ -1,4 +1,8 @@
+[INTEMPOREL]
+[PORTFOLIO]
+
 # ULTRAS DASHBOARD
+⏱️ ~7 min
 
 Le club de foot le plus suivi de la saison. Des milliers d'ultras connectés pendant un match. Des events de jeu qui arrivent à 200 par minute. Un dashboard qui affiche possession, xG, heatmap de passes, alertes temps réel, sans jamais tomber. Si le serveur crash pendant un match, les ultras brûlent tout.
 
@@ -102,7 +106,7 @@ eventIngester.receive(rawEvent)
 |---|---|
 | `26_observability` | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
 | `25_scalability` | rate limiting sur l'endpoint live, simulation de load horizontal |
-| `14_typescript` | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events |
+| `15_typescript` | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events |
 
 ---
 
@@ -126,3 +130,58 @@ TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
 POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
 ADR/                  --> décisions d'architecture documentées
 ```
+
+---
+
+## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+
+Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
+trade-off chiffré :
+
+- **Question** : "J'ai comparé X vs Y."
+- **Charge** : (taille des données, N itérations, hardware).
+- **Résultat** : `X = 12ms`, `Y = 48ms` sur 10 000 items.
+- **Décision** : "J'ai retenu X car …"
+- **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
+
+Sans chiffres, ce n'est pas une décision, c'est une préférence.
+Voir `08_memory_performance/00_measure_first.md`.
+
+
+## Pitch 3 lignes
+
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+
+
+## Accessibilité clavier (exercice)
+
+Navigue dans l'interface **uniquement au clavier** (Tab, Shift+Tab, Enter, Espace, flèches). Liste 3 problèmes rencontrés. Corrige-les. Livre `A11Y_REPORT.md`.
+
+Checklist minimum :
+- [ ] Focus visible sur tous les éléments interactifs.
+- [ ] Ordre de tab logique.
+- [ ] Modal : focus trap + Escape pour fermer.
+- [ ] Skip link "Aller au contenu" en tête.
+
+
+## Empreinte carbone (critère d'acceptation)
+
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
+
+
+## THÈME NEUTRE (optionnel)
+Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
+
+## Structure attendue
+
+Chaque mini-projet doit contenir a minima :
+
+- `src/` : code source (obligatoire).
+- `tests/` : tests unitaires et/ou d'intégration (obligatoire).
+- `README.md` : présentation, objectifs, comment lancer.
+- `TDD_JOURNAL.md` : trace de la démarche TDD.
+- `POSTMORTEM.md` : ce qui a marché, ce qui a cassé, ce que tu retiens.
+- `ADR/` : décisions architecturales (Architecture Decision Records).
+- `cahierdescharges.md` : contraintes et périmètre.
+
+Un CI check impose la présence de `src/` et `tests/` avant validation.

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : BREAKING CACHE
+Temps de lecture ~5 min
 
 ---
 
@@ -47,3 +50,18 @@ Le test de stabilité de Merge Sort a révélé une subtilité : la condition `<
 - Ajouter un mode "simulation" : Walter reçoit un nouveau contrat, le système recalcule en temps réel
 - Tester le knapsack avec des contraintes multiples (poids ET volume)
 ```
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

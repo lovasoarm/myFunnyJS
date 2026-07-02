@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LE CHAOS DES RÉFÉRENCES
+Temps de lecture ~5 min
 
 > T'as compris la théorie. Maintenant on va voir pourquoi ça explose en prod.
 

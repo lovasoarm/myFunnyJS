@@ -1,8 +1,11 @@
+[DÉCENNIE]
+
 # CHARTE ASCII : LA NORME UNIQUE
+Temps de lecture ~8 min
 
 > Un seul style de schéma. Un seul vocabulaire. Pas de version maison par module.
 
-Tu vas croiser l'event loop dans `03_async`, dans `08_memory_performance`, et encore dans `15_runtime_env`.
+Tu vas croiser l'event loop dans `03_async`, dans `08_memory_performance`, et encore dans `16_runtime_env`.
 Si chaque module dessine son propre schéma avec ses propres mots, ton cerveau doit réapprendre la lecture à chaque fois. C'est du gaspillage.
 
 Cette charte fixe 8 schémas canoniques. Quand un module a besoin d'un de ces 8 schémas : il pointe ici, ou il recopie le schéma identique. Pas de variante.
@@ -166,13 +169,13 @@ Le principe de la clean architecture : le domaine (la logique métier) ne dépen
 
 La flèche entre Domaine et Infra pointe vers le HAUT : c'est l'infra qui implémente une interface définie par le domaine, pas le contraire. Si tu changes de DB, le domaine ne bouge pas d'une ligne.
 
-**Référencé dans :** `16_architecture_patterns/03_clean_architecture`, `13_refactoring/02_solid_principles`.
+**Référencé dans :** `17_architecture_patterns/03_clean_architecture`, `14_refactoring/02_solid_principles`.
 
 ---
 
 ## 7) PIPELINE RÉSEAU : CLIENT, EDGE, ORIGIN
 
-Le trajet d'une requête entre l'utilisateur et ton serveur final, avec les points d'arrêt possibles en chemin.
+Le trajet d'une requête entre l'shinobi et ton serveur final, avec les points d'arrêt possibles en chemin.
 
 ```
 CLIENT
@@ -190,9 +193,9 @@ CLIENT
 [ DATABASE ]
 ```
 
-Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'est rapide pour l'utilisateur.
+Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'est rapide pour l'shinobi.
 
-**Référencé dans :** `17_web_concepts/04_caching_strategies`, `25_scalability/01_load_balancing`.
+**Référencé dans :** `18_web_concepts/04_caching_strategies`, `25_scalability/01_load_balancing`.
 
 ---
 

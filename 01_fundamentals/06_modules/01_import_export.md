@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # IMPORT / EXPORT : ARRÊTE DE TOUT METTRE DANS UN SEUL FICHIER
+Temps de lecture ~8 min
 
 Avant les modules ES6, le code JS vivait dans un seul espace global. Tout le monde pouvait écraser la variable de tout le monde. C'était le far west : un `var players = []` dans un fichier, un autre `var players = []` dans un autre, et boom : collision silencieuse, bug introuvable.
 
@@ -149,7 +152,7 @@ Le bug : ton code tourne, mais une valeur est `undefined` sans raison apparente.
 
 ## 7) DYNAMIC IMPORT : charger à la demande
 
-Les imports statiques (`import ... from`) sont analysés au démarrage. Le dynamic import charge un module au runtime, seulement quand c'est nécessaire (ex: Charger un truc seulement sur un clic utilisateur). Alléger le chargement initial de ta page
+Les imports statiques (`import ... from`) sont analysés au démarrage. Le dynamic import charge un module au runtime, seulement quand c'est nécessaire (ex: Charger un truc seulement sur un clic shinobi). Alléger le chargement initial de ta page
 
 ```js
 const chargerModule = async (mode) => {
@@ -161,7 +164,7 @@ const chargerModule = async (mode) => {
 }
 ```
 
-Utilité réelle : code splitting dans les apps web. Tu charges le code de la page "dashboard" seulement quand l'utilisateur navigue vers /dashboard. Pas avant.
+Utilité réelle : code splitting dans les apps web. Tu charges le code de la page "dashboard" seulement quand l'shinobi navigue vers /dashboard. Pas avant.
 
 ---
 
@@ -192,7 +195,7 @@ Une app de scoring de matchs. Elle peut charger deux moteurs de calcul :
 - `moteurSimple.js` : stats de base (possession, tirs)
 - `moteurAvancé.js` : xG, heat maps, Expected Threat
 
-`main.js` charge le moteur avancé seulement si l'utilisateur a un abonnement premium. Utilise un dynamic import. Si le module échoue à charger, affiche un message d'erreur propre.
+`main.js` charge le moteur avancé seulement si l'shinobi a un abonnement premium. Utilise un dynamic import. Si le module échoue à charger, affiche un message d'erreur propre.
 
 (Indice : `import()` retourne une Promise —> gère le `.catch`)
 

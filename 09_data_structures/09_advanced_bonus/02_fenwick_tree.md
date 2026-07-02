@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FENWICK TREE : SOMMES DE PRÉFIXES EN O(log n)
+Temps de lecture ~9 min
 
 Problème : un tableau de valeurs qui change en permanence. À chaque instant tu dois pouvoir répondre à "quelle est la somme des éléments entre l'index 2 et l'index 7 ?". Naïvement : O(n) par requête. Avec un tableau de préfixes statique : O(1) par requête mais O(n) par update. Le Fenwick Tree (Binary Indexed Tree) : O(log n) pour les deux.
 

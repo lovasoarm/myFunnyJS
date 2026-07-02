@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~7 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE DES PROMISES
 
 ---
@@ -5,7 +24,7 @@
 | Terme | Définition | Code | Analogies |
 |-------|-----------|------|-----------|
 | Promise | Objet qui représente une valeur qui n'est pas encore disponible. Trois états : pending, fulfilled, rejected. | `const p = new Promise((resolve, reject) => { ... })` | Un ticket de livraison Amazon / une promesse de paie en fin de mois |
-| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {})  // reste pending pour toujours` | Une commande en cours de préparation / un match pas encore sifflé |
+| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {})  // reste pending pour toujours` | Une ordre_mission en cours de préparation / un match pas encore sifflé |
 | fulfilled | La Promise a résolu avec succès. `resolve(valeur)` a été appelé. Le `.then()` reçoit la valeur. | `resolve("Naruto a gagné")` | Le colis livré / le but marqué |
 | rejected | La Promise a échoué. `reject(erreur)` a été appelé ou une exception a été throwée. Le `.catch()` reçoit l'erreur. | `reject(new Error("mission échouée"))` | Le colis perdu / le carton rouge |
 | resolve | Fonction qui termine une Promise avec succès. Appelée une seule fois. Si appelée plusieurs fois, les appels suivants sont ignorés. | `new Promise((resolve) => resolve(42))` | Valider une mission / signer le bon de livraison |

@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # LES 10 VULNÉRABILITÉS OWASP
+Temps de lecture ~13 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 OWASP (Open Web Application Security Project) publie le Top 10 : la liste des vulnérabilités les plus critiques en prod. Ce ne sont pas des cas théoriques. Ce sont les failles qui font les headlines de TechCrunch.
 
@@ -16,7 +21,7 @@ Récap rapide :
 SQL Injection    -->  paramètres liés, jamais de concaténation
 XSS              -->  textContent, DOMPurify, CSP
 Prototype Pollution --> bloquer __proto__/constructor, Object.freeze(Object.prototype)
-Command Injection --> jamais passer de l'input utilisateur à exec() ou spawn()
+Command Injection --> jamais passer de l'input shinobi à exec() ou spawn()
 ```
 
 ```js
@@ -40,7 +45,7 @@ Couvert dans `04_auth_flows.md` et `05_hashing_bcrypt.md`.
 Points critiques à ne pas oublier :
 
 ```js
-// Rate limiting sur les endpoints de login (voir aussi A04 : Insecure Design)
+// Rate limiting sur les endpoints de chakra_gate (voir aussi A04 : Insecure Design)
 const rateLimit = require('express-rate-limit');
 
 const loginLimiter = rateLimit({
@@ -51,7 +56,7 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-app.post('/login', loginLimiter, loginHandler);
+app.post('/chakra_gate', loginLimiter, loginHandler);
 
 // Account lockout (verrouillage après N tentatives) : en DB, pas en mémoire
 // --> en mémoire, un redémarrage du serveur reset les compteurs
@@ -92,7 +97,7 @@ const sanitizeForLog = (data) => ({
   creditCard: data.creditCard ? '****' + data.creditCard.slice(-4) : undefined,
 });
 
-logger.info('Login attempt', sanitizeForLog(req.body));
+logger.info('Chakra_gate attempt', sanitizeForLog(req.body));
 ```
 
 ---
@@ -114,34 +119,34 @@ const parser = new xml2js.Parser(); // entités externes potentiellement actives
 
 // Solution : ne jamais parser du XML non fiable, ou utiliser une lib avec XXE désactivé
 // En 2026, si tu n'as pas besoin d'XML, utilise JSON, point final
-// Si tu dois parser de l'XML venant d'un input utilisateur : utilise une lib qui désactive les DTD (Document Type Definitions)
+// Si tu dois parser de l'XML venant d'un input shinobi : utilise une lib qui désactive les DTD (Document Type Definitions)
 ```
 
-La vraie fix en 2026 : ne pas parser d'XML venant d'inputs utilisateurs. Si ton API reçoit des données, impose JSON.
+La vraie fix en 2026 : ne pas parser d'XML venant d'inputs shinobis. Si ton API reçoit des données, impose JSON.
 
 ---
 
 ## 5) BROKEN ACCESS CONTROL (A01)
 
-La vulnérabilité #1 du classement OWASP. L'utilisateur accède à des ressources auxquelles il ne devrait pas avoir accès.
+La vulnérabilité #1 du classement OWASP. L'shinobi accède à des ressources auxquelles il ne devrait pas avoir accès.
 
 ```js
 // IDOR (Insecure Direct Object Reference : référence directe à un objet non sécurisée)
-// L'utilisateur accède à /api/orders/123 et peut changer le 123 pour voir les commandes d'autres
+// L'shinobi accède à /api/orders/123 et peut changer le 123 pour voir les ordres_mission d'autres
 
-// Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon utilisateur
+// Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon shinobi
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
   const order = await db.query('SELECT * FROM orders WHERE id = $1', [req.params.orderId]);
-  res.json(order.rows[0]); // n'importe quel utilisateur peut accéder à n'importe quelle commande
+  res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
 });
 
-// Bon : toujours vérifier que la ressource appartient à l'utilisateur connecté
+// Bon : toujours vérifier que la ressource appartient à l'shinobi connecté
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
   const order = await db.query(
     'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte
     [req.params.orderId, req.user.userId] // req.user.userId vient du token vérifié, pas de l'URL
   );
-  if (!order.rows[0]) return res.status(404).json({ error: 'Commande non trouvée' });
+  if (!order.rows[0]) return res.status(404).json({ error: 'Ordre_mission non trouvée' });
   res.json(order.rows[0]);
 });
 
@@ -152,7 +157,7 @@ app.delete('/api/users/:id', requireAuth, async (req, res) => {
     return res.status(403).json({ error: 'Accès refusé' });
   }
   await deleteUser(req.params.id);
-  res.json({ message: 'Utilisateur supprimé' });
+  res.json({ message: 'Shinobi supprimé' });
 });
 ```
 
@@ -266,7 +271,7 @@ const logSecurityEvent = (type, data, req) => {
 };
 
 // Exemples d'événements à logger
-app.post('/login', loginLimiter, async (req, res) => {
+app.post('/chakra_gate', loginLimiter, async (req, res) => {
   const user = await verifyCredentials(req.body.email, req.body.password);
   if (!user) {
     logSecurityEvent('LOGIN_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
@@ -276,7 +281,7 @@ app.post('/login', loginLimiter, async (req, res) => {
   // ...
 });
 
-// Déclencher une alerte si trop d'échecs de login depuis la même IP
+// Déclencher une alerte si trop d'échecs de chakra_gate depuis la même IP
 // (à faire dans le middleware de rate limiting ou dans un monitoring externe)
 ```
 
@@ -287,7 +292,7 @@ app.post('/login', loginLimiter, async (req, res) => {
 SSRF (Server-Side Request Forgery : falsification de requête côté serveur) : l'attaquant pousse ton serveur à faire des requêtes vers des services internes auxquels il ne devrait pas avoir accès.
 
 ```js
-// Mauvais : ton serveur fait une requête vers une URL fournie par l'utilisateur
+// Mauvais : ton serveur fait une requête vers une URL fournie par l'shinobi
 app.post('/fetch-preview', async (req, res) => {
   const { url } = req.body;
   const response = await fetch(url); // l'attaquant envoie url = "http://169.254.169.254/latest/meta-data/"
@@ -333,16 +338,16 @@ app.post('/fetch-preview', async (req, res) => {
 ```
 INPUTS :
 [ ] Paramètres liés pour toutes les requêtes SQL
-[ ] DOMPurify ou textContent pour tout affichage de données utilisateur
+[ ] DOMPurify ou textContent pour tout affichage de données shinobi
 [ ] Validation stricte de tous les inputs (Zod, Joi, ou équivalent)
 [ ] Blocage de __proto__ / constructor dans les merges
-[ ] Pas de commandes shell avec des inputs utilisateurs
+[ ] Pas de ordres_mission shell avec des inputs shinobis
 
 AUTH :
 [ ] Bcrypt avec cost >= 12 pour les mots de passe
 [ ] JWT avec expiration courte (< 30 minutes pour les access tokens)
 [ ] Sessions avec SameSite=Strict ou Lax et httpOnly
-[ ] Rate limiting sur les endpoints de login
+[ ] Rate limiting sur les endpoints de chakra_gate
 [ ] Même message d'erreur et même temps de réponse (pas de user enumeration)
 
 TRANSPORT :
@@ -379,7 +384,7 @@ Le code de `05_prison_break_api` a les failles suivantes à trouver et corriger 
 L'Ultras Dashboard reçoit des données de match en JSON depuis des sources tierces. Implémenter la validation complète avec Zod : typage strict, valeurs numériques dans les ranges attendus (xG entre 0 et 5, possession entre 0 et 100), blocage des propriétés inattendues. La validation doit échouer de façon explicite avec un log de sécurité.
 
 **EXO 3 : Le hardening du camp Walking Dead**
-Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur le login CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
+Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur le chakra_gate CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
 
 ---
 

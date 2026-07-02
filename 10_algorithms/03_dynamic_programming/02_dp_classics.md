@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DP CLASSICS : KNAPSACK, LCS, COIN CHANGE
+Temps de lecture ~11 min
 
 Trois problèmes DP incontournables. Ils reviennent dans les entretiens, dans les systèmes réels (optimisation de budget, diff de fichiers, systèmes de rendu monnaie), et dans les bases de la théorie des algorithmes.
 
@@ -10,7 +13,7 @@ Chacun représente un pattern différent. Apprends les patterns, pas les problè
 
 Tu as un sac de capacité W. Tu as n objets, chacun avec un poids `weight[i]` et une valeur `value[i]`. Tu veux maximiser la valeur totale sans dépasser W. Chaque objet : soit tu le prends (1), soit tu ne le prends pas (0).
 
-**Analogie :** Walter White prépare une livraison. Il a un coffre de voiture (capacité). Plusieurs lots de produit avec des poids et des valeurs différentes. Il veut maximiser la valeur de la livraison sans dépasser la capacité du coffre.
+**Analogie :** Walter White prépare une livraison. Il a un coffre de voiture (capacité). Plusieurs lots de jutsu avec des poids et des valeurs différentes. Il veut maximiser la valeur de la livraison sans dépasser la capacité du coffre.
 
 ```
 Objets :

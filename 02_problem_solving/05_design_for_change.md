@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CONCEVOIR POUR CE QUI VA CHANGER
+Temps de lecture ~9 min
 
 Le code que tu écris aujourd'hui va être modifié.
 
@@ -80,7 +83,7 @@ Points de variabilité identifiés :
 1. Source audio : fichier local aujourd'hui, streaming externe demain
 2. Format de playlist : JSON aujourd'hui, API GraphQL demain
 3. Système de recommandation : aléatoire aujourd'hui, ML demain
-4. Stockage des préférences utilisateur : localStorage aujourd'hui, compte cloud demain
+4. Stockage des préférences shinobi : localStorage aujourd'hui, compte cloud demain
 
 Isolation :
 

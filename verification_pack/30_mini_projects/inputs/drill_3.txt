@@ -1,0 +1,2 @@
+# drill 3 for 30_mini_projects
+# input contract décrit dans README.md

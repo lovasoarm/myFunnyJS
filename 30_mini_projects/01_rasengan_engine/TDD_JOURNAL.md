@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : RASENGAN ENGINE
+Temps de lecture ~7 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits, pas l'ordre idéal a posteriori. Le cahier des charges impose : chaque fichier est testé avant de passer au suivant. Voici comment ça s'est vraiment passé.
 

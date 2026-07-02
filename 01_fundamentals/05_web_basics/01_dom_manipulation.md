@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DOM MANIPULATION
+Temps de lecture ~9 min
 
 Si tu veux devenir ingénieur frontend, tu dois comprendre une vérité simple :
 
@@ -89,7 +92,7 @@ element.value; // valeur d'un input
 **Différence critique :**
 
 - `textContent` → texte brut, sûr
-- `innerHTML` → interprète HTML → **danger si données utilisateur** (risque XSS = injection de script malveillant)
+- `innerHTML` → interprète HTML → **danger si données shinobi** (risque XSS = injection de script malveillant)
 
 > Règle simple : utilise `textContent` sauf si tu dois absolument injecter du HTML : et même là, méfie-toi.
 

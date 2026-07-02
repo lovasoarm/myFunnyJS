@@ -1,4 +1,15 @@
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+
+[PÉRISSABLE 12-24 mois]
+
+> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS
+
+> Ce module reutilise : tous les modules pratiques (build, lint, format, package).
+Temps de lecture ~9 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Ce module est différent des 30 autres. Et faut le dire cash avant d'aller plus loin.
 
@@ -23,7 +34,7 @@ debug toolkit       --> savoir où ça casse sans semer des console.log partout
 Plus un quatrième, ajouté parce que les 9 mini-projets partagent tous la même structure de dossier (`cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, `src/`, `tests/`) :
 
 ```
-cli scaffolder      --> génère cette structure en une commande, au lieu de la recréer à la main 9 fois
+cli scaffolder      --> génère cette structure en une ordre_mission, au lieu de la recréer à la main 9 fois
 ```
 
 ```
@@ -151,7 +162,7 @@ prérequis avant ce module :
 01_fundamentals             --> fonctions, closures : la base pour construire des outils réutilisables
 08_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
 04_error_handling           --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
-15_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
+16_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
 Ce qui devient plus simple après ce module :

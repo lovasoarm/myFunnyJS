@@ -1,3 +1,24 @@
+[DÉCENNIE]
+
+#  Page verrouillée
+Temps de lecture ~13 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # Tout le vocabulaire DB en un seul endroit
 
 Le grimoire du module 24. Pas un résumé : la référence complète que tu rouvres quand un terme te bloque, en review de code ou en lisant une doc technique.
@@ -5,7 +26,7 @@ Le grimoire du module 24. Pas un résumé : la référence complète que tu rouv
 ---
 
 | Terme                              | Définition                                                                                           | Code                                                             | Analogies                                                                                                                                                               |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- / meme mecanique cote football : le staff repete jusqu'a ce que la tactique tienne sans le tableau |
 | DB relationnelle                   | Données rangées en tables avec un schéma fixe et des relations explicites entre elles.               | `CREATE TABLE ninjas (id INT, name TEXT);`                       | classeur à compartiments fixes de Konoha / fiche de mission Prison Break, toujours le même format                                                                       |
 | SQL                                | Langage standard pour interroger et manipuler une DB relationnelle.                                  | `SELECT * FROM ninjas WHERE id = 1;`                             | langue commune à toutes les DB relationnelles / les ordres radio entre Chevaliers Garo, même protocole partout                                                          |
 | SELECT                             | Instruction pour lire des données, en choisissant les colonnes voulues.                              | `SELECT id, chakra FROM ninjas;`                                 | demander juste 2 infos sur la fiche de Michael Scofield / extraire 2 stats d'un combattant sans tout le dossier                                                         |

@@ -1,0 +1,16 @@
+{
+  "name": "myfunnyjs-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Sandbox minimal pour les exercices MyFunnyJS.",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test",
+    "watch": "node --watch index.js"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10"
+  }
+}

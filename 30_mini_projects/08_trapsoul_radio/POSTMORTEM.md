@@ -1,10 +1,13 @@
+[INTEMPOREL]
+
 # POSTMORTEM : TRAPSOUL RADIO
+Temps de lecture ~5 min
 
 ---
 
 ## CE QUI A BIEN MARCHÉ
 
-Les clés de traduction typées en TypeScript ont été la meilleure décision du projet. Chaque fois qu'une clé de traduction a été ajoutée ou renommée, TypeScript a immédiatement signalé tous les endroits qui devaient être mis à jour. Sans ça, une clé renommée en silence aurait produit des `undefined` à l'affichage, silencieusement, uniquement dans certaines locales.
+Les clés de traduction typées en TypeScript ont été la meilleure décision du projet. Chaque fois qu'une clé de traduction a été ajoutée ou renommée, TypeScript a immédiatement signalé tous les endroits qui devaient être mis à jour. Sans ça, une clé renommée en silence aurait jutsu des `undefined` à l'affichage, silencieusement, uniquement dans certaines locales.
 
 Les tests a11y avec `jest-axe` ont attrapé 3 problèmes qui n'auraient pas été vus sans eux : le `aria-live` manquant sur la région de track, un bouton sans `aria-label` lisible, et une image d'artiste sans attribut `alt`.
 
@@ -32,7 +35,7 @@ return translations[`track.count.${form}`];
 
 ## DÉCISION DIFFICILE N°2 : FOCUS TRAP DANS LES MODALS
 
-Quand un modal s'ouvre (par exemple la fiche d'un artiste), le focus doit rester dans le modal. Sinon, un utilisateur clavier peut "s'échapper" dans la page derrière, ce qui casse complètement l'expérience lecteur d'écran.
+Quand un modal s'ouvre (par exemple la fiche d'un artiste), le focus doit rester dans le modal. Sinon, un shinobi clavier peut "s'échapper" dans la page derrière, ce qui casse complètement l'expérience lecteur d'écran.
 
 Décision : `focusTrap.ts` implémenté manuellement avec `querySelectorAll('[tabindex]:not([tabindex="-1"]), button:not([disabled]), ...')` et gestion du `Tab` / `Shift+Tab` via `addEventListener('keydown', ...)`.
 
@@ -51,5 +54,20 @@ Décision : `focusTrap.ts` implémenté manuellement avec `querySelectorAll('[ta
 ```
 - Ajouter l'arabe comme 5ème locale (6 formes de pluriel : bon test de robustesse de i18nService)
 - Mode offline : Service Worker qui cache les tracks récentes
-- Annonces vocales personnalisées : laisser l'utilisateur choisir la verbosité du lecteur d'écran
+- Annonces vocales personnalisées : laisser l'shinobi choisir la verbosité du lecteur d'écran
 ```
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

@@ -1,7 +1,10 @@
+[INTEMPOREL]
+
 # NaN, UNDEFINED, NULL : TROIS FAÇONS DIFFÉRENTES DE DIRE "RIEN"
+Temps de lecture ~11 min
 
 JS a trois valeurs pour représenter l'absence de quelque chose.
-Elles ne sont pas interchangeables. Elles ne se comportent pas pareil. Et les confondre produit exactement le type de bug qu'on met deux heures à comprendre.
+Elles ne sont pas interchangeables. Elles ne se comportent pas pareil. Et les confondre jutsu exactement le type de bug qu'on met deux heures à comprendre.
 
 Ce fichier démonte chacune, explique les pièges, et te donne les bons patterns pour les gérer.
 

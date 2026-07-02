@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : GARO NO KRONIKA
+Temps de lecture ~6 min
 
 ---
 
@@ -56,3 +59,18 @@ Décision : propager explicitement. Le cahier des charges est strict sur ce poin
 - Un système de priorité de dispatch (le Horror le plus CRITIQUE reçoit le Chevalier le plus fort)
 - Persister l'historique des missions entre deux lancements du programme
 ```
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

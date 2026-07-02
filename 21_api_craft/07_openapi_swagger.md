@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # OPENAPI ET SWAGGER
+Temps de lecture ~9 min
 
 Une API non documentée c'est une API que personne ne peut utiliser sans lire ton code.
 OpenAPI (anciennement Swagger) c'est le standard pour décrire une API REST : endpoints, paramètres, réponses, schémas d'erreur.

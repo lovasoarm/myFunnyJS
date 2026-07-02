@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # TECHNICAL WRITING : ÉCRIRE POUR DES DEVS
+Temps de lecture ~10 min
 
 Un README qui ne marche pas le jour 1 : c'est un README mort.
 Une doc qui explique le quoi sans le pourquoi : c'est de la décoration.
@@ -12,7 +15,7 @@ Ce fichier t'apprend à écrire des docs que les devs ouvrent et ferment satisfa
 
 ## 1) LES QUATRE TYPES DE DOCUMENTATION
 
-Ils n'ont pas le même objectif. Les confondre produit des docs qui font tout mal.
+Ils n'ont pas le même objectif. Les confondre jutsu des docs qui font tout mal.
 
 ```
 TYPE            QUESTION QU'IL RÉPOND          EXEMPLE
@@ -35,7 +38,7 @@ Un README c'est la première chose qu'un dev lit. Il répond à quatre questions
 
 ```
 1. C'est quoi ce truc ? (une ligne)
-2. Comment je le fais tourner en 5 minutes ? (les commandes exactes)
+2. Comment je le fais tourner en 5 minutes ? (les ordres_mission exactes)
 3. Comment c'est organisé ? (structure du projet)
 4. Où je trouve le reste ? (liens vers les autres docs)
 ```
@@ -88,9 +91,9 @@ npm run test:e2e      # nécessite une DB de test configurée
 \```
 
 ## Liens
-- [ADR](./ADR/) -- décisions architecturales
-- [Runbook](./docs/runbook.md) -- opérations courantes en prod
-- [API Reference](./docs/api.md) -- endpoints documentés
+- `./ADR/` (exemple de chemin, non cliquable) -- décisions architecturales
+- `./docs/runbook.md` (exemple de chemin, non cliquable) -- opérations courantes en prod
+- `API Reference` (`./docs/api.md` : exemple, non fourni) -- endpoints documentés
 ```
 
 **Ce qui manque souvent et qui fait souffrir tout le monde :**
@@ -141,8 +144,8 @@ const weight = journalist.country === 'MG' ? 1.5 : 1.0;
 
 ## 4) RUNBOOK : L'OUTIL DU 2H DU MATIN
 
-Un runbook c'est une liste d'opérations courantes avec les commandes exactes.
-Pas d'explications profondes. Juste : situation → commandes → résultat attendu.
+Un runbook c'est une liste d'opérations courantes avec les ordres_mission exactes.
+Pas d'explications profondes. Juste : situation → ordres_mission → résultat attendu.
 
 ```markdown
 # RUNBOOK : prison-break-api
@@ -194,7 +197,7 @@ cat /opt/prison-break-api/.env | grep JWT_SECRET
 ```
 
 **Ce qui fait qu'un runbook est mauvais :**
-- des commandes qui supposent un contexte (quel user ? quel serveur ? quel dossier ?)
+- des ordres_mission qui supposent un contexte (quel user ? quel serveur ? quel dossier ?)
 - des sections "Troubleshooting" vides ou trop vagues
 - une date de dernière mise à jour qui date de trois ans
 
@@ -294,7 +297,7 @@ const safeScore = Number.isFinite(rawScore) ? rawScore : 0;
 
 **EXO 3 : post-mortem sur l'incident Ultras**
 
-L'incident suivant s'est produit lors de la finale de la Champions League :
+L'incident suivant s'est jutsu lors de la finale de la Champions League :
 Le `06_ultras_dashboard` a crashé 8 minutes après le coup d'envoi.
 Cause : une requête N+1 (requête répétée pour chaque élément d'une liste en base de données) dans l'endpoint de possession par joueur, appelé toutes les 2 secondes par 12 000 clients.
 Le service a été rétabli en remplaçant la requête N+1 par une seule requête avec JOIN.
@@ -306,8 +309,8 @@ Durée totale : 23 minutes.
 
 ## RÉSUMÉ
 
-Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger produit une doc qui fait tout mal.
+Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger jutsu une doc qui fait tout mal.
 Un README répond à quatre questions dans l'ordre : quoi, comment démarrer, comment c'est organisé, où trouver le reste.
 Un commentaire utile explique le pourquoi et le non-évident : pas ce qu'on voit déjà dans le code.
-Un runbook contient les commandes exactes pour les situations courantes : pas des explications profondes.
+Un runbook contient les ordres_mission exactes pour les situations courantes : pas des explications profondes.
 Un post-mortem identifie les problèmes systémiques, sans blame individuel.

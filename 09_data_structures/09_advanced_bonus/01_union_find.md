@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # UNION-FIND : GROUPER CE QUI EST CONNECTÉ EN O(α(n))
+Temps de lecture ~8 min
 
 Problème : tu as N éléments. Des connexions arrivent une par une. À chaque étape tu dois répondre : "ces deux éléments sont-ils dans le même groupe ?" BFS ou DFS peuvent le faire, mais en O(V+E) à chaque requête. Union-Find répond en O(α(n)) : quasi O(1) : avec deux optimisations.
 

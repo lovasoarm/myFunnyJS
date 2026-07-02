@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DP SUR GRILLE 2D : QUAND L'ESPACE DEVIENT UN GRAPHE
+Temps de lecture ~11 min
 
 Tu as une grille. Chaque cellule a un coût, un état, ou un obstacle. Tu dois aller du coin en haut à gauche au coin en bas à droite. La question : quel chemin coûte le moins ? Combien de chemins existent ? Est-ce même possible ?
 

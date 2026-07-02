@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~7 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # CALLBACKS GRIMOIRE
 
 Les termes qui reviennent dans toute discussion sur l'async JS pré-Promises.
@@ -6,7 +25,7 @@ Savoir les nommer, c'est pouvoir en parler avec précision et lire du code legac
 ---
 
 | Terme                                | Définition                                                                                                                                                                       | Code                                                                                                  | Analogies                                                                                                                                                                |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ / meme mecanique cote football : le staff repete jusqu'a ce que la tactique tienne sans le tableau |
 | **Callback**                         | Fonction passée en argument à une autre fonction, pour être appelée plus tard : souvent quand une opération async est terminée.                                                  | `charger(id, function(err, data) { ... })`                                                            | Laisser son numéro à un livreur pour qu'il rappelle quand il arrive / Donner une sonnette à un médecin pour te rappeler quand c'est ton tour                             |
 | **Error-first callback**             | Convention Node.js : le premier argument du callback est toujours une erreur (`null` si tout va bien). Aucune librairie Node sérieuse déroge à ça.                               | `fs.readFile("f.txt", function(err, data) { if (err) return; ... })`                                  | Un rapport militaire qui commence toujours par "situation" avant "plan d'action" / Un arbitre qui signale d'abord le hors-jeu avant de laisser le jeu continuer          |
 | **Callback hell**                    | Imbrication de callbacks qui crée une pyramide illisible. Pas un problème esthétique : un problème de maintenance, de gestion d'erreur, et de testabilité.                       | `a(function() { b(function() { c(function() { /* t'es ici */ }) }) })`                                | Un plan d'évasion avec 5 portes, chaque porte cachée derrière la précédente / Un arbre généalogique dessiné de droite à gauche                                           |

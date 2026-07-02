@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FETCH : QUAND TON CODE PARLE À INTERNET
+Temps de lecture ~8 min
 
 Les vrais programmes ne vivent pas en isolation. Ils parlent à des serveurs, récupèrent des données en direct, envoient des résultats ailleurs. C'est ce que fait `fetch` : ton code envoie une requête HTTP (le protocole de communication du web) vers un serveur, et le serveur répond.
 

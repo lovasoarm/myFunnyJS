@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~20 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE : DATA STRUCTURES
 
 ---
@@ -82,7 +101,7 @@
 | Insert | Descend jusqu'au premier null en comparant à chaque noeud, puis insère. O(log n) si l'arbre est équilibré. | `while (true) { if (val < cur.val) { if (!cur.left) { cur.left = node; return } cur = cur.left } }` | Classer un nouveau joueur sans réorganiser tout le classement / Ajouter un jutsu dans l'encyclopédie au bon endroit alphabétique |
 | Delete cas 3 | Supprimer un noeud avec deux enfants : remplace sa valeur par le successeur in-order (minimum du sous-arbre droit), puis supprime ce successeur. | `const succ = findMin(node.right); node.value = succ.value; deleteNode(node.right, succ.value)` | Gus qui élimine un maillon : le suivant dans la hiérarchie prend sa place / Une section de Fox River supprimée : la section suivante dans le couloir comble le vide |
 | Arbre dégénéré | Insertions dans l'ordre trié → l'arbre devient une liste chaînée. Hauteur O(n), toutes les opérations dégénèrent en O(n). | Insérer [1,2,3,4,5] → hauteur 5, pas log(5) | Walter qui insère ses distributeurs par ordre alphabétique : une file droite, zéro efficacité / Un tournoi à élimination directe toujours remporté par la même graine : l'arbre ne se ramifie jamais |
-| In-Order | Traversal gauche → noeud → droite. Produit toujours une séquence triée sur un BST valide. O(n). | `inOrder(left); result.push(node); inOrder(right)` | Lire le classement de bas en haut / Tsunade qui lit les dossiers dans l'ordre de gravité croissante |
+| In-Order | Traversal gauche → noeud → droite. Jutsu toujours une séquence triée sur un BST valide. O(n). | `inOrder(left); result.push(node); inOrder(right)` | Lire le classement de bas en haut / Tsunade qui lit les dossiers dans l'ordre de gravité croissante |
 | Pre-Order | Traversal noeud → gauche → droite. Préserve la structure de l'arbre : sérialisation fidèle. O(n). | `result.push(node); preOrder(left); preOrder(right)` | Photographier un organigramme de haut en bas avant de le démonter / Michael qui mémorise le plan de Fox River section par section depuis l'entrée |
 | Post-Order | Traversal gauche → droite → noeud. Traite les enfants avant le parent. O(n). | `postOrder(left); postOrder(right); result.push(node)` | Gus qui ferme ses labs de la périphérie vers le centre / Démanteler une équipe des sous-traitants vers les chefs |
 

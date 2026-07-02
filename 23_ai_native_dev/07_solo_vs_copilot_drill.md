@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # SOLO VS COPILOT : MESURER CE QUE TU CROIS SAVOIR
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 `01_ai_workflow.md` t'a donné la règle : utilise l'IA pour aller plus vite, pas pour éviter de penser. Le problème avec une règle, c'est qu'elle ne dit pas où t'en es, là, maintenant. Tu peux réciter "je dois pas dépendre de l'IA" et dépendre de l'IA quand même, sans le voir venir, parce que personne ne mesure rien.
 

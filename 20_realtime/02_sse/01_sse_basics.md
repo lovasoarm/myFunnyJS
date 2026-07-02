@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 WebSocket c'est un tunnel bidirectionnel.
 SSE (Server-Sent Events : événements envoyés par le serveur) c'est différent : le serveur parle, le client écoute.
@@ -143,7 +148,7 @@ source.addEventListener("error", (event) => {
   }
 });
 
-// fermer manuellement si besoin (exemple : utilisateur quitte la page)
+// fermer manuellement si besoin (exemple : shinobi quitte la page)
 // source.close();
 ```
 

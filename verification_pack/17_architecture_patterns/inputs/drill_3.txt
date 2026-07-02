@@ -1,0 +1,2 @@
+# drill 3 for 17_architecture_patterns
+# input contract décrit dans README.md

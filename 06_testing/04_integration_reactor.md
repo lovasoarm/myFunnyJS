@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # INTEGRATION REACTOR : QUAND L'ISOLATION NE SUFFIT PLUS
+Temps de lecture ~8 min
 
 Chaque section de Fox River est sécurisée indépendamment. Chaque gardien sait son couloir par coeur. Mais personne n'a testé ce qui se passe quand les sections sont traversées en séquence, dans le bon ordre, avec les vrais délais entre deux portes. Michael Scofield sait que c'est là que le plan casse vraiment.
 
@@ -32,7 +35,7 @@ Test d'intégration :
   - une erreur en B ne corrompt pas C
 ```
 
-Le test d'intégration vérifie les **contrats entre modules** : est-ce que A produit quelque chose que B accepte ? Est-ce que B stocke quelque chose que C peut lire ?
+Le test d'intégration vérifie les **contrats entre modules** : est-ce que A jutsu quelque chose que B accepte ? Est-ce que B stocke quelque chose que C peut lire ?
 
 ---
 

@@ -1,4 +1,11 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SECURITY
+
+> Ce module reutilise : erreurs (05_error_handling), edge cases (28_edge_cases).
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Tu n'as pas besoin d'être attaqué par un hacker en cagoule dans un sous-sol. Il suffit d'un script automatisé qui scanne le web 24/7 à la recherche de failles connues, et qui tombe sur ton input non sanitisé (nettoyé/validé). Tu ne te fais pas hacker parce que tu es une cible importante. Tu te fais hacker parce que ton code laissait la porte ouverte.
 
@@ -8,9 +15,9 @@ La sécurité n'est pas une feature qu'on ajoute à la fin. C'est une discipline
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Chaque point où ton code accepte une donnée externe (input utilisateur, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des commandes SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
+Chaque point où ton code accepte une donnée externe (input shinobi, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des ordres_mission SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
 
-Ce module couvre les attaques les plus fréquentes et leurs défenses concrètes : XSS et injection SQL (les deux vulnérabilités qui touchent le plus d'applications en prod), CSRF et CORS (deux mécanismes liés à l'origine des requêtes, souvent confondus, mal compris), la pollution de prototype (modifier `Object.prototype` depuis un input utilisateur, ce qui peut casser TOUT le comportement de l'application), les différents modèles d'authentification (OAuth, sessions, JWT), et le hachage sécurisé des mots de passe avec bcrypt.
+Ce module couvre les attaques les plus fréquentes et leurs défenses concrètes : XSS et injection SQL (les deux vulnérabilités qui touchent le plus d'applications en prod), CSRF et CORS (deux mécanismes liés à l'origine des requêtes, souvent confondus, mal compris), la pollution de prototype (modifier `Object.prototype` depuis un input shinobi, ce qui peut casser TOUT le comportement de l'application), les différents modèles d'authentification (OAuth, sessions, JWT), et le hachage sécurisé des mots de passe avec bcrypt.
 
 La checklist OWASP (Open Web Application Security Project : organisation de référence en sécurité web) résume les 10 vulnérabilités les plus fréquentes, et ce module les couvre directement parce que ce sont, statistiquement, les failles qui causent la majorité des incidents de sécurité réels.
 
@@ -22,7 +29,7 @@ Le dev qui construit ses requêtes SQL par concaténation de strings (au lieu d'
 
 Le dev qui ne sécurise pas ses inputs ouvre la porte à des attaques XSS où un attaquant injecte un script qui s'exécute dans le navigateur d'une autre victime, volant potentiellement des cookies de session ou des données sensibles, sans même que la victime ne s'en rende compte.
 
-L'entreprise entière souffre quand une fuite de données survient : au-delà des dommages techniques, c'est la confiance des utilisateurs, la réputation de la marque, et potentiellement des conséquences légales et financières lourdes, surtout si des données sensibles (mots de passe, informations personnelles) étaient stockées sans protection adéquate.
+L'entreprise entière souffre quand une fuite de données survient : au-delà des dommages techniques, c'est la confiance des shinobis, la réputation de la marque, et potentiellement des conséquences légales et financières lourdes, surtout si des données sensibles (mots de passe, informations personnelles) étaient stockées sans protection adéquate.
 
 ---
 
@@ -33,10 +40,10 @@ champ de texte affiché sans échappement                  --> XSS              
 requête SQL construite par concaténation                  --> injection SQL      --> accès non autorisé à la DB
 mot de passe stocké directement                            --> pas de hashing     --> fuite catastrophique en cas de breach
 requête cross-origin mal configurée                          --> CORS              --> accès non désiré ou bloqué à tort
-objet construit depuis un input JSON utilisateur               --> prototype pollution --> comportement global corrompu
+objet construit depuis un input JSON shinobi               --> prototype pollution --> comportement global corrompu
 ```
 
-La sécurité n'est jamais isolée dans un coin du système : elle traverse chaque frontière où une donnée externe entre dans ton application, ce qui veut dire qu'elle concerne potentiellement chaque fichier qui traite une requête utilisateur.
+La sécurité n'est jamais isolée dans un coin du système : elle traverse chaque frontière où une donnée externe entre dans ton application, ce qui veut dire qu'elle concerne potentiellement chaque fichier qui traite une requête shinobi.
 
 ---
 
@@ -56,7 +63,7 @@ Le hachage des mots de passe a aussi mûri : des algorithmes plus anciens et plu
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis direct et explicite : `22_security`, prérequis `21_api_craft` + `17_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
+Prérequis direct et explicite : `22_security`, prérequis `21_api_craft` + `18_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
 
 ---
 
@@ -71,3 +78,5 @@ Les attaques évoluent, mais le besoin de penser sécurité à chaque frontière
 Chaque donnée externe que ton code accepte est une porte d'entrée potentielle, et la sécurité n'est jamais un détail qu'on rajoute après coup. Ça casse de quatre façons sans cette discipline : XSS, injection SQL, mots de passe en clair, pollution de prototype. Ces principes ne se démodent jamais, même si les attaques précises évoluent.
 
 Maintenant, ouvre `01_xss_injection.md`. Et arrête de faire confiance à n'importe quelle donnée qui vient de l'extérieur.
+
+> Ce module réutilise : l'API craft du module 21 (`21_api_craft`), la gestion d'erreurs du module 05 (`05_error_handling`).

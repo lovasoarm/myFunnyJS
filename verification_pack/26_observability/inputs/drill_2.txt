@@ -1,0 +1,2 @@
+# drill 2 for 26_observability
+# input contract décrit dans README.md

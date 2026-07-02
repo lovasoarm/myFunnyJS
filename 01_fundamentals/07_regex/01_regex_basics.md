@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # REGEX : L'ARME QUE PERSONNE N'ENSEIGNE CORRECTEMENT
+Temps de lecture ~8 min
 
 Tu reçois une chaîne de caractères. Elle vient d'un formulaire, d'une API, d'un fichier CSV. Tu dois valider, extraire, nettoyer.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SEARCH CHALLENGES : LES VARIANTES QUI PIÈGENT
+Temps de lecture ~11 min
 
 Binary search basique c'est acquis. Maintenant les cas qui font planter les gens aux entretiens et en prod.
 

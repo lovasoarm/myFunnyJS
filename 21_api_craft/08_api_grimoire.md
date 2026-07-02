@@ -1,3 +1,22 @@
+[DÉCENNIE]
+
+#  Page verrouillée
+Temps de lecture ~13 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE API CRAFT
 
 | Terme | Définition | Code | Analogies |
@@ -12,7 +31,7 @@
 | 401 Unauthorized | L'identité du client n'est pas établie. Token absent, expiré, ou invalide. | `res.status(401).json({ error: { code: 'UNAUTHORIZED' } })` | l'armure de Léo qui expire : tu n'es plus reconnu comme Chevalier / Michael Scofield sans badge : présent, mais non identifié |
 | 403 Forbidden | L'identité est établie mais les permissions sont insuffisantes. | `res.status(403).json({ error: { code: 'FORBIDDEN' } })` | T-Bag authentifié mais pas autorisé dans le bureau du directeur / un joueur de réserve identifié mais pas autorisé à jouer en Champions League |
 | 409 Conflict | La requête est valide mais entre en conflit avec l'état actuel (doublon, version outdated, stock insuffisant). | `res.status(409).json({ error: { code: 'CONFLICT' } })` | deux joueurs qui réclament le même numéro de maillot : requête légitime, conflit d'état / l'inventaire de Rick qui passe à zéro : opération valide mais stock insuffisant |
-| 422 Unprocessable | Les données sont bien formées (JSON valide) mais sémantiquement incorrectes. | `res.status(422).json({ error: { code: 'UNPROCESSABLE' } })` | un formulaire bien rempli mais avec une date de naissance dans le futur : syntaxe ok, sens non / une commande de livraison avec une adresse qui n'existe pas |
+| 422 Unprocessable | Les données sont bien formées (JSON valide) mais sémantiquement incorrectes. | `res.status(422).json({ error: { code: 'UNPROCESSABLE' } })` | un formulaire bien rempli mais avec une date de naissance dans le futur : syntaxe ok, sens non / une ordre_mission de livraison avec une adresse qui n'existe pas |
 | JWT | JSON Web Token : format de token signé (header.payload.signature). Signé, pas chiffré. Le payload est lisible mais non modifiable sans invalider la signature. | `jwt.sign({ sub: '7' }, secret, { expiresIn: '1h' })` | le laissez-passer de l'Armée d'Exploration : tout le monde peut le lire, personne ne peut le falsifier / le tatouage de Michael Scofield : visible, mais contrefaire la signature est impossible |
 | Access token | Token JWT de courte durée (15min à 1h) envoyé dans le header Authorization. Utilisé pour authentifier chaque requête. | `Authorization: Bearer eyJ...` | le ticket de match valable une heure : après, tu dois en prendre un autre / l'armure de Léo : puissante mais avec un compteur de 99.9 secondes |
 | Refresh token | Token JWT de longue durée (7-30 jours) stocké en httpOnly cookie. Permet de générer un nouveau access token sans se reconnecter. | `res.cookie('refreshToken', token, { httpOnly: true })` | la carte de saison : dure plus longtemps, permet de recharger le ticket quotidien / le pass permanent de Fox River : t'as pas besoin de te ré-identifier tous les jours |
@@ -31,9 +50,9 @@
 | GraphQL | Langage de requête pour API. Le client décrit exactement les données qu'il veut. Le serveur répond exactement ça. | `query { player(id: "7") { name goals } }` | le buffet à volonté vs le menu imposé : en REST tu prends ce qu'on te sert, en GraphQL tu choisis exactement ce que tu veux / Naruto qui combine ses techniques exactement comme il veut : pas de jutsu imposé |
 | Resolver | Fonction GraphQL qui retourne la valeur d'un champ du schema. Appelée pour chaque champ demandé dans la query. | `Query: { player: (_, { id }) => players.find(p => p.id === id) }` | chaque joueur de l'équipe a sa mission : le resolver `Player.team` est le spécialiste du champ `team`, il fait ça et rien d'autre / chaque cellule de Fox River a son responsable |
 | N+1 problem | Bug de performance GraphQL : pour résoudre une liste de N objets avec une relation, le resolver est appelé N fois → N requêtes DB au lieu d'une. | `// 100 players --> 100 appels DB pour Player.team` | envoyer un coursier séparé pour chaque lettre au lieu d'un seul facteur qui fait la tournée / interroger chaque prisonnier individuellement au lieu d'une seule réunion générale |
-| DataLoader | Utilitaire qui batch les appels répétés de resolvers GraphQL en une seule requête DB. Résout le problème N+1. | `new DataLoader(ids => db.getPlayersByIds(ids))` | le facteur qui collecte toutes les lettres du quartier avant de partir faire la tournée / Walter White qui livre toutes les commandes d'une zone en un seul voyage |
-| Stateless | Chaque requête HTTP porte toutes les informations nécessaires. Le serveur ne garde pas de mémoire entre requêtes. | chaque requête avec `Authorization: Bearer token` | un serveur de restaurant qui ne se souvient de rien : chaque commande doit être complète / Fox River sans base de données : chaque garde doit avoir son badge sur lui à chaque fois |
+| DataLoader | Utilitaire qui batch les appels répétés de resolvers GraphQL en une seule requête DB. Résout le problème N+1. | `new DataLoader(ids => db.getPlayersByIds(ids))` | le facteur qui collecte toutes les lettres du quartier avant de partir faire la tournée / Walter White qui livre toutes les ordres_mission d'une zone en un seul voyage |
+| Stateless | Chaque requête HTTP porte toutes les informations nécessaires. Le serveur ne garde pas de mémoire entre requêtes. | chaque requête avec `Authorization: Bearer token` | un serveur de restaurant qui ne se souvient de rien : chaque ordre_mission doit être complète / Fox River sans base de données : chaque garde doit avoir son badge sur lui à chaque fois |
 | Rate limiting | Limitation du nombre de requêtes autorisées par unité de temps par client. Protège contre le brute force et les abus. | `app.use(rateLimit({ windowMs: 60000, max: 100 }))` | le filtre anti-spam des votes Ballon d'Or : un journaliste = un vote par heure / le quota de passage de la porte de Fox River : pas plus de 10 entrées par heure par badge |
 | CORS | Cross-Origin Resource Sharing : mécanisme qui permet ou interdit les requêtes d'une origine différente. Configuré via des headers HTTP. | `app.use(cors({ origin: 'https://myfunny.dev' }))` | la liste des délégations étrangères autorisées à entrer au Conseil des Chevaliers / les clubs autorisés à recruter des joueurs du championnat : tout le monde ne peut pas |
-| Idempotence | Propriété d'une opération : l'appeler une ou cent fois produit le même résultat. `GET`, `PUT`, `DELETE` sont idempotents. `POST` ne l'est pas. | `PUT /players/7 { goals: 30 } // même résultat à chaque appel` | appuyer 10 fois sur le bouton d'arrêt d'une machine : ça s'arrête une fois et reste arrêtée / Walter White qui fixe le prix à 10k : peu importe combien de fois tu demandes, c'est toujours 10k |
-| Content negotiation | Mécanisme HTTP où le client signale le format qu'il peut accepter via le header `Accept` et le serveur répond dans ce format. | `Accept: application/json` `Content-Type: application/json` | commande en français dans un restaurant multilingue : le serveur s'adapte à la langue du client / Scofield qui demande le plan en version imprimée ou numérique : le serveur livre dans le format demandé |
+| Idempotence | Propriété d'une opération : l'appeler une ou cent fois jutsu le même résultat. `GET`, `PUT`, `DELETE` sont idempotents. `POST` ne l'est pas. | `PUT /players/7 { goals: 30 } // même résultat à chaque appel` | appuyer 10 fois sur le bouton d'arrêt d'une machine : ça s'arrête une fois et reste arrêtée / Walter White qui fixe le prix à 10k : peu importe combien de fois tu demandes, c'est toujours 10k |
+| Content negotiation | Mécanisme HTTP où le client signale le format qu'il peut accepter via le header `Accept` et le serveur répond dans ce format. | `Accept: application/json` `Content-Type: application/json` | ordre_mission en français dans un restaurant multilingue : le serveur s'adapte à la langue du client / Scofield qui demande le plan en version imprimée ou numérique : le serveur livre dans le format demandé |

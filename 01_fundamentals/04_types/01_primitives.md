@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # PRIMITIVES : LES TYPES FONDAMENTAUX EN JS
+Temps de lecture ~6 min
 
 En JavaScript, il existe 2 grandes catégories de types :
 

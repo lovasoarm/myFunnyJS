@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ARRAY METHODS BATTLE : map vs forEach vs for...of vs reduce
+Temps de lecture ~9 min
 
 Tout le monde sait utiliser `map`. Beaucoup confondent `map` et `forEach`. Peu savent quand `reduce` est la bonne réponse. Et presque personne ne pense à `for...of` quand il devrait.
 

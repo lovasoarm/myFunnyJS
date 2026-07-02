@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : GARO NO KRONIKA
+Temps de lecture ~14 min
 
 ## PRÉREQUIS
 
@@ -76,7 +79,7 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 **Où ça se voit** : `src/council/streamReceiver.js`, `src/knight/streamEmitter.js`.
 **Pourquoi c'est nécessaire ici** : le Conseil reçoit les événements de combat en temps réel, pas à la fin du combat. Chaque coup, chaque changement de statut, chaque seconde critique : streamé. C'est le pattern SSE (Server-Sent Events : flux d'événements envoyés du serveur vers le client, unidirectionnel) simulé en JS pur ici.
 
-### `16_architecture_patterns` : event-driven, module pattern
+### `17_architecture_patterns` : event-driven, module pattern
 **Où ça se voit** : toute la séparation entre `src/council/` et `src/knight/`. Le Conseil ne connaît pas l'implémentation des Chevaliers.
 **Pourquoi c'est nécessaire ici** : si le Conseil appelle directement les méthodes du Chevalier, tout est couplé. Si le Chevalier émet des événements et que le Conseil s'abonne, on peut changer l'implémentation d'un Chevalier sans toucher au Conseil. C'est le cœur de l'architecture event-driven.
 
@@ -340,3 +343,22 @@ streamReceiver. Ils ne se connaissent pas directement.
 [ ] POSTMORTEM.md documente au moins un bug async rencontré pendant le dev
 [ ] TDD_JOURNAL.md trace quels tests ont été écrits en premier
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Validation d'entrée (OWASP A03) : sanitizer les données de chronique avant traitement (pas d'injection via les champs texte).
+- Intégrité des données (OWASP A08) : vérifier la cohérence des enregistrements avant persistance.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

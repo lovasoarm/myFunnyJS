@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DEVTOOLS DEEP DIVE : LIRE UN FLAMEGRAPH
+Temps de lecture ~9 min
 
 Le flamegraph est le radiographie de ton code sous charge.
 Il te dit exactement quelle fonction tourne, combien de temps, et ce qu'elle a appelé.
@@ -66,7 +69,7 @@ Si tu vois beaucoup de vert : tu peins trop souvent.
 ## 4) LIRE UNE TÂCHE LONGUE
 
 Une tâche de plus de 50ms est marquée en rouge dans DevTools. C'est un "Long Task".
-Au-delà de 50ms, le navigateur ne peut plus répondre aux inputs utilisateur.
+Au-delà de 50ms, le navigateur ne peut plus répondre aux inputs shinobi.
 Résultat : l'interface semble figée. Mauvais INP. Mauvais Ballon d'Or de l'UX.
 
 ```

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TEST-DRIVEN REFACTOR : CHANGER TOUT SANS RIEN CASSER
+Temps de lecture ~9 min
 
 Refactorer du code sans tests : c'est désamorcer une bombe les yeux bandés.
 Tu changes quelque chose. Tu espères que rien d'autre ne casse. Tu vérifies à la main. Tu oublies la moitié des cas.
@@ -14,15 +17,15 @@ Si les tests passent avant et après le refacto : t'as gardé le comportement ex
 
 ```
 Avant refacto :
-  ✓ vote valide accepté
-  ✓ double vote rejeté
-  ✓ joueur vide rejeté
+   vote valide accepté
+   double vote rejeté
+   joueur vide rejeté
   --> tu refactorises l'implémentation interne
 
 Après refacto :
-  ✓ vote valide accepté         (toujours)
-  ✓ double vote rejeté          (toujours)
-  ✓ joueur vide rejeté          (toujours)
+   vote valide accepté         (toujours)
+   double vote rejeté          (toujours)
+   joueur vide rejeté          (toujours)
   --> comportement préservé
 ```
 
@@ -237,3 +240,6 @@ Refactoriser sans tests : espoir. Avec tests : certitude.
 Avant de refactoriser du code sans tests : écrire les tests d'abord, tout vert, puis refactoriser.
 Les tests ne bougent pas pendant un refacto : si un test change, c'est un changement de comportement, pas un refacto.
 Petits commits : chaque étape du refacto est vérifiable et réversible.
+
+
+> Complément à l'analogie Daryl Dixon : un test unitaire est aussi une **documentation de contrat exécutable**. Ce que le test décrit, c'est ce que le code PROMET. Casse le contrat → casse le test.

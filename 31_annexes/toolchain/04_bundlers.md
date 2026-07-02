@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # BUNDLERS : WEBPACK, VITE, ESBUILD, ROLLUP : CHOISIR SANS SUBIR
+Temps de lecture ~9 min
 
 Le camp a des dizaines de fournitures éparpillées : munitions ici, médicaments là, eau ailleurs. Avant un raid, on regroupe tout en un seul sac, organisé, prêt à partir. Un bundler (empaqueteur) fait pareil avec ton code : des dizaines de fichiers JS éparpillés deviennent un (ou quelques) fichiers prêts pour le navigateur.
 

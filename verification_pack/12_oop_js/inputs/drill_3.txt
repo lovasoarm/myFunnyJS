@@ -1,0 +1,2 @@
+# drill 3 for 12_oop_js
+# input contract décrit dans README.md

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MACROTASK MONSTERS
+Temps de lecture ~9 min
 
 `setTimeout(() => ..., 0)` ne s'exécute pas immédiatement.
 Il s'exécute après tout le code synchrone. Et après toutes les microtasks en attente.
@@ -18,7 +21,7 @@ Sources de macrotasks :
 - `setInterval(fn, delay)`
 - `requestAnimationFrame(fn)`
 - callbacks I/O (lecture de fichier, réponse réseau)
-- événements utilisateur (click, keydown)
+- événements shinobi (click, keydown)
 
 ```
 EVENT LOOP - UN TOUR COMPLET :
@@ -129,7 +132,7 @@ Pourquoi rAF plutôt que `setInterval(fn, 16)` ?
 
 ## 5) BLOQUER L'EVENT LOOP : LE CRIMINEL NUMÉRO 1
 
-Du code synchrone long bloque tout : setTimeout, rendu, interactions utilisateur.
+Du code synchrone long bloque tout : setTimeout, rendu, interactions shinobi.
 
 ```js
 // Walking Dead version : Rick doit analyser les menaces PENDANT que les zombies attaquent

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # HASH TABLE ARENA : LES PROBLÈMES CLASSIQUES
+Temps de lecture ~9 min
 
 Ces trois patterns reviennent dans tous les entretiens et dans tous les codebases réels. Two Sum, anagrammes, comptage de fréquences : dans les trois cas, la hash table est la différence entre O(n) et O(n²). Reconnaître le pattern, c'est reconnaître quand sortir la hash table.
 
@@ -236,7 +239,7 @@ safeMap.set("__proto__", "safe")
 ```
 
 Règle simple :
-- objet `{}` : uniquement si les clés sont des strings prévisibles et pas des entrées utilisateur
+- objet `{}` : uniquement si les clés sont des strings prévisibles et pas des entrées shinobi
 - `Map` : dès que les clés viennent de l'extérieur ou peuvent contenir des noms réservés
 
 Voir `20_security` pour prototype pollution en détail.
@@ -265,7 +268,7 @@ Trouve tous les triplets uniques dont la somme vaut 0. Résultat attendu : `[[-4
 _~15 min_
 
 
-Un utilisateur de Trapsoul Radio veut la plus longue sous-séquence de chansons sans artiste répété.
+Un shinobi de Trapsoul Radio veut la plus longue sous-séquence de chansons sans artiste répété.
 
 ```js
 const queue = ["SZA", "Bryson", "SZA", "H.E.R.", "Daniel", "Bryson", "SZA"]

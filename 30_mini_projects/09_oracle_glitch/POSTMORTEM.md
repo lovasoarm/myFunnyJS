@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : ORACLE GLITCH
+Temps de lecture ~7 min
 
 > Ce document se remplit après avoir terminé le projet, pas pendant. L'honnêteté compte plus que l'image.
 
@@ -77,3 +80,18 @@ Les premiers tests de `edgeCases.test.js` vérifiaient surtout des cas de malfor
 | Timeout unique de 3s | NON Abandonné | Remplacé par first-token/inter-token séparés |
 | `LLMOutputValidator` hérite de `StrictValidator` | OUI Tenu | Ajout de règles propre sans régression |
 | ADR avant chaque décision majeure | OUI Tenu | 4 ADR rédigés, pipeline lisible a posteriori |
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

@@ -1,0 +1,2 @@
+# drill 3 for 15_typescript
+# input contract décrit dans README.md

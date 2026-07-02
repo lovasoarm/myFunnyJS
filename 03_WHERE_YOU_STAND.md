@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT
+⏱️ ~12 min
 
 > Pas un quiz. Pas une note sur 20. Une carte.
 > Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.
@@ -36,7 +39,7 @@ N3   Tu sais tracer microtasks vs macrotasks sans te planter sur l'ordre
 N4   Tu sais lire un flamegraph et dire où le CPU part en fumée
 ```
 
-**Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `15_runtime_env` (Node vs navigateur).
+**Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `16_runtime_env` (Node vs navigateur).
 
 **Test rapide pour savoir où tu te situes :**
 Tu donnes ce code à un pote, il doit dire l'ordre d'affichage sans l'exécuter :
@@ -103,7 +106,7 @@ N3   Tu sais refuser un pattern parce qu'il complique plus qu'il résout
 N4   Tu conçois une architecture from scratch et tu anticipes ce qui va casser dans 6 mois
 ```
 
-**Modules qui construisent cet axe :** `12_design_patterns`, `13_refactoring`, `16_architecture_patterns`.
+**Modules qui construisent cet axe :** `13_design_patterns`, `14_refactoring`, `17_architecture_patterns`.
 
 **Test rapide :**
 On te propose d'ajouter un Singleton à ton projet. Tu sais lister 2 raisons de dire non avant de regarder le code ?
@@ -152,7 +155,7 @@ savoir pourquoi elle compte. Et un truc appris sans raison s'oublie vite.
 
 ### Comment gérer la charge mentale
 
-T'as 31 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
+T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
 
 - **Un module à la fois, jusqu'au bout.** Pas trois modules en parallèle "pour varier".
   Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui
@@ -189,10 +192,10 @@ une lecture en diagonale :
 03_async              =>  l'event loop tord le cerveau la première fois, c'est normal
 08_memory_performance =>  beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
 09_data_structures    =>  10_algorithms en dépend direct, bâcler l'un casse l'autre
-14_typescript         =>  le système de types a son propre raisonnement, différent de JS
-16_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
+15_typescript         =>  le système de types a son propre raisonnement, différent de JS
+17_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
 22_security           =>  chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
-29_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
+12_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
 ```
 
 Sur ces modules-là : ralentis. Fais les trois niveaux d'exemple (minimal, réaliste, qui casse)

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DIJKSTRA : LE CHEMIN LE PLUS COURT QUI ALIMENTE TOUS LES GPS
+Temps de lecture ~10 min
 
 Tout système de navigation tourne sur Dijkstra ou une variante. Google Maps, les routeurs réseau, les jeux vidéo avec pathfinding, les systèmes de livraison. Ce n'est pas un algo théorique : c'est le moteur de tout ce qui doit trouver un chemin optimal dans un graphe pondéré.
 

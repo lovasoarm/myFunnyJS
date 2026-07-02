@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DEPENDENCY LEDGER : LE JOURNAL DE TA DÉPENDANCE À L'IA
+Temps de lecture ~7 min
 
 > Rempli au fil du curriculum, pas en une fois. Voir `23_ai_native_dev/07_solo_vs_copilot_drill.md` pour le protocole complet avant de remplir quoi que ce soit ici.
 
@@ -167,3 +170,46 @@ Sur les 4 sessions, combien de fois CAS D (l'IA a coûté du temps) :
 **Si tu devais refaire ce ledger dans 6 mois, qu'est-ce que tu changerais dans le protocole ?**
 
 (à remplir)
+
+
+---
+
+## EXEMPLE REMPLI (à copier au bon endroit)
+
+<!--
+| Date       | Module | Tâche                       | Ratio IA / moi | Note (0-5) | Décision retenue                       |
+|------------|--------|-----------------------------|----------------|------------|----------------------------------------|
+| 2026-01-14 | 03     | Implémenter debounce        | 40 / 60        | 4          | J'ai gardé mon impl, l'IA a simplifié 2 lignes. |
+| 2026-01-20 | 05     | Debug race sur setTimeout   | 10 / 90        | 5          | Hypothèse posée seul, IA a validé.     |
+| 2026-02-01 | 08     | Heap snapshot arena         | 0 / 100        | 5          | Fait entièrement seul, IA n'a pas aidé.|
+| 2026-02-15 | 14     | Types génériques `pMap`     | 60 / 40        | 2          | Trop dépendant. À refaire seul.        |
+-->
+
+## Règle de calcul
+
+- **Ratio IA / moi** : temps où l'IA a jutsu du code vs temps où j'ai réfléchi/écrit seul.
+- **Note** : 0 = j'ai copié sans comprendre ; 5 = je peux ré-expliquer et refaire seul demain.
+- **Trigger** : si sur 5 lignes consécutives le ratio IA > 60 %, refais un `07_solo_vs_copilot_drill.md`.
+
+
+---
+
+## MINI-PROJETS : DÉPÔTS PUBLIÉS
+
+| # | Projet | Lien dépôt GitHub | POSTMORTEM | Peer-review |
+| --- | --- | --- | --- | --- |
+| 01 | Rasengan Engine | ... | ... | ... |
+| 02 | Garo no Kronika | ... | ... | ... |
+| 03 | Walking Dead Protocol | ... | ... | ... |
+| 04 | Breaking Cache | ... | ... | ... |
+| 05 | Prison Break API | ... | ... | ... |
+| 06 | Ultras Dashboard | ... | ... | ... |
+| 07 | Ballon d'Or CLI | ... | ... | ... |
+| 08 | Trapsoul Radio | ... | ... | ... |
+| 09 | Oracle Glitch | ... | ... | ... |
+| 10 | Legacy Dungeon | ... | ... | ... |
+| 11 | Scheduler | ... | ... | ... |
+| 12 | Legacy Takeover | ... | ... | ... |
+| 13 | Memory Hunter | ... | ... | ... |
+| 14 | System Design Lab | ... | ... | ... |
+| 15 | Portage Rasengan multi-langage | ... | ... | ... |

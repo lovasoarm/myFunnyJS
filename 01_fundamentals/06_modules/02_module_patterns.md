@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ENCAPSULER, EXPOSER, PROTÉGER : LES VRAIS PATTERNS DE MODULES
+Temps de lecture ~9 min
 
 Savoir écrire `import` et `export` c'est la syntaxe. Savoir quoi exposer et quoi cacher : c'est l'architecture.
 
@@ -87,7 +90,7 @@ import { lancerAttaque } from "./combat.js"
 // pas besoin de savoir que chakraEngine, jutsuResolver et combatLogger existent
 ```
 
-L'utilisateur de `combat.js` appelle `lancerAttaque`. Il ne sait pas et n'a pas besoin de savoir que trois modules internes sont impliqués. Si tu refactores l'un d'eux, `main.js` ne change pas.
+L'shinobi de `combat.js` appelle `lancerAttaque`. Il ne sait pas et n'a pas besoin de savoir que trois modules internes sont impliqués. Si tu refactores l'un d'eux, `main.js` ne change pas.
 
 ---
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # HIGH ORDER FUNCTIONS : MAP & FILTER
+Temps de lecture ~6 min
 
 Bienvenue dans le labo des fonctions qui manipulent des fonctions. _(Fonctionception.)_
 
@@ -111,7 +114,7 @@ résultat : 26
 ## 5) POURQUOI C'EST CRUCIAL
 
 - Code **plus court, plus lisible**, moins de boucles `for` manuelles
-- Parfait pour manipuler des collections : joueurs, scores, produits, utilisateurs...
+- Parfait pour manipuler des collections : joueurs, scores, jutsus, shinobis...
 - C'est la base du style **fonctionnel** en JS : et de tout ce que tu feras en React
 
 > Maîtriser ces trois HOF, c'est passer de "je subis les tableaux" à "je les plie à ma volonté".

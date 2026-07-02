@@ -1,4 +1,9 @@
+[DÉCENNIE]
+
 # Se souvenir vite pour ne pas redemander à chaque fois
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 shinobis demandent le même profil de mission à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
 
@@ -145,9 +150,9 @@ WRITE-BEHIND (write-back)
   --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
   --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
 
-STALE-WHILE-REVALIDATE (vu aussi dans 17_web_concepts/04_caching_strategies)
+STALE-WHILE-REVALIDATE (vu aussi dans 18_web_concepts/04_caching_strategies)
   --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
-  --> l'utilisateur n'attend jamais, au prix d'une fraîcheur légèrement décalée
+  --> l'shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```
 
 Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through quand la cohérence cache/DB est critique. Write-behind quand la vitesse d'écriture prime sur tout (analytics, compteurs de vues) et qu'une perte rare est tolérable.

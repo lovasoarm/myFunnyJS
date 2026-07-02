@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ASYNC & EVENT LOOP
+Temps de lecture ~8 min
 
 Ton code JS tourne sur un seul thread (fil d'exécution). Une seule ligne à la fois, jamais deux en même temps. Et pourtant ton serveur gère 10 000 requêtes simultanées sans bloquer. Si tu ne comprends pas comment, tu codes avec un fantôme que tu ne contrôles pas.
 
@@ -8,7 +11,7 @@ L'event loop (boucle d'événements), c'est le moteur caché derrière chaque `f
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Un serveur qui lit un fichier, interroge une base de données, ou attend une réponse réseau ne peut pas juste freezer pendant l'attente. Si JS bloquait sur chaque opération lente, ton serveur planterait dès 2 utilisateurs simultanés : le premier bloquerait tout le monde pendant qu'il attend sa réponse.
+Un serveur qui lit un fichier, interroge une base de données, ou attend une réponse réseau ne peut pas juste freezer pendant l'attente. Si JS bloquait sur chaque opération lente, ton serveur planterait dès 2 shinobis simultanés : le premier bloquerait tout le monde pendant qu'il attend sa réponse.
 
 L'event loop résout exactement ça : il permet à JS de lancer une opération longue, de continuer à faire autre chose en attendant, puis de revenir traiter le résultat quand il est prêt. Pas de thread supplémentaire. Pas de magie. Juste une file d'attente bien organisée et un ordre d'exécution précis entre microtasks (tâches micro : promises) et macrotasks (tâches macro : setTimeout, I/O).
 
@@ -77,3 +80,35 @@ Un dev qui maîtrise l'event loop débugue un problème de performance async en 
 JS est mono-thread, et pourtant il gère des milliers d'opérations en attente sans bloquer. Ce module explique comment. Sans lui, l'ordre d'exécution de ton code async reste une superstition. Avec lui, tu lis un `await` dans une boucle et tu sais exactement ce qui va foirer avant même de l'exécuter.
 
 Maintenant, ouvre `01_callback_maze.md`. Le labyrinthe t'attend, et cette fois tu as le plan.
+
+## AILLEURS QUE JS
+
+En Python, `asyncio` a aussi une boucle d'événements et des coroutines (`async def`/`await`), mais tu dois la lancer explicitement (`asyncio.run`). En Rust, l'async est basé sur des `Future` inertes tant qu'un exécuteur (Tokio) ne les `poll` pas : rien ne tourne sans runtime. En Go, pas d'async/await : des goroutines légères et des channels. Le mécanisme (ne pas bloquer sur l'attente d'I/O) est universel ; l'ergonomie change.
+
+
+---
+
+## Modèle mental (schéma ASCII)
+
+```text
+        +---------------------+
+        |     JS Engine       |
+        |   +-------------+   |
+        |   | Call Stack  |   |   <- ta fonction courante
+        |   +-------------+   |
+        +----------|----------+
+                   |  vide ?
+                   v
+        +----------------------+
+        |    Microtask Queue   |  <- Promises, queueMicrotask
+        +----------------------+
+                   |  vide ?
+                   v
+        +----------------------+
+        |     Task Queue       |  <- setTimeout, I/O, events
+        +----------------------+
+
+Regle : Call Stack se vide -> on draine TOUTES les microtasks -> puis UNE task -> rerendu (browser) -> on recommence.
+```
+
+Retiens : microtasks avant tasks, toujours. C'est pour ca qu'un `await` peut faire "avancer plus vite" qu'un `setTimeout(fn, 0)`.

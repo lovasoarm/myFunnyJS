@@ -1,8 +1,11 @@
+[INTEMPOREL]
+
 # ASYNC RESCUE : SAUVER CE QUI PEUT L'ÊTRE
+Temps de lecture ~9 min
 
 Une opération async peut rater pour 100 raisons différentes.
 Le réseau coupe. L'API timeout. Le serveur répond 500. Le JSON est malformé.
-Sans stratégie de gestion d'erreur : ton app crash en silence et l'utilisateur ne sait rien.
+Sans stratégie de gestion d'erreur : ton app crash en silence et l'shinobi ne sait rien.
 
 Ce fichier : comment attraper, décider, et survivre.
 
@@ -146,7 +149,7 @@ async function getKnightWithRetry() {
 
 ## 5) TIMEOUT : NE PAS ATTENDRE ÉTERNELLEMENT
 
-Une Promise sans timeout peut attendre indéfiniment. L'utilisateur attend. L'UI freeze.
+Une Promise sans timeout peut attendre indéfiniment. L'shinobi attend. L'UI freeze.
 
 ```js
 function withTimeout(promise, ms) {
@@ -200,7 +203,7 @@ async function getHorrorData(horrorId) {
 }
 ```
 
-Résultat dégradé > crash total. L'utilisateur voit quelque chose, même si c'est incomplet.
+Résultat dégradé > crash total. L'shinobi voit quelque chose, même si c'est incomplet.
 
 ---
 

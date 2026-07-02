@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BFS VS DFS : DEUX FAÇONS DE TRAVERSER UN GRAPHE
+Temps de lecture ~9 min
 
 BFS et DFS traversent tous les noeuds d'un graphe. Le résultat final est le même : tous les noeuds visités. Mais l'ordre de visite est radicalement différent. Et cet ordre détermine lequel des deux résout ton problème.
 

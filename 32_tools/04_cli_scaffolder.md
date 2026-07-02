@@ -1,6 +1,15 @@
-# CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE COMMANDE, PAS NEUF FOIS À LA MAIN
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
 
-Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence cible : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, puis les dossiers de travail `src/` et `tests/` que l'apprenant crée pendant le projet. Recréer cette base à la main, projet après projet, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une commande.
+[PÉRISSABLE 12-24 mois]
+
+> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+
+# CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE ORDRE_MISSION, PAS NEUF FOIS À LA MAIN
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+
+Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence cible : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, puis les dossiers de travail `src/` et `tests/` que l'apprenant crée pendant le projet. Recréer cette base à la main, projet après projet, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une ordre_mission.
 
 ---
 
@@ -97,7 +106,7 @@ console.log(`Projet généré : ${cheminCree}`);
 
 ---
 
-## 4) LE TRANSFORMER EN VRAIE COMMANDE CLI
+## 4) LE TRANSFORMER EN VRAIE ORDRE_MISSION CLI
 
 ```js
 // cli.js
@@ -107,7 +116,7 @@ console.log(`Projet généré : ${cheminCree}`);
 
 const { genererMiniProjet } = require('./scaffold');
 
-// process.argv contient les arguments passés en ligne de commande
+// process.argv contient les arguments passés en ligne de ordre_mission
 // [0] = chemin de node, [1] = chemin du script, [2] = premier argument réel
 const nomProjet = process.argv[2];
 
@@ -126,12 +135,12 @@ try {
 ```
 
 ```bash
-# Utilisation en ligne de commande, une seule fois par mini-projet
+# Utilisation en ligne de ordre_mission, une seule fois par mini-projet
 node cli.js 10_nouveau_projet
 # Projet "10_nouveau_projet" généré avec succès dans /chemin/vers/10_nouveau_projet
 ```
 
-**Technique :** `process.exit(1)` communique au shell (et donc à un éventuel script ou pipeline CI qui appelle cette commande) que l'exécution a échoué. Un code 0 veut dire succès, n'importe quel autre code veut dire échec. C'est cette convention qui permet à un pipeline CI de savoir automatiquement si une étape a réussi ou pas.
+**Technique :** `process.exit(1)` communique au shell (et donc à un éventuel script ou pipeline CI qui appelle cette ordre_mission) que l'exécution a échoué. Un code 0 veut dire succès, n'importe quel autre code veut dire échec. C'est cette convention qui permet à un pipeline CI de savoir automatiquement si une étape a réussi ou pas.
 
 ---
 
@@ -180,11 +189,11 @@ Implémente `genererMiniProjet`, lance-le sur un nom de projet test, et vérifie
 EXO 2 : La protection contre l'écrasement :
 Lance le scaffolder une première fois sur un nom de projet, ajoute du vrai contenu dans un des fichiers générés, puis relance le scaffolder sur le MÊME nom. Vérifie que ça lève bien une erreur claire au lieu d'écraser silencieusement ton contenu.
 
-EXO 3 : La commande complète :
+EXO 3 : La ordre_mission complète :
 Transforme ton scaffolder en script CLI utilisable avec `node cli.js <nom>`. Teste le cas sans argument (doit afficher un message d'usage et sortir en erreur) et le cas avec un nom déjà existant (doit afficher l'erreur du scaffolder, pas planter avec une stack trace brute).
 
 ---
 
 ## RÉSUMÉ
 
-Un scaffolder élimine le risque d'erreur humaine sur une structure de projet répétée plusieurs fois, en s'appuyant sur `fs` et `path` pour créer dossiers et fichiers de façon fiable et compatible entre systèmes. Vérifier l'existence avant de créer protège contre l'écrasement silencieux de contenu déjà rempli. Transformé en script CLI avec gestion de `process.argv` et de codes de sortie corrects, l'outil devient utilisable en une seule commande, intégrable dans n'importe quel pipeline. Le but : que créer un nouveau mini-projet prenne 2 secondes et zéro risque d'oubli, au lieu de 5 minutes et un risque de structure incohérente. Michael Scofield a le plan de Fox River tatoué sur lui, toujours identique, toujours complet. Ton scaffolder, c'est ça : la structure du projet, reproductible à la commande, sans dépendre de ta mémoire du moment.
+Un scaffolder élimine le risque d'erreur humaine sur une structure de projet répétée plusieurs fois, en s'appuyant sur `fs` et `path` pour créer dossiers et fichiers de façon fiable et compatible entre systèmes. Vérifier l'existence avant de créer protège contre l'écrasement silencieux de contenu déjà rempli. Transformé en script CLI avec gestion de `process.argv` et de codes de sortie corrects, l'outil devient utilisable en une seule ordre_mission, intégrable dans n'importe quel pipeline. Le but : que créer un nouveau mini-projet prenne 2 secondes et zéro risque d'oubli, au lieu de 5 minutes et un risque de structure incohérente. Michael Scofield a le plan de Fox River tatoué sur lui, toujours identique, toujours complet. Ton scaffolder, c'est ça : la structure du projet, reproductible à la ordre_mission, sans dépendre de ta mémoire du moment.

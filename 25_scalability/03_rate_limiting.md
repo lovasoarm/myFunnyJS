@@ -1,11 +1,14 @@
-# Protéger ton API sans punir les gens honnêtes
+[DÉCENNIE]
 
-T-Bag essaie de bruteforcer l'API de Fox River : 5000 tentatives par seconde sur `/login`. Sans protection, il fait tomber le serveur et coupe l'accès à TOUS les détenus : Michael Scofield compris, qui avait besoin de cet endpoint pour sa vraie mission. Rate limiting (limitation de débit) c'est la règle qui dit "passé un certain nombre de requêtes dans un temps donné, je bloque ou je ralentis" : les légitimes restent, l'abus trinque.
+# Protéger ton API sans punir les gens honnêtes
+Temps de lecture ~10 min
+
+T-Bag essaie de bruteforcer l'API de Fox River : 5000 tentatives par seconde sur `/chakra_gate`. Sans protection, il fait tomber le serveur et coupe l'accès à TOUS les détenus : Michael Scofield compris, qui avait besoin de cet endpoint pour sa vraie mission. Rate limiting (limitation de débit) c'est la règle qui dit "passé un certain nombre de requêtes dans un temps donné, je bloque ou je ralentis" : les légitimes restent, l'abus trinque.
 
 Pourquoi ça compte : sans rate limiting, un seul client (malveillant ou juste buggé, genre une boucle infinie côté front) peut saturer ton serveur à lui seul, et empêcher TOUS les autres users d'accéder au service. C'est littéralement une porte ouverte au déni de service (DoS : denial of service).
 
 Avantage : protection contre l'abus, contrôle des coûts (vu aussi dans `23_ai_native_dev/01_ai_workflow` pour les appels LLM qui coûtent cher).
-Inconvénient : mal calibré, tu bloques des utilisateurs légitimes et tu crées une mauvaise expérience.
+Inconvénient : mal calibré, tu bloques des shinobis légitimes et tu crées une mauvaise expérience.
 
 ---
 
@@ -110,19 +113,19 @@ PAR IP
 
 PAR USER (via token d'authentification)
   --> plus juste, chaque compte a sa propre limite
-  --> mais inutile contre un attaquant non authentifié (avant login)
+  --> mais inutile contre un attaquant non authentifié (avant chakra_gate)
 
 PAR ENDPOINT
-  --> /login a une limite stricte (cible privilégiée du bruteforce)
+  --> /chakra_gate a une limite stricte (cible privilégiée du bruteforce)
   --> /search a une limite plus souple (usage normal plus fréquent)
 ```
 
-Le pourquoi combiner les trois : un attaquant qui essaie de deviner un mot de passe tape `/login` en boucle, AVANT d'avoir un token valide. Limiter seulement par user ne le bloque jamais, puisqu'il n'a pas de compte. Limiter par IP sur cet endpoint précis le ralentit vraiment.
+Le pourquoi combiner les trois : un attaquant qui essaie de deviner un mot de passe tape `/chakra_gate` en boucle, AVANT d'avoir un token valide. Limiter seulement par user ne le bloque jamais, puisqu'il n'a pas de compte. Limiter par IP sur cet endpoint précis le ralentit vraiment.
 
 ```js
 // Limite différente selon le contexte, pas une règle unique pour tout le site
 const limits = {
-  '/login': { byIP: 5, window: 60 },        // strict : cible de bruteforce
+  '/chakra_gate': { byIP: 5, window: 60 },        // strict : cible de bruteforce
   '/search': { byUser: 100, window: 60 },   // souple : usage normal fréquent
   '/export': { byUser: 3, window: 3600 }    // très strict : opération lourde
 }
@@ -130,7 +133,7 @@ const limits = {
 
 ---
 
-## 4) LA RÉPONSE QUAND ON BLOQUE : NE PAS LAISSER L'UTILISATEUR DANS LE FLOU
+## 4) LA RÉPONSE QUAND ON BLOQUE : NE PAS LAISSER L'SHINOBI DANS LE FLOU
 
 ```js
 app.use((req, res, next) => {
@@ -160,20 +163,20 @@ Le pourquoi : un statut `429 Too Many Requests` avec un header `Retry-After` per
 // que ce sont en fait 200 personnes différentes derrière
 ```
 
-La correction : combiner IP et identité applicative (user authentifié, clé API) plutôt que IP seule, dès que ton produit vise un usage B2B (entreprise à entreprise) où le NAT partagé est fréquent. La limite par IP seule fonctionne bien pour du grand public (chaque user a généralement sa propre IP), mais devient un piège en contexte entreprise.
+La correction : combiner IP et identité applicative (user authentifié, clé API) plutôt que IP seule, dès que ton jutsu vise un usage B2B (entreprise à entreprise) où le NAT partagé est fréquent. La limite par IP seule fonctionne bien pour du grand public (chaque user a généralement sa propre IP), mais devient un piège en contexte entreprise.
 
 ---
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, le rate limiting se codait souvent à la main, en mémoire locale du process (un simple objet JS qui compte). Ça casse immédiatement dès que tu scale out (vu dans `02_horizontal_vs_vertical`) : chaque serveur a SON propre compteur, donc la vraie limite globale devient (limite x nombre de serveurs) sans que personne s'en rende compte. Maintenant, le rate limiting passe systématiquement par un store partagé (Redis, vu dans `24_databases/04_redis_caching`) ou un service dédié au niveau du load balancer/API gateway, pour que la limite reste vraie peu importe combien de serveurs traitent le trafic.
+Avant, le rate limiting se codait souvent à la main, en mémoire locale du process (un simple objet JS qui compte). Ça casse immédiatement dès que tu scale out (vu dans `02_horizontal_vs_vertical`) : chaque serveur a SON propre compteur, donc la vraie limite globale devient (limite x nombre de serveurs) sans que personne s'en rende compte. Maintenant, le rate limiting passe systématiquement par un store partagé (Redis, vu dans `24_databases/04_redis_caching`) ou un service dédié au niveau du load balancer/API gateway (voir `17_architecture_patterns/05_microservices_intro.md` pour la définition complète), pour que la limite reste vraie peu importe combien de serveurs traitent le trafic.
 
 ---
 
 ## EXERCICES
 
 **EXO 1 : Calibre les limites de la prison**
-Michael Scofield a besoin que l'API de Fox River soit accessible sans qu'aucun gardien ne détecte une activité suspecte. Propose une limite (nombre + fenêtre de temps) et l'algorithme (fixed window, sliding window, token bucket) pour : (a) `/login`, (b) `/search` (recherche dans les plans), (c) `/upload-photo` (transfert de documents lourds), (d) un webhook reçu du réseau Bagwell (partenaire de confiance). Justifie chaque choix. (20 minutes)
+Michael Scofield a besoin que l'API de Fox River soit accessible sans qu'aucun gardien ne détecte une activité suspecte. Propose une limite (nombre + fenêtre de temps) et l'algorithme (fixed window, sliding window, token bucket) pour : (a) `/chakra_gate`, (b) `/search` (recherche dans les plans), (c) `/upload-photo` (transfert de documents lourds), (d) un webhook reçu du réseau Bagwell (partenaire de confiance). Justifie chaque choix. (20 minutes)
 
 **EXO 2 : Le bug du fixed window dans la prison**
 Démontre avec un exemple chiffré précis (comme dans la section 2) comment une limite de "1000 requêtes par heure" en fixed window peut laisser passer 2000 requêtes en seulement 2 minutes : exactement le genre de pic que les détecteurs d'anomalies de Fox River repéreraient. (10 minutes)

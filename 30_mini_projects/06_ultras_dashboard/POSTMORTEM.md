@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : ULTRAS DASHBOARD
+Temps de lecture ~5 min
 
 ---
 
@@ -47,3 +50,18 @@ Décision : `sentryClient.ts` vérifie `process.env.NODE_ENV` avant tout appel. 
 - Tests de charge simulés : 1000 ultras connectés, 200 events/min, vérifier que les métriques ne dérivent pas
 - Distributed tracing sur plusieurs instances : tester que le correlation ID traverse les workers
 ```
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

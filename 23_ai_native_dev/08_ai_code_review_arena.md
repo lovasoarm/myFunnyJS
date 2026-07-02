@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
+Temps de lecture ~13 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 `27_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
 
@@ -243,7 +248,7 @@ function calculerRecompenseAbonnement(montantTotal, nombreAbonnes, tauxBonus) {
 <details>
 <summary>CORRIGÉ (clique pour révéler)</summary>
 
-**Le problème** : aucune vérification que `nombreAbonnes` n'est pas zéro. `montantTotal / 0` retourne `Infinity` en JS, pas une erreur. La fonction ne plante jamais, elle retourne juste un nombre absurde (`Infinity` ou `NaN` si `montantTotal` est aussi 0) qui peut se propager silencieusement plus loin dans le système (affiché à un utilisateur, stocké en DB, utilisé dans un autre calcul). Si le dashboard affiche "récompense : Infinity €" un jour où il n'y a aucun abonné, le bug remonte depuis l'UI, pas depuis la fonction elle-même : difficile à tracer jusqu'ici sans réflexe.
+**Le problème** : aucune vérification que `nombreAbonnes` n'est pas zéro. `montantTotal / 0` retourne `Infinity` en JS, pas une erreur. La fonction ne plante jamais, elle retourne juste un nombre absurde (`Infinity` ou `NaN` si `montantTotal` est aussi 0) qui peut se propager silencieusement plus loin dans le système (affiché à un shinobi, stocké en DB, utilisé dans un autre calcul). Si le dashboard affiche "récompense : Infinity €" un jour où il n'y a aucun abonné, le bug remonte depuis l'UI, pas depuis la fonction elle-même : difficile à tracer jusqu'ici sans réflexe.
 
 **Pourquoi c'est un pattern IA typique** : le commentaire au-dessus de la fonction décrit fidèlement CE QUE fait le code ("calcule la récompense... en fonction du montant total et du taux de bonus"), mais ne dit jamais POURQUOI ni sous quelles conditions ce calcul est valide. L'exemple d'utilisation fourni est un cas heureux (`nombreAbonnes = 50`), jamais un cas limite. C'est une réponse syntaxiquement et mathématiquement correcte à "calcule une récompense par abonné", qui ne protège pas contre l'input réel du monde (zéro abonné, un jour calme, un nouveau dashboard vide).
 
@@ -281,3 +286,26 @@ Génère une fonction avec un LLM sur un sujet de ton choix (lié à n'importe q
 ## RÉSUMÉ
 
 Une classification "origine IA / origine humaine" n'est jamais une certitude en review réelle : c'est un instinct construit sur des patterns récurrents, pas une preuve. Les patterns IA fréquents : optimisme silencieux, gestion d'erreur cosmétique, réponse plausible à la lettre du prompt qui rate l'esprit. Les patterns humains fréquents : erreurs de borne, edge cases oubliés sous pression de deadline, dette assumée et jamais nettoyée. Dans les deux cas, la checklist de `01_code_review.md` reste le même outil : fonctionnel, tests, lisibilité, architecture, sécurité, performance. Peu importe qui ou quoi a écrit la ligne, la question reste la même : qu'est-ce qui casse, et dans quelles conditions précises ?
+
+
+---
+
+## Transformer une hallucination en leçon
+
+Quand l'IA hallucine (méthode inexistante, comportement inventé), ne te contente pas de "corriger et passer".
+
+### Protocole (5 min)
+
+1. **Copie** la réponse fausse dans `HALLUCINATIONS.md` du projet en cours.
+2. **Nomme** précisément l'erreur (API inexistante ? Sémantique fausse ? Version obsolète ?).
+3. **Trouve la source** officielle qui contredit (MDN, RFC, doc du framework).
+4. **Écris** en 3 lignes **pourquoi** l'IA a probablement halluciné (nom plausible, pattern d'autres langages, doc obsolète dans le training set).
+5. **Ajoute** l'exemple à ton **prompt système** perso pour éviter la prochaine fois.
+
+### Exemple
+
+L'IA propose `array.remove(x)`. Erreur : n'existe pas en JS. Origine probable : confusion Python/Ruby. Fix mental : "en JS on filtre ou on splice, jamais `.remove`."
+
+### Livrable
+
+Un `HALLUCINATIONS.md` par projet. Ce fichier est **un actif** : il devient ta liste noire et améliore tes prompts au fil du temps.

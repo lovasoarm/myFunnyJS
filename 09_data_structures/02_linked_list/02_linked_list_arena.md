@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LINKED LIST ARENA : INVERSER, DÉTECTER UN CYCLE, TROUVER LE MILIEU
+Temps de lecture ~9 min
 
 Les opérations de base c'est bien. Mais les linked lists ont trois problèmes classiques qui reviennent partout : en entretien, en prod, et dans les algorithmes plus complexes.
 

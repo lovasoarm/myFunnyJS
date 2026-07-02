@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS
+Temps de lecture ~7 min
 
 Tu as déjà passé une heure à chercher pourquoi une donnée changeait toute seule, sans qu'aucune ligne de ton code ne semble la toucher directement. Le vrai coupable, presque toujours : une mutation cachée, un objet partagé entre deux fonctions qui se modifient l'une l'autre sans le savoir.
 
@@ -56,7 +59,7 @@ Le spread operator (`...`) et les méthodes comme `Object.freeze` ont rendu l'im
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement essentiel : `11_functional_js` dépend de `01_fundamentals/03_functions`, et devient à son tour le prérequis direct de `12_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
+Indirectement essentiel : `11_functional_js` dépend de `01_fundamentals/03_functions`, et devient à son tour le prérequis direct de `13_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
 
 ---
 
@@ -71,3 +74,7 @@ Plus les apps deviennent complexes, plus la prévisibilité devient précieuse. 
 La mutation incontrôlée est la source silencieuse de la majorité des bugs difficiles à tracer en JS. Ce module te donne les outils pour l'éliminer : fonctions pures, immutabilité, composition. Sans cette discipline, ton code fonctionne jusqu'à ce qu'il ne fonctionne plus : sans que personne ne sache pourquoi.
 
 Maintenant, ouvre `01_pure_functions.md`. Et arrête de laisser tes fonctions changer des choses dans ton dos.
+
+## AILLEURS QUE JS
+
+En Python, `map`/`filter`/`functools.reduce` et les compréhensions offrent le même style ; les fonctions sont des objets de première classe. En Haskell, la pureté et l'immutabilité sont la norme, pas une discipline optionnelle. En Rust, les itérateurs paresseux (`iter().map().filter().collect()`) poussent la composition encore plus loin. Le concept (transformer sans muter) traverse les langages.

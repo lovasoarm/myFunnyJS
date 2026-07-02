@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : WALKING DEAD PROTOCOL
+Temps de lecture ~8 min
 
 Ce projet a deux phases distinctes, et ce journal les sépare clairement, comme l'exige le cahier des charges : phase 1 (couvrir le legacy par les tests, sans y toucher), phase 2 (TDD pur sur la v2).
 
@@ -44,7 +47,7 @@ Ce test a révélé que `campV1.js` ne valide jamais la quantité consommée. Un
 
 ## Tests sur guards et security (legacy)
 
-Même méthode appliquée à `guards.test.js` et `security.test.js` : observer la sortie console du v1 pour chaque commande, écrire le test qui la capture, sans jugement sur si c'est "bien" ou "mal".
+Même méthode appliquée à `guards.test.js` et `security.test.js` : observer la sortie console du v1 pour chaque ordre_mission, écrire le test qui la capture, sans jugement sur si c'est "bien" ou "mal".
 
 **Fin de la phase 1 :** 19 tests de caractérisation, tous verts sur le v1, qui décrivent fidèlement (bugs inclus) le comportement du legacy. C'est le filet de sécurité de référence.
 
@@ -147,7 +150,7 @@ test('une exception dans le Worker ne crashe pas le process principal', (done) =
 
 ## `e2e/campWorkflow.spec.js`
 
-Écrits en dernier, une fois toutes les commandes individuellement testées. Deux scénarios complets, du `reset` jusqu'à la vérification finale, exactement comme prévu dans le cahier des charges.
+Écrits en dernier, une fois toutes les ordres_mission individuellement testées. Deux scénarios complets, du `reset` jusqu'à la vérification finale, exactement comme prévu dans le cahier des charges.
 
 ---
 

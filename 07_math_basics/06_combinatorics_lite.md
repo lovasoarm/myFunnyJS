@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # COMBINATORICS LITE : COMPTER AVANT DE BRUTEFORCER
+Temps de lecture ~10 min
 
 Avant d'écrire une boucle, pose-toi une question : combien de cas y a-t-il vraiment ?
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LIGHTHOUSE : LIRE UN RAPPORT SANS SE NOYER DANS LES CHIFFRES
+Temps de lecture ~10 min
 
 Lighthouse te sort un score entre 0 et 100. Le dev moyen regarde le score, dit "meh, 67, je dois améliorer", et ferme l'onglet sans rien faire.
 

@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # ARBORESCENCE COMPLÈTE
+Temps de lecture ~30 min
 
 > Carte complète du dépôt. Chaque dossier, chaque fichier, chaque rôle en une ligne.
 > Pas un fichier à lire d'une traite. Un plan que tu consultes quand tu cherches un module précis
@@ -14,7 +17,7 @@ MyFunnyJS/
 ├── 01_START_HERE.md                                            # Le tout premier fichier à lire. Court, direct, prérequis machine.
 ├── 02_DAY_ONE.md                                                # Le contexte du métier dev en 2026 : avant de toucher au code
 ├── 03_WHERE_YOU_STAND.md                                        # 4 axes (Runtime, Lecture, Debug, Architecture), 4 niveaux chacun : où t'en es vraiment
-├── README.md                                                   # La roadmap des 31 modules, dans l'ordre
+├── README.md                                                   # La roadmap des 32 modules, dans l'ordre
 ├── CONTRIBUTING.md                                             # Les règles du camp : pas de PR qui pue
 ├── DEPENDENCY_LEDGER.md                                        # Journal transversal : drill solo-vs-copilot rejoué à 4 moments du curriculum, voir 23_ai_native_dev/07
 │
@@ -85,7 +88,7 @@ MyFunnyJS/
 │       ├── 02_macrotask_monsters.md                           # setTimeout, setInterval, requestAnimationFrame
 │       └── 03_event_loop_grimoire.md                          # call stack, heap, queue, microtask : le moteur JS expliqué sans magie
 │
-├── 04_error_handling/                                          # Les erreurs arrivent : la question c'est si tu les vois avant l'utilisateur
+├── 04_error_handling/                                          # Les erreurs arrivent : la question c'est si tu les vois avant l'shinobi
 │   ├── 00_why_error_handling.md                                # Ton code va planter : la question c'est si tu le vois venir ou pas
 │   ├── 01_try_catch_basics.md                                 # try/catch en profondeur : ce qu'il attrape et ce qu'il laisse passer
 │   ├── 02_custom_errors.md                                    # Créer ses propres erreurs pour que les logs racontent une histoire
@@ -103,7 +106,7 @@ MyFunnyJS/
 │   ├── 05_tdd_arena.md                                        # TDD pur : le test en premier, le code après, toujours
 │   ├── 06_test_driven_refactor.md                             # Refactorer sans régression grâce aux tests déjà en place
 │   ├── 07_contract_testing_pact.md                            # Tester le contrat entre deux services avant qu'ils soient en prod ensemble
-│   ├── 08_e2e_playwright_beast.md                             # Playwright : simuler un vrai utilisateur qui clique, tape, attend
+│   ├── 08_e2e_playwright_beast.md                             # Playwright : simuler un vrai shinobi qui clique, tape, attend
 │   └── 09_testing_grimoire.md                                 # unit, integration, E2E, mock, spy, stub : chaque terme à sa place
 │
 ├── 07_math_basics/                                             # Les maths utiles au dev : pas les inutiles
@@ -211,7 +214,7 @@ MyFunnyJS/
 │   ├── 06_fp_challenge.md                                     # Construire un pipeline de transformation de données 100% fonctionnel
 │   └── 07_fp_grimoire.md
 │
-├── 12_design_patterns/                                         # Les recettes de cuisine du code solide
+├── 13_design_patterns/                                         # Les recettes de cuisine du code solide
 │   ├── 00_why_design_patterns.md                               # Le même problème d'archi résolu deux fois, deux façons différentes : aucune des deux n'était la meilleure
 │   ├── 01_creational/
 │   │   ├── 01_factory_pattern.md                              # Factory : créer sans exposer la logique de construction
@@ -227,7 +230,7 @@ MyFunnyJS/
 │   │   └── 03_command_pattern.md                              # Command : encapsuler une action pour pouvoir l'annuler et la rejouer
 │   └── 04_patterns_grimoire.md
 │
-├── 13_refactoring/                                             # Transformer du code qui fonctionne en code qui dure
+├── 14_refactoring/                                             # Transformer du code qui fonctionne en code qui dure
 │   ├── 00_why_refactoring.md                                   # Coder vite et coder durable, c'est pas la même compétence : ça, c'est la deuxième
 │   ├── 01_clean_code_basics.md                                # Nommage, fonctions courtes, commentaires utiles : les règles qui changent tout
 │   ├── 02_solid_principles.md                                  # SRP, OCP, LSP, ISP, DIP : les cinq principes qui structurent un codebase
@@ -245,8 +248,8 @@ MyFunnyJS/
 │   ├── 05_design_for_change.md                                # Concevoir pour ce qui va changer, pas pour ce qui est stable aujourd'hui
 │   └── 06_problem_solving_grimoire.md                         # domaine, contrat, couplage, cohésion : le lexique du dev qui conçoit
 │
-├── 14_typescript/                                              # JS avec un casque et une armure : obligatoire en prod en 2026
-│   ├── 00_why_typescript.md                                    # "undefined is not a function" en prod : TS te le dit avant, pas l'utilisateur après
+├── 15_typescript/                                              # JS avec un casque et une armure : obligatoire en prod en 2026
+│   ├── 00_why_typescript.md                                    # "undefined is not a function" en prod : TS te le dit avant, pas l'shinobi après
 │   ├── 01_ts_basics/
 │   │   ├── 01_types_and_interfaces.md                         # type vs interface : pas la même chose, pas interchangeables
 │   │   ├── 02_functions_typed.md                              # Typer les fonctions : params, retour, overloads, callbacks
@@ -262,7 +265,7 @@ MyFunnyJS/
 │   │   └── 03_ts_in_real_project.md                           # TS dans un vrai projet : config, migration, boundaries, décisions
 │   └── 04_typescript_grimoire.md
 │
-├── 15_runtime_env/                                             # Savoir où ton code vit vraiment : Node, navigateur, workers
+├── 16_runtime_env/                                             # Savoir où ton code vit vraiment : Node, navigateur, workers
 │   ├── 00_why_runtime_env.md                                   # window n'existe pas dans Node : même JS, plusieurs mondes, des règles différentes
 │   ├── 01_node_vs_browser.md                                  # Même JS, deux environnements différents : des APIs qui ne se partagent pas
 │   ├── 02_streams_buffers.md                                   # Lire des données en flux sans charger tout en mémoire
@@ -276,7 +279,7 @@ MyFunnyJS/
 │   │   └── 04_cli_tool_builder.md                             # Construire un vrai outil CLI distribuable avec commander ou yargs
 │   └── 07_runtime_grimoire.md
 │
-├── 16_architecture_patterns/                                   # Construire grand sans tout effondrer en ajoutant une feature
+├── 17_architecture_patterns/                                   # Construire grand sans tout effondrer en ajoutant une feature
 │   ├── 00_why_architecture_patterns.md                         # 5 fichiers tiennent debout peu importe l'organisation, 500 s'effondrent à la première feature mal placée
 │   ├── 01_module_pattern.md                                   # Encapsuler, exposer ce qui doit l'être, cacher le reste
 │   ├── 02_mvc_pattern.md                                      # Model, View, Controller : séparer les responsabilités avant de s'y noyer
@@ -285,7 +288,7 @@ MyFunnyJS/
 │   ├── 05_microservices_intro.md                              # Découper en services : quand ça aide et quand ça complique
 │   └── 06_architecture_grimoire.md
 │
-├── 17_web_concepts/                                            # Tout ce qu'un ingénieur web doit avoir en tête : pas juste dans les doigts
+├── 18_web_concepts/                                            # Tout ce qu'un ingénieur web doit avoir en tête : pas juste dans les doigts
 │   ├── 00_why_web_concepts.md                                  # Tu sais écrire un fetch, mais sais-tu pourquoi ça répond 403 et pas 401 ?
 │   ├── 01_http_rest_basics.md                                 # HTTP, verbes, status codes, headers : lire une requête comme un professionnel
 │   ├── 02_browser_render_pipeline.md                          # De l'HTML brut au pixel affiché : ce qui se passe entre les deux
@@ -296,7 +299,7 @@ MyFunnyJS/
 │   ├── 07_seo_and_rendering.md                                # SSR, SSG, CSR, ISR : choisir le bon mode de rendu pour la bonne raison
 │   └── 08_web_concepts_grimoire.md
 │
-├── 18_accessibility/                                           # Coder pour tout le monde : pas juste pour les utilisateurs qui te ressemblent
+├── 19_web_inclusive/                                           # Coder pour tout le monde : pas juste pour les shinobis qui te ressemblent
 │   ├── 00_why_accessibility.md                                 # Ferme les yeux, navigue ton site au clavier : si tu bloques, tu exclus du monde réel
 │   ├── 01_a11y_why_it_matters.md                              # L'accessibilité n'est pas une option : les chiffres, les lois, et les gens réels
 │   ├── 02_aria_basics.md                                      # ARIA roles, states, properties : communiquer avec les lecteurs d'écran
@@ -306,7 +309,7 @@ MyFunnyJS/
 │   ├── 06_a11y_audit.md                                       # Auditer une page avec axe, Lighthouse, et les tests manuels
 │   └── 07_a11y_grimoire.md
 │
-├── 19_i18n/                                                    # Parler toutes les langues sans tout réécrire
+├── 19_web_inclusive/i18n/                                                    # Parler toutes les langues sans tout réécrire
 │   ├── 00_why_i18n.md                                          # Une date japonaise lue à l'envers, un prix allemand qui semble 1000x moins cher : l'i18n c'est une architecture, pas une traduction
 │   ├── 01_i18n_basics.md                                      # Clés de traduction, namespaces, fallbacks : l'architecture i18n de base
 │   ├── 02_dates_timezones.md                                  # Les dates à travers les fuseaux horaires : le cauchemar et comment le résoudre
@@ -343,7 +346,7 @@ MyFunnyJS/
 │   ├── 00_why_security.md                                      # Pas besoin d'un hacker en cagoule : un script automatisé qui scanne 24/7 trouve ton input non sanitisé
 │   ├── 01_xss_injection.md                                    # XSS et injection SQL : les deux attaques qui touchent le plus d'apps en prod
 │   ├── 02_csrf_cors.md                                        # CSRF et CORS : comprendre les deux avant de misconfigurer l'un ou l'autre
-│   ├── 03_prototype_pollution.md                              # Polluer Object.prototype depuis un input utilisateur : pourquoi c'est catastrophique
+│   ├── 03_prototype_pollution.md                              # Polluer Object.prototype depuis un input shinobi : pourquoi c'est catastrophique
 │   ├── 04_auth_flows.md                                       # OAuth, sessions, JWT : les trois modèles d'auth et quand choisir lequel
 │   ├── 05_hashing_bcrypt.md                                   # Hasher un mot de passe : bcrypt, salt, coût, ce qu'on ne stocke jamais en clair
 │   ├── 06_owasp_checklist.md                                  # Les 10 vulnérabilités OWASP les plus fréquentes : et comment les éviter
@@ -370,14 +373,14 @@ MyFunnyJS/
 │   └── 06_databases_grimoire.md
 │
 ├── 25_scalability/                                             # Tenir quand ça devient sérieux : 10 users vs 10 millions c'est pas le même code
-│   ├── 00_why_scalability.md                                   # 10 utilisateurs ça va, 10 millions sur le même serveur sans rien changer : effondrement garanti
+│   ├── 00_why_scalability.md                                   # 10 shinobis ça va, 10 millions sur le même serveur sans rien changer : effondrement garanti
 │   ├── 01_load_balancing.md                                   # Distribuer le trafic : round-robin, least connections, sticky sessions
 │   ├── 02_horizontal_vs_vertical.md                           # Scale up vs scale out : deux stratégies, deux contextes, deux coûts
-│   ├── 03_rate_limiting.md                                    # Limiter les requêtes sans bloquer les utilisateurs légitimes
+│   ├── 03_rate_limiting.md                                    # Limiter les requêtes sans bloquer les shinobis légitimes
 │   ├── 04_message_queues.md                                   # Découpler producteur et consommateur avec une queue de messages
 │   └── 05_scalability_grimoire.md
 │
-├── 26_observability/                                           # Voir ce qui se passe en prod : avant que l'utilisateur le signale
+├── 26_observability/                                           # Voir ce qui se passe en prod : avant que l'shinobi le signale
 │   ├── 00_why_observability.md                                 # "Ça marche pas parfois" et toi sans logs, sans traces, sans métriques : t'es aveugle en prod
 │   ├── 01_structured_logging.md                               # Log en JSON avec correlation ID : les logs qu'on peut chercher et analyser
 │   ├── 02_distributed_tracing.md                              # Suivre une requête à travers plusieurs services : sans perdre le fil
@@ -404,7 +407,7 @@ MyFunnyJS/
 │   ├── 05_edge_cases_grimoire.md
 │   └── 06_heisenbug_arena.md                                   # 5 bugs intermittents fournis : non-déterministes dans leur timing, déterministes dans leur cause
 │
-├── 29_oop_js/                                                  # prototype, classes, héritage : la face cachée de JS
+├── 12_oop_js/                                                  # prototype, classes, héritage : la face cachée de JS
 │   ├── 00_why_oop_js.md                                        # class en JS, c'est une façade : derrière, c'est la chaîne de prototypes qui tient toute la baraque
 │   ├── 01_prototype_chain_raw.md                              # Object.create, [[Prototype]] : la chaîne brute, sans aucun sucre
 │   ├── 02_constructor_functions.md                            # new, this, .prototype : la façon old school avant "class"
@@ -532,7 +535,7 @@ MyFunnyJS/
     ├── 01_logger_structure.md                                  # Logger structuré réutilisable : la base de l'observabilité maison
     ├── 02_benchmark_kit.md                                     # Mesurer la perf de n'importe quel bout de code sans réinventer la roue
     ├── 03_debug_toolkit.md                                     # Le kit de debug qu'on rebranche sur chaque projet
-    ├── 04_cli_scaffolder.md                                    # Générer la structure d'un nouveau projet en une commande
+    ├── 04_cli_scaffolder.md                                    # Générer la structure d'un nouveau projet en une ordre_mission
     └── 05_tools_grimoire.md
 ```
 

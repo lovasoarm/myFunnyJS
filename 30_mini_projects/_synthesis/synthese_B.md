@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SYNTHÈSE B : OPTIMISER LA CHAÎNE DE DISTRIBUTION DE WALTER
+Temps de lecture ~6 min
 
 > Couvre : `08_memory_performance` + `09_data_structures` + `10_algorithms` + `11_functional_js`
 > Durée cible : 100 à 160 minutes
@@ -36,7 +39,7 @@ Le réseau de distribution est un graphe orienté pondéré. Le poids de chaque 
 
 **Du module 10 (algorithms) :**
 Dijkstra pour trouver la route la plus sûre entre deux villes. Mais attention : Walter veut aussi pouvoir dire "donne-moi la route la plus sûre PARMI les 3 plus rapides", pas juste la plus sûre tout court. Ça veut dire combiner deux critères, pas juste appliquer l'algo de base tel quel.
-Le knapsack (sac à dos) pour `stockOptimizer.js` : étant donné une capacité de transport limitée par route, quel mix de produits maximise la valeur transportée sans dépasser la capacité.
+Le knapsack (sac à dos) pour `stockOptimizer.js` : étant donné une capacité de transport limitée par route, quel mix de jutsus maximise la valeur transportée sans dépasser la capacité.
 
 **Du module 11 (functional js) :**
 Tout le pipeline de calcul (de la mise à jour du risque jusqu'à la route finale recommandée) doit être composé avec des fonctions pures chaînées, pas une suite d'instructions impératives avec des variables intermédiaires réassignées. Utilise `pipe` ou `compose`.

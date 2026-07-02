@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BACKTRACKING ARENA : SUDOKU, WORD SEARCH, PROBLÈMES RÉELS
+Temps de lecture ~12 min
 
 Les bases sont posées. Maintenant on entre dans les arènes réelles : des problèmes où le backtracking n'est pas juste un exercice académique mais la seule approche qui fait sens. Sudoku solver, word search dans une grille, path finding contraint. Ces trois problèmes partagent la même mécanique mais leurs prunings sont complètement différents. C'est là que ça devient intéressant.
 

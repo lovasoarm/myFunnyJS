@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~12 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # ALGORITHMS GRIMOIRE : LES PATTERNS ET LEUR TERRAIN D'APPLICATION
 
 | Terme | Définition | Code | Analogies |
@@ -22,7 +41,7 @@
 | **Coin Change (DP)** | Nombre minimum de pièces pour rendre une somme. DP : `dp[i] = min(dp[i], dp[i-coin]+1)` pour chaque pièce. Greedy échoue avec pièces non standard. | `const dp = new Array(amount+1).fill(Inf); dp[0]=0; for(const c of coins) for(let i=c;i<=amount;i++) dp[i]=Math.min(dp[i],dp[i-c]+1)` | Billets de Ballon d'Or : avec 1, 3, 4 points, combien de votes minimum pour atteindre 6 ? / Jakiro qui alloue du chakra : minimum de techniques pour atteindre exactement 100 de dégâts |
 | **LCS (Longest Common Subsequence)** | Longueur de la plus longue sous-séquence commune à deux strings. DP : `dp[i][j] = dp[i-1][j-1]+1` si `s1[i]===s2[j]` sinon `max(dp[i-1][j], dp[i][j-1])`. | `if(s1[i]===s2[j]) dp[i][j]=dp[i-1][j-1]+1; else dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1])` | Trouver le style commun entre Bryson Tiller et SZA pour une collab : les similitudes sans forcer / Plan d'évasion commun à Michael et Lincoln : séquence de mouvements partagée |
 | **Minimum Spanning Tree** | Arbre couvrant tous les noeuds d'un graphe avec le poids total minimal. Kruskal (trier les arêtes + union-find) ou Prim (greedy à partir d'un noeud). | `// Kruskal : trier edges, union-find pour éviter les cycles, ajouter si pas de cycle` | Câblage réseau d'Alexandria (Walking Dead) : relier tous les camps avec minimum de câble / Réseau de distribution Walter : routes minimales pour couvrir tous les points de livraison |
-| **BFS sur graphe pondéré** | BFS ne donne pas le chemin le plus court sur un graphe pondéré. Il donne le chemin avec le moins d'arêtes. Pour les poids : utiliser Dijkstra. | `// BFS optimal : graphe non pondéré (chaque arête = coût 1)` | Nombre de passes minimum pour marquer (arêtes = passes) vs temps minimum (arêtes = durée des passes) : deux problèmes différents | GPS de métro (nombre de stations) vs GPS routier (temps de trajet) : même réseau, métriques différentes |
+| **BFS sur graphe pondéré** | BFS ne donne pas le chemin le plus court sur un graphe pondéré. Il donne le chemin avec le moins d'arêtes. Pour les poids : utiliser Dijkstra. | `// BFS optimal : graphe non pondéré (chaque arête = coût 1)` | Nombre de passes minimum pour marquer (arêtes = passes) vs temps minimum (arêtes = durée des passes) : deux problèmes différents | GPS de métro (nombre de stations) vs GPS routier (temps de trajet) : même réseau, métriques différentes / meme mecanique cote football : le staff repete jusqu'a ce que la tactique tienne sans le tableau |
 | **État dans le backtracking** | Ce qu'on a construit à un moment donné dans l'exploration. Doit être copié quand on enregistre une solution, pas passé par référence. | `result.push([...current]) // spread = vraie copie, pas référence` | Snapshot de la grille de sudoku à chaque étape : une photo, pas un lien vers la grille actuelle / Sauvegarde de la configuration du plan d'évasion : état figé, pas modifiable rétrospectivement |
 | **Wave / Niveau BFS** | Dans un BFS, tous les noeuds à distance k forment le "niveau k". En topo sort, tous les noeuds libérés en même étape forment une wave parallélisable. | `waves.push([...queue]) // tous les noeuds libres = peuvent s'exécuter en parallèle` | Vague d'attaque de Titans par niveau de menace : tous les niveau-3 simultanément, puis les niveau-4 / Équipes Champions League qualifiées en même temps : phase de groupes = une wave |
 

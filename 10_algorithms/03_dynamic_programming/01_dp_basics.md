@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # DYNAMIC PROGRAMMING : NE CALCULE JAMAIS DEUX FOIS LA MÊME CHOSE
+Temps de lecture ~9 min
 
 DP c'est une idée simple : si tu as déjà calculé quelque chose, stocke le résultat. Ne le recalcule pas.
 

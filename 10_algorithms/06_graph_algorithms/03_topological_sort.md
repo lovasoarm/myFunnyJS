@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TOPOLOGICAL SORT : L'ORDRE QUI RESPECTE LES DÉPENDANCES
+Temps de lecture ~11 min
 
 Tu as des tâches. Certaines dépendent d'autres. Tu ne peux pas faire B avant A. Tu ne peux pas installer un package avant ses dépendances. Tu ne peux pas compiler un module avant ceux qu'il importe.
 

@@ -1,0 +1,2 @@
+# drill 2 for 09_data_structures
+# input contract décrit dans README.md

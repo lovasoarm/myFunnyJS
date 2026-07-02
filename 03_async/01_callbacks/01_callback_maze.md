@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LE LABYRINTHE DU CALLBACK
+Temps de lecture ~8 min
 
 Avant les Promises. Avant async/await. Il y avait les callbacks.
 Et tout le monde s'y est perdu exactement de la même façon.

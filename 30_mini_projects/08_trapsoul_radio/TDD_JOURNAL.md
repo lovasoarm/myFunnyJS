@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : TRAPSOUL RADIO
+Temps de lecture ~6 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce projet a une contrainte inhabituelle : les tests d'accessibilité (a11y) et les tests TypeScript sont aussi importants que les tests de logique métier.
 

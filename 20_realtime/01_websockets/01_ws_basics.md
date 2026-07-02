@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET
+Temps de lecture ~9 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 HTTP est un contrat unidirectionnel : tu demandes, le serveur répond, la connexion meurt.
 WebSocket, c'est un tunnel qui reste ouvert.

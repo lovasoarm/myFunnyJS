@@ -1,4 +1,10 @@
+[PORTFOLIO]
+
+[INTEMPOREL]
+[ATELIER]
+
 # LEGACY DUNGEON
+⏱️ ~7 min
 
 Les 9 projets précédents, quelqu'un a pensé à toi en les écrivant. Celui-là, non. Tu clones un vrai dépôt open source, jamais écrit pour t'apprendre quoi que ce soit, et tu dois en sortir vivant : une carte du terrain, un bug corrigé, une décision d'architecture déduite après coup.
 
@@ -14,7 +20,7 @@ $ cd dungeon
 $ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
    47832 total   # tu mesures, tu ne supposes jamais
 
-[CARTOGRAPHIE] 2h chrono, MAP.md produit
+[CARTOGRAPHIE] 2h chrono, MAP.md jutsu
   - point d'entrée réel localisé
   - 6 fichiers où vit la vraie logique
   - diagramme ASCII du flux principal
@@ -80,7 +86,7 @@ Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le "src" 
 |---|---|
 | `27_team_craft` | navigation de codebase (`04_navigate_codebase.md`) appliquée pour de vrai, ADR rétrospective, technical writing dans MAP.md/POSTMORTEM.md |
 
-Mobilisés en lecture, sans être le coeur du projet : `05_debugging` (stack traces inconnues), `04_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `13_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
+Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `04_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `14_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
 
 ---
 
@@ -108,3 +114,62 @@ TDD_JOURNAL.md         --> ordre réel de l'investigation, pas du TDD classique 
 POSTMORTEM.md          --> ce qui a coincé, ce qui a été appris
 ADR/                   --> décision d'architecture du repo, déduite après coup
 ```
+
+---
+
+## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+
+Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
+trade-off chiffré :
+
+- **Question** : "J'ai comparé X vs Y."
+- **Charge** : (taille des données, N itérations, hardware).
+- **Résultat** : `X = 12ms`, `Y = 48ms` sur 10 000 items.
+- **Décision** : "J'ai retenu X car …"
+- **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
+
+Sans chiffres, ce n'est pas une décision, c'est une préférence.
+Voir `08_memory_performance/00_measure_first.md`.
+
+
+## Pitch 3 lignes
+
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+
+
+## Empreinte carbone (critère d'acceptation)
+
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
+
+
+---
+
+## 🚨 RÈGLE ZÉRO : LA LOI DU DONJON
+
+**Interdit de modifier UNE ligne de code avant d'avoir écrit un `EXPLICATION.md`** qui décrit le fonctionnement actuel (avant tout changement).
+
+Format `EXPLICATION.md` :
+1. À quoi sert CE fichier (3 lignes).
+2. Les 3 dépendances externes qu'il utilise (et pourquoi).
+3. Le cas d'usage principal + 1 edge case.
+4. Ce que tu SUPPOSES sans être sûr (à valider avant de refactor).
+
+Ta refacto commence quand ce fichier existe. Pas avant. Zéro exception.
+
+
+## THÈME NEUTRE (optionnel)
+Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
+
+## Structure attendue
+
+Chaque mini-projet doit contenir a minima :
+
+- `src/` : code source (obligatoire).
+- `tests/` : tests unitaires et/ou d'intégration (obligatoire).
+- `README.md` : présentation, objectifs, comment lancer.
+- `TDD_JOURNAL.md` : trace de la démarche TDD.
+- `POSTMORTEM.md` : ce qui a marché, ce qui a cassé, ce que tu retiens.
+- `ADR/` : décisions architecturales (Architecture Decision Records).
+- `cahierdescharges.md` : contraintes et périmètre.
+
+Un CI check impose la présence de `src/` et `tests/` avant validation.

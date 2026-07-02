@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BIT MANIPULATION : MANIPULER LES DONNÉES À L'OS
+Temps de lecture ~9 min
 
 La plupart des devs n'ont jamais écrit une seule ligne de manipulation de bits. Puis un jour ils tombent sur un bug de permissions, un système de flags, ou un algo de compression : et ils réalisent qu'ils ne comprennent pas ce qui se passe sous leur code.
 

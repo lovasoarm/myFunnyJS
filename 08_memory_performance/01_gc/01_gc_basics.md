@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LE GARBAGE COLLECTOR : LE NETTOYEUR QUE TU N'ENTENDS JAMAIS
+Temps de lecture ~10 min
 
 JS gère la mémoire à ta place. Ça a l'air cool. Et ça l'est : jusqu'au moment où ça ne l'est pas.
 
@@ -79,7 +82,7 @@ let clone = { name: "Kage Bunshin", power: 100 };
 
 // Le clone disparaît:la mémoire peut être libérée
 clone = null;
-// ✓ plus aucune référence → le GC peut nettoyer
+//  plus aucune référence → le GC peut nettoyer
 
 // ---
 
@@ -89,7 +92,7 @@ let ennemi = { name: "T-Bag" }; // oui, T-Bag, il s'est infiltré
 activeNinjas.push(ennemi);
 
 ennemi = null;
-// ✗ la mémoire ne sera PAS libérée
+//  la mémoire ne sera PAS libérée
 // activeNinjas[0] pointe encore vers l'objet
 // T-Bag reste en mémoire:pour l'éternité
 ```

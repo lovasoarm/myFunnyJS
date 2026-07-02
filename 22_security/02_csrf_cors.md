@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # CSRF ET CORS
+Temps de lecture ~9 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Deux acronymes. Deux problèmes complètement différents. Un seul point commun : si tu les confonds ou tu les misconfigures (mal configurer), tu ouvres une faille que tu ne verras pas venir.
 
@@ -10,16 +15,16 @@ CSRF (Cross-Site Request Forgery : falsification de requête cross-site) est une
 
 ### Le quoi
 
-CSRF : un site malveillant déclenche une requête vers ton API en utilisant la session active d'un utilisateur authentifié. Le serveur voit la requête, voit le cookie de session valide, et l'exécute. L'utilisateur ne sait pas que ça s'est passé.
+CSRF : un site malveillant déclenche une requête vers ton API en utilisant la session active d'un shinobi authentifié. Le serveur voit la requête, voit le cookie de session valide, et l'exécute. L'shinobi ne sait pas que ça s'est passé.
 
 ### Pourquoi ça marche
 
 Les navigateurs envoient automatiquement les cookies de session avec chaque requête vers le domaine correspondant. Même si la requête vient d'un autre site.
 
 ```
-Utilisateur --> se connecte sur bank.com --> reçoit un cookie de session
+Shinobi --> se connecte sur bank.com --> reçoit un cookie de session
 Attaquant   --> envoie un email avec un lien vers evil.com
-Utilisateur --> visite evil.com (le cookie bank.com est toujours actif)
+Shinobi --> visite evil.com (le cookie bank.com est toujours actif)
 evil.com    --> déclenche un formulaire POST vers bank.com/transfer?to=attaquant&amount=5000
 Navigateur  --> envoie la requête AVEC le cookie bank.com (automatique)
 bank.com    --> voit un cookie valide --> exécute le transfert
@@ -36,7 +41,7 @@ bank.com    --> voit un cookie valide --> exécute le transfert
     <input type="hidden" name="amount" value="5000">
   </form>
 </body>
-<!-- Le navigateur envoie le cookie bank.com avec ce POST : l'utilisateur a transféré 5000€ sans le savoir -->
+<!-- Le navigateur envoie le cookie bank.com avec ce POST : l'shinobi a transféré 5000€ sans le savoir -->
 ```
 
 ### La fix : tokens CSRF
@@ -108,7 +113,7 @@ C'est une protection, pas une attaque. Le navigateur fait ça pour toi.
 
 ### Pourquoi ça existe
 
-Sans CORS, un script sur `evil.com` pourrait faire des requêtes vers ton API en utilisant les credentials (identifiants : cookies, headers d'auth) de l'utilisateur et lire les réponses.
+Sans CORS, un script sur `evil.com` pourrait faire des requêtes vers ton API en utilisant les credentials (identifiants : cookies, headers d'auth) de l'shinobi et lire les réponses.
 
 ```
 Même origine (same-origin)   -->  même protocole + même domaine + même port --> autorisé
@@ -209,7 +214,7 @@ Un attaquant CSRF se fout de lire la réponse : il veut juste que l'action s'ex�
 ## EXERCICES
 
 **EXO 1 : Le virement forcé**
-L'app Prison Break a un endpoint `POST /api/escape-plan/execute` qui exécute le plan d'évasion si l'utilisateur est connecté. Une page externe peut potentiellement le déclencher via un formulaire caché.
+L'app Prison Break a un endpoint `POST /api/escape-plan/execute` qui exécute le plan d'évasion si l'shinobi est connecté. Une page externe peut potentiellement le déclencher via un formulaire caché.
 Implémenter la protection CSRF complète : génération du token, middleware de vérification, et le formulaire côté HTML.
 Contrainte : ne pas utiliser de bibliothèque CSRF tierce, uniquement `crypto` natif.
 
@@ -233,4 +238,4 @@ app.post('/delete-account', (req, res) => deleteAccount(req.session.userId));
 
 ## RÉSUMÉ
 
-CSRF exploite la confiance du serveur envers le navigateur de l'utilisateur. La défense : tokens imprévisibles ou `SameSite` sur les cookies. CORS contrôle qui peut lire tes réponses depuis le navigateur. La configuration : liste blanche stricte, pas de wildcard avec credentials. Les deux protègent des choses différentes et les deux sont nécessaires dans une app authentifiée.
+CSRF exploite la confiance du serveur envers le navigateur de l'shinobi. La défense : tokens imprévisibles ou `SameSite` sur les cookies. CORS contrôle qui peut lire tes réponses depuis le navigateur. La configuration : liste blanche stricte, pas de wildcard avec credentials. Les deux protègent des choses différentes et les deux sont nécessaires dans une app authentifiée.

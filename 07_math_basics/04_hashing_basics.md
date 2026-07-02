@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # HASHING BASICS : L'EMPREINTE QUI NE MENT PAS
+Temps de lecture ~10 min
 
 Un hash c'est une fonction qui transforme n'importe quoi en empreinte de taille fixe.
 Tu donnes `"Naruto"` : elle retourne `"a3f9c2"`. Tu donnes `"Naruto "` (avec une espace) : elle retourne `"71bd04"`. Complètement différent.

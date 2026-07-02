@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BACKTRACKING : EXPLORER L'ARBRE DES POSSIBLES SANS SE PERDRE
+Temps de lecture ~11 min
 
 Imagine que tu dois trouver la combinaison d'un coffre-fort. Tu essaies un chiffre, puis un autre, puis un autre. Si ça bloque, tu reviens en arrière et tu essaies autre chose. C'est ça le backtracking : exploration exhaustive avec retour en arrière.
 

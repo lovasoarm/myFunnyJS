@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # Grossir un serveur ou en ajouter dix
+Temps de lecture ~11 min
 
 Walter White a un labo unique. Il l'agrandit (scale up : plus de paillasses, meilleur équipement) jusqu'à ne plus pouvoir agrandir le bâtiment. Ou il ouvre des labos dans plusieurs villes (scale out : plus de sites, même capacité chacun). En infra, le choix change tout ce qu'il y a derrière : un seul labo énorme reste un seul point de panne, cinq labos distribués survivent à la perte d'un site.
 
@@ -55,7 +58,7 @@ Le risque réel : scale out exige que ton code soit "stateless" (sans état loca
 // Mauvais pour le scale out : état stocké EN MÉMOIRE du process
 let activeUsers = {} // existe UNIQUEMENT sur ce serveur précis
 
-app.post('/login', (req, res) => {
+app.post('/chakra_gate', (req, res) => {
   activeUsers[req.body.userId] = true
   // Si la prochaine requête de ce user atterrit sur un AUTRE serveur,
   // ce serveur-là ne sait RIEN de cette connexion
@@ -65,7 +68,7 @@ app.post('/login', (req, res) => {
 ```js
 // Bon pour le scale out : état externalisé, partagé par TOUS les serveurs
 // (vu en détail dans 24_databases/04_redis_caching)
-app.post('/login', async (req, res) => {
+app.post('/chakra_gate', async (req, res) => {
   await redis.set(`active:${req.body.userId}`, true)
   // N'IMPORTE QUEL serveur peut lire cette info ensuite
 })
@@ -125,10 +128,10 @@ function getCachedProduct(id) {
 // exemple réaliste : on scale out de 1 à 4 serveurs pour absorber le trafic du Black Friday
 
 // exemple qui casse : chaque serveur a SON PROPRE cache local, complètement désynchronisé
-// Server A a mis le produit 99 en cache avec l'ancien prix
+// Server A a mis le jutsu 99 en cache avec l'ancien prix
 // Server B vient de recevoir l'update du nouveau prix, son cache local est à jour
-// Server C, D n'ont jamais mis ce produit en cache, ils tapent direct la DB
-// Résultat : 4 utilisateurs qui demandent le MÊME produit au MÊME moment
+// Server C, D n'ont jamais mis ce jutsu en cache, ils tapent direct la DB
+// Résultat : 4 shinobis qui demandent le MÊME jutsu au MÊME moment
 // reçoivent potentiellement 3 prix différents selon le serveur qui les a traités
 ```
 
@@ -138,7 +141,7 @@ La leçon : scale out un serveur qui a de l'état local (cache, session, compteu
 
 ## 5.5) QUAND SCALER : LES VRAIS SEUILS
 
-Le tableau de décision de la section 3 dit quoi choisir. Ce qui manque : à quel moment de la vie d'un produit est-ce que la question se pose vraiment ?
+Le tableau de décision de la section 3 dit quoi choisir. Ce qui manque : à quel moment de la vie d'un jutsu est-ce que la question se pose vraiment ?
 
 ```
 PHASE 0 : 0 à 100 users actifs

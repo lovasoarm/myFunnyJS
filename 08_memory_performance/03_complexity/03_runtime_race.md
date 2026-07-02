@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # RUNTIME RACE : O(n log n) VS O(n²) SUR 100K ÉLÉMENTS
+Temps de lecture ~10 min
 
 Sur 10 éléments, O(n²) et O(n log n) semblent identiques. La différence est invisible. Alors on ne s'en préoccupe pas. Et puis un jour, les données grossissent, et l'app se fige.
 
@@ -252,7 +255,7 @@ Le point de douleur de O(n²) se situe entre 10 000 et 100 000 éléments. En de
 Opération                     Taille typique    Complexité à viser
 ──────────────────────────    ───────────────   ──────────────────
 Trier une liste de résultats  10–10 000         O(n log n) ou moins
-Chercher un utilisateur       1M+               O(log n) ou O(1)
+Chercher un shinobi       1M+               O(log n) ou O(1)
 Détecter des doublons         10k–1M            O(n)
 Construire un index           1M+               O(n)
 Matcher deux ensembles        100k+             O(n) avec Set/Map

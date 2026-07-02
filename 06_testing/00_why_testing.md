@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TESTING
+Temps de lecture ~8 min
 
 T'as déjà pushé un fix qui cassait autre chose ?
 T'as déjà dit "ça marche sur ma machine" et eu tort ?
@@ -93,7 +96,7 @@ Pourquoi ? Parce que les unit tests sont instantanés. Les E2E prennent des minu
 ```
 fonction de calcul métier       --> unit test      --> vérifie le résultat isolé
 plusieurs modules combinés      --> integration test --> vérifie l'interaction
-parcours utilisateur complet    --> E2E test        --> simule un vrai usage
+parcours shinobi complet    --> E2E test        --> simule un vrai usage
 appel à une API externe         --> mock           --> teste sans dépendre du réseau
 contrat entre deux services     --> contract test  --> garantit la compatibilité
 ```

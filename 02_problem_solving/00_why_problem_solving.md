@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : PROBLEM SOLVING
+Temps de lecture ~7 min
 
 Tu connais la syntaxe. Tu connais les structures de données. Tu connais les patterns. Et pourtant, face à un vrai problème flou ("le dashboard est lent", "ça marche pas pour ce client"), tu ouvres ton éditeur sans savoir par où commencer. Le problème n'est pas technique : il est dans ta façon de penser avant de coder.
 
@@ -54,7 +57,7 @@ Ce qui a évolué, c'est l'urgence de cette compétence à l'ère de l'IA géné
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas listé explicitement dans les "6 blocs prioritaires", mais c'est une compétence transversale qui rend tous les autres modules plus efficaces. `02_problem_solving` n'a aucun prérequis bloquant listé, ce qui en fait un module qu'on peut renforcer en parallèle de presque tout le reste du curriculum, et qui améliore directement la qualité de ce que tu produis dans `12_design_patterns`, `16_architecture_patterns`, et `23_ai_native_dev`.
+Pas listé explicitement dans les "6 blocs prioritaires", mais c'est une compétence transversale qui rend tous les autres modules plus efficaces. `02_problem_solving` n'a aucun prérequis bloquant listé, ce qui en fait un module qu'on peut renforcer en parallèle de presque tout le reste du curriculum, et qui améliore directement la qualité de ce que tu produis dans `13_design_patterns`, `17_architecture_patterns`, et `23_ai_native_dev`.
 
 ---
 

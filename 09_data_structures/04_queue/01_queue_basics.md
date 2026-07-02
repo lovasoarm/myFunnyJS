@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LA QUEUE : LE PREMIER QUI ARRIVE, C'EST LE PREMIER QUI PASSE
+Temps de lecture ~9 min
 
 T'as déjà regardé un match et vu les ultras faire la queue pour rentrer dans le stade ?
 Le premier en ligne, c'est le premier à entrer. Pas de passe-droit. Pas de favoritisme.
@@ -279,16 +282,16 @@ une pour les VIP, une pour les normaux.
 _~15 min_
 
 
-Walter a un système de livraison. Les commandes arrivent dans une queue.
-Chaque commande a un `id`, un `client`, et une `quantite`.
+Walter a un système de livraison. Les ordres_mission arrivent dans une queue.
+Chaque ordre_mission a un `id`, un `client`, et une `quantite`.
 
 Règles :
 
-- Si la queue dépasse 10 commandes, les nouvelles sont rejetées avec une erreur `"OverflowError"`
-- `processNext()` retire et retourne la prochaine commande à traiter
+- Si la queue dépasse 10 ordres_mission, les nouvelles sont rejetées avec une erreur `"OverflowError"`
+- `processNext()` retire et retourne la prochaine ordre_mission à traiter
 - `status()` retourne `{ enAttente: N, capaciteRestante: M }`
 
-Utilise le RingBuffer vu plus haut. Adapte-le pour les commandes.
+Utilise le RingBuffer vu plus haut. Adapte-le pour les ordres_mission.
 
 ---
 

@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # 02_SSE_LIVE_FEED : LE DASHBOARD DE MATCH EN TEMPS RÉEL
+Temps de lecture ~9 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Objectif concret : un dashboard live pour suivre un match de foot.
 Possession, xG (expected goals : buts attendus selon la qualité des occasions), tirs, alertes de but.

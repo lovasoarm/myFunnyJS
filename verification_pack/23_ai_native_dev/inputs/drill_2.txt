@@ -1,0 +1,2 @@
+# drill 2 for 23_ai_native_dev
+# input contract décrit dans README.md

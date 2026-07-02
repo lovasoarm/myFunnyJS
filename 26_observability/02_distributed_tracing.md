@@ -1,6 +1,11 @@
-# Suivre une commande qui traverse 6 maillons sans perdre le fil
+[INTEMPOREL]
 
-Une commande de Walter White passe par le labo, le grossiste, deux distributeurs intermédiaires, et le point de livraison final. Le tout prend 3 heures au lieu de 30 minutes. Lequel des 5 maillons est lent ? Le correlation ID (vu dans `26_observability/01_structured_logging`) te dit QUE ces logs appartiennent à la même commande. Il ne te dit PAS où le temps a été perdu.
+# Suivre une ordre_mission qui traverse 6 maillons sans perdre le fil
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+
+Une ordre_mission de Walter White passe par le labo, le grossiste, deux distributeurs intermédiaires, et le point de livraison final. Le tout prend 3 heures au lieu de 30 minutes. Lequel des 5 maillons est lent ? Le correlation ID (vu dans `26_observability/01_structured_logging`) te dit QUE ces logs appartiennent à la même ordre_mission. Il ne te dit PAS où le temps a été perdu.
 
 Le distributed tracing (traçage distribué) répond exactement à ça : il découpe une requête en segments mesurés (spans), organisés en arbre, pour voir précisément combien de temps chaque maillon a pris, et dans quel ordre.
 
@@ -14,7 +19,7 @@ Inconvénient : overhead (coût supplémentaire) de performance et de stockage, 
 ## 1) LE PRINCIPE : TRACE, SPAN, ET LE TEMPS QUI SE DÉCOUPE
 
 ```
-TRACE = le voyage complet d'une commande, du labo à la livraison
+TRACE = le voyage complet d'une ordre_mission, du labo à la livraison
 
 TRACE "cmd-7f3a9b"
   |
@@ -52,7 +57,7 @@ Le pourquoi : chaque span (segment) sait combien de temps il a pris ET quel est 
 ## 2) PROPAGATION DU CONTEXTE : LE TRACEID DOIT VOYAGER ENTRE LES MAILLONS
 
 ```
-Le Labo passe la commande au Grossiste :
+Le Labo passe la ordre_mission au Grossiste :
 Le Labo pose des infos de suivi dans le colis sortant
     |
     v
@@ -95,27 +100,27 @@ Labo --[traceId OK]--> Grossiste --[traceId OK]--> Distributeur --[OUBLI]--> Liv
 
 ```
 SAMPLING À 100%
-  --> chaque commande est tracée en détail
+  --> chaque ordre_mission est tracée en détail
   --> overhead de performance et coût de stockage énorme à grande échelle
 
 SAMPLING À 1%
-  --> 1 commande sur 100 est tracée, les 99 autres passent sans overhead
+  --> 1 ordre_mission sur 100 est tracée, les 99 autres passent sans overhead
   --> léger, mais tu peux manquer la trace EXACTE de l'incident qui t'intéresse
 
 SAMPLING ADAPTATIF (le plus utilisé en prod)
-  --> trace systématiquement les commandes en retard ou suspectes
-  --> trace un petit pourcentage des commandes normales pour avoir une vue d'ensemble
+  --> trace systématiquement les ordres_mission en retard ou suspectes
+  --> trace un petit pourcentage des ordres_mission normales pour avoir une vue d'ensemble
 ```
 
 ```js
 function shouldSample(order) {
   if (order.hasError) return true        // toujours tracer un incident
   if (order.duration > 60 * 60 * 1000) return true  // toujours tracer un retard suspect
-  return Math.random() < 0.01             // sinon, 1% des commandes normales
+  return Math.random() < 0.01             // sinon, 1% des ordres_mission normales
 }
 ```
 
-Le pourquoi : tracer 100% des commandes d'une opération qui en traite des milliers par jour génère une quantité de données ingérable et coûteuse pour un bénéfice marginal, puisque la plupart sont identiques et dans les temps. Le sampling adaptatif garde l'essentiel (les cas anormaux, là où tu as VRAIMENT besoin de creuser) sans payer le prix du tout-tracer.
+Le pourquoi : tracer 100% des ordres_mission d'une opération qui en traite des milliers par jour génère une quantité de données ingérable et coûteuse pour un bénéfice marginal, puisque la plupart sont identiques et dans les temps. Le sampling adaptatif garde l'essentiel (les cas anormaux, là où tu as VRAIMENT besoin de creuser) sans payer le prix du tout-tracer.
 
 ---
 
@@ -144,10 +149,10 @@ Le pourquoi cette lecture est immédiate : le span "Détour DEA évité" prend 1
 // par quelqu'un qui ne connaît pas encore les conventions de suivi de l'équipe
 
 // exemple qui casse : ce nouveau maillon ne lit ni ne propage le header
-// 'traceparent'. Chaque commande qui passe par lui génère une trace neuve et isolée
-// Résultat : dans l'outil de tracing, le parcours de la commande s'arrête
+// 'traceparent'. Chaque ordre_mission qui passe par lui génère une trace neuve et isolée
+// Résultat : dans l'outil de tracing, le parcours de la ordre_mission s'arrête
 // "magiquement" à ce maillon, comme s'il ne se passait plus rien après,
-// alors que la commande continue bel et bien son chemin ailleurs
+// alors que la ordre_mission continue bel et bien son chemin ailleurs
 ```
 
 La correction : faire de la propagation du contexte de trace une responsabilité du framework HTTP partagé (middleware commun), pas une chose que chaque dev doit se souvenir d'ajouter manuellement à chaque nouveau maillon. Une checklist d'intégration d'un nouveau service doit inclure "propage le traceId" au même titre que "expose un endpoint /health" (vu dans `01_load_balancing` section 5).
@@ -166,10 +171,10 @@ Avant, chaque outil de tracing (Zipkin, Jaeger, propriétaire) avait son propre 
 On te donne une trace où Labo prend 15min, Grossiste prend 10min, Distributeur prend 160min, et un sous-span "stockage temporaire sans contrôle" à l'intérieur du Distributeur prend 150min. Identifie le vrai coupable et explique pourquoi optimiser le Labo ne servirait à rien ici. (10 minutes)
 
 **EXO 2 : Calibre ton sampling**
-Une opération traite 2000 commandes par jour, 99% livrées dans les temps. Propose une stratégie de sampling concrète (quoi tracer à 100%, quoi tracer en partiel) et justifie le compromis coût/visibilité. (15 minutes)
+Une opération traite 2000 ordres_mission par jour, 99% livrées dans les temps. Propose une stratégie de sampling concrète (quoi tracer à 100%, quoi tracer en partiel) et justifie le compromis coût/visibilité. (15 minutes)
 
 **EXO 3 : Trouve le maillon qui casse la chaîne**
-Une trace s'arrête net après le maillon "Distributeur secondaire" dans l'outil de tracing, alors que tu sais que la commande continue derrière (elle arrive bien à destination). Liste les 2 causes techniques les plus probables et comment les vérifier. (15 minutes)
+Une trace s'arrête net après le maillon "Distributeur secondaire" dans l'outil de tracing, alors que tu sais que la ordre_mission continue derrière (elle arrive bien à destination). Liste les 2 causes techniques les plus probables et comment les vérifier. (15 minutes)
 
 ---
 

@@ -1,6 +1,9 @@
-# PACKAGE MANAGERS : NPM, YARN, PNPM, LES DIFFÉRENCES QUI COMPTENT VRAIMENT EN 2026
+[DÉCENNIE]
 
-Le camp dépend de fournitures extérieures : médicaments, munitions, essence. Personne ne fabrique tout soi-même, c'est impossible. Daryl peut piéger du gibier, mais il fabrique pas ses carreaux d'arbalète depuis zéro : il prend ce que le monde a déjà produit et il l'intègre à son arsenal.
+# PACKAGE MANAGERS : NPM, YARN, PNPM, LES DIFFÉRENCES QUI COMPTENT VRAIMENT EN 2026
+Temps de lecture ~9 min
+
+Le camp dépend de fournitures extérieures : médicaments, munitions, essence. Personne ne fabrique tout soi-même, c'est impossible. Daryl peut piéger du gibier, mais il fabrique pas ses carreaux d'arbalète depuis zéro : il prend ce que le monde a déjà jutsu et il l'intègre à son arsenal.
 
 Un package manager (gestionnaire de paquets) c'est exactement ça : il gère tout le code écrit par d'autres dont ton projet dépend, sans que t'aies à le retaper. npm, Yarn, pnpm : même mission, trois stratégies différentes.
 
@@ -34,7 +37,7 @@ Trois jobs, pas un seul :
 
 ## 2) NPM, YARN, PNPM : MÊME JOB, STRATÉGIE DE STOCKAGE DIFFÉRENTE
 
-La vraie différence entre les trois en 2026 c'est pas la syntaxe des commandes (qui se ressemblent beaucoup). C'est **comment ils stockent les fichiers sur le disque**.
+La vraie différence entre les trois en 2026 c'est pas la syntaxe des ordres_mission (qui se ressemblent beaucoup). C'est **comment ils stockent les fichiers sur le disque**.
 
 ### npm et yarn classique : duplication
 
@@ -122,7 +125,7 @@ RÈGLE : toujours committer le lockfile dans Git
 
 ---
 
-## 5) COMMANDES ESSENTIELLES
+## 5) ORDRES_MISSION ESSENTIELLES
 
 ```bash
 # installer toutes les dépendances du projet (depuis package.json)
@@ -149,7 +152,7 @@ npm audit
 npm audit fix   # corrige automatiquement ce qui peut l'être
 ```
 
-Les commandes Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).
+Les ordres_mission Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).
 
 ---
 

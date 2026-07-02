@@ -1,6 +1,9 @@
-# REGEX COMBAT : VALIDER DES DONNÉES RÉELLES
+[INTEMPOREL]
 
-La validation de formulaires, c'est un terrain de guerre. Les utilisateurs tapent n'importe quoi. Des espaces au début. Des points en trop. Des extensions bizarres. Des numéros avec des tirets, des espaces, des parenthèses.
+# REGEX COMBAT : VALIDER DES DONNÉES RÉELLES
+Temps de lecture ~9 min
+
+La validation de formulaires, c'est un terrain de guerre. Les shinobis tapent n'importe quoi. Des espaces au début. Des points en trop. Des extensions bizarres. Des numéros avec des tirets, des espaces, des parenthèses.
 
 Ton regex doit tenir. Dans ce fichier, on construit des validateurs réels : pas des exercices académiques. Des patterns que tu vas réutiliser en prod.
 

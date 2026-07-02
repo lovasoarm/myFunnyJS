@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # JIT BASICS : LE MOTEUR QUI APPREND TON CODE EN LE LISANT
+Temps de lecture ~9 min
 
 Ton code JS n'est jamais "juste exécuté". Il est observé, mesuré, puis réécrit en interne par V8 (le moteur JS de Chrome et Node) pendant qu'il tourne. Le JIT (Just-In-Time : compilation à la volée) regarde tes fonctions, repère celles qui tournent souvent, et les transforme en code machine optimisé.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : ORACLE GLITCH
+Temps de lecture ~6 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce projet a une contrainte dure : aucun test ne doit appeler l'API Anthropic. L'objectif est de tester la logique du pipeline, pas le comportement de l'IA.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LINEAR SEARCH VS BINARY SEARCH : LA DIFFÉRENCE QUI COMPTE À L'ÉCHELLE
+Temps de lecture ~9 min
 
 Chercher un élément. Le truc le plus basique qui soit. Et pourtant la différence entre O(n) et O(log n) peut signifier "trouve en 1 seconde" ou "trouve en 17 jours" sur une base de données réelle.
 
@@ -183,7 +186,7 @@ console.log(binarySearch(nonTrie, 9)) // -1 !!!
 
 ```js
 // chercher dans un dictionnaire de mots (millions d'entrées)
-// chercher un ID dans une liste triée d'utilisateurs
+// chercher un ID dans une liste triée d'shinobis
 // chercher un timestamp dans un log trié par date
 
 // exemple pratique : trouver le premier élément >= threshold

@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # ADR : DOCUMENTER UNE DÉCISION AVANT QU'ELLE DEVIENNE UN MYSTÈRE
+Temps de lecture ~9 min
 
 Dans six mois, quelqu'un va tomber sur ce bout de code et se demander :
 "Pourquoi ils ont utilisé Redis ici et pas une DB normale ?"

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : ULTRAS DASHBOARD
+Temps de lecture ~6 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits. En TypeScript strict, les tests servent aussi à valider que les types se composent correctement. Un test qui ne compile pas est déjà un feedback utile.
 

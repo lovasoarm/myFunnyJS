@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # PROMISE.RACE, ALLSETTLED, ANY : QUAND PLUSIEURS OPÉRATIONS S'AFFRONTENT
+Temps de lecture ~7 min
 
 Tu as plusieurs Promises qui tournent en parallèle.
 La question c'est : tu attends qui ?

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FUNCTION BASICS : UNE FONCTION EST UN OBJET VIVANT
+Temps de lecture ~7 min
 
 Arrête de croire qu'une fonction = juste du code.
 

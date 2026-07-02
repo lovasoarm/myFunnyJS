@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD ARENA : LE TEST EN PREMIER, TOUJOURS
+Temps de lecture ~8 min
 
 La plupart des devs écrivent du code, puis pensent aux tests.
 TDD inverse ça : t'écris le test d'abord, le code ensuite.

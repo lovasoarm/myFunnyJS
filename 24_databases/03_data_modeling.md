@@ -1,4 +1,9 @@
+[DÉCENNIE]
+
 # Le plan avant les murs
+Temps de lecture ~12 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 T'as vu SQL (`01_sql_basics`) et les familles NoSQL (`02_nosql_basics`). Maintenant la vraie question : comment tu RANGES tes données pour qu'elles tiennent dans le temps, sans dupliquer n'importe comment ni te retrouver bloqué dans 6 mois.
 
@@ -233,7 +238,7 @@ La leçon : stocker une liste de sous-entités qui mérite ses propres recherche
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, normaliser à fond (3NF partout) était presque un dogme académique : "la dénormalisation c'est sale". Maintenant, avec des volumes de lecture massifs (apps avec des millions d'utilisateurs actifs), la dénormalisation ciblée est une décision d'ingénierie normale, documentée, pas une erreur de débutant. Le switch existe parce qu'on a compris que l'intégrité parfaite et la vitesse de lecture sont en tension, et que le bon dosage dépend du produit, pas d'un principe absolu.
+Avant, normaliser à fond (3NF partout) était presque un dogme académique : "la dénormalisation c'est sale". Maintenant, avec des volumes de lecture massifs (apps avec des millions d'shinobis actifs), la dénormalisation ciblée est une décision d'ingénierie normale, documentée, pas une erreur de débutant. Le switch existe parce qu'on a compris que l'intégrité parfaite et la vitesse de lecture sont en tension, et que le bon dosage dépend du jutsu, pas d'un principe absolu.
 
 ---
 

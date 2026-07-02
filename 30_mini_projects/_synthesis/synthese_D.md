@@ -1,6 +1,9 @@
-# SYNTHÈSE D : SÉCURISER LE RÉSEAU RADIO DE FOX RIVER
+[INTEMPOREL]
 
-> Couvre : `15_runtime_env` + `16_architecture_patterns` + `17_web_concepts` + `21_api_craft` + `22_security`
+# SYNTHÈSE D : SÉCURISER LE RÉSEAU RADIO DE FOX RIVER
+Temps de lecture ~7 min
+
+> Couvre : `16_runtime_env` + `17_architecture_patterns` + `18_web_concepts` + `21_api_craft` + `22_security`
 > Durée cible : 150 à 220 minutes
 > La plus grosse synthèse du curriculum. C'est voulu : c'est le bloc système web complet.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CURRYING : UNE FONCTION, UN ARGUMENT, TOUJOURS
+Temps de lecture ~8 min
 
 Une fonction qui prend 3 arguments d'un coup ne peut pas s'insérer dans un `pipe`.
 Le currying transforme ça : au lieu de `f(a, b, c)`, tu obtiens `f(a)(b)(c)`.

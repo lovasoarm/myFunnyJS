@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SCOPE ESCAPE ROOM : LA PORTE EST FERMÉE. LE CODE EST LA CLÉ.
+Temps de lecture ~7 min
 
 > Ici tu ne codes pas juste. Tu réfléchis.
 > Qui garde quoi ? Quelle variable vit où ? Laquelle disparaît... ou fait semblant ?
@@ -22,10 +25,10 @@
 const vault1 = createVault("dragon");
 const vault2 = createVault("unicorn");
 
-vault1("dragon"); // Access granted
+vault1("dragon");  // Access granted
 vault1("unicorn"); // Access denied
 vault2("unicorn"); // Access granted
-vault2("dragon"); // Access denied
+vault2("dragon");  // Access denied
 ```
 
 > **Question :** Pourquoi chaque coffre garde son propre secret après la mort de `createVault` ?
@@ -80,7 +83,6 @@ for (var i = 1; i <= 3; i++) {
 > `var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent --> `i` vaut déjà `4`. Toutes les portes s'ouvrent sur la même pièce vide.
 
 **Résultat :**
-
 ```
 Door number: 4
 Door number: 4
@@ -100,7 +102,6 @@ for (let i = 1; i <= 3; i++) {
 > `let` crée une nouvelle variable `i` à chaque itération. Chaque `setTimeout` capture sa propre copie. Chaque porte a enfin son propre numéro.
 
 **Résultat :**
-
 ```
 Door number: 1
 Door number: 2

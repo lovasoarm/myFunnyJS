@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # EXPRESS FROM SCRATCH
+Temps de lecture ~8 min
 
 Un serveur Express c'est pas de la magie.
 C'est un processus Node qui écoute un port, reçoit des requêtes HTTP, et décide quoi renvoyer.
@@ -221,10 +224,10 @@ Monte un serveur Express avec :
 - Un middleware logger qui logge méthode + path + durée de chaque requête
 
 **EXO 2 : Le filtre de Walter White**
-Ton API gère un catalogue de produits.
+Ton API gère un catalogue de jutsus.
 Ajoute un endpoint `GET /products` qui accepte les query params `category` et `minPrice`.
 Si `minPrice` n'est pas un nombre : renvoie un 400 avec un message d'erreur clair.
-Sinon : renvoie les produits filtrés (simulés en mémoire).
+Sinon : renvoie les jutsus filtrés (simulés en mémoire).
 
 **EXO 3 : La chaîne de middleware de l'attaque des titans**
 Implémente un middleware `requireApiKey` : chaque requête doit avoir le header `x-api-key` avec la valeur `"survey-corps"`.

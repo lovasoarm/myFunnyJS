@@ -1,4 +1,8 @@
+[INTEMPOREL]
+
+
 # ADR-001 : architecture fonctionnelle pure sans classe ni mutation d'état
+Temps de lecture ~5 min
 
 ## Statut
 
@@ -6,7 +10,7 @@ Accepté : 2026-01
 
 ## Contexte
 
-Le Rasengan Engine simule des combats entre ninjas. Chaque tour produit un nouvel état de combat : stats modifiées, jutsus en cooldown, esquives résolues, dégâts calculés. Le moteur doit pouvoir être testé tour par tour, de façon reproductible. Deux approches s'affrontent dès le début du projet : modéliser chaque ninja comme un objet mutable (OOP classique) ou traiter chaque état de combat comme une valeur immutable retournée par des fonctions pures (programmation fonctionnelle).
+Le Rasengan Engine simule des combats entre ninjas. Chaque tour jutsu un nouvel état de combat : stats modifiées, jutsus en cooldown, esquives résolues, dégâts calculés. Le moteur doit pouvoir être testé tour par tour, de façon reproductible. Deux approches s'affrontent dès le début du projet : modéliser chaque ninja comme un objet mutable (OOP classique) ou traiter chaque état de combat comme une valeur immutable retournée par des fonctions pures (programmation fonctionnelle).
 
 Le périmètre est clair : pas de réseau, pas de base de données, pas d'UI. Du calcul pur. Ce contexte favorise une architecture sans effets de bord (modification d'état externe à la fonction).
 
@@ -67,3 +71,4 @@ Décisions liées :
 - ADR-002 portera sur le choix de l'algorithme de résolution des esquives (probabiliste vs déterministe selon le seed)
 
 - si le moteur doit un jour gérer des états persistés (sauvegarde de partie), l'immutabilité facilite la sérialisation : l'état est déjà une valeur pure, pas un graphe d'objets circulaires
+

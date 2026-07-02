@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # PROFILING BASICS : MESURER AVANT DE TOUCHER
+Temps de lecture ~8 min
 
 Tu as un code lent. Ton instinct te dit que c'est la boucle au milieu.
 Ton instinct a tort. Il a presque toujours tort.
@@ -206,9 +209,9 @@ function cuire(lot) {
   return resultat;
 }
 
-function conditionner(produit) {
+function conditionner(jutsu) {
   return JSON.parse(
-    JSON.stringify({ produit, timestamp: Date.now(), batch: Math.random() }),
+    JSON.stringify({ jutsu, timestamp: Date.now(), batch: Math.random() }),
   );
 }
 ```

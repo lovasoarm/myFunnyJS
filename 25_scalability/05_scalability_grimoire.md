@@ -1,9 +1,28 @@
+[DÉCENNIE]
+
+#  Page verrouillée
+Temps de lecture ~9 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # Le vocabulaire de ceux qui tiennent la charge
 
 Ce grimoire couvre tout le module 25. Pas juste un résumé : c'est ce qu'un dev DOIT savoir par cœur avant de toucher une archi qui doit scaler. Si un terme ici te paraît flou, retourne à la leçon correspondante avant d'avancer.
 
 | Terme                          | Définition                                                                                                                                  | Code                                                                                         | Analogies                                                                                                                                                                                    |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- / meme mecanique cote football : le staff repete jusqu'a ce que la tactique tienne sans le tableau |
 | Load balancer                  | Répartiteur de charge : reçoit tout le trafic entrant et le distribue sur plusieurs serveurs derrière lui                                   | `const server = servers[i % servers.length]` (round-robin minimal)                           | le videur à l'entrée du club qui dirige vers les comptoirs / Tobi qui répartit les missions Akatsuki entre les membres                                                                       |
 | Round-robin                    | Algorithme de répartition qui envoie chaque requête au serveur suivant dans la liste, en boucle, sans regarder la charge actuelle           | `i = (i + 1) % servers.length` (toujours le suivant, jamais d'index hors limite)             | un tour de garde à Fox River où chaque gardien prend son créneau peu importe ce qui se passe / une rotation de titulaires qui ne regarde pas la forme du jour                                |
 | Least connections              | Algorithme qui envoie la requête vers le serveur ayant le moins de connexions actives en ce moment                                          | `servers.reduce((min, s) => s.activeConnections < min.activeConnections ? s : min)`          | Daryl qui envoie le groupe le moins fatigué en éclaireur / le coach qui titularise le joueur le plus frais physiquement                                                                      |

@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # L'IA EN SPARRING PARTNER : CHALLENGER, PAS REMPLAÇANT
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Le refactoring (restructuration du code sans changer son comportement) c'est l'exercice le plus risqué en dev. Tu touches du code qui fonctionne. Une erreur et tu régresses. Faire ça seul c'est dur : t'as des angles morts sur ton propre code.
 

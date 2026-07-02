@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~11 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # MATH GRIMOIRE : 05_MATH_BASICS
 
 Les maths qu'un dev croise vraiment. Pas celles d'un manuel de terminale.
@@ -28,7 +47,7 @@ Chaque terme ici apparaît dans du vrai code, dans de vraies prods, dans de vrai
 | **Seed (graine RNG)** | Valeur initiale d'un générateur pseudo-aléatoire. Même seed → même séquence. Utile pour les tests reproductibles. | `mulberry32(42)` → toujours la même séquence | Recette secrète : même ingrédients → même plat / Niveau généré procéduralement : même seed = même map |
 | **Vecteur** | Une quantité avec une direction et une magnitude. Représenté par `{x, y}` en 2D. Différent d'un point : c'est un déplacement. | `{x: 3, y: 4}` magnitude = 5 / représente "bouge de 3 droite, 4 bas" | Flèche sur une carte : longueur = distance, pointe = direction / Shoot de Lewa : force + trajectoire |
 | **Normalisation d'un vecteur** | Diviser un vecteur par sa magnitude pour obtenir un vecteur de longueur 1. Donne une direction pure sans la vitesse. | `{x: v.x / mag, y: v.y / mag}` avec `mag = sqrt(x²+y²)` | GPS qui donne la direction sans la distance / Boussole : seulement le cap, pas le kilométrage |
-| **Produit scalaire (dot product)** | `v1.x * v2.x + v1.y * v2.y`. Retourne un scalaire. Positif = même sens, 0 = perpendiculaire, négatif = sens opposé. | `dotProduct(regard, dirEnnemie)` → l'ennemi est-il dans le FOV ? | Accord entre deux votes : +1 = d'accord, 0 = neutre, -1 = opposés / Phares qui s'alignent ou se croisent |
+| **Jutsu scalaire (dot product)** | `v1.x * v2.x + v1.y * v2.y`. Retourne un scalaire. Positif = même sens, 0 = perpendiculaire, négatif = sens opposé. | `dotProduct(regard, dirEnnemie)` → l'ennemi est-il dans le FOV ? | Accord entre deux votes : +1 = d'accord, 0 = neutre, -1 = opposés / Phares qui s'alignent ou se croisent |
 | **Distance euclidienne** | Distance "à vol d'oiseau" entre deux points. `sqrt((x2-x1)² + (y2-y1)²)`. Pythagore appliqué. | `Math.sqrt(dx*dx + dy*dy)` | Distance GPS entre deux villes / Passe longue en diagonale sur le terrain |
 | **Distance Manhattan** | Somme des distances absolues sur chaque axe. `|x2-x1| + |y2-y1|`. Distance réelle si on ne peut se déplacer qu'en horizontal/vertical. | `Math.abs(dx) + Math.abs(dy)` | Nombre de rues à traverser dans une ville en grille / Déplacements sur un échiquier (sans diagonale) |
 | **Distance au carré** | `dx² + dy²` sans `sqrt`. Utilisée pour comparer des distances sans besoin de la valeur exacte. 2x plus rapide. | `if (dist2(A,C) < dist2(B,C))` → A est plus proche | Comparer des poids sans balance précise : le plus lourd reste le plus lourd / Classement sans note exacte |

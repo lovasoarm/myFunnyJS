@@ -1,4 +1,11 @@
+[DÉCENNIE]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
+
+> Ce module reutilise : async (03_async), scalabilite (25_scalability).
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Ton app peut avoir le frontend le plus poli du monde, l'architecture la plus propre, l'API la mieux documentée : si tes données sont mal modélisées, tout le reste s'effondre dès que le volume augmente. Une requête qui prend 5ms sur 1000 lignes peut en prendre 8 secondes sur 10 millions, juste parce que personne n'a posé un index au bon endroit.
 
@@ -30,7 +37,7 @@ Et sans cache bien pensé, chaque lecture d'une donnée consultée des milliers 
 
 ```
 recherche fréquente sur une colonne précise           --> index             --> requête rapide même à grande échelle
-données fortement relationnelles (profils, commandes)  --> SQL               --> intégrité référentielle garantie
+données fortement relationnelles (profils, ordres_mission)  --> SQL               --> intégrité référentielle garantie
 données flexibles, schéma qui évolue souvent            --> NoSQL document    --> flexibilité sans migration lourde
 donnée consultée des milliers de fois par seconde       --> Redis cache       --> latence quasi nulle
 accès JS à la base de données                            --> ORM/query builder --> requêtes sûres et lisibles
@@ -56,7 +63,7 @@ Le retour de balancier actuel est plus nuancé : la tendance privilégie de choi
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `21_api_craft`, `22_security`, `24_databases`, et `17_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
+Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `21_api_craft`, `22_security`, `24_databases`, et `18_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
 
 ---
 
@@ -71,3 +78,14 @@ Peu importe à quel point les outils et les frameworks autour évoluent, le beso
 Une base de données mal modélisée transforme un système rapide en démo en système qui s'effondre à l'échelle réelle. Ça casse de trois façons sans cette compréhension : requêtes lentes faute d'index, mauvais choix entre SQL et NoSQL fait par mode, absence de cache qui sature le système. Ce problème reste permanent peu importe les outils du moment.
 
 Maintenant, ouvre `01_sql_basics.md`. Et commence à lire une requête comme quelqu'un qui sait ce qu'elle coûte vraiment.
+
+> Ce module réutilise : les structures de données du module 09 (`09_data_structures`), l'asynchrone du module 03 (`03_async`).
+
+---
+
+## AILLEURS QUE JS
+
+- **Python (Django ORM, SQLAlchemy)** : les memes N+1, les memes migrations. Vocabulaire identique.
+- **Java (JPA/Hibernate)** : ORM historique, memes pieges de lazy loading.
+- **Go (sqlx, sqlc)** : plus proche du SQL brut, moins d'abstraction. La lecture de plan (EXPLAIN) reste la meme.
+- **Rust (sqlx, diesel)** : verifications a la compilation. La DB reste externe, les regles ACID sont universelles.

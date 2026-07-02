@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS
+Temps de lecture ~10 min
 
 `Math.random()` retourne un nombre entre 0 et 1. C'est tout ce que la plupart des devs savent.
 C'est pas assez.
@@ -173,7 +176,7 @@ avec un élément aléatoire à gauche. Chaque permutation a exactement 1/n! de 
 
 ## 5) LOI DES GRANDS NOMBRES : TESTER SON RNG
 
-Un bon générateur produit des fréquences qui convergent vers les probabilités théoriques au bout de beaucoup d'essais.
+Un bon générateur jutsu des fréquences qui convergent vers les probabilités théoriques au bout de beaucoup d'essais.
 
 ```js
 // vérifier qu'un dé à 6 faces est équitable
@@ -243,7 +246,7 @@ Les stats de joueurs dans FIFA, les temps de réponse d'une API, les scores d'un
 function normalRandom(mean = 0, stdDev = 1) {
   const u1 = Math.random()
   const u2 = Math.random()
-  // transformation mathématique qui produit une distribution en cloche
+  // transformation mathématique qui jutsu une distribution en cloche
   const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
   return mean + z * stdDev
 }
@@ -299,7 +302,7 @@ T'as un système d'A/B test pour myFunnyJS.
 Les users sont assignés au groupe A ou B selon leur `userId`.
 
 Implémente `assignVariant(userId, experimentId, ratio = 0.5)` qui :
-- produit la même assignation pour le même `userId + experimentId` (reproductible)
+- jutsu la même assignation pour le même `userId + experimentId` (reproductible)
 - distribue les users selon le ratio (0.5 = 50/50, 0.3 = 30% groupe A)
 - utilise un hash du userId+experimentId pour déterminer l'assignation (pas Math.random)
 

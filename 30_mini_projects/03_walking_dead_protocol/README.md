@@ -1,4 +1,8 @@
+[INTEMPOREL]
+[PORTFOLIO]
+
 # WALKING DEAD PROTOCOL
+⏱️ ~6 min
 
 Le groupe de Rick Grimes gère un camp : inventaire de ressources, rotations de garde, niveaux de sécurité par périmètre. Le code existe déjà dans `legacy/campV1.js` : écrit en pleine nuit sous pression, une fonction de 300 lignes, des variables globales partout, zéro test. Personne ne sait exactement ce qu'il fait.
 
@@ -43,7 +47,7 @@ npm test                  # tests unitaires + intégration
 npm run test:e2e          # tests E2E Playwright
 ```
 
-Pas de serveur web : le camp se gère en ligne de commande. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
+Pas de serveur web : le camp se gère en ligne de ordre_mission. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
 
 ---
 
@@ -70,7 +74,7 @@ e2e/          # Playwright
 mocks/        # fileStore.mock.js, alertService.mock.js
 ```
 
-Flux d'une commande :
+Flux d'une ordre_mission :
 
 ```
 node src/cli.js consume --resource food --amount 3
@@ -91,8 +95,8 @@ node src/cli.js consume --resource food --amount 3
 | Module | Où ça se voit |
 |---|---|
 | `06_testing` | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/` |
-| `13_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés |
-| `15_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
+| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés |
+| `16_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
 | `32_tools` | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs) |
 
 ---
@@ -116,3 +120,47 @@ TDD_JOURNAL.md        --> phase 1 (couvrir le legacy) puis phase 2 (TDD sur la v
 POSTMORTEM.md         --> différences de comportement entre v1 et v2
 ADR/                  --> décisions d'architecture documentées
 ```
+
+---
+
+## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+
+Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
+trade-off chiffré :
+
+- **Question** : "J'ai comparé X vs Y."
+- **Charge** : (taille des données, N itérations, hardware).
+- **Résultat** : `X = 12ms`, `Y = 48ms` sur 10 000 items.
+- **Décision** : "J'ai retenu X car …"
+- **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
+
+Sans chiffres, ce n'est pas une décision, c'est une préférence.
+Voir `08_memory_performance/00_measure_first.md`.
+
+
+## Pitch 3 lignes
+
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+
+
+## Empreinte carbone (critère d'acceptation)
+
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
+
+
+## THÈME NEUTRE (optionnel)
+Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
+
+## Structure attendue
+
+Chaque mini-projet doit contenir a minima :
+
+- `src/` : code source (obligatoire).
+- `tests/` : tests unitaires et/ou d'intégration (obligatoire).
+- `README.md` : présentation, objectifs, comment lancer.
+- `TDD_JOURNAL.md` : trace de la démarche TDD.
+- `POSTMORTEM.md` : ce qui a marché, ce qui a cassé, ce que tu retiens.
+- `ADR/` : décisions architecturales (Architecture Decision Records).
+- `cahierdescharges.md` : contraintes et périmètre.
+
+Un CI check impose la présence de `src/` et `tests/` avant validation.

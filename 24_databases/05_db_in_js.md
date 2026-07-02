@@ -1,4 +1,9 @@
+[DÉCENNIE]
+
 # Connecter ton code à la DB sans te perdre dans l'abstraction
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 T'as compris SQL, les modèles, le cache. Reste la vraie question côté code : comment ton JS parle concrètement à la DB. Trois niveaux d'abstraction (driver brut, query builder, ORM), chacun avec un vrai compromis, pas juste une question de goût.
 

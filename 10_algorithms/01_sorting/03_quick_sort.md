@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # QUICK SORT : LE PLUS RAPIDE EN PRATIQUE, LE MOINS STABLE EN THÉORIE
+Temps de lecture ~9 min
 
 Merge sort est prévisible et stable. Quick sort est imprévisible et agressif. En pratique, Quick sort gagne presque toujours.
 

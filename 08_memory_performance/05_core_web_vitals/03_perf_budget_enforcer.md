@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LE BUDGET DE PERFORMANCE : TU LE POSES, LE CI LE FAIT RESPECTER
+Temps de lecture ~9 min
 
 Ton site est rapide aujourd'hui.
 Dans 6 mois, quelqu'un a ajouté une librairie d'analytics, un widget de chat, trois fonts Google, et un carousel. LCP : 4.2s. CLS : 0.31. Le score Lighthouse est passé de 94 à 61 sans que personne s'en aperçoive.
@@ -91,7 +94,7 @@ Lancer l'audit :
 npx lhci autorun
 ```
 
-Si une assertion échoue, la commande sort avec un code non-zéro : le CI le détecte et bloque.
+Si une assertion échoue, la ordre_mission sort avec un code non-zéro : le CI le détecte et bloque.
 
 ---
 
@@ -144,11 +147,11 @@ Résultat : chaque PR affiche un commentaire avec les scores et bloque le merge 
 ```
 PR #47 : "Add analytics widget"
 ----------------------------------------
-  LCP:   3.1s   ❌  budget: 2.5s
-  CLS:   0.08   ✅
-  TBT:   180ms  ✅
-  JS:    312kb  ❌  budget: 200kb
-  Score: 81     ❌  budget: 90
+  LCP:   3.1s   [NON]  budget: 2.5s
+  CLS:   0.08   [OK]
+  TBT:   180ms  [OK]
+  JS:    312kb  [NON]  budget: 200kb
+  Score: 81     [NON]  budget: 90
 
   2 assertions failed. Merge blocked.
 ```
@@ -158,7 +161,7 @@ PR #47 : "Add analytics widget"
 ## 4) BUDGET PAR RESSOURCE AVEC BUNDLESIZE
 
 Lighthouse mesure les métriques runtime. `bundlesize` mesure les fichiers statiques.
-Les deux se complètent : l'un voit le résultat final, l'autre voit les fichiers produits.
+Les deux se complètent : l'un voit le résultat final, l'autre voit les fichiers jutsus.
 
 ```bash
 npm install -D bundlesize

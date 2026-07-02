@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : BREAKING CACHE
+Temps de lecture ~13 min
 
 ## PRÉREQUIS
 
@@ -332,3 +335,22 @@ Liste d'adjacence. Le réseau a 8 villes mais seulement 14 routes sur 56 possibl
 [ ] POSTMORTEM.md documente le bug le plus difficile à localiser
 [ ] TDD_JOURNAL.md trace l'ordre dans lequel les tests ont été écrits
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Cache poisoning (OWASP A08 - Data Integrity) : valider les clés de cache pour qu'un shinobi ne puisse pas empoisonner une entrée partagée.
+- Fuite d'info (OWASP A01) : ne jamais servir une entrée de cache appartenant à un autre shinobi/scope.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

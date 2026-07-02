@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SUFFIX ARRAY : CHERCHER DANS DES STRINGS COMME UN MOTEUR
+Temps de lecture ~10 min
 
 Chercher un pattern dans une string : O(n\*m) avec brute force. O(n+m) avec KMP. Mais si tu dois chercher des milliers de patterns dans la même string longue, recompiler un index à chaque fois est inacceptable. Le Suffix Array construit un index une fois pour toutes, puis répond à chaque requête en O(m log n).
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : LEGACY DUNGEON
+Temps de lecture ~15 min
 
 ## PRÉREQUIS
 
@@ -24,7 +27,7 @@ C'est ton premier jour dans une vraie équipe. Le code est déjà là. Personne 
 Ce que tu dois produire à la fin :
 
 ```
-[CARTOGRAPHIE] 2h chrono, MAP.md produit
+[CARTOGRAPHIE] 2h chrono, MAP.md jutsu
   - point d'entrée réel localisé
   - 6 fichiers où vit la vraie logique
   - diagramme ASCII du flux principal
@@ -62,11 +65,11 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 ### Modules mobilisés en lecture, sans être le cœur du projet
 
 ```
-05_debugging  --> lire une stack trace dans un contexte inconnu, sans le confort
+04_debugging  --> lire une stack trace dans un contexte inconnu, sans le confort
                                    d'un code que tu as toi-même écrit
 04_error_handling             --> comprendre une stratégie de gestion d'erreur que tu n'as pas
                                    choisie, parfois incohérente avec ce que t'as appris ici
-13_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
+14_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
                                    projet t'interdit explicitement le refactoring "pendant que t'y es"
 06_testing                    --> lire des tests existants comme documentation du comportement
                                    attendu, surtout quand le code source seul ne suffit pas
@@ -74,7 +77,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 
 ## CRITÈRE DE CHOIX DU DÉPÔT : LES 4 RÈGLES
 
-Le dépôt que tu choisis doit cocher les 4 critères. Si un seul critère manque, l'exercice perd sa valeur : trop petit, tu finis en 20 minutes sans vraie friction. Trop gros ou trop bien documenté, tu dépasses le chrono sans avoir produit un MAP.md honnête.
+Le dépôt que tu choisis doit cocher les 4 critères. Si un seul critère manque, l'exercice perd sa valeur : trop petit, tu finis en 20 minutes sans vraie friction. Trop gros ou trop bien documenté, tu dépasses le chrono sans avoir jutsu un MAP.md honnête.
 
 ```
 CRITÈRE 1 : TAILLE MESURABLE, NI MICRO NI MONSTRE
@@ -260,3 +263,22 @@ BUGFIX.md               --> À CRÉER TOI-MÊME (Étape 2)
 [ ] POSTMORTEM.md documente au moins un vrai moment de confusion, avec résolution ou non
 [ ] POSTMORTEM.md liste honnêtement ce qui reste flou même après le projet
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Audit de dépendances (OWASP A06) : `npm audit` documenté et vulnérabilités traitées.
+- Secrets (OWASP A07) : aucun secret committé dans le code repris.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

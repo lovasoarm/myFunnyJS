@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # IMMUTABILITÉ : NE PAS MUTER, CRÉER
+Temps de lecture ~9 min
 
 Muter un objet c'est prendre un couteau et modifier directement ce qui existe.
 Immutabilité c'est : tu prends l'original, tu crées une copie avec les changements, tu laisses l'original tranquille.

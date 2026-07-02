@@ -1,4 +1,10 @@
+[PORTFOLIO]
+
+[INTEMPOREL]
+[ATELIER]
+
 # BALLON D'OR CLI
+⏱️ ~6 min
 
 Les journalistes du monde entier votent. Les points s'agrègent. Le classement se met à jour. La v1 a été codée en une nuit par un stagiaire pressé : elle fonctionne, mais personne n'ose la toucher. La v2, c'est toi qui l'écris. Et cette fois, elle est testée, refactorisée, containerisée.
 
@@ -51,12 +57,12 @@ docker run ballon-dor rank
 
 ```
 src/
-├── cli.js              # point d'entrée : parse process.argv, dispatche les commandes
+├── cli.js              # point d'entrée : parse process.argv, dispatche les ordres_mission
 │
 ├── commands/
-│   ├── voteCommand.js  # logique de la commande vote
-│   ├── rankCommand.js  # logique de la commande rank
-│   ├── simCommand.js   # logique de la commande simulate (Worker Threads)
+│   ├── voteCommand.js  # logique de la ordre_mission vote
+│   ├── rankCommand.js  # logique de la ordre_mission rank
+│   ├── simCommand.js   # logique de la ordre_mission simulate (Worker Threads)
 │   ├── resetCommand.js # remet les votes à zéro
 │   └── exportCommand.js # exporte en CSV ou JSON
 │
@@ -85,7 +91,7 @@ tests/
 └── errors.test.js
 ```
 
-Flux d'une commande `vote` :
+Flux d'une ordre_mission `vote` :
 
 ```
 cli.js --> parseArgs()
@@ -107,8 +113,8 @@ cli.js --> parseArgs()
 
 | Module | Où ça se voit |
 |---|---|
-| `15_runtime_env` | `process.argv`, `fs`, Worker Threads pour la simulation |
-| `13_refactoring` | v1 spaghetti → v2 modulaire : SRP sur chaque commande |
+| `16_runtime_env` | `process.argv`, `fs`, Worker Threads pour la simulation |
+| `14_refactoring` | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission |
 | `04_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
 | `31_annexes` | Git workflow, Docker, CI/CD sur chaque push |
 
@@ -117,9 +123,9 @@ cli.js --> parseArgs()
 ## RÈGLES NON-NÉGOCIABLES DE CE PROJET
 
 ```
-1. Chaque commande est dans son propre fichier : un fichier = une responsabilité
+1. Chaque ordre_mission est dans son propre fichier : un fichier = une responsabilité
 2. Les erreurs ont des classes custom avec des messages précis
-3. La commande simulate utilise Worker Threads : jamais bloquer l'event loop principal
+3. La ordre_mission simulate utilise Worker Threads : jamais bloquer l'event loop principal
 4. voteStore.js ne fait que lire et écrire, jamais de logique métier
 5. Le Dockerfile est multi-stage : image de prod aussi légère que possible
 ```
@@ -134,3 +140,47 @@ TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
 POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
 ADR/                  --> décisions d'architecture documentées
 ```
+
+---
+
+## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+
+Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
+trade-off chiffré :
+
+- **Question** : "J'ai comparé X vs Y."
+- **Charge** : (taille des données, N itérations, hardware).
+- **Résultat** : `X = 12ms`, `Y = 48ms` sur 10 000 items.
+- **Décision** : "J'ai retenu X car …"
+- **Ce que je n'ai pas mesuré** : (mémoire, DX, coût cloud…).
+
+Sans chiffres, ce n'est pas une décision, c'est une préférence.
+Voir `08_memory_performance/00_measure_first.md`.
+
+
+## Pitch 3 lignes
+
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+
+
+## Empreinte carbone (critère d'acceptation)
+
+Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Justifie **un** choix d'optimisation (moins d'invocations, cache, batch, région serveur). Voir `31_annexes/03_finops_greenops.md`.
+
+
+## THÈME NEUTRE (optionnel)
+Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
+
+## Structure attendue
+
+Chaque mini-projet doit contenir a minima :
+
+- `src/` : code source (obligatoire).
+- `tests/` : tests unitaires et/ou d'intégration (obligatoire).
+- `README.md` : présentation, objectifs, comment lancer.
+- `TDD_JOURNAL.md` : trace de la démarche TDD.
+- `POSTMORTEM.md` : ce qui a marché, ce qui a cassé, ce que tu retiens.
+- `ADR/` : décisions architecturales (Architecture Decision Records).
+- `cahierdescharges.md` : contraintes et périmètre.
+
+Un CI check impose la présence de `src/` et `tests/` avant validation.

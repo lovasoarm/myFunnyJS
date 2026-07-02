@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ASYNC/AWAIT : LA JUNGLE
+Temps de lecture ~8 min
 
 `async/await` rend l'async lisible. Mais "lisible" ne veut pas dire "correct".
 Le vrai piège : le code a l'air synchrone alors qu'il ne l'est pas.

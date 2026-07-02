@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : LEGACY DUNGEON
+Temps de lecture ~6 min
 
 > Ce document se remplit après avoir terminé le projet, pas pendant. L'honnêteté compte plus que l'image.
 
@@ -76,3 +79,18 @@ Cette section n'existe dans aucun autre mini-projet du curriculum, et c'est volo
 | Mot-clé de recherche initial pour cartographier | (Tenu / Changé) | (pourquoi) |
 | Bug choisi parmi les issues existantes ou créé soi-même | (Tenu / Changé) | (pourquoi) |
 | Limite stricte de 2h sur la cartographie | (Respectée / Dépassée) | (si dépassée, de combien et pourquoi) |
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

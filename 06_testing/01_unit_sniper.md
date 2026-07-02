@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # UNIT SNIPER : TESTER UNE FONCTION PRÉCISÉMENT
+Temps de lecture ~8 min
 
 Un fusil à pompe tire dans tous les sens. Il touche, mais il détruit aussi beaucoup de choses utiles.
 Un sniper vise une cible précise. Un seul coup. Pas de dégâts collatéraux.
@@ -219,3 +222,6 @@ Un unit test : une fonction, isolée, avec Arrange-Act-Assert.
 Tester le cas normal c'est 20% du travail. Tester les edge cases c'est les 80% restants.
 Un bon test documente le comportement attendu : en le lisant tu comprends la fonction.
 L'isolation est obligatoire : chaque test gère son propre état, jamais celui d'un autre.
+
+
+> Complément à l'analogie Daryl Dixon : un test unitaire est aussi une **documentation de contrat exécutable**. Ce que le test décrit, c'est ce que le code PROMET. Casse le contrat → casse le test.

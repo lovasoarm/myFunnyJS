@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # THE CONST TRAP : CONST NE VEUT PAS DIRE IMMUABLE
+Temps de lecture ~6 min
 
 > Tu crois que `const` protège ton objet. Il protège juste la clé, pas la maison.
 

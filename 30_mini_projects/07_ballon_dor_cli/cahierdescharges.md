@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : BALLON D'OR CLI
+Temps de lecture ~13 min
 
 ## PRÉREQUIS
 
@@ -12,7 +15,7 @@ Outils externes: Docker (en dernier, une fois que tout tourne en local)
 # Installation
 $ npm install
 
-# Lancer une commande CLI
+# Lancer une ordre_mission CLI
 $ node src/cli.js rank
 
 # Lancer les tests
@@ -23,13 +26,13 @@ $ docker build -t ballon-dor-cli .
 $ docker run ballon-dor-cli rank
 ```
 
-Conseil de démarrage : ignore Docker jusqu'à ce que toutes les commandes CLI fonctionnent en local et que tous les tests passent. La containerisation est la dernière étape, pas la première.
+Conseil de démarrage : ignore Docker jusqu'à ce que toutes les ordres_mission CLI fonctionnent en local et que tous les tests passent. La containerisation est la dernière étape, pas la première.
 
 ---
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des commandes disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le code v1 a été torché en une nuit par un stagiaire. Il fonctionne. Il est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
+Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des ordres_mission disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le code v1 a été torché en une nuit par un stagiaire. Il fonctionne. Il est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
 
 Ce que tu dois voir tourner à la fin :
 
@@ -68,12 +71,12 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `15_runtime_env` : CLI Node.js, process.argv, filesystem
+### `16_runtime_env` : CLI Node.js, process.argv, filesystem
 
 **Où ça se voit** : `src/cli.js`, `src/parser/argsParser.js`, `src/export/csvExporter.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour lire les flags (`--player`, `--points`). `process.exit(code)` pour le code de sortie. `fs.writeFileSync` pour l'export CSV. C'est le kit de base du CLI Node.
 
-### `13_refactoring` : SOLID sur du code CLI procédural
+### `14_refactoring` : SOLID sur du code CLI procédural
 
 **Où ça se voit** : tout le passage de `legacy/ballonDorV1.js` vers `src/`.
 **Pourquoi c'est nécessaire ici** : le v1 viole SRP (Single Responsibility Principle : une classe/fonction = une responsabilité) à chaque fonction. La v2 sépare le parsing des args, la validation des votes, l'agrégation des scores, et l'affichage. Chaque module peut changer sans toucher les autres.
@@ -91,8 +94,8 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ### Résumé visuel
 
 ```
-15_runtime_env  --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
-13_refactoring  --> legacy/ -> src/ (SOLID, séparation des couches)
+16_runtime_env  --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
+14_refactoring  --> legacy/ -> src/ (SOLID, séparation des couches)
 04_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
 31_annexes      --> Dockerfile, .github/workflows/ci.yml
 ```
@@ -123,11 +126,11 @@ legacy/
 └── ballonDorV1.js              # le code original, jamais modifié
 
 src/
-├── cli.js                      # point d'entrée, branche les commandes
+├── cli.js                      # point d'entrée, branche les ordres_mission
 ├── parser/
 │   └── argsParser.js           # parse process.argv en objet structuré
 ├── router/
-│   └── commandRouter.js        # route vers le bon handler selon la commande
+│   └── commandRouter.js        # route vers le bon handler selon la ordre_mission
 ├── handlers/
 │   ├── voteHandler.js
 │   ├── rankHandler.js
@@ -290,12 +293,12 @@ test("exit code 1 pour un vote invalide", () => {
 2. **Points hors plage (0 ou 16)** : `InvalidVoteError`, message clair sur stderr, exit 1.
 3. **Joueur avec des caractères spéciaux dans le nom** : `--player "İlkay Gündoğan"` doit passer sans erreur de parsing.
 4. **Export CSV sur un classement vide** : le fichier est créé avec juste les headers, pas une erreur.
-5. **Commande inconnue** : `node src/cli.js unknown_command` affiche l'aide disponible et exit 1.
+5. **Ordre_mission inconnue** : `node src/cli.js unknown_command` affiche l'aide disponible et exit 1.
 
 ## LES RÈGLES QUE TU NE DOIS JAMAIS CASSER
 
 1. **Les erreurs vont sur stderr, les résultats sur stdout.** Jamais un mélange. Un script qui parse la sortie du CLI doit pouvoir les distinguer.
-2. **Chaque commande a un exit code explicite.** Succès = 0. Erreur métier = 1. Erreur système = 2. Pas de `process.exit()` sans argument.
+2. **Chaque ordre_mission a un exit code explicite.** Succès = 0. Erreur métier = 1. Erreur système = 2. Pas de `process.exit()` sans argument.
 3. **`legacy/ballonDorV1.js` reste intact.** C'est la référence comportementale. Si un comportement de la v2 diffère du v1, c'est documenté dans `POSTMORTEM.md`.
 
 ## CE QUE TU NE FAIS PAS DANS CE PROJET
@@ -326,7 +329,7 @@ corrompu, permission refusée sur le filesystem).
 
 ## Décision
 
-Exit code 1 pour les erreurs métier (l'utilisateur a fait quelque chose de
+Exit code 1 pour les erreurs métier (l'shinobi a fait quelque chose de
 invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 
 ## Alternatives considérées
@@ -346,7 +349,7 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
 ```
-[ ] les 5 commandes (vote, rank, simulate, reset, export) fonctionnent en console
+[ ] les 5 ordres_mission (vote, rank, simulate, reset, export) fonctionnent en console
 [ ] legacy/ballonDorV1.js existe, intact, jamais modifié
 [ ] les 5 cas limites ont chacun un test qui passe
 [ ] les exit codes sont corrects (testé dans cli.test.js)
@@ -357,3 +360,22 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 [ ] POSTMORTEM.md documente les différences comportementales trouvées entre v1 et v2
 [ ] TDD_JOURNAL.md trace dans quel ordre les tests ont été écrits
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Injection d'arguments (OWASP A03) : valider les arguments CLI, ne jamais passer une entrée brute à un shell/eval.
+- Chemins (OWASP A01) : empêcher le path traversal si le CLI lit/écrit des fichiers fournis par l'shinobi.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

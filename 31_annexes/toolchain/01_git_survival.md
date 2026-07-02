@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # GIT SURVIVAL : BRANCHES, REBASE, CONFLITS, BISECT
+Temps de lecture ~9 min
 
 Le camp tient un historique de chaque décision : qui a renforcé la clôture, qui a changé le plan de garde, qui a merdé et quand. Git c'est exactement ça pour ton code. Sans lui, chaque modification est une rumeur. Avec lui, c'est un fait daté, signé, traçable.
 
@@ -18,7 +21,7 @@ Chaque lettre est un commit. Chaque commit pointe vers son parent. Une branche, 
 
 ```js
 // Glenn crée une branche pour tester un nouveau plan de fouille
-// "checkout -b" = créer la branche ET basculer dessus en une commande
+// "checkout -b" = créer la branche ET basculer dessus en une ordre_mission
 // git checkout -b feature/plan-fouille
 
 // Daryl reste sur main, le camp continue à fonctionner normalement
@@ -71,7 +74,7 @@ feature:                 D' --- E'
 // Les commits ont de nouveaux hash (identifiants), c'est une réécriture
 ```
 
-**Pourquoi ça compte :** `merge` préserve la vérité historique (ce qui s'est vraiment passé, dans l'ordre). `rebase` produit un historique propre et linéaire, plus facile à lire, mais qui ment un peu sur la chronologie réelle.
+**Pourquoi ça compte :** `merge` préserve la vérité historique (ce qui s'est vraiment passé, dans l'ordre). `rebase` jutsu un historique propre et linéaire, plus facile à lire, mais qui ment un peu sur la chronologie réelle.
 
 **Qui casse en prod :** rebaser une branche que quelqu'un d'autre a déjà récupérée (pull). Les hash changent, Git voit ça comme des commits totalement différents, et la personne qui avait pull se retrouve avec des doublons ou des conflits fantômes.
 
@@ -160,4 +163,4 @@ Crée un petit script Node qui fonctionne, fais 8 commits dessus, et casse-le vo
 
 ## RÉSUMÉ
 
-Git c'est un graphe de snapshots, pas une ligne de commandes à mémoriser bêtement. `merge` préserve l'histoire réelle, `rebase` la réécrit pour qu'elle soit propre, mais jamais sur une branche que d'autres ont déjà récupérée. Un conflit c'est Git qui refuse de deviner à ta place, pas un bug. `bisect` transforme une chasse à l'aveugle en recherche dichotomique. Maîtriser ça, c'est la différence entre un camp qui survit aux erreurs et un camp qui se déchire dessus.
+Git c'est un graphe de snapshots, pas une ligne de ordres_mission à mémoriser bêtement. `merge` préserve l'histoire réelle, `rebase` la réécrit pour qu'elle soit propre, mais jamais sur une branche que d'autres ont déjà récupérée. Un conflit c'est Git qui refuse de deviner à ta place, pas un bug. `bisect` transforme une chasse à l'aveugle en recherche dichotomique. Maîtriser ça, c'est la différence entre un camp qui survit aux erreurs et un camp qui se déchire dessus.

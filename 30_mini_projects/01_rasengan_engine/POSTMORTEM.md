@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : RASENGAN ENGINE
+Temps de lecture ~6 min
 
 ---
 
@@ -49,3 +52,18 @@ Le bug de référence partagée dans `fighterFactory.js` (détecté par le test 
 ```
 
 Aucun de ces points n'était dans le scope initial, et c'est volontaire : le but du projet était la programmation fonctionnelle et les patterns, pas un moteur de jeu complet.
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

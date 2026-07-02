@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : BALLON D'OR CLI
+Temps de lecture ~6 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce projet a une particularité : la v1 existait déjà, non testée. L'ordre de travail a donc été : tester la v1 existante → identifier les smells → refactorer → valider que les tests passent encore.
 

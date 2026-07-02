@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # Arrête d'écrire des logs que personne ne peut chercher
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Le Conseil de Surveillance de Garo reçoit chaque nuit des milliers de lignes du type "Chevalier a combattu un Horror". Ça veut tout dire et rien dire : lequel des 200 Chevaliers, quel Horror, dans quel quartier, ça a duré combien de temps ? Un log en texte libre, c'est une note griffonnée sur un post-it : ça te dit quelque chose au moment où tu l'écris, et ça devient inutile 10 minutes après.
 

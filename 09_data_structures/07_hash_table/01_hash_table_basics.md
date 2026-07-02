@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # HASH TABLE : O(1) POUR CHERCHER, SI LE HASH EST BON
+Temps de lecture ~9 min
 
 Array : accès par index, pas par valeur. BST : cherche en O(log n). Hash table : cherche en O(1). Pas de miracle : une fonction mathématique convertit ta clé en index. Le problème : deux clés différentes peuvent produire le même index. C'est une collision. Gérer ça proprement, c'est ce qui sépare une hash table qui tient en prod d'une qui plante.
 

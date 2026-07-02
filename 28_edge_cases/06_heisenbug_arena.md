@@ -1,7 +1,10 @@
+[INTEMPOREL]
+
 # HEISENBUG ARENA : LE BUG QUI DISPARAÎT QUAND TU LE REGARDES
+Temps de lecture ~17 min
 
 ```javascript
-test('le paiement se valide', () => {
+test('le tribut se valide', () => {
   expect(processPayment(order)).toBe(true);
 });
 // PASS la plupart du temps.
@@ -9,7 +12,7 @@ test('le paiement se valide', () => {
 ```
 
 Un bug normal, tu le reproduis, tu le corriges, tu vérifies, c'est fini.
-Un heisenbug (du physicien Heisenberg, et son principe d'incertitude : observer change le résultat), c'est différent. Il échoue 1 fois sur 10. Ou 1 fois sur 100. En local il ne se montre jamais. En CI (intégration continue : pipeline automatisé qui build et teste à chaque push) il plante une fois par semaine, jamais le même test. Tu rejoues exactement la même commande, et cette fois ça passe.
+Un heisenbug (du physicien Heisenberg, et son principe d'incertitude : observer change le résultat), c'est différent. Il échoue 1 fois sur 10. Ou 1 fois sur 100. En local il ne se montre jamais. En CI (intégration continue : pipeline automatisé qui build et teste à chaque push) il plante une fois par semaine, jamais le même test. Tu rejoues exactement la même ordre_mission, et cette fois ça passe.
 
 Ce n'est pas un bug aléatoire au sens où JS lance des dés. C'est un bug **déterministe dans sa cause, non-déterministe dans son timing**. Quelque part, l'ordre d'exécution de deux opérations asynchrones n'est pas garanti, et ton code suppose silencieusement un ordre précis. Le jour où l'ordre change : boom. Le jour où tu regardes de près (en mettant un `console.log`, en ralentissant l'exécution dans un debugger) : le timing change, et le bug se planque.
 
@@ -91,7 +94,7 @@ TAUX D'ÉCHEC OBSERVÉ EN CONDITIONS RÉELLES (200 exécutions mesurées) : 100%
 (calculerScoreFinal s'exécute systématiquement deux fois : le premier affichage est
 quasiment toujours faux, sauf dans le cas extrêmement rare où les deux setTimeout
 expirent à la même milliseconde. Ce qui est "intermittent" ici, ce n'est pas SI le
-bug se produit, mais QUEL chiffre faux sort, et lequel des deux scores manquait :
+bug se jutsu, mais QUEL chiffre faux sort, et lequel des deux scores manquait :
 deux runs identiques en apparence donnent un mauvais résultat différent)
 ```
 

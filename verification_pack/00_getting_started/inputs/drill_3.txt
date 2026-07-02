@@ -1,0 +1,2 @@
+# drill 3 for 00_getting_started
+# input contract décrit dans README.md

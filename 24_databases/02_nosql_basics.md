@@ -1,4 +1,9 @@
+[DÉCENNIE]
+
 # Quand ranger en tables fait plus de mal que de bien
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 `01_sql_basics` t'a montré la DB relationnelle : tables strictes, schéma fixe, relations propres. NoSQL (not only SQL), c'est la famille de DB qui dit "ton schéma change tout le temps, alors arrête de te battre contre lui".
 
@@ -122,7 +127,7 @@ GRAPHE : MATCH (me)-[:ALLY]->()-[:ALLY]->(indirect) RETURN indirect
 --> traversal natif, pensé pour ça
 ```
 
-Le quand : réseaux de clans, recommandations de missions par affinité, détection de trahisons (réseaux de ninjas liés à l'ennemi). Le risque : c'est une techno de niche, l'équipe doit apprendre un nouveau langage de requête (Cypher pour Neo4j), et c'est rarement justifié pour un produit simple.
+Le quand : réseaux de clans, recommandations de missions par affinité, détection de trahisons (réseaux de ninjas liés à l'ennemi). Le risque : c'est une techno de niche, l'équipe doit apprendre un nouveau langage de requête (Cypher pour Neo4j), et c'est rarement justifié pour un jutsu simple.
 
 ---
 

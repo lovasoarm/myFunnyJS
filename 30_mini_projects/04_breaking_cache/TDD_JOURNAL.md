@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : BREAKING CACHE
+Temps de lecture ~7 min
 
 Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Le cahier des charges impose l'ordre : structures d'abord, algorithmes ensuite, benchmarks en dernier. Voici comment ça s'est passé.
 

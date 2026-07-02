@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ARITHMÉTIQUE MODULAIRE : LE MODULO QUI TOURNE EN BOUCLE
+Temps de lecture ~9 min
 
 `%` est l'opérateur le plus sous-estimé de JS. La plupart des devs l'utilisent pour "vérifier si un nombre est pair". C'est dommage, parce que derrière le modulo se cache la logique qui pilote les cycles, les cooldowns, la pagination, les distributions équilibrées et les systèmes de rotation.
 

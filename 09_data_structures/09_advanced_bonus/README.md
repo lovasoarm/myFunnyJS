@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # HORS SCOPE DU CURRICULUM PRINCIPAL
+⏱️ ~5 min
 
 Ce dossier n'est pas dans ta progression normale.
 

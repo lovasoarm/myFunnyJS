@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POSTMORTEM : WALKING DEAD PROTOCOL
+Temps de lecture ~6 min
 
 ---
 
@@ -43,10 +46,25 @@ Le Worker Thread du `threatSimulator` a un comportement différent selon qu'il t
 ## CE QUI RESTERAIT À FAIRE DANS UNE V2 DE LA V2
 
 ```
-- Un vrai système de permissions sur les commandes CLI (qui peut faire un reset ?)
+- Un vrai système de permissions sur les ordres_mission CLI (qui peut faire un reset ?)
 - Historique des consommations avec graphique en ASCII dans le terminal
 - Synchroniser plusieurs instances du CLI sur le même fichier sans race condition
   (actuellement, deux exécutions simultanées du CLI peuvent se piétiner sur fileStore)
 ```
 
 Ce dernier point n'était pas dans le scope : le cahier des charges ne demande pas de gestion de concurrence multi-process, et l'ajouter aurait dépassé largement les modules couverts (04, 11, 14, 31).
+
+
+## Protection des données
+
+Si tu mentionnes des données réelles (users, clients, endpoints internes), anonymise-les ou remplace par des noms fictifs. Un post-mortem est destiné à circuler.
+
+
+---
+
+## PUBLICATION (obligatoire)
+
+- Lien du dépôt public : `https://github.com/<toi>/<projet>`
+- Lien du billet de blog (si rédigé) : ...
+- Date de publication : ...
+- Peer-review reçue de : `@pseudo`

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # TDD JOURNAL : LEGACY DUNGEON
+Temps de lecture ~7 min
 
 Dans les 9 autres mini-projets, ce journal trace l'ordre dans lequel les tests ont été écrits AVANT le code. Ici, c'est différent : tu n'écris pas de feature depuis zéro, tu explores du code existant puis tu corriges un bug précis. Le principe reste le même malgré tout : **le test avant la certitude**. Tu n'affirmes jamais "j'ai compris cette fonction" sans avoir un test qui le prouve, et tu n'affirmes jamais "j'ai corrigé le bug" sans un test qui passait au rouge avant et passe au vert après.
 

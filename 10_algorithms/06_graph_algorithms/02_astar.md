@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # A* : DIJKSTRA AVEC UN CERVEAU
+Temps de lecture ~10 min
 
 Dijkstra explore dans toutes les directions depuis le départ. Il ne sait pas où est l'arrivée. Il s'en fout : il finalise les noeuds du plus proche au plus loin, dans toutes les directions à la fois.
 
@@ -27,15 +30,15 @@ L'heuristique `h(n)` doit être **admissible** : elle ne doit jamais surestimer 
 Grille 2D, mouvements dans 4 directions :
 h(n) = distance Manhattan = |x1-x2| + |y1-y2|
        => sous-estime ou est exacte (jamais plus grand que le chemin réel)
-       => admissible ✓
+       => admissible 
 
 Grille 2D, mouvements en 8 directions :
 h(n) = distance Chebyshev = max(|x1-x2|, |y1-y2|)
-       => admissible ✓
+       => admissible 
 
 Espace euclidien (coordonnées continues) :
 h(n) = distance euclidienne = sqrt((x1-x2)² + (y1-y2)²)
-       => admissible ✓ (ligne droite = chemin le plus court)
+       => admissible  (ligne droite = chemin le plus court)
 
 Heuristique nulle :
 h(n) = 0 => Dijkstra pur, toujours admissible mais pas de gain de perf

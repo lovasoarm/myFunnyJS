@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATA STRUCTURES
+Temps de lecture ~8 min
 
 Tu peux tout stocker dans un tableau et tout chercher avec une boucle. Ça marche. Jusqu'à ce que ta liste passe de 100 à 1 million d'éléments, et que ta recherche qui prenait 1ms en prenne maintenant 4 secondes. Le bug n'est pas dans ton code : il est dans ta structure de données.
 
@@ -61,7 +64,7 @@ Intemporel à 100%. Une hash table fonctionne sur les mêmes principes depuis de
 
 Ce qui a changé, c'est l'accessibilité : avant, JS n'avait pas de vraie structure `Map` ou `Set` native, donc les devs simulaient des hash tables avec des objets bruts, avec tous les pièges que ça implique (collision avec des propriétés héritées du prototype, par exemple). Aujourd'hui, `Map` et `Set` sont natifs et résolvent ces pièges proprement.
 
-La demande pour ces compétences a aussi augmenté : avec la montée des entretiens techniques orientés algorithmique, et avec des systèmes qui gèrent des volumes de données massifs (analytics en temps réel, recommandation, recherche), connaître les bonnes structures n'est plus optionnel même pour un dev produit classique.
+La demande pour ces compétences a aussi augmenté : avec la montée des entretiens techniques orientés algorithmique, et avec des systèmes qui gèrent des volumes de données massifs (analytics en temps réel, recommandation, recherche), connaître les bonnes structures n'est plus optionnel même pour un dev jutsu classique.
 
 ---
 

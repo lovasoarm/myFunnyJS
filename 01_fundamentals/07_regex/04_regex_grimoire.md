@@ -1,10 +1,29 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~9 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE DES REGEX
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|
 | **Regex** | Pattern de texte qui décrit une forme à reconnaître ou extraire dans une chaîne. | `/\d+/` matche un ou plusieurs chiffres | un détecteur d'empreintes / un jutsu de reconnaissance qui cherche une signature précise |
 | **Littéral regex** | Définir une regex directement entre slashes. Analysée à la compilation, plus rapide. | `/pattern/flags` | écrire un jutsu directement dans le parchemin / graver une règle dans la pierre |
-| **RegExp()** | Constructeur pour créer une regex depuis une chaîne dynamique. Utile quand le pattern n'est pas connu à l'avance. | `new RegExp(variable, "gi")` | forger une arme sur commande / adapter le jutsu selon la cible |
+| **RegExp()** | Constructeur pour créer une regex depuis une chaîne dynamique. Utile quand le pattern n'est pas connu à l'avance. | `new RegExp(variable, "gi")` | forger une arme sur ordre_mission / adapter le jutsu selon la cible |
 | **Flag `i`** | Case-insensitive. La regex ignore la différence minuscule/majuscule. | `/naruto/i` matche "Naruto", "NARUTO", "naruto" | chercher sans se soucier des accents d'un nom / reconnaître un ninja en civil comme en uniforme |
 | **Flag `g`** | Global. Trouve toutes les occurrences, pas seulement la première. | `"aaa".match(/a/g)` → `["a","a","a"]` | scanner tout le village, pas juste l'entrée / relire tout le rapport, pas juste le titre |
 | **Flag `m`** | Multiline. `^` et `$` matchent chaque début/fin de ligne, pas juste la chaîne entière. | `/^\d/m` matche le premier chiffre de chaque ligne | inspecter chaque étage d'un bâtiment / relire chaque fiche ninja séparément |

@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # SPRINT HELL : QUAND PERSONNE NE SAIT CE QU'IL FAUT VRAIMENT LIVRER
+Temps de lecture ~11 min
 
 Tu sais coder. Tu sais lire un ticket clair. Mais un sprint réel, ce n'est jamais un ticket clair. C'est trois personnes qui veulent trois choses différentes, un manager qui change de priorité le mardi, et un planning qui était déjà serré avant que tout ça commence.
 

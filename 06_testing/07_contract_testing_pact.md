@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CONTRACT TESTING : LA PAIX ENTRE LES ÉQUIPES
+Temps de lecture ~9 min
 
 Deux équipes. Deux services. L'équipe A construit l'API. L'équipe B la consomme.
 L'équipe A refactorise un endpoint. Elle ne prévient pas. L'équipe B déploie. Ça explose en prod.

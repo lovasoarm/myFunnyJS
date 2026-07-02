@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SHALLOW VS DEEP : COPIER LA SURFACE OU COPIER LE FOND
+Temps de lecture ~10 min
 
 Tu copies un objet. Tu modifies la copie. Et l'original change aussi.
 

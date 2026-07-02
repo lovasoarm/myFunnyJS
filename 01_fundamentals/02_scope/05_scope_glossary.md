@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SCOPE GLOSSARY : Les Mots Que Tu Dois Maîtriser
+Temps de lecture ~7 min
 
 > Si tu ne comprends pas ces mots, tu ne comprends pas vraiment comment JavaScript exécute ton code.
 

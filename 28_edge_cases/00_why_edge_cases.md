@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
+
+> Ce module reutilise : math (07_math_basics), erreurs (05_error_handling).
+Temps de lecture ~12 min
 
 JS est un langage construit en 10 jours.
 Brendan Eich l'a créé en mai 1995 avec des décisions rapides, des compatibilités forcées, et des comportements qu'on ne pouvait plus changer après sans casser la moitié d'internet.
@@ -39,7 +44,7 @@ isAdmin({ role: undefined }); // false -- ok... mais undefined == null == false 
 ```
 SCÉNARIO 3 : la pollution de prototype en prod
 
-// un input utilisateur malveillant qui arrive dans ton API
+// un input shinobi malveillant qui arrive dans ton API
 const payload = JSON.parse('{"__proto__": {"isAdmin": true}}');
 Object.assign({}, payload); // pollue Object.prototype
 
@@ -167,7 +172,7 @@ modules qui rendent ce module concret
 01_fundamentals/04_types    -->  les types primitifs et leur comportement de base
 01_fundamentals/01_variables -->  références vs valeurs : base pour comprendre la mutation
 11_functional_js/02_immutability -->  pourquoi la mutation implicite est dangereuse
-14_typescript               -->  ce que TS attrape et ce qu'il laisse passer
+15_typescript               -->  ce que TS attrape et ce qu'il laisse passer
 22_security                 -->  prototype pollution comme vecteur d'attaque réel
 ```
 
@@ -222,7 +227,7 @@ La pollution de prototype a touché des apps Express en production écrites par 
 TypeScript est un outil de compilation. Ces comportements sont des phénomènes runtime. `NaN` est `number` en TypeScript. La pollution de prototype est invisible au type checker.
 
 **"On peut juste éviter ces cas avec du bon code"**
-On ne contrôle pas toutes les données. Les API externes, les inputs utilisateurs, les réponses LLM : toutes ces sources peuvent injecter des valeurs inattendues. Le code défensif commence par connaître ce qui peut mal tourner.
+On ne contrôle pas toutes les données. Les API externes, les inputs shinobis, les réponses LLM : toutes ces sources peuvent injecter des valeurs inattendues. Le code défensif commence par connaître ce qui peut mal tourner.
 
 **"JS va corriger ça dans une prochaine version"**
 Non. Ces comportements sont figés par la rétrocompatibilité du web. Changer `typeof null` casserait des millions de sites. Ces règles sont permanentes.
@@ -257,3 +262,5 @@ Un dev qui les connaît : il écrit des guards précis, il débogue vite, et il 
 
 Ce n'est pas du trivia JavaScript.
 C'est la différence entre subir le langage et le maîtriser.
+
+> Ce module réutilise : le debugging du module 04 (`04_debugging`), l'asynchrone du module 03 (`03_async`).

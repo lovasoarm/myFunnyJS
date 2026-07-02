@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CHAÎNER DES OPÉRATIONS ASYNC SANS PERDRE LES ERREURS EN ROUTE
+Temps de lecture ~8 min
 
 Un `.then()` retourne une Promise.
 Ça veut dire que tu peux en chaîner un autre dessus. Et encore un autre.

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES
+Temps de lecture ~7 min
 
 Tu n'as pas besoin de calculus pour coder. Tu as besoin de modulo pour gérer un cooldown de chakra, de logique booléenne pour écrire une condition qui ne te trahit pas, et de comprendre `Math.random()` pour ne pas livrer un système de tirage qui favorise toujours le même résultat. Ce module n'est pas un cours de maths. C'est l'arsenal minimal qu'un dev utilise vraiment.
 

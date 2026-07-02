@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # QUEUE EN ACTION : LES VRAIS PROBLÈMES
+Temps de lecture ~11 min
 
 Tu connais la structure. Maintenant t'as besoin de savoir quand et comment t'en servir.
 La queue résout trois types de problèmes distincts :

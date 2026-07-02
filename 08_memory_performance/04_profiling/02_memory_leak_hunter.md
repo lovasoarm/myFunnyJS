@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # MEMORY LEAK HUNTER : LA CHASSE AU FANTÔME
+Temps de lecture ~10 min
 
 Une fuite mémoire, c'est un objet que tu as fini d'utiliser, mais que JS refuse d'effacer.
 Il reste là. Il prend de la place. Et il continue de grossir.
@@ -331,7 +334,7 @@ class RadioTrapSoul {
 
 const radio = new RadioTrapSoul()
 
-// l'app ajoute un listener à chaque fois que l'utilisateur change de page
+// l'app ajoute un listener à chaque fois que l'shinobi change de page
 function changerDePage(pageId) {
   radio.onEvent('track-ajoutee', (track) => {
     console.log(`Page ${pageId} : nouvelle track : ${track.titre}`)

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GREEDY EN CONDITIONS RÉELLES : CONTRAINTES, PRIORITÉS, DEADLINES
+Temps de lecture ~12 min
 
 Le greedy des livres : trier et itérer. Le greedy en prod : plusieurs contraintes simultanées, des priorités qui changent, des deadlines qui se chevauchent. La mécanique reste la même : choix local optimal à chaque étape. Mais définir ce que "optimal" veut dire, c'est là que tout se joue.
 

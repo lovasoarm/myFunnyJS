@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ARRAY BASICS : CE QUE CHAQUE OPÉRATION COÛTE VRAIMENT
+Temps de lecture ~8 min
 
 Un tableau JS, t'en utilises tous les jours. Mais est-ce que tu sais ce qui se passe en mémoire quand tu fais `splice(0, 1)` ? Ou pourquoi accéder à `arr[999]` est aussi rapide qu'accéder à `arr[0]` ?
 

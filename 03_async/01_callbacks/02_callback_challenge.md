@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # ORCHESTRER SANS PERDRE LE FIL
+Temps de lecture ~9 min
 
 T'as compris ce qu'est un callback. T'as vu le labyrinthe.
 Maintenant on code dedans : avec les contraintes du monde réel.

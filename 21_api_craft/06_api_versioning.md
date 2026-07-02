@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # VERSIONNER UNE API
+Temps de lecture ~9 min
 
 Une API sans versioning c'est une bombe silencieuse.
 Tu changes le format d'un endpoint, l'app mobile de l'année dernière crashe.
@@ -235,7 +238,7 @@ Les clients existants qui ne passent pas ce champ commencent à recevoir des 400
 C'est un breaking change. Il mérite une nouvelle version.
 
 **Versionner trop tôt ou trop souvent**
-Une API v7 alors que le produit a 2 ans, c'est un signal que les breaking changes ne sont pas réfléchis.
+Une API v7 alors que le jutsu a 2 ans, c'est un signal que les breaking changes ne sont pas réfléchis.
 Concevoir le schema avec de la flexibilité dès le départ réduit le besoin de versioning.
 
 **Pas de date de sunset**

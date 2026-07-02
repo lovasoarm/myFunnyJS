@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GREEDY : PRENDRE LE MEILLEUR CHOIX LOCAL ET ASSUMER
+Temps de lecture ~11 min
 
 L'idée est simple jusqu'à l'excès : à chaque étape, tu prends la meilleure option disponible. Tu ne reviens jamais en arrière. Tu ne vérifies pas si ça tient globalement. Tu fonces.
 
@@ -23,13 +26,13 @@ Si une des deux manque : greedy donne une solution approchée, jamais garantie o
 Problème du rendu de monnaie avec pièces [1, 5, 10, 25] :
 rendre 41 centimes
 
-greedy : 25 + 10 + 5 + 1 = 4 pièces   ✓ OPTIMAL
+greedy : 25 + 10 + 5 + 1 = 4 pièces    OPTIMAL
 
 Problème du rendu de monnaie avec pièces [1, 3, 4] :
 rendre 6
 
 greedy : 4 + 1 + 1 = 3 pièces
-DP :     3 + 3     = 2 pièces         ✗ GREEDY RATE
+DP :     3 + 3     = 2 pièces          GREEDY RATE
 ```
 
 ---
@@ -161,7 +164,7 @@ Même problème, mais on ne peut pas couper les objets. On prend ou on ne prend 
 // Total greedy : 160
 
 // Optimal (DP) :
-// Meth basique + Précurseurs : 20+30=50, valeur = 100+120 = 220 ✓
+// Meth basique + Précurseurs : 20+30=50, valeur = 100+120 = 220 
 
 // Greedy : 160
 // DP : 220

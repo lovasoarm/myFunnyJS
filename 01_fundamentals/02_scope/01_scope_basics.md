@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SCOPE : OÙ VIT TA VARIABLE ?
+Temps de lecture ~7 min
 
 > Chaque variable a une zone de vie. En dehors de cette zone, elle n'existe plus. Elle est morte. ReferenceError (erreur de référence : variable inexistante). Game over.
 
@@ -141,3 +144,10 @@ Le scope (portée) définit où une variable est accessible. Une variable décla
 `var` a une portée fonction, pas bloc : elle remonte à la fonction parente même si déclarée dans un `if` ou une boucle. C'est un piège classique.
 
 Le scope global est la dernière chose à laquelle JS fait appel. Si une variable n'est pas trouvée dans le scope local, puis le scope parent, JS remonte jusqu'au global. Si elle n'est nulle part : `ReferenceError`.
+
+
+---
+
+## (attention) Ce que l'analogie "colocation" cache
+
+L'analogie suggère un espace partagé où chacun touche à tout. En réalité, le scope JS suit des **règles lexicales strictes** : les variables sont accessibles là où elles sont **déclarées**, pas là où elles sont **appelées**. La colocation cache la notion de chaîne de portées imbriquées. Retiens le mécanisme : **résolution lexicale**, pas "on partage tout".

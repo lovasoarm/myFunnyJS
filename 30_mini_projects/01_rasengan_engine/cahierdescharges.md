@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : RASENGAN ENGINE
+Temps de lecture ~14 min
 
 ## PRÉREQUIS
 
@@ -24,7 +27,7 @@ Pas de build step, pas de transpilation. Du JS pur, Node en direct.
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Naruto veut un simulateur de combat textuel. Chaque ninja a des stats (chakra, vitesse, force), une liste de jutsus, et un style de combat. Le moteur calcule les dégâts, gère les cooldowns, résout les esquives, et produit un log de combat lisible. Naruto affronte Sasuke, Itachi affronte Pain, Gaara défend contre une attaque surprise : le moteur tourne, les dés roulent, le résultat s'affiche dans ta console.
+Naruto veut un simulateur de combat textuel. Chaque ninja a des stats (chakra, vitesse, force), une liste de jutsus, et un style de combat. Le moteur calcule les dégâts, gère les cooldowns, résout les esquives, et jutsu un log de combat lisible. Naruto affronte Sasuke, Itachi affronte Pain, Gaara défend contre une attaque surprise : le moteur tourne, les dés roulent, le résultat s'affiche dans ta console.
 
 Ce que tu dois voir tourner à la fin :
 
@@ -68,7 +71,7 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 **Où ça se voit** : `src/engine/combat.js`, `src/engine/turnResolver.js`. Chaque tour retourne un nouvel état de combat. Jamais de mutation directe sur les stats.
 **Pourquoi c'est nécessaire ici** : si un ninja est muté directement à chaque tour, rejouer le combat depuis le tour 2 devient impossible. La testabilité exige l'immutabilité (le fait de ne jamais modifier un objet existant, de toujours en créer un nouveau).
 
-### `12_design_patterns` : les recettes qui structurent
+### `13_design_patterns` : les recettes qui structurent
 **Où ça se voit** : `src/fighters/fighterFactory.js` (Factory pattern), `src/jutsus/` (Strategy pattern).
 **Pourquoi c'est nécessaire ici** : le Factory pattern (une fonction qui crée des objets sans exposer comment ils sont construits) permet de créer Naruto, Sasuke ou Gaara avec la même interface. Le Strategy pattern (échanger un algorithme à la volée) permet de brancher n'importe quel jutsu sur n'importe quel ninja sans modifier le moteur.
 
@@ -78,7 +81,7 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 01_fundamentals    --> structure des fighters, HOF dans combat.js
 07_math_basics     --> rng.js (probabilités), cooldownCycle.js (modulo)
 11_functional_js   --> turnResolver.js (immutabilité, pas de mutation d'état)
-12_design_patterns --> fighterFactory.js (Factory), jutsus/ (Strategy)
+13_design_patterns --> fighterFactory.js (Factory), jutsus/ (Strategy)
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -159,7 +162,7 @@ tests/
 **Sortie** : l'état final du combat (`{ winner, loser, turns: [...], finalChakra: {...} }`).
 
 ### `src/engine/turnResolver.js`
-**Ce que ça fait** : résout un seul tour. Détermine qui attaque, quel jutsu est utilisé, si l'esquive se produit, et retourne le nouvel état.
+**Ce que ça fait** : résout un seul tour. Détermine qui attaque, quel jutsu est utilisé, si l'esquive se jutsu, et retourne le nouvel état.
 **Entrée** : l'état actuel du combat.
 **Sortie** : le nouvel état après le tour (objet différent, pas muté).
 
@@ -169,9 +172,9 @@ tests/
 **Sortie** : un nombre de dégâts.
 
 ### `src/utils/rng.js`
-**Ce que ça fait** : tire un nombre aléatoire et décide si un événement probabiliste se produit (esquive, critique, raté).
+**Ce que ça fait** : tire un nombre aléatoire et décide si un événement probabiliste se jutsu (esquive, critique, raté).
 **Entrée** : une probabilité (entre 0 et 1).
-**Sortie** : `true` (l'événement se produit) ou `false`.
+**Sortie** : `true` (l'événement se jutsu) ou `false`.
 
 ### `src/utils/cooldownCycle.js`
 **Ce que ça fait** : gère les cooldowns des jutsus. Un jutsu avec cooldown 3 ne peut être réutilisé qu'après 3 tours.
@@ -346,3 +349,22 @@ Le moteur appelle la fonction sans savoir ce qu'elle fait.
 [ ] POSTMORTEM.md documente au moins une décision difficile prise pendant le dev
 [ ] TDD_JOURNAL.md trace l'ordre dans lequel les tests ont été écrits
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Validation d'entrée (OWASP A03 - Injection) : le moteur doit rejeter proprement une ordre_mission/config malformée sans exposer sa stack interne.
+- Déni de service (OWASP A05) : borner toute boucle/récursion pilotée par l'entrée pour éviter un blocage du process.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

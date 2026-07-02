@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # REST CRUD COMPLET
+Temps de lecture ~9 min
 
 REST c'est pas une technologie, c'est une convention.
 Une convention sur comment nommer les routes, quels verbes utiliser, quels status codes renvoyer.

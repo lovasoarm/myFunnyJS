@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GC SIMULATOR : RENDRE VISIBLE CE QUE LE RUNTIME CACHE
+Temps de lecture ~10 min
 
 Le GC travaille en silence. Tu ne le vois jamais. Tu ne sais pas quand il passe, ni combien d'objets il détruit. Ça marche : jusqu'au moment où ça ne marche plus, et là t'as aucun outil mental pour comprendre pourquoi.
 

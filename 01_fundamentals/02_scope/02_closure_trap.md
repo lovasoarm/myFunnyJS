@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CLOSURE TRAP : LA FONCTION QUI N'OUBLIE JAMAIS
+Temps de lecture ~8 min
 
 > Une closure c'est une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée. Comme un fantôme utile.
 
@@ -179,3 +182,28 @@ Une closure est une fonction qui garde accès aux variables de son environnement
 Le piège classique avec `var` dans les boucles async : toutes les closures partagent la même variable `i` qui vaut sa valeur finale au moment de l'exécution. Avec `let`, chaque itération crée sa propre variable.
 
 Deux appels à la même factory = deux closures séparées = deux environnements mémoire distincts. Jamais partagés.
+
+
+## Schéma : chaîne de portée en action
+
+```
++-----------------------------------------------+
+| GLOBAL env                                    |
+|   makeCounter (fn)                            |
+|   +---------------------------------------+   |
+|   | makeCounter() env                     |   |
+|   |   count = 0                           |   |
+|   |   +-------------------------------+   |   |
+|   |   | inner() env (returned)        |   |   |
+|   |   |   [[Scope]] -> makeCounter env|   |   |
+|   |   |             -> GLOBAL env     |   |   |
+|   |   +-------------------------------+   |   |
+|   +---------------------------------------+   |
++-----------------------------------------------+
+```
+
+Quand `inner` est appelée plus tard, sa `[[Scope]]` maintient vivant l'environnement `makeCounter()`. C'est **ça**, la closure. Pas de la magie, juste des références qui refusent de mourir.
+
+### Ce que l'analogie cache
+
+On dit "closure = fonction qui se souvient". Faux. La closure, c'est le **couple** (fonction, environnement). Sans l'environnement, ce n'est qu'une fonction.

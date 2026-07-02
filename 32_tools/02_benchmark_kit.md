@@ -1,4 +1,13 @@
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+
+[PÉRISSABLE 12-24 mois]
+
+> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+
 # BENCHMARK KIT : SAVOIR SI TON CODE EST RAPIDE, PAS JUSTE "PAS LENT EN APPARENCE"
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 "Je pense que cette version est plus rapide" c'est une opinion. Un benchmark (mesure de performance comparative) c'est un fait. La différence entre les deux, c'est souvent la différence entre optimiser ce qui compte vraiment et perdre du temps sur un détail qui change rien.
 
@@ -144,7 +153,7 @@ le benchmark te dit PAS --> SI cette différence compte vraiment dans ton contex
 // fonction A : 0.001 ms
 // fonction B : 0.002 ms
 // B est "2x plus lente" en facteur, mais la différence ABSOLUE est de 0.001 ms
-// Sur un appel UNIQUE dans ton app, cette différence est invisible pour l'utilisateur
+// Sur un appel UNIQUE dans ton app, cette différence est invisible pour l'shinobi
 
 // Le vrai réflexe : mesurer le facteur ET se demander
 // "cette fonction tourne combien de fois dans mon vrai usage ?"

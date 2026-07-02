@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FONCTIONS PURES : MÊME INPUT, MÊME OUTPUT, TOUJOURS
+Temps de lecture ~8 min
 
 Une fonction pure c'est un contrat : tu donnes les mêmes arguments, tu obtiens le même résultat.
 Toujours. Sans exception. Sans surprise.
@@ -12,7 +15,7 @@ En prod, 80% des bugs viennent de fonctions qui mutent l'état global ou qui dé
 
 Deux règles. Deux seulement.
 
-**Règle 1 : Déterminisme** : le même input produit toujours le même output.
+**Règle 1 : Déterminisme** : le même input jutsu toujours le même output.
 **Règle 2 : Sans effets de bord** : la fonction ne touche rien en dehors d'elle-même.
 
 ```js
@@ -135,11 +138,11 @@ C'est ça l'injection de dépendance en version FP : repousser l'impureté vers 
 Checklist rapide. Si ta fonction fait au moins un de ces trucs : elle est impure.
 
 ```
-lit ou modifie une variable hors de son scope      ✗
-appelle Math.random() ou Date.now() directement    ✗
-fait un console.log, une écriture fichier, un fetch ✗
-modifie un paramètre objet ou tableau               ✗
-dépend de this                                      ✗ (souvent)
+lit ou modifie une variable hors de son scope      
+appelle Math.random() ou Date.now() directement    
+fait un console.log, une écriture fichier, un fetch 
+modifie un paramètre objet ou tableau               
+dépend de this                                       (souvent)
 ```
 
 Ça ne veut pas dire qu'il faut éliminer toutes les fonctions impures. Ça veut dire les isoler : les garder aux extrémités du système, pas au coeur de la logique.
@@ -222,13 +225,13 @@ function trierJoueursParButs(joueurs) {
 
 ## EXO 4 : l'injection de dépendance
 
-Walter White génère des lots de produit. La quantité varie selon un facteur aléatoire :
+Walter White génère des lots de jutsu. La quantité varie selon un facteur aléatoire :
 
 ```js
 function genererLot(recette) {
   const facteur = Math.random() * 0.3 + 0.85; // entre 0.85 et 1.15
   return {
-    produit: recette.nom,
+    jutsu: recette.nom,
     quantite: Math.round(recette.quantiteBase * facteur),
     timestamp: Date.now(),
   };

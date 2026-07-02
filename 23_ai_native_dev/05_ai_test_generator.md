@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # L'IA GÉNÈRE DES TESTS : TOI TU VÉRIFIES QU'ILS TESTENT VRAIMENT QUELQUE CHOSE
+Temps de lecture ~12 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 L'IA peut générer des tests qui passent sans rien vérifier. C'est le pire type de faux sentiment de sécurité : ton CI est vert, ta couverture est à 95%, et le bug est là depuis le début. Un test qui passe toujours, même si la fonction est cassée, n'est pas un test : c'est de la décoration.
 

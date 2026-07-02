@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # PRIORITY QUEUE : LES URGENCES PASSENT DEVANT
+Temps de lecture ~9 min
 
 Un tableau trié c'est lent. Une simple queue c'est aveugle. Une priority queue c'est les deux ensemble : O(log n) à l'insertion, O(log n) à l'extraction, et le plus urgent sort toujours en premier.
 

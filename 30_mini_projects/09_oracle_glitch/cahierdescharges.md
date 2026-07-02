@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : ORACLE GLITCH
+Temps de lecture ~15 min
 
 ## PRÉREQUIS
 
@@ -75,7 +78,7 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 **Où ça se voit** : `src/prompt/`, `src/validator/`, `src/streaming/`.
 **Pourquoi c'est nécessaire ici** : le prompt n'est pas une chaîne hardcodée. Il est construit dynamiquement selon le code analysé. La sortie est validée selon un schéma attendu. Sans ces deux éléments, le pipeline est un casino.
 
-### `29_oop_js` : classes, prototype chain, mixins
+### `12_oop_js` : classes, prototype chain, mixins
 **Où ça se voit** : `src/analyzer/CodeAnalyzer.js`, `src/validator/OutputValidator.js`, `src/validator/StrictValidator.js`.
 **Pourquoi c'est nécessaire ici** : `Validator` → `StrictValidator` → `LLMOutputValidator` est une chaîne d'héritage réelle avec un usage intentionnel du prototype. Les mixins composent des comportements (loggable, retryable) sans hériter de tout.
 
@@ -91,7 +94,7 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 
 ```
 23_ai_native_dev --> src/prompt/ (PromptBuilder), src/validator/ (schema), src/streaming/
-29_oop_js        --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
+12_oop_js        --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
 27_team_craft    --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
 28_edge_cases    --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
 ```
@@ -355,7 +358,7 @@ les règles métier spécifiques à l'IA.
   check de type ou le check métier.
 - Composition (passer des validators en paramètre) : valide aussi. Choix de la
   hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
-  l'objectif pédagogique du module 29_oop_js).
+  l'objectif pédagogique du module 12_oop_js).
 
 ## Conséquences
 - Ajouter un nouveau type de validator = créer une sous-classe. Le contrat de base
@@ -377,3 +380,22 @@ les règles métier spécifiques à l'IA.
 [ ] TDD_JOURNAL.md trace quels tests ont été écrits avant le code du validator
 [ ] zéro appel à la sortie LLM sans passer par validate() dans le code de production
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- Injection (OWASP A03) : requêtes paramétrées uniquement, jamais de concaténation d'entrée.
+- Gestion d'erreurs (OWASP A09) : messages d'erreur génériques, pas de fuite de détails internes.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

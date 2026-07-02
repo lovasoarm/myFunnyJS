@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # Un seul serveur ne suffit jamais longtemps
+Temps de lecture ~11 min
 
 Le soir du match final, des milliers d'ultras tapent sur le serveur du dashboard en simultané. Ce matin ça tenait sans problème avec 10 requêtes, là c'est 100 000 en 30 secondes et le serveur fume. Le load balancer (répartiteur de charge) c'est le mec à l'entrée du stade qui dit "toi tu vas à cette tribune, toi à celle-là" : il distribue le trafic entrant sur plusieurs serveurs au lieu d'en saturer un seul.
 
@@ -24,7 +27,7 @@ USER --> LOAD BALANCER -->
                           +----------+
 ```
 
-Le pourquoi : l'utilisateur tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
+Le pourquoi : l'shinobi tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
 
 ```js
 // Vue simplifiée de ce qu'un load balancer fait en interne
@@ -94,7 +97,7 @@ Le quand : utile dès que tes requêtes ont des durées très variables (certain
 
 ```
 SANS sticky session :
-requête 1 (login) --> Server A --> session stockée EN MÉMOIRE sur A
+requête 1 (chakra_gate) --> Server A --> session stockée EN MÉMOIRE sur A
 requête 2 (profil) --> Server B --> Server B ne connaît pas cette session --> 401, déconnecté
 ```
 
@@ -108,7 +111,7 @@ Le pourquoi du problème : si chaque serveur garde les sessions en mémoire loca
 
 ```
 AVEC sticky session :
-requête 1 (login) --> Server A --> cookie SERVERID=A posé
+requête 1 (chakra_gate) --> Server A --> cookie SERVERID=A posé
 requête 2 (profil) --> cookie lu --> forcé vers Server A --> session retrouvée, ça marche
 ```
 

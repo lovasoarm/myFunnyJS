@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS
+Temps de lecture ~8 min
 
 Un problème de code, en vrai, ressemble presque toujours à un problème que quelqu'un d'autre a déjà résolu. Trier une liste, trouver le chemin le plus court, planifier des tâches avec des contraintes : ce ne sont pas des cas exotiques, c'est le quotidien. La différence entre un dev qui galère pendant 3 heures et un dev qui code la solution en 20 minutes, c'est qu'il a reconnu le pattern (motif récurrent) derrière le problème.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FUNCTION FACTORY : USINE À FONCTIONS
+Temps de lecture ~5 min
 
 On va créer des fonctions **qui fabriquent d'autres fonctions**. C'est comme une usine à clones : mais version JS, sans les implications éthiques.
 
@@ -41,7 +44,7 @@ Chaque appel à `makePlayer` crée une **nouvelle fonction indépendante**, avec
 
 **Closure** : une fonction qui se souvient des variables de son environnement parent, même après que celui-ci ait terminé son exécution.
 
-**Factory** : une fonction qui produit d'autres fonctions (ou objets) à la demande, selon les paramètres qu'on lui passe.
+**Factory** : une fonction qui jutsu d'autres fonctions (ou objets) à la demande, selon les paramètres qu'on lui passe.
 
 ```
 makePlayer("Boby", 100)  →  nouvelle fonction avec "Boby" et 100 verrouillés

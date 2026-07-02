@@ -1,149 +1,38 @@
-## Règle numéro 1 : comprendre avant de coder
+# CONTRIBUER À MyFunnyJS
 
-Chaque contribution doit :
+Version courante : **v2026.1**
 
-- Expliquer un concept clairement
-- Montrer le problème avant la solution
-- Forcer à réfléchir, pas juste à copier
-- Produire du vrai code, pas du décor
+## POLITIQUE DE MISE À JOUR
 
-Un fichier = un concept précis.  
-Pas de code magique sans explication.  
-Pas de copier-coller vide de sens.
+- **Modules `[PERISSABLE] PÉRISSABLE`** : revue OBLIGATOIRE chaque année (janvier).
+- **Modules `[INTEMPOREL]`** : revue tous les 2 ans, ou sur signalement.
+- **Mini-projets** : version-lock des dépendances documenté dans chaque `package.json`.
 
----
+## PROCESSUS DE REVUE ANNUELLE
 
-## Structure obligatoire d'un fichier d'exercice
+1. Lister tous les fichiers marqués `[PERISSABLE] PÉRISSABLE : vérifié <YYYY-MM>`.
+2. Pour chacun :
+   - Vérifier que les API/outils cités sont toujours d'actualité.
+   - Mettre à jour la date de vérification.
+   - Si obsolète : réécrire OU marquer `[DEPRECATED]` avec lien vers le successeur.
+3. Bumper la version dans `README.md` (v2026.1 → v2027.1).
+4. Écrire l'entrée dans `CHANGELOG.md`.
 
-### 1. Une leçon en `.md`
+## STYLE
 
-- Mots simples, phrases courtes
-- Le problème expliqué, pas juste la solution
-- Pourquoi c'est important dans la vraie vie
-- À quoi ça sert en ingénierie
+Respecter le Code d'Honneur CrazyDevs (voir `INSTRUCTIONS.txt`) :
+- Phrases courtes.
+- Analogies limitées à une par concept, avec encadré "(attention) Ce que l'analogie cache".
+- Structure leçon : accroche → explication → code commenté → risque → exercice.
+- Pas de code source JS livré prêt à l'emploi.
 
-Si quelqu'un ouvre le fichier seul, il doit tout comprendre. Seul. Sans toi.
+## PROPOSER UNE MODIFICATION
 
-### 2. Le challenge étape par étape
+PR sur le dépôt, avec :
+- Référence audit (le cas échéant).
+- Fichiers impactés.
+- Justification pédagogique en 3 lignes max.
 
-Instructions claires, progressives, logiques.  
-Chaque étape débloque la suivante.
+## Emojis
 
-### 3. Code de départ
-
-Base minimale fournie.  
-Pas de solution cachée dedans.
-
-### 4. Zone de travail
-
-L'espace où la personne doit réfléchir et écrire son propre code.
-
----
-
-## Style de code
-
-- Variables avec des noms clairs, pas des `x`, `tmp`, `data`
-- Fonctions courtes et ciblées
-- Indentation propre
-- Code lisible avant tout
-
-Si ton code est difficile à lire, c'est qu'il est mal pensé.
-
----
-
-## Structure obligatoire d'un mini-projet (`30_mini_projects`)
-
-Les mini-projets sont des projets intégrateurs : ils consolident plusieurs modules à la fois dans un contexte fun et concret. Chaque projet suit cette structure stricte :
-
-```
-nom_du_projet/
-├── cahierdescharges.md   # Specs fonctionnelles et techniques complètes
-├── README.md             # Contexte, objectifs, modules couverts
-├── TDD_JOURNAL.md        # Tests écrits AVANT le code : obligatoire
-├── POSTMORTEM.md         # Ce qui a cassé, pourquoi, ce qu'on ferait mieux
-├── src/                 # à créer par l'apprenant pendant le projet
-└── tests/               # à créer par l'apprenant avant le code
-```
-
-Règles pour un mini-projet :
-
-- Le `TDD_JOURNAL.md` doit être commencé **avant** d'écrire la moindre ligne de `src/`
-- Le `cahierdescharges.md` doit préciser les modules MyFunnyJS couverts
-- Le `POSTMORTEM.md` se remplit **après** : honnêtement, sans filtre
-- Aucune duplication de mécanique core entre projets (pas deux projets WebSocket, pas deux CLI, etc.)
-- La thématique peut être libre (anime, foot, musique, jeux) mais le fond technique doit rester solide
-
----
-
-## Les artefacts transversaux : on touche pas à la légère
-
-Trois fichiers/dossiers sortent du moule classique leçon + exercice + grimoire :
-
-```
-03_WHERE_YOU_STAND.md                 # 4 axes, 4 niveaux : où t'en es vraiment (racine du repo)
-31_annexes/01_ascii_charte.md            # 8 schémas canoniques, une seule version pour tout le curriculum
-30_mini_projects/_synthesis/          # 5 missions qui croisent un bloc entier de modules
-```
-
-Ce sont des fichiers de structure, pas des leçons. Du coup :
-
-- Le **référentiel** ne reçoit jamais de système de notation automatique greffé dessus. Il reste une carte qu'on lit seul, pas un quiz.
-- La **charte ASCII** est la version unique des 8 schémas. Si une leçon a besoin d'un de ces schémas, elle recopie la version canonique, elle en invente pas une autre à côté. Un 9e schéma transversal candidat se propose ici, jamais en solo dans un module.
-- Les **missions de synthèse** suivent un format fixe (contexte, livrables, contraintes par module, checklist). Si t'en ajoutes une nouvelle, garde exactement ce squelette : la rigidité du format, c'est ce qui les rend reconnaissables d'un coup d'oeil.
-
-Ces trois artefacts ne sont pas des modules numérotés à suivre dans l'ordre. Ils existent pour relier ce qui est déjà là, pas pour empiler du contenu en plus.
-
----
-
-## Esprit du projet
-
-MyFunnyJS est sérieux.  
-Mais l'ambiance est fun.
-
-Les univers autorisés : N'importe quoi qui motive.
-
-Le fun ne remplace jamais la rigueur.  
-L'ambiance est un moyen, pas une fin.
-
----
-
-## Utiliser l'IA intelligemment
-
-Tu peux utiliser une IA. Mais :
-
-- Ne copie jamais sans comprendre
-- Analyse ce qu'elle propose, ligne par ligne
-- Refactore ce qui peut être amélioré
-- Vérifie la complexité algorithmique
-- Vérifie la sécurité si c'est une API ou un système d'auth
-
-L'IA génère du code.  
-Toi tu dois le comprendre, le défendre, et l'améliorer.
-
----
-
-## Avant de proposer une contribution
-
-Pose-toi ces questions :
-
-- Est-ce que ça apprend vraiment quelque chose ?
-- Est-ce que c'est clair pour quelqu'un qui n'a rien vu ?
-- Est-ce que ça respecte la roadmap MyFunnyJS ?
-- Est-ce que ça aide à devenir ingénieur logiciel, pas juste à faire tourner du code ?
-
-Si la réponse est oui partout, propose.
-
----
-
-## Mentalité
-
-On ne forme pas des machines à taper du code.  
-On forme des ingénieurs capables de :
-
-- Comprendre des systèmes complexes
-- Structurer une solution propre
-- Optimiser ce qui doit l'être
-- Sécuriser ce qui doit l'être
-- Penser en profondeur avant d'écrire la première ligne
-
-Si tu contribues dans cet esprit, tu es exactement au bon endroit.
+Seuls les fichiers de navigation (`01_START_HERE.md`, `_recall_*.md`, `_spaced_repetition.md`) peuvent utiliser des emojis fonctionnels comme repères visuels. Tous les autres fichiers de contenu (leçons, grimoires, exercices, cahiers des charges) en sont exempts : on utilise des balises textuelles `[INTEMPOREL]`, `[DECENNIE]`, `(attention)` à la place. Un emoji dans une leçon = revue refusée.

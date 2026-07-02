@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CAHIER DES CHARGES : ULTRAS DASHBOARD
+Temps de lecture ~14 min
 
 ## PRÉREQUIS
 
@@ -58,7 +61,7 @@ Ce projet est en TypeScript. Le pipeline d'ingestion d'événements est typé de
 
 ## POURQUOI CE PROJET EXISTE
 
-Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait son système en production, avant que les utilisateurs le signalent.
+Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait son système en production, avant que les shinobis le signalent.
 
 - **un système qui n'a pas de logs structurés est un système aveugle** : "le dashboard a lagué pendant le match" n'est pas un rapport d'incident utilisable. "Latence P99 = 2300ms pendant 47 secondes à 21h32, corrélée avec un pic d'events de possession à 320/min" : ça, on peut travailler avec.
 - **un pipeline d'events sans types, c'est une bombe à retardement** : si un event `{ goals: '1' }` arrive avec `goals` en string au lieu de number, et que le code attend un number, tout plante silencieusement. TypeScript attrape ça à la compilation.
@@ -74,7 +77,7 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 **Où ça se voit** : `src/queue/`, `src/balancer/`, `src/middleware/rateLimiter.ts`.
 **Pourquoi c'est nécessaire ici** : 200 events par minute ça tient. 2000 events par minute si tous les ultras rafraîchissent en même temps : le pipeline doit absorber le pic sans tomber. La queue découple l'ingestion du traitement.
 
-### `14_typescript` : generics, utility types, types stricts sur tout le pipeline
+### `15_typescript` : generics, utility types, types stricts sur tout le pipeline
 **Où ça se voit** : tous les fichiers `.ts` du projet.
 **Pourquoi c'est nécessaire ici** : `Event<T>` permet de typer un event de match différemment d'un event de possession, tout en partageant la même infrastructure de traitement. `Pipeline<Input, Output>` décrit explicitement ce que chaque étape attend et retourne.
 
@@ -83,7 +86,7 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 ```
 26_observability  --> src/observability/ (logger, tracer, metrics, sentry)
 25_scalability    --> src/queue/ (message queue), src/balancer/ (round-robin simulé)
-14_typescript     --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
+15_typescript     --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -342,3 +345,22 @@ est O(1) (juste ajouter en queue). Le traitement tourne à son rythme.
 [ ] POSTMORTEM.md documente au moins un bug de concurrence ou de timing rencontré
 [ ] TDD_JOURNAL.md trace quels tests ont été écrits avant le code correspondant
 ```
+
+
+## SÉCURITÉ (gate obligatoire)
+
+Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
+
+- XSS (OWASP A03) : échapper toute donnée shinobi affichée dans le dashboard.
+- Contrôle d'accès (OWASP A01) : un shinobi ne voit que les données de son périmètre.
+
+Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
+
+---
+
+## Securite (gate obligatoire, Partie I)
+
+- **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
+- **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
+
+Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).

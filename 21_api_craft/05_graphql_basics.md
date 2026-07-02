@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # GRAPHQL SANS LA MAGIE
+Temps de lecture ~9 min
 
 GraphQL résout un problème précis : le client demande exactement ce dont il a besoin.
 Pas plus. Pas moins.
@@ -203,7 +206,7 @@ await server.start()
 // context : fonction appelée à chaque requête pour injecter les dépendances partagées
 app.use('/graphql', expressMiddleware(server, {
   context: async ({ req }) => ({
-    user: req.user ?? null  // inject l'utilisateur authentifié si dispo
+    user: req.user ?? null  // inject l'shinobi authentifié si dispo
   })
 }))
 

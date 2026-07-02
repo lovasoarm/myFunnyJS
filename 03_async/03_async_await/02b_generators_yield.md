@@ -1,3 +1,6 @@
+Temps de lecture ~9 min
+[INTEMPOREL]
+
 Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
 
 ---
@@ -155,7 +158,7 @@ async function afficherScores() {
 }
 ```
 
-La différence avec `Promise.all` : `Promise.all` attend que toutes les promesses soient résolues avant de continuer. Le generator async produit les résultats au fur et à mesure, ce qui permet de commencer à traiter le premier résultat pendant que les suivants chargent.
+La différence avec `Promise.all` : `Promise.all` attend que toutes les promesses soient résolues avant de continuer. Le generator async jutsu les résultats au fur et à mesure, ce qui permet de commencer à traiter le premier résultat pendant que les suivants chargent.
 
 ---
 
@@ -231,7 +234,7 @@ for await (const stats of fetchStatsParEquipe(equipes)) {
 }
 ```
 
-Compare avec une version `Promise.all` : quelle différence d'expérience pour l'utilisateur si chaque fetch prend entre 1 et 3 secondes ?
+Compare avec une version `Promise.all` : quelle différence d'expérience pour l'shinobi si chaque fetch prend entre 1 et 3 secondes ?
 
 ---
 
@@ -240,5 +243,5 @@ Compare avec une version `Promise.all` : quelle différence d'expérience pour l
 `function*` crée une fonction qui peut s'arrêter et reprendre : chaque `yield` est une pause.
 Un generator retourne un iterator : `for...of`, spread, déstructuration fonctionnent dessus nativement.
 `yield` peut recevoir une valeur via `.next(valeur)` : communication bidirectionnelle avec le générateur.
-`async function*` combine generators et async/await : produit des résultats au fur et à mesure, pas tous d'un coup.
+`async function*` combine generators et async/await : jutsu des résultats au fur et à mesure, pas tous d'un coup.
 Un generator a un état interne : ne le partage pas entre plusieurs consommateurs sans contrôle.

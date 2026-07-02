@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BIG O : LE COÛT DE CHAQUE DÉCISION
+Temps de lecture ~10 min
 
 Deux fonctions qui font la même chose. L'une tourne en 2ms sur 1000 éléments. L'autre tourne en 14 minutes sur 1 million. Même résultat. Coût radicalement différent.
 

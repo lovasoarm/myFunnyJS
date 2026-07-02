@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # COMPOSITION : ASSEMBLER DES FONCTIONS COMME DES LEGO
+Temps de lecture ~9 min
 
 Une fonction fait une chose. Une seule.
 La composition c'est : prendre ces petites fonctions et les brancher ensemble pour construire quelque chose de plus grand.

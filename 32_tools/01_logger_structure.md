@@ -1,4 +1,13 @@
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+
+[PÉRISSABLE 12-24 mois]
+
+> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+
 # LOGGER STRUCTURÉ : SAVOIR CE QUI S'EST PASSÉ, DANS QUEL ORDRE, AVEC QUEL CONTEXTE
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 `console.log("ici")` te dit que t'es passé "ici". Il te dit pas quand, il te dit pas dans quel contexte, il te dit pas si c'est grave ou normal. Un logger structuré répond à ces trois questions à chaque appel, sans que t'aies à y repenser à chaque fois.
 
@@ -16,7 +25,7 @@ console.log(survivant);
 
 ```
 problèmes concrets :
-- aucun horodatage : QUAND chaque event s'est produit
+- aucun horodatage : QUAND chaque event s'est jutsu
 - aucun niveau : c'est une info normale ou une vraie erreur ?
 - format incohérent : parfois une string, parfois un objet brut
 - impossible à filtrer : tu peux pas dire "montre-moi que les erreurs"

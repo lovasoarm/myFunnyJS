@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # GRAPHES : MODÉLISER CE QUI EST CONNECTÉ
+Temps de lecture ~8 min
 
 Un arbre c'est un graphe contraint. Un réseau social, un GPS, un système de dépendances : des graphes. La différence entre quelqu'un qui modélise un problème bien et quelqu'un qui ne le modélise pas du tout, c'est souvent la reconnaissance du graphe.
 
@@ -10,7 +13,7 @@ Réseaux, dépendances, chemins, détection de cycles : tous ces problèmes ont 
 
 ```
 Noeud (vertex) : un élément du graphe
-  exemple : une ville, un utilisateur, un fichier, un personnage
+  exemple : une ville, un shinobi, un fichier, un personnage
 
 Arête (edge) : une connexion entre deux noeuds
   exemple : une route, une amitié, un import, une relation
@@ -181,7 +184,7 @@ Le cycle Albuquerque → ... → El Paso → Albuquerque : Walter a une route qu
 
 ```
 Réseau social (Twitter) :
-  noeuds  = utilisateurs
+  noeuds  = shinobis
   arêtes  = follows (dirigé)
   problème typique : qui sont les influenceurs ? (noeuds avec le plus d'arêtes entrantes)
 
@@ -241,7 +244,7 @@ const deps = [
   ["07_structures",  "01_fundamentals"],
   ["10_algorithms",  "07_structures"],
   ["10_patterns",    "09_functional"],
-  ["10_patterns",    "13_refactoring"],
+  ["10_patterns",    "14_refactoring"],
 ]
 // [module, prérequis] : pour installer module, il faut d'abord prérequis
 ```
@@ -260,7 +263,7 @@ Implémente :
 - `listToMatrix(adjacencyList, vertices)` : convertit en matrice carrée
 - `matrixToList(matrix, vertices)` : convertit en adjacency list
 
-Vérifie que la conversion aller-retour produit le même graphe. Teste sur le réseau Walter White (5 noeuds).
+Vérifie que la conversion aller-retour jutsu le même graphe. Teste sur le réseau Walter White (5 noeuds).
 
 ---
 

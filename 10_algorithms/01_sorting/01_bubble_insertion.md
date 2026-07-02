@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # BUBBLE SORT & INSERTION SORT : LES LENTS QUI T'APPRENNENT TOUT
+Temps de lecture ~8 min
 
 Deux algos que personne n'utilise en prod. Deux algos que tout le monde devrait comprendre.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LE HEAP : LA STRUCTURE QUI CONNAÎT TOUJOURS LE MEILLEUR
+Temps de lecture ~11 min
 
 Tu as 10 000 joueurs. Tu veux toujours savoir qui a le meilleur xG cette saison.
 Solution naïve : trier les 10 000 à chaque ajout. O(n log n) à chaque update. Catastrophe.
@@ -65,9 +68,9 @@ enfantDroit(i)  = 2 * i + 2
 
 Vérification sur l'exemple :
 ```
-enfantGauche(0) = 1  =>  tableau[1] = 31  (Haaland) ✓
-enfantDroit(0)  = 2  =>  tableau[2] = 28  (Salah) ✓
-parent(3)       = 1  =>  tableau[1] = 31  (Haaland, parent de Kane) ✓
+enfantGauche(0) = 1  =>  tableau[1] = 31  (Haaland) 
+enfantDroit(0)  = 2  =>  tableau[2] = 28  (Salah) 
+parent(3)       = 1  =>  tableau[1] = 31  (Haaland, parent de Kane) 
 ```
 
 Pourquoi c'est brillant : pas d'allocation de noeuds, pas de pointeurs, cache-friendly.

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # LINKED LIST : POINTER VERS LE SUIVANT, PAS VERS L'INDEX
+Temps de lecture ~9 min
 
 Un tableau stocke tout en blocs contigus. C'est pour ça qu'il est rapide à lire par index. Mais si tu veux insérer un élément au milieu, tout le monde décale.
 

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # APPLICATION PARTIELLE : FIXER MAINTENANT, PASSER LE RESTE PLUS TARD
+Temps de lecture ~9 min
 
 Le currying transforme la signature d'une fonction.
 L'application partielle fait quelque chose de différent : elle pré-remplit certains arguments d'une fonction existante et retourne une nouvelle fonction qui attend le reste.
