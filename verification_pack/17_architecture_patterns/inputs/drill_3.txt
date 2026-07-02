@@ -1,2 +1,5 @@
-# drill 3 for 17_architecture_patterns
-# input contract décrit dans README.md
+auth:login
+auth:logout
+cart:add
+cart:remove
+cart:total

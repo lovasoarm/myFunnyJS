@@ -1,2 +1,3 @@
-# drill 3 for 18_web_concepts
-# input contract décrit dans README.md
+https://a.com/x
+https://b.com/y
+https://a.com/z

@@ -1,2 +1,4 @@
-# drill 3 for 14_refactoring
-# input contract décrit dans README.md
+login:5
+parse:15
+render:11
+util:3

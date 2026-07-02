@@ -88,8 +88,8 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ```js
 /\d/.test("3")        // true
 /\d/.test("abc")      // false
-/[aeiou]/.test("naruto")  // true —> il y a des voyelles
-/[^aeiou]/.test("aaa")    // false —> que des voyelles, pas de consonnes
+/[aeiou]/.test("naruto")  // true -> il y a des voyelles
+/[^aeiou]/.test("aaa")    // false -> que des voyelles, pas de consonnes
 ```
 
 ---
@@ -106,15 +106,15 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ```
 
 ```js
-/colou?r/.test("color")   // true —> le u est optionnel
+/colou?r/.test("color")   // true -> le u est optionnel
 /colou?r/.test("colour")  // true
 
-/\d+/.test("42")    // true —> au moins un chiffre
+/\d+/.test("42")    // true -> au moins un chiffre
 /\d+/.test("")      // false
 
-/\d{4}/.test("2024")   // true —> exactement 4 chiffres
+/\d{4}/.test("2024")   // true -> exactement 4 chiffres
 /\d{4}/.test("24")     // false
-/\d{2,4}/.test("242")  // true —> entre 2 et 4 chiffres
+/\d{2,4}/.test("242")  // true -> entre 2 et 4 chiffres
 ```
 
 ---
@@ -124,20 +124,20 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ```js
 ^    // début de la chaîne (ou début de ligne avec flag m)
 $    // fin de la chaîne (ou fin de ligne avec flag m)
-\b   // word boundary —> frontière entre \w et \W
+\b   // word boundary -> frontière entre \w et \W
 ```
 
 ```js
-/^Naruto/.test("Naruto est fort")   // true —> commence par Naruto
-/^Naruto/.test("Fort comme Naruto") // false —> ne commence pas par Naruto
+/^Naruto/.test("Naruto est fort")   // true -> commence par Naruto
+/^Naruto/.test("Fort comme Naruto") // false -> ne commence pas par Naruto
 
-/ninja$/.test("il est ninja")   // true —> finit par ninja
+/ninja$/.test("il est ninja")   // true -> finit par ninja
 /ninja$/.test("ninja débutant") // false
 
 // sans ancres
-/\d+/.test("abc123def")   // true —> trouve les chiffres n'importe où
+/\d+/.test("abc123def")   // true -> trouve les chiffres n'importe où
 // avec ancres
-/^\d+$/.test("abc123def") // false —> la chaîne entière ne doit être que des chiffres
+/^\d+$/.test("abc123def") // false -> la chaîne entière ne doit être que des chiffres
 /^\d+$/.test("123456")    // true
 ```
 

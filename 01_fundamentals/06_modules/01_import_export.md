@@ -51,7 +51,7 @@ export default creerNinja
 ```js
 // main.js
 import creerNinja from "./ninja.js"
-// pas d'accolades —> c'est le default
+// pas d'accolades -> c'est le default
 
 const naruto = creerNinja("Naruto", "Konoha")
 console.log(naruto.attaquer("Pain"))   // "Naruto attaque Pain !"
@@ -60,7 +60,7 @@ console.log(naruto.attaquer("Pain"))   // "Naruto attaque Pain !"
 La différence avec les exports nommés : à l'import, tu peux appeler ça comme tu veux.
 
 ```js
-import buildNinja from "./ninja.js"   // même fichier, nom différent —> valide
+import buildNinja from "./ninja.js"   // même fichier, nom différent -> valide
 import n from "./ninja.js"            // aussi valide
 ```
 
@@ -197,7 +197,7 @@ Une app de scoring de matchs. Elle peut charger deux moteurs de calcul :
 
 `main.js` charge le moteur avancé seulement si l'shinobi a un abonnement premium. Utilise un dynamic import. Si le module échoue à charger, affiche un message d'erreur propre.
 
-(Indice : `import()` retourne une Promise —> gère le `.catch`)
+(Indice : `import()` retourne une Promise -> gère le `.catch`)
 
 ---
 

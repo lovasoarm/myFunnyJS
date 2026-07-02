@@ -1,2 +1,1 @@
-# drill 2 for 01_fundamentals
-# input contract décrit dans README.md
+naruto,17

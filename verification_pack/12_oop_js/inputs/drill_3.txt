@@ -1,2 +1,3 @@
-# drill 3 for 12_oop_js
-# input contract décrit dans README.md
+SET hp 100
+GET hp
+GET mp

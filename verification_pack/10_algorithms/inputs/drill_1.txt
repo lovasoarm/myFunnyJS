@@ -1,2 +1,4 @@
-# drill 1 for 10_algorithms
-# input contract décrit dans README.md
+5
+2
+8
+1

@@ -1,2 +1,3 @@
-# drill 1 for 30_mini_projects
-# input contract décrit dans README.md
+p1:DONE
+p2:TODO
+p3:DONE

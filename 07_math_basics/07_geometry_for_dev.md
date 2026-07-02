@@ -399,12 +399,12 @@ function genererHeatmap(clics, largeur, hauteur, resolution = 50) {
   return grille
 }
 
-const clicsUtilisateurs = [
+const clicsSpectateurs = [
   { x: 120, y: 80 }, { x: 125, y: 85 }, { x: 300, y: 200 },
   { x: 118, y: 79 }, { x: 122, y: 82 }, { x: 301, y: 201 }
 ]
 
-const heatmap = genererHeatmap(clicsUtilisateurs, 500, 400, 100)
+const heatmap = genererHeatmap(clicsSpectateurs, 500, 400, 100)
 // la zone autour de (120,80) aura un score de 4
 // la zone autour de (300,200) aura un score de 2
 ```

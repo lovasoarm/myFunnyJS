@@ -1,2 +1,4 @@
-# drill 3 for 08_memory_performance
-# input contract décrit dans README.md
+10
+20
+-5
+30

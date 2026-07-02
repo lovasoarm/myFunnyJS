@@ -42,7 +42,7 @@ let team = [{ name: "Zombie1", hp: 100 }];
 let backupTeam = team; // pas une copie : même adresse
 
 backupTeam[0].hp += 50;
-console.log(team[0].hp); // 150 —> ton "backup" a modifié l'original
+console.log(team[0].hp); // 150 -> ton "backup" a modifié l'original
 ```
 
 `backupTeam` n'est pas un backup. C'est un **alias**.

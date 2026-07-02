@@ -1,2 +1,4 @@
-# drill 1 for 03_async
-# input contract décrit dans README.md
+macro:A
+sync:B
+micro:C
+sync:D

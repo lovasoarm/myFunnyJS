@@ -1,2 +1,4 @@
-# expected output for drill 1
-# à définir par le mainteneur du module
+domain:order
+domain:user
+application:usecase
+infrastructure:db

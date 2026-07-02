@@ -48,7 +48,7 @@ i vaut : 4
 i vaut : 4
 ```
 
-`var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent —> `i` vaut déjà `4`. Toutes les callbacks lisent la même valeur.
+`var` n'est pas block-scoped. Toutes les fonctions partagent la **même** variable `i`. La boucle finit avant que les `setTimeout` s'exécutent -> `i` vaut déjà `4`. Toutes les callbacks lisent la même valeur.
 
 ```
 GLOBAL ENV
@@ -207,3 +207,13 @@ Quand `inner` est appelée plus tard, sa `[[Scope]]` maintient vivant l'environn
 ### Ce que l'analogie cache
 
 On dit "closure = fonction qui se souvient". Faux. La closure, c'est le **couple** (fonction, environnement). Sans l'environnement, ce n'est qu'une fonction.
+
+
+> ATTENTION - ou cette analogie casse :
+> les analogies mecaniquement sensibles (prototype, closure, event loop, reference vs copie)
+> creent de faux modeles si on les prend trop loin. Consulte ce court aide-memoire :
+>
+> - **prototype != clone** : `Object.create(p)` ne COPIE pas p, il LIE dessus. Modifier p impacte l'enfant.
+> - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
+> - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
+> - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.

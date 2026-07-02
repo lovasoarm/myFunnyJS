@@ -1,2 +1,3 @@
-# drill 2 for 25_scalability
-# input contract décrit dans README.md
+a:80
+b:20
+c:50

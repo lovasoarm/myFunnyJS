@@ -1,2 +1,4 @@
-# drill 2 for 08_memory_performance
-# input contract décrit dans README.md
+HOLD a
+HOLD b
+RELEASE a
+HOLD c

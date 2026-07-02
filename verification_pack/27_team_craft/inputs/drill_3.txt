@@ -1,2 +1,4 @@
-# drill 3 for 27_team_craft
-# input contract décrit dans README.md
+a:alice
+b:alice
+b:bob
+c:alice

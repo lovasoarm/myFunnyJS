@@ -1,2 +1,3 @@
-# drill 1 for 31_annexes
-# input contract décrit dans README.md
+a:8
+b:6
+c:10

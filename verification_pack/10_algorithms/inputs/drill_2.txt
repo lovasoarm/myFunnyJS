@@ -1,2 +1,5 @@
-# drill 2 for 10_algorithms
-# input contract décrit dans README.md
+TARGET 7
+3
+1
+7
+9

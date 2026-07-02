@@ -1,2 +1,4 @@
-# drill 2 for 24_databases
-# input contract décrit dans README.md
+a:1
+b:2
+a:3
+b:4

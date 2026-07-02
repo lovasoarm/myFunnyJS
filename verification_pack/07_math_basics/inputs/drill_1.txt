@@ -1,2 +1,2 @@
-# drill 1 for 07_math_basics
-# input contract décrit dans README.md
+48
+36

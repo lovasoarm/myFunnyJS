@@ -1,2 +1,4 @@
-# drill 2 for 26_observability
-# input contract décrit dans README.md
+t1 s1
+t2 s1
+t1 s2
+t1 s3

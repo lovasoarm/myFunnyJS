@@ -1,2 +1,3 @@
-# drill 1 for 08_memory_performance
-# input contract décrit dans README.md
+ALLOC 100
+ALLOC 50
+FREE 30

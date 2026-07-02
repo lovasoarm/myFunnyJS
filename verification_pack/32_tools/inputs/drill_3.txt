@@ -1,2 +1,3 @@
-# drill 3 for 32_tools
-# input contract décrit dans README.md
+react:130
+react-dom:100
+zod:60

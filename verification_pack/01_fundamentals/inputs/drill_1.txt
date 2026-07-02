@@ -1,2 +1,3 @@
-# drill 1 for 01_fundamentals
-# input contract décrit dans README.md
+3
+7
+10

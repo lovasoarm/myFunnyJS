@@ -1,2 +1,4 @@
-# drill 1 for 17_architecture_patterns
-# input contract décrit dans README.md
+infrastructure:db
+domain:user
+application:usecase
+domain:order

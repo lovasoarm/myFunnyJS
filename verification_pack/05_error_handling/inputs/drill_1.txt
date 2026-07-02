@@ -1,2 +1,4 @@
-# drill 1 for 05_error_handling
-# input contract décrit dans README.md
+WARN cache miss
+ERROR db
+FATAL disk
+ERROR net

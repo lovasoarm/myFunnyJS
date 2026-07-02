@@ -1,2 +1,3 @@
-# drill 1 for 19_web_inclusive
-# input contract décrit dans README.md
+fr:hello=bonjour
+fr:bye=au revoir
+en:hello=hello

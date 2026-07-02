@@ -1,2 +1,3 @@
-# drill 1 for 06_testing
-# input contract décrit dans README.md
+a:PASS
+b:FAIL
+c:PASS

@@ -171,7 +171,7 @@ validerTel("06 123 45 678"); // false : mauvais groupement
 Une regex qui accepte trop c'est pire que pas de validation.
 
 ```js
-// mauvais —> accepte presque tout
+// mauvais -> accepte presque tout
 const emailBof = /\w+@\w+\.\w+/;
 emailBof.test("a@b.c"); // true : trop court pour être réel
 emailBof.test("test@test.test"); // true mais "test" n'est pas une extension valide

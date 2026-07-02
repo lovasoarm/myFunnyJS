@@ -1,2 +1,1 @@
-# drill 2 for 16_runtime_env
-# input contract décrit dans README.md
+v20.11.1

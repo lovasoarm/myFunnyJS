@@ -1,2 +1,3 @@
-# drill 1 for 13_design_patterns
-# input contract décrit dans README.md
+GET
+GET
+GET

@@ -20,15 +20,15 @@ $ node src/cli.js analyze src/cible.js
 
 [STREAM] token: "Le code" token: " présente" token: " un" token: "..."
 [VALIDATE] Parsing JSON de la réponse IA...
-[VALIDATE] ✓ Structure valide : bugs[], fixes[], tests[]
-[VALIDATE] ✗ Bug détecté : NaN === NaN marqué comme 'true' dans le fix proposé
+[VALIDATE] Structure valide : bugs[], fixes[], tests[]
+[VALIDATE] Bug détecté : NaN === NaN marqué comme 'true' dans le fix proposé
 [VALIDATE] Fix rejeté, signalement enregistré
 
 Résultat :
-  bugs trouvés      : 3
-  fixes validés     : 2
-  fixes rejetés     : 1 (NaN === NaN incorrect)
-  tests générés     : 4
+ bugs trouvés : 3
+ fixes validés : 2
+ fixes rejetés : 1 (NaN === NaN incorrect)
+ tests générés : 4
 ```
 
 ---
@@ -36,17 +36,17 @@ Résultat :
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : ANTHROPIC_API_KEY (obligatoire pour les appels réels)
+Node.js : v20+
+npm : v10+
+Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels réels)
 Outils externes: aucun
 ```
 
 ```bash
 npm install
 echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
-node src/cli.js analyze src/cible.js   # analyse réelle
-npm test                                # mocks IA, 0 appel API réel
+node src/cli.js analyze src/cible.js # analyse réelle
+npm test # mocks IA, 0 appel API réel
 ```
 
 ---
@@ -55,65 +55,65 @@ npm test                                # mocks IA, 0 appel API réel
 
 ```
 src/
-├── cli.js                  # point d'entrée : parse le fichier cible, lance l'analyse
+├── cli.js # point d'entrée : parse le fichier cible, lance l'analyse
 │
 ├── classes/
-│   ├── CodeAnalyzer.js     # analyse statique du fichier JS avant l'envoi à l'IA
-│   ├── PromptBuilder.js    # construit le prompt à partir du code analysé
-│   └── OutputValidator.js  # valide la sortie IA via Zod
+│ ├── CodeAnalyzer.js # analyse statique du fichier JS avant l'envoi à l'IA
+│ ├── PromptBuilder.js # construit le prompt à partir du code analysé
+│ └── OutputValidator.js # valide la sortie IA via Zod
 │
 ├── validators/
-│   ├── Validator.js        # classe de base : interface de validation
-│   ├── StrictValidator.js  # étend Validator : règles plus restrictives
-│   └── LLMOutputValidator.js # étend StrictValidator : règles spécifiques aux LLM
+│ ├── Validator.js # classe de base : interface de validation
+│ ├── StrictValidator.js # étend Validator : règles plus restrictives
+│ └── LLMOutputValidator.js # étend StrictValidator : règles spécifiques aux LLM
 │
 ├── streaming/
-│   └── streamingClient.js  # appel Anthropic API avec streaming token-par-token
+│ └── streamingClient.js # appel Anthropic API avec streaming token-par-token
 │
 ├── mixins/
-│   └── loggerMixin.js      # mixin pour logger les validations sans héritage
+│ └── loggerMixin.js # mixin pour logger les validations sans héritage
 │
 ├── schemas/
-│   └── analysisSchema.js   # schéma Zod : shape exacte attendue de la sortie IA
+│ └── analysisSchema.js # schéma Zod : shape exacte attendue de la sortie IA
 │
 └── errors/
-    ├── LLMTimeoutError.js
-    ├── MalformedResponseError.js
-    └── ValidationError.js
+ ├── LLMTimeoutError.js
+ ├── MalformedResponseError.js
+ └── ValidationError.js
 
 tests/
 ├── codeAnalyzer.test.js
 ├── outputValidator.test.js
-├── streamingClient.test.js   # mocke l'API Anthropic
-└── edgeCases.test.js         # NaN, JSON tronqué, timeout, undefined au milieu d'array
+├── streamingClient.test.js # mocke l'API Anthropic
+└── edgeCases.test.js # NaN, JSON tronqué, timeout, undefined au milieu d'array
 ```
 
 Flux d'une analyse :
 
 ```
 cli.js --> CodeAnalyzer.analyze(fichier)
-  --> PromptBuilder.build(analysis)
-  --> streamingClient.stream(prompt)   # tokens arrivant progressivement
-        --> assembler les tokens en JSON
-        --> si timeout (3s sans nouveau token) : LLMTimeoutError
-  --> OutputValidator.validate(jsonBrut)
-        --> Zod parse
-        --> si malformé : MalformedResponseError
-        --> si NaN incorrectement utilisé : ValidationError
-        --> si undefined dans un tableau : ValidationError
-  --> cli.js affiche le résultat
+ --> PromptBuilder.build(analysis)
+ --> streamingClient.stream(prompt) # tokens arrivant progressivement
+ --> assembler les tokens en JSON
+ --> si timeout (3s sans nouveau token) : LLMTimeoutError
+ --> OutputValidator.validate(jsonBrut)
+ --> Zod parse
+ --> si malformé : MalformedResponseError
+ --> si NaN incorrectement utilisé : ValidationError
+ --> si undefined dans un tableau : ValidationError
+ --> cli.js affiche le résultat
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module             | Où ça se voit                                                                  |
+| Module | Où ça se voit |
 | ------------------ | ------------------------------------------------------------------------------ |
-| `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering                        |
-| `12_oop_js`        | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
-| `27_team_craft`    | ADR pour chaque décision d'architecture, code review outillée                  |
-| `28_edge_cases`    | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array            |
+| `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering |
+| `12_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
+| `27_team_craft` | ADR pour chaque décision d'architecture, code review outillée |
+| `28_edge_cases` | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array |
 
 ---
 
@@ -132,10 +132,10 @@ cli.js --> CodeAnalyzer.analyze(fichier)
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md --> ce qui a coincé, ce qui a été appris
+ADR/ --> décisions d'architecture documentées
 ```
 
 ---

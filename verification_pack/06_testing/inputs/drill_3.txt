@@ -1,2 +1,3 @@
-# drill 3 for 06_testing
-# input contract décrit dans README.md
+unit_a 12
+unit_b 45
+unit_c 30

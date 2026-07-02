@@ -1,2 +1,3 @@
-# drill 3 for 23_ai_native_dev
-# input contract décrit dans README.md
+gpt 100
+claude 200
+gpt 300

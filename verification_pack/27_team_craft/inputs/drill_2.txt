@@ -1,2 +1,3 @@
-# drill 2 for 27_team_craft
-# input contract décrit dans README.md
+1:LGTM
+2:CHANGES
+3:LGTM

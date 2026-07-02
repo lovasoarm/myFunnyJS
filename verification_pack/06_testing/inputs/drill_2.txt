@@ -1,2 +1,3 @@
-# drill 2 for 06_testing
-# input contract décrit dans README.md
+compteur=0
+incr()
+compteur==1

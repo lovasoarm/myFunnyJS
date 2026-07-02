@@ -100,7 +100,7 @@ Boolean(value);
 
 Pourquoi `!!` marche ? `!value` inverse, `!!value` remet droit. Résultat = boolean pur.
 
-> Les valeurs falsy et truthy sont expliquées en détail dans `02_type_coercion.md` —> mémorise-les si ce n'est pas fait, tout ce qui suit en dépend.
+> Les valeurs falsy et truthy sont expliquées en détail dans `02_type_coercion.md` -> mémorise-les si ce n'est pas fait, tout ce qui suit en dépend.
 
 ---
 

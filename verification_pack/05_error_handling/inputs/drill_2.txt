@@ -1,2 +1,3 @@
-# drill 2 for 05_error_handling
-# input contract décrit dans README.md
+op=a retry=1
+op=b retry=3
+op=c retry=2

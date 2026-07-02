@@ -6,8 +6,8 @@ i18n (internationalisation : le i, 18 lettres, puis n) c'est l'art de construire
 
 ```js
 // Ça casse (mais fun) : le texte codé en dur, mélangé à la logique
-function afficherMessageBienvenue(nomUtilisateur) {
-  return `Bienvenue, ${nomUtilisateur} !`; // (et si l'utilisateur parle japonais ?)
+function afficherMessageBienvenue(nomShinobi) {
+  return `Bienvenue, ${nomShinobi} !`; // (et si l'utilisateur parle japonais ?)
 }
 ```
 
@@ -33,8 +33,8 @@ L'idée centrale : ton code ne contient JAMAIS de texte direct. Il contient des 
 
 ```js
 // Le code ne change JAMAIS, peu importe la langue active
-function afficherMessageBienvenue(nomUtilisateur, t) {
-  return t('bienvenue', { nom: nomUtilisateur }); // (t = fonction de traduction, "translate")
+function afficherMessageBienvenue(nomShinobi, t) {
+  return t('bienvenue', { nom: nomShinobi }); // (t = fonction de traduction, "translate")
 }
 ```
 

@@ -1,2 +1,3 @@
-# drill 2 for 22_security
-# input contract décrit dans README.md
+hello
+name='alice'
+bye

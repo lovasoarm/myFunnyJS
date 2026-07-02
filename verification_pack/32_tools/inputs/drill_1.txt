@@ -1,2 +1,4 @@
-# drill 1 for 32_tools
-# input contract décrit dans README.md
+vite:1
+eslint:0
+prettier:1
+tsx:0

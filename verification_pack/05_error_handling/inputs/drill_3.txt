@@ -1,2 +1,4 @@
-# drill 3 for 05_error_handling
-# input contract décrit dans README.md
+try:1
+catch:1
+try:2
+catch:2

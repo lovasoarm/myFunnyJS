@@ -1,2 +1,3 @@
-# drill 2 for 21_api_craft
-# input contract décrit dans README.md
+GET
+PUT
+DELETE

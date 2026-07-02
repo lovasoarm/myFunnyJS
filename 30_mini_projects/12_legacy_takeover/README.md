@@ -56,15 +56,15 @@ Ajoute `.github/workflows/ci.yml` :
 name: ci
 on: [push, pull_request]
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version-file: ".nvmrc" }
-      - run: npm ci
-      - run: npm test
-      - run: npm run lint --if-present
+ test:
+ runs-on: ubuntu-latest
+ steps:
+ - uses: actions/checkout@v4
+ - uses: actions/setup-node@v4
+ with: { node-version-file: ".nvmrc" }
+ - run: npm ci
+ - run: npm test
+ - run: npm run lint --if-present
 ```
 
 ### 5. Write-up avant PR
@@ -82,7 +82,7 @@ type : mesure `--prof`").
 ## Livrable
 
 - `ONBOARDING.md`, `REPRO.md`, `ADR/001-refonte-partielle.md`,
-  `WRITE_UP.md`, `BENCH.md`,
+ `WRITE_UP.md`, `BENCH.md`,
 - PR ouverte sur ton fork,
 - CI verte.
 

@@ -1,2 +1,3 @@
-# drill 3 for 04_debugging
-# input contract décrit dans README.md
+INFO x
+ERROR beta
+ERROR alpha

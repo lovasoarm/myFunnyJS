@@ -1,2 +1,3 @@
-# drill 2 for 13_design_patterns
-# input contract décrit dans README.md
+SUB alice
+SUB bob
+EMIT ping

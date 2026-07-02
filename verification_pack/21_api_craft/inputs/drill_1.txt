@@ -1,2 +1,3 @@
-# drill 1 for 21_api_craft
-# input contract décrit dans README.md
+GET /a 200
+POST /b 400
+GET /c 404

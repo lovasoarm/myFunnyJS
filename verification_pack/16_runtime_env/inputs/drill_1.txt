@@ -1,2 +1,3 @@
-# drill 1 for 16_runtime_env
-# input contract décrit dans README.md
+APP_PORT=3000
+HOME=/root
+APP_NAME=mf

@@ -1,2 +1,4 @@
-# drill 3 for 20_realtime
-# input contract décrit dans README.md
+0
+500
+900
+1500

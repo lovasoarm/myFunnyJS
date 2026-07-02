@@ -146,7 +146,7 @@ Tu peux maintenant générer des centaines de cartes avec la même fonction. Don
 
 ```javascript
 document.body.innerHTML = html; // remplace tout
-document.body.innerHTML += html; // ajoute —> mais recrée tout le DOM à chaque fois
+document.body.innerHTML += html; // ajoute -> mais recrée tout le DOM à chaque fois
 ```
 
 Dans les grosses apps, recréer le DOM à chaque update devient lent. C'est pour ça que les frameworks ont inventé le **Virtual DOM** : un système de comparaison intelligent qui ne met à jour que ce qui a changé.

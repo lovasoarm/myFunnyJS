@@ -165,7 +165,7 @@ Ensuite :
 5. Crée un objet `player = { hp: 100 }`
 6. Copie-le dans `clone`
 7. Modifie `clone.hp`
-8. Affiche `player` ET `clone` —> observe que les deux ont changé
+8. Affiche `player` ET `clone` -> observe que les deux ont changé
 
 ```javascript
 // Ton code ici

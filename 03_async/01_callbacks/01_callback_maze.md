@@ -178,7 +178,7 @@ function surJoueurRecu(err, joueur) {
 obtenirJoueur(id, surJoueurRecu)
 ```
 
-C'est mieux. Mais t'as maintenant des variables partagées entre les fonctions : `joueurEnMemoire` —> ce qui crée d'autres problèmes. C'est pour ça qu'on a inventé les Promises.
+C'est mieux. Mais t'as maintenant des variables partagées entre les fonctions : `joueurEnMemoire` -> ce qui crée d'autres problèmes. C'est pour ça qu'on a inventé les Promises.
 
 ---
 

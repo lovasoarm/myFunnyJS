@@ -1,2 +1,4 @@
-# drill 2 for 14_refactoring
-# input contract décrit dans README.md
+DEF a
+DEF b
+USED a
+DEF c

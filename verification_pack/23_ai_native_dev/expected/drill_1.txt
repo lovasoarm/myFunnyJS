@@ -1,2 +1,3 @@
-# expected output for drill 1
-# à définir par le mainteneur du module
+p2:9
+p4:9
+p3:8

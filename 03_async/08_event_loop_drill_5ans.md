@@ -68,3 +68,13 @@ run();
 - [ ] Tu peux nommer 3 differences avec le vrai event loop (I/O, timers, phases libuv).
 
 Ce module reutilise : les modeles mentaux de `03_async/00_why_async.md`.
+
+
+> ATTENTION - ou cette analogie casse :
+> les analogies mecaniquement sensibles (prototype, closure, event loop, reference vs copie)
+> creent de faux modeles si on les prend trop loin. Consulte ce court aide-memoire :
+>
+> - **prototype != clone** : `Object.create(p)` ne COPIE pas p, il LIE dessus. Modifier p impacte l'enfant.
+> - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
+> - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
+> - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.

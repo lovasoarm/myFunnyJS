@@ -1,2 +1,1 @@
-# expected output for drill 1
-# à définir par le mainteneur du module
+PASS=2 FAIL=1

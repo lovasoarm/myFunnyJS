@@ -94,8 +94,8 @@ Pour toute logique sensible (sécurité, planification, facturation), ne fais JA
 
 ```js
 // Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par l'shinobi
-function estHeureNocturne(maintenantUTC, fuseauUtilisateur) {
-  const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauUtilisateur });
+function estHeureNocturne(maintenantUTC, fuseauSpectateur) {
+  const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauSpectateur });
   return heureLocaleReelle.hour >= 22;
 }
 ```

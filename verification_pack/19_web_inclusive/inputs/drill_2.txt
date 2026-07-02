@@ -1,2 +1,3 @@
-# drill 2 for 19_web_inclusive
-# input contract décrit dans README.md
+role=button
+role=heading
+role=widget

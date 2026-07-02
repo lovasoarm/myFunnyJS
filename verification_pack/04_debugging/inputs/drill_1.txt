@@ -1,2 +1,4 @@
-# drill 1 for 04_debugging
-# input contract décrit dans README.md
+INFO ok
+DEBUG start
+ERROR boom
+INFO end

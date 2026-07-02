@@ -1,2 +1,5 @@
-# drill 2 for 20_realtime
-# input contract décrit dans README.md
+IN
+IN
+IN
+OUT
+IN
