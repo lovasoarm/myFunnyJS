@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # SÉRIALISATION : TRANSPORTER LES DONNÉES SANS LES PERDRE
+Temps de lecture ~9 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Walter White a un problème de communication.
 Il doit transmettre des instructions précises à ses distributeurs sans erreur de traduction.

@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # BROWSER RENDER PIPELINE : DE L'HTML BRUT AU PIXEL AFFICHÉ
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Tu envoies une requête. Le serveur répond avec de l'HTML.
 Ce que le navigateur fait entre les deux ? La plupart des devs ne le savent pas.
@@ -248,7 +253,7 @@ Objectif : < 2.5s.
 <!-- ne pas lazy-loader le LCP -->
 ```
 
-**INP (Interaction to Next Paint) :** délai entre l'action de l'utilisateur et la mise à jour visuelle.
+**INP (Interaction to Next Paint) :** délai entre l'action de l'shinobi et la mise à jour visuelle.
 Objectif : < 200ms.
 
 ```js

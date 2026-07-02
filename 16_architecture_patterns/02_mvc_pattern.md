@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # MVC : MODEL, VIEW, CONTROLLER
+Temps de lecture ~9 min
 
 Rick Grimes gère Alexandria. Il y a les ressources (Model), ce que les survivants voient sur le tableau d'affichage (View), et les décisions que Rick prend entre les deux (Controller). Si Rick commence à peindre le tableau lui-même ET à gérer les rations ET à décider qui mange quoi, c'est le chaos. MVC, c'est séparer ces trois rôles avant de s'y noyer.
 
@@ -11,7 +14,7 @@ Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer
 ## 1) LES TROIS RÔLES
 
 ```
-                    utilisateur clique
+                    shinobi clique
                           |
                           v
               +---------------------+
@@ -34,9 +37,9 @@ Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer
 
 **Model** : ce qui est vrai. Les données. Les règles de validation. Aucune connaissance de l'interface.
 
-**View** : ce que l'utilisateur voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
+**View** : ce que l'shinobi voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
 
-**Controller** : le médiateur (intermédiaire). Il reçoit les actions utilisateur, interroge ou modifie le Model, et dit à la View quoi afficher. Il ne connaît pas les détails du DOM (structure HTML de la page). Il ne connaît pas les détails du stockage.
+**Controller** : le médiateur (intermédiaire). Il reçoit les actions shinobi, interroge ou modifie le Model, et dit à la View quoi afficher. Il ne connaît pas les détails du DOM (structure HTML de la page). Il ne connaît pas les détails du stockage.
 
 ---
 
@@ -235,7 +238,7 @@ model.add("Daryl Dixon", "Scout");
 ## 3) FLUX D'UNE ACTION
 
 ```
-Utilisateur clique "Éliminer" sur Daryl
+Shinobi clique "Éliminer" sur Daryl
         |
         v
 View.bindRemoveSurvivor détecte le click

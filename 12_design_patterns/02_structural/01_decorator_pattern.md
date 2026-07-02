@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # DECORATOR : AJOUTER DU COMPORTEMENT SANS TOUCHER À LA SOURCE
+Temps de lecture ~9 min
 
 Tu as une fonction qui marche. Elle fait exactement ce qu'elle doit faire.
 Et là tu reçois un ticket : "ajoute du logging". Puis un autre : "ajoute du caching". Puis un autre : "ajoute de la validation".
@@ -287,13 +290,13 @@ Contrainte : les Decorators doivent être empilables dans n'importe quel ordre.
 
 ## EXO 2 : LE MIDDLEWARE DE RICK GRIMES
 
-Rick a besoin d'un système de commandes pour gérer le camp. Chaque commande (`scavenge`, `fortify`, `ration`) peut être décorée avec :
-- logging (qui a lancé la commande, quand)
+Rick a besoin d'un système de ordres_mission pour gérer le camp. Chaque ordre_mission (`scavenge`, `fortify`, `ration`) peut être décorée avec :
+- logging (qui a lancé la ordre_mission, quand)
 - validation (les ressources sont-elles suffisantes ?)
 - dry-run (simuler sans exécuter pour tester le plan)
 
 Crée un système de fonctions décorables.
-La commande `fortify(materials)` doit pouvoir être appelée comme `withDryRun(withLogging(withValidation(fortify)))`.
+La ordre_mission `fortify(materials)` doit pouvoir être appelée comme `withDryRun(withLogging(withValidation(fortify)))`.
 
 Contrainte : withDryRun ne doit jamais modifier l'état. Il doit juste logger ce qui *aurait* changé.
 

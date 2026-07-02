@@ -13,10 +13,12 @@ Le ratio de contraste se calcule entre 1:1 (aucun contraste, même couleur) et 2
 // Voici la version honnête, pas édulcorée, pour comprendre ce qui se passe dessous :
 
 function luminanceRelative(r, g, b) {
-  const composantes = [r, g, b].map(canal => {
+  const composantes = [r, g, b].map((canal) => {
     const ratio = canal / 255;
     // (chaque canal est "corrigé" selon une courbe non linéaire avant d'être pondéré)
-    return ratio <= 0.03928 ? ratio / 12.92 : Math.pow((ratio + 0.055) / 1.055, 2.4);
+    return ratio <= 0.03928
+      ? ratio / 12.92
+      : Math.pow((ratio + 0.055) / 1.055, 2.4);
   });
   const [r2, g2, b2] = composantes;
   return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b2; // (vert > rouge > bleu dans le poids final)
@@ -54,7 +56,7 @@ Walter White ne mélange jamais une formule "à peu près" : il calcule exacteme
 ```js
 // Piège classique : la couleur seule porte tout le sens
 function afficherStatutMission(statut) {
-  const couleur = statut === 'reussie' ? 'green' : 'red';
+  const couleur = statut === "reussie" ? "green" : "red";
   element.style.color = couleur; // (vert = ok, rouge = échec, mais pour un daltonique ?)
 }
 ```
@@ -64,9 +66,10 @@ Un daltonique rouge-vert (le type le plus fréquent) voit ces deux couleurs pres
 ```js
 // Correct : la couleur ACCOMPAGNE l'info, elle ne la PORTE pas seule
 function afficherStatutMission(statut) {
-  const config = statut === 'reussie'
-    ? { couleur: 'green', icone: '✓', texte: 'Réussie' }
-    : { couleur: 'red', icone: '✗', texte: 'Échouée' };
+  const config =
+    statut === "reussie"
+      ? { couleur: "green", icone: "[OK]", texte: "Réussie" }
+      : { couleur: "red", icone: "[NON]", texte: "Échouée" };
 
   element.style.color = config.couleur;
   element.textContent = `${config.icone} ${config.texte}`; // (icône + texte : redondance volontaire et nécessaire)
@@ -77,17 +80,17 @@ function afficherStatutMission(statut) {
 
 ```js
 // Ça casse : un formulaire qui signale l'erreur UNIQUEMENT en rouge
-champEmail.style.borderColor = 'red'; // (et rien d'autre, aucun texte, aucune icône)
+champEmail.style.borderColor = "red"; // (et rien d'autre, aucun texte, aucune icône)
 
-// Un utilisateur daltonique regarde le champ : bordure grise normale à ses yeux
+// Un shinobi daltonique regarde le champ : bordure grise normale à ses yeux
 // Il soumet le formulaire en boucle sans jamais comprendre ce qui ne va pas
 ```
 
 ```js
 // Ça marche : le rouge accompagne un signal explicite
-champEmail.style.borderColor = 'red';
-champEmail.setAttribute('aria-invalid', 'true'); // (signal pour le lecteur d'écran, voir leçon 02)
-document.querySelector('#email-erreur').textContent = 'Format d\'email invalide'; // (signal visuel textuel)
+champEmail.style.borderColor = "red";
+champEmail.setAttribute("aria-invalid", "true"); // (signal pour le lecteur d'écran, voir leçon 02)
+document.querySelector("#email-erreur").textContent = "Format d'email invalide"; // (signal visuel textuel)
 ```
 
 ## 5) OUTILS RÉELS POUR VÉRIFIER

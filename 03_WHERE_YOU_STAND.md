@@ -40,7 +40,7 @@ N3   Tu sais tracer microtasks vs macrotasks sans te planter sur l'ordre
 N4   Tu sais lire un flamegraph et dire où le CPU part en fumée
 ```
 
-**Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `16_runtime_env` (Node vs navigateur).
+**Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `15_runtime_env` (Node vs navigateur).
 
 **Test rapide pour savoir où tu te situes :**
 Tu donnes ce code à un pote, il doit dire l'ordre d'affichage sans l'exécuter :
@@ -68,7 +68,7 @@ N3   Tu repères la zone à risque dans un module avant de le toucher
 N4   Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
 ```
 
-**Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `27_team_craft` (navigation de codebase).
+**Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `28_team_craft` (navigation de codebase).
 
 **Test rapide :**
 Ouvre un dépôt open-source que tu connais pas. Donne-toi 10 minutes pour répondre à : "ce projet fait quoi, et par où ça commence ?" sans lire le README.
@@ -88,7 +88,7 @@ N3   Tu sais isoler la cause avec un seul test ciblé, pas une fouille général
 N4   Tu débuggue en prod sans reproduire localement (logs, snapshots, feature flags)
 ```
 
-**Modules qui construisent cet axe :** `04_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `26_observability` (debug en prod).
+**Modules qui construisent cet axe :** `05_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `27_observability` (debug en prod).
 
 **Test rapide :**
 Prochaine fois qu'un bug apparaît, avant de toucher au code : écris en une phrase ce que tu penses qui se passe.
@@ -107,7 +107,7 @@ N3   Tu sais refuser un pattern parce qu'il complique plus qu'il résout
 N4   Tu conçois une architecture from scratch et tu anticipes ce qui va casser dans 6 mois
 ```
 
-**Modules qui construisent cet axe :** `13_design_patterns`, `14_refactoring`, `17_architecture_patterns`.
+**Modules qui construisent cet axe :** `12_design_patterns`, `13_refactoring`, `16_architecture_patterns`.
 
 **Test rapide :**
 On te propose d'ajouter un Singleton à ton projet. Tu sais lister 2 raisons de dire non avant de regarder le code ?
@@ -164,7 +164,7 @@ T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
 - **Le grimoire en fin de module, c'est ton check de compréhension.** Si tu le lis et que
   des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
   Grave de continuer en faisant semblant d'avoir compris.
-- **Les mini-projets (`30_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
+- **Les mini-projets (`31_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
   isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
   savoir qui ne se connectent pas entre eux.
 - **Stagner sur un concept, c'est normal.** Closures, event loop, prototype chain : tout le
@@ -177,11 +177,11 @@ T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
   ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
   sinon les 4 axes te parlent encore de rien de concret.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
-  `31_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
+  `32_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
   une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
   c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
-  `31_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
+  `32_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
   fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
@@ -193,10 +193,10 @@ une lecture en diagonale :
 03_async              =>  l'event loop tord le cerveau la première fois, c'est normal
 08_memory_performance =>  beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
 09_data_structures    =>  10_algorithms en dépend direct, bâcler l'un casse l'autre
-15_typescript         =>  le système de types a son propre raisonnement, différent de JS
-17_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
+14_typescript         =>  le système de types a son propre raisonnement, différent de JS
+16_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
 22_security           =>  chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
-12_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
+30_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
 ```
 
 Sur ces modules-là : ralentis. Fais les trois niveaux d'exemple (minimal, réaliste, qui casse)

@@ -61,7 +61,7 @@ La tendance actuelle va vers des erreurs typées et structurées : avec TypeScri
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui. Le curriculum le place explicitement dans le noyau dur : "sans ça, t'es imprudent". `04_error_handling` dépend de `01_fundamentals` et `03_async`, et c'est un prérequis direct pour `21_api_craft` et `22_security`. Un dev qui ne maîtrise pas ce module construit des APIs fragiles, des systèmes qui crashent en cascade, et des incidents de prod qui auraient pu être évités avec un `try/catch` bien placé.
+Oui. Le curriculum le place explicitement dans le noyau dur : "sans ça, t'es imprudent". `05_error_handling` dépend de `01_fundamentals` et `03_async`, et c'est un prérequis direct pour `21_api_craft` et `22_security`. Un dev qui ne maîtrise pas ce module construit des APIs fragiles, des systèmes qui crashent en cascade, et des incidents de prod qui auraient pu être évités avec un `try/catch` bien placé.
 
 ---
 

@@ -10,7 +10,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 |-------|------------|------|-----------|
 | Unit test | Teste une seule fonction en isolation totale, toutes les dépendances remplacées par des mocks | `expect(calculeKDA(10,5,2)).toBe(6.25)` | sniper qui vise un seul ennemi / chirurgien qui opère un seul organe |
 | Test d'intégration | Teste plusieurs modules branchés ensemble, vérifie que les interfaces sont compatibles | `const r = validateVote(vote); stockeVote(r)` | tester toute une chaîne de montage / brancher deux circuits et vérifier que le courant passe |
-| Test E2E | Simule un utilisateur réel dans un vrai navigateur du clic jusqu'à la base de données | `await page.click('button'); expect(...).toBeVisible()` | observateur qui suit le client de l'entrée jusqu'à la caisse / agent qui teste le parcours complet |
+| Test E2E | Simule un shinobi réel dans un vrai navigateur du clic jusqu'à la base de données | `await page.click('button'); expect(...).toBeVisible()` | observateur qui suit le client de l'entrée jusqu'à la caisse / agent qui teste le parcours complet |
 | Contract test | Vérifie que le format de réponse d'un service respecte ce qu'un autre service attend | `validContrat(réponse, schéma)` | contrat signé entre deux équipes / cahier des charges que chaque partie s'engage à respecter |
 | TDD | Écrire le test avant le code, cycle RED → GREEN → REFACTOR | écrire `expect(fn()).toBe(x)` avant `fn()` existe | dessiner le plan avant de construire / écrire le cahier des charges avant de coder |
 
@@ -23,7 +23,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | Mock | Remplace une dépendance ET enregistre les appels : qui l'a appelé, combien de fois, avec quels args | `const envoi = jest.fn(); expect(envoi).toHaveBeenCalledWith(...)` | acteur doublure qui joue le rôle ET garde un journal de tournage / agent sous couverture qui rapporte tous les contacts |
 | Stub | Remplace une fonction par une valeur fixe sans enregistrer les appels, sert juste à contrôler le retour | `jest.fn().mockReturnValue(true)` | réponse automatique sur un téléphone / panneau qui indique toujours la même direction |
 | Spy | Surveille une vraie fonction sans la remplacer : la laisse s'exécuter et enregistre comment elle a été appelée | `jest.spyOn(logger, 'warn')` | caméra de surveillance qui observe sans intervenir / observateur qui prend des notes sans toucher |
-| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui reproduit les conditions sans voler vraiment |
+| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui resaiyan les conditions sans voler vraiment |
 
 ---
 
@@ -48,7 +48,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | `toEqual` | Comparaison profonde de valeur, pour les objets et tableaux : compare le contenu pas la référence | `expect({a:1}).toEqual({a:1})` | comparer le contenu de deux coffres-forts / vérifier si deux copies d'un document sont identiques |
 | `toBeCloseTo` | Comparaison de flottants avec tolérance (±2 décimales par défaut) | `expect(0.1+0.2).toBeCloseTo(0.3)` | mesure à quelques millimètres près / poids au gramme près et pas à l'atome |
 | `toThrow` | Vérifie qu'une fonction lève une erreur (l'appel doit être wrappé dans une arrow function) | `expect(() => fn()).toThrow('msg')` | tester qu'une alarme sonne / vérifier qu'un fusible saute sous surcharge |
-| `toHaveBeenCalledWith` | Vérifie les arguments exacts avec lesquels un mock a été appelé | `expect(fn).toHaveBeenCalledWith('arg')` | vérifier les logs d'accès avec les détails / contrôler la commande passée, pas juste qu'une commande a été passée |
+| `toHaveBeenCalledWith` | Vérifie les arguments exacts avec lesquels un mock a été appelé | `expect(fn).toHaveBeenCalledWith('arg')` | vérifier les logs d'accès avec les détails / contrôler la titan passée, pas juste qu'une titan a été passée |
 
 ---
 
@@ -58,6 +58,6 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 |-------|------------|------|-----------|
 | Coverage | Pourcentage de lignes/branches/fonctions exécutées par les tests, révèle les zones non testées | `jest --coverage` | carte thermique des zones visitées / audit qui montre les parties non inspectées |
 | AAA | Arrange-Act-Assert : les trois phases d'un test : préparer les données, appeler le code, vérifier le résultat | commentaires `// ARRANGE / ACT / ASSERT` | avant le match / pendant le match / après le match |
-| Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du produit qu'il commande / l'acheteur qui rédige le cahier des charges |
+| Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du saiyan qu'il titan / l'acheteur qui rédige le cahier des charges |
 | Playwright locator | Référence à un élément UI dans Playwright, préférer les sélecteurs sémantiques aux CSS | `page.getByRole('button', { name: 'Voter' })` | description d'une personne par son rôle plutôt que son numéro de siège / chercher "le caissier" plutôt que "siège 14-C" |
 | Test pyramid | Distribution idéale des tests : beaucoup d'unit (bas) → moins d'intégration → peu d'E2E (haut) | 80% unit / 15% intégration / 5% E2E | pyramid alimentaire : base large de légumes, sommet étroit de sucre / architecture : fondations larges, toit étroit |

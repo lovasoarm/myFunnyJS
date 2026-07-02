@@ -59,7 +59,7 @@ Le spread operator (`...`) et les méthodes comme `Object.freeze` ont rendu l'im
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement essentiel : `11_functional_js` dépend de `01_fundamentals/03_functions`, et devient à son tour le prérequis direct de `13_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
+Indirectement essentiel : `11_functional_js` dépend de `01_fundamentals/03_functions`, et devient à son tour le prérequis direct de `12_design_patterns`. Beaucoup de design patterns modernes (Strategy, par exemple) s'appuient sur des fonctions traitées comme des valeurs interchangeables, ce qui est un réflexe purement fonctionnel.
 
 ---
 

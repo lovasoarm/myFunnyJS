@@ -1,4 +1,15 @@
+[DÉCENNIE]
+
+> ️ **L'architecture a un seul but : rendre le changement moins coûteux.**
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ARCHITECTURE PATTERNS
+
+> Ce module reutilise : SOLID (30_oop_js), refactoring (13_refactoring).
+
+
+> **L'architecture n'est pas là pour être « belle ». Elle est là pour rendre le CHANGEMENT bon marché. Si ton archi rend le prochain changement coûteux, elle a échoué, peu importe combien elle est élégante.**
+
+Temps de lecture ~8 min
 
 Un projet de 5 fichiers tient debout peu importe comment tu l'organises. Un projet de 500 fichiers s'effondre à la première feature mal placée si l'architecture n'a pas été pensée. La différence entre les deux n'est pas la quantité de code : c'est la structure qui détermine si ajouter une feature coûte 1 jour ou 3 semaines.
 
@@ -47,7 +58,7 @@ projet qui grossit et devient difficile à découper      --> microservices     
 code global qui fuit partout sans encapsulation         --> module pattern     --> frontières claires et explicites
 ```
 
-L'architecture n'est jamais visible pour l'utilisateur final : il ne voit jamais "ah, ce système utilise du Clean Architecture". Mais il ressent directement les conséquences : un système bien architecturé évolue vite et reste stable, un système mal architecturé devient lent à faire évoluer et de plus en plus fragile.
+L'architecture n'est jamais visible pour l'shinobi final : il ne voit jamais "ah, ce système utilise du Clean Architecture". Mais il ressent directement les conséquences : un système bien architecturé évolue vite et reste stable, un système mal architecturé devient lent à faire évoluer et de plus en plus fragile.
 
 ---
 
@@ -82,3 +93,13 @@ Les frameworks et les modes architecturales vont continuer à osciller (monolith
 L'architecture est la décision qui détermine le coût de toutes les décisions suivantes, et un mauvais choix se paie cher à l'échelle. Ça casse de trois façons sans cette compréhension : code entremêlé impossible à tester, équipe qui se marche dessus, complexité distribuée choisie sans besoin réel. Les modes vont et viennent, mais les principes structurels restent.
 
 Maintenant, ouvre `01_module_pattern.md`. Et commence à voir ton code comme un système, pas comme un tas de fichiers.
+
+> ENCADRÉ : NIVEAU : Ici, l'organisation au niveau d'un système entier (MVC, clean architecture, microservices).
+
+> Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
+
+> Ce module réutilise : la composition du module 12 (`30_oop_js`), le refactoring du module 14 (`13_refactoring`).
+
+## AILLEURS QUE JS
+
+En Python (Django), le MVC devient MVT ; les couches et le découpage par domaine sont identiques. En Java (Spring), l'injection de dépendances est industrialisée. En Go, on préfère des packages découplés à des hiérarchies profondes. Les patterns d'architecture (couplage faible, cohésion forte, frontières de contexte) sont indépendants du langage : c'est de l'organisation, pas de la syntaxe.

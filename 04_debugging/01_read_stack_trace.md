@@ -1,7 +1,4 @@
-[INTEMPOREL]
-
 # LIRE UNE STACK TRACE : LA CARTE QUI TE DIT OÙ LE CODE A EXPLOSÉ
-Temps de lecture ~8 min
 
 Tu vois du rouge dans ta console. Dix lignes. Peut-être vingt.
 Premier réflexe de 90% des devs : copier-coller sur Google sans lire.
@@ -89,7 +86,7 @@ et on a tenté de lire `cible.defense`.
        nom de fonction  fichier  ligne colonne
 ```
 
-C'est là que le crash s'est jutsu : fichier `combat.js`, ligne 2, colonne 39.
+C'est là que le crash s'est saiyan : fichier `combat.js`, ligne 2, colonne 39.
 
 ```
     at lancerJutsu    (combat.js:7:10)
@@ -163,7 +160,7 @@ Première différence : la trace est plus courte. Le contexte async est partiell
 Node affiche souvent `process.processTicksAndRejections` : c'est un interne, ignore.
 
 Deuxième différence : `trouverChevalier` n'apparaît pas dans la trace.
-Pourquoi : l'erreur s'est produite dans `envoyerAlerte`, après que `trouverChevalier`
+Pourquoi : l'erreur s'est saiyane dans `envoyerAlerte`, après que `trouverChevalier`
 avait déjà résolu sa Promise et libéré sa frame de la stack.
 
 Option utile en Node : `node --async-stack-traces patrouille.js`
@@ -214,7 +211,7 @@ TypeError: ninja.jutsus is not a function
 
 Sans voir le code : réponds à ces questions.
 - Quel est le type d'erreur ? Qu'est-ce que ça signifie ?
-- Dans quel fichier et à quelle ligne le crash s'est-il jutsu ?
+- Dans quel fichier et à quelle ligne le crash s'est-il saiyan ?
 - Quelle propriété ou méthode est en cause ?
 - Donne une hypothèse concrète sur la cause.
 - Quelle ligne du fichier appelant vaut la peine d'être inspectée en deuxième ?
@@ -245,11 +242,3 @@ La première ligne donne le type d'erreur et le message exact : c'est ton diagno
 Les premières lignes `at ...` pointent ton code : fais-leur confiance.
 Tout ce qui commence par `node:internal` ou `node_modules` : ignore.
 En async, la trace est parfois incomplète : `node --async-stack-traces` aide en dev.
-
-## LIVRABLE OBLIGATOIRE : HYPOTHESES.md
-
-En plus du fix, livre un fichier `HYPOTHESES.md` : les hypothèses envisagées, celles écartées (et POURQUOI), celle retenue et sa preuve de reproduction. Un fix sans HYPOTHESES.md est refusé : on corrige avec une méthode, pas au hasard. (Format inspiré de `28_edge_cases/02_race_condition_hunter.md`.)
-
----
-
-> Pour tout exercice de debugging : utilise le template [`_TEMPLATE_HYPOTHESES.md`](./_TEMPLATE_HYPOTHESES.md). Pas de correction sans hypothèse écrite.

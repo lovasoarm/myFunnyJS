@@ -1,6 +1,9 @@
-# STREAMS ET BUFFERS : LIRE SANS AVALER
+[INTEMPOREL]
 
-Charger un fichier de 2GB en mémoire pour le lire ligne par ligne : c'est comme avaler tout un repas d'un coup pour savoir si ça a bon goût. Résultat : t'exploites toute la RAM, le processus crash, et l'utilisateur attend.
+# STREAMS ET BUFFERS : LIRE SANS AVALER
+Temps de lecture ~8 min
+
+Charger un fichier de 2GB en mémoire pour le lire ligne par ligne : c'est comme avaler tout un repas d'un coup pour savoir si ça a bon goût. Résultat : t'exploites toute la RAM, le processus crash, et l'shinobi attend.
 
 Les streams règlent ça. Tu lis par morceaux, tu traites pendant que ça arrive, et tu n'accumules jamais ce que tu n'as pas besoin de garder. C'est le modèle derrière nginx, les téléchargements, les pipelines de données, les logs en prod.
 

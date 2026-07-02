@@ -2,7 +2,7 @@
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SECURITY
 
-> Ce module reutilise : erreurs (05_error_handling), edge cases (28_edge_cases).
+> Ce module reutilise : erreurs (05_error_handling), edge cases (29_edge_cases).
 Temps de lecture ~8 min
 
 [PERISSABLE] PÉRISSABLE : vérifié 2026-07
@@ -63,7 +63,7 @@ Le hachage des mots de passe a aussi mûri : des algorithmes plus anciens et plu
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis direct et explicite : `22_security`, prérequis `21_api_craft` + `18_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
+Prérequis direct et explicite : `22_security`, prérequis `21_api_craft` + `17_web_concepts`. Impossible de sécuriser une API sans déjà savoir la construire correctement et comprendre les mécanismes du web sous-jacents (CORS, headers, authentification). C'est aussi un module central du mini-projet `05_prison_break_api`, où la sécurité n'est pas un bonus mais une condition de survie du système face à des tentatives d'intrusion simulées.
 
 ---
 

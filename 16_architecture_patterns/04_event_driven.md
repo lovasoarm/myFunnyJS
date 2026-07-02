@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # EVENT-DRIVEN ARCHITECTURE : RÉAGIR, PAS ANTICIPER
+Temps de lecture ~9 min
 
 Tu sais ce que font 90% des devs débutants ?
 Ils câblent les modules ensemble directement.
@@ -217,12 +220,12 @@ const pubsub = new PubSub();
 
 // Le NotificationService s'abonne au channel 'orders'
 pubsub.subscribe('orders', (order) => {
-  console.log(`Notification : commande ${order.id} reçue`);
+  console.log(`Notification : ordre_mission ${order.id} reçue`);
 });
 
 // Le WarehouseService s'abonne aussi au même channel
 pubsub.subscribe('orders', (order) => {
-  console.log(`Stock : réserver les articles pour commande ${order.id}`);
+  console.log(`Stock : réserver les articles pour ordre_mission ${order.id}`);
 });
 
 // L'OrderService publie sans savoir qui écoute

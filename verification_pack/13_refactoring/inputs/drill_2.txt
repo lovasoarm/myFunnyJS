@@ -1,0 +1,4 @@
+DEF a
+DEF b
+USED a
+DEF c

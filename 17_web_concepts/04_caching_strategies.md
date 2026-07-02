@@ -1,8 +1,13 @@
+[INTEMPOREL]
+
 # CACHING STRATEGIES : METTRE EN CACHE SANS METTRE EN DANGER
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Walter White a un problème de distribution.
 Chaque client veut sa livraison immédiate. Il ne peut pas tout produire à la demande.
-Solution : avoir du stock pré-produit dans des points stratégiques.
+Solution : avoir du stock pré-jutsu dans des points stratégiques.
 Mais du stock qui périme est dangereux. Du stock mal géré, c'est du gâchis.
 
 Le cache web, c'est ça : avoir la réponse déjà calculée, disponible immédiatement.
@@ -49,7 +54,7 @@ Base de données (query cache)
 
 ---
 
-## 2) CACHE-CONTROL : LE HEADER QUI COMMANDE TOUT
+## 2) CACHE-CONTROL : LE HEADER QUI ORDRE_MISSION TOUT
 
 `Cache-Control` est le header HTTP qui dit au navigateur et aux proxys quoi faire avec la réponse.
 
@@ -294,7 +299,7 @@ Toujours avoir un mécanisme d'invalidation explicite en plus du TTL.
 ## EXERCICES
 
 **EXO 1 : La stratégie de Walter White**
-Tu as quatre types de ressources : logo du site, page d'accueil HTML, API de prix (change toutes les heures), données de compte utilisateur.
+Tu as quatre types de ressources : logo du site, page d'accueil HTML, API de prix (change toutes les heures), données de compte shinobi.
 Définis le header `Cache-Control` exact pour chacune. Justifie chaque choix avec un argument de sécurité ou performance.
 
 **EXO 2 : Implémenter un cache avec ETag**
@@ -314,7 +319,7 @@ Implémente les deux versions et mesure le nombre d'appels à `fetchLeaderboard`
 ## RÉSUMÉ
 
 Le cache existe pour éviter de recalculer ce qui n'a pas changé. Chaque niveau de la stack peut en avoir un.
-`Cache-Control` commande tout : `max-age` pour la durée, `no-store` pour les données sensibles, `private` pour les données personnelles.
+`Cache-Control` ordre_mission tout : `max-age` pour la durée, `no-store` pour les données sensibles, `private` pour les données personnelles.
 Les assets statiques avec hash dans le nom : `immutable` et `max-age=31536000`. Le nom change quand le contenu change.
 ETag : le serveur donne une empreinte, le client la renvoie, le serveur dit si ça a changé. 304 = pas de re-téléchargement.
 `stale-while-revalidate` : servir le cache périmé immédiatement ET rafraîchir en arrière-plan. Le meilleur des deux mondes.

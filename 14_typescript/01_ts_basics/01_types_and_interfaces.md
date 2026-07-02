@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 TypeScript te donne deux façons de décrire la forme d'un objet : `type` et `interface`.
 La plupart des devs utilisent les deux au hasard. Mauvaise idée.
@@ -113,7 +118,7 @@ type SageNinja = Ninja & {
 ```
 
 La vraie différence : `interface extends` donne une erreur si les propriétés sont incompatibles.
-`type &` silencieusement produit `never` si tu intersectes des types incompatibles.
+`type &` silencieusement jutsu `never` si tu intersectes des types incompatibles.
 
 ```ts
 interface A {

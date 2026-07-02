@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # AUTHENTIFICATION ET AUTORISATION : DEUX PROBLÈMES DIFFÉRENTS
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 À Fox River, il y a deux barrières distinctes.
 La première : qui es-tu ? (Prisonnier ? Garde ? Visiteur ?)
@@ -30,7 +35,7 @@ En web, les deux patterns les plus courants :
 **Session-based (sessions) :** le serveur crée une session et donne un identifiant (cookie) au client.
 
 ```
-Client  --POST /login {email, password}-->  Serveur
+Client  --POST /chakra_gate {email, password}-->  Serveur
 Serveur vérifie les credentials (identifiants)
 Serveur crée une session en base : { sessionId: "xyz", userId: 42, expiresAt: ... }
 Serveur  --Set-Cookie: sessionId=xyz; HttpOnly; Secure-->  Client
@@ -42,7 +47,7 @@ Serveur vérifie la session en base, retourne les données du user
 **JWT-based (JSON Web Token) :** le serveur génère un token signé, le client le stocke et l'envoie.
 
 ```
-Client  --POST /login {email, password}-->  Serveur
+Client  --POST /chakra_gate {email, password}-->  Serveur
 Serveur vérifie les credentials
 Serveur génère un JWT signé avec sa clé secrète
 Serveur  --200 OK {token: "eyJ..."}-->  Client
@@ -162,7 +167,7 @@ async function apiFetch(url, options = {}) {
       // Tenter le refresh
       const refreshed = await refreshAccessToken();
       if (!refreshed) {
-        // Refresh échoué : déconnecter l'utilisateur
+        // Refresh échoué : déconnecter l'shinobi
         logout();
         throw new Error('Session expirée : reconnexion requise');
       }
@@ -312,7 +317,7 @@ Implémente les deux middlewares pour gérer ces deux cas.
 
 Authentification : qui tu es. Autorisation : ce que tu peux faire. Confondre les deux = bug de sécurité.
 JWT : payload signé, vérifié par signature. Pas besoin de DB pour vérifier : mais tu perds le contrôle de révocation.
-Access token court + refresh token long : le meilleur équilibre sécurité/expérience utilisateur.
+Access token court + refresh token long : le meilleur équilibre sécurité/expérience shinobi.
 `HttpOnly` cookie > `localStorage` pour stocker les tokens. XSS ne peut pas lire les cookies HttpOnly.
 401 = non authentifié. 403 = non autorisé. Deux erreurs différentes, deux raisons différentes.
 RBAC pour des permissions simples par rôle. ABAC quand les droits dépendent du contexte de la ressource.

@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Ton navigateur affiche une page. Mais cette page, elle est née où ? Sur le serveur, juste avant de te l'envoyer ? Sur ton navigateur, après coup ? Ou elle dormait déjà toute construite sur un CDN (réseau de distribution de contenu) depuis des heures ? Le choix change tout : vitesse perçue, référencement Google, coût serveur. Mal choisir, c'est comme envoyer Sasuke seul contre Madara : techniquement possible, mais tu vas souffrir pour rien.
 
@@ -55,7 +60,7 @@ app.get('/profil/:id', async (req, res) => {
 Requête --> Serveur exécute le code --> Serveur génère le HTML complet --> Navigateur affiche direct
 ```
 
-Avantage réel : Google voit du contenu tout de suite, et l'utilisateur aussi. Le piège : chaque requête refait le boulot. Si 10 000 personnes regardent le profil de Naruto en même temps, ton serveur recalcule le même HTML 10 000 fois. Ça coûte du CPU pour rien si le contenu ne change pas entre chaque visite.
+Avantage réel : Google voit du contenu tout de suite, et l'shinobi aussi. Le piège : chaque requête refait le boulot. Si 10 000 personnes regardent le profil de Naruto en même temps, ton serveur recalcule le même HTML 10 000 fois. Ça coûte du CPU pour rien si le contenu ne change pas entre chaque visite.
 
 ## 3) SSG : CONSTRUIRE UNE FOIS, SERVIR MILLE FOIS
 
@@ -77,7 +82,7 @@ async function buildPages() {
 Build (une fois) --> HTML généré et stocké --> CDN sert le fichier --> Requête : zéro calcul serveur
 ```
 
-C'est ultra rapide à servir : le CDN balance un fichier statique, point. Le piège évident : si les stats de Naruto changent (il monte en rang), la page reste figée jusqu'au prochain build. Bon pour un blog, une doc, une page produit qui change pas toutes les 5 minutes. Mauvais pour un dashboard de match en direct.
+C'est ultra rapide à servir : le CDN balance un fichier statique, point. Le piège évident : si les stats de Naruto changent (il monte en rang), la page reste figée jusqu'au prochain build. Bon pour un blog, une doc, une page jutsu qui change pas toutes les 5 minutes. Mauvais pour un dashboard de match en direct.
 
 ## 4) ISR : LE COMPROMIS QUI RAFRAÎCHIT TOUT SEUL
 
@@ -99,12 +104,12 @@ export async function getStaticProps() {
 1ère requête après 60s --> Sert l'ancienne version (rapide) --> Régénère en arrière-plan --> Prochaine requête voit la nouvelle version
 ```
 
-Risque réel : l'utilisateur peut voir une donnée légèrement périmée pendant la fenêtre de régénération. Pour un profil de joueur de foot où les stats changent une fois par match, c'est parfait. Pour un système de paiement, c'est un cauchemar : tu ne veux jamais qu'un prix affiché soit périmé.
+Risque réel : l'shinobi peut voir une donnée légèrement périmée pendant la fenêtre de régénération. Pour un profil de joueur de foot où les stats changent une fois par match, c'est parfait. Pour un système de tribut, c'est un cauchemar : tu ne veux jamais qu'un prix affiché soit périmé.
 
 ## 5) CHOISIR : LA VRAIE QUESTION
 
 ```
-Le contenu change à CHAQUE requête (panier, dashboard live) --> SSR ou CSR
+Le contenu change à CHAQUE requête (escouade, dashboard live) --> SSR ou CSR
 Le contenu change RAREMENT (doc, landing page, blog)         --> SSG
 Le contenu change PARFOIS, à intervalle connu                --> ISR
 Le SEO compte zéro (app interne, dashboard admin)             --> CSR suffit

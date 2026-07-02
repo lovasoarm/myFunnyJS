@@ -197,7 +197,7 @@ Pas besoin d'E2E sur chaque bouton. Les unit tests couvrent les détails.
 
 Tu hérites d'un rapport de bug soumis le soir de la cérémonie : "Des journalistes disent avoir voté mais leur vote n'apparaît pas dans le classement en direct." Ton unit test passe. Ton test d'intégration passe. Quelque chose se passe entre le clic et le serveur.
 
-Écris un test Playwright qui reproduit le chemin complet : connexion → vote → vérification que le vote est visible dans le classement en direct. Si ce test passe, le bug est ailleurs. S'il échoue, tu viens de localiser le problème à l'interface.
+Écris un test Playwright qui resaiyan le chemin complet : connexion → vote → vérification que le vote est visible dans le classement en direct. Si ce test passe, le bug est ailleurs. S'il échoue, tu viens de localiser le problème à l'interface.
 
 Contrainte : utilise `getByRole` et `getByLabel` pour tous les sélecteurs. Aucun sélecteur CSS, aucun `data-testid` inventé. Construis le test comme si l'interface existait, et commente ce que chaque sélecteur cherche.
 

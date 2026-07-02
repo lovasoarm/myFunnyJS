@@ -52,7 +52,7 @@ verify_count=$(find . -type f -name 'verify.sh' 2>/dev/null | wc -l | tr -d ' ')
 check "Verify_pack utilisés 5+"     "[ $verify_count -ge 5 ]"
 
 # 8. Distributed arena (mini-projet 16)
-check "Mini-projet 16 fait"         "[ -f 30_mini_projects/16_distributed_arena/verify.js ] || [ -f 16_distributed_arena/verify.js ]"
+check "Mini-projet 16 fait"         "[ -f 31_mini_projects/16_distributed_arena/verify.js ] || [ -f 16_distributed_arena/verify.js ]"
 
 # 9. Solo vs Copilot drill journal
 drill_count=$(find . -type f -name 'DRILL*.md' -o -name 'solo_vs_copilot*.md' 2>/dev/null | wc -l | tr -d ' ')

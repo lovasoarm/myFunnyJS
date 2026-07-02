@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CODE SMELLS
+Temps de lecture ~8 min
 Un code smell, c'est pas un bug. Ça compile, ça tourne, les tests passent (s'il y en a).
 Mais ça pue. Et ce qui pue aujourd'hui devient l'incendie de demain.
 Avantage : repérer un smell tôt = refacto en 10 minutes. Inconvénient : ignoré 6 mois = refacto de 3 jours, en sueur, sans filet.

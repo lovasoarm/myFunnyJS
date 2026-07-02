@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # STATE ET DATAFLOW : QUI POSSÈDE L'ÉTAT, QUI LE LIT, QUI LE MODIFIE
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Le camp de Rick Grimes a un problème.
 Daryl pense qu'il reste 3 jours de vivres. Carol pense qu'il en reste 7. Michonne a pas été informée.
@@ -120,7 +125,7 @@ store.actions.consumeFood(1);
 Le pattern le plus robuste : les données ne circulent que dans une direction.
 
 ```
-Action utilisateur
+Action shinobi
        |
        v
     [Action]
@@ -132,7 +137,7 @@ Action utilisateur
     [Vue]    (re-rendu basé sur le nouvel état)
        |
        v
-Action utilisateur (recommence)
+Action shinobi (recommence)
 ```
 
 Jamais dans l'autre sens. La Vue n'écrit jamais directement dans le Store.

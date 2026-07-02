@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # MICROSERVICES : DÉCOUPER OU SOUFFRIR : MAIS PAS N'IMPORTE COMMENT
+Temps de lecture ~9 min
 
 La prison de Fox River était une architecture monolithique.
 Tout était dans le même bâtiment : les cellules, la cuisine, l'administration, le couloir de la mort.
@@ -54,7 +57,7 @@ Raison                        Explication
 -----------------------------  --------------------------------------------------
 Scale indépendant              Le PaymentService a 10x plus de charge que le UserService
 Deploy indépendant             L'équipe Payment déploie sans attendre l'équipe User
-Isolation des pannes           Le NotificationService plante, les paiements continuent
+Isolation des pannes           Le NotificationService plante, les tributs continuent
 Technologie différente         PaymentService en Go (perf), OrderService en Node, ML en Python
 Équipes autonomes              Chaque équipe possède son service, pas de bottleneck inter-équipe
 ```
@@ -138,7 +141,7 @@ queue.publish('order.created', { orderId: 'ORD-007', userId: 'U-001', total: 299
 // NotificationService consomme indépendamment (peut être décalé dans le temps)
 const order = queue.consume('order.created');
 if (order) {
-  console.log(`Notification : commande ${order.orderId} créée`);
+  console.log(`Notification : ordre_mission ${order.orderId} créée`);
 }
 ```
 
@@ -222,7 +225,7 @@ Microservices c'est pareil :
 ```
 NE PAS FAIRE DE MICROSERVICES SI :
 - ton équipe fait moins de 5 devs
-- tu n'as pas encore de produit en prod
+- tu n'as pas encore de jutsu en prod
 - ton monolithe n'a pas de vrais problèmes de scale
 - tu n'as pas d'équipes autonomes par domaine
 - tu ne maîtrises pas le monitoring distribué

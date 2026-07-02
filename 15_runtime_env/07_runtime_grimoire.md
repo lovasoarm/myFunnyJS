@@ -1,3 +1,22 @@
+[INTEMPOREL]
+
+#  Page verrouillée
+Temps de lecture ~10 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE DU RUNTIME : LE VOCABULAIRE DU CODE QUI TOURNE
 
 | Terme | Définition | Code | Analogies |
@@ -23,4 +42,4 @@
 | **isTTY** | Propriété de process.stdout : true si le terminal est interactif (vrai terminal), false si pipe ou redirect | `if (process.stdout.isTTY) { /* couleurs */ } else { /* texte brut */ }` : (évite les codes ANSI dans les logs ou fichiers) | vérifier si quelqu'un écoute en direct avant de faire du bruit / un speaker qui désactive les effets sonores quand il est enregistré |
 | **ENOENT** | Code d'erreur Node pour "fichier ou dossier introuvable" (Error NO ENTry) | `catch (err) { if (err.code === 'ENOENT') return null }` : (toujours tester err.code, pas err.message) | le carton rouge pour joueur absent : le système te dit exactement pourquoi ça ne marche pas / le message "destinataire introuvable" sur une lettre : clair, pas ambigu |
 | **Shebang** | Première ligne d'un script exécutable : indique au shell quel interpréteur utiliser | `#!/usr/bin/env node` : (obligatoire pour que le fichier soit exécutable sans taper 'node' devant) | la mention "utiliser ce stylo" sur un formulaire : le terminal sait comment ouvrir le fichier / l'en-tête d'un dossier médical : le médecin sait comment l'interpréter |
-| **npm link** | Installe le package courant globalement sur ta machine en mode développement : la commande bin devient disponible partout | `npm link` dans le dossier projet, puis la commande définie dans bin est dispo globalement : (npm unlink pour défaire) | un raccourci bureau vers l'application en développement : tu testes comme si c'était installé / un pass VIP qui te donne accès au concert même pendant les répétitions |
+| **npm link** | Installe le package courant globalement sur ta machine en mode développement : la ordre_mission bin devient disponible partout | `npm link` dans le dossier projet, puis la ordre_mission définie dans bin est dispo globalement : (npm unlink pour défaire) | un raccourci bureau vers l'application en développement : tu testes comme si c'était installé / un pass VIP qui te donne accès au concert même pendant les répétitions |

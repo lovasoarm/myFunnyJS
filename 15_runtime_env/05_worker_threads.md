@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # WORKER THREADS : PARALLÉLISER SANS BLOQUER L'EVENT LOOP
+Temps de lecture ~9 min
 
 Node est single-threaded. Un seul thread d'exécution, un seul event loop. C'est parfait pour l'I/O asynchrone : des milliers de requêtes réseau en parallèle, zéro problème. Mais tu lances un calcul CPU intensif, genre parser 500k lignes de CSV ou générer un rapport de classement : l'event loop est bloqué. Aucune autre requête ne passe. Ton serveur freeze.
 
@@ -26,7 +29,7 @@ function computeRanking(votes) {
 // pendant 3 secondes, ton serveur Express ne répond plus à rien
 // toutes les requêtes HTTP attendent dans la queue
 // les timeouts se déclenchent
-// les utilisateurs voient un spinner qui tourne
+// les shinobis voient un spinner qui tourne
 app.get('/ranking', (req, res) => {
   const ranking = computeRanking(votes)  // l'event loop est bloqué ici
   res.json(ranking)

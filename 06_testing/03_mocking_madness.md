@@ -210,18 +210,18 @@ Piège 3 : ne pas vérifier les arguments
 La fonction distribue le prix au vainqueur du Ballon d'Or :
 
 ```js
-const paiementService = require('./paiementService')
+const tributService = require('./tributService')
 
 function distribuerPrixBallon(joueur) {
   if (joueur.rang === 1) {
-    paiementService.virer({ montant: 500000, destinataire: joueur.id })
+    tributService.virer({ montant: 500000, destinataire: joueur.id })
     return 'prix versé'
   }
   return 'pas de prix'
 }
 ```
 
-Écris les tests avec mock de `paiementService` pour :
+Écris les tests avec mock de `tributService` pour :
 - le vainqueur (rang 1) : vérifier que `virer` a été appelé avec les bons args
 - un autre joueur (rang 2) : vérifier que `virer` n'a PAS été appelé
 

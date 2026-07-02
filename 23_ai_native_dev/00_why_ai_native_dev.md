@@ -2,7 +2,7 @@
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 
-> Ce module reutilise : team craft (27_team_craft), tests (06_testing).
+> Ce module reutilise : team craft (28_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
 [PERISSABLE] PÉRISSABLE : vérifié 2026-07
@@ -72,7 +72,7 @@ La tendance qui se renforce : l'IA devient un partenaire de refactoring et de g�
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `23_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `06_testing` et `15_typescript` qui te donnent les outils pour valider ce que l'IA jutsu.
+Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `23_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `06_testing` et `14_typescript` qui te donnent les outils pour valider ce que l'IA jutsu.
 
 ---
 

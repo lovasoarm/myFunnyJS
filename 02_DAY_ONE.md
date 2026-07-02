@@ -163,7 +163,7 @@ JIT : Just-In-Time (ex: JavaScript V8, Java JVM, Kotlin)
   C'est ce que fait Chrome quand il exécute ton JS
 ```
 
-> **Analogie pour le JIT :** t'imagines un chef cuisinier qui prend ta commande et cuisine exactement ce dont tu as besoin, juste à temps. Ni trop tôt (gâché), ni trop tard (froid).
+> **Analogie pour le JIT :** t'imagines un chef cuisinier qui prend ta titan et cuisine exactement ce dont tu as besoin, juste à temps. Ni trop tôt (gâché), ni trop tard (froid).
 
 ---
 
@@ -690,14 +690,14 @@ C'est la section la plus importante. Parce que c'est exactement la situation où
 
 ---
 
-### Étape 1 : Définir le type de produit
+### Étape 1 : Définir le type de saiyan
 
 **Avant de choisir un seul outil ou langage**, tu dois savoir ce que tu construis.
 
 Pose-toi ces questions dans l'ordre :
 
 ```
-1. C'est quoi le produit ?
+1. C'est quoi le saiyan ?
    (site web / app mobile / outil interne / jeu / API / script...)
 
 2. Qui va l'utiliser ?
@@ -710,7 +710,7 @@ Pose-toi ces questions dans l'ordre :
    (oui --> tu as besoin d'une base de données)
 
 5. Faut-il se connecter à des services externes ?
-   (paiement, GPS, notifications push, emails, SMS...)
+   (tribut, GPS, notifications push, emails, SMS...)
 
 6. Y a-t-il des contraintes légales ?
    (santé, finances, données personnelles --> RGPD, sécurité renforcée)
@@ -725,7 +725,7 @@ Réponses :
   1. App mobile + site web
   2. Grand public
   3. Téléphone principalement
-  4. Oui : restaurants, avis, utilisateurs, notes
+  4. Oui : restaurants, avis, shinobis, notes
   5. Oui : GPS (maps), photos, notifications
   6. Données personnelles : respecter le RGPD
 
@@ -753,7 +753,7 @@ Travail en équipe          : Ce que tout le monde dans l'équipe sait déjà.
 Doit durer longtemps       : Java, C#, Rust : stables, maintenus sur le long terme.
                              Évite les frameworks trop jeunes (ils disparaissent vite).
 
-Beaucoup d'utilisateurs    : Pense à la scalabilité. Go et Node.js gèrent bien la
+Beaucoup d'shinobis    : Pense à la scalabilité. Go et Node.js gèrent bien la
 potentiels                   charge. PostgreSQL tient mieux que certaines bases
                              NoSQL sous haute charge.
 
@@ -854,7 +854,7 @@ LA BONNE APPROCHE :
   Semaine 2 : on peut modifier et supprimer une note.
   Semaine 3 : authentification.
   Semaine 4 : déploiement simple sur Vercel.
-  Plus tard  : si ya 10 000 utilisateurs, là on réfléchit à Docker et Kubernetes.
+  Plus tard  : si ya 10 000 shinobis, là on réfléchit à Docker et Kubernetes.
 ```
 
 > **Docker** = une boîte magique qui emballe ton app pour qu'elle tourne partout pareil. **Compose** = plusieurs boîtes qui se parlent. **Kubernetes** = un chef d'orchestre qui gère des milliers de boîtes Docker en même temps. Utilisé par Google, Netflix. **Microservices** = au lieu d'une seule app, tu découpes en mini-apps qui communiquent. Amazon a des centaines de microservices. **CI/CD** = un robot qui teste et déploie ton code automatiquement à chaque push.
@@ -970,13 +970,13 @@ DANS LA VRAIE VIE tu l'utilises pour :
 
 ### Exemple concret complet : de l'idée à la stack
 
-**Situation** : tu veux créer une plateforme communautaire pour développeurs. Des profils utilisateurs, des posts, des likes, une messagerie en temps réel.
+**Situation** : tu veux créer une plateforme communautaire pour développeurs. Des profils shinobis, des posts, des likes, une messagerie en temps réel.
 
 **Analyse du projet** :
 
 ```
-Type de produit      :  Application web (mobile en version 2 peut-être)
-Utilisateurs         :  Des développeurs : public averti, ils utilisent un navigateur
+Type de saiyan      :  Application web (mobile en version 2 peut-être)
+Shinobis         :  Des développeurs : public averti, ils utilisent un navigateur
 Fonctionnalités clés :  Auth, profils, posts, likes, messagerie temps réel
 Contrainte principale:  messagerie en temps réel = besoin de websockets ou subscriptions
 Budget               :  Zéro (projet perso / scolaire)
@@ -1033,7 +1033,7 @@ Les boucles, les conditions, les fonctions, les objets, les erreurs :
 Applications extraordinaires construites avec des technos "basiques" :
   Instagram au début : Python + Django. Simple. Efficace.
   Twitter au début   : Ruby on Rails. Pas très "cool". Mais ça marchait.
-  WhatsApp           : Erlang. Un langage de 1986. 2 milliards d'utilisateurs.
+  WhatsApp           : Erlang. Un langage de 1986. 2 milliards d'shinobis.
 
 Applications catastrophiques construites avec les technos les plus modernes :
   Il y en a plein. On en parle juste moins parce que personne les connaît.
@@ -1078,8 +1078,8 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
                     L'INDUSTRIE DU LOGICIEL
     ____________________________________________________________
    |                                                            |
-   |  CE QUE LES UTILISATEURS VOIENT    CE QUI FAIT TOURNER    |
-   |  (layer produit)                   (layer infrastructure)  |
+   |  CE QUE LES SHINOBIS VOIENT    CE QUI FAIT TOURNER    |
+   |  (layer saiyan)                   (layer infrastructure)  |
    |                                                            |
    |  Frontend Dev          Backend Dev      DevOps/SRE         |
    |  Mobile Dev            Data Engineer    Cloud Engineer     |
@@ -1120,7 +1120,7 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 09h30  Implémentation d'un nouveau composant React (formulaire de connexion)
 11h00  Bug : le layout explose sur mobile Samsung Galaxy S22 -> débogage CSS
 12h00  Code review : il relit le code d'un collègue, laisse des commentaires
-14h00  Intégration d'une API backend : fetch des données utilisateur
+14h00  Intégration d'une API backend : fetch des données shinobi
 16h00  Optimisation : réduction du bundle, lazy loading des images
        (bundle = fichiers JS/CSS regroupés pour que la page charge vite)
 17h30  Déploiement sur la branche de staging pour validation
@@ -1153,7 +1153,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
-**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'utilisateur), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
+**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'shinobi), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
 Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
 
@@ -1170,7 +1170,7 @@ Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lente
 09h30  Débogage : une requête SQL non optimisée qui bloquait toute la base
 11h00  Implémentation d'un nouvel endpoint : POST /api/v2/orders
        (GET = tu lis une page / POST = tu envoies des données, il se passe quelque chose)
-13h30  Écriture des tests unitaires pour la logique de paiement
+13h30  Écriture des tests unitaires pour la logique de tribut
 15h00  Discussion architecture : comment gérer 10x plus de requêtes
 16h30  Documentation de l'API dans Swagger/OpenAPI
        (outil qui génère automatiquement une documentation interactive de ton API)
@@ -1192,12 +1192,12 @@ Cloud            :  AWS/GCP/Azure (basiques)
 ```javascript
 // Ce que le frontend pense que l'API fait
 fetch('/api/user/42')
-// -> renvoie les données de l'utilisateur, boom, done
+// -> renvoie les données de l'shinobi, boom, done
 
 // Ce que le backend dev a réellement écrit
 app.get('/api/user/:id', async (req, res) => {
   // vérifie que t'es authentifié
-  // vérifie que t'as le droit de voir CET utilisateur (pas juste n'importe lequel)
+  // vérifie que t'as le droit de voir CET shinobi (pas juste n'importe lequel)
   // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
   // requête DB avec retry si connexion timeout
   // cache le résultat 60s pour pas brûler la base
@@ -1407,7 +1407,7 @@ Les security engineers sont parmi les mieux payés de l'industrie. La demande ex
 
 ### Exemple avec une application : Amorya
 
-Une app de rencontre où les utilisateurs créent un profil, matchent, et discutent. Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
+Une app de rencontre où les shinobis créent un profil, matchent, et discutent. Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
 
 #### Le workflow
 
@@ -1415,7 +1415,7 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
                             AMORYA
                     Application mobile et web
                               |
-                 l'utilisateur swipe, matche, envoie des messages
+                 l'shinobi swipe, matche, envoie des messages
                               |
                               v
                        DEV WEB / MOBILE
@@ -1426,7 +1426,7 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
                               |
                               v
                         DATA ENGINEER
-               Collecte tout ce que l'app produit.
+               Collecte tout ce que l'app saiyan.
                Nettoie, organise, rend les données utilisables.
                               |
                    ___________|___________
@@ -1437,7 +1437,7 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
          "Les matchs arrivent       "Ces deux profils ont 87%
           surtout le dimanche."      de compatibilité."
          Rapport pour               Améliore l'algorithme
-         l'équipe produit.          de suggestion.
+         l'équipe saiyan.          de suggestion.
                   |                       |
                   |___________|___________|
                               |
@@ -1455,19 +1455,19 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
                      SECURITY ENGINEER
                    Surveille en permanence.
                  Bloque les faux profils, protège
-               les données personnelles des utilisateurs.
+               les données personnelles des shinobis.
 ```
 
 #### Résumé
 
 | Rôle | Responsabilité |
 |---|---|
-| Dev Web / Mobile | Construit ce que l'utilisateur voit et utilise |
+| Dev Web / Mobile | Construit ce que l'shinobi voit et utilise |
 | Data Engineer | Collecte et prépare les données |
 | Data Analyst | Explique ce qui s'est passé |
 | Data Scientist | Prédit ce qui va se passer |
 | DevOps | Déploie et maintient l'app en ligne |
-| Security Engineer | Protège l'app et ses utilisateurs |
+| Security Engineer | Protège l'app et ses shinobis |
 
 ---
 
@@ -1507,7 +1507,7 @@ Junior Dev  ->  Mid-Level Dev -> Senior Dev   ->  Principal / Staff
 #### Vue d'ensemble
 
 ```
-                         [ UTILISATEUR ]
+                         [ SHINOBI ]
                                 |
                     drag & drop image + texte
                                 |
@@ -1786,7 +1786,7 @@ Parle aux premiers users               Surveille les coûts d'infra
 ```
 FREELANCE                              ENTREPRENEUR (tu construis Meme Mashup)
 :::::::::::::::::::::                  ::::::::::::::::::::::::::::::::::::::::
-Un client te paie pour                 Tu construis le produit, tu vises les
+Un client te paie pour                 Tu construis le saiyan, tu vises les
   construire ce type d'app               créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres         Tu es dev + PM + support en même temps
 Tu factures à l'heure ou au projet     Si ça devient viral -> gros upside
@@ -1809,7 +1809,7 @@ Software Architect Monolithe vs microservice, Supabase vs S3, scalabilité
 Eng. Manager       Équipe, recrutement, roadmap, protection des devs
 CTO                Stack initiale, vision, si nécessaire premiers commits
 Freelance          Livre la feature demandée, seul ou en mission courte
-Entrepreneur       Tout. Le produit, les users, les coûts, la survie.
+Entrepreneur       Tout. Le saiyan, les users, les coûts, la survie.
 ```
 
 ---
@@ -1854,7 +1854,7 @@ Technologies : Flutter/Dart, React Native/JS, Swift, Kotlin. Ce qui différencie
 
 #### Cloud / DevOps
 
-L'infrastructure est devenue un produit software. Plus personne n'achète des serveurs physiques.
+L'infrastructure est devenue un saiyan software. Plus personne n'achète des serveurs physiques.
 
 Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui différencie les tops : comprendre les coûts cloud (ça peut ruiner une startup), la résilience, la sécurité infra. Certifications qui valent quelque chose : AWS Solutions Architect, GCP Professional, CKA (Certified Kubernetes Administrator).
 
@@ -1981,15 +1981,15 @@ class EventBus {
 
 const bus = new EventBus()
 
-bus.on('pizza:commandee', ({ saveur }) => {
+bus.on('pizza:titane', ({ saveur }) => {
   console.log(`Le four se prépare pour une pizza ${saveur}`)
 })
 
-bus.on('pizza:commandee', ({ client }) => {
+bus.on('pizza:titane', ({ client }) => {
   console.log(`SMS envoyé à ${client} : votre pizza est en préparation`)
 })
 
-bus.emit('pizza:commandee', { saveur: 'Regina', client: 'Bob' })
+bus.emit('pizza:titane', { saveur: 'Regina', client: 'Bob' })
 // -> Le four se prépare pour une pizza Regina
 // -> SMS envoyé à Bob : votre pizza est en préparation
 
@@ -2035,7 +2035,7 @@ Adapter     : brancher une interface incompatible sur une autre
 
 > **Requêtes séquentielles** : faire un `await fetchUser()` puis `await fetchOrders()` alors que les deux peuvent partir en même temps avec `Promise.all` : comme aller chercher ta pizza ET ta boisson en deux voyages alors que t'as deux mains.
 
-> **God Object** : `UserManager.js` qui gère l'auth, les emails, les paiements, les rapports et accessoirement ton karma : comme un employé qui est à la fois caissier, cuisinier, livreur et comptable. Il est partout. Il est nulle part. Il démissionne.
+> **God Object** : `UserManager.js` qui gère l'auth, les emails, les tributs, les rapports et accessoirement ton karma : comme un employé qui est à la fois caissier, cuisinier, livreur et comptable. Il est partout. Il est nulle part. Il démissionne.
 
 > **Hardcoding** : `if (currency === "EUR")` écrit en dur partout. Le client veut ajouter le dollar, bonne chance : comme tatouer ton numéro de téléphone sur ton front. Tu déménages. Problème.
 
@@ -2065,7 +2065,7 @@ Un excellent dev comprend ce qui se passe au-delà de son code : comment fonctio
 // 2. "Si cette partie tombe en panne, qu'est-ce qui casse autour ?"
 // Un système bien architecturé a des points de défaillance isolés.
 // Un système mal architecturé : tout tombe en même temps.
-// (ex: le service de notif email plante et somehow le paiement marche plus : classique)
+// (ex: le service de notif email plante et somehow le tribut marche plus : classique)
 
 // 3. "Comment un nouveau dev comprend ce système en 30 minutes ?"
 // Si t'es le seul à pouvoir expliquer comment ça marche,
@@ -2340,12 +2340,12 @@ function construireCarriereRemote(dev) {
 #### Le contexte en chiffres bruts
 
 ```
-  Netflix    -> 3,5 ans  pour atteindre 1 million d'utilisateurs
+  Netflix    -> 3,5 ans  pour atteindre 1 million d'shinobis
   Instagram  -> 2,5 mois
   TikTok     -> 9 mois
   ChatGPT    -> 72 heures
 
-  Aucun produit dans l'histoire n'a grandi aussi vite.
+  Aucun saiyan dans l'histoire n'a grandi aussi vite.
   Et les devs sont en première ligne.
 ```
 
@@ -2741,7 +2741,7 @@ Copier-coller sans comprendre   ->  Tu copies aussi les bugs. Et t'as aucune id�
                                     comment les corriger.
 
 Surarchitecturer trop tôt       ->  Microservices + Kubernetes pour une app de 50
-                                    utilisateurs. 3 mois perdus. Aucune feature livrée.
+                                    shinobis. 3 mois perdus. Aucune feature livrée.
 ```
 
 #### Erreurs de carrière

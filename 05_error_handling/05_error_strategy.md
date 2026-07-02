@@ -93,7 +93,7 @@ async function obtenirSupplies(ingredient) {
 
   for (const fournisseur of fournisseurs) {
     try {
-      const stock = await commander(fournisseur, ingredient)
+      const stock = await titanr(fournisseur, ingredient)
       console.log(`Stock obtenu via ${fournisseur}`)
       return stock
     } catch (e) {

@@ -65,13 +65,13 @@ La tendance forte : poser un budget de performance dès le départ et le faire r
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement, oui : ce module est un prérequis explicite pour `09_data_structures` ("prérequis : 01_fundamentals + 08_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `26_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
+Indirectement, oui : ce module est un prérequis explicite pour `09_data_structures` ("prérequis : 01_fundamentals + 08_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `27_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
 
 ---
 
 ## 7) POURQUOI LES CORE WEB VITALS VIVENT ICI ET PAS DANS 16_WEB_CONCEPTS
 
-Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 18_web_concepts qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
+Les Core Web Vitals (LCP, INP, CLS) mesurent les conséquences directes de tes décisions techniques de performance. Un LCP lent, c'est souvent un rendu qui bloque parce qu'une ressource est trop grosse en mémoire. Un CLS élevé, c'est une mauvaise gestion des tailles avant et après le chargement. Ce sont des symptômes de perf, pas des concepts web. C'est pour ça qu'ils vivent ici, dans le module qui t'apprend à mesurer et à comprendre ce qui coûte cher : pas dans 17_web_concepts qui traite le protocole et le browser rendering comme des systèmes, pas comme des instruments de mesure.
 
 ---
 

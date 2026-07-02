@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # TS DANS UN VRAI PROJET : CONFIG, MIGRATION, BOUNDARIES, DÉCISIONS
+Temps de lecture ~11 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Les fichiers précédents t'ont montré les features de TS. Ce fichier te montre comment les utiliser ensemble sur un vrai projet : comment configurer `tsconfig.json`, comment migrer du JS progressivement, où tracer les frontières de typage, et quelles décisions prendre face aux compromis réels.
 

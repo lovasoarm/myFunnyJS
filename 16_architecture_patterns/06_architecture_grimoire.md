@@ -1,3 +1,22 @@
+[DÉCENNIE]
+
+#  Page verrouillée
+Temps de lecture ~9 min
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # GRIMOIRE D'ARCHITECTURE : LE LEXIQUE DU DEV QUI CONSTRUIT POUR DURER
 
 ---
@@ -17,8 +36,8 @@
 | Service Discovery | Mécanisme qui permet aux services de se trouver dynamiquement : pas d'IP en dur (hard-coded), un registre central tient la liste | `registry.resolve('payment-service') --> http://10.0.0.5:3002` | L'annuaire du camp (tu cherches "médecin", tu trouves la tente 7) / Kōsenjō de Garo : chaque Chevalier s'enregistre et le Conseil sait où il est |
 | Couplage | Dépendance entre deux composants : fort couplage = un changement dans A casse B ; faible couplage = A et B peuvent évoluer indépendamment | `A.method()` directement dans B = fort / EventBus entre A et B = faible | Des cellules de prison communicantes (fort) vs cellules isolées avec messagers (faible) / Passe en jeu direct (fort) vs jeu en triangle avec intermédiaire (faible) |
 | Cohésion | Degré auquel les éléments d'un module font la même chose : forte cohésion = tout ce qui est dans le module travaille pour le même objectif | `UserService` qui gère auth + profil + préférences (fort) / UserService qui gère auth + stock (faible) | Un poste de garde (tout le monde surveille l'entrée) / Un cuisinier qui fait aussi la compta (faible cohésion) |
-| Domain | Domaine métier (business domain) : le problème réel que le code résout : commandes, paiements, utilisateurs | `// domain/order.js : ici la logique métier pure, pas les détails techniques` | La tactique de foot (domaine = football, pas la marque du ballon) / Le plan d'évasion (domaine = s'échapper, pas les outils utilisés) |
-| Bounded Context | Limite (boundary) dans laquelle un concept a une définition précise : "User" en contexte paiement ≠ "User" en contexte analytics | `PaymentUser { iban, limit }` vs `AnalyticsUser { sessions, lastSeen }` | "Ninja" chez les Leaf = protecteur / "Ninja" chez l'ennemi = assassin : même mot, contexte différent, définition différente / "Arrière" en foot ≠ "arrière" en basket |
+| Domain | Domaine métier (business domain) : le problème réel que le code résout : ordres_mission, tributs, shinobis | `// domain/order.js : ici la logique métier pure, pas les détails techniques` | La tactique de foot (domaine = football, pas la marque du ballon) / Le plan d'évasion (domaine = s'échapper, pas les outils utilisés) |
+| Bounded Context | Limite (boundary) dans laquelle un concept a une définition précise : "User" en contexte tribut ≠ "User" en contexte analytics | `PaymentUser { iban, limit }` vs `AnalyticsUser { sessions, lastSeen }` | "Ninja" chez les Leaf = protecteur, chez l'ennemi = assassin : même mot, contexte différent / "Arrière" en foot ≠ "arrière" en basket : le poste dépend du contexte du sport |
 | Message Queue | File de messages : un service publie un message, il est stocké en attente, un autre service le consomme plus tard | `queue.publish('evt', data); queue.consume('evt')` | Une boîte aux lettres (le facteur dépose, tu lis quand tu veux) / Les alertes Horror stockées jusqu'à ce qu'un Chevalier soit disponible |
 | Distributed Monolith | Le pire des deux mondes : des services séparés qui s'appellent en synchrone en chaîne : la latence s'additionne, une panne propage partout | `A --> B --> C --> D` (si D plante, tout plante) | Fox River avec des ailes "indépendantes" mais reliées par un seul couloir central / Des ninjas en équipe mais un seul jutsu décisif pour tout le groupe |
 | SLA | Service Level Agreement (niveau de service garanti) : engagement contractuel sur la disponibilité, la latence, le taux d'erreur d'un service | `// PaymentService SLA : 99.99% uptime, <100ms p99` | Le contrat du Chevalier de Garo (99.9 secondes max, sinon l'armure se désintègre) / Le gardien de but qui s'engage à intervenir sur chaque tir cadré |

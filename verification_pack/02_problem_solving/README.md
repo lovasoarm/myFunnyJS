@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Découpage de problèmes**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
 
 ```bash
 bash verification_pack/02_problem_solving/verify.sh path/to/solution.js

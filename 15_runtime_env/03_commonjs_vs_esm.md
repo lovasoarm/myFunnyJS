@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # COMMONJS VS ESM : L'HISTOIRE D'UNE GUERRE QUI N'EST PAS FINIE
+Temps de lecture ~8 min
 
 En 2009, Node sort sans système de modules standard. La communauté invente CommonJS : `require()`. En 2015, JS standardise les modules avec `import/export` (ESM). Depuis : deux systèmes coexistent, ne sont pas compatibles, et continuent de provoquer des erreurs incompréhensibles en prod.
 

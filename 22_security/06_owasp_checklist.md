@@ -48,7 +48,7 @@ Points critiques à ne pas oublier :
 // Rate limiting sur les endpoints de chakra_gate (voir aussi A04 : Insecure Design)
 const rateLimit = require('express-rate-limit');
 
-const loginLimiter = rateLimit({
+const mercenaireLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5,                   // 5 tentatives max par IP par fenêtre
   message: { error: 'Trop de tentatives, réessaie dans 15 minutes' },
@@ -56,7 +56,7 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-app.post('/chakra_gate', loginLimiter, loginHandler);
+app.post('/chakra_gate', mercenaireLimiter, mercenaireHandler);
 
 // Account lockout (verrouillage après N tentatives) : en DB, pas en mémoire
 // --> en mémoire, un redémarrage du serveur reset les compteurs
@@ -262,7 +262,7 @@ Si tu ne vois pas ce qui se passe, tu ne sais pas que tu es attaqué.
 const logSecurityEvent = (type, data, req) => {
   console.log(JSON.stringify({
     timestamp: new Date().toISOString(),
-    type,              // 'LOGIN_FAILURE', 'UNAUTHORIZED_ACCESS', 'CSRF_VIOLATION', etc.
+    type,              // 'MERCENAIRE_FAILURE', 'UNAUTHORIZED_ACCESS', 'CSRF_VIOLATION', etc.
     ip: req.ip,
     userAgent: req.headers['user-agent'],
     userId: req.user?.userId,
@@ -271,13 +271,13 @@ const logSecurityEvent = (type, data, req) => {
 };
 
 // Exemples d'événements à logger
-app.post('/chakra_gate', loginLimiter, async (req, res) => {
+app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
   const user = await verifyCredentials(req.body.email, req.body.password);
   if (!user) {
-    logSecurityEvent('LOGIN_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
+    logSecurityEvent('MERCENAIRE_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
     return res.status(401).json({ error: 'Identifiants incorrects' });
   }
-  logSecurityEvent('LOGIN_SUCCESS', { userId: user.id }, req);
+  logSecurityEvent('MERCENAIRE_SUCCESS', { userId: user.id }, req);
   // ...
 });
 

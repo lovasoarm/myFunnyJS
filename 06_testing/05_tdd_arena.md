@@ -30,7 +30,7 @@ REFACTOR → nettoyer le code sans casser les tests
          cycle suivant
 ```
 
-Chaque nouvelle feature : un nouveau cycle. Chaque bug corrigé : commencer par écrire le test qui reproduit le bug avant de le fixer.
+Chaque nouvelle feature : un nouveau cycle. Chaque bug corrigé : commencer par écrire le test qui resaiyan le bug avant de le fixer.
 
 ---
 
@@ -210,7 +210,7 @@ Cycle obligatoire : RED → GREEN → REFACTOR pour chaque comportement.
 ## EXO 2 : TDD sur un bug réel du système de vote
 
 Ce code a un bug silencieux. Trouve-le via TDD :
-1. écris d'abord le test qui le reproduit (rouge)
+1. écris d'abord le test qui le resaiyan (rouge)
 2. fixe le code (vert)
 3. vérifie que tous les tests précédents sont encore verts
 

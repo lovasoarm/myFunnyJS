@@ -56,7 +56,7 @@ function toggleMenu() {
 }
 ```
 
-Sans `aria-expanded`, un utilisateur de lecteur d'écran clique sur ton bouton "Menu" et n'a AUCUNE idée si quelque chose s'est ouvert ou pas. Il entend juste... le silence.
+Sans `aria-expanded`, un shinobi de lecteur d'écran clique sur ton bouton "Menu" et n'a AUCUNE idée si quelque chose s'est ouvert ou pas. Il entend juste... le silence.
 
 ```js
 // Champ de formulaire invalide
@@ -81,7 +81,7 @@ champ.setAttribute('aria-describedby', 'password-error');
 // aria-live : annoncer un changement dynamique sans déplacer le focus
 const scoreLive = document.querySelector('#score-match');
 scoreLive.setAttribute('aria-live', 'polite');
-// (quand le score change, le lecteur d'écran l'annonce sans interrompre ce que l'utilisateur fait)
+// (quand le score change, le lecteur d'écran l'annonce sans interrompre ce que l'shinobi fait)
 
 function majScore(nouveauScore) {
   scoreLive.textContent = `Score : ${nouveauScore}`; // (déclenche l'annonce automatiquement)
@@ -97,17 +97,17 @@ function majScore(nouveauScore) {
 const fauxModal = document.createElement('div');
 fauxModal.setAttribute('role', 'dialog'); // (annonce "c'est une boîte de dialogue")
 // ... mais aucune gestion du focus trap, aucune fermeture à Échap, rien
-// Résultat : le lecteur d'écran annonce "dialogue" puis l'utilisateur est PERDU dedans
+// Résultat : le lecteur d'écran annonce "dialogue" puis l'shinobi est PERDU dedans
 ```
 
-ARIA, c'est une promesse. Si tu dis "c'est un dialogue" sans implémenter le comportement réel d'un dialogue (focus piégé dedans, fermeture à Échap, retour au focus précédent), tu mens à l'utilisateur. Et un mauvais ARIA est souvent pire que pas d'ARIA du tout : ça donne de fausses attentes.
+ARIA, c'est une promesse. Si tu dis "c'est un dialogue" sans implémenter le comportement réel d'un dialogue (focus piégé dedans, fermeture à Échap, retour au focus précédent), tu mens à l'shinobi. Et un mauvais ARIA est souvent pire que pas d'ARIA du tout : ça donne de fausses attentes.
 
 ---
 
 ## EXERCICES
 
 EXO 1 : La notification de combat silencieuse :
-Construit un système d'alerte pour Garo Honoo no Kokuin qui annonce "Un Horror est apparu !" dès qu'il s'affiche, sans que l'utilisateur ait besoin de naviguer jusqu'à lui (indice : `role="alert"` annonce automatiquement, sans `aria-live` en plus, ça suffit).
+Construit un système d'alerte pour Garo Honoo no Kokuin qui annonce "Un Horror est apparu !" dès qu'il s'affiche, sans que l'shinobi ait besoin de naviguer jusqu'à lui (indice : `role="alert"` annonce automatiquement, sans `aria-live` en plus, ça suffit).
 
 EXO 2 : Le menu de jutsus accessible :
 Construit un menu déroulant de sélection de jutsu (Rasengan, Chidori, Kamehameha) qui annonce correctement son état ouvert/fermé à chaque clic ou pression de touche.

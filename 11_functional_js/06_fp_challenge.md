@@ -23,14 +23,70 @@ Contrainte dure : tout est fonctionnel. Pas de `let` hors des fonctions. Pas de 
 
 ```js
 const donnéesBrutes = [
-  { id: "p01", nom: "Messi",    buts: "45",  passes: 20,  aCL: true,  actif: true,  salaire: 150 },
-  { id: "p02", nom: "Mbappé",   buts: 52,    passes: "15",aCL: false, actif: true,  salaire: 180 },
-  { id: "p03", nom: "Haaland",  buts: 60,    passes: 8,   aCL: true,  actif: true,  salaire: 200 },
-  { id: "p04", nom: "Benzema",  buts: null,  passes: 12,  aCL: true,  actif: false, salaire: 120 },
-  { id: "p05", nom: "",         buts: 38,    passes: 18,  aCL: false, actif: true,  salaire: null },
-  { id: "p06", nom: "De Bruyne",buts: 22,    passes: 35,  aCL: true,  actif: true,  salaire: 160 },
-  { id: "p07", nom: "Salah",    buts: NaN,   passes: 14,  aCL: false, actif: true,  salaire: 140 }
-]
+  {
+    id: "p01",
+    nom: "Messi",
+    buts: "45",
+    passes: 20,
+    aCL: true,
+    actif: true,
+    salaire: 150,
+  },
+  {
+    id: "p02",
+    nom: "Mbappé",
+    buts: 52,
+    passes: "15",
+    aCL: false,
+    actif: true,
+    salaire: 180,
+  },
+  {
+    id: "p03",
+    nom: "Haaland",
+    buts: 60,
+    passes: 8,
+    aCL: true,
+    actif: true,
+    salaire: 200,
+  },
+  {
+    id: "p04",
+    nom: "Benzema",
+    buts: null,
+    passes: 12,
+    aCL: true,
+    actif: false,
+    salaire: 120,
+  },
+  {
+    id: "p05",
+    nom: "",
+    buts: 38,
+    passes: 18,
+    aCL: false,
+    actif: true,
+    salaire: null,
+  },
+  {
+    id: "p06",
+    nom: "De Bruyne",
+    buts: 22,
+    passes: 35,
+    aCL: true,
+    actif: true,
+    salaire: 160,
+  },
+  {
+    id: "p07",
+    nom: "Salah",
+    buts: NaN,
+    passes: 14,
+    aCL: false,
+    actif: true,
+    salaire: 140,
+  },
+];
 ```
 
 ---
@@ -94,7 +150,7 @@ const donnéesBrutes = [
 //      nom: "Haaland",
 //      categorie: "Ballon d'Or",
 //      score: 72.4,
-//      details: "60 buts · 8 passes · Champions League ✓"
+//      details: "60 buts · 8 passes · Champions League [OK]"
 //    }
 
 // 9. genererSommaire(joueurs)
@@ -139,10 +195,10 @@ const donnéesBrutes = [
 ```js
 // rapport (après pipeline) :
 [
-  { rang: 1, nom: "Haaland",   categorie: "Ballon d'Or", score: 72.4,  details: "60 buts · 8 passes · Champions League ✓" },
-  { rang: 2, nom: "Mbappé",    categorie: "Top 5",       score: 37.2,  details: "52 buts · 15 passes · Champions League ✗" },
-  { rang: 3, nom: "De Bruyne", categorie: "Top 5",       score: 40.2,  details: "22 buts · 35 passes · Champions League ✓" },
-  { rang: 4, nom: "Messi",     categorie: "Ballon d'Or", score: 56.0,  details: "45 buts · 20 passes · Champions League ✓" }
+  { rang: 1, nom: "Haaland",   categorie: "Ballon d'Or", score: 72.4,  details: "60 buts · 8 passes · Champions League [OK]" },
+  { rang: 2, nom: "Mbappé",    categorie: "Top 5",       score: 37.2,  details: "52 buts · 15 passes · Champions League [NON]" },
+  { rang: 3, nom: "De Bruyne", categorie: "Top 5",       score: 40.2,  details: "22 buts · 35 passes · Champions League [OK]" },
+  { rang: 4, nom: "Messi",     categorie: "Ballon d'Or", score: 56.0,  details: "45 buts · 20 passes · Champions League [OK]" }
   // ordre exact selon ton implémentation du scoring
 ]
 
@@ -191,14 +247,14 @@ test("met 0 si la conversion échoue", () => { ... })
 Pour que ce challenge soit réussi à 10/10 :
 
 ```
-✓ Aucun let hors des fonctions
-✓ Aucune mutation d'objet ou de tableau existant
-✓ Aucun for/while : uniquement map, filter, reduce
-✓ Chaque fonction est pure (testable sans mock)
-✓ calculerScore est curryfiée (coefficients fixés séparément)
-✓ Le pipeline est assemblé avec pipe
-✓ Les données originales (donnéesBrutes) ne sont pas modifiées après le pipeline
-✓ Les cas edge sont gérés : NaN, null, string à la place de number
+[OK] Aucun let hors des fonctions
+[OK] Aucune mutation d'objet ou de tableau existant
+[OK] Aucun for/while : uniquement map, filter, reduce
+[OK] Chaque fonction est pure (testable sans mock)
+[OK] calculerScore est curryfiée (coefficients fixés séparément)
+[OK] Le pipeline est assemblé avec pipe
+[OK] Les données originales (donnéesBrutes) ne sont pas modifiées après le pipeline
+[OK] Les cas edge sont gérés : NaN, null, string à la place de number
 ```
 
 ---

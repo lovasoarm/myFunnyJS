@@ -17,7 +17,7 @@ Le HTTP classique (requête, réponse, fin) ne suffit plus pour ça. Le temps r�
 
 Ce module suppose que tu maîtrises :
 - tout `03_async` : complet, event loop incluse
-- HTTP, headers, stateless : voir `18_web_concepts/01_http_rest_basics.md`
+- HTTP, headers, stateless : voir `17_web_concepts/01_http_rest_basics.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -76,7 +76,7 @@ Les attentes des shinobis ont aussi évolué : un délai de quelques secondes po
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis explicite : `20_realtime`, prérequis `03_async` complet + `18_web_concepts`. Tu ne peux pas comprendre la gestion des connexions persistantes et des événements en flux sans déjà maîtriser l'event loop et les bases du protocole HTTP. Le mini-projet `02_garo_no_kronika` combine directement `03_async`, `04_error_handling`, `20_realtime`, et `17_architecture_patterns` pour construire un système de dispatch d'alertes en temps réel avec gestion de timeout strict.
+Prérequis explicite : `20_realtime`, prérequis `03_async` complet + `17_web_concepts`. Tu ne peux pas comprendre la gestion des connexions persistantes et des événements en flux sans déjà maîtriser l'event loop et les bases du protocole HTTP. Le mini-projet `02_garo_no_kronika` combine directement `03_async`, `05_error_handling`, `20_realtime`, et `16_architecture_patterns` pour construire un système de dispatch d'alertes en temps réel avec gestion de timeout strict.
 
 ---
 
@@ -92,4 +92,4 @@ Le modèle HTTP classique ne suffit plus dès qu'un jutsu doit sembler "vivant" 
 
 Maintenant, ouvre `01_ws_basics.md`. Et arrête de faire semblant d'être en direct avec du polling.
 
-> Ce module réutilise : l'event loop du module 03 (`03_async`), les web concepts du module 18 (`18_web_concepts`).
+> Ce module réutilise : l'event loop du module 03 (`03_async`), les web concepts du module 18 (`17_web_concepts`).

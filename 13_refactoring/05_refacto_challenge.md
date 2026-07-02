@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # REFACTO CHALLENGE
+Temps de lecture ~9 min
 
 Tout ce que t'as appris dans ce module, on le balance dans un seul exercice.
 Une codebase en vrac, des smells partout, zéro test. Ton job : la rendre propre, testée, et livrable.
@@ -99,7 +102,7 @@ for (let i = 0; i <= tracks.length; i++) {
 }
 ```
 
-C'est exactement le genre de bug que `28_edge_cases` (NaN, undefined) t'a appris à reconnaître. Ici il est planqué dans une boucle mal bornée.
+C'est exactement le genre de bug que `29_edge_cases` (NaN, undefined) t'a appris à reconnaître. Ici il est planqué dans une boucle mal bornée.
 
 ---
 

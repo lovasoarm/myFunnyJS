@@ -17,33 +17,33 @@ Une mutation, c'est modifier un objet existant en place. Le problème : si plusi
 
 ```js
 // Le squad de l'Attaque des Titans
-const squad = { name: "Survey Corps", members: 104, commander: "Erwin" };
+const squad = { name: "Survey Corps", members: 104, titanr: "Erwin" };
 
 function promote(s) {
-  s.commander = "Hange"; // mutation directe du paramètre
+  s.titanr = "Hange"; // mutation directe du paramètre
   return s;
 }
 
 const promoted = promote(squad);
 
-console.log(promoted.commander); // → "Hange":attendu
-console.log(squad.commander); // → "Hange":PAS attendu
+console.log(promoted.titanr); // → "Hange":attendu
+console.log(squad.titanr); // → "Hange":PAS attendu
 // squad et promoted sont le même objet
 ```
 
 Le paramètre `s` n'est pas une copie de `squad`. C'est la même référence.
-Modifier `s.commander` modifie l'objet original.
+Modifier `s.titanr` modifie l'objet original.
 
 ```
 AVANT promote
 ─────────────
 squad ──────────┐
                 ▼
-promoted ──────►{ commander: "Erwin" }
+promoted ──────►{ titanr: "Erwin" }
 
 PENDANT promote (s = squad)
 ───────────────────────────
-s ──────────────► { commander: "Hange" }
+s ──────────────► { titanr: "Hange" }
                          ▲
 squad ─────────────────►─┘
 promoted ──────────────►─┘

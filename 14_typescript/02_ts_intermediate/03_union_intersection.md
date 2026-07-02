@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # UNION ET INTERSECTION : COMPOSER DES TYPES COMME DES ENSEMBLES
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Un joueur peut être attaquant ou défenseur. Un event peut être un goal ou un carton. Une fonction reçoit une string ou un number. C'est une union : plusieurs types possibles, un seul à la fois.
 
@@ -321,7 +326,7 @@ Crée les types `Warrior`, `Sorcerer`, et `GoldenKnight = Warrior & Sorcerer`. �
 _~20 min_
 
 
-Le réseau de Walter a 3 types de logs : `SupplyLog` (produit, quantité, warehouse), `DeliveryLog` (destination, courrier, heure), `AlertLog` (niveau de menace, raison, action prise).
+Le réseau de Walter a 3 types de logs : `SupplyLog` (jutsu, quantité, warehouse), `DeliveryLog` (destination, courrier, heure), `AlertLog` (niveau de menace, raison, action prise).
 
 Crée l'union `OperationLog`, écris `logToString(log: OperationLog): string`, et assure-toi que si un 4ème type de log est ajouté sans que `logToString` soit mis à jour, TS génère une erreur de compilation.
 

@@ -1,6 +1,6 @@
 # DATES ET TIMEZONES : LE CAUCHEMAR ET COMMENT LE RÉSOUDRE
 
-Tu stockes une date. Tu l'affiches. Ça marche sur ton écran, à Antananarivo, à 14h. Sauf que l'utilisateur à Tokyo voit une heure différente, et celui à New York encore une autre. Les fuseaux horaires (timezones) ne sont pas un détail cosmétique : c'est la source numéro un de bugs silencieux dans les apps qui touchent plusieurs pays. Walter White synchronise ses livraisons à la minute près : toi aussi, tu dois savoir exactement QUELLE heure tu manipules.
+Tu stockes une date. Tu l'affiches. Ça marche sur ton écran, à Antananarivo, à 14h. Sauf que l'shinobi à Tokyo voit une heure différente, et celui à New York encore une autre. Les fuseaux horaires (timezones) ne sont pas un détail cosmétique : c'est la source numéro un de bugs silencieux dans les apps qui touchent plusieurs pays. Walter White synchronise ses livraisons à la minute près : toi aussi, tu dois savoir exactement QUELLE heure tu manipules.
 
 ## 1) UTC : LA SEULE VÉRITÉ QUI NE BOUGE JAMAIS
 
@@ -55,7 +55,7 @@ Composants de date (setDate +1)   --> respecte le calendrier --> correct même l
 
 Risque réel : coder l'arithmétique des dates en millisecondes brutes marche 363 jours sur 365, et plante exactement les jours de changement d'heure. Ces bugs sont les pires : rares, donc jamais détectés en test, et catastrophiques en prod le jour J. La règle simple à retenir : pour "+1 jour", "+1 mois", "+1 an", utilise toujours les méthodes `setDate`, `setMonth`, `setFullYear` du calendrier, jamais l'addition de millisecondes.
 
-## 3) AFFICHER DANS LE FUSEAU DE L'UTILISATEUR
+## 3) AFFICHER DANS LE FUSEAU DE L'SHINOBI
 
 ```js
 // L'API Intl native du navigateur fait le travail sans librairie externe
@@ -80,17 +80,17 @@ Une seule vérité stockée (UTC), des affichages multiples calculés à la dema
 ## 4) LE PIÈGE DU FUSEAU CÔTÉ CLIENT VS SERVEUR
 
 ```js
-// Ça casse (mais fun) : faire confiance à l'heure locale de la machine de l'utilisateur
-const heureLocale = new Date(); // (et si l'utilisateur a réglé sa machine sur le faux fuseau ?)
+// Ça casse (mais fun) : faire confiance à l'heure locale de la machine de l'shinobi
+const heureLocale = new Date(); // (et si l'shinobi a réglé sa machine sur le faux fuseau ?)
 if (heureLocale.getHours() >= 22) {
   bloquerAccesNocturne(); // (logique de sécurité basée sur une horloge qu'on ne contrôle pas)
 }
 ```
 
-Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) de l'utilisateur.
+Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) de l'shinobi.
 
 ```js
-// Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par l'utilisateur
+// Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par l'shinobi
 function estHeureNocturne(maintenantUTC, fuseauSpectateur) {
   const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauSpectateur });
   return heureLocaleReelle.hour >= 22;
@@ -127,4 +127,4 @@ Affiche une même heure de rendez-vous UTC dans 3 fuseaux différents (Tokyo, Pa
 
 ## RÉSUMÉ
 
-Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de l'utilisateur uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.
+Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de l'shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.

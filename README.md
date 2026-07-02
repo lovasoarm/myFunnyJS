@@ -2,8 +2,8 @@
 
 ![MyFunnyJS](./assets/title.svg)
 
-**MyFunnyJS · Thor Edition : 32 modules + 16 mini-projets, apprenable seul.**
-_Version v2026.2 : corrigée post-audit 10/10._
+**MyFunnyJS · Odin Edition : 33 modules + 16 mini-projets, apprenable seul.**
+_Version v2026.3 : post-audit JARVIS 02/07/2026 (fusion des doublons, purge lexicale, HYPOTHESES generalisé)._
 
 > **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
@@ -25,28 +25,29 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 ## LES 5 RÈGLES DU JEU
 
 1. **Lis chaque `.md` en entier avant de coder.** La leçon est dans le texte, pas dans le code.
-2. **Code toi-même.** L'IA propose, tu décides. Copier-coller sans comprendre = seule faute grave.
+2. **Code toi-même.** L'IA propose, tu décides. Copier-coller sans comprendre : seule faute grave.
 3. **Finis les mini-projets.** C'est là que les concepts s'assemblent en vrai geste.
 4. **Remplis TDD_JOURNAL, POSTMORTEM, ADR.** Ce ne sont pas des formalités.
 5. **Rejoue le drill `solo_vs_copilot`** aux checkpoints imposés : sinon tu ne mesures rien.
 
 ---
 
-## ROADMAP CONDENSÉE
+## ROADMAP CONDENSÉE (33 modules)
 
 ```
-01 → 07    Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
-08 → 11    Memory · Data Structures · Algorithms · Functional
-12 → 16    OOP · Patterns · Refactoring · TypeScript · Runtime
-17 → 22    Architecture · Web · Inclusive · Realtime · API · Security
-23 → 23bis AI-Native Dev  →  AI Agents & Autonomy         périssable
-24 → 28    Databases · Scalability · Observability · Team · Edge Cases
-30         16 mini-projets (dont Legacy Dungeon, Memory Hunter, Distributed Arena)
-31         Annexes : transférabilité, interview, portfolio, career, éthique
-32         Tools                                            périssable (2026)
+01 -> 07   Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
+08 -> 11   Memory · Data Structures · Algorithms · Functional
+12 -> 16   Patterns · Refactoring · TypeScript · Runtime · Architecture
+17 -> 22   Web Concepts · Accessibility · i18n · Realtime · API · Security
+23 -> 24   AI-Native Dev · AI Agents & Autonomy                        [périssable]
+25 -> 29   Databases · Scalability · Observability · Team · Edge Cases
+30         OOP JS (mécanique profonde du langage)
+31         16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
+32         Annexes : transférabilité, interview, portfolio, career, éthique
+33         Tools                                                       [périssable 2026]
 ```
 
-Arborescence complète, dépendances entre modules et noyau dur détaillé : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).
+Arborescence complète, dépendances entre modules et noyau dur détaillé : [`32_annexes/00_arborescence_complete.md`](./32_annexes/00_arborescence_complete.md).
 
 ---
 
@@ -64,7 +65,8 @@ Puis ouvre [`01_START_HERE.md`](./01_START_HERE.md).
 ## POUR LES AUDITEURS / RECRUTEURS
 
 - Portfolio auto-audité par CI : [`scripts/portfolio_ci/README.md`](./scripts/portfolio_ci/README.md)
-- Épreuve finale cross-language obligatoire : [`31_annexes/transferability/final_cross_language_challenge.md`](./31_annexes/transferability/08_final_cross_language_challenge.md)
-- Postmortem d'audit et versions : [`CHANGELOG.md`](./CHANGELOG.md), [`CHANGELOG_Thor_Edition.md`](./CHANGELOG_Thor_Edition.md)
+- Épreuve finale cross-language obligatoire : [`32_annexes/transferability/08_final_cross_language_challenge.md`](./32_annexes/transferability/08_final_cross_language_challenge.md)
+- Historique et postmortems d'audit : [`CHANGELOG.md`](./CHANGELOG.md)
+- Fusion 9 paires de doublons + purge lexicale + généralisation HYPOTHESES : voir CHANGELOG entrée `v2026.3`.
 
 Licence : voir `LICENSE`. Communauté : `COMMUNAUTE.md`.

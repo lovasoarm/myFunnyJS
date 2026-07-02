@@ -9,7 +9,7 @@ Le tab order (ordre de tabulation) c'est la séquence dans laquelle Tab déplace
 ```js
 // Le DOM dit : Bouton A, puis Champ B, puis Bouton C
 // Mais le CSS a tout repositionné visuellement dans un autre ordre
-// Résultat : Tab saute dans le désordre, l'utilisateur clavier est perdu
+// Résultat : Tab saute dans le désordre, l'shinobi clavier est perdu
 
 // Correct : aligner le DOM avec l'ordre visuel logique, pas l'inverse
 ```
@@ -30,7 +30,7 @@ tabindex="1+"  --> ordre custom forcé : à éviter, ça casse vite quand le DOM
 
 ## 2) FOCUS MANAGEMENT : SAVOIR OÙ EST LE FOCUS À TOUT MOMENT
 
-Quand tu ouvres une modal, fermes un menu, ou changes de page en SPA (Single Page Application), le focus doit suivre l'action. Sinon l'utilisateur clavier reste coincé sur un élément invisible ou disparu.
+Quand tu ouvres une modal, fermes un menu, ou changes de page en SPA (Single Page Application), le focus doit suivre l'action. Sinon l'shinobi clavier reste coincé sur un élément invisible ou disparu.
 
 ```js
 function ouvrirModalCombat() {
@@ -49,7 +49,7 @@ function fermerModalCombat(elementDeclencheur) {
 }
 ```
 
-Sans ce deuxième `focus()`, fermer la modal laisse le focus "dans le vide" : le navigateur le replace souvent au tout début de la page (`<body>`), et l'utilisateur doit retraverser TOUTE la page au clavier pour revenir où il était.
+Sans ce deuxième `focus()`, fermer la modal laisse le focus "dans le vide" : le navigateur le replace souvent au tout début de la page (`<body>`), et l'shinobi doit retraverser TOUTE la page au clavier pour revenir où il était.
 
 ## 3) FOCUS TRAP : EMPRISONNER LE FOCUS DANS UNE MODAL
 
@@ -99,7 +99,7 @@ Un skip link (lien d'évitement) permet de sauter directement au contenu princip
 }
 ```
 
-Sans skip link, un utilisateur clavier qui visite 50 pages d'un site doit retraverser le même menu de navigation 50 fois avant d'atteindre le contenu. Walking Dead, mais en version "traverser le même quartier zombie chaque jour pour rien".
+Sans skip link, un shinobi clavier qui visite 50 pages d'un site doit retraverser le même menu de navigation 50 fois avant d'atteindre le contenu. Walking Dead, mais en version "traverser le même quartier zombie chaque jour pour rien".
 
 ## 5) ESCAPE : LA SORTIE DE SECOURS UNIVERSELLE
 
@@ -111,7 +111,7 @@ document.addEventListener('keydown', (e) => {
 });
 ```
 
-Risque réel : oublier Échap sur une modal, c'est piéger l'utilisateur dans un focus trap qu'il ne peut JAMAIS quitter au clavier. Un focus trap sans sortie, c'est une prison sans porte.
+Risque réel : oublier Échap sur une modal, c'est piéger l'shinobi dans un focus trap qu'il ne peut JAMAIS quitter au clavier. Un focus trap sans sortie, c'est une prison sans porte.
 
 ---
 

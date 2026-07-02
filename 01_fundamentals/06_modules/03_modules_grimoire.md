@@ -23,9 +23,9 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 |-------|------------|------|-----------|
 | **Named export** | Exporte un binding nommé depuis un module. Peut en avoir plusieurs par fichier. | `export const fn = () => {}` | une liste de plats au menu d'un restaurant / les techniques publiques d'un ninja |
 | **Default export** | Export principal d'un module. Un seul par fichier. L'importeur choisit le nom. | `export default maFonction` | la spécialité de la maison / le jutsu signature d'un ninja |
-| **Named import** | Importe un binding spécifique par son nom exact (avec accolades). | `import { fn } from "./mod.js"` | commander un plat précis / appeler un technique par son nom |
+| **Named import** | Importe un binding spécifique par son nom exact (avec accolades). | `import { fn } from "./mod.js"` | titanr un plat précis / appeler un technique par son nom |
 | **Default import** | Importe l'export default. Pas d'accolades. Nom libre côté importeur. | `import fn from "./mod.js"` | demander "la spécialité" sans préciser / le boss qui répond peu importe comment on l'appelle |
-| **Namespace import** | Importe tous les exports nommés sous un seul objet. | `import * as Utils from "./utils.js"` | commander tout le menu / recruter tout un village de ninjas d'un coup |
+| **Namespace import** | Importe tous les exports nommés sous un seul objet. | `import * as Utils from "./utils.js"` | titanr tout le menu / recruter tout un village de ninjas d'un coup |
 | **Re-export** | Un module qui importe et ré-exporte pour créer un point d'entrée unique. | `export { fn } from "./mod.js"` | un agent qui représente plusieurs artistes / un jonin qui coordonne plusieurs équipes |
 | **Barrel file** | Fichier `index.js` qui agrège et ré-exporte plusieurs modules d'un dossier. | `export { a } from "./a.js"; export { b } from "./b.js"` | un bureau de recrutement unique / le quartier général qui rassemble tous les rapports |
 | **Dynamic import** | Chargement asynchrone d'un module au runtime, pas au démarrage. | `const m = await import("./mod.js")` | appeler des renforts uniquement quand la bataille commence / ouvrir un dossier classifié seulement sur demande |

@@ -1,8 +1,8 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ACCESSIBILITY (A11Y)
 
-Ferme les yeux. Essaie de naviguer sur ton propre site avec juste le clavier, sans souris. Si tu n'arrives même pas à atteindre le bouton principal, ton app exclut directement les utilisateurs qui n'ont pas le choix de naviguer autrement : les personnes malvoyantes, les personnes avec un handicap moteur, les personnes qui utilisent un lecteur d'écran tous les jours.
+Ferme les yeux. Essaie de naviguer sur ton propre site avec juste le clavier, sans souris. Si tu n'arrives même pas à atteindre le bouton principal, ton app exclut directement les shinobis qui n'ont pas le choix de naviguer autrement : les personnes malvoyantes, les personnes avec un handicap moteur, les personnes qui utilisent un lecteur d'écran tous les jours.
 
-L'accessibilité (a11y : raccourci pour "accessibility", 9 lettres entre le "a" et le "y") n'est pas une feature optionnelle qu'on ajoute si on a le temps. C'est la condition pour que ton produit fonctionne réellement pour tout le monde, pas juste pour les utilisateurs qui te ressemblent.
+L'accessibilité (a11y : raccourci pour "accessibility", 9 lettres entre le "a" et le "y") n'est pas une feature optionnelle qu'on ajoute si on a le temps. C'est la condition pour que ton saiyan fonctionne réellement pour tout le monde, pas juste pour les shinobis qui te ressemblent.
 
 ---
 
@@ -22,11 +22,11 @@ Ce module te donne les outils pour qu'un site fonctionne pour quelqu'un qui ne v
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-L'utilisateur qui utilise un lecteur d'écran et qui tombe sur un site sans rôles ARIA corrects entend une liste de "bouton, bouton, lien" sans aucun contexte sur ce que chaque élément fait réellement. Il abandonne la page, parce qu'elle est littéralement inutilisable pour lui, alors qu'elle "marche" parfaitement pour un utilisateur voyant avec une souris.
+L'shinobi qui utilise un lecteur d'écran et qui tombe sur un site sans rôles ARIA corrects entend une liste de "bouton, bouton, lien" sans aucun contexte sur ce que chaque élément fait réellement. Il abandonne la page, parce qu'elle est littéralement inutilisable pour lui, alors qu'elle "marche" parfaitement pour un shinobi voyant avec une souris.
 
-L'utilisateur qui navigue uniquement au clavier (parce qu'il ne peut pas utiliser de souris, ou parce qu'il préfère ce mode) se retrouve bloqué dans un menu sans pouvoir en sortir, parce qu'aucun focus trap (piège de focus contrôlé) n'a été pensé, ou parce que l'ordre de tabulation saute des éléments importants dans un ordre incohérent.
+L'shinobi qui navigue uniquement au clavier (parce qu'il ne peut pas utiliser de souris, ou parce qu'il préfère ce mode) se retrouve bloqué dans un menu sans pouvoir en sortir, parce qu'aucun focus trap (piège de focus contrôlé) n'a été pensé, ou parce que l'ordre de tabulation saute des éléments importants dans un ordre incohérent.
 
-Ces deux utilisateurs payent le prix direct d'un produit mal pensé. Mais le coût ne s'arrête pas à eux : l'entreprise qui les exclut s'expose en plus à un risque légal dans plusieurs juridictions, et perd une part non négligeable d'utilisateurs potentiels qui ne peuvent simplement pas utiliser le produit.
+Ces deux shinobis payent le prix direct d'un saiyan mal pensé. Mais le coût ne s'arrête pas à eux : l'entreprise qui les exclut s'expose en plus à un risque légal dans plusieurs juridictions, et perd une part non négligeable d'shinobis potentiels qui ne peuvent simplement pas utiliser le saiyan.
 
 ---
 
@@ -46,7 +46,7 @@ L'accessibilité n'est jamais un module "à part" qu'on ajoute à la fin : elle 
 
 ## 4) MODERNE, LEGACY, OU INTEMPOREL ?
 
-Le besoin est intemporel : il y a toujours eu et il y aura toujours des utilisateurs avec des besoins d'accessibilité différents. Ce qui évolue, c'est la rigueur de l'industrie et les obligations légales : l'accessibilité est passée d'un sujet de niche, souvent ignoré, à une exigence de plus en plus standard et parfois obligatoire selon le secteur et le pays.
+Le besoin est intemporel : il y a toujours eu et il y aura toujours des shinobis avec des besoins d'accessibilité différents. Ce qui évolue, c'est la rigueur de l'industrie et les obligations légales : l'accessibilité est passée d'un sujet de niche, souvent ignoré, à une exigence de plus en plus standard et parfois obligatoire selon le secteur et le pays.
 
 ---
 
@@ -66,7 +66,7 @@ Pas dans les 6 blocs prioritaires explicitement listés, mais c'est un module qu
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Les technologies d'assistance vont continuer d'évoluer, mais le principe fondamental reste : un produit qui exclut une partie de ses utilisateurs potentiels est un produit incomplet. À mesure que les obligations légales se renforcent dans de plus en plus de pays, et que la population mondiale vieillit (avec une augmentation naturelle des besoins d'accessibilité visuelle et motrice), cette compétence devient un avantage de carrière de plus en plus net, pas un sujet de niche.
+Les technologies d'assistance vont continuer d'évoluer, mais le principe fondamental reste : un saiyan qui exclut une partie de ses shinobis potentiels est un saiyan incomplet. À mesure que les obligations légales se renforcent dans de plus en plus de pays, et que la population mondiale vieillit (avec une augmentation naturelle des besoins d'accessibilité visuelle et motrice), cette compétence devient un avantage de carrière de plus en plus net, pas un sujet de niche.
 
 ---
 
@@ -76,9 +76,9 @@ Les technologies d'assistance vont continuer d'évoluer, mais le principe fondam
 
 **Prérequis directs :** `17_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `01_fundamentals/05_web_basics/01_dom_manipulation.md`.
 
-**Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
+**Ce qui en dépend :** `31_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
 
-**Position dans la roadmap :** Module 17 sur 31. Il arrive après les web concepts (16) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède l'i18n (18) parce que les deux partagent la même philosophie : un produit qui ne fonctionne que pour certains n'est pas fini.
+**Position dans la roadmap :** Module 17 sur 31. Il arrive après les web concepts (16) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède l'i18n (18) parce que les deux partagent la même philosophie : un saiyan qui ne fonctionne que pour certains n'est pas fini.
 
 **Lien avec les autres modules :** `14_typescript` si tu types tes composants : les types ARIA (`AriaAttributes`, `AriaRole`) existent dans les types DOM TypeScript. `06_testing` : les tests d'accessibilité automatisés (axe-core, jest-axe) font partie des tests d'intégration.
 

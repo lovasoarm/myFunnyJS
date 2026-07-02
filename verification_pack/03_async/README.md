@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Async & event loop**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
 
 ```bash
 bash verification_pack/03_async/verify.sh path/to/solution.js

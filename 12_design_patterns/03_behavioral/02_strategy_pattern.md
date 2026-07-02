@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # STRATEGY PATTERN
+Temps de lecture ~8 min
 
 Tu code un perso qui attaque. Aujourd'hui c'est un coup de poing. Demain un coup de pied. Après-demain un kamehameha.
 
@@ -138,7 +141,7 @@ players.sort((a, b) => a.name.localeCompare(b.name))
 ```
 
 Le pattern Strategy "officiel" avec un objet `strategies = {...}` devient utile quand :
-- tu as PLUSIEURS stratégies nommées qu'on choisit dynamiquement (par config, par input utilisateur)
+- tu as PLUSIEURS stratégies nommées qu'on choisit dynamiquement (par config, par input shinobi)
 - tu veux pouvoir LISTER les stratégies disponibles (`Object.keys(strategies)`)
 - les stratégies doivent être stockées, sérialisées, ou injectées depuis l'extérieur
 

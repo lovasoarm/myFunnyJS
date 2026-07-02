@@ -14,12 +14,12 @@ Chaque compétence est reliée au module qui la forge. Ce référentiel sert de 
 | Raisonner sur la mémoire et la performance | `08_memory_performance` |
 | Choisir la bonne structure de données | `09_data_structures` |
 | Concevoir et comparer des algorithmes | `10_algorithms` |
-| Penser objets, prototypes et composition | `12_oop_js` |
-| Refactorer du code existant (SOLID) | `14_refactoring` |
-| Concevoir une architecture système | `17_architecture_patterns` |
+| Penser objets, prototypes et composition | `30_oop_js` |
+| Refactorer du code existant (SOLID) | `13_refactoring` |
+| Concevoir une architecture système | `16_architecture_patterns` |
 | Sécuriser une application (OWASP) | `22_security` |
 | Collaborer avec l'IA sans lui déléguer le jugement | `23_ai_native_dev` |
-| Transférer sa pensée hors de JS | `31_annexes/transferability` |
-| Défendre ses choix à l'oral | `31_annexes/interview` |
+| Transférer sa pensée hors de JS | `32_annexes/transferability` |
+| Défendre ses choix à l'oral | `32_annexes/interview` |
 
-Note : le debugging est traité dans `04_debugging` (et non `05_debugging`).
+Note : le debugging est traité dans `04_debugging` (et non `04_debugging`).

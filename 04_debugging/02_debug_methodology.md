@@ -1,7 +1,4 @@
-[INTEMPOREL]
-
 # DEBUG METHODOLOGY : QUATRE ÉTAPES, ZÉRO HASARD
-Temps de lecture ~10 min
 
 Tu as un bug. Tu ne sais pas où. Tu ne sais pas pourquoi.
 Premier réflexe : changer des trucs au hasard et voir si ça passe.
@@ -80,7 +77,7 @@ C'est reproductible. On peut passer à l'étape 2.
 
 ## 3) ÉTAPE 2 : ISOLER
 
-Réduire, pas chercher. L'objectif est d'arriver au plus petit code possible qui jutsu encore le bug.
+Réduire, pas chercher. L'objectif est d'arriver au plus petit code possible qui saiyan encore le bug.
 
 Règle : enlève des choses jusqu'à ce que le bug disparaisse. La dernière chose que tu as enlevée avant qu'il disparaisse : c'est là que le bug vit.
 
@@ -258,7 +255,7 @@ console.log('Stock restant:', stockNourriture)  // peut afficher un négatif
 
 Étapes :
 1. Reproduis le bug de façon fiable (indice : le problème vient du moment où plusieurs Promises accèdent au même `stockNourriture`)
-2. Isole le code minimal qui jutsu encore le bug
+2. Isole le code minimal qui saiyan encore le bug
 3. Explique pourquoi le stock peut devenir négatif malgré la vérification `if (stockNourriture >= besoin)`
 
 EXO 2 : Bisect sur un pipeline async (~15 min)
@@ -291,15 +288,7 @@ Exercice :
 
 Tu sais maintenant debugger sans jouer à la loterie.
 Reproduis d'abord : si tu ne peux pas déclencher le bug à volonté, tu ne peux pas le corriger.
-Isole ensuite : le plus petit code possible qui jutsu encore le bug.
+Isole ensuite : le plus petit code possible qui saiyan encore le bug.
 Corrige une chose à la fois. Vérifie que rien d'autre ne casse.
 `console.log` pour localiser, debugger pour comprendre. Les deux ont leur moment.
 Un bug corrigé sans test : un bug qui reviendra sans prévenir.
-
-## LIVRABLE OBLIGATOIRE : HYPOTHESES.md
-
-En plus du fix, livre un fichier `HYPOTHESES.md` : les hypothèses envisagées, celles écartées (et POURQUOI), celle retenue et sa preuve de reproduction. Un fix sans HYPOTHESES.md est refusé : on corrige avec une méthode, pas au hasard. (Format inspiré de `28_edge_cases/02_race_condition_hunter.md`.)
-
----
-
-> Pour tout exercice de debugging : utilise le template [`_TEMPLATE_HYPOTHESES.md`](./_TEMPLATE_HYPOTHESES.md). Pas de correction sans hypothèse écrite.

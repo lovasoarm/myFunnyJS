@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
+Temps de lecture ~7 min
 
 Tu as déjà résolu le même problème d'architecture deux fois, en deux façons complètement différentes, dans deux projets différents. Et probablement, aucune des deux n'était la meilleure solution : c'était juste la première idée qui t'est venue. Les design patterns existent pour arrêter ça.
 
@@ -75,3 +78,7 @@ Les patterns décrivent des problèmes de structure récurrents qui ne disparais
 Les patterns sont des solutions déjà éprouvées à des problèmes de structure que tu vas rencontrer encore et encore. Sans eux : réinvention de solutions médiocres, couplage fort, débats d'architecture sans vocabulaire commun. Avec eux : tu nommes le problème, tu nommes la solution, l'équipe comprend immédiatement.
 
 Maintenant, ouvre `01_factory_pattern.md`. Et commence à reconnaître les patterns que tu as déjà codés sans le savoir.
+
+> ENCADRÉ : NIVEAU : Ici, les recettes de conception au niveau d'une classe ou d'un petit groupe de classes.
+
+> Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # CLEAN CODE BASICS
+Temps de lecture ~7 min
 Ton code, tu l'écris une fois : tu le relis cent fois.
 Le clean code, c'est pas de l'esthétique, c'est de la survie.
 En prod, un nom pourri ou une fonction de 80 lignes, c'est une bombe à retardement.

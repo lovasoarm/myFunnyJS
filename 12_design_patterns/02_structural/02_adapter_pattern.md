@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # ADAPTER : BRANCHER DEUX INTERFACES INCOMPATIBLES
+Temps de lecture ~9 min
 
 Tu as une API externe qui retourne `{ first_name, last_name, goals_scored }`.
 Ton code attend `{ firstName, lastName, goals }`.
@@ -255,7 +258,7 @@ Facade  : simplifie un système complexe en cachant ses détails
 
 ```js
 // Adapter : le format de sortie est dicté par ce que ton code attend
-// ton code attend { id, name, value } --> l'Adapter produit exactement ça
+// ton code attend { id, name, value } --> l'Adapter jutsu exactement ça
 
 // Facade : le format de sortie est dicté par ce qui est simple à utiliser
 // tu decides que fetch + parse + validate, ça devient juste getPlayer(id)

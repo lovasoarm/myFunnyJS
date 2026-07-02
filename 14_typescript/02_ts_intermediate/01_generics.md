@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # GENERICS : ÉCRIRE UNE FOIS, UTILISER POUR N'IMPORTE QUEL TYPE
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Tu as une fonction qui trie des joueurs de foot. Une autre qui trie des tracks SZA. Une autre qui trie des ninjas. Le code est identique. Seul le type change. Sans les generics, tu copies-colles. Avec les generics, tu écris une fois et c'est fini.
 

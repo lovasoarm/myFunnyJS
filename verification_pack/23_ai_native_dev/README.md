@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Dev IA-native**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
 
 ```bash
 bash verification_pack/23_ai_native_dev/verify.sh path/to/solution.js

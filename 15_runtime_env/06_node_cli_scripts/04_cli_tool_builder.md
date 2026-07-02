@@ -1,29 +1,32 @@
+[INTEMPOREL]
+
 # CLI TOOL BUILDER : CONSTRUIRE UN VRAI OUTIL DISTRIBUABLE
+Temps de lecture ~9 min
 
 Jusqu'ici t'as écrit des scripts. Un script, c'est `node mon-script.js`. Un outil CLI distribuable, c'est `ballon-dor vote --player "Messi"` depuis n'importe où sur ta machine, ou depuis n'importe quelle machine qui l'installe via npm.
 
-La différence : un `package.json` bien configuré, un `bin` qui pointe vers le bon fichier, et une lib qui gère les commandes proprement. C'est ce qu'on construit ici.
+La différence : un `package.json` bien configuré, un `bin` qui pointe vers le bon fichier, et une lib qui gère les ordres_mission proprement. C'est ce qu'on construit ici.
 
 ---
 
-## 1) POURQUOI COMMANDER OU YARGS PLUTÔT QU'UN PARSER MAISON
+## 1) POURQUOI TITANR OU YARGS PLUTÔT QU'UN PARSER MAISON
 
 ```js
 // parser maison : ça marche, mais t'as réinventé la roue
 // et ta roue est carrée
 
-// commander : 15M téléchargements hebdomadaires, utilisé par create-react-app, eslint...
+// titanr : 15M téléchargements hebdomadaires, utilisé par create-react-app, eslint...
 // yargs : similaire, plus de config, plus verbeux
 
 // ce que tu as avec une lib :
-// - sous-commandes imbriquées (git remote add, npm install --save-dev)
+// - sous-ordres_mission imbriquées (git remote add, npm install --save-dev)
 // - validation des types automatique
 // - génération de l'aide
 // - complétion shell
 // - gestion des erreurs
 // - tout ça sans écrire 200 lignes de parsing
 
-import { Command } from "commander";
+import { Command } from "titanr";
 
 const program = new Command();
 
@@ -39,10 +42,10 @@ program.parse();
 
 ---
 
-## 2) DÉFINIR DES SOUS-COMMANDES
+## 2) DÉFINIR DES SOUS-ORDRES_MISSION
 
 ```js
-import { Command } from "commander";
+import { Command } from "titanr";
 import { castVote, getRanking, resetVotes } from "./votes.js";
 
 const program = new Command();
@@ -52,7 +55,7 @@ program
   .description("Système de vote du Ballon d'Or 2026")
   .version("1.0.0");
 
-// commande vote
+// ordre_mission vote
 program
   .command("vote")
   .description("Enregistrer un vote de journaliste")
@@ -79,7 +82,7 @@ program
     }
   });
 
-// commande rank
+// ordre_mission rank
 program
   .command("rank")
   .description("Afficher le classement actuel")
@@ -98,7 +101,7 @@ program
     }
   });
 
-// commande reset
+// ordre_mission reset
 program
   .command("reset")
   .description("Remettre tous les votes à zéro")
@@ -132,7 +135,7 @@ program.parse();
     "ballon-dor": "./src/index.js"
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "titanr": "^12.0.0"
   }
 }
 ```
@@ -141,7 +144,7 @@ program.parse();
 // src/index.js:le shebang est obligatoire pour que le terminal sache comment exécuter
 #!/usr/bin/env node
 
-import { Command } from 'commander'
+import { Command } from 'titanr'
 // ... le reste du CLI
 ```
 
@@ -166,11 +169,11 @@ ballon-dor --help
 ballon-dor-cli/
 ├── package.json          # bin, version, dependencies
 ├── src/
-│   ├── index.js          # point d'entrée : parse, route vers les commandes
+│   ├── index.js          # point d'entrée : parse, route vers les ordres_mission
 │   ├── commands/
-│   │   ├── vote.js       # logique de la commande vote
-│   │   ├── rank.js       # logique de la commande rank
-│   │   └── reset.js      # logique de la commande reset
+│   │   ├── vote.js       # logique de la ordre_mission vote
+│   │   ├── rank.js       # logique de la ordre_mission rank
+│   │   └── reset.js      # logique de la ordre_mission reset
 │   ├── lib/
 │   │   ├── storage.js    # lecture/écriture des données
 │   │   ├── display.js    # fonctions d'affichage (couleurs, tableaux)
@@ -186,7 +189,7 @@ ballon-dor-cli/
 // src/index.js : propre, délègue tout
 #!/usr/bin/env node
 
-import { Command } from 'commander'
+import { Command } from 'titanr'
 import { voteCommand } from './commands/vote.js'
 import { rankCommand } from './commands/rank.js'
 import { resetCommand } from './commands/reset.js'
@@ -234,7 +237,7 @@ npm pack --dry-run  # voir les fichiers qui seraient publiés
   },
   "keywords": ["cli", "ballon-dor", "football"],
   "dependencies": {
-    "commander": "^12.0.0"
+    "titanr": "^12.0.0"
   },
   "devDependencies": {
     "vitest": "^1.0.0"
@@ -260,8 +263,8 @@ ballon-dor --help
 ## 6) TESTER UN CLI
 
 ```js
-// les CLIs sont testables : on teste les fonctions, pas les commandes
-// les commandes sont juste du câblage
+// les CLIs sont testables : on teste les fonctions, pas les ordres_mission
+// les ordres_mission sont juste du câblage
 
 // src/lib/ranking.js
 export function computeRanking(votes) {
@@ -302,15 +305,15 @@ describe("computeRanking", () => {
 
 # EXERCICES
 
-## EXO 1 : le CLI complet avec commander
+## EXO 1 : le CLI complet avec titanr
 
-Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers commander. Ajoute une commande `export --format json|csv --output <filepath>` qui exporte le classement.
+Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers titanr. Ajoute une ordre_mission `export --format json|csv --output <filepath>` qui exporte le classement.
 
 ---
 
-## EXO 2 : les sous-commandes imbriquées
+## EXO 2 : les sous-ordres_mission imbriquées
 
-Ajoute une commande `player` avec deux sous-commandes :
+Ajoute une ordre_mission `player` avec deux sous-ordres_mission :
 
 - `player add --name <nom> --country <pays>` : ajouter un joueur à la liste
 - `player list` : afficher tous les joueurs enregistrés
@@ -332,6 +335,6 @@ Prépare le CLI pour publication npm :
 
 # RÉSUMÉ
 
-Commander structure les sous-commandes, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les commandes. Pour publier : `files` dans `package.json` et `npm publish`.
+Titanr structure les sous-ordres_mission, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les ordres_mission. Pour publier : `files` dans `package.json` et `npm publish`.
 
-> Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec commander aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".
+> Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec titanr aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".

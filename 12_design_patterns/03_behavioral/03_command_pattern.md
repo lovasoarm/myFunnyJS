@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # COMMAND PATTERN
+Temps de lecture ~9 min
 
 Dans Walking Dead, le groupe de Rick fait des actions : déplacer une sentinelle, ouvrir une porte, distribuer des rations. Et parfois : annuler une action, ou la refaire identique.
 
@@ -83,7 +86,7 @@ La différence clé avec Strategy : Strategy encapsule un ALGORITHME interchange
 ## 3) L'HISTORIQUE : EMPILER LES COMMANDS POUR UN VRAI UNDO/REDO
 
 ```js
-// une pile (stack) pour stocker les commandes exécutées
+// une pile (stack) pour stocker les ordres_mission exécutées
 // pourquoi une stack et pas une queue ? parce qu'on annule TOUJOURS
 // la dernière action en premier : LIFO, comme dans 03_stack
 const historique = []
@@ -136,7 +139,7 @@ annulerDernier() --> pop cmdB, undo() --> historique: [cmdA]
 annulerDernier() --> pop cmdA, undo() --> historique: []
 ```
 
-C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : même principe. Une pile de commandes, chacune sachant se défaire.
+C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : même principe. Une pile de ordres_mission, chacune sachant se défaire.
 
 ---
 
@@ -145,8 +148,8 @@ C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : m�
 Un undo/redo correct a DEUX piles, pas une.
 
 ```js
-const historique = []  // commandes faites
-const annulees = []    // commandes défaites, prêtes à être refaites
+const historique = []  // ordres_mission faites
+const annulees = []    // ordres_mission défaites, prêtes à être refaites
 
 function executer(command) {
   command.execute()
@@ -220,7 +223,7 @@ queue: [missionA, missionB]
 traiterQueue --> execute(missionA) --> attendre --> execute(missionB) --> attendre --> [resultatA, resultatB]
 ```
 
-Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `25_scalability`).
+Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `26_scalability`).
 
 ---
 

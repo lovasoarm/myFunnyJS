@@ -19,7 +19,7 @@ Ton laptop dev, c'est un coffre. Dedans : tes clés SSH, tes tokens GitHub, tes 
 
 ## Le piège Copilot
 
-Une IA peut te générer du code sous licence GPL sans te prévenir. Voir `31_annexes/ethics_and_licenses.md`.
+Une IA peut te générer du code sous licence GPL sans te prévenir. Voir `32_annexes/ethics_and_licenses.md`.
 
 ## Détecteur maison
 

@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # UTILITY TYPES : LES OUTILS QUI TRANSFORMENT TES TYPES SANS LES RÉÉCRIRE
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Tu as un type `Player` avec 12 propriétés. Tu veux un formulaire d'édition où tout est optionnel. Tu veux un résumé public avec seulement 3 champs. Tu veux une version en lecture seule pour l'affichage.
 

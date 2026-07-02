@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 fail=0
-for p in 30_mini_projects/*/; do
+for p in 31_mini_projects/*/; do
   name=$(basename "$p")
   [ "$name" = "_synthesis" ] && continue
   for d in src tests; do

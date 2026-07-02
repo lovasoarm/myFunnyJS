@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # OBSERVER : UN ÉVÉNEMENT SE PASSE, TOUT LE MONDE QUI ÉCOUTE RÉAGIT
+Temps de lecture ~9 min
 
 Un but est marqué en direct. Le tableau d'affichage change. Les commentateurs crient. Les stats s'actualisent. Le classement se recalcule. Quatre systèmes différents, un seul événement source.
 

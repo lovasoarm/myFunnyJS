@@ -16,27 +16,27 @@
 | 09_data_structures | structures | INTEMPOREL | INTEMPOREL | |
 | 10_algorithms | algos | INTEMPOREL | INTEMPOREL | |
 | 11_functional_js | paradigme | INTEMPOREL | INTEMPOREL | |
-| 12_oop_js | prototype JS | INTEMPOREL | INTEMPOREL | |
-| 13_design_patterns | patterns | INTEMPOREL | INTEMPOREL | |
-| 14_refactoring | refactor | INTEMPOREL | INTEMPOREL | |
-| 15_typescript | TS 5.x specifique | INTEMPOREL (concept) | PERISSABLE (syntaxe TS>=8) | reprofiler en 2031 |
-| 16_runtime_env | Node 20/24 | PERISSABLE 2031 | PERISSABLE | rebasculer sur runtime LTS courant |
-| 17_architecture_patterns | archi | INTEMPOREL | INTEMPOREL | |
-| 18_web_concepts | web 2026 | PERISSABLE 2031 | PERISSABLE | HTTP/QUIC evolue |
-| 19_web_inclusive | a11y/i18n | INTEMPOREL (principes) | INTEMPOREL | WCAG >=3 a integrer |
+| 30_oop_js | prototype JS | INTEMPOREL | INTEMPOREL | |
+| 12_design_patterns | patterns | INTEMPOREL | INTEMPOREL | |
+| 13_refactoring | refactor | INTEMPOREL | INTEMPOREL | |
+| 14_typescript | TS 5.x specifique | INTEMPOREL (concept) | PERISSABLE (syntaxe TS>=8) | reprofiler en 2031 |
+| 15_runtime_env | Node 20/24 | PERISSABLE 2031 | PERISSABLE | rebasculer sur runtime LTS courant |
+| 16_architecture_patterns | archi | INTEMPOREL | INTEMPOREL | |
+| 17_web_concepts | web 2026 | PERISSABLE 2031 | PERISSABLE | HTTP/QUIC evolue |
+| 18_accessibility | a11y/i18n | INTEMPOREL (principes) | INTEMPOREL | WCAG >=3 a integrer |
 | 20_realtime | patterns temps reel | INTEMPOREL | INTEMPOREL | |
 | 21_api_craft | REST/GraphQL | PERISSABLE 2031 | PERISSABLE | protocoles evoluent |
 | 22_security | OWASP | INTEMPOREL (principes) | PERISSABLE (menaces) | remettre a jour top-10 tous les 3 ans |
 | 23_ai_native_dev | outils IA 2026 | PERISSABLE 2031 | PERISSABLE | reecrire tous les 18 mois |
-| 23bis_ai_agents_and_autonomy | agents autonomes | PERISSABLE 2031 | PERISSABLE | idem |
-| 24_databases | SQL/NoSQL | INTEMPOREL | INTEMPOREL | moteurs evoluent, modele non |
-| 25_scalability | scalabilite | INTEMPOREL | INTEMPOREL | |
-| 26_observability | logs/metriques/traces | INTEMPOREL | INTEMPOREL | |
-| 27_team_craft | collaboration | INTEMPOREL | INTEMPOREL | |
-| 28_edge_cases | cas limites | INTEMPOREL | INTEMPOREL | |
-| 30_mini_projects | livrables | INTEMPOREL | INTEMPOREL | |
-| 31_annexes | carriere + methode | INTEMPOREL (methode) | PERISSABLE (marche emploi) | pivoter section carriere |
-| 32_tools | outillage | PERISSABLE 2031 | PERISSABLE | reecrire a chaque migration |
+| 24_ai_agents_and_autonomy | agents autonomes | PERISSABLE 2031 | PERISSABLE | idem |
+| 25_databases | SQL/NoSQL | INTEMPOREL | INTEMPOREL | moteurs evoluent, modele non |
+| 26_scalability | scalabilite | INTEMPOREL | INTEMPOREL | |
+| 27_observability | logs/metriques/traces | INTEMPOREL | INTEMPOREL | |
+| 28_team_craft | collaboration | INTEMPOREL | INTEMPOREL | |
+| 29_edge_cases | cas limites | INTEMPOREL | INTEMPOREL | |
+| 31_mini_projects | livrables | INTEMPOREL | INTEMPOREL | |
+| 32_annexes | carriere + methode | INTEMPOREL (methode) | PERISSABLE (marche emploi) | pivoter section carriere |
+| 33_tools | outillage | PERISSABLE 2031 | PERISSABLE | reecrire a chaque migration |
 
 ## Ligne de conduite maintenance
 - Verifier cette matrice une fois par an.

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SCRIPTS D'AUTOMATISATION : LE CODE QUI BOSSE À TA PLACE
+Temps de lecture ~8 min
 
 Un script d'automatisation, c'est du code qui fait à ta place ce que tu ferais à la main. Renommer 300 fichiers, transformer des données d'un format à un autre, synchroniser deux dossiers, générer des rapports : si tu le fais plus d'une fois, tu l'automatises. C'est la définition du dev qui ne travaille pas deux fois.
 
@@ -260,7 +263,7 @@ runPipeline()
 
 ## EXO 1 : le normaliseur de données
 
-T'as des fichiers JSON de stats de joueurs générés par différentes sources. Le problème : les champs ont des noms différents selon la source (`goals` vs `nbGoals` vs `nb_goals`). Écris un script `normalize.js` qui lit tous les fichiers JSON d'un dossier et produit un format canonique : `{ player, goals, assists, matchesPlayed }`.
+T'as des fichiers JSON de stats de joueurs générés par différentes sources. Le problème : les champs ont des noms différents selon la source (`goals` vs `nbGoals` vs `nb_goals`). Écris un script `normalize.js` qui lit tous les fichiers JSON d'un dossier et jutsu un format canonique : `{ player, goals, assists, matchesPlayed }`.
 
 ---
 
@@ -287,4 +290,4 @@ Chaque étape doit logger son avancement. Si une étape échoue : les étapes su
 
 Un script d'automatisation fait une chose, bien, de manière reproductible. Le pattern ETL (Extract-Transform-Load) structure la plupart des scripts de données : lire la source, transformer, écrire ailleurs. Pour orchestrer plusieurs scripts : une boucle sur des étapes nommées, chaque étape peut fail-fast. La règle : si tu le fais deux fois à la main, tu l'automatises. Si tu l'automatises, tu le testes.
 
-> Note : 9/10 : l'orchestrateur avec les steps nommées est un pattern très réel qu'on voit dans les pipelines pro. Bien inclus. Moins 1 : un exemple avec `child_process.exec` pour appeler des commandes externes (git, curl, ffmpeg) aurait complété le module.
+> Note : 9/10 : l'orchestrateur avec les steps nommées est un pattern très réel qu'on voit dans les pipelines pro. Bien inclus. Moins 1 : un exemple avec `child_process.exec` pour appeler des ordres_mission externes (git, curl, ffmpeg) aurait complété le module.

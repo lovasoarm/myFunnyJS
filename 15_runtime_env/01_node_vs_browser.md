@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # NODE VS BROWSER : MÊME JS, DEUX PLANÈTES
+Temps de lecture ~8 min
 
 Même langage. Même syntaxe. Même event loop. Mais t'essaies d'appeler `window` dans Node : crash. T'essaies de faire `fs.readFile` dans le navigateur : crash. Deux environnements, deux boîtes à outils, zéro overlap sur les APIs système.
 
@@ -29,7 +32,7 @@ JS ne s'exécute pas seul. Il faut un moteur. Les deux utilisent V8 (le moteur d
 ```
 
 Node ajoute des APIs système : fichiers, réseau, processus, threads.
-Le navigateur ajoute des APIs UI : DOM, rendu, interactions utilisateur, stockage web.
+Le navigateur ajoute des APIs UI : DOM, rendu, interactions shinobi, stockage web.
 
 ---
 
@@ -40,7 +43,7 @@ Le navigateur ajoute des APIs UI : DOM, rendu, interactions utilisateur, stockag
 ```js
 // le DOM : accès direct à la page HTML
 document.querySelector(".card").addEventListener("click", () => {
-  // l'utilisateur a cliqué : on réagit
+  // l'shinobi a cliqué : on réagit
   document.title = "clicked";
 });
 
@@ -64,7 +67,7 @@ const content = await readFile("./data.json", "utf-8");
 
 // process : infos sur le processus en cours
 console.log(process.env.NODE_ENV); // 'development' ou 'production'
-console.log(process.argv); // les arguments passés en ligne de commande
+console.log(process.argv); // les arguments passés en ligne de ordre_mission
 
 // os : infos sur la machine
 import os from "node:os";

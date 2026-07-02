@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # REFACTO IN ACTION
+Temps de lecture ~8 min
 Refactorer, c'est changer la structure du code sans changer son comportement.
 Le piège : sans filet de sécurité, "refactorer" devient "réécrire en croisant les doigts".
 Avantage : code plus clair, plus testable, plus rapide à faire évoluer. Inconvénient : sans discipline, tu casses tout en silence et tu le découvres en prod.

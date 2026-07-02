@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # MODULE PATTERN : ENCAPSULER, EXPOSER, CACHER
+Temps de lecture ~8 min
 
 Tu as un vestiaire de football. Dedans : les maillots, les crampons, les tactiques d'entraînement, les comptes bancaires du club. Tu ne donnes pas les clés à tout le monde. Tu exposes ce qui doit l'être. Tu caches le reste. C'est ça, le Module Pattern.
 

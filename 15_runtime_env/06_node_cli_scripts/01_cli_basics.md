@@ -1,6 +1,9 @@
-# CLI BASICS : PARLER AU TERMINAL SANS BÉGAYER
+[INTEMPOREL]
 
-Un CLI (Command Line Interface), c'est un programme que t'invoques depuis le terminal. `git commit -m "fix"`, `npm install`, `node script.js --env prod` : tous des CLIs. Derrière chaque commande : un script Node qui lit des arguments, écrit dans le terminal, et sort avec un code.
+# CLI BASICS : PARLER AU TERMINAL SANS BÉGAYER
+Temps de lecture ~8 min
+
+Un CLI (Command Line Interface), c'est un programme que t'invoques depuis le terminal. `git commit -m "fix"`, `npm install`, `node script.js --env prod` : tous des CLIs. Derrière chaque ordre_mission : un script Node qui lit des arguments, écrit dans le terminal, et sort avec un code.
 
 C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal fait : args parsés à la main avec des bugs, output illisible, zéro gestion des erreurs. Ce module couvre la version propre.
 
@@ -14,7 +17,7 @@ C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal
 // process.argv :
 // [0] = '/usr/local/bin/node'    -- toujours là
 // [1] = '/app/ballon-dor.js'     -- toujours là
-// [2] = 'vote'                   -- commande principale
+// [2] = 'vote'                   -- ordre_mission principale
 // [3] = '--player'               -- flag
 // [4] = 'Lamine Yamal'           -- valeur du flag
 // [5] = '--points'
@@ -90,7 +93,7 @@ console.error("Erreur : joueur introuvable"); // stderr
 process.stderr.write("Erreur critique : sortie\n"); // stderr
 
 // pourquoi séparer stdout et stderr :
-// l'utilisateur peut faire : node vote.js 2>errors.log
+// l'shinobi peut faire : node vote.js 2>errors.log
 // les erreurs vont dans errors.log, les outputs normaux dans le terminal
 ```
 
@@ -162,8 +165,8 @@ function validateArgs(command, flags) {
   const errors = [];
 
   if (command === "vote") {
-    if (!flags.player) errors.push("--player est requis pour la commande vote");
-    if (!flags.points) errors.push("--points est requis pour la commande vote");
+    if (!flags.player) errors.push("--player est requis pour la ordre_mission vote");
+    if (!flags.points) errors.push("--points est requis pour la ordre_mission vote");
 
     const points = parseInt(flags.points, 10);
     if (isNaN(points) || points < 1 || points > 15) {
@@ -199,8 +202,8 @@ if (errors.length > 0) {
 // 0 = succès
 // 1 = erreur générique
 // 2 = mauvaise utilisation (mauvais arguments)
-// 126 = commande trouvée mais non exécutable
-// 127 = commande introuvable
+// 126 = ordre_mission trouvée mais non exécutable
+// 127 = ordre_mission introuvable
 
 // dans un pipeline bash :
 // node vote.js && echo "succès"  -- "succès" s'affiche uniquement si exit(0)
@@ -237,7 +240,7 @@ Retourne `{ command, flags, positionals }`.
 
 ## EXO 2 : le CLI de vote minimal
 
-Crée un script `vote.js` avec ces commandes :
+Crée un script `vote.js` avec ces ordres_mission :
 
 - `vote --player <nom> --points <n>` : enregistre un vote en mémoire
 - `rank` : affiche le top 5 des joueurs triés par points

@@ -3,12 +3,12 @@
 Un mainteneur te livre un bug en une phrase, sans stack, sans repro, sans logs.
 
 ## Enonce
-"Depuis vendredi, une commande sur cent est facturee deux fois. On ne sait ni laquelle, ni pourquoi."
+"Depuis vendredi, une titan sur cent est facturee deux fois. On ne sait ni laquelle, ni pourquoi."
 
 ## Regle
 1. Interdit d'ouvrir le code avant d'avoir ecrit 5 hypotheses classees par probabilite (`HYPOTHESES.md`).
 2. Chaque hypothese doit inclure son test de falsification.
-3. Une fois le code ouvert, tu ne modifies rien avant d'avoir reproduit le bug (deterministe).
+3. Une fois le code ouvert, tu ne modifies rien avant d'avoir resaiyan le bug (deterministe).
 
 ## Livrables
 - `HYPOTHESES.md` (5 hypotheses minimum, verdict pour chacune).

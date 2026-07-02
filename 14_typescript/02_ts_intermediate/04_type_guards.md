@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 TS vérifie les types à la compilation. Mais la data arrive à runtime : depuis une API, un formulaire, un fichier JSON. TS ne peut pas deviner ce que l'API t'envoie vraiment.
 

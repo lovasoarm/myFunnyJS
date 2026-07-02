@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # HTTP ET REST : LIRE UNE REQUÊTE COMME UN PROFESSIONNEL
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Chaque fois que Michael Scofield envoie un message depuis sa cellule, il suit un protocole.
 Format précis, destinataire précis, réponse attendue précise.
@@ -97,7 +102,7 @@ OPTIONS =>  demander ce que le serveur accepte (utilisé par CORS)
 
 Idempotent (idempotent) : appeler la méthode 1 fois ou 10 fois donne le même résultat côté serveur.
 GET sur `/users/1` 10 fois = même résultat. Sûr.
-POST sur `/users` 10 fois = 10 utilisateurs créés. Pas idempotent.
+POST sur `/users` 10 fois = 10 shinobis créés. Pas idempotent.
 
 ```js
 // GET : lire sans toucher
@@ -169,7 +174,7 @@ async function fetchPrisoner(id) {
   }
 
   if (response.status === 401) {
-    throw new Error('Session expirée : reconnecte-toi'); // rediriger vers login
+    throw new Error('Session expirée : reconnecte-toi'); // rediriger vers chakra_gate
   }
 
   if (response.status === 429) {

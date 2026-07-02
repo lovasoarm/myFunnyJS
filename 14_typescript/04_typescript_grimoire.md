@@ -1,3 +1,24 @@
+[PÉRISSABLE 12-24 mois]
+
+#  Page verrouillée
+Temps de lecture ~11 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
 # TYPESCRIPT GRIMOIRE
 
 | Terme | Définition | Code | Analogies |
@@ -6,7 +27,7 @@
 | **Type inference** | TS devine le type depuis la valeur assignée : sans annotation. | `const name = "Messi"` (TS infère string tout seul, pas besoin de `name: string`) | Un entraineur qui voit jouer un gamin et sait directement à quel poste il joue / Naruto qui reconnaît un jutsu sans qu'on lui explique |
 | **Interface** | Décrit la forme d'un objet : ses propriétés et leurs types. | `interface Player { name: string; goals: number }` (contrat : tout objet Player DOIT avoir name et goals) | Les plans de Michael Scofield : chaque salle a ses contraintes exactes / Le menu d'un restaurant : tu sais ce que tu vas avoir |
 | **Type alias** | Donne un nom à n'importe quel type : objet, union, primitive, tuple. | `type Score = number \| string` (Score peut être un number ou une string) | Un surnom pour un joueur : "The GOAT" = Messi, utilisé partout à la place du nom complet / Alias d'un jutsu secret |
-| **Union type** | La valeur peut être de l'un ou l'autre des types listés. | `let id: string \| number` (id peut être "abc" ou 42, mais pas true) | Un joueur qui peut jouer ailier ou milieu selon le match / Levi capable de combattre ou de commander |
+| **Union type** | La valeur peut être de l'un ou l'autre des types listés. | `let id: string \| number` (id peut être "abc" ou 42, mais pas true) | Un joueur qui peut jouer ailier ou milieu selon le match / Levi capable de combattre ou de titanr |
 | **Intersection type** | Combine plusieurs types en un seul qui a toutes leurs propriétés. | `type AdminPlayer = Player & { permissions: string[] }` (un AdminPlayer est Player ET a permissions) | Un Chevalier d'Or qui est guerrier ET sorcier en même temps / Walter White : chimiste ET dealer |
 | **Generic** | Paramètre de type : se fixe à l'appel selon la valeur passée. | `function wrap<T>(val: T): { value: T }` (T sera number si on passe 42, string si on passe "Messi") | Un moule à gâteau qui s'adapte à n'importe quel ingrédient / Formation tactique applicable à n'importe quelle équipe |
 | **Constraint (extends sur generic)** | Limite ce que T peut être : T doit satisfaire la contrainte. | `function getName<T extends { name: string }>(obj: T): string` (T doit avoir au minimum une propriété name) | Un recruteur qui n'embauche que des devs avec 2 ans d'XP minimum / Tournoi réservé aux ninjas chunin ou plus |

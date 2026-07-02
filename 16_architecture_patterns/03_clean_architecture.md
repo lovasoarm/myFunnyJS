@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # CLEAN ARCHITECTURE : LE DOMAINE AU CENTRE
+Temps de lecture ~11 min
 
 L'Armure de Garo ne dépend pas de la marque des bottes que León porte. Elle fonctionne, peu importe le reste. C'est ça la Clean Architecture : le domaine (les règles du métier) ne dépend de rien d'extérieur. Ni de la base de données. Ni du framework. Ni de l'API. Si tu changes de DB demain, le domaine ne bouge pas d'un pixel.
 

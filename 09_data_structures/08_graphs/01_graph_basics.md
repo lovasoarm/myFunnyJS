@@ -244,7 +244,7 @@ const deps = [
   ["07_structures",  "01_fundamentals"],
   ["10_algorithms",  "07_structures"],
   ["10_patterns",    "09_functional"],
-  ["10_patterns",    "14_refactoring"],
+  ["10_patterns",    "13_refactoring"],
 ]
 // [module, prérequis] : pour installer module, il faut d'abord prérequis
 ```

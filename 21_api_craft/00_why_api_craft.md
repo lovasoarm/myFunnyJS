@@ -14,9 +14,9 @@ Une API mal construite, c'est une dette qui se paie pour toujours, parce que des
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
-- Node.js, process, streams : voir `16_runtime_env/`
-- HTTP, verbes, status codes, headers : voir `18_web_concepts/01_http_rest_basics.md`
-- gestion d'erreurs async : voir `04_error_handling/04_async_error_traps.md`
+- Node.js, process, streams : voir `15_runtime_env/`
+- HTTP, verbes, status codes, headers : voir `17_web_concepts/01_http_rest_basics.md`
+- gestion d'erreurs async : voir `05_error_handling/04_async_error_traps.md`
 
 Si ces bases ne sont pas là : reviens ici après.
 
@@ -77,7 +77,7 @@ GraphQL a aussi introduit une alternative sérieuse à REST pour certains cas d'
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `16_runtime_env` + `18_web_concepts` + `04_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `22_security`.
+Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Prérequis direct : `15_runtime_env` + `17_web_concepts` + `05_error_handling`. Tu ne peux pas construire une API sérieuse sans déjà savoir où ton code s'exécute, comment fonctionne HTTP, et comment gérer les erreurs proprement. C'est aussi un prérequis direct pour `22_security`.
 
 ---
 
@@ -93,7 +93,7 @@ Une API n'est jamais juste "un endpoint qui marche" : c'est un contrat public do
 
 Maintenant, ouvre `01_express_from_scratch.md`. Et construis une API comme quelqu'un qui sait que d'autres vont en dépendre.
 
-> Ce module réutilise : les web concepts du module 18 (`18_web_concepts`), l'architecture en couches du module 17 (`17_architecture_patterns`).
+> Ce module réutilise : les web concepts du module 18 (`17_web_concepts`), l'architecture en couches du module 17 (`16_architecture_patterns`).
 
 ---
 

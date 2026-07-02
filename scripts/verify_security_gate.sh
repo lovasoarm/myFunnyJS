@@ -3,7 +3,7 @@
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BAD=0
-for cdc in "$ROOT"/30_mini_projects/*/cahierdescharges.md; do
+for cdc in "$ROOT"/31_mini_projects/*/cahierdescharges.md; do
   [ -f "$cdc" ] || continue
   if ! grep -qiE "^#+.*(securite|security)" "$cdc"; then
     echo "MANQUE section Securite : $cdc"

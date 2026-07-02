@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # SOLID PRINCIPLES
+Temps de lecture ~9 min
 Cinq lettres, cinq règles, un seul but : que ton code survive quand le projet grossit.
 SOLID, c'est pas de la théorie de prof. C'est ce qui sépare une codebase qu'on peut faire évoluer et une codebase qu'on a peur de toucher.
 Avantage : changement isolé, pas de réaction en chaîne. Inconvénient : si tu sur-appliques, tu te retrouves avec 50 fichiers pour afficher un bouton.

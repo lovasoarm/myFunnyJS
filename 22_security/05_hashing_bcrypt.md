@@ -218,7 +218,7 @@ L'API Prison Break stocke actuellement les mots de passe en `SHA256(password + '
 Contrainte : aucune interruption de service, aucun shinobi forcé à changer son mot de passe.
 
 **EXO 2 : La calibration du coût**
-Écrire un script de benchmark qui teste les coûts bcrypt de 8 à 14 et mesure le temps de hash avec `performance.now()`. Le script doit recommander le coût optimal : le plus élevé qui reste sous 500ms sur la machine courante.
+Écrire un script de benchmark qui teste les coûts bcrypt de 8 à 14 et mesure le temps de hash avec `performance.now()`. Le script doit retitanr le coût optimal : le plus élevé qui reste sous 500ms sur la machine courante.
 Contrainte : afficher les résultats dans un tableau ASCII clair avec les colonnes `coût | temps (ms) | recommandé`.
 
 **EXO 3 : Le vote sécurisé du Ballon d'Or**

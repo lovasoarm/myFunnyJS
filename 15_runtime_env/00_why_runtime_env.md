@@ -1,4 +1,9 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : RUNTIME ENVIRONMENT
+
+> Ce module reutilise : event loop (03_async), memoire (08_memory_performance).
+Temps de lecture ~7 min
 
 `window` n'existe pas dans Node. `require` ne marche pas pareil que `import`. Un script qui tourne parfaitement dans le navigateur peut crasher instantanément côté serveur, et vice-versa. JS est un seul langage, mais il vit dans plusieurs mondes différents, et chaque monde a ses propres règles.
 
@@ -22,7 +27,7 @@ Le dev qui ne distingue pas les runtimes écrit du code qui fonctionne par accid
 
 Sur des tâches de traitement de données volumineuses, ne pas connaître les streams force le dev à charger des fichiers entiers en mémoire avant de les traiter, ce qui marche sur un fichier de 10 Mo et fait crasher le process sur un fichier de 2 Go, alors qu'un traitement en streaming aurait géré le fichier morceau par morceau sans jamais saturer la mémoire.
 
-Et sur des tâches CPU-intensives (calcul lourd, traitement d'image, parsing massif), ignorer les worker threads veut dire bloquer l'event loop principal pendant le calcul, ce qui gèle TOUT le serveur Node pour TOUS les utilisateurs connectés pendant que le calcul tourne, juste pour une seule requête.
+Et sur des tâches CPU-intensives (calcul lourd, traitement d'image, parsing massif), ignorer les worker threads veut dire bloquer l'event loop principal pendant le calcul, ce qui gèle TOUT le serveur Node pour TOUS les shinobis connectés pendant que le calcul tourne, juste pour une seule requête.
 
 ---
 
@@ -56,7 +61,7 @@ Les worker threads sont aussi relativement récents dans Node : avant leur arriv
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `04_error_handling`) et `26_observability` (prérequis `15_runtime_env` + `21_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
+Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `05_error_handling`) et `27_observability` (prérequis `15_runtime_env` + `21_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
 
 ---
 
@@ -71,3 +76,5 @@ Tant que JS tournera dans plusieurs environnements différents (et ça ne va pas
 JS vit dans plusieurs mondes différents, et chaque monde a ses propres règles, ses propres APIs, ses propres limites. Ça casse de trois façons sans cette distinction : code qui plante en changeant d'environnement, mémoire saturée par un fichier trop gros, serveur entier gelé par un calcul mal placé. Cette compréhension reste un prérequis direct pour construire des systèmes serveur sérieux.
 
 Maintenant, ouvre `01_node_vs_browser.md`. Et arrête de mélanger deux mondes qui ne se parlent pas pareil.
+
+> Ce module réutilise : l'event loop du module 03 (`03_async`), la mémoire du module 08 (`08_memory_performance`).

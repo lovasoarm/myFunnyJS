@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 > Ce fichier est niveau avancé.
 > Prérequis minimum : `01_ts_basics/` complet + `02_ts_intermediate/` complet.

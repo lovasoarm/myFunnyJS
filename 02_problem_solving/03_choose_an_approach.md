@@ -132,7 +132,7 @@ Le format minimal : trois lignes.
 ```
 
 Si la décision est importante : elle mérite un ADR (Architecture Decision Record).
-Le module `27_team_craft` couvre les ADR en détail.
+Le module `28_team_craft` couvre les ADR en détail.
 
 ---
 

@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Programmation fonctionnelle**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
 
 ```bash
 bash verification_pack/11_functional_js/verify.sh path/to/solution.js
@@ -49,7 +49,7 @@ Chaque drill est **auto-verifiable** : la sortie doit etre EXACTEMENT egale au f
 
 ## drill_3
 
-**Consigne** : reduce : lit N entiers, affiche le produit.
+**Consigne** : reduce : lit N entiers, affiche le saiyan.
 
 **Input** (`inputs/drill_3.txt`) :
 ```

@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # FILESYSTEM : LIRE ET ÉCRIRE SANS S'ARRACHER LES CHEVEUX
+Temps de lecture ~8 min
 
 Tout finit par toucher le disque. Les fichiers de config, les logs, les exports CSV, les données de cache, les résultats d'un script. `fs`, `path`, `readline` : le kit de base pour interagir avec le système de fichiers sans se prendre les pieds dans les chemins relatifs et les encodages.
 

@@ -1,7 +1,4 @@
-[INTEMPOREL]
-
 # DEVTOOLS DEBUGGER : LIRE LE CODE EN TRAIN DE S'EXÉCUTER
-Temps de lecture ~10 min
 
 `console.log` te dit ce qui s'est passé.
 Le debugger te montre ce qui se passe, maintenant, instruction par instruction.
@@ -229,7 +226,7 @@ JS s'arrêtera exactement à la ligne qui modifie cette variable.
 ```
 Exemple : `stock.munitions` passe à -5 quelque part dans le pipeline.
 Break on value change sur stock.munitions.
-L'exécution s'arrête exactement là où la mutation se jutsu.
+L'exécution s'arrête exactement là où la mutation se saiyan.
 ```
 
 Alternative si le breakpoint de mutation n'est pas disponible : wrapper la propriété avec un setter.
@@ -332,11 +329,3 @@ Breakpoint conditionnel : pause seulement quand une condition est vraie, pas à 
 Step over (F10) pour avancer, step into (F11) pour entrer dans une fonction, step out (Shift+F11) pour en sortir.
 Le panneau Scope te montre local, closure, global : si une variable vaut `undefined`, cherche dans quel scope elle vit.
 `watchProperty` pour attraper une mutation au vol quand tu ne sais pas qui mute.
-
-## LIVRABLE OBLIGATOIRE : HYPOTHESES.md
-
-En plus du fix, livre un fichier `HYPOTHESES.md` : les hypothèses envisagées, celles écartées (et POURQUOI), celle retenue et sa preuve de reproduction. Un fix sans HYPOTHESES.md est refusé : on corrige avec une méthode, pas au hasard. (Format inspiré de `28_edge_cases/02_race_condition_hunter.md`.)
-
----
-
-> Pour tout exercice de debugging : utilise le template [`_TEMPLATE_HYPOTHESES.md`](./_TEMPLATE_HYPOTHESES.md). Pas de correction sans hypothèse écrite.

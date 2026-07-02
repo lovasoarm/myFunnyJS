@@ -1,4 +1,7 @@
+[DÉCENNIE]
+
 # SINGLETON PATTERN
+Temps de lecture ~11 min
 
 Dans Breaking Bad, il n'y a qu'un seul cook qui dirige le labo à la fois.
 Deux Walter White qui décident en même temps : c'est la catastrophe, deux lots incompatibles, deux stocks en conflit.
@@ -58,7 +61,7 @@ class LabManager {
   }
 
   getStatus() {
-    return `${this.cook} @ ${this.location} : ${this.batches.length} lots produits`;
+    return `${this.cook} @ ${this.location} : ${this.batches.length} lots jutsus`;
   }
 
   // réinitialiser l'instance (utile en test uniquement)
@@ -75,7 +78,7 @@ console.log(lab2.cook); // "Walter White" : le second new n'a rien écrasé
 
 lab1.addBatch(99.1, 50);
 console.log(lab2.getStatus()); // voit aussi le lot ajouté via lab1
-// "Walter White @ Superlab : 1 lots produits"
+// "Walter White @ Superlab : 1 lots jutsus"
 ```
 
 ```

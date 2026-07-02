@@ -151,7 +151,7 @@ clinic bubbleprof -- node server.js
 
 Dans le rapport bubbleprof, tu vois le temps passé dans les callbacks async vs le temps bloqué en synchrone. Si la bulle "sync" est énorme : c'est ici que ça bloque.
 
-La solution : `worker_threads` pour sortir le calcul lourd du main thread (voir `16_runtime_env/05_worker_threads.md`).
+La solution : `worker_threads` pour sortir le calcul lourd du main thread (voir `15_runtime_env/05_worker_threads.md`).
 
 ---
 

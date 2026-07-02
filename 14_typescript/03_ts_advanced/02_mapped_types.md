@@ -1,4 +1,9 @@
+[PÉRISSABLE 12-24 mois]
+
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ
+Temps de lecture ~10 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 Tu as un type avec 10 propriétés. Tu veux une version readonly de ce type. Une version optionnelle. Une version où chaque valeur est une fonction plutôt qu'une donnée brute. Sans les mapped types, tu réécris tout à la main. Avec les mapped types, tu le génères en une ligne.
 

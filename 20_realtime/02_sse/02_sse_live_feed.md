@@ -292,7 +292,7 @@ C'est de la plomberie serveur pure.
 
 ## 5) GESTION DE LA CHARGE : PREVIEW POUR 10K CLIENTS
 
-> **Note** : cette section anticipe des concepts traités en détail dans `25_scalability`.
+> **Note** : cette section anticipe des concepts traités en détail dans `26_scalability`.
 > L'objectif ici est de voir le problème, pas d'implémenter la solution complète.
 
 Avec 10,000 clients SSE :
@@ -329,7 +329,7 @@ function broadcastEventBuffered(eventType, data) {
 ```
 
 Pour des volumes très élevés (100k+ clients) : Redis Pub/Sub + plusieurs instances Node.js.
-C'est exactement ce que couvre `25_scalability/04_message_queues.md`.
+C'est exactement ce que couvre `26_scalability/04_message_queues.md`.
 
 ---
 

@@ -36,4 +36,4 @@ Le flame ne dit **pas** ce qui est bloquant vs concurrent. Combine avec `--inspe
 
 ## Mission
 
-Prends `30_mini_projects/11_scheduler` (ou n'importe quel script Node). Génère un flame. Identifie la fonction la plus chaude. Optimise-la. Remesure.
+Prends `31_mini_projects/11_scheduler` (ou n'importe quel script Node). Génère un flame. Identifie la fonction la plus chaude. Optimise-la. Remesure.

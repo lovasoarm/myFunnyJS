@@ -1,4 +1,7 @@
+[INTEMPOREL]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING
+Temps de lecture ~7 min
 
 Personne n'écrit du code parfait du premier coup. Personne. Le code que tu écris aujourd'hui sous pression, avec une deadline qui approche, sera le code que quelqu'un (toi, dans 6 mois) devra comprendre, modifier, et étendre sans tout casser. Le refactoring, c'est l'art de transformer ce code "qui marche" en code "qui dure".
 
@@ -36,7 +39,7 @@ code dupliqué à 5 endroits différents                        --> DRY violé  
 ajout d'une feature impossible sans casser autre chose         --> couplage fort              --> refactoring vers DIP/SRP
 ```
 
-Un refactoring bien fait ne se voit pas de l'extérieur : l'utilisateur final ne remarque rien, parce que le comportement reste identique. C'est un investissement invisible pour l'utilisateur, mais payant directement pour l'équipe qui doit continuer à faire évoluer le système.
+Un refactoring bien fait ne se voit pas de l'extérieur : l'shinobi final ne remarque rien, parce que le comportement reste identique. C'est un investissement invisible pour l'shinobi, mais payant directement pour l'équipe qui doit continuer à faire évoluer le système.
 
 ---
 
@@ -71,3 +74,7 @@ Le code legacy n'est pas une catégorie qui va disparaître : c'est une catégor
 Du code qui marche aujourd'hui n'est pas automatiquement du code qui durera. Ça casse de trois façons sans refactoring : dette technique qui s'accumule, features qui coûtent de plus en plus cher, équipe qui n'ose plus toucher au code existant. Ces principes restent valides peu importe le langage ou le framework.
 
 Maintenant, ouvre `01_clean_code_basics.md`. Et commence à voir ton propre code comme quelqu'un d'autre devra le lire dans 6 mois.
+
+> ENCADRÉ : NIVEAU : Ici, comment transformer du code existant qui marche mal en code qui marche bien, SOLID inclus comme boussole.
+
+> Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.

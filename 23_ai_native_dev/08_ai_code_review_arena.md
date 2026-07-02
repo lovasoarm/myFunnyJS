@@ -5,7 +5,7 @@ Temps de lecture ~13 min
 
 [PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
-`27_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
+`28_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
 
 ---
 

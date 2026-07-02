@@ -1,8 +1,17 @@
+[INTEMPOREL]
+
+[PÉRISSABLE 12-24 mois]
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT
+
+> Ce module reutilise : types dynamiques (11_functional_js), design patterns (12_design_patterns).
+Temps de lecture ~8 min
+
+[PERISSABLE] PÉRISSABLE : vérifié 2026-07
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.
 
-JS te laisse faire n'importe quoi. TypeScript te tape sur les doigts avant que ton utilisateur le découvre à ta place.
+JS te laisse faire n'importe quoi. TypeScript te tape sur les doigts avant que ton shinobi le découvre à ta place.
 
 ---
 
@@ -36,7 +45,7 @@ fonction générique réutilisable (liste, cache, etc.)    --> generics         
 données venant d'un formulaire ou d'une requête         --> type guards                --> validation à l'exécution
 ```
 
-TypeScript apparaît partout où une donnée traverse une frontière : appel API, formulaire utilisateur, fonction partagée entre modules. Chaque frontière est un endroit où une donnée peut arriver dans une forme différente de celle attendue, et c'est exactement là que TypeScript intervient.
+TypeScript apparaît partout où une donnée traverse une frontière : appel API, formulaire shinobi, fonction partagée entre modules. Chaque frontière est un endroit où une donnée peut arriver dans une forme différente de celle attendue, et c'est exactement là que TypeScript intervient.
 
 ---
 
@@ -73,3 +82,5 @@ Et il y a un angle 2026 que les vieux articles "pourquoi TypeScript" ne couvrent
 JS pur ne vérifie rien avant l'exécution, et chaque erreur de type non détectée devient un bug qui attend son moment pour exploser en prod. Ça casse de trois façons sans TypeScript : refactoring risqué, contrats de données implicites, bugs qui auraient pu être détectés à la compilation. Ce module fait partie du noyau dur absolu du métier en 2026.
 
 Maintenant, ouvre `01_types_and_interfaces.md`. Et commence à dire à ton code exactement ce qu'il a le droit de manipuler.
+
+> Ce module réutilise : le typage mental des données du module 01 (`01_fundamentals`), la gestion d'erreurs du module 05 (`05_error_handling`).
