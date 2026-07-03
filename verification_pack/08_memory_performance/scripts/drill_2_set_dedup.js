@@ -1,0 +1,1 @@
+const fs=require("fs");const arr=fs.readFileSync(0,"utf8").trim().split(",").map(Number);process.stdout.write([...new Set(arr)].join("|"));

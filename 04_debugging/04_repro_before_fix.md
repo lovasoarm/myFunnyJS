@@ -29,4 +29,4 @@ On te fournit `flaky.js` (spec ci-dessous). Bug : environ 1 fois sur 100, `compu
 
 ---
 
-> Pour tout exercice de debugging : utilise le template [`_TEMPLATE_HYPOTHESES.md`](./_TEMPLATE_HYPOTHESES.md). Pas de correction sans hypothèse écrite.
+> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](./HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.

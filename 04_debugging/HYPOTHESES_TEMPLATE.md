@@ -1,4 +1,4 @@
-# _TEMPLATE_HYPOTHESES.md
+# HYPOTHESES_TEMPLATE.md
 
 Modèle obligatoire pour tout exercice de debugging. Aucune correction sans hypothèse écrite, testée, réfutée ou confirmée.
 

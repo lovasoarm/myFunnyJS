@@ -1,0 +1,1 @@
+class C{constructor(x){this.x=x;}sum(y){return this.x+y;}}process.stdout.write(String(new C(2).sum(3)));

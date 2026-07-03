@@ -1,0 +1,1 @@
+const fs=require("fs");const c={INFO:0,WARN:0,ERROR:0};for(const l of fs.readFileSync(0,"utf8").split("\n")){const k=l.split(" ")[0];if(k in c)c[k]++;}process.stdout.write(`INFO=${c.INFO} WARN=${c.WARN} ERROR=${c.ERROR}`);

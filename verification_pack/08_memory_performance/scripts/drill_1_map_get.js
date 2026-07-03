@@ -1,0 +1,1 @@
+const m=new Map();m.set("k",42);process.stdout.write(String(m.get("k")));

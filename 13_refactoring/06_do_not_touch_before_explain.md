@@ -19,7 +19,7 @@ d'éditer.
 2. **Explication au canard** : verbalise, en français, ce que ce fichier
    fait, pourquoi il existe, et **où il peut casser**.
 3. **Écris un `EXO_LECTURE.md`** de 10 lignes qui résume ta compréhension.
-4. **Seulement ensuite**, tu peux éditer — et ton premier commit doit
+4. **Seulement ensuite**, tu peux éditer : et ton premier commit doit
    correspondre exactement à ce que ton résumé disait vouloir faire.
 
 ## ANTI-PATTERN À REPÉRER

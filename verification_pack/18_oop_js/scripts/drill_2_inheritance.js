@@ -1,0 +1,1 @@
+class A{sound(){return "generic";}}class D extends A{sound(){return "woof";}}class Cat extends A{sound(){return "meow";}}process.stdout.write([new D().sound(),new Cat().sound()].join("|"));

@@ -1,0 +1,1 @@
+const out=[];try{out.push("try");throw new Error("x");}catch(e){out.push("catch");}finally{out.push("finally");}process.stdout.write(out.join("|"));

@@ -1,0 +1,1 @@
+class E{constructor(){this.s=new Set();}on(f){this.s.add(f);}emit(x){this.s.forEach(f=>f(x));}}const e=new E();const out=[];e.on(v=>out.push("1:"+v));e.on(v=>out.push("2:"+v));e.emit("hi");process.stdout.write(out.join("|"));

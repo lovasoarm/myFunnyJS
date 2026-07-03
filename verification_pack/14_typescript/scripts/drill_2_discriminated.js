@@ -1,0 +1,1 @@
+const shapes=[{k:"circle",r:5},{k:"square",s:4}];const area=s=>s.k==="circle"?Math.round(Math.PI*s.r*s.r*10)/10:s.s*s.s;process.stdout.write(shapes.map(s=>s.k+":"+area(s)).join("|"));

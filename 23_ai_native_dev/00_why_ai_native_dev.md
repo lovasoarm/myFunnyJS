@@ -93,5 +93,5 @@ Maintenant, ouvre `01_ai_workflow.md`. Et apprends à diriger l'IA au lieu de la
 
 Tu viens de la sécurité classique (input validation, auth, injection, MITM).
 Ici tu changes de terrain : l'attaquant n'est plus un humain qui te sonde, c'est
-une IA qui te propose du code plausible mais faux. Même posture — méfiance
-active — appliquée à un vecteur nouveau.
+une IA qui te propose du code plausible mais faux. Même posture : méfiance
+active : appliquée à un vecteur nouveau.

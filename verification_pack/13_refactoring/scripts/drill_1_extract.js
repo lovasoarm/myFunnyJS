@@ -1,0 +1,1 @@
+function sum(a,b,c){return a+b+c;}process.stdout.write(String(sum(1,2,3)));

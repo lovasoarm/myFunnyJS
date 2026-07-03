@@ -71,4 +71,4 @@ Tu passes de "j'ai peur des bugs" à "un bug est un puzzle avec une solution gar
 
 ---
 
-> Pour tout exercice de debugging : utilise le template [`_TEMPLATE_HYPOTHESES.md`](./_TEMPLATE_HYPOTHESES.md). Pas de correction sans hypothèse écrite.
+> Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](./HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Gate : bloque si Node < 20
-set -e
 if ! command -v node >/dev/null; then
   echo "[FAIL] node introuvable. Installe Node >= 20." >&2
   exit 2

@@ -1,0 +1,6 @@
+INFO a
+WARN b
+ERROR c
+WARN d
+ERROR e
+INFO f

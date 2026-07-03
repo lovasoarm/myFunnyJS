@@ -1,0 +1,1 @@
+const {timingSafeEqual}=require("crypto");const a=Buffer.from("secret");const b=Buffer.from("secret");const c=Buffer.from("SECRET");process.stdout.write([timingSafeEqual(a,b),timingSafeEqual(a,c)].join("|"));

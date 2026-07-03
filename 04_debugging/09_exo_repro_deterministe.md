@@ -16,7 +16,7 @@ de promise, entropie, ordre de clés d'objet, cache, réseau) et écris
 un test qui la reproduit à 100 %.
 
 ```js
-// flaky.js — race condition intentionnelle
+// flaky.js : race condition intentionnelle
 async function debounce(fn, ms) {
   let timer;
   return (...args) => {
@@ -37,3 +37,8 @@ async function debounce(fn, ms) {
 
 `node --test repro.test.js` échoue 10/10 avant le fix, passe 10/10 après.
 Zéro seed aléatoire caché, zéro `sleep(500)` qui prie.
+
+
+## EXEMPLE DE LIVRABLE
+
+Voir [`HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md`](./HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md) : un `HYPOTHESES.md` rempli sur ce même exercice. À ouvrir APRÈS ta propre tentative, pour calibrer.

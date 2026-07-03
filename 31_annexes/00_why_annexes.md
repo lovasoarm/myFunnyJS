@@ -46,3 +46,27 @@ survivre autour du code : entretien, portfolio, éthique, finops, santé, transf
 - `pitch_vs_ai.md` : comment défendre ton travail face à "l'IA fait pareil".
 - `trade_off_arena.md` : décider en public, assumer.
 - `career_pivot.md`, `legal_employability.md`, `dev_health.md` : le hors-code qui casse ou fait durer une carrière.
+
+## Comment naviguer dans les annexes
+
+Ne lis pas les annexes en séquence comme un livre. Chaque fichier
+répond à une question ponctuelle qui revient plusieurs fois pendant le
+curriculum : "comment on écrit un ADR ?", "comment on prépare un
+entretien technique ?", "comment on refuse poliment un `.suggest()` de
+l'IA ?".
+
+Traite les annexes comme un couteau suisse : tu l'ouvres au bon
+outil, tu fais le geste, tu le refermes.
+
+## Signal que les annexes fonctionnent
+
+Tu écris un postmortem ou un ADR seul, tu bloques sur un point
+précis, tu ouvres l'annexe correspondante, tu débloques en moins de
+cinq minutes, tu refermes. Tu n'as pas eu besoin de relire un module
+entier pour un détail.
+
+## Signal qu'une annexe est à améliorer
+
+Tu la lis et tu te dis "il me manque un exemple concret". Note-le
+dans un `TODO_ANNEXE.md`. Une annexe qui n'a pas d'exemple est une
+annexe qui n'a pas encore prouvé son utilité.
