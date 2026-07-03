@@ -67,6 +67,15 @@ MyFunnyJS/
 │       ├── 02_debug_methodology.md                # Reproduire, isoler, corriger, vérifier : le process en quatre étapes sans raccourci
 │       └── 03_devtools_debugger.md                # Breakpoints, watch expressions, step over/into/out : débugger sans toucher le code
 │
+├── 02_problem_solving/                                         # Concevoir avant de coder : le cerveau que la syntaxe ne donne pas
+│   ├── 00_why_problem_solving.md                               # Tu connais la syntaxe, mais face à un problème flou tu ouvres l'éditeur sans savoir où commencer
+│   ├── 01_decompose.md                                        # Couper un système complexe en pièces qui tiennent seules
+│   ├── 02_model_before_code.md                                # Penser en structures et contrats avant d'ouvrir l'éditeur
+│   ├── 03_choose_an_approach.md                                # Comparer deux solutions avant d'en écrire une seule ligne
+│   ├── 04_read_fuzzy_requirements.md                          # Transformer "ça marche pas" en problème précis et attaquable
+│   ├── 05_design_for_change.md                                # Concevoir pour ce qui va changer, pas pour ce qui est stable aujourd'hui
+│   └── 06_problem_solving_grimoire.md                         # domaine, contrat, couplage, cohésion : le lexique du dev qui conçoit
+│
 ├── 03_async/                                                   # Le coeur invisible de JS : rien ne bloque, tout se séquence
 │   ├── 00_why_async.md                                         # JS tourne sur un seul thread : comprendre l'event loop ou coder avec un fantôme
 │   ├── 01_callbacks/
@@ -87,6 +96,23 @@ MyFunnyJS/
 │       ├── 01_microtask_madness.md                            # microtasks vs macrotasks : l'ordre d'exécution qui surprend toujours
 │       ├── 02_macrotask_monsters.md                           # setTimeout, setInterval, requestAnimationFrame
 │       └── 03_event_loop_grimoire.md                          # call stack, heap, queue, microtask : le moteur JS expliqué sans magie
+│
+├── 04_debugging/                                              # Le vrai module debug : hypothèses, debug à l'aveugle, bugs qui reviennent jamais pareil
+│   ├── 00_prereq_check.md
+│   ├── 00_why_debugging.md                                     # Un bug, c'est pas de la chance : c'est une méthode ou c'est du hasard, choisis
+│   ├── 01_read_stack_trace.md                                  # Anatomie d'une stack trace : lire de bas en haut, identifier la ligne qui t'appartient
+│   ├── 02_debug_methodology.md                                 # Reproduire, isoler, corriger, vérifier : le process en quatre étapes sans raccourci
+│   ├── 03_devtools_debugger.md                                 # Breakpoints, watch expressions, step over/into/out : débugger sans toucher le code
+│   ├── 04_repro_before_fix.md                                  # Reproduire le bug avant de le corriger : sinon tu répares au hasard
+│   ├── 05_hypothesis_driven_debug.md                           # Débugger avec des hypothèses écrites : pas en changeant du code au pif
+│   ├── 06_blind_debug.md                                       # Débugger sans debugger, juste avec les logs : la vraie compétence de prod
+│   ├── 07_flaky_bugs.md                                        # Le bug qui apparaît une fois sur dix : le pire ennemi, la vraie leçon
+│   ├── CONSIGNE_HYPOTHESES_OBLIGATOIRE.md
+│   ├── EXO_DEBUG_AVEUGLE.md
+│   ├── EXO_JEUNE_IA.md
+│   ├── HYPOTHESES_exemple.md
+│   ├── _EXEMPLE_HYPOTHESES.md
+│   └── _TEMPLATE_HYPOTHESES.md
 │
 ├── 05_error_handling/                                          # Les erreurs arrivent : la question c'est si tu les vois avant l'shinobi
 │   ├── 00_why_error_handling.md                                # Ton code va planter : la question c'est si tu le vois venir ou pas
@@ -239,14 +265,6 @@ MyFunnyJS/
 │   ├── 05_refacto_challenge.md                                # Une codebase en vrac : trouver les smells, refactorer, tester, livrer
 │   └── 06_refacto_grimoire.md                                 # SOLID, smells, DRY, YAGNI, KISS : le vocabulaire du code propre
 │
-├── 02_problem_solving/                                         # Concevoir avant de coder : le cerveau que la syntaxe ne donne pas
-│   ├── 00_why_problem_solving.md                               # Tu connais la syntaxe, mais face à un problème flou tu ouvres l'éditeur sans savoir où commencer
-│   ├── 01_decompose.md                                        # Couper un système complexe en pièces qui tiennent seules
-│   ├── 02_model_before_code.md                                # Penser en structures et contrats avant d'ouvrir l'éditeur
-│   ├── 03_choose_an_approach.md                               # Comparer deux solutions avant d'en écrire une seule ligne
-│   ├── 04_read_fuzzy_requirements.md                          # Transformer "ça marche pas" en problème précis et attaquable
-│   ├── 05_design_for_change.md                                # Concevoir pour ce qui va changer, pas pour ce qui est stable aujourd'hui
-│   └── 06_problem_solving_grimoire.md                         # domaine, contrat, couplage, cohésion : le lexique du dev qui conçoit
 │
 ├── 14_typescript/                                              # JS avec un casque et une armure : obligatoire en prod en 2026
 │   ├── 00_why_typescript.md                                    # "undefined is not a function" en prod : TS te le dit avant, pas l'shinobi après
@@ -309,7 +327,7 @@ MyFunnyJS/
 │   ├── 06_a11y_audit.md                                       # Auditer une page avec axe, Lighthouse, et les tests manuels
 │   └── 07_a11y_grimoire.md
 │
-├── 18_accessibility/i18n/                                                    # Parler toutes les langues sans tout réécrire
+├── 19_i18n/                                                    # Parler toutes les langues sans tout réécrire
 │   ├── 00_why_i18n.md                                          # Une date japonaise lue à l'envers, un prix allemand qui semble 1000x moins cher : l'i18n c'est une architecture, pas une traduction
 │   ├── 01_i18n_basics.md                                      # Clés de traduction, namespaces, fallbacks : l'architecture i18n de base
 │   ├── 02_dates_timezones.md                                  # Les dates à travers les fuseaux horaires : le cauchemar et comment le résoudre
@@ -362,6 +380,18 @@ MyFunnyJS/
 │   ├── 07_solo_vs_copilot_drill.md                            # Mesurer ta dépendance à l'IA dans le temps : pas une croyance, une donnée datée
 │   ├── 08_ai_code_review_arena.md                             # 5 snippets piégés à reviewer : patterns IA vs patterns humains, corrigé en spoiler
 │   └── 09_ai_grimoire.md
+│
+├── 24_ai_agents_and_autonomy/                                  # Quand l'IA agit toute seule : lui faire confiance, ou pas, ça se vérifie
+│   ├── 00_prereq_check.md
+│   ├── 00_why_ai_agents.md                                     # Un agent qui code sans supervision, c'est un stagiaire avec les clés du serveur
+│   ├── 01_agents_vs_copilots.md                                # Copilot propose, agent agit : la différence qui change tout niveau risque
+│   ├── 02_verifiable_specifications.md                         # Écrire un cahier des charges qu'un agent peut pas mal interpréter
+│   ├── 03_reading_agent_traces.md                              # Lire ce qu'un agent a vraiment fait : pas ce qu'il prétend avoir fait
+│   ├── 04_refusing_a_trace.md                                  # Savoir dire non à une action d'agent avant qu'elle parte en prod
+│   ├── 05_agent_sandbox_hygiene.md                             # Isoler un agent : lui donner un bac à sable, pas les clés de la maison
+│   ├── 06_agents_grimoire.md
+│   ├── 07_agent_hallucination_gym.md                           # Entraîner ton œil à repérer un agent qui invente
+│   └── EXO_PARTITION_HUMAIN_IA.md
 │
 ├── 25_databases/                                               # Persister intelligemment dans le temps : et retrouver rapidement
 │   ├── 00_why_databases.md                                     # Une requête à 5ms sur 1000 lignes peut en prendre 8s sur 10 millions, juste parce qu'il manque un index
