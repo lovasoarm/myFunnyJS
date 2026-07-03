@@ -45,3 +45,23 @@ Si tu ne maîtrises pas ces termes, tu codes à l'aveugle.
 ---
 
 > **Pure Function, Currying, Partial Application, Composition, Memoization** : ces concepts ont leurs propres leçons dans `11_functional_js`. Ils seront là quand tu seras prêt pour eux.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Les analogies (arbitre du tournoi, clé USB, cuisine du restaurant…) sont là
+pour donner une prise mentale, pas pour décrire fidèlement le mécanisme.
+Points où elles mentent :
+
+- **Clé USB pour référence objet** : suggère un fichier physique partagé.
+  En vrai, deux variables pointent la même adresse mémoire ; pas de copie,
+  pas de "prêt", pas de "retour".
+- **Arbitre du tournoi pour l'event loop** : suggère une décision au cas
+  par cas. En vrai, c'est un ordre déterministe : microtasks vidées, une
+  macrotask, on recommence.
+- **Cuisine pour thread pool** : suggère des cuisiniers autonomes. En vrai,
+  ils partagent la même mémoire, avec toutes les guerres de synchronisation
+  que ça implique.
+
+Règle : quand l'analogie te sert à décider, arrête-la, retourne au mécanisme.

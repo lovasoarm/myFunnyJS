@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~11 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -50,3 +48,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **unknown** | Comme any mais sûr : tu dois valider avant d'utiliser. | `const data: unknown = JSON.parse(raw)` (tu dois prouver ce que c'est avant d'y toucher) | Colis anonyme au camp : tu l'ouvres pas avant de l'avoir scanné / Identité inconnue : tu la valides avant de lui donner accès |
 | **Declaration merging** | Capacité d'une interface à être étendue par une autre déclaration du même nom. | `interface Window { analytics: Analytics }` (ajoute analytics au type Window global) | Ajouter une pièce à un bâtiment existant sans démolir les murs / Extension de mission en cours : on rajoute un objectif sans réécrire le plan |
 | **tsconfig strict** | Mode TS qui active toutes les vérifications strictes en une option. | `"strict": true` dans tsconfig.json (active noImplicitAny, strictNullChecks, etc. : tout d'un coup) | Passer en mode entraînement intensif : tout est contrôlé, rien ne passe / Formation des Anbus : niveau maximal de rigueur, pas de demi-mesure |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

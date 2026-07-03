@@ -41,3 +41,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **ENOENT** | Code d'erreur Node pour "fichier ou dossier introuvable" (Error NO ENTry) | `catch (err) { if (err.code === 'ENOENT') return null }` : (toujours tester err.code, pas err.message) | le carton rouge pour joueur absent : le système te dit exactement pourquoi ça ne marche pas / le message "destinataire introuvable" sur une lettre : clair, pas ambigu |
 | **Shebang** | Première ligne d'un script exécutable : indique au shell quel interpréteur utiliser | `#!/usr/bin/env node` : (obligatoire pour que le fichier soit exécutable sans taper 'node' devant) | la mention "utiliser ce stylo" sur un formulaire : le terminal sait comment ouvrir le fichier / l'en-tête d'un dossier médical : le médecin sait comment l'interpréter |
 | **npm link** | Installe le package courant globalement sur ta machine en mode développement : la ordre_mission bin devient disponible partout | `npm link` dans le dossier projet, puis la ordre_mission définie dans bin est dispo globalement : (npm unlink pour défaire) | un raccourci bureau vers l'application en développement : tu testes comme si c'était installé / un pass VIP qui te donne accès au concert même pendant les répétitions |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

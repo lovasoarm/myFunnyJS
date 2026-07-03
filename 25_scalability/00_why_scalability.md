@@ -90,3 +90,17 @@ Un système qui marche à petite échelle peut s'effondrer brutalement à grande
 Maintenant, ouvre `01_load_balancing.md`. Et commence à penser ton système pour 10 fois la charge qu'il a aujourd'hui.
 
 > Ce module réutilise : la performance du module 08 (`08_memory_performance`), l'architecture du module 17 (`17_architecture_patterns`).
+
+---
+
+## AILLEURS QUE JS
+
+Ce que tu apprends ici n'est pas JS-spécifique :
+
+- **Python / Java / Go / Rust** partagent 90 % de ces mécanismes (allocation
+  heap vs stack, contention, backpressure, isolation runtime).
+- Le vocabulaire change (`GIL` en Python, `goroutine` en Go, `borrow checker`
+  en Rust), le mécanisme sous-jacent reste. Si tu comprends ici, tu portes
+  ailleurs en 2 semaines de lecture ciblée.
+- Test : explique à quelqu'un qui code Python ce que tu viens d'apprendre.
+  Si tu peux, c'est acquis. Sinon, relis.

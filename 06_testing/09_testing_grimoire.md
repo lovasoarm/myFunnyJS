@@ -61,3 +61,11 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du produit qu'il titan / l'acheteur qui rédige le cahier des charges |
 | Playwright locator | Référence à un élément UI dans Playwright, préférer les sélecteurs sémantiques aux CSS | `page.getByRole('button', { name: 'Voter' })` | description d'une personne par son rôle plutôt que son numéro de siège / chercher "le caissier" plutôt que "siège 14-C" |
 | Test pyramid | Distribution idéale des tests : beaucoup d'unit (bas) → moins d'intégration → peu d'E2E (haut) | 80% unit / 15% intégration / 5% E2E | pyramid alimentaire : base large de légumes, sommet étroit de sucre / architecture : fondations larges, toit étroit |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

@@ -40,3 +40,11 @@ Si tu ne connais pas ces règles, tu codes à l'aveugle.
 | `parseInt()` / `parseFloat()` | Conversion tolérante : lit jusqu'au premier caractère invalide et s'arrête là | `parseInt("42px");  // 42` <br> `parseFloat("3.14abc"); // 3.14` <br> `parseInt("abc");   // NaN` | Un lecteur qui s'arrête au premier mot incompréhensible / Un caissier qui rend la monnaie sur ce qu'il a compris de ta ordre_mission |
 | Type guard | Vérification explicite du type avant d'utiliser une valeur : pattern défensif essentiel | `function isValidNumber(v) {` <br> ` return typeof v === "number"` <br> ` && !Number.isNaN(v);` <br> `}` | Un agent de sécurité qui vérifie le badge avant de laisser entrer / Un médecin qui lit l'étiquette avant d'injecter |
 | `Array.isArray()` | La seule façon fiable de vérifier si une valeur est un tableau : `typeof` retourne `"object"` pour les arrays | `Array.isArray([]); // true` <br> `Array.isArray({}); // false` <br> `typeof [];     // "object" ← inutile` | Le seul test ADN fiable dans un tribunal JS / Regarder si y'a des rails dedans plutôt que de croire l'étiquette |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

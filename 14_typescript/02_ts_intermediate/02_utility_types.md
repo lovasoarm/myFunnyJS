@@ -1,8 +1,6 @@
 # UTILITY TYPES : LES OUTILS QUI TRANSFORMENT TES TYPES SANS LES RÉÉCRIRE
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu as un type `Player` avec 12 propriétés. Tu veux un formulaire d'édition où tout est optionnel. Tu veux un résumé public avec seulement 3 champs. Tu veux une version en lecture seule pour l'affichage.
 
 Sans les utility types : tu réécris trois types quasi-identiques à la main. Un jour tu ajoutes un champ à `Player`, tu oublies de l'ajouter aux trois copies. Bug silencieux. Mauvais.
@@ -318,7 +316,6 @@ type DeepPartial<T> = {
 ## EXO 1 : le formulaire d'évasion de Michael Scofield
 _~15 min_
 
-
 Michael a un plan d'évasion avec 8 champs obligatoires. Le formulaire de saisie ne demande que `name`, `targetSection`, et `exitPoint`. Le draft peut avoir n'importe quelle combinaison. La version finale est en lecture seule une fois validée.
 
 Définis :
@@ -331,7 +328,6 @@ Définis :
 ## EXO 2 : le classement du Ballon d'Or
 _~20 min_
 
-
 Le vote du Ballon d'Or a des joueurs avec `id`, `name`, `nationality`, `goals`, `assists`, `votesReceived`, `salary`. Le classement public affiche seulement `name`, `nationality`, `votesReceived`. L'admin voit tout.
 
 Crée les types `PublicRanking` et `AdminView` en utilisant les utility types : sans réécrire les propriétés manuellement.
@@ -339,14 +335,12 @@ Crée les types `PublicRanking` et `AdminView` en utilisant les utility types : 
 ## EXO 3 : le cache de Trapsoul Radio
 _~15 min_
 
-
 La radio a des tracks avec `id`, `title`, `artist`, `duration`, `fileUrl`, `licenseKey`, `uploadedBy`. Le cache public ne stocke jamais `fileUrl` ni `licenseKey`. Le cache admin stocke tout en readonly.
 
 Modélise les deux types de cache et une fonction `getCachedTrack<T>(id: string): T | undefined` générique sur le type de cache.
 
 ## EXO 4 : le dispatcher du camp de Rick
 _~20 min_
-
 
 Le camp a des événements de type `"attack" | "scavenge" | "rest" | "medical" | "guard"`. Chaque événement a une priorité (number) et un responsable (string).
 

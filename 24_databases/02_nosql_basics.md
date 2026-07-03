@@ -1,8 +1,6 @@
 # Quand ranger en tables fait plus de mal que de bien
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 `01_sql_basics` t'a montré la DB relationnelle : tables strictes, schéma fixe, relations propres. NoSQL (not only SQL), c'est la famille de DB qui dit "ton schéma change tout le temps, alors arrête de te battre contre lui".
 
 Pourquoi ça compte : si tu modélises un profil de ninja avec 50 attributs optionnels selon son clan (un Uchiha a un Sharingan, un Hyuga a un Byakugan, un Uzumaki a des capacités de scellage) en SQL, tu te retrouves avec une table pleine de colonnes `NULL`. En NoSQL document, chaque ninja a juste les champs qu'il possède vraiment.

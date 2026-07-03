@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~13 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -83,3 +81,11 @@ Trois réflexes à garder à vie, peu importe le langage ou le framework du mome
 ```
 
 Le reste (quel ORM est à la mode, quelle DB cloud est tendance) change tous les 2 ans. Ces trois réflexes ne changeront pas.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

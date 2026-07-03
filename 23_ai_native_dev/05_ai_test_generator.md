@@ -1,8 +1,6 @@
 # L'IA GÉNÈRE DES TESTS : TOI TU VÉRIFIES QU'ILS TESTENT VRAIMENT QUELQUE CHOSE
 Temps de lecture ~12 min
 
-PÉRISSABLE : vérifié 2026-07
-
 L'IA peut générer des tests qui passent sans rien vérifier. C'est le pire type de faux sentiment de sécurité : ton CI est vert, ta couverture est à 95%, et le bug est là depuis le début. Un test qui passe toujours, même si la fonction est cassée, n'est pas un test : c'est de la décoration.
 
 Dans le pipeline Oracle Glitch, l'IA détecte des bugs dans ton code. L'ironie : si les tests qui valident ce pipeline sont eux-mêmes inutiles, l'Oracle se surveille avec de faux yeux. Ce module couvre comment éviter ça.

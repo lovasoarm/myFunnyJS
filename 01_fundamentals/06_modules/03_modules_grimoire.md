@@ -34,3 +34,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **Side effect import** | Importer un module uniquement pour ses effets de bord, sans utiliser ses exports. | `import "./analytics.js"` | allumer une alarme sans l'éteindre / déclencher un jutsu en entrant dans une pièce |
 | **Façade pattern** | Un module qui expose une interface simple en cachant la complexité de plusieurs sous-modules. | `export const exec = (...) => { /* appelle 3 modules internes */ }` | le capitaine qui donne un ordre simple alors que 10 ninjas travaillent derrière / un guichet unique pour une administration complexe |
 | **Module singleton** | Un module est chargé une seule fois. Tous les importeurs partagent la même instance. | deux fichiers qui importent `config.js` partagent le même objet `_config` | un seul Hokage pour tout le village, peu importe combien de fois on l'appelle / une seule salle de contrôle partagée par toutes les équipes |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

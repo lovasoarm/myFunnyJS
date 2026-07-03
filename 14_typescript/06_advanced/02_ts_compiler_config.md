@@ -1,8 +1,6 @@
 # TS COMPILER CONFIG : TSCONFIG.JSON : CHAQUE OPTION EXPLIQUÉE AVEC SON IMPACT RÉEL
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Un plan d'évasion sans règles précises, c'est le chaos. "On sort par où on peut, quand on peut" : ça finit mal. `tsconfig.json` c'est le règlement strict du plan : qui a le droit de faire quoi, qu'est-ce qui est toléré, qu'est-ce qui fait tout annuler. Une option mal comprise dans ce fichier, c'est une faille dans le plan que personne a vue venir.
 
 ---

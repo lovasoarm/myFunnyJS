@@ -76,7 +76,7 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 **Où ça se voit** : `src/prompt/`, `src/validator/`, `src/streaming/`.
 **Pourquoi c'est nécessaire ici** : le prompt n'est pas une chaîne hardcodée. Il est construit dynamiquement selon le code analysé. La sortie est validée selon un schéma attendu. Sans ces deux éléments, le pipeline est un casino.
 
-### `12_oop_js` : classes, prototype chain, mixins
+### `18_oop_js` : classes, prototype chain, mixins
 **Où ça se voit** : `src/analyzer/CodeAnalyzer.js`, `src/validator/OutputValidator.js`, `src/validator/StrictValidator.js`.
 **Pourquoi c'est nécessaire ici** : `Validator` → `StrictValidator` → `LLMOutputValidator` est une chaîne d'héritage réelle avec un usage intentionnel du prototype. Les mixins composent des comportements (loggable, retryable) sans hériter de tout.
 
@@ -92,7 +92,7 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 
 ```
 23_ai_native_dev --> src/prompt/ (PromptBuilder), src/validator/ (schema), src/streaming/
-12_oop_js    --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
+18_oop_js    --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
 27_team_craft  --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
 28_edge_cases  --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
 ```
@@ -356,7 +356,7 @@ les règles métier spécifiques à l'IA.
  check de type ou le check métier.
 - Composition (passer des validators en paramètre) : valide aussi. Choix de la
  hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
- l'objectif pédagogique du module 12_oop_js).
+ l'objectif pédagogique du module 18_oop_js).
 
 ## Conséquences
 - Ajouter un nouveau type de validator = créer une sous-classe. Le contrat de base

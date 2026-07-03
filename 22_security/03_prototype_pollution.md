@@ -1,8 +1,6 @@
 # PROTOTYPE POLLUTION
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Il y a des vulnérabilités qui font mal. Et puis il y a prototype pollution : celle qui te sourit pendant que tu codes, et qui te poignarde en prod sans laisser de trace évidente.
 
 Un attaquant envoie un JSON avec une clé `__proto__`. Ton code le parse, le merge dans un objet. Et maintenant tous les objets de ton application ont une propriété qu'ils ne devraient pas avoir. Tous. Sans exception.

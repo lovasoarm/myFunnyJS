@@ -1,8 +1,6 @@
 # SOLO VS COPILOT : MESURER CE QUE TU CROIS SAVOIR
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 `01_ai_workflow.md` t'a donné la règle : utilise l'IA pour aller plus vite, pas pour éviter de penser. Le problème avec une règle, c'est qu'elle ne dit pas où t'en es, là, maintenant. Tu peux réciter "je dois pas dépendre de l'IA" et dépendre de l'IA quand même, sans le voir venir, parce que personne ne mesure rien.
 
 Ce fichier, c'est la mesure. Pas la théorie. Un protocole que tu rejoues plusieurs fois dans le curriculum, à des moments différents, pour voir une vraie courbe : est-ce que ton autonomie monte, descend, ou stagne ?

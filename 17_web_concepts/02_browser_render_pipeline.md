@@ -1,8 +1,6 @@
 # BROWSER RENDER PIPELINE : DE L'HTML BRUT AU PIXEL AFFICHÉ
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu envoies une requête. Le serveur répond avec de l'HTML.
 Ce que le navigateur fait entre les deux ? La plupart des devs ne le savent pas.
 Et pourtant, c'est là que les bugs de performance vivent.

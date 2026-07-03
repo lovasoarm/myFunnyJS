@@ -118,7 +118,7 @@ await promise()
  --> si REJECTED : une exception levée, à catcher avec try/catch
 ```
 
-**Référencé dans :** `03_async/02_promises`, `03_async/03_async_await`, `04_error_handling/04_async_error_traps`.
+**Référencé dans :** `03_async/02_promises`, `03_async/03_async_await`, `05_error_handling/04_async_error_traps`.
 
 ---
 
@@ -147,7 +147,7 @@ CLIENT (réponse)
 
 Chaque middleware peut couper la chaîne (`return` sans `next()`) ou laisser passer.
 
-**Référencé dans :** `21_api_craft/01_express_from_scratch`, `22_security`, `04_error_handling/03_error_propagation`.
+**Référencé dans :** `21_api_craft/01_express_from_scratch`, `22_security`, `05_error_handling/03_error_propagation`.
 
 ---
 

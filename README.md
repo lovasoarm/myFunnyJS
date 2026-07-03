@@ -1,6 +1,6 @@
 ![MyFunnyJS](./assets/title.svg)
 
-**MyFunnyJS : 33 modules + 16 mini-projets, apprenable seul.**
+**MyFunnyJS : 32 modules + 16 mini-projets, apprenable seul.**
 
 > **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
@@ -29,18 +29,19 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 
 ---
 
-## ROADMAP CONDENSÉE (33 modules)
+## ROADMAP CONDENSÉE (32 modules, séquence continue 01 → 32)
 
 ```
 01 -> 07  Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
 08 -> 11  Memory · Data Structures · Algorithms · Functional
-12 -> 16  OOP · Patterns · Refactoring · TypeScript · Runtime
-17 -> 22  Architecture · Web Concepts · Web Inclusive · Realtime · API · Security
-23 -> 24  AI-Native Dev · AI Agents & Autonomy
-25 -> 29  Databases · Scalability · Observability · Team · Edge Cases
-30     16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
-31     Annexes : transférabilité, interview, portfolio, career, éthique
-32     Tools
+12 -> 17  Patterns · Refactoring · TypeScript · Runtime · Architecture · Web Concepts
+18 -> 22  OOP · Web Inclusive · Realtime · API · Security
+23        AI-Native Dev
+24 -> 28  Databases · Scalability · Observability · Team · Edge Cases
+29        AI Agents & Autonomy
+30        16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
+31        Annexes : transférabilité, interview, portfolio, career, éthique
+32        Tools
 ```
 
 Arborescence complète, dépendances entre modules et noyau dur détaillé : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).

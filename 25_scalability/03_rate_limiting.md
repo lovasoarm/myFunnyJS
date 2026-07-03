@@ -144,7 +144,7 @@ app.use((req, res, next) => {
 })
 ```
 
-Le pourquoi : un statut `429 Too Many Requests` avec un header `Retry-After` permet au client (souvent un autre programme, une autre API) de savoir exactement quand retenter, au lieu de retenter en boucle immédiatement (ce qui aggrave le problème) ou d'abandonner complètement. C'est une question de design d'API autant que de protection, vu aussi dans `21_api_craft/04_error_handling_api`.
+Le pourquoi : un statut `429 Too Many Requests` avec un header `Retry-After` permet au client (souvent un autre programme, une autre API) de savoir exactement quand retenter, au lieu de retenter en boucle immédiatement (ce qui aggrave le problème) ou d'abandonner complètement. C'est une question de design d'API autant que de protection, vu aussi dans `21_api_craft/05_error_handling_api`.
 
 ---
 

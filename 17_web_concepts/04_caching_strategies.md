@@ -1,8 +1,6 @@
 # CACHING STRATEGIES : METTRE EN CACHE SANS METTRE EN DANGER
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Walter White a un problème de distribution.
 Chaque client veut sa livraison immédiate. Il ne peut pas tout produire à la demande.
 Solution : avoir du stock pré-jutsu dans des points stratégiques.

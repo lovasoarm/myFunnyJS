@@ -1,8 +1,6 @@
 # OAUTH, SESSIONS, JWT
 Temps de lecture ~11 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Trois modèles d'auth. Trois cas d'usage différents. Choisir le mauvais en prod c'est soit une faille de sécurité, soit une complexité inutile que tu vas payer en maintenance.
 
 ---

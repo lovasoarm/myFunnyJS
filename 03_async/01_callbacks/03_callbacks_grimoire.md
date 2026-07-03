@@ -36,3 +36,11 @@ Savoir les nommer, c'est pouvoir en parler avec précision et lire du code legac
 | **Retry pattern**          | Réappeler une opération async en cas d'échec, avec un compteur de tentatives et un délai croissant entre chaque essai.                              | `function essayer(n) { op(function(err) { if (err && n > 0) setTimeout(() => essayer(n-1), 500) }) }` | Tirer un penalty raté une deuxième fois si l'arbitre ordonne un retir / Relancer une négociation de transfert échouée après un délai de réflexion            |
 | **Concurrency control**       | Limiter le nombre de callbacks qui s'exécutent simultanément. Un compteur `actif` empêche de dépasser le seuil, une queue lance les suivants au fur et à mesure.         | `while (actif < MAX && index < ids.length) { actif++; charger(ids[index++], onDone) }`        | Max 3 joueurs en zone de presse en même temps / Faire entrer les spectateurs par groupes pour ne pas saturer les tourniquets                       |
 | **Thunkification**          | Transformer une fonction error-first callback en une fonction qui retourne une fonction sans argument. Étape intermédiaire vers les Promises.                  | `const thunk = (cb) => charger(id, cb)`                                | Préparer une action sans la déclencher, puis l'activer quand on est prêt / Préparer un discours et le lire seulement quand on a le micro                 |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

@@ -3,8 +3,6 @@
 > Ce module reutilise : team craft (28_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 L'IA génère du code en quelques secondes. Du code qui compile, qui a l'air propre, qui répond exactement à ta demande. Et qui peut quand même contenir une fonction qui n'existe pas, une logique métier subtilement fausse, ou une faille de sécurité que tu copies-colles sans la vérifier parce que "ça avait l'air bon".
 
 Coder avec l'IA en 2026, ce n'est pas la laisser coder à ta place. C'est apprendre à la diriger, à valider ce qu'elle jutsu, et à la remettre à sa place quand elle se trompe avec assurance.
@@ -87,3 +85,13 @@ L'IA génère du code plausible, pas toujours du code correct, et la différence
 Maintenant, ouvre `01_ai_workflow.md`. Et apprends à diriger l'IA au lieu de la suivre les yeux fermés.
 
 > Ce module réutilise : le problem solving du module 02 (`02_problem_solving`), le debugging du module 04 (`04_debugging`).
+
+
+---
+
+## PONT AVEC 22_security
+
+Tu viens de la sécurité classique (input validation, auth, injection, MITM).
+Ici tu changes de terrain : l'attaquant n'est plus un humain qui te sonde, c'est
+une IA qui te propose du code plausible mais faux. Même posture — méfiance
+active — appliquée à un vecteur nouveau.

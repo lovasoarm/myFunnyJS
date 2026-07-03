@@ -1,8 +1,6 @@
 # L'IA EN SPARRING PARTNER : CHALLENGER, PAS REMPLAÇANT
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Le refactoring (restructuration du code sans changer son comportement) c'est l'exercice le plus risqué en dev. Tu touches du code qui fonctionne. Une erreur et tu régresses. Faire ça seul c'est dur : t'as des angles morts sur ton propre code.
 
 L'IA est un très bon sparring partner pour le refactoring. Pas parce qu'elle refactore mieux que toi : parce qu'elle a zéro attachement émotionnel à ton code et qu'elle voit des patterns que tu ne vois plus car tu les regardes depuis trop longtemps.

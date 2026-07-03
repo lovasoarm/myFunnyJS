@@ -42,3 +42,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | Latence | Temps écoulé entre l'émission d'une requête et la réception de la réponse : chaque hop (saut réseau) ajoute de la latence | `// En microservices : 5 services = 5 x latence réseau` | Le temps de course entre deux ailes du stade / Le temps de transmission d'un signal entre deux tours de guet |
 | Fault Tolerance | Tolérance aux pannes : capacité d'un système à continuer de fonctionner partiellement même quand un composant tombe | `try { await serviceA() } catch { return fallbackResponse() }` | Rick Grimes sans Glenn : le camp continue, rôles redistribués / Une équipe de foot qui continue à jouer après l'expulsion d'un joueur |
 | Circuit Breaker | Disjoncteur (circuit breaker) : mécanisme qui arrête d'appeler un service défaillant et retourne une réponse par défaut le temps qu'il récupère | `if (failures > threshold) { return cachedResponse; }` | Un fusible électrique (coupe avant que tout brûle) / Un entraîneur qui sort un joueur blessé avant qu'il aggrave sa blessure |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

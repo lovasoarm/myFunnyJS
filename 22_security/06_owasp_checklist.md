@@ -1,8 +1,6 @@
 # LES 10 VULNÉRABILITÉS OWASP
 Temps de lecture ~13 min
 
-PÉRISSABLE : vérifié 2026-07
-
 OWASP (Open Web Application Security Project) publie le Top 10 : la liste des vulnérabilités les plus critiques en prod. Ce ne sont pas des cas théoriques. Ce sont les failles qui font les headlines de TechCrunch.
 
 Ce module est une vue d'ensemble opérationnelle. Certaines vulnérabilités (XSS, injection, auth, CSRF) sont traitées en profondeur dans les modules précédents. Ici : ce qui reste, et comment tout assembler en checklist.

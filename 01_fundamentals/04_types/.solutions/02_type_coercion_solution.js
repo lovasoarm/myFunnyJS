@@ -1,3 +1,6 @@
+// AVERTISSEMENT : solution de référence. Tu as coché les 4 cases du .solutions/README.md
+// avant d'ouvrir ce fichier ? Sinon → ferme, retourne à l'exercice.
+
 /* STOP.
    As-tu fini l'exercice sans regarder ?
    As-tu écrit ton propre exemple ?

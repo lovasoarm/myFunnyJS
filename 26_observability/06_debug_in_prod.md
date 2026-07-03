@@ -1,8 +1,6 @@
 # Quand tu ne peux pas juste mettre un breakpoint
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Un bug arrive en prod, mais seulement pour 0,3% des users, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais shinobis en direct.
 
 Debugger en prod, c'est une discipline différente du debugging local : tu ne mets jamais de breakpoint qui bloque le process, tu utilises des outils qui observent SANS interrompre, et tu prépares le terrain AVANT que le bug arrive, pas après.

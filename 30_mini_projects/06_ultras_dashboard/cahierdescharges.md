@@ -362,3 +362,20 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 - **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
+
+---
+
+## SURPRISE MI-PARCOURS (spec drift, obligatoire)
+
+À 50 % de l'implémentation, ouvre `SPEC_DRIFT.md` (créé par toi) et applique
+UN des trois changements suivants (tire au sort) :
+
+1. **Changement de contrat** : le format de sortie devient `{data, meta}` au
+   lieu de `[]`. Adapte sans casser les tests existants.
+2. **Nouvelle contrainte non-fonctionnelle** : p99 latence < 200 ms sur
+   l'endpoint principal. Mesure, justifie, ajuste.
+3. **Retrait d'une dépendance** : la lib X n'est plus autorisée en prod.
+   Remplace ou réécris.
+
+Livrable : `SPEC_DRIFT.md` qui trace la surprise, ton diagnostic, ton ADR
+mis à jour, les tests ajoutés. C'est l'exercice qui compte, pas la vitesse.

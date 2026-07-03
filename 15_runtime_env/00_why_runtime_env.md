@@ -76,3 +76,17 @@ JS vit dans plusieurs mondes différents, et chaque monde a ses propres règles,
 Maintenant, ouvre `01_node_vs_browser.md`. Et arrête de mélanger deux mondes qui ne se parlent pas pareil.
 
 > Ce module réutilise : l'event loop du module 03 (`03_async`), la mémoire du module 08 (`08_memory_performance`).
+
+---
+
+## AILLEURS QUE JS
+
+Ce que tu apprends ici n'est pas JS-spécifique :
+
+- **Python / Java / Go / Rust** partagent 90 % de ces mécanismes (allocation
+  heap vs stack, contention, backpressure, isolation runtime).
+- Le vocabulaire change (`GIL` en Python, `goroutine` en Go, `borrow checker`
+  en Rust), le mécanisme sous-jacent reste. Si tu comprends ici, tu portes
+  ailleurs en 2 semaines de lecture ciblée.
+- Test : explique à quelqu'un qui code Python ce que tu viens d'apprendre.
+  Si tu peux, c'est acquis. Sinon, relis.

@@ -1,8 +1,6 @@
 # TS MIGRATION GUIDE : MIGRER DU JS PUR VERS TYPESCRIPT : SANS TOUT RÉÉCRIRE EN UNE NUIT
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Michael a jamais essayé de faire sortir tous les prisonniers de Fox River en une seule nuit, par la même porte. Trop risqué, trop de points de défaillance simultanés. Le plan se fait par étapes, chaque étape validée avant de passer à la suivante. Migrer un projet JS vers TypeScript, c'est exactement ce genre de plan : progressif, vérifié à chaque pas, jamais en un seul bloc.
 
 ---

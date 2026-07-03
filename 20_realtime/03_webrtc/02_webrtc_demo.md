@@ -1,8 +1,6 @@
 # 02_WEBRTC_DEMO : L'APPEL VIDÉO PEER-TO-PEER
 Temps de lecture ~11 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Les concepts du fichier précédent, maintenant en vrai code.
 On construit un appel vidéo entre deux navigateurs.
 Contexte : Léon et Alfonso de Garo Honoo no Kokuin ont besoin de se coordonner en secret : pas de serveur central pour les données vidéo.

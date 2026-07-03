@@ -54,3 +54,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | CORS | Cross-Origin Resource Sharing : mécanisme qui permet ou interdit les requêtes d'une origine différente. Configuré via des headers HTTP. | `app.use(cors({ origin: 'https://myfunny.dev' }))` | la liste des délégations étrangères autorisées à entrer au Conseil des Chevaliers / les clubs autorisés à recruter des joueurs du championnat : tout le monde ne peut pas |
 | Idempotence | Propriété d'une opération : l'appeler une ou cent fois jutsu le même résultat. `GET`, `PUT`, `DELETE` sont idempotents. `POST` ne l'est pas. | `PUT /players/7 { goals: 30 } // même résultat à chaque appel` | appuyer 10 fois sur le bouton d'arrêt d'une machine : ça s'arrête une fois et reste arrêtée / Walter White qui fixe le prix à 10k : peu importe combien de fois tu demandes, c'est toujours 10k |
 | Content negotiation | Mécanisme HTTP où le client signale le format qu'il peut accepter via le header `Accept` et le serveur répond dans ce format. | `Accept: application/json` `Content-Type: application/json` | ordre_mission en français dans un restaurant multilingue : le serveur s'adapte à la langue du client / Scofield qui demande le plan en version imprimée ou numérique : le serveur livre dans le format demandé |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

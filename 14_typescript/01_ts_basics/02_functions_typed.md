@@ -1,8 +1,6 @@
 # FONCTIONS TYPÉES : SIGNER UN CONTRAT AVANT D'EXÉCUTER
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Une fonction sans types, c'est un contrat oral. Ça marche jusqu'au jour où quelqu'un passe autre chose que ce qu'on avait dit.
 TypeScript transforme ça en contrat écrit : le compilateur vérifie que tout le monde respecte les termes avant même que le code tourne.
 En prod, ça veut dire des bugs détectés à la compilation, pas à 3h du matin sur une alerte Sentry.

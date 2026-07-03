@@ -42,3 +42,11 @@ Le vocabulaire de tout le module 12. Si un terme te bloque dans une leçon, il e
 # RÉSUMÉ
 
 Les patterns créationnels (Factory, Singleton, Builder) répondent à "comment je fabrique mes objets sans bordel". Les structurels (Decorator, Adapter, Proxy) répondent à "comment je connecte ou j'enrichis des objets sans tout réécrire". Les comportementaux (Observer, Strategy, Command) répondent à "comment les objets communiquent et réagissent sans être collés les uns aux autres". Un pattern n'est pas un objectif : si ton code est clair sans pattern, n'en rajoute pas pour faire joli.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

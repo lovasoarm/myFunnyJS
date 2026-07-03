@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -54,3 +52,11 @@ HTTP, c'est la base de toute communication web : sans comprendre les status code
 Le cache (Cache-Control, ETag, stale-while-revalidate) n'est pas juste de la perf gratuite : mal géré, il sert de vieilles données à l'shinobi sans qu'il le sache. Authentication et authorization sont deux problèmes différents : confondre les deux, c'est le genre d'erreur qui finit dans le module 22_security.
 
 Sur le rendering (SSR/SSG/CSR/ISR), le vrai piège c'est de choisir par habitude plutôt que par besoin réel. Une page qui change toutes les secondes n'a rien à faire en SSG. Une doc qui change une fois par mois n'a rien à faire en SSR. Le bon choix dépend de la fréquence de changement du contenu, pas de la mode du moment.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

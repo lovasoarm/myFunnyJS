@@ -1,8 +1,6 @@
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 TypeScript te donne deux façons de décrire la forme d'un objet : `type` et `interface`.
 La plupart des devs utilisent les deux au hasard. Mauvaise idée.
 Ce ne sont pas des synonymes. Ils ont des comportements différents là où ça compte : l'extension, la fusion, et les types complexes.
@@ -183,7 +181,6 @@ window.myCustomThing(); // TypeScript : ok. Runtime : crash
 ## EXO 1 : le vestiaire de l'équipe
 _~10 min_
 
-
 Tu construis le système de gestion d'une équipe de foot.
 Un joueur a un nom, un numéro, un poste, et une nationalité.
 Un capitaine est un joueur avec une propriété `armband: true` et un `yearsOfExperience: number`.
@@ -195,7 +192,6 @@ Un capitaine est un joueur avec une propriété `armband: true` et un `yearsOfEx
 ## EXO 2 : le réseau de distribution de Walter
 _~12 min_
 
-
 Tu modélises les noeuds d'un réseau.
 Un noeud a un `id: string`, un `location: string`, et un `riskLevel: "low" | "medium" | "high"`.
 Certains noeuds sont des `DistributionHub` : ils ont en plus un `capacity: number` et une liste de `connectedNodes: string[]`.
@@ -206,7 +202,6 @@ Certains noeuds sont des `DistributionHub` : ils ont en plus un `capacity: numbe
 
 ## EXO 3 : le bug silencieux
 _~15 min_
-
 
 ```ts
 type EntityA = { id: string; score: number };

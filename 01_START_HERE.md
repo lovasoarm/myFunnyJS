@@ -3,21 +3,20 @@
 >
 > **Temps total estimé du curriculum** : ~250 h étalées sur 6 à 9 mois. Fractionne : 1 h/jour battra 8 h le samedi.
 
+> Note : les numéros de modules vont de 01 à 32 en séquence continue. Aucun trou.
+
 ## COMMENT NAVIGUER (conventions de noms)
 
 - `00_*` : leçon d'entrée d'un module (le "why").
 - `_recall_*.md` / `_spaced_repetition.md` : trackers vivants, tu les remplis toi-même.
 - `MAJ.md` en majuscules (README, CHANGELOG, CONTRIBUTING, DEPENDENCY_LEDGER) : docs racine.
 - `-> ~XX min` en tête de chaque fichier : budget-temps lecture + exercice.
-- ` PÉRISSABLE` : contenu à revérifier chaque année (typescript, realtime, tooling…).
-- ` Principes durables` : la partie intemporelle qui reste vraie même quand l'outil change.
 
 ## VÉRIFICATION OBJECTIVE
 
 Filet de sécurité optionnel : `verification_pack/<module>/verify.sh` exécute 3 drills à sortie déterministe. Utilise-le quand tu doutes.
 
 ---
-
 
 # START HERE
 
@@ -79,11 +78,26 @@ curriculum. Ce tableau sert juste à ce que la roadmap ne te paraisse pas en chi
 1. 01_START_HERE.md     <= t'es ici
 2. 02_DAY_ONE_intro.md       <= le contexte du métier dev en 2026, avant de toucher au code
 3. 03_WHERE_YOU_STAND.md   <= les 4 axes sur lesquels tu vas progresser (coup d'oeil rapide)
-4. README.md         <= la roadmap complète des 32 modules
+4. README.md         <= la roadmap complète des 32 modules (numérotation continue 01 → 32)
 5. 01_fundamentals/      <= le vrai départ
 ```
 
 Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de question.
+
+---
+
+## FICHIERS RACINE (à quoi ils servent)
+
+- `README.md` : porte d'entrée officielle (roadmap).
+- `01_START_HERE.md` : tu es ici.
+- `02_DAY_ONE_*.md` : contexte du métier avant de coder.
+- `03_WHERE_YOU_STAND.md` : les 4 axes de progression.
+- `_recall_*.md` : trackers de revisite (paliers 05/10/15/20/25/30).
+- `NODE_VERSIONS.md`, `DEPENDENCY_LEDGER.md`, `POSTMORTEM_TEMPLATE.md` :
+  gouvernance technique.
+- `COMMUNAUTE.md`, `GUIDE_CARRIERE_DEV.md`, `LICENSE` : gouvernance projet.
+
+Si ça t'encombre, ignore-les au début et suis juste l'ordre plus haut.
 
 ---
 

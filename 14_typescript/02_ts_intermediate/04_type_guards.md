@@ -1,8 +1,6 @@
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 TS vérifie les types à la compilation. Mais la data arrive à runtime : depuis une API, un formulaire, un fichier JSON. TS ne peut pas deviner ce que l'API t'envoie vraiment.
 
 Les type guards sont les vérifications que tu fais à runtime pour prouver à TS ce que tu as entre les mains. TS lit ces checks et rétrécit le type dans la branche concernée : c'est ce qu'on appelle le narrowing.
@@ -302,14 +300,12 @@ err instanceof Error; // peut retourner false même si c'est bien une Error
 ## EXO 1 : le validateur de stats de la CL
 _~15 min_
 
-
 L'API de la Ligue des Champions retourne des données brutes (`unknown`). Certaines sont des joueurs, d'autres des équipes, d'autres des matchs.
 
 Écris des type predicates `isPlayer`, `isTeam`, `isMatch` et une fonction `processApiData(data: unknown): string` qui les utilise pour formatter la bonne information.
 
 ## EXO 2 : le système d'erreurs de Garo
 _~15 min_
-
 
 Le pipeline de Garo peut lancer : `HorrorEscapeError` (avec `horrorName: string`), `ArmorCollapseError` (avec `secondsElapsed: number`), `KnightDownError` (avec `knightName: string`, `isFatal: boolean`). Toutes étendent `Error`.
 
@@ -318,14 +314,12 @@ Le pipeline de Garo peut lancer : `HorrorEscapeError` (avec `horrorName: string`
 ## EXO 3 : la validation du formulaire de vote
 _~20 min_
 
-
 Le formulaire du Ballon d'Or envoie des données qu'on reçoit comme `unknown`. Un vote valide a : `voterId` (string, non vide), `playerId` (number, positif), `score` (number, entre 1 et 10), `comment` (string optionnel).
 
 Écris `isValidVote(data: unknown): data is ValidVote` et `assertValidVote(data: unknown): asserts data is ValidVote`. Gère les edge cases : null, array, string, number.
 
 ## EXO 4 : le dispatcher d'events de Walking Dead
 _~20 min_
-
 
 Le camp reçoit des events radio de type inconnu (`unknown`). Un event `AttackEvent` a `{ type: "attack", zombieCount: number, sector: string }`. Un event `SupplyEvent` a `{ type: "supply", items: string[], quantity: number }`. Un event `SurvivorEvent` a `{ type: "survivor", name: string, condition: "healthy" | "injured" | "critical" }`.
 

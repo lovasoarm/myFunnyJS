@@ -1,13 +1,9 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE ORDRE_MISSION, PAS NEUF FOIS À LA MAIN
 Temps de lecture ~8 min
-
-PÉRISSABLE : vérifié 2026-07
 
 Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence cible : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, puis les dossiers de travail `src/` et `tests/` que l'apprenant crée pendant le projet. Recréer cette base à la main, projet après projet, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une ordre_mission.
 

@@ -1,6 +1,6 @@
 # Arborescence complète du curriculum MyFunnyJS
 
-Généré depuis la structure livrée.
+Généré depuis la structure livrée. Numérotation continue 01 → 32.
 
 ## 00_getting_started/
  - 00_why_getting_started.md
@@ -17,72 +17,20 @@ Généré depuis la structure livrée.
  - SORTIR_D_UN_PLATEAU.md
  - competences.md
 
-- 01_START_HERE.md
 ## 01_fundamentals/
  - 00_prereq_check.md
  - 00_why_fundamentals.md
+ - 01_variables
+ - 02_scope
+ - 03_functions
+ - 04_types
+ - 05_web_basics
+ - 06_modules
+ - 07_regex
  - 08_git_core.md
  - EXO_IA_MENTEUSE.md
  - EXO_JEUNE_IA.md
- - 01_variables/
-  - 01_intro_variables.md
-  - 01a_binding.md
-  - 01b_var_let_const.md
-  - 01c_stack_heap.md
-  - 02_reference_chaos.md
-  - 03_mutation_madness.md
-  - 04_const_trap.md
-  - 05_variable_glossary.md
-  - .solutions/
-   - README.md
- - 02_scope/
-  - 01_scope_basics.md
-  - 01b_lexical_scope_visualized.md
-  - 02_closure_trap.md
-  - 03_scope_escape_room.md
-  - 04_this_context.md
-  - 05_scope_glossary.md
-  - .solutions/
-   - README.md
- - 03_functions/
-  - 01_function_basics.md
-  - 02_hof_map_filter.md
-  - 03_function_factory.md
-  - 04_function_grimoire.md
-  - .solutions/
-   - README.md
- - 04_types/
-  - 01_primitives.md
-  - 02_type_coercion.md
-  - 03_type_transformers.md
-  - 04_type_grimoire.md
-  - .solutions/
-   - README.md
- - 05_web_basics/
-  - 01_dom_manipulation.md
-  - 02_fetch_adventure.md
-  - 03_storage_treasure.md
-  - 04_template_portals.md
-  - 05_web_helpers.md
-  - 06_module_factory.md
-  - 07_web_grimoire.md
-  - .solutions/
-   - README.md
- - 06_modules/
-  - 01_import_export.md
-  - 02_module_patterns.md
-  - 03_modules_grimoire.md
-  - .solutions/
-   - README.md
- - 07_regex/
-  - 01_regex_basics.md
-  - 02_regex_combat.md
-  - 03_regex_extractor.md
-  - 04_regex_grimoire.md
 
-- 02_DAY_ONE_environment.md
-- 02_DAY_ONE_first_steps.md
-- 02_DAY_ONE_intro.md
 ## 02_problem_solving/
  - 00_prereq_check.md
  - 00_why_problem_solving.md
@@ -94,11 +42,14 @@ Généré depuis la structure livrée.
  - 05_design_for_change.md
  - 06_problem_solving_grimoire.md
 
-- 03_WHERE_YOU_STAND.md
 ## 03_async/
  - 00_mental_model_js.md
  - 00_prereq_check.md
  - 00_why_async.md
+ - 01_callbacks
+ - 02_promises
+ - 03_async_await
+ - 04_event_loop
  - 05_advanced_patterns.md
  - 06_backpressure.md
  - 07_shared_memory_concurrency.md
@@ -107,24 +58,6 @@ Généré depuis la structure livrée.
  - EXO_JEUNE_IA.md
  - EXO_LECTURE.md
  - EXO_MICROTASK_A_LA_MAIN.md
- - 01_callbacks/
-  - 01_callback_maze.md
-  - 02_callback_challenge.md
-  - 03_callbacks_grimoire.md
- - 02_promises/
-  - 01_promise_race.md
-  - 02_promise_chain_reactor.md
-  - 03_promises_grimoire.md
- - 03_async_await/
-  - 01_async_jungle.md
-  - 02_async_rescue.md
-  - 02b_generators_yield.md
-  - 02c_abort_controller.md
-  - 03_async_grimoire.md
- - 04_event_loop/
-  - 01_microtask_madness.md
-  - 02_macrotask_monsters.md
-  - 03_event_loop_grimoire.md
 
 ## 04_debugging/
  - 00_prereq_check.md
@@ -143,7 +76,7 @@ Généré depuis la structure livrée.
  - _EXEMPLE_HYPOTHESES.md
  - _TEMPLATE_HYPOTHESES.md
 
-## 04_error_handling/
+## 05_error_handling/
  - 00_why_error_handling.md
  - 01_try_catch_basics.md
  - 02_custom_errors.md
@@ -165,7 +98,6 @@ Généré depuis la structure livrée.
  - 08_e2e_playwright_beast.md
  - 09_test_strategy_not_framework.md
  - 09_testing_grimoire.md
- - 10_testing_grimoire.md
 
 ## 07_math_basics/
  - 00_prereq_check.md
@@ -183,105 +115,44 @@ Généré depuis la structure livrée.
  - 00_measure_first.md
  - 00_prereq_check.md
  - 00_why_memory_performance.md
+ - 01_gc
+ - 02_copy_vs_ref
+ - 03_complexity
+ - 04_profiling
+ - 05_core_web_vitals
+ - 06_jit
  - 07_memory_perf_grimoire.md
  - 08_heap_snapshot_workshop.md
  - 09_memory_perf_grimoire.md
  - EXO_JEUNE_IA.md
  - EXO_LECTURE.md
  - HYPOTHESES_exemple.md
- - 01_gc/
-  - 01_gc_basics.md
-  - 02_gc_simulator.md
-  - 03_leak_from_closure_walkthrough.md
-  - 04_weakref_and_finalization.md
-  - 05_heap_snapshot_hands_on.md
-  - 06_detached_dom_leak.md
-  - 07_worker_leak_reproduction.md
- - 02_copy_vs_ref/
-  - 01_shallow_vs_deep.md
-  - 02_mutation_minefield.md
- - 03_complexity/
-  - 01_big_o_basics.md
-  - 02_complexity_analysis.md
-  - 03_runtime_race.md
- - 04_profiling/
-  - 01_profiling_basics.md
-  - 02_devtools_memory_tab.md
-  - 02_memory_leak_hunter.md
-  - 03_devtools_deep_dive.md
-  - 03_node_inspect_flamegraph.md
-  - 04_node_cpu_profiling.md
-  - 05_heap_snapshot_arena.md
- - 05_core_web_vitals/
-  - 01_lcp_inp_cls_basics.md
-  - 02_lighthouse_audit.md
-  - 03_perf_budget_enforcer.md
- - 06_jit/
-  - 01_jit_basics.md
-  - 02_flamegraph_heap_reading.md
 
 ## 09_data_structures/
  - 00_prereq_check.md
  - 00_why_data_structures.md
+ - 01_array
+ - 02_linked_list
+ - 03_stack
+ - 04_queue
+ - 05_heap
+ - 06_bst
+ - 07_hash_table
+ - 08_graphs
+ - 09_advanced_bonus
  - 10_data_structures_grimoire.md
- - 01_array/
-  - 01_array_basics.md
-  - 02_array_methods_battle.md
- - 02_linked_list/
-  - 01_linked_list_basics.md
-  - 02_linked_list_arena.md
- - 03_stack/
-  - 01_stack_basics.md
-  - 02_stack_missions.md
- - 04_queue/
-  - 01_queue_basics.md
-  - 02_queue_challenges.md
- - 05_heap/
-  - 01_heap_basics.md
-  - 02_heap_priority_queue.md
- - 06_bst/
-  - 01_bst_basics.md
-  - 02_bst_traversal.md
- - 07_hash_table/
-  - 01_hash_table_basics.md
-  - 02_hash_table_arena.md
- - 08_graphs/
-  - 01_graph_basics.md
-  - 02_graph_bfs_dfs.md
-  - 03_graph_challenges.md
- - 09_advanced_bonus/
-  - 01_union_find.md
-  - 02_fenwick_tree.md
-  - 03_suffix_array.md
-  - README.md
 
 ## 10_algorithms/
  - 00_prereq_check.md
  - 00_why_algorithms.md
+ - 01_sorting
+ - 02_searching
+ - 03_dynamic_programming
+ - 04_greedy
+ - 05_backtracking
+ - 06_graph_algorithms
  - 07_algorithms_grimoire.md
  - EXO_JEUNE_IA.md
- - 01_sorting/
-  - 01_bubble_insertion.md
-  - 02_merge_sort.md
-  - 03_quick_sort.md
-  - 04_sorting_race.md
- - 02_searching/
-  - 01_linear_binary.md
-  - 02_search_challenges.md
- - 03_dynamic_programming/
-  - 01_dp_basics.md
-  - 02_dp_classics.md
-  - 03_dp_matrix.md
- - 04_greedy/
-  - 01_greedy_basics.md
-  - 02_greedy_missions.md
- - 05_backtracking/
-  - 01_backtracking_basics.md
-  - 02_backtracking_arena.md
- - 06_graph_algorithms/
-  - 01_dijkstra.md
-  - 02_astar.md
-  - 03_topological_sort.md
 
 ## 11_functional_js/
  - 00_prereq_check.md
@@ -301,35 +172,11 @@ Généré depuis la structure livrée.
 ## 12_design_patterns/
  - 00_prereq_check.md
  - 00_why_design_patterns.md
+ - 01_creational
+ - 02_structural
+ - 03_behavioral
  - 04_patterns_grimoire.md
  - EXO_IA_MENTEUSE.md
- - 01_creational/
-  - 01_factory_pattern.md
-  - 02_singleton_pattern.md
-  - 03_builder_pattern.md
- - 02_structural/
-  - 01_decorator_pattern.md
-  - 02_adapter_pattern.md
-  - 03_proxy_pattern.md
- - 03_behavioral/
-  - 01_observer_pattern.md
-  - 02_strategy_pattern.md
-  - 03_command_pattern.md
-
-## 12_oop_js/
- - 00_prereq_check.md
- - 00_why_oop_js.md
- - 01_prototype_chain_raw.md
- - 02_constructor_functions.md
- - 03_class_syntax_sugar.md
- - 04_this_keyword_rules.md
- - 05_call_apply_bind.md
- - 06_inheritance_extends_super.md
- - 07_encapsulation_privacy.md
- - 08_static_getters_setters.md
- - 09_composition_vs_inheritance.md
- - 10_oop_js_grimoire.md
- - EXO_LECTURE.md
 
 ## 13_refactoring/
  - 00_prereq_check.md
@@ -347,26 +194,11 @@ Généré depuis la structure livrée.
 ## 14_typescript/
  - 00_prereq_check.md
  - 00_why_typescript.md
+ - 01_ts_basics
+ - 02_ts_intermediate
+ - 03_ts_advanced
  - 04_typescript_grimoire.md
- - 01_ts_basics/
-  - 01_types_and_interfaces.md
-  - 02_functions_typed.md
-  - 03_classes_typed.md
- - 02_ts_intermediate/
-  - 01_generics.md
-  - 02_utility_types.md
-  - 03_union_intersection.md
-  - 04_type_guards.md
- - 03_ts_advanced/
-  - 01_conditional_types.md
-  - 02_mapped_types.md
-  - 03_ts_in_real_project.md
- - 06_advanced/
-  - 00_why_typescript_advanced.md
-  - 01_declaration_files.md
-  - 02_ts_compiler_config.md
-  - 03_ts_migration_guide.md
-  - 04_ts_advanced_grimoire.md
+ - 06_advanced
 
 ## 15_runtime_env/
  - 00_prereq_check.md
@@ -376,12 +208,8 @@ Généré depuis la structure livrée.
  - 03_commonjs_vs_esm.md
  - 04_process_env_argv.md
  - 05_worker_threads.md
+ - 06_node_cli_scripts
  - 07_runtime_grimoire.md
- - 06_node_cli_scripts/
-  - 01_cli_basics.md
-  - 02_filesystem_ops.md
-  - 03_automation_scripts.md
-  - 04_cli_tool_builder.md
 
 ## 16_architecture_patterns/
  - 00_prereq_check.md
@@ -407,6 +235,21 @@ Généré depuis la structure livrée.
  - 07_seo_and_rendering.md
  - 08_web_concepts_grimoire.md
 
+## 18_oop_js/
+ - 00_prereq_check.md
+ - 00_why_oop_js.md
+ - 01_prototype_chain_raw.md
+ - 02_constructor_functions.md
+ - 03_class_syntax_sugar.md
+ - 04_this_keyword_rules.md
+ - 05_call_apply_bind.md
+ - 06_inheritance_extends_super.md
+ - 07_encapsulation_privacy.md
+ - 08_static_getters_setters.md
+ - 09_composition_vs_inheritance.md
+ - 10_oop_js_grimoire.md
+ - EXO_LECTURE.md
+
 ## 19_web_inclusive/
  - 00_prereq_check.md
  - 00_why_accessibility.md
@@ -417,29 +260,15 @@ Généré depuis la structure livrée.
  - 05_screen_readers.md
  - 06_a11y_audit.md
  - 07_a11y_grimoire.md
- - i18n/
-  - 00_prereq_check.md
-  - 00_why_i18n.md
-  - 01_i18n_basics.md
-  - 02_dates_timezones.md
-  - 03_number_formats.md
-  - 04_pluralization.md
-  - 05_i18n_in_project.md
-  - 06_i18n_grimoire.md
+ - i18n
 
 ## 20_realtime/
  - 00_prereq_check.md
  - 00_why_realtime.md
+ - 01_websockets
+ - 02_sse
+ - 03_webrtc
  - 04_realtime_grimoire.md
- - 01_websockets/
-  - 01_ws_basics.md
-  - 02_ws_chat_room.md
- - 02_sse/
-  - 01_sse_basics.md
-  - 02_sse_live_feed.md
- - 03_webrtc/
-  - 01_webrtc_concepts.md
-  - 02_webrtc_demo.md
 
 ## 21_api_craft/
  - 00_prereq_check.md
@@ -486,18 +315,6 @@ Généré depuis la structure livrée.
  - 09_ai_hallucination_gym.md
  - 10_ambiguous_ai_response.md
  - EXO_JEUNE_IA.md
-
-## 24_ai_agents_and_autonomy/
- - 00_prereq_check.md
- - 00_why_ai_agents.md
- - 01_agents_vs_copilots.md
- - 02_verifiable_specifications.md
- - 03_reading_agent_traces.md
- - 04_refusing_a_trace.md
- - 05_agent_sandbox_hygiene.md
- - 06_agents_grimoire.md
- - 07_agent_hallucination_gym.md
- - EXO_PARTITION_HUMAIN_IA.md
 
 ## 24_databases/
  - 00_prereq_check.md
@@ -575,172 +392,38 @@ Généré depuis la structure livrée.
  - 06_heisenbug_arena.md
  - 07_edge_cases_grimoire.md
 
+## 29_ai_agents_and_autonomy/
+ - 00_prereq_check.md
+ - 00_why_ai_agents.md
+ - 01_agents_vs_copilots.md
+ - 02_verifiable_specifications.md
+ - 03_reading_agent_traces.md
+ - 04_refusing_a_trace.md
+ - 05_agent_sandbox_hygiene.md
+ - 06_agents_grimoire.md
+ - 07_agent_hallucination_gym.md
+ - EXO_PARTITION_HUMAIN_IA.md
+
 ## 30_mini_projects/
  - 00_prereq_check.md
  - 00_why_mini_projects.md
- - 01_rasengan_engine/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 02_garo_no_kronika/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 03_walking_dead_protocol/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 04_breaking_cache/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 05_prison_break_api/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 06_ultras_dashboard/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 07_ballon_dor_cli/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 08_trapsoul_radio/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 09_oracle_glitch/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_choix_architecture.md
-  - src/
-  - tests/
- - 10_legacy_dungeon/
-  - POSTMORTEM.md
-  - README.md
-  - RULES.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_pourquoi_ce_code_est_ce_quil_est.md
-  - src/
-  - tests/
- - 11_scheduler/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - src/
-  - tests/
-   - README.md
- - 12_legacy_takeover/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - src/
-  - tests/
-   - README.md
- - 13_memory_hunter/
-  - LEAK_REPORT_TEMPLATE.md
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - fixture/
-   - README.md
-  - src/
-  - tests/
- - 14_system_design_lab/
-  - POSTMORTEM.md
-  - README.md
-  - SPEC_DRIFT.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - src/
-  - tests/
- - 15_porte_rasengan_engine_multilang/
-  - POSTMORTEM.md
-  - README.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - src/
-  - tests/
- - 16_distributed_arena/
-  - POSTMORTEM.md
-  - README.md
-  - RULES.md
-  - TDD_JOURNAL.md
-  - cahierdescharges.md
-  - ADR/
-   - ADR-001_decision.md
-  - fixtures/
-  - src/
-  - tests/
- - _synthesis/
-  - README.md
-  - chaos_day.md
-  - synthese_A.md
-  - synthese_B.md
-  - synthese_C.md
-  - synthese_D.md
-  - synthese_E.md
-  - synthese_F_bloc_25.md
-  - synthese_G_bloc_30.md
+ - 01_rasengan_engine
+ - 02_garo_no_kronika
+ - 03_walking_dead_protocol
+ - 04_breaking_cache
+ - 05_prison_break_api
+ - 06_ultras_dashboard
+ - 07_ballon_dor_cli
+ - 08_trapsoul_radio
+ - 09_oracle_glitch
+ - 10_legacy_dungeon
+ - 11_scheduler
+ - 12_legacy_takeover
+ - 13_memory_hunter
+ - 14_system_design_lab
+ - 15_porte_rasengan_engine_multilang
+ - 16_distributed_arena
+ - _synthesis
 
 ## 31_annexes/
  - 00_arborescence_complete.md
@@ -761,37 +444,10 @@ Généré depuis la structure livrée.
  - 13_portfolio_publication.md
  - 14_generate_portfolio_report.md
  - _spaced_repetition.md
- - interview/
-  - 01_desaccord_cto.md
-  - 02_mock_interview_async.md
- - toolchain/
-  - 00_why_toolchain.md
-  - 01_git_survival.md
-  - 02_vscode_setup.md
-  - 03_package_managers.md
-  - 04_bundlers.md
-  - 05_docker_basics.md
-  - 06_cicd_basics.md
-  - 07_toolchain_grimoire.md
- - transferability/
-  - 01_closure_in_python.md
-  - 02_debug_java_cold_read.md
-  - 03_event_loop_in_pseudorust.md
-  - 04_human_vs_ai_code_reading.md
-  - 05_map_rust_repo.md
-  - 06_observer_in_go.md
-  - 07_EXERCICE_DE_TRANSFERT.md
-  - 08_final_cross_language_challenge.md
-  - README.md
-  - pool_bugs/
-   - CANDIDATS.md
-   - CHAOS_INSTRUCTIONS.md
- - typescript_advanced/
-  - 00_why_typescript_advanced.md
-  - 01_declaration_files.md
-  - 02_ts_compiler_config.md
-  - 03_ts_migration_guide.md
-  - 04_ts_advanced_grimoire.md
+ - interview
+ - toolchain
+ - transferability
+ - typescript_advanced
 
 ## 32_tools/
  - 00_prereq_check.md
@@ -802,15 +458,23 @@ Généré depuis la structure livrée.
  - 04_cli_scaffolder.md
  - 05_tools_grimoire.md
 
-- COMMUNAUTE.md
-- DEPENDENCY_LEDGER.md
-- GUIDE_CARRIERE_DEV.md
-- NODE_VERSIONS.md
-- POSTMORTEM_TEMPLATE.md
-- README.md
-- _recall_05.md
-- _recall_10.md
-- _recall_15.md
-- _recall_20.md
-- _recall_25.md
-- _recall_30.md
+## Fichiers racine
+ - .nvmrc
+ - 01_START_HERE.md
+ - 02_DAY_ONE_environment.md
+ - 02_DAY_ONE_first_steps.md
+ - 02_DAY_ONE_intro.md
+ - 03_WHERE_YOU_STAND.md
+ - COMMUNAUTE.md
+ - DEPENDENCY_LEDGER.md
+ - GUIDE_CARRIERE_DEV.md
+ - LICENSE
+ - NODE_VERSIONS.md
+ - POSTMORTEM_TEMPLATE.md
+ - README.md
+ - _recall_05.md
+ - _recall_10.md
+ - _recall_15.md
+ - _recall_20.md
+ - _recall_25.md
+ - _recall_30.md

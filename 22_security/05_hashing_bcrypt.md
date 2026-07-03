@@ -1,8 +1,6 @@
 # HASHER UN MOT DE PASSE : BCRYPT, SALT, COÛT
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Ta DB se fait dump (extraire de force). L'attaquant a maintenant tous les comptes shinobis. La seule chose qui protège tes shinobis à ce moment-là, c'est la façon dont tu as stocké leurs mots de passe.
 
 Si tu as stocké les mots de passe en clair : catastrophe totale. Si tu as utilisé MD5 ou SHA1 : catastrophe quasi-totale (rainbow tables et GPU en 2026 cassent ça en heures). Si tu as utilisé bcrypt avec un coût approprié : l'attaquant a un problème difficile devant lui.

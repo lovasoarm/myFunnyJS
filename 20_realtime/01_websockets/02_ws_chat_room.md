@@ -1,8 +1,6 @@
 # 02_WS_CHAT_ROOM : LE CHAT ROOM QUI TIENT EN PROD
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Un chat room WebSocket c'est le test de feu de tout ce qu'on a vu.
 Multi-shinobis. Rooms séparées. Broadcast (diffusion à tous). Historique qui persiste.
 Si t'arrives à construire ça proprement, t'as compris WebSocket.

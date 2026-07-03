@@ -1,8 +1,6 @@
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > Ce fichier est niveau avancé.
 > Prérequis minimum : `01_ts_basics/` complet + `02_ts_intermediate/` complet.
 > Si tu découvres TypeScript : reviens ici après avoir utilisé les generics et les utility types
@@ -237,14 +235,12 @@ type T = Flatten<string | number[]>;
 ## EXO 1 : le type de retour conditionnel
 _~15 min_
 
-
 La Trapsoul Radio retourne des tracks différemment selon le contexte : en `"full"` mode, elle retourne `Track` complet. En `"preview"` mode, elle retourne `Pick<Track, "id" | "title" | "duration">`.
 
 Crée `TrackResponse<T extends "full" | "preview">` en utilisant un conditional type. Écris `fetchTrack<T extends "full" | "preview">(id: string, mode: T): Promise<TrackResponse<T>>`.
 
 ## EXO 2 : l'extracteur de type Promise
 _~20 min_
-
 
 Sur le dashboard de la CL, les fonctions retournent des `Promise<T>` et des valeurs synchrones. Tu veux un type `Resolved<T>` qui donne le type unwrappé.
 
@@ -253,14 +249,12 @@ Implémente `Resolved<T>` avec `infer` pour extraire le type d'une Promise (et l
 ## EXO 3 : le sérialiseur de config
 _~20 min_
 
-
 Le système de Breaking Bad stocke des configs qui peuvent être primitives (stockées telles quelles) ou des objets (serialisés en JSON string) ou des fonctions (ignorées avec `never`).
 
 Crée `SerializedConfig<T>` avec des conditional types imbriqués. Test avec tous les cas.
 
 ## EXO 4 : le type guard conditionnel
 _~25 min_
-
 
 Dans Walking Dead, les items d'inventaire peuvent être `"weapon"`, `"food"`, `"medical"`, ou `"tool"`. Les weapons ont `damage`. Les foods ont `calories`. Les medicals ont `healAmount`. Les tools ont `durability`.
 

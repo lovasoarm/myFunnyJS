@@ -1,13 +1,9 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # BENCHMARK KIT : SAVOIR SI TON CODE EST RAPIDE, PAS JUSTE "PAS LENT EN APPARENCE"
 Temps de lecture ~8 min
-
-PÉRISSABLE : vérifié 2026-07
 
 "Je pense que cette version est plus rapide" c'est une opinion. Un benchmark (mesure de performance comparative) c'est un fait. La différence entre les deux, c'est souvent la différence entre optimiser ce qui compte vraiment et perdre du temps sur un détail qui change rien.
 

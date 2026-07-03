@@ -1,8 +1,6 @@
 # Les chiffres qui te préviennent avant que tout brûle
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Les logs te disent ce qui s'est passé sur UNE action précise. Le tracing te dit OÙ le temps a été perdu sur UNE action précise. Mais aucun des deux ne répond bien à "est-ce que mon équipe va globalement bien MAINTENANT, et est-ce que ça empire ?". C'est le rôle des métriques (counter, gauge, histogram) et de l'alerting (déclenchement automatique d'alarme) qui surveille ces métriques en continu, exactement comme un staff technique qui suit des stats en direct pendant un match plutôt que d'attendre le résumé du soir.
 
 Pourquoi ça compte : sans métriques, tu découvres un problème quand un shinobi se plaint. Avec, ton système te dit "le taux d'erreur vient de passer de 0,1% à 8%" avant que qui que ce soit n'ait eu le temps d'écrire un ticket de support.

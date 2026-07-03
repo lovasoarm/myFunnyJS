@@ -39,3 +39,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | AggregateError | Erreur throwée par `Promise.any()` quand toutes les Promises rejettent. Contient `.errors` : le tableau de toutes les erreurs. | `err.errors.forEach(e => console.log(e.message))` | Le rapport d'échec total / tous les équipiers tombés |
 | thenable | Tout objet avec une méthode `.then()`. JS le traite comme une Promise dans les chaînes. | `const t = { then: (resolve) => resolve(42) }` | Un contrat non officiel mais respecté / une parole sans papier mais valable |
 | microtask | Une Promise résolue ne déclenche pas `.then()` immédiatement. Elle s'inscrit dans la microtask queue, après le code synchrone courant. | `Promise.resolve().then(() => console.log("après")) // log après le code sync` | La livraison express mais pas instantanée / le message envoyé mais lu entre deux tâches |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

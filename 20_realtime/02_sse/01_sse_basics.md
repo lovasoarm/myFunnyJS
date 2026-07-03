@@ -1,8 +1,6 @@
 # 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 WebSocket c'est un tunnel bidirectionnel.
 SSE (Server-Sent Events : événements envoyés par le serveur) c'est différent : le serveur parle, le client écoute.
 Unidirectionnel. Plus simple. Et suffisant pour 80% des cas de temps réel.

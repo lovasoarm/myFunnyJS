@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~14 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -205,3 +203,11 @@ NIVEAU 5 : Architecte
 ```
 
 L'objectif de ce module : niveau 4. Niveau 5 vient avec l'expérience en prod.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

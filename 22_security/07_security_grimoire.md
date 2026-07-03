@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~13 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -141,3 +139,11 @@ Permissions-Policy    --> limite l'accès aux APIs navigateur (caméra, géoloc,
 
 helmet() configure tout ça en une ligne.
 ```
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

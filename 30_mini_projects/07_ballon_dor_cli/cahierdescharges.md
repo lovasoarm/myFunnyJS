@@ -79,7 +79,7 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 **Où ça se voit** : tout le passage de `legacy/ballonDorV1.js` vers `src/`.
 **Pourquoi c'est nécessaire ici** : le v1 viole SRP (Single Responsibility Principle : une classe/fonction = une responsabilité) à chaque fonction. La v2 sépare le parsing des args, la validation des votes, l'agrégation des scores, et l'affichage. Chaque module peut changer sans toucher les autres.
 
-### `04_error_handling` : custom errors, propagation, exit codes
+### `05_error_handling` : custom errors, propagation, exit codes
 
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `cli.js`.
 **Pourquoi c'est nécessaire ici** : `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` permettent de répondre différemment selon le type d'erreur. Un vote invalide = message d'erreur + exit 1. Un joueur introuvable = suggestion de correction + exit 1. Une erreur système = stacktrace sur stderr + exit 2.
@@ -94,7 +94,7 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ```
 16_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
 14_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
-04_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
+05_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
 31_annexes   --> Dockerfile, .github/workflows/ci.yml
 ```
 

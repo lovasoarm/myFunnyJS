@@ -1,13 +1,25 @@
-# VERROU : DOSSIER SOLUTIONS
+# .solutions/ — POLITIQUE DE VERROUILLAGE
 
-STOP. Ne lis pas ce dossier avant d'avoir terminé l'exercice par tes propres moyens.
+## AS-TU FINI SANS REGARDER ?
 
-## Checklist obligatoire avant d'ouvrir un fichier ici
+Coche AVANT d'ouvrir un fichier ici :
 
-- [ ] J'ai fini l'exercice sans regarder aucune aide.
-- [ ] J'ai écrit mon propre exemple, différent de l'énoncé.
-- [ ] Je peux réexpliquer la solution à voix haute, sans regarder ce dossier.
-- [ ] J'ai laissé passer au moins 20 minutes de tentative honnête.
+- [ ] J'ai passé au moins 25 minutes seul sur l'exercice.
+- [ ] J'ai écrit ma propre version, même bancale.
+- [ ] J'ai exécuté mes tests / mon script au moins une fois.
+- [ ] J'ai relu ma solution à haute voix et je peux la défendre.
 
-Si une case n'est pas cochée : ferme ce dossier maintenant. La solution ne vaut rien
-sans le combat qui la précède. Copier-coller ici = seule faute grave du curriculum.
+Si une case n'est pas cochée, ferme et retourne à l'énoncé.
+
+## POURQUOI CE VERROU
+
+Lire la solution avant d'avoir bataillé = neurone non forgé. Le curriculum
+n'a aucune valeur si tu court-circuites la lutte. Ce dossier est un filet,
+pas une béquille.
+
+## FORMAT DES SOLUTIONS
+
+Chaque `.js`/`.ts` ici commence par un commentaire d'avertissement :
+
+    // AVERTISSEMENT : solution de référence. Tu as coché les 4 cases du README
+    // avant d'ouvrir ce fichier ? Sinon → ferme, retourne à l'exercice.

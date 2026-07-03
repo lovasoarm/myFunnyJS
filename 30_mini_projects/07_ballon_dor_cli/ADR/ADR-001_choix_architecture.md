@@ -7,7 +7,7 @@ Accepté : 2026-01
 ## Contexte
 Le Ballon d'Or CLI doit persister les votes entre les sessions : `node src/cli.js vote --player Mbappé` doit être retrouvable après avoir fermé et rouvert le terminal. Deux questions se posent : quel format de stockage utiliser, et comment garantir la cohérence des données entre les appels CLI concurrents (deux processus Node qui écrivent en même temps).
 
-Le projet est un outil CLI Node.js. Il couvre `16_runtime_env` (process.argv, filesystem, Worker Threads) et `04_error_handling`. Ce n'est pas une API avec des connexions persistantes : chaque ordre_mission est un processus Node qui démarre, lit/écrit, et se termine.
+Le projet est un outil CLI Node.js. Il couvre `16_runtime_env` (process.argv, filesystem, Worker Threads) et `05_error_handling`. Ce n'est pas une API avec des connexions persistantes : chaque ordre_mission est un processus Node qui démarre, lit/écrit, et se termine.
 
 ## Décision
 Les votes sont persistés dans `data/votes.json`, un fichier JSON structuré lu et écrit via `fs.readFileSync`/`fs.writeFileSync`. Chaque écriture est atomique : on écrit dans un fichier temporaire `data/votes.tmp.json`, puis on renomme (`fs.renameSync`) vers `data/votes.json`. Le renommage est atomique sur la plupart des systèmes de fichiers UNIX : pas de fenêtre de corruption partielle.

@@ -1,8 +1,6 @@
 # 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 HTTP est un contrat unidirectionnel : tu demandes, le serveur répond, la connexion meurt.
 WebSocket, c'est un tunnel qui reste ouvert.
 Le serveur peut te parler sans que tu aies rien demandé.

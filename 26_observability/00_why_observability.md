@@ -3,8 +3,6 @@
 > Ce module reutilise : debug (04_debugging), erreurs (05_error_handling).
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Ton app est en prod. Un shinobi signale un bug vague : "ça marche pas parfois". Tu n'as aucun log structuré, aucune trace, aucune métrique. Tu es aveugle, et tu débugues en production à l'aveugle, en ajoutant des logs et en redéployant, en espérant reproduire le bug avant que d'autres shinobis ne le signalent aussi.
 
 L'observabilité, c'est la différence entre voir le problème arriver et le découvrir trois jours plus tard via un ticket de support frustré.

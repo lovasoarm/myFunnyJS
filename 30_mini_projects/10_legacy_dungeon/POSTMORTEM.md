@@ -25,7 +25,7 @@ Dans les autres mini-projets, le POSTMORTEM documente ce qui a coincé pendant l
 
 ### Une convention ou un pattern qui t'a surpris
 
-(à remplir : un nommage inhabituel, une façon de gérer les erreurs différente de ce que t'as appris dans `04_error_handling`, une organisation de fichiers qui ne suit aucun pattern du curriculum)
+(à remplir : un nommage inhabituel, une façon de gérer les erreurs différente de ce que t'as appris dans `05_error_handling`, une organisation de fichiers qui ne suit aucun pattern du curriculum)
 
 **Résolution** : (comment t'as fini par accepter ou comprendre cette convention)
 

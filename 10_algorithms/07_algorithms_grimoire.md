@@ -114,3 +114,11 @@ Topological Sort    O(V+E)     O(V)
 - `10_algorithms/01_sorting` : fondation du divide & conquer
 - `10_algorithms/02_searching` : fondation de la recherche binaire et du BFS
 - `10_algorithms/03_dynamic_programming` : mémoïsation, tabulation, sous-structure
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

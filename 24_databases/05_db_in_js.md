@@ -1,8 +1,6 @@
 # Connecter ton code à la DB sans te perdre dans l'abstraction
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 T'as compris SQL, les modèles, le cache. Reste la vraie question côté code : comment ton JS parle concrètement à la DB. Trois niveaux d'abstraction (driver brut, query builder, ORM), chacun avec un vrai compromis, pas juste une question de goût.
 
 Pourquoi ça compte : choisir un ORM (object-relational mapping) sans comprendre ce qu'il fait derrière, c'est comme Naruto qui utilise le Mode Sage sans comprendre le flux du chakra naturel. Ça semble marcher, jusqu'au moment où ça lâche dans la pire situation possible.

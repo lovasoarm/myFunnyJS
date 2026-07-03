@@ -86,7 +86,7 @@ Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le "src" 
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `27_team_craft` | navigation de codebase (`04_navigate_codebase.md`) appliquée pour de vrai, ADR rétrospective, technical writing dans MAP.md/POSTMORTEM.md |
 
-Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `04_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `14_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
+Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `05_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `14_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
 
 ---
 

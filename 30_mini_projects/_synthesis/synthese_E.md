@@ -1,7 +1,7 @@
 # SYNTHÈSE E : L'ORACLE QUI SURVEILLE SA PROPRE FOLIE
 Temps de lecture ~7 min
 
-> Couvre : `23_ai_native_dev` + `24_databases` + `25_scalability` + `26_observability` + `27_team_craft` + `28_edge_cases` + `12_oop_js`
+> Couvre : `23_ai_native_dev` + `24_databases` + `25_scalability` + `26_observability` + `27_team_craft` + `28_edge_cases` + `18_oop_js`
 > Durée cible : 180 à 240 minutes
 > Le bloc senior. Si t'arrives ici sans galérer, c'est que t'as sauté des trucs avant.
 

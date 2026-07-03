@@ -1,8 +1,6 @@
 # RGPD ET AI ACT : CE QUE TU N'AS PAS LE DROIT DE LOGGER
 Temps de lecture ~11 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Michael Scofield ne laisse jamais une trace de plus que nécessaire. Chaque carte, chaque appel, chaque mouvement dans Fox River : calculé pour ne rien révéler de plus que ce qui sert le plan. Dans ton code, c'est pareil. Chaque `console.log`, chaque colonne de DB, chaque payload envoyé à un service tiers est une trace. Et une trace mal gérée ne te fait pas juste perdre des points en code review : elle peut faire tomber toute l'équipe devant un régulateur.
 
 RGPD (Règlement Général sur la Protection des Données) et AI Act (le règlement européen sur l'intelligence artificielle) ne sont pas des sujets juridiques que tu délègues à un service légal lointain. Ce sont des contraintes techniques qui changent ce que ton code a le droit de faire, point final.

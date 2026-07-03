@@ -60,3 +60,11 @@ Chaque terme ici apparaît dans du vrai code, dans de vraies prods, dans de vrai
 → Leçon complète sur les opérateurs bitwise et les flags : `03_bit_manipulation.md`
 → Leçon complète sur l'arithmétique modulaire : `02_modular_arithmetic.md`
 → Leçon complète sur les fonctions de hachage : `04_hashing_basics.md`
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

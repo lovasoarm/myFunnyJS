@@ -84,3 +84,23 @@ Chaque terme que tu croises en prod, en code review, ou en entretien senior.
 | **Code splitting** | Découper le bundle JS en plusieurs morceaux chargés à la demande. Réduit le JS initial et le TBT | `const Module = React.lazy(() => import('./Module'))` `// le bundle de Module n'est chargé que si nécessaire` | Ne sortir les troupes que quand elles servent : pas envoyer toute l'armée au premier round / Itachi ne déploie ses techniques que quand la situation l'exige |
 | **Tree shaking** | Le bundler analyse les imports et élimine le code importé mais jamais utilisé. Réduit la taille du bundle | `// si tu importes seulement { debounce }` `// lodash-es n'envoie que debounce, pas les 300 autres fonctions` | L'équipe qui ne prend que les joueurs qui jouent vraiment : les autres restent en tribune / Walter qui ne prend au labo que les produits qu'il utilise |
 | **Lazy loading** | Chargement différé d'une ressource (image, script, module) jusqu'au moment où elle est nécessaire | `<img loading="lazy" src="stadium.jpg">` `// l'image ne charge que quand elle approche du viewport` | Les renforts qui n'arrivent que quand le combat en a besoin : pas tous au premier coup / Might Guy qui réserve les 8 portes pour la situation vraiment critique |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Les analogies (arbitre du tournoi, clé USB, cuisine du restaurant…) sont là
+pour donner une prise mentale, pas pour décrire fidèlement le mécanisme.
+Points où elles mentent :
+
+- **Clé USB pour référence objet** : suggère un fichier physique partagé.
+  En vrai, deux variables pointent la même adresse mémoire ; pas de copie,
+  pas de "prêt", pas de "retour".
+- **Arbitre du tournoi pour l'event loop** : suggère une décision au cas
+  par cas. En vrai, c'est un ordre déterministe : microtasks vidées, une
+  macrotask, on recommence.
+- **Cuisine pour thread pool** : suggère des cuisiniers autonomes. En vrai,
+  ils partagent la même mémoire, avec toutes les guerres de synchronisation
+  que ça implique.
+
+Règle : quand l'analogie te sert à décider, arrête-la, retourne au mécanisme.

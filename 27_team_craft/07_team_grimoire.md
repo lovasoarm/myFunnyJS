@@ -53,3 +53,10 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **Ubiquitous language** (DDD) | Vocabulaire commun partagé entre devs et experts métier. Les mêmes mots dans le code, les tickets, les réunions, et la doc. Évite les malentendus entre "vote" pour le métier et `ballot_entry` pour le dev. | Si le métier dit "vote", le code dit `vote` : classe `Vote`, fonction `registerVote`, table `votes`. Pas `ballot`, pas `entry`, pas `choice`. | Une langue commune dans une mission internationale / un dictionnaire partagé entre avocats et juges dans un tribunal |
 
 ---
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

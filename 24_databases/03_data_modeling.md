@@ -1,8 +1,6 @@
 # Le plan avant les murs
 Temps de lecture ~12 min
 
-PÉRISSABLE : vérifié 2026-07
-
 T'as vu SQL (`01_sql_basics`) et les familles NoSQL (`02_nosql_basics`). Maintenant la vraie question : comment tu RANGES tes données pour qu'elles tiennent dans le temps, sans dupliquer n'importe comment ni te retrouver bloqué dans 6 mois.
 
 Pourquoi ça compte vraiment : une mauvaise modélisation, ça ne plante pas le jour 1. Ça plante le jour où ta table a 5 millions de lignes et que chaque requête devient un calvaire, ou le jour où tu dois changer une donnée dupliquée à 50 endroits différents. Walter White a appris ça à ses dépens : une mauvaise organisation du réseau en début de saison, ça coûte dix fois plus cher à corriger à la saison 4.

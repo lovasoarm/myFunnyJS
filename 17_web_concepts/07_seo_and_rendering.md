@@ -1,8 +1,6 @@
 # SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Ton navigateur affiche une page. Mais cette page, elle est née où ? Sur le serveur, juste avant de te l'envoyer ? Sur ton navigateur, après coup ? Ou elle dormait déjà toute construite sur un CDN (réseau de distribution de contenu) depuis des heures ? Le choix change tout : vitesse perçue, référencement Google, coût serveur. Mal choisir, c'est comme envoyer Sasuke seul contre Madara : techniquement possible, mais tu vas souffrir pour rien.
 
 ## 1) CSR : LE NAVIGATEUR FAIT TOUT LE SALE BOULOT

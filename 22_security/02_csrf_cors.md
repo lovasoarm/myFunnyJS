@@ -1,8 +1,6 @@
 # CSRF ET CORS
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Deux acronymes. Deux problèmes complètement différents. Un seul point commun : si tu les confonds ou tu les misconfigures (mal configurer), tu ouvres une faille que tu ne verras pas venir.
 
 CSRF (Cross-Site Request Forgery : falsification de requête cross-site) est une attaque. CORS (Cross-Origin Resource Sharing : partage de ressources cross-origine) est un mécanisme de sécurité du navigateur. Les deux parlent de "cross-site" mais dans des sens opposés.

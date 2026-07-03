@@ -41,3 +41,11 @@ Ce grimoire couvre tout le module 25. Pas juste un résumé : c'est ce qu'un dev
 | At-least-once         | Garantie d'une queue où chaque message est traité au moins une fois, mais peut être traité plusieurs fois                  | message renvoyé si l'`ack` n'arrive jamais à la queue                    | un message radio répété tant que le Chevalier ne confirme pas réception / une consigne d'entraîneur répétée jusqu'à ce qu'un joueur confirme l'avoir comprise                |
 | Dead letter queue       | File secondaire où atterrissent les messages qui échouent systématiquement après plusieurs tentatives                    | `if (attempt === maxRetries) deadLetterQueue.push(job)`                   | les cas classés "trop dangereux, mis à l'isolement" à Fox River / les morceaux jamais validés par le label, mis de côté pour analyse                             |
 | Queue depth          | Profondeur de la file : nombre de messages en attente, métrique critique à surveiller                            | producteur 1000/s, consommateur 100/s → la file grossit de 900/s               | la file de fans devant le stade qui s'allonge plus vite que les contrôles d'entrée n'avancent / le nombre de Horrors signalés qui dépasse le nombre de Chevaliers disponibles        |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

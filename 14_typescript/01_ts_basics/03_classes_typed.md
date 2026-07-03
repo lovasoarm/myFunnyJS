@@ -1,8 +1,6 @@
 # CLASSES TYPESCRIPT : L'ARMURE AVANT LE COMBAT
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Les classes JS existent depuis ES6. Les classes TypeScript, c'est les mêmes avec un casque, des gants, et une épée.
 `public`, `private`, `protected`, `readonly`, `abstract` : chaque mot-clé est une contrainte délibérée sur ce qui peut toucher quoi.
 En prod, ça veut dire des modules qui ne se marchent pas dessus, des données qu'on ne modifie pas par accident, et des erreurs détectées avant que le code tourne.

@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -71,3 +69,11 @@ RESTERA :
 ```
 
 Retiens le PRINCIPE de chaque mécanisme, pas la liste exhaustive des options de tsconfig par coeur. Le jour où une nouvelle option apparaît dans une nouvelle version de TypeScript, tu sauras directement si c'est une option de sortie (comme `target`) ou une option de vérification (comme `strict`), parce que t'auras compris la distinction, pas juste mémorisé une liste.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

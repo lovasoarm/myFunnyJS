@@ -1,8 +1,6 @@
 # Se souvenir vite pour ne pas redemander à chaque fois
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 shinobis demandent le même profil de mission à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
 
 Redis (Remote Dictionary Server) est la DB clé-valeur en mémoire (RAM) la plus utilisée pour ça. Vu dans `02_nosql_basics` côté famille clé-valeur, ici on rentre dans le concret : comment l'utiliser sans se tirer une balle dans le pied.

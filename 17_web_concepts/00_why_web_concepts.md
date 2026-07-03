@@ -3,8 +3,6 @@
 > Ce module reutilise : async (03_async), securite (22_security).
 Temps de lecture ~7 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu sais écrire un `fetch`. Mais sais-tu pourquoi une requête échoue avec un 403 et pas un 401 ? Tu ne sais peut-être pas non plus ce qui se passe entre le moment où le navigateur reçoit du HTML et le moment où le pixel apparaît à l'écran, ni quand le cache devient ton allié ou ton pire ennemi.
 
 Coder pour le web sans comprendre le web, c'est conduire une voiture sans savoir ce qu'il y a sous le capot. Tu avances, jusqu'au jour où ça tombe en panne et que tu ne sais même pas par où chercher.

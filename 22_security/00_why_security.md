@@ -3,8 +3,6 @@
 > Ce module reutilise : erreurs (05_error_handling), edge cases (29_edge_cases).
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu n'as pas besoin d'être attaqué par un hacker en cagoule dans un sous-sol. Il suffit d'un script automatisé qui scanne le web 24/7 à la recherche de failles connues, et qui tombe sur ton input non sanitisé (nettoyé/validé). Tu ne te fais pas hacker parce que tu es une cible importante. Tu te fais hacker parce que ton code laissait la porte ouverte.
 
 La sécurité n'est pas une feature qu'on ajoute à la fin. C'est une discipline qu'on applique à chaque ligne qui touche à une donnée venant de l'extérieur.
@@ -78,3 +76,17 @@ Chaque donnée externe que ton code accepte est une porte d'entrée potentielle,
 Maintenant, ouvre `01_xss_injection.md`. Et arrête de faire confiance à n'importe quelle donnée qui vient de l'extérieur.
 
 > Ce module réutilise : l'API craft du module 21 (`21_api_craft`), la gestion d'erreurs du module 05 (`05_error_handling`).
+
+---
+
+## AILLEURS QUE JS
+
+Ce que tu apprends ici n'est pas JS-spécifique :
+
+- **Python / Java / Go / Rust** partagent 90 % de ces mécanismes (allocation
+  heap vs stack, contention, backpressure, isolation runtime).
+- Le vocabulaire change (`GIL` en Python, `goroutine` en Go, `borrow checker`
+  en Rust), le mécanisme sous-jacent reste. Si tu comprends ici, tu portes
+  ailleurs en 2 semaines de lecture ciblée.
+- Test : explique à quelqu'un qui code Python ce que tu viens d'apprendre.
+  Si tu peux, c'est acquis. Sinon, relis.

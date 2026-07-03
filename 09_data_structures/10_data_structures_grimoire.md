@@ -167,3 +167,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | Prefix Doubling | Algorithme de construction du suffix array. Trie par les 2k premiers caractères à chaque itération jusqu'à distinguer tous les suffixes. O(n log² n). | `for (let gap = 1; gap < n; gap *= 2) { sa.sort(...) }` | Classer les joueurs d'abord sur 1 critère, puis 2, puis 4, jusqu'à différencier tout le monde / Trier les missions d'abord par rang, puis par village, puis par date |
 | LCP Array | Longest Common Prefix array. `lcp[i]` = longueur du plus long préfixe commun entre `sa[i]` et `sa[i-1]`. Construit en O(n). | `lcp[rank[i]] = h` après comparaison caractère par caractère | La longueur du tronc commun entre deux branches d'arbre généalogique / Combien de séquences de chakra deux jutsu partagent au début |
 | Pattern Search | Recherche binaire sur le suffix array : tous les suffixes commençant par le pattern sont contigus. O(m log n) par requête. | `binarySearch(sa, pattern)` sur les m premiers caractères | Chercher un mot dans l'index d'un livre : toutes les occurrences sont sur des pages consécutives / Retrouver un jutsu dans l'encyclopédie : toutes les variantes sont regroupées |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

@@ -41,3 +41,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 ---
 
 > Ce grimoire couvre uniquement le module `11_functional_js`. Les sujets avec une leçon dédiée (`→ Leçon complète :`) ne sont pas développés ici : consulte le fichier indiqué.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

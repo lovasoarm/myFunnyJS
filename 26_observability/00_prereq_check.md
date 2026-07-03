@@ -1,8 +1,6 @@
 # 00 : Prereq check : Observability
 Temps de lecture ~5 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.
 

@@ -1,8 +1,6 @@
 # STATE ET DATAFLOW : QUI POSSÈDE L'ÉTAT, QUI LE LIT, QUI LE MODIFIE
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Le camp de Rick Grimes a un problème.
 Daryl pense qu'il reste 3 jours de vivres. Carol pense qu'il en reste 7. Michonne a pas été informée.
 Trois personnes, trois versions différentes de la même réalité.

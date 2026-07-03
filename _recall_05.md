@@ -43,13 +43,6 @@ Parmi les décisions prises dans les modules précédents (ou dans tes mini-proj
 
 ---
 
-## EXERCICE DE TRANSFERT
-
-Prends UN concept clé de ce module. Réécris son fonctionnement en pseudo-code, puis dans un autre langage que JS (Python, Go, Rust au choix). But : prouver que ta compréhension n'est pas syntaxique.
-
-Livrable : un fichier `transfert_<concept>.md` dans ton dépôt.
-
-
 ## REMISE EN CAUSE
 
 **Quelle croyance technique avais-tu il y a quelques modules qui a changé aujourd'hui ?**

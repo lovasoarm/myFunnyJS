@@ -1,8 +1,6 @@
 # Parler à une base relationnelle sans la supplier
 Temps de lecture ~12 min
 
-PÉRISSABLE : vérifié 2026-07
-
 T'as un système qui tient en mémoire : tableaux JS, objets, variables. Tu restart le serveur : tout disparaît. Une DB (database : base de données) relationnelle, c'est la mémoire qui survit au crash. SQL (structured query language : langage de requête structuré), c'est la langue qu'elle comprend.
 
 Pourquoi ça compte vraiment en prod : 90% des bugs de perf en backend, c'est pas ton code JS qui rame, c'est ta requête SQL qui scanne 2 millions de lignes pour en retourner 5. Si tu comprends pas `EXPLAIN` (le plan d'exécution d'une requête), t'es aveugle face à ce genre de bug.

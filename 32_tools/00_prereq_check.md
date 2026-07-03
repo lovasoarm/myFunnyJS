@@ -1,13 +1,9 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # 00 : Prereq check : Tools
 Temps de lecture ~5 min
-
-PÉRISSABLE : vérifié 2026-07
 
 > Tu ne dois **pas** entrer dans ce module si tu ne peux pas répondre à ces questions
 > **sans regarder**. Ce n'est pas un test noté, c'est un filtre anti-illusion.

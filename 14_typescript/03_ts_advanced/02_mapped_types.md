@@ -1,8 +1,6 @@
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu as un type avec 10 propriétés. Tu veux une version readonly de ce type. Une version optionnelle. Une version où chaque valeur est une fonction plutôt qu'une donnée brute. Sans les mapped types, tu réécris tout à la main. Avec les mapped types, tu le génères en une ligne.
 
 C'est le mécanisme derrière `Readonly`, `Partial`, `Required`, `Record` : tous les utility types du fichier 02. Ici on comprend comment ils fonctionnent, et on en crée de nouveaux.
@@ -317,14 +315,12 @@ type StrictMandatory = Mandatory<Strict>;
 ## EXO 1 : les getters du dashboard
 _~15 min_
 
-
 Le dashboard de la CL a un état (`MatchState`) avec `score`, `minute`, `possession`, `events`. Génère automatiquement un objet `getters` où chaque propriété devient une fonction `get<PropertyName>()`.
 
 Crée `Getters<T>` avec key remapping et `Capitalize`. Teste que `getters.getScore()` retourne le bon type.
 
 ## EXO 2 : le schéma de validation du Ballon d'Or
 _~20 min_
-
 
 Le formulaire de vote a 6 champs. Génère un `ValidationSchema<VoteForm>` qui associe à chaque champ : `required`, `minLength`/`min` selon le type, `errorMessage`.
 
@@ -333,14 +329,12 @@ Utilise un mapped type + conditional type sur le type de la valeur pour différe
 ## EXO 3 : la config d'events de Garo
 _~20 min_
 
-
 Chaque type d'event du pipeline Garo (`HorrorSpotted`, `KnightDispatched`, `CombatStarted`, `CombatEnded`) doit avoir une config : `priority` (1-5), `timeout` (ms), `retryable` (boolean), `notifyCouncil` (boolean).
 
 Crée `EventConfig` depuis un type `GaroEventType = "horrorSpotted" | "knightDispatched" | "combatStarted" | "combatEnded"` avec `Record`, et une version `ReadonlyEventConfig` via mapped type.
 
 ## EXO 4 : le diff de state
 _~25 min_
-
 
 Dans Walking Dead, on compare deux états du camp pour voir ce qui a changé. `StateDiff<T>` prend un type `T` et génère un type où chaque propriété est `{ before: T[K], after: T[K], changed: boolean }`.
 

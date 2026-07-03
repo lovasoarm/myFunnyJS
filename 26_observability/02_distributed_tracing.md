@@ -1,8 +1,6 @@
 # Suivre une ordre_mission qui traverse 6 maillons sans perdre le fil
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Une ordre_mission de Walter White passe par le labo, le grossiste, deux distributeurs intermédiaires, et le point de livraison final. Le tout prend 3 heures au lieu de 30 minutes. Lequel des 5 maillons est lent ? Le correlation ID (vu dans `26_observability/01_structured_logging`) te dit QUE ces logs appartiennent à la même ordre_mission. Il ne te dit PAS où le temps a été perdu.
 
 Le distributed tracing (traçage distribué) répond exactement à ça : il découpe une requête en segments mesurés (spans), organisés en arbre, pour voir précisément combien de temps chaque maillon a pris, et dans quel ordre.

@@ -48,3 +48,11 @@ ARIA ne remplace jamais le HTML natif : `<button>` gère déjà focus, rôle et 
 Le clavier reste le test le plus simple et le plus révélateur : débranche ta souris cinq minutes, et la moitié des bugs d'accessibilité d'une page sautent aux yeux tout seuls. Le contraste se calcule, ne se devine jamais : un gris "qui a l'air lisible" peut échouer largement au ratio 4.5:1 minimum.
 
 Sur l'audit, retiens cette vérité qui dérange : axe et Lighthouse détectent le balisage cassé, pas l'expérience cassée. Un focus trap qui ne se ferme jamais, un `aria-live` qui spam, un ordre de lecture absurde : aucun scanner automatique ne les voit. Seul un test manuel au clavier et au lecteur d'écran les révèle. Un score "100/100" sur un outil automatique ne veut jamais dire "accessible à 100%" : ça veut juste dire "le balisage de base est propre".
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

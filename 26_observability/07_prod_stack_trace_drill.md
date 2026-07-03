@@ -1,8 +1,6 @@
 # LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 En local, une stack trace pointe directement sur ta ligne de code. En prod, elle pointe sur `main.a8f3c2.js:1:48291`. Une seule ligne. Minifiée. Sans le moindre nom de variable lisible. C'est le moment où la majorité des devs se sentent perdus, alors que c'est un exercice de lecture, pas de magie.
 
 Pourquoi ça compte : Sentry, Datadog, ou n'importe quel outil de tracking d'erreurs te montre cette version dégradée par défaut. Si tu ne sais pas la retraverser jusqu'au vrai code, chaque incident en prod commence par 20 minutes perdues à essayer de comprendre où chercher.

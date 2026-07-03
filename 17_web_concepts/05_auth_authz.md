@@ -1,8 +1,6 @@
 # AUTHENTIFICATION ET AUTORISATION : DEUX PROBLÈMES DIFFÉRENTS
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 À Fox River, il y a deux barrières distinctes.
 La première : qui es-tu ? (Prisonnier ? Garde ? Visiteur ?)
 La deuxième : qu'est-ce que tu as le droit de faire ici ?

@@ -43,3 +43,11 @@ Si tu ne maîtrises pas ces termes, tu codes à l'aveugle dans un navigateur.
 | Cookie | Stockage navigateur envoyé automatiquement au serveur à chaque requête : le seul des trois que le serveur peut lire | `document.cookie = "user=Blob; max-age=604800"` | Un badge nominatif : tu l'as sur toi, le vigile (serveur) peut le lire à chaque entrée / Un passeport : tu le présentes à chaque frontière |
 | Template string | Syntaxe backtick permettant l'interpolation de variables et le multi-ligne dans une string | `` `Hello ${name}` `` <br> `` `<div>${user.hp} HP</div>` `` | Un formulaire avec des cases à remplir automatiquement / Un Mad Libs : le texte est là, tu glisses les variables dedans |
 | Helper | Petite fonction utilitaire qui encapsule une opération répétée pour la rendre plus courte et lisible | `function $(sel) { return document.querySelector(sel); }` <br> `function on(el, ev, fn) { el.addEventListener(ev, fn); }` | Un raccourci clavier : même action, moins de touches / Un assistant : il fait les tâches répétitives pour que toi tu te concentres sur l'essentiel |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

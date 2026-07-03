@@ -65,7 +65,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 ```
 04_debugging --> lire une stack trace dans un contexte inconnu, sans le confort
                   d'un code que tu as toi-même écrit
-04_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
+05_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
                   choisie, parfois incohérente avec ce que t'as appris ici
 14_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
                   projet t'interdit explicitement le refactoring "pendant que t'y es"

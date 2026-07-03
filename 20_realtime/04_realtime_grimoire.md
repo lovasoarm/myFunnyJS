@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~13 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -133,3 +131,11 @@ Streaming serveur vers client    SSE        Naturel pour ce cas d'usage
 - L'état `iceConnectionState === 'failed'` et `restartIce()`
 - `Last-Event-ID` pour reprendre un flux SSE sans perdre d'events
 - La distinction signaling (ton serveur) vs data path (peer-to-peer)
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

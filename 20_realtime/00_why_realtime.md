@@ -3,8 +3,6 @@
 > Ce module reutilise : async (03_async), backpressure (03_async/06).
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Un chat où il faut rafraîchir la page pour voir les nouveaux messages. Un dashboard de match qui affiche le score d'il y a 5 minutes. Une app de notifications qui ne notifie jamais en direct. Ce sont des jutsus cassés aux yeux d'un shinobi de 2026, habitué à voir les choses apparaître instantanément.
 
 Le HTTP classique (requête, réponse, fin) ne suffit plus pour ça. Le temps réel demande un autre modèle de communication, et si tu ne le maîtrises pas, ton jutsu a l'air d'avoir 10 ans de retard. C'est exactement le terrain du mini-projet `02_garo_no_kronika` : un Chevalier Garo qui reçoit son alerte de combat avec 5 secondes de retard, c'est un Horror qui a déjà fait des dégâts avant même que la mission soit dispatchée.

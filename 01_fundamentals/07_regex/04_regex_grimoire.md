@@ -49,3 +49,11 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **Lookbehind `(?<=...)`** | Assertion positive : matche si précédé du pattern, sans consommer les caractères. | `/(?<=prix:\s)\d+/` matche le nombre après "prix: " | vérifier l'origine avant de lire le message / n'écouter que si c'est un Hokage qui parle |
 | **ReDoS** | Backtracking catastrophique : certains patterns + certaines chaînes provoquent une explosion du temps d'exécution. Risque de sécurité en prod. | `/^(a+)+$/` sur "aaaab" peut bloquer le thread | un piège à ninja qui se referme lentement / une boucle infinie qui mange le CPU |
 | **`lastIndex`** | Propriété d'une regex avec flag `g` : indique où reprendre le prochain `.exec()`. Peut causer des bugs si la même regex est réutilisée. | `regex.lastIndex = 0` pour reset manuellement | le signet d'un inspecteur qui reprend où il s'est arrêté / la mémoire de position d'un jutsu de recherche |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

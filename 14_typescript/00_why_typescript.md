@@ -1,11 +1,8 @@
-[PÉRISSABLE 12-24 mois]
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT
 
 > Ce module reutilise : types dynamiques (11_functional_js), design patterns (12_design_patterns).
 Temps de lecture ~8 min
-
-PÉRISSABLE : vérifié 2026-07
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.
 

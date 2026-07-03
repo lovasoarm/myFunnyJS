@@ -1,8 +1,6 @@
 # 01_WEBRTC_CONCEPTS : LE VOCABULAIRE SANS LA PEUR
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 WebRTC c'est le seul endroit dans le web où deux navigateurs se parlent directement.
 Pas de serveur intermédiaire pour les données. Peer-to-peer pur.
 Appels vidéo, partage d'écran, fichiers : tout ça sans passer par un serveur central pour les flux.

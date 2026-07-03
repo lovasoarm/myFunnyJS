@@ -1,8 +1,6 @@
 # Page verrouillée
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
 
@@ -45,3 +43,11 @@ Ce grimoire couvre tout le module 26. Pas un résumé, le bagage complet : si t'
 | Heap snapshot         | Photo de l'état de la mémoire prise à chaud, sans arrêter le process, pour traquer une fuite mémoire                | `v8.getHeapSnapshot()` écrit sur disque pendant que le process tourne | une photo aérienne du camp prise en plein mouvement, sans interrompre les gardes / un relevé GPS pris en plein match sans arrêter le jeu                                   |
 | Canary deployment       | Déploiement progressif d'une nouvelle version sur un petit pourcentage d'shinobis avant la généralisation           | `1% --> surveillance --> 10% --> 50% --> 100%`            | envoyer un seul éclaireur avant le groupe entier de Walking Dead / tester un joueur en amical avant de le titulariser en match officiel                                   |
 | MTTR (mean time to resolution) | Temps moyen entre la détection d'un incident et sa résolution complète                               | réduit par logs préparés, feature flags, et dashboards clairs     | le temps moyen qu'il faut à Daryl pour neutraliser une menace une fois repérée / le temps moyen de réaction d'une défense face à une attaque rapide                             |
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

@@ -36,7 +36,7 @@ Sentry.init({
  tracesSampleRate: 0.1 // sampling, vu dans `26_observability/02_distributed_tracing`
 })
 
-// Capture manuelle d'une erreur attrapée volontairement (vu dans `04_error_handling`)
+// Capture manuelle d'une erreur attrapée volontairement (vu dans `05_error_handling`)
 try {
  await chargeCreditCard(amount)
 } catch (err) {
@@ -45,7 +45,7 @@ try {
 }
 ```
 
-Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `04_error_handling/02_custom_errors`), il les complète. Ton code continue de décider comment réagir à l'erreur (retry, fallback, fail-fast), Sentry capture en parallèle ce qui s'est passé pour que l'équipe puisse l'analyser après coup, sans avoir eu besoin de reproduire le bug à la main.
+Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `05_error_handling/02_custom_errors`), il les complète. Ton code continue de décider comment réagir à l'erreur (retry, fallback, fail-fast), Sentry capture en parallèle ce qui s'est passé pour que l'équipe puisse l'analyser après coup, sans avoir eu besoin de reproduire le bug à la main.
 
 ---
 
@@ -94,7 +94,7 @@ Sentry.captureException(err, {
 })
 ```
 
-Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Order 48291 not found`, `Order 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `04_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
+Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Order 48291 not found`, `Order 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `05_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
 
 ---
 

@@ -1,7 +1,7 @@
 # LA CHAÎNE PROTOTYPE DANS SES ZONES SOMBRES
 Temps de lecture ~11 min
 
-> **Prérequis :** ce fichier suppose que tu sais ce qu'est un prototype et comment fonctionne l'héritage en JS. Si ce n'est pas encore le cas, le cours complet est dans `12_oop_js/01_prototype_chain_raw.md`. Tu peux quand même lire ce qui suit avec le rappel express ci-dessous, mais le module 29 reste la référence pour les bases.
+> **Prérequis :** ce fichier suppose que tu sais ce qu'est un prototype et comment fonctionne l'héritage en JS. Si ce n'est pas encore le cas, le cours complet est dans `18_oop_js/01_prototype_chain_raw.md`. Tu peux quand même lire ce qui suit avec le rappel express ci-dessous, mais le module 29 reste la référence pour les bases.
 
 Ce fichier couvre ce qui arrive quand ce mécanisme est exploité, mal utilisé, ou carrément détourné.
 `__proto__`, `hasOwnProperty`, et prototype pollution : trois sujets que 90% des devs ne comprennent pas assez pour les éviter en prod.

@@ -1,8 +1,6 @@
 # HTTP ET REST : LIRE UNE REQUÊTE COMME UN PROFESSIONNEL
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Chaque fois que Michael Scofield envoie un message depuis sa cellule, il suit un protocole.
 Format précis, destinataire précis, réponse attendue précise.
 HTTP c'est ça : un protocole de communication entre un client et un serveur.

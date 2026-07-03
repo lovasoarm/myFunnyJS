@@ -352,3 +352,20 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 [ ] POSTMORTEM.md documente au moins une faille trouvée et corrigée pendant le dev
 [ ] TDD_JOURNAL.md trace quels tests de sécurité ont été écrits en premier
 ```
+
+---
+
+## SURPRISE MI-PARCOURS (spec drift, obligatoire)
+
+À 50 % de l'implémentation, ouvre `SPEC_DRIFT.md` (créé par toi) et applique
+UN des trois changements suivants (tire au sort) :
+
+1. **Changement de contrat** : le format de sortie devient `{data, meta}` au
+   lieu de `[]`. Adapte sans casser les tests existants.
+2. **Nouvelle contrainte non-fonctionnelle** : p99 latence < 200 ms sur
+   l'endpoint principal. Mesure, justifie, ajuste.
+3. **Retrait d'une dépendance** : la lib X n'est plus autorisée en prod.
+   Remplace ou réécris.
+
+Livrable : `SPEC_DRIFT.md` qui trace la surprise, ton diagnostic, ton ADR
+mis à jour, les tests ajoutés. C'est l'exercice qui compte, pas la vitesse.

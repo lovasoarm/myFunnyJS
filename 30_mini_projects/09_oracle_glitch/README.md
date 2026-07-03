@@ -110,7 +110,7 @@ cli.js --> CodeAnalyzer.analyze(fichier)
 | Module | Où ça se voit |
 | ------------------ | ------------------------------------------------------------------------------ |
 | `23_ai_native_dev` | Streaming Anthropic, validation Zod, prompt engineering |
-| `12_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
+| `18_oop_js` | `CodeAnalyzer`, `PromptBuilder`, `OutputValidator` : classes, héritage, mixins |
 | `27_team_craft` | ADR pour chaque décision d'architecture, code review outillée |
 | `28_edge_cases` | `NaN === NaN`, JSON tronqué, `0.1 + 0.2`, `undefined` dans un array |
 

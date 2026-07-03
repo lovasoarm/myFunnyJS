@@ -55,3 +55,11 @@ Pour la théorie complète, suis les renvois vers les modules.
 
 Référence transversale pour `24_databases`, `25_scalability`, `22_security`, `20_realtime`, `21_api_craft`.
 Pas un module séquentiel : un fichier qu'on ouvre quand on croise un terme inconnu dans un codebase ou une PR review.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

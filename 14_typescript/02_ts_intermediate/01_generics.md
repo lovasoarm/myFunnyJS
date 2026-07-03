@@ -1,8 +1,6 @@
 # GENERICS : ÉCRIRE UNE FOIS, UTILISER POUR N'IMPORTE QUEL TYPE
 Temps de lecture ~10 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Tu as une fonction qui trie des joueurs de foot. Une autre qui trie des tracks SZA. Une autre qui trie des ninjas. Le code est identique. Seul le type change. Sans les generics, tu copies-colles. Avec les generics, tu écris une fois et c'est fini.
 
 C'est pas de la magie : c'est du paramétrage de type. Comme un paramètre de fonction, mais pour les types.
@@ -252,7 +250,6 @@ function sum<T extends number>(arr: T[]): number {
 ## EXO 1 : le cache générique de Levi
 _~15 min_
 
-
 Le bataillon de Levi a besoin d'un système de cache universel. Il stocke des plans d'attaque (objets), des coordonnées (numbers), des noms de cibles (strings). Le même cache, le même code, des types différents.
 
 Implémente une classe `Cache<T>` avec :
@@ -266,7 +263,6 @@ Contrainte : pas de `any` ou `object` dans l'implémentation.
 
 ## EXO 2 : le pipeline de transformation
 _~20 min_
-
 
 Walter White optimise sa supply chain. Il a des données brutes qui passent par plusieurs étapes de transformation.
 
@@ -282,7 +278,6 @@ TS doit inférer le type de sortie final sans que tu le précises.
 ## EXO 3 : le détecteur de propriété
 _~20 min_
 
-
 Le système d'inventaire du camp de Rick Grimes a besoin d'une fonction générique qui extrait plusieurs propriétés d'un objet en une seule fois.
 
 Écris `pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>`.
@@ -291,7 +286,6 @@ Le système d'inventaire du camp de Rick Grimes a besoin d'une fonction généri
 
 ## EXO 4 : le comparateur de la Ligue des Champions
 _~25 min_
-
 
 La Ligue des Champions a besoin de trier n'importe quelle collection par n'importe quelle propriété numérique.
 

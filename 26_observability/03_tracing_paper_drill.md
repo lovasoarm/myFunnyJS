@@ -1,8 +1,6 @@
 # 03 : Distributed tracing (papier d'abord)
 Temps de lecture ~5 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **Principe universel** : dans un système distribué, un ID de corrélation qui traverse **tous** les services est ce qui te rend capable de raisonner.
 
 ## Vocabulaire

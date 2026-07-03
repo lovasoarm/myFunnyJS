@@ -1,8 +1,6 @@
 # 08 : On-call drill : il est 3h du matin
 Temps de lecture ~5 min
 
-PÉRISSABLE : vérifié 2026-07
-
 > **INTEMPOREL** : l'astreinte existera tant que des systèmes tourneront
 > en prod. Le protocole est plus important que la stack.
 

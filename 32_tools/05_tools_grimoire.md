@@ -1,11 +1,7 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 # Page verrouillée
 Temps de lecture ~9 min
-
-PÉRISSABLE : vérifié 2026-07
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
@@ -76,3 +72,11 @@ RESTERA :
 ```
 
 Ces 4 outils, c'est le marteau que tu construis pour comprendre comment un marteau fonctionne. Le jour où tu utilises une lib de prod plus complète, tu sauras exactement ce qu'elle fait sous le capot, parce que t'auras déjà construit une version simplifiée toi-même, ici, dans cet atelier.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

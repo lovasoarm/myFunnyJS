@@ -1,8 +1,6 @@
 # XSS ET INJECTION SQL
 Temps de lecture ~9 min
 
-PÉRISSABLE : vérifié 2026-07
-
 T-Bag a trouvé une faille dans ton formulaire. Il a injecté du JavaScript dans ton champ "prénom" et maintenant il lit les cookies de session de tous tes shinobis. Ce scénario arrive en prod tous les jours.
 
 XSS (Cross-Site Scripting : injection de script côté client) et SQL Injection sont les deux attaques qui touchent le plus d'apps réelles. Pas parce que les devs sont nuls, mais parce que c'est invisible quand tu codes vite.

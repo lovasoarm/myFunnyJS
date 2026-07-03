@@ -1,13 +1,9 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # DEBUG TOOLKIT : SAVOIR OÙ ÇA CASSE SANS SEMER DES CONSOLE.LOG PARTOUT
 Temps de lecture ~9 min
-
-PÉRISSABLE : vérifié 2026-07
 
 Un `console.log` te montre une valeur. Il te montre pas SI cette valeur est censée être là, ni CE QUI s'est passé juste avant pour qu'elle arrive dans cet état. Un vrai outil de debug te donne du contexte, pas juste un chiffre isolé balancé dans le terminal.
 

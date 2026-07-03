@@ -1,8 +1,6 @@
 # PROMPTER COMME UN DEV, PAS COMME UN SHINOBI
 Temps de lecture ~11 min
 
-PÉRISSABLE : vérifié 2026-07
-
 L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle répond quelque chose de plausible. Plausible n'est pas correct. Plausible c'est ce qui ressemble à correct sans l'être.
 
 La différence entre un bon prompt et un mauvais prompt, c'est pas la magie : c'est la précision. Un bon prompt te donne du code utile. Un mauvais prompt te donne du code qui compile.

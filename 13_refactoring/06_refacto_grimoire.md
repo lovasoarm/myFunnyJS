@@ -44,3 +44,11 @@ Le vocabulaire qui te permet de nommer un problème avant de le réparer.
 
 # RÉSUMÉ
 Ce grimoire, c'est ton dictionnaire de poche pour les code reviews et les refactos. Quand tu sens qu'un truc cloche mais que tu sais pas le nommer, reviens ici. Nommer le problème (god class, feature envy, magic number...) c'est déjà la moitié du chemin vers la solution.
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

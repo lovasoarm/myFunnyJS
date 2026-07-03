@@ -1,8 +1,6 @@
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
 Temps de lecture ~13 min
 
-PÉRISSABLE : vérifié 2026-07
-
 `28_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
 
 ---
@@ -284,7 +282,6 @@ Génère une fonction avec un LLM sur un sujet de ton choix (lié à n'importe q
 ## RÉSUMÉ
 
 Une classification "origine IA / origine humaine" n'est jamais une certitude en review réelle : c'est un instinct construit sur des patterns récurrents, pas une preuve. Les patterns IA fréquents : optimisme silencieux, gestion d'erreur cosmétique, réponse plausible à la lettre du prompt qui rate l'esprit. Les patterns humains fréquents : erreurs de borne, edge cases oubliés sous pression de deadline, dette assumée et jamais nettoyée. Dans les deux cas, la checklist de `01_code_review.md` reste le même outil : fonctionnel, tests, lisibilité, architecture, sécurité, performance. Peu importe qui ou quoi a écrit la ligne, la question reste la même : qu'est-ce qui casse, et dans quelles conditions précises ?
-
 
 ---
 

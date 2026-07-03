@@ -91,3 +91,11 @@ Math.abs(a - b) < Number.EPSILON
 // Détecter prototype pollution dans un merge
 if (key === "__proto__" || key === "constructor" || key === "prototype") continue
 ```
+
+---
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
+Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
+pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.

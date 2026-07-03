@@ -115,7 +115,7 @@ cli.js --> parseArgs()
 | ------------------- | --------------------------------------------------------------- |
 | `16_runtime_env`  | `process.argv`, `fs`, Worker Threads pour la simulation     |
 | `14_refactoring`  | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission   |
-| `04_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
+| `05_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
 | `31_annexes`    | Git workflow, Docker, CI/CD sur chaque push           |
 
 ---

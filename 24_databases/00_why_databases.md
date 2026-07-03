@@ -3,8 +3,6 @@
 > Ce module reutilise : async (03_async), scalabilite (25_scalability).
 Temps de lecture ~8 min
 
-PÉRISSABLE : vérifié 2026-07
-
 Ton app peut avoir le frontend le plus poli du monde, l'architecture la plus propre, l'API la mieux documentée : si tes données sont mal modélisées, tout le reste s'effondre dès que le volume augmente. Une requête qui prend 5ms sur 1000 lignes peut en prendre 8 secondes sur 10 millions, juste parce que personne n'a posé un index au bon endroit.
 
 La base de données n'est pas un détail d'infrastructure qu'on configure une fois et qu'on oublie. C'est la fondation qui décide si ton système tient debout à l'échelle ou s'effondre.

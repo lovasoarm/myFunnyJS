@@ -1,8 +1,6 @@
 # L'IA DANS TON FLUX : OUTIL, PAS BÉQUILLE
 Temps de lecture ~12 min
 
-PÉRISSABLE : vérifié 2026-07
-
 En 2026, tout le monde "utilise l'IA". La moitié copie-colle du code qu'elle ne comprend pas. L'autre moitié refuse l'outil par principe. Les deux ont tort.
 
 Un dev qui sait utiliser l'IA sans lui faire confiance aveuglément est plus dangereux qu'un dev qui l'ignore. Pas parce que l'IA code vite : parce que ce dev reste le cerveau de l'équation.

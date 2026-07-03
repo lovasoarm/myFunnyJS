@@ -1,15 +1,11 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
-[PÉRISSABLE 12-24 mois]
-
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS
 
 > Ce module reutilise : tous les modules pratiques (build, lint, format, package).
 Temps de lecture ~9 min
-
-PÉRISSABLE : vérifié 2026-07
 
 Ce module est différent des 30 autres. Et faut le dire cash avant d'aller plus loin.
 
@@ -161,7 +157,7 @@ C'est un module utilitaire. Tu peux vivre sans, comme un campeur peut vivre sans
 prérequis avant ce module :
 01_fundamentals       --> fonctions, closures : la base pour construire des outils réutilisables
 08_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
-04_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
+05_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
 16_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
