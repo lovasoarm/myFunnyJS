@@ -3,7 +3,7 @@
 ![MyFunnyJS](./assets/title.svg)
 
 **MyFunnyJS · Odin Edition : 33 modules + 16 mini-projets, apprenable seul.**
-_Version v2026.3 : post-audit JARVIS 02/07/2026 (fusion des doublons, purge lexicale, HYPOTHESES generalisé)._
+_Version v2026.4 : nettoyage structure 03/07/2026 (38 dossiers doublons dégagés, numérotation unifiée sur 33 modules, voir CHANGELOG.md)._
 
 > **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
@@ -67,6 +67,6 @@ Puis ouvre [`01_START_HERE.md`](./01_START_HERE.md).
 - Portfolio auto-audité par CI : [`scripts/portfolio_ci/README.md`](./scripts/portfolio_ci/README.md)
 - Épreuve finale cross-language obligatoire : [`32_annexes/transferability/08_final_cross_language_challenge.md`](./32_annexes/transferability/08_final_cross_language_challenge.md)
 - Historique et postmortems d'audit : [`CHANGELOG.md`](./CHANGELOG.md)
-- Fusion 9 paires de doublons + purge lexicale + généralisation HYPOTHESES : voir CHANGELOG entrée `v2026.3`.
+- Nettoyage structure v2026.4 : 38 dossiers doublons dégagés (racine + verification_pack), numérotation unifiée 01→33, voir CHANGELOG entrée `v2026.4`.
 
 Licence : voir `LICENSE`. Communauté : `COMMUNAUTE.md`.
