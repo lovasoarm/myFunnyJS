@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS
 Temps de lecture ~10 min
 

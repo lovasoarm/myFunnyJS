@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00_getting_started : lis-moi avant de coder
 
 Ce dossier est un **module de mise en route**, pas une lecon de code.

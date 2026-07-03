@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # _TEMPLATE_HYPOTHESES.md
 
 Modèle obligatoire pour tout exercice de debugging. Aucune correction sans hypothèse écrite, testée, réfutée ou confirmée.

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LES 10 VULNÉRABILITÉS OWASP
 Temps de lecture ~13 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ARRAY METHODS BATTLE : map vs forEach vs for...of vs reduce
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # TECHNICAL WRITING : ÉCRIRE POUR DES DEVS
 Temps de lecture ~10 min
 

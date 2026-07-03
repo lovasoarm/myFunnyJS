@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # FACTORY PATTERN
 Temps de lecture ~10 min
 

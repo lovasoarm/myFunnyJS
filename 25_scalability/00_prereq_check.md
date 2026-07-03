@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Prereq check : Scalability
 Temps de lecture ~5 min
 

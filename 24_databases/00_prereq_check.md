@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Prereq check : Databases
 Temps de lecture ~5 min
 

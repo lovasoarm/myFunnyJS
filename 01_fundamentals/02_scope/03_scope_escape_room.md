@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SCOPE ESCAPE ROOM : LA PORTE EST FERMÉE. LE CODE EST LA CLÉ.
 Temps de lecture ~7 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CAHIER DES CHARGES : BREAKING CACHE
 Temps de lecture ~13 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # THIS : UN AVANT-GOÛT AVANT LE VRAI COURS
 Temps de lecture ~5 min
 

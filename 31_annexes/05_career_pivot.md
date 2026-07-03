@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Career pivot : plan 30 jours
 Temps de lecture ~5 min
 

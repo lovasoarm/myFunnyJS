@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 02 : DAY ONE · Intro (facultatif mais motivant)
 
 -> ~5 min

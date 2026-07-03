@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CAHIER DES CHARGES : PRISON BREAK API
 Temps de lecture ~13 min
 

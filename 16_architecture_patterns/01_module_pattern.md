@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # MODULE PATTERN : ENCAPSULER, EXPOSER, CACHER
 Temps de lecture ~8 min
 

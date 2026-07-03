@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MERGE SORT : DIVISER POUR RÉGNER EN O(n log n)
 Temps de lecture ~8 min
 

@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 #  Page verrouillée
 Temps de lecture ~11 min
 

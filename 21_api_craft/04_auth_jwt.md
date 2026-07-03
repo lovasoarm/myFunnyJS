@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # JWT DE BOUT EN BOUT
 Temps de lecture ~10 min
 

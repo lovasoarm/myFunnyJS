@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # REST CRUD COMPLET
 Temps de lecture ~9 min
 

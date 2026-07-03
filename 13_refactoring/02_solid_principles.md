@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SOLID PRINCIPLES
 Temps de lecture ~9 min
 Cinq lettres, cinq règles, un seul but : que ton code survive quand le projet grossit.

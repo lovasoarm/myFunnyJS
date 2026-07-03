@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Prereq check : Accessibility
 Temps de lecture ~5 min
 

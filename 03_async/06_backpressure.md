@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 05b : Backpressure : quand le producteur va plus vite que le consommateur
 Temps de lecture ~5 min
 

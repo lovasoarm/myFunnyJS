@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Mesure avant d'optimiser (règle non négociable)
 Temps de lecture ~5 min
 

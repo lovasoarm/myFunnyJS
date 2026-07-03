@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PROTOTYPE POLLUTION
 Temps de lecture ~9 min
 

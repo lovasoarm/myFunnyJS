@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ARRAY BASICS : CE QUE CHAQUE OPÉRATION COÛTE VRAIMENT
 Temps de lecture ~8 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # LES ERREURS D'API
 Temps de lecture ~9 min
 

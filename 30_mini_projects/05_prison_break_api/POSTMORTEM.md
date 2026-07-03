@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : PRISON BREAK API
 Temps de lecture ~5 min
 

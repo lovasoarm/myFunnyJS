@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # BIT MANIPULATION : MANIPULER LES DONNÉES À L'OS
 Temps de lecture ~9 min
 

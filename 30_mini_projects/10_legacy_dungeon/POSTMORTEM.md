@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : LEGACY DUNGEON
 Temps de lecture ~6 min
 

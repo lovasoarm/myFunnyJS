@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS
 Temps de lecture ~8 min
 

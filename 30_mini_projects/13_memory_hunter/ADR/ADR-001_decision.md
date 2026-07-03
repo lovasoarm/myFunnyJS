@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : politique d'éviction du cache
 
 Statut : accepté

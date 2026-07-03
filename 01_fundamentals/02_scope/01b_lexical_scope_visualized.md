@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01b : Scope lexical, en images
 Temps de lecture ~5 min
 

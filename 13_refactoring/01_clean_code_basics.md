@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CLEAN CODE BASICS
 Temps de lecture ~7 min
 Ton code, tu l'écris une fois : tu le relis cent fois.

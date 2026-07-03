@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SANTÉ MENTALE & RYTHME DU DEV
 Temps de lecture ~10 min
 

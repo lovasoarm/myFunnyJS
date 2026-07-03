@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HIGH ORDER FUNCTIONS : MAP & FILTER
 Temps de lecture ~6 min
 

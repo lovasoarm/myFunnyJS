@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : RASENGAN ENGINE
 Temps de lecture ~7 min
 

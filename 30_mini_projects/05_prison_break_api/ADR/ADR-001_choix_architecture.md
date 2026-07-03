@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : SQLite embedded via better-sqlite3 comme base de données principale
 Temps de lecture ~6 min
 

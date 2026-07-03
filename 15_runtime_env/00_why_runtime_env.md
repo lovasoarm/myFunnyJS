@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : RUNTIME ENVIRONMENT
 
 > Ce module reutilise : event loop (03_async), memoire (08_memory_performance).

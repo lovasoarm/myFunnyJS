@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # PROXY : INTERCEPTER LES ACCÈS SANS CHANGER L'ORIGINAL
 Temps de lecture ~11 min
 

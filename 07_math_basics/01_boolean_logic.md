@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # BOOLEAN LOGIC : LA LOGIQUE QUI PILOTE TOUT
 Temps de lecture ~9 min
 

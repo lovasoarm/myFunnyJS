@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 02 : Shell : survie en territoire hostile
 Temps de lecture ~5 min
 

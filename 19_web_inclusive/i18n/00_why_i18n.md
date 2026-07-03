@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : I18N
 Temps de lecture ~9 min
 

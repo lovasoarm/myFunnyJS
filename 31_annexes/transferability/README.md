@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Transferability : same idea, other language
 
 -> ~5 min

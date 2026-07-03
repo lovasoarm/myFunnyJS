@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DEVTOOLS DEEP DIVE : LIRE UN FLAMEGRAPH
 Temps de lecture ~9 min
 

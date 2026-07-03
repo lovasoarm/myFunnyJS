@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CALL, APPLY, BIND : EMPRUNTER UNE FONCTION, FIGER THIS
 Temps de lecture ~10 min
 

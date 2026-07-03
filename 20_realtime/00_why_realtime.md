@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME
 
 > Ce module reutilise : async (03_async), backpressure (03_async/06).

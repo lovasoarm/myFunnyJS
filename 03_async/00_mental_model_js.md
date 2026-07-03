@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LE MODÈLE MENTAL JS EN 1 IMAGE
 Temps de lecture ~10 min
 

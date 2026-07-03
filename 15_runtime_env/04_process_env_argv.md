@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PROCESS.ENV ET PROCESS.ARGV : LA CONFIG QUI NE SE HARD-CODE PAS
 Temps de lecture ~8 min
 
@@ -247,5 +245,3 @@ Le script `vote.js` accepte ces flags :
 # RÉSUMÉ
 
 `process.env` donne accès aux variables d'environnement : toujours des strings, à valider et convertir à l'entrée. `process.argv` donne les arguments de la ligne de ordre_mission : `argv[0]` et `argv[1]` c'est Node et le script, tes args commencent à `argv[2]`. `process.exit(1)` pour les erreurs, `process.exit(0)` pour le succès. `uncaughtException` et `unhandledRejection` : toujours gérer dans les CLIs pour éviter les crashs silencieux.
-
-> Note : 9/10 : le piège `'false'` truthy est rarement expliqué clairement, bonne catch. Moins 1 : l'intégration avec un `.env.example` commité (la convention pro) aurait bien complété la section dotenv.

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Grossir un serveur ou en ajouter dix
 Temps de lecture ~11 min
 

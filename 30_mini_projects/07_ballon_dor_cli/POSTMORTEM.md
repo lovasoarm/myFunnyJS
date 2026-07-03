@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : BALLON D'OR CLI
 Temps de lecture ~5 min
 

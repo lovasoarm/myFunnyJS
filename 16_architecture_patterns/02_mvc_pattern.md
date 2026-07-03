@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # MVC : MODEL, VIEW, CONTROLLER
 Temps de lecture ~9 min
 

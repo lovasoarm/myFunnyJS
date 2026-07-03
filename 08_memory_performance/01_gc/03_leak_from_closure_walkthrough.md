@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 03 : Fuite par closure : autopsie pas-à-pas
 Temps de lecture ~5 min
 

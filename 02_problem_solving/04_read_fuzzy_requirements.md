@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TRANSFORMER "ÇA MARCHE PAS" EN PROBLÈME PRÉCIS
 Temps de lecture ~9 min
 

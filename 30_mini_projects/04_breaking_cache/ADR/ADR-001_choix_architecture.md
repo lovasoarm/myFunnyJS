@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : implémentation from scratch de tous les algorithmes sans bibliothèque externe
 Temps de lecture ~6 min
 

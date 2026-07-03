@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 09 : Stratégie de tests (pas framework)
 Temps de lecture ~5 min
 

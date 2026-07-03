@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 10 : AI Hallucination Gym
 Temps de lecture ~5 min
 

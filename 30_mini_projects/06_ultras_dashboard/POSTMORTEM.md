@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : ULTRAS DASHBOARD
 Temps de lecture ~5 min
 

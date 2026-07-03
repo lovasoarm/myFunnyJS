@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SECURITY
 
 > Ce module reutilise : erreurs (05_error_handling), edge cases (29_edge_cases).

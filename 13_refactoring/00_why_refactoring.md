@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING
 Temps de lecture ~7 min
 

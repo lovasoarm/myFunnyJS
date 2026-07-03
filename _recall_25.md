@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 #  _recall_25.md : modules 21–25
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MEMORY LEAK HUNTER : LA CHASSE AU FANTÔME
 Temps de lecture ~10 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Prereq check : Async & Event Loop
 Temps de lecture ~5 min
 

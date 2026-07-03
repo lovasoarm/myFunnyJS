@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : approche TDD-first sur codebase existante avant tout refactoring
 Temps de lecture ~6 min
 

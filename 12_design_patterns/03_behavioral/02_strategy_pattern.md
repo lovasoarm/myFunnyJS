@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # STRATEGY PATTERN
 Temps de lecture ~8 min
 

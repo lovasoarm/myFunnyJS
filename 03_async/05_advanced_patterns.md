@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 05 : Async avancé : AbortController, backpressure, mini-scheduler
 Temps de lecture ~5 min
 

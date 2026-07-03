@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HASH TABLE : O(1) POUR CHERCHER, SI LE HASH EST BON
 Temps de lecture ~9 min
 

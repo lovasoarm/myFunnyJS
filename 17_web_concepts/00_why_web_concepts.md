@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : WEB CONCEPTS
 
 > Ce module reutilise : async (03_async), securite (22_security).

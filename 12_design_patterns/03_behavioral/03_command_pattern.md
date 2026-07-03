@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # COMMAND PATTERN
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Bloc 21–25 : API, sécu, IA, DB, scalabilité
 Temps de lecture ~5 min
 

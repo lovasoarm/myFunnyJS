@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # REGEX EXTRACTOR : CAPTURER, REMPLACER, SPLITTER
 Temps de lecture ~9 min
 

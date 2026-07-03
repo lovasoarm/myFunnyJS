@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
 Temps de lecture ~13 min
 

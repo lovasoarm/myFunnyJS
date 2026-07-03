@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HYPOTHESES_exemple.md : Debugging (fuite mémoire par closure)
 
 Exemple rempli, à imiter dans tes propres bugs. Voir `_TEMPLATE_HYPOTHESES.md` pour la structure.

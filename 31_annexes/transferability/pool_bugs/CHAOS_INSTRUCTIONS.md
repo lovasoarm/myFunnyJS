@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CHAOS INSTRUCTIONS : casser un projet volontairement pour s'entraîner
 
 Si tu n'as pas de "vrai" bug historique, tu peux fabriquer ton propre terrain

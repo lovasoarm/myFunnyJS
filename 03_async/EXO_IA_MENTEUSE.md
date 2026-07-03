@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # EXO [IA MENTEUSE] : async (forEach + await)
 
 > Tag `[IA MENTEUSE]` : une IA a généré ce code. Il tourne. Il a l'air propre. Il ment.

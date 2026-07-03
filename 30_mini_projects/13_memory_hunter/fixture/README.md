@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FIXTURE : MEMORY HUNTER
 
 Deux scripts pour t'entraîner à trouver une fuite mémoire réelle, pas théorique.

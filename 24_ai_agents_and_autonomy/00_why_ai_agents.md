@@ -1,4 +1,3 @@
-[INTEMPOREL]
 [PERISSABLE] PÉRISSABLE : vérifié 2026-07 (mais le squelette conceptuel est intemporel)
 
 # POURQUOI CE MODULE EXISTE

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 
 # ADR-001 : architecture fonctionnelle pure sans classe ni mutation d'état
 Temps de lecture ~5 min

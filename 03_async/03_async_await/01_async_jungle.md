@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ASYNC/AWAIT : LA JUNGLE
 Temps de lecture ~8 min
 

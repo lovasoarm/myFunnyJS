@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Pourquoi le debugging
 
 > [INTEMPOREL] Principe universel : un bug n'est pas résolu tant que tu ne peux pas le reproduire à la demande, puis l'expliquer. Vrai en JS, en Rust, en SQL, en réseau, en prod à 3h du matin.

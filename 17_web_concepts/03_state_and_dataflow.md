@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # STATE ET DATAFLOW : QUI POSSÈDE L'ÉTAT, QUI LE LIT, QUI LE MODIFIE
 Temps de lecture ~10 min
 

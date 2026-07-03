@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 02 : DevTools Memory tab : le guide de terrain
 Temps de lecture ~5 min
 

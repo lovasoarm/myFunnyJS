@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : GARO NO KRONIKA
 Temps de lecture ~6 min
 

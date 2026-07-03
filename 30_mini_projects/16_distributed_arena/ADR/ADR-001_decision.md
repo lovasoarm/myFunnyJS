@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : stockage des ids d'idempotence
 
 Statut : accepté

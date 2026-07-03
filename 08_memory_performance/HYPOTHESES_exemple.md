@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HYPOTHESES_exemple.md : Mémoire (heap qui grimpe en prod)
 
 Exemple rempli. Voir `../04_debugging/_TEMPLATE_HYPOTHESES.md`.

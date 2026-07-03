@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # EXO [IA MENTEUSE] : design_patterns (singleton qui fuit)
 
 > Tag `[IA MENTEUSE]` : une IA a généré ce code. Il tourne. Il a l'air propre. Il ment.

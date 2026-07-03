@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # BST TRAVERSAL : LIRE L'ARBRE DANS LE BON SENS
 Temps de lecture ~8 min
 

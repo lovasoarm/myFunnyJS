@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # NaN, UNDEFINED, NULL : TROIS FAÇONS DIFFÉRENTES DE DIRE "RIEN"
 Temps de lecture ~11 min
 

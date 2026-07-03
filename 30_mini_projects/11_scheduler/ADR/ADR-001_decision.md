@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : concurrence par défaut de pMap
 
 Statut : accepté

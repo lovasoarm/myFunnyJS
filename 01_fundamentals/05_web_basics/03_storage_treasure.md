@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # STORAGE TREASURE : LE TRÉSOR DU NAVIGATEUR
 Temps de lecture ~7 min
 

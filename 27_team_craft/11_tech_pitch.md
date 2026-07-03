@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Tech pitch : convaincre un pair
 Temps de lecture ~5 min
 

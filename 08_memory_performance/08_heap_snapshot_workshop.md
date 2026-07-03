@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 08 : Heap snapshot workshop (fuite par closure)
 Temps de lecture ~5 min
 

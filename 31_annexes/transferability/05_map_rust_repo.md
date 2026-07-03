@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Drill : Rust
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # NAVIGATION CLAVIER : QUAND LA SOURIS N'EST PAS UNE OPTION
 Temps de lecture ~7 min
 

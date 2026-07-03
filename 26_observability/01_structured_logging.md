@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Arrête d'écrire des logs que personne ne peut chercher
 Temps de lecture ~10 min
 

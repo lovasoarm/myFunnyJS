@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # REGEX COMBAT : VALIDER DES DONNÉES RÉELLES
 Temps de lecture ~9 min
 

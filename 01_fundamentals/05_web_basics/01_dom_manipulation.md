@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DOM MANIPULATION
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PROFILING BASICS : MESURER AVANT DE TOUCHER
 Temps de lecture ~8 min
 

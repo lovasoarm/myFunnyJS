@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # REFACTO IN ACTION
 Temps de lecture ~8 min
 Refactorer, c'est changer la structure du code sans changer son comportement.

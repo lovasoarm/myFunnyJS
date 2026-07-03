@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Publier ton portfolio proprement
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Drill : Java
 Temps de lecture ~5 min
 

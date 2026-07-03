@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # UNIT SNIPER : TESTER UNE FONCTION PRÉCISÉMENT
 Temps de lecture ~8 min
 

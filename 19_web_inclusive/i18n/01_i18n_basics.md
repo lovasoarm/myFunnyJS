@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # I18N BASICS : PARLER TOUTES LES LANGUES SANS TOUT RÉÉCRIRE
 Temps de lecture ~7 min
 

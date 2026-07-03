@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # BUNDLERS : WEBPACK, VITE, ESBUILD, ROLLUP : CHOISIR SANS SUBIR
 Temps de lecture ~9 min
 

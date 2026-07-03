@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # EVENT-DRIVEN ARCHITECTURE : RÉAGIR, PAS ANTICIPER
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ORCHESTRER SANS PERDRE LE FIL
 Temps de lecture ~9 min
 

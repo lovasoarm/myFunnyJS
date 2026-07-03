@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Prereq check : Design Patterns
 Temps de lecture ~5 min
 

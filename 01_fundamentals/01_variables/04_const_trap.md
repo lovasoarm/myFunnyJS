@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # THE CONST TRAP : CONST NE VEUT PAS DIRE IMMUABLE
 Temps de lecture ~6 min
 

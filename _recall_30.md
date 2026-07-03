@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 #  _recall_30.md : modules 26–30
 Temps de lecture ~5 min
 

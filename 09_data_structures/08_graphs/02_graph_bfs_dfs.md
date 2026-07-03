@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # BFS VS DFS : DEUX FAÇONS DE TRAVERSER UN GRAPHE
 Temps de lecture ~9 min
 

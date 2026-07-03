@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # WORKER LEAK : QUAND CHAQUE THREAD SAIGNE SEUL
 Temps de lecture ~25 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CAHIER DES CHARGES : RASENGAN ENGINE
 Temps de lecture ~14 min
 

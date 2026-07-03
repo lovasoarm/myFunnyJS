@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LE CHAOS DES RÉFÉRENCES
 Temps de lecture ~5 min
 

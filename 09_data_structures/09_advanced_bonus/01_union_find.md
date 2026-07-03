@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # UNION-FIND : GROUPER CE QUI EST CONNECTÉ EN O(α(n))
 Temps de lecture ~8 min
 

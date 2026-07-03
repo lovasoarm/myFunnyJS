@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Connecter ton code à la DB sans te perdre dans l'abstraction
 Temps de lecture ~10 min
 
@@ -201,5 +199,3 @@ Ton serveur a un pool de 10 connexions max. Tu reçois 200 requêtes HTTP simult
 ## RÉSUMÉ
 
 Driver brut, query builder, et ORM ne sont pas trois façons de faire la même chose : c'est un curseur entre contrôle et confort que tu ajustes selon le contexte. Le danger principal de l'ORM n'est pas l'ORM lui-même, c'est d'oublier qu'il génère du SQL réel derrière chaque ligne JS confortable, et que le problème N+1 attend patiemment que ta base de données grossisse pour se révéler. Migrations versionnées et pool de connexions ne sont pas des options : c'est l'hygiène minimale pour qu'une DB tienne en prod.
-
-> Note : 9/10 : trois niveaux bien couverts, N+1 expliqué clairement avec ASCII, migrations et pool traités. Analogies Naruto et Banshee intégrées. Moins 1 : la section migrations mériterait un exemple du fichier SQL généré pour montrer concrètement ce qui est versionné dans git.

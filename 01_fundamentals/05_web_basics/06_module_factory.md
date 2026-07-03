@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SCOPE ISOLÉ : ARRÊTER DE POLLUER LE GLOBAL
 Temps de lecture ~9 min
 

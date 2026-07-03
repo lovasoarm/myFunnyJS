@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : reprise vs réécriture
 
 Statut : accepté

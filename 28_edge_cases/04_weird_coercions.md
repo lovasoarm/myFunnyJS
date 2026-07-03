@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LES COERCIONS QUI FONT RIRE ET QUI FONT MAL
 Temps de lecture ~11 min
 

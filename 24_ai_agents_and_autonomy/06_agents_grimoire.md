@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # GRIMOIRE : AI AGENTS & AUTONOMY
 Temps de lecture ~10 min
 

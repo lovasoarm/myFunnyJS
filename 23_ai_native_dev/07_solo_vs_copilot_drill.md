@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SOLO VS COPILOT : MESURER CE QUE TU CROIS SAVOIR
 Temps de lecture ~10 min
 

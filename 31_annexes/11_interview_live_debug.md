@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Interview live : 3 scripts chronométrés
 Temps de lecture ~5 min
 

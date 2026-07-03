@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : pourquoi ce code est ce qu'il est
 Temps de lecture ~7 min
 

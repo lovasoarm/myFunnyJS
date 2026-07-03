@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # RUNTIME RACE : O(n log n) VS O(n²) SUR 100K ÉLÉMENTS
 Temps de lecture ~10 min
 

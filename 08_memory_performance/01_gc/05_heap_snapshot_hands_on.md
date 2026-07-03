@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HEAP SNAPSHOT HANDS-ON
 Temps de lecture ~35 min
 

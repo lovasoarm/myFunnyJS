@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SYNTHÈSE A : LE PROTOCOLE DE GARO APRÈS LE BLACKOUT
 Temps de lecture ~6 min
 

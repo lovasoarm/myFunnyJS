@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES
 Temps de lecture ~8 min
 

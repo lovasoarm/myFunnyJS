@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Les chiffres qui te préviennent avant que tout brûle
 Temps de lecture ~10 min
 

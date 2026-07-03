@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SEARCH CHALLENGES : LES VARIANTES QUI PIÈGENT
 Temps de lecture ~11 min
 

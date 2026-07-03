@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # E2E PLAYWRIGHT BEAST : SIMULER UN VRAI SHINOBI
 Temps de lecture ~8 min
 

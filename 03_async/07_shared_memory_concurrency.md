@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CONCURRENCE MÉMOIRE : SharedArrayBuffer & Atomics
 Temps de lecture ~15 min
 

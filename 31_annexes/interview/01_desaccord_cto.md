@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DÉSACCORD AVEC LE CTO (jeu de rôle écrit, puis oral)
 
 Objectif : t'entraîner à défendre une décision technique face à un supérieur qui pousse dans l'autre sens. En entreprise, avoir raison ne suffit pas : il faut convaincre sans se braquer ni se coucher. Ce drill se joue seul, en deux temps : tu écris, puis tu oralises.

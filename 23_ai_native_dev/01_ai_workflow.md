@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # L'IA DANS TON FLUX : OUTIL, PAS BÉQUILLE
 Temps de lecture ~12 min
 

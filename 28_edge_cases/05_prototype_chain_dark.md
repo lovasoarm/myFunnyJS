@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LA CHAÎNE PROTOTYPE DANS SES ZONES SOMBRES
 Temps de lecture ~11 min
 

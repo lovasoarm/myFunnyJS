@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MICROTASK MADNESS
 Temps de lecture ~9 min
 

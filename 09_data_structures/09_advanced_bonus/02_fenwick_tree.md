@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FENWICK TREE : SOMMES DE PRÉFIXES EN O(log n)
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 > ️ **L'architecture a un seul but : rendre le changement moins coûteux.**
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ARCHITECTURE PATTERNS

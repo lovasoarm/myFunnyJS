@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LIRE DU CODE HUMAIN vs LIRE DU CODE IA
 
 Deux styles, deux pièges, deux stratégies de lecture.

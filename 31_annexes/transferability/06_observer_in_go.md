@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Drill : Go
 Temps de lecture ~5 min
 

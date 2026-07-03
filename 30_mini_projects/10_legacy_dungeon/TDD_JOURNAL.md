@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : LEGACY DUNGEON
 Temps de lecture ~7 min
 

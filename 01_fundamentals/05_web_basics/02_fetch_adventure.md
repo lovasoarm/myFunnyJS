@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FETCH : QUAND TON CODE PARLE À INTERNET
 Temps de lecture ~8 min
 

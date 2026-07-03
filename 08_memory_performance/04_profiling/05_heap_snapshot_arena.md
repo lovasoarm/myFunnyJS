@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 05 : Heap Snapshot Arena
 Temps de lecture ~5 min
 

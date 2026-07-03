@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # CODE REVIEW : REVIEWER SANS ÉCRASER
 Temps de lecture ~10 min
 

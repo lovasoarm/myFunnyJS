@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS
 Temps de lecture ~7 min
 

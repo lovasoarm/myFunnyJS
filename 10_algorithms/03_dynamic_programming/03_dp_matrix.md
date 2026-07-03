@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DP SUR GRILLE 2D : QUAND L'ESPACE DEVIENT UN GRAPHE
 Temps de lecture ~11 min
 

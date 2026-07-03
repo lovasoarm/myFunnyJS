@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ARITHMÉTIQUE FLOTTANTE : POURQUOI 0.1 + 0.2 N'EST PAS 0.3
 Temps de lecture ~10 min
 

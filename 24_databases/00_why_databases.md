@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
 
 > Ce module reutilise : async (03_async), scalabilite (25_scalability).

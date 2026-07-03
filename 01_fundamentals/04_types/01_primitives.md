@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PRIMITIVES : LES TYPES FONDAMENTAUX EN JS
 Temps de lecture ~6 min
 

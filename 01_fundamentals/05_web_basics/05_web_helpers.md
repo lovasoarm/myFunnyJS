@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # WEB HELPERS : DOM & EVENTS
 Temps de lecture ~6 min
 

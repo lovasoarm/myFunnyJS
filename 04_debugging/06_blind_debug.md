@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 05 : Blind Debug
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # PROMPTER COMME UN DEV, PAS COMME UN SHINOBI
 Temps de lecture ~11 min
 

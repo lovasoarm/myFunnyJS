@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FONCTIONS PURES : MÊME INPUT, MÊME OUTPUT, TOUJOURS
 Temps de lecture ~8 min
 

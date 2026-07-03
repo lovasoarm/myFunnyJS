@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01c : Stack vs Heap : où vit ta valeur ?
 Temps de lecture ~5 min
 

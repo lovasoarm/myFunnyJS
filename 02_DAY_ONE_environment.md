@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 02 : DAY ONE · Environnement (installation)
 
 -> ~5 min

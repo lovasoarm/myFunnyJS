@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FUNCTION FACTORY : USINE À FONCTIONS
 Temps de lecture ~5 min
 

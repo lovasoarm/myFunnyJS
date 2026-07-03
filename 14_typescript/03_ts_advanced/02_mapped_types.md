@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ
 Temps de lecture ~10 min
 

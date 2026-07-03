@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI TEAM CRAFT MÉRITE TON TEMPS
 
 > Ce module reutilise : communication (implicite), refactoring (14_refactoring).

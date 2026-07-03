@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MUTATION MADNESS : SHALLOW VS DEEP COPY
 Temps de lecture ~6 min
 

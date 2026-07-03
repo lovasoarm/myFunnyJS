@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # GRAPHES : MODÉLISER CE QUI EST CONNECTÉ
 Temps de lecture ~8 min
 

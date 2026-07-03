@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Les 8 sophismes du distribué (fallacies)
 Temps de lecture ~5 min
 

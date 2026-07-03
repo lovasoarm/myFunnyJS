@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CURRYING : UNE FONCTION, UN ARGUMENT, TOUJOURS
 Temps de lecture ~8 min
 

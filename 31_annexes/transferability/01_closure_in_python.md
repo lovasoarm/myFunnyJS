@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Drill : Python
 Temps de lecture ~5 min
 

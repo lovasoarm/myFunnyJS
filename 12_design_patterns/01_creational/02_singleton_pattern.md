@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # SINGLETON PATTERN
 Temps de lecture ~11 min
 

@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 02_WEBRTC_DEMO : L'APPEL VIDÉO PEER-TO-PEER
 Temps de lecture ~11 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Prereq check : Edge Cases
 Temps de lecture ~5 min
 

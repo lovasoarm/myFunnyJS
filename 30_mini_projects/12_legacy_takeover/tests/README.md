@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Tests
 
 -> ~5 min

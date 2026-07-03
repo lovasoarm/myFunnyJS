@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 3 publics, 1 concept
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # NODE VS BROWSER : MÊME JS, DEUX PLANÈTES
 Temps de lecture ~8 min
 
@@ -227,5 +225,3 @@ Identifie les problèmes et propose une version qui tourne dans Node uniquement.
 # RÉSUMÉ
 
 Node et navigateur partagent V8 et l'event loop. Tout le reste est différent. Le navigateur donne accès au DOM, à localStorage, aux APIs web. Node donne accès au filesystem, au processus, aux APIs système. `fetch` est universel depuis Node 18. `globalThis` est le seul objet global qui fonctionne partout. Pour détecter l'environnement : `typeof window` et `process.versions?.node`.
-
-> Note : 9/10 : solide, concret, les 3 niveaux d'exemple sont présents. Moins 1 point : le tableau ASCII aurait pu avoir une 4e colonne "version min" pour Node, ça éviterait des surprises en prod.

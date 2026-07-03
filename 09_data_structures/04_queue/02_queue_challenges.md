@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # QUEUE EN ACTION : LES VRAIS PROBLÈMES
 Temps de lecture ~11 min
 

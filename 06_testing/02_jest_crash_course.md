@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # JEST CRASH COURSE : DE ZÉRO À OPÉRATIONNEL
 Temps de lecture ~9 min
 

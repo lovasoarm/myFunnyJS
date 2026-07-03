@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ACCESSIBILITY (A11Y)
 
 > Ce module reutilise : web concepts (18_web_concepts), tests (06_testing).

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # COMMUNAUTÉ MyFunnyJS
 Temps de lecture ~3 min
 

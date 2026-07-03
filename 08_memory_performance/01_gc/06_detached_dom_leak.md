@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DETACHED DOM LEAK : LE POISON DES SPA
 Temps de lecture ~25 min
 

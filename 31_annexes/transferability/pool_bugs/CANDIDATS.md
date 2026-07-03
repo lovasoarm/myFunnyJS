@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POOL DE BUGS : CANDIDATS CALIBRÉS
 
 Trois dépôts par langage, sélectionnés pour être :

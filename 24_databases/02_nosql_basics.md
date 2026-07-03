@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Quand ranger en tables fait plus de mal que de bien
 Temps de lecture ~10 min
 
@@ -178,5 +176,3 @@ On te donne une base MongoDB avec une collection `jutsu_records` où chaque docu
 ## RÉSUMÉ
 
 NoSQL n'est pas une alternative à SQL, c'est quatre familles d'outils différents pour quatre formes de problèmes différentes. Document quand le schéma bouge trop, clé-valeur quand la vitesse brute prime, colonne large quand le volume d'écriture distribué prime, graphe quand la relation EST la donnée. Le bon réflexe : regarder la forme de tes données et de tes requêtes avant de choisir l'outil, jamais l'inverse.
-
-> Note : 9/10 : quatre familles bien couvertes, analogies Naruto et Prison Break bien intégrées, ASCII présent, exercices contextualisés. Moins 1 : section graphe mériterait un exemple de requête Cypher plus développé pour montrer la puissance du traversal.

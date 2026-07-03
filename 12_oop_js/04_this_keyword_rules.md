@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # THIS KEYWORD RULES : THIS SELON LE CALL-SITE
 Temps de lecture ~7 min
 

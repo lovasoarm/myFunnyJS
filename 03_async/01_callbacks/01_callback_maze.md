@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LE LABYRINTHE DU CALLBACK
 Temps de lecture ~8 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 07 : Smell hunter : chasser le code mort et puant
 Temps de lecture ~5 min
 

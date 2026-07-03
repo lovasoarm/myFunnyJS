@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo)
 
 Objectif : simuler seul un entretien technique où on te lâche un bug async et où on te regarde le résoudre à voix haute. En vrai, le recruteur juge ta MÉTHODE, pas la vitesse. Ce drill t'entraîne à penser fort, sous pression, sans IA.

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # XSS ET INJECTION SQL
 Temps de lecture ~9 min
 

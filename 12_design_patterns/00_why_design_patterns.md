@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
 Temps de lecture ~7 min
 

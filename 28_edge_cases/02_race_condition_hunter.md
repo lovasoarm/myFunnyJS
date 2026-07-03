@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01 : Race Condition Hunter
 Temps de lecture ~5 min
 

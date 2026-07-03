@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # MACROTASK MONSTERS
 Temps de lecture ~9 min
 

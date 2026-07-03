@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PROTOTYPE CHAIN RAW : LA CHAÎNE BRUTE, SANS SUCRE
 Temps de lecture ~10 min
 

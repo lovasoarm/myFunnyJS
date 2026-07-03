@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT
 
 > Ce module reutilise : erreurs (05_error_handling), securite (22_security).

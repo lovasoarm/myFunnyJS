@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 04 : L'ART DU REVERT ARGUMENTÉ
 Temps de lecture ~15 min
 

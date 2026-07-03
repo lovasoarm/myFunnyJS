@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # A* : DIJKSTRA AVEC UN CERVEAU
 Temps de lecture ~10 min
 

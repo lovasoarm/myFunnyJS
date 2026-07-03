@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 02 : DAY ONE · Premiers pas (ton premier code)
 
 -> ~5 min

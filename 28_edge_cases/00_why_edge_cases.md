@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
 
 > Ce module reutilise : math (07_math_basics), erreurs (05_error_handling).

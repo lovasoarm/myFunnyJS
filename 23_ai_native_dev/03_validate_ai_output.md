@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CE QUE L'IA GÉNÈRE, TU NE LE CROIS PAS : TU LE VALIDES
 Temps de lecture ~10 min
 

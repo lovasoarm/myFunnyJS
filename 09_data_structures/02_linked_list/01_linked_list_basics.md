@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # LINKED LIST : POINTER VERS LE SUIVANT, PAS VERS L'INDEX
 Temps de lecture ~9 min
 

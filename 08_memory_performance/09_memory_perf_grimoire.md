@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 #  Page verrouillée
 Temps de lecture ~16 min
 

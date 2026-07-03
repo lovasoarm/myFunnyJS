@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00_why_getting_started.md
 Temps de lecture ~3 min
 

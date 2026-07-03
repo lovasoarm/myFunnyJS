@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DP CLASSICS : KNAPSACK, LCS, COIN CHANGE
 Temps de lecture ~11 min
 

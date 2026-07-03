@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Prereq check : AI-Native Dev
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00_why_referentiel.md
 Temps de lecture ~3 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes
 
 Objectif : tester que tu tiens le concept a deux profondeurs opposees.

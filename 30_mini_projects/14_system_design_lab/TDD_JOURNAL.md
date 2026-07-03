@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : SYSTEM DESIGN LAB
 
 Journal de développement piloté par les tests. Une entrée par cycle RED -> GREEN -> REFACTOR. Sois honnête : ce journal prouve ta démarche, pas ta perfection.

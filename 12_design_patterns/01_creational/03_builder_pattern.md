@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # BUILDER PATTERN
 Temps de lecture ~10 min
 

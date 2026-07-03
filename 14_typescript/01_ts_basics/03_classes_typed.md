@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # CLASSES TYPESCRIPT : L'ARMURE AVANT LE COMBAT
 Temps de lecture ~8 min
 

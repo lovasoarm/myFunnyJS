@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : pipeline d'événements typé TypeScript avec génériques de bout en bout
 Temps de lecture ~6 min
 

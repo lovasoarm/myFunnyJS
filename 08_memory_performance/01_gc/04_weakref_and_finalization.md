@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 04 : WeakRef & FinalizationRegistry : quand tu veux "peut-être garder"
 Temps de lecture ~5 min
 

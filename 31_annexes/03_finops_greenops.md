@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # FINOPS ET GREENOPS : LE KI A UN COÛT, MÊME EN PROD
 Temps de lecture ~10 min
 

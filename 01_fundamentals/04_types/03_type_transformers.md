@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TYPE TRANSFORMERS
 Temps de lecture ~7 min
 

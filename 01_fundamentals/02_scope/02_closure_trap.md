@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CLOSURE TRAP : LA FONCTION QUI N'OUBLIE JAMAIS
 Temps de lecture ~8 min
 

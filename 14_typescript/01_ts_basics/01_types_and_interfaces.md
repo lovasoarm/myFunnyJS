@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES
 Temps de lecture ~8 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 03 : Distributed tracing (papier d'abord)
 Temps de lecture ~5 min
 

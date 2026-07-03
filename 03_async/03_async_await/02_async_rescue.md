@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ASYNC RESCUE : SAUVER CE QUI PEUT L'ÊTRE
 Temps de lecture ~9 min
 

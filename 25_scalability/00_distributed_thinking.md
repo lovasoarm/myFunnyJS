@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 00 : Distributed thinking (sans K8s, sans buzz)
 Temps de lecture ~5 min
 

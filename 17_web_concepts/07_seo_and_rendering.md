@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT
 Temps de lecture ~8 min
 

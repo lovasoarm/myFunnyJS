@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # OBSERVER : UN ÉVÉNEMENT SE PASSE, TOUT LE MONDE QUI ÉCOUTE RÉAGIT
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : validation stricte par schéma Zod et règles métier pour contrôler la sortie d'un LLM
 Temps de lecture ~6 min
 

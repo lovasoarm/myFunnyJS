@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # L'ACCESSIBILITÉ N'EST PAS UNE OPTION
 Temps de lecture ~6 min
 

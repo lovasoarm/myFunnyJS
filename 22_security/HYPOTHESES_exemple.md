@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HYPOTHESES_exemple.md : Sécurité (bypass d'autorisation)
 
 Exemple rempli. Voir `../04_debugging/_TEMPLATE_HYPOTHESES.md`.

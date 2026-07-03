@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : ULTRAS DASHBOARD
 Temps de lecture ~6 min
 

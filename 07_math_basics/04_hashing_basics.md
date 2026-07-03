@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HASHING BASICS : L'EMPREINTE QUI NE MENT PAS
 Temps de lecture ~10 min
 

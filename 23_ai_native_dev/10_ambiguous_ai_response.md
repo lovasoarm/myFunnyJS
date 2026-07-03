@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 11 : Juger une réponse d'IA avant de la tester
 
 Accroche : l'IA te rend un code qui compile, qui a l'air propre, qui passe ton test rapide. Et pourtant il est cassé sur un edge case que tu n'as pas vu. Ton job d'ingénieur : douter AVANT d'exécuter.

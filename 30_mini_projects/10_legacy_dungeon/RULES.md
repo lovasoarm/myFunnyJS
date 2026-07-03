@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 #  RÈGLE ABSOLUE : Legacy Dungeon
 Temps de lecture ~5 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SCOPE GLOSSARY : Les Mots Que Tu Dois Maîtriser
 Temps de lecture ~7 min
 

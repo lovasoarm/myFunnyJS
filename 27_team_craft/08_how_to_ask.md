@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # How to ask : template
 Temps de lecture ~5 min
 

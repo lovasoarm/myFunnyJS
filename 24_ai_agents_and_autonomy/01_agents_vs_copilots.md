@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01 : AGENTS vs COPILOTES : la ligne de fracture
 Temps de lecture ~15 min
 

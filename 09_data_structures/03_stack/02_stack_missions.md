@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # STACK MISSIONS : PARENTHÈSES, HISTORIQUE, UNDO/REDO
 Temps de lecture ~9 min
 

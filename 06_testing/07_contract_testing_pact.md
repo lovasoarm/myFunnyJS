@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # CONTRACT TESTING : LA PAIX ENTRE LES ÉQUIPES
 Temps de lecture ~9 min
 

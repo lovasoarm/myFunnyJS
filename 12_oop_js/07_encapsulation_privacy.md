@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ENCAPSULATION & PRIVACY : CE QU'ON PROTÈGE VRAIMENT
 Temps de lecture ~10 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HASHER UN MOT DE PASSE : BCRYPT, SALT, COÛT
 Temps de lecture ~10 min
 

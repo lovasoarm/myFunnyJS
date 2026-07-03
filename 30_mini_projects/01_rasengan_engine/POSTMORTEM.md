@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : RASENGAN ENGINE
 Temps de lecture ~6 min
 

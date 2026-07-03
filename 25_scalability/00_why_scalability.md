@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SCALABILITY
 
 > Ce module reutilise : memoire (08_memory_performance), architecture (17_architecture_patterns).

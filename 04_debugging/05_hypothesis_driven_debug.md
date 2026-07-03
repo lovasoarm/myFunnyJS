@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 04 : Debug hypothèse-dirigé
 Temps de lecture ~5 min
 

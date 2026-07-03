@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # IMMUTABILITÉ : NE PAS MUTER, CRÉER
 Temps de lecture ~9 min
 

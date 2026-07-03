@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # BST : L'ARBRE QUI CHERCHE EN O(log n)
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # PRIORITY QUEUE : LES URGENCES PASSENT DEVANT
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ANALYSER UN ALGORITHME LIGNE PAR LIGNE
 Temps de lecture ~10 min
 

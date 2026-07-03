@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # OAUTH, SESSIONS, JWT
 Temps de lecture ~11 min
 

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # 06 : CI/CD basics (feedback automatique)
 Temps de lecture ~5 min
 

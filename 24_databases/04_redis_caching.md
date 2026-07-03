@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Se souvenir vite pour ne pas redemander à chaque fois
 Temps de lecture ~10 min
 
@@ -226,5 +224,3 @@ Reprends l'exemple du classement avec lock du point 6. Explique ce qui se passer
 ## RÉSUMÉ
 
 Redis cache pour éviter de recalculer ou re-requêter ce qui a déjà une réponse connue, en l'échange contre une fraîcheur relative qu'on contrôle via le TTL. Le vrai défi n'est jamais "comment je cache", c'est "comment j'invalide proprement" et "comment j'évite que 10 000 requêtes recalculent en même temps quand le cache expire". Un cache sans stratégie d'invalidation claire n'est pas un cache, c'est une source de bugs à retardement.
-
-> Note : 9/10 : cycle complet, stampede expliqué en détail, structures Redis couvertes, analogies Naruto et Ballon d'Or intégrées. Moins 1 : la section write-behind mériterait un exemple de code pour montrer concrètement comment la sync async vers la DB fonctionne.

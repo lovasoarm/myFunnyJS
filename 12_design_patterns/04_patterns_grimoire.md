@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 #  Page verrouillée
 Temps de lecture ~8 min
 

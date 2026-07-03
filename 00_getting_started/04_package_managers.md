@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 04 : npm / pnpm : ne bloque pas au premier `install`
 Temps de lecture ~5 min
 

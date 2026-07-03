@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : choix du langage de portage
 
 Statut : accepté

@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # generate_portfolio_report.md
 Temps de lecture ~5 min
 

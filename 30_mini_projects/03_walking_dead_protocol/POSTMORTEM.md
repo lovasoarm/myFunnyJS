@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POSTMORTEM : WALKING DEAD PROTOCOL
 Temps de lecture ~6 min
 

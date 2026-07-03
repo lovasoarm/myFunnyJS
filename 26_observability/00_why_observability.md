@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OBSERVABILITY
 
 > Ce module reutilise : debug (04_debugging), erreurs (05_error_handling).

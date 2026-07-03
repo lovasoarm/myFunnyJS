@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DEPENDENCY LEDGER : LE JOURNAL DE TA DÉPENDANCE À L'IA
 Temps de lecture ~7 min
 

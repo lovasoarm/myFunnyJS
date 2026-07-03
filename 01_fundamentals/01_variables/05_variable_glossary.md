@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # VARIABLE GRIMOIRE : LES MOTS QUE TU DOIS MAÎTRISER
 Temps de lecture ~5 min
 

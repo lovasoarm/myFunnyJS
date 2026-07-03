@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # GENERICS : ÉCRIRE UNE FOIS, UTILISER POUR N'IMPORTE QUEL TYPE
 Temps de lecture ~10 min
 

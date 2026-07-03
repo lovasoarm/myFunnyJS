@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # RÉPÉTITION ESPACÉE : LE PLANNING QUI GRAVE
 Temps de lecture ~5 min
 

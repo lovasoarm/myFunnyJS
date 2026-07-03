@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01a : Binding : nommer, c'est déjà décider
 Temps de lecture ~5 min
 

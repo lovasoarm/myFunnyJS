@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : Redis vs RabbitMQ comme broker
 
 Statut : accepté

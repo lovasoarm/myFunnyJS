@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 01b : var / let / const : trois portes, trois pièges
 Temps de lecture ~5 min
 

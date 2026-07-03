@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # GÉOMÉTRIE POUR DÉVELOPPEUR
 Temps de lecture ~13 min
 

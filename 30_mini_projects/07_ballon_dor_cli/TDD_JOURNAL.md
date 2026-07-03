@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : BALLON D'OR CLI
 Temps de lecture ~6 min
 

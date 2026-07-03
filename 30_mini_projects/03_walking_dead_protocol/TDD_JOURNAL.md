@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # TDD JOURNAL : WALKING DEAD PROTOCOL
 Temps de lecture ~8 min
 

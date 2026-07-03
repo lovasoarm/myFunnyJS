@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # Éthique & Licences (annexe indispensable)
 Temps de lecture ~6 min
 

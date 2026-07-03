@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 03 : Node : flamegraph avec clinic / 0x
 Temps de lecture ~5 min
 

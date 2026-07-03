@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Quand tu ne peux pas juste mettre un breakpoint
 Temps de lecture ~9 min
 

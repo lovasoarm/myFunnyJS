@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 09 : Supply chain & SBOM
 Temps de lecture ~5 min
 

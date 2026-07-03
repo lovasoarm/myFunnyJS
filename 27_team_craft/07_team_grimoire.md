@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 #  Page verrouillée
 Temps de lecture ~14 min
 
@@ -55,6 +53,3 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | **Ubiquitous language** (DDD) | Vocabulaire commun partagé entre devs et experts métier. Les mêmes mots dans le code, les tickets, les réunions, et la doc. Évite les malentendus entre "vote" pour le métier et `ballot_entry` pour le dev. | Si le métier dit "vote", le code dit `vote` : classe `Vote`, fonction `registerVote`, table `votes`. Pas `ballot`, pas `entry`, pas `choice`. | Une langue commune dans une mission internationale / un dictionnaire partagé entre avocats et juges dans un tribunal |
 
 ---
-
-> Note : 9/10. Couverture solide des pratiques d'équipe en ingénierie logicielle.
-> Moins 1 : les pratiques de CI/CD collaborative (feature flags, trunk-based deployment, review apps) mériteraient leur propre section : elles sont en annexe `30_toolchain` mais leur dimension collaborative appartient aussi ici.

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 02 : SPÉCIFICATIONS VÉRIFIABLES MACHINE
 Temps de lecture ~20 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 03 : LIRE UNE TRACE D'AGENT COMME UNE STACK TRACE
 Temps de lecture ~25 min
 

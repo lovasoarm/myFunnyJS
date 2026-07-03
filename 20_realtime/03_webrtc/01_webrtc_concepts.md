@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 01_WEBRTC_CONCEPTS : LE VOCABULAIRE SANS LA PEUR
 Temps de lecture ~9 min
 

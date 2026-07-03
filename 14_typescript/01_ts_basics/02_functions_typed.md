@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # FONCTIONS TYPÉES : SIGNER UN CONTRAT AVANT D'EXÉCUTER
 Temps de lecture ~8 min
 

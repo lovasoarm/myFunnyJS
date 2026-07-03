@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # GIT SURVIVAL : placé dans le noyau, pas dans l'annexe
 Temps de lecture ~5 min
 

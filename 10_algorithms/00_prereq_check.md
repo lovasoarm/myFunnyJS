@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # 00 : Prereq check : Algorithms
 Temps de lecture ~5 min
 

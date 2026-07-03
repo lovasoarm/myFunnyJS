@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SYNTHÈSE C : LA V2 DU SYSTÈME DE VOTE BALLON D'OR
 Temps de lecture ~7 min
 

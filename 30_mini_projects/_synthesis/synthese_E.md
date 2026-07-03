@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SYNTHÈSE E : L'ORACLE QUI SURVEILLE SA PROPRE FOLIE
 Temps de lecture ~7 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # FILESYSTEM : LIRE ET ÉCRIRE SANS S'ARRACHER LES CHEVEUX
 Temps de lecture ~8 min
 
@@ -290,5 +288,3 @@ Reprends le CLI de vote de la leçon précédente. Ajoute la persistance :
 # RÉSUMÉ
 
 `fs/promises` pour tout le async. `path.join()` pour les chemins cross-platform. `stat()` pour vérifier existence et métadonnées. `readdir({ withFileTypes: true })` pour distinguer fichiers et dossiers. `readline.createInterface` pour lire ligne par ligne sans charger tout en mémoire. Les codes d'erreur `err.code` (ENOENT, EACCES, EEXIST) pour gérer proprement les cas d'échec.
-
-> Note : 9/10 : la gestion de `err.code` est un détail que beaucoup de devs découvrent en prod, bien inclus. Moins 1 : `fs.watch` / `chokidar` pour observer les changements de fichiers auraient rendu le module complet (souvent utilisé dans les scripts d'automatisation).

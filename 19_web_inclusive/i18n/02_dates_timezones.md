@@ -1,5 +1,3 @@
-[DÉCENNIE]
-
 # DATES ET TIMEZONES : LE CAUCHEMAR ET COMMENT LE RÉSOUDRE
 Temps de lecture ~8 min
 

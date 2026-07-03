@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # DÉCOMPOSER UN SYSTÈME COMPLEXE
 Temps de lecture ~7 min
 

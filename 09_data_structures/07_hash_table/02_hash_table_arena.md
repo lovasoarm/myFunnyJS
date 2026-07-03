@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # HASH TABLE ARENA : LES PROBLÈMES CLASSIQUES
 Temps de lecture ~9 min
 

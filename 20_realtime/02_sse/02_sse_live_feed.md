@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 02_SSE_LIVE_FEED : LE DASHBOARD DE MATCH EN TEMPS RÉEL
 Temps de lecture ~9 min
 

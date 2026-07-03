@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # Suivre une ordre_mission qui traverse 6 maillons sans perdre le fil
 Temps de lecture ~10 min
 

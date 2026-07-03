@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # NODE_VERSIONS.md
 Temps de lecture ~5 min
 

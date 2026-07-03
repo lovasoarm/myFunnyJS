@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # SCOPE : OÙ VIT TA VARIABLE ?
 Temps de lecture ~7 min
 

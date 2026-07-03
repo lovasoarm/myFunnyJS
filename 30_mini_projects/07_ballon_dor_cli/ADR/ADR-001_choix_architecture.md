@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # ADR-001 : persistance des votes via fichier JSON local plutôt que base de données
 Temps de lecture ~6 min
 

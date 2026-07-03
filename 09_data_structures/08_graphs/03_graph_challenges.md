@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # GRAPH CHALLENGES : CYCLES, COMPOSANTS, TOPO SORT
 Temps de lecture ~10 min
 

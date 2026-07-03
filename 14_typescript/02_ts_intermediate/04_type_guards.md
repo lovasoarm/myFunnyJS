@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME
 Temps de lecture ~10 min
 

@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 00 : Prereq check : Realtime
 Temps de lecture ~5 min
 

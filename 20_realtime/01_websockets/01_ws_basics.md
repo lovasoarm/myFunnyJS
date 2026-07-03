@@ -1,5 +1,3 @@
-[PÉRISSABLE 12-24 mois]
-
 # 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET
 Temps de lecture ~9 min
 

@@ -1,5 +1,3 @@
-[INTEMPOREL]
-
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 
 > Ce module reutilise : team craft (28_team_craft), tests (06_testing).
