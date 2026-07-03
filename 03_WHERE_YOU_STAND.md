@@ -7,7 +7,7 @@
 > Pas un quiz. Pas une note sur 20. Une carte.
 > Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.
 
-Tu viens de lire `01_START_HERE.md` et `02_DAY_ONE.md`. Avant d'attaquer `01_fundamentals`,
+Tu viens de lire `01_START_HERE.md` et `GUIDE_CARRIERE_DEV.md`. Avant d'attaquer `01_fundamentals`,
 un dernier arrêt : ce fichier te donne les 4 axes sur lesquels tu vas progresser. Pas pour
 le lire en entier maintenant, juste pour savoir qu'il existe. Premier vrai coup d'oeil utile :
 après ton bloc 01-04, pas avant. Pour l'instant, retiens juste qu'il est là.

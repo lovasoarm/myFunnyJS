@@ -15,7 +15,7 @@ la ROADMAP dans le `README.md` à la racine. Ce fichier-ci, c'est le détail fic
 ```
 MyFunnyJS/
 ├── 01_START_HERE.md                                            # Le tout premier fichier à lire. Court, direct, prérequis machine.
-├── 02_DAY_ONE.md                                                # Le contexte du métier dev en 2026 : avant de toucher au code
+├── GUIDE_CARRIERE_DEV.md                                        # Le contexte du métier dev en 2026 : avant de toucher au code
 ├── 03_WHERE_YOU_STAND.md                                        # 4 axes (Runtime, Lecture, Debug, Architecture), 4 niveaux chacun : où t'en es vraiment
 ├── README.md                                                   # La roadmap des 32 modules, dans l'ordre
 ├── CONTRIBUTING.md                                             # Les règles du camp : pas de PR qui pue
