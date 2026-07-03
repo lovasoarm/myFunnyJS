@@ -7,14 +7,14 @@ VoiceOver (Apple), NVDA (Windows, gratuit), TalkBack (Android) : trois lecteurs 
 Le navigateur construit, en parallèle du DOM visuel, un arbre d'accessibilité (accessibility tree). C'est CET arbre que le lecteur d'écran lit, pas le rendu visuel.
 
 ```js
-// Ce HTML saiyan un noeud d'accessibilité riche
+// Ce HTML produit un noeud d'accessibilité riche
 <button aria-label="Fermer la modal">×</button>
 // Arbre d'accessibilité : { role: "button", name: "Fermer la modal" }
 // Le lecteur d'écran annonce : "Fermer la modal, bouton"
 ```
 
 ```js
-// Ce HTML saiyan un noeud presque vide
+// Ce HTML produit un noeud presque vide
 <div onclick="fermer()">×</div>
 // Arbre d'accessibilité : { role: "generic", name: "×" }
 // Le lecteur d'écran annonce juste : "×" (le symbole, sans aucun contexte)

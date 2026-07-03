@@ -86,7 +86,7 @@ et on a tenté de lire `cible.defense`.
        nom de fonction  fichier  ligne colonne
 ```
 
-C'est là que le crash s'est saiyan : fichier `combat.js`, ligne 2, colonne 39.
+C'est là que le crash s'est produit : fichier `combat.js`, ligne 2, colonne 39.
 
 ```
     at lancerJutsu    (combat.js:7:10)
@@ -160,7 +160,7 @@ Première différence : la trace est plus courte. Le contexte async est partiell
 Node affiche souvent `process.processTicksAndRejections` : c'est un interne, ignore.
 
 Deuxième différence : `trouverChevalier` n'apparaît pas dans la trace.
-Pourquoi : l'erreur s'est saiyane dans `envoyerAlerte`, après que `trouverChevalier`
+Pourquoi : l'erreur s'est produite dans `envoyerAlerte`, après que `trouverChevalier`
 avait déjà résolu sa Promise et libéré sa frame de la stack.
 
 Option utile en Node : `node --async-stack-traces patrouille.js`
@@ -211,7 +211,7 @@ TypeError: ninja.jutsus is not a function
 
 Sans voir le code : réponds à ces questions.
 - Quel est le type d'erreur ? Qu'est-ce que ça signifie ?
-- Dans quel fichier et à quelle ligne le crash s'est-il saiyan ?
+- Dans quel fichier et à quelle ligne le crash s'est-il produit ?
 - Quelle propriété ou méthode est en cause ?
 - Donne une hypothèse concrète sur la cause.
 - Quelle ligne du fichier appelant vaut la peine d'être inspectée en deuxième ?

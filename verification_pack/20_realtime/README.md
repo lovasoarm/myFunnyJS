@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Temps réel**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
 
 ```bash
 bash verification_pack/20_realtime/verify.sh path/to/solution.js

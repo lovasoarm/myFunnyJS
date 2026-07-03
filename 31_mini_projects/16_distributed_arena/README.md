@@ -62,7 +62,7 @@ Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS
 ## GRILLE DE RÉUSSITE
 
 - [ ] `verify.js` renvoie 0 sur les 3 scénarios chaos, 10 runs consécutifs.
-- [ ] `race` resaiyan un data race avant fix (branche `broken`), corrigé après.
+- [ ] `race` reproduit un data race avant fix (branche `broken`), corrigé après.
 - [ ] `kill-mid` : au moins 1 worker relance sa dernière op sans double-comptage.
 - [ ] `network-drop` : at-least-once avec dédup côté coordinateur (par clé UUID).
 - [ ] ADR argumente idempotent-by-key vs sequence-number, cite 2 sources.

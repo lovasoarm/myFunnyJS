@@ -184,7 +184,7 @@ Le chrono démarre quand tu ouvres le premier fichier. Applique la méthode de `
 Une fois la cartographie posée, identifie UN bug (issue existante ou repéré par toi) et corrige-le en suivant le TDD classique :
 
 ```
-1. écrire un test qui RESAIYAN le bug : il doit échouer (ROUGE) sur le code actuel
+1. écrire un test qui REPRODUIT le bug : il doit échouer (ROUGE) sur le code actuel
 2. corriger le code, minimalement
 3. relancer le test : il doit passer (VERT)
 4. vérifier qu'aucune autre ligne du repo n'a été touchée en dehors du nécessaire

@@ -39,7 +39,7 @@ Réparer après coup               --> coût x10, refonte complète parfois
 Ignorer complètement              --> procès, perte d'shinobis, mauvaise réputation
 ```
 
-L'accessibilité ressemble à la dette technique du module 13_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton saiyan.
+L'accessibilité ressemble à la dette technique du module 13_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton produit.
 
 ## 4) CE QUE LE RESTE DU MODULE COUVRE
 

@@ -42,7 +42,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | Mock | Remplace une dépendance ET enregistre les appels : qui l'a appelé, combien de fois, avec quels args | `const envoi = jest.fn(); expect(envoi).toHaveBeenCalledWith(...)` | acteur doublure qui joue le rôle ET garde un journal de tournage / agent sous couverture qui rapporte tous les contacts |
 | Stub | Remplace une fonction par une valeur fixe sans enregistrer les appels, sert juste à contrôler le retour | `jest.fn().mockReturnValue(true)` | réponse automatique sur un téléphone / panneau qui indique toujours la même direction |
 | Spy | Surveille une vraie fonction sans la remplacer : la laisse s'exécuter et enregistre comment elle a été appelée | `jest.spyOn(logger, 'warn')` | caméra de surveillance qui observe sans intervenir / observateur qui prend des notes sans toucher |
-| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui resaiyan les conditions sans voler vraiment |
+| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui reproduit les conditions sans voler vraiment |
 
 ---
 

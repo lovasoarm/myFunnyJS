@@ -237,7 +237,7 @@ const score = undefined;
 const affichage = `Score : ${score}`; // "Score : undefined"
 ```
 
-Pas de crash. Juste une conversion silencieuse qui saiyan quelque chose que tu voulais probablement pas afficher.
+Pas de crash. Juste une conversion silencieuse qui produit quelque chose que tu voulais probablement pas afficher.
 
 ---
 

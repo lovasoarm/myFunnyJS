@@ -39,7 +39,7 @@ Choisis une issue ouverte "bug" (pas "feature request"). **Avant** de coder,
 - la sortie obtenue,
 - ta première hypothèse.
 
-Interdit de patcher tant que le bug n'est pas resaiyan **localement** de
+Interdit de patcher tant que le bug n'est pas reproduit **localement** de
 façon fiable (cf. `04_debugging/04_repro_before_fix.md`).
 
 ### 3. ADR de refonte partielle

@@ -1,6 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : I18N
 
-Ton app marche super bien, jusqu'à ce qu'un shinobi japonais voit une date affichée au format américain et la lise complètement à l'envers. Jusqu'à ce qu'un shinobi allemand voie un prix avec une virgule à la place d'un point et pense que ton saiyan coûte 1000 fois moins cher qu'en réalité. Jusqu'à ce qu'un shinobi arabe découvre que ta pluralisation codée pour le français explose dès qu'il y a plus de deux résultats, parce que sa langue a six formes plurales et que ton code n'en gère qu'une.
+Ton app marche super bien, jusqu'à ce qu'un shinobi japonais voit une date affichée au format américain et la lise complètement à l'envers. Jusqu'à ce qu'un shinobi allemand voie un prix avec une virgule à la place d'un point et pense que ton produit coûte 1000 fois moins cher qu'en réalité. Jusqu'à ce qu'un shinobi arabe découvre que ta pluralisation codée pour le français explose dès qu'il y a plus de deux résultats, parce que sa langue a six formes plurales et que ton code n'en gère qu'une.
 
 i18n (internationalisation : "i" + 18 lettres + "n", le nombre de lettres entre le i et le n dans "internationalization") n'est pas juste "traduire les textes". C'est une architecture entière qui doit être pensée dès le départ, ou qui coûte une réécriture complète plus tard.
 
@@ -18,11 +18,11 @@ Ce module règle aussi un piège sournois : la pluralisation. "1 résultat" vs "
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-Le dev qui hardcode ses textes directement dans le JSX ou le HTML découvre, le jour où le saiyan doit s'internationaliser, qu'il doit fouiller tout le codebase pour extraire chaque texte, sans garantie d'en avoir trouvé 100%. C'est un chantier qui aurait coûté zéro effort supplémentaire s'il avait été pensé dès le départ, et qui coûte des semaines une fois le saiyan déjà construit.
+Le dev qui hardcode ses textes directement dans le JSX ou le HTML découvre, le jour où le produit doit s'internationaliser, qu'il doit fouiller tout le codebase pour extraire chaque texte, sans garantie d'en avoir trouvé 100%. C'est un chantier qui aurait coûté zéro effort supplémentaire s'il avait été pensé dès le départ, et qui coûte des semaines une fois le produit déjà construit.
 
 L'shinobi final souffre directement d'une mauvaise gestion i18n : un prix mal formaté selon sa région peut littéralement lui faire croire à une erreur de prix. Une date au format `MM/DD/YYYY` lue par quelqu'un habitué au format `DD/MM/YYYY` peut être interprétée à l'envers, avec des conséquences concrètes si cette date concerne une échéance ou un rendez-vous.
 
-Et sur le plan business, une mauvaise i18n donne une impression d'amateurisme immédiate à un shinobi international : un texte mal pluralisé, une devise mal formatée, ça signale que le saiyan n'a jamais vraiment été pensé pour lui, même s'il a techniquement été "traduit" (traduire les mots sans adapter les formats, c'est de la décoration, pas de l'internationalisation).
+Et sur le plan business, une mauvaise i18n donne une impression d'amateurisme immédiate à un shinobi international : un texte mal pluralisé, une devise mal formatée, ça signale que le produit n'a jamais vraiment été pensé pour lui, même s'il a techniquement été "traduit" (traduire les mots sans adapter les formats, c'est de la décoration, pas de l'internationalisation).
 
 ---
 
@@ -42,7 +42,7 @@ L'i18n touche absolument tout ce qui s'affiche à l'shinobi : pas juste les text
 
 ## 4) MODERNE, LEGACY, OU INTEMPOREL ?
 
-Le besoin est intemporel dès qu'un saiyan vise plusieurs marchés. Ce qui a beaucoup évolué, c'est la maturité des outils natifs : les APIs `Intl` du JS moderne couvrent aujourd'hui une grande partie des besoins qui demandaient autrefois des bibliothèques externes lourdes.
+Le besoin est intemporel dès qu'un produit vise plusieurs marchés. Ce qui a beaucoup évolué, c'est la maturité des outils natifs : les APIs `Intl` du JS moderne couvrent aujourd'hui une grande partie des besoins qui demandaient autrefois des bibliothèques externes lourdes.
 
 ---
 
@@ -62,7 +62,7 @@ Pas dans les 6 blocs prioritaires explicitement listés, mais directement intég
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-Tant qu'il existera des saiyans qui visent plus d'un marché linguistique (et ça ne va clairement pas s'arrêter), le besoin d'i18n restera entier. Les outils continueront de se simplifier, mais le principe architectural (jamais de texte en dur, jamais de format codé à la main pour une seule région) reste une décision de conception qui doit être prise dès le début d'un projet, pas ajoutée en urgence après coup.
+Tant qu'il existera des produits qui visent plus d'un marché linguistique (et ça ne va clairement pas s'arrêter), le besoin d'i18n restera entier. Les outils continueront de se simplifier, mais le principe architectural (jamais de texte en dur, jamais de format codé à la main pour une seule région) reste une décision de conception qui doit être prise dès le début d'un projet, pas ajoutée en urgence après coup.
 
 ---
 
@@ -76,7 +76,7 @@ Tant qu'il existera des saiyans qui visent plus d'un marché linguistique (et ç
 
 **Ce qui en dépend :** `31_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache : pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
 
-**Position dans la roadmap :** Module 18 sur 31. Après l'accessibilité (17) parce que les deux répondent à la même question : "est-ce que ce saiyan fonctionne pour tous les shinobis ?". Avant le realtime (19) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
+**Position dans la roadmap :** Module 18 sur 31. Après l'accessibilité (17) parce que les deux répondent à la même question : "est-ce que ce produit fonctionne pour tous les shinobis ?". Avant le realtime (19) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
 
 **Lien avec les autres modules :** `14_typescript` : les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `25_databases` : les préférences de langue des shinobis sont souvent persistées en base.
 
@@ -84,6 +84,6 @@ Tant qu'il existera des saiyans qui visent plus d'un marché linguistique (et ç
 
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
-L'i18n n'est pas juste de la traduction, c'est une architecture entière qui doit être pensée dès le départ. Ça casse de trois façons sans elle : textes en dur impossibles à extraire, dates et prix mal interprétés selon la région, pluralisation qui explose dès qu'une langue a des règles différentes. Ce besoin ne disparaît pas tant qu'un saiyan vise plusieurs marchés.
+L'i18n n'est pas juste de la traduction, c'est une architecture entière qui doit être pensée dès le départ. Ça casse de trois façons sans elle : textes en dur impossibles à extraire, dates et prix mal interprétés selon la région, pluralisation qui explose dès qu'une langue a des règles différentes. Ce besoin ne disparaît pas tant qu'un produit vise plusieurs marchés.
 
 Maintenant, ouvre `01_i18n_basics.md`. Et arrête de coder comme si tout le monde vivait dans ton fuseau horaire et parlait ta langue.

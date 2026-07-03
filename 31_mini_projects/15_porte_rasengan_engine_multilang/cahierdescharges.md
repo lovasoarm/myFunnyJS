@@ -4,7 +4,7 @@
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Tu portes ton moteur JS en Python ou Go. C'est Goku qui apprend le kaioken après le super saiyan : même puissance, autre technique. Si tu as compris le fond, la langue change mais la pensée reste.
+Tu portes ton moteur JS en Python ou Go. C'est Goku qui apprend le kaioken après le super produit : même puissance, autre technique. Si tu as compris le fond, la langue change mais la pensée reste.
 
 ## OBJECTIF
 
@@ -14,7 +14,7 @@ Porter 100% du `01_rasengan_engine` (features + tests) dans un autre langage, pu
 
 - Un seul langage cible au premier jet (Python OU Go).
 - Refactor pour l'idiome cible, pas de traduction ligne à ligne.
-- Tous les cas de test d'origine resaiyans.
+- Tous les cas de test d'origine reproduits.
 
 ## LIVRABLE
 

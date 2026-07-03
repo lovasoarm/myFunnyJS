@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Team craft**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
 
 ```bash
 bash verification_pack/28_team_craft/verify.sh path/to/solution.js

@@ -4,7 +4,7 @@
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Tu portes ton moteur JS en Python ou Go. C'est Goku qui apprend le kaioken après le super saiyan : même puissance, autre technique. Si tu as compris le fond, la langue change mais la pensée reste.
+Tu portes ton moteur JS en Python ou Go. C'est Goku qui apprend le kaioken après le super produit : même puissance, autre technique. Si tu as compris le fond, la langue change mais la pensée reste.
 
 ## OBJECTIF
 

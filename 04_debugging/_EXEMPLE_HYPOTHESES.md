@@ -3,7 +3,7 @@
 ## Contexte
 - symptome : la RAM du process node passe de 80 Mo a 900 Mo en 20 min sous charge.
 - environnement : Node 20.11, prod-like, 100 req/s.
-- reproductible : oui, `autocannon -c 50 -d 300` resaiyan a 100 %.
+- reproductible : oui, `autocannon -c 50 -d 300` reproduit a 100 %.
 
 ## Hypothese 1 : fuite via listener non retire
 - enonce : chaque req attache un listener a un EventEmitter global jamais retire.

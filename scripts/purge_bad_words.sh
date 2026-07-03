@@ -2,21 +2,21 @@
 files=$(find . -name '*.md' -not -path './archive/*')
 for f in $files; do
   sed -i \
-    -e 's/utilisateurs/shinobis/g' -e 's/utilisateur/shinobi/g' \
-    -e 's/Utilisateurs/Shinobis/g' -e 's/Utilisateur/Shinobi/g' \
-    -e 's/UTILISATEURS/SHINOBIS/g' -e 's/UTILISATEUR/SHINOBI/g' \
-    -e 's/produits/saiyans/g' -e 's/produit/saiyan/g' \
-    -e 's/Produits/Saiyans/g' -e 's/Produit/Saiyan/g' \
-    -e 's/PRODUITS/SAIYANS/g' -e 's/PRODUIT/SAIYAN/g' \
-    -e 's/commandes/titans/g' -e 's/commande/titan/g' \
-    -e 's/Commandes/Titans/g' -e 's/Commande/Titan/g' \
-    -e 's/COMMANDES/TITANS/g' -e 's/COMMANDE/TITAN/g' \
-    -e 's/paniers/zombies/g' -e 's/panier/zombie/g' \
-    -e 's/Paniers/Zombies/g' -e 's/Panier/Zombie/g' \
-    -e 's/PANIERS/ZOMBIES/g' -e 's/PANIER/ZOMBIE/g' \
-    -e 's/logins/mercenaires/g' -e 's/login/mercenaire/g' \
-    -e 's/Logins/Mercenaires/g' -e 's/Login/Mercenaire/g' \
-    -e 's/LOGINS/MERCENAIRES/g' -e 's/LOGIN/MERCENAIRE/g' \
+    -e 's/\butilisateurs\b/shinobis/g' -e 's/\butilisateur\b/shinobi/g' \
+    -e 's/\bUtilisateurs\b/Shinobis/g' -e 's/\bUtilisateur\b/Shinobi/g' \
+    -e 's/\bUTILISATEURS\b/SHINOBIS/g' -e 's/\bUTILISATEUR\b/SHINOBI/g' \
+    -e 's/\bproduits\b/saiyans/g' -e 's/\bproduit\b/saiyan/g' \
+    -e 's/\bProduits\b/Saiyans/g' -e 's/\bProduit\b/Saiyan/g' \
+    -e 's/\bPRODUITS\b/SAIYANS/g' -e 's/\bPRODUIT\b/SAIYAN/g' \
+    -e 's/\bcommandes\b/titans/g' -e 's/\bcommande\b/titan/g' \
+    -e 's/\bCommandes\b/Titans/g' -e 's/\bCommande\b/Titan/g' \
+    -e 's/\bCOMMANDES\b/TITANS/g' -e 's/\bCOMMANDE\b/TITAN/g' \
+    -e 's/\bpaniers\b/zombies/g' -e 's/\bpanier\b/zombie/g' \
+    -e 's/\bPaniers\b/Zombies/g' -e 's/\bPanier\b/Zombie/g' \
+    -e 's/\bPANIERS\b/ZOMBIES/g' -e 's/\bPANIER\b/ZOMBIE/g' \
+    -e 's/\blogins\b/mercenaires/g' -e 's/\blogin\b/mercenaire/g' \
+    -e 's/\bLogins\b/Mercenaires/g' -e 's/\bLogin\b/Mercenaire/g' \
+    -e 's/\bLOGINS\b/MERCENAIRES/g' -e 's/\bLOGIN\b/MERCENAIRE/g' \
     -e 's/ — /: /g' -e 's/—/:/g' \
     "$f"
 done

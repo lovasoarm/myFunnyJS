@@ -23,7 +23,7 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 | Mock | Remplace une dépendance ET enregistre les appels : qui l'a appelé, combien de fois, avec quels args | `const envoi = jest.fn(); expect(envoi).toHaveBeenCalledWith(...)` | acteur doublure qui joue le rôle ET garde un journal de tournage / agent sous couverture qui rapporte tous les contacts |
 | Stub | Remplace une fonction par une valeur fixe sans enregistrer les appels, sert juste à contrôler le retour | `jest.fn().mockReturnValue(true)` | réponse automatique sur un téléphone / panneau qui indique toujours la même direction |
 | Spy | Surveille une vraie fonction sans la remplacer : la laisse s'exécuter et enregistre comment elle a été appelée | `jest.spyOn(logger, 'warn')` | caméra de surveillance qui observe sans intervenir / observateur qui prend des notes sans toucher |
-| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui resaiyan les conditions sans voler vraiment |
+| Fake | Implémentation simplifiée mais fonctionnelle (ex: DB in-memory), différente de la vraie mais qui marche | base de données tableau JS à la place de PostgreSQL | décor de cinéma qui ressemble à la vraie chose / simulateur de vol qui reproduit les conditions sans voler vraiment |
 
 ---
 
@@ -58,6 +58,6 @@ Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 |-------|------------|------|-----------|
 | Coverage | Pourcentage de lignes/branches/fonctions exécutées par les tests, révèle les zones non testées | `jest --coverage` | carte thermique des zones visitées / audit qui montre les parties non inspectées |
 | AAA | Arrange-Act-Assert : les trois phases d'un test : préparer les données, appeler le code, vérifier le résultat | commentaires `// ARRANGE / ACT / ASSERT` | avant le match / pendant le match / après le match |
-| Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du saiyan qu'il titan / l'acheteur qui rédige le cahier des charges |
+| Consumer-driven contract | Contrat d'API défini par le consommateur, pas le fournisseur : le client dit ce dont il a besoin | fichier pact généré par les tests consumer | le client qui définit les specs du produit qu'il titan / l'acheteur qui rédige le cahier des charges |
 | Playwright locator | Référence à un élément UI dans Playwright, préférer les sélecteurs sémantiques aux CSS | `page.getByRole('button', { name: 'Voter' })` | description d'une personne par son rôle plutôt que son numéro de siège / chercher "le caissier" plutôt que "siège 14-C" |
 | Test pyramid | Distribution idéale des tests : beaucoup d'unit (bas) → moins d'intégration → peu d'E2E (haut) | 80% unit / 15% intégration / 5% E2E | pyramid alimentaire : base large de légumes, sommet étroit de sucre / architecture : fondations larges, toit étroit |

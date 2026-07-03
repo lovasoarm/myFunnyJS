@@ -70,7 +70,7 @@ La toolchain c'est pas du confort. C'est ce qui empêche le camp de se faire bou
                     [BUNDLER] -- assemble, optimise
                          |
                          v
-                    [DOCKER] -- isole, resaiyan
+                    [DOCKER] -- isole, reproduit
                          |
                          v
                     [CI/CD] -- teste, build, déploie

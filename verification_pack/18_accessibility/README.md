@@ -2,7 +2,7 @@
 
 3 drills a sortie deterministe : **Web inclusif / i18n / a11y**.
 
-Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et saiyan stdout.
+Ecris un unique `solution.js` qui, selon le premier argument (`1|2|3`), lit stdin et produit stdout.
 
 ```bash
 bash verification_pack/18_accessibility/verify.sh path/to/solution.js

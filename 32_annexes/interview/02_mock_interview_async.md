@@ -41,7 +41,7 @@ Après ta première réponse, réponds à voix haute à chacune. Elles sont con�
 
 ## GRILLE D'AUTO-ÉVALUATION (note-toi honnêtement)
 
-- [ ] J'ai resaiyan/expliqué le bug AVANT de coder un fix. (2 pts)
+- [ ] J'ai reproduit/expliqué le bug AVANT de coder un fix. (2 pts)
 - [ ] J'ai nommé la vraie cause : `forEach` ignore les promesses async. (2 pts)
 - [ ] J'ai distingué "attendre" (Promise.all) de "borner" (pool). (2 pts)
 - [ ] J'ai géré le cas d'un job qui rejette (allSettled ou try/catch par job). (2 pts)

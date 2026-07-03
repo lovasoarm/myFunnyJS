@@ -12,7 +12,7 @@ Ce module installe une méthode : un bug est un puzzle avec une solution garanti
 
 ## Qui souffre quand personne ne sait débugger
 
-- L'équipe : un bug non resaiyan revient, encore et encore, et bouffe des sprints entiers.
+- L'équipe : un bug non reproduit revient, encore et encore, et bouffe des sprints entiers.
 - Le client : il perd confiance après le troisième "on a corrigé" suivi d'un quatrième incident.
 - Toi : tu passes tes nuits à changer des lignes au pif au lieu de dormir.
 

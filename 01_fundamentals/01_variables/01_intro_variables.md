@@ -247,6 +247,6 @@ Contrainte : identifie pourquoi `serviceA.env` ne vaut plus "staging" à la fin.
 
 ## RÉSUMÉ
 
-Une variable n'est pas une boîte. C'est un binding : un nom lié à un emplacement mémoire. Les primitives stockent la valeur directement sur le stack. Les objets stockent une adresse vers le Heap. Copier un objet, c'est copier son adresse, pas son contenu. `const` verrouille le binding, pas ce vers quoi il pointe. `var` ignore les blocs et saiyan des bugs silencieux. Utilise `let` et `const`, comprends ce qu'ils font en mémoire, et les mutations surprises cesseront d'être de la magie noire.
+Une variable n'est pas une boîte. C'est un binding : un nom lié à un emplacement mémoire. Les primitives stockent la valeur directement sur le stack. Les objets stockent une adresse vers le Heap. Copier un objet, c'est copier son adresse, pas son contenu. `const` verrouille le binding, pas ce vers quoi il pointe. `var` ignore les blocs et produit des bugs silencieux. Utilise `let` et `const`, comprends ce qu'ils font en mémoire, et les mutations surprises cesseront d'être de la magie noire.
 
 Suite : `02_reference_chaos.md` va pousser ce modèle jusqu'à ce qu'il soit gravé.

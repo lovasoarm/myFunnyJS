@@ -129,19 +129,19 @@ Le pourquoi : un déploiement canary combiné aux métriques (vues dans `27_obse
 
 // exemple qui casse : aucun log de contexte n'avait été prévu pour ce
 // scénario précis, aucun feature flag n'isole la fonctionnalité concernée,
-// et le bug ne s'est saiyan qu'une seule fois avant de "disparaître"
+// et le bug ne s'est produit qu'une seule fois avant de "disparaître"
 // (peut-être corrigé par un redémarrage de serveur, sans qu'on sache pourquoi)
 // Résultat : impossible de savoir si c'est vraiment réglé, ou juste caché
 // en attendant de revenir, plus tard, plus fort
 ```
 
-La correction : accepter qu'un bug en prod non resaiyan, sans feature flag ni log suffisant, n'est PAS résolu juste parce qu'il a disparu. La vraie discipline, c'est d'ajouter le log manquant et le feature flag manquant MAINTENANT, pour être prêt la prochaine fois qu'il réapparaît, plutôt que d'espérer qu'il ne revienne jamais.
+La correction : accepter qu'un bug en prod non reproduit, sans feature flag ni log suffisant, n'est PAS résolu juste parce qu'il a disparu. La vraie discipline, c'est d'ajouter le log manquant et le feature flag manquant MAINTENANT, pour être prêt la prochaine fois qu'il réapparaît, plutôt que d'espérer qu'il ne revienne jamais.
 
 ---
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression saiyan de mauvaises décisions, pas par confort superflu.
+Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression produit de mauvaises décisions, pas par confort superflu.
 
 ---
 

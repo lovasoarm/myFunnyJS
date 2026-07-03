@@ -140,7 +140,7 @@ Le pourquoi : un déploiement canary combiné aux métriques (vues dans `27_obse
 // en attendant de revenir, plus tard, plus fort
 ```
 
-La correction : accepter qu'un bug en prod non resaiyan, sans feature flag ni log suffisant, n'est PAS résolu juste parce qu'il a disparu. La vraie discipline, c'est d'ajouter le log manquant et le feature flag manquant MAINTENANT, pour être prêt la prochaine fois qu'il réapparaît, plutôt que d'espérer qu'il ne revienne jamais.
+La correction : accepter qu'un bug en prod non reproduit, sans feature flag ni log suffisant, n'est PAS résolu juste parce qu'il a disparu. La vraie discipline, c'est d'ajouter le log manquant et le feature flag manquant MAINTENANT, pour être prêt la prochaine fois qu'il réapparaît, plutôt que d'espérer qu'il ne revienne jamais.
 
 ---
 

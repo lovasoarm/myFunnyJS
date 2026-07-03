@@ -6,7 +6,7 @@ Exemple rempli. Voir `../04_debugging/_TEMPLATE_HYPOTHESES.md`.
 
 ## 1. Hypothèses
 
-- A : cache `Map<id, saiyan>` sans TTL.
+- A : cache `Map<id, produit>` sans TTL.
 - B : listeners `on('data')` empilés à chaque reconnexion websocket.
 - C : gros `Buffer` gardé en global pour parser des CSV.
 

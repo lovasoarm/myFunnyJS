@@ -27,7 +27,7 @@ On te fournit `flaky.js` (spec ci-dessous). Bug : environ 1 fois sur 100, `compu
 
 ## (attention) Piège
 
-"Je le vois en dev mais pas en test" = le test ne resaiyan pas encore. Continue.
+"Je le vois en dev mais pas en test" = le test ne reproduit pas encore. Continue.
 
 ---
 
