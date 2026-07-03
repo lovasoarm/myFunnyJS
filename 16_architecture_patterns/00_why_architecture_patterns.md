@@ -98,7 +98,7 @@ Maintenant, ouvre `01_module_pattern.md`. Et commence à voir ton code comme un 
 
 > Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
 
-> Ce module réutilise : la composition du module 12 (`30_oop_js`), le refactoring du module 14 (`13_refactoring`).
+> Ce module réutilise : la composition du module 30 (`30_oop_js`), le refactoring du module 13 (`13_refactoring`).
 
 ## AILLEURS QUE JS
 

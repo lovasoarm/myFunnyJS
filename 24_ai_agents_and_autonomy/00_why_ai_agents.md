@@ -61,3 +61,5 @@ sur les concepts en lisant ce module. Chaque fichier isole ce qui est intemporel
 de ce qui est daté 2026-2028.
 
 Prérequis : `23_ai_native_dev` complet, `06_testing`, `22_security`.
+
+> Ce module réutilise : l'IA native du module 23 (`23_ai_native_dev`), les tests du module 06 (`06_testing`), la sécurité du module 22 (`22_security`).

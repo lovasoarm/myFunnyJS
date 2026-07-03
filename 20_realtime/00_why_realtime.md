@@ -92,4 +92,4 @@ Le modèle HTTP classique ne suffit plus dès qu'un jutsu doit sembler "vivant" 
 
 Maintenant, ouvre `01_ws_basics.md`. Et arrête de faire semblant d'être en direct avec du polling.
 
-> Ce module réutilise : l'event loop du module 03 (`03_async`), les web concepts du module 18 (`17_web_concepts`).
+> Ce module réutilise : l'event loop du module 03 (`03_async`), les web concepts du module 17 (`17_web_concepts`).

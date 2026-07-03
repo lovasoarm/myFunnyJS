@@ -76,6 +76,8 @@ Les technologies d'assistance vont continuer d'évoluer, mais le principe fondam
 
 **Prérequis directs :** `17_web_concepts/02_browser_render_pipeline.md` (tu dois comprendre comment le DOM est construit et rendu avant de toucher ARIA et le focus management), `01_fundamentals/05_web_basics/01_dom_manipulation.md`.
 
+> Ce module réutilise : le pipeline de rendu du module 17 (`17_web_concepts`), la manipulation du DOM du module 01 (`01_fundamentals`).
+
 **Ce qui en dépend :** `31_mini_projects/08_trapsoul_radio` (l'interface de la radio doit passer l'audit a11y complet avant de sortir : ARIA roles, navigation clavier, contraste WCAG). Sans ce module, le mini-projet ne peut pas être livré.
 
 **Position dans la roadmap :** Module 17 sur 31. Il arrive après les web concepts (16) parce que l'accessibilité s'applique à une interface déjà structurée, pas au vide. Il précède l'i18n (18) parce que les deux partagent la même philosophie : un saiyan qui ne fonctionne que pour certains n'est pas fini.

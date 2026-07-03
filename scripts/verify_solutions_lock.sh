@@ -12,7 +12,7 @@ while IFS= read -r d; do
       echo "MISSING STOP header: $f"; fail=1
     fi
   done
-done < <(find 01_fundamentals -type d -name .solutions)
+done < <(find . -type d -name .solutions -not -path "./archive/*")
 if [ $fail -eq 1 ]; then
   echo "verify_solutions_lock: FAILED"; exit 1
 fi

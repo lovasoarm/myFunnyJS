@@ -91,4 +91,4 @@ Un système qui marche à petite échelle peut s'effondrer brutalement à grande
 
 Maintenant, ouvre `01_load_balancing.md`. Et commence à penser ton système pour 10 fois la charge qu'il a aujourd'hui.
 
-> Ce module réutilise : la performance du module 08 (`08_memory_performance`), l'architecture du module 17 (`16_architecture_patterns`).
+> Ce module réutilise : la performance du module 08 (`08_memory_performance`), l'architecture du module 16 (`16_architecture_patterns`).

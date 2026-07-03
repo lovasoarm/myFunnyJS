@@ -219,4 +219,4 @@ Ce qui différencie : travailler dans un système complexe, avec des humains, su
 Team craft n'est pas un module de soft skills.
 C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code jutsu.
 
-> Ce module réutilise : le refactoring du module 14 (`13_refactoring`), les tests du module 06 (`06_testing`).
+> Ce module réutilise : le refactoring du module 13 (`13_refactoring`), les tests du module 06 (`06_testing`).

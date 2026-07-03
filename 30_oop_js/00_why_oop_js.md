@@ -70,3 +70,5 @@ Tu ignores la composition -->  tu empiles les extends
 On démonte la machine entièrement. D'abord la chaîne de prototypes à la main, sans aucun sucre syntaxique. Ensuite les fonctions constructeurs, la méthode pré-`class`. Puis `class`, pour prouver que c'est juste un wrapper (une enveloppe) sur ce qu'on vient de voir. Puis `this` et ses règles de call-site (point d'appel : l'endroit où la fonction est réellement invoquée). Puis `call`/`apply`/`bind` pour reprendre le contrôle sur `this`. Puis l'héritage et son piège classique. Puis l'encapsulation réelle (`#privé` vs closures). Puis `static`/`get`/`set`. Et on finit sur la vraie question senior : composition ou héritage.
 
 Dix fichiers techniques. Zéro raccourci. À la fin, tu ne récites plus du JS orienté objet : tu sais ce qu'il fait, sous le capot, à chaque ligne.
+
+> Ce module réutilise : les fonctions et closures du module 01 (`01_fundamentals`), la composition vue en functional programming du module 11 (`11_functional_js`).

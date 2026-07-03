@@ -93,7 +93,7 @@ Une API n'est jamais juste "un endpoint qui marche" : c'est un contrat public do
 
 Maintenant, ouvre `01_express_from_scratch.md`. Et construis une API comme quelqu'un qui sait que d'autres vont en dépendre.
 
-> Ce module réutilise : les web concepts du module 18 (`17_web_concepts`), l'architecture en couches du module 17 (`16_architecture_patterns`).
+> Ce module réutilise : les web concepts du module 17 (`17_web_concepts`), l'architecture en couches du module 16 (`16_architecture_patterns`).
 
 ---
 

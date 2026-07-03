@@ -72,6 +72,8 @@ Tant qu'il existera des saiyans qui visent plus d'un marché linguistique (et ç
 
 **Prérequis directs :** `01_fundamentals/04_types` (Intl.DateTimeFormat et Intl.NumberFormat manipulent des types JS natifs), `17_web_concepts/06_serialization.md` (les clés de traduction sont souvent en JSON : tu dois savoir les parser proprement).
 
+> Ce module réutilise : les types du module 01 (`01_fundamentals`), la sérialisation du module 17 (`17_web_concepts`).
+
 **Ce qui en dépend :** `31_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache : pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
 
 **Position dans la roadmap :** Module 18 sur 31. Après l'accessibilité (17) parce que les deux répondent à la même question : "est-ce que ce saiyan fonctionne pour tous les shinobis ?". Avant le realtime (19) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
