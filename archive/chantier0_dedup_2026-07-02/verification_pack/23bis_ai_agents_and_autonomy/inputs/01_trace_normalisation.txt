@@ -1,0 +1,2 @@
+2026-07-02T10:15:30.123Z agent id=1a2b3c4d-5e6f-7890-abcd-ef1234567890 START tool=fs.read
+2026-07-02T10:15:31.500Z agent id=1a2b3c4d-5e6f-7890-abcd-ef1234567890 OK tool=fs.read bytes=1024

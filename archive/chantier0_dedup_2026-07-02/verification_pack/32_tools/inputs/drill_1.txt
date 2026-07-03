@@ -1,0 +1,4 @@
+vite:1
+eslint:0
+prettier:1
+tsx:0

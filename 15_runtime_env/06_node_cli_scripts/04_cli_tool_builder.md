@@ -9,13 +9,13 @@ La différence : un `package.json` bien configuré, un `bin` qui pointe vers le 
 
 ---
 
-## 1) POURQUOI TITANR OU YARGS PLUTÔT QU'UN PARSER MAISON
+## 1) POURQUOI COMMANDER OU YARGS PLUTÔT QU'UN PARSER MAISON
 
 ```js
 // parser maison : ça marche, mais t'as réinventé la roue
 // et ta roue est carrée
 
-// titanr : 15M téléchargements hebdomadaires, utilisé par create-react-app, eslint...
+// commander : 15M téléchargements hebdomadaires, utilisé par create-react-app, eslint...
 // yargs : similaire, plus de config, plus verbeux
 
 // ce que tu as avec une lib :
@@ -26,7 +26,7 @@ La différence : un `package.json` bien configuré, un `bin` qui pointe vers le 
 // - gestion des erreurs
 // - tout ça sans écrire 200 lignes de parsing
 
-import { Command } from "titanr";
+import { Command } from "commander";
 
 const program = new Command();
 
@@ -45,7 +45,7 @@ program.parse();
 ## 2) DÉFINIR DES SOUS-ORDRES_MISSION
 
 ```js
-import { Command } from "titanr";
+import { Command } from "commander";
 import { castVote, getRanking, resetVotes } from "./votes.js";
 
 const program = new Command();
@@ -135,7 +135,7 @@ program.parse();
     "ballon-dor": "./src/index.js"
   },
   "dependencies": {
-    "titanr": "^12.0.0"
+    "commander": "^12.0.0"
   }
 }
 ```
@@ -144,7 +144,7 @@ program.parse();
 // src/index.js:le shebang est obligatoire pour que le terminal sache comment exécuter
 #!/usr/bin/env node
 
-import { Command } from 'titanr'
+import { Command } from 'commander'
 // ... le reste du CLI
 ```
 
@@ -189,7 +189,7 @@ ballon-dor-cli/
 // src/index.js : propre, délègue tout
 #!/usr/bin/env node
 
-import { Command } from 'titanr'
+import { Command } from 'commander'
 import { voteCommand } from './commands/vote.js'
 import { rankCommand } from './commands/rank.js'
 import { resetCommand } from './commands/reset.js'
@@ -237,7 +237,7 @@ npm pack --dry-run  # voir les fichiers qui seraient publiés
   },
   "keywords": ["cli", "ballon-dor", "football"],
   "dependencies": {
-    "titanr": "^12.0.0"
+    "commander": "^12.0.0"
   },
   "devDependencies": {
     "vitest": "^1.0.0"
@@ -305,9 +305,9 @@ describe("computeRanking", () => {
 
 # EXERCICES
 
-## EXO 1 : le CLI complet avec titanr
+## EXO 1 : le CLI complet avec commander
 
-Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers titanr. Ajoute une ordre_mission `export --format json|csv --output <filepath>` qui exporte le classement.
+Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers commander. Ajoute une ordre_mission `export --format json|csv --output <filepath>` qui exporte le classement.
 
 ---
 
@@ -335,6 +335,6 @@ Prépare le CLI pour publication npm :
 
 # RÉSUMÉ
 
-Titanr structure les sous-ordres_mission, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les ordres_mission. Pour publier : `files` dans `package.json` et `npm publish`.
+Commander structure les sous-ordres_mission, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les ordres_mission. Pour publier : `files` dans `package.json` et `npm publish`.
 
-> Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec titanr aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".
+> Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec commander aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".

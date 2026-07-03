@@ -1,0 +1,1 @@
+ agent id=<ID> SANDBOX ok=true writes=0 network=deny
