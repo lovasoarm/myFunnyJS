@@ -1,3 +1,0 @@
-SET hp 100
-GET hp
-GET mp

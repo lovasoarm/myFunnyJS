@@ -1,3 +1,0 @@
-a:PASS
-b:FAIL
-c:PASS

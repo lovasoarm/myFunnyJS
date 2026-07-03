@@ -1,3 +1,0 @@
-GET /a
-POST /b
-GET /c

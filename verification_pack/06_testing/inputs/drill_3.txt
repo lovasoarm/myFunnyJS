@@ -1,3 +1,0 @@
-unit_a 12
-unit_b 45
-unit_c 30

@@ -1,4 +1,0 @@
-TASK alice DONE
-TASK bob TODO
-TASK alice TODO
-TASK bob DONE

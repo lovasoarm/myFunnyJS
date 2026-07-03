@@ -1,5 +1,0 @@
-INFO a
-ERROR b
-INFO c
-WARN d
-ERROR e

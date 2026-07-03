@@ -1,3 +1,0 @@
-react:130
-react-dom:100
-zod:60

@@ -1,4 +1,0 @@
-HOLD a
-HOLD b
-RELEASE a
-HOLD c

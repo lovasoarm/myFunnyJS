@@ -1,3 +1,0 @@
-ERROR null pointer
-ERROR timeout
-ERROR null pointer

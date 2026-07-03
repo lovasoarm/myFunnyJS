@@ -1,3 +1,0 @@
-GET /a 200
-POST /b 400
-GET /c 404

@@ -1,3 +1,0 @@
-op=a retry=1
-op=b retry=3
-op=c retry=2

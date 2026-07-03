@@ -1,4 +1,0 @@
-macro:A
-sync:B
-micro:C
-sync:D

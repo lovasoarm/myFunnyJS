@@ -1,5 +1,0 @@
-auth:login
-auth:logout
-cart:add
-cart:remove
-cart:total

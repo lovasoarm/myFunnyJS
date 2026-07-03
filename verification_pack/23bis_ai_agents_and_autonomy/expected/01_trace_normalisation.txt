@@ -1,2 +1,0 @@
- agent id=<ID> START tool=fs.read
- agent id=<ID> OK tool=fs.read bytes=1024

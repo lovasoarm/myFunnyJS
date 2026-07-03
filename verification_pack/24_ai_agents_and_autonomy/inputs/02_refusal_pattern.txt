@@ -1,1 +1,0 @@
-2026-07-02T11:00:00.000Z agent id=abcdef01-2345-6789-abcd-ef0123456789 REFUSE reason=out_of_scope

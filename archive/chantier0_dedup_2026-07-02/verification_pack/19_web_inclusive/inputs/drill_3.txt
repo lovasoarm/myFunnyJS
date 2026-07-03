@@ -1,3 +1,0 @@
-a.png hello
-b.png 
-c.png 

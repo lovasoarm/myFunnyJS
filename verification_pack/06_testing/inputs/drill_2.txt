@@ -1,3 +1,0 @@
-compteur=0
-incr()
-compteur==1

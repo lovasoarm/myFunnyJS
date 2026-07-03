@@ -1,3 +1,0 @@
-SUB alice
-SUB bob
-EMIT ping

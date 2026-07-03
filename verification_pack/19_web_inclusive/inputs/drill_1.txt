@@ -1,3 +1,0 @@
-fr:hello=bonjour
-fr:bye=au revoir
-en:hello=hello

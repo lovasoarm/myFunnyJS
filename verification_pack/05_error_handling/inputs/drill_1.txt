@@ -1,4 +1,0 @@
-WARN cache miss
-ERROR db
-FATAL disk
-ERROR net

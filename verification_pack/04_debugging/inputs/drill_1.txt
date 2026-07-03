@@ -1,4 +1,0 @@
-INFO ok
-DEBUG start
-ERROR boom
-INFO end

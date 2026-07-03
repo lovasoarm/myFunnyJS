@@ -1,4 +1,0 @@
-LEFT 1 alice
-LEFT 2 bob
-RIGHT 1 90
-RIGHT 3 80

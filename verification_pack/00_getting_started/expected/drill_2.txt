@@ -1,2 +1,0 @@
-# expected output for drill 2
-# à définir par le mainteneur du module

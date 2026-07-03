@@ -1,4 +1,0 @@
-domain:order
-domain:user
-application:usecase
-infrastructure:db

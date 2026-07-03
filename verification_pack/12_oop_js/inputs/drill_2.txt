@@ -1,3 +1,0 @@
-root>ninja
-ninja>jonin
-jonin>hokage

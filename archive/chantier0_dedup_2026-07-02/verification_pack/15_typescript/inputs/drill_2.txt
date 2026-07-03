@@ -1,3 +1,0 @@
-x:any
-y:number
-z:any
