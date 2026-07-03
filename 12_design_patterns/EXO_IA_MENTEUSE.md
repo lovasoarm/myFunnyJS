@@ -9,21 +9,21 @@ Tu demandes à une IA générique d'écrire des tests pour `LabManager` (voir `0
 
 ```js
 describe("LabManager", () => {
-  it("stocke un lot correctement", () => {
-    const lab = new LabManager("Walter White", "Superlab");
-    lab.addBatch(99.1, 50);
-    expect(lab.batches.length).toBe(1);
-  });
+ it("stocke un lot correctement", () => {
+  const lab = new LabManager("Walter White", "Superlab");
+  lab.addBatch(99.1, 50);
+  expect(lab.batches.length).toBe(1);
+ });
 
-  it("démarre avec un labo vide", () => {
-    const lab = new LabManager("Jesse Pinkman", "RV");
-    expect(lab.batches.length).toBe(0);
-  });
+ it("démarre avec un labo vide", () => {
+  const lab = new LabManager("Jesse Pinkman", "RV");
+  expect(lab.batches.length).toBe(0);
+ });
 
-  it("garde le bon cook associé", () => {
-    const lab = new LabManager("Gustavo", "Los Pollos");
-    expect(lab.cook).toBe("Gustavo");
-  });
+ it("garde le bon cook associé", () => {
+  const lab = new LabManager("Gustavo", "Los Pollos");
+  expect(lab.cook).toBe("Gustavo");
+ });
 });
 ```
 

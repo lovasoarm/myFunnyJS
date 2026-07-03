@@ -1,7 +1,7 @@
 # PROMPTER COMME UN DEV, PAS COMME UN SHINOBI
 Temps de lecture ~11 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle répond quelque chose de plausible. Plausible n'est pas correct. Plausible c'est ce qui ressemble à correct sans l'être.
 
@@ -16,10 +16,10 @@ C'est exactement le problème de Reiner dans Attack on Titan quand il planifie u
 Un prompt efficace pour du code a 5 composants. Tu n'as pas toujours besoin des 5, mais tu dois savoir lesquels tu omets et pourquoi.
 
 ```
-[CONTEXTE]    ce que tu construis, le projet, les contraintes existantes
-[RÔLE]        qui doit répondre (un senior dev TS ? un expert sécurité ?)
-[TÂCHE]       ce que tu veux exactement
-[FORMAT]      comment tu veux la réponse (TypeScript, sans lib externe, commenté)
+[CONTEXTE]  ce que tu construis, le projet, les contraintes existantes
+[RÔLE]    qui doit répondre (un senior dev TS ? un expert sécurité ?)
+[TÂCHE]    ce que tu veux exactement
+[FORMAT]   comment tu veux la réponse (TypeScript, sans lib externe, commenté)
 [CONTRAINTES] ce qu'elle ne doit pas faire (pas de mutation, pas de try/catch global)
 ```
 
@@ -166,17 +166,17 @@ throw new LLMOutputError('OutputValidator', 'réponse tronquée à mi-JSON')
 
 // Mauvais :
 try {
-  ...
+ ...
 } catch(e) {
-  console.log(e)
+ console.log(e)
 }
 
 // Bon :
 try {
-  ...
+ ...
 } catch(e) {
-  logger.error({ error: e.message, context: 'validateOutput', model: 'claude-sonnet-4-6' })
-  throw new ValidationError('Sortie LLM invalide', { cause: e })
+ logger.error({ error: e.message, context: 'validateOutput', model: 'claude-sonnet-4-6' })
+ throw new ValidationError('Sortie LLM invalide', { cause: e })
 }
 
 Maintenant écris la fonction detectHallucination(output) en suivant ces patterns."
@@ -213,18 +213,18 @@ Le prompt parfait du premier coup n'existe pas. C'est un dialogue.
 
 ```
 Tour 1 : tu demandes une première version
-    |
-    v
+  |
+  v
 Tu lis, tu identifies ce qui manque ou ce qui est faux
-    |
-    v
+  |
+  v
 Tour 2 : tu corriges de façon ciblée
 --> "Ta version ne gère pas le cas où la réponse LLM est tronquée. Corrige ça seulement."
-    |
-    v
+  |
+  v
 Tu lis encore
-    |
-    v
+  |
+  v
 Tour 3 : tu finalises
 --> "Maintenant ajoute les types TypeScript stricts sur chaque paramètre et la valeur de retour."
 ```

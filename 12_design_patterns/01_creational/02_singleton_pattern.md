@@ -37,35 +37,35 @@ Le Singleton fixe ça : une seule connexion, partagée par tout le code qui en a
 
 ```js
 class LabManager {
-  constructor(cook, location) {
-    // si une instance existe déjà, on la retourne directement
-    if (LabManager._instance) {
-      return LabManager._instance;
-    }
-
-    // première instanciation : on construit vraiment
-    this.cook = cook;
-    this.location = location;
-    this.batches = [];
-    this.status = "operational";
-
-    // on stocke la référence sur la classe elle-même
-    LabManager._instance = this;
+ constructor(cook, location) {
+  // si une instance existe déjà, on la retourne directement
+  if (LabManager._instance) {
+   return LabManager._instance;
   }
 
-  addBatch(purity, quantity) {
-    this.batches.push({ purity, quantity, timestamp: Date.now() });
-    console.log(`Nouveau lot : ${purity}% : ${quantity}kg`);
-  }
+  // première instanciation : on construit vraiment
+  this.cook = cook;
+  this.location = location;
+  this.batches = [];
+  this.status = "operational";
 
-  getStatus() {
-    return `${this.cook} @ ${this.location} : ${this.batches.length} lots jutsus`;
-  }
+  // on stocke la référence sur la classe elle-même
+  LabManager._instance = this;
+ }
 
-  // réinitialiser l'instance (utile en test uniquement)
-  static reset() {
-    LabManager._instance = null;
-  }
+ addBatch(purity, quantity) {
+  this.batches.push({ purity, quantity, timestamp: Date.now() });
+  console.log(`Nouveau lot : ${purity}% : ${quantity}kg`);
+ }
+
+ getStatus() {
+  return `${this.cook} @ ${this.location} : ${this.batches.length} lots jutsus`;
+ }
+
+ // réinitialiser l'instance (utile en test uniquement)
+ static reset() {
+  LabManager._instance = null;
+ }
 }
 
 const lab1 = new LabManager("Walter White", "Superlab");
@@ -80,17 +80,17 @@ console.log(lab2.getStatus()); // voit aussi le lot ajouté via lab1
 ```
 
 ```
-new LabManager()   -->  _instance null ?
-                            |
-                    oui : on crée, on stocke
-                            |
-                    non : on retourne l'existante
+new LabManager()  --> _instance null ?
+              |
+          oui : on crée, on stocke
+              |
+          non : on retourne l'existante
 
-new LabManager()   -->  _instance existe ?
-                            |
-                    oui : on retourne la même
-                            |
-                    (le new est ignoré silencieusement)
+new LabManager()  --> _instance existe ?
+              |
+          oui : on retourne la même
+              |
+          (le new est ignoré silencieusement)
 ```
 
 ---
@@ -107,33 +107,33 @@ let _initialized = false;
 let _config = {};
 
 function init(overrides = {}) {
-  if (_initialized) {
-    // deuxième init : on refuse, on ne silencieuse pas
-    throw new Error(
-      "Config déjà initialisée : appeler init() deux fois c'est suspect",
-    );
-  }
+ if (_initialized) {
+  // deuxième init : on refuse, on ne silencieuse pas
+  throw new Error(
+   "Config déjà initialisée : appeler init() deux fois c'est suspect",
+  );
+ }
 
-  _config = {
-    env: process.env.NODE_ENV || "development",
-    logLevel: process.env.LOG_LEVEL || "info",
-    dbHost: process.env.DB_HOST || "localhost",
-    ...overrides,
-  };
+ _config = {
+  env: process.env.NODE_ENV || "development",
+  logLevel: process.env.LOG_LEVEL || "info",
+  dbHost: process.env.DB_HOST || "localhost",
+  ...overrides,
+ };
 
-  _initialized = true;
-  console.log(`Config initialisée pour l'env : ${_config.env}`);
+ _initialized = true;
+ console.log(`Config initialisée pour l'env : ${_config.env}`);
 }
 
 function get(key) {
-  if (!_initialized) {
-    throw new Error(`Config non initialisée. Appelle init() d'abord.`);
-  }
-  return _config[key];
+ if (!_initialized) {
+  throw new Error(`Config non initialisée. Appelle init() d'abord.`);
+ }
+ return _config[key];
 }
 
 function getAll() {
-  return { ..._config }; // copie : personne ne modifie l'interne
+ return { ..._config }; // copie : personne ne modifie l'interne
 }
 
 export { init, get, getAll };
@@ -166,33 +166,33 @@ let _level = "info";
 let _history = [];
 
 const logger = {
-  setLevel(lvl) {
-    if (!levels[lvl]) throw new Error(`Niveau inconnu : ${lvl}`);
-    _level = lvl;
-  },
+ setLevel(lvl) {
+  if (!levels[lvl]) throw new Error(`Niveau inconnu : ${lvl}`);
+  _level = lvl;
+ },
 
-  log(level, message, context = {}) {
-    if (levels[level] < levels[_level]) return; // filtré selon le niveau actuel
+ log(level, message, context = {}) {
+  if (levels[level] < levels[_level]) return; // filtré selon le niveau actuel
 
-    const entry = {
-      timestamp: new Date().toISOString(),
-      level,
-      message,
-      ...context,
-    };
+  const entry = {
+   timestamp: new Date().toISOString(),
+   level,
+   message,
+   ...context,
+  };
 
-    _history.push(entry);
-    console.log(JSON.stringify(entry));
-  },
+  _history.push(entry);
+  console.log(JSON.stringify(entry));
+ },
 
-  info: (msg, ctx) => logger.log("info", msg, ctx),
-  warn: (msg, ctx) => logger.log("warn", msg, ctx),
-  error: (msg, ctx) => logger.log("error", msg, ctx),
+ info: (msg, ctx) => logger.log("info", msg, ctx),
+ warn: (msg, ctx) => logger.log("warn", msg, ctx),
+ error: (msg, ctx) => logger.log("error", msg, ctx),
 
-  getHistory: () => [..._history], // copie défensive
-  clear: () => {
-    _history = [];
-  }, // pour les tests
+ getHistory: () => [..._history], // copie défensive
+ clear: () => {
+  _history = [];
+ }, // pour les tests
 };
 
 // on exporte l'objet directement : c'est le singleton
@@ -222,10 +222,10 @@ logger.getHistory(); // contient les deux entrées précédentes
 import userState from "./userState.js"; // singleton
 
 function processPayment(amount) {
-  // cette fonction modifie le state global sans que l'appelant le sache
-  userState.set("lastPayment", amount);
-  userState.set("sessionDirty", true);
-  // et si une autre fonction lit userState.sessionDirty au mauvais moment ?
+ // cette fonction modifie le state global sans que l'appelant le sache
+ userState.set("lastPayment", amount);
+ userState.set("sessionDirty", true);
+ // et si une autre fonction lit userState.sessionDirty au mauvais moment ?
 }
 ```
 
@@ -267,23 +267,23 @@ Le Singleton est souvent le premier réflexe. L'injection de dépendances est so
 ```js
 // singleton : couplage fort, difficile à tester
 class PlayerService {
-  getTopScorer() {
-    // dbConnection est global, impossible à remplacer en test
-    return dbConnection.query(
-      "SELECT * FROM players ORDER BY goals DESC LIMIT 1",
-    );
-  }
+ getTopScorer() {
+  // dbConnection est global, impossible à remplacer en test
+  return dbConnection.query(
+   "SELECT * FROM players ORDER BY goals DESC LIMIT 1",
+  );
+ }
 }
 
 // injection : découplé, testable, flexible
 class PlayerService {
-  constructor(db) {
-    this.db = db; // injecté : peut être le vrai ou un mock
-  }
+ constructor(db) {
+  this.db = db; // injecté : peut être le vrai ou un mock
+ }
 
-  getTopScorer() {
-    return this.db.query("SELECT * FROM players ORDER BY goals DESC LIMIT 1");
-  }
+ getTopScorer() {
+  return this.db.query("SELECT * FROM players ORDER BY goals DESC LIMIT 1");
+ }
 }
 
 // en prod : vrai DB
@@ -291,7 +291,7 @@ const service = new PlayerService(realDb);
 
 // en test : mock DB
 const service = new PlayerService({
-  query: () => [{ name: "Mbappé", goals: 32 }],
+ query: () => [{ name: "Mbappé", goals: 32 }],
 });
 ```
 
@@ -344,13 +344,13 @@ Voici un Singleton de cache partagé :
 
 ```js
 const cache = {
-  _data: {},
-  set(key, value) {
-    this._data[key] = value;
-  },
-  get(key) {
-    return this._data[key];
-  },
+ _data: {},
+ set(key, value) {
+  this._data[key] = value;
+ },
+ get(key) {
+  return this._data[key];
+ },
 };
 export default cache;
 ```

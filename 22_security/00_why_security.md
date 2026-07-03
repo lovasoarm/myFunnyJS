@@ -3,7 +3,7 @@
 > Ce module reutilise : erreurs (05_error_handling), edge cases (29_edge_cases).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu n'as pas besoin d'être attaqué par un hacker en cagoule dans un sous-sol. Il suffit d'un script automatisé qui scanne le web 24/7 à la recherche de failles connues, et qui tombe sur ton input non sanitisé (nettoyé/validé). Tu ne te fais pas hacker parce que tu es une cible importante. Tu te fais hacker parce que ton code laissait la porte ouverte.
 
@@ -34,11 +34,11 @@ L'entreprise entière souffre quand une fuite de données survient : au-delà de
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-champ de texte affiché sans échappement                  --> XSS                --> script malveillant exécuté chez la victime
-requête SQL construite par concaténation                  --> injection SQL      --> accès non autorisé à la DB
-mot de passe stocké directement                            --> pas de hashing     --> fuite catastrophique en cas de breach
-requête cross-origin mal configurée                          --> CORS              --> accès non désiré ou bloqué à tort
-objet construit depuis un input JSON shinobi               --> prototype pollution --> comportement global corrompu
+champ de texte affiché sans échappement         --> XSS        --> script malveillant exécuté chez la victime
+requête SQL construite par concaténation         --> injection SQL   --> accès non autorisé à la DB
+mot de passe stocké directement              --> pas de hashing   --> fuite catastrophique en cas de breach
+requête cross-origin mal configurée             --> CORS       --> accès non désiré ou bloqué à tort
+objet construit depuis un input JSON shinobi        --> prototype pollution --> comportement global corrompu
 ```
 
 La sécurité n'est jamais isolée dans un coin du système : elle traverse chaque frontière où une donnée externe entre dans ton application, ce qui veut dire qu'elle concerne potentiellement chaque fichier qui traite une requête shinobi.

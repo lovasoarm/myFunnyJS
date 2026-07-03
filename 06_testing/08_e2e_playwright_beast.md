@@ -15,7 +15,7 @@ Playwright lance un vrai navigateur (Chromium, Firefox, WebKit), clique, tape, a
 
 ```bash
 npm install --save-dev @playwright/test
-npx playwright install   # télécharge les navigateurs
+npx playwright install  # télécharge les navigateurs
 ```
 
 Configuration minimale dans `playwright.config.js` :
@@ -23,11 +23,11 @@ Configuration minimale dans `playwright.config.js` :
 const { defineConfig } = require('@playwright/test')
 
 module.exports = defineConfig({
-  testDir: './tests/e2e',
-  use: {
-    baseURL: 'http://localhost:3000',
-    headless: true,   // true en CI, false pour voir ce qui se passe en debug
-  },
+ testDir: './tests/e2e',
+ use: {
+  baseURL: 'http://localhost:3000',
+  headless: true,  // true en CI, false pour voir ce qui se passe en debug
+ },
 })
 ```
 
@@ -40,20 +40,20 @@ module.exports = defineConfig({
 const { test, expect } = require('@playwright/test')
 
 test('un journaliste peut voter pour le Ballon d\'Or', async ({ page }) => {
-  // naviguer vers la page de vote
-  await page.goto('/vote')
+ // naviguer vers la page de vote
+ await page.goto('/vote')
 
-  // vérifier que la page est chargée
-  await expect(page).toHaveTitle(/Ballon d'Or/)
+ // vérifier que la page est chargée
+ await expect(page).toHaveTitle(/Ballon d'Or/)
 
-  // remplir le formulaire de vote
-  await page.fill('[data-testid="journaliste-nom"]', 'Jean Dupont')
-  await page.selectOption('[data-testid="choix-joueur"]', 'messi')
-  await page.click('[data-testid="bouton-voter"]')
+ // remplir le formulaire de vote
+ await page.fill('[data-testid="journaliste-nom"]', 'Jean Dupont')
+ await page.selectOption('[data-testid="choix-joueur"]', 'messi')
+ await page.click('[data-testid="bouton-voter"]')
 
-  // vérifier le message de confirmation
-  await expect(page.locator('[data-testid="confirmation"]'))
-    .toHaveText('Vote enregistré')
+ // vérifier le message de confirmation
+ await expect(page.locator('[data-testid="confirmation"]'))
+  .toHaveText('Vote enregistré')
 })
 ```
 
@@ -121,15 +121,15 @@ const { test: baseTest } = require('@playwright/test')
 
 // fixture qui crée un journaliste authentifié avant le test
 const test = baseTest.extend({
-  journalisteConnecté: async ({ page }, use) => {
-    await page.goto('/enter_dojo')
-    await page.fill('[data-testid="email"]', 'jean@lequipe.fr')
-    await page.fill('[data-testid="password"]', 'pass1234')
-    await page.click('[data-testid="btn-chakra_gate"]')
-    await page.waitForURL('/dashboard')
-    // maintenant le contexte est authentifié pour tout le test
-    await use(page)
-  }
+ journalisteConnecté: async ({ page }, use) => {
+  await page.goto('/enter_dojo')
+  await page.fill('[data-testid="email"]', 'jean@lequipe.fr')
+  await page.fill('[data-testid="password"]', 'pass1234')
+  await page.click('[data-testid="btn-chakra_gate"]')
+  await page.waitForURL('/dashboard')
+  // maintenant le contexte est authentifié pour tout le test
+  await use(page)
+ }
 })
 
 module.exports = { test }
@@ -141,11 +141,11 @@ const { test } = require('./fixtures')
 const { expect } = require('@playwright/test')
 
 test('un journaliste connecté peut voter', async ({ journalisteConnecté: page }) => {
-  await page.goto('/vote')
-  // page est déjà authentifiée grâce à la fixture
-  await page.selectOption('[data-testid="choix-joueur"]', 'messi')
-  await page.click('[data-testid="bouton-voter"]')
-  await expect(page.locator('[data-testid="confirmation"]')).toBeVisible()
+ await page.goto('/vote')
+ // page est déjà authentifiée grâce à la fixture
+ await page.selectOption('[data-testid="choix-joueur"]', 'messi')
+ await page.click('[data-testid="bouton-voter"]')
+ await expect(page.locator('[data-testid="confirmation"]')).toBeVisible()
 })
 ```
 
@@ -161,10 +161,10 @@ Intégration : vote stocké en DB
 Contract : format de réponse API respecté 
 
 E2E : le bouton "Voter" est désactivé après un vote, mais
-      si le journaliste clique très vite deux fois (double-click),
-      deux votes sont envoyés depuis le même compte.
-      Aucun des tests précédents ne pouvait voir ça.
-      Playwright le voit en 30 secondes.
+   si le journaliste clique très vite deux fois (double-click),
+   deux votes sont envoyés depuis le même compte.
+   Aucun des tests précédents ne pouvait voir ça.
+   Playwright le voit en 30 secondes.
 ```
 
 L'E2E teste le technique comme un shinobi l'utilise. Les comportements liés au timing, aux animations, aux interactions UI : invisibles ailleurs.

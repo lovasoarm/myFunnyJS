@@ -4,10 +4,10 @@ Temps de lecture ~14 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-TypeScript     : v5+ (installé comme dépendance locale via npm install)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+TypeScript   : v5+ (installé comme dépendance locale via npm install)
+Variables env : aucune
 Outils externes: aucun
 
 # Installation
@@ -49,10 +49,10 @@ $ npm run start
 [METRICS] events_total: 1420 | errors_total: 3 | p99_latency_ms: 187
 
 $ npm test
-PASS  tests/pipeline.test.ts (22 tests)
-PASS  tests/metrics.test.ts (14 tests)
-PASS  tests/tracing.test.ts (12 tests)
-PASS  tests/alerting.test.ts (10 tests)
+PASS tests/pipeline.test.ts (22 tests)
+PASS tests/metrics.test.ts (14 tests)
+PASS tests/tracing.test.ts (12 tests)
+PASS tests/alerting.test.ts (10 tests)
 ```
 
 Ce projet est en TypeScript. Le pipeline d'ingestion d'événements est typé de bout en bout. C'est aussi le premier projet avec de l'observabilité réelle : logging structuré, tracing distribué simulé, métriques, alertes, Sentry.
@@ -82,31 +82,31 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 ### Résumé visuel
 
 ```
-26_observability  --> src/observability/ (logger, tracer, metrics, sentry)
-25_scalability    --> src/queue/ (message queue), src/balancer/ (round-robin simulé)
-15_typescript     --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
+26_observability --> src/observability/ (logger, tracer, metrics, sentry)
+25_scalability  --> src/queue/ (message queue), src/balancer/ (round-robin simulé)
+15_typescript   --> generics Event<T>, Pipeline<I,O>, utility types sur les structs
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 MatchSimulator (génère des events) 
-  --> IngestEndpoint POST /api/events
-        --> rateLimiter.check(req)
-        --> tracer.startSpan('ingest', reqId)
-        --> queue.push(event)               // met en file, retourne immédiatement
-  --> QueueWorker (tourne en parallèle, dépile la queue)
-        --> roundRobin.next()                // sélectionne le worker suivant (index circulaire)
-        --> pipeline.process(event)          // le worker sélectionné traite l'event
-              --> validator.validate(event) // types TypeScript + validation runtime
-              --> enricher.enrich(event)    // ajoute xG calculé, possession lissée
-              --> store.save(event)         // sauvegarde en mémoire
-              --> broadcaster.send(event)   // pousse aux clients connectés (SSE)
-        --> tracer.endSpan('process')
-        --> metrics.record(event)           // compteurs, histogrammes
-  --> MetricsCollector (tourne en arrière-plan)
-        --> alerting.check(metrics)         // seuils dépassés ?
-        --> sentry.capture(exception)       // si exception non catchée
+ --> IngestEndpoint POST /api/events
+    --> rateLimiter.check(req)
+    --> tracer.startSpan('ingest', reqId)
+    --> queue.push(event)        // met en file, retourne immédiatement
+ --> QueueWorker (tourne en parallèle, dépile la queue)
+    --> roundRobin.next()        // sélectionne le worker suivant (index circulaire)
+    --> pipeline.process(event)     // le worker sélectionné traite l'event
+       --> validator.validate(event) // types TypeScript + validation runtime
+       --> enricher.enrich(event)  // ajoute xG calculé, possession lissée
+       --> store.save(event)     // sauvegarde en mémoire
+       --> broadcaster.send(event)  // pousse aux clients connectés (SSE)
+    --> tracer.endSpan('process')
+    --> metrics.record(event)      // compteurs, histogrammes
+ --> MetricsCollector (tourne en arrière-plan)
+    --> alerting.check(metrics)     // seuils dépassés ?
+    --> sentry.capture(exception)    // si exception non catchée
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
@@ -114,34 +114,34 @@ MatchSimulator (génère des events)
 ```
 src/
 ├── observability/
-│   ├── logger.ts
-│   ├── tracer.ts
-│   ├── metrics.ts
-│   ├── alerting.ts
-│   └── sentry.ts
+│  ├── logger.ts
+│  ├── tracer.ts
+│  ├── metrics.ts
+│  ├── alerting.ts
+│  └── sentry.ts
 │
 ├── pipeline/
-│   ├── validator.ts
-│   ├── enricher.ts
-│   ├── store.ts
-│   └── broadcaster.ts
+│  ├── validator.ts
+│  ├── enricher.ts
+│  ├── store.ts
+│  └── broadcaster.ts
 │
 ├── queue/
-│   └── eventQueue.ts
+│  └── eventQueue.ts
 │
 ├── balancer/
-│   └── roundRobin.ts
+│  └── roundRobin.ts
 │
 ├── middleware/
-│   ├── rateLimiter.ts
-│   └── errorHandler.ts
+│  ├── rateLimiter.ts
+│  └── errorHandler.ts
 │
 ├── types/
-│   ├── events.ts
-│   └── pipeline.ts
+│  ├── events.ts
+│  └── pipeline.ts
 │
 ├── simulator/
-│   └── matchSimulator.ts
+│  └── matchSimulator.ts
 │
 └── server.ts
 
@@ -198,20 +198,20 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/types/         --> les types d'abord, aucune logique, zéro dépendance
-2. src/observability/logger.ts   --> la première brique, utilisée partout ensuite
-3. src/observability/metrics.ts  --> indépendant du pipeline
-4. src/observability/tracer.ts   --> dépend du logger
-5. src/queue/eventQueue.ts        --> indépendant du reste
-6. src/pipeline/validator.ts      --> dépend des types
-7. src/pipeline/enricher.ts       --> dépend de validator
-8. src/pipeline/store.ts          --> dépend des types
-9. src/pipeline/broadcaster.ts    --> dépend des types
+1. src/types/     --> les types d'abord, aucune logique, zéro dépendance
+2. src/observability/logger.ts  --> la première brique, utilisée partout ensuite
+3. src/observability/metrics.ts --> indépendant du pipeline
+4. src/observability/tracer.ts  --> dépend du logger
+5. src/queue/eventQueue.ts    --> indépendant du reste
+6. src/pipeline/validator.ts   --> dépend des types
+7. src/pipeline/enricher.ts    --> dépend de validator
+8. src/pipeline/store.ts     --> dépend des types
+9. src/pipeline/broadcaster.ts  --> dépend des types
 10. src/observability/alerting.ts --> dépend de metrics
-11. src/balancer/roundRobin.ts    --> indépendant
-12. src/middleware/               --> dépend du logger
-13. src/simulator/                --> dépend des types + du serveur
-14. src/server.ts                 --> branche tout ensemble
+11. src/balancer/roundRobin.ts  --> indépendant
+12. src/middleware/        --> dépend du logger
+13. src/simulator/        --> dépend des types + du serveur
+14. src/server.ts         --> branche tout ensemble
 ```
 
 ## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
@@ -240,36 +240,36 @@ import { validateEvent } from '../src/pipeline/validator';
 import { GoalEvent } from '../src/types/events';
 
 describe('validator', () => {
-  test('accepte un GoalEvent valide', () => {
-    const raw = {
-      type: 'goal',
-      matchId: 'PSG-OM',
-      player: 'Mbappé',
-      minute: 32,
-      xG: 0.73,
-    };
+ test('accepte un GoalEvent valide', () => {
+  const raw = {
+   type: 'goal',
+   matchId: 'PSG-OM',
+   player: 'Mbappé',
+   minute: 32,
+   xG: 0.73,
+  };
 
-    const event = validateEvent<GoalEvent>(raw);
-    expect(event.type).toBe('goal');
-    expect(event.xG).toBe(0.73);
-  });
+  const event = validateEvent<GoalEvent>(raw);
+  expect(event.type).toBe('goal');
+  expect(event.xG).toBe(0.73);
+ });
 
-  test('rejette un event avec xG en string', () => {
-    const raw = { type: 'goal', matchId: 'PSG-OM', player: 'X', minute: 10, xG: '0.5' };
-    expect(() => validateEvent(raw)).toThrow();
-  });
+ test('rejette un event avec xG en string', () => {
+  const raw = { type: 'goal', matchId: 'PSG-OM', player: 'X', minute: 10, xG: '0.5' };
+  expect(() => validateEvent(raw)).toThrow();
+ });
 });
 
 // tests/metrics.test.ts
 import { MetricsCollector } from '../src/observability/metrics';
 
 describe('metrics', () => {
-  test('events_total s\'incrémente à chaque event enregistré', () => {
-    const m = new MetricsCollector();
-    m.increment('events_total');
-    m.increment('events_total');
-    expect(m.snapshot().events_total).toBe(2);
-  });
+ test('events_total s\'incrémente à chaque event enregistré', () => {
+  const m = new MetricsCollector();
+  m.increment('events_total');
+  m.increment('events_total');
+  expect(m.snapshot().events_total).toBe(2);
+ });
 });
 ```
 
@@ -319,15 +319,15 @@ est O(1) (juste ajouter en queue). Le traitement tourne à son rythme.
 
 ## Alternatives considérées
 - Traitement synchrone dans le handler de la requête : rejeté car bloquant.
-  Un event lent bloque tous ceux qui arrivent derrière.
+ Un event lent bloque tous ceux qui arrivent derrière.
 - Une queue externe (Redis, RabbitMQ) : rejeté pour ce projet (hors scope, ajoute
-  une dépendance infra). La Map en mémoire suffit pour la simulation.
+ une dépendance infra). La Map en mémoire suffit pour la simulation.
 
 ## Conséquences
 - Si la queue est pleine : les events sont rejetés. C'est un choix délibéré
-  (shed load) plutôt que de faire crasher le serveur.
+ (shed load) plutôt que de faire crasher le serveur.
 - Le délai entre ingestion et affichage peut augmenter sous charge. C'est visible
-  dans les métriques de latence.
+ dans les métriques de latence.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI

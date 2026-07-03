@@ -1,7 +1,7 @@
 # CSRF ET CORS
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Deux acronymes. Deux problèmes complètement différents. Un seul point commun : si tu les confonds ou tu les misconfigures (mal configurer), tu ouvres une faille que tu ne verras pas venir.
 
@@ -21,11 +21,11 @@ Les navigateurs envoient automatiquement les cookies de session avec chaque requ
 
 ```
 Shinobi --> se connecte sur bank.com --> reçoit un cookie de session
-Attaquant   --> envoie un email avec un lien vers evil.com
+Attaquant  --> envoie un email avec un lien vers evil.com
 Shinobi --> visite evil.com (le cookie bank.com est toujours actif)
-evil.com    --> déclenche un formulaire POST vers bank.com/transfer?to=attaquant&amount=5000
-Navigateur  --> envoie la requête AVEC le cookie bank.com (automatique)
-bank.com    --> voit un cookie valide --> exécute le transfert
+evil.com  --> déclenche un formulaire POST vers bank.com/transfer?to=attaquant&amount=5000
+Navigateur --> envoie la requête AVEC le cookie bank.com (automatique)
+bank.com  --> voit un cookie valide --> exécute le transfert
 ```
 
 ### Exemple qui casse
@@ -34,10 +34,10 @@ bank.com    --> voit un cookie valide --> exécute le transfert
 <!-- evil.com : cette page est invisible, chargée automatiquement -->
 <!-- Le formulaire se soumet dès le chargement de la page -->
 <body onload="document.getElementById('attack').submit()">
-  <form id="attack" action="https://bank.com/transfer" method="POST">
-    <input type="hidden" name="to" value="attaquant123">
-    <input type="hidden" name="amount" value="5000">
-  </form>
+ <form id="attack" action="https://bank.com/transfer" method="POST">
+  <input type="hidden" name="to" value="attaquant123">
+  <input type="hidden" name="amount" value="5000">
+ </form>
 </body>
 <!-- Le navigateur envoie le cookie bank.com avec ce POST : l'shinobi a transféré 5000€ sans le savoir -->
 ```
@@ -50,13 +50,13 @@ const crypto = require('crypto');
 
 // Middleware qui génère et stocke le token dans la session
 app.use((req, res, next) => {
-  if (!req.session.csrfToken) {
-    // token aléatoire de 32 octets en hex : imprévisible par l'attaquant
-    req.session.csrfToken = crypto.randomBytes(32).toString('hex');
-  }
-  // exposer le token pour que le frontend puisse l'inclure dans les requêtes
-  res.locals.csrfToken = req.session.csrfToken;
-  next();
+ if (!req.session.csrfToken) {
+  // token aléatoire de 32 octets en hex : imprévisible par l'attaquant
+  req.session.csrfToken = crypto.randomBytes(32).toString('hex');
+ }
+ // exposer le token pour que le frontend puisse l'inclure dans les requêtes
+ res.locals.csrfToken = req.session.csrfToken;
+ next();
 });
 
 // Sur chaque formulaire côté HTML : inclure le token dans un champ caché
@@ -64,23 +64,23 @@ app.use((req, res, next) => {
 
 // Middleware de vérification sur les routes qui modifient l'état
 const verifyCsrf = (req, res, next) => {
-  const tokenFromRequest = req.body._csrf || req.headers['x-csrf-token'];
-  const tokenFromSession = req.session.csrfToken;
+ const tokenFromRequest = req.body._csrf || req.headers['x-csrf-token'];
+ const tokenFromSession = req.session.csrfToken;
 
-  // comparaison en temps constant pour éviter les timing attacks (attaques par mesure du temps de réponse)
-  const valid = crypto.timingSafeEqual(
-    Buffer.from(tokenFromRequest || '', 'utf8'),
-    Buffer.from(tokenFromSession || '', 'utf8')
-  );
+ // comparaison en temps constant pour éviter les timing attacks (attaques par mesure du temps de réponse)
+ const valid = crypto.timingSafeEqual(
+  Buffer.from(tokenFromRequest || '', 'utf8'),
+  Buffer.from(tokenFromSession || '', 'utf8')
+ );
 
-  if (!valid) return res.status(403).json({ error: 'CSRF token invalide' });
-  next();
+ if (!valid) return res.status(403).json({ error: 'CSRF token invalide' });
+ next();
 };
 
 // Le POST de transfert est maintenant protégé
 app.post('/transfer', verifyCsrf, (req, res) => {
-  // evil.com ne connaît pas le csrfToken, sa requête est rejetée
-  processTransfer(req.body);
+ // evil.com ne connaît pas le csrfToken, sa requête est rejetée
+ processTransfer(req.body);
 });
 ```
 
@@ -89,11 +89,11 @@ app.post('/transfer', verifyCsrf, (req, res) => {
 ```js
 // Option de cookie qui empêche le navigateur de l'envoyer depuis d'autres sites
 res.cookie('sessionId', token, {
-  httpOnly: true,   // JS ne peut pas lire ce cookie (protection contre XSS)
-  secure: true,     // cookie envoyé uniquement en HTTPS
-  sameSite: 'Strict' // JAMAIS envoyé depuis un autre site : protection CSRF native
-  // sameSite: 'Lax' : envoyé uniquement sur les navigations GET (moins strict, mais compatible OAuth)
-  // sameSite: 'None' : toujours envoyé, mais secure obligatoire
+ httpOnly: true,  // JS ne peut pas lire ce cookie (protection contre XSS)
+ secure: true,   // cookie envoyé uniquement en HTTPS
+ sameSite: 'Strict' // JAMAIS envoyé depuis un autre site : protection CSRF native
+ // sameSite: 'Lax' : envoyé uniquement sur les navigations GET (moins strict, mais compatible OAuth)
+ // sameSite: 'None' : toujours envoyé, mais secure obligatoire
 });
 ```
 
@@ -114,24 +114,24 @@ C'est une protection, pas une attaque. Le navigateur fait ça pour toi.
 Sans CORS, un script sur `evil.com` pourrait faire des requêtes vers ton API en utilisant les credentials (identifiants : cookies, headers d'auth) de l'shinobi et lire les réponses.
 
 ```
-Même origine (same-origin)   -->  même protocole + même domaine + même port --> autorisé
-Origines différentes (cross-origin)  -->  tout autre cas --> bloqué par défaut
+Même origine (same-origin)  --> même protocole + même domaine + même port --> autorisé
+Origines différentes (cross-origin) --> tout autre cas --> bloqué par défaut
 ```
 
 ```
-https://app.com   vs  https://api.app.com   -->  cross-origin (sous-domaine différent)
-https://app.com   vs  http://app.com        -->  cross-origin (protocole différent)
-https://app.com   vs  https://app.com:3001  -->  cross-origin (port différent)
+https://app.com  vs https://api.app.com  --> cross-origin (sous-domaine différent)
+https://app.com  vs http://app.com    --> cross-origin (protocole différent)
+https://app.com  vs https://app.com:3001 --> cross-origin (port différent)
 ```
 
 ### Le flux de vérification
 
 ```
 Navigateur --> veut faire un fetch vers une autre origine
-           --> envoie d'abord une "preflight request" (requête de vérification préalable) OPTIONS
-           --> le serveur répond avec les headers CORS qui indiquent ce qui est autorisé
-           --> si OK, le navigateur envoie la vraie requête
-           --> si non OK, le navigateur bloque et renvoie une erreur CORS à JS
+      --> envoie d'abord une "preflight request" (requête de vérification préalable) OPTIONS
+      --> le serveur répond avec les headers CORS qui indiquent ce qui est autorisé
+      --> si OK, le navigateur envoie la vraie requête
+      --> si non OK, le navigateur bloque et renvoie une erreur CORS à JS
 ```
 
 Les requêtes "simples" (GET/POST avec certains content-types) passent sans preflight, mais le navigateur vérifie quand même les headers CORS sur la réponse avant de l'exposer à JS.
@@ -146,27 +146,27 @@ app.use(cors()); // équivalent à Access-Control-Allow-Origin: * --> n'importe 
 
 // BON : liste blanche d'origines autorisées
 const allowedOrigins = [
-  'https://app.example.com',    // ton front en prod
-  'https://staging.example.com' // ton front en staging
+ 'https://app.example.com',  // ton front en prod
+ 'https://staging.example.com' // ton front en staging
 ];
 
 // En dev uniquement : ajouter localhost
 if (process.env.NODE_ENV !== 'production') {
-  allowedOrigins.push('http://localhost:3000');
+ allowedOrigins.push('http://localhost:3000');
 }
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // origin est undefined pour les requêtes directes (Postman, curl)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // autorisé
-    } else {
-      callback(new Error(`Origine non autorisée : ${origin}`)); // bloqué
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // verbes HTTP autorisés
-  allowedHeaders: ['Content-Type', 'Authorization'],   // headers que le client peut envoyer
-  credentials: true, // autorise l'envoi des cookies cross-origin (nécessite une origin précise, pas *)
+ origin: (origin, callback) => {
+  // origin est undefined pour les requêtes directes (Postman, curl)
+  if (!origin || allowedOrigins.includes(origin)) {
+   callback(null, true); // autorisé
+  } else {
+   callback(new Error(`Origine non autorisée : ${origin}`)); // bloqué
+  }
+ },
+ methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // verbes HTTP autorisés
+ allowedHeaders: ['Content-Type', 'Authorization'],  // headers que le client peut envoyer
+ credentials: true, // autorise l'envoi des cookies cross-origin (nécessite une origin précise, pas *)
 }));
 ```
 
@@ -175,14 +175,14 @@ app.use(cors({
 ```js
 // Mauvais combo : credentials avec wildcard --> le navigateur bloque de toute façon
 app.use(cors({
-  origin: '*',       // wildcard
-  credentials: true  // --> ERREUR : le navigateur refuse ce combo
+ origin: '*',    // wildcard
+ credentials: true // --> ERREUR : le navigateur refuse ce combo
 }));
 
 // Correct : une origin précise avec credentials
 app.use(cors({
-  origin: 'https://app.example.com', // précise
-  credentials: true                   // maintenant valide
+ origin: 'https://app.example.com', // précise
+ credentials: true          // maintenant valide
 }));
 ```
 
@@ -191,8 +191,8 @@ app.use(cors({
 CORS est une protection navigateur. `curl` et les requêtes serveur-à-serveur ignorent CORS. Si ton API a des données sensibles, CORS ne suffit pas : il faut aussi une authentification côté serveur.
 
 ```
-CORS   -->  empêche un script JS cross-origin de LIRE ta réponse
-Auth   -->  empêche n'importe qui d'appeler ton API sans permission
+CORS  --> empêche un script JS cross-origin de LIRE ta réponse
+Auth  --> empêche n'importe qui d'appeler ton API sans permission
 Les deux sont nécessaires, ils protègent des choses différentes.
 ```
 
@@ -201,8 +201,8 @@ Les deux sont nécessaires, ils protègent des choses différentes.
 ## 3) CSRF VS CORS : LA DIFFÉRENCE EN UNE LIGNE
 
 ```
-CSRF  -->  l'attaquant déclenche une requête à ta place (il n'a pas besoin de lire la réponse)
-CORS  -->  l'attaquant essaie de LIRE la réponse d'une requête cross-origin
+CSRF --> l'attaquant déclenche une requête à ta place (il n'a pas besoin de lire la réponse)
+CORS --> l'attaquant essaie de LIRE la réponse d'une requête cross-origin
 ```
 
 Un attaquant CSRF se fout de lire la réponse : il veut juste que l'action s'exécute (virement, suppression de compte, changement de mot de passe). CORS ne protège pas contre ça.

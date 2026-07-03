@@ -11,21 +11,21 @@ Au début ça semble bizarre. La cérémonie du Ballon d'Or a ses règles : tu s
 ## 1) LE CYCLE RED-GREEN-REFACTOR
 
 ```
-RED     →  écrire un test qui décrit le comportement voulu
-           lancer → il échoue (normal : le code n'existe pas encore)
+RED   → écrire un test qui décrit le comportement voulu
+      lancer → il échoue (normal : le code n'existe pas encore)
 
-GREEN   →  écrire le minimum de code pour que le test passe
-           pas d'optimisation, pas de beauté : juste le strict minimum
+GREEN  → écrire le minimum de code pour que le test passe
+      pas d'optimisation, pas de beauté : juste le strict minimum
 
 REFACTOR → nettoyer le code sans casser les tests
-           les tests sont verts avant et après le refacto
+      les tests sont verts avant et après le refacto
 ```
 
 ```
-  RED ──→ GREEN ──→ REFACTOR
-   ↑                   │
-   └───────────────────┘
-         cycle suivant
+ RED ──→ GREEN ──→ REFACTOR
+  ↑          │
+  └───────────────────┘
+     cycle suivant
 ```
 
 Chaque nouvelle feature : un nouveau cycle. Chaque bug corrigé : commencer par écrire le test qui reproduit le bug avant de le fixer.
@@ -44,11 +44,11 @@ On va coder le système de vote du Ballon d'Or. Pas tout d'un coup : test par te
 const { creerVotant } = require('./ballonDor')
 
 it('crée un votant avec son pays et son journal', () => {
-  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
-  expect(votant.pays).toBe('France')
-  expect(votant.nom).toBe('Jean Dupont')
-  expect(votant.journal).toBe('L\'Équipe')
-  expect(votant.aVoté).toBe(false)
+ const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
+ expect(votant.pays).toBe('France')
+ expect(votant.nom).toBe('Jean Dupont')
+ expect(votant.journal).toBe('L\'Équipe')
+ expect(votant.aVoté).toBe(false)
 })
 ```
 
@@ -58,7 +58,7 @@ On lance. Ça échoue. `creerVotant` n'existe pas. **C'est normal. C'est le but.
 ```js
 // ballonDor.js
 function creerVotant(pays, nom, journal) {
-  return { pays, nom, journal, aVoté: false }
+ return { pays, nom, journal, aVoté: false }
 }
 module.exports = { creerVotant }
 ```
@@ -76,20 +76,20 @@ On lance. Vert.
 const { creerVotant, voter } = require('./ballonDor')
 
 it('enregistre le vote et marque le votant comme ayant voté', () => {
-  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
-  const résultat = voter(votant, 'Messi')
-  expect(résultat.choix).toBe('Messi')
-  expect(résultat.votant.aVoté).toBe(true)
+ const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
+ const résultat = voter(votant, 'Messi')
+ expect(résultat.choix).toBe('Messi')
+ expect(résultat.votant.aVoté).toBe(true)
 })
 ```
 
 **GREEN** :
 ```js
 function voter(votant, joueur) {
-  return {
-    choix: joueur,
-    votant: { ...votant, aVoté: true }
-  }
+ return {
+  choix: joueur,
+  votant: { ...votant, aVoté: true }
+ }
 }
 ```
 
@@ -102,21 +102,21 @@ function voter(votant, joueur) {
 **RED** :
 ```js
 it('rejette un double vote : un journaliste ne vote qu\'une fois', () => {
-  const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
-  const votantAyantVoté = voter(votant, 'Messi').votant
+ const votant = creerVotant('France', 'Jean Dupont', 'L\'Équipe')
+ const votantAyantVoté = voter(votant, 'Messi').votant
 
-  expect(() => voter(votantAyantVoté, 'Vinicius')).toThrow('Votant a déjà voté')
+ expect(() => voter(votantAyantVoté, 'Vinicius')).toThrow('Votant a déjà voté')
 })
 ```
 
 **GREEN** :
 ```js
 function voter(votant, joueur) {
-  if (votant.aVoté) throw new Error('Votant a déjà voté')
-  return {
-    choix: joueur,
-    votant: { ...votant, aVoté: true }
-  }
+ if (votant.aVoté) throw new Error('Votant a déjà voté')
+ return {
+  choix: joueur,
+  votant: { ...votant, aVoté: true }
+ }
 }
 ```
 
@@ -147,9 +147,9 @@ Bug signalé par la FIFA : "un vote est accepté même si le nom du joueur est v
 **RED** : reproduis le bug d'abord :
 ```js
 it('rejette un vote avec un joueur vide ou null', () => {
-  const votant = creerVotant('France', 'Jean', 'L\'Équipe')
-  expect(() => voter(votant, '')).toThrow('Joueur requis')
-  expect(() => voter(votant, null)).toThrow('Joueur requis')
+ const votant = creerVotant('France', 'Jean', 'L\'Équipe')
+ expect(() => voter(votant, '')).toThrow('Joueur requis')
+ expect(() => voter(votant, null)).toThrow('Joueur requis')
 })
 ```
 
@@ -158,12 +158,12 @@ Test rouge : confirme que le bug existe.
 **GREEN** :
 ```js
 function voter(votant, joueur) {
-  if (votant.aVoté) throw new Error('Votant a déjà voté')
-  if (!joueur) throw new Error('Joueur requis')
-  return {
-    choix: joueur,
-    votant: { ...votant, aVoté: true }
-  }
+ if (votant.aVoté) throw new Error('Votant a déjà voté')
+ if (!joueur) throw new Error('Joueur requis')
+ return {
+  choix: joueur,
+  votant: { ...votant, aVoté: true }
+ }
 }
 ```
 
@@ -214,7 +214,7 @@ Ce code a un bug silencieux. Trouve-le via TDD :
 
 ```js
 function calculePourcentageVotes(votesJoueur, totalVotes) {
-  return (votesJoueur / totalVotes * 100).toFixed(2)
+ return (votesJoueur / totalVotes * 100).toFixed(2)
 }
 // usage attendu : calculePourcentageVotes(3, 10) → "30.00"
 // mais que retourne calculePourcentageVotes(0, 0) ?

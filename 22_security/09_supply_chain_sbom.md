@@ -1,9 +1,9 @@
 # 09 : Supply chain & SBOM
 Temps de lecture ~5 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
->  **Principe universel** : ton code n'est pas seul. Chaque `npm install` est une **décision de confiance** envers des inconnus.
+> **Principe universel** : ton code n'est pas seul. Chaque `npm install` est une **décision de confiance** envers des inconnus.
 
 ## Histoire à connaître
 

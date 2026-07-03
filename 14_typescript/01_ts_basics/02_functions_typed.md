@@ -1,7 +1,7 @@
 # FONCTIONS TYPÉES : SIGNER UN CONTRAT AVANT D'EXÉCUTER
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Une fonction sans types, c'est un contrat oral. Ça marche jusqu'au jour où quelqu'un passe autre chose que ce qu'on avait dit.
 TypeScript transforme ça en contrat écrit : le compilateur vérifie que tout le monde respecte les termes avant même que le code tourne.
@@ -14,29 +14,29 @@ En prod, ça veut dire des bugs détectés à la compilation, pas à 3h du matin
 ```ts
 // version JS : on sait rien. chakra peut être n'importe quoi
 function calculateDamage(base, multiplier) {
-  return base * multiplier
+ return base * multiplier
 }
 
 // version TS : le contrat est signé
 function calculateDamage(base: number, multiplier: number): number {
-  return base * multiplier
+ return base * multiplier
 }
 
-calculateDamage(100, 1.5)    // ok : 150
-calculateDamage("100", 1.5)  // ERREUR : "100" n'est pas un number
-calculateDamage(100)          // ERREUR : multiplier est requis
+calculateDamage(100, 1.5)  // ok : 150
+calculateDamage("100", 1.5) // ERREUR : "100" n'est pas un number
+calculateDamage(100)     // ERREUR : multiplier est requis
 ```
 
 Si la fonction ne retourne rien : `void`. Si elle ne peut jamais retourner (throw toujours) : `never`.
 
 ```ts
 function logAttack(jutsu: string): void {
-  console.log(`Jutsu lancé : ${jutsu}`)
-  // pas de return : void
+ console.log(`Jutsu lancé : ${jutsu}`)
+ // pas de return : void
 }
 
 function failHard(reason: string): never {
-  throw new Error(reason) // cette fonction ne finit jamais normalement
+ throw new Error(reason) // cette fonction ne finit jamais normalement
 }
 ```
 
@@ -48,21 +48,21 @@ function failHard(reason: string): never {
 
 ```ts
 function summonNinja(name: string, village?: string): string {
-  // ici village est string | undefined
-  // si on l'utilise sans vérifier, TypeScript nous arrête
-  return `${name} de ${village ?? "village inconnu"}`
+ // ici village est string | undefined
+ // si on l'utilise sans vérifier, TypeScript nous arrête
+ return `${name} de ${village ?? "village inconnu"}`
 }
 
-summonNinja("Naruto", "Konoha")  // ok
-summonNinja("Naruto")            // ok aussi : village est undefined
+summonNinja("Naruto", "Konoha") // ok
+summonNinja("Naruto")      // ok aussi : village est undefined
 ```
 
 Valeur par défaut : le param n'est plus optionnel dans la signature, TypeScript infère le type.
 
 ```ts
 function createNinja(name: string, chakra: number = 1000) {
-  // chakra est number, pas number | undefined
-  return { name, chakra }
+ // chakra est number, pas number | undefined
+ return { name, chakra }
 }
 ```
 
@@ -78,18 +78,18 @@ type AttackFn = (target: string, power: number) => void
 
 // une fonction qui respecte ce type
 const rasengan: AttackFn = (target, power) => {
-  console.log(`${target} prend ${power} dégâts`)
+ console.log(`${target} prend ${power} dégâts`)
 }
 
 // interface pour un objet callable (rare mais ça existe)
 interface Jutsu {
-  name: string
-  execute: (target: string) => void
+ name: string
+ execute: (target: string) => void
 }
 
 const chidori: Jutsu = {
-  name: "Chidori",
-  execute: (target) => console.log(`${target} touché`)
+ name: "Chidori",
+ execute: (target) => console.log(`${target} touché`)
 }
 ```
 
@@ -97,8 +97,8 @@ Diagramme :
 
 ```
 type AttackFn = (target: string, power: number) => void
-       |                |              |              |
-   nom du type      param 1         param 2       retour
+    |        |       |       |
+  nom du type   param 1     param 2    retour
 ```
 
 ---
@@ -113,19 +113,19 @@ function parseScore(input: string): number
 function parseScore(input: number): string
 // l'implémentation réelle (pas visible depuis l'extérieur)
 function parseScore(input: string | number): string | number {
-  if (typeof input === "string") return parseInt(input, 10)
-  return input.toString()
+ if (typeof input === "string") return parseInt(input, 10)
+ return input.toString()
 }
 
-parseScore("42")   // TypeScript sait que ça retourne number
-parseScore(42)     // TypeScript sait que ça retourne string
+parseScore("42")  // TypeScript sait que ça retourne number
+parseScore(42)   // TypeScript sait que ça retourne string
 ```
 
 Attention : l'overload ne sert à rien si tu peux juste utiliser une union. Il sert quand le **retour** dépend du **type de l'input**.
 
 ```
-input: string  -->  retour: number
-input: number  -->  retour: string
+input: string --> retour: number
+input: number --> retour: string
 ```
 
 Sans overload, TypeScript dirait "ça retourne string | number" et tu perdrais la précision.
@@ -139,12 +139,12 @@ Un callback non typé, c'est une porte ouverte aux bugs silencieux.
 ```ts
 // version dangereuse
 function onMatchEnd(callback: Function) {
-  callback(90, "1-0") // on passe deux args mais TypeScript s'en fout
+ callback(90, "1-0") // on passe deux args mais TypeScript s'en fout
 }
 
 // version correcte
 function onMatchEnd(callback: (minute: number, score: string) => void): void {
-  callback(90, "1-0")
+ callback(90, "1-0")
 }
 
 // si tu passes un callback avec la mauvaise signature
@@ -156,10 +156,10 @@ Pour les callbacks async :
 
 ```ts
 function fetchPlayer(
-  id: string,
-  onSuccess: (player: { name: string; rating: number }) => Promise<void>
+ id: string,
+ onSuccess: (player: { name: string; rating: number }) => Promise<void>
 ): void {
-  // ...
+ // ...
 }
 ```
 
@@ -170,7 +170,7 @@ function fetchPlayer(
 ```ts
 // ce code compile. mais c'est une bombe à retardement
 function process(data: any, transform: (x: any) => any): any {
-  return transform(data)
+ return transform(data)
 }
 
 // TypeScript ne vérifie plus rien ici

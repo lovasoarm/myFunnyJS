@@ -1,7 +1,7 @@
 # 05 : Blind Debug
 Temps de lecture ~5 min
 
->  **Principe universel** : un bon debugger raisonne à partir des **symptômes**, pas du code. C'est ce que tu fais quand tu aides un collègue dont tu n'as pas le repo sous les yeux.
+> **Principe universel** : un bon debugger raisonne à partir des **symptômes**, pas du code. C'est ce que tu fais quand tu aides un collègue dont tu n'as pas le repo sous les yeux.
 
 ## Règle du jeu
 

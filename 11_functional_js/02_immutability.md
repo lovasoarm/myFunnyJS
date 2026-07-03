@@ -20,8 +20,8 @@ const statsNaruto = { chakra: 100, force: 85, vitesse: 70 };
 
 // tu passes l'objet à une fonction
 function augmenterForce(stats) {
-  stats.force += 20; // mutation directe sur l'original
-  return stats;
+ stats.force += 20; // mutation directe sur l'original
+ return stats;
 }
 
 const statsApres = augmenterForce(statsNaruto);
@@ -34,8 +34,8 @@ console.log(statsApres === statsNaruto); // true:c'est le même objet
 
 ```
 [statsNaruto] ──────────────┐
-                             ▼
-[statsApres]  ──────────> { chakra: 100, force: 105, vitesse: 70 }
+               ▼
+[statsApres] ──────────> { chakra: 100, force: 105, vitesse: 70 }
 ```
 
 ---
@@ -48,7 +48,7 @@ La solution la plus courante : spread.
 const statsNaruto = { chakra: 100, force: 85, vitesse: 70 };
 
 function augmenterForce(stats, bonus) {
-  return { ...stats, force: stats.force + bonus }; // nouvel objet, original intact
+ return { ...stats, force: stats.force + bonus }; // nouvel objet, original intact
 }
 
 const statsApres = augmenterForce(statsNaruto, 20);
@@ -64,9 +64,9 @@ Pour les tableaux :
 const classement = ["Messi", "Haaland", "Mbappé"]
 
 // MUTATION:interdit en FP
-classement.push("Bellingham")    // modifie l'original
-classement.splice(1, 1)          // modifie l'original
-classement.sort(...)             // modifie l'original
+classement.push("Bellingham")  // modifie l'original
+classement.splice(1, 1)     // modifie l'original
+classement.sort(...)       // modifie l'original
 
 // IMMUTABLE:on crée un nouveau tableau
 const avecBellingham = [...classement, "Bellingham"]
@@ -82,8 +82,8 @@ Spread ne copie qu'un niveau. Si l'objet est imbriqué, les références des sou
 
 ```js
 const joueur = {
-  nom: "Goku",
-  stats: { force: 9000, vitesse: 8500 }, // objet imbriqué
+ nom: "Goku",
+ stats: { force: 9000, vitesse: 8500 }, // objet imbriqué
 };
 
 const copie = { ...joueur };
@@ -95,9 +95,9 @@ console.log(joueur.stats.force); // 1:corrompu
 ```
 
 ```
-joueur          copie
-  nom: "Goku"   nom: "Vegeta"
-  stats ──────► stats ──────► { force: 1, vitesse: 8500 }
+joueur     copie
+ nom: "Goku"  nom: "Vegeta"
+ stats ──────► stats ──────► { force: 1, vitesse: 8500 }
 ```
 
 Pour les objets imbriqués, il faut soit spread à chaque niveau, soit `structuredClone` :
@@ -105,20 +105,20 @@ Pour les objets imbriqués, il faut soit spread à chaque niveau, soit `structur
 ```js
 // spread imbriqué : manuel mais précis
 function mettreAJourForce(joueur, nouvelleForce) {
-  return {
-    ...joueur,
-    stats: {
-      ...joueur.stats,
-      force: nouvelleForce,
-    },
-  };
+ return {
+  ...joueur,
+  stats: {
+   ...joueur.stats,
+   force: nouvelleForce,
+  },
+ };
 }
 
 // structuredClone : deep copy native (Node 17+, navigateurs modernes)
 function mettreAJourForceDeep(joueur, nouvelleForce) {
-  const copie = structuredClone(joueur);
-  copie.stats.force = nouvelleForce;
-  return copie;
+ const copie = structuredClone(joueur);
+ copie.stats.force = nouvelleForce;
+ return copie;
 }
 
 // les deux sont valides:spread est plus lisible sur des objets peu profonds
@@ -132,9 +132,9 @@ function mettreAJourForceDeep(joueur, nouvelleForce) {
 
 ```js
 const config = Object.freeze({
-  apiUrl: "https://foxriver.prison.com",
-  timeout: 5000,
-  maxRetries: 3,
+ apiUrl: "https://foxriver.prison.com",
+ timeout: 5000,
+ maxRetries: 3,
 });
 
 config.timeout = 9999; // silencieux en mode normal, erreur en strict mode
@@ -145,8 +145,8 @@ Limite : `freeze` est shallow. Objets imbriqués restent mutables.
 
 ```js
 const personnage = Object.freeze({
-  nom: "Walter White",
-  stats: { danger: 100 }, // pas freeze
+ nom: "Walter White",
+ stats: { danger: 100 }, // pas freeze
 });
 
 personnage.nom = "Heisenberg"; // ignoré
@@ -154,11 +154,11 @@ personnage.stats.danger = 9000; // OK, stats n'est pas freezé
 
 // deep freeze si t'en as vraiment besoin
 function deepFreeze(obj) {
-  Object.getOwnPropertyNames(obj).forEach((name) => {
-    const val = obj[name];
-    if (val && typeof val === "object") deepFreeze(val);
-  });
-  return Object.freeze(obj);
+ Object.getOwnPropertyNames(obj).forEach((name) => {
+  const val = obj[name];
+  if (val && typeof val === "object") deepFreeze(val);
+ });
+ return Object.freeze(obj);
 }
 ```
 
@@ -170,26 +170,26 @@ Cas réel : mettre à jour un combattant dans une liste sans muter la liste.
 
 ```js
 const chevaliers = [
-  { id: "leon", armure: 100, actif: true },
-  { id: "rei", armure: 80, actif: true },
-  { id: "kouga", armure: 95, actif: true },
+ { id: "leon", armure: 100, actif: true },
+ { id: "rei", armure: 80, actif: true },
+ { id: "kouga", armure: 95, actif: true },
 ];
 
 // MUTATION:interdit
 function blesserChevalier(liste, id, degats) {
-  const chevalier = liste.find((c) => c.id === id);
-  chevalier.armure -= degats; // mutation de l'objet original
-  return liste;
+ const chevalier = liste.find((c) => c.id === id);
+ chevalier.armure -= degats; // mutation de l'objet original
+ return liste;
 }
 
 // IMMUTABLE:on crée une nouvelle liste avec le chevalier mis à jour
 function blesserChevalier(liste, id, degats) {
-  return liste.map(
-    (c) =>
-      c.id === id
-        ? { ...c, armure: c.armure - degats } // nouvel objet pour le chevalier ciblé
-        : c, // les autres sont réutilisés tels quels
-  );
+ return liste.map(
+  (c) =>
+   c.id === id
+    ? { ...c, armure: c.armure - degats } // nouvel objet pour le chevalier ciblé
+    : c, // les autres sont réutilisés tels quels
+ );
 }
 
 const apresAttaque = blesserChevalier(chevaliers, "leon", 30);
@@ -206,13 +206,13 @@ Les méthodes JS qui mutent en place : `push`, `pop`, `shift`, `unshift`, `splic
 
 ```js
 function classerParButs(joueurs) {
-  return joueurs.sort((a, b) => b.buts - a.buts); // mute l'original
+ return joueurs.sort((a, b) => b.buts - a.buts); // mute l'original
 }
 
 const candidats = [
-  { nom: "Messi", buts: 45 },
-  { nom: "Mbappé", buts: 52 },
-  { nom: "Haaland", buts: 60 },
+ { nom: "Messi", buts: 45 },
+ { nom: "Mbappé", buts: 52 },
+ { nom: "Haaland", buts: 60 },
 ];
 
 const classés = classerParButs(candidats);
@@ -223,7 +223,7 @@ Fix en une ligne :
 
 ```js
 function classerParButs(joueurs) {
-  return [...joueurs].sort((a, b) => b.buts - a.buts); // spread avant sort
+ return [...joueurs].sort((a, b) => b.buts - a.buts); // spread avant sort
 }
 ```
 
@@ -235,13 +235,13 @@ function classerParButs(joueurs) {
 
 ```js
 const inventaire = {
-  nourriture: 45,
-  munitions: 120,
-  medicaments: 8,
-  survivants: [
-    { nom: "Daryl", role: "chasseur" },
-    { nom: "Michonne", role: "guerrière" },
-  ],
+ nourriture: 45,
+ munitions: 120,
+ medicaments: 8,
+ survivants: [
+  { nom: "Daryl", role: "chasseur" },
+  { nom: "Michonne", role: "guerrière" },
+ ],
 };
 
 // Ta mission : écrire 3 fonctions pures
@@ -260,11 +260,11 @@ Tu as des stats de match. Chaque transformation doit retourner un nouvel objet.
 
 ```js
 const statsMatch = {
-  club: "PSG",
-  score: 0,
-  possession: 50,
-  tirs: [],
-  joueurs: [],
+ club: "PSG",
+ score: 0,
+ possession: 50,
+ tirs: [],
+ joueurs: [],
 };
 
 // Écris ces fonctions en immutable :
@@ -280,12 +280,12 @@ const statsMatch = {
 
 ```js
 const configAPI = Object.freeze({
-  base: "https://api.ballondor.com",
-  headers: {
-    Authorization: "Bearer token_messi",
-    "Content-Type": "application/json",
-  },
-  retries: 3,
+ base: "https://api.ballondor.com",
+ headers: {
+  Authorization: "Bearer token_messi",
+  "Content-Type": "application/json",
+ },
+ retries: 3,
 });
 
 // 1. Essaie de modifier configAPI.retries:que se passe-t-il ?
@@ -300,14 +300,14 @@ const configAPI = Object.freeze({
 
 ```js
 const bracket = [
-  {
-    round: 1,
-    combats: [
-      { id: "c1", ninja1: "Naruto", ninja2: "Sasuke", gagnant: null },
-      { id: "c2", ninja1: "Gaara", ninja2: "Rock Lee", gagnant: null },
-    ],
-  },
-  { round: 2, combats: [] },
+ {
+  round: 1,
+  combats: [
+   { id: "c1", ninja1: "Naruto", ninja2: "Sasuke", gagnant: null },
+   { id: "c2", ninja1: "Gaara", ninja2: "Rock Lee", gagnant: null },
+  ],
+ },
+ { round: 2, combats: [] },
 ];
 
 // Écris declareGagnant(bracket, combatId, gagnant)

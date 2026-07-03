@@ -14,20 +14,20 @@ C'est un heap avec une interface propre.
 Tu ne dis plus "insère 42 à l'index 3". Tu dis "insère cette tâche avec priorité 8". La structure gère le reste. L'extraction sort toujours l'élément de priorité maximale (ou minimale, selon le type de heap).
 
 ```
-enqueue(item, priority)  -->  insère et réorganise en O(log n)
-dequeue()                -->  extrait la priorité max/min en O(log n)
-peek()                   -->  lit sans extraire en O(1)
+enqueue(item, priority) --> insère et réorganise en O(log n)
+dequeue()        --> extrait la priorité max/min en O(log n)
+peek()          --> lit sans extraire en O(1)
 ```
 
 Diagramme : queue de missions de Naruto
 
 ```
-priorité haute  [MISSION S : détruire Akatsuki]
-                [MISSION A : escorter Kazekage]
-                [MISSION B : sécuriser le pont]
-priorité basse  [MISSION C : livrer un colis]
+priorité haute [MISSION S : détruire Akatsuki]
+        [MISSION A : escorter Kazekage]
+        [MISSION B : sécuriser le pont]
+priorité basse [MISSION C : livrer un colis]
 
-dequeue()  -->  sort toujours la mission S
+dequeue() --> sort toujours la mission S
 ```
 
 ---
@@ -38,87 +38,87 @@ On part du heap du fichier précédent. On wrap avec une interface claire.
 
 ```js
 class PriorityQueue {
-  constructor() {
-    // chaque noeud : { value, priority }
-    this.heap = []
+ constructor() {
+  // chaque noeud : { value, priority }
+  this.heap = []
+ }
+
+ // taille actuelle
+ size() {
+  return this.heap.length
+ }
+
+ isEmpty() {
+  return this.heap.length === 0
+ }
+
+ // lire le max sans l'extraire
+ peek() {
+  return this.heap[0] ?? null
+ }
+
+ // indices parent / enfants
+ _parentIdx(i)   { return Math.floor((i - 1) / 2) }
+ _leftChildIdx(i)  { return 2 * i + 1 }
+ _rightChildIdx(i) { return 2 * i + 2 }
+
+ _swap(i, j) {
+  ;[this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]]
+ }
+
+ // remonter après insertion
+ _bubbleUp(idx) {
+  while (idx > 0) {
+   const parent = this._parentIdx(idx)
+   if (this.heap[parent].priority >= this.heap[idx].priority) break
+   this._swap(parent, idx)
+   idx = parent
+  }
+ }
+
+ // descendre après extraction
+ _sinkDown(idx) {
+  const n = this.heap.length
+
+  while (true) {
+   const left = this._leftChildIdx(idx)
+   const right = this._rightChildIdx(idx)
+   let largest = idx
+
+   if (left < n && this.heap[left].priority > this.heap[largest].priority) {
+    largest = left
+   }
+   if (right < n && this.heap[right].priority > this.heap[largest].priority) {
+    largest = right
+   }
+
+   if (largest === idx) break
+   this._swap(idx, largest)
+   idx = largest
+  }
+ }
+
+ // insertion : O(log n)
+ enqueue(value, priority) {
+  this.heap.push({ value, priority })
+  this._bubbleUp(this.heap.length - 1)
+ }
+
+ // extraction du max : O(log n)
+ dequeue() {
+  if (this.isEmpty()) return null
+
+  const max = this.heap[0]
+  const last = this.heap.pop()
+
+  // si le heap n'est pas vide après le pop, on replace la racine
+  if (this.heap.length > 0) {
+   this.heap[0] = last
+   this._sinkDown(0)
   }
 
-  // taille actuelle
-  size() {
-    return this.heap.length
-  }
-
-  isEmpty() {
-    return this.heap.length === 0
-  }
-
-  // lire le max sans l'extraire
-  peek() {
-    return this.heap[0] ?? null
-  }
-
-  // indices parent / enfants
-  _parentIdx(i)      { return Math.floor((i - 1) / 2) }
-  _leftChildIdx(i)   { return 2 * i + 1 }
-  _rightChildIdx(i)  { return 2 * i + 2 }
-
-  _swap(i, j) {
-    ;[this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]]
-  }
-
-  // remonter après insertion
-  _bubbleUp(idx) {
-    while (idx > 0) {
-      const parent = this._parentIdx(idx)
-      if (this.heap[parent].priority >= this.heap[idx].priority) break
-      this._swap(parent, idx)
-      idx = parent
-    }
-  }
-
-  // descendre après extraction
-  _sinkDown(idx) {
-    const n = this.heap.length
-
-    while (true) {
-      const left  = this._leftChildIdx(idx)
-      const right = this._rightChildIdx(idx)
-      let largest = idx
-
-      if (left < n && this.heap[left].priority > this.heap[largest].priority) {
-        largest = left
-      }
-      if (right < n && this.heap[right].priority > this.heap[largest].priority) {
-        largest = right
-      }
-
-      if (largest === idx) break
-      this._swap(idx, largest)
-      idx = largest
-    }
-  }
-
-  // insertion : O(log n)
-  enqueue(value, priority) {
-    this.heap.push({ value, priority })
-    this._bubbleUp(this.heap.length - 1)
-  }
-
-  // extraction du max : O(log n)
-  dequeue() {
-    if (this.isEmpty()) return null
-
-    const max = this.heap[0]
-    const last = this.heap.pop()
-
-    // si le heap n'est pas vide après le pop, on replace la racine
-    if (this.heap.length > 0) {
-      this.heap[0] = last
-      this._sinkDown(0)
-    }
-
-    return max
-  }
+  return max
+ }
 }
 ```
 
@@ -130,24 +130,24 @@ class PriorityQueue {
 const pq = new PriorityQueue()
 
 // les missions arrivent dans le désordre
-pq.enqueue("Livrer un colis à Konoha",    1)
-pq.enqueue("Escorter le Kazekage",        7)
-pq.enqueue("Détruire l'Akatsuki",         10)
-pq.enqueue("Sécuriser le pont Nami",      5)
+pq.enqueue("Livrer un colis à Konoha",  1)
+pq.enqueue("Escorter le Kazekage",    7)
+pq.enqueue("Détruire l'Akatsuki",     10)
+pq.enqueue("Sécuriser le pont Nami",   5)
 pq.enqueue("Capturer le voleur du village", 3)
 
 // Naruto traite toujours la plus urgente d'abord
 while (!pq.isEmpty()) {
-  const mission = pq.dequeue()
-  console.log(`[Priorité ${mission.priority}] ${mission.value}`)
+ const mission = pq.dequeue()
+ console.log(`[Priorité ${mission.priority}] ${mission.value}`)
 }
 
 // Sortie garantie :
 // [Priorité 10] Détruire l'Akatsuki
-// [Priorité 7]  Escorter le Kazekage
-// [Priorité 5]  Sécuriser le pont Nami
-// [Priorité 3]  Capturer le voleur du village
-// [Priorité 1]  Livrer un colis à Konoha
+// [Priorité 7] Escorter le Kazekage
+// [Priorité 5] Sécuriser le pont Nami
+// [Priorité 3] Capturer le voleur du village
+// [Priorité 1] Livrer un colis à Konoha
 ```
 
 L'ordre d'insertion ne compte pas. Seule la priorité compte.
@@ -162,26 +162,26 @@ Par défaut, le heap ne garantit rien entre deux éléments de même priorité. 
 
 ```js
 class StablePriorityQueue {
-  constructor() {
-    this.heap = []
-    this.insertionOrder = 0
-  }
+ constructor() {
+  this.heap = []
+  this.insertionOrder = 0
+ }
 
-  enqueue(value, priority) {
-    // à priorité égale, le plus ancien sort d'abord
-    // on inverse l'ordre d'insertion pour que le plus petit = le plus ancien
-    this.heap.push({ value, priority, seq: this.insertionOrder++ })
-    this._bubbleUp(this.heap.length - 1)
-  }
+ enqueue(value, priority) {
+  // à priorité égale, le plus ancien sort d'abord
+  // on inverse l'ordre d'insertion pour que le plus petit = le plus ancien
+  this.heap.push({ value, priority, seq: this.insertionOrder++ })
+  this._bubbleUp(this.heap.length - 1)
+ }
 
-  _compare(a, b) {
-    // priorité plus haute gagne
-    if (a.priority !== b.priority) return a.priority > b.priority
-    // à égalité : le plus ancien gagne (seq plus petit = arrivé avant)
-    return a.seq < b.seq
-  }
+ _compare(a, b) {
+  // priorité plus haute gagne
+  if (a.priority !== b.priority) return a.priority > b.priority
+  // à égalité : le plus ancien gagne (seq plus petit = arrivé avant)
+  return a.seq < b.seq
+ }
 
-  // ... reste identique mais _bubbleUp/_sinkDown utilisent _compare
+ // ... reste identique mais _bubbleUp/_sinkDown utilisent _compare
 }
 ```
 
@@ -199,13 +199,13 @@ Pour Dijkstra et les algos de chemin minimal, tu veux extraire le coût le plus 
 
 // exemple : distances dans un graphe de distribution de Walter White
 const distances = new MinPriorityQueue()
-distances.enqueue("Albuquerque",  0)    // point de départ
-distances.enqueue("Santa Fe",    45)
-distances.enqueue("Roswell",    120)
-distances.enqueue("El Paso",     95)
+distances.enqueue("Albuquerque", 0)  // point de départ
+distances.enqueue("Santa Fe",  45)
+distances.enqueue("Roswell",  120)
+distances.enqueue("El Paso",   95)
 
-distances.dequeue()  // --> { value: "Albuquerque", priority: 0 }
-distances.dequeue()  // --> { value: "Santa Fe", priority: 45 }
+distances.dequeue() // --> { value: "Albuquerque", priority: 0 }
+distances.dequeue() // --> { value: "Santa Fe", priority: 45 }
 // Dijkstra traite toujours le noeud le plus proche d'abord
 ```
 
@@ -214,18 +214,18 @@ distances.dequeue()  // --> { value: "Santa Fe", priority: 45 }
 ## 6) COMPLEXITÉ
 
 ```
-enqueue    -->  O(log n)  : bubble up au pire jusqu'à la racine
-dequeue    -->  O(log n)  : sink down au pire jusqu'à une feuille
-peek       -->  O(1)      : juste lire heap[0]
-build      -->  O(n)      : heapify sur un tableau existant
+enqueue  --> O(log n) : bubble up au pire jusqu'à la racine
+dequeue  --> O(log n) : sink down au pire jusqu'à une feuille
+peek    --> O(1)   : juste lire heap[0]
+build   --> O(n)   : heapify sur un tableau existant
 ```
 
 Comparaison avec d'autres structures pour "traiter par priorité" :
 
 ```
-Tableau trié        -->  insertion O(n)   / extraction O(1)
-Tableau non trié    -->  insertion O(1)   / extraction O(n)
-Priority Queue      -->  insertion O(log n) / extraction O(log n)
+Tableau trié    --> insertion O(n)  / extraction O(1)
+Tableau non trié  --> insertion O(1)  / extraction O(n)
+Priority Queue   --> insertion O(log n) / extraction O(log n)
 ```
 
 La priority queue gagne dès que tu as beaucoup d'insertions ET de défilages intercalés.
@@ -271,11 +271,11 @@ Tu as un graphe de 5 stations de métro représenté en adjacency list avec des 
 
 ```js
 const metro = {
-  A: [{ station: "B", temps: 4 }, { station: "C", temps: 2 }],
-  B: [{ station: "C", temps: 1 }, { station: "D", temps: 5 }],
-  C: [{ station: "B", temps: 1 }, { station: "D", temps: 8 }, { station: "E", temps: 10 }],
-  D: [{ station: "E", temps: 2 }],
-  E: []
+ A: [{ station: "B", temps: 4 }, { station: "C", temps: 2 }],
+ B: [{ station: "C", temps: 1 }, { station: "D", temps: 5 }],
+ C: [{ station: "B", temps: 1 }, { station: "D", temps: 8 }, { station: "E", temps: 10 }],
+ D: [{ station: "E", temps: 2 }],
+ E: []
 }
 ```
 

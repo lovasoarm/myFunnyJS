@@ -4,9 +4,9 @@ Temps de lecture ~15 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : ANTHROPIC_API_KEY (obligatoire pour les appels API réels)
+Node.js    : v20+
+npm      : v10+
+Variables env : ANTHROPIC_API_KEY (obligatoire pour les appels API réels)
 Outils externes: aucun
 
 # Installation
@@ -39,13 +39,13 @@ $ node src/cli.js analyze src/target.js
 
 --- sortie LLM brute ---
 {
-  "bugs": [
-    { "line": 14, "description": "Reference error potentiel", "fix": "Vérifier l'existence avant l'accès" }
-  ],
-  "tests": [
-    "test('devrait retourner undefined pour une clé inexistante', () => { ... })"
-  ],
-  "confidence": 0.87
+ "bugs": [
+  { "line": 14, "description": "Reference error potentiel", "fix": "Vérifier l'existence avant l'accès" }
+ ],
+ "tests": [
+  "test('devrait retourner undefined pour une clé inexistante', () => { ... })"
+ ],
+ "confidence": 0.87
 }
 --- fin sortie LLM ---
 
@@ -54,10 +54,10 @@ $ node src/cli.js analyze src/target.js
 [OUTPUT] Résultats dans results/analysis_target.json
 
 $ npm test
-PASS  tests/promptBuilder.test.js (12 tests)
-PASS  tests/outputValidator.test.js (20 tests)
-PASS  tests/codeAnalyzer.test.js (14 tests)
-PASS  tests/edgeCases.test.js (16 tests)
+PASS tests/promptBuilder.test.js (12 tests)
+PASS tests/outputValidator.test.js (20 tests)
+PASS tests/codeAnalyzer.test.js (14 tests)
+PASS tests/edgeCases.test.js (16 tests)
 ```
 
 Ce projet est le seul qui appelle l'Anthropic API. Il mixe OOP (programmation orientée objet), gestion d'edge cases JS, et la mécanique concrète de "coder avec l'IA sans lui faire confiance aveuglément".
@@ -92,28 +92,28 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 
 ```
 23_ai_native_dev --> src/prompt/ (PromptBuilder), src/validator/ (schema), src/streaming/
-12_oop_js        --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
-27_team_craft    --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
-28_edge_cases    --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
+12_oop_js    --> CodeAnalyzer, Validator -> StrictValidator -> LLMOutputValidator, mixins
+27_team_craft  --> src/review/ (review automatisée), ADR/ (toutes les décisions du pipeline)
+28_edge_cases  --> src/edgeCases/ (injecteur de pièges), tests/edgeCases.test.js
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 src/cli.js analyze src/target.js
-  --> codeReader.read('src/target.js')        // lit le fichier cible
-  --> codeAnalyzer.analyze(sourceCode)        // prépare l'analyse
-        --> promptBuilder.build(sourceCode)   // construit le prompt dynamique
-        --> streamingClient.send(prompt)      // appelle l'API Anthropic en streaming
-              --> (tokens arrivent un par un)
-              --> streamAssembler.append(token)  // accumule
-        --> streamAssembler.finalize()           // JSON complet assemblé
-        --> outputValidator.validate(rawJson)    // valide le schéma
-              --> JSON.parse(rawJson)
-              --> schemaChecker.check(parsed)    // champs requis, types, valeurs
-        --> reviewPipeline.review(validated)     // passe en revue les suggestions
-  --> resultWriter.save(result, 'results/')  // sauvegarde dans results/
-  --> renderer.print(result)                // affiche le résumé dans le terminal
+ --> codeReader.read('src/target.js')    // lit le fichier cible
+ --> codeAnalyzer.analyze(sourceCode)    // prépare l'analyse
+    --> promptBuilder.build(sourceCode)  // construit le prompt dynamique
+    --> streamingClient.send(prompt)   // appelle l'API Anthropic en streaming
+       --> (tokens arrivent un par un)
+       --> streamAssembler.append(token) // accumule
+    --> streamAssembler.finalize()      // JSON complet assemblé
+    --> outputValidator.validate(rawJson)  // valide le schéma
+       --> JSON.parse(rawJson)
+       --> schemaChecker.check(parsed)  // champs requis, types, valeurs
+    --> reviewPipeline.review(validated)   // passe en revue les suggestions
+ --> resultWriter.save(result, 'results/') // sauvegarde dans results/
+ --> renderer.print(result)        // affiche le résumé dans le terminal
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
@@ -121,38 +121,38 @@ src/cli.js analyze src/target.js
 ```
 src/
 ├── analyzer/
-│   └── CodeAnalyzer.js
+│  └── CodeAnalyzer.js
 │
 ├── prompt/
-│   └── PromptBuilder.js
+│  └── PromptBuilder.js
 │
 ├── streaming/
-│   ├── streamingClient.js
-│   └── streamAssembler.js
+│  ├── streamingClient.js
+│  └── streamAssembler.js
 │
 ├── validator/
-│   ├── Validator.js
-│   ├── StrictValidator.js
-│   └── LLMOutputValidator.js
+│  ├── Validator.js
+│  ├── StrictValidator.js
+│  └── LLMOutputValidator.js
 │
 ├── review/
-│   └── reviewPipeline.js
+│  └── reviewPipeline.js
 │
 ├── edgeCases/
-│   └── edgeCaseInjector.js
+│  └── edgeCaseInjector.js
 │
 ├── mixins/
-│   ├── loggable.js
-│   └── retryable.js
+│  ├── loggable.js
+│  └── retryable.js
 │
 ├── utils/
-│   ├── codeReader.js
-│   ├── resultWriter.js
-│   └── renderer.js
+│  ├── codeReader.js
+│  ├── resultWriter.js
+│  └── renderer.js
 │
 └── cli.js
 
-results/            # dossier créé automatiquement à la première analyse
+results/      # dossier créé automatiquement à la première analyse
 
 tests/
 ├── promptBuilder.test.js
@@ -214,17 +214,17 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/validator/Validator.js          --> zéro dépendance, testable immédiatement
-2. src/validator/StrictValidator.js    --> étend Validator
+1. src/validator/Validator.js     --> zéro dépendance, testable immédiatement
+2. src/validator/StrictValidator.js  --> étend Validator
 3. src/validator/LLMOutputValidator.js --> étend StrictValidator
-4. src/streaming/streamAssembler.js    --> indépendant du client
-5. src/prompt/PromptBuilder.js         --> indépendant du reste
-6. src/mixins/                         --> testables seuls
-7. src/streaming/streamingClient.js    --> dépend de l'API (tester avec un mock)
-8. src/review/reviewPipeline.js        --> dépend du validator
-9. src/edgeCases/edgeCaseInjector.js   --> utilitaire de test
-10. src/analyzer/CodeAnalyzer.js       --> orchestre tout
-11. src/utils/ + src/cli.js            --> branche tout
+4. src/streaming/streamAssembler.js  --> indépendant du client
+5. src/prompt/PromptBuilder.js     --> indépendant du reste
+6. src/mixins/             --> testables seuls
+7. src/streaming/streamingClient.js  --> dépend de l'API (tester avec un mock)
+8. src/review/reviewPipeline.js    --> dépend du validator
+9. src/edgeCases/edgeCaseInjector.js  --> utilitaire de test
+10. src/analyzer/CodeAnalyzer.js    --> orchestre tout
+11. src/utils/ + src/cli.js      --> branche tout
 ```
 
 ## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
@@ -251,35 +251,35 @@ Le streaming client est le plus risqué si c'est la première fois qu'on appelle
 import { LLMOutputValidator } from '../src/validator/LLMOutputValidator.js';
 
 describe('LLMOutputValidator', () => {
-  const validator = new LLMOutputValidator();
+ const validator = new LLMOutputValidator();
 
-  test('accepte une sortie valide', () => {
-    const raw = {
-      bugs: [{ line: 14, description: "Reference error potentiel" }],
-      tests: ["test('...', () => {})"],
-      confidence: 0.87
-    };
-    expect(() => validator.validate(raw)).not.toThrow();
-  });
+ test('accepte une sortie valide', () => {
+  const raw = {
+   bugs: [{ line: 14, description: "Reference error potentiel" }],
+   tests: ["test('...', () => {})"],
+   confidence: 0.87
+  };
+  expect(() => validator.validate(raw)).not.toThrow();
+ });
 
-  test('rejette si confidence > 1', () => {
-    const raw = { bugs: [], tests: [], confidence: 1.5 };
-    expect(() => validator.validate(raw)).toThrow('ValidationError');
-  });
+ test('rejette si confidence > 1', () => {
+  const raw = { bugs: [], tests: [], confidence: 1.5 };
+  expect(() => validator.validate(raw)).toThrow('ValidationError');
+ });
 
-  test('rejette si bugs est absent', () => {
-    const raw = { tests: [], confidence: 0.8 };
-    expect(() => validator.validate(raw)).toThrow('ValidationError');
-  });
+ test('rejette si bugs est absent', () => {
+  const raw = { tests: [], confidence: 0.8 };
+  expect(() => validator.validate(raw)).toThrow('ValidationError');
+ });
 
-  test('rejette si un bug a line en string au lieu de number', () => {
-    const raw = {
-      bugs: [{ line: "14", description: "..." }], // string au lieu de number
-      tests: [],
-      confidence: 0.7
-    };
-    expect(() => validator.validate(raw)).toThrow('StrictValidationError');
-  });
+ test('rejette si un bug a line en string au lieu de number', () => {
+  const raw = {
+   bugs: [{ line: "14", description: "..." }], // string au lieu de number
+   tests: [],
+   confidence: 0.7
+  };
+  expect(() => validator.validate(raw)).toThrow('StrictValidationError');
+ });
 });
 
 // tests/edgeCases.test.js
@@ -287,20 +287,20 @@ import { edgeCaseInjector } from '../src/edgeCases/edgeCaseInjector.js';
 import { LLMOutputValidator } from '../src/validator/LLMOutputValidator.js';
 
 describe('edge cases que l\'IA ne voit pas', () => {
-  test('NaN dans confidence est rejeté', () => {
-    const v = new LLMOutputValidator();
-    const withNaN = { bugs: [], tests: [], confidence: NaN };
-    expect(() => v.validate(withNaN)).toThrow();
-  });
+ test('NaN dans confidence est rejeté', () => {
+  const v = new LLMOutputValidator();
+  const withNaN = { bugs: [], tests: [], confidence: NaN };
+  expect(() => v.validate(withNaN)).toThrow();
+ });
 
-  test('0.1 + 0.2 dans un score de confidence ne passe pas 0.3', () => {
-    // C'est un test de documentation : 0.1 + 0.2 = 0.30000000000000004 en JS
-    expect(0.1 + 0.2).not.toBe(0.3);
-    // Le validator arrondit les floats pour les comparaisons de seuil
-    const v = new LLMOutputValidator({ confidenceThreshold: 0.3 });
-    const almostThree = { bugs: [], tests: [], confidence: 0.1 + 0.2 };
-    expect(() => v.validate(almostThree)).not.toThrow(); // 0.3000... > 0.3 : passe
-  });
+ test('0.1 + 0.2 dans un score de confidence ne passe pas 0.3', () => {
+  // C'est un test de documentation : 0.1 + 0.2 = 0.30000000000000004 en JS
+  expect(0.1 + 0.2).not.toBe(0.3);
+  // Le validator arrondit les floats pour les comparaisons de seuil
+  const v = new LLMOutputValidator({ confidenceThreshold: 0.3 });
+  const almostThree = { bugs: [], tests: [], confidence: 0.1 + 0.2 };
+  expect(() => v.validate(almostThree)).not.toThrow(); // 0.3000... > 0.3 : passe
+ });
 });
 ```
 
@@ -352,17 +352,17 @@ les règles métier spécifiques à l'IA.
 
 ## Alternatives considérées
 - Une seule grosse classe : rejeté car impossible de tester les couches
-  indépendamment. Si la validation stricte plante, on ne sait pas si c'est le
-  check de type ou le check métier.
+ indépendamment. Si la validation stricte plante, on ne sait pas si c'est le
+ check de type ou le check métier.
 - Composition (passer des validators en paramètre) : valide aussi. Choix de la
-  hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
-  l'objectif pédagogique du module 12_oop_js).
+ hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
+ l'objectif pédagogique du module 12_oop_js).
 
 ## Conséquences
 - Ajouter un nouveau type de validator = créer une sous-classe. Le contrat de base
-  est garanti par héritage.
+ est garanti par héritage.
 - Les tests peuvent instancier `Validator`, `StrictValidator`, ou `LLMOutputValidator`
-  séparément pour isoler ce qui plante.
+ séparément pour isoler ce qui plante.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI

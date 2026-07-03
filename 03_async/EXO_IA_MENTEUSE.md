@@ -9,14 +9,14 @@ Tu demandes à une IA générique d'écrire une fonction qui récupère la missi
 
 ```js
 async function briefAllKnights(knights) {
-  console.log("Début du briefing");
+ console.log("Début du briefing");
 
-  knights.forEach(async (knight) => {
-    const mission = await fetchMission(knight);
-    console.log(`${knight} : ${mission}`);
-  });
+ knights.forEach(async (knight) => {
+  const mission = await fetchMission(knight);
+  console.log(`${knight} : ${mission}`);
+ });
 
-  console.log("Briefing terminé, tout le monde est informé");
+ console.log("Briefing terminé, tout le monde est informé");
 }
 
 briefAllKnights(["leon", "zaruba", "rei"]);

@@ -15,13 +15,13 @@ Avant d'attaquer la validation, il faut comprendre les groupes de capture : c'es
 const texte = "Naruto a 17 ans et Sasuke a 17 ans aussi"
 
 // sans groupes : juste vérifier si ça matche
-/\d+/.test(texte)   // true
+/\d+/.test(texte)  // true
 
 // avec groupes : capturer la valeur
 const match = texte.match(/(\w+) a (\d+) ans/)
-// match[0] : "Naruto a 17 ans"  : le match complet
-// match[1] : "Naruto"           : groupe 1
-// match[2] : "17"               : groupe 2
+// match[0] : "Naruto a 17 ans" : le match complet
+// match[1] : "Naruto"      : groupe 1
+// match[2] : "17"        : groupe 2
 ```
 
 Avec le flag `g`, `.match()` retourne toutes les occurrences mais sans les groupes. Pour extraire les groupes sur plusieurs matches, on utilise `.matchAll()` :
@@ -29,7 +29,7 @@ Avec le flag `g`, `.match()` retourne toutes les occurrences mais sans les group
 ```js
 const resultats = [...texte.matchAll(/(\w+) a (\d+) ans/g)];
 resultats.forEach((m) => {
-  console.log(`${m[1]} : ${m[2]} ans`);
+ console.log(`${m[1]} : ${m[2]} ans`);
 });
 // Naruto : 17 ans
 // Sasuke : 17 ans
@@ -62,21 +62,21 @@ L'email complet selon RFC 5321 est une horreur de 6 000 caractères. Ce qu'on va
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const validerEmail = (email) => {
-  if (typeof email !== "string") return false;
-  return emailRegex.test(email.trim());
+ if (typeof email !== "string") return false;
+ return emailRegex.test(email.trim());
 };
 ```
 
 Décortiqué :
 
 ```
-^                     : commence ici, nulle part ailleurs
-[a-zA-Z0-9._%+-]+    : partie locale : lettres, chiffres, et ces symboles, au moins 1 fois
-@                     : le @ obligatoire
-[a-zA-Z0-9.-]+       : domaine : lettres, chiffres, points, tirets
-\.                    : un point littéral (échappé)
-[a-zA-Z]{2,}         : extension : au moins 2 lettres (com, fr, io, dev...)
-$                     : finit ici
+^           : commence ici, nulle part ailleurs
+[a-zA-Z0-9._%+-]+  : partie locale : lettres, chiffres, et ces symboles, au moins 1 fois
+@           : le @ obligatoire
+[a-zA-Z0-9.-]+    : domaine : lettres, chiffres, points, tirets
+\.          : un point littéral (échappé)
+[a-zA-Z]{2,}     : extension : au moins 2 lettres (com, fr, io, dev...)
+$           : finit ici
 ```
 
 ```js
@@ -99,21 +99,21 @@ Les URLs ont plusieurs formes légitimes. On cible le cas courant : HTTP/HTTPS a
 const urlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i;
 
 const validerUrl = (url) => {
-  if (typeof url !== "string") return false;
-  return urlRegex.test(url.trim());
+ if (typeof url !== "string") return false;
+ return urlRegex.test(url.trim());
 };
 ```
 
 Décortiqué :
 
 ```
-^          : début
-https?     : "http" ou "https" (le s est optionnel)
-:\/\/      : "://" (les slashes sont échappés)
+^     : début
+https?   : "http" ou "https" (le s est optionnel)
+:\/\/   : "://" (les slashes sont échappés)
 [^\s/$.?#] : premier caractère du domaine : pas un espace ni ces symboles
-.          : n'importe quel caractère (au moins un dans le domaine)
-[^\s]*     : le reste de l'URL : n'importe quoi sauf un espace
-$          : fin
+.     : n'importe quel caractère (au moins un dans le domaine)
+[^\s]*   : le reste de l'URL : n'importe quoi sauf un espace
+$     : fin
 ```
 
 ```js
@@ -135,22 +135,22 @@ Le format varie par pays. Pour un numéro français (10 chiffres, peut commencer
 const telRegex = /^(?:\+33|0)[1-9](?:[\s.-]?\d{2}){4}$/;
 
 const validerTel = (tel) => {
-  if (typeof tel !== "string") return false;
-  return telRegex.test(tel.trim());
+ if (typeof tel !== "string") return false;
+ return telRegex.test(tel.trim());
 };
 ```
 
 Décortiqué :
 
 ```
-^                 : début
-(?:\+33|0)        : groupe non-capturant : "+33" ou "0"
-[1-9]             : premier chiffre après l'indicatif : 1 à 9 (pas 0)
+^         : début
+(?:\+33|0)    : groupe non-capturant : "+33" ou "0"
+[1-9]       : premier chiffre après l'indicatif : 1 à 9 (pas 0)
 (?:[\s.-]?\d{2}) : groupe non-capturant répété 4 fois :
-  [\s.-]?         : séparateur optionnel : espace, point, ou tiret
-  \d{2}           : exactement 2 chiffres
-{4}               : ce groupe se répète 4 fois = 8 chiffres restants
-$                 : fin
+ [\s.-]?     : séparateur optionnel : espace, point, ou tiret
+ \d{2}      : exactement 2 chiffres
+{4}        : ce groupe se répète 4 fois = 8 chiffres restants
+$         : fin
 ```
 
 ```js
@@ -218,8 +218,8 @@ Un formulaire d'inscription pour l'académie de Konoha. Valide les trois champs 
 
 ```js
 {
-  valide: boolean,
-  erreurs: { username?: string, email?: string, telephone?: string }
+ valide: boolean,
+ erreurs: { username?: string, email?: string, telephone?: string }
 }
 ```
 

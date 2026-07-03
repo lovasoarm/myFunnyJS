@@ -11,8 +11,8 @@ La récursion naïve recalcule les mêmes sous-problèmes des milliers de fois. 
 
 ```js
 function fibNaif(n) {
-  if (n <= 1) return n
-  return fibNaif(n - 1) + fibNaif(n - 2)
+ if (n <= 1) return n
+ return fibNaif(n - 1) + fibNaif(n - 2)
 }
 ```
 
@@ -21,19 +21,19 @@ Regarde ce qui se passe pour `fib(5)` :
 ```
 fib(5)
 ├── fib(4)
-│   ├── fib(3)
-│   │   ├── fib(2)
-│   │   │   ├── fib(1)  = 1
-│   │   │   └── fib(0)  = 0
-│   │   └── fib(1)      = 1
-│   └── fib(2)
-│       ├── fib(1)      = 1   <-- déjà calculé
-│       └── fib(0)      = 0   <-- déjà calculé
+│  ├── fib(3)
+│  │  ├── fib(2)
+│  │  │  ├── fib(1) = 1
+│  │  │  └── fib(0) = 0
+│  │  └── fib(1)   = 1
+│  └── fib(2)
+│    ├── fib(1)   = 1  <-- déjà calculé
+│    └── fib(0)   = 0  <-- déjà calculé
 └── fib(3)
-    ├── fib(2)          <-- déjà calculé
-    │   ├── fib(1)      <-- déjà calculé
-    │   └── fib(0)      <-- déjà calculé
-    └── fib(1)          <-- déjà calculé
+  ├── fib(2)     <-- déjà calculé
+  │  ├── fib(1)   <-- déjà calculé
+  │  └── fib(0)   <-- déjà calculé
+  └── fib(1)     <-- déjà calculé
 ```
 
 `fib(2)` est calculé 3 fois. `fib(1)` est calculé 5 fois.
@@ -48,12 +48,12 @@ Mémoïzer = stocker le résultat la première fois qu'on le calcule. Si on reto
 
 ```js
 function fibMemo(n, memo = new Map()) {
-  if (n <= 1) return n
-  if (memo.has(n)) return memo.get(n) // déjà calculé : retourne le cache
+ if (n <= 1) return n
+ if (memo.has(n)) return memo.get(n) // déjà calculé : retourne le cache
 
-  const result = fibMemo(n - 1, memo) + fibMemo(n - 2, memo)
-  memo.set(n, result) // stocke avant de retourner
-  return result
+ const result = fibMemo(n - 1, memo) + fibMemo(n - 2, memo)
+ memo.set(n, result) // stocke avant de retourner
+ return result
 }
 
 // maintenant fib(40) = instantané
@@ -67,16 +67,16 @@ L'arbre de récursion avec mémo :
 ```
 fib(5)
 ├── fib(4)
-│   ├── fib(3)
-│   │   ├── fib(2)
-│   │   │   ├── fib(1) = 1
-│   │   │   └── fib(0) = 0
-│   │   │   memo[2] = 1
-│   │   └── fib(1) = 1 (cache)
-│   │   memo[3] = 2
-│   └── fib(2) = 1 (cache)  <-- une ligne, pas un sous-arbre entier
-│   memo[4] = 3
-└── fib(3) = 2 (cache)      <-- idem
+│  ├── fib(3)
+│  │  ├── fib(2)
+│  │  │  ├── fib(1) = 1
+│  │  │  └── fib(0) = 0
+│  │  │  memo[2] = 1
+│  │  └── fib(1) = 1 (cache)
+│  │  memo[3] = 2
+│  └── fib(2) = 1 (cache) <-- une ligne, pas un sous-arbre entier
+│  memo[4] = 3
+└── fib(3) = 2 (cache)   <-- idem
 ```
 
 **Complexité :** O(n) temps, O(n) espace.
@@ -89,18 +89,18 @@ Au lieu de partir du haut et de mémoïzer, partir du bas et remplir un tableau.
 
 ```js
 function fibTab(n) {
-  if (n <= 1) return n
+ if (n <= 1) return n
 
-  const dp = new Array(n + 1)
-  dp[0] = 0
-  dp[1] = 1
+ const dp = new Array(n + 1)
+ dp[0] = 0
+ dp[1] = 1
 
-  // on remplit de bas en haut
-  for (let i = 2; i <= n; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2]
-  }
+ // on remplit de bas en haut
+ for (let i = 2; i <= n; i++) {
+  dp[i] = dp[i - 1] + dp[i - 2]
+ }
 
-  return dp[n]
+ return dp[n]
 }
 
 console.log(fibTab(10)) // 55
@@ -111,16 +111,16 @@ console.log(fibTab(40)) // 102334155
 
 ```js
 function fibOptimal(n) {
-  if (n <= 1) return n
-  let prev = 0, curr = 1
+ if (n <= 1) return n
+ let prev = 0, curr = 1
 
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr
-    prev = curr
-    curr = next
-  }
+ for (let i = 2; i <= n; i++) {
+  const next = prev + curr
+  prev = curr
+  curr = next
+ }
 
-  return curr
+ return curr
 }
 
 // O(n) temps, O(1) espace
@@ -131,12 +131,12 @@ function fibOptimal(n) {
 ## 4) MÉMO VS TABULATION : QUAND CHOISIR QUOI
 
 ```
-                Mémoïzation (Top-Down)      Tabulation (Bottom-Up)
-Direction       Du problème vers les bases  Des bases vers le problème
-Structure       Récursion + cache           Itératif + tableau
-Sous-problèmes  Seulement ceux nécessaires  Tous les sous-problèmes
-Stack overflow  Risque sur grands n         Aucun risque
-Lisibilité      Plus naturelle              Plus efficace
+        Mémoïzation (Top-Down)   Tabulation (Bottom-Up)
+Direction    Du problème vers les bases Des bases vers le problème
+Structure    Récursion + cache      Itératif + tableau
+Sous-problèmes Seulement ceux nécessaires Tous les sous-problèmes
+Stack overflow Risque sur grands n     Aucun risque
+Lisibilité   Plus naturelle       Plus efficace
 ```
 
 ```js
@@ -146,30 +146,30 @@ Lisibilité      Plus naturelle              Plus efficace
 // on n'a pas forcément besoin de tous les sous-problèmes
 
 function canJump(nums) {
-  const n = nums.length
-  const memo = new Map()
+ const n = nums.length
+ const memo = new Map()
 
-  function dp(i) {
-    if (i >= n - 1) return true   // arrivé ou dépassé la fin
-    if (memo.has(i)) return memo.get(i)
+ function dp(i) {
+  if (i >= n - 1) return true  // arrivé ou dépassé la fin
+  if (memo.has(i)) return memo.get(i)
 
-    const maxJump = nums[i]
-    for (let j = 1; j <= maxJump; j++) {
-      if (dp(i + j)) {
-        memo.set(i, true)
-        return true
-      }
-    }
-
-    memo.set(i, false)
-    return false
+  const maxJump = nums[i]
+  for (let j = 1; j <= maxJump; j++) {
+   if (dp(i + j)) {
+    memo.set(i, true)
+    return true
+   }
   }
 
-  return dp(0)
+  memo.set(i, false)
+  return false
+ }
+
+ return dp(0)
 }
 
-console.log(canJump([2, 3, 1, 1, 4]))  // true
-console.log(canJump([3, 2, 1, 0, 4]))  // false
+console.log(canJump([2, 3, 1, 1, 4])) // true
+console.log(canJump([3, 2, 1, 0, 4])) // false
 ```
 
 ---
@@ -205,8 +205,8 @@ Problèmes PAS DP (récursion sans chevauchement) :
 Tu montes un escalier de n marches. À chaque étape tu peux monter 1 ou 2 marches. Combien de façons différentes d'arriver en haut ?
 
 ```
-n = 1 : [1]               --> 1 façon
-n = 2 : [1,1] ou [2]      --> 2 façons
+n = 1 : [1]        --> 1 façon
+n = 2 : [1,1] ou [2]   --> 2 façons
 n = 3 : [1,1,1] [1,2] [2,1] --> 3 façons
 n = 4 : 5 façons
 n = 5 : 8 façons
@@ -216,27 +216,27 @@ C'est Fibonacci. `ways(n) = ways(n-1) + ways(n-2)`.
 
 ```js
 function climbStairs(n) {
-  if (n <= 2) return n
+ if (n <= 2) return n
 
-  const dp = [0, 1, 2]
-  for (let i = 3; i <= n; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2]
-  }
-  return dp[n]
+ const dp = [0, 1, 2]
+ for (let i = 3; i <= n; i++) {
+  dp[i] = dp[i - 1] + dp[i - 2]
+ }
+ return dp[n]
 }
 
 // variante : sauts de 1, 2 ou 3 marches
 function climbStairsK(n, k = 3) {
-  const dp = new Array(n + 1).fill(0)
-  dp[0] = 1 // une façon d'être en bas : ne pas bouger
+ const dp = new Array(n + 1).fill(0)
+ dp[0] = 1 // une façon d'être en bas : ne pas bouger
 
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= k && j <= i; j++) {
-      dp[i] += dp[i - j]
-    }
+ for (let i = 1; i <= n; i++) {
+  for (let j = 1; j <= k && j <= i; j++) {
+   dp[i] += dp[i - j]
   }
+ }
 
-  return dp[n]
+ return dp[n]
 }
 
 console.log(climbStairsK(4, 3))
@@ -253,9 +253,9 @@ _~20 min_
 Naruto monte une séquence de checkpoints chakra. Au checkpoint i, il peut récupérer `chakra[i]` points. Contrainte : il ne peut pas utiliser deux checkpoints adjacents (trop visible). Trouve le maximum de chakra récupérable.
 
 ```js
-maxChakra([3, 10, 3, 1, 2])  // 12 (index 1 + index 4)
-maxChakra([2, 7, 9, 3, 1])   // 12 (index 0 + index 2 + index 4)
-maxChakra([1])               // 1
+maxChakra([3, 10, 3, 1, 2]) // 12 (index 1 + index 4)
+maxChakra([2, 7, 9, 3, 1])  // 12 (index 0 + index 2 + index 4)
+maxChakra([1])        // 1
 ```
 
 (c'est le "House Robber" problem)
@@ -268,9 +268,9 @@ _~15 min_
 T'as une grille m x n. Tu pars du coin supérieur gauche, tu veux arriver au coin inférieur droit. Tu peux seulement aller à droite ou en bas. Combien de chemins différents ?
 
 ```js
-uniquePaths(3, 7)  // 28
-uniquePaths(3, 2)  // 3
-uniquePaths(1, 1)  // 1
+uniquePaths(3, 7) // 28
+uniquePaths(3, 2) // 3
+uniquePaths(1, 1) // 1
 ```
 
 ---

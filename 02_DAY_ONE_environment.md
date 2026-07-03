@@ -11,8 +11,8 @@ Le pas-à-pas complet (Windows / macOS / Linux) est dans
 ## Check express (5 min)
 
 ```bash
-node -v      # doit afficher v20.x ou plus récent (voir .nvmrc)
-npm -v       # >= 10
+node -v   # doit afficher v20.x ou plus récent (voir .nvmrc)
+npm -v    # >= 10
 git --version
 ```
 

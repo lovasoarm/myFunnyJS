@@ -12,16 +12,16 @@ Les bits ne sont pas une curiosité de bas niveau. Ils sont dans les permissions
 Un nombre entier en mémoire est une séquence de bits. En JS, les opérations bitwise travaillent sur des entiers 32 bits.
 
 ```
-13 en binaire :  0000 0000 0000 0000 0000 0000 0000 1101
-                                                  ^ ^ ^
-                                                  8 4 1 = 13
+13 en binaire : 0000 0000 0000 0000 0000 0000 0000 1101
+                         ^ ^ ^
+                         8 4 1 = 13
 ```
 
 **Convertir :**
 
 ```js
 (13).toString(2); // "1101":décimal vers binaire
-parseInt("1101", 2); // 13   :binaire vers décimal
+parseInt("1101", 2); // 13  :binaire vers décimal
 ```
 
 ---
@@ -90,7 +90,7 @@ flag = flag ^ 0b0100; // toggle le bit 2 : 0b0101 ^ 0b0100 = 0b0001
 // usage courant : ~indexOf retourne 0 si non trouvé (falsy)
 const liste = ["Rick", "Daryl", "Michonne"];
 if (~liste.indexOf("Daryl")) {
-  console.log("Daryl est dans le groupe");
+ console.log("Daryl est dans le groupe");
 }
 // mais en pratique : utilise .includes():c'est plus lisible
 ```
@@ -100,18 +100,18 @@ if (~liste.indexOf("Daryl")) {
 Chaque décalage d'un bit = multiplication par 2.
 
 ```js
-1 << 0; // 1    = 1
-1 << 1; // 2    = 1 * 2
-1 << 2; // 4    = 1 * 4
-1 << 3; // 8    = 1 * 8
+1 << 0; // 1  = 1
+1 << 1; // 2  = 1 * 2
+1 << 2; // 4  = 1 * 4
+1 << 3; // 8  = 1 * 8
 1 << 10; // 1024 = 1 * 1024
 
 // utile pour définir des flags proprement
 const PERMISSIONS = {
-  LIRE: 1 << 0, // 0001
-  ECRIRE: 1 << 1, // 0010
-  EXECUTER: 1 << 2, // 0100
-  ADMIN: 1 << 3, // 1000
+ LIRE: 1 << 0, // 0001
+ ECRIRE: 1 << 1, // 0010
+ EXECUTER: 1 << 2, // 0100
+ ADMIN: 1 << 3, // 1000
 };
 ```
 
@@ -134,10 +134,10 @@ C'est l'usage le plus courant en prod. Un seul nombre entier encode plusieurs é
 ```js
 // chaque permission = un bit différent
 const PERM = {
-  LIRE: 0b0001, // 1
-  ECRIRE: 0b0010, // 2
-  SUPPRIMER: 0b0100, // 4
-  ADMIN: 0b1000, // 8
+ LIRE: 0b0001, // 1
+ ECRIRE: 0b0010, // 2
+ SUPPRIMER: 0b0100, // 4
+ ADMIN: 0b1000, // 8
 };
 
 // Activer une permission
@@ -183,8 +183,8 @@ const rgb = (r, g, b) => (r << 16) | (g << 8) | b;
 
 const orange = rgb(255, 107, 53); // 16LE3535... peu importe la valeur
 // 255 << 16 = FF0000
-// 107 << 8  = 006B00
-// 53         = 000035
+// 107 << 8 = 006B00
+// 53     = 000035
 // OR ensemble => FF6B35
 
 // Extraire les composantes
@@ -210,8 +210,8 @@ bleu(orange); // 53
 
 const estPuissanceDe2 = (n) => n > 0 && (n & (n - 1)) === 0;
 
-estPuissanceDe2(4); // true  : 0100 & 0011 = 0
-estPuissanceDe2(8); // true  : 1000 & 0111 = 0
+estPuissanceDe2(4); // true : 0100 & 0011 = 0
+estPuissanceDe2(8); // true : 1000 & 0111 = 0
 estPuissanceDe2(6); // false : 0110 & 0101 = 0100 ≠ 0
 ```
 
@@ -220,12 +220,12 @@ estPuissanceDe2(6); // false : 0110 & 0101 = 0100 ≠ 0
 ```js
 // utile pour les systèmes de votes, les distances de Hamming
 const compterBits = (n) => {
-  let count = 0;
-  while (n > 0) {
-    count += n & 1; // vérifie le bit de droite
-    n >>= 1; // décale vers la droite
-  }
-  return count;
+ let count = 0;
+ while (n > 0) {
+  count += n & 1; // vérifie le bit de droite
+  n >>= 1; // décale vers la droite
+ }
+ return count;
 };
 
 compterBits(7); // 3 : 0111 => 3 bits à 1
@@ -237,10 +237,10 @@ compterBits(13); // 3 : 1101 => 3 bits à 1
 ```js
 // XOR swap : classique des entretiens
 let a = 5,
-  b = 9;
+ b = 9;
 a = a ^ b; // a = 5^9 = 12
-b = a ^ b; // b = 12^9 = 5  (b récupère l'ancienne valeur de a)
-a = a ^ b; // a = 12^5 = 9  (a récupère l'ancienne valeur de b)
+b = a ^ b; // b = 12^9 = 5 (b récupère l'ancienne valeur de a)
+a = a ^ b; // a = 12^5 = 9 (a récupère l'ancienne valeur de b)
 // résultat : a=9, b=5
 ```
 
@@ -254,11 +254,11 @@ Chaque ninja a des capacités encodées dans un seul entier :
 
 ```js
 const CAPACITES = {
-  NINJUTSU: 1 << 0,
-  TAIJUTSU: 1 << 1,
-  GENJUTSU: 1 << 2,
-  SENJUTSU: 1 << 3,
-  KURAMA: 1 << 4,
+ NINJUTSU: 1 << 0,
+ TAIJUTSU: 1 << 1,
+ GENJUTSU: 1 << 2,
+ SENJUTSU: 1 << 3,
+ KURAMA: 1 << 4,
 };
 ```
 

@@ -6,13 +6,13 @@ Temps de lecture ~10 min
 - **Agent** : entité qui enchaîne des actions sur la base d'une intention.
 - **Trace** : suite ordonnée des décisions et actions d'un agent.
 - **Cahier des charges vérifiable machine** : spécification dont le succès se prouve
-  par une ordre_mission à code de sortie 0/1.
+ par une ordre_mission à code de sortie 0/1.
 - **Décision-racine** : la première décision d'une trace où tu aurais tranché
-  différemment. Cause probable des dérives ultérieures.
+ différemment. Cause probable des dérives ultérieures.
 - **Capability** (vs confiance) : ce que l'agent PEUT faire techniquement, pas ce
-  qu'on lui demande de faire.
+ qu'on lui demande de faire.
 - **Refus argumenté** : rejet d'un travail conforme mais indésirable, avec motif
-  explicite.
+ explicite.
 
 ## Réflexes à automatiser
 

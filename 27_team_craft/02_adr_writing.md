@@ -18,21 +18,21 @@ Un ADR (Architecture Decision Record : document de décision architecturale) est
 CYCLE DE VIE D'UNE DÉCISION SANS ADR
 
 Semaine 1 : débat en réunion ou sur Slack
-            "on utilise JWT ou sessions ?"
-            --> décision prise : JWT
+      "on utilise JWT ou sessions ?"
+      --> décision prise : JWT
 
-Mois 3    : nouveau dev arrive
-            "pourquoi JWT et pas sessions ici ?"
-            --> personne sait plus vraiment, "c'est comme ça"
+Mois 3  : nouveau dev arrive
+      "pourquoi JWT et pas sessions ici ?"
+      --> personne sait plus vraiment, "c'est comme ça"
 
-Mois 8    : bug de sécurité lié au JWT
-            "on peut passer aux sessions ?"
-            --> on ne sait pas ce que ça casse, on a peur de toucher
-            --> on laisse le bug
+Mois 8  : bug de sécurité lié au JWT
+      "on peut passer aux sessions ?"
+      --> on ne sait pas ce que ça casse, on a peur de toucher
+      --> on laisse le bug
 
-Mois 14   : refactoring général
-            "quelqu'un comprend pourquoi ce choix a été fait ?"
-            --> silence
+Mois 14  : refactoring général
+      "quelqu'un comprend pourquoi ce choix a été fait ?"
+      --> silence
 ```
 
 Un ADR coupe ce cycle. Il rend la décision traçable, compréhensible, et révisable.
@@ -110,14 +110,14 @@ avec durée de vie 7 jours.
 - Avantages : révocation instantanée possible, pas de données dans le token
 - Limites : dépendance Redis obligatoire, complexité opérationnelle, latence sur chaque requête
 - Rejeté parce que : ajoute Redis à l'infra dès le jour 1 pour un avantage (révocation)
-  qu'on peut simuler avec un blacklist (liste noire) léger en mémoire
+ qu'on peut simuler avec un blacklist (liste noire) léger en mémoire
 
 **JWT avec HS256 (algorithme symétrique)**
 - Avantages : plus simple, une seule clé
 - Limites : si la clé est compromise, tous les tokens existants sont invalides rétroactivement,
-  et on ne peut pas déléguer la vérification sans partager le secret
+ et on ne peut pas déléguer la vérification sans partager le secret
 - Rejeté parce que : RS256 permet de vérifier les tokens sur des services tiers
-  sans exposer la clé de signature
+ sans exposer la clé de signature
 
 **OAuth2 complet**
 - Avantages : standard industriel, délégation possible
@@ -139,7 +139,7 @@ Sacrifices :
 Décisions liées :
 - ADR-002 portera sur la stratégie de stockage des refresh tokens
 - si la révocation en temps réel devient requise avant 6 mois, passer à sessions + Redis
-  et référencer ce document comme raison du pivot
+ et référencer ce document comme raison du pivot
 ```
 
 ---
@@ -149,16 +149,16 @@ Décisions liées :
 Pas pour chaque ligne de code. Pour les décisions qui ont un impact durable.
 
 ```
-MÉRITE UN ADR                          NE MÉRITE PAS UN ADR
-------------------------------         ------------------------------
-choix de bibliothèque majeure          quel nom de variable utiliser
-choix d'architecture (MVC vs event)    comment formater les dates
-stratégie d'auth ou de cache           ordre des imports
-format de communication entre          refactoring interne d'une fonction
+MÉRITE UN ADR             NE MÉRITE PAS UN ADR
+------------------------------     ------------------------------
+choix de bibliothèque majeure     quel nom de variable utiliser
+choix d'architecture (MVC vs event)  comment formater les dates
+stratégie d'auth ou de cache      ordre des imports
+format de communication entre     refactoring interne d'une fonction
 services (REST vs GraphQL vs events)
 structure des modules du projet
 décision de ne PAS faire quelque chose
-  (ex: "on n'utilise pas de framework UI")
+ (ex: "on n'utilise pas de framework UI")
 ```
 
 **Règle simple :** si la décision est irréversible ou coûteuse à changer dans six mois, elle mérite un ADR.
@@ -168,10 +168,10 @@ décision de ne PAS faire quelque chose
 ## 6) LE STATUT D'UN ADR EST AUSSI UNE INFORMATION
 
 ```
-Proposé   : la décision est en discussion, pas encore validée
-Accepté   : validée et en vigueur
-Déprécié  : plus en vigueur, mais pas remplacée par une autre décision
-Remplacé  : remplacée par un ADR plus récent (ADR-001 remplacé par ADR-007)
+Proposé  : la décision est en discussion, pas encore validée
+Accepté  : validée et en vigueur
+Déprécié : plus en vigueur, mais pas remplacée par une autre décision
+Remplacé : remplacée par un ADR plus récent (ADR-001 remplacé par ADR-007)
 ```
 
 Un ADR qu'on modifie pour le "mettre à jour" perd son utilité : il ne documente plus l'historique. La bonne pratique : créer un nouvel ADR et marquer l'ancien comme "Remplacé par ADR-XXX".
@@ -185,10 +185,10 @@ projet/
 ├── src/
 ├── tests/
 └── ADR/
-    ├── ADR-001_auth_jwt.md
-    ├── ADR-002_refresh_token_storage.md
-    ├── ADR-003_no_orm_drizzle_only.md
-    └── README.md   <-- index des ADR avec une ligne par décision
+  ├── ADR-001_auth_jwt.md
+  ├── ADR-002_refresh_token_storage.md
+  ├── ADR-003_no_orm_drizzle_only.md
+  └── README.md  <-- index des ADR avec une ligne par décision
 ```
 
 L'index `README.md` dans le dossier ADR :
@@ -196,11 +196,11 @@ L'index `README.md` dans le dossier ADR :
 ```markdown
 # INDEX DES DÉCISIONS ARCHITECTURALES
 
-| ID      | Titre                                | Statut   | Date       |
+| ID   | Titre                | Statut  | Date    |
 |---------|--------------------------------------|----------|------------|
-| ADR-001 | Auth JWT avec RS256                  | Accepté  | 2026-03-12 |
-| ADR-002 | Refresh tokens en httpOnly cookie    | Accepté  | 2026-03-14 |
-| ADR-003 | Pas d'ORM : Drizzle en mode requêtes | Accepté  | 2026-03-20 |
+| ADR-001 | Auth JWT avec RS256         | Accepté | 2026-03-12 |
+| ADR-002 | Refresh tokens en httpOnly cookie  | Accepté | 2026-03-14 |
+| ADR-003 | Pas d'ORM : Drizzle en mode requêtes | Accepté | 2026-03-20 |
 ```
 
 ---
@@ -217,11 +217,11 @@ Tu trouves dans le code :
 const routeCache = new Map(); // et pas Redis, et pas localStorage, et pas une variable globale
 
 function getCachedRoute(from, to) {
-  const key = `${from}-${to}`;
-  if (routeCache.has(key)) return routeCache.get(key);
-  const route = computeShortestPath(from, to);
-  routeCache.set(key, route);
-  return route;
+ const key = `${from}-${to}`;
+ if (routeCache.has(key)) return routeCache.get(key);
+ const route = computeShortestPath(from, to);
+ routeCache.set(key, route);
+ return route;
 }
 ```
 

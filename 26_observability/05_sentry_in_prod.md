@@ -1,7 +1,7 @@
 # Capturer l'erreur avant qu'un user te l'envoie par email
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Une erreur explose en prod. Sans outil dédié, tu apprends son existence trois jours plus tard, via un email frustré d'un user qui dit juste "ça marche pas". Tu n'as ni la stack trace (la pile d'appels qui montre exactement où le code a cassé), ni le contexte, ni combien de personnes sont touchées.
 
@@ -18,14 +18,14 @@ Inconvénient : mal configuré, bruit constant ou coût qui explose sur un volum
 
 ```
 ERREUR survient dans le code
-    |
-    v
+  |
+  v
 Sentry intercepte AVANT que le process crashe (ou juste après)
-    |
-    v
+  |
+  v
 Envoie : stack trace + contexte (user, requête, version) + regroupement
-    |
-    v
+  |
+  v
 Dashboard : liste d'erreurs uniques, triées par fréquence et gravité
 ```
 
@@ -34,17 +34,17 @@ Dashboard : liste d'erreurs uniques, triées par fréquence et gravité
 const Sentry = require('@sentry/node')
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN, // l'adresse unique de ton projet Sentry
-  environment: process.env.NODE_ENV, // pour distinguer prod, staging, dev
-  tracesSampleRate: 0.1 // sampling, vu dans `26_observability/02_distributed_tracing`
+ dsn: process.env.SENTRY_DSN, // l'adresse unique de ton projet Sentry
+ environment: process.env.NODE_ENV, // pour distinguer prod, staging, dev
+ tracesSampleRate: 0.1 // sampling, vu dans `26_observability/02_distributed_tracing`
 })
 
 // Capture manuelle d'une erreur attrapée volontairement (vu dans `04_error_handling`)
 try {
-  await chargeCreditCard(amount)
+ await chargeCreditCard(amount)
 } catch (err) {
-  Sentry.captureException(err) // envoyé à Sentry avec toute la stack trace
-  throw err // propage quand même l'erreur, Sentry ne remplace pas ta gestion d'erreur
+ Sentry.captureException(err) // envoyé à Sentry avec toute la stack trace
+ throw err // propage quand même l'erreur, Sentry ne remplace pas ta gestion d'erreur
 }
 ```
 
@@ -57,7 +57,7 @@ Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `04
 ```
 Stack trace seule :
 TypeError: Cannot read properties of undefined (reading 'id')
-  at processOrder (orders.js:42)
+ at processOrder (orders.js:42)
 --> tu sais OÙ ça casse, pas POURQUOI ni POUR QUI
 ```
 
@@ -79,8 +79,8 @@ Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devien
 
 ```
 1000 users frappent le même bug --> 1000 exceptions envoyées à Sentry
-    |
-    v
+  |
+  v
 Sentry regroupe par "fingerprint" (empreinte) : même type d'erreur,
 même endroit dans le code --> affiché comme UNE SEULE entrée
 avec un compteur "vu 1000 fois, touche 1000 users uniques"
@@ -92,8 +92,8 @@ Le pourquoi : sans regroupement, un dashboard d'erreurs en prod à fort trafic s
 // Parfois le regroupement automatique se trompe (deux erreurs différentes
 // groupées ensemble, ou l'inverse), tu peux forcer une empreinte précise
 Sentry.captureException(err, {
-  fingerprint: ['payment-timeout', req.route.path]
-  // force ce type d'erreur à être groupé par route, pas juste par message d'erreur
+ fingerprint: ['payment-timeout', req.route.path]
+ // force ce type d'erreur à être groupé par route, pas juste par message d'erreur
 })
 ```
 
@@ -113,8 +113,8 @@ Avec priorisation : Erreur A en haut, marquée "critical", assignée immédiatem
 
 ```js
 Sentry.captureException(err, {
-  level: 'fatal', // 'fatal', 'error', 'warning', 'info' : même logique que les niveaux de log
-  tags: { impact: 'checkout-blocked' }
+ level: 'fatal', // 'fatal', 'error', 'warning', 'info' : même logique que les niveaux de log
+ tags: { impact: 'checkout-blocked' }
 })
 ```
 

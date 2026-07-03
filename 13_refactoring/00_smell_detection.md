@@ -1,7 +1,7 @@
 # 00 : Smell detection
 Temps de lecture ~5 min
 
->  **Principe universel** : refactorer sans détecter les smells = déplacer la poussière.
+> **Principe universel** : refactorer sans détecter les smells = déplacer la poussière.
 
 ## Catalogue (extrait)
 

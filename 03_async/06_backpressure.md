@@ -18,10 +18,10 @@ const src = createReadStream('huge.log')
 const dst = createWriteStream('/dev/null')
 
 src.on('data', chunk => {
-  const ok = dst.write(chunk)
-  if (!ok) src.pause()          // dst sature -> stop
+ const ok = dst.write(chunk)
+ if (!ok) src.pause()     // dst sature -> stop
 })
-dst.on('drain', () => src.resume())  // dst prêt -> reprendre
+dst.on('drain', () => src.resume()) // dst prêt -> reprendre
 ```
 
 Ou plus court, la version qui fait tout ça pour toi : `src.pipe(dst)` ou `pipeline(src, dst, cb)`.

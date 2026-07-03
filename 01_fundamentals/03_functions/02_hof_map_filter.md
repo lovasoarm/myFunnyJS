@@ -13,11 +13,11 @@ En gros : les fonctions sont des jouets que tu peux donner à d'autres fonctions
 
 ```javascript
 function greet(name) {
-  return "Hello " + name;
+ return "Hello " + name;
 }
 
 function processUser(user, fn) {
-  console.log(fn(user));
+ console.log(fn(user));
 }
 
 processUser("Link", greet); // Hello Link
@@ -73,11 +73,11 @@ Points clés :
 - retourne un tableau potentiellement **plus court** que l'original
 - tableau original **toujours intact**
 
-| Méthode  | Ce qu'elle fait              | Taille du résultat     |
+| Méthode | Ce qu'elle fait       | Taille du résultat   |
 | -------- | ---------------------------- | ---------------------- |
-| `map`    | transforme chaque élément    | identique à l'original |
-| `filter` | garde selon une condition    | inférieure ou égale    |
-| `reduce` | accumule en une seule valeur | n'importe quoi         |
+| `map`  | transforme chaque élément  | identique à l'original |
+| `filter` | garde selon une condition  | inférieure ou égale  |
+| `reduce` | accumule en une seule valeur | n'importe quoi     |
 
 ---
 
@@ -98,10 +98,10 @@ Anatomie :
 - `0` = la valeur de départ de l'accumulateur
 
 ```
-tour 1 : acc=0,  score=10 → acc devient 10
-tour 2 : acc=10, score=5  → acc devient 15
-tour 3 : acc=15, score=8  → acc devient 23
-tour 4 : acc=23, score=3  → acc devient 26
+tour 1 : acc=0, score=10 → acc devient 10
+tour 2 : acc=10, score=5 → acc devient 15
+tour 3 : acc=15, score=8 → acc devient 23
+tour 4 : acc=23, score=3 → acc devient 26
 résultat : 26
 ```
 

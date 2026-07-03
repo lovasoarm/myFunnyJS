@@ -27,16 +27,16 @@ $ node src/index.js
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+  (inclus avec Node.js)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+ (inclus avec Node.js)
+Variables env : aucune
 Outils externes: aucun
 ```
 
 ```bash
 npm install
-node src/index.js   # lance un combat
-npm test             # lance la suite de tests
+node src/index.js  # lance un combat
+npm test       # lance la suite de tests
 ```
 
 Pas de build step, pas de transpilation. Le code tourne tel qu'il est écrit.
@@ -48,27 +48,27 @@ Pas de build step, pas de transpilation. Le code tourne tel qu'il est écrit.
 ```
 src/
 ├── fighters/
-│   ├── fighterFactory.js   # crée un ninja prêt au combat (Factory pattern)
-│   └── fighterStats.js     # stats de base par ninja connu
+│  ├── fighterFactory.js  # crée un ninja prêt au combat (Factory pattern)
+│  └── fighterStats.js   # stats de base par ninja connu
 │
 ├── jutsus/
-│   ├── jutsuRegistry.js    # registre des jutsus, indexés par nom
-│   ├── narutoJutsus.js     # jutsus spécifiques à Naruto (Strategy pattern)
-│   └── sasukeJutsus.js     # jutsus spécifiques à Sasuke
+│  ├── jutsuRegistry.js  # registre des jutsus, indexés par nom
+│  ├── narutoJutsus.js   # jutsus spécifiques à Naruto (Strategy pattern)
+│  └── sasukeJutsus.js   # jutsus spécifiques à Sasuke
 │
 ├── engine/
-│   ├── combat.js           # orchestre la boucle de combat
-│   ├── turnResolver.js     # résout un tour, retourne un nouvel état
-│   └── damageCalc.js       # calcule les dégâts d'une attaque
+│  ├── combat.js      # orchestre la boucle de combat
+│  ├── turnResolver.js   # résout un tour, retourne un nouvel état
+│  └── damageCalc.js    # calcule les dégâts d'une attaque
 │
 ├── utils/
-│   ├── rng.js              # générateur de probabilités, déterministe en mode test
-│   └── cooldownCycle.js    # gestion des cooldowns par modulo
+│  ├── rng.js       # générateur de probabilités, déterministe en mode test
+│  └── cooldownCycle.js  # gestion des cooldowns par modulo
 │
 ├── logger/
-│   └── combatLogger.js     # affichage du combat dans le terminal
+│  └── combatLogger.js   # affichage du combat dans le terminal
 │
-└── index.js                # point d'entrée
+└── index.js        # point d'entrée
 
 tests/
 ├── fighter.test.js
@@ -81,28 +81,28 @@ Flux d'appel d'un combat complet :
 
 ```
 index.js
-  --> fighterFactory.createFighter("naruto")
-  --> fighterFactory.createFighter("sasuke")
-  --> combat.start(naruto, sasuke)
-        --> turnResolver.resolve(state)
-              --> jutsuRegistry.getJutsu(...)
-              --> rng.roll(probability)
-              --> damageCalc.compute(...)
-              --> cooldownCycle.tick(...)
-        --> combat.nextTurn(newState)
-  --> combatLogger.printResult(finalState)
+ --> fighterFactory.createFighter("naruto")
+ --> fighterFactory.createFighter("sasuke")
+ --> combat.start(naruto, sasuke)
+    --> turnResolver.resolve(state)
+       --> jutsuRegistry.getJutsu(...)
+       --> rng.roll(probability)
+       --> damageCalc.compute(...)
+       --> cooldownCycle.tick(...)
+    --> combat.nextTurn(newState)
+ --> combatLogger.printResult(finalState)
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module               | Où ça se voit                                                          |
+| Module        | Où ça se voit                             |
 | -------------------- | ---------------------------------------------------------------------- |
-| `01_fundamentals`    | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`   |
-| `07_math_basics`     | `rng.js` (probabilités), `cooldownCycle.js` (modulo)                   |
-| `11_functional_js`   | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
-| `13_design_patterns` | `fighterFactory.js` (Factory), `jutsus/` (Strategy)                    |
+| `01_fundamentals`  | objets ninja, HOF (`map`/`filter`/`reduce`) partout dans `combat.js`  |
+| `07_math_basics`   | `rng.js` (probabilités), `cooldownCycle.js` (modulo)          |
+| `11_functional_js`  | `turnResolver.js` : chaque tour retourne un nouvel état, zéro mutation |
+| `13_design_patterns` | `fighterFactory.js` (Factory), `jutsus/` (Strategy)          |
 
 ---
 
@@ -120,15 +120,15 @@ index.js
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md    --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md     --> ce qui a coincé, ce qui a été appris
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

@@ -1,4 +1,4 @@
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 # 07 : AGENT HALLUCINATION GYM
 Temps de lecture ~30 min

@@ -1,13 +1,13 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # DEBUG TOOLKIT : SAVOIR OÙ ÇA CASSE SANS SEMER DES CONSOLE.LOG PARTOUT
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Un `console.log` te montre une valeur. Il te montre pas SI cette valeur est censée être là, ni CE QUI s'est passé juste avant pour qu'elle arrive dans cet état. Un vrai outil de debug te donne du contexte, pas juste un chiffre isolé balancé dans le terminal.
 
@@ -18,11 +18,11 @@ Un `console.log` te montre une valeur. Il te montre pas SI cette valeur est cens
 ```js
 // Le réflexe classique face à un bug
 function calculerRations(survivants, stock) {
-  console.log("survivants:", survivants); // ajouté pour débugger
-  console.log("stock:", stock); // ajouté pour débugger
-  const ration = stock / survivants.length;
-  console.log("ration:", ration); // ajouté pour débugger
-  return ration;
+ console.log("survivants:", survivants); // ajouté pour débugger
+ console.log("stock:", stock); // ajouté pour débugger
+ const ration = stock / survivants.length;
+ console.log("ration:", ration); // ajouté pour débugger
+ return ration;
 }
 ```
 
@@ -43,13 +43,13 @@ problèmes :
 // assert.js
 
 function assert(condition, message, context = {}) {
-  if (!condition) {
-    // on construit une erreur avec TOUT le contexte utile,
-    // pas juste un message vague
-    const erreur = new Error(`Assertion échouée : ${message}`);
-    erreur.context = context;
-    throw erreur;
-  }
+ if (!condition) {
+  // on construit une erreur avec TOUT le contexte utile,
+  // pas juste un message vague
+  const erreur = new Error(`Assertion échouée : ${message}`);
+  erreur.context = context;
+  throw erreur;
+ }
 }
 
 module.exports = { assert };
@@ -60,18 +60,18 @@ module.exports = { assert };
 const { assert } = require('./assert');
 
 function calculerRations(survivants, stock) {
-  assert(
-    Array.isArray(survivants) && survivants.length > 0,
-    "survivants doit être un tableau non vide",
-    { survivants }
-  );
-  assert(
-    typeof stock === "number" && stock >= 0,
-    "stock doit être un nombre positif",
-    { stock }
-  );
+ assert(
+  Array.isArray(survivants) && survivants.length > 0,
+  "survivants doit être un tableau non vide",
+  { survivants }
+ );
+ assert(
+  typeof stock === "number" && stock >= 0,
+  "stock doit être un nombre positif",
+  { stock }
+ );
 
-  return stock / survivants.length;
+ return stock / survivants.length;
 }
 
 calculerRations([], 50);
@@ -92,17 +92,17 @@ calculerRations([], 50);
 // inspect.js
 
 function inspecter(label, donnees) {
-  // structuredClone fait une copie profonde, donc si "donnees" est modifié
-  // APRÈS cet appel, le snapshot affiché reste celui du moment de l'appel
-  const snapshot = structuredClone(donnees);
+ // structuredClone fait une copie profonde, donc si "donnees" est modifié
+ // APRÈS cet appel, le snapshot affiché reste celui du moment de l'appel
+ const snapshot = structuredClone(donnees);
 
-  console.log(`\n--- INSPECTION : ${label} ---`);
-  console.log(JSON.stringify(snapshot, null, 2)); // null, 2 = indentation lisible
-  console.log(`--- FIN : ${label} ---\n`);
+ console.log(`\n--- INSPECTION : ${label} ---`);
+ console.log(JSON.stringify(snapshot, null, 2)); // null, 2 = indentation lisible
+ console.log(`--- FIN : ${label} ---\n`);
 
-  // on retourne les données originales, pour pouvoir chaîner l'inspection
-  // dans une expression sans casser le flux du code
-  return donnees;
+ // on retourne les données originales, pour pouvoir chaîner l'inspection
+ // dans une expression sans casser le flux du code
+ return donnees;
 }
 
 module.exports = { inspecter };
@@ -113,9 +113,9 @@ module.exports = { inspecter };
 const { inspecter } = require('./inspect');
 
 function traiterCamp(etat) {
-  const etatApresGarde = inspecter("avant rotation de garde", etat);
-  // ... logique de rotation ...
-  return inspecter("après rotation de garde", etatApresGarde);
+ const etatApresGarde = inspecter("avant rotation de garde", etat);
+ // ... logique de rotation ...
+ return inspecter("après rotation de garde", etatApresGarde);
 }
 ```
 
@@ -129,26 +129,26 @@ function traiterCamp(etat) {
 // trace.js
 
 function creerTraceur() {
-  const etapes = [];
+ const etapes = [];
 
-  function tracer(nom, donnees = {}) {
-    etapes.push({
-      etape: etapes.length + 1,
-      nom,
-      timestamp: performance.now(),
-      donnees,
-    });
-  }
+ function tracer(nom, donnees = {}) {
+  etapes.push({
+   etape: etapes.length + 1,
+   nom,
+   timestamp: performance.now(),
+   donnees,
+  });
+ }
 
-  function afficherTrace() {
-    console.log("\n=== TRACE D'EXÉCUTION ===");
-    etapes.forEach(e => {
-      console.log(`${e.etape}. [${e.timestamp.toFixed(2)}ms] ${e.nom}`, e.donnees);
-    });
-    console.log("=== FIN DE TRACE ===\n");
-  }
+ function afficherTrace() {
+  console.log("\n=== TRACE D'EXÉCUTION ===");
+  etapes.forEach(e => {
+   console.log(`${e.etape}. [${e.timestamp.toFixed(2)}ms] ${e.nom}`, e.donnees);
+  });
+  console.log("=== FIN DE TRACE ===\n");
+ }
 
-  return { tracer, afficherTrace };
+ return { tracer, afficherTrace };
 }
 
 module.exports = { creerTraceur };
@@ -159,18 +159,18 @@ module.exports = { creerTraceur };
 const { creerTraceur } = require('./trace');
 
 function evaluerMenace(secteur) {
-  const { tracer, afficherTrace } = creerTraceur();
+ const { tracer, afficherTrace } = creerTraceur();
 
-  tracer("debut evaluation", { secteur });
+ tracer("debut evaluation", { secteur });
 
-  const niveauBase = secteur === "nord" ? 3 : 1;
-  tracer("niveau de base calcule", { niveauBase });
+ const niveauBase = secteur === "nord" ? 3 : 1;
+ tracer("niveau de base calcule", { niveauBase });
 
-  const niveauFinal = niveauBase * 2;
-  tracer("niveau final calcule", { niveauFinal });
+ const niveauFinal = niveauBase * 2;
+ tracer("niveau final calcule", { niveauFinal });
 
-  afficherTrace();
-  return niveauFinal;
+ afficherTrace();
+ return niveauFinal;
 }
 ```
 
@@ -181,8 +181,8 @@ function evaluerMenace(secteur) {
 ## 5) QUAND UTILISER QUOI
 
 ```
-assert()      --> tu as une HYPOTHÈSE précise ("ce tableau ne doit jamais être vide ici")
-inspecter()   --> tu veux voir l'état COMPLET à un instant donné, sans casser le flux
+assert()   --> tu as une HYPOTHÈSE précise ("ce tableau ne doit jamais être vide ici")
+inspecter()  --> tu veux voir l'état COMPLET à un instant donné, sans casser le flux
 creerTraceur() --> tu veux suivre un CHEMIN D'EXÉCUTION sur plusieurs étapes liées
 debugger natif (module toolchain) --> tu veux explorer interactivement, pas à pas, en temps réel
 ```

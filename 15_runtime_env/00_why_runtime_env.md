@@ -32,11 +32,11 @@ Et sur des tâches CPU-intensives (calcul lourd, traitement d'image, parsing mas
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-script qui doit tourner côté serveur ET côté client   --> node_vs_browser  --> détection d'environnement
-traitement d'un fichier volumineux (logs, exports)     --> streams/buffers --> traitement par morceaux
-configuration d'app (clé API, environnement)           --> process.env     --> config externalisée et sécurisée
-calcul lourd qui bloquerait le serveur entier           --> worker threads  --> parallélisation sans freeze
-outil CLI distribuable (générateur, linter custom)      --> node CLI scripts --> automatisation réutilisable
+script qui doit tourner côté serveur ET côté client  --> node_vs_browser --> détection d'environnement
+traitement d'un fichier volumineux (logs, exports)   --> streams/buffers --> traitement par morceaux
+configuration d'app (clé API, environnement)      --> process.env   --> config externalisée et sécurisée
+calcul lourd qui bloquerait le serveur entier      --> worker threads --> parallélisation sans freeze
+outil CLI distribuable (générateur, linter custom)   --> node CLI scripts --> automatisation réutilisable
 ```
 
 Chaque backend Node sérieux croise ces concepts : lire une variable d'environnement pour la config, gérer un upload de fichier volumineux en streaming, ou paralléliser un traitement lourd sans bloquer les autres requêtes pendant ce temps.

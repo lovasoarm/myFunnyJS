@@ -24,9 +24,9 @@ Le tab order (ordre de tabulation) c'est la séquence dans laquelle Tab déplace
 ```
 
 ```
-tabindex="0"   --> rend un élément focusable dans l'ordre naturel du DOM (le cas le plus sain)
-tabindex="-1"  --> focusable seulement par script (JS), jamais par Tab
-tabindex="1+"  --> ordre custom forcé : à éviter, ça casse vite quand le DOM change
+tabindex="0"  --> rend un élément focusable dans l'ordre naturel du DOM (le cas le plus sain)
+tabindex="-1" --> focusable seulement par script (JS), jamais par Tab
+tabindex="1+" --> ordre custom forcé : à éviter, ça casse vite quand le DOM change
 ```
 
 ## 2) FOCUS MANAGEMENT : SAVOIR OÙ EST LE FOCUS À TOUT MOMENT
@@ -35,18 +35,18 @@ Quand tu ouvres une modal, fermes un menu, ou changes de page en SPA (Single Pag
 
 ```js
 function ouvrirModalCombat() {
-  const modal = document.querySelector('#modal-defi');
-  modal.classList.remove('hidden');
+ const modal = document.querySelector('#modal-defi');
+ modal.classList.remove('hidden');
 
-  const premierElementFocusable = modal.querySelector('button, input, a');
-  premierElementFocusable.focus(); // (déplace le focus DANS la modal dès l'ouverture)
+ const premierElementFocusable = modal.querySelector('button, input, a');
+ premierElementFocusable.focus(); // (déplace le focus DANS la modal dès l'ouverture)
 }
 
 function fermerModalCombat(elementDeclencheur) {
-  const modal = document.querySelector('#modal-defi');
-  modal.classList.add('hidden');
+ const modal = document.querySelector('#modal-defi');
+ modal.classList.add('hidden');
 
-  elementDeclencheur.focus(); // (rend le focus à l'élément qui a ouvert la modal)
+ elementDeclencheur.focus(); // (rend le focus à l'élément qui a ouvert la modal)
 }
 ```
 
@@ -58,27 +58,27 @@ Un focus trap (piège à focus) empêche Tab de sortir d'une modal ouverte tant 
 
 ```js
 function piegerFocus(modal) {
-  const elementsFocusables = modal.querySelectorAll('button, input, a, select');
-  const premier = elementsFocusables[0];
-  const dernier = elementsFocusables[elementsFocusables.length - 1];
+ const elementsFocusables = modal.querySelectorAll('button, input, a, select');
+ const premier = elementsFocusables[0];
+ const dernier = elementsFocusables[elementsFocusables.length - 1];
 
-  modal.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab') return;
+ modal.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
 
-    if (e.shiftKey && document.activeElement === premier) {
-      e.preventDefault();
-      dernier.focus(); // (Shift+Tab sur le premier élément renvoie au dernier)
-    } else if (!e.shiftKey && document.activeElement === dernier) {
-      e.preventDefault();
-      premier.focus(); // (Tab sur le dernier élément renvoie au premier)
-    }
-  });
+  if (e.shiftKey && document.activeElement === premier) {
+   e.preventDefault();
+   dernier.focus(); // (Shift+Tab sur le premier élément renvoie au dernier)
+  } else if (!e.shiftKey && document.activeElement === dernier) {
+   e.preventDefault();
+   premier.focus(); // (Tab sur le dernier élément renvoie au premier)
+  }
+ });
 }
 ```
 
 ```
 Tab depuis dernier élément --> revient au premier (boucle fermée)
-Shift+Tab depuis premier   --> revient au dernier (boucle fermée dans l'autre sens)
+Shift+Tab depuis premier  --> revient au dernier (boucle fermée dans l'autre sens)
 ```
 
 ## 4) SKIP LINKS : SAUTER LE BLABLA RÉPÉTITIF
@@ -92,11 +92,11 @@ Un skip link (lien d'évitement) permet de sauter directement au contenu princip
 
 ```css
 .skip-link {
-  position: absolute;
-  top: -40px; /* (caché hors écran par défaut) */
+ position: absolute;
+ top: -40px; /* (caché hors écran par défaut) */
 }
 .skip-link:focus {
-  top: 0; /* (apparaît seulement quand on navigue jusqu'à lui au clavier) */
+ top: 0; /* (apparaît seulement quand on navigue jusqu'à lui au clavier) */
 }
 ```
 
@@ -106,9 +106,9 @@ Sans skip link, un shinobi clavier qui visite 50 pages d'un site doit retraverse
 
 ```js
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    fermerModalCombat(document.activeElement); // (Échap ferme toujours ce qui est ouvert)
-  }
+ if (e.key === 'Escape') {
+  fermerModalCombat(document.activeElement); // (Échap ferme toujours ce qui est ouvert)
+ }
 });
 ```
 

@@ -13,10 +13,10 @@ Au moment où tu as terminé la première itération (design + premier code), on
 ## Ce que tu dois produire
 
 1. Un **ADR supplémentaire** (`ADR/002_multi_tenant_pivot.md`) qui documente :
-   - Le changement de contrainte.
-   - Les options considérées (schema-per-tenant, row-level, DB-per-tenant).
-   - Le choix retenu et pourquoi.
-   - Ce qui casse dans la V1 et le plan de migration.
+  - Le changement de contrainte.
+  - Les options considérées (schema-per-tenant, row-level, DB-per-tenant).
+  - Le choix retenu et pourquoi.
+  - Ce qui casse dans la V1 et le plan de migration.
 
 2. Une entrée dans `POSTMORTEM.md` : ce que tu aurais fait différemment en V1 sachant ça.
 

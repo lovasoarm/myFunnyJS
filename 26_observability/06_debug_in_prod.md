@@ -1,7 +1,7 @@
 # Quand tu ne peux pas juste mettre un breakpoint
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Un bug arrive en prod, mais seulement pour 0,3% des users, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais shinobis en direct.
 
@@ -17,10 +17,10 @@ Inconvénient : demande une préparation en amont (logs, feature flags) qu'on ne
 ## 1) LE PRINCIPE : OBSERVER SANS BLOQUER, ET PRÉPARER AVANT LA CRISE
 
 ```
-DEBUG LOCAL                          DEBUG EN PROD
-breakpoint qui FIGE le process  -->  observation passive, le process continue
-reproduire le bug à la main     -->  capturer le bug réel quand il survient
-1 shinobi (toi)             -->  des milliers d'shinobis en simultané
+DEBUG LOCAL             DEBUG EN PROD
+breakpoint qui FIGE le process --> observation passive, le process continue
+reproduire le bug à la main   --> capturer le bug réel quand il survient
+1 shinobi (toi)       --> des milliers d'shinobis en simultané
 ```
 
 Le pourquoi cette différence est fondamentale : un breakpoint classique arrête complètement l'exécution pour que tu inspectes l'état. En prod, arrêter le process pour un seul user pendant que 10 000 autres attendent leur réponse n'est juste pas une option. Tout l'outillage de debug en prod est donc construit autour de l'idée de ne jamais bloquer, seulement observer.
@@ -34,11 +34,11 @@ Le pourquoi cette différence est fondamentale : un breakpoint classique arrête
 // avec des logs structurés (vus dans `26_observability/01_structured_logging`)
 // suffisamment détaillés pour reconstruire le scénario après coup
 logger.info({
-  event: 'checkout_started',
-  userId: req.user.id,
-  cartSize: cart.items.length,
-  device: req.headers['user-agent'], // utile pour le bug "seulement sur mobile"
-  requestId: req.requestId
+ event: 'checkout_started',
+ userId: req.user.id,
+ cartSize: cart.items.length,
+ device: req.headers['user-agent'], // utile pour le bug "seulement sur mobile"
+ requestId: req.requestId
 })
 ```
 
@@ -63,10 +63,10 @@ const v8 = require('v8')
 const fs = require('fs')
 
 function takeHeapSnapshot() {
-  const snapshotStream = v8.getHeapSnapshot()
-  const fileName = `heap-${Date.now()}.heapsnapshot`
-  const fileStream = fs.createWriteStream(fileName)
-  snapshotStream.pipe(fileStream) // écrit la photo sur disque, le process continue de tourner
+ const snapshotStream = v8.getHeapSnapshot()
+ const fileName = `heap-${Date.now()}.heapsnapshot`
+ const fileStream = fs.createWriteStream(fileName)
+ snapshotStream.pipe(fileStream) // écrit la photo sur disque, le process continue de tourner
 }
 ```
 
@@ -78,25 +78,25 @@ Le pourquoi : comparer deux snapshots pris à des moments différents révèle q
 
 ```
 Un bug apparaît juste après le déploiement d'une nouvelle fonctionnalité
-    |
-    v
+  |
+  v
 Au lieu de débugger en urgence sous pression, ou de tout rollback (revenir
 en arrière) entièrement :
-    |
-    v
+  |
+  v
 DÉSACTIVE juste cette fonctionnalité précise via un feature flag
 (interrupteur de fonctionnalité), pour TOUS les users ou un sous-groupe
-    |
-    v
+  |
+  v
 Le reste de l'appli continue de tourner normalement, tu débuggues à froid
 ```
 
 ```js
 // Un feature flag minimal : une simple vérification avant d'exécuter le code suspect
 if (featureFlags.isEnabled('new-checkout-flow', req.user.id)) {
-  return newCheckoutFlow(req)
+ return newCheckoutFlow(req)
 } else {
-  return legacyCheckoutFlow(req) // chemin connu et stable, en attendant le diagnostic
+ return legacyCheckoutFlow(req) // chemin connu et stable, en attendant le diagnostic
 }
 ```
 
@@ -112,10 +112,10 @@ nouvelle version --> 100% des users d'un coup --> si bug, 100% des users touché
 
 DÉPLOIEMENT CANARY (progressif) :
 nouvelle version --> 1% des users --> si stable après surveillance --> 10% --> 50% --> 100%
-                          |
-                          v
-                  si bug détecté à 1% : rollback immédiat,
-                  99% des users n'ont jamais rien vu
+             |
+             v
+         si bug détecté à 1% : rollback immédiat,
+         99% des users n'ont jamais rien vu
 ```
 
 Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base d'shinobis ait été impactée.

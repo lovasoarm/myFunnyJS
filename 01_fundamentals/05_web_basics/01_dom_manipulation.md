@@ -17,9 +17,9 @@ Quand le navigateur lit ton HTML, il le transforme en **arbre**. Un arbre = node
 
 ```html
 <body>
-  <div>
-    <h1>Hello</h1>
-  </div>
+ <div>
+  <h1>Hello</h1>
+ </div>
 </body>
 ```
 
@@ -28,16 +28,16 @@ Devient :
 ```
 Document
  └── html
-     └── body
-         └── div
-             └── h1
+   └── body
+     └── div
+       └── h1
 ```
 
 Chaque élément est un **node**. Types importants :
 
 ```
-<p>              ← Element node
-├── "Bonjour"    ← Text node
+<p>       ← Element node
+├── "Bonjour"  ← Text node
 └── class="titre" ← Attribute node
 ```
 
@@ -58,7 +58,7 @@ Pourquoi pas `getElementById` ? Parce que `querySelector` est plus universel : u
 
 ```javascript
 // HTML : <h1>Bonjour</h1>
-//        <h1>Monde</h1>
+//    <h1>Monde</h1>
 
 const title = document.querySelector("h1");
 console.log(title); // <h1>Bonjour</h1> ← juste le premier
@@ -121,7 +121,7 @@ element.classList.toggle("active"); // présente → enlève, absente → ajoute
 
 ```javascript
 // HTML : <div id="menu">Menu</div>
-// CSS  : .active { background: blue; color: white; }
+// CSS : .active { background: blue; color: white; }
 
 const menu = document.querySelector("#menu");
 menu.classList.add("active");
@@ -144,10 +144,10 @@ parent.append(li); // moderne -> accepte plusieurs nodes et du texte
 
 Différence :
 
-| Méthode       | Accepte                      |
+| Méthode    | Accepte           |
 | ------------- | ---------------------------- |
-| `appendChild` | un seul node                 |
-| `append`      | plusieurs nodes + texte brut |
+| `appendChild` | un seul node         |
+| `append`   | plusieurs nodes + texte brut |
 
 ```javascript
 // append tout en une fois
@@ -171,7 +171,7 @@ span.textContent = "3 articles";
 span.style.fontWeight = "bold";
 
 résumé.append("Score : ", span, " points marqués.");
-// → Score : 3 points marqués.  (3 en gras)
+// → Score : 3 points marqués. (3 en gras)
 ```
 
 ---
@@ -199,21 +199,21 @@ Pourquoi ? Séparation des responsabilités, maintenabilité, testabilité. Le H
 
 ```javascript
 element.addEventListener("click", function (event) {
-  console.log(event.target); // élément où le clic a eu lieu
-  console.log(event.currentTarget); // élément où l'écouteur est attaché
+ console.log(event.target); // élément où le clic a eu lieu
+ console.log(event.currentTarget); // élément où l'écouteur est attaché
 });
 ```
 
 ```html
 <div id="parent">
-  <button id="enfant">Clique moi</button>
+ <button id="enfant">Clique moi</button>
 </div>
 ```
 
 ```javascript
 parent.addEventListener("click", function (event) {
-  console.log(event.target); // <button id="enfant"> ← là où le clic a eu lieu
-  console.log(event.currentTarget); // <div id="parent">   ← là où l'écouteur est attaché
+ console.log(event.target); // <button id="enfant"> ← là où le clic a eu lieu
+ console.log(event.currentTarget); // <div id="parent">  ← là où l'écouteur est attaché
 });
 ```
 
@@ -224,14 +224,14 @@ parent.addEventListener("click", function (event) {
 ```javascript
 // Sans preventDefault : la page recharge, le console.log disparaît
 form.addEventListener("submit", function (event) {
-  console.log("Formulaire soumis !");
+ console.log("Formulaire soumis !");
 });
 
 // Avec preventDefault : on garde le contrôle (Tu peux récupérer les données, les valider, les envoyer via fetch... tout ce que tu veux, à ta façon.)
 form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const valeur = document.querySelector("input").value;
-  console.log("Nom saisi :", valeur);
+ event.preventDefault();
+ const valeur = document.querySelector("input").value;
+ console.log("Nom saisi :", valeur);
 });
 ```
 
@@ -251,9 +251,9 @@ Au lieu d'ajouter 100 listeners sur 100 boutons, tu mets **un seul listener sur 
 
 ```javascript
 parent.addEventListener("click", function (e) {
-  if (e.target.matches("button")) {
-    console.log("Bouton cliqué :", e.target.textContent);
-  }
+ if (e.target.matches("button")) {
+  console.log("Bouton cliqué :", e.target.textContent);
+ }
 });
 ```
 
@@ -271,9 +271,9 @@ Chaque modification DOM peut déclencher un **reflow** (recalcul du layout) et u
 const liste = document.querySelector("ul");
 
 for (let i = 0; i < 1000; i++) {
-  const li = document.createElement("li");
-  li.textContent = `Item ${i}`;
-  liste.appendChild(li); // touche le DOM 1000 fois → 1000 reflows
+ const li = document.createElement("li");
+ li.textContent = `Item ${i}`;
+ liste.appendChild(li); // touche le DOM 1000 fois → 1000 reflows
 }
 ```
 
@@ -284,9 +284,9 @@ const liste = document.querySelector("ul");
 const fragment = document.createDocumentFragment();
 
 for (let i = 0; i < 1000; i++) {
-  const li = document.createElement("li");
-  li.textContent = `Item ${i}`;
-  fragment.append(li); // travail en mémoire uniquement
+ const li = document.createElement("li");
+ li.textContent = `Item ${i}`;
+ fragment.append(li); // travail en mémoire uniquement
 }
 
 liste.append(fragment); // touche le DOM UNE seule fois → 1 reflow
@@ -296,15 +296,15 @@ Visualisation :
 
 ```
 Sans fragment :
-[DOM] ←── li  (reflow)
-[DOM] ←── li  (reflow)
+[DOM] ←── li (reflow)
+[DOM] ←── li (reflow)
 ... × 1000
 
 Avec fragment :
 [Mémoire] ←── li
 [Mémoire] ←── li
 ... × 1000
-[DOM] ←── fragment entier  (1 seul reflow)
+[DOM] ←── fragment entier (1 seul reflow)
 ```
 
 > `DocumentFragment` est un nœud léger sans tag HTML, sans style, sans layout. Il sert de sac temporaire. Quand tu l'injectes dans le DOM, le fragment lui-même disparaît : seuls ses enfants sont insérés.

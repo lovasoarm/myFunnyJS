@@ -35,11 +35,11 @@ Ces deux shinobis payent le prix direct d'un jutsu mal pensé. Mais le coût ne 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-élément interactif sans rôle clair                       --> ARIA roles      --> communication explicite avec lecteur d'écran
-navigation impossible sans souris                        --> keyboard nav    --> tab order et focus management
-texte illisible sur fond coloré                          --> contraste WCAG  --> ratio vérifié et corrigé
-modal qui piège le focus n'importe où                     --> focus trap      --> navigation contenue et logique
-mise à jour dynamique non annoncée (chat, notification)   --> aria-live       --> annonce automatique pour lecteur d'écran
+élément interactif sans rôle clair            --> ARIA roles   --> communication explicite avec lecteur d'écran
+navigation impossible sans souris            --> keyboard nav  --> tab order et focus management
+texte illisible sur fond coloré             --> contraste WCAG --> ratio vérifié et corrigé
+modal qui piège le focus n'importe où           --> focus trap   --> navigation contenue et logique
+mise à jour dynamique non annoncée (chat, notification)  --> aria-live    --> annonce automatique pour lecteur d'écran
 ```
 
 L'accessibilité n'est jamais un module "à part" qu'on ajoute à la fin : elle traverse chaque composant interactif d'une interface, du simple bouton au formulaire complexe.

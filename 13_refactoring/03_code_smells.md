@@ -13,23 +13,23 @@ Une god class, c'est une classe qui connaît tout, fait tout, et que personne n'
 ```js
 // la classe qui gère TOUT le camp de Rick Grimes
 class CampManager {
-  constructor() {
-    this.survivors = []
-    this.inventory = []
-    this.guardSchedule = []
-    this.threatLevel = 0
-  }
+ constructor() {
+  this.survivors = []
+  this.inventory = []
+  this.guardSchedule = []
+  this.threatLevel = 0
+ }
 
-  addSurvivor(name) { this.survivors.push(name) }
-  removeSurvivor(name) { this.survivors = this.survivors.filter(s => s !== name) }
-  addItem(item) { this.inventory.push(item) }
-  consumeRation(amount) { /* ... */ }
-  assignGuard(survivor, slot) { /* ... */ }
-  rotateGuards() { /* ... */ }
-  detectThreat(zombieCount) { this.threatLevel = zombieCount }
-  raiseAlarm() { /* ... */ }
-  sendRadioMessage(msg) { /* ... */ }
-  saveToDisk() { /* ... */ }
+ addSurvivor(name) { this.survivors.push(name) }
+ removeSurvivor(name) { this.survivors = this.survivors.filter(s => s !== name) }
+ addItem(item) { this.inventory.push(item) }
+ consumeRation(amount) { /* ... */ }
+ assignGuard(survivor, slot) { /* ... */ }
+ rotateGuards() { /* ... */ }
+ detectThreat(zombieCount) { this.threatLevel = zombieCount }
+ raiseAlarm() { /* ... */ }
+ sendRadioMessage(msg) { /* ... */ }
+ saveToDisk() { /* ... */ }
 }
 ```
 
@@ -37,12 +37,12 @@ class CampManager {
 
 ```
 CampManager (700 lignes)
-  --> survivants
-  --> inventaire
-  --> gardes
-  --> menaces
-  --> radio
-  --> sauvegarde
+ --> survivants
+ --> inventaire
+ --> gardes
+ --> menaces
+ --> radio
+ --> sauvegarde
 ```
 
 Le fix : éclater en plusieurs classes (`SurvivorRegistry`, `InventoryManager`, `GuardScheduler`, `ThreatMonitor`...), chacune avec sa propre raison de changer (cf SRP du chapitre précédent).
@@ -56,11 +56,11 @@ Feature envy, c'est quand une fonction passe plus de temps à fouiller dans les 
 ```js
 // PlayerCard n'a presque pas de données propres : tout vient de match
 class PlayerCard {
-  renderRating(match) {
-    const total = match.stats.goals * 4 + match.stats.assists * 3 + match.stats.passes * 0.1
-    const normalized = total / match.minutesPlayed
-    return normalized > 8 ? 'MVP' : normalized > 5 ? 'Solide' : 'Discret'
-  }
+ renderRating(match) {
+  const total = match.stats.goals * 4 + match.stats.assists * 3 + match.stats.passes * 0.1
+  const normalized = total / match.minutesPlayed
+  return normalized > 8 ? 'MVP' : normalized > 5 ? 'Solide' : 'Discret'
+ }
 }
 ```
 
@@ -69,17 +69,17 @@ class PlayerCard {
 ```js
 // le calcul vit avec les données qu'il utilise
 class MatchStats {
-  calculateRating() {
-    const total = this.goals * 4 + this.assists * 3 + this.passes * 0.1
-    return total / this.minutesPlayed
-  }
+ calculateRating() {
+  const total = this.goals * 4 + this.assists * 3 + this.passes * 0.1
+  return total / this.minutesPlayed
+ }
 }
 
 class PlayerCard {
-  renderRating(matchStats) {
-    const rating = matchStats.calculateRating()
-    return rating > 8 ? 'MVP' : rating > 5 ? 'Solide' : 'Discret'
-  }
+ renderRating(matchStats) {
+  const rating = matchStats.calculateRating()
+  return rating > 8 ? 'MVP' : rating > 5 ? 'Solide' : 'Discret'
+ }
 }
 ```
 
@@ -94,30 +94,30 @@ Une long method, c'est une fonction qui fait 10 choses, avec 5 niveaux d'indenta
 ```js
 // extrait du Oracle Glitch v1 : validation LLM en 1 seul bloc géant
 function validateLLMOutput(raw) {
-  let parsed
-  try {
-    parsed = JSON.parse(raw)
-  } catch (e) {
-    return { valid: false, reason: 'json invalide' }
+ let parsed
+ try {
+  parsed = JSON.parse(raw)
+ } catch (e) {
+  return { valid: false, reason: 'json invalide' }
+ }
+ if (!parsed.suggestions) {
+  return { valid: false, reason: 'pas de suggestions' }
+ }
+ for (const s of parsed.suggestions) {
+  if (!s.file || !s.line || !s.fix) {
+   return { valid: false, reason: 'suggestion incomplète' }
   }
-  if (!parsed.suggestions) {
-    return { valid: false, reason: 'pas de suggestions' }
+  if (typeof s.line !== 'number' || s.line < 0) {
+   return { valid: false, reason: 'ligne invalide' }
   }
-  for (const s of parsed.suggestions) {
-    if (!s.file || !s.line || !s.fix) {
-      return { valid: false, reason: 'suggestion incomplète' }
-    }
-    if (typeof s.line !== 'number' || s.line < 0) {
-      return { valid: false, reason: 'ligne invalide' }
-    }
-    if (s.fix.length > 500) {
-      return { valid: false, reason: 'fix trop long, suspect' }
-    }
+  if (s.fix.length > 500) {
+   return { valid: false, reason: 'fix trop long, suspect' }
   }
-  if (parsed.confidence && (parsed.confidence < 0 || parsed.confidence > 1)) {
-    return { valid: false, reason: 'confidence hors limites' }
-  }
-  return { valid: true, data: parsed }
+ }
+ if (parsed.confidence && (parsed.confidence < 0 || parsed.confidence > 1)) {
+  return { valid: false, reason: 'confidence hors limites' }
+ }
+ return { valid: true, data: parsed }
 }
 ```
 
@@ -126,42 +126,42 @@ function validateLLMOutput(raw) {
 ```js
 // découpé : chaque étape de validation a son nom
 function parseJson(raw) {
-  try {
-    return { ok: true, data: JSON.parse(raw) }
-  } catch {
-    return { ok: false, reason: 'json invalide' }
-  }
+ try {
+  return { ok: true, data: JSON.parse(raw) }
+ } catch {
+  return { ok: false, reason: 'json invalide' }
+ }
 }
 
 function validateSuggestion(suggestion) {
-  if (!suggestion.file || !suggestion.line || !suggestion.fix) return 'suggestion incomplète'
-  if (typeof suggestion.line !== 'number' || suggestion.line < 0) return 'ligne invalide'
-  if (suggestion.fix.length > 500) return 'fix trop long, suspect'
-  return null
+ if (!suggestion.file || !suggestion.line || !suggestion.fix) return 'suggestion incomplète'
+ if (typeof suggestion.line !== 'number' || suggestion.line < 0) return 'ligne invalide'
+ if (suggestion.fix.length > 500) return 'fix trop long, suspect'
+ return null
 }
 
 function validateConfidence(confidence) {
-  if (confidence == null) return null
-  if (confidence < 0 || confidence > 1) return 'confidence hors limites'
-  return null
+ if (confidence == null) return null
+ if (confidence < 0 || confidence > 1) return 'confidence hors limites'
+ return null
 }
 
 function validateLLMOutput(raw) {
-  const parsedResult = parseJson(raw)
-  if (!parsedResult.ok) return { valid: false, reason: parsedResult.reason }
+ const parsedResult = parseJson(raw)
+ if (!parsedResult.ok) return { valid: false, reason: parsedResult.reason }
 
-  const { data } = parsedResult
-  if (!data.suggestions) return { valid: false, reason: 'pas de suggestions' }
+ const { data } = parsedResult
+ if (!data.suggestions) return { valid: false, reason: 'pas de suggestions' }
 
-  for (const suggestion of data.suggestions) {
-    const error = validateSuggestion(suggestion)
-    if (error) return { valid: false, reason: error }
-  }
+ for (const suggestion of data.suggestions) {
+  const error = validateSuggestion(suggestion)
+  if (error) return { valid: false, reason: error }
+ }
 
-  const confidenceError = validateConfidence(data.confidence)
-  if (confidenceError) return { valid: false, reason: confidenceError }
+ const confidenceError = validateConfidence(data.confidence)
+ if (confidenceError) return { valid: false, reason: confidenceError }
 
-  return { valid: true, data }
+ return { valid: true, data }
 }
 ```
 
@@ -176,26 +176,26 @@ Deux smells rapides qui traînent partout :
 ```js
 // duplication : la même règle écrite 3 fois, 3 risques de divergence
 function canVoteBallonDor(journalist) {
-  return journalist.accreditedYears >= 3 && journalist.country !== 'banned'
+ return journalist.accreditedYears >= 3 && journalist.country !== 'banned'
 }
 
 function canModerateVotes(journalist) {
-  return journalist.accreditedYears >= 3 && journalist.country !== 'banned' && journalist.role === 'admin'
+ return journalist.accreditedYears >= 3 && journalist.country !== 'banned' && journalist.role === 'admin'
 }
 ```
 
 ```js
 // extraction : une seule source de vérité
 function isAccreditedJournalist(journalist) {
-  return journalist.accreditedYears >= 3 && journalist.country !== 'banned'
+ return journalist.accreditedYears >= 3 && journalist.country !== 'banned'
 }
 
 function canVoteBallonDor(journalist) {
-  return isAccreditedJournalist(journalist)
+ return isAccreditedJournalist(journalist)
 }
 
 function canModerateVotes(journalist) {
-  return isAccreditedJournalist(journalist) && journalist.role === 'admin'
+ return isAccreditedJournalist(journalist) && journalist.role === 'admin'
 }
 ```
 
@@ -221,11 +221,11 @@ const interest = balance * 0.0825 // ???
 
 // B
 class OracleGlitch {
-  analyzeCode() {}
-  generateTests() {}
-  sendSlackNotification() {}
-  trainModel() {}
-  manageUserAuth() {}
+ analyzeCode() {}
+ generateTests() {}
+ sendSlackNotification() {}
+ trainModel() {}
+ manageUserAuth() {}
 }
 ```
 

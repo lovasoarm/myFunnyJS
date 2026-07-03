@@ -11,13 +11,13 @@ Deux quartiers en mémoire. Le stack, c'est la voie rapide (petit, ordonné, LIF
 ## Schéma
 
 ```
-STACK                     HEAP
-+-----------+           +-------------------+
-| a: 42     |           |                   |
-| b: 42     |           |   { x: 10 }  <----+---+
-| obj: ref -+---------->|                   |   |
+STACK           HEAP
++-----------+      +-------------------+
+| a: 42   |      |          |
+| b: 42   |      |  { x: 10 } <----+---+
+| obj: ref -+---------->|          |  |
 | obj2: ref +-----------+ - - - - - - - - - +---+
-+-----------+           +-------------------+
++-----------+      +-------------------+
 ```
 
 `obj` et `obj2` pointent sur le même objet → modifier via `obj.x = 99` change ce que voit `obj2`.

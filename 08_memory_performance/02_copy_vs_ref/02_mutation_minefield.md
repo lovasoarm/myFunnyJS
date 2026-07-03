@@ -15,34 +15,34 @@ Une mutation, c'est modifier un objet existant en place. Le problème : si plusi
 
 ```js
 // Le squad de l'Attaque des Titans
-const squad = { name: "Survey Corps", members: 104, titanr: "Erwin" };
+const squad = { name: "Survey Corps", members: 104, leader: "Erwin" };
 
 function promote(s) {
-  s.titanr = "Hange"; // mutation directe du paramètre
-  return s;
+ s.leader = "Hange"; // mutation directe du paramètre
+ return s;
 }
 
 const promoted = promote(squad);
 
-console.log(promoted.titanr); // → "Hange":attendu
-console.log(squad.titanr); // → "Hange":PAS attendu
+console.log(promoted.leader); // → "Hange":attendu
+console.log(squad.leader); // → "Hange":PAS attendu
 // squad et promoted sont le même objet
 ```
 
 Le paramètre `s` n'est pas une copie de `squad`. C'est la même référence.
-Modifier `s.titanr` modifie l'objet original.
+Modifier `s.leader` modifie l'objet original.
 
 ```
 AVANT promote
 ─────────────
 squad ──────────┐
-                ▼
-promoted ──────►{ titanr: "Erwin" }
+        ▼
+promoted ──────►{ leader: "Erwin" }
 
 PENDANT promote (s = squad)
 ───────────────────────────
-s ──────────────► { titanr: "Hange" }
-                         ▲
+s ──────────────► { leader: "Hange" }
+             ▲
 squad ─────────────────►─┘
 promoted ──────────────►─┘
 
@@ -58,13 +58,13 @@ Tous les trois pointent vers le même objet muté.
 ```js
 // Mauvais
 function addBonus(player, bonus) {
-  player.score += bonus; // mute le paramètre:l'original change
-  return player;
+ player.score += bonus; // mute le paramètre:l'original change
+ return player;
 }
 
 // Bon
 function addBonus(player, bonus) {
-  return { ...player, score: player.score + bonus }; // nouvel objet
+ return { ...player, score: player.score + bonus }; // nouvel objet
 }
 ```
 
@@ -78,12 +78,12 @@ const logs = [];
 
 // Module A
 function logEntry(entry) {
-  logs.push(entry); // mute le tableau partagé
+ logs.push(entry); // mute le tableau partagé
 }
 
 // Module B lit les logs
 function getLogs() {
-  return logs; // retourne la référence directe:pas une copie
+ return logs; // retourne la référence directe:pas une copie
 }
 
 // Problème : quiconque a le résultat de getLogs() peut muter logs
@@ -93,7 +93,7 @@ console.log(logs.length); // impacté
 
 // Correction
 function getLogs() {
-  return [...logs]; // retourne une copie:l'appelant ne peut pas muter l'original
+ return [...logs]; // retourne une copie:l'appelant ne peut pas muter l'original
 }
 ```
 
@@ -104,8 +104,8 @@ function getLogs() {
 ```js
 // Piège classique avec des valeurs par défaut en objet
 function createNinja(name, options = { level: 1, village: "Konoha" }) {
-  options.name = name;
-  return options;
+ options.name = name;
+ return options;
 }
 
 const ninja1 = createNinja("Naruto");
@@ -119,7 +119,7 @@ console.log(ninja1.name); // → "Sasuke"
 ```js
 // Correction : recréer l'objet à chaque appel
 function createNinja(name, options = {}) {
-  return { level: 1, village: "Konoha", ...options, name };
+ return { level: 1, village: "Konoha", ...options, name };
 }
 ```
 
@@ -158,16 +158,16 @@ Les méthodes mutantes à connaître :
 ```js
 // Système de statistiques de match
 function createMatchStats(initialStats) {
-  let stats = initialStats; // référence vers l'objet passé en paramètre
+ let stats = initialStats; // référence vers l'objet passé en paramètre
 
-  return {
-    addGoal(team) {
-      stats.score[team]++; // mute l'objet original passé à createMatchStats
-    },
-    getStats() {
-      return stats;
-    },
-  };
+ return {
+  addGoal(team) {
+   stats.score[team]++; // mute l'objet original passé à createMatchStats
+  },
+  getStats() {
+   return stats;
+  },
+ };
 }
 
 const liveStats = { score: { home: 0, away: 0 }, events: [] };
@@ -180,19 +180,19 @@ console.log(liveStats.score.home); // → 1:liveStats est muté depuis l'extéri
 ```js
 // Correction : copier à l'entrée, isoler l'état interne
 function createMatchStats(initialStats) {
-  let stats = structuredClone(initialStats); // copie profonde:isolé
+ let stats = structuredClone(initialStats); // copie profonde:isolé
 
-  return {
-    addGoal(team) {
-      stats = {
-        ...stats,
-        score: { ...stats.score, [team]: stats.score[team] + 1 },
-      };
-    },
-    getStats() {
-      return structuredClone(stats);
-    }, // copie à la sortie aussi
-  };
+ return {
+  addGoal(team) {
+   stats = {
+    ...stats,
+    score: { ...stats.score, [team]: stats.score[team] + 1 },
+   };
+  },
+  getStats() {
+   return structuredClone(stats);
+  }, // copie à la sortie aussi
+ };
 }
 ```
 
@@ -204,9 +204,9 @@ function createMatchStats(initialStats) {
 
 ```js
 const config = Object.freeze({
-  apiUrl: "https://foxriver.api",
-  timeout: 5000,
-  maxRetries: 3,
+ apiUrl: "https://foxriver.api",
+ timeout: 5000,
+ maxRetries: 3,
 });
 
 config.timeout = 10000; // silencieusement ignoré (ou TypeError en strict mode)
@@ -219,8 +219,8 @@ console.log(config.timeout); // → 5000
 
 ```js
 const frozenNinja = Object.freeze({
-  name: "Naruto",
-  stats: { power: 9000 }, // pas freezé
+ name: "Naruto",
+ stats: { power: 9000 }, // pas freezé
 });
 
 frozenNinja.name = "Sasuke"; // ignoré:OK
@@ -232,24 +232,24 @@ Pour un freeze profond :
 
 ```js
 function deepFreeze(obj) {
-  Object.freeze(obj);
+ Object.freeze(obj);
 
-  for (const key of Object.keys(obj)) {
-    if (
-      obj[key] &&
-      typeof obj[key] === "object" &&
-      !Object.isFrozen(obj[key])
-    ) {
-      deepFreeze(obj[key]);
-    }
+ for (const key of Object.keys(obj)) {
+  if (
+   obj[key] &&
+   typeof obj[key] === "object" &&
+   !Object.isFrozen(obj[key])
+  ) {
+   deepFreeze(obj[key]);
   }
+ }
 
-  return obj;
+ return obj;
 }
 
 const frozenConfig = deepFreeze({
-  server: { host: "localhost", port: 3000 },
-  db: { name: "foxriver" },
+ server: { host: "localhost", port: 3000 },
+ db: { name: "foxriver" },
 });
 
 frozenConfig.server.port = 9999; // ignoré
@@ -265,18 +265,18 @@ Au lieu de muter l'état, retourner toujours un nouvel état. C'est le principe 
 ```js
 // STYLE MUTATIF:dangereux
 function addSurvivor(camp, survivor) {
-  camp.survivors.push(survivor); // mute camp directement
-  camp.headcount++;
-  return camp;
+ camp.survivors.push(survivor); // mute camp directement
+ camp.headcount++;
+ return camp;
 }
 
 // STYLE IMMUTABLE:prévisible
 function addSurvivor(camp, survivor) {
-  return {
-    ...camp,
-    survivors: [...camp.survivors, survivor],
-    headcount: camp.headcount + 1,
-  };
+ return {
+  ...camp,
+  survivors: [...camp.survivors, survivor],
+  headcount: camp.headcount + 1,
+ };
 }
 
 // Usage
@@ -300,27 +300,27 @@ Chaque bloc de code ci-dessous contient une mutation silencieuse. Identifie-la e
 ```js
 // Bloc A
 function setActiveNinja(roster, name) {
-  roster.active = name;
-  return roster;
+ roster.active = name;
+ return roster;
 }
 
 // Bloc B
 function topScorers(players, n) {
-  return players.sort((a, b) => b.goals - a.goals).slice(0, n);
+ return players.sort((a, b) => b.goals - a.goals).slice(0, n);
 }
 
 // Bloc C
 function applyDebuff(ninja, debuff) {
-  ninja.stats.power -= debuff.damage;
-  ninja.stats.speed -= debuff.slow;
-  return ninja;
+ ninja.stats.power -= debuff.damage;
+ ninja.stats.speed -= debuff.slow;
+ return ninja;
 }
 
 // Bloc D
 const defaultConfig = { retries: 3, timeout: 5000 };
 function createRequest(url, options = defaultConfig) {
-  options.url = url;
-  return options;
+ options.url = url;
+ return options;
 }
 createRequest("/api/enter_dojo");
 createRequest("/api/data");
@@ -334,17 +334,17 @@ Implémente un `campReducer(state, action)` qui gère l'état du camp de Rick Gr
 
 ```js
 const initialState = {
-  name: "Prison",
-  resources: { food: 50, ammo: 200 },
-  survivors: ["Rick", "Daryl", "Glenn"],
-  threatLevel: "low",
+ name: "Prison",
+ resources: { food: 50, ammo: 200 },
+ survivors: ["Rick", "Daryl", "Glenn"],
+ threatLevel: "low",
 };
 
 // Actions à gérer :
 // { type: "ADD_SURVIVOR", payload: "Michonne" }
 // { type: "CONSUME_FOOD", payload: 10 }
 // { type: "SET_THREAT", payload: "high" }
-// { type: "REMOVE_SURVIVOR", payload: "Glenn" }   ← spoiler
+// { type: "REMOVE_SURVIVOR", payload: "Glenn" }  ← spoiler
 ```
 
 **Ta mission :** implémenter `campReducer`, tester chaque action, et vérifier que `initialState` reste intact après chaque appel.

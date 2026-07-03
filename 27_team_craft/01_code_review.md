@@ -26,18 +26,18 @@ La review cherche des problèmes, pas des preuves d'incompétence.
 "LGTM" (looks good to me) en 30 secondes sans lire le code : c'est pas une review. C'est une signature en blanc.
 
 ```
-MAUVAISE REVIEW                    BONNE REVIEW
---------------------------         --------------------------
-"pourquoi t'as fait ça comme ça"   "cette approche fonctionne,
-(ton accusateur)                    mais si on ajoute X, on va
-                                    avoir un problème : regarde :"
-"c'est pas la bonne façon"         "voilà une alternative avec
-(pas d'alternative)                 ses avantages et ses limites"
+MAUVAISE REVIEW          BONNE REVIEW
+--------------------------     --------------------------
+"pourquoi t'as fait ça comme ça"  "cette approche fonctionne,
+(ton accusateur)          mais si on ajoute X, on va
+                  avoir un problème : regarde :"
+"c'est pas la bonne façon"     "voilà une alternative avec
+(pas d'alternative)         ses avantages et ses limites"
 
-"ça marche mais c'est moche"       "c'est lisible mais le nom de
-(subjectif, pas actionnable)        cette variable cache l'intent :
-                                    quelque chose comme `activeSessions`
-                                    serait plus clair"
+"ça marche mais c'est moche"    "c'est lisible mais le nom de
+(subjectif, pas actionnable)    cette variable cache l'intent :
+                  quelque chose comme `activeSessions`
+                  serait plus clair"
 ```
 
 ---
@@ -52,7 +52,7 @@ Tout commentaire de review appartient à un de ces trois niveaux. Si tu l'identi
 // Si l'shinobi n'est pas connecté, `getUserData(null)` explose en prod.
 // À corriger avant merge.
 function getUserData(userId) {
-  return db.find({ id: userId }); // `find({ id: null })` retourne tous les users -- catastrophe
+ return db.find({ id: userId }); // `find({ id: null })` retourne tous les users -- catastrophe
 }
 ```
 
@@ -62,9 +62,9 @@ function getUserData(userId) {
 // Si on sépare les responsabilités, on peut tester chaque partie indépendamment.
 // Pas bloquant, mais à considérer si on revient sur ce module.
 function filterActive(matches) {
-  const result = matches.filter(m => m.status === 'active');
-  console.log(`matches actifs : ${result.length}`); // log mélangé à la logique
-  return result;
+ const result = matches.filter(m => m.status === 'active');
+ console.log(`matches actifs : ${result.length}`); // log mélangé à la logique
+ return result;
 }
 ```
 
@@ -85,30 +85,30 @@ Ordre de lecture : pas ligne par ligne. D'abord le contexte, ensuite le code.
 
 ```
 ÉTAPE 1 : lire la description de la PR
-          --> quel problème ça résout ?
-          --> pourquoi cette approche ?
-          --> y a des tradeoffs connus ?
+     --> quel problème ça résout ?
+     --> pourquoi cette approche ?
+     --> y a des tradeoffs connus ?
 
 ÉTAPE 2 : regarder les fichiers modifiés dans l'ensemble
-          --> quelle est la portée du changement ?
-          --> est-ce qu'il y a des fichiers qui MANQUENT ?
-             (exemple : feature ajoutée sans tests)
+     --> quelle est la portée du changement ?
+     --> est-ce qu'il y a des fichiers qui MANQUENT ?
+       (exemple : feature ajoutée sans tests)
 
 ÉTAPE 3 : lire le code dans le sens de l'exécution
-          --> entry point (point d'entrée) --> logique principale --> sortie
-          --> pas dans l'ordre alphabétique des fichiers
+     --> entry point (point d'entrée) --> logique principale --> sortie
+     --> pas dans l'ordre alphabétique des fichiers
 
 ÉTAPE 4 : chercher les cas aux limites (edge cases)
-          --> null / undefined
-          --> tableau vide
-          --> shinobi non connecté
-          --> timeout réseau
-          --> state concurrent (deux requêtes en même temps)
+     --> null / undefined
+     --> tableau vide
+     --> shinobi non connecté
+     --> timeout réseau
+     --> state concurrent (deux requêtes en même temps)
 
 ÉTAPE 5 : vérifier ce qui n'est pas là
-          --> tests manquants
-          --> erreurs non catchées
-          --> cas non documentés
+     --> tests manquants
+     --> erreurs non catchées
+     --> cas non documentés
 ```
 
 ---
@@ -126,7 +126,7 @@ Exemple concret sur du code Walking Dead :
 ```javascript
 // Code soumis en PR :
 function calculateRations(survivors, totalFood) {
-  return totalFood / survivors; // divise la nourriture par le nombre de survivants
+ return totalFood / survivors; // divise la nourriture par le nombre de survivants
 }
 ```
 
@@ -142,7 +142,7 @@ Bon commentaire :
 // En prod : le système de rationnement distribue des rations infinies à personne.
 // Suggestion : ajouter une garde en entrée :
 //
-//   if (survivors <= 0) throw new RationError('no survivors to feed');
+//  if (survivors <= 0) throw new RationError('no survivors to feed');
 //
 // Ou retourner 0 si un groupe vide est un cas valide dans notre logique.
 // Bloquant -- ce cas arrive dès qu'un groupe est éliminé.
@@ -158,27 +158,27 @@ Chaque commentaire bloquant doit expliquer ce qui casse : pas juste "c'est faux"
 La review c'est bidirectionnel. Si t'es l'auteur :
 
 ```
-RÉACTION COURANTE                  RÉACTION UTILE
---------------------------         --------------------------
-"il comprend pas mon code"         "est-ce que je peux mieux
-                                    l'expliquer dans un commentaire ?"
+RÉACTION COURANTE         RÉACTION UTILE
+--------------------------     --------------------------
+"il comprend pas mon code"     "est-ce que je peux mieux
+                  l'expliquer dans un commentaire ?"
 
-"c'est du nitpicking"              "est-ce que ce point bloque ou
-                                    c'est une suggestion ?"
+"c'est du nitpicking"       "est-ce que ce point bloque ou
+                  c'est une suggestion ?"
 
-"ça marche en local"               "est-ce que mon test couvre
-                                    le cas qu'il mentionne ?"
+"ça marche en local"        "est-ce que mon test couvre
+                  le cas qu'il mentionne ?"
 
-répondre sur le ton défensif       répondre : "merci, j'ai ajouté
-                                    le cas -- regarde le commit X"
+répondre sur le ton défensif    répondre : "merci, j'ai ajouté
+                  le cas -- regarde le commit X"
 ```
 
 Quand tu n'es pas d'accord : explique ton choix technique, pas ta frustration.
 ```
 // L'auteur peut répondre à un commentaire :
 // "J'ai choisi cette approche parce que `Array.prototype.find` retourne
-//  undefined plutôt que null -- et le reste du projet teste `=== undefined`.
-//  Si tu préfères une convention différente, on peut en discuter en équipe."
+// undefined plutôt que null -- et le reste du projet teste `=== undefined`.
+// Si tu préfères une convention différente, on peut en discuter en équipe."
 ```
 
 ---
@@ -230,23 +230,23 @@ Trouve tous les problèmes, classe-les (bloquant / suggestion / nitpick), et éc
 ```javascript
 // PR : "ajout de l'endpoint de vote pour le Ballon d'Or"
 app.post('/vote', async (req, res) => {
-  const player = req.body.player;
-  const journalist = req.body.journalist;
+ const player = req.body.player;
+ const journalist = req.body.journalist;
 
-  const existing = await db.query(
-    `SELECT * FROM votes WHERE journalist = '${journalist}'` // concaténation directe
-  );
+ const existing = await db.query(
+  `SELECT * FROM votes WHERE journalist = '${journalist}'` // concaténation directe
+ );
 
-  if (existing.length > 0) {
-    res.send('already voted');
-    return;
-  }
+ if (existing.length > 0) {
+  res.send('already voted');
+  return;
+ }
 
-  await db.query(
-    `INSERT INTO votes VALUES ('${player}', '${journalist}', ${Date.now()})`
-  );
+ await db.query(
+  `INSERT INTO votes VALUES ('${player}', '${journalist}', ${Date.now()})`
+ );
 
-  res.send('vote recorded');
+ res.send('vote recorded');
 });
 ```
 

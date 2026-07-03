@@ -1,7 +1,7 @@
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
 Temps de lecture ~13 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 `28_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
 
@@ -36,19 +36,19 @@ Garde ces deux listes en tête en lisant. Mais ne les traite pas comme une véri
 
 ```javascript
 async function validerVote(votant, joueurId) {
-  try {
-    const dejaVote = await db.votes.findOne({ votant });
-    if (dejaVote) {
-      console.log('Vote déjà enregistré pour ce votant');
-      return { success: false };
-    }
-    const joueur = await db.joueurs.findById(joueurId);
-    const nouveauVote = await db.votes.create({ votant, joueurId, date: new Date() });
-    return { success: true, vote: nouveauVote };
-  } catch (error) {
-    console.log('Erreur lors du vote');
-    return { success: false };
+ try {
+  const dejaVote = await db.votes.findOne({ votant });
+  if (dejaVote) {
+   console.log('Vote déjà enregistré pour ce votant');
+   return { success: false };
   }
+  const joueur = await db.joueurs.findById(joueurId);
+  const nouveauVote = await db.votes.create({ votant, joueurId, date: new Date() });
+  return { success: true, vote: nouveauVote };
+ } catch (error) {
+  console.log('Erreur lors du vote');
+  return { success: false };
+ }
 }
 ```
 
@@ -63,7 +63,7 @@ async function validerVote(votant, joueurId) {
 ```javascript
 const joueur = await db.joueurs.findById(joueurId);
 if (!joueur) {
-  return { success: false, raison: 'joueur introuvable' };
+ return { success: false, raison: 'joueur introuvable' };
 }
 ```
 
@@ -79,13 +79,13 @@ if (!joueur) {
 
 ```javascript
 function jutsuEstDisponible(jutsu, tourActuel) {
-  const tourDernierUsage = jutsu.dernierUsage;
-  const cooldown = jutsu.cooldown;
-  
-  if (tourActuel - tourDernierUsage <= cooldown) {
-    return false;
-  }
-  return true;
+ const tourDernierUsage = jutsu.dernierUsage;
+ const cooldown = jutsu.cooldown;
+ 
+ if (tourActuel - tourDernierUsage <= cooldown) {
+  return false;
+ }
+ return true;
 }
 ```
 
@@ -99,7 +99,7 @@ function jutsuEstDisponible(jutsu, tourActuel) {
 **Le fix** :
 ```javascript
 if (tourActuel - tourDernierUsage < cooldown) {
-  return false;
+ return false;
 }
 ```
 
@@ -115,32 +115,32 @@ if (tourActuel - tourDernierUsage < cooldown) {
 
 ```javascript
 class SessionManager {
-  constructor() {
-    this.sessions = new Map();
-  }
+ constructor() {
+  this.sessions = new Map();
+ }
 
-  createSession(userId, options = {}) {
-    const sessionConfig = {
-      userId,
-      createdAt: Date.now(),
-      expiresAt: Date.now() + (options.duration || 3600000),
-      metadata: options.metadata || {},
-      preferences: options.preferences || {},
-      locale: options.locale || 'fr',
-    };
-    
-    const sessionId = this.generateSessionId();
-    this.sessions.set(sessionId, sessionConfig);
-    return sessionId;
-  }
+ createSession(userId, options = {}) {
+  const sessionConfig = {
+   userId,
+   createdAt: Date.now(),
+   expiresAt: Date.now() + (options.duration || 3600000),
+   metadata: options.metadata || {},
+   preferences: options.preferences || {},
+   locale: options.locale || 'fr',
+  };
+  
+  const sessionId = this.generateSessionId();
+  this.sessions.set(sessionId, sessionConfig);
+  return sessionId;
+ }
 
-  generateSessionId() {
-    return 'sess_' + Math.random().toString(36).substring(2, 15);
-  }
+ generateSessionId() {
+  return 'sess_' + Math.random().toString(36).substring(2, 15);
+ }
 
-  getSession(sessionId) {
-    return this.sessions.get(sessionId);
-  }
+ getSession(sessionId) {
+  return this.sessions.get(sessionId);
+ }
 }
 ```
 
@@ -156,17 +156,17 @@ class SessionManager {
 const crypto = require('crypto');
 
 generateSessionId() {
-  return 'sess_' + crypto.randomBytes(16).toString('hex');
+ return 'sess_' + crypto.randomBytes(16).toString('hex');
 }
 
 getSession(sessionId) {
-  const session = this.sessions.get(sessionId);
-  if (!session) return null;
-  if (Date.now() > session.expiresAt) {
-    this.sessions.delete(sessionId);
-    return null;
-  }
-  return session;
+ const session = this.sessions.get(sessionId);
+ if (!session) return null;
+ if (Date.now() > session.expiresAt) {
+  this.sessions.delete(sessionId);
+  return null;
+ }
+ return session;
 }
 ```
 
@@ -182,15 +182,15 @@ getSession(sessionId) {
 
 ```javascript
 function parseFlags(argv) {
-  const flags = {};
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i].startsWith('--')) {
-      const key = argv[i].slice(2);
-      flags[key] = argv[i + 1];
-      // TODO: gérer le cas où le flag est un booléen sans valeur (--verbose)
-    }
+ const flags = {};
+ for (let i = 0; i < argv.length; i++) {
+  if (argv[i].startsWith('--')) {
+   const key = argv[i].slice(2);
+   flags[key] = argv[i + 1];
+   // TODO: gérer le cas où le flag est un booléen sans valeur (--verbose)
   }
-  return flags;
+ }
+ return flags;
 }
 ```
 
@@ -204,19 +204,19 @@ function parseFlags(argv) {
 **Le fix** :
 ```javascript
 function parseFlags(argv, flagsBooleens = []) {
-  const flags = {};
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i].startsWith('--')) {
-      const key = argv[i].slice(2);
-      if (flagsBooleens.includes(key)) {
-        flags[key] = true;
-      } else {
-        flags[key] = argv[i + 1];
-        i++; // on consomme aussi la valeur, pour pas la reparser comme un flag
-      }
-    }
+ const flags = {};
+ for (let i = 0; i < argv.length; i++) {
+  if (argv[i].startsWith('--')) {
+   const key = argv[i].slice(2);
+   if (flagsBooleens.includes(key)) {
+    flags[key] = true;
+   } else {
+    flags[key] = argv[i + 1];
+    i++; // on consomme aussi la valeur, pour pas la reparser comme un flag
+   }
   }
-  return flags;
+ }
+ return flags;
 }
 ```
 
@@ -232,11 +232,11 @@ function parseFlags(argv, flagsBooleens = []) {
 
 ```javascript
 function calculerRecompenseAbonnement(montantTotal, nombreAbonnes, tauxBonus) {
-  // Calcule la récompense distribuée par abonné en fonction du montant total
-  // et du taux de bonus appliqué
-  const recompenseBase = montantTotal / nombreAbonnes;
-  const bonus = recompenseBase * tauxBonus;
-  return recompenseBase + bonus;
+ // Calcule la récompense distribuée par abonné en fonction du montant total
+ // et du taux de bonus appliqué
+ const recompenseBase = montantTotal / nombreAbonnes;
+ const bonus = recompenseBase * tauxBonus;
+ return recompenseBase + bonus;
 }
 
 // Exemple d'utilisation :
@@ -253,12 +253,12 @@ function calculerRecompenseAbonnement(montantTotal, nombreAbonnes, tauxBonus) {
 **Le fix** :
 ```javascript
 function calculerRecompenseAbonnement(montantTotal, nombreAbonnes, tauxBonus) {
-  if (nombreAbonnes <= 0) {
-    return 0; // ou lever une erreur explicite, selon ce que le métier attend
-  }
-  const recompenseBase = montantTotal / nombreAbonnes;
-  const bonus = recompenseBase * tauxBonus;
-  return recompenseBase + bonus;
+ if (nombreAbonnes <= 0) {
+  return 0; // ou lever une erreur explicite, selon ce que le métier attend
+ }
+ const recompenseBase = montantTotal / nombreAbonnes;
+ const bonus = recompenseBase * tauxBonus;
+ return recompenseBase + bonus;
 }
 ```
 

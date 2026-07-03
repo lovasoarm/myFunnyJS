@@ -12,29 +12,29 @@ Un modulo ne calcule pas un reste. Il te dit **où tu es dans un cycle**.
 `a % n` retourne le reste de la division euclidienne de `a` par `n`.
 
 ```js
-7 % 3; // 1  : 7 = 2*3 + 1
-10 % 5; // 0  : 10 = 2*5 + 0
-13 % 4; // 1  : 13 = 3*4 + 1
+7 % 3; // 1 : 7 = 2*3 + 1
+10 % 5; // 0 : 10 = 2*5 + 0
+13 % 4; // 1 : 13 = 3*4 + 1
 ```
 
 **La vraie lecture :** `a % n` te donne ta position dans un cycle de taille `n`.
 
 ```
-0 % 4 = 0  →  position 0
-1 % 4 = 1  →  position 1
-2 % 4 = 2  →  position 2
-3 % 4 = 3  →  position 3
-4 % 4 = 0  →  retour en position 0 : le cycle recommence
-5 % 4 = 1  →  position 1 à nouveau
+0 % 4 = 0 → position 0
+1 % 4 = 1 → position 1
+2 % 4 = 2 → position 2
+3 % 4 = 3 → position 3
+4 % 4 = 0 → retour en position 0 : le cycle recommence
+5 % 4 = 1 → position 1 à nouveau
 ```
 
 Visualisé :
 
 ```
-index :   0  1  2  3  4  5  6  7  8  9  10  11
-% 4   :   0  1  2  3  0  1  2  3  0  1   2   3
-           ^-----------^-----------^-----------
-           cycle        cycle       cycle
+index :  0 1 2 3 4 5 6 7 8 9 10 11
+% 4  :  0 1 2 3 0 1 2 3 0 1  2  3
+      ^-----------^-----------^-----------
+      cycle    cycle    cycle
 ```
 
 ---
@@ -57,8 +57,8 @@ gardeActuel(7); // "Daryl" (7 % 4 = 3... attends)
 // tournoi round-robin : match suivant dans un cycle
 const equipes = ["PSG", "Real", "Bayern", "City"];
 const prochainMatch = (matchActuel) => [
-  equipes[matchActuel % equipes.length],
-  equipes[(matchActuel + 1) % equipes.length],
+ equipes[matchActuel % equipes.length],
+ equipes[(matchActuel + 1) % equipes.length],
 ];
 prochainMatch(3); // ["City", "PSG"]:retour au début
 ```
@@ -71,8 +71,8 @@ prochainMatch(3); // ["City", "PSG"]:retour au début
 // page n → items n*taille à (n+1)*taille - 1
 
 const paginer = (items, taille, page) => {
-  const debut = page * taille;
-  return items.slice(debut, debut + taille);
+ const debut = page * taille;
+ return items.slice(debut, debut + taille);
 };
 
 // numéro de page depuis un index
@@ -98,7 +98,7 @@ const equipeQuiJoue = (tour) => (tour % 2 === 0 ? "domicile" : "exterieur");
 ```js
 // assigner des joueurs à des équipes de façon équilibrée
 const assignerEquipe = (indexJoueur, nombreEquipes) =>
-  indexJoueur % nombreEquipes;
+ indexJoueur % nombreEquipes;
 
 // joueurs 0,3,6 => équipe 0
 // joueurs 1,4,7 => équipe 1
@@ -106,17 +106,17 @@ const assignerEquipe = (indexJoueur, nombreEquipes) =>
 
 // ring buffer : structure de données circulaire
 class RingBuffer {
-  constructor(taille) {
-    this.data = new Array(taille);
-    this.taille = taille;
-    this.curseur = 0;
-  }
+ constructor(taille) {
+  this.data = new Array(taille);
+  this.taille = taille;
+  this.curseur = 0;
+ }
 
-  push(valeur) {
-    // écrase le plus ancien quand le buffer est plein
-    this.data[this.curseur % this.taille] = valeur;
-    this.curseur++;
-  }
+ push(valeur) {
+  // écrase le plus ancien quand le buffer est plein
+  this.data[this.curseur % this.taille] = valeur;
+  this.curseur++;
+ }
 }
 ```
 
@@ -128,7 +128,7 @@ En JS, `%` peut retourner un nombre négatif si l'opérande gauche est négatif.
 
 ```js
 (-1 % 4) - // -1 en JS :pas 3 comme en maths
-  (5 % 3); // -2 en JS :pas 1
+ (5 % 3); // -2 en JS :pas 1
 
 // pour un vrai modulo positif :
 const mod = (a, n) => ((a % n) + n) % n;
@@ -172,7 +172,7 @@ Deux nombres sont **congrus modulo n** s'ils ont le même reste.
 const congruents = (a, b, n) => a % n === b % n;
 
 congruents(7, 3, 4); // true
-congruents(13, 1, 4); // true  (13 % 4 = 1, 1 % 4 = 1)
+congruents(13, 1, 4); // true (13 % 4 = 1, 1 % 4 = 1)
 ```
 
 Utilité en pratique :

@@ -17,25 +17,25 @@ Inconvénient : si t'as 2 stratégies à vie, c'est overkill : un `if/else` suff
 ```js
 // Goku attaque. Quelle attaque ? ça dépend du mode.
 function attack(power, mode) {
-  if (mode === "kamehameha") {
-    return power * 1.5
-  } else if (mode === "kaioken") {
-    return power * 2
-  } else if (mode === "spirit_bomb") {
-    return power * 3
-  }
-  // chaque nouvelle technique = une nouvelle branche ici
-  throw new Error("technique inconnue")
+ if (mode === "kamehameha") {
+  return power * 1.5
+ } else if (mode === "kaioken") {
+  return power * 2
+ } else if (mode === "spirit_bomb") {
+  return power * 3
+ }
+ // chaque nouvelle technique = une nouvelle branche ici
+ throw new Error("technique inconnue")
 }
 ```
 
 Ça marche pour 3 techniques. Maintenant Vegeta arrive avec son Final Flash, Piccolo avec son Makankosappo, et Gohan avec sa Masenko.
 
 ```
-mode "kamehameha"  --> branche 1
-mode "kaioken"     --> branche 2
+mode "kamehameha" --> branche 1
+mode "kaioken"   --> branche 2
 mode "spirit_bomb" --> branche 3
-nouveau perso      --> nouvelle vague de branches
+nouveau perso   --> nouvelle vague de branches
 ```
 
 Le `if/else` devient une god-function : tout le monde y touche, personne ne veut la lire, et un jour quelqu'un casse `kamehameha` en ajoutant `final_flash`.
@@ -48,24 +48,24 @@ Le `if/else` devient une god-function : tout le monde y touche, personne ne veut
 // chaque stratégie respecte la même signature : (power) => degats
 // même contrat, comportement différent
 const strategies = {
-  kamehameha: (power) => power * 1.5,
-  kaioken: (power) => power * 2,
-  spirit_bomb: (power) => power * 3,
+ kamehameha: (power) => power * 1.5,
+ kaioken: (power) => power * 2,
+ spirit_bomb: (power) => power * 3,
 }
 
 // attack ne connaît AUCUNE technique : il sait juste exécuter une stratégie
 function attack(power, strategyKey) {
-  const strategy = strategies[strategyKey]
+ const strategy = strategies[strategyKey]
 
-  if (!strategy) {
-    throw new Error(`technique inconnue : ${strategyKey}`)
-  }
+ if (!strategy) {
+  throw new Error(`technique inconnue : ${strategyKey}`)
+ }
 
-  return strategy(power)
+ return strategy(power)
 }
 
 console.log(attack(100, "kamehameha")) // 150
-console.log(attack(100, "kaioken"))    // 200
+console.log(attack(100, "kaioken"))  // 200
 ```
 
 Ajouter le Final Flash de Vegeta :
@@ -92,25 +92,25 @@ Dans la vraie vie, une stratégie a souvent besoin de connaître l'état complet
 ```js
 // chaque stratégie reçoit l'état complet du combattant et de la cible
 const combatStrategies = {
-  kamehameha: (attacker, defender) => {
-    const baseDamage = attacker.power * 1.5
-    // si la cible a moins de chakra que l'attaquant, bonus de 20%
-    const bonus = defender.chakra < attacker.chakra ? 1.2 : 1
-    return Math.round(baseDamage * bonus)
-  },
+ kamehameha: (attacker, defender) => {
+  const baseDamage = attacker.power * 1.5
+  // si la cible a moins de chakra que l'attaquant, bonus de 20%
+  const bonus = defender.chakra < attacker.chakra ? 1.2 : 1
+  return Math.round(baseDamage * bonus)
+ },
 
-  // version défensive : protège plus mais frappe moins
-  defensive_stance: (attacker, defender) => {
-    return Math.round(attacker.power * 0.6)
-  },
+ // version défensive : protège plus mais frappe moins
+ defensive_stance: (attacker, defender) => {
+  return Math.round(attacker.power * 0.6)
+ },
 }
 
 function executeAttack(attacker, defender, strategyKey) {
-  const strategy = combatStrategies[strategyKey]
-  if (!strategy) throw new Error("technique inconnue")
+ const strategy = combatStrategies[strategyKey]
+ if (!strategy) throw new Error("technique inconnue")
 
-  const damage = strategy(attacker, defender)
-  return { ...defender, hp: defender.hp - damage }
+ const damage = strategy(attacker, defender)
+ return { ...defender, hp: defender.hp - damage }
 }
 ```
 
@@ -184,16 +184,16 @@ Voici un code fourni :
 
 ```js
 const strategies = {
-  rapide: (power) => power * 1.2,
-  lente: (power, bonus) => power * 1.5 + bonus, // <-- bug caché ici
+ rapide: (power) => power * 1.2,
+ lente: (power, bonus) => power * 1.5 + bonus, // <-- bug caché ici
 }
 
 function attack(power, key) {
-  return strategies[key](power)
+ return strategies[key](power)
 }
 
 console.log(attack(100, "rapide")) // ok
-console.log(attack(100, "lente"))  // ???
+console.log(attack(100, "lente")) // ???
 ```
 
 Sans exécuter le code : explique pourquoi `attack(100, "lente")` ne plante PAS (aucune erreur JS) mais retourne un résultat FAUX. Quelle est la valeur exacte retournée, et pourquoi ?

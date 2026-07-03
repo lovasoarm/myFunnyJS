@@ -1,5 +1,4 @@
 Temps de lecture ~9 min
-[INTEMPOREL]
 
 Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
 
@@ -16,23 +15,23 @@ Une fonction normale s'exécute de A à Z sans interruption. Un generator (funct
 ```js
 // fonction normale : s'exécute en entier, retourne une valeur
 function mission() {
-  console.log('départ')
-  console.log('en route')
-  console.log('arrivée')
-  return 'terminé'
+ console.log('départ')
+ console.log('en route')
+ console.log('arrivée')
+ return 'terminé'
 }
 
 // generator : s'exécute jusqu'au premier yield, puis attend
 function* missionGaro() {
-  console.log('départ')
-  yield 'point de contrôle 1'   // pause ici, retourne la valeur
-  console.log('en route')
-  yield 'point de contrôle 2'   // pause encore
-  console.log('arrivée')
-  return 'mission accomplie'
+ console.log('départ')
+ yield 'point de contrôle 1'  // pause ici, retourne la valeur
+ console.log('en route')
+ yield 'point de contrôle 2'  // pause encore
+ console.log('arrivée')
+ return 'mission accomplie'
 }
 
-const gen = missionGaro()  // crée le generator, mais n'exécute RIEN encore
+const gen = missionGaro() // crée le generator, mais n'exécute RIEN encore
 
 gen.next()
 // affiche "départ"
@@ -60,24 +59,24 @@ gen.next()
 
 ```js
 function* interrogatoire() {
-  const réponse1 = yield 'Où est le plan de la prison ?'
-  console.log('Réponse reçue :', réponse1)
+ const réponse1 = yield 'Où est le plan de la prison ?'
+ console.log('Réponse reçue :', réponse1)
 
-  const réponse2 = yield 'Combien de gardes ce soir ?'
-  console.log('Réponse reçue :', réponse2)
+ const réponse2 = yield 'Combien de gardes ce soir ?'
+ console.log('Réponse reçue :', réponse2)
 
-  return `Dossier : ${réponse1} / ${réponse2}`
+ return `Dossier : ${réponse1} / ${réponse2}`
 }
 
 const gen = interrogatoire()
 
-gen.next()           // démarre : { value: 'Où est le plan...', done: false }
-gen.next('Section C')  // envoie 'Section C' comme valeur du yield
-                       // affiche "Réponse reçue : Section C"
-                       // retourne : { value: 'Combien de gardes...', done: false }
-gen.next('12 gardes')  // envoie '12 gardes'
-                       // affiche "Réponse reçue : 12 gardes"
-                       // retourne : { value: 'Dossier : Section C / 12 gardes', done: true }
+gen.next()      // démarre : { value: 'Où est le plan...', done: false }
+gen.next('Section C') // envoie 'Section C' comme valeur du yield
+            // affiche "Réponse reçue : Section C"
+            // retourne : { value: 'Combien de gardes...', done: false }
+gen.next('12 gardes') // envoie '12 gardes'
+            // affiche "Réponse reçue : 12 gardes"
+            // retourne : { value: 'Dossier : Section C / 12 gardes', done: true }
 ```
 
 La première valeur passée à `.next()` est ignorée (il n'y a pas de `yield` actif au démarrage). À partir du deuxième `.next(valeur)`, la valeur devient le résultat de l'expression `yield` dans la fonction.
@@ -91,32 +90,32 @@ Un generator retourne automatiquement un itérable. C'est la façon la plus cour
 ```js
 // version Symbol.iterator du fichier précédent : ~15 lignes
 const squad = {
-  membres: ['Naruto', 'Sasuke', 'Sakura'],
-  [Symbol.iterator]() {
-    let index = 0
-    return {
-      next: () => {
-        if (index < this.membres.length) {
-          return { value: this.membres[index++], done: false }
-        }
-        return { value: undefined, done: true }
-      }
+ membres: ['Naruto', 'Sasuke', 'Sakura'],
+ [Symbol.iterator]() {
+  let index = 0
+  return {
+   next: () => {
+    if (index < this.membres.length) {
+     return { value: this.membres[index++], done: false }
     }
+    return { value: undefined, done: true }
+   }
   }
+ }
 }
 
 // version generator : ~5 lignes, même résultat
 const squadGen = {
-  membres: ['Naruto', 'Sasuke', 'Sakura'],
-  *[Symbol.iterator]() {         // generator method : * devant le nom
-    for (const m of this.membres) {
-      yield m
-    }
+ membres: ['Naruto', 'Sasuke', 'Sakura'],
+ *[Symbol.iterator]() {     // generator method : * devant le nom
+  for (const m of this.membres) {
+   yield m
   }
+ }
 }
 
 for (const ninja of squadGen) {
-  console.log(ninja)  // 'Naruto', 'Sasuke', 'Sakura'
+ console.log(ninja) // 'Naruto', 'Sasuke', 'Sakura'
 }
 ```
 
@@ -124,9 +123,9 @@ for (const ninja of squadGen) {
 
 ```js
 function* tousLesNinjas() {
-  yield* ['Naruto', 'Sasuke']  // yield chaque élément de l'array
-  yield* ['Sakura', 'Kakashi']
-  yield 'Gaara'                // yield un seul élément
+ yield* ['Naruto', 'Sasuke'] // yield chaque élément de l'array
+ yield* ['Sakura', 'Kakashi']
+ yield 'Gaara'        // yield un seul élément
 }
 
 console.log([...tousLesNinjas()])
@@ -142,19 +141,19 @@ Un generator peut être asynchrone : chaque yield peut attendre une opération a
 ```js
 // async generator : combine async/await et yield
 async function* streamScores(matchIds) {
-  for (const id of matchIds) {
-    const score = await fetch(`/api/match/${id}`).then(r => r.json())
-    yield score   // yield le résultat après l'await
-  }
+ for (const id of matchIds) {
+  const score = await fetch(`/api/match/${id}`).then(r => r.json())
+  yield score  // yield le résultat après l'await
+ }
 }
 
 // consommation avec for await...of (boucle for asynchrone)
 async function afficherScores() {
-  const ids = ['cl-final-2024', 'cl-final-2023', 'cl-final-2022']
+ const ids = ['cl-final-2024', 'cl-final-2023', 'cl-final-2022']
 
-  for await (const score of streamScores(ids)) {
-    console.log(score)  // chaque score arrive dès qu'il est prêt, pas tous d'un coup
-  }
+ for await (const score of streamScores(ids)) {
+  console.log(score) // chaque score arrive dès qu'il est prêt, pas tous d'un coup
+ }
 }
 ```
 
@@ -166,25 +165,25 @@ La différence avec `Promise.all` : `Promise.all` attend que toutes les promesse
 
 ```js
 function* compteur() {
-  let n = 0
-  while (true) {     // boucle infinie : le generator ne se termine pas
-    yield n++
-  }
+ let n = 0
+ while (true) {   // boucle infinie : le generator ne se termine pas
+  yield n++
+ }
 }
 
 const gen = compteur()
-console.log(gen.next().value)  // 0
-console.log(gen.next().value)  // 1
-console.log(gen.next().value)  // 2
+console.log(gen.next().value) // 0
+console.log(gen.next().value) // 1
+console.log(gen.next().value) // 2
 
 // PIÈGE : partager le même generator entre deux contextes
 function premierDisponible(gen) {
-  return gen.next().value  // consomme un élément du generator partagé
+ return gen.next().value // consomme un élément du generator partagé
 }
 
-premierDisponible(gen)  // 3 -- OK mais avance le compteur global
-premierDisponible(gen)  // 4 -- le compteur a avancé, le contexte A ne sait pas
-gen.next().value        // 5 -- l'appelant original ne sait pas que gen.next() a été appelé 2x entre temps
+premierDisponible(gen) // 3 -- OK mais avance le compteur global
+premierDisponible(gen) // 4 -- le compteur a avancé, le contexte A ne sait pas
+gen.next().value    // 5 -- l'appelant original ne sait pas que gen.next() a été appelé 2x entre temps
 ```
 
 Un generator a un état interne. Le partager entre plusieurs consommateurs sans contrôle crée des bugs d'état difficiles à tracer. Règle : un generator = un seul consommateur, sauf si tu conçois explicitement un partage.
@@ -199,9 +198,9 @@ L'Alerte Horror vient de tomber sur 3 villes simultanément. Le Conseil de Surve
 
 ```js
 const alertes = [
-  { ville: 'Valiante', niveau: 9, chevalier: null },
-  { ville: 'León', niveau: 7, chevalier: null },
-  { ville: 'Toledo', niveau: 5, chevalier: null },
+ { ville: 'Valiante', niveau: 9, chevalier: null },
+ { ville: 'León', niveau: 7, chevalier: null },
+ { ville: 'Toledo', niveau: 5, chevalier: null },
 ]
 ```
 
@@ -219,8 +218,8 @@ Le dashboard Champions League veut afficher les stats de chaque équipe au fur e
 
 ```js
 async function* fetchStatsParEquipe(equipes) {
-  // pour chaque équipe, simuler un fetch avec un délai variable
-  // yield le résultat dès qu'il arrive
+ // pour chaque équipe, simuler un fetch avec un délai variable
+ // yield le résultat dès qu'il arrive
 }
 ```
 
@@ -230,7 +229,7 @@ Implémenter cette fonction pour que le code suivant affiche chaque stat dès qu
 const equipes = ['PSG', 'Real Madrid', 'Arsenal']
 
 for await (const stats of fetchStatsParEquipe(equipes)) {
-  console.log(`Stats reçues : ${stats.equipe} - ${stats.buts} buts`)
+ console.log(`Stats reçues : ${stats.equipe} - ${stats.buts} buts`)
 }
 ```
 

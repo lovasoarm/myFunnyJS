@@ -11,16 +11,16 @@ Chaque objet JS a un lien interne vers un autre objet : son prototype (modèle d
 
 ```js
 const ninja = {
-  esquiver() {
-    return "Ninja esquive dans un nuage de fumée"
-  }
+ esquiver() {
+  return "Ninja esquive dans un nuage de fumée"
+ }
 }
 
 const naruto = Object.create(ninja)
 // Object.create : crée un objet dont [[Prototype]] pointe vers l'argument donné
 naruto.nom = "Naruto"
 
-console.log(naruto.nom)        // "Naruto" (propriété propre, posée directement sur naruto)
+console.log(naruto.nom)    // "Naruto" (propriété propre, posée directement sur naruto)
 console.log(naruto.esquiver()) // trouvé chez ninja, pas chez naruto
 ```
 
@@ -28,11 +28,11 @@ console.log(naruto.esquiver()) // trouvé chez ninja, pas chez naruto
 
 ```
 naruto.esquiver()
-   |
-   v
+  |
+  v
 naruto a "esquiver" ? NON
-   |
-   v
+  |
+  v
 naruto.[[Prototype]] (= ninja) a "esquiver" ? OUI --> exécution
 ```
 
@@ -40,21 +40,21 @@ Chaîne complète dans le cas d'une classe :
 
 ```
 instance (ex : monNinja)
-        |
-        |  [[Prototype]]  (accès via __proto__ ou Object.getPrototypeOf)
-        v
+    |
+    | [[Prototype]] (accès via __proto__ ou Object.getPrototypeOf)
+    v
 MaClasse.prototype
-    (méthodes partagées par toutes les instances : attack(), defend()...)
-        |
-        |  [[Prototype]]
-        v
+  (méthodes partagées par toutes les instances : attack(), defend()...)
+    |
+    | [[Prototype]]
+    v
 Object.prototype
-    (toString, hasOwnProperty, valueOf, isPrototypeOf...)
-        |
-        |  [[Prototype]]
-        v
-      null
-   (fin de chaîne : le moteur s'arrête ici)
+  (toString, hasOwnProperty, valueOf, isPrototypeOf...)
+    |
+    | [[Prototype]]
+    v
+   null
+  (fin de chaîne : le moteur s'arrête ici)
 
 JS remonte la chaîne à chaque accès de propriété ou méthode.
 Si c'est introuvable jusqu'à null : retourne undefined. Pas d'erreur, juste silence.
@@ -68,9 +68,9 @@ C'est pourquoi accéder à une propriété inexistante ne plante pas, mais utili
 La chaîne n'est pas infinie. Elle se termine à `Object.prototype`, puis à `null`.
 
 ```js
-console.log(Object.getPrototypeOf(naruto) === ninja)           // true
+console.log(Object.getPrototypeOf(naruto) === ninja)      // true
 console.log(Object.getPrototypeOf(ninja) === Object.prototype) // true
-console.log(Object.getPrototypeOf(Object.prototype))            // null : fin de la chaîne
+console.log(Object.getPrototypeOf(Object.prototype))      // null : fin de la chaîne
 ```
 
 ```
@@ -81,8 +81,8 @@ Quand tu accèdes à `naruto.toString()`, tu remontes toute la chaîne jusqu'à 
 
 ```js
 // preuve :
-console.log(naruto.hasOwnProperty)        // [Function: hasOwnProperty]
-console.log(naruto.toString)              // [Function: toString]
+console.log(naruto.hasOwnProperty)    // [Function: hasOwnProperty]
+console.log(naruto.toString)       // [Function: toString]
 // ni l'un ni l'autre n'est sur naruto ni sur ninja : ils viennent de Object.prototype
 ```
 
@@ -91,11 +91,11 @@ console.log(naruto.toString)              // [Function: toString]
 ## 3) PROPRIÉTÉ PROPRE VS PROPRIÉTÉ HÉRITÉE
 
 ```js
-naruto.hasOwnProperty("nom")      // true  (propre à naruto, posé directement)
+naruto.hasOwnProperty("nom")   // true (propre à naruto, posé directement)
 naruto.hasOwnProperty("esquiver") // false (vient de ninja, pas propre)
 
-"esquiver" in naruto              // true  (in regarde toute la chaîne)
-"nom" in naruto                   // true  (in regarde toute la chaîne aussi)
+"esquiver" in naruto       // true (in regarde toute la chaîne)
+"nom" in naruto          // true (in regarde toute la chaîne aussi)
 ```
 
 `hasOwnProperty` regarde uniquement l'objet lui-même.
@@ -109,15 +109,15 @@ const sasuke = Object.create(ninja)
 sasuke.chakra = 9000
 
 for (const key in sasuke) {
-  console.log(key)
-  // affiche : "chakra", puis "esquiver" (venue de ninja)
-  // solution : filtrer avec hasOwnProperty si tu veux seulement les propres
+ console.log(key)
+ // affiche : "chakra", puis "esquiver" (venue de ninja)
+ // solution : filtrer avec hasOwnProperty si tu veux seulement les propres
 }
 
 for (const key in sasuke) {
-  if (sasuke.hasOwnProperty(key)) {
-    console.log(key) // affiche seulement : "chakra"
-  }
+ if (sasuke.hasOwnProperty(key)) {
+  console.log(key) // affiche seulement : "chakra"
+ }
 }
 ```
 
@@ -130,11 +130,11 @@ Quand tu écris une propriété, il n'y a pas de "grimpe" : ça pose direct la p
 
 ```js
 naruto.esquiver = function() {
-  return "Naruto esquive en mode brute force"
+ return "Naruto esquive en mode brute force"
 }
 
 naruto.esquiver() // "Naruto esquive en mode brute force"
-ninja.esquiver()  // toujours "Ninja esquive dans un nuage de fumée" : ninja n'a pas changé
+ninja.esquiver() // toujours "Ninja esquive dans un nuage de fumée" : ninja n'a pas changé
 ```
 
 `naruto` a maintenant sa propre méthode `esquiver`, qui masque celle du prototype. C'est le **shadowing** (masquage : une propriété propre cache la version héritée portant le même nom). Le prototype `ninja` n'a jamais été touché.
@@ -145,7 +145,7 @@ naruto.esquiver() → monte vers ninja → trouve "esquiver" chez ninja
 
 après le shadowing :
 naruto.esquiver() → trouve "esquiver" chez naruto → s'arrête là
-                    ninja.esquiver() reste intact
+          ninja.esquiver() reste intact
 ```
 
 ---
@@ -154,16 +154,16 @@ naruto.esquiver() → trouve "esquiver" chez naruto → s'arrête là
 
 ```js
 // lire le prototype d'un objet
-Object.getPrototypeOf(naruto) === ninja  // true
+Object.getPrototypeOf(naruto) === ninja // true
 
 // vérifier si un objet est le prototype d'un autre
-ninja.isPrototypeOf(naruto)               // true
-ninja.isPrototypeOf(sasuke)               // true (si sasuke a été créé avec Object.create(ninja))
-Object.prototype.isPrototypeOf(naruto)    // true : Object.prototype est dans la chaîne de tout objet
+ninja.isPrototypeOf(naruto)        // true
+ninja.isPrototypeOf(sasuke)        // true (si sasuke a été créé avec Object.create(ninja))
+Object.prototype.isPrototypeOf(naruto)  // true : Object.prototype est dans la chaîne de tout objet
 
 // voir TOUTES les propriétés propres d'un objet (pas les héritées)
-Object.keys(naruto)        // ["nom", "esquiver"] : propres et énumérables
-Object.getOwnPropertyNames(naruto)  // pareil mais inclut les non-énumérables
+Object.keys(naruto)    // ["nom", "esquiver"] : propres et énumérables
+Object.getOwnPropertyNames(naruto) // pareil mais inclut les non-énumérables
 ```
 
 Note sur `__proto__` : cette propriété existe sur presque tous les objets et permet de lire/écrire le prototype. Mais c'est un vestige de dev navigateur, standardisé à contrecoeur. Ne l'utilise pas dans du code de prod : utilise `Object.getPrototypeOf` / `Object.create` / `Object.setPrototypeOf` à la place. Plus explicite, plus stable.
@@ -182,7 +182,7 @@ sakura.esquiver() // "Ninja esquive dans un nuage de fumée"
 
 // maintenant on mutant le prototype partagé
 ninja.esquiver = function() {
-  return "Esquive modifiée : nouvelle technique"
+ return "Esquive modifiée : nouvelle technique"
 }
 
 // ça change pour TOUT le monde instantanément
@@ -194,12 +194,12 @@ Tu modifies `ninja` une fois, et toutes les instances qui pointent vers lui chan
 
 ```
 ninja.esquiver change
-   |
-   v
+  |
+  v
 sasuke --> ninja (lien vivant, pas une copie)
 sakura --> ninja (lien vivant, pas une copie)
-   |
-   v
+  |
+  v
 les deux changent ensemble, sans qu'on touche sasuke ou sakura directement
 ```
 
@@ -208,7 +208,7 @@ Ce n'est pas un bug : c'est exactement ce que fait un prototype partagé. Le ris
 ```js
 // exemple catastrophique : monkey-patching (modification d'un prototype natif à l'exécution)
 Array.prototype.dernierElement = function() {
-  return this[this.length - 1]
+ return this[this.length - 1]
 }
 
 // maintenant TOUS les tableaux du programme ont cette méthode
@@ -228,7 +228,7 @@ C'est pour ça que la pollution de prototype (voir `28_edge_cases/04`) est trait
 const dictionnaire = Object.create(null)
 dictionnaire.clé = "valeur"
 
-console.log(dictionnaire.toString)      // undefined : pas d'Object.prototype dans la chaîne
+console.log(dictionnaire.toString)   // undefined : pas d'Object.prototype dans la chaîne
 console.log(dictionnaire.hasOwnProperty) // undefined : même chose
 
 // mais "clé" in dictionnaire marche toujours
@@ -275,26 +275,26 @@ Muter un prototype partagé impacte instantanément toutes les instances liées 
 
 ---
 
-## [INTEMPOREL] SCHÉMA ASCII : CHAÎNE DE PROTOTYPES
+## SCHÉMA ASCII : CHAÎNE DE PROTOTYPES
 
 ```
-  monChien ─┬─► { nom: "Kuro" }
-            │
-            │  __proto__
-            ▼
-        Chien.prototype ─┬─► { aboyer: fn }
-                         │
-                         │  __proto__
-                         ▼
-                  Animal.prototype ─┬─► { manger: fn }
-                                    │
-                                    │  __proto__
-                                    ▼
-                          Object.prototype ─► { toString, hasOwnProperty }
-                                    │
-                                    │  __proto__
-                                    ▼
-                                   null   (fin de la chaîne)
+ monChien ─┬─► { nom: "Kuro" }
+      │
+      │ __proto__
+      ▼
+    Chien.prototype ─┬─► { aboyer: fn }
+             │
+             │ __proto__
+             ▼
+         Animal.prototype ─┬─► { manger: fn }
+                  │
+                  │ __proto__
+                  ▼
+             Object.prototype ─► { toString, hasOwnProperty }
+                  │
+                  │ __proto__
+                  ▼
+                  null  (fin de la chaîne)
 ```
 
 Recherche d'une propriété = remonter les flèches. Retourne à `null` sans trouver ⇒ `undefined`.

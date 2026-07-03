@@ -1,7 +1,7 @@
 # L'IA GÉNÈRE DES TESTS : TOI TU VÉRIFIES QU'ILS TESTENT VRAIMENT QUELQUE CHOSE
 Temps de lecture ~12 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 L'IA peut générer des tests qui passent sans rien vérifier. C'est le pire type de faux sentiment de sécurité : ton CI est vert, ta couverture est à 95%, et le bug est là depuis le début. Un test qui passe toujours, même si la fonction est cassée, n'est pas un test : c'est de la décoration.
 
@@ -16,19 +16,19 @@ L'IA génère des tests en observant le code. Ça crée un problème fondamental
 ```js
 // La fonction de l'Oracle
 function calculerDommagesJutsu(puissance, multiplicateur) {
-  return puissance * multiplicateur / 100  // BUG : devrait être puissance + (puissance * multiplicateur / 100)
+ return puissance * multiplicateur / 100 // BUG : devrait être puissance + (puissance * multiplicateur / 100)
 }
 
 // Le test que l'IA génère en observant la fonction :
 test('calcule les dommages', () => {
-  expect(calculerDommagesJutsu(500, 10)).toBe(50)  // passe ! mais 50 c'est faux
-  // le résultat attendu était 550 (500 de base + 10% de bonus)
+ expect(calculerDommagesJutsu(500, 10)).toBe(50) // passe ! mais 50 c'est faux
+ // le résultat attendu était 550 (500 de base + 10% de bonus)
 })
 
 // Le test que tu dois écrire en partant du comportement attendu :
 test('ajoute le bonus de multiplicateur à la puissance de base', () => {
-  expect(calculerDommagesJutsu(500, 10)).toBe(550)  // 500 + 10% de 500
-  // CE TEST ÉCHOUE. C'est normal. C'est lui qui a trouvé le bug.
+ expect(calculerDommagesJutsu(500, 10)).toBe(550) // 500 + 10% de 500
+ // CE TEST ÉCHOUE. C'est normal. C'est lui qui a trouvé le bug.
 })
 ```
 
@@ -72,83 +72,83 @@ Quand tu génères ou écris des tests, tu vises ces 5 catégories. Checklist à
 
 ```
 1. CAS NOMINAL
-   --> le chemin heureux, l'input standard
-   --> test(chevalier d'or contre horror niveau 3, mission créée correctement)
+  --> le chemin heureux, l'input standard
+  --> test(chevalier d'or contre horror niveau 3, mission créée correctement)
 
 2. CAS LIMITE (boundary)
-   --> les valeurs exactement aux bords des conditions
-   --> test(horror niveau 5 exactement, test(chevalier rang 'or' exactement)
-   --> pas niveau 4, pas niveau 6 : exactement 5
+  --> les valeurs exactement aux bords des conditions
+  --> test(horror niveau 5 exactement, test(chevalier rang 'or' exactement)
+  --> pas niveau 4, pas niveau 6 : exactement 5
 
 3. CAS D'ERREUR
-   --> les inputs invalides, les états impossibles
-   --> test(chevalier null), test(horror niveau 5 avec chevalier d'argent), test(zone déjà couverte)
+  --> les inputs invalides, les états impossibles
+  --> test(chevalier null), test(horror niveau 5 avec chevalier d'argent), test(zone déjà couverte)
 
 4. CAS EDGE (comportement inattendu)
-   --> les situations que la spec n'a peut-être pas prévues
-   --> test(zone vide string), test(horror niveau 0), test(même chevalier assigné deux fois)
+  --> les situations que la spec n'a peut-être pas prévues
+  --> test(zone vide string), test(horror niveau 0), test(même chevalier assigné deux fois)
 
 5. CAS DE RÉGRESSION
-   --> les bugs qu'on a déjà eus, devenus des tests permanents
-   --> test('bug #23 : le rang chevalier était case-sensitive, "Or" vs "or" échouait')
+  --> les bugs qu'on a déjà eus, devenus des tests permanents
+  --> test('bug #23 : le rang chevalier était case-sensitive, "Or" vs "or" échouait')
 ```
 
 ```js
 // Exemple complet sur attribuerMission :
 
 describe('attribuerMission', () => {
-  // 1. CAS NOMINAL
-  test('crée une mission valide pour un chevalier d\'or contre un horror standard', () => {
-    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
-    const horror = { id: 'h1', niveau: 3 }
-    const mission = attribuerMission(chevalier, horror, 'secteur-nord')
+ // 1. CAS NOMINAL
+ test('crée une mission valide pour un chevalier d\'or contre un horror standard', () => {
+  const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+  const horror = { id: 'h1', niveau: 3 }
+  const mission = attribuerMission(chevalier, horror, 'secteur-nord')
 
-    expect(mission.id).toBeDefined()
-    expect(mission.chevalier).toBe('leon')
-    expect(mission.timestamp).toBeInstanceOf(Date)
-  })
+  expect(mission.id).toBeDefined()
+  expect(mission.chevalier).toBe('leon')
+  expect(mission.timestamp).toBeInstanceOf(Date)
+ })
 
-  // 2. CAS LIMITE
-  test('autorise un chevalier d\'or contre un horror niveau 5 exactement (boundary)', () => {
-    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
-    const horror = { id: 'h2', niveau: 5 }
-    expect(() => attribuerMission(chevalier, horror, 'secteur-est')).not.toThrow()
-  })
+ // 2. CAS LIMITE
+ test('autorise un chevalier d\'or contre un horror niveau 5 exactement (boundary)', () => {
+  const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+  const horror = { id: 'h2', niveau: 5 }
+  expect(() => attribuerMission(chevalier, horror, 'secteur-est')).not.toThrow()
+ })
 
-  test('refuse un chevalier d\'argent contre un horror niveau 5 exactement (boundary)', () => {
-    const chevalier = { id: 'ryuga', rang: 'argent', armureActive: true }
-    const horror = { id: 'h3', niveau: 5 }
-    expect(() => attribuerMission(chevalier, horror, 'secteur-ouest')).toThrow(InsufficientRankError)
-  })
+ test('refuse un chevalier d\'argent contre un horror niveau 5 exactement (boundary)', () => {
+  const chevalier = { id: 'ryuga', rang: 'argent', armureActive: true }
+  const horror = { id: 'h3', niveau: 5 }
+  expect(() => attribuerMission(chevalier, horror, 'secteur-ouest')).toThrow(InsufficientRankError)
+ })
 
-  // 3. CAS D'ERREUR
-  test('lève KnightUnarmedError si l\'armure est inactive', () => {
-    const chevalier = { id: 'leon', rang: 'or', armureActive: false }
-    const horror = { id: 'h4', niveau: 2 }
-    expect(() => attribuerMission(chevalier, horror, 'secteur-sud')).toThrow(KnightUnarmedError)
-  })
+ // 3. CAS D'ERREUR
+ test('lève KnightUnarmedError si l\'armure est inactive', () => {
+  const chevalier = { id: 'leon', rang: 'or', armureActive: false }
+  const horror = { id: 'h4', niveau: 2 }
+  expect(() => attribuerMission(chevalier, horror, 'secteur-sud')).toThrow(KnightUnarmedError)
+ })
 
-  test('lève TypeError si le chevalier est null', () => {
-    expect(() => attribuerMission(null, { id: 'h5', niveau: 1 }, 'secteur-nord')).toThrow(TypeError)
-  })
+ test('lève TypeError si le chevalier est null', () => {
+  expect(() => attribuerMission(null, { id: 'h5', niveau: 1 }, 'secteur-nord')).toThrow(TypeError)
+ })
 
-  // 4. CAS EDGE
-  test('gère un horror de niveau 0', () => {
-    const chevalier = { id: 'leon', rang: 'or', armureActive: true }
-    const horror = { id: 'h6', niveau: 0 }
-    // Niveau 0 : acceptable ou erreur ? La spec ne dit pas : à décider, à tester
-    expect(() => attribuerMission(chevalier, horror, 'secteur-nord')).not.toThrow()
-  })
+ // 4. CAS EDGE
+ test('gère un horror de niveau 0', () => {
+  const chevalier = { id: 'leon', rang: 'or', armureActive: true }
+  const horror = { id: 'h6', niveau: 0 }
+  // Niveau 0 : acceptable ou erreur ? La spec ne dit pas : à décider, à tester
+  expect(() => attribuerMission(chevalier, horror, 'secteur-nord')).not.toThrow()
+ })
 
-  // 5. CAS DE RÉGRESSION
-  test('regression bug #23 : le rang n\'est pas case-sensitive', () => {
-    const chevalier1 = { id: 'leon', rang: 'or', armureActive: true }
-    const chevalier2 = { id: 'ryuga', rang: 'Or', armureActive: true }
-    const horror = { id: 'h7', niveau: 5 }
-    // les deux doivent passer, peu importe la casse
-    expect(() => attribuerMission(chevalier1, horror, 'zone-a')).not.toThrow()
-    expect(() => attribuerMission(chevalier2, horror, 'zone-b')).not.toThrow()
-  })
+ // 5. CAS DE RÉGRESSION
+ test('regression bug #23 : le rang n\'est pas case-sensitive', () => {
+  const chevalier1 = { id: 'leon', rang: 'or', armureActive: true }
+  const chevalier2 = { id: 'ryuga', rang: 'Or', armureActive: true }
+  const horror = { id: 'h7', niveau: 5 }
+  // les deux doivent passer, peu importe la casse
+  expect(() => attribuerMission(chevalier1, horror, 'zone-a')).not.toThrow()
+  expect(() => attribuerMission(chevalier2, horror, 'zone-b')).not.toThrow()
+ })
 })
 ```
 
@@ -168,10 +168,10 @@ npm install --save-dev @stryker-mutator/core @stryker-mutator/jest-runner
 
 # stryker.config.json
 {
-  "testRunner": "jest",
-  "reporters": ["progress", "html"],
-  "coverageAnalysis": "perTest",
-  "mutate": ["src/**/*.ts", "!src/**/*.spec.ts"]
+ "testRunner": "jest",
+ "reporters": ["progress", "html"],
+ "coverageAnalysis": "perTest",
+ "mutate": ["src/**/*.ts", "!src/**/*.spec.ts"]
 }
 
 # Lancer
@@ -183,18 +183,18 @@ Ce que Stryker fait sur le code de Naruto :
 ```js
 // Ta fonction originale
 function estChunin(experience) {
-  return experience >= 2  // 2 ans minimum pour le rang chunin
+ return experience >= 2 // 2 ans minimum pour le rang chunin
 }
 
 // Mutant 1 : Stryker change >= en >
 function estChunin(experience) {
-  return experience > 2   // 2 ans n'est plus chunin : Naruto lui-même échoue
+ return experience > 2  // 2 ans n'est plus chunin : Naruto lui-même échoue
 }
 // Si ton test n'inclut pas test('2 ans = chunin') : ce mutant SURVIT. Bug non détecté.
 
 // Mutant 2 : Stryker inverse la condition
 function estChunin(experience) {
-  return experience < 2
+ return experience < 2
 }
 // Si tes tests couvrent bien les deux côtés, ce mutant EST tué. Test efficace.
 ```
@@ -207,34 +207,34 @@ Le score de mutation (mutation score) : pourcentage de mutants tués par tes tes
 
 ```
 SPEC claire de ce que la fonction doit faire
-    |
-    v
+  |
+  v
 Prompt à l'IA avec la SPEC (pas le code)
-    |
-    v
+  |
+  v
 L'IA génère une suite de tests
-    |
-    v
+  |
+  v
 Tu lis chaque test : est-ce que l'assertion a du sens ?
 Est-ce qu'elle vérifie quelque chose qui peut échouer ?
-    |
-    v
+  |
+  v
 Tu complètes avec les cas que l'IA a oubliés (surtout les limites et les erreurs)
-    |
-    v
+  |
+  v
 Tu lances les tests : combien échouent sur l'implémentation actuelle ?
 (si aucun n'échoue : suspecte les tests, pas le code)
-    |
-    v
+  |
+  v
 Tu corriges les bugs révélés
-    |
-    v
+  |
+  v
 Tous les tests passent
-    |
-    v
+  |
+  v
 Tu lances Stryker : score de mutation
-    |
-    v
+  |
+  v
 Tu corriges les tests faibles révélés par les mutants survivants
 ```
 
@@ -254,21 +254,21 @@ les edge cases et les pièges classiques JS.
 Ne génère pas de code de test : juste la liste des inputs avec le résultat attendu."
 
 Réponse possible :
-- JSON valide et complet         --> objet parsé correctement
-- JSON valide mais vide {}       --> erreur ou objet vide ? (à décider)
-- JSON avec virgule en trop      --> erreur de parsing
-- JSON enveloppé dans ```json    --> nettoyage avant parsing
-- Réponse tronquée à mi-JSON    --> erreur de parsing
-- Réponse null                   --> TypeError
-- Réponse undefined              --> TypeError
-- String vide ""                 --> erreur
-- String "null"                  --> JSON.parse("null") = null, pas une erreur
-- Très longue réponse (> 10k)    --> performance, timeout ?
-- NaN dans un champ numérique    --> Zod doit le rejeter
-- Infinity dans un champ         --> Zod doit le rejeter
-- Champ attendu absent           --> Zod doit le rejeter
+- JSON valide et complet     --> objet parsé correctement
+- JSON valide mais vide {}    --> erreur ou objet vide ? (à décider)
+- JSON avec virgule en trop   --> erreur de parsing
+- JSON enveloppé dans ```json  --> nettoyage avant parsing
+- Réponse tronquée à mi-JSON  --> erreur de parsing
+- Réponse null          --> TypeError
+- Réponse undefined       --> TypeError
+- String vide ""         --> erreur
+- String "null"         --> JSON.parse("null") = null, pas une erreur
+- Très longue réponse (> 10k)  --> performance, timeout ?
+- NaN dans un champ numérique  --> Zod doit le rejeter
+- Infinity dans un champ     --> Zod doit le rejeter
+- Champ attendu absent      --> Zod doit le rejeter
 - Type incorrect (string à la place de number) --> Zod doit le rejeter
-- Caractères unicode bizarres    --> le parsing tient ?
+- Caractères unicode bizarres  --> le parsing tient ?
 ```
 
 Maintenant toi tu décides : lesquels la spec couvre ? Lesquels doivent lever une erreur ? Et tu écris les tests.

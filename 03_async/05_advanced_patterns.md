@@ -1,7 +1,7 @@
 # 05 : Async avancé : AbortController, backpressure, mini-scheduler
 Temps de lecture ~5 min
 
->  **Principe universel** : toute opération asynchrone doit avoir une **fin garantie** (succès, échec, annulation). Sinon, tu construis une bombe à retardement.
+> **Principe universel** : toute opération asynchrone doit avoir une **fin garantie** (succès, échec, annulation). Sinon, tu construis une bombe à retardement.
 
 ## 1. AbortController
 
@@ -19,11 +19,11 @@ Les Promises natives ne sont pas annulables. Solution : wrapper qui écoute un s
 
 ```js
 function cancellable(promiseFactory, signal) {
-  return new Promise((resolve, reject) => {
-    if (signal.aborted) return reject(signal.reason);
-    signal.addEventListener('abort', () => reject(signal.reason), { once: true });
-    promiseFactory().then(resolve, reject);
-  });
+ return new Promise((resolve, reject) => {
+  if (signal.aborted) return reject(signal.reason);
+  signal.addEventListener('abort', () => reject(signal.reason), { once: true });
+  promiseFactory().then(resolve, reject);
+ });
 }
 ```
 
@@ -36,8 +36,8 @@ Node : `readable.pipe(writable)` gère automatiquement. À la main :
 
 ```js
 for await (const chunk of readable) {
-  const ok = writable.write(chunk);
-  if (!ok) await once(writable, 'drain');
+ const ok = writable.write(chunk);
+ if (!ok) await once(writable, 'drain');
 }
 ```
 

@@ -14,31 +14,31 @@ La version naïve : convertir en tableau, inverser, reconstruire. O(n) en mémoi
 La vraie version : on retourne les pointeurs **sur place**. On a besoin de trois variables : `prev`, `current`, `next`.
 
 ```
-Avant :  null  <--  [A] --> [B] --> [C] --> [D] --> null
-                   head
+Avant : null <-- [A] --> [B] --> [C] --> [D] --> null
+          head
 
 On veut : null <-- [A] <-- [B] <-- [C] <-- [D]
-                                            head
+                      head
 ```
 
 L'idée : parcourir la liste une fois, et à chaque node, inverser le `next` pour qu'il pointe vers le node précédent.
 
 ```js
 reverse() {
-  let prev = null      // le node "derrière" le curseur
-  let current = this.head  // le curseur
+ let prev = null   // le node "derrière" le curseur
+ let current = this.head // le curseur
 
-  // l'ancien head devient le nouveau tail
-  this.tail = this.head
+ // l'ancien head devient le nouveau tail
+ this.tail = this.head
 
-  while (current) {
-    const next = current.next  // on sauvegarde le suivant avant de l'écraser
-    current.next = prev        // on inverse le pointeur
-    prev = current             // on avance prev
-    current = next             // on avance current
-  }
+ while (current) {
+  const next = current.next // on sauvegarde le suivant avant de l'écraser
+  current.next = prev    // on inverse le pointeur
+  prev = current       // on avance prev
+  current = next       // on avance current
+ }
 
-  this.head = prev  // prev pointe vers le dernier node traité : le nouveau head
+ this.head = prev // prev pointe vers le dernier node traité : le nouveau head
 }
 ```
 
@@ -46,27 +46,27 @@ reverse() {
 
 ```
 Étape 0 : prev=null, current=A
-  next = B
-  A.next = null   (A pointe maintenant vers null)
-  prev = A
-  current = B
+ next = B
+ A.next = null  (A pointe maintenant vers null)
+ prev = A
+ current = B
 
 Étape 1 : prev=A, current=B
-  next = C
-  B.next = A      (B pointe maintenant vers A)
-  prev = B
-  current = C
+ next = C
+ B.next = A   (B pointe maintenant vers A)
+ prev = B
+ current = C
 
 Étape 2 : prev=B, current=C
-  next = null
-  C.next = B      (C pointe maintenant vers B)
-  prev = C
-  current = null
+ next = null
+ C.next = B   (C pointe maintenant vers B)
+ prev = C
+ current = null
 
 Fin de boucle. head = C.
 
 Résultat : null <-- [A] <-- [B] <-- [C]
-                                     head
+                   head
 ```
 
 ---
@@ -77,9 +77,9 @@ Une liste avec un cycle ressemble à ça :
 
 ```
 [A] --> [B] --> [C] --> [D] --> [E]
-                          ↑          |
-                          └──────────┘
-                       (E pointe vers C : cycle)
+             ↑     |
+             └──────────┘
+            (E pointe vers C : cycle)
 ```
 
 Si tu traverses cette liste avec un `while (current)`, tu boucles infiniment. `current.next` ne sera jamais `null`.
@@ -96,17 +96,17 @@ Si un cycle existe, fast rattrapera slow à l'intérieur du cycle.
 
 ```js
 hasCycle() {
-  let slow = this.head
-  let fast = this.head
+ let slow = this.head
+ let fast = this.head
 
-  while (fast && fast.next) {
-    slow = slow.next          // avance d'un cran
-    fast = fast.next.next     // avance de deux crans
+ while (fast && fast.next) {
+  slow = slow.next     // avance d'un cran
+  fast = fast.next.next   // avance de deux crans
 
-    if (slow === fast) return true  // ils se rejoignent : cycle détecté
-  }
+  if (slow === fast) return true // ils se rejoignent : cycle détecté
+ }
 
-  return false  // fast a atteint null : pas de cycle
+ return false // fast a atteint null : pas de cycle
 }
 ```
 
@@ -135,15 +135,15 @@ Quand `fast` atteint la fin, `slow` est au milieu. Une seule passe.
 
 ```js
 findMiddle() {
-  let slow = this.head
-  let fast = this.head
+ let slow = this.head
+ let fast = this.head
 
-  while (fast && fast.next) {
-    slow = slow.next
-    fast = fast.next.next
-  }
+ while (fast && fast.next) {
+  slow = slow.next
+  fast = fast.next.next
+ }
 
-  return slow  // slow est au milieu
+ return slow // slow est au milieu
 }
 ```
 
@@ -162,7 +162,7 @@ Sur une liste paire `[A] --> [B] --> [C] --> [D]` :
 Start : slow=A, fast=A
 Tour 1 : slow=B, fast=C
 Tour 2 : slow=C, fast=null (fast.next.next n'existe pas)
-         Attends : fast=D, fast.next=null, boucle s'arrête
+     Attends : fast=D, fast.next=null, boucle s'arrête
 Résultat : slow=C (le premier des deux du milieu)
 ```
 
@@ -172,71 +172,71 @@ Résultat : slow=C (le premier des deux du milieu)
 
 ```js
 class Node {
-  constructor(value) {
-    this.value = value
-    this.next = null
-  }
+ constructor(value) {
+  this.value = value
+  this.next = null
+ }
 }
 
 class LinkedList {
-  constructor() {
-    this.head = null
-    this.tail = null
-    this.size = 0
-  }
+ constructor() {
+  this.head = null
+  this.tail = null
+  this.size = 0
+ }
 
-  append(value) {
-    const node = new Node(value)
-    if (!this.head) { this.head = node; this.tail = node }
-    else { this.tail.next = node; this.tail = node }
-    this.size++
-  }
+ append(value) {
+  const node = new Node(value)
+  if (!this.head) { this.head = node; this.tail = node }
+  else { this.tail.next = node; this.tail = node }
+  this.size++
+ }
 
-  reverse() {
-    let prev = null
-    let current = this.head
-    this.tail = this.head
-    while (current) {
-      const next = current.next
-      current.next = prev
-      prev = current
-      current = next
-    }
-    this.head = prev
+ reverse() {
+  let prev = null
+  let current = this.head
+  this.tail = this.head
+  while (current) {
+   const next = current.next
+   current.next = prev
+   prev = current
+   current = next
   }
+  this.head = prev
+ }
 
-  hasCycle() {
-    let slow = this.head
-    let fast = this.head
-    while (fast && fast.next) {
-      slow = slow.next
-      fast = fast.next.next
-      if (slow === fast) return true
-    }
-    return false
+ hasCycle() {
+  let slow = this.head
+  let fast = this.head
+  while (fast && fast.next) {
+   slow = slow.next
+   fast = fast.next.next
+   if (slow === fast) return true
   }
+  return false
+ }
 
-  findMiddle() {
-    let slow = this.head
-    let fast = this.head
-    while (fast && fast.next) {
-      slow = slow.next
-      fast = fast.next.next
-    }
-    return slow
+ findMiddle() {
+  let slow = this.head
+  let fast = this.head
+  while (fast && fast.next) {
+   slow = slow.next
+   fast = fast.next.next
   }
+  return slow
+ }
 
-  print() {
-    const values = []
-    let current = this.head
-    let count = 0
-    while (current && count < 100) {  // garde-fou contre les cycles
-      values.push(current.value)
-      current = current.next
-      count++
-    }
-    return values.join(" --> ")
+ print() {
+  const values = []
+  let current = this.head
+  let count = 0
+  while (current && count < 100) { // garde-fou contre les cycles
+   values.push(current.value)
+   current = current.next
+   count++
   }
+  return values.join(" --> ")
+ }
 }
 
 // test
@@ -261,7 +261,7 @@ console.log(arc.hasCycle())
 // false
 
 // créer un cycle manuellement pour tester
-arc.tail.next = arc.head.next  // Eren pointe vers Levi : cycle
+arc.tail.next = arc.head.next // Eren pointe vers Levi : cycle
 console.log(arc.hasCycle())
 // true
 ```
@@ -288,9 +288,9 @@ _~25 min_
 Deux linked lists fusionnent à un certain point et partagent la suite. Trouve le premier node commun sans utiliser de Set.
 
 ```
-List A :  [1] --> [3] --> [5] ──┐
-                                 +--> [8] --> [10] --> null
-List B :       [2] --> [4] ──┘
+List A : [1] --> [3] --> [5] ──┐
+                 +--> [8] --> [10] --> null
+List B :    [2] --> [4] ──┘
 ```
 
 (indice : aligne les deux listes par la fin, puis avance en parallèle)

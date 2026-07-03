@@ -13,8 +13,8 @@ Temps de lecture ~6 min
 
 ```js
 let monsters = [
-  { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc",    hp: 150, attack: { dmg: 30, type: "smash" } },
+ { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
+ { name: "Orc",  hp: 150, attack: { dmg: 30, type: "smash" } },
 ];
 
 let shallowMonsters = [...monsters];
@@ -23,8 +23,8 @@ let shallowMonsters = [...monsters];
 Le tableau est nouveau. Mais les objets à l'intérieur ? **Même référence.**
 
 ```
-monsters        --> [ obj1, obj2 ]
-shallowMonsters --> [ obj1, obj2 ]  <-- mêmes objets, pas des copies
+monsters    --> [ obj1, obj2 ]
+shallowMonsters --> [ obj1, obj2 ] <-- mêmes objets, pas des copies
 ```
 
 Donc :
@@ -38,10 +38,10 @@ console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 
 ## 2) SHALLOW VS DEEP : LE TABLEAU DE VÉRITÉ
 
-| Type         | Tableau | Objets internes | Objets imbriqués |
+| Type     | Tableau | Objets internes | Objets imbriqués |
 | ------------ | ------- | --------------- | ---------------- |
-| Shallow copy | nouveau | partagés        | partagés         |
-| Deep copy    | nouveau | nouveaux        | nouveaux         |
+| Shallow copy | nouveau | partagés    | partagés     |
+| Deep copy  | nouveau | nouveaux    | nouveaux     |
 
 ---
 
@@ -51,8 +51,8 @@ console.log(monsters[0].attack.dmg); // 30 -> modifié aussi
 
 ```js
 let deepMonsters = monsters.map((monster) => ({
-  ...monster,
-  attack: { ...monster.attack }, // on recopie aussi l'objet imbriqué
+ ...monster,
+ attack: { ...monster.attack }, // on recopie aussi l'objet imbriqué
 }));
 ```
 
@@ -96,9 +96,9 @@ Comprendre la différence entre shallow et deep copy sur des objets imbriqués.
 
 ```js
 let monsters = [
-  { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
-  { name: "Orc",    hp: 150, attack: { dmg: 30, type: "smash" } },
-  { name: "Troll",  hp: 200, attack: { dmg: 40, type: "crush" } },
+ { name: "Goblin", hp: 100, attack: { dmg: 20, type: "slash" } },
+ { name: "Orc",  hp: 150, attack: { dmg: 30, type: "smash" } },
+ { name: "Troll", hp: 200, attack: { dmg: 40, type: "crush" } },
 ];
 // Ton code ici
 ```
@@ -107,12 +107,12 @@ let monsters = [
 
 ```
 // Après partie 1
-monsters[0].attack.dmg      --> 30   // modifié : shallow copy piégé
+monsters[0].attack.dmg   --> 30  // modifié : shallow copy piégé
 shallowMonsters[0].attack.dmg --> 30 // idem : même référence
 
 // Après partie 2
-monsters[1].attack.dmg      --> 30   // intact : deep copy protège l'original
-deepMonsters[1].attack.dmg  --> 10   // modifié uniquement ici
+monsters[1].attack.dmg   --> 30  // intact : deep copy protège l'original
+deepMonsters[1].attack.dmg --> 10  // modifié uniquement ici
 ```
 
 > Comprends. Ne regarde pas juste le résultat. Réfléchis à la mémoire.

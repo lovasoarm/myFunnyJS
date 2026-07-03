@@ -9,11 +9,11 @@ Avant d'écrire la moindre logique async, les trois classes d'erreur sont testé
 
 ```js
 test('ArmorCollapseError porte les métadonnées du Chevalier et de la durée', () => {
-  const err = new ArmorCollapseError({ knight: 'leon', duration: 102 });
-  expect(err.name).toBe('ArmorCollapseError');
-  expect(err.knight).toBe('leon');
-  expect(err.duration).toBe(102);
-  expect(err).toBeInstanceOf(Error);
+ const err = new ArmorCollapseError({ knight: 'leon', duration: 102 });
+ expect(err.name).toBe('ArmorCollapseError');
+ expect(err.knight).toBe('leon');
+ expect(err.duration).toBe(102);
+ expect(err).toBeInstanceOf(Error);
 });
 ```
 
@@ -25,9 +25,9 @@ Vert immédiatement. Aucune surprise : ce sont des classes simples étendant `Er
 
 ```js
 test('equip() résout quand le délai de préparation est écoulé', async () => {
-  const leon = createKnight('leon');
-  const armor = await equipArmor(leon);
-  expect(armor.equipped).toBe(true);
+ const leon = createKnight('leon');
+ const armor = await equipArmor(leon);
+ expect(armor.equipped).toBe(true);
 });
 ```
 
@@ -35,9 +35,9 @@ Vert. Mais le deuxième test a immédiatement posé un problème de conception :
 
 ```js
 test('timeout reject avec ArmorCollapseError après le délai', async () => {
-  const leon = createKnight('leon');
-  const { timeout } = await equipArmor(leon);
-  await expect(timeout(50)).rejects.toThrow('ArmorCollapseError');
+ const leon = createKnight('leon');
+ const { timeout } = await equipArmor(leon);
+ await expect(timeout(50)).rejects.toThrow('ArmorCollapseError');
 });
 ```
 
@@ -53,13 +53,13 @@ Testés ensemble volontairement, parce que l'un n'a aucun sens sans l'autre :
 
 ```js
 test('un événement émis par le Chevalier est reçu par le Conseil', () => {
-  const events = [];
-  streamReceiver.on('combat:update', (e) => events.push(e));
+ const events = [];
+ streamReceiver.on('combat:update', (e) => events.push(e));
 
-  streamEmitter.emit('combat:update', { knight: 'leon', hp: 80 });
+ streamEmitter.emit('combat:update', { knight: 'leon', hp: 80 });
 
-  expect(events).toHaveLength(1);
-  expect(events[0].knight).toBe('leon');
+ expect(events).toHaveLength(1);
+ expect(events[0].knight).toBe('leon');
 });
 ```
 
@@ -67,10 +67,10 @@ Vert directement : `EventEmitter` natif de Node fait exactement ce qui est atten
 
 ```js
 test('le Conseil ne plante pas si un événement arrive après la fin de la mission', () => {
-  streamReceiver.on('combat:update', (e) => { /* traite normalement */ });
-  // on simule la fin de la mission, puis un événement tardif
-  finalizeMission('leon');
-  expect(() => streamEmitter.emit('combat:update', { knight: 'leon' })).not.toThrow();
+ streamReceiver.on('combat:update', (e) => { /* traite normalement */ });
+ // on simule la fin de la mission, puis un événement tardif
+ finalizeMission('leon');
+ expect(() => streamEmitter.emit('combat:update', { knight: 'leon' })).not.toThrow();
 });
 ```
 
@@ -82,9 +82,9 @@ Ce test correspond directement au cas limite 4 du cahier des charges. Il a forc�
 
 ```js
 test('fight() résout avec une durée et un résultat', async () => {
-  const result = await fight(createKnight('leon'), { name: 'Anima', level: 'CRITIQUE' });
-  expect(result.duration).toBeGreaterThan(0);
-  expect(['victoire', 'defaite']).toContain(result.outcome);
+ const result = await fight(createKnight('leon'), { name: 'Anima', level: 'CRITIQUE' });
+ expect(result.duration).toBeGreaterThan(0);
+ expect(['victoire', 'defaite']).toContain(result.outcome);
 });
 ```
 
@@ -98,10 +98,10 @@ Le test le plus important du projet, écrit avant l'implémentation finale, pour
 
 ```js
 test('Promise.race rejette avec ArmorCollapseError si le combat dépasse le timeout', async () => {
-  const combatLent = () => new Promise((resolve) => setTimeout(resolve, 200)); // plus lent que le timeout
-  const result = runMission(createKnight('leon'), horrorFort, { timeoutMs: 50, combatFn: combatLent });
+ const combatLent = () => new Promise((resolve) => setTimeout(resolve, 200)); // plus lent que le timeout
+ const result = runMission(createKnight('leon'), horrorFort, { timeoutMs: 50, combatFn: combatLent });
 
-  await expect(result).rejects.toBeInstanceOf(ArmorCollapseError);
+ await expect(result).rejects.toBeInstanceOf(ArmorCollapseError);
 });
 ```
 
@@ -111,10 +111,10 @@ Deuxième round de tests, sur la distinction erreur fatale / erreur récupérabl
 
 ```js
 test('un Horror qui résiste plus longtemps que prévu ne lève pas ArmorCollapseError tant que le timeout n\'est pas atteint', async () => {
-  const combatLong = () => new Promise((resolve) => setTimeout(() => resolve({ outcome: 'victoire', duration: 90 }), 90));
-  const result = await runMission(createKnight('leon'), horrorResistant, { timeoutMs: 99900, combatFn: combatLong });
+ const combatLong = () => new Promise((resolve) => setTimeout(() => resolve({ outcome: 'victoire', duration: 90 }), 90));
+ const result = await runMission(createKnight('leon'), horrorResistant, { timeoutMs: 99900, combatFn: combatLong });
 
-  expect(result.outcome).toBe('victoire');
+ expect(result.outcome).toBe('victoire');
 });
 ```
 
@@ -126,13 +126,13 @@ Ce test a confirmé que `Promise.race` fait bien la distinction attendue par con
 
 ```js
 test('allSettled retourne les deux résultats même si une mission échoue', async () => {
-  const horrors = [{ location: 'Est', level: 'CRITIQUE' }, { location: 'Ouest', level: 'MODÉRÉ' }];
-  const knights = [{ id: 'leon', available: true }, { id: 'alfonso', available: true }];
+ const horrors = [{ location: 'Est', level: 'CRITIQUE' }, { location: 'Ouest', level: 'MODÉRÉ' }];
+ const knights = [{ id: 'leon', available: true }, { id: 'alfonso', available: true }];
 
-  const results = await dispatch(horrors, knights);
+ const results = await dispatch(horrors, knights);
 
-  expect(results).toHaveLength(2);
-  results.forEach(r => expect(['fulfilled', 'rejected']).toContain(r.status));
+ expect(results).toHaveLength(2);
+ results.forEach(r => expect(['fulfilled', 'rejected']).toContain(r.status));
 });
 ```
 
@@ -142,13 +142,13 @@ Test du cas limite 2 (plus de Horrors que de Chevaliers) :
 
 ```js
 test('un Horror sans Chevalier disponible déclenche HorrorEscapeError sans bloquer les autres missions', async () => {
-  const horrors = [{ location: 'Est' }, { location: 'Ouest' }, { location: 'Nord' }];
-  const knights = [{ id: 'leon', available: true }]; // un seul chevalier dispo
+ const horrors = [{ location: 'Est' }, { location: 'Ouest' }, { location: 'Nord' }];
+ const knights = [{ id: 'leon', available: true }]; // un seul chevalier dispo
 
-  const results = await dispatch(horrors, knights);
+ const results = await dispatch(horrors, knights);
 
-  const escaped = results.filter(r => r.status === 'rejected');
-  expect(escaped.length).toBeGreaterThanOrEqual(2);
+ const escaped = results.filter(r => r.status === 'rejected');
+ expect(escaped.length).toBeGreaterThanOrEqual(2);
 });
 ```
 

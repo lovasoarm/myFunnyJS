@@ -19,17 +19,17 @@ Le système doit tourner en CLI côté serveur (un script Node qui simule le ser
 
 ```
 src/
-├── server.js                  point d'entrée Express
+├── server.js         point d'entrée Express
 ├── routes/
-│   └── messages.js
+│  └── messages.js
 ├── middleware/
-│   ├── auth.js                vérification JWT
-│   ├── rateLimit.js
-│   └── sanitize.js             protection XSS / injection
+│  ├── auth.js        vérification JWT
+│  ├── rateLimit.js
+│  └── sanitize.js       protection XSS / injection
 ├── cli/
-│   └── envoyerMessage.js      script CLI qui consomme l'API comme un détenu le ferait
+│  └── envoyerMessage.js   script CLI qui consomme l'API comme un détenu le ferait
 └── architecture/
-    └── couches.md              explication de la séparation domaine/infra choisie
+  └── couches.md       explication de la séparation domaine/infra choisie
 
 tests/
 └── messages.test.js

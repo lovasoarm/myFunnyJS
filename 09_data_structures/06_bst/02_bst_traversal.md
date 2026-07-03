@@ -10,20 +10,20 @@ Un BST contient les données. Un traversal les extrait dans un ordre précis. Tr
 ```
 Arbre de référence :
 
-          8
-        /   \
-       3     10
-      / \      \
-     1   6      14
-        / \    /
-       4   7  13
+     8
+    /  \
+    3   10
+   / \   \
+   1  6   14
+    / \  /
+    4  7 13
 ```
 
 ```
-In-order   (gauche --> noeud --> droite) : 1, 3, 4, 6, 7, 8, 10, 13, 14
-Pre-order  (noeud --> gauche --> droite) : 8, 3, 1, 6, 4, 7, 10, 14, 13
+In-order  (gauche --> noeud --> droite) : 1, 3, 4, 6, 7, 8, 10, 13, 14
+Pre-order (noeud --> gauche --> droite) : 8, 3, 1, 6, 4, 7, 10, 14, 13
 Post-order (gauche --> droite --> noeud) : 1, 4, 7, 6, 3, 13, 14, 10, 8
-BFS        (niveau par niveau)           : 8, 3, 10, 1, 6, 14, 4, 7, 13
+BFS    (niveau par niveau)      : 8, 3, 10, 1, 6, 14, 4, 7, 13
 ```
 
 ---
@@ -34,11 +34,11 @@ Gauche d'abord, puis le noeud, puis droite. Sur un BST valide, ça jutsu toujour
 
 ```js
 inOrder(node = this.root, result = []) {
-  if (!node) return result
-  this.inOrder(node.left, result)   // descend à gauche
-  result.push(node.value)           // visite le noeud au retour
-  this.inOrder(node.right, result)  // descend à droite
-  return result
+ if (!node) return result
+ this.inOrder(node.left, result)  // descend à gauche
+ result.push(node.value)      // visite le noeud au retour
+ this.inOrder(node.right, result) // descend à droite
+ return result
 }
 
 // sur notre arbre : [1, 3, 4, 6, 7, 8, 10, 13, 14]
@@ -55,11 +55,11 @@ Noeud d'abord, puis gauche, puis droite. L'arbre est visité "de haut en bas".
 
 ```js
 preOrder(node = this.root, result = []) {
-  if (!node) return result
-  result.push(node.value)              // visite le noeud en premier
-  this.preOrder(node.left, result)     // puis toute la gauche
-  this.preOrder(node.right, result)    // puis toute la droite
-  return result
+ if (!node) return result
+ result.push(node.value)       // visite le noeud en premier
+ this.preOrder(node.left, result)   // puis toute la gauche
+ this.preOrder(node.right, result)  // puis toute la droite
+ return result
 }
 
 // sur notre arbre : [8, 3, 1, 6, 4, 7, 10, 14, 13]
@@ -69,7 +69,7 @@ Cas d'usage : sérialiser un BST. Si tu veux sauvegarder l'arbre et le reconstru
 
 ```js
 // sérialiser
-const serialized = bst.preOrder()  // [8, 3, 1, 6, 4, 7, 10, 14, 13]
+const serialized = bst.preOrder() // [8, 3, 1, 6, 4, 7, 10, 14, 13]
 
 // reconstruire
 const newBst = new BST()
@@ -87,11 +87,11 @@ Gauche d'abord, puis droite, puis le noeud. L'arbre est visité "de bas en haut"
 
 ```js
 postOrder(node = this.root, result = []) {
-  if (!node) return result
-  this.postOrder(node.left, result)   // toute la gauche
-  this.postOrder(node.right, result)  // toute la droite
-  result.push(node.value)             // noeud en dernier
-  return result
+ if (!node) return result
+ this.postOrder(node.left, result)  // toute la gauche
+ this.postOrder(node.right, result) // toute la droite
+ result.push(node.value)       // noeud en dernier
+ return result
 }
 
 // sur notre arbre : [1, 4, 7, 6, 3, 13, 14, 10, 8]
@@ -107,21 +107,21 @@ Les trois précédents sont des DFS (Depth-First Search). BFS va niveau par nive
 
 ```js
 bfs() {
-  if (!this.root) return []
+ if (!this.root) return []
 
-  const result = []
-  const queue  = [this.root]
+ const result = []
+ const queue = [this.root]
 
-  while (queue.length > 0) {
-    const current = queue.shift()   // prend le premier de la file
-    result.push(current.value)
+ while (queue.length > 0) {
+  const current = queue.shift()  // prend le premier de la file
+  result.push(current.value)
 
-    // enfile les enfants pour le prochain niveau
-    if (current.left)  queue.push(current.left)
-    if (current.right) queue.push(current.right)
-  }
+  // enfile les enfants pour le prochain niveau
+  if (current.left) queue.push(current.left)
+  if (current.right) queue.push(current.right)
+ }
 
-  return result
+ return result
 }
 
 // sur notre arbre : [8, 3, 10, 1, 6, 14, 4, 7, 13]
@@ -141,24 +141,24 @@ La récursion c'est élégant. Mais sur un arbre profond, elle peut stackoverflo
 
 ```js
 inOrderIterative() {
-  const result = []
-  const stack  = []
-  let current  = this.root
+ const result = []
+ const stack = []
+ let current = this.root
 
-  while (current || stack.length > 0) {
-    // descend tout à gauche
-    while (current) {
-      stack.push(current)
-      current = current.left
-    }
-
-    // remonte : visite le noeud, puis part à droite
-    current = stack.pop()
-    result.push(current.value)
-    current = current.right
+ while (current || stack.length > 0) {
+  // descend tout à gauche
+  while (current) {
+   stack.push(current)
+   current = current.left
   }
 
-  return result
+  // remonte : visite le noeud, puis part à droite
+  current = stack.pop()
+  result.push(current.value)
+  current = current.right
+ }
+
+ return result
 }
 ```
 
@@ -169,18 +169,18 @@ Même résultat que la version récursive. Zéro risque de call stack overflow s
 ## 7) RÉCAPITULATIF VISUEL
 
 ```
-          8
-        /   \
-       3     10
-      / \      \
-     1   6      14
-        / \    /
-       4   7  13
+     8
+    /  \
+    3   10
+   / \   \
+   1  6   14
+    / \  /
+    4  7 13
 
-In-order   (trié)        :  1  3  4  6  7  8  10  13  14
-Pre-order  (forme)       :  8  3  1  6  4  7  10  14  13
-Post-order (bas en haut) :  1  4  7  6  3  13  14  10  8
-BFS        (niveaux)     :  8  3  10  1  6  14  4  7  13
+In-order  (trié)    : 1 3 4 6 7 8 10 13 14
+Pre-order (forme)    : 8 3 1 6 4 7 10 14 13
+Post-order (bas en haut) : 1 4 7 6 3 13 14 10 8
+BFS    (niveaux)   : 8 3 10 1 6 14 4 7 13
 ```
 
 ---
@@ -195,7 +195,7 @@ Tu as reçu deux listes qui représentent le même arbre :
 
 ```js
 const preorder = [5, 3, 2, 4, 8, 7, 9]
-const inorder  = [2, 3, 4, 5, 7, 8, 9]
+const inorder = [2, 3, 4, 5, 7, 8, 9]
 ```
 
 Sans reconstruire l'arbre en mémoire, détermine :

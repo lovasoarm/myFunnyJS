@@ -5,11 +5,11 @@ Trois mots-clés. Un seul survit en 2026 sur du code neuf : `const`. Les deux au
 
 ## Le tableau qui tue
 
-| Mot-clé | Scope        | Réassignable | Hoisting                | Verdict         |
+| Mot-clé | Scope    | Réassignable | Hoisting        | Verdict     |
 |---------|--------------|--------------|-------------------------|-----------------|
-| `var`   | fonction     | oui          | hoisted, init `undefined` | legacy, évite |
-| `let`   | bloc `{}`    | oui          | hoisted, TDZ            | quand ça bouge  |
-| `const` | bloc `{}`    | non          | hoisted, TDZ            | par défaut      |
+| `var`  | fonction   | oui     | hoisted, init `undefined` | legacy, évite |
+| `let`  | bloc `{}`  | oui     | hoisted, TDZ      | quand ça bouge |
+| `const` | bloc `{}`  | non     | hoisted, TDZ      | par défaut   |
 
 TDZ = Temporal Dead Zone. Lire avant la déclaration → `ReferenceError`. C'est voulu.
 
@@ -17,7 +17,7 @@ TDZ = Temporal Dead Zone. Lire avant la déclaration → `ReferenceError`. C'est
 
 ```js
 for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 0)
+ setTimeout(() => console.log(i), 0)
 }
 // Affiche 3, 3, 3
 ```

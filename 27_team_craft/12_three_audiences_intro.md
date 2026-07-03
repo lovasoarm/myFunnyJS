@@ -1,7 +1,7 @@
 # 3 publics, 1 concept
 Temps de lecture ~5 min
 
->  **Principe universel** : la maîtrise = savoir monter/descendre en abstraction sans mentir.
+> **Principe universel** : la maîtrise = savoir monter/descendre en abstraction sans mentir.
 
 ## Exercice
 

@@ -11,9 +11,9 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits, pas l'or
 
 ```js
 test('roll() retourne un nombre entre 0 et 1', () => {
-  const valeur = rng.roll();
-  expect(valeur).toBeGreaterThanOrEqual(0);
-  expect(valeur).toBeLessThan(1);
+ const valeur = rng.roll();
+ expect(valeur).toBeGreaterThanOrEqual(0);
+ expect(valeur).toBeLessThan(1);
 });
 ```
 
@@ -21,10 +21,10 @@ Test vert immédiatement avec `Math.random()`. Mais le cahier des charges est cl
 
 ```js
 test('en mode test, roll() retourne les valeurs prédéfinies dans l\'ordre', () => {
-  rng.setMode('test', [0.1, 0.9, 0.5]);
-  expect(rng.roll()).toBe(0.1);
-  expect(rng.roll()).toBe(0.9);
-  expect(rng.roll()).toBe(0.5);
+ rng.setMode('test', [0.1, 0.9, 0.5]);
+ expect(rng.roll()).toBe(0.1);
+ expect(rng.roll()).toBe(0.9);
+ expect(rng.roll()).toBe(0.5);
 });
 ```
 
@@ -38,13 +38,13 @@ Rouge au début (`setMode` n'existait pas). Implémenté un état interne simple
 
 ```js
 test('tick() décrémente le cooldown sans descendre sous zéro', () => {
-  expect(cooldownCycle.tick(2)).toBe(1);
-  expect(cooldownCycle.tick(0)).toBe(0); // pas de négatif
+ expect(cooldownCycle.tick(2)).toBe(1);
+ expect(cooldownCycle.tick(0)).toBe(0); // pas de négatif
 });
 
 test('isReady() retourne true seulement à cooldown 0', () => {
-  expect(cooldownCycle.isReady(0)).toBe(true);
-  expect(cooldownCycle.isReady(1)).toBe(false);
+ expect(cooldownCycle.isReady(0)).toBe(true);
+ expect(cooldownCycle.isReady(1)).toBe(false);
 });
 ```
 
@@ -58,9 +58,9 @@ Données statiques d'abord :
 
 ```js
 test('getStats("naruto") retourne chakra, vitesse, force définis', () => {
-  const stats = getStats('naruto');
-  expect(stats.chakraMax).toBe(200);
-  expect(stats.speed).toBeGreaterThan(0);
+ const stats = getStats('naruto');
+ expect(stats.chakraMax).toBe(200);
+ expect(stats.speed).toBeGreaterThan(0);
 });
 ```
 
@@ -68,9 +68,9 @@ Puis les jutsus, testés comme de simples fonctions pures, sans passer par le mo
 
 ```js
 test('rasengan() retourne des dégâts et un coût en chakra cohérents', () => {
-  const resultat = rasengan({ attackerForce: 50 });
-  expect(resultat.damages).toBeGreaterThan(0);
-  expect(resultat.cooldown).toBeGreaterThan(0);
+ const resultat = rasengan({ attackerForce: 50 });
+ expect(resultat.damages).toBeGreaterThan(0);
+ expect(resultat.cooldown).toBeGreaterThan(0);
 });
 ```
 
@@ -82,16 +82,16 @@ Aucune surprise ici : ce sont des fonctions pures testées isolément, exactemen
 
 ```js
 test('crée un fighter Naruto avec les bonnes stats de base', () => {
-  const naruto = createFighter('naruto');
-  expect(naruto.chakra).toBe(200);
-  expect(naruto.chakraMax).toBe(200);
+ const naruto = createFighter('naruto');
+ expect(naruto.chakra).toBe(200);
+ expect(naruto.chakraMax).toBe(200);
 });
 
 test('retourne un nouvel objet à chaque appel (pas de référence partagée)', () => {
-  const n1 = createFighter('naruto');
-  const n2 = createFighter('naruto');
-  n1.chakra = 0;
-  expect(n2.chakra).toBe(200);
+ const n1 = createFighter('naruto');
+ const n2 = createFighter('naruto');
+ n1.chakra = 0;
+ expect(n2.chakra).toBe(200);
 });
 ```
 
@@ -106,8 +106,8 @@ Le cahier des charges prévenait : c'est ici que la tentation de muter directeme
 ```js
 // Version rejetée avant même d'écrire le test
 function resolveTurn(state) {
-  state.attacker.chakra -= cost; // mutation directe
-  return state;
+ state.attacker.chakra -= cost; // mutation directe
+ return state;
 }
 ```
 
@@ -115,12 +115,12 @@ Le test qui a forcé la bonne version :
 
 ```js
 test('resolveTurn ne modifie pas l\'état reçu en entrée', () => {
-  const stateInitial = { /* ... */ };
-  const snapshot = structuredClone(stateInitial);
+ const stateInitial = { /* ... */ };
+ const snapshot = structuredClone(stateInitial);
 
-  resolveTurn(stateInitial);
+ resolveTurn(stateInitial);
 
-  expect(stateInitial).toEqual(snapshot); // rien n'a changé sur l'original
+ expect(stateInitial).toEqual(snapshot); // rien n'a changé sur l'original
 });
 ```
 
@@ -132,15 +132,15 @@ Ce test a été écrit AVANT l'implémentation finale, volontairement, pour forc
 
 ```js
 test('le combat s\'arrête quand un fighter atteint 0 chakra', () => {
-  const result = startCombat(narutoSansChakra, sasuke);
-  expect(result.winner).toBe('sasuke');
+ const result = startCombat(narutoSansChakra, sasuke);
+ expect(result.winner).toBe('sasuke');
 });
 
 test('combat avec deux fighters identiques ne boucle pas à l\'infini', () => {
-  const naruto1 = createFighter('naruto');
-  const naruto2 = createFighter('naruto');
-  const result = startCombat(naruto1, naruto2);
-  expect(result.turns.length).toBeLessThan(1000); // garde-fou
+ const naruto1 = createFighter('naruto');
+ const naruto2 = createFighter('naruto');
+ const result = startCombat(naruto1, naruto2);
+ expect(result.turns.length).toBeLessThan(1000); // garde-fou
 });
 ```
 

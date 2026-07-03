@@ -17,16 +17,16 @@ Chaque étape est optionnelle, nommée, et lisible.
 ```js
 // sans builder : constructeur qui grossit sans fin
 class Guerrier {
-  constructor(name, race, powerLevel, transformation, weapon, technique1, technique2, saga) {
-    this.name           = name
-    this.race           = race
-    this.powerLevel     = powerLevel
-    this.transformation = transformation || null
-    this.weapon         = weapon || null
-    this.technique1     = technique1 || null
-    this.technique2     = technique2 || null
-    this.saga           = saga || "début"
-  }
+ constructor(name, race, powerLevel, transformation, weapon, technique1, technique2, saga) {
+  this.name      = name
+  this.race      = race
+  this.powerLevel   = powerLevel
+  this.transformation = transformation || null
+  this.weapon     = weapon || null
+  this.technique1   = technique1 || null
+  this.technique2   = technique2 || null
+  this.saga      = saga || "début"
+ }
 }
 
 // appel : tu comptes les virgules et tu pries
@@ -45,84 +45,84 @@ C'est ce qu'on appelle le Telescoping Constructor. Ça s'aggrave à chaque nouve
 
 ```js
 function createGuerrierBuilder(name) {
-  // état interne du builder : commence par le minimum vital
-  const config = {
-    name,
-    race:           "Humain",
-    powerLevel:     1,
-    transformation: null,
-    weapon:         null,
-    techniques:     [],
-    saga:           "début",
-    isValidated:    false,
+ // état interne du builder : commence par le minimum vital
+ const config = {
+  name,
+  race:      "Humain",
+  powerLevel:   1,
+  transformation: null,
+  weapon:     null,
+  techniques:   [],
+  saga:      "début",
+  isValidated:  false,
+ }
+
+ // chaque méthode modifie la config et retourne le builder lui-même
+ // c'est ce qui permet le chaînage fluent
+ const builder = {
+  race(r) {
+   config.race = r
+   return builder
+  },
+
+  powerLevel(lvl) {
+   if (lvl < 1) throw new Error(`${name} ne peut pas avoir un power level négatif. Même Yamcha fait mieux.`)
+   config.powerLevel = lvl
+   return builder
+  },
+
+  transformation(t) {
+   config.transformation = t
+   return builder
+  },
+
+  weapon(w) {
+   config.weapon = w
+   return builder
+  },
+
+  technique(t) {
+   config.techniques.push(t)
+   return builder
+  },
+
+  saga(s) {
+   config.saga = s
+   return builder
+  },
+
+  build() {
+   // validation finale : tout ce qui est obligatoire est là ?
+   if (!config.name) throw new Error("Un guerrier sans nom, c'est un PNJ.")
+   if (config.powerLevel > 9000 && config.transformation === null) {
+    console.warn(`${config.name} dépasse 9000 sans transformation : c'est suspect.`)
+   }
+   // on retourne une copie figée : le builder ne peut plus modifier l'objet jutsu
+   return Object.freeze({ ...config })
   }
+ }
 
-  // chaque méthode modifie la config et retourne le builder lui-même
-  // c'est ce qui permet le chaînage fluent
-  const builder = {
-    race(r) {
-      config.race = r
-      return builder
-    },
-
-    powerLevel(lvl) {
-      if (lvl < 1) throw new Error(`${name} ne peut pas avoir un power level négatif. Même Yamcha fait mieux.`)
-      config.powerLevel = lvl
-      return builder
-    },
-
-    transformation(t) {
-      config.transformation = t
-      return builder
-    },
-
-    weapon(w) {
-      config.weapon = w
-      return builder
-    },
-
-    technique(t) {
-      config.techniques.push(t)
-      return builder
-    },
-
-    saga(s) {
-      config.saga = s
-      return builder
-    },
-
-    build() {
-      // validation finale : tout ce qui est obligatoire est là ?
-      if (!config.name) throw new Error("Un guerrier sans nom, c'est un PNJ.")
-      if (config.powerLevel > 9000 && config.transformation === null) {
-        console.warn(`${config.name} dépasse 9000 sans transformation : c'est suspect.`)
-      }
-      // on retourne une copie figée : le builder ne peut plus modifier l'objet jutsu
-      return Object.freeze({ ...config })
-    }
-  }
-
-  return builder
+ return builder
 }
 
 // chaînage fluent : chaque étape est explicite, lisible, optionnelle
 const goku = createGuerrierBuilder("Goku")
-  .race("Saiyan")
-  .powerLevel(9001)
-  .transformation("Super Saiyan")
-  .technique("Kamehameha")
-  .technique("Spirit Bomb")
-  .saga("Cell")
-  .build()
+ .race("Saiyan")
+ .powerLevel(9001)
+ .transformation("Super Saiyan")
+ .technique("Kamehameha")
+ .technique("Spirit Bomb")
+ .saga("Cell")
+ .build()
 
 // version minimale : juste les essentiels
 const yamcha = createGuerrierBuilder("Yamcha")
-  .powerLevel(200)
-  .build()
+ .powerLevel(200)
+ .build()
 
-console.log(goku.name)       // "Goku"
+console.log(goku.name)    // "Goku"
 console.log(goku.techniques) // ["Kamehameha", "Spirit Bomb"]
-console.log(yamcha.weapon)   // null : valeur par défaut, sans crasher
+console.log(yamcha.weapon)  // null : valeur par défaut, sans crasher
 ```
 
 Chaque étape est nommée. L'ordre n'a pas d'importance.
@@ -134,108 +134,108 @@ Tu vois exactement ce que tu configures. Et ce que tu ne configure pas prend sa 
 
 ```js
 class MatchBuilder {
-  constructor() {
-    // valeurs par défaut : un match minimal est valide
-    this._homeTeam    = null
-    this._awayTeam    = null
-    this._competition = "Friendly"
-    this._venue       = "Stade neutre"
-    this._date        = new Date()
-    this._referees    = []
-    this._broadcast   = []
-    this._vipTickets  = 0
-    this._weather     = "clear"
-  }
+ constructor() {
+  // valeurs par défaut : un match minimal est valide
+  this._homeTeam  = null
+  this._awayTeam  = null
+  this._competition = "Friendly"
+  this._venue    = "Stade neutre"
+  this._date    = new Date()
+  this._referees  = []
+  this._broadcast  = []
+  this._vipTickets = 0
+  this._weather   = "clear"
+ }
 
-  homeTeam(team) {
-    this._homeTeam = team
-    return this
-  }
+ homeTeam(team) {
+  this._homeTeam = team
+  return this
+ }
 
-  awayTeam(team) {
-    this._awayTeam = team
-    return this
-  }
+ awayTeam(team) {
+  this._awayTeam = team
+  return this
+ }
 
-  competition(name) {
-    this._competition = name
-    return this
-  }
+ competition(name) {
+  this._competition = name
+  return this
+ }
 
-  venue(stadium, city) {
-    this._venue = { stadium, city }
-    return this
-  }
+ venue(stadium, city) {
+  this._venue = { stadium, city }
+  return this
+ }
 
-  date(d) {
-    this._date = new Date(d)
-    return this
-  }
+ date(d) {
+  this._date = new Date(d)
+  return this
+ }
 
-  addReferee(name, role) {
-    this._referees.push({ name, role })
-    return this
-  }
+ addReferee(name, role) {
+  this._referees.push({ name, role })
+  return this
+ }
 
-  addBroadcast(channel, region) {
-    this._broadcast.push({ channel, region })
-    return this
-  }
+ addBroadcast(channel, region) {
+  this._broadcast.push({ channel, region })
+  return this
+ }
 
-  vipTickets(count) {
-    if (count < 0) throw new Error("Nombre de billets VIP négatif : t'es en train d'inventer.")
-    this._vipTickets = count
-    return this
-  }
+ vipTickets(count) {
+  if (count < 0) throw new Error("Nombre de billets VIP négatif : t'es en train d'inventer.")
+  this._vipTickets = count
+  return this
+ }
 
-  weather(condition) {
-    const valid = ["clear", "rain", "snow", "wind", "fog"]
-    if (!valid.includes(condition)) throw new Error(`Météo inconnue : ${condition}`)
-    this._weather = condition
-    return this
-  }
+ weather(condition) {
+  const valid = ["clear", "rain", "snow", "wind", "fog"]
+  if (!valid.includes(condition)) throw new Error(`Météo inconnue : ${condition}`)
+  this._weather = condition
+  return this
+ }
 
-  build() {
-    // règles métier : les deux équipes sont obligatoires
-    if (!this._homeTeam) throw new Error("Équipe à domicile manquante.")
-    if (!this._awayTeam) throw new Error("Équipe visiteuse manquante.")
-    if (this._homeTeam === this._awayTeam) throw new Error("Un club ne joue pas contre lui-même. Sauf en entraînement.")
+ build() {
+  // règles métier : les deux équipes sont obligatoires
+  if (!this._homeTeam) throw new Error("Équipe à domicile manquante.")
+  if (!this._awayTeam) throw new Error("Équipe visiteuse manquante.")
+  if (this._homeTeam === this._awayTeam) throw new Error("Un club ne joue pas contre lui-même. Sauf en entraînement.")
 
-    return {
-      homeTeam:    this._homeTeam,
-      awayTeam:    this._awayTeam,
-      competition: this._competition,
-      venue:       this._venue,
-      date:        this._date,
-      referees:    [...this._referees],
-      broadcast:   [...this._broadcast],
-      vipTickets:  this._vipTickets,
-      weather:     this._weather,
-      createdAt:   Date.now(),
-    }
+  return {
+   homeTeam:  this._homeTeam,
+   awayTeam:  this._awayTeam,
+   competition: this._competition,
+   venue:    this._venue,
+   date:    this._date,
+   referees:  [...this._referees],
+   broadcast:  [...this._broadcast],
+   vipTickets: this._vipTickets,
+   weather:   this._weather,
+   createdAt:  Date.now(),
   }
+ }
 }
 
 // Champions League Final : tout est configuré
 const ucl = new MatchBuilder()
-  .homeTeam("Real Madrid")
-  .awayTeam("Man City")
-  .competition("Champions League")
-  .venue("Wembley", "London")
-  .date("2026-06-01")
-  .addReferee("Björn Kuipers", "main")
-  .addReferee("Sander van Roekel", "assistant")
-  .addBroadcast("Canal+", "France")
-  .addBroadcast("BT Sport", "UK")
-  .vipTickets(5000)
-  .weather("clear")
-  .build()
+ .homeTeam("Real Madrid")
+ .awayTeam("Man City")
+ .competition("Champions League")
+ .venue("Wembley", "London")
+ .date("2026-06-01")
+ .addReferee("Björn Kuipers", "main")
+ .addReferee("Sander van Roekel", "assistant")
+ .addBroadcast("Canal+", "France")
+ .addBroadcast("BT Sport", "UK")
+ .vipTickets(5000)
+ .weather("clear")
+ .build()
 
 // Match amical : minimum vital
 const friendly = new MatchBuilder()
-  .homeTeam("PSG")
-  .awayTeam("Lyon")
-  .build()
+ .homeTeam("PSG")
+ .awayTeam("Lyon")
+ .build()
 ```
 
 ---
@@ -247,47 +247,47 @@ Tu appelles une recette, pas chaque étape.
 
 ```js
 class MatchDirector {
-  constructor(builder) {
-    this.builder = builder
-  }
+ constructor(builder) {
+  this.builder = builder
+ }
 
-  // recette : finale de Coupe du Monde
-  buildWorldCupFinal(home, away, venue) {
-    return this.builder
-      .homeTeam(home)
-      .awayTeam(away)
-      .competition("FIFA World Cup Final")
-      .venue(venue.stadium, venue.city)
-      .addReferee("Désigné par la FIFA", "main")
-      .vipTickets(15000)
-      .build()
-  }
+ // recette : finale de Coupe du Monde
+ buildWorldCupFinal(home, away, venue) {
+  return this.builder
+   .homeTeam(home)
+   .awayTeam(away)
+   .competition("FIFA World Cup Final")
+   .venue(venue.stadium, venue.city)
+   .addReferee("Désigné par la FIFA", "main")
+   .vipTickets(15000)
+   .build()
+ }
 
-  // recette : match de préparation minimal
-  buildFriendly(home, away) {
-    return this.builder
-      .homeTeam(home)
-      .awayTeam(away)
-      .competition("International Friendly")
-      .build()
-  }
+ // recette : match de préparation minimal
+ buildFriendly(home, away) {
+  return this.builder
+   .homeTeam(home)
+   .awayTeam(away)
+   .competition("International Friendly")
+   .build()
+ }
 }
 
 const director = new MatchDirector(new MatchBuilder())
 
 const wcFinal = director.buildWorldCupFinal(
-  "France",
-  "Brésil",
-  { stadium: "Lusail Stadium", city: "Doha" }
+ "France",
+ "Brésil",
+ { stadium: "Lusail Stadium", city: "Doha" }
 )
 ```
 
 ```
 MatchDirector
-      |
-      +--> buildWorldCupFinal()  -->  MatchBuilder configuré  -->  .build()  -->  objet match
-      |
-      +--> buildFriendly()       -->  MatchBuilder minimal    -->  .build()  -->  objet match
+   |
+   +--> buildWorldCupFinal() --> MatchBuilder configuré --> .build() --> objet match
+   |
+   +--> buildFriendly()    --> MatchBuilder minimal  --> .build() --> objet match
 ```
 
 Le Director encode le "comment". Le Builder encode le "quoi". Le `.build()` jutsu le résultat.
@@ -325,8 +325,8 @@ const match2 = new MatchBuilder().homeTeam("OL").awayTeam("Monaco").build()
 ## 6) BUILDER VS FACTORY : QUAND CHOISIR QUOI
 
 ```
-Factory     -->  objet simple, logique de création cachée, type déterminé à la création
-Builder     -->  objet complexe, configuration optionnelle, validation en fin de chaîne
+Factory   --> objet simple, logique de création cachée, type déterminé à la création
+Builder   --> objet complexe, configuration optionnelle, validation en fin de chaîne
 
 Factory : "donne-moi un Titan de type Colossal"
 Builder : "crée-moi un match avec ces équipes, cette compétition, ces arbitres, cette météo, et ces options de diffusion"
@@ -388,10 +388,10 @@ Voici du code bugué :
 const b = new PersonBuilder()
 
 const alice = b.name("Alice").age(28).role("admin").build()
-const bob   = b.name("Bob").build()
+const bob  = b.name("Bob").build()
 
 console.log(bob.role) // ???
-console.log(bob.age)  // ???
+console.log(bob.age) // ???
 ```
 
 Sans exécuter le code : prédit ce que `bob.role` et `bob.age` vont retourner si le builder n'est pas réinitialisé entre les deux `.build()`.

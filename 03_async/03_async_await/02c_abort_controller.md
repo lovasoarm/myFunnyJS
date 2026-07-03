@@ -1,5 +1,4 @@
 Temps de lecture ~8 min
-[INTEMPOREL]
 
 Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
 
@@ -16,15 +15,15 @@ Tu lances un fetch. L'shinobi navigue ailleurs. Le fetch continue quand même, c
 ```js
 // le scénario classique : l'shinobi cherche un joueur
 async function rechercherJoueur(nom) {
-  const résultat = await fetch(`/api/joueurs?q=${nom}`)
-  const data = await résultat.json()
-  afficherRésultats(data)   // si le composant est démonté : crash silencieux
+ const résultat = await fetch(`/api/joueurs?q=${nom}`)
+ const data = await résultat.json()
+ afficherRésultats(data)  // si le composant est démonté : crash silencieux
 }
 
 // l'shinobi tape vite
-rechercherJoueur('Na')      // fetch 1 : en cours
-rechercherJoueur('Nar')     // fetch 2 : en cours
-rechercherJoueur('Naru')    // fetch 3 : en cours
+rechercherJoueur('Na')   // fetch 1 : en cours
+rechercherJoueur('Nar')   // fetch 2 : en cours
+rechercherJoueur('Naru')  // fetch 3 : en cours
 // les 3 fetches tournent en parallèle, arrivent dans un ordre imprévisible
 // le fetch 2 peut arriver après le fetch 3 et écraser les bons résultats
 ```
@@ -37,21 +36,21 @@ Sans annulation : les requêtes obsolètes arrivent, s'exécutent, et peuvent co
 
 ```
 AbortController
-    |
-    +-- .signal    --> AbortSignal : passé aux opérations à contrôler
-    |
-    +-- .abort()   --> déclenche l'annulation sur toutes les opérations qui écoutent ce signal
+  |
+  +-- .signal  --> AbortSignal : passé aux opérations à contrôler
+  |
+  +-- .abort()  --> déclenche l'annulation sur toutes les opérations qui écoutent ce signal
 ```
 
 ```js
 const controller = new AbortController()
-const signal = controller.signal  // l'objet qu'on passe aux opérations
+const signal = controller.signal // l'objet qu'on passe aux opérations
 
 // passer le signal à fetch : fetch l'écoute nativement
 const réponse = await fetch('/api/joueurs', { signal })
 
 // annuler depuis n'importe où :
-controller.abort()  // le fetch est annulé, lance une DOMException 'AbortError'
+controller.abort() // le fetch est annulé, lance une DOMException 'AbortError'
 ```
 
 `signal` est l'AbortSignal (signal d'abandon). `fetch` le connaît nativement : dès que `.abort()` est appelé, le fetch en cours est annulé et lance une erreur de type `AbortError`.
@@ -64,34 +63,34 @@ controller.abort()  // le fetch est annulé, lance une DOMException 'AbortError'
 let controller = null
 
 async function rechercherJoueur(nom) {
-  // annuler la requête précédente si elle est encore en cours
-  if (controller) {
-    controller.abort()
-  }
+ // annuler la requête précédente si elle est encore en cours
+ if (controller) {
+  controller.abort()
+ }
 
-  // créer un nouveau controller pour cette requête
-  controller = new AbortController()
+ // créer un nouveau controller pour cette requête
+ controller = new AbortController()
 
-  try {
-    const réponse = await fetch(`/api/joueurs?q=${nom}`, {
-      signal: controller.signal
-    })
-    const data = await réponse.json()
-    afficherRésultats(data)
-  } catch (err) {
-    if (err.name === 'AbortError') {
-      // annulation volontaire : ne pas traiter comme une vraie erreur
-      return
-    }
-    // vraie erreur réseau : la propager
-    throw err
+ try {
+  const réponse = await fetch(`/api/joueurs?q=${nom}`, {
+   signal: controller.signal
+  })
+  const data = await réponse.json()
+  afficherRésultats(data)
+ } catch (err) {
+  if (err.name === 'AbortError') {
+   // annulation volontaire : ne pas traiter comme une vraie erreur
+   return
   }
+  // vraie erreur réseau : la propager
+  throw err
+ }
 }
 
 // maintenant si l'shinobi tape vite :
-rechercherJoueur('Na')    // fetch lancé
-rechercherJoueur('Nar')   // fetch précédent annulé, nouveau lancé
-rechercherJoueur('Naru')  // fetch précédent annulé, nouveau lancé
+rechercherJoueur('Na')  // fetch lancé
+rechercherJoueur('Nar')  // fetch précédent annulé, nouveau lancé
+rechercherJoueur('Naru') // fetch précédent annulé, nouveau lancé
 // seule la dernière requête aboutit
 ```
 
@@ -106,32 +105,32 @@ La distinction `err.name === 'AbortError'` est obligatoire : une annulation volo
 ```js
 // avant : simuler un timeout à la main
 async function fetchAvecTimeout(url, ms) {
-  const promesseFetch = fetch(url)
-  const promesseTimeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error('timeout')), ms)
-  )
-  return Promise.race([promesseFetch, promesseTimeout])
-  // PROBLÈME : le fetch continue en arrière-plan même si le timeout gagne
+ const promesseFetch = fetch(url)
+ const promesseTimeout = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error('timeout')), ms)
+ )
+ return Promise.race([promesseFetch, promesseTimeout])
+ // PROBLÈME : le fetch continue en arrière-plan même si le timeout gagne
 }
 
 // avec AbortController : annulation propre
 async function fetchAvecTimeout(url, ms) {
-  const controller = new AbortController()
+ const controller = new AbortController()
 
-  const timeoutId = setTimeout(() => {
-    controller.abort()      // annule le fetch après ms millisecondes
-  }, ms)
+ const timeoutId = setTimeout(() => {
+  controller.abort()   // annule le fetch après ms millisecondes
+ }, ms)
 
-  try {
-    const réponse = await fetch(url, { signal: controller.signal })
-    clearTimeout(timeoutId)  // réponse arrivée à temps : annuler le timeout
-    return await réponse.json()
-  } catch (err) {
-    if (err.name === 'AbortError') {
-      throw new Error(`Timeout : pas de réponse après ${ms}ms`)
-    }
-    throw err
+ try {
+  const réponse = await fetch(url, { signal: controller.signal })
+  clearTimeout(timeoutId) // réponse arrivée à temps : annuler le timeout
+  return await réponse.json()
+ } catch (err) {
+  if (err.name === 'AbortError') {
+   throw new Error(`Timeout : pas de réponse après ${ms}ms`)
   }
+  throw err
+ }
 }
 ```
 
@@ -145,21 +144,21 @@ La différence avec `Promise.race` : avec `Promise.race` le fetch continue à co
 const controller = new AbortController()
 
 // vérifier si le signal est déjà aborted (annulé)
-console.log(controller.signal.aborted)  // false
+console.log(controller.signal.aborted) // false
 
 controller.abort()
 
-console.log(controller.signal.aborted)  // true
+console.log(controller.signal.aborted) // true
 
 // écouter l'événement d'annulation manuellement
 controller.signal.addEventListener('abort', () => {
-  console.log('annulé, raison :', controller.signal.reason)
+ console.log('annulé, raison :', controller.signal.reason)
 })
 controller.abort('shinobi a navigué ailleurs')
 // affiche : "annulé, raison : shinobi a navigué ailleurs"
 
 // abort() avec raison (ES2022)
-controller.abort(new Error('timeout dépassé'))  // la raison peut être une Error
+controller.abort(new Error('timeout dépassé')) // la raison peut être une Error
 ```
 
 `signal.aborted` est utile pour vérifier l'état avant une longue opération : si le signal est déjà aborted, inutile de la démarrer.
@@ -171,7 +170,7 @@ controller.abort(new Error('timeout dépassé'))  // la raison peut être une Er
 ```js
 const controller = new AbortController()
 
-controller.abort()  // annulé
+controller.abort() // annulé
 
 // ERREUR : tenter de réutiliser le même controller pour une nouvelle requête
 const réponse = await fetch('/api/data', { signal: controller.signal })

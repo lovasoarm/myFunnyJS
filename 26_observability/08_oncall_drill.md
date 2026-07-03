@@ -1,9 +1,9 @@
 # 08 : On-call drill : il est 3h du matin
 Temps de lecture ~5 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
-> [INTEMPOREL] **INTEMPOREL** : l'astreinte existera tant que des systèmes tourneront
+> **INTEMPOREL** : l'astreinte existera tant que des systèmes tourneront
 > en prod. Le protocole est plus important que la stack.
 
 ## Scénario
@@ -23,13 +23,13 @@ Correction du bug racine : **plus tard**, jamais à 3h du matin.
 
 ```
 TypeError: Cannot read properties of undefined (reading 'currency')
-    at applyTax (/app/checkout/tax.js:42:19)
-    at processOrder (/app/checkout/order.js:88:5)
-    at async POST /checkout (/app/routes/checkout.js:12:3)
+  at applyTax (/app/checkout/tax.js:42:19)
+  at processOrder (/app/checkout/order.js:88:5)
+  at async POST /checkout (/app/routes/checkout.js:12:3)
 ```
 
 - 3 lignes de log corrélées (`traceId=abc123`) montrant un appel au service
-  `currency-svc` qui répond `null` depuis 12 min.
+ `currency-svc` qui répond `null` depuis 12 min.
 - Un dashboard : `currency-svc` deploy il y a 15 min (release `v1.4.2`).
 
 ## Protocole (à suivre dans l'ordre)
@@ -77,7 +77,7 @@ Si NON → tu escalades. Tu ne joues pas au héros seul à 3h.
 ## Livrable
 
 - `RUNBOOK_CHECKOUT.md` : rollback, feature flags, failovers documentés
-  **à l'avance**. Un runbook écrit à 3h du matin est un runbook trop tard.
+ **à l'avance**. Un runbook écrit à 3h du matin est un runbook trop tard.
 - `POSTMORTEM.md` (le lendemain) : ligne du temps, cause racine, action items.
 
 ## (attention) Ce que l'analogie "cowboy dev sauveur" cache

@@ -1,7 +1,7 @@
 # Quand ranger en tables fait plus de mal que de bien
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 `01_sql_basics` t'a montré la DB relationnelle : tables strictes, schéma fixe, relations propres. NoSQL (not only SQL), c'est la famille de DB qui dit "ton schéma change tout le temps, alors arrête de te battre contre lui".
 
@@ -17,10 +17,10 @@ Inconvénient : tu perds souvent les garanties d'intégrité fortes (vu dans `03
 Erreur de débutant : penser que "NoSQL" = MongoDB. NoSQL est une catégorie, pas une techno. Quatre familles principales :
 
 ```
-DOCUMENT      -->  MongoDB, Firestore : des objets JSON-like, schéma flexible
-CLÉ-VALEUR    -->  Redis, DynamoDB : une clé pointe vers une valeur, ultra rapide
-COLONNE LARGE -->  Cassandra, ScyllaDB : optimisé pour écrire/lire des colonnes massives
-GRAPHE        -->  Neo4j : optimisé pour les RELATIONS entre données (réseau social, recommandations)
+DOCUMENT   --> MongoDB, Firestore : des objets JSON-like, schéma flexible
+CLÉ-VALEUR  --> Redis, DynamoDB : une clé pointe vers une valeur, ultra rapide
+COLONNE LARGE --> Cassandra, ScyllaDB : optimisé pour écrire/lire des colonnes massives
+GRAPHE    --> Neo4j : optimisé pour les RELATIONS entre données (réseau social, recommandations)
 ```
 
 Chaque famille résout un problème précis. Aucune n'est "la meilleure" : c'est la question qui est mal posée.
@@ -33,14 +33,14 @@ Chaque famille résout un problème précis. Aucune n'est "la meilleure" : c'est
 // Un document MongoDB : ressemble à un objet JS, parce que c'est littéralement du BSON
 // (binary JSON : JSON encodé en binaire pour la perf)
 {
-  _id: "65f3a2...",
-  ninja_name: "Kakashi",
-  village: "Konoha",
-  abilities: {
-    sharingan: true,
-    chakra_nature: ["lightning", "earth", "water"]
-  },
-  missions_completed: 1141
+ _id: "65f3a2...",
+ ninja_name: "Kakashi",
+ village: "Konoha",
+ abilities: {
+  sharingan: true,
+  chakra_nature: ["lightning", "earth", "water"]
+ },
+ missions_completed: 1141
 }
 ```
 
@@ -61,7 +61,7 @@ Le risque réel : tu dupliques de la donnée partout (dénormalisation : vue dan
 
 // Le village change de nom suite à une réorganisation narrative
 // Si tu oublies de mettre à jour TOUTES les missions existantes :
-{ missionId: 1, village: "Konoha", objective: "Escorte" }    // donnée périmée (stale data)
+{ missionId: 1, village: "Konoha", objective: "Escorte" }  // donnée périmée (stale data)
 { missionId: 2, village: "Feuille", objective: "Infiltration" } // mise à jour, incohérent avec missionId 1
 ```
 
@@ -70,10 +70,10 @@ Le risque réel : tu dupliques de la donnée partout (dénormalisation : vue dan
 ## 3) CLÉ-VALEUR : LA VITESSE BRUTE
 
 ```
-clé                     -->  valeur
-"session:abc123"        -->  { ninjaId: 42, rank: "Jonin" }
-"cache:mission:99"      -->  { objective: "...", danger_level: 5 }
-"ratelimit:ip:1.2.3.4"  -->  12
+clé           --> valeur
+"session:abc123"    --> { ninjaId: 42, rank: "Jonin" }
+"cache:mission:99"   --> { objective: "...", danger_level: 5 }
+"ratelimit:ip:1.2.3.4" --> 12
 ```
 
 Le pourquoi : pas de requête complexe, pas de `WHERE`, pas de `JOIN`. Tu connais la clé, tu demandes la valeur. C'est souvent en RAM (Redis), donc la latence (temps de réponse) est de l'ordre de la milliseconde, pas de la dizaine de millisecondes comme une requête SQL sur disque.
@@ -135,19 +135,19 @@ Le quand : réseaux de clans, recommandations de missions par affinité, détect
 Pose-toi ces questions, dans cet ordre :
 
 1. Mes données ont-elles un schéma stable et des relations fortes ?
-   --> OUI : SQL (relationnel) est probablement le bon choix par défaut
+  --> OUI : SQL (relationnel) est probablement le bon choix par défaut
 
 2. Mon schéma change souvent, ou varie énormément d'un enregistrement à l'autre ?
-   --> OUI : DOCUMENT (MongoDB) peut t'éviter une table à 60 colonnes NULL
+  --> OUI : DOCUMENT (MongoDB) peut t'éviter une table à 60 colonnes NULL
 
 3. J'ai besoin de lire/écrire UNE valeur identifiée par UNE clé, ultra vite ?
-   --> OUI : CLÉ-VALEUR (Redis)
+  --> OUI : CLÉ-VALEUR (Redis)
 
 4. Je dois ingérer des volumes massifs et continus, répartis sur plusieurs machines ?
-   --> OUI : COLONNE LARGE (Cassandra)
+  --> OUI : COLONNE LARGE (Cassandra)
 
 5. Ma question métier principale, c'est "qu'est-ce qui est connecté à quoi" ?
-   --> OUI : GRAPHE (Neo4j)
+  --> OUI : GRAPHE (Neo4j)
 ```
 
 Le piège classique : choisir NoSQL parce que "c'est plus moderne" ou "c'est ce qu'utilise telle grosse boîte". La vraie question n'est jamais "SQL ou NoSQL", c'est "quelle est la forme de mes données et la forme de mes requêtes". Michael Scofield dans Prison Break ne choisit pas ses outils d'évasion parce qu'ils sont populaires : il choisit exactement ce que la situation exige. Toi pareil avec les DB.

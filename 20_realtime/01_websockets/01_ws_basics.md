@@ -1,7 +1,7 @@
 # 01_WS_BASICS : LE CYCLE DE VIE D'UNE WEBSOCKET
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 HTTP est un contrat unidirectionnel : tu demandes, le serveur répond, la connexion meurt.
 WebSocket, c'est un tunnel qui reste ouvert.
@@ -20,20 +20,20 @@ Une WebSocket c'est deux bouts : le navigateur et le serveur Node.js.
 Les deux doivent tourner pour que ça fonctionne. Si le serveur n'est pas lancé, la connexion échoue.
 
 ```
-Navigateur (client)                     Node.js (serveur)
-        |                                       |
-        | new WebSocket('wss://...')            | new WebSocketServer({ port: 8080 })
-        |                                       |
-        |------------ handshake --------------->|
-        |<----------- 101 Switching Protocols --|
-        |                                       |
-        |<======= TUNNEL OUVERT, BIDIRECTIONNEL =======>|
-        |                                       |
-        | socket.send('message')  ------------->| ws.on('message', ...)
-        |                                       |
-        | socket.on('message', ...) <-----------| ws.send('réponse')
-        |                                       |
-        | socket.close()          ------------->| ws.on('close', ...)
+Navigateur (client)           Node.js (serveur)
+    |                    |
+    | new WebSocket('wss://...')      | new WebSocketServer({ port: 8080 })
+    |                    |
+    |------------ handshake --------------->|
+    |<----------- 101 Switching Protocols --|
+    |                    |
+    |<======= TUNNEL OUVERT, BIDIRECTIONNEL =======>|
+    |                    |
+    | socket.send('message') ------------->| ws.on('message', ...)
+    |                    |
+    | socket.on('message', ...) <-----------| ws.send('réponse')
+    |                    |
+    | socket.close()     ------------->| ws.on('close', ...)
 ```
 
 Les deux côtés ont la même interface de base : `send()`, `on('message')`, `on('close')`.
@@ -48,22 +48,22 @@ const wss = new WebSocketServer({ port: 8080 });
 // wss écoute les connexions entrantes
 
 wss.on("connection", (ws) => {
-  // ws = la WebSocket individuelle de CE client précis
-  // chaque nouveau client déclenche ce callback avec sa propre ws
-  console.log("Nouveau client connecté");
+ // ws = la WebSocket individuelle de CE client précis
+ // chaque nouveau client déclenche ce callback avec sa propre ws
+ console.log("Nouveau client connecté");
 
-  ws.on("message", (data) => {
-    // data est un Buffer en Node.js:.toString() pour avoir la string
-    const message = JSON.parse(data.toString());
-    console.log("Reçu du client :", message);
+ ws.on("message", (data) => {
+  // data est un Buffer en Node.js:.toString() pour avoir la string
+  const message = JSON.parse(data.toString());
+  console.log("Reçu du client :", message);
 
-    // Répondre à ce client uniquement
-    ws.send(JSON.stringify({ type: "ack", received: message.type }));
-  });
+  // Répondre à ce client uniquement
+  ws.send(JSON.stringify({ type: "ack", received: message.type }));
+ });
 
-  ws.on("close", () => {
-    console.log("Client déconnecté");
-  });
+ ws.on("close", () => {
+  console.log("Client déconnecté");
+ });
 });
 
 console.log("Serveur WebSocket actif sur port 8080");
@@ -81,15 +81,15 @@ Le serveur accepte. La connexion bascule en protocole WebSocket.
 HTTP est juste le point d'entrée. Après l'handshake (poignée de main protocolaire), c'est du WebSocket pur.
 
 ```
-Client                        Serveur
-  |                              |
-  |--- HTTP GET /ws ------------>|   (requête d'upgrade)
-  |    Upgrade: websocket        |
-  |                              |
-  |<-- 101 Switching Protocols --|   (accord : la connexion bascule)
-  |                              |
-  |<=== WEBSOCKET TUNNEL OUVERT =>   (bidirectionnel, persistant)
-  |                              |
+Client            Serveur
+ |               |
+ |--- HTTP GET /ws ------------>|  (requête d'upgrade)
+ |  Upgrade: websocket    |
+ |               |
+ |<-- 101 Switching Protocols --|  (accord : la connexion bascule)
+ |               |
+ |<=== WEBSOCKET TUNNEL OUVERT =>  (bidirectionnel, persistant)
+ |               |
 ```
 
 Sans cet upgrade, pas de WebSocket. C'est important à savoir pour debugger les proxies (intermédiaires réseau) qui bloquent les connexions longues.
@@ -100,20 +100,20 @@ Sans cet upgrade, pas de WebSocket. C'est important à savoir pour debugger les 
 
 ```
 new WebSocket(url)
-      |
-      v
- readyState: CONNECTING (0)   -- le handshake est en cours
-      |
-      v
- readyState: OPEN (1)         -- tunnel ouvert, send() autorisé
-      |
-      |<--> send() / on('message')   -- communication libre dans les deux sens
-      |
-      v
- readyState: CLOSING (2)      -- fermeture initiée (close() appelé)
-      |
-      v
- readyState: CLOSED (3)       -- tunnel fermé, plus rien ne passe
+   |
+   v
+ readyState: CONNECTING (0)  -- le handshake est en cours
+   |
+   v
+ readyState: OPEN (1)     -- tunnel ouvert, send() autorisé
+   |
+   |<--> send() / on('message')  -- communication libre dans les deux sens
+   |
+   v
+ readyState: CLOSING (2)   -- fermeture initiée (close() appelé)
+   |
+   v
+ readyState: CLOSED (3)    -- tunnel fermé, plus rien ne passe
 ```
 
 `readyState` est la propriété centrale. La vérifier avant chaque `send()`.
@@ -129,11 +129,11 @@ const socket = new WebSocket("wss://ton-serveur.com/ws");
 
 // open : le tunnel est établi, on peut parler
 socket.addEventListener("open", () => {
-  console.log("Tunnel ouvert");
+ console.log("Tunnel ouvert");
 
-  // send accepte : string, ArrayBuffer, Blob
-  // JSON.stringify pour envoyer des objets structurés
-  socket.send(JSON.stringify({ type: "hello", payload: "Garo Leon" }));
+ // send accepte : string, ArrayBuffer, Blob
+ // JSON.stringify pour envoyer des objets structurés
+ socket.send(JSON.stringify({ type: "hello", payload: "Garo Leon" }));
 });
 ```
 
@@ -146,15 +146,15 @@ Vérifier `socket.readyState === 1` si tu envoies en dehors du callback `open`.
 
 ```js
 socket.addEventListener("message", (event) => {
-  // event.data est une string côté navigateur (sauf binaire explicite)
-  // JSON.parse obligatoire si le serveur envoie du JSON
-  const data = JSON.parse(event.data);
+ // event.data est une string côté navigateur (sauf binaire explicite)
+ // JSON.parse obligatoire si le serveur envoie du JSON
+ const data = JSON.parse(event.data);
 
-  console.log("Message reçu :", data);
+ console.log("Message reçu :", data);
 
-  if (data.type === "horror_alert") {
-    console.log(`Horror détecté à ${data.location} : envoyer Leon`);
-  }
+ if (data.type === "horror_alert") {
+  console.log(`Horror détecté à ${data.location} : envoyer Leon`);
+ }
 });
 ```
 
@@ -167,9 +167,9 @@ Accéder à `data.type` sans parser : `undefined` partout, crash silencieux.
 
 ```js
 socket.addEventListener("error", (event) => {
-  // L'event error ne donne pas de détails par design (raison de sécurité navigateur)
-  // Pour le vrai message d'erreur : onglet Network > WS dans DevTools
-  console.error("Erreur WebSocket : vérifier Network tab");
+ // L'event error ne donne pas de détails par design (raison de sécurité navigateur)
+ // Pour le vrai message d'erreur : onglet Network > WS dans DevTools
+ console.error("Erreur WebSocket : vérifier Network tab");
 });
 ```
 
@@ -190,14 +190,14 @@ Les erreurs les plus fréquentes en prod :
 socket.close(1000, "Mission terminée");
 
 socket.addEventListener("close", (event) => {
-  console.log(
-    `Connexion fermée : code : ${event.code}, raison : ${event.reason}`,
-  );
-  // wasClean : true si la fermeture était intentionnelle et propre
-  // wasClean : false si la connexion a été coupée brutalement
-  if (!event.wasClean) {
-    console.log("Coupure brutale : prévoir une reconnexion");
-  }
+ console.log(
+  `Connexion fermée : code : ${event.code}, raison : ${event.reason}`,
+ );
+ // wasClean : true si la fermeture était intentionnelle et propre
+ // wasClean : false si la connexion a été coupée brutalement
+ if (!event.wasClean) {
+  console.log("Coupure brutale : prévoir une reconnexion");
+ }
 });
 ```
 
@@ -218,29 +218,29 @@ Tu dois implémenter la reconnexion toi-même.
 
 ```js
 function createSocket(url, onMessage) {
-  const socket = new WebSocket(url);
+ const socket = new WebSocket(url);
 
-  socket.addEventListener("open", () => {
-    console.log("Connecté");
-  });
+ socket.addEventListener("open", () => {
+  console.log("Connecté");
+ });
 
-  socket.addEventListener("message", (event) => {
-    onMessage(JSON.parse(event.data));
-  });
+ socket.addEventListener("message", (event) => {
+  onMessage(JSON.parse(event.data));
+ });
 
-  socket.addEventListener("close", (event) => {
-    if (!event.wasClean) {
-      // connexion perdue sans fermeture propre:on retente dans 3 secondes
-      console.log("Connexion perdue : retry dans 3s");
-      setTimeout(() => createSocket(url, onMessage), 3000);
-    }
-  });
+ socket.addEventListener("close", (event) => {
+  if (!event.wasClean) {
+   // connexion perdue sans fermeture propre:on retente dans 3 secondes
+   console.log("Connexion perdue : retry dans 3s");
+   setTimeout(() => createSocket(url, onMessage), 3000);
+  }
+ });
 
-  return socket;
+ return socket;
 }
 
 const socket = createSocket("wss://ton-serveur.com/ws", (data) => {
-  console.log("Reçu :", data);
+ console.log("Reçu :", data);
 });
 ```
 

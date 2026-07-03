@@ -13,16 +13,16 @@ Trois jobs, pas un seul :
 
 ```
 1. résoudre les dépendances --> qui a besoin de quoi, dans quelle version
-2. télécharger et stocker   --> récupérer le code depuis un registre (registry)
-3. organiser sur le disque  --> structurer node_modules pour que require/import fonctionne
+2. télécharger et stocker  --> récupérer le code depuis un registre (registry)
+3. organiser sur le disque --> structurer node_modules pour que require/import fonctionne
 ```
 
 ```js
 // package.json déclare ce dont ton projet a besoin
 {
-  "dependencies": {
-    "express": "^4.18.0"  // ^ = accepte les mises à jour mineures et patch, pas majeures
-  }
+ "dependencies": {
+  "express": "^4.18.0" // ^ = accepte les mises à jour mineures et patch, pas majeures
+ }
 }
 
 // "npm install" lit ça, va chercher express ET tout ce dont express a besoin
@@ -42,11 +42,11 @@ La vraie différence entre les trois en 2026 c'est pas la syntaxe des ordres_mis
 ```
 node_modules/
 ├── package-a/
-│   └── node_modules/
-│       └── lodash@4.17.0/    ← copie complète
+│  └── node_modules/
+│    └── lodash@4.17.0/  ← copie complète
 ├── package-b/
-│   └── node_modules/
-│       └── lodash@4.17.0/    ← même version, copiée AUSSI
+│  └── node_modules/
+│    └── lodash@4.17.0/  ← même version, copiée AUSSI
 ```
 
 Si deux paquets utilisent la même version de `lodash`, npm classique en stocke parfois plusieurs copies physiques selon la profondeur de l'arbre. Ça gonfle le disque : l'équivalent de dupliquer les mêmes munitions dans chaque sacoche de chaque survivant.
@@ -54,7 +54,7 @@ Si deux paquets utilisent la même version de `lodash`, npm classique en stocke 
 ### pnpm : stockage centralisé avec liens symboliques
 
 ```
-~/.pnpm-store/             ← UN SEUL endroit sur la machine, pour TOUS les projets
+~/.pnpm-store/       ← UN SEUL endroit sur la machine, pour TOUS les projets
 └── lodash@4.17.0/
 
 projet-A/node_modules/lodash --> lien symbolique vers le store global
@@ -62,8 +62,8 @@ projet-B/node_modules/lodash --> lien symbolique vers le MÊME store global
 ```
 
 ```
-npm/yarn classique  --> chaque projet duplique ses dépendances
-pnpm                --> un seul exemplaire physique par version, partagé entre TOUS tes projets
+npm/yarn classique --> chaque projet duplique ses dépendances
+pnpm        --> un seul exemplaire physique par version, partagé entre TOUS tes projets
 ```
 
 **Pourquoi ça compte concrètement :** si t'as 15 projets Node sur ta machine et qu'ils utilisent tous `react`, npm classique stocke `react` 15 fois sur le disque. pnpm le stocke une fois et fait des liens symboliques (raccourcis pointant vers le même fichier physique). Gain de place réel, gain de vitesse d'installation aussi.
@@ -91,13 +91,13 @@ Le lockfile fige les versions exactes de chaque dépendance, directe ET transiti
 
 ```
 RÈGLE : toujours committer le lockfile dans Git
-        le .gitignore ne doit jamais l'exclure
-        sans lui, deux devs avec des dates d'install différentes ont des versions différentes
+    le .gitignore ne doit jamais l'exclure
+    sans lui, deux devs avec des dates d'install différentes ont des versions différentes
 ```
 
 ```js
-// npm install   : résout + peut mettre à jour le lockfile
-// npm ci        : installe EXACTEMENT le lockfile, échoue si le lockfile est absent
+// npm install  : résout + peut mettre à jour le lockfile
+// npm ci    : installe EXACTEMENT le lockfile, échoue si le lockfile est absent
 // usage en CI/CD : toujours npm ci, jamais npm install
 ```
 
@@ -114,9 +114,9 @@ RÈGLE : toujours committer le lockfile dans Git
 ```
 
 ```json
-"express": "^4.18.0"  // accepte 4.18.x, 4.19.x, mais pas 5.x.x
-"express": "~4.18.0"  // accepte seulement 4.18.x (tilde plus restrictif que caret)
-"express": "4.18.2"   // version exacte, aucune mise à jour automatique
+"express": "^4.18.0" // accepte 4.18.x, 4.19.x, mais pas 5.x.x
+"express": "~4.18.0" // accepte seulement 4.18.x (tilde plus restrictif que caret)
+"express": "4.18.2"  // version exacte, aucune mise à jour automatique
 ```
 
 **Qui casse en prod :** une dépendance qui ne respecte pas le semver (semantic versioning : convention de numérotation des versions) et introduit un breaking change dans une version mineure. Ça arrive. Le lockfile te protège si tu committes et utilises `npm ci` en prod.
@@ -134,7 +134,7 @@ npm ci
 
 # ajouter une dépendance
 npm install express
-npm install --save-dev jest   # dépendance de dev uniquement
+npm install --save-dev jest  # dépendance de dev uniquement
 
 # supprimer une dépendance
 npm uninstall express
@@ -147,7 +147,7 @@ npm update
 
 # auditer les vulnérabilités connues
 npm audit
-npm audit fix   # corrige automatiquement ce qui peut l'être
+npm audit fix  # corrige automatiquement ce qui peut l'être
 ```
 
 Les ordres_mission Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).

@@ -18,15 +18,15 @@ On utilise une architecture 100% fonctionnelle. Chaque fonction de combat prend 
 
 ```
 
-État tour N  -->  résoudreAttaque(état, jutsu)  -->  État tour N+1
+État tour N --> résoudreAttaque(état, jutsu) --> État tour N+1
 
-                         |
+             |
 
-                    fonction pure :
+          fonction pure :
 
-                    même entrée = même sortie
+          même entrée = même sortie
 
-                    zéro effet de bord
+          zéro effet de bord
 
 ```
 

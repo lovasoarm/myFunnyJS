@@ -1,7 +1,7 @@
 # Le plan avant les murs
 Temps de lecture ~12 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 T'as vu SQL (`01_sql_basics`) et les familles NoSQL (`02_nosql_basics`). Maintenant la vraie question : comment tu RANGES tes données pour qu'elles tiennent dans le temps, sans dupliquer n'importe comment ni te retrouver bloqué dans 6 mois.
 
@@ -19,23 +19,23 @@ La normalisation, c'est la discipline qui dit : une information ne doit exister 
 ```sql
 -- Mauvais : dénormalisé, le nom du ninja est dupliqué dans chaque mission
 CREATE TABLE missions (
-  id INT,
-  ninja_name VARCHAR(255),   -- dupliqué à chaque mission du même ninja
-  village_name VARCHAR(255), -- dupliqué aussi
-  objective TEXT
+ id INT,
+ ninja_name VARCHAR(255),  -- dupliqué à chaque mission du même ninja
+ village_name VARCHAR(255), -- dupliqué aussi
+ objective TEXT
 );
 
 -- Bon : normalisé, le ninja existe une fois, la mission référence juste son id
 CREATE TABLE ninjas (
-  id INT PRIMARY KEY,
-  ninja_name VARCHAR(255),
-  village VARCHAR(255)
+ id INT PRIMARY KEY,
+ ninja_name VARCHAR(255),
+ village VARCHAR(255)
 );
 
 CREATE TABLE missions (
-  id INT PRIMARY KEY,
-  ninja_id INT REFERENCES ninjas(id),
-  objective TEXT
+ id INT PRIMARY KEY,
+ ninja_id INT REFERENCES ninjas(id),
+ objective TEXT
 );
 ```
 
@@ -73,9 +73,9 @@ WHERE m.id = 1;
 ```
 Niveau de normalisation vs coût de lecture :
 
-Normalisé à fond  -->  | intégrité max | joins multiples | lenteur possible
-Dénormalisé       -->  | duplicatas    | lectures rapides | maintenance complexe
-                  -->  le bon curseur dépend de TON contexte
+Normalisé à fond --> | intégrité max | joins multiples | lenteur possible
+Dénormalisé    --> | duplicatas  | lectures rapides | maintenance complexe
+         --> le bon curseur dépend de TON contexte
 ```
 
 Le risque réel : normaliser à l'extrême donne un modèle "propre" sur le papier mais lent en pratique, parce que chaque lecture déclenche une cascade de `JOIN`. C'est le compromis central de la modélisation : intégrité parfaite vs vitesse de lecture.
@@ -89,10 +89,10 @@ Parfois, dupliquer une donnée est une décision technique justifiée, pas une e
 ```sql
 -- Le rang d'un ninja AU MOMENT d'une mission DOIT être dupliqué, volontairement
 CREATE TABLE missions (
-  id INT PRIMARY KEY,
-  ninja_id INT REFERENCES ninjas(id),
-  rank_at_mission VARCHAR(50),  -- copié au moment de l'assignation, intentionnellement
-  objective TEXT
+ id INT PRIMARY KEY,
+ ninja_id INT REFERENCES ninjas(id),
+ rank_at_mission VARCHAR(50), -- copié au moment de l'assignation, intentionnellement
+ objective TEXT
 );
 ```
 
@@ -115,9 +115,9 @@ Le quand dénormaliser, en général : données historiques/légales qui doivent
 ## 4) RELATIONS : ONE-TO-ONE, ONE-TO-MANY, MANY-TO-MANY
 
 ```
-ONE-TO-ONE   -->  un ninja a UN profil de santé détaillé
-ONE-TO-MANY  -->  un ninja a PLUSIEURS missions assignées
-MANY-TO-MANY -->  une mission a PLUSIEURS ninjas, un ninja participe à PLUSIEURS missions
+ONE-TO-ONE  --> un ninja a UN profil de santé détaillé
+ONE-TO-MANY --> un ninja a PLUSIEURS missions assignées
+MANY-TO-MANY --> une mission a PLUSIEURS ninjas, un ninja participe à PLUSIEURS missions
 ```
 
 Le many-to-many a besoin d'une table intermédiaire (table de jointure, junction table) :
@@ -128,10 +128,10 @@ CREATE TABLE missions (id INT PRIMARY KEY, objective TEXT);
 
 -- table pivot : pas de données métier, juste les deux clés étrangères
 CREATE TABLE ninja_missions (
-  ninja_id INT REFERENCES ninjas(id),
-  mission_id INT REFERENCES missions(id),
-  role VARCHAR(50),  -- "leader", "support", "infiltration" : données de la RELATION
-  PRIMARY KEY (ninja_id, mission_id)
+ ninja_id INT REFERENCES ninjas(id),
+ mission_id INT REFERENCES missions(id),
+ role VARCHAR(50), -- "leader", "support", "infiltration" : données de la RELATION
+ PRIMARY KEY (ninja_id, mission_id)
 );
 ```
 
@@ -151,19 +151,19 @@ L'erreur classique de débutant : essayer de stocker les missions dans une colon
 
 ```sql
 CREATE TABLE ninjas (
-  id SERIAL PRIMARY KEY,          -- clé primaire : identifiant unique de la ligne
-  ninja_name VARCHAR(255) UNIQUE  -- contrainte d'unicité, pas une clé primaire
+ id SERIAL PRIMARY KEY,     -- clé primaire : identifiant unique de la ligne
+ ninja_name VARCHAR(255) UNIQUE -- contrainte d'unicité, pas une clé primaire
 );
 
 CREATE TABLE missions (
-  id SERIAL PRIMARY KEY,
-  ninja_id INT REFERENCES ninjas(id)  -- clé étrangère : référence une autre table
+ id SERIAL PRIMARY KEY,
+ ninja_id INT REFERENCES ninjas(id) -- clé étrangère : référence une autre table
 );
 ```
 
 ```
-PRIMARY KEY  -->  identifie une ligne de manière unique DANS sa table
-FOREIGN KEY  -->  référence la primary key d'une AUTRE table, garantit l'intégrité
+PRIMARY KEY --> identifie une ligne de manière unique DANS sa table
+FOREIGN KEY --> référence la primary key d'une AUTRE table, garantit l'intégrité
 ```
 
 Le pourquoi de `REFERENCES` : sans contrainte de clé étrangère, rien n'empêche d'insérer `ninja_id = 9999` dans `missions` alors que ce ninja n'existe pas. Avec la contrainte, la DB refuse l'insertion. C'est l'intégrité référentielle (referential integrity) : la DB garantit elle-même que tes relations ont du sens, tu n'as pas à le vérifier à la main dans ton code JS.
@@ -172,14 +172,14 @@ Le débat ID auto-incrémenté (`1, 2, 3...`) vs UUID (identifiant unique géné
 
 ```
 AUTO-INCRÉMENT :
-+  lisible, compact, index performant
--  prévisible (id=5 existe forcément si id=4 existe), expose le volume de données
--  collision possible si tu fusionnes des DB de plusieurs sources
++ lisible, compact, index performant
+- prévisible (id=5 existe forcément si id=4 existe), expose le volume de données
+- collision possible si tu fusionnes des DB de plusieurs sources
 
 UUID :
-+  généré côté client SANS aller demander à la DB, pas de collision entre systèmes
-+  ne révèle rien sur le volume total
--  plus lourd (16 bytes vs 4-8), index moins performant qu'un entier simple
++ généré côté client SANS aller demander à la DB, pas de collision entre systèmes
++ ne révèle rien sur le volume total
+- plus lourd (16 bytes vs 4-8), index moins performant qu'un entier simple
 ```
 
 Le choix dépend du contexte : un outil interne, auto-incrément suffit. Un système distribué qui génère des IDs sur plusieurs serveurs avant même de toucher la DB (vu dans `25_scalability`), UUID devient nécessaire.
@@ -190,8 +190,8 @@ Le choix dépend du contexte : un outil interne, auto-incrément suffit. Un syst
 
 ```sql
 BEGIN;
-UPDATE ninja_wallets SET ryo = ryo - 1000 WHERE ninja_id = 1;  -- retire la récompense à Naruto
-UPDATE mission_rewards SET claimed = true WHERE mission_id = 5;  -- marque la mission comme payée
+UPDATE ninja_wallets SET ryo = ryo - 1000 WHERE ninja_id = 1; -- retire la récompense à Naruto
+UPDATE mission_rewards SET claimed = true WHERE mission_id = 5; -- marque la mission comme payée
 COMMIT;
 ```
 
@@ -199,10 +199,10 @@ Le pourquoi : si le serveur crash entre les deux `UPDATE`, sans transaction, Nar
 
 ```
 ACID :
-Atomicity (atomicité)     -->  tout ou rien, jamais à moitié
-Consistency (cohérence)   -->  la DB respecte toujours ses contraintes après la transaction
-Isolation                 -->  deux transactions simultanées ne se piétinent pas
-Durability (durabilité)   -->  une fois validée (COMMIT), la donnée survit même à un crash
+Atomicity (atomicité)   --> tout ou rien, jamais à moitié
+Consistency (cohérence)  --> la DB respecte toujours ses contraintes après la transaction
+Isolation         --> deux transactions simultanées ne se piétinent pas
+Durability (durabilité)  --> une fois validée (COMMIT), la donnée survit même à un crash
 ```
 
 Le risque réel sans transaction : exactement le bug "Naruto perd ses ryos sans que la mission soit fermée" ci-dessus. Ce genre de bug n'apparaît jamais en dev (tout va bien, tout est rapide) et arrive en prod sous charge, quand une requête timeout pile entre les deux `UPDATE`.
@@ -215,10 +215,10 @@ Le risque réel sans transaction : exactement le bug "Naruto perd ses ryos sans 
 // exemple minimal : ça a l'air raisonnable au début
 // "un ninja a une liste de jutsu, je les stocke en JSON dans la colonne"
 {
-  id: 1,
-  ninja_name: "Kakashi",
-  jutsu_list: '[{"name":"Chidori","element":"lightning"},{"name":"Kamui","element":"space"}]'
-  // stocké en string JSON dans une colonne SQL
+ id: 1,
+ ninja_name: "Kakashi",
+ jutsu_list: '[{"name":"Chidori","element":"lightning"},{"name":"Kamui","element":"space"}]'
+ // stocké en string JSON dans une colonne SQL
 }
 
 // exemple réaliste : 6 mois plus tard, on veut chercher "tous les ninjas

@@ -11,9 +11,9 @@ Une function factory est une **fonction qui retourne une autre fonction**. Elle 
 
 ```javascript
 function makePlayer(name, hp) {
-  return function attack() {
-    console.log(`${name} attaque avec ${hp} hp!`);
-  };
+ return function attack() {
+  console.log(`${name} attaque avec ${hp} hp!`);
+ };
 }
 
 let bobyAttack = makePlayer("Boby", 100);
@@ -45,8 +45,8 @@ Chaque appel à `makePlayer` crée une **nouvelle fonction indépendante**, avec
 **Factory** : une fonction qui jutsu d'autres fonctions (ou objets) à la demande, selon les paramètres qu'on lui passe.
 
 ```
-makePlayer("Boby", 100)  →  nouvelle fonction avec "Boby" et 100 verrouillés
-makePlayer("Elon", 200)  →  nouvelle fonction avec "Elon" et 200 verrouillés
+makePlayer("Boby", 100) → nouvelle fonction avec "Boby" et 100 verrouillés
+makePlayer("Elon", 200) → nouvelle fonction avec "Elon" et 200 verrouillés
 ```
 
 Ces deux fonctions **ne se connaissent pas**. Modifier l'une ne touche pas l'autre.
@@ -58,22 +58,22 @@ Ces deux fonctions **ne se connaissent pas**. Modifier l'une ne touche pas l'aut
 ## La Team Factory
 
 1. Crée une fonction `makeWeapon(name, damage)` qui retourne une fonction `useWeapon()` affichant :
-   ```
-   "NomDeLArme attaque avec X points de dégâts"
-   ```
+  ```
+  "NomDeLArme attaque avec X points de dégâts"
+  ```
 2. Crée 2 armes avec `makeWeapon` et teste leurs attaques
 
 3. Fais tourner l'usine : crée un tableau de données d'armes et utilise `map` pour générer un tableau de fonctions
 
-   ```javascript
-   let weaponData = [
-     { name: "Épée", damage: 50 },
-     { name: "Arc", damage: 30 },
-     { name: "Hache", damage: 70 },
-   ];
+  ```javascript
+  let weaponData = [
+   { name: "Épée", damage: 50 },
+   { name: "Arc", damage: 30 },
+   { name: "Hache", damage: 70 },
+  ];
 
-   // Utilise map pour créer un tableau de fonctions useWeapon
-   ```
+  // Utilise map pour créer un tableau de fonctions useWeapon
+  ```
 
 4. Teste toutes les armes en boucle et observe comment chaque fonction garde son propre `name` et `damage`
 

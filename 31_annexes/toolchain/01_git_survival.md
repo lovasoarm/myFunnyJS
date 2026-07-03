@@ -10,9 +10,9 @@ Le camp tient un historique de chaque décision : qui a renforcé la clôture, q
 Beaucoup de débutants pensent Git comme une ligne droite : commit après commit après commit. C'est faux. Git c'est un graphe (structure de noeuds reliés entre eux) de snapshots (photos de l'état complet du projet à un instant T).
 
 ```
-main:     A --- B --- C --- F
-                 \           /
-feature:          D --- E --
+main:   A --- B --- C --- F
+         \      /
+feature:     D --- E --
 ```
 
 Chaque lettre est un commit. Chaque commit pointe vers son parent. Une branche, c'est juste un pointeur (une étiquette mobile) qui suit le dernier commit d'une lignée.
@@ -39,9 +39,9 @@ Daryl et Glenn ont chacun avancé sur leur branche. Il faut réunir le travail. 
 ### Merge : on garde l'histoire telle quelle
 
 ```
-main:     A --- B --- C ------- M (merge commit)
-                 \             /
-feature:          D --- E --- 
+main:   A --- B --- C ------- M (merge commit)
+         \       /
+feature:     D --- E --- 
 ```
 
 ```js
@@ -55,14 +55,14 @@ feature:          D --- E ---
 
 ```
 AVANT :
-main:     A --- B --- C
-                 \
-feature:          D --- E
+main:   A --- B --- C
+         \
+feature:     D --- E
 
 APRÈS rebase de feature sur main :
-main:     A --- B --- C
-                        \
-feature:                 D' --- E'
+main:   A --- B --- C
+            \
+feature:         D' --- E'
 ```
 
 ```js
@@ -124,19 +124,19 @@ Le simulateur de menace plantait pas la semaine dernière. Il plante maintenant.
 
 ```js
 // git bisect start
-// git bisect bad                 (l'état actuel est cassé)
-// git bisect good a1b2c3d        (ce commit-là, on sait qu'il marchait)
+// git bisect bad         (l'état actuel est cassé)
+// git bisect good a1b2c3d    (ce commit-là, on sait qu'il marchait)
 
 // Git coupe en deux automatiquement et te donne un commit au milieu à tester
 // Tu testes, tu dis :
-// git bisect good   (si ce commit marche)
-// git bisect bad    (si ce commit est cassé)
+// git bisect good  (si ce commit marche)
+// git bisect bad  (si ce commit est cassé)
 
 // Git répète la dichotomie jusqu'à isoler LE commit responsable
 ```
 
 ```
-40 commits à tester un par un  --> jusqu'à 40 tests
+40 commits à tester un par un --> jusqu'à 40 tests
 40 commits avec bisect (recherche dichotomique, O(log n)) --> environ 6 tests
 ```
 

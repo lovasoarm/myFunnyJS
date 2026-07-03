@@ -42,12 +42,12 @@ Une fonction longue, c'est plusieurs fonctions qui se sont battues et qui ont fu
 ```js
 // version monstre : fait 5 trucs à la fois
 function processMatch(matchData) {
-  const possession = matchData.teamA.passes / (matchData.teamA.passes + matchData.teamB.passes)
-  const xg = matchData.shots.reduce((acc, s) => acc + s.xgValue, 0)
-  const mvp = matchData.players.sort((a, b) => b.rating - a.rating)[0]
-  console.log(`Possession: ${possession}`)
-  console.log(`xG: ${xg}`)
-  return { possession, xg, mvp }
+ const possession = matchData.teamA.passes / (matchData.teamA.passes + matchData.teamB.passes)
+ const xg = matchData.shots.reduce((acc, s) => acc + s.xgValue, 0)
+ const mvp = matchData.players.sort((a, b) => b.rating - a.rating)[0]
+ console.log(`Possession: ${possession}`)
+ console.log(`xG: ${xg}`)
+ return { possession, xg, mvp }
 }
 ```
 
@@ -56,30 +56,30 @@ Personne ne veut lire ça à 23h pour debugger un bug en prod.
 ```js
 // version découpée : chaque fonction répond à une question précise
 function calculatePossession(teamA, teamB) {
-  return teamA.passes / (teamA.passes + teamB.passes)
+ return teamA.passes / (teamA.passes + teamB.passes)
 }
 
 function calculateTotalXg(shots) {
-  return shots.reduce((acc, shot) => acc + shot.xgValue, 0)
+ return shots.reduce((acc, shot) => acc + shot.xgValue, 0)
 }
 
 function findMvp(players) {
-  return players.toSorted((a, b) => b.rating - a.rating)[0]
+ return players.toSorted((a, b) => b.rating - a.rating)[0]
 }
 
 function processMatch(matchData) {
-  return {
-    possession: calculatePossession(matchData.teamA, matchData.teamB),
-    xg: calculateTotalXg(matchData.shots),
-    mvp: findMvp(matchData.players)
-  }
+ return {
+  possession: calculatePossession(matchData.teamA, matchData.teamB),
+  xg: calculateTotalXg(matchData.shots),
+  mvp: findMvp(matchData.players)
+ }
 }
 ```
 
 ```
 processMatch --> calculatePossession
-            --> calculateTotalXg
-            --> findMvp
+      --> calculateTotalXg
+      --> findMvp
 ```
 
 Chaque petit bloc se teste seul, se lit seul, se débugge seul.
@@ -114,7 +114,7 @@ const ARMOR_LIMIT_SECONDS = 99.9
 // bon : avertit d'un comportement piège
 // attention : ce sort ignore l'esquive, contrairement aux autres jutsus
 function castInescapableJutsu(target) {
-  return applyDamage(target, FIXED_DAMAGE)
+ return applyDamage(target, FIXED_DAMAGE)
 }
 ```
 
@@ -129,8 +129,8 @@ Tu reçois ce bloc venu d'un vieux projet Naruto :
 
 ```js
 function calc(a, b, c) {
-  const r = a * b - c
-  return r > 0 ? r : 0
+ const r = a * b - c
+ return r > 0 ? r : 0
 }
 ```
 

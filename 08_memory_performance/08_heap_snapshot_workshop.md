@@ -1,7 +1,7 @@
 # 08 : Heap snapshot workshop (fuite par closure)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : un objet vivant = un objet **atteignable** depuis une racine.
+> **INTEMPOREL** : un objet vivant = un objet **atteignable** depuis une racine.
 > La fuite mémoire n'est pas de la magie, c'est une référence oubliée.
 
 ## Contexte
@@ -11,13 +11,13 @@ On construit un cache "malin" :
 ```js
 const cache = new Map();
 function makeHandler(user) {
-  const history = new Array(100_000).fill(user.name); // gros
-  return function onClick() {
-    console.log(history[0]);
-  };
+ const history = new Array(100_000).fill(user.name); // gros
+ return function onClick() {
+  console.log(history[0]);
+ };
 }
 for (let i = 0; i < 10_000; i++) {
-  cache.set(i, makeHandler({ name: `user_${i}` }));
+ cache.set(i, makeHandler({ name: `user_${i}` }));
 }
 ```
 
@@ -29,7 +29,7 @@ retient sa closure → chaque `history` reste vivant → **1 Go de RAM**.
 ### 1. Génère le snapshot
 
 - Node : `node --inspect script.js` puis Chrome → `chrome://inspect` →
-  "Take heap snapshot".
+ "Take heap snapshot".
 - Navigateur : DevTools → Memory → Heap snapshot.
 
 Prends **trois** snapshots :
@@ -76,19 +76,19 @@ timeline". Ils sont complémentaires, pas interchangeables.
 
 ---
 
-## [INTEMPOREL] SCHÉMA ASCII : HEAP & GC ROOTS
+## SCHÉMA ASCII : HEAP & GC ROOTS
 
 ```
-   [ GC ROOTS ]
-    ├── globalThis ──► Objet A ──► Objet B
-    │                       └────► Objet C
-    ├── stack frame ──► Objet D
-    │                       └────► Objet E
-    │
-    ▼ (atteignables = vivants)
-   ══════════════════════════════════
-   [ ORPHELINS = candidats au GC ]
-    Objet F  Objet G  (personne ne pointe dessus)
+  [ GC ROOTS ]
+  ├── globalThis ──► Objet A ──► Objet B
+  │            └────► Objet C
+  ├── stack frame ──► Objet D
+  │            └────► Objet E
+  │
+  ▼ (atteignables = vivants)
+  ══════════════════════════════════
+  [ ORPHELINS = candidats au GC ]
+  Objet F Objet G (personne ne pointe dessus)
 ```
 
 Règle : atteignable depuis une racine ⇒ vivant. Sinon ⇒ collecté.
@@ -105,7 +105,7 @@ node --expose-gc mon_script.js
 
 ```js
 console.log(process.memoryUsage().heapUsed);
-if (global.gc) global.gc();          // force un cycle
+if (global.gc) global.gc();     // force un cycle
 console.log(process.memoryUsage().heapUsed); // devrait baisser
 ```
 

@@ -30,15 +30,15 @@ L'équipe souffre en review : sans vocabulaire commun, chaque PR (pull request) 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-créer des objets sans exposer la logique de construction   --> Factory    --> instanciation centralisée
-garantir une seule instance partagée (config, connexion)   --> Singleton  --> accès unique contrôlé
-construire un objet complexe étape par étape               --> Builder    --> configuration progressive
-ajouter du comportement sans toucher au code source         --> Decorator  --> extension sans modification
-brancher deux interfaces incompatibles                      --> Adapter   --> compatibilité sans réécriture
-intercepter les accès à un objet (cache, log, validation)  --> Proxy     --> contrôle transparent
-un événement déclenche plusieurs réactions                  --> Observer  --> découplage event/réaction
-changer d'algorithme à la volée selon le contexte           --> Strategy  --> comportement interchangeable
-encapsuler une action pour pouvoir l'annuler/rejouer        --> Command   --> actions réversibles
+créer des objets sans exposer la logique de construction  --> Factory  --> instanciation centralisée
+garantir une seule instance partagée (config, connexion)  --> Singleton --> accès unique contrôlé
+construire un objet complexe étape par étape        --> Builder  --> configuration progressive
+ajouter du comportement sans toucher au code source     --> Decorator --> extension sans modification
+brancher deux interfaces incompatibles           --> Adapter  --> compatibilité sans réécriture
+intercepter les accès à un objet (cache, log, validation) --> Proxy   --> contrôle transparent
+un événement déclenche plusieurs réactions         --> Observer --> découplage event/réaction
+changer d'algorithme à la volée selon le contexte      --> Strategy --> comportement interchangeable
+encapsuler une action pour pouvoir l'annuler/rejouer    --> Command  --> actions réversibles
 ```
 
 Observer est littéralement le mécanisme derrière les events DOM et la plupart des state managers modernes. Strategy est le pattern derrière chaque système qui permet de "brancher" un comportement différent sans changer le code appelant.

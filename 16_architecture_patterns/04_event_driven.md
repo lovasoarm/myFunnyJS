@@ -28,10 +28,10 @@ C'est fragile. Chaque changement est une bombe à retardement.
 Architecture event-driven :
 
 ```
-UserService  -->  EventBus  <--  NotificationService
-                     |      <--  EmailService
-                     |      <--  SlackService
-                     |      <--  SMSService
+UserService --> EventBus <-- NotificationService
+           |   <-- EmailService
+           |   <-- SlackService
+           |   <-- SMSService
 ```
 
 UserService émet un event `user.registered`.
@@ -53,25 +53,25 @@ const bus = new EventEmitter();
 
 // Listener 1 : le service email qui attend les nouvelles inscriptions
 bus.on('user.registered', (payload) => {
-  // payload (données transportées avec l'event) contient les infos de l'user
-  console.log(`Email envoyé à ${payload.email}`);
+ // payload (données transportées avec l'event) contient les infos de l'user
+ console.log(`Email envoyé à ${payload.email}`);
 });
 
 // Listener 2 : le service analytics qui compte les inscriptions
 bus.on('user.registered', (payload) => {
-  console.log(`Analytics : +1 user depuis ${payload.country}`);
+ console.log(`Analytics : +1 user depuis ${payload.country}`);
 });
 
 // L'émetteur : UserService ne sait pas qui écoute
 function registerUser(userData) {
-  // ... logique d'inscription en base
+ // ... logique d'inscription en base
 
-  // Émet l'event avec les données associées
-  bus.emit('user.registered', {
-    id: 'user_42',
-    email: userData.email,
-    country: userData.country,
-  });
+ // Émet l'event avec les données associées
+ bus.emit('user.registered', {
+  id: 'user_42',
+  email: userData.email,
+  country: userData.country,
+ });
 }
 
 registerUser({ email: 'leon@kennedy.com', country: 'US' });
@@ -92,32 +92,32 @@ EventEmitter brut c'est bien. Un wrapper typé et structuré c'est mieux.
 ```js
 // EventBus maison : wrapper autour d'EventEmitter avec typage explicite
 class EventBus {
-  #emitter = new EventEmitter(); // propriété privée (# = privé en JS moderne)
+ #emitter = new EventEmitter(); // propriété privée (# = privé en JS moderne)
 
-  // S'abonner à un event et récupérer une fonction de désabonnement
-  on(eventName, listener) {
-    this.#emitter.on(eventName, listener);
+ // S'abonner à un event et récupérer une fonction de désabonnement
+ on(eventName, listener) {
+  this.#emitter.on(eventName, listener);
 
-    // Retourner une fonction cleanup (nettoyage) pour se désabonner proprement
-    return () => this.#emitter.off(eventName, listener);
-  }
+  // Retourner une fonction cleanup (nettoyage) pour se désabonner proprement
+  return () => this.#emitter.off(eventName, listener);
+ }
 
-  // Émettre un event avec ses données
-  emit(eventName, payload) {
-    this.#emitter.emit(eventName, payload);
-  }
+ // Émettre un event avec ses données
+ emit(eventName, payload) {
+  this.#emitter.emit(eventName, payload);
+ }
 
-  // S'abonner une seule fois : l'event se déclenche, le listener disparaît
-  once(eventName, listener) {
-    this.#emitter.once(eventName, listener);
-  }
+ // S'abonner une seule fois : l'event se déclenche, le listener disparaît
+ once(eventName, listener) {
+  this.#emitter.once(eventName, listener);
+ }
 }
 
 const eventBus = new EventBus();
 
 // Abonnement avec cleanup automatique
 const unsubscribe = eventBus.on('mission.started', (mission) => {
-  console.log(`Chevalier en route pour ${mission.location}`);
+ console.log(`Chevalier en route pour ${mission.location}`);
 });
 
 eventBus.emit('mission.started', { location: 'Osaka', threat: 'Horror B-class' });
@@ -150,9 +150,9 @@ Si tu veux de l'async : tu l'handles (tu le gères) dans le listener.
 
 ```js
 bus.on('horror.detected', async (data) => {
-  // Le listener est async, mais EventEmitter ne l'attend pas
-  await alertKnight(data); // cette promesse est lancée mais non awaited par emit
-  console.log('Chevalier alerté');
+ // Le listener est async, mais EventEmitter ne l'attend pas
+ await alertKnight(data); // cette promesse est lancée mais non awaited par emit
+ console.log('Chevalier alerté');
 });
 
 bus.emit('horror.detected', { zone: 'Shibuya' });
@@ -164,12 +164,12 @@ Solution : wrapper le listener avec un try/catch explicite, toujours.
 
 ```js
 bus.on('horror.detected', async (data) => {
-  try {
-    await alertKnight(data);
-  } catch (err) {
-    // L'erreur ne disparaît pas en silence
-    console.error('Échec alerte Chevalier:', err.message);
-  }
+ try {
+  await alertKnight(data);
+ } catch (err) {
+  // L'erreur ne disparaît pas en silence
+  console.error('Échec alerte Chevalier:', err.message);
+ }
 });
 ```
 
@@ -182,48 +182,48 @@ EventBus c'est bien. Mais en architecture plus large, on parle de Pub/Sub (Publi
 La différence conceptuelle :
 
 ```
-EventEmitter   =>  émetteur sait qu'il émet vers un bus local
-Pub/Sub        =>  publisher (émetteur) et subscriber (abonné) ne se connaissent pas du tout
+EventEmitter  => émetteur sait qu'il émet vers un bus local
+Pub/Sub    => publisher (émetteur) et subscriber (abonné) ne se connaissent pas du tout
 ```
 
 Implémentation Pub/Sub simple :
 
 ```js
 class PubSub {
-  #channels = new Map(); // Map : structure clé-valeur pour stocker les channels
+ #channels = new Map(); // Map : structure clé-valeur pour stocker les channels
 
-  // S'abonner à un channel (canal thématique)
-  subscribe(channel, callback) {
-    if (!this.#channels.has(channel)) {
-      this.#channels.set(channel, new Set()); // Set : liste sans doublons
-    }
-    this.#channels.get(channel).add(callback);
-
-    // Retourner la fonction de désabonnement
-    return () => this.#channels.get(channel)?.delete(callback);
+ // S'abonner à un channel (canal thématique)
+ subscribe(channel, callback) {
+  if (!this.#channels.has(channel)) {
+   this.#channels.set(channel, new Set()); // Set : liste sans doublons
   }
+  this.#channels.get(channel).add(callback);
 
-  // Publier un message sur un channel
-  publish(channel, data) {
-    if (!this.#channels.has(channel)) return; // personne n'écoute, on s'arrête
+  // Retourner la fonction de désabonnement
+  return () => this.#channels.get(channel)?.delete(callback);
+ }
 
-    // Notifier tous les abonnés de ce channel
-    for (const callback of this.#channels.get(channel)) {
-      callback(data);
-    }
+ // Publier un message sur un channel
+ publish(channel, data) {
+  if (!this.#channels.has(channel)) return; // personne n'écoute, on s'arrête
+
+  // Notifier tous les abonnés de ce channel
+  for (const callback of this.#channels.get(channel)) {
+   callback(data);
   }
+ }
 }
 
 const pubsub = new PubSub();
 
 // Le NotificationService s'abonne au channel 'orders'
 pubsub.subscribe('orders', (order) => {
-  console.log(`Notification : ordre_mission ${order.id} reçue`);
+ console.log(`Notification : ordre_mission ${order.id} reçue`);
 });
 
 // Le WarehouseService s'abonne aussi au même channel
 pubsub.subscribe('orders', (order) => {
-  console.log(`Stock : réserver les articles pour ordre_mission ${order.id}`);
+ console.log(`Stock : réserver les articles pour ordre_mission ${order.id}`);
 });
 
 // L'OrderService publie sans savoir qui écoute
@@ -235,13 +235,13 @@ pubsub.publish('orders', { id: 'ORD-001', items: ['katana', 'armure'], total: 45
 ## 6) QUAND EVENT-DRIVEN ET QUAND PAS
 
 ```
-BON USAGE                          MAUVAIS USAGE
-------------------------------     ------------------------------
-modules indépendants               logique séquentielle critique
-réactions multiples à un event     besoin de résultat synchrone
-découpler des services             debug qui doit être linéaire
-notifications, logs, analytics     flux de données simples
-systèmes distribués                petits projets avec 2 modules
+BON USAGE             MAUVAIS USAGE
+------------------------------   ------------------------------
+modules indépendants        logique séquentielle critique
+réactions multiples à un event   besoin de résultat synchrone
+découpler des services       debug qui doit être linéaire
+notifications, logs, analytics   flux de données simples
+systèmes distribués        petits projets avec 2 modules
 ```
 
 Le piège classique : over-engineering (complexité inutile).

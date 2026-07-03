@@ -37,10 +37,10 @@ function scheduleMacro(fn) { macrotasks.push(fn); }
 function scheduleMicro(fn) { microtasks.push(fn); }
 
 function tick() {
-  // 1. vider TOUTES les microtasks avant de toucher aux macrotasks
-  while (microtasks.length) microtasks.shift()();
-  // 2. traiter UNE seule macrotask par tick
-  if (macrotasks.length) macrotasks.shift()();
+ // 1. vider TOUTES les microtasks avant de toucher aux macrotasks
+ while (microtasks.length) microtasks.shift()();
+ // 2. traiter UNE seule macrotask par tick
+ if (macrotasks.length) macrotasks.shift()();
 }
 
 function run() { while (macrotasks.length || microtasks.length) tick(); }

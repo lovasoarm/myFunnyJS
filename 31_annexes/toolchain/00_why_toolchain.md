@@ -18,12 +18,12 @@ ton code source --> Git --> package manager --> bundler --> Docker --> CI/CD -->
 Chaque maillon a un job précis :
 
 ```
-Git          --> versionner, collaborer, revenir en arrière sans pleurer
-VSCode       --> l'environnement où tu passes 8h par jour
-npm/pnpm     --> gérer les dépendances (le code des autres que t'utilises)
-bundler      --> transformer ton code en quelque chose que le navigateur digère
-Docker       --> faire tourner ton code pareil partout, toujours
-CI/CD        --> automatiser test + build + déploiement à chaque push
+Git     --> versionner, collaborer, revenir en arrière sans pleurer
+VSCode    --> l'environnement où tu passes 8h par jour
+npm/pnpm   --> gérer les dépendances (le code des autres que t'utilises)
+bundler   --> transformer ton code en quelque chose que le navigateur digère
+Docker    --> faire tourner ton code pareil partout, toujours
+CI/CD    --> automatiser test + build + déploiement à chaque push
 ```
 
 Personne te demande d'aimer ça. On te demande de savoir que ça existe, pourquoi ça existe, et ce qui se passe quand tu l'ignores.
@@ -54,27 +54,27 @@ La toolchain c'est pas du confort. C'est ce qui empêche le camp de se faire bou
 ## OÙ ÇA VIT DANS UN VRAI SYSTÈME
 
 ```
-                    [TON CERVEAU]
-                         |
-                      écrit du code
-                         |
-                         v
-                    [GIT] -- historise, partage
-                         |
-                         v
-              [PACKAGE MANAGER] -- installe les dépendances
-                         |
-                         v
-                    [BUNDLER] -- assemble, optimise
-                         |
-                         v
-                    [DOCKER] -- isole, reproduit
-                         |
-                         v
-                    [CI/CD] -- teste, build, déploie
-                         |
-                         v
-                      [PROD]
+          [TON CERVEAU]
+             |
+           écrit du code
+             |
+             v
+          [GIT] -- historise, partage
+             |
+             v
+       [PACKAGE MANAGER] -- installe les dépendances
+             |
+             v
+          [BUNDLER] -- assemble, optimise
+             |
+             v
+          [DOCKER] -- isole, reproduit
+             |
+             v
+          [CI/CD] -- teste, build, déploie
+             |
+             v
+           [PROD]
 ```
 
 Si un seul maillon est faible, toute la chaîne en souffre. Un bundler mal configuré ralentit chaque build. Un Dockerfile mal pensé fait gonfler chaque déploiement. Un pipeline CI absent veut dire que chaque bug arrive en prod avant d'être vu.
@@ -84,9 +84,9 @@ Si un seul maillon est faible, toute la chaîne en souffre. Un bundler mal confi
 ## QUAND ÇA DEVIENT IMPORTANT, QUAND ÇA DEVIENT INDISPENSABLE
 
 ```
-solo, petit script        --> Git suffit, le reste est optionnel
-projet perso sérieux       --> Git + package manager + bundler deviennent importants
-travail en équipe          --> Git devient non négociable, CI commence à valoir le coup
+solo, petit script    --> Git suffit, le reste est optionnel
+projet perso sérieux    --> Git + package manager + bundler deviennent importants
+travail en équipe     --> Git devient non négociable, CI commence à valoir le coup
 prod avec shinobis réels --> Docker + CI/CD deviennent indispensables
 ```
 
@@ -100,7 +100,7 @@ Il existe d'autres écoles : tout faire à la main, scripts maison, zéro automa
 
 Le compromis qu'on fait ici :
 ```
-gain  --> reproductibilité, collaboration sans friction, déploiements qui font pas peur
+gain --> reproductibilité, collaboration sans friction, déploiements qui font pas peur
 perte --> du temps d'apprentissage au départ, une couche d'outils à maintenir
 ```
 
@@ -111,12 +111,12 @@ On paie ce prix une fois. On le récupère à chaque déploiement, chaque onboar
 ## MODERNE, LEGACY, OU INTEMPOREL
 
 ```
-Git              --> intemporel. Ça bougera plus, c'est le standard depuis 15+ ans.
-VSCode           --> moderne. L'éditeur dominant aujourd'hui, mais les concepts (LSP, extensions) survivront à l'outil.
-npm/pnpm/yarn    --> moderne mais volatile. Les noms changent, le concept (gérer des dépendances) reste.
-bundlers         --> très volatile. Webpack a dominé, Vite a pris le relais, ça bougera encore.
-Docker           --> intemporel pour l'instant. La containerisation comme concept est là pour rester, même si l'outil change.
-CI/CD            --> intemporel comme pratique. GitHub Actions aujourd'hui, autre chose demain, mais l'idée d'automatiser reste.
+Git       --> intemporel. Ça bougera plus, c'est le standard depuis 15+ ans.
+VSCode      --> moderne. L'éditeur dominant aujourd'hui, mais les concepts (LSP, extensions) survivront à l'outil.
+npm/pnpm/yarn  --> moderne mais volatile. Les noms changent, le concept (gérer des dépendances) reste.
+bundlers     --> très volatile. Webpack a dominé, Vite a pris le relais, ça bougera encore.
+Docker      --> intemporel pour l'instant. La containerisation comme concept est là pour rester, même si l'outil change.
+CI/CD      --> intemporel comme pratique. GitHub Actions aujourd'hui, autre chose demain, mais l'idée d'automatiser reste.
 ```
 
 Ce qui compte : tu retiens pas "comment configurer Vite en 2026". Tu retiens "pourquoi un bundler existe et quel problème il résout". Le jour où Vite est remplacé par autre chose, tu t'adaptes en une heure parce que t'as compris le concept, pas juste la ordre_mission.
@@ -126,11 +126,11 @@ Ce qui compte : tu retiens pas "comment configurer Vite en 2026". Tu retiens "po
 ## NOYAU DUR OU PÉRIPHÉRIQUE
 
 ```
-Git                  --> noyau dur. Non négociable, point final.
-package manager      --> noyau dur. Tu peux pas livrer du JS moderne sans.
-bundler              --> noyau dur pour le frontend, périphérique pour du pur backend Node.
-Docker               --> noyau dur en équipe et en prod. Périphérique en solo sur un script perso.
-CI/CD                --> noyau dur dès que t'as un déploiement régulier.
+Git         --> noyau dur. Non négociable, point final.
+package manager   --> noyau dur. Tu peux pas livrer du JS moderne sans.
+bundler       --> noyau dur pour le frontend, périphérique pour du pur backend Node.
+Docker        --> noyau dur en équipe et en prod. Périphérique en solo sur un script perso.
+CI/CD        --> noyau dur dès que t'as un déploiement régulier.
 ```
 
 ---
@@ -138,27 +138,27 @@ CI/CD                --> noyau dur dès que t'as un déploiement régulier.
 ## QUAND L'APPRENDRE DANS TA PROGRESSION
 
 ```
-Git           --> dès le jour 1, en parallèle de tout le reste
-VSCode setup  --> dès le jour 1, c'est ton terrain de jeu quotidien
+Git      --> dès le jour 1, en parallèle de tout le reste
+VSCode setup --> dès le jour 1, c'est ton terrain de jeu quotidien
 package manager --> dès que tu installes ta première dépendance
-bundlers      --> après avoir compris modules ESM/CJS (module 06_modules)
-Docker        --> après avoir compris runtime Node (module 16_runtime_env)
-CI/CD         --> après avoir des tests à automatiser (module 06_testing)
+bundlers   --> après avoir compris modules ESM/CJS (module 06_modules)
+Docker    --> après avoir compris runtime Node (module 16_runtime_env)
+CI/CD     --> après avoir des tests à automatiser (module 06_testing)
 ```
 
 Prérequis avant d'attaquer ce module :
 ```
-01_fundamentals       --> tu dois savoir lire du JS sans effort
-06_modules            --> import/export, ESM vs CJS : indispensable pour comprendre les bundlers
-16_runtime_env        --> Node, process, filesystem : indispensable pour Docker et les scripts CI
-06_testing            --> sans tests, CI/CD c'est juste un déploiement automatisé aveugle
+01_fundamentals    --> tu dois savoir lire du JS sans effort
+06_modules      --> import/export, ESM vs CJS : indispensable pour comprendre les bundlers
+16_runtime_env    --> Node, process, filesystem : indispensable pour Docker et les scripts CI
+06_testing      --> sans tests, CI/CD c'est juste un déploiement automatisé aveugle
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-30_mini_projects       --> tu containerises et tu déploies tes projets sans bloquer dessus
+30_mini_projects    --> tu containerises et tu déploies tes projets sans bloquer dessus
 toute collaboration future --> Git devient un réflexe, pas un obstacle
-22_security            --> tu comprends déjà ce qu'est une image Docker, donc les surfaces d'attaque liées
+22_security      --> tu comprends déjà ce qu'est une image Docker, donc les surfaces d'attaque liées
 ```
 
 ---

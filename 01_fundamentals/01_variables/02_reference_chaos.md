@@ -18,7 +18,7 @@ JS ne duplique pas le tableau. Il copie **l'adresse mémoire**.
 
 ```
 arr1 --+
-       |--> [ 1, 2, 3 ]  (en mémoire, un seul objet)
+    |--> [ 1, 2, 3 ] (en mémoire, un seul objet)
 arr2 --+
 ```
 
@@ -59,8 +59,8 @@ let newObj = { ...obj1 }; // idem pour les objets
 Maintenant `newArr` et `arr1` sont deux tableaux distincts.
 
 ```
-arr1   --> [ 1, 2, 3 ]  (original)
-newArr --> [ 1, 2, 3 ]  (copie : adresse différente)
+arr1  --> [ 1, 2, 3 ] (original)
+newArr --> [ 1, 2, 3 ] (copie : adresse différente)
 ```
 
 **Mais attention** : c'est une copie **superficielle**. Si le tableau contient des objets, leurs références internes restent partagées. On appelle ça le **shallow copy**. Le niveau suivant ? `03_mutation_madness.md`.
@@ -85,9 +85,9 @@ Voir concrètement que deux variables peuvent pointer sur le même tableau.
 
 ```js
 let team = [
-  { name: "Zombie1", hp: 100 },
-  { name: "Zombie2", hp: 100 },
-  { name: "Zombie3", hp: 100 },
+ { name: "Zombie1", hp: 100 },
+ { name: "Zombie2", hp: 100 },
+ { name: "Zombie3", hp: 100 },
 ];
 // Ton code ici
 ```
@@ -95,10 +95,10 @@ let team = [
 ### Résultat attendu
 
 ```
-team[0].hp      --> 150   // boosté via backupTeam
-team[1].hp      --> 0     // détruit via team
-backupTeam[0].hp --> 150  // même référence : même résultat
-backupTeam[1].hp --> 0    // idem
+team[0].hp   --> 150  // boosté via backupTeam
+team[1].hp   --> 0   // détruit via team
+backupTeam[0].hp --> 150 // même référence : même résultat
+backupTeam[1].hp --> 0  // idem
 
 team === backupTeam --> true
 ```

@@ -63,7 +63,7 @@ Temps de lecture ~5 min
 
 ---
 
-## Comment t'entraîner à l'oral (Thor Edition)
+## Comment t'entraîner à l'oral
 
 Écrire une bonne réponse ≠ savoir la **dire** sous stress.
 
@@ -71,7 +71,7 @@ Temps de lecture ~5 min
 
 1. **Enregistre-toi** (voix seule, 3 min) répondant à une question du pool.
 2. **Réécoute** sans note. Note 3 défauts (hésitations, mots de remplissage,
-   phrases sans verbe).
+  phrases sans verbe).
 3. **Refais-la** 3 fois, en corrigeant un défaut à la fois.
 
 ### Reformulation à voix haute

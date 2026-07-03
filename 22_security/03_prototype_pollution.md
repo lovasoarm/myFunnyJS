@@ -1,7 +1,7 @@
 # PROTOTYPE POLLUTION
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Il y a des vulnérabilités qui font mal. Et puis il y a prototype pollution : celle qui te sourit pendant que tu codes, et qui te poignarde en prod sans laisser de trace évidente.
 
@@ -48,16 +48,16 @@ user.isAdmin; // true --> T-Bag est admin, il n'a rien fait
 ```js
 // Fonction de merge (fusion) récursive : pattern très courant dans les codebases
 function deepMerge(target, source) {
-  for (const key of Object.keys(source)) {
-    if (typeof source[key] === 'object' && source[key] !== null) {
-      // si la propriété est un objet, on descend récursivement
-      if (!target[key]) target[key] = {};
-      deepMerge(target[key], source[key]); // récursion sur les objets imbriqués
-    } else {
-      target[key] = source[key]; // assigne la valeur
-    }
+ for (const key of Object.keys(source)) {
+  if (typeof source[key] === 'object' && source[key] !== null) {
+   // si la propriété est un objet, on descend récursivement
+   if (!target[key]) target[key] = {};
+   deepMerge(target[key], source[key]); // récursion sur les objets imbriqués
+  } else {
+   target[key] = source[key]; // assigne la valeur
   }
-  return target;
+ }
+ return target;
 }
 
 // L'attaquant envoie ce JSON dans le body d'une requête POST
@@ -78,18 +78,18 @@ user.isAdmin; // true --> l'attaquant est admin
 ```js
 // Exemple réaliste : vérification de rôle
 app.post('/admin/action', (req, res) => {
-  const user = getUserFromSession(req.session.id);
+ const user = getUserFromSession(req.session.id);
 
-  // user.isAdmin est undefined normalement
-  // mais après pollution, user.isAdmin hérite de Object.prototype.isAdmin = true
-  if (user.isAdmin) {
-    performAdminAction(); // exécuté pour tout le monde après la pollution
-  }
+ // user.isAdmin est undefined normalement
+ // mais après pollution, user.isAdmin hérite de Object.prototype.isAdmin = true
+ if (user.isAdmin) {
+  performAdminAction(); // exécuté pour tout le monde après la pollution
+ }
 });
 
 // Exemple avec Express : bypasser la vérification d'authentification
 function isAuthenticated(user) {
-  return user.authenticated; // true si pollué, même pour un shinobi non connecté
+ return user.authenticated; // true si pollué, même pour un shinobi non connecté
 }
 ```
 
@@ -109,19 +109,19 @@ Impact possible selon le contexte :
 
 ```js
 function deepMerge(target, source) {
-  for (const key of Object.keys(source)) {
-    // bloquer les clés dangereuses avant de les traiter
-    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
-      continue; // ignorer silencieusement ces clés
-    }
-    if (typeof source[key] === 'object' && source[key] !== null) {
-      if (!target[key]) target[key] = {};
-      deepMerge(target[key], source[key]);
-    } else {
-      target[key] = source[key];
-    }
+ for (const key of Object.keys(source)) {
+  // bloquer les clés dangereuses avant de les traiter
+  if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+   continue; // ignorer silencieusement ces clés
   }
-  return target;
+  if (typeof source[key] === 'object' && source[key] !== null) {
+   if (!target[key]) target[key] = {};
+   deepMerge(target[key], source[key]);
+  } else {
+   target[key] = source[key];
+  }
+ }
+ return target;
 }
 ```
 
@@ -171,18 +171,18 @@ const sanitize = (input) => JSON.parse(JSON.stringify(input));
 import { z } from 'zod'; // Zod : bibliothèque de validation et typage runtime
 
 const configSchema = z.object({
-  timeout: z.number().optional(),
-  retries: z.number().optional(),
-  // seules ces propriétés sont autorisées
+ timeout: z.number().optional(),
+ retries: z.number().optional(),
+ // seules ces propriétés sont autorisées
 });
 
 app.post('/config', (req, res) => {
-  const result = configSchema.safeParse(req.body);
-  if (!result.success) {
-    return res.status(400).json({ error: 'Config invalide' });
-  }
-  // result.data ne contient que timeout et retries, jamais __proto__
-  applyConfig(result.data);
+ const result = configSchema.safeParse(req.body);
+ if (!result.success) {
+  return res.status(400).json({ error: 'Config invalide' });
+ }
+ // result.data ne contient que timeout et retries, jamais __proto__
+ applyConfig(result.data);
 });
 ```
 
@@ -193,23 +193,23 @@ app.post('/config', (req, res) => {
 ```js
 // Vérifier si Object.prototype a été pollué
 const checkPollution = () => {
-  const testObj = {};
-  const suspiciousKeys = ['isAdmin', 'role', 'authenticated', 'bypass'];
+ const testObj = {};
+ const suspiciousKeys = ['isAdmin', 'role', 'authenticated', 'bypass'];
 
-  for (const key of suspiciousKeys) {
-    if (key in testObj) {
-      // "in" vérifie aussi la chaîne prototype, contrairement à hasOwnProperty
-      console.error(`ALERTE : Object.prototype.${key} pollué = ${testObj[key]}`);
-    }
+ for (const key of suspiciousKeys) {
+  if (key in testObj) {
+   // "in" vérifie aussi la chaîne prototype, contrairement à hasOwnProperty
+   console.error(`ALERTE : Object.prototype.${key} pollué = ${testObj[key]}`);
   }
+ }
 };
 
 // Utiliser hasOwnProperty pour une vérification sûre
 const user = getUser(id);
 if (Object.prototype.hasOwnProperty.call(user, 'isAdmin') && user.isAdmin) {
-  // hasOwnProperty.call(user, 'isAdmin') : vérifie uniquement les propriétés propres de user
-  // --> pas les propriétés héritées via la chaîne prototype
-  grantAccess();
+ // hasOwnProperty.call(user, 'isAdmin') : vérifie uniquement les propriétés propres de user
+ // --> pas les propriétés héritées via la chaîne prototype
+ grantAccess();
 }
 ```
 

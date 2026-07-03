@@ -1,7 +1,7 @@
 # BROWSER RENDER PIPELINE : DE L'HTML BRUT AU PIXEL AFFICHÉ
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu envoies une requête. Le serveur répond avec de l'HTML.
 Ce que le navigateur fait entre les deux ? La plupart des devs ne le savent pas.
@@ -15,26 +15,26 @@ Tous ces problèmes viennent du pipeline de rendu. Comprendre le pipeline, c'est
 
 ```
 HTML reçu
-    |
-    v
-[Parsing HTML]  -->  DOM (Document Object Model : arbre des noeuds HTML)
-    |
-    v
-[Parsing CSS]   -->  CSSOM (CSS Object Model : arbre des règles CSS)
-    |
-    v
-[Render Tree]   -->  DOM + CSSOM fusionnés (seulement les noeuds visibles)
-    |
-    v
-[Layout]        -->  calcul de la position et taille de chaque élément
-    |
-    v
-[Paint]         -->  dessiner les pixels de chaque élément (couleurs, borders, texte)
-    |
-    v
-[Composite]     -->  assembler les layers (couches) et envoyer au GPU (carte graphique)
-    |
-    v
+  |
+  v
+[Parsing HTML] --> DOM (Document Object Model : arbre des noeuds HTML)
+  |
+  v
+[Parsing CSS]  --> CSSOM (CSS Object Model : arbre des règles CSS)
+  |
+  v
+[Render Tree]  --> DOM + CSSOM fusionnés (seulement les noeuds visibles)
+  |
+  v
+[Layout]    --> calcul de la position et taille de chaque élément
+  |
+  v
+[Paint]     --> dessiner les pixels de chaque élément (couleurs, borders, texte)
+  |
+  v
+[Composite]   --> assembler les layers (couches) et envoyer au GPU (carte graphique)
+  |
+  v
 Pixel sur l'écran
 ```
 
@@ -48,11 +48,11 @@ Le navigateur lit l'HTML ligne par ligne et construit le DOM : une arborescence 
 
 ```html
 <div class="camp">
-  <h1>Camp de Rick</h1>
-  <ul>
-    <li>Rick</li>
-    <li>Daryl</li>
-  </ul>
+ <h1>Camp de Rick</h1>
+ <ul>
+  <li>Rick</li>
+  <li>Daryl</li>
+ </ul>
 </div>
 ```
 
@@ -60,13 +60,13 @@ Le DOM résultant :
 
 ```
 Document
-  └── html
-        └── body
-              └── div.camp
-                    ├── h1 ("Camp de Rick")
-                    └── ul
-                          ├── li ("Rick")
-                          └── li ("Daryl")
+ └── html
+    └── body
+       └── div.camp
+          ├── h1 ("Camp de Rick")
+          └── ul
+             ├── li ("Rick")
+             └── li ("Daryl")
 ```
 
 **Attention : les scripts bloquent le parsing.**
@@ -102,14 +102,14 @@ Le rendu est bloqué (render-blocking) jusqu'à ce que le CSSOM soit complet.
 ```css
 /* Le navigateur lit ça et construit un arbre de règles */
 .camp {
-  background: #333;
+ background: #333;
 }
 .camp h1 {
-  color: white;
-  font-size: 2rem;
+ color: white;
+ font-size: 2rem;
 }
 .camp ul li {
-  padding: 8px;
+ padding: 8px;
 }
 ```
 
@@ -120,23 +120,23 @@ Optimisation :
 ```html
 <!-- CSS critique (above-the-fold : ce qui est visible sans scroll) en inline -->
 <style>
-  /* seulement les styles essentiels pour afficher ce que l'user voit en premier */
-  body {
-    margin: 0;
-    font-family: sans-serif;
-  }
-  .hero {
-    height: 100vh;
-    background: #000;
-  }
+ /* seulement les styles essentiels pour afficher ce que l'user voit en premier */
+ body {
+  margin: 0;
+  font-family: sans-serif;
+ }
+ .hero {
+  height: 100vh;
+  background: #000;
+ }
 </style>
 
 <!-- Le reste chargé en async (non bloquant) -->
 <link
-  rel="preload"
-  href="styles.css"
-  as="style"
-  onload="this.rel='stylesheet'"
+ rel="preload"
+ href="styles.css"
+ as="style"
+ onload="this.rel='stylesheet'"
 />
 ```
 
@@ -194,9 +194,9 @@ Chaque lecture force le navigateur à recalculer le Layout avant de répondre.
 const boxes = document.querySelectorAll(".box");
 
 for (const box of boxes) {
-  const width = box.offsetWidth; // LECTURE : force un Layout
-  box.style.width = width * 2 + "px"; // ÉCRITURE : invalide le Layout
-  // => sur la prochaine lecture, Layout recalculé depuis zéro
+ const width = box.offsetWidth; // LECTURE : force un Layout
+ box.style.width = width * 2 + "px"; // ÉCRITURE : invalide le Layout
+ // => sur la prochaine lecture, Layout recalculé depuis zéro
 }
 // Sur 100 boîtes : 100 Layouts forcés = page qui freeze
 
@@ -204,7 +204,7 @@ for (const box of boxes) {
 const widths = [...boxes].map((box) => box.offsetWidth); // TOUTES les lectures d'abord
 
 widths.forEach((width, i) => {
-  boxes[i].style.width = width * 2 + "px"; // TOUTES les écritures ensuite
+ boxes[i].style.width = width * 2 + "px"; // TOUTES les écritures ensuite
 });
 // => 1 seul Layout au moment des lectures, 1 seul Paint après toutes les écritures
 ```
@@ -214,13 +214,13 @@ widths.forEach((width, i) => {
 ## 6) REPAINT VS REFLOW
 
 ```
-Modification                    Déclenche           Coût
-------------------------------  ------------------  -------
-Ajout d'un noeud dans le DOM    Reflow + Repaint    élevé
-Changement de width/height      Reflow + Repaint    élevé
-Changement de margin/padding    Reflow + Repaint    élevé
-Changement de color/background  Repaint seulement   moyen
-opacity/transform               Composite seulement  faible (GPU)
+Modification          Déclenche      Coût
+------------------------------ ------------------ -------
+Ajout d'un noeud dans le DOM  Reflow + Repaint  élevé
+Changement de width/height   Reflow + Repaint  élevé
+Changement de margin/padding  Reflow + Repaint  élevé
+Changement de color/background Repaint seulement  moyen
+opacity/transform        Composite seulement faible (GPU)
 ```
 
 Pour les animations : toujours `transform` et `opacity`. Jamais `left/top/width`.
@@ -257,13 +257,13 @@ Objectif : < 200ms.
 ```js
 // Éviter le travail long dans les event handlers (gestionnaires d'événements)
 button.addEventListener("click", async () => {
-  // Mise à jour visuelle immédiate d'abord
-  button.disabled = true;
-  button.textContent = "Chargement...";
+ // Mise à jour visuelle immédiate d'abord
+ button.disabled = true;
+ button.textContent = "Chargement...";
 
-  // Travail lourd ensuite (ou délégué à un Worker)
-  const data = await fetchHeavyData();
-  renderResults(data);
+ // Travail lourd ensuite (ou délégué à un Worker)
+ const data = await fetchHeavyData();
+ renderResults(data);
 });
 ```
 
@@ -273,13 +273,13 @@ Objectif : < 0.1.
 ```css
 /* Réserver l'espace pour les images avant qu'elles chargent */
 img {
-  width: 100%;
-  aspect-ratio: 16 / 9; /* réserve la hauteur proportionnelle */
+ width: 100%;
+ aspect-ratio: 16 / 9; /* réserve la hauteur proportionnelle */
 }
 
 /* Réserver l'espace pour les fonts (polices) */
 @font-face {
-  font-display: optional; /* ne pas attendre la font si elle n'est pas prête */
+ font-display: optional; /* ne pas attendre la font si elle n'est pas prête */
 }
 ```
 
@@ -293,9 +293,9 @@ Tu reçois ce code :
 ```js
 const survivors = document.querySelectorAll(".survivor");
 for (const s of survivors) {
-  const h = s.offsetHeight;
-  s.style.height = h + 20 + "px";
-  s.style.backgroundColor = s.classList.contains("guard") ? "green" : "red";
+ const h = s.offsetHeight;
+ s.style.height = h + 20 + "px";
+ s.style.backgroundColor = s.classList.contains("guard") ? "green" : "red";
 }
 ```
 

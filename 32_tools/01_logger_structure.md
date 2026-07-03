@@ -1,13 +1,13 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # LOGGER STRUCTURÉ : SAVOIR CE QUI S'EST PASSÉ, DANS QUEL ORDRE, AVEC QUEL CONTEXTE
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 `console.log("ici")` te dit que t'es passé "ici". Il te dit pas quand, il te dit pas dans quel contexte, il te dit pas si c'est grave ou normal. Un logger structuré répond à ces trois questions à chaque appel, sans que t'aies à y repenser à chaque fois.
 
@@ -41,8 +41,8 @@ problèmes concrets :
 Un bon log répond toujours à quatre questions :
 
 ```
-QUAND   --> timestamp (horodatage)
-QUOI    --> niveau de gravité (info, warn, error)
+QUAND  --> timestamp (horodatage)
+QUOI  --> niveau de gravité (info, warn, error)
 QUOI PRÉCISÉMENT --> le message lui-même
 DANS QUEL CONTEXTE --> des données additionnelles (qui, où, avec quel état)
 ```
@@ -50,10 +50,10 @@ DANS QUEL CONTEXTE --> des données additionnelles (qui, où, avec quel état)
 ```js
 // La forme qu'on vise, en JSON, facilement lisible par une machine ET un humain
 {
-  "timestamp": "2026-06-21T14:32:10.452Z",
-  "level": "error",
-  "message": "echec connexion radio",
-  "context": { "frequence": 145.5, "tentative": 3 }
+ "timestamp": "2026-06-21T14:32:10.452Z",
+ "level": "error",
+ "message": "echec connexion radio",
+ "context": { "frequence": 145.5, "tentative": 3 }
 }
 ```
 
@@ -68,38 +68,38 @@ DANS QUEL CONTEXTE --> des données additionnelles (qui, où, avec quel état)
 
 // Les niveaux de gravité, du moins grave au plus grave
 const NIVEAUX = {
-  debug: 0,   // détails techniques, utile en dev seulement
-  info: 1,    // événement normal, ça se passe comme prévu
-  warn: 2,    // quelque chose d'anormal mais pas bloquant
-  error: 3,   // quelque chose a vraiment cassé
+ debug: 0,  // détails techniques, utile en dev seulement
+ info: 1,  // événement normal, ça se passe comme prévu
+ warn: 2,  // quelque chose d'anormal mais pas bloquant
+ error: 3,  // quelque chose a vraiment cassé
 };
 
 function creerLogger(niveauMinimum = "info") {
-  const seuil = NIVEAUX[niveauMinimum];
+ const seuil = NIVEAUX[niveauMinimum];
 
-  function log(niveau, message, context = {}) {
-    // si le niveau du log est en dessous du seuil configuré, on l'ignore
-    // (ex: en prod, on ignore souvent "debug" pour pas noyer les vrais events)
-    if (NIVEAUX[niveau] < seuil) return;
+ function log(niveau, message, context = {}) {
+  // si le niveau du log est en dessous du seuil configuré, on l'ignore
+  // (ex: en prod, on ignore souvent "debug" pour pas noyer les vrais events)
+  if (NIVEAUX[niveau] < seuil) return;
 
-    const entree = {
-      timestamp: new Date().toISOString(),
-      level: niveau,
-      message,
-      context,
-    };
-
-    // JSON.stringify transforme l'objet en une seule ligne de texte
-    // une ligne par log = facile à parser ensuite, fichier par fichier
-    console.log(JSON.stringify(entree));
-  }
-
-  return {
-    debug: (message, context) => log("debug", message, context),
-    info: (message, context) => log("info", message, context),
-    warn: (message, context) => log("warn", message, context),
-    error: (message, context) => log("error", message, context),
+  const entree = {
+   timestamp: new Date().toISOString(),
+   level: niveau,
+   message,
+   context,
   };
+
+  // JSON.stringify transforme l'objet en une seule ligne de texte
+  // une ligne par log = facile à parser ensuite, fichier par fichier
+  console.log(JSON.stringify(entree));
+ }
+
+ return {
+  debug: (message, context) => log("debug", message, context),
+  info: (message, context) => log("info", message, context),
+  warn: (message, context) => log("warn", message, context),
+  error: (message, context) => log("error", message, context),
+ };
 }
 
 module.exports = { creerLogger };
@@ -140,8 +140,8 @@ NIVEAUX[niveau] < seuil --> ignoré
 NIVEAUX[niveau] >= seuil --> affiché
 
 debug(0) info(1) warn(2) error(3)
-              ^
-         seuil="info" : ignore debug, affiche le reste
+       ^
+     seuil="info" : ignore debug, affiche le reste
 ```
 
 **Risque réel :** oublier de remonter le seuil avant un déploiement. Un projet qui log tout en `debug` en prod génère un volume de logs énorme, ralentit l'app, et noie les vraies erreurs sous des milliers de lignes inutiles.
@@ -157,10 +157,10 @@ logger.error("erreur de connexion");
 
 // BON : le contexte raconte l'histoire complète
 logger.error("erreur de connexion radio", {
-  frequence: 145.5,
-  tentative: 3,
-  dernierMessageEnvoye: "RAS secteur nord",
-  dureeAvantEchec_ms: 4200,
+ frequence: 145.5,
+ tentative: 3,
+ dernierMessageEnvoye: "RAS secteur nord",
+ dureeAvantEchec_ms: 4200,
 });
 ```
 

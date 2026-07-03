@@ -7,8 +7,8 @@ Avant les closures, faut voir. Trois niveaux, trois schémas.
 
 ```
 +-----------------------------+
-| GLOBAL                      |
-|   name = "Kakashi"          |
+| GLOBAL           |
+|  name = "Kakashi"     |
 +-----------------------------+
 ```
 
@@ -18,16 +18,16 @@ Une variable, un scope, zéro drama.
 
 ```
 +-----------------------------+
-| GLOBAL                      |
-|   village = "Konoha"        |
-|                             |
-|   function jutsu() {        |
-|   +----------------------+  |
-|   | LOCAL jutsu          |  |
-|   |   power = 9000       |  |
-|   |   (voit village)     |  |
-|   +----------------------+  |
-|   }                         |
+| GLOBAL           |
+|  village = "Konoha"    |
+|               |
+|  function jutsu() {    |
+|  +----------------------+ |
+|  | LOCAL jutsu     | |
+|  |  power = 9000    | |
+|  |  (voit village)   | |
+|  +----------------------+ |
+|  }             |
 +-----------------------------+
 ```
 
@@ -36,9 +36,9 @@ Une variable, un scope, zéro drama.
 ## Niveau 3 : Scope imbriqué
 
 ```
-GLOBAL         : hokage
-  outer()      : squad
-    inner()    : chakra   -> voit chakra, squad, hokage
+GLOBAL     : hokage
+ outer()   : squad
+  inner()  : chakra  -> voit chakra, squad, hokage
 ```
 
 La règle : on cherche du plus proche au plus loin. Trouvé = arrêt. Pas trouvé = `ReferenceError`.
@@ -54,11 +54,11 @@ Dessine sur papier le scope chain de ce code, avant de lancer :
 ```js
 const a = 1
 function f() {
-  const b = 2
-  function g() {
-    const c = 3
-    return a + b + c
-  }
-  return g
+ const b = 2
+ function g() {
+  const c = 3
+  return a + b + c
+ }
+ return g
 }
 ```

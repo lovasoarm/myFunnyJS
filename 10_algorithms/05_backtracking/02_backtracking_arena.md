@@ -15,63 +15,63 @@ Une grille 9×9. Certaines cellules sont remplies. Remplir les vides avec des ch
 
 ```js
 function solveSudoku(board) {
-  // board : tableau 9x9, "." pour les vides
+ // board : tableau 9x9, "." pour les vides
 
-  function isValid(board, row, col, char) {
-    for (let i = 0; i < 9; i++) {
-      // vérifier la ligne
-      if (board[row][i] === char) return false;
+ function isValid(board, row, col, char) {
+  for (let i = 0; i < 9; i++) {
+   // vérifier la ligne
+   if (board[row][i] === char) return false;
 
-      // vérifier la colonne
-      if (board[i][col] === char) return false;
+   // vérifier la colonne
+   if (board[i][col] === char) return false;
 
-      // vérifier le bloc 3×3
-      const blockRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-      const blockCol = 3 * Math.floor(col / 3) + (i % 3);
-      if (board[blockRow][blockCol] === char) return false;
-    }
-    return true;
+   // vérifier le bloc 3×3
+   const blockRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+   const blockCol = 3 * Math.floor(col / 3) + (i % 3);
+   if (board[blockRow][blockCol] === char) return false;
   }
+  return true;
+ }
 
-  function solve(board) {
-    for (let row = 0; row < 9; row++) {
-      for (let col = 0; col < 9; col++) {
-        if (board[row][col] !== ".") continue; // cellule déjà remplie
+ function solve(board) {
+  for (let row = 0; row < 9; row++) {
+   for (let col = 0; col < 9; col++) {
+    if (board[row][col] !== ".") continue; // cellule déjà remplie
 
-        // essayer chaque chiffre 1-9
-        for (let num = 1; num <= 9; num++) {
-          const char = String(num);
+    // essayer chaque chiffre 1-9
+    for (let num = 1; num <= 9; num++) {
+     const char = String(num);
 
-          if (!isValid(board, row, col, char)) continue; // pruning
+     if (!isValid(board, row, col, char)) continue; // pruning
 
-          board[row][col] = char;
+     board[row][col] = char;
 
-          if (solve(board)) return true; // solution trouvée plus bas dans l'arbre
+     if (solve(board)) return true; // solution trouvée plus bas dans l'arbre
 
-          board[row][col] = "."; // défaire : ce chiffre ne mène nulle part
-        }
-
-        // aucun chiffre ne marche ici : revenir en arrière
-        return false;
-      }
+     board[row][col] = "."; // défaire : ce chiffre ne mène nulle part
     }
-    return true; // toutes les cellules remplies : victoire
-  }
 
-  solve(board);
-  return board;
+    // aucun chiffre ne marche ici : revenir en arrière
+    return false;
+   }
+  }
+  return true; // toutes les cellules remplies : victoire
+ }
+
+ solve(board);
+ return board;
 }
 
 const board = [
-  ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-  ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-  [".", "9", "8", ".", ".", ".", ".", "6", "."],
-  ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-  ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-  ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-  [".", "6", ".", ".", ".", ".", "2", "8", "."],
-  [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-  [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+ ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+ ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+ [".", "9", "8", ".", ".", ".", ".", "6", "."],
+ ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+ ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+ ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+ [".", "6", ".", ".", ".", ".", "2", "8", "."],
+ [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+ [".", ".", ".", ".", "8", ".", ".", "7", "9"],
 ];
 
 solveSudoku(board);
@@ -82,29 +82,29 @@ solveSudoku(board);
 
 ```js
 function findBestEmpty(board) {
-  let bestRow = -1,
-    bestCol = -1,
-    bestCount = 10;
+ let bestRow = -1,
+  bestCol = -1,
+  bestCount = 10;
 
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      if (board[row][col] !== ".") continue;
+ for (let row = 0; row < 9; row++) {
+  for (let col = 0; col < 9; col++) {
+   if (board[row][col] !== ".") continue;
 
-      let count = 0;
-      for (let num = 1; num <= 9; num++) {
-        if (isValid(board, row, col, String(num))) count++;
-      }
+   let count = 0;
+   for (let num = 1; num <= 9; num++) {
+    if (isValid(board, row, col, String(num))) count++;
+   }
 
-      // cellule avec moins d'options = contrainte la plus forte = à traiter en premier
-      if (count < bestCount) {
-        bestCount = count;
-        bestRow = row;
-        bestCol = col;
-      }
-    }
+   // cellule avec moins d'options = contrainte la plus forte = à traiter en premier
+   if (count < bestCount) {
+    bestCount = count;
+    bestRow = row;
+    bestCol = col;
+   }
   }
+ }
 
-  return [bestRow, bestCol];
+ return [bestRow, bestCol];
 }
 ```
 
@@ -116,56 +116,56 @@ Grille de lettres. Un mot cible. Le mot peut-il être formé en suivant des cell
 
 ```js
 function wordSearch(board, word) {
-  const m = board.length;
-  const n = board[0].length;
-  const directions = [
-    [-1, 0],
-    [1, 0],
-    [0, -1],
-    [0, 1],
-  ];
+ const m = board.length;
+ const n = board[0].length;
+ const directions = [
+  [-1, 0],
+  [1, 0],
+  [0, -1],
+  [0, 1],
+ ];
 
-  function backtrack(row, col, idx, visited) {
-    // mot entier trouvé
-    if (idx === word.length) return true;
+ function backtrack(row, col, idx, visited) {
+  // mot entier trouvé
+  if (idx === word.length) return true;
 
-    // hors grille ou déjà visitée
-    if (row < 0 || row >= m || col < 0 || col >= n) return false;
-    if (visited[row][col]) return false;
+  // hors grille ou déjà visitée
+  if (row < 0 || row >= m || col < 0 || col >= n) return false;
+  if (visited[row][col]) return false;
 
-    // lettre ne correspond pas : pruning immédiat
-    if (board[row][col] !== word[idx]) return false;
+  // lettre ne correspond pas : pruning immédiat
+  if (board[row][col] !== word[idx]) return false;
 
-    // marquer comme visitée pour ce chemin
-    visited[row][col] = true;
+  // marquer comme visitée pour ce chemin
+  visited[row][col] = true;
 
-    // explorer les 4 directions
-    for (const [dr, dc] of directions) {
-      if (backtrack(row + dr, col + dc, idx + 1, visited)) {
-        return true; // court-circuit : on arrête dès qu'on trouve
-      }
-    }
-
-    // défaire : cette cellule n'est plus utilisée sur ce chemin
-    visited[row][col] = false;
-    return false;
+  // explorer les 4 directions
+  for (const [dr, dc] of directions) {
+   if (backtrack(row + dr, col + dc, idx + 1, visited)) {
+    return true; // court-circuit : on arrête dès qu'on trouve
+   }
   }
 
-  // essayer chaque cellule comme point de départ
-  for (let row = 0; row < m; row++) {
-    for (let col = 0; col < n; col++) {
-      const visited = Array.from({ length: m }, () => new Array(n).fill(false));
-      if (backtrack(row, col, 0, visited)) return true;
-    }
-  }
-
+  // défaire : cette cellule n'est plus utilisée sur ce chemin
+  visited[row][col] = false;
   return false;
+ }
+
+ // essayer chaque cellule comme point de départ
+ for (let row = 0; row < m; row++) {
+  for (let col = 0; col < n; col++) {
+   const visited = Array.from({ length: m }, () => new Array(n).fill(false));
+   if (backtrack(row, col, 0, visited)) return true;
+  }
+ }
+
+ return false;
 }
 
 const grid = [
-  ["A", "B", "C", "E"],
-  ["S", "F", "C", "S"],
-  ["A", "D", "E", "E"],
+ ["A", "B", "C", "E"],
+ ["S", "F", "C", "S"],
+ ["A", "D", "E", "E"],
 ];
 console.log(wordSearch(grid, "ABCCED")); // true
 console.log(wordSearch(grid, "ABCB")); // false : B déjà utilisé, ne peut pas revenir dessus
@@ -177,36 +177,36 @@ Au lieu d'un tableau `visited` séparé, modifier la grille directement. Plus é
 
 ```js
 function wordSearchInPlace(board, word) {
-  const m = board.length;
-  const n = board[0].length;
+ const m = board.length;
+ const n = board[0].length;
 
-  function backtrack(row, col, idx) {
-    if (idx === word.length) return true;
-    if (row < 0 || row >= m || col < 0 || col >= n) return false;
-    if (board[row][col] !== word[idx]) return false;
+ function backtrack(row, col, idx) {
+  if (idx === word.length) return true;
+  if (row < 0 || row >= m || col < 0 || col >= n) return false;
+  if (board[row][col] !== word[idx]) return false;
 
-    // marquer comme visitée en modifiant la lettre
-    const temp = board[row][col];
-    board[row][col] = "#"; // caractère qui ne sera jamais cherché
+  // marquer comme visitée en modifiant la lettre
+  const temp = board[row][col];
+  board[row][col] = "#"; // caractère qui ne sera jamais cherché
 
-    const found =
-      backtrack(row - 1, col, idx + 1) ||
-      backtrack(row + 1, col, idx + 1) ||
-      backtrack(row, col - 1, idx + 1) ||
-      backtrack(row, col + 1, idx + 1);
+  const found =
+   backtrack(row - 1, col, idx + 1) ||
+   backtrack(row + 1, col, idx + 1) ||
+   backtrack(row, col - 1, idx + 1) ||
+   backtrack(row, col + 1, idx + 1);
 
-    // restaurer
-    board[row][col] = temp;
+  // restaurer
+  board[row][col] = temp;
 
-    return found;
+  return found;
+ }
+
+ for (let r = 0; r < m; r++) {
+  for (let c = 0; c < n; c++) {
+   if (backtrack(r, c, 0)) return true;
   }
-
-  for (let r = 0; r < m; r++) {
-    for (let c = 0; c < n; c++) {
-      if (backtrack(r, c, 0)) return true;
-    }
-  }
-  return false;
+ }
+ return false;
 }
 ```
 
@@ -216,13 +216,13 @@ function wordSearchInPlace(board, word) {
 // Compter les lettres disponibles vs les lettres requises
 // Si le mot demande 3 fois "A" et la grille n'en a que 2 : retourner false immédiatement
 function preCheck(board, word) {
-  const freq = {};
-  for (const row of board) for (const c of row) freq[c] = (freq[c] || 0) + 1;
-  for (const c of word) {
-    if (!freq[c] || freq[c] === 0) return false;
-    freq[c]--;
-  }
-  return true;
+ const freq = {};
+ for (const row of board) for (const c of row) freq[c] = (freq[c] || 0) + 1;
+ for (const c of word) {
+  if (!freq[c] || freq[c] === 0) return false;
+  freq[c]--;
+ }
+ return true;
 }
 ```
 
@@ -234,35 +234,35 @@ Mapping téléphone : 2="abc", 3="def", etc. Donner toutes les combinaisons de l
 
 ```js
 function letterCombinations(digits) {
-  if (!digits) return [];
+ if (!digits) return [];
 
-  const map = {
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
-  };
+ const map = {
+  2: "abc",
+  3: "def",
+  4: "ghi",
+  5: "jkl",
+  6: "mno",
+  7: "pqrs",
+  8: "tuv",
+  9: "wxyz",
+ };
 
-  const result = [];
+ const result = [];
 
-  function backtrack(idx, current) {
-    if (idx === digits.length) {
-      result.push(current);
-      return;
-    }
-
-    for (const letter of map[digits[idx]]) {
-      // pas de pop nécessaire : string est immutable, on passe une nouvelle string
-      backtrack(idx + 1, current + letter);
-    }
+ function backtrack(idx, current) {
+  if (idx === digits.length) {
+   result.push(current);
+   return;
   }
 
-  backtrack(0, "");
-  return result;
+  for (const letter of map[digits[idx]]) {
+   // pas de pop nécessaire : string est immutable, on passe une nouvelle string
+   backtrack(idx + 1, current + letter);
+  }
+ }
+
+ backtrack(0, "");
+ return result;
 }
 
 console.log(letterCombinations("23"));
@@ -279,35 +279,35 @@ Découper une string en toutes les partitions possibles où chaque sous-chaîne 
 
 ```js
 function palindromePartition(s) {
-  const result = [];
+ const result = [];
 
-  function isPalindrome(str, left, right) {
-    while (left < right) {
-      if (str[left] !== str[right]) return false;
-      left++;
-      right--;
-    }
-    return true;
+ function isPalindrome(str, left, right) {
+  while (left < right) {
+   if (str[left] !== str[right]) return false;
+   left++;
+   right--;
+  }
+  return true;
+ }
+
+ function backtrack(start, current) {
+  if (start === s.length) {
+   result.push([...current]);
+   return;
   }
 
-  function backtrack(start, current) {
-    if (start === s.length) {
-      result.push([...current]);
-      return;
-    }
+  for (let end = start + 1; end <= s.length; end++) {
+   // pruning : si la sous-chaîne n'est pas un palindrome, skip
+   if (!isPalindrome(s, start, end - 1)) continue;
 
-    for (let end = start + 1; end <= s.length; end++) {
-      // pruning : si la sous-chaîne n'est pas un palindrome, skip
-      if (!isPalindrome(s, start, end - 1)) continue;
-
-      current.push(s.slice(start, end));
-      backtrack(end, current);
-      current.pop();
-    }
+   current.push(s.slice(start, end));
+   backtrack(end, current);
+   current.pop();
   }
+ }
 
-  backtrack(0, []);
-  return result;
+ backtrack(0, []);
+ return result;
 }
 
 // La squad de Leon Luis analyse des codes de Horreurs : trouver toutes les partitions palindromiques
@@ -322,22 +322,22 @@ console.log(palindromePartition("aab"));
 Pour certains problèmes, backtracking et DP sont deux angles d'attaque sur le même problème. Choisir entre les deux dépend de ce qu'on cherche.
 
 ```
-                 Backtracking          DP
-But            Trouver toutes       Trouver l'optimal
-               les solutions        (ou compter)
+         Backtracking     DP
+But      Trouver toutes    Trouver l'optimal
+        les solutions    (ou compter)
 
-Mémoire        O(profondeur          O(taille de
-               * état)               la table)
+Mémoire    O(profondeur     O(taille de
+        * état)        la table)
 
-Quand utiliser Toutes solutions,     Optimisation,
-               contraintes           comptage,
-               complexes,            pas besoin de
-               grilles               toutes solutions
+Quand utiliser Toutes solutions,   Optimisation,
+        contraintes      comptage,
+        complexes,      pas besoin de
+        grilles        toutes solutions
 
-Exemple        Sudoku solver         Coin change
-               N-Queens              Longest common
-               Word search           subsequence
-               Permutations          Knapsack
+Exemple    Sudoku solver     Coin change
+        N-Queens       Longest common
+        Word search      subsequence
+        Permutations     Knapsack
 ```
 
 Word break (peut-on découper le mot ?) : DP.
@@ -350,29 +350,29 @@ Word break (donner tous les découpages possibles) : backtracking.
 ```js
 // BUG subtil : visited partagé entre les appels de la boucle externe
 function wordSearchBuggy(board, word) {
-  const visited = Array.from({ length: board.length }, () =>
-    new Array(board[0].length).fill(false),
-  );
+ const visited = Array.from({ length: board.length }, () =>
+  new Array(board[0].length).fill(false),
+ );
 
-  function backtrack(row, col, idx) {
-    if (idx === word.length) return true;
-    // ...
-    visited[row][col] = true;
-    // explore...
-    visited[row][col] = false;
-    return false;
-  }
-
-  for (let r = 0; r < board.length; r++) {
-    for (let c = 0; c < board[0].length; c++) {
-      // visited est créé UNE SEULE FOIS en dehors de la boucle
-      // si backtrack(r,c,0) modifie visited et retourne false
-      // le prochain appel backtrack(r,c+1,0) part avec un visited potentiellement modifié
-      // => bug si le reset en fin de backtrack n'est pas parfait
-      if (backtrack(r, c, 0)) return true;
-    }
-  }
+ function backtrack(row, col, idx) {
+  if (idx === word.length) return true;
+  // ...
+  visited[row][col] = true;
+  // explore...
+  visited[row][col] = false;
   return false;
+ }
+
+ for (let r = 0; r < board.length; r++) {
+  for (let c = 0; c < board[0].length; c++) {
+   // visited est créé UNE SEULE FOIS en dehors de la boucle
+   // si backtrack(r,c,0) modifie visited et retourne false
+   // le prochain appel backtrack(r,c+1,0) part avec un visited potentiellement modifié
+   // => bug si le reset en fin de backtrack n'est pas parfait
+   if (backtrack(r, c, 0)) return true;
+  }
+ }
+ return false;
 }
 
 // CORRECT : créer visited à l'intérieur de la boucle externe,
@@ -401,10 +401,10 @@ Walter cache des messages dans des grilles de lettres. Implémenter `findAllWord
 
 ```js
 const board = [
-  ["o", "a", "a", "n"],
-  ["e", "t", "a", "e"],
-  ["i", "h", "k", "r"],
-  ["i", "f", "l", "v"],
+ ["o", "a", "a", "n"],
+ ["e", "t", "a", "e"],
+ ["i", "h", "k", "r"],
+ ["i", "f", "l", "v"],
 ];
 const wordList = ["oath", "pea", "eat", "rain"];
 // résultat attendu : ["eat", "oath"]
@@ -434,9 +434,9 @@ Implémenter `findRichPaths(grid, minCrystals)`. Retourner la liste de tous les 
 
 ```js
 const grid = [
-  [0, 3, 0, 0],
-  [0, -1, 5, 0], // -1 = obstacle
-  [4, 0, 0, 2],
+ [0, 3, 0, 0],
+ [0, -1, 5, 0], // -1 = obstacle
+ [4, 0, 0, 2],
 ];
 // minCrystals = 8 => quels chemins collectent >= 8 cristaux ?
 ```

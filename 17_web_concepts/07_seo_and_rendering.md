@@ -1,7 +1,7 @@
 # SEO ET RENDERING : OÙ TON HTML NAÎT VRAIMENT
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ton navigateur affiche une page. Mais cette page, elle est née où ? Sur le serveur, juste avant de te l'envoyer ? Sur ton navigateur, après coup ? Ou elle dormait déjà toute construite sur un CDN (réseau de distribution de contenu) depuis des heures ? Le choix change tout : vitesse perçue, référencement Google, coût serveur. Mal choisir, c'est comme envoyer Sasuke seul contre Madara : techniquement possible, mais tu vas souffrir pour rien.
 
@@ -16,9 +16,9 @@ CSR (Client-Side Rendering : rendu côté client) veut dire : le serveur t'envoy
 
 // bundle.js fait TOUT le travail après coup
 function renderApp() {
-  const root = document.getElementById('root');
-  // React, Vue, ou vanilla JS construit le DOM ici
-  root.innerHTML = `<h1>Bienvenue, ${getUserName()}</h1>`; // (le contenu apparaît APRÈS le JS)
+ const root = document.getElementById('root');
+ // React, Vue, ou vanilla JS construit le DOM ici
+ root.innerHTML = `<h1>Bienvenue, ${getUserName()}</h1>`; // (le contenu apparaît APRÈS le JS)
 }
 
 renderApp();
@@ -39,18 +39,18 @@ SSR (Server-Side Rendering : rendu côté serveur) veut dire : à chaque requêt
 ```js
 // Express + un moteur SSR (simplifié à l'extrême)
 app.get('/profil/:id', async (req, res) => {
-  const ninja = await getNinjaById(req.params.id); // (requête DB à chaque visite)
+ const ninja = await getNinjaById(req.params.id); // (requête DB à chaque visite)
 
-  const html = `
-    <html>
-      <body>
-        <h1>${ninja.nom}</h1>
-        <p>Rang : ${ninja.rang}</p>
-      </body>
-    </html>
-  `; // (HTML déjà rempli, pas un squelette vide)
+ const html = `
+  <html>
+   <body>
+    <h1>${ninja.nom}</h1>
+    <p>Rang : ${ninja.rang}</p>
+   </body>
+  </html>
+ `; // (HTML déjà rempli, pas un squelette vide)
 
-  res.send(html);
+ res.send(html);
 });
 ```
 
@@ -67,12 +67,12 @@ SSG (Static Site Generation : génération statique) veut dire : le HTML est gé
 ```js
 // Script de build (exécuté UNE FOIS, pas à chaque visite)
 async function buildPages() {
-  const ninjas = await getAllNinjas(); // (une seule requête DB, au build)
+ const ninjas = await getAllNinjas(); // (une seule requête DB, au build)
 
-  for (const ninja of ninjas) {
-    const html = `<h1>${ninja.nom}</h1><p>Rang : ${ninja.rang}</p>`;
-    fs.writeFileSync(`./dist/profil-${ninja.id}.html`, html); // (fichier figé sur disque)
-  }
+ for (const ninja of ninjas) {
+  const html = `<h1>${ninja.nom}</h1><p>Rang : ${ninja.rang}</p>`;
+  fs.writeFileSync(`./dist/profil-${ninja.id}.html`, html); // (fichier figé sur disque)
+ }
 }
 ```
 
@@ -89,12 +89,12 @@ ISR (Incremental Static Regeneration : régénération statique incrémentale) p
 ```js
 // Exemple conceptuel (style Next.js)
 export async function getStaticProps() {
-  const ninja = await getNinjaById('naruto-007');
+ const ninja = await getNinjaById('naruto-007');
 
-  return {
-    props: { ninja },
-    revalidate: 60, // (après 60 secondes, la prochaine requête déclenche une régénération en arrière-plan)
-  };
+ return {
+  props: { ninja },
+  revalidate: 60, // (après 60 secondes, la prochaine requête déclenche une régénération en arrière-plan)
+ };
 }
 ```
 
@@ -108,9 +108,9 @@ Risque réel : l'shinobi peut voir une donnée légèrement périmée pendant la
 
 ```
 Le contenu change à CHAQUE requête (escouade, dashboard live) --> SSR ou CSR
-Le contenu change RAREMENT (doc, landing page, blog)         --> SSG
-Le contenu change PARFOIS, à intervalle connu                --> ISR
-Le SEO compte zéro (app interne, dashboard admin)             --> CSR suffit
+Le contenu change RAREMENT (doc, landing page, blog)     --> SSG
+Le contenu change PARFOIS, à intervalle connu        --> ISR
+Le SEO compte zéro (app interne, dashboard admin)       --> CSR suffit
 ```
 
 Risque réel partagé par SSR et SSG mal utilisés : l'hydratation (le JS qui "réactive" le HTML déjà affiché) peut créer un flash bizarre si le serveur et le client ne sont pas d'accord sur le contenu (hydration mismatch). Walter White ne mélange jamais deux formules sans vérifier qu'elles donnent le même résultat : toi non plus.

@@ -14,22 +14,22 @@ La base : hériter de `Error` avec `extends`.
 
 ```js
 class ValidationError extends Error {
-  constructor(message) {
-    super(message); // passe le message à Error
-    this.name = "ValidationError";
-    // sans ça, e.name reste "Error":inutile pour le catch sélectif
-  }
+ constructor(message) {
+  super(message); // passe le message à Error
+  this.name = "ValidationError";
+  // sans ça, e.name reste "Error":inutile pour le catch sélectif
+ }
 }
 
 // utilisation
 try {
-  throw new ValidationError("xG doit être entre 0 et 1");
+ throw new ValidationError("xG doit être entre 0 et 1");
 } catch (e) {
-  console.log(e instanceof ValidationError); // true
-  console.log(e instanceof Error); // true aussi:héritage
-  console.log(e.name); // "ValidationError"
-  console.log(e.message); // "xG doit être entre 0 et 1"
-  console.log(e.stack); // stack trace complète:toujours là
+ console.log(e instanceof ValidationError); // true
+ console.log(e instanceof Error); // true aussi:héritage
+ console.log(e.name); // "ValidationError"
+ console.log(e.message); // "xG doit être entre 0 et 1"
+ console.log(e.stack); // stack trace complète:toujours là
 }
 ```
 
@@ -46,34 +46,34 @@ Une bonne custom error porte les données dont tu as besoin pour comprendre ce q
 
 ```js
 class NotFoundError extends Error {
-  constructor(ressource, id) {
-    super(`${ressource} introuvable : id ${id}`);
-    this.name = "NotFoundError";
-    this.ressource = ressource; // données structurées attachées
-    this.id = id;
-    this.code = 404; // code HTTP ou code métier
-  }
+ constructor(ressource, id) {
+  super(`${ressource} introuvable : id ${id}`);
+  this.name = "NotFoundError";
+  this.ressource = ressource; // données structurées attachées
+  this.id = id;
+  this.code = 404; // code HTTP ou code métier
+ }
 }
 
 class ValidationError extends Error {
-  constructor(champ, valeur, contrainte) {
-    super(`Champ invalide "${champ}" : ${contrainte}`);
-    this.name = "ValidationError";
-    this.champ = champ;
-    this.valeur = valeur;
-    this.contrainte = contrainte;
-    this.code = 400;
-  }
+ constructor(champ, valeur, contrainte) {
+  super(`Champ invalide "${champ}" : ${contrainte}`);
+  this.name = "ValidationError";
+  this.champ = champ;
+  this.valeur = valeur;
+  this.contrainte = contrainte;
+  this.code = 400;
+ }
 }
 
 class AuthError extends Error {
-  constructor(action, raison) {
-    super(`Action refusée "${action}" : ${raison}`);
-    this.name = "AuthError";
-    this.action = action;
-    this.raison = raison;
-    this.code = 403;
-  }
+ constructor(action, raison) {
+  super(`Action refusée "${action}" : ${raison}`);
+  this.name = "AuthError";
+  this.action = action;
+  this.raison = raison;
+  this.code = 403;
+ }
 }
 ```
 
@@ -81,10 +81,10 @@ Maintenant dans les logs tu vois ça :
 
 ```
 ValidationError: Champ invalide "buts" : doit être un entier positif
-  champ: "buts"
-  valeur: -3
-  contrainte: "doit être un entier positif"
-  code: 400
+ champ: "buts"
+ valeur: -3
+ contrainte: "doit être un entier positif"
+ code: 400
 ```
 
 Plutôt que :
@@ -104,38 +104,38 @@ Exemple sur une API de stats de foot :
 ```js
 // erreur de base du domaine
 class AppError extends Error {
-  constructor(message, code) {
-    super(message);
-    this.name = "AppError";
-    this.code = code;
-  }
+ constructor(message, code) {
+  super(message);
+  this.name = "AppError";
+  this.code = code;
+ }
 }
 
 // erreurs métier spécifiques
 class ValidationError extends AppError {
-  constructor(champ, probleme) {
-    super(`Validation échouée sur "${champ}" : ${probleme}`, 400);
-    this.name = "ValidationError";
-    this.champ = champ;
-  }
+ constructor(champ, probleme) {
+  super(`Validation échouée sur "${champ}" : ${probleme}`, 400);
+  this.name = "ValidationError";
+  this.champ = champ;
+ }
 }
 
 class NotFoundError extends AppError {
-  constructor(entite, id) {
-    super(`${entite} [${id}] introuvable`, 404);
-    this.name = "NotFoundError";
-    this.entite = entite;
-    this.id = id;
-  }
+ constructor(entite, id) {
+  super(`${entite} [${id}] introuvable`, 404);
+  this.name = "NotFoundError";
+  this.entite = entite;
+  this.id = id;
+ }
 }
 
 class DatabaseError extends AppError {
-  constructor(operation, details) {
-    super(`DB failure pendant "${operation}"`, 500);
-    this.name = "DatabaseError";
-    this.operation = operation;
-    this.details = details;
-  }
+ constructor(operation, details) {
+  super(`DB failure pendant "${operation}"`, 500);
+  this.name = "DatabaseError";
+  this.operation = operation;
+  this.details = details;
+ }
 }
 ```
 
@@ -143,23 +143,23 @@ Pourquoi cette hiérarchie ?
 
 ```js
 try {
-  // n'importe quelle opération
+ // n'importe quelle opération
 } catch (e) {
-  if (e instanceof ValidationError) {
-    // erreur utilisateur → retourner 400 avec le message
-    return { status: 400, error: e.message, champ: e.champ };
-  }
-  if (e instanceof NotFoundError) {
-    // ressource manquante → 404
-    return { status: 404, error: e.message };
-  }
-  if (e instanceof AppError) {
-    // autre erreur métier → utiliser e.code
-    return { status: e.code, error: e.message };
-  }
-  // erreur inattendue → 500 + log complet
-  console.error("ERREUR NON GÉRÉE", e);
-  return { status: 500, error: "erreur interne" };
+ if (e instanceof ValidationError) {
+  // erreur utilisateur → retourner 400 avec le message
+  return { status: 400, error: e.message, champ: e.champ };
+ }
+ if (e instanceof NotFoundError) {
+  // ressource manquante → 404
+  return { status: 404, error: e.message };
+ }
+ if (e instanceof AppError) {
+  // autre erreur métier → utiliser e.code
+  return { status: e.code, error: e.message };
+ }
+ // erreur inattendue → 500 + log complet
+ console.error("ERREUR NON GÉRÉE", e);
+ return { status: 500, error: "erreur interne" };
 }
 ```
 
@@ -174,24 +174,24 @@ En V8 (Node.js / Chrome), si tu n'appelles pas `super()` correctement, ta stack 
 ```js
 // version fragile
 class MauvaisError extends Error {
-  constructor(msg) {
-    super(msg);
-    this.name = "MauvaisError";
-    // rien d'autre
-  }
+ constructor(msg) {
+  super(msg);
+  this.name = "MauvaisError";
+  // rien d'autre
+ }
 }
 
 // version solide:pour Node < 12 ou si tu veux être explicite
 class BonneError extends Error {
-  constructor(msg) {
-    super(msg);
-    this.name = "BonneError";
-    if (Error.captureStackTrace) {
-      // V8 only:capture la stack depuis ce constructeur
-      // sans ça la stack inclut les internals du constructeur
-      Error.captureStackTrace(this, BonneError);
-    }
+ constructor(msg) {
+  super(msg);
+  this.name = "BonneError";
+  if (Error.captureStackTrace) {
+   // V8 only:capture la stack depuis ce constructeur
+   // sans ça la stack inclut les internals du constructeur
+   Error.captureStackTrace(this, BonneError);
   }
+ }
 }
 ```
 
@@ -206,38 +206,38 @@ Les objets Error ne se sérialisent pas bien en JSON par défaut :
 ```js
 const e = new ValidationError("buts", "valeur négative");
 console.log(JSON.stringify(e));
-// "{}"  <-- vide. magnifique.
+// "{}" <-- vide. magnifique.
 ```
 
 Solution : une fonction de sérialisation propre.
 
 ```js
 function serializerError(e) {
-  return {
-    name: e.name,
-    message: e.message,
-    stack: e.stack,
-    // propriétés customs
-    ...(e.champ && { champ: e.champ }),
-    ...(e.code && { code: e.code }),
-    ...(e.id && { id: e.id }),
-  };
+ return {
+  name: e.name,
+  message: e.message,
+  stack: e.stack,
+  // propriétés customs
+  ...(e.champ && { champ: e.champ }),
+  ...(e.code && { code: e.code }),
+  ...(e.id && { id: e.id }),
+ };
 }
 
 // dans ton logger
 function logError(e, contexte = {}) {
-  console.error(
-    JSON.stringify({
-      timestamp: new Date().toISOString(),
-      ...contexte,
-      error: serializerError(e),
-    }),
-  );
+ console.error(
+  JSON.stringify({
+   timestamp: new Date().toISOString(),
+   ...contexte,
+   error: serializerError(e),
+  }),
+ );
 }
 
 logError(new ValidationError("buts", "valeur négative"), {
-  joueurId: 7,
-  matchId: "UCL-2024-FINAL",
+ joueurId: 7,
+ matchId: "UCL-2024-FINAL",
 });
 ```
 
@@ -245,16 +245,16 @@ Output :
 
 ```json
 {
-  "timestamp": "2024-05-25T21:00:00.000Z",
-  "joueurId": 7,
-  "matchId": "UCL-2024-FINAL",
-  "error": {
-    "name": "ValidationError",
-    "message": "Champ invalide \"buts\" : valeur négative",
-    "champ": "buts",
-    "code": 400,
-    "stack": "ValidationError: ..."
-  }
+ "timestamp": "2024-05-25T21:00:00.000Z",
+ "joueurId": 7,
+ "matchId": "UCL-2024-FINAL",
+ "error": {
+  "name": "ValidationError",
+  "message": "Champ invalide \"buts\" : valeur négative",
+  "champ": "buts",
+  "code": 400,
+  "stack": "ValidationError: ..."
+ }
 }
 ```
 
@@ -266,52 +266,52 @@ Output :
 
 ```js
 class JutsuError extends Error {
-  constructor(jutsu, ninja, raison) {
-    super(`${ninja} ne peut pas lancer ${jutsu} : ${raison}`);
-    this.name = "JutsuError";
-    this.jutsu = jutsu;
-    this.ninja = ninja;
-    this.raison = raison;
-  }
+ constructor(jutsu, ninja, raison) {
+  super(`${ninja} ne peut pas lancer ${jutsu} : ${raison}`);
+  this.name = "JutsuError";
+  this.jutsu = jutsu;
+  this.ninja = ninja;
+  this.raison = raison;
+ }
 }
 
 class ChakraInsuffisantError extends JutsuError {
-  constructor(ninja, jutsu, chakraActuel, chakraNecessaire) {
-    super(
-      jutsu,
-      ninja,
-      `chakra insuffisant (${chakraActuel}/${chakraNecessaire})`,
-    );
-    this.name = "ChakraInsuffisantError";
-    this.chakraActuel = chakraActuel;
-    this.chakraNecessaire = chakraNecessaire;
-  }
+ constructor(ninja, jutsu, chakraActuel, chakraNecessaire) {
+  super(
+   jutsu,
+   ninja,
+   `chakra insuffisant (${chakraActuel}/${chakraNecessaire})`,
+  );
+  this.name = "ChakraInsuffisantError";
+  this.chakraActuel = chakraActuel;
+  this.chakraNecessaire = chakraNecessaire;
+ }
 }
 
 function lancerJutsu(ninja, jutsu) {
-  if (ninja.chakra < jutsu.coutChakra) {
-    throw new ChakraInsuffisantError(
-      ninja.nom,
-      jutsu.nom,
-      ninja.chakra,
-      jutsu.coutChakra,
-    );
-  }
-  return { succes: true, degats: jutsu.degats };
+ if (ninja.chakra < jutsu.coutChakra) {
+  throw new ChakraInsuffisantError(
+   ninja.nom,
+   jutsu.nom,
+   ninja.chakra,
+   jutsu.coutChakra,
+  );
+ }
+ return { succes: true, degats: jutsu.degats };
 }
 
 try {
-  lancerJutsu(
-    { nom: "Rock Lee", chakra: 5 },
-    { nom: "Rasengan", coutChakra: 100, degats: 500 },
-  );
+ lancerJutsu(
+  { nom: "Rock Lee", chakra: 5 },
+  { nom: "Rasengan", coutChakra: 100, degats: 500 },
+ );
 } catch (e) {
-  if (e instanceof ChakraInsuffisantError) {
-    console.log(`Réserve de chakra : ${e.chakraActuel}/${e.chakraNecessaire}`);
-    // "Réserve de chakra : 5/100"
-  }
-  console.log(e.message);
-  // "Rock Lee ne peut pas lancer Rasengan : chakra insuffisant (5/100)"
+ if (e instanceof ChakraInsuffisantError) {
+  console.log(`Réserve de chakra : ${e.chakraActuel}/${e.chakraNecessaire}`);
+  // "Réserve de chakra : 5/100"
+ }
+ console.log(e.message);
+ // "Rock Lee ne peut pas lancer Rasengan : chakra insuffisant (5/100)"
 }
 ```
 
@@ -340,9 +340,9 @@ Michael Scofield a besoin d'erreurs pour son système d'évasion.
 Construis la hiérarchie :
 
 - `PrisonBreakError` (base)
-  - `PlanCompromisError(section, raison)`
-  - `GardeAlertéError(garde, localisation)`
-  - `TempsEcoulError(phaseActuelle, tempsRestant)`
+ - `PlanCompromisError(section, raison)`
+ - `GardeAlertéError(garde, localisation)`
+ - `TempsEcoulError(phaseActuelle, tempsRestant)`
 
 Écris une fonction `executerPhase(phase)` qui peut lever n'importe laquelle.
 Entoure-la d'un catch qui gère chaque type différemment.

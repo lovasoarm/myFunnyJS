@@ -2,25 +2,25 @@
 Temps de lecture ~15 min
 
 ```
-COPILOTE                              AGENT AUTONOME
---------                              --------------
-1 suggestion à la fois                40 actions d'affilée
-tu valides chaque étape               tu valides le résultat global
-erreur = ligne visible                erreur = cohérente sur 40 étapes
-domaine : autocomplete                domaine : tâche multi-fichiers
-coût cognitif : bas                   coût cognitif : haut (audit ex-post)
+COPILOTE               AGENT AUTONOME
+--------               --------------
+1 suggestion à la fois        40 actions d'affilée
+tu valides chaque étape        tu valides le résultat global
+erreur = ligne visible        erreur = cohérente sur 40 étapes
+domaine : autocomplete        domaine : tâche multi-fichiers
+coût cognitif : bas          coût cognitif : haut (audit ex-post)
 ```
 
 ## Quand utiliser lequel
 
-| Situation                                | Choix                          |
+| Situation                | Choix             |
 |------------------------------------------|--------------------------------|
-| Écrire un test unitaire connu            | Copilote                       |
-| Refactor à 12 fichiers, spec claire      | Agent                          |
-| Debug production critique                | NI L'UN NI L'AUTRE seul        |
-| Générer boilerplate                      | Copilote OU agent, indifférent |
-| Décision d'architecture                  | Toi. Point.                    |
-| Migration de version majeure (React 18→19) | Agent + audit systématique   |
+| Écrire un test unitaire connu      | Copilote            |
+| Refactor à 12 fichiers, spec claire   | Agent             |
+| Debug production critique        | NI L'UN NI L'AUTRE seul    |
+| Générer boilerplate           | Copilote OU agent, indifférent |
+| Décision d'architecture         | Toi. Point.          |
+| Migration de version majeure (React 18→19) | Agent + audit systématique  |
 
 ## La règle d'or 2026-2028
 

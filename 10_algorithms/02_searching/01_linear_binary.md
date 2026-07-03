@@ -11,10 +11,10 @@ Tu regardes chaque élément un par un jusqu'à trouver. Simple. Toujours correc
 
 ```js
 function linearSearch(arr, target) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === target) return i // trouvé
-  }
-  return -1 // pas là
+ for (let i = 0; i < arr.length; i++) {
+  if (arr[i] === target) return i // trouvé
+ }
+ return -1 // pas là
 }
 
 // fonctionne sur n'importe quel tableau, trié ou non
@@ -47,63 +47,63 @@ Tableau : [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 Cible : 13
 
 Étape 1 : mid = index 4, valeur = 9
-          13 > 9 --> cherche à droite
-          [11, 13, 15, 17, 19]
+     13 > 9 --> cherche à droite
+     [11, 13, 15, 17, 19]
 
 Étape 2 : mid = index 7 (dans le tableau original), valeur = 15
-          13 < 15 --> cherche à gauche
-          [11, 13]
+     13 < 15 --> cherche à gauche
+     [11, 13]
 
 Étape 3 : mid = index 5, valeur = 11
-          13 > 11 --> cherche à droite
-          [13]
+     13 > 11 --> cherche à droite
+     [13]
 
 Étape 4 : mid = index 6, valeur = 13
-          13 === 13 --> trouvé !
+     13 === 13 --> trouvé !
 ```
 
 ```
-low                  high
+low         high
 [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
-                 ^
-                mid = 9 < 13 --> cherche à droite
+         ^
+        mid = 9 < 13 --> cherche à droite
 
-                     low          high
-                [11, 13, 15, 17, 19]
-                         ^
-                        mid = 15 > 13 --> cherche à gauche
+           low     high
+        [11, 13, 15, 17, 19]
+             ^
+            mid = 15 > 13 --> cherche à gauche
 
-                     low  high
-                    [11, 13]
-                      ^
-                     mid = 11 < 13 --> cherche à droite
+           low high
+          [11, 13]
+           ^
+           mid = 11 < 13 --> cherche à droite
 
-                          low/high
-                          [13] --> trouvé
+             low/high
+             [13] --> trouvé
 ```
 
 ```js
 function binarySearch(arr, target) {
-  let low = 0
-  let high = arr.length - 1
+ let low = 0
+ let high = arr.length - 1
 
-  while (low <= high) {
-    const mid = low + Math.floor((high - low) / 2)
-    // pourquoi low + (high - low) / 2 et pas (low + high) / 2 ?
-    // parce que (low + high) peut overflow sur des très grands tableaux en d'autres langages
-    // bonne habitude à prendre dès maintenant
+ while (low <= high) {
+  const mid = low + Math.floor((high - low) / 2)
+  // pourquoi low + (high - low) / 2 et pas (low + high) / 2 ?
+  // parce que (low + high) peut overflow sur des très grands tableaux en d'autres langages
+  // bonne habitude à prendre dès maintenant
 
-    if (arr[mid] === target) return mid    // trouvé
-    if (arr[mid] < target)  low = mid + 1  // cherche à droite
-    else                    high = mid - 1 // cherche à gauche
-  }
+  if (arr[mid] === target) return mid  // trouvé
+  if (arr[mid] < target) low = mid + 1 // cherche à droite
+  else          high = mid - 1 // cherche à gauche
+ }
 
-  return -1 // pas trouvé
+ return -1 // pas trouvé
 }
 
 const classement = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
-console.log(binarySearch(classement, 13))  // 6
-console.log(binarySearch(classement, 10))  // -1
+console.log(binarySearch(classement, 13)) // 6
+console.log(binarySearch(classement, 10)) // -1
 ```
 
 ---
@@ -113,17 +113,17 @@ console.log(binarySearch(classement, 10))  // -1
 ```
 n éléments --> nombre max d'étapes de binary search
 
-n = 10          --> 4 étapes
-n = 100         --> 7 étapes
-n = 1 000       --> 10 étapes
-n = 1 000 000   --> 20 étapes
+n = 10     --> 4 étapes
+n = 100     --> 7 étapes
+n = 1 000    --> 10 étapes
+n = 1 000 000  --> 20 étapes
 n = 1 000 000 000 --> 30 étapes
 
 Comparaison :
 n = 1 million
 
-Linear search  : jusqu'à 1 000 000 comparaisons
-Binary search  : 20 comparaisons
+Linear search : jusqu'à 1 000 000 comparaisons
+Binary search : 20 comparaisons
 
 C'est la différence entre "1 seconde" et "0.00002 ms"
 ```
@@ -131,14 +131,14 @@ C'est la différence entre "1 seconde" et "0.00002 ms"
 ```
 Opérations
 |
-1M  |  *
-    |   *
-500K|    *
-    |      *
-    |           *
-20  |                 * * * * * *   log n
-    |__________________________________________
-     10  100  1K  10K  100K  1M
+1M | *
+  |  *
+500K|  *
+  |   *
+  |      *
+20 |         * * * * * *  log n
+  |__________________________________________
+   10 100 1K 10K 100K 1M
 ```
 
 ---
@@ -147,13 +147,13 @@ Opérations
 
 ```js
 function binarySearchRecursive(arr, target, low = 0, high = arr.length - 1) {
-  if (low > high) return -1 // cas de base : zone vide = pas trouvé
+ if (low > high) return -1 // cas de base : zone vide = pas trouvé
 
-  const mid = low + Math.floor((high - low) / 2)
+ const mid = low + Math.floor((high - low) / 2)
 
-  if (arr[mid] === target) return mid
-  if (arr[mid] < target)   return binarySearchRecursive(arr, target, mid + 1, high)
-  else                     return binarySearchRecursive(arr, target, low, mid - 1)
+ if (arr[mid] === target) return mid
+ if (arr[mid] < target)  return binarySearchRecursive(arr, target, mid + 1, high)
+ else           return binarySearchRecursive(arr, target, low, mid - 1)
 }
 ```
 
@@ -189,16 +189,16 @@ console.log(binarySearch(nonTrie, 9)) // -1 !!!
 
 // exemple pratique : trouver le premier élément >= threshold
 function lowerBound(arr, target) {
-  let low = 0
-  let high = arr.length
+ let low = 0
+ let high = arr.length
 
-  while (low < high) {
-    const mid = low + Math.floor((high - low) / 2)
-    if (arr[mid] < target) low = mid + 1
-    else high = mid
-  }
+ while (low < high) {
+  const mid = low + Math.floor((high - low) / 2)
+  if (arr[mid] < target) low = mid + 1
+  else high = mid
+ }
 
-  return low // index du premier élément >= target (-1 si tous < target)
+ return low // index du premier élément >= target (-1 si tous < target)
 }
 
 const scores = [10, 20, 30, 40, 50, 60, 70, 80]
@@ -218,14 +218,14 @@ Tu as un tableau trié de joueurs `{ nom, goals }` trié par `goals` croissant. 
 
 ```js
 const buteurs = [
-  { nom: "Bellingham", goals: 18 },
-  { nom: "Salah", goals: 24 },
-  { nom: "Messi", goals: 30 },
-  { nom: "Mbappé", goals: 35 },
-  { nom: "Haaland", goals: 42 },
+ { nom: "Bellingham", goals: 18 },
+ { nom: "Salah", goals: 24 },
+ { nom: "Messi", goals: 30 },
+ { nom: "Mbappé", goals: 35 },
+ { nom: "Haaland", goals: 42 },
 ]
-findByGoals(buteurs, 30)  // 2 (index de Messi)
-findByGoals(buteurs, 25)  // -1
+findByGoals(buteurs, 30) // 2 (index de Messi)
+findByGoals(buteurs, 25) // -1
 ```
 
 ---
@@ -237,9 +237,9 @@ Dans un tableau trié avec doublons, trouve l'index de la première ET de la der
 
 ```js
 const butsPar = [1, 2, 2, 2, 3, 4, 4, 5]
-findRange(butsPar, 2)  // [1, 3] (index 1 à 3)
-findRange(butsPar, 4)  // [5, 6]
-findRange(butsPar, 6)  // [-1, -1] (absent)
+findRange(butsPar, 2) // [1, 3] (index 1 à 3)
+findRange(butsPar, 4) // [5, 6]
+findRange(butsPar, 6) // [-1, -1] (absent)
 ```
 
 (indice : pour trouver la première : `lowerBound`. Pour la dernière : `upperBound - 1`)

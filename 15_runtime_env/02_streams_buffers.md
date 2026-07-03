@@ -36,10 +36,10 @@ Le buffer existe parce que V8 ne gère pas efficacement les données binaires ma
 ## 2) LES 4 TYPES DE STREAMS
 
 ```
-Readable    -->  on reçoit des données (lecture de fichier, requête HTTP entrante)
-Writable    -->  on envoie des données (écriture de fichier, réponse HTTP)
-Duplex      -->  les deux en même temps (socket TCP)
-Transform   -->  on reçoit, on transforme, on renvoie (compression gzip, chiffrement)
+Readable  --> on reçoit des données (lecture de fichier, requête HTTP entrante)
+Writable  --> on envoie des données (écriture de fichier, réponse HTTP)
+Duplex   --> les deux en même temps (socket TCP)
+Transform  --> on reçoit, on transforme, on renvoie (compression gzip, chiffrement)
 ```
 
 ```js
@@ -48,22 +48,22 @@ import { createReadStream, createWriteStream } from "node:fs";
 // lire un fichier de log en stream
 // jamais chargé entièrement en mémoire : chunk par chunk
 const reader = createReadStream("./logs/match.log", {
-  encoding: "utf-8",
-  highWaterMark: 64 * 1024, // taille des chunks : 64KB à la fois
+ encoding: "utf-8",
+ highWaterMark: 64 * 1024, // taille des chunks : 64KB à la fois
 });
 
 reader.on("data", (chunk) => {
-  // chunk = un morceau du fichier, pas le fichier entier
-  process.stdout.write(chunk);
+ // chunk = un morceau du fichier, pas le fichier entier
+ process.stdout.write(chunk);
 });
 
 reader.on("end", () => {
-  console.log("fichier lu complètement");
+ console.log("fichier lu complètement");
 });
 
 reader.on("error", (err) => {
-  // si le fichier n'existe pas, si les permissions manquent
-  console.error("erreur lecture :", err.message);
+ // si le fichier n'existe pas, si les permissions manquent
+ console.error("erreur lecture :", err.message);
 });
 ```
 
@@ -78,11 +78,11 @@ import { createGzip } from "node:zlib";
 // compresser un fichier de 500MB sans jamais le charger en mémoire
 // chaque chunk est lu --> compressé --> écrit immédiatement
 createReadStream("./replays/finale.mp4")
-  .pipe(createGzip()) // transform : compresse à la volée
-  .pipe(createWriteStream("./replays/finale.mp4.gz"))
-  .on("finish", () => {
-    console.log("compression terminée");
-  });
+ .pipe(createGzip()) // transform : compresse à la volée
+ .pipe(createWriteStream("./replays/finale.mp4.gz"))
+ .on("finish", () => {
+  console.log("compression terminée");
+ });
 
 // ce qui se passe en mémoire pendant l'opération :
 // pas 500MB:juste 64KB de buffer à la fois
@@ -100,18 +100,18 @@ import { createInterface } from "node:readline";
 // lire un fichier CSV ligne par ligne
 // sans jamais charger tout le CSV en mémoire
 async function processMatchStats(filepath) {
-  const stream = createReadStream(filepath);
-  const lines = createInterface({ input: stream });
+ const stream = createReadStream(filepath);
+ const lines = createInterface({ input: stream });
 
-  const results = [];
+ const results = [];
 
-  for await (const line of lines) {
-    // chaque ligne arrive une par une
-    const [joueur, buts, passes] = line.split(",");
-    results.push({ joueur, buts: +buts, passes: +passes });
-  }
+ for await (const line of lines) {
+  // chaque ligne arrive une par une
+  const [joueur, buts, passes] = line.split(",");
+  results.push({ joueur, buts: +buts, passes: +passes });
+ }
 
-  return results;
+ return results;
 }
 
 // sur un CSV de 1M de lignes : mémoire stable
@@ -129,21 +129,21 @@ const slowWriter = createWriteStream("./output.bin");
 
 // mauvaise version : on ignore le signal "stop"
 fastReader.on("data", (chunk) => {
-  slowWriter.write(chunk); // write() retourne false si le buffer est plein
-  // on ignore ça -> la mémoire explose
+ slowWriter.write(chunk); // write() retourne false si le buffer est plein
+ // on ignore ça -> la mémoire explose
 });
 
 // bonne version : on respecte la backpressure
 fastReader.on("data", (chunk) => {
-  const canContinue = slowWriter.write(chunk);
-  if (!canContinue) {
-    // le writer est saturé : on pause le reader
-    fastReader.pause();
-    slowWriter.once("drain", () => {
-      // le writer a vidé son buffer : on reprend
-      fastReader.resume();
-    });
-  }
+ const canContinue = slowWriter.write(chunk);
+ if (!canContinue) {
+  // le writer est saturé : on pause le reader
+  fastReader.pause();
+  slowWriter.once("drain", () => {
+   // le writer a vidé son buffer : on reprend
+   fastReader.resume();
+  });
+ }
 });
 
 // version encore plus simple : pipe() gère la backpressure automatiquement
@@ -161,21 +161,21 @@ import { Transform } from "node:stream";
 
 // un transformer qui compte les buts dans un flux de données de match
 class GoalCounter extends Transform {
-  constructor() {
-    super({ objectMode: true }); // on travaille avec des objets, pas des buffers
-    this.goals = 0;
-  }
+ constructor() {
+  super({ objectMode: true }); // on travaille avec des objets, pas des buffers
+  this.goals = 0;
+ }
 
-  _transform(event, encoding, callback) {
-    // event = un objet JS qui représente un event du match
-    if (event.type === "goal") {
-      this.goals++;
-      this.push({ ...event, totalGoals: this.goals }); // on enrichit et on passe
-    } else {
-      this.push(event); // on laisse passer sans modifier
-    }
-    callback(); // "j'ai fini, envoie le prochain chunk"
+ _transform(event, encoding, callback) {
+  // event = un objet JS qui représente un event du match
+  if (event.type === "goal") {
+   this.goals++;
+   this.push({ ...event, totalGoals: this.goals }); // on enrichit et on passe
+  } else {
+   this.push(event); // on laisse passer sans modifier
   }
+  callback(); // "j'ai fini, envoie le prochain chunk"
+ }
 }
 
 // usage
@@ -207,9 +207,9 @@ Ce code fonctionne sur un fichier de 10MB. Il crash sur un fichier de 2GB avec u
 import { readFile, writeFile } from "node:fs/promises";
 
 async function processLog(input, output) {
-  const content = await readFile(input, "utf-8");
-  const lines = content.split("\n").filter((l) => l.includes("ERROR"));
-  await writeFile(output, lines.join("\n"));
+ const content = await readFile(input, "utf-8");
+ const lines = content.split("\n").filter((l) => l.includes("ERROR"));
+ await writeFile(output, lines.join("\n"));
 }
 ```
 

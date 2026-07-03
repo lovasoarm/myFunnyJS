@@ -7,7 +7,7 @@ Le fichier 04 a montré que `this` dépend du call-site, et que ça casse facile
 
 ```js
 function presenter(village) {
-  return `${this.nom}, ninja du village ${village}`;
+ return `${this.nom}, ninja du village ${village}`;
 }
 
 const naruto = { nom: "Naruto" };
@@ -23,7 +23,7 @@ presenter.call(sasuke, "Konoha"); // "Sasuke, ninja du village Konoha"
 
 ```js
 function combo(technique1, technique2, technique3) {
-  return `${this.nom} enchaîne : ${technique1}, ${technique2}, ${technique3}`;
+ return `${this.nom} enchaîne : ${technique1}, ${technique2}, ${technique3}`;
 }
 
 const args = ["Rasengan", "Kage Bunshin", "Sennin Mode"];
@@ -45,23 +45,23 @@ setTimeout(presenterNaruto, 1000, "Konoha"); // marche, this reste figé même d
 `bind` ne lance rien tout de suite. Il retourne une nouvelle fonction, avec `this` figé une fois pour toutes. Tu peux la stocker, la passer en callback, la passer à `setTimeout`, le `this` ne se perdra plus jamais, contrairement au piège du fichier 04.
 
 ```
-call   -->  exécute MAINTENANT, this imposé, arguments listés
-apply  -->  exécute MAINTENANT, this imposé, arguments en tableau
-bind   -->  NE exécute RIEN, retourne une fonction avec this figé pour plus tard
+call  --> exécute MAINTENANT, this imposé, arguments listés
+apply --> exécute MAINTENANT, this imposé, arguments en tableau
+bind  --> NE exécute RIEN, retourne une fonction avec this figé pour plus tard
 ```
 
 ## 4) RÉSOUDRE LE BUG DU FICHIER 04 AVEC BIND
 
 ```js
 class Bouton {
-  constructor(nom) {
-    this.nom = nom;
-    this.onClick = this.onClick.bind(this); // figé une fois, dans le constructor
-  }
+ constructor(nom) {
+  this.nom = nom;
+  this.onClick = this.onClick.bind(this); // figé une fois, dans le constructor
+ }
 
-  onClick() {
-    console.log(`${this.nom} cliqué`);
-  }
+ onClick() {
+  console.log(`${this.nom} cliqué`);
+ }
 }
 
 const bouton = new Bouton("Activer le Rasengan");
@@ -74,7 +74,7 @@ C'était le pattern standard avant les arrow functions en propriété de classe 
 
 ```js
 const fixe = () => {
-  return this.nom; // arrow function : this déjà capturé du scope englobant
+ return this.nom; // arrow function : this déjà capturé du scope englobant
 };
 
 const truc = { nom: "ça ne marchera jamais" };
@@ -91,7 +91,7 @@ tentative(); // this ignore totalement truc, bind n'a aucun effet ici
 
 ```js
 function score(multiplicateur, bonus, nom) {
-  return `${nom} : ${this.base * multiplicateur + bonus} pts`
+ return `${nom} : ${this.base * multiplicateur + bonus} pts`
 }
 
 const naruto = { base: 100 }
@@ -100,15 +100,15 @@ const naruto = { base: 100 }
 const scoreKage = score.bind(naruto, 3, 50)
 // scoreKage attend maintenant juste un nom
 
-scoreKage("Naruto")  // "Naruto : 350 pts"  (100 * 3 + 50)
-scoreKage("Sasuke")  // "Sasuke : 350 pts"  (this.base toujours naruto.base)
+scoreKage("Naruto") // "Naruto : 350 pts" (100 * 3 + 50)
+scoreKage("Sasuke") // "Sasuke : 350 pts" (this.base toujours naruto.base)
 ```
 
 C'est de la partial application (application partielle : fixer une partie des arguments d'une fonction pour créer une version spécialisée). Vu en détail dans `11_functional_js/05_partial_application.md`. `bind` est l'implémentation native en JS, sans bibliothèque.
 
 ```
-fonction complete  :  fn(a, b, c)
-après bind(ctx, a) :  fn(b, c)         // a et this sont figés
+fonction complete : fn(a, b, c)
+après bind(ctx, a) : fn(b, c)     // a et this sont figés
 ```
 
 ## 7) `apply` AVEC DES TABLEAUX D'ARGUMENTS DYNAMIQUES
@@ -121,18 +121,18 @@ après bind(ctx, a) :  fn(b, c)         // a et this sont figés
 const scores = [42, 7, 95, 13, 88]
 
 // AVANT spread (ES5 et avant) : seul moyen était apply
-Math.max.apply(null, scores)  // 95 : null = this (Math.max ignore this)
+Math.max.apply(null, scores) // 95 : null = this (Math.max ignore this)
 
 // AUJOURD'HUI avec spread : plus lisible, même résultat
-Math.max(...scores)  // 95
+Math.max(...scores) // 95
 ```
 
 `apply` est largement remplacé par le spread `...` en 2026. Mais tu le croiseras dans tout code avant 2015, et dans certains contextes où le tableau est dynamique et inconnu à l'avance. Le comprendre permet de lire du code legacy sans chercher.
 
 ```
-call   -->  fn.call(ctx, arg1, arg2)        // arguments listés un par un
-apply  -->  fn.apply(ctx, [arg1, arg2])     // arguments dans un tableau
-spread -->  fn.call(ctx, ...[arg1, arg2])   // spread = apply moderne
+call  --> fn.call(ctx, arg1, arg2)    // arguments listés un par un
+apply --> fn.apply(ctx, [arg1, arg2])   // arguments dans un tableau
+spread --> fn.call(ctx, ...[arg1, arg2])  // spread = apply moderne
 ```
 
 ## 8) L'EXEMPLE QUI CASSE : DOUBLE BIND
@@ -144,17 +144,17 @@ const sasuke = { nom: "Sasuke" }
 function cri() { return this.nom }
 
 const criNaruto = cri.bind(naruto)
-const criSasuke = criNaruto.bind(sasuke)  // tenter de rebind une fonction déjà bindée
+const criSasuke = criNaruto.bind(sasuke) // tenter de rebind une fonction déjà bindée
 
-criSasuke()  // "Naruto" : bind ne peut pas être écrasé
+criSasuke() // "Naruto" : bind ne peut pas être écrasé
 ```
 
 Une fois `bind` appliqué, la fonction retournée a son `this` figé de façon permanente. Tenter de `bind` à nouveau cette fonction ne change rien : le deuxième `bind` est ignoré en silence. Même `call` et `apply` ne peuvent pas passer outre un `bind` déjà posé.
 
 ```
-criNaruto = cri.bind(naruto)        // this figé sur naruto
-criSasuke = criNaruto.bind(sasuke)  // bind ignoré : this reste naruto
-criSasuke.call(sasuke)              // call ignoré aussi : this reste naruto
+criNaruto = cri.bind(naruto)    // this figé sur naruto
+criSasuke = criNaruto.bind(sasuke) // bind ignoré : this reste naruto
+criSasuke.call(sasuke)       // call ignoré aussi : this reste naruto
 ```
 
 Le risque en prod : t'as une méthode déjà bindée quelque part (dans un constructor, dans un HOC React), tu essaies de la réutiliser avec un autre contexte, et elle se comporte différemment de ce que tu attends. Pas d'erreur, juste un `this` inattendu.

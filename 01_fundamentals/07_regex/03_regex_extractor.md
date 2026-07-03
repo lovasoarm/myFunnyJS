@@ -11,16 +11,16 @@ C'est là que les regex deviennent vraiment utiles. Et là que les gens se brûl
 
 ```js
 // sur les regex
-regex.test(str)     // boolean : ça matche ?
-regex.exec(str)     // array ou null : le premier match avec groupes
+regex.test(str)   // boolean : ça matche ?
+regex.exec(str)   // array ou null : le premier match avec groupes
 
 // sur les strings
-str.match(regex)    // array ou null : tous les matches (avec /g) ou le premier
+str.match(regex)  // array ou null : tous les matches (avec /g) ou le premier
 str.matchAll(regex) // iterator : tous les matches AVEC les groupes (nécessite /g)
-str.replace(regex, remplacement)   // remplace le premier match (ou tous avec /g)
-str.replaceAll(str, remplacement)  // string uniquement, pas de regex
-str.search(regex)   // index du premier match, ou -1
-str.split(regex)    // découpe sur le pattern
+str.replace(regex, remplacement)  // remplace le premier match (ou tous avec /g)
+str.replaceAll(str, remplacement) // string uniquement, pas de regex
+str.search(regex)  // index du premier match, ou -1
+str.split(regex)  // découpe sur le pattern
 ```
 
 ---
@@ -35,7 +35,7 @@ const regex = /(\w+) a (\d+) chakra/g
 
 let match
 while ((match = regex.exec(texte)) !== null) {
-  console.log(`${match[1]} : ${match[2]}`)
+ console.log(`${match[1]} : ${match[2]}`)
 }
 // Naruto : 9000
 // Sasuke : 8500
@@ -45,10 +45,10 @@ Piège avec `.exec()` stateful :
 
 ```js
 const regex = /\d+/g
-regex.exec("abc 123 def 456")  // ["123"]  lastIndex = 7
-regex.exec("abc 123 def 456")  // ["456"]  lastIndex = 11
-regex.exec("abc 123 def 456")  // null      lastIndex = 0 (reset)
-regex.exec("abc 123 def 456")  // ["123"]  ça recommence
+regex.exec("abc 123 def 456") // ["123"] lastIndex = 7
+regex.exec("abc 123 def 456") // ["456"] lastIndex = 11
+regex.exec("abc 123 def 456") // null   lastIndex = 0 (reset)
+regex.exec("abc 123 def 456") // ["123"] ça recommence
 ```
 
 Si tu réutilises la même regex entre plusieurs chaînes sans reset, `lastIndex` te donnera des résultats incorrects. Toujours créer une nouvelle regex instance, ou reset `regex.lastIndex = 0` manuellement.
@@ -70,16 +70,16 @@ const regex = /\[(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2})\] (\w+): (.+)/g
 const matches = [...log.matchAll(regex)]
 
 const erreurs = matches
-  .filter(m => m[3] === "ERROR")
-  .map(m => ({
-    date: m[1],
-    heure: m[2],
-    message: m[4]
-  }))
+ .filter(m => m[3] === "ERROR")
+ .map(m => ({
+  date: m[1],
+  heure: m[2],
+  message: m[4]
+ }))
 
 // [
-//   { date: "2024-04-01", heure: "08:23:11", message: "chakra insuffisant pour user naruto" },
-//   { date: "2024-04-01", heure: "10:15:02", message: "jutsu inconnu pour user sakura" }
+//  { date: "2024-04-01", heure: "08:23:11", message: "chakra insuffisant pour user naruto" },
+//  { date: "2024-04-01", heure: "10:15:02", message: "jutsu inconnu pour user sakura" }
 // ]
 ```
 
@@ -116,7 +116,7 @@ const texte = "le xG de Mbappé est 0.73 et le xG de Benzema est 0.81"
 
 // multiplier tous les xG par 100 pour avoir des pourcentages
 texte.replace(/\d+\.\d+/g, (match) => {
-  return (parseFloat(match) * 100).toFixed(0) + "%"
+ return (parseFloat(match) * 100).toFixed(0) + "%"
 })
 // "le xG de Mbappé est 73% et le xG de Benzema est 81%"
 ```
@@ -126,7 +126,7 @@ La fonction reçoit `(match, ...groupes, offset, chaîneComplète)`. Elle retour
 ```js
 // capitaliser chaque premier mot d'une phrase
 "naruto est fort. sasuke aussi.".replace(/(?<=^|\.)\s*([a-z])/g, (m, lettre) => {
-  return m.replace(lettre, lettre.toUpperCase())
+ return m.replace(lettre, lettre.toUpperCase())
 })
 // "Naruto est fort. Sasuke aussi."
 ```
@@ -139,7 +139,7 @@ La fonction reçoit `(match, ...groupes, offset, chaîneComplète)`. Elle retour
 
 ```js
 // découper sur un ou plusieurs espaces
-"Naruto  Sasuke   Sakura".split(/\s+/)
+"Naruto Sasuke  Sakura".split(/\s+/)
 // ["Naruto", "Sasuke", "Sakura"]
 
 // découper sur des virgules avec espaces optionnels
@@ -167,23 +167,23 @@ Une setlist de concert dans un format chaotique. On en fait un tableau d'objets.
 
 ```js
 const setlist = `
-  1. Money Trees - Kendrick Lamar   [4:37]
-  2. Cranes in the Sky- Solange[4:40]
-  3. Location - Khalid  [3:50]
+ 1. Money Trees - Kendrick Lamar  [4:37]
+ 2. Cranes in the Sky- Solange[4:40]
+ 3. Location - Khalid [3:50]
 `
 
 const ligneRegex = /^\s*\d+\.\s*(.+?)\s*-\s*(.+?)\s*\[(\d+:\d+)\]\s*$/gm
 
 const tracks = [...setlist.matchAll(ligneRegex)].map(m => ({
-  titre: m[1].trim(),
-  artiste: m[2].trim(),
-  duree: m[3]
+ titre: m[1].trim(),
+ artiste: m[2].trim(),
+ duree: m[3]
 }))
 
 // [
-//   { titre: "Money Trees", artiste: "Kendrick Lamar", duree: "4:37" },
-//   { titre: "Cranes in the Sky", artiste: "Solange", duree: "4:40" },
-//   { titre: "Location", artiste: "Khalid", duree: "3:50" }
+//  { titre: "Money Trees", artiste: "Kendrick Lamar", duree: "4:37" },
+//  { titre: "Cranes in the Sky", artiste: "Solange", duree: "4:40" },
+//  { titre: "Location", artiste: "Khalid", duree: "3:50" }
 // ]
 ```
 

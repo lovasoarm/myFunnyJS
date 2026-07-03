@@ -16,7 +16,7 @@ Sans tests, valider que ton code fonctionne veut dire le relancer manuellement, 
 ```js
 // calculeScore.js
 function calculeScore(kills, assists, deaths) {
-  return (kills * 3 + assists) / deaths
+ return (kills * 3 + assists) / deaths
 }
 
 // Ça marche.
@@ -42,25 +42,25 @@ Un test c'est une fonction qui :
 ```js
 // test brut, sans framework, juste pour voir
 function calculeScore(kills, assists, deaths) {
-  if (deaths === 0) return 0
-  return (kills * 3 + assists) / deaths
+ if (deaths === 0) return 0
+ return (kills * 3 + assists) / deaths
 }
 
 const resultat = calculeScore(10, 5, 2)
 const attendu = 12.5
 
 if (resultat !== attendu) {
-  console.error(`FAIL : attendu ${attendu}, reçu ${resultat}`)
+ console.error(`FAIL : attendu ${attendu}, reçu ${resultat}`)
 } else {
-  console.log('PASS : calculeScore fonctionne correctement')
+ console.log('PASS : calculeScore fonctionne correctement')
 }
 
 // test edge case
 const scoreZeroDeath = calculeScore(10, 5, 0)
 if (scoreZeroDeath !== 0) {
-  console.error(`FAIL : division par zéro mal gérée`)
+ console.error(`FAIL : division par zéro mal gérée`)
 } else {
-  console.log('PASS : division par zéro gérée')
+ console.log('PASS : division par zéro gérée')
 }
 ```
 
@@ -72,15 +72,15 @@ Les frameworks (Jest, Vitest) font exactement ça, mais avec de meilleures erreu
 ## 3) LES QUATRE TYPES DE TESTS : LA PYRAMIDE
 
 ```
-          /\
-         /  \   E2E (Playwright, Cypress)
-        /    \  lent, coûteux, réaliste
-       /------\
-      /        \  Intégration
-     /          \  plusieurs modules ensemble
-    /------------\
-   /              \  Unit tests
-  /                \  une fonction, isolée, rapide
+     /\
+     / \  E2E (Playwright, Cypress)
+    /  \ lent, coûteux, réaliste
+    /------\
+   /    \ Intégration
+   /     \ plusieurs modules ensemble
+  /------------\
+  /       \ Unit tests
+ /        \ une fonction, isolée, rapide
  /------------------\
 ```
 
@@ -92,11 +92,11 @@ Règle d'or : plus c'est en bas de la pyramide, plus t'en veux.
 Pourquoi ? Parce que les unit tests sont instantanés. Les E2E prennent des minutes. Si tout est E2E, tu passes ta vie à attendre.
 
 ```
-fonction de calcul métier       --> unit test      --> vérifie le résultat isolé
-plusieurs modules combinés      --> integration test --> vérifie l'interaction
-parcours shinobi complet    --> E2E test        --> simule un vrai usage
-appel à une API externe         --> mock           --> teste sans dépendre du réseau
-contrat entre deux services     --> contract test  --> garantit la compatibilité
+fonction de calcul métier    --> unit test   --> vérifie le résultat isolé
+plusieurs modules combinés   --> integration test --> vérifie l'interaction
+parcours shinobi complet  --> E2E test    --> simule un vrai usage
+appel à une API externe     --> mock      --> teste sans dépendre du réseau
+contrat entre deux services   --> contract test --> garantit la compatibilité
 ```
 
 ---
@@ -109,10 +109,10 @@ Dans `03_walking_dead_protocol`, le code du camp de Rick existe déjà. Il fonct
 
 ```
 Dev sans tests :
-  écriture --> "ça marche" --> push --> espoir --> bug en prod
+ écriture --> "ça marche" --> push --> espoir --> bug en prod
 
 Dev avec tests :
-  écriture --> test vert --> refacto --> test toujours vert --> push serein
+ écriture --> test vert --> refacto --> test toujours vert --> push serein
 ```
 
 ---

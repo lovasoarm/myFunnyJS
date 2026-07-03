@@ -1,7 +1,7 @@
 # LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 En local, une stack trace pointe directement sur ta ligne de code. En prod, elle pointe sur `main.a8f3c2.js:1:48291`. Une seule ligne. Minifiée. Sans le moindre nom de variable lisible. C'est le moment où la majorité des devs se sentent perdus, alors que c'est un exercice de lecture, pas de magie.
 
@@ -14,16 +14,16 @@ Pourquoi ça compte : Sentry, Datadog, ou n'importe quel outil de tracking d'err
 Trois transformations s'accumulent entre ton code et ce que tu vois en prod :
 
 ```
-ton code source            (lisible, noms explicites)
-      |
-      v   bundling (webpack/vite assemblent tout en un ou quelques fichiers)
-      |
-      v   minification (noms raccourcis, espaces supprimés, tout compacté)
-      |
-      v   transpilation (TS -> JS, syntaxe moderne -> compatible)
-      |
-      v
-ton code en prod            (main.a8f3c2.js, illisible)
+ton code source      (lisible, noms explicites)
+   |
+   v  bundling (webpack/vite assemblent tout en un ou quelques fichiers)
+   |
+   v  minification (noms raccourcis, espaces supprimés, tout compacté)
+   |
+   v  transpilation (TS -> JS, syntaxe moderne -> compatible)
+   |
+   v
+ton code en prod      (main.a8f3c2.js, illisible)
 ```
 
 Une fonction `calculerScoreFinal(historiqueMatchs)` peut devenir `function f(t){...}` après minification. Une stack trace pointant sur `f` à la ligne 1, colonne 48291, ne te dit rien tant que tu n'as pas de moyen de remonter vers l'original.
@@ -37,10 +37,10 @@ Une source map (`.map`) est un fichier qui contient la correspondance exacte ent
 ```json
 // extrait simplifié d'un fichier .map
 {
-  "version": 3,
-  "sources": ["src/combat/calculerScoreFinal.js"],
-  "names": ["calculerScoreFinal", "historiqueMatchs", "total"],
-  "mappings": "AAAA,SAASA,oBAAoBC,EAAkB..."
+ "version": 3,
+ "sources": ["src/combat/calculerScoreFinal.js"],
+ "names": ["calculerScoreFinal", "historiqueMatchs", "total"],
+ "mappings": "AAAA,SAASA,oBAAoBC,EAAkB..."
 }
 ```
 
@@ -64,8 +64,8 @@ Stratégie de repli, étape par étape :
 
 ```
 main.a8f3c2.js
-       ^^^^^^^
-       ce hash identifie EXACTEMENT quelle version a généré l'erreur
+    ^^^^^^^
+    ce hash identifie EXACTEMENT quelle version a généré l'erreur
 ```
 
 Ce hash n'est pas décoratif. Il garantit que tu regardes le bon code, même si 10 déploiements ont eu lieu depuis. Sans lui, tu pourrais analyser une version du code qui n'existe déjà plus.
@@ -85,10 +85,10 @@ Tu dois alors lire la trace minifiée directement. Trois indices exploitables m�
 
 ```
 TypeError: Cannot read properties of undefined (reading 'cd')
-    at f (main.a8f3c2.js:1:48291)
-    at Array.map (<anonymous>)
-    at h (main.a8f3c2.js:1:51022)
-    at main.a8f3c2.js:1:2104
+  at f (main.a8f3c2.js:1:48291)
+  at Array.map (<anonymous>)
+  at h (main.a8f3c2.js:1:51022)
+  at main.a8f3c2.js:1:2104
 ```
 
 1. **Le type d'erreur** (`Cannot read properties of undefined`) te dit déjà quelle catégorie de bug chercher, peu importe le nommage.
@@ -103,14 +103,14 @@ En architecture microservices, l'erreur que tu vois côté frontend n'est parfoi
 
 ```
 Frontend reçoit : "500 Internal Server Error"
-   |
-   v   chercher le traceId dans la requête réseau (header response)
-   |
-   v   rechercher ce traceId dans l'outil de tracing distribué
-   |
-Service API     [span: 45ms,  status: OK]
-Service Auth    [span: 12ms,  status: OK]
-Service Stock   [span: 890ms, status: ERROR]  <-- la vraie stack trace est ICI
+  |
+  v  chercher le traceId dans la requête réseau (header response)
+  |
+  v  rechercher ce traceId dans l'outil de tracing distribué
+  |
+Service API   [span: 45ms, status: OK]
+Service Auth  [span: 12ms, status: OK]
+Service Stock  [span: 890ms, status: ERROR] <-- la vraie stack trace est ICI
 ```
 
 La stack trace utile n'est pas toujours celle que tu as sous les yeux en premier. Le réflexe correct : remonter au `traceId`, retrouver le service qui a réellement planté, et lire SA stack trace à lui, pas celle du service qui a juste relayé l'échec.
@@ -122,10 +122,10 @@ La stack trace utile n'est pas toujours celle que tu as sous les yeux en premier
 Tout ce drill suppose une chose : que les bonnes pratiques ont été posées en amont. Sans elles, même un dev qui sait lire une stack trace est bloqué.
 
 ```
-source maps uploadées en privé à chaque build  --> permet la traduction même après coup
-release/version taguée dans l'outil d'erreurs  --> sait quel commit a généré le crash
-traceId propagé entre tous les services        --> permet de remonter jusqu'au vrai coupable
-breadcrumbs activés (actions avant le crash)   --> donne le contexte sans avoir à reproduire
+source maps uploadées en privé à chaque build --> permet la traduction même après coup
+release/version taguée dans l'outil d'erreurs --> sait quel commit a généré le crash
+traceId propagé entre tous les services    --> permet de remonter jusqu'au vrai coupable
+breadcrumbs activés (actions avant le crash)  --> donne le contexte sans avoir à reproduire
 ```
 
 Si aucune de ces quatre choses n'existe, debugger une stack trace de prod devient de la divination plutôt que de l'investigation.
@@ -140,9 +140,9 @@ Voici une stack trace reçue dans Sentry, sans source map disponible (build trop
 
 ```
 TypeError: t.find is not a function
-    at e (vendor.bf821a.js:1:9442)
-    at r (main.bf821a.js:1:2891)
-    at HTMLButtonElement.onclick (main.bf821a.js:1:3017)
+  at e (vendor.bf821a.js:1:9442)
+  at r (main.bf821a.js:1:2891)
+  at HTMLButtonElement.onclick (main.bf821a.js:1:3017)
 ```
 
 (indice : `.find` n'existe que sur les tableaux, jamais sur les objets simples)
@@ -154,9 +154,9 @@ Le dashboard live de `ultras_dashboard` reçoit une erreur 500 côté frontend. 
 ```
 traceId: a8f2-91c4-...
 
-Frontend Gateway   [span: 1840ms, status: ERROR, message: "upstream timeout"]
-  └── Service Events   [span: 1820ms, status: ERROR, message: "Redis connection refused"]
-       └── Redis        [span: -, status: DOWN]
+Frontend Gateway  [span: 1840ms, status: ERROR, message: "upstream timeout"]
+ └── Service Events  [span: 1820ms, status: ERROR, message: "Redis connection refused"]
+    └── Redis    [span: -, status: DOWN]
 ```
 
 ---

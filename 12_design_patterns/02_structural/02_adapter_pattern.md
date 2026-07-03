@@ -18,31 +18,31 @@ En prod : intégrations third-party, migration de legacy, unification de sources
 ```js
 // source 1 : ancienne API du camp (Walking Dead, v1)
 const legacyAPI = {
-  getSurvivor: (id) => ({
-    survivor_id: id,
-    full_name: "Rick Grimes",
-    supply_count: 42,
-    threat_level: "HIGH"
-  })
+ getSurvivor: (id) => ({
+  survivor_id: id,
+  full_name: "Rick Grimes",
+  supply_count: 42,
+  threat_level: "HIGH"
+ })
 }
 
 // source 2 : nouvelle API
 const newAPI = {
-  getSurvivor: (id) => ({
-    id,
-    name: { first: "Rick", last: "Grimes" },
-    supplies: { food: 20, ammo: 22 },
-    threat: { level: 3, label: "HIGH" }
-  })
+ getSurvivor: (id) => ({
+  id,
+  name: { first: "Rick", last: "Grimes" },
+  supplies: { food: 20, ammo: 22 },
+  threat: { level: 3, label: "HIGH" }
+ })
 }
 
 // ton code interne attend ce format
 function processSurvivor(survivor) {
-  // survivor.id
-  // survivor.name
-  // survivor.supplies
-  // survivor.threat
-  console.log(`Processing ${survivor.name}, supplies: ${survivor.supplies}`)
+ // survivor.id
+ // survivor.name
+ // survivor.supplies
+ // survivor.threat
+ console.log(`Processing ${survivor.name}, supplies: ${survivor.supplies}`)
 }
 
 // sans adapter : tu dois tout dupliquer ou tout conditionner
@@ -56,40 +56,40 @@ function processSurvivor(survivor) {
 ```js
 // Adapter pour l'ancienne API
 function adaptLegacySurvivor(legacySurvivor) {
-  return {
-    id: legacySurvivor.survivor_id,
-    name: legacySurvivor.full_name,          // on simplifie : string plat
-    supplies: legacySurvivor.supply_count,    // on normalise le nom
-    threat: legacySurvivor.threat_level       // on normalise le nom
-  }
+ return {
+  id: legacySurvivor.survivor_id,
+  name: legacySurvivor.full_name,     // on simplifie : string plat
+  supplies: legacySurvivor.supply_count,  // on normalise le nom
+  threat: legacySurvivor.threat_level    // on normalise le nom
+ }
 }
 
 // Adapter pour la nouvelle API
 function adaptNewSurvivor(newSurvivor) {
-  return {
-    id: newSurvivor.id,
-    name: `${newSurvivor.name.first} ${newSurvivor.name.last}`,
-    supplies: newSurvivor.supplies.food + newSurvivor.supplies.ammo,
-    threat: newSurvivor.threat.label
-  }
+ return {
+  id: newSurvivor.id,
+  name: `${newSurvivor.name.first} ${newSurvivor.name.last}`,
+  supplies: newSurvivor.supplies.food + newSurvivor.supplies.ammo,
+  threat: newSurvivor.threat.label
+ }
 }
 
 // ton code interne ne sait pas d'où vient la donnée
 const survivor1 = adaptLegacySurvivor(legacyAPI.getSurvivor("rick"))
 const survivor2 = adaptNewSurvivor(newAPI.getSurvivor("rick"))
 
-processSurvivor(survivor1)  // même fonction, deux sources
+processSurvivor(survivor1) // même fonction, deux sources
 processSurvivor(survivor2)
 ```
 
 Diagramme :
 
 ```
-legacyAPI.getSurvivor()  -->  adaptLegacySurvivor()  -->  processSurvivor()
-                                        |
-                                  [traduction]
-                                        |
-newAPI.getSurvivor()     -->  adaptNewSurvivor()     -->  processSurvivor()
+legacyAPI.getSurvivor() --> adaptLegacySurvivor() --> processSurvivor()
+                    |
+                 [traduction]
+                    |
+newAPI.getSurvivor()   --> adaptNewSurvivor()   --> processSurvivor()
 ```
 
 ---
@@ -102,76 +102,76 @@ Quand l'interface à adapter est complexe, une classe Adapter est plus lisible.
 // l'interface que ton code attend : un "lecteur de stats de match"
 // chaque méthode retourne un format normalisé
 class MatchStatsReader {
-  getScore() { throw new Error("not implemented") }
-  getTopScorer() { throw new Error("not implemented") }
-  getFormation() { throw new Error("not implemented") }
+ getScore() { throw new Error("not implemented") }
+ getTopScorer() { throw new Error("not implemented") }
+ getFormation() { throw new Error("not implemented") }
 }
 
 // source externe 1 : API Opta (format XML-like objet)
 class OptaAPI {
-  constructor(matchData) { this.data = matchData }
-  fetchScore() { return `${this.data.home_goals}-${this.data.away_goals}` }
-  fetchTopPerformer() { return this.data.best_player }
-  fetchTacticalSetup() { return this.data.formation_code }
+ constructor(matchData) { this.data = matchData }
+ fetchScore() { return `${this.data.home_goals}-${this.data.away_goals}` }
+ fetchTopPerformer() { return this.data.best_player }
+ fetchTacticalSetup() { return this.data.formation_code }
 }
 
 // source externe 2 : API StatsBomb (format totalement différent)
 class StatsBombAPI {
-  constructor(matchData) { this.data = matchData }
-  getResult() { return { home: this.data.score[0], away: this.data.score[1] } }
-  getMVP() { return this.data.players.find(p => p.rating === Math.max(...this.data.players.map(p => p.rating))) }
-  getTactics() { return this.data.tactics.formation }
+ constructor(matchData) { this.data = matchData }
+ getResult() { return { home: this.data.score[0], away: this.data.score[1] } }
+ getMVP() { return this.data.players.find(p => p.rating === Math.max(...this.data.players.map(p => p.rating))) }
+ getTactics() { return this.data.tactics.formation }
 }
 
 // Adapter 1 : brancher OptaAPI sur l'interface attendue
 class OptaAdapter extends MatchStatsReader {
-  constructor(optaAPI) {
-    super()
-    this.opta = optaAPI   // on contient l'original, on ne l'hérite pas
-  }
+ constructor(optaAPI) {
+  super()
+  this.opta = optaAPI  // on contient l'original, on ne l'hérite pas
+ }
 
-  getScore() {
-    // opta retourne "2-1" : on parse
-    const [home, away] = this.opta.fetchScore().split("-").map(Number)
-    return { home, away }
-  }
+ getScore() {
+  // opta retourne "2-1" : on parse
+  const [home, away] = this.opta.fetchScore().split("-").map(Number)
+  return { home, away }
+ }
 
-  getTopScorer() {
-    return { name: this.opta.fetchTopPerformer() }
-  }
+ getTopScorer() {
+  return { name: this.opta.fetchTopPerformer() }
+ }
 
-  getFormation() {
-    return this.opta.fetchTacticalSetup()
-  }
+ getFormation() {
+  return this.opta.fetchTacticalSetup()
+ }
 }
 
 // Adapter 2 : brancher StatsBombAPI sur la même interface
 class StatsBombAdapter extends MatchStatsReader {
-  constructor(statsBombAPI) {
-    super()
-    this.sb = statsBombAPI
-  }
+ constructor(statsBombAPI) {
+  super()
+  this.sb = statsBombAPI
+ }
 
-  getScore() {
-    return this.sb.getResult()   // déjà au bon format
-  }
+ getScore() {
+  return this.sb.getResult()  // déjà au bon format
+ }
 
-  getTopScorer() {
-    const mvp = this.sb.getMVP()
-    return { name: mvp.name }   // on normalise la structure
-  }
+ getTopScorer() {
+  const mvp = this.sb.getMVP()
+  return { name: mvp.name }  // on normalise la structure
+ }
 
-  getFormation() {
-    return this.sb.getTactics()
-  }
+ getFormation() {
+  return this.sb.getTactics()
+ }
 }
 
 // code qui utilise l'interface normalisée : ne sait rien des sources
 function displayMatchSummary(statsReader) {
-  const score = statsReader.getScore()
-  const top = statsReader.getTopScorer()
-  console.log(`Score: ${score.home}-${score.away}`)
-  console.log(`MVP: ${top.name}`)
+ const score = statsReader.getScore()
+ const top = statsReader.getTopScorer()
+ console.log(`Score: ${score.home}-${score.away}`)
+ console.log(`MVP: ${top.name}`)
 }
 
 // on peut passer n'importe quel Adapter
@@ -179,9 +179,9 @@ const optaMatch = new OptaAPI({ home_goals: 2, away_goals: 1, best_player: "Mess
 displayMatchSummary(new OptaAdapter(optaMatch))
 
 const sbMatch = new StatsBombAPI({
-  score: [2, 1],
-  players: [{ name: "Messi", rating: 9.2 }, { name: "Ronaldo", rating: 8.1 }],
-  tactics: { formation: "4-3-3" }
+ score: [2, 1],
+ players: [{ name: "Messi", rating: 9.2 }, { name: "Ronaldo", rating: 8.1 }],
+ tactics: { formation: "4-3-3" }
 })
 displayMatchSummary(new StatsBombAdapter(sbMatch))
 ```
@@ -200,41 +200,41 @@ Parfois les données doivent aller dans les deux sens : lire *et* écrire vers u
 // { id, name, pos, value_EUR }
 
 class PlayerAPIAdapter {
-  constructor(externalAPI) {
-    this.api = externalAPI
-  }
+ constructor(externalAPI) {
+  this.api = externalAPI
+ }
 
-  // externe --> interne
-  toInternal(externalPlayer) {
-    const [firstName, ...rest] = externalPlayer.name.split(" ")
-    return {
-      playerId: externalPlayer.id,
-      firstName,
-      lastName: rest.join(" "),
-      position: externalPlayer.pos,
-      marketValue: externalPlayer.value_EUR
-    }
+ // externe --> interne
+ toInternal(externalPlayer) {
+  const [firstName, ...rest] = externalPlayer.name.split(" ")
+  return {
+   playerId: externalPlayer.id,
+   firstName,
+   lastName: rest.join(" "),
+   position: externalPlayer.pos,
+   marketValue: externalPlayer.value_EUR
   }
+ }
 
-  // interne --> externe (pour les writes)
-  toExternal(internalPlayer) {
-    return {
-      id: internalPlayer.playerId,
-      name: `${internalPlayer.firstName} ${internalPlayer.lastName}`,
-      pos: internalPlayer.position,
-      value_EUR: internalPlayer.marketValue
-    }
+ // interne --> externe (pour les writes)
+ toExternal(internalPlayer) {
+  return {
+   id: internalPlayer.playerId,
+   name: `${internalPlayer.firstName} ${internalPlayer.lastName}`,
+   pos: internalPlayer.position,
+   value_EUR: internalPlayer.marketValue
   }
+ }
 
-  async getPlayer(id) {
-    const raw = await this.api.fetch(id)
-    return this.toInternal(raw)    // retourne toujours le format interne
-  }
+ async getPlayer(id) {
+  const raw = await this.api.fetch(id)
+  return this.toInternal(raw)  // retourne toujours le format interne
+ }
 
-  async savePlayer(player) {
-    const adapted = this.toExternal(player)   // traduit avant d'envoyer
-    return this.api.save(adapted)
-  }
+ async savePlayer(player) {
+  const adapted = this.toExternal(player)  // traduit avant d'envoyer
+  return this.api.save(adapted)
+ }
 }
 ```
 
@@ -246,12 +246,12 @@ Les deux wrappent une interface. La différence :
 
 ```
 Adapter : traduit une interface A vers une interface B
-          "je parle ton langage à toi"
-          l'interface de sortie est imposée par ton code
+     "je parle ton langage à toi"
+     l'interface de sortie est imposée par ton code
 
-Facade  : simplifie un système complexe en cachant ses détails
-          "je cache la complexité pour toi"
-          l'interface de sortie, c'est toi qui la décides
+Facade : simplifie un système complexe en cachant ses détails
+     "je cache la complexité pour toi"
+     l'interface de sortie, c'est toi qui la décides
 ```
 
 ```js
@@ -299,21 +299,21 @@ Cet Adapter est censé normaliser des données de joueurs. Pourquoi `displayPlay
 
 ```js
 function adaptPlayer(rawPlayer) {
-  return {
-    id: rawPlayer.player_id,
-    name: rawPlayer.fullName,
-    goals: rawPlayer.stats.goals
-  }
+ return {
+  id: rawPlayer.player_id,
+  name: rawPlayer.fullName,
+  goals: rawPlayer.stats.goals
+ }
 }
 
 function displayPlayer(player) {
-  console.log(`${player.name} : ${player.goals} buts`)
+ console.log(`${player.name} : ${player.goals} buts`)
 }
 
 const raw = {
-  player_id: 10,
-  full_name: "Lionel Messi",   // oups
-  stats: { scored: 672 }       // oups
+ player_id: 10,
+ full_name: "Lionel Messi",  // oups
+ stats: { scored: 672 }    // oups
 }
 
 displayPlayer(adaptPlayer(raw))

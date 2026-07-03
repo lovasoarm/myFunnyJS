@@ -47,7 +47,7 @@ Le Worker Thread du `threatSimulator` a un comportement différent selon qu'il t
 - Un vrai système de permissions sur les ordres_mission CLI (qui peut faire un reset ?)
 - Historique des consommations avec graphique en ASCII dans le terminal
 - Synchroniser plusieurs instances du CLI sur le même fichier sans race condition
-  (actuellement, deux exécutions simultanées du CLI peuvent se piétiner sur fileStore)
+ (actuellement, deux exécutions simultanées du CLI peuvent se piétiner sur fileStore)
 ```
 
 Ce dernier point n'était pas dans le scope : le cahier des charges ne demande pas de gestion de concurrence multi-process, et l'ajouter aurait dépassé largement les modules couverts (04, 11, 14, 31).

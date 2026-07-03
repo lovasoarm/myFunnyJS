@@ -1,7 +1,7 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~14 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
@@ -65,9 +65,9 @@ const InputSchema = z.object({ /* ... */ })
 const OutputSchema = z.object({ /* ... */ })
 
 async function traiterModule(raw: unknown) {
-  const input = InputSchema.parse(raw)          // valide l'entrée
-  const result = await logiqueMetier(input)     // logique
-  return OutputSchema.parse(result)             // valide la sortie
+ const input = InputSchema.parse(raw)     // valide l'entrée
+ const result = await logiqueMetier(input)   // logique
+ return OutputSchema.parse(result)       // valide la sortie
 }
 ```
 
@@ -76,10 +76,10 @@ async function traiterModule(raw: unknown) {
 ```js
 // Appel LLM --> nettoyage --> parse JSON --> validation Zod --> utilisation
 async function appellerOracleStructure<T>(prompt: string, schema: z.ZodType<T>): Promise<T> {
-  const raw = await appellerLLM(prompt)
-  const nettoye = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
-  const parse = JSON.parse(nettoye)
-  return schema.parse(parse)
+ const raw = await appellerLLM(prompt)
+ const nettoye = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
+ const parse = JSON.parse(nettoye)
+ return schema.parse(parse)
 }
 ```
 
@@ -100,8 +100,8 @@ async function appellerOracleStructure<T>(prompt: string, schema: z.ZodType<T>):
 
 ```
 écrire les tests --> npm test (tous passent) --> npx stryker run
-  --> identifier les mutants survivants --> renforcer les tests sur ces cas
-  --> re-run Stryker --> score > 85% --> commit
+ --> identifier les mutants survivants --> renforcer les tests sur ces cas
+ --> re-run Stryker --> score > 85% --> commit
 ```
 
 ---
@@ -110,34 +110,34 @@ async function appellerOracleStructure<T>(prompt: string, schema: z.ZodType<T>):
 
 ```
 PIÈGE 1 : Copier-coller sans lire
-  Le code compile. Le test manque les edge cases.
-  L'erreur arrive en prod à 3h du matin.
-  Fix : tu lis chaque ligne avant d'intégrer.
+ Le code compile. Le test manque les edge cases.
+ L'erreur arrive en prod à 3h du matin.
+ Fix : tu lis chaque ligne avant d'intégrer.
 
 PIÈGE 2 : Les tests circulaires
-  L'IA génère des tests depuis le code, pas depuis la spec.
-  Les tests passent même si la logique est fausse.
-  Fix : prompt depuis la spécification, pas depuis l'implémentation.
+ L'IA génère des tests depuis le code, pas depuis la spec.
+ Les tests passent même si la logique est fausse.
+ Fix : prompt depuis la spécification, pas depuis l'implémentation.
 
 PIÈGE 3 : Le secret dans le prompt
-  Tu colles ta clé API, ton schéma DB, des données sensibles dans un prompt envoyé à un LLM externe.
-  Fix : AI_CONTEXT.md sans données sensibles. Variables d'environnement jamais dans les prompts.
+ Tu colles ta clé API, ton schéma DB, des données sensibles dans un prompt envoyé à un LLM externe.
+ Fix : AI_CONTEXT.md sans données sensibles. Variables d'environnement jamais dans les prompts.
 
 PIÈGE 4 : L'hallucination d'API
-  L'IA utilise fs.promises.readFileSync (n'existe pas : c'est soit fs.readFileSync soit fs.promises.readFile).
-  Fix : tu vérifies la doc pour toute fonction que tu ne connais pas.
+ L'IA utilise fs.promises.readFileSync (n'existe pas : c'est soit fs.readFileSync soit fs.promises.readFile).
+ Fix : tu vérifies la doc pour toute fonction que tu ne connais pas.
 
 PIÈGE 5 : Le refactoring silencieux
-  L'IA "améliore" une fonction et change silencieusement un comportement edge.
-  Fix : tests avant refactoring. Toujours. Sans exception.
+ L'IA "améliore" une fonction et change silencieusement un comportement edge.
+ Fix : tests avant refactoring. Toujours. Sans exception.
 
 PIÈGE 6 : La dépendance cognitive
-  Tu n'écris plus rien sans l'IA. Tu ne sais plus debugger sans elle.
-  Fix : pratique régulière sans IA. MyFunnyJS sans l'IA pour tous les exercices des modules précédents.
+ Tu n'écris plus rien sans l'IA. Tu ne sais plus debugger sans elle.
+ Fix : pratique régulière sans IA. MyFunnyJS sans l'IA pour tous les exercices des modules précédents.
 
 PIÈGE 7 : La couverture trompeuse
-  Jest dit 95% de couverture. Stryker dit 40% de mutation score.
-  Fix : couverture + mutation testing. Les deux ensemble.
+ Jest dit 95% de couverture. Stryker dit 40% de mutation score.
+ Fix : couverture + mutation testing. Les deux ensemble.
 ```
 
 ---
@@ -145,24 +145,24 @@ PIÈGE 7 : La couverture trompeuse
 ## OUTILS DU MODULE
 
 ```
-Zod                 -->  validation de schema TS runtime
-                         npm install zod
+Zod         --> validation de schema TS runtime
+             npm install zod
 
-Stryker             -->  mutation testing
-                         npm install --save-dev @stryker-mutator/core
+Stryker       --> mutation testing
+             npm install --save-dev @stryker-mutator/core
 
-ts-jest             -->  Jest avec TypeScript
-                         npm install --save-dev ts-jest @types/jest
+ts-jest       --> Jest avec TypeScript
+             npm install --save-dev ts-jest @types/jest
 
-Anthropic SDK       -->  appel API Claude propre depuis Node.js
-                         npm install @anthropic-ai/sdk
+Anthropic SDK    --> appel API Claude propre depuis Node.js
+             npm install @anthropic-ai/sdk
 
-LangChain.js        -->  framework pour pipelines LLM complexes (RAG, agents)
-                         npm install langchain
-                         (à utiliser seulement si un appel direct est insuffisant)
+LangChain.js    --> framework pour pipelines LLM complexes (RAG, agents)
+             npm install langchain
+             (à utiliser seulement si un appel direct est insuffisant)
 
-Ollama              -->  LLM en local : aucun token envoyé à l'extérieur
-                         ollama.com - pour les données sensibles ou offline
+Ollama       --> LLM en local : aucun token envoyé à l'extérieur
+             ollama.com - pour les données sensibles ou offline
 ```
 
 ---
@@ -186,22 +186,22 @@ Ollama              -->  LLM en local : aucun token envoyé à l'extérieur
 
 ```
 NIVEAU 1 : Shinobi
-  Copie-colle. Ne lit pas. Ça marche jusqu'à ce que ça casse. T-Bag qui suit le plan de Michael.
+ Copie-colle. Ne lit pas. Ça marche jusqu'à ce que ça casse. T-Bag qui suit le plan de Michael.
 
 NIVEAU 2 : Conscient
-  Lit le code. Comprend ce qui est généré. Corrige les red flags évidents.
+ Lit le code. Comprend ce qui est généré. Corrige les red flags évidents.
 
 NIVEAU 3 : Structuré
-  Prompt depuis des specs. Valide avec Zod. Écrit des tests additionnels.
+ Prompt depuis des specs. Valide avec Zod. Écrit des tests additionnels.
 
 NIVEAU 4 : Partenaire
-  Utilise l'IA comme sparring partner. La challenge. Arbitre entre ses propositions.
-  Sait quand ne pas lui faire confiance. Michael Scofield avec son plan.
+ Utilise l'IA comme sparring partner. La challenge. Arbitre entre ses propositions.
+ Sait quand ne pas lui faire confiance. Michael Scofield avec son plan.
 
 NIVEAU 5 : Architecte
-  Conçoit des pipelines LLM complets avec validation, monitoring, fallbacks.
-  Comprend les limites de chaque modèle. Prend des décisions d'architecture informées.
-  Kakashi qui calibre l'équipe selon la mission.
+ Conçoit des pipelines LLM complets avec validation, monitoring, fallbacks.
+ Comprend les limites de chaque modèle. Prend des décisions d'architecture informées.
+ Kakashi qui calibre l'équipe selon la mission.
 ```
 
 L'objectif de ce module : niveau 4. Niveau 5 vient avec l'expérience en prod.

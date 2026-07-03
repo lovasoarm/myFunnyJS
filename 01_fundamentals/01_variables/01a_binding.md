@@ -7,8 +7,8 @@ Avant de lancer un Rasengan, faut savoir canaliser ton chakra. Une variable, c'e
 
 ```
 let ninja = "Naruto"
-    ^^^^^   ^^^^^^^^
-    nom     valeur en mémoire
+  ^^^^^  ^^^^^^^^
+  nom   valeur en mémoire
 ```
 
 Le `=` n'est pas "égal". C'est "colle ce nom à cette valeur". Retiens ça, tu viens de sauver 2 ans de bugs.

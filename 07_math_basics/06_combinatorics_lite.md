@@ -20,31 +20,31 @@ n éléments, toutes les permutations = n! (factorielle)
 3 éléments : 3! = 6
 4 éléments : 4! = 24
 10 éléments : 10! = 3 628 800
-20 éléments : 20! = 2.4 × 10^18   <- jamais énumérer ça
+20 éléments : 20! = 2.4 × 10^18  <- jamais énumérer ça
 ```
 
 ```js
 // générer toutes les permutations d'un tableau (backtracking)
 function permutations(arr) {
-  const results = []
+ const results = []
 
-  function backtrack(current, remaining) {
-    // cas de base : plus rien à choisir, on a une permutation complète
-    if (remaining.length === 0) {
-      results.push([...current])
-      return
-    }
-
-    for (let i = 0; i < remaining.length; i++) {
-      current.push(remaining[i])
-      // les éléments restants = tout sauf celui qu'on vient de prendre
-      backtrack(current, [...remaining.slice(0, i), ...remaining.slice(i + 1)])
-      current.pop()  // on revient en arrière pour essayer le suivant
-    }
+ function backtrack(current, remaining) {
+  // cas de base : plus rien à choisir, on a une permutation complète
+  if (remaining.length === 0) {
+   results.push([...current])
+   return
   }
 
-  backtrack([], arr)
-  return results
+  for (let i = 0; i < remaining.length; i++) {
+   current.push(remaining[i])
+   // les éléments restants = tout sauf celui qu'on vient de prendre
+   backtrack(current, [...remaining.slice(0, i), ...remaining.slice(i + 1)])
+   current.pop() // on revient en arrière pour essayer le suivant
+  }
+ }
+
+ backtrack([], arr)
+ return results
 }
 
 permutations(["A", "B", "C"])
@@ -54,13 +54,13 @@ permutations(["A", "B", "C"])
 
 **Diagramme de l'arbre de backtracking :**
 ```
-                   []
-          /         |         \
-        [A]        [B]        [C]
-       /   \      /   \      /   \
-    [A,B] [A,C] [B,A] [B,C] [C,A] [C,B]
-     |      |    |      |    |      |
-   [A,B,C][A,C,B][B,A,C][B,C,A][C,A,B][C,B,A]
+          []
+     /     |     \
+    [A]    [B]    [C]
+    /  \   /  \   /  \
+  [A,B] [A,C] [B,A] [B,C] [C,A] [C,B]
+   |   |  |   |  |   |
+  [A,B,C][A,C,B][B,A,C][B,C,A][C,A,B][C,B,A]
 ```
 
 ---
@@ -74,54 +74,54 @@ Choisir k parmi n = C(n, k) = n! / (k! × (n-k)!)
 
 C(5, 2) = 5! / (2! × 3!) = 10
 C(10, 3) = 120
-C(52, 5) = 2 598 960  <- nombre de mains de poker possibles
+C(52, 5) = 2 598 960 <- nombre de mains de poker possibles
 ```
 
 ```js
 // C(n, k) sans calculer les factorielles (évite les overflow)
 function combinations(n, k) {
-  if (k > n) return 0
-  if (k === 0 || k === n) return 1
+ if (k > n) return 0
+ if (k === 0 || k === n) return 1
 
-  // optimisation : C(n,k) = C(n, n-k) --> prendre le k le plus petit
-  k = Math.min(k, n - k)
+ // optimisation : C(n,k) = C(n, n-k) --> prendre le k le plus petit
+ k = Math.min(k, n - k)
 
-  let result = 1
-  for (let i = 0; i < k; i++) {
-    result = result * (n - i) / (i + 1)
-  }
-  return Math.round(result)
+ let result = 1
+ for (let i = 0; i < k; i++) {
+  result = result * (n - i) / (i + 1)
+ }
+ return Math.round(result)
 }
 
-combinations(5, 2)   // 10
-combinations(52, 5)  // 2598960
+combinations(5, 2)  // 10
+combinations(52, 5) // 2598960
 ```
 
 **Générer les combinaisons (pas juste les compter) :**
 ```js
 function chooseCombinations(arr, k) {
-  const results = []
+ const results = []
 
-  function backtrack(start, current) {
-    if (current.length === k) {
-      results.push([...current])
-      return
-    }
-
-    for (let i = start; i < arr.length; i++) {
-      current.push(arr[i])
-      backtrack(i + 1, current)  // i+1 : on ne reprend jamais un élément déjà pris
-      current.pop()
-    }
+ function backtrack(start, current) {
+  if (current.length === k) {
+   results.push([...current])
+   return
   }
 
-  backtrack(0, [])
-  return results
+  for (let i = start; i < arr.length; i++) {
+   current.push(arr[i])
+   backtrack(i + 1, current) // i+1 : on ne reprend jamais un élément déjà pris
+   current.pop()
+  }
+ }
+
+ backtrack(0, [])
+ return results
 }
 
 chooseCombinations(["Naruto", "Sasuke", "Sakura", "Kakashi"], 2)
 // [["Naruto","Sasuke"], ["Naruto","Sakura"], ["Naruto","Kakashi"],
-//  ["Sasuke","Sakura"], ["Sasuke","Kakashi"], ["Sakura","Kakashi"]]
+// ["Sasuke","Sakura"], ["Sasuke","Kakashi"], ["Sakura","Kakashi"]]
 // C(4,2) = 6 équipes possibles
 ```
 
@@ -142,10 +142,10 @@ Exemple : mot de passe 8 caractères, alphabet de 62 chars (a-z, A-Z, 0-9)
 ```js
 // estimer l'espace de recherche avant de bruteforcer
 function searchSpace(alphabet, length) {
-  return Math.pow(alphabet.length, length)
+ return Math.pow(alphabet.length, length)
 }
 
-searchSpace("abcdefghijklmnopqrstuvwxyz", 6)  // 308 915 776
+searchSpace("abcdefghijklmnopqrstuvwxyz", 6) // 308 915 776
 // à 1M tentatives/seconde : 308 secondes
 // donc bruteforce de 6 chars lowercase : faisable
 
@@ -157,15 +157,15 @@ searchSpace("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$"
 **Application directe : valider la sécurité d'un token**
 ```js
 function estimateBruteforceTime(charset, length, attemptsPerSecond = 1e9) {
-  const space = BigInt(charset.length) ** BigInt(length)
-  const seconds = space / BigInt(attemptsPerSecond)
-  const years = seconds / BigInt(31_536_000)
-  return { space: space.toString(), estimatedYears: years.toString() }
+ const space = BigInt(charset.length) ** BigInt(length)
+ const seconds = space / BigInt(attemptsPerSecond)
+ const years = seconds / BigInt(31_536_000)
+ return { space: space.toString(), estimatedYears: years.toString() }
 }
 
 estimateBruteforceTime("0123456789abcdef", 32, 1e12)
 // space : "3.4 × 10^38"
-// estimatedYears : "10^19"  <- t'as le temps
+// estimatedYears : "10^19" <- t'as le temps
 ```
 
 ---
@@ -184,20 +184,20 @@ n éléments --> 2^n sous-ensembles
 ```js
 // approche backtracking
 function subsets(arr) {
-  const results = []
+ const results = []
 
-  function backtrack(start, current) {
-    results.push([...current])  // chaque état intermédiaire est un subset valide
+ function backtrack(start, current) {
+  results.push([...current]) // chaque état intermédiaire est un subset valide
 
-    for (let i = start; i < arr.length; i++) {
-      current.push(arr[i])
-      backtrack(i + 1, current)
-      current.pop()
-    }
+  for (let i = start; i < arr.length; i++) {
+   current.push(arr[i])
+   backtrack(i + 1, current)
+   current.pop()
   }
+ }
 
-  backtrack(0, [])
-  return results
+ backtrack(0, [])
+ return results
 }
 
 subsets([1, 2, 3])
@@ -206,18 +206,18 @@ subsets([1, 2, 3])
 
 // approche bit manipulation (plus élégante pour les petits sets)
 function subsetsWithBits(arr) {
-  const n = arr.length
-  const results = []
+ const n = arr.length
+ const results = []
 
-  for (let mask = 0; mask < (1 << n); mask++) {
-    const subset = []
-    for (let i = 0; i < n; i++) {
-      if (mask & (1 << i)) subset.push(arr[i])  // bit i actif --> inclure arr[i]
-    }
-    results.push(subset)
+ for (let mask = 0; mask < (1 << n); mask++) {
+  const subset = []
+  for (let i = 0; i < n; i++) {
+   if (mask & (1 << i)) subset.push(arr[i]) // bit i actif --> inclure arr[i]
   }
+  results.push(subset)
+ }
 
-  return results
+ return results
 }
 // 000 --> []
 // 001 --> [arr[0]]
@@ -235,17 +235,17 @@ T'as juste besoin de savoir combien il y en a.
 
 ```js
 // Problème : combien d'équipes de 5 peut-on former depuis un roster de 15 joueurs ?
-const teams = combinations(15, 5)  // 3003 équipes possibles
+const teams = combinations(15, 5) // 3003 équipes possibles
 
 // Problème : combien de chemins possibles dans une grille 4x4 (seulement droite et bas) ?
 // Chaque chemin = 6 mouvements : 3 droite + 3 bas, dans n'importe quel ordre
 // = C(6, 3) = 20 chemins possibles
-const paths = combinations(6, 3)  // 20
+const paths = combinations(6, 3) // 20
 
 // Problème : password policy checker
 function isStrongEnough(charset, length, minYearsToBreak = 1000) {
-  const { estimatedYears } = estimateBruteforceTime(charset, length)
-  return BigInt(estimatedYears) >= BigInt(minYearsToBreak)
+ const { estimatedYears } = estimateBruteforceTime(charset, length)
+ return BigInt(estimatedYears) >= BigInt(minYearsToBreak)
 }
 ```
 
@@ -261,30 +261,30 @@ La vraie valeur du backtracking, c'est de savoir quand ne pas continuer.
 // avec pruning : on arrête dès que c'est impossible d'atteindre 200
 
 function teamsByChakra(ninjas, k, minChakra) {
-  const results = []
-  ninjas.sort((a, b) => b.chakra - a.chakra)  // trier par chakra décroissant pour pruner tôt
+ const results = []
+ ninjas.sort((a, b) => b.chakra - a.chakra) // trier par chakra décroissant pour pruner tôt
 
-  function backtrack(start, current, chakraSum) {
-    if (current.length === k) {
-      if (chakraSum >= minChakra) results.push([...current])
-      return
-    }
-
-    const remaining = k - current.length
-    const remainingNinjas = ninjas.length - start
-
-    // pruning : même avec les meilleurs ninjas restants, on peut pas atteindre minChakra
-    if (remainingNinjas < remaining) return  // pas assez de ninjas
-
-    for (let i = start; i < ninjas.length; i++) {
-      current.push(ninjas[i])
-      backtrack(i + 1, current, chakraSum + ninjas[i].chakra)
-      current.pop()
-    }
+ function backtrack(start, current, chakraSum) {
+  if (current.length === k) {
+   if (chakraSum >= minChakra) results.push([...current])
+   return
   }
 
-  backtrack(0, [], 0)
-  return results
+  const remaining = k - current.length
+  const remainingNinjas = ninjas.length - start
+
+  // pruning : même avec les meilleurs ninjas restants, on peut pas atteindre minChakra
+  if (remainingNinjas < remaining) return // pas assez de ninjas
+
+  for (let i = start; i < ninjas.length; i++) {
+   current.push(ninjas[i])
+   backtrack(i + 1, current, chakraSum + ninjas[i].chakra)
+   current.pop()
+  }
+ }
+
+ backtrack(0, [], 0)
+ return results
 }
 ```
 

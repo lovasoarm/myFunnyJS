@@ -18,20 +18,20 @@ Chaque élément d'une linked list est un **Node**. Un node contient deux choses
 ```js
 // la structure la plus simple possible
 class Node {
-  constructor(value) {
-    this.value = value  // la donnée
-    this.next = null    // le pointeur vers le suivant
-  }
+ constructor(value) {
+  this.value = value // la donnée
+  this.next = null  // le pointeur vers le suivant
+ }
 }
 ```
 
 Visuellement :
 
 ```
-Node A              Node B              Node C
-┌─────────┬──────┐  ┌─────────┬──────┐  ┌─────────┬──────┐
-│ "Luffy" │  ●───┼─>│ "Zoro"  │  ●───┼─>│ "Nami"  │ null │
-└─────────┴──────┘  └─────────┴──────┘  └─────────┴──────┘
+Node A       Node B       Node C
+┌─────────┬──────┐ ┌─────────┬──────┐ ┌─────────┬──────┐
+│ "Luffy" │ ●───┼─>│ "Zoro" │ ●───┼─>│ "Nami" │ null │
+└─────────┴──────┘ └─────────┴──────┘ └─────────┴──────┘
 ```
 
 Chaque node ne sait pas où il est. Il sait juste qui vient après lui.
@@ -44,17 +44,17 @@ La liste connaît deux choses : son premier élément (**head**) et son dernier 
 
 ```js
 class LinkedList {
-  constructor() {
-    this.head = null  // premier node
-    this.tail = null  // dernier node
-    this.size = 0     // optionnel mais utile
-  }
+ constructor() {
+  this.head = null // premier node
+  this.tail = null // dernier node
+  this.size = 0   // optionnel mais utile
+ }
 }
 ```
 
 ```
-head                                  tail
- ↓                                     ↓
+head                 tail
+ ↓                   ↓
 [Luffy] --> [Zoro] --> [Nami] --> [Sanji] --> null
 ```
 
@@ -66,33 +66,33 @@ Pour atteindre Nami, il faut partir de `head` et suivre les pointeurs. Pas de ra
 
 ```js
 append(value) {
-  const node = new Node(value)
-  
-  if (!this.head) {
-    // liste vide : head et tail pointent vers le même node
-    this.head = node
-    this.tail = node
-  } else {
-    // le dernier node pointe vers le nouveau
-    this.tail.next = node
-    // tail devient le nouveau node
-    this.tail = node
-  }
-  
-  this.size++
+ const node = new Node(value)
+ 
+ if (!this.head) {
+  // liste vide : head et tail pointent vers le même node
+  this.head = node
+  this.tail = node
+ } else {
+  // le dernier node pointe vers le nouveau
+  this.tail.next = node
+  // tail devient le nouveau node
+  this.tail = node
+ }
+ 
+ this.size++
 }
 ```
 
 ```
-Avant :  [Luffy] --> [Zoro] --> null
-                       ↑
-                      tail
+Avant : [Luffy] --> [Zoro] --> null
+            ↑
+           tail
 
 append("Nami")
 
-Après :  [Luffy] --> [Zoro] --> [Nami] --> null
-                                  ↑
-                                 tail
+Après : [Luffy] --> [Zoro] --> [Nami] --> null
+                 ↑
+                 tail
 ```
 
 O(1) car on a une référence directe vers `tail`. Pas de traversal.
@@ -103,32 +103,32 @@ O(1) car on a une référence directe vers `tail`. Pas de traversal.
 
 ```js
 prepend(value) {
-  const node = new Node(value)
-  
-  if (!this.head) {
-    this.head = node
-    this.tail = node
-  } else {
-    // le nouveau node pointe vers l'ancien head
-    node.next = this.head
-    // head devient le nouveau node
-    this.head = node
-  }
-  
-  this.size++
+ const node = new Node(value)
+ 
+ if (!this.head) {
+  this.head = node
+  this.tail = node
+ } else {
+  // le nouveau node pointe vers l'ancien head
+  node.next = this.head
+  // head devient le nouveau node
+  this.head = node
+ }
+ 
+ this.size++
 }
 ```
 
 ```
-Avant :  [Zoro] --> [Nami] --> null
-           ↑
-          head
+Avant : [Zoro] --> [Nami] --> null
+      ↑
+     head
 
 prepend("Luffy")
 
-Après :  [Luffy] --> [Zoro] --> [Nami] --> null
-            ↑
-           head
+Après : [Luffy] --> [Zoro] --> [Nami] --> null
+      ↑
+      head
 ```
 
 Comparer avec `unshift` sur un tableau : O(1) ici vs O(n) pour un tableau. C'est le premier avantage concret de la linked list.
@@ -141,40 +141,40 @@ Pour supprimer, il faut d'abord trouver le node. Et pour le trouver, il faut tra
 
 ```js
 delete(value) {
-  if (!this.head) return null
+ if (!this.head) return null
 
-  // cas spécial : supprimer le head
-  if (this.head.value === value) {
-    this.head = this.head.next
-    if (!this.head) this.tail = null  // liste vide après suppression
-    this.size--
-    return
-  }
+ // cas spécial : supprimer le head
+ if (this.head.value === value) {
+  this.head = this.head.next
+  if (!this.head) this.tail = null // liste vide après suppression
+  this.size--
+  return
+ }
 
-  // traverser pour trouver le node précédent
-  let current = this.head
-  while (current.next) {
-    if (current.next.value === value) {
-      // on saute le node à supprimer
-      if (current.next === this.tail) {
-        this.tail = current  // mise à jour du tail si nécessaire
-      }
-      current.next = current.next.next
-      this.size--
-      return
-    }
-    current = current.next
+ // traverser pour trouver le node précédent
+ let current = this.head
+ while (current.next) {
+  if (current.next.value === value) {
+   // on saute le node à supprimer
+   if (current.next === this.tail) {
+    this.tail = current // mise à jour du tail si nécessaire
+   }
+   current.next = current.next.next
+   this.size--
+   return
   }
+  current = current.next
+ }
 }
 ```
 
 ```
-Avant :  [Luffy] --> [Zoro] --> [Nami] --> [Sanji] --> null
+Avant : [Luffy] --> [Zoro] --> [Nami] --> [Sanji] --> null
 
 delete("Nami")
 
-            ┌────────────────────────┐
-            ↓                        │  (ancien pointeur de Zoro supprimé)
+      ┌────────────────────────┐
+      ↓            │ (ancien pointeur de Zoro supprimé)
 [Luffy] --> [Zoro] ───────────────> [Sanji] --> null
 ```
 
@@ -184,16 +184,16 @@ delete("Nami")
 
 ```js
 print() {
-  const values = []
-  let current = this.head
-  
-  // tant qu'il y a un node suivant, on avance
-  while (current) {
-    values.push(current.value)
-    current = current.next
-  }
-  
-  return values.join(" --> ")
+ const values = []
+ let current = this.head
+ 
+ // tant qu'il y a un node suivant, on avance
+ while (current) {
+  values.push(current.value)
+  current = current.next
+ }
+ 
+ return values.join(" --> ")
 }
 ```
 
@@ -203,72 +203,72 @@ print() {
 
 ```js
 class Node {
-  constructor(value) {
-    this.value = value
-    this.next = null
-  }
+ constructor(value) {
+  this.value = value
+  this.next = null
+ }
 }
 
 class LinkedList {
-  constructor() {
-    this.head = null
-    this.tail = null
-    this.size = 0
-  }
+ constructor() {
+  this.head = null
+  this.tail = null
+  this.size = 0
+ }
 
-  append(value) {
-    const node = new Node(value)
-    if (!this.head) {
-      this.head = node
-      this.tail = node
-    } else {
-      this.tail.next = node
-      this.tail = node
-    }
-    this.size++
+ append(value) {
+  const node = new Node(value)
+  if (!this.head) {
+   this.head = node
+   this.tail = node
+  } else {
+   this.tail.next = node
+   this.tail = node
   }
+  this.size++
+ }
 
-  prepend(value) {
-    const node = new Node(value)
-    if (!this.head) {
-      this.head = node
-      this.tail = node
-    } else {
-      node.next = this.head
-      this.head = node
-    }
-    this.size++
+ prepend(value) {
+  const node = new Node(value)
+  if (!this.head) {
+   this.head = node
+   this.tail = node
+  } else {
+   node.next = this.head
+   this.head = node
   }
+  this.size++
+ }
 
-  delete(value) {
-    if (!this.head) return
-    if (this.head.value === value) {
-      this.head = this.head.next
-      if (!this.head) this.tail = null
-      this.size--
-      return
-    }
-    let current = this.head
-    while (current.next) {
-      if (current.next.value === value) {
-        if (current.next === this.tail) this.tail = current
-        current.next = current.next.next
-        this.size--
-        return
-      }
-      current = current.next
-    }
+ delete(value) {
+  if (!this.head) return
+  if (this.head.value === value) {
+   this.head = this.head.next
+   if (!this.head) this.tail = null
+   this.size--
+   return
   }
+  let current = this.head
+  while (current.next) {
+   if (current.next.value === value) {
+    if (current.next === this.tail) this.tail = current
+    current.next = current.next.next
+    this.size--
+    return
+   }
+   current = current.next
+  }
+ }
 
-  print() {
-    const values = []
-    let current = this.head
-    while (current) {
-      values.push(current.value)
-      current = current.next
-    }
-    return values.join(" --> ")
+ print() {
+  const values = []
+  let current = this.head
+  while (current) {
+   values.push(current.value)
+   current = current.next
   }
+  return values.join(" --> ")
+ }
 }
 
 // utilisation
@@ -278,10 +278,10 @@ crew.append("Nami")
 crew.prepend("Luffy")
 crew.append("Sanji")
 
-console.log(crew.print())  // "Luffy --> Zoro --> Nami --> Sanji"
+console.log(crew.print()) // "Luffy --> Zoro --> Nami --> Sanji"
 crew.delete("Nami")
-console.log(crew.print())  // "Luffy --> Zoro --> Sanji"
-console.log(crew.size)     // 3
+console.log(crew.print()) // "Luffy --> Zoro --> Sanji"
+console.log(crew.size)   // 3
 ```
 
 ---
@@ -289,14 +289,14 @@ console.log(crew.size)     // 3
 ## 8) TABLEAU vs LINKED LIST : LE VRAI COMPARATIF
 
 ```
-Opération          Tableau    Linked List    Raison
+Opération     Tableau  Linked List  Raison
 ──────────────────────────────────────────────────────────
-Accès par index    O(1)       O(n)           tableau = adresse directe
-Insertion début    O(n)       O(1)           liste = juste un pointeur
-Insertion fin      O(1)*      O(1)           les deux ont tail
-Insertion milieu   O(n)       O(n)**         les deux doivent trouver la position
-Suppression début  O(n)       O(1)           liste = juste déplacer head
-Recherche          O(n)       O(n)           les deux traversent
+Accès par index  O(1)    O(n)      tableau = adresse directe
+Insertion début  O(n)    O(1)      liste = juste un pointeur
+Insertion fin   O(1)*   O(1)      les deux ont tail
+Insertion milieu  O(n)    O(n)**     les deux doivent trouver la position
+Suppression début O(n)    O(1)      liste = juste déplacer head
+Recherche     O(n)    O(n)      les deux traversent
 
 * O(1) amorti pour le tableau
 ** O(n) pour trouver le node, O(1) pour faire le lien

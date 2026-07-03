@@ -40,12 +40,12 @@ Sur un graphe (réseau de noeuds connectés : relations sociales, routes, dépen
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-historique de navigation, undo/redo          --> stack (pile)    --> dernier entré, premier sorti
-file d'attente de tâches ou de tickets        --> queue           --> premier entré, premier sorti
-système de priorités (urgence, scoring)       --> heap            --> accès immédiat au plus prioritaire
-recherche rapide par clé (cache, index)        --> hash table      --> accès quasi instantané en O(1)
-relations, réseau social, routes               --> graphe          --> BFS/DFS pour explorer ou connecter
-arbre de décision, autocomplétion              --> BST (binary search tree) --> recherche en O(log n)
+historique de navigation, undo/redo     --> stack (pile)  --> dernier entré, premier sorti
+file d'attente de tâches ou de tickets    --> queue      --> premier entré, premier sorti
+système de priorités (urgence, scoring)    --> heap      --> accès immédiat au plus prioritaire
+recherche rapide par clé (cache, index)    --> hash table   --> accès quasi instantané en O(1)
+relations, réseau social, routes        --> graphe     --> BFS/DFS pour explorer ou connecter
+arbre de décision, autocomplétion       --> BST (binary search tree) --> recherche en O(log n)
 ```
 
 Ces structures ne sont pas théoriques : elles sont le moteur derrière des fonctionnalités que tu utilises tous les jours. L'autocomplétion d'un moteur de recherche, le bouton "annuler" d'un éditeur, le système de recommandation d'un réseau social : tout ça repose sur une structure de données bien choisie.

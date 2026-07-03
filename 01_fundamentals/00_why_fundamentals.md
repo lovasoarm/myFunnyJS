@@ -32,11 +32,11 @@ L'équipe entière souffre aussi. Un dev qui ne comprend pas le scope (portée d
 Partout, en permanence, sans exception :
 
 ```
-state d'une app React/Vue     --> mutation accidentelle  --> bug de rendu fantôme
-config partagée entre modules --> référence partagée     --> un module casse un autre
-boucle for avec var           --> closure capte la mauvaise valeur
-cache en mémoire              --> deep vs shallow copy   --> données corrompues
-parsing d'input shinobi   --> coercition de type     --> comparaison qui foire
+state d'une app React/Vue   --> mutation accidentelle --> bug de rendu fantôme
+config partagée entre modules --> référence partagée   --> un module casse un autre
+boucle for avec var      --> closure capte la mauvaise valeur
+cache en mémoire       --> deep vs shallow copy  --> données corrompues
+parsing d'input shinobi  --> coercition de type   --> comparaison qui foire
 ```
 
 Un bug de fondamentaux n'est jamais isolé. Il se propage parce que toute ton app repose sur des variables qui se passent de la donnée entre elles. Si la base est pourrie, chaque étage au-dessus hérite du problème.

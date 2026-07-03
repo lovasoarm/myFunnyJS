@@ -13,7 +13,7 @@ Elle est déclarée dehors, elle vit partout. Toutes les fonctions peuvent la vo
 let hero = "Link";
 
 function adventure() {
-  console.log(hero); // "Link" : accessible depuis la fonction
+ console.log(hero); // "Link" : accessible depuis la fonction
 }
 
 adventure();
@@ -30,8 +30,8 @@ Une variable déclarée dans une fonction meurt quand la fonction se termine.
 
 ```js
 function adventure() {
-  let weapon = "Sword"; // vit ici et nulle part ailleurs
-  console.log(weapon);  // OK
+ let weapon = "Sword"; // vit ici et nulle part ailleurs
+ console.log(weapon); // OK
 }
 
 adventure();
@@ -46,8 +46,8 @@ Un bloc c'est tout ce qui est entre `{}` : `if`, `for`, `while`.
 
 ```js
 if (true) {
-  let potion = "Health"; // vit dans ce bloc uniquement
-  console.log(potion);   // OK
+ let potion = "Health"; // vit dans ce bloc uniquement
+ console.log(potion);  // OK
 }
 
 console.log(potion); // ReferenceError : le bloc est terminé
@@ -57,7 +57,7 @@ console.log(potion); // ReferenceError : le bloc est terminé
 
 ```js
 if (true) {
-  var ghost = "Je fuis partout";
+ var ghost = "Je fuis partout";
 }
 
 console.log(ghost); // "Je fuis partout" : var ignore le bloc
@@ -65,9 +65,9 @@ console.log(ghost); // "Je fuis partout" : var ignore le bloc
 
 | Mot-clé | Scope | Safe ? |
 | ------- | ----- | ------ |
-| `var`   | function scope : ignore les `{}` | nope |
-| `let`   | block scope : respecte les `{}`  | ok   |
-| `const` | block scope : respecte les `{}`  | ok   |
+| `var`  | function scope : ignore les `{}` | nope |
+| `let`  | block scope : respecte les `{}` | ok  |
+| `const` | block scope : respecte les `{}` | ok  |
 
 > Règle d'or : `var` n'existe pas dans ton vocabulaire. `let` et `const` seulement.
 
@@ -115,8 +115,8 @@ Avec scope control : chaque variable vit exactement là où elle doit vivre. Pas
 let hero = "Link";
 
 function adventure() {
-  let weapon = "Sword";
-  console.log("Dans la fonction :", hero, weapon);
+ let weapon = "Sword";
+ console.log("Dans la fonction :", hero, weapon);
 }
 
 adventure();
@@ -127,8 +127,8 @@ adventure();
 
 ```
 Dans la fonction : Link Sword
-ReferenceError: weapon is not defined   <-- hors fonction
-ReferenceError: potion is not defined   <-- hors bloc
+ReferenceError: weapon is not defined  <-- hors fonction
+ReferenceError: potion is not defined  <-- hors bloc
 ```
 
 > **Scope = zone de vie de ta variable.** C'est la base de tout ce qui vient après : closures, async, architecture.

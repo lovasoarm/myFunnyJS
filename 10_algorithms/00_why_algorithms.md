@@ -44,13 +44,13 @@ Sur un vrai projet, l'absence de ce bagage se traduit par des fonctionnalités q
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-classement, leaderboard, tri de résultats      --> merge sort / quick sort   --> tri efficace à l'échelle
-recherche dans une liste triée                  --> binary search             --> O(log n) au lieu de O(n)
-optimisation sous contrainte (budget, stock)    --> dynamic programming       --> solution optimale garantie
-planification avec ressources limitées          --> greedy                    --> décision rapide et souvent suffisante
-génération de combinaisons valides (sudoku)     --> backtracking              --> exploration intelligente
-calcul d'itinéraire, de plus court chemin       --> Dijkstra / A*             --> chemin optimal dans un graphe pondéré
-ordonnancement de tâches dépendantes            --> tri topologique           --> jamais faire B avant A
+classement, leaderboard, tri de résultats   --> merge sort / quick sort  --> tri efficace à l'échelle
+recherche dans une liste triée         --> binary search       --> O(log n) au lieu de O(n)
+optimisation sous contrainte (budget, stock)  --> dynamic programming    --> solution optimale garantie
+planification avec ressources limitées     --> greedy          --> décision rapide et souvent suffisante
+génération de combinaisons valides (sudoku)   --> backtracking       --> exploration intelligente
+calcul d'itinéraire, de plus court chemin    --> Dijkstra / A*       --> chemin optimal dans un graphe pondéré
+ordonnancement de tâches dépendantes      --> tri topologique      --> jamais faire B avant A
 ```
 
 Ce ne sont pas des exercices d'entretien déconnectés du réel : un GPS utilise Dijkstra ou A*, un moteur de build (comme Webpack ou Vite) utilise un tri topologique pour ordonner les dépendances, un système de cache utilise des heaps pour gérer les priorités d'éviction.

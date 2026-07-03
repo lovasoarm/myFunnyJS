@@ -4,9 +4,9 @@ Temps de lecture ~13 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : PORT (optionnel, défaut : 3000)
+Node.js    : v20+
+npm      : v10+
+Variables env : PORT (optionnel, défaut : 3000)
 Outils externes: aucun (SQLite est embedded, pas de serveur à démarrer séparément)
 
 # Installation
@@ -34,23 +34,23 @@ $ node src/server.js
 [SERVER] Fox River API en écoute sur le port 3000
 
 $ curl -X POST http://localhost:3000/api/auth/chakra_gate \
-  -d '{"id": "michael_scofield", "password": "linc_is_innocent"}'
+ -d '{"id": "michael_scofield", "password": "linc_is_innocent"}'
 { "token": "eyJhbGci..." }
 
 $ curl http://localhost:3000/api/prisoners \
-  -H "Authorization: Bearer eyJhbGci..."
+ -H "Authorization: Bearer eyJhbGci..."
 { "prisoners": [ { "id": "scofield", "section": "B-Company", "status": "actif" }, ... ] }
 
 $ curl -X POST http://localhost:3000/api/escape-plan \
-  -H "Authorization: Bearer ..." \
-  -d '{"phase": 1, "section": "infirmerie"}'
+ -H "Authorization: Bearer ..." \
+ -d '{"phase": 1, "section": "infirmerie"}'
 { "status": "accès validé", "nextPhase": 2, "coordinates": "..." }
 
 $ npm test
-PASS  tests/auth.test.js (20 tests)
-PASS  tests/prisoners.test.js (16 tests)
-PASS  tests/escapePlan.test.js (18 tests)
-PASS  tests/security.test.js (14 tests)
+PASS tests/auth.test.js (20 tests)
+PASS tests/prisoners.test.js (16 tests)
+PASS tests/escapePlan.test.js (18 tests)
+PASS tests/security.test.js (14 tests)
 ```
 
 C'est le premier projet avec un vrai serveur. Tout ce qui précède tournait en Node pur. Ici tu as des requêtes HTTP, une base de données (SQLite pour rester simple), et une surface d'attaque réelle.
@@ -84,9 +84,9 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 ### Résumé visuel
 
 ```
-21_api_craft    --> src/routes/, src/middleware/errorHandler.js, src/server.js
-22_security     --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
-24_databases    --> src/db/ (SQLite), src/cache/ (Redis simulé)
+21_api_craft  --> src/routes/, src/middleware/errorHandler.js, src/server.js
+22_security   --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
+24_databases  --> src/db/ (SQLite), src/cache/ (Redis simulé)
 18_web_concepts --> status codes, headers, format d'erreur uniforme
 ```
 
@@ -94,16 +94,16 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 
 ```
 HTTP Request
-  --> express router (src/routes/index.js)
-  --> middleware: rateLimiter.js    // bloque si trop de requêtes depuis cette IP
-  --> middleware: sanitizer.js      // nettoie les inputs, bloque les injections
-  --> middleware: authGuard.js      // vérifie le JWT si la route est protégée
-  --> route handler (ex: prisonersRouter.js)
-        --> prisonerService.js      // logique métier
-              --> db.query(...)     // requête SQLite
-              --> cache.get(...)    // cherche en cache d'abord
-        --> réponse JSON formatée
-  --> middleware: errorHandler.js   // catch toutes les erreurs non gérées
+ --> express router (src/routes/index.js)
+ --> middleware: rateLimiter.js  // bloque si trop de requêtes depuis cette IP
+ --> middleware: sanitizer.js   // nettoie les inputs, bloque les injections
+ --> middleware: authGuard.js   // vérifie le JWT si la route est protégée
+ --> route handler (ex: prisonersRouter.js)
+    --> prisonerService.js   // logique métier
+       --> db.query(...)   // requête SQLite
+       --> cache.get(...)  // cherche en cache d'abord
+    --> réponse JSON formatée
+ --> middleware: errorHandler.js  // catch toutes les erreurs non gérées
 ```
 
 Chaque requête passe par les middlewares dans l'ordre. Si un middleware rejette (rate limit, token invalide), la requête ne va pas plus loin.
@@ -113,36 +113,36 @@ Chaque requête passe par les middlewares dans l'ordre. Si un middleware rejette
 ```
 src/
 ├── routes/
-│   ├── index.js
-│   ├── authRouter.js
-│   ├── prisonersRouter.js
-│   ├── sectionsRouter.js
-│   └── escapePlanRouter.js
+│  ├── index.js
+│  ├── authRouter.js
+│  ├── prisonersRouter.js
+│  ├── sectionsRouter.js
+│  └── escapePlanRouter.js
 │
 ├── middleware/
-│   ├── authGuard.js
-│   ├── rateLimiter.js
-│   ├── sanitizer.js
-│   └── errorHandler.js
+│  ├── authGuard.js
+│  ├── rateLimiter.js
+│  ├── sanitizer.js
+│  └── errorHandler.js
 │
 ├── auth/
-│   ├── jwtService.js
-│   └── passwordService.js
+│  ├── jwtService.js
+│  └── passwordService.js
 │
 ├── services/
-│   ├── prisonerService.js
-│   ├── sectionService.js
-│   └── escapePlanService.js
+│  ├── prisonerService.js
+│  ├── sectionService.js
+│  └── escapePlanService.js
 │
 ├── db/
-│   ├── database.js
-│   ├── migrations/
-│   │   └── 001_initial_schema.sql
-│   └── seeds/
-│       └── foxriver_data.sql
+│  ├── database.js
+│  ├── migrations/
+│  │  └── 001_initial_schema.sql
+│  └── seeds/
+│    └── foxriver_data.sql
 │
 ├── cache/
-│   └── cacheService.js
+│  └── cacheService.js
 │
 └── server.js
 
@@ -206,14 +206,14 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/db/database.js + migrations/  --> la base de tout, testable avec des requêtes directes
-2. src/auth/passwordService.js        --> indépendant, testable seul
-3. src/auth/jwtService.js             --> indépendant, testable seul
-4. src/cache/cacheService.js          --> indépendant, testable seul
-5. src/services/prisonerService.js    --> dépend de db + cache
-6. src/middleware/ (tous)             --> testables avec des req/res mockés
+1. src/db/database.js + migrations/ --> la base de tout, testable avec des requêtes directes
+2. src/auth/passwordService.js    --> indépendant, testable seul
+3. src/auth/jwtService.js       --> indépendant, testable seul
+4. src/cache/cacheService.js     --> indépendant, testable seul
+5. src/services/prisonerService.js  --> dépend de db + cache
+6. src/middleware/ (tous)       --> testables avec des req/res mockés
 7. src/routes/ (dans l'ordre : auth, prisoners, sections, escapePlan)
-8. src/server.js                      --> branche tout
+8. src/server.js           --> branche tout
 9. tests de sécurité (security.test.js) --> en dernier, après que tout tourne
 ```
 
@@ -242,43 +242,43 @@ import request from 'supertest';
 import app from '../src/server.js';
 
 describe('POST /api/auth/chakra_gate', () => {
-  test('retourne un token valide avec les bons identifiants', async () => {
-    const res = await request(app)
-      .post('/api/auth/chakra_gate')
-      .send({ id: 'michael_scofield', password: 'linc_is_innocent' });
+ test('retourne un token valide avec les bons identifiants', async () => {
+  const res = await request(app)
+   .post('/api/auth/chakra_gate')
+   .send({ id: 'michael_scofield', password: 'linc_is_innocent' });
 
-    expect(res.status).toBe(200);
-    expect(res.body.token).toBeDefined();
-    expect(typeof res.body.token).toBe('string');
-  });
+  expect(res.status).toBe(200);
+  expect(res.body.token).toBeDefined();
+  expect(typeof res.body.token).toBe('string');
+ });
 
-  test('retourne 401 avec un message générique (pas de fuite d\'info)', async () => {
-    const res = await request(app)
-      .post('/api/auth/chakra_gate')
-      .send({ id: 'michael_scofield', password: 'mauvais_mdp' });
+ test('retourne 401 avec un message générique (pas de fuite d\'info)', async () => {
+  const res = await request(app)
+   .post('/api/auth/chakra_gate')
+   .send({ id: 'michael_scofield', password: 'mauvais_mdp' });
 
-    expect(res.status).toBe(401);
-    expect(res.body.message).toBe('identifiants invalides'); // message générique
-    expect(res.body.message).not.toContain('mot de passe'); // pas de détail
-    expect(res.body.message).not.toContain('shinobi');  // pas de détail
-  });
+  expect(res.status).toBe(401);
+  expect(res.body.message).toBe('identifiants invalides'); // message générique
+  expect(res.body.message).not.toContain('mot de passe'); // pas de détail
+  expect(res.body.message).not.toContain('shinobi'); // pas de détail
+ });
 });
 
 // tests/security.test.js
 describe('rate limiting sur /api/auth/chakra_gate', () => {
-  test('bloque après 5 tentatives échouées en moins d\'une minute', async () => {
-    for (let i = 0; i < 5; i++) {
-      await request(app)
-        .post('/api/auth/chakra_gate')
-        .send({ id: 'tbag', password: 'wrong' });
-    }
+ test('bloque après 5 tentatives échouées en moins d\'une minute', async () => {
+  for (let i = 0; i < 5; i++) {
+   await request(app)
+    .post('/api/auth/chakra_gate')
+    .send({ id: 'tbag', password: 'wrong' });
+  }
 
-    const blocked = await request(app)
-      .post('/api/auth/chakra_gate')
-      .send({ id: 'tbag', password: 'wrong' });
+  const blocked = await request(app)
+   .post('/api/auth/chakra_gate')
+   .send({ id: 'tbag', password: 'wrong' });
 
-    expect(blocked.status).toBe(429);
-  });
+  expect(blocked.status).toBe(429);
+ });
 });
 ```
 
@@ -331,11 +331,11 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 ## Alternatives considérées
 - Message différent selon le cas : rejeté car information leak.
 - Message générique mais temps de réponse variable : rejeté car timing attack possible
-  (un attaquant mesure le délai et en déduit si l'ID existe).
+ (un attaquant mesure le délai et en déduit si l'ID existe).
 
 ## Conséquences
 - Expérience shinobi légèrement dégradée (le formulaire de récupération de
-  compte devient le seul recours).
+ compte devient le seul recours).
 - Surface d'attaque réduite sur l'endpoint de chakra_gate.
 ```
 

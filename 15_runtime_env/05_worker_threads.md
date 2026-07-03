@@ -14,13 +14,13 @@ Worker Threads règlent ça. Tu crées un thread séparé, tu lui confies le cal
 // chaque vote = parsing JSON + pondération + agrégation
 
 function computeRanking(votes) {
-  // opération synchrone intensive : bloque le thread principal
-  return votes
-    .flatMap(v => v.players)
-    .reduce((acc, { name, points }) => {
-      acc[name] = (acc[name] ?? 0) + points
-      return acc
-    }, {})
+ // opération synchrone intensive : bloque le thread principal
+ return votes
+  .flatMap(v => v.players)
+  .reduce((acc, { name, points }) => {
+   acc[name] = (acc[name] ?? 0) + points
+   return acc
+  }, {})
 }
 
 // si cette fonction met 3 secondes :
@@ -29,18 +29,18 @@ function computeRanking(votes) {
 // les timeouts se déclenchent
 // les shinobis voient un spinner qui tourne
 app.get('/ranking', (req, res) => {
-  const ranking = computeRanking(votes)  // l'event loop est bloqué ici
-  res.json(ranking)
+ const ranking = computeRanking(votes) // l'event loop est bloqué ici
+ res.json(ranking)
 })
 ```
 
 ```
 Sans Worker Thread :
-Event Loop  ---|--calcul 3s--|-->  requêtes en attente --> timeout
+Event Loop ---|--calcul 3s--|--> requêtes en attente --> timeout
 
 Avec Worker Thread :
-Event Loop  ---|--->  autres requêtes --> OK
-Worker      ---|--calcul 3s--|-->  résultat --> Event Loop
+Event Loop ---|---> autres requêtes --> OK
+Worker   ---|--calcul 3s--|--> résultat --> Event Loop
 ```
 
 ---
@@ -58,28 +58,28 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 function computeRankingAsync(votes) {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker(
-      join(__dirname, 'ranking-worker.js'),
-      { workerData: votes }  // les données à envoyer au worker
-    )
+ return new Promise((resolve, reject) => {
+  const worker = new Worker(
+   join(__dirname, 'ranking-worker.js'),
+   { workerData: votes } // les données à envoyer au worker
+  )
 
-    worker.on('message', (result) => {
-      // le worker a terminé et envoie son résultat
-      resolve(result)
-    })
-
-    worker.on('error', (err) => {
-      // une erreur non catchée dans le worker
-      reject(err)
-    })
-
-    worker.on('exit', (code) => {
-      if (code !== 0) {
-        reject(new Error(`Worker terminé avec le code ${code}`))
-      }
-    })
+  worker.on('message', (result) => {
+   // le worker a terminé et envoie son résultat
+   resolve(result)
   })
+
+  worker.on('error', (err) => {
+   // une erreur non catchée dans le worker
+   reject(err)
+  })
+
+  worker.on('exit', (code) => {
+   if (code !== 0) {
+    reject(new Error(`Worker terminé avec le code ${code}`))
+   }
+  })
+ })
 }
 
 // l'event loop reste libre pendant le calcul
@@ -95,11 +95,11 @@ const votes = workerData
 
 // on fait le calcul intensif ici, dans un thread séparé
 const ranking = votes
-  .flatMap(v => v.players)
-  .reduce((acc, { name, points }) => {
-    acc[name] = (acc[name] ?? 0) + points
-    return acc
-  }, {})
+ .flatMap(v => v.players)
+ .reduce((acc, { name, points }) => {
+  acc[name] = (acc[name] ?? 0) + points
+  return acc
+ }, {})
 
 // on envoie le résultat au thread principal
 parentPort.postMessage(ranking)
@@ -121,17 +121,17 @@ const total = votes.length
 const acc = {}
 
 for (let i = 0; i < total; i += batchSize) {
-  const batch = votes.slice(i, i + batchSize)
+ const batch = votes.slice(i, i + batchSize)
 
-  batch.forEach(({ name, points }) => {
-    acc[name] = (acc[name] ?? 0) + points
-  })
+ batch.forEach(({ name, points }) => {
+  acc[name] = (acc[name] ?? 0) + points
+ })
 
-  // on envoie la progression au thread principal
-  parentPort.postMessage({
-    type: 'progress',
-    percent: Math.round(((i + batchSize) / total) * 100)
-  })
+ // on envoie la progression au thread principal
+ parentPort.postMessage({
+  type: 'progress',
+  percent: Math.round(((i + batchSize) / total) * 100)
+ })
 }
 
 // calcul terminé : on envoie le résultat final
@@ -141,17 +141,17 @@ parentPort.postMessage({ type: 'result', data: acc })
 ```js
 // --- main.js : gérer les deux types de messages ---
 const worker = new Worker('./ranking-worker.js', {
-  workerData: { votes, batchSize: 10000 }
+ workerData: { votes, batchSize: 10000 }
 })
 
 worker.on('message', ({ type, percent, data }) => {
-  if (type === 'progress') {
-    process.stdout.write(`\r Calcul en cours : ${percent}%`)
-  }
+ if (type === 'progress') {
+  process.stdout.write(`\r Calcul en cours : ${percent}%`)
+ }
 
-  if (type === 'result') {
-    console.log('\n Classement final :', data)
-  }
+ if (type === 'result') {
+  console.log('\n Classement final :', data)
+ }
 })
 ```
 
@@ -164,51 +164,51 @@ Créer un worker pour chaque requête, c'est coûteux. En prod, on crée un pool
 ```js
 // version simplifiée d'un worker pool
 class WorkerPool {
-  constructor(workerPath, size) {
-    this.workers = Array.from({ length: size }, () => ({
-      thread: new Worker(workerPath),
-      busy: false
-    }))
-    this.queue = []  // tâches en attente si tous les workers sont occupés
-  }
+ constructor(workerPath, size) {
+  this.workers = Array.from({ length: size }, () => ({
+   thread: new Worker(workerPath),
+   busy: false
+  }))
+  this.queue = [] // tâches en attente si tous les workers sont occupés
+ }
 
-  run(data) {
-    return new Promise((resolve, reject) => {
-      const available = this.workers.find(w => !w.busy)
+ run(data) {
+  return new Promise((resolve, reject) => {
+   const available = this.workers.find(w => !w.busy)
 
-      if (available) {
-        this.#dispatch(available, data, resolve, reject)
-      } else {
-        // tous les workers sont occupés : on met en attente
-        this.queue.push({ data, resolve, reject })
-      }
-    })
-  }
+   if (available) {
+    this.#dispatch(available, data, resolve, reject)
+   } else {
+    // tous les workers sont occupés : on met en attente
+    this.queue.push({ data, resolve, reject })
+   }
+  })
+ }
 
-  #dispatch(worker, data, resolve, reject) {
-    worker.busy = true
-    worker.thread.postMessage(data)
+ #dispatch(worker, data, resolve, reject) {
+  worker.busy = true
+  worker.thread.postMessage(data)
 
-    worker.thread.once('message', (result) => {
-      worker.busy = false
-      resolve(result)
+  worker.thread.once('message', (result) => {
+   worker.busy = false
+   resolve(result)
 
-      // y'a des tâches en attente ? on les traite
-      if (this.queue.length > 0) {
-        const next = this.queue.shift()
-        this.#dispatch(worker, next.data, next.resolve, next.reject)
-      }
-    })
+   // y'a des tâches en attente ? on les traite
+   if (this.queue.length > 0) {
+    const next = this.queue.shift()
+    this.#dispatch(worker, next.data, next.resolve, next.reject)
+   }
+  })
 
-    worker.thread.once('error', (err) => {
-      worker.busy = false
-      reject(err)
-    })
-  }
+  worker.thread.once('error', (err) => {
+   worker.busy = false
+   reject(err)
+  })
+ }
 }
 
 // usage
-const pool = new WorkerPool('./ranking-worker.js', 4)  // 4 workers
+const pool = new WorkerPool('./ranking-worker.js', 4) // 4 workers
 const result = await pool.run(votes)
 ```
 
@@ -221,12 +221,12 @@ const result = await pool.run(votes)
 // pour de gros volumes : utiliser SharedArrayBuffer
 
 // main.js
-const sharedBuffer = new SharedArrayBuffer(4)  // 4 octets = 1 Int32
+const sharedBuffer = new SharedArrayBuffer(4) // 4 octets = 1 Int32
 const counter = new Int32Array(sharedBuffer)
 counter[0] = 0
 
 const worker = new Worker('./counter-worker.js', {
-  workerData: { sharedBuffer }  // on partage le buffer, pas une copie
+ workerData: { sharedBuffer } // on partage le buffer, pas une copie
 })
 
 // le worker peut modifier counter[0] et le main thread voit la modification
@@ -235,7 +235,7 @@ const worker = new Worker('./counter-worker.js', {
 // contre-indication : les race conditions
 // deux workers qui écrivent en même temps = données corrompues
 // solution : Atomics.add(), Atomics.compareExchange() pour les opérations atomiques
-Atomics.add(counter, 0, 1)  // incrément atomique thread-safe
+Atomics.add(counter, 0, 1) // incrément atomique thread-safe
 ```
 
 ---
@@ -248,13 +248,13 @@ T'as cette fonction qui analyse les stats d'un match (supposons qu'elle soit len
 
 ```js
 function analyzeMatchData(events) {
-  // simulation d'un calcul intensif
-  let result = {}
-  for (let i = 0; i < 10_000_000; i++) {
-    const e = events[i % events.length]
-    result[e.player] = (result[e.player] ?? 0) + 1
-  }
-  return result
+ // simulation d'un calcul intensif
+ let result = {}
+ for (let i = 0; i < 10_000_000; i++) {
+  const e = events[i % events.length]
+  result[e.player] = (result[e.player] ?? 0) + 1
+ }
+ return result
 }
 ```
 

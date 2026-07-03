@@ -19,30 +19,30 @@ Le piège : transformer ça en pyramide de la mort. La solution : **nommer chaqu
 // étape 1 : profil => étape 2 : contrat => étape 3 : performances
 
 function etape3_chargerPerfs(contrat, callback) {
-  chargerPerformances(contrat.joueurId, function(err, perfs) {
-    if (err) return callback(err)
-    callback(null, { contrat, perfs })
-  })
+ chargerPerformances(contrat.joueurId, function(err, perfs) {
+  if (err) return callback(err)
+  callback(null, { contrat, perfs })
+ })
 }
 
 function etape2_chargerContrat(profil, callback) {
-  chargerContrat(profil.contractId, function(err, contrat) {
-    if (err) return callback(err)
-    etape3_chargerPerfs(contrat, callback)
-  })
+ chargerContrat(profil.contractId, function(err, contrat) {
+  if (err) return callback(err)
+  etape3_chargerPerfs(contrat, callback)
+ })
 }
 
 function etape1_chargerProfil(joueurId, callback) {
-  chargerProfil(joueurId, function(err, profil) {
-    if (err) return callback(err)
-    etape2_chargerContrat(profil, callback)
-  })
+ chargerProfil(joueurId, function(err, profil) {
+  if (err) return callback(err)
+  etape2_chargerContrat(profil, callback)
+ })
 }
 
 // point d'entrée unique
 etape1_chargerProfil("lewandowski", function(err, dossier) {
-  if (err) return console.error("Dossier inaccessible :", err.message)
-  console.log("Dossier complet :", dossier)
+ if (err) return console.error("Dossier inaccessible :", err.message)
+ console.log("Dossier complet :", dossier)
 })
 ```
 
@@ -63,22 +63,22 @@ const resultats = {}
 let compteur = joueurs.length // on attend N réponses
 
 joueurs.forEach(function(id) {
-  chargerStats(id, function(err, stats) {
-    if (err) {
-      console.error("Erreur pour", id, ":", err.message)
-      // gestion d'erreur partielle : on continue avec les autres
-    } else {
-      resultats[id] = stats
-    }
+ chargerStats(id, function(err, stats) {
+  if (err) {
+   console.error("Erreur pour", id, ":", err.message)
+   // gestion d'erreur partielle : on continue avec les autres
+  } else {
+   resultats[id] = stats
+  }
 
-    compteur-- // une réponse de moins à attendre
+  compteur-- // une réponse de moins à attendre
 
-    if (compteur === 0) {
-      // tous les callbacks sont revenus
-      console.log("Stats complètes :", resultats)
-      classerParButs(resultats)
-    }
-  })
+  if (compteur === 0) {
+   // tous les callbacks sont revenus
+   console.log("Stats complètes :", resultats)
+   classerParButs(resultats)
+  }
+ })
 })
 ```
 
@@ -94,28 +94,28 @@ Un callback peut ne jamais arriver. API qui plante, réseau coupé, serveur qui 
 
 ```js
 function chargerAvecTimeout(joueurId, delaiMs, callback) {
-  let estTermine = false
+ let estTermine = false
 
-  // lancer l'opération réelle
-  chargerStats(joueurId, function(err, stats) {
-    if (estTermine) return // le timeout est déjà passé, on ignore
-    estTermine = true
-    clearTimeout(minuteur) // annuler le timeout
-    callback(err, stats)
-  })
+ // lancer l'opération réelle
+ chargerStats(joueurId, function(err, stats) {
+  if (estTermine) return // le timeout est déjà passé, on ignore
+  estTermine = true
+  clearTimeout(minuteur) // annuler le timeout
+  callback(err, stats)
+ })
 
-  // lancer le minuteur en parallèle
-  const minuteur = setTimeout(function() {
-    if (estTermine) return // la réponse est déjà arrivée, on ignore
-    estTermine = true
-    callback(new Error("Timeout : " + joueurId + " n'a pas répondu en " + delaiMs + "ms"))
-  }, delaiMs)
+ // lancer le minuteur en parallèle
+ const minuteur = setTimeout(function() {
+  if (estTermine) return // la réponse est déjà arrivée, on ignore
+  estTermine = true
+  callback(new Error("Timeout : " + joueurId + " n'a pas répondu en " + delaiMs + "ms"))
+ }, delaiMs)
 }
 
 // utilisation
 chargerAvecTimeout("mbappe", 3000, function(err, stats) {
-  if (err) return console.error(err.message)
-  console.log("Stats de Mbappé :", stats)
+ if (err) return console.error(err.message)
+ console.log("Stats de Mbappé :", stats)
 })
 ```
 
@@ -129,36 +129,36 @@ Une API instable. Un réseau capricieux. Des fois tu réessaies plutôt que d'ab
 
 ```js
 function chargerAvecRetry(joueurId, tentativesMax, callback) {
-  let tentative = 0
+ let tentative = 0
 
-  function essayer() {
-    tentative++
+ function essayer() {
+  tentative++
 
-    chargerStats(joueurId, function(err, stats) {
-      if (!err) {
-        // succès : on transmet le résultat
-        return callback(null, stats)
-      }
+  chargerStats(joueurId, function(err, stats) {
+   if (!err) {
+    // succès : on transmet le résultat
+    return callback(null, stats)
+   }
 
-      if (tentative >= tentativesMax) {
-        // plus de tentatives disponibles : on abandonne
-        return callback(new Error(
-          "Echec après " + tentativesMax + " tentatives : " + err.message
-        ))
-      }
+   if (tentative >= tentativesMax) {
+    // plus de tentatives disponibles : on abandonne
+    return callback(new Error(
+     "Echec après " + tentativesMax + " tentatives : " + err.message
+    ))
+   }
 
-      // on réessaie
-      console.log("Tentative", tentative, "échouée, on réessaie...")
-      setTimeout(essayer, tentative * 500) // délai qui augmente à chaque échec
-    })
-  }
+   // on réessaie
+   console.log("Tentative", tentative, "échouée, on réessaie...")
+   setTimeout(essayer, tentative * 500) // délai qui augmente à chaque échec
+  })
+ }
 
-  essayer() // lancer la première tentative
+ essayer() // lancer la première tentative
 }
 
 chargerAvecRetry("haaland", 3, function(err, stats) {
-  if (err) return console.error("Abandon :", err.message)
-  console.log("Stats de Haaland :", stats)
+ if (err) return console.error("Abandon :", err.message)
+ console.log("Stats de Haaland :", stats)
 })
 ```
 
@@ -174,42 +174,42 @@ Exemple : 100 joueurs à charger, mais ton API accepte max 5 requêtes en parall
 
 ```js
 function chargerEnQueue(joueurIds, concurrenceMax, callback) {
-  const resultats = []
-  let index = 0       // prochain joueur à traiter
-  let actif = 0       // combien d'opérations tournent actuellement
-  let termine = 0     // combien ont fini
+ const resultats = []
+ let index = 0    // prochain joueur à traiter
+ let actif = 0    // combien d'opérations tournent actuellement
+ let termine = 0   // combien ont fini
 
-  function lancerProchain() {
-    // lancer autant d'opérations que la limite le permet
-    while (actif < concurrenceMax && index < joueurIds.length) {
-      const id = joueurIds[index]
-      const position = index // capturer la position pour le résultat
-      index++
-      actif++
+ function lancerProchain() {
+  // lancer autant d'opérations que la limite le permet
+  while (actif < concurrenceMax && index < joueurIds.length) {
+   const id = joueurIds[index]
+   const position = index // capturer la position pour le résultat
+   index++
+   actif++
 
-      chargerStats(id, function(err, stats) {
-        actif--
-        termine++
-        resultats[position] = err ? null : stats
+   chargerStats(id, function(err, stats) {
+    actif--
+    termine++
+    resultats[position] = err ? null : stats
 
-        if (termine === joueurIds.length) {
-          // tout le monde est passé
-          callback(null, resultats)
-        } else {
-          // lancer le prochain dans la queue
-          lancerProchain()
-        }
-      })
+    if (termine === joueurIds.length) {
+     // tout le monde est passé
+     callback(null, resultats)
+    } else {
+     // lancer le prochain dans la queue
+     lancerProchain()
     }
+   })
   }
+ }
 
-  lancerProchain()
+ lancerProchain()
 }
 
 const ids = ["mbappe", "vinicius", "bellingham", "haaland", "salah", "kane"]
 chargerEnQueue(ids, 2, function(err, stats) {
-  // max 2 requêtes en parallèle à tout moment
-  console.log("Stats :", stats)
+ // max 2 requêtes en parallèle à tout moment
+ console.log("Stats :", stats)
 })
 ```
 
@@ -244,13 +244,13 @@ Tu travailles avec une API de scouting qui plante aléatoirement 40% du temps.
 ```js
 // simule une API instable
 function obtenirRapportScout(joueurId, callback) {
-  setTimeout(function() {
-    if (Math.random() < 0.4) {
-      callback(new Error("API instable"))
-    } else {
-      callback(null, { joueurId, note: Math.floor(Math.random() * 30) + 70 })
-    }
-  }, 200)
+ setTimeout(function() {
+  if (Math.random() < 0.4) {
+   callback(new Error("API instable"))
+  } else {
+   callback(null, { joueurId, note: Math.floor(Math.random() * 30) + 70 })
+  }
+ }, 200)
 }
 ```
 

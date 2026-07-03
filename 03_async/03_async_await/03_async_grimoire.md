@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~14 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -61,34 +61,34 @@ Le dictionnaire complet des concepts du module `03_async_await` : fichiers 01, 0
 ```js
 // PIÈGE 1 : oublier await
 async function bad() {
-  const data = fetch('/api') // pas de await : data = Promise<Response>, pas les données
-  console.log(data)          // affiche [object Promise], pas les données
+ const data = fetch('/api') // pas de await : data = Promise<Response>, pas les données
+ console.log(data)     // affiche [object Promise], pas les données
 }
 
 // PIÈGE 2 : await dans forEach
 [1,2,3].forEach(async (n) => {
-  await delay(n * 1000)  // ces awaits tournent, mais forEach n'attend rien
+ await delay(n * 1000) // ces awaits tournent, mais forEach n'attend rien
 })
 // le code après forEach s'exécute immédiatement
 
 // CORRECT : for...of ou Promise.all
 for (const n of [1,2,3]) {
-  await delay(n * 1000)  // séquentiel, chaque itération attend la précédente
+ await delay(n * 1000) // séquentiel, chaque itération attend la précédente
 }
 
 await Promise.all([1,2,3].map(n => delay(n * 1000))) // parallèle
 
 // PIÈGE 3 : séquentiel involontaire
 async function slow() {
-  const a = await fetchA()  // attend A
-  const b = await fetchB()  // attend B -- mais A et B sont indépendants !
-  return [a, b]             // 2s + 2s = 4s alors que 2s suffisaient
+ const a = await fetchA() // attend A
+ const b = await fetchB() // attend B -- mais A et B sont indépendants !
+ return [a, b]       // 2s + 2s = 4s alors que 2s suffisaient
 }
 
 // CORRECT
 async function fast() {
-  const [a, b] = await Promise.all([fetchA(), fetchB()])
-  return [a, b]  // max(2s, 2s) = 2s
+ const [a, b] = await Promise.all([fetchA(), fetchB()])
+ return [a, b] // max(2s, 2s) = 2s
 }
 ```
 
@@ -99,21 +99,21 @@ async function fast() {
 ```
 SÉQUENTIEL (for...of ou await chainés)
 
-  t=0s      t=2s      t=4s      t=6s
-  |---------|---------|---------|
-  [ fetch A ][ fetch B ][ fetch C ]
-                                ^
-                                résultat disponible ici
+ t=0s   t=2s   t=4s   t=6s
+ |---------|---------|---------|
+ [ fetch A ][ fetch B ][ fetch C ]
+                ^
+                résultat disponible ici
 
 PARALLÈLE (Promise.all)
 
-  t=0s                t=2s
-  |-------------------|
-  [ fetch A           ]
-  [ fetch B     ]
-  [ fetch C           ]
-              ^
-              résultat disponible ici (le plus lent)
+ t=0s        t=2s
+ |-------------------|
+ [ fetch A      ]
+ [ fetch B   ]
+ [ fetch C      ]
+       ^
+       résultat disponible ici (le plus lent)
 ```
 
 Le gain = (somme des temps) - (temps du plus lent).
@@ -126,35 +126,35 @@ Sur 3 fetches de 2s chacun : 6s en séquentiel, 2s en parallèle.
 ```js
 // PIÈGE 4 : appeler une function* sans .next() : rien ne s'exécute
 function* compterChakra() {
-  console.log('début')  // jamais affiché si on ne fait pas .next()
-  yield 1
+ console.log('début') // jamais affiché si on ne fait pas .next()
+ yield 1
 }
 
-const gen = compterChakra()  // crée le generator : zéro exécution
+const gen = compterChakra() // crée le generator : zéro exécution
 // sans gen.next() : rien ne se passe
-gen.next()  // là seulement : affiche 'début', retourne { value: 1, done: false }
+gen.next() // là seulement : affiche 'début', retourne { value: 1, done: false }
 
 // PIÈGE 5 : oublier AbortError dans le catch : traiter l'annulation comme une erreur
 async function rechercherJoueur(nom, signal) {
-  try {
-    const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
-    return await res.json()
-  } catch (e) {
-    // MAUVAIS : on traite l'annulation comme une erreur réseau
-    console.error('Erreur réseau:', e)  // AbortError n'est pas une erreur réseau
-    afficherMessageErreur()             // l'shinobi voit un message d'erreur pour rien
-  }
+ try {
+  const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
+  return await res.json()
+ } catch (e) {
+  // MAUVAIS : on traite l'annulation comme une erreur réseau
+  console.error('Erreur réseau:', e) // AbortError n'est pas une erreur réseau
+  afficherMessageErreur()       // l'shinobi voit un message d'erreur pour rien
+ }
 }
 
 // CORRECT : distinguer annulation et vrai échec
 async function rechercherJoueurV2(nom, signal) {
-  try {
-    const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
-    return await res.json()
-  } catch (e) {
-    if (e.name === 'AbortError') return null  // annulation intentionnelle : on ignore
-    throw e                                    // vrai échec : on propage
-  }
+ try {
+  const res = await fetch(`/api/joueurs?q=${nom}`, { signal })
+  return await res.json()
+ } catch (e) {
+  if (e.name === 'AbortError') return null // annulation intentionnelle : on ignore
+  throw e                  // vrai échec : on propage
+ }
 }
 
 // PIÈGE 6 : réutiliser un AbortController après abort()
@@ -162,12 +162,12 @@ const ctrl = new AbortController()
 ctrl.abort()
 
 // signal.aborted est déjà true : ce fetch est annulé immédiatement
-await fetch('/api/data', { signal: ctrl.signal })  // AbortError immédiat
+await fetch('/api/data', { signal: ctrl.signal }) // AbortError immédiat
 
 // CORRECT : nouveau controller pour chaque opération
 function creerRequeteAnnulable(url) {
-  const ctrl = new AbortController()
-  const promesse = fetch(url, { signal: ctrl.signal })
-  return { promesse, annuler: () => ctrl.abort() }
+ const ctrl = new AbortController()
+ const promesse = fetch(url, { signal: ctrl.signal })
+ return { promesse, annuler: () => ctrl.abort() }
 }
 ```

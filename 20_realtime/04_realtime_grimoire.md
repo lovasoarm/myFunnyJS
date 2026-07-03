@@ -1,7 +1,7 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~13 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
@@ -61,15 +61,15 @@ Pas un résumé du module : un référentiel complet : les termes, les décision
 ## LES TROIS TECHNOLOGIES : QUAND CHOISIR QUOI
 
 ```
-Besoin                              Technologie       Raison
+Besoin               Technologie    Raison
 --------------------------------------------------------------------
-Chat, jeux, co-édition              WebSocket         Bidirectionnel requis
-Notifications, feeds, scores        SSE               Unidirectionnel suffisant + reconnexion gratuite
-Appel vidéo / audio                 WebRTC            Peer-to-peer, serveur hors boucle pour les flux
-Transfert de fichiers P2P           WebRTC DataChannel Sans serveur central
-Dashboard analytics live            SSE               Simple, robuste, HTTP natif
-Collaboration en temps réel         WebSocket          Bidirectionnel avec rooms
-Streaming serveur vers client       SSE               Naturel pour ce cas d'usage
+Chat, jeux, co-édition       WebSocket     Bidirectionnel requis
+Notifications, feeds, scores    SSE        Unidirectionnel suffisant + reconnexion gratuite
+Appel vidéo / audio         WebRTC      Peer-to-peer, serveur hors boucle pour les flux
+Transfert de fichiers P2P      WebRTC DataChannel Sans serveur central
+Dashboard analytics live      SSE        Simple, robuste, HTTP natif
+Collaboration en temps réel     WebSocket     Bidirectionnel avec rooms
+Streaming serveur vers client    SSE        Naturel pour ce cas d'usage
 ```
 
 ---

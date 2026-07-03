@@ -19,7 +19,7 @@ Sans Decorator, quand tu veux ajouter du comportement :
 ```js
 // la fonction originale
 function getPlayerStats(playerId) {
-  return fetch(`/api/players/${playerId}`)
+ return fetch(`/api/players/${playerId}`)
 }
 
 // version "modifiée pour tout faire" :
@@ -27,11 +27,11 @@ function getPlayerStats(playerId) {
 // cette fonction fait maintenant 4 choses
 // et si le cache bugue, tu retestes tout
 function getPlayerStats(playerId) {
-  console.log(`[LOG] fetching ${playerId}`)               // responsabilité 1
-  if (cache.has(playerId)) return cache.get(playerId)     // responsabilité 2
-  const result = fetch(`/api/players/${playerId}`)        // responsabilité 3
-  cache.set(playerId, result)                             // responsabilité 2 bis
-  return result
+ console.log(`[LOG] fetching ${playerId}`)        // responsabilité 1
+ if (cache.has(playerId)) return cache.get(playerId)   // responsabilité 2
+ const result = fetch(`/api/players/${playerId}`)    // responsabilité 3
+ cache.set(playerId, result)               // responsabilité 2 bis
+ return result
 }
 ```
 
@@ -47,14 +47,14 @@ Le principe : une fonction qui prend une fonction et retourne une fonction augme
 // on ne touche pas à getPlayerStats
 // on crée un wrapper qui ajoute juste le logging
 function withLogging(fn) {
-  return function(...args) {
-    // on log l'appel avant
-    console.log(`[LOG] calling ${fn.name} with`, args)
-    const result = fn(...args)
-    // on log le résultat après
-    console.log(`[LOG] ${fn.name} returned`, result)
-    return result
-  }
+ return function(...args) {
+  // on log l'appel avant
+  console.log(`[LOG] calling ${fn.name} with`, args)
+  const result = fn(...args)
+  // on log le résultat après
+  console.log(`[LOG] ${fn.name} returned`, result)
+  return result
+ }
 }
 
 // usage : on décore, on ne modifie pas
@@ -74,58 +74,58 @@ L'intérêt : chaque Decorator fait une seule chose. On les compose.
 ```js
 // Decorator 1 : logging
 function withLogging(fn) {
-  return function(...args) {
-    console.log(`[LOG] ${fn.name}(${args})`)
-    return fn(...args)
-  }
+ return function(...args) {
+  console.log(`[LOG] ${fn.name}(${args})`)
+  return fn(...args)
+ }
 }
 
 // Decorator 2 : cache simple
 function withCache(fn) {
-  const cache = new Map()
-  return function(...args) {
-    const key = JSON.stringify(args)
-    // si la réponse est en cache : on coupe court
-    if (cache.has(key)) {
-      console.log(`[CACHE HIT] ${fn.name}`)
-      return cache.get(key)
-    }
-    const result = fn(...args)
-    cache.set(key, result)
-    return result
+ const cache = new Map()
+ return function(...args) {
+  const key = JSON.stringify(args)
+  // si la réponse est en cache : on coupe court
+  if (cache.has(key)) {
+   console.log(`[CACHE HIT] ${fn.name}`)
+   return cache.get(key)
   }
+  const result = fn(...args)
+  cache.set(key, result)
+  return result
+ }
 }
 
 // Decorator 3 : retry automatique sur erreur
 function withRetry(fn, maxRetries = 3) {
-  return async function(...args) {
-    let lastError
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        return await fn(...args)
-      } catch (err) {
-        lastError = err
-        // petit délai avant de retenter (comme Scofield qui reprend son plan)
-        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)))
-      }
-    }
-    throw lastError
+ return async function(...args) {
+  let lastError
+  for (let i = 0; i < maxRetries; i++) {
+   try {
+    return await fn(...args)
+   } catch (err) {
+    lastError = err
+    // petit délai avant de retenter (comme Scofield qui reprend son plan)
+    await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)))
+   }
   }
+  throw lastError
+ }
 }
 
 // fonction originale : fait UNE chose
 async function fetchPlayerStats(playerId) {
-  const res = await fetch(`/api/players/${playerId}`)
-  if (!res.ok) throw new Error(`Player ${playerId} not found`)
-  return res.json()
+ const res = await fetch(`/api/players/${playerId}`)
+ if (!res.ok) throw new Error(`Player ${playerId} not found`)
+ return res.json()
 }
 
 // composition : on décore de l'intérieur vers l'extérieur
 // ordre de lecture : retry > cache > logging > fetchPlayerStats
 const getPlayerStats = withLogging(
-  withCache(
-    withRetry(fetchPlayerStats, 3)
-  )
+ withCache(
+  withRetry(fetchPlayerStats, 3)
+ )
 )
 
 // on appelle exactement comme la fonction originale
@@ -136,25 +136,25 @@ Diagramme de l'exécution :
 
 ```
 getPlayerStats("messi")
-    |
-    v
+  |
+  v
 withLogging wrapper
-    --> [LOG] fetchPlayerStats(messi)
-    |
-    v
+  --> [LOG] fetchPlayerStats(messi)
+  |
+  v
 withCache wrapper
-    --> cache miss ? continue
-    --> cache hit ? return early
-    |
-    v
+  --> cache miss ? continue
+  --> cache hit ? return early
+  |
+  v
 withRetry wrapper
-    --> attempt 1 : OK ? return
-    --> attempt 1 : FAIL ? wait + attempt 2
-    |
-    v
-fetchPlayerStats("messi")   // la vraie logique, intacte
-    |
-    v
+  --> attempt 1 : OK ? return
+  --> attempt 1 : FAIL ? wait + attempt 2
+  |
+  v
+fetchPlayerStats("messi")  // la vraie logique, intacte
+  |
+  v
 résultat remonte la chaîne
 ```
 
@@ -167,65 +167,65 @@ Même principe, appliqué à des objets. Utile quand tu travailles avec des clas
 ```js
 // l'objet ninja de base
 class Ninja {
-  constructor(name) {
-    this.name = name
-    this.chakra = 100
-  }
+ constructor(name) {
+  this.name = name
+  this.chakra = 100
+ }
 
-  attack(target) {
-    this.chakra -= 10
-    return `${this.name} frappe ${target} : -10 chakra`
-  }
+ attack(target) {
+  this.chakra -= 10
+  return `${this.name} frappe ${target} : -10 chakra`
+ }
 
-  getChakra() {
-    return this.chakra
-  }
+ getChakra() {
+  return this.chakra
+ }
 }
 
 // Decorator : ajoute des logs sans toucher à Ninja
 class LoggedNinja {
-  constructor(ninja) {
-    // on stocke l'original : on ne l'hérite pas, on le contient
-    this.ninja = ninja
-  }
+ constructor(ninja) {
+  // on stocke l'original : on ne l'hérite pas, on le contient
+  this.ninja = ninja
+ }
 
-  attack(target) {
-    console.log(`[COMBAT] ${this.ninja.name} attaque ${target}`)
-    const result = this.ninja.attack(target)          // on délègue à l'original
-    console.log(`[CHAKRA] reste : ${this.ninja.getChakra()}`)
-    return result
-  }
+ attack(target) {
+  console.log(`[COMBAT] ${this.ninja.name} attaque ${target}`)
+  const result = this.ninja.attack(target)     // on délègue à l'original
+  console.log(`[CHAKRA] reste : ${this.ninja.getChakra()}`)
+  return result
+ }
 
-  getChakra() {
-    return this.ninja.getChakra()                     // délégation pure
-  }
+ getChakra() {
+  return this.ninja.getChakra()           // délégation pure
+ }
 }
 
 // Decorator : ajoute un shield temporaire
 class ShieldedNinja {
-  constructor(ninja, shieldDuration = 3) {
-    this.ninja = ninja
-    this.shieldDuration = shieldDuration
-    this.turnsLeft = shieldDuration
-  }
+ constructor(ninja, shieldDuration = 3) {
+  this.ninja = ninja
+  this.shieldDuration = shieldDuration
+  this.turnsLeft = shieldDuration
+ }
 
-  attack(target) {
-    // le shield n'intervient pas sur l'attaque : on délègue directement
-    return this.ninja.attack(target)
-  }
+ attack(target) {
+  // le shield n'intervient pas sur l'attaque : on délègue directement
+  return this.ninja.attack(target)
+ }
 
-  takeDamage(dmg) {
-    if (this.turnsLeft > 0) {
-      this.turnsLeft--
-      // comme le susanoo de Sasuke : absorbe les dégâts
-      return `Shield absorbe ${dmg} dmg (${this.turnsLeft} tours restants)`
-    }
-    return `${this.ninja.name} prend ${dmg} dmg`
+ takeDamage(dmg) {
+  if (this.turnsLeft > 0) {
+   this.turnsLeft--
+   // comme le susanoo de Sasuke : absorbe les dégâts
+   return `Shield absorbe ${dmg} dmg (${this.turnsLeft} tours restants)`
   }
+  return `${this.ninja.name} prend ${dmg} dmg`
+ }
 
-  getChakra() {
-    return this.ninja.getChakra()
-  }
+ getChakra() {
+  return this.ninja.getChakra()
+ }
 }
 
 // composition
@@ -247,10 +247,10 @@ Pourquoi pas `extends` ?
 ```js
 // mauvaise approche : héritage
 class LoggedNinja extends Ninja {
-  attack(target) {
-    console.log(`[LOG]`)
-    return super.attack(target)
-  }
+ attack(target) {
+  console.log(`[LOG]`)
+  return super.attack(target)
+ }
 }
 
 // le problème : tu ne peux pas combiner
@@ -258,8 +258,8 @@ class ShieldedNinja extends Ninja { ... }
 
 // impossible de faire ça proprement avec extends :
 class LoggedShieldedNinja extends ??? {
-  // extends qui ? LoggedNinja ? ShieldedNinja ?
-  // choix forcé, couplage fort
+ // extends qui ? LoggedNinja ? ShieldedNinja ?
+ // choix forcé, couplage fort
 }
 ```
 
@@ -306,24 +306,24 @@ Ce code utilise un Decorator pour cacher les appels API. Trouve pourquoi le cach
 
 ```js
 function withCache(fn) {
-  const cache = {}
-  return function(playerId) {
-    const key = playerId
-    if (cache[key]) return cache[key]
-    const result = fn(playerId)     // fn retourne une Promise
-    cache[key] = result
-    return result
-  }
+ const cache = {}
+ return function(playerId) {
+  const key = playerId
+  if (cache[key]) return cache[key]
+  const result = fn(playerId)   // fn retourne une Promise
+  cache[key] = result
+  return result
+ }
 }
 
 async function fetchPlayer(id) {
-  const res = await fetch(`/api/players/${id}`)
-  return res.json()
+ const res = await fetch(`/api/players/${id}`)
+ return res.json()
 }
 
 const cachedFetch = withCache(fetchPlayer)
 await cachedFetch("messi")
-await cachedFetch("messi")   // censé hitter le cache
+await cachedFetch("messi")  // censé hitter le cache
 ```
 
 (indice : qu'est-ce que `fn(playerId)` retourne réellement avant le `await` ?)

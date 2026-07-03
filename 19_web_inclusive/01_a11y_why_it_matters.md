@@ -7,8 +7,8 @@ Tu codes une interface. Elle marche nickel sur ton écran, avec ta souris, tes y
 
 ```
 WCAG (Web Content Accessibility Guidelines) --> le standard technique international
-ADA (Americans with Disabilities Act)        --> loi US, des sites ont été poursuivis en justice
-EAA (European Accessibility Act)             --> loi UE, obligatoire pour le secteur privé depuis 2025
+ADA (Americans with Disabilities Act)    --> loi US, des sites ont été poursuivis en justice
+EAA (European Accessibility Act)       --> loi UE, obligatoire pour le secteur privé depuis 2025
 ```
 
 Des entreprises comme Domino's Pizza ou Target ont été traînées en justice aux US pour des sites web inaccessibles. Pas une légende urbaine : un vrai procès, une vraie amende. L'accessibilité, c'est un risque légal réel, pas juste une "bonne pratique" qu'on coche si on a le temps.
@@ -28,16 +28,16 @@ menu.addEventListener('mouseenter', ouvrirMenu); // (et si t'as pas de souris ?)
 menu.addEventListener('mouseenter', ouvrirMenu);
 menu.addEventListener('focus', ouvrirMenu); // (le clavier déclenche pareil)
 menu.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') ouvrirMenu(); // (Entrée ou Espace, comme un clic)
+ if (e.key === 'Enter' || e.key === ' ') ouvrirMenu(); // (Entrée ou Espace, comme un clic)
 });
 ```
 
 ## 3) CE QUE ÇA COÛTE DE L'IGNORER
 
 ```
-Coder accessible dès le départ  --> coût faible, intégré au design
-Réparer après coup               --> coût x10, refonte complète parfois
-Ignorer complètement              --> procès, perte d'shinobis, mauvaise réputation
+Coder accessible dès le départ --> coût faible, intégré au design
+Réparer après coup        --> coût x10, refonte complète parfois
+Ignorer complètement       --> procès, perte d'shinobis, mauvaise réputation
 ```
 
 L'accessibilité ressemble à la dette technique du module 14_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton jutsu.
@@ -45,11 +45,11 @@ L'accessibilité ressemble à la dette technique du module 14_refactoring : plus
 ## 4) CE QUE LE RESTE DU MODULE COUVRE
 
 ```
-02_aria_basics            --> parler aux lecteurs d'écran
-03_keyboard_navigation    --> naviguer sans souris
-04_contrast_and_colors    --> les couleurs qui ne trahissent personne
-05_screen_readers         --> comment VoiceOver, NVDA lisent vraiment ton code
-06_a11y_audit             --> auditer une vraie page avec de vrais outils
+02_aria_basics      --> parler aux lecteurs d'écran
+03_keyboard_navigation  --> naviguer sans souris
+04_contrast_and_colors  --> les couleurs qui ne trahissent personne
+05_screen_readers     --> comment VoiceOver, NVDA lisent vraiment ton code
+06_a11y_audit       --> auditer une vraie page avec de vrais outils
 ```
 
 Risque réel : penser que l'accessibilité, c'est un module à part qu'on traite "à la fin". Non. Si tu apprends le HTML sémantique et le focus management depuis le début, t'as zéro travail en plus à la fin. Si tu l'ignores, tu refais tout le projet.

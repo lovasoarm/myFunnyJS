@@ -15,8 +15,8 @@ En 2026, ESM est le standard. Mais CJS est toujours là, dans des millions de pa
 // ce qu'on met dans module.exports = ce que les autres peuvent importer
 
 module.exports = {
-  formatScore: (home, away) => `${home} - ${away}`,
-  parseLineup: (str) => str.split(",").map((s) => s.trim()),
+ formatScore: (home, away) => `${home} - ${away}`,
+ parseLineup: (str) => str.split(",").map((s) => s.trim()),
 };
 
 // version raccourcie : exports est un alias de module.exports
@@ -32,17 +32,17 @@ Ce qui se passe sous le capot :
 
 ```
 require('./match-utils')
-   |
-   v
+  |
+  v
 Node cherche le fichier
-   |
-   v
+  |
+  v
 Node l'exécute entièrement (synchrone : bloquant)
-   |
-   v
+  |
+  v
 Il retourne module.exports
-   |
-   v
+  |
+  v
 Le module est mis en cache : le prochain require() retourne le même objet
 ```
 
@@ -55,14 +55,14 @@ Synchrone. Bloquant. L'exécution s'arrête jusqu'à ce que le fichier soit char
 ```js
 // ---- exporter ----
 export function formatScore(home, away) {
-  return `${home} - ${away}`;
+ return `${home} - ${away}`;
 }
 
 export const MATCH_DURATION = 90;
 
 // export default : un seul par fichier
 export default class MatchEngine {
-  /* ... */
+ /* ... */
 }
 
 // ---- importer ----
@@ -76,17 +76,17 @@ Ce qui se passe sous le capot :
 
 ```
 import { formatScore } from './match-utils.js'
-   |
-   v
+  |
+  v
 Analyse statique : le moteur sait ce qui est importé AVANT d'exécuter
-   |
-   v
+  |
+  v
 Résolution du graphe de dépendances complet (toutes les dépendances en arbre)
-   |
-   v
+  |
+  v
 Chargement asynchrone possible
-   |
-   v
+  |
+  v
 Exécution
 ```
 
@@ -97,16 +97,16 @@ Statique = le moteur peut faire du tree shaking : il sait exactement ce qui est 
 ## 3) LES DIFFÉRENCES QUI COMPTENT
 
 ```
-                    CommonJS (CJS)          ESM
+          CommonJS (CJS)     ESM
 -----------------------------------------------------------
-Syntaxe             require / exports       import / export
-Résolution          dynamique               statique
-Chargement          synchrone               asynchrone possible
-__dirname           disponible              à reconstruire
-__filename          disponible              à reconstruire
-import() dynamic    non natif               natif
-Tree shaking        impossible              natif
-Extension fichier   .js ou .cjs            .js (avec type:module) ou .mjs
+Syntaxe       require / exports    import / export
+Résolution     dynamique        statique
+Chargement     synchrone        asynchrone possible
+__dirname      disponible       à reconstruire
+__filename     disponible       à reconstruire
+import() dynamic  non natif        natif
+Tree shaking    impossible       natif
+Extension fichier  .js ou .cjs      .js (avec type:module) ou .mjs
 ```
 
 Le `__dirname` qui disparaît en ESM, ça piège beaucoup de devs :
@@ -133,8 +133,8 @@ const config = JSON.parse(readFileSync(`${__dirname}/config.json`, "utf-8"));
 ```json
 // package.json
 {
-  "name": "mon-projet",
-  "type": "module"
+ "name": "mon-projet",
+ "type": "module"
 }
 ```
 
@@ -143,10 +143,10 @@ Avec `"type": "module"` : tous les `.js` sont traités comme ESM. Pour un fichie
 Sans `"type": "module"` : tous les `.js` sont CJS. Pour un fichier ESM dans un projet CJS : utilise l'extension `.mjs`.
 
 ```
-Extension   type:module absent   type:module présent
-.js         CJS                  ESM
-.mjs        ESM                  ESM
-.cjs        CJS                  CJS
+Extension  type:module absent  type:module présent
+.js     CJS         ESM
+.mjs    ESM         ESM
+.cjs    CJS         CJS
 ```
 
 ---
@@ -182,25 +182,25 @@ const { default: module } = await import("./legacy-module.cjs");
 ## 6) CE QU'ON UTILISE EN 2026
 
 ```
-Nouveau projet Node           =>  ESM, "type": "module" dans package.json
-Projet existant legacy        =>  CJS par défaut, migrer progressivement
-Package npm à publier         =>  dual package si tu dois supporter les deux
-Bundler (Vite, Rollup...)     =>  ESM côté source, CJS ou ESM en output selon config
-TypeScript                    =>  ESM en source, transpilé via tsconfig
+Nouveau projet Node      => ESM, "type": "module" dans package.json
+Projet existant legacy    => CJS par défaut, migrer progressivement
+Package npm à publier     => dual package si tu dois supporter les deux
+Bundler (Vite, Rollup...)   => ESM côté source, CJS ou ESM en output selon config
+TypeScript          => ESM en source, transpilé via tsconfig
 ```
 
 Pour un package npm qui doit supporter les deux :
 
 ```json
 {
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+ "main": "./dist/index.cjs",
+ "module": "./dist/index.js",
+ "exports": {
+  ".": {
+   "import": "./dist/index.js",
+   "require": "./dist/index.cjs"
   }
+ }
 }
 ```
 
@@ -216,11 +216,11 @@ Ce module CJS gère des stats de matchs. Convertis-le en ESM sans changer la log
 const { mean } = require("./math-utils");
 
 function analyzeMatch(events) {
-  const goals = events.filter((e) => e.type === "goal");
-  return {
-    total: goals.length,
-    avgMinute: mean(goals.map((g) => g.minute)),
-  };
+ const goals = events.filter((e) => e.type === "goal");
+ return {
+  total: goals.length,
+  avgMinute: mean(goals.map((g) => g.minute)),
+ };
 }
 
 module.exports = { analyzeMatch };

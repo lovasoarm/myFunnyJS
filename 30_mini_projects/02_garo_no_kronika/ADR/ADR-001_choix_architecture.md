@@ -13,12 +13,12 @@ Deux options se présentent : ouvrir un vrai serveur Express avec des endpoints 
 On utilise `EventEmitter` natif Node.js pour simuler le canal de streaming entre les Chevaliers et le Conseil. Pas de serveur HTTP, pas de port ouvert. Le Conseil s'abonne aux événements via `.on('combat:update', handler)`, le Chevalier émet via `.emit('combat:update', payload)`.
 
 ```
-Chevalier                    EventEmitter (canal)            Conseil
----------                    ----------------                -------
-armure.engager()   -->  emit('armure:active', { id, ms })  --> .on() handler
-combat.attaquer()  -->  emit('combat:dégâts', { hp, ms }) --> .on() handler
-horror.éliminé()   -->  emit('mission:succès', { log })   --> .on() handler
-armure > 99.9s     -->  emit('armure:collapse', { err })  --> .on() handler (ERROR)
+Chevalier          EventEmitter (canal)      Conseil
+---------          ----------------        -------
+armure.engager()  --> emit('armure:active', { id, ms }) --> .on() handler
+combat.attaquer() --> emit('combat:dégâts', { hp, ms }) --> .on() handler
+horror.éliminé()  --> emit('mission:succès', { log })  --> .on() handler
+armure > 99.9s   --> emit('armure:collapse', { err }) --> .on() handler (ERROR)
 ```
 
 `Promise.race` gère la limite des 99,9 secondes : la Promise du combat et un timer de 99 900ms s'affrontent, la première qui résout gagne.

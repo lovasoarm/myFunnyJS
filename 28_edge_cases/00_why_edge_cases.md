@@ -20,20 +20,20 @@ SCÉNARIO 1 : le calcul de score du Ballon d'Or
 const votes = [7.1, 8.2, 9.0, 6.8];
 const total = votes.reduce((acc, v) => acc + v, 0);
 console.log(total); // 31.100000000000005
-                    // pas 31.1
-                    // et maintenant le classement est faux
+          // pas 31.1
+          // et maintenant le classement est faux
 ```
 
 ```
 SCÉNARIO 2 : la vérification d'identité de T-Bag
 
 function isAdmin(user) {
-  return user.role == 'admin'; // == et pas ===
+ return user.role == 'admin'; // == et pas ===
 }
 
-isAdmin({ role: 0 });   // false -- ok
-isAdmin({ role: '' });  // false -- ok
-isAdmin({ role: [] });  // false -- ok
+isAdmin({ role: 0 });  // false -- ok
+isAdmin({ role: '' }); // false -- ok
+isAdmin({ role: [] }); // false -- ok
 isAdmin({ role: null }); // false -- ok... mais pour la mauvaise raison
 isAdmin({ role: undefined }); // false -- ok... mais undefined == null == false en coercition
 // au moins un de ces cas va te surprendre un jour
@@ -48,8 +48,8 @@ Object.assign({}, payload); // pollue Object.prototype
 
 const req = {};
 console.log(req.isAdmin); // true
-                          // n'importe quel objet est admin maintenant
-                          // l'app entière est compromise
+             // n'importe quel objet est admin maintenant
+             // l'app entière est compromise
 ```
 
 Ces trois bugs sont réels. Ils arrivent en production dans des apps écrites par des devs qui "connaissent JavaScript".
@@ -66,12 +66,12 @@ Ce module transforme les comportements surprenants de JS en connaissances prévi
 Pas pour mémoriser des curiosités. Pour savoir exactement quand ton code peut trahir tes intentions.
 
 ```
-SANS CE MODULE                       AVEC CE MODULE
---------------------------           --------------------------
-bug inexpliqué en prod               comportement anticipé et géré
-"JS est bizarre"                     "je sais exactement pourquoi ça fait ça"
-correction à l'aveugle               correction ciblée avec la vraie cause
-peur des types dynamiques            maîtrise des conversions implicites
+SANS CE MODULE            AVEC CE MODULE
+--------------------------      --------------------------
+bug inexpliqué en prod        comportement anticipé et géré
+"JS est bizarre"           "je sais exactement pourquoi ça fait ça"
+correction à l'aveugle        correction ciblée avec la vraie cause
+peur des types dynamiques      maîtrise des conversions implicites
 ```
 
 ---
@@ -167,11 +167,11 @@ Module 27 pour une raison : ces comportements ont plus de sens quand on a déjà
 ```
 modules qui rendent ce module concret
 --------------------------------------
-01_fundamentals/04_types    -->  les types primitifs et leur comportement de base
-01_fundamentals/01_variables -->  références vs valeurs : base pour comprendre la mutation
-11_functional_js/02_immutability -->  pourquoi la mutation implicite est dangereuse
-15_typescript               -->  ce que TS attrape et ce qu'il laisse passer
-22_security                 -->  prototype pollution comme vecteur d'attaque réel
+01_fundamentals/04_types  --> les types primitifs et leur comportement de base
+01_fundamentals/01_variables --> références vs valeurs : base pour comprendre la mutation
+11_functional_js/02_immutability --> pourquoi la mutation implicite est dangereuse
+15_typescript        --> ce que TS attrape et ce qu'il laisse passer
+22_security         --> prototype pollution comme vecteur d'attaque réel
 ```
 
 Lire ce module avant d'avoir écrit du vrai code : c'est théorique et peu mémorable.

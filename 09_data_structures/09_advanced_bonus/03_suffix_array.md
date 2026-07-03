@@ -27,12 +27,12 @@ Un **Suffix Array** c'est le tableau des indices de ces suffixes, triés dans l'
 
 ```
 Suffixes triés alphabétiquement :
-"a"      → index 5
-"ana"    → index 3
-"anana"  → index 1
+"a"   → index 5
+"ana"  → index 3
+"anana" → index 1
 "banana" → index 0
-"na"     → index 4
-"nana"   → index 2
+"na"   → index 4
+"nana"  → index 2
 
 Suffix Array : [5, 3, 1, 0, 4, 2]
 ```
@@ -43,19 +43,19 @@ Suffix Array : [5, 3, 1, 0, 4, 2]
 
 ```js
 function buildSuffixArrayNaive(str) {
-  const n = str.length;
-  const indices = Array.from({ length: n }, (_, i) => i);
+ const n = str.length;
+ const indices = Array.from({ length: n }, (_, i) => i);
 
-  // trie les indices selon l'ordre lexicographique des suffixes correspondants
-  indices.sort((a, b) => {
-    const suffixA = str.slice(a);
-    const suffixB = str.slice(b);
-    if (suffixA < suffixB) return -1;
-    if (suffixA > suffixB) return 1;
-    return 0;
-  });
+ // trie les indices selon l'ordre lexicographique des suffixes correspondants
+ indices.sort((a, b) => {
+  const suffixA = str.slice(a);
+  const suffixB = str.slice(b);
+  if (suffixA < suffixB) return -1;
+  if (suffixA > suffixB) return 1;
+  return 0;
+ });
 
-  return indices;
+ return indices;
 }
 
 buildSuffixArrayNaive("banana");
@@ -72,41 +72,41 @@ Algorithme de prefix doubling. Trie d'abord les suffixes par leurs 2 premiers ca
 
 ```js
 function buildSuffixArray(str) {
-  const n = str.length;
-  let sa = Array.from({ length: n }, (_, i) => i); // indices des suffixes
-  let rank = str.split("").map((c) => c.charCodeAt(0)); // rang initial = code ASCII
+ const n = str.length;
+ let sa = Array.from({ length: n }, (_, i) => i); // indices des suffixes
+ let rank = str.split("").map((c) => c.charCodeAt(0)); // rang initial = code ASCII
 
-  for (let gap = 1; gap < n; gap *= 2) {
-    // compare deux suffixes par leur rang actuel (2*gap premiers caractères)
-    const rankCopy = rank.slice();
+ for (let gap = 1; gap < n; gap *= 2) {
+  // compare deux suffixes par leur rang actuel (2*gap premiers caractères)
+  const rankCopy = rank.slice();
 
-    sa.sort((a, b) => {
-      if (rankCopy[a] !== rankCopy[b]) return rankCopy[a] - rankCopy[b];
-      // compare la deuxième moitié : rang du suffix décalé de gap
-      const ra = a + gap < n ? rankCopy[a + gap] : -1;
-      const rb = b + gap < n ? rankCopy[b + gap] : -1;
-      return ra - rb;
-    });
+  sa.sort((a, b) => {
+   if (rankCopy[a] !== rankCopy[b]) return rankCopy[a] - rankCopy[b];
+   // compare la deuxième moitié : rang du suffix décalé de gap
+   const ra = a + gap < n ? rankCopy[a + gap] : -1;
+   const rb = b + gap < n ? rankCopy[b + gap] : -1;
+   return ra - rb;
+  });
 
-    // recalcule les rangs après le tri
-    rank[sa[0]] = 0;
-    for (let i = 1; i < n; i++) {
-      const prev = sa[i - 1];
-      const curr = sa[i];
-      const prevSecond = prev + gap < n ? rankCopy[prev + gap] : -1;
-      const currSecond = curr + gap < n ? rankCopy[curr + gap] : -1;
-      rank[curr] =
-        rank[prev] +
-        (rankCopy[prev] !== rankCopy[curr] || prevSecond !== currSecond
-          ? 1
-          : 0);
-    }
-
-    // si tous les rangs sont uniques : l'ordre est définitif, on peut s'arrêter
-    if (rank[sa[n - 1]] === n - 1) break;
+  // recalcule les rangs après le tri
+  rank[sa[0]] = 0;
+  for (let i = 1; i < n; i++) {
+   const prev = sa[i - 1];
+   const curr = sa[i];
+   const prevSecond = prev + gap < n ? rankCopy[prev + gap] : -1;
+   const currSecond = curr + gap < n ? rankCopy[curr + gap] : -1;
+   rank[curr] =
+    rank[prev] +
+    (rankCopy[prev] !== rankCopy[curr] || prevSecond !== currSecond
+     ? 1
+     : 0);
   }
 
-  return sa;
+  // si tous les rangs sont uniques : l'ordre est définitif, on peut s'arrêter
+  if (rank[sa[n - 1]] === n - 1) break;
+ }
+
+ return sa;
 }
 ```
 
@@ -118,45 +118,45 @@ Une fois le suffix array construit, chercher un pattern c'est une recherche bina
 
 ```js
 function searchPattern(str, sa, pattern) {
-  const m = pattern.length;
-  const n = str.length;
+ const m = pattern.length;
+ const n = str.length;
 
-  // recherche binaire de la première occurrence
-  let lo = 0,
-    hi = n - 1;
-  let first = -1;
-
-  while (lo <= hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    const suffix = str.slice(sa[mid], sa[mid] + m); // compare seulement les m premiers chars
-    if (suffix === pattern) {
-      first = mid;
-      hi = mid - 1;
-    } // continue à gauche
-    else if (suffix < pattern) lo = mid + 1;
-    else hi = mid - 1;
-  }
-
-  if (first === -1) return []; // pattern absent
-
-  // recherche binaire de la dernière occurrence
-  lo = first;
+ // recherche binaire de la première occurrence
+ let lo = 0,
   hi = n - 1;
-  let last = first;
+ let first = -1;
 
-  while (lo <= hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    const suffix = str.slice(sa[mid], sa[mid] + m);
-    if (suffix === pattern) {
-      last = mid;
-      lo = mid + 1;
-    } // continue à droite
-    else if (suffix < pattern) lo = mid + 1;
-    else hi = mid - 1;
-  }
+ while (lo <= hi) {
+  const mid = Math.floor((lo + hi) / 2);
+  const suffix = str.slice(sa[mid], sa[mid] + m); // compare seulement les m premiers chars
+  if (suffix === pattern) {
+   first = mid;
+   hi = mid - 1;
+  } // continue à gauche
+  else if (suffix < pattern) lo = mid + 1;
+  else hi = mid - 1;
+ }
 
-  // toutes les occurrences sont dans sa[first..last]
-  return sa.slice(first, last + 1).sort((a, b) => a - b);
+ if (first === -1) return []; // pattern absent
+
+ // recherche binaire de la dernière occurrence
+ lo = first;
+ hi = n - 1;
+ let last = first;
+
+ while (lo <= hi) {
+  const mid = Math.floor((lo + hi) / 2);
+  const suffix = str.slice(sa[mid], sa[mid] + m);
+  if (suffix === pattern) {
+   last = mid;
+   lo = mid + 1;
+  } // continue à droite
+  else if (suffix < pattern) lo = mid + 1;
+  else hi = mid - 1;
+ }
+
+ // toutes les occurrences sont dans sa[first..last]
+ return sa.slice(first, last + 1).sort((a, b) => a - b);
 }
 ```
 
@@ -168,7 +168,7 @@ Rechercher des patterns dans les paroles d'une chanson trapsoul.
 
 ```js
 const lyrics =
-  "aint nobody gonna love you like i love you baby nobody like nobody";
+ "aint nobody gonna love you like i love you baby nobody like nobody";
 
 const sa = buildSuffixArray(lyrics);
 
@@ -196,25 +196,25 @@ Le LCP array (tableau du plus long préfixe commun) est souvent construit en mê
 
 ```js
 function buildLCPArray(str, sa) {
-  const n = str.length;
-  const lcp = new Array(n).fill(0);
-  const rank = new Array(n).fill(0);
+ const n = str.length;
+ const lcp = new Array(n).fill(0);
+ const rank = new Array(n).fill(0);
 
-  // rang inverse : rank[sa[i]] = i
-  for (let i = 0; i < n; i++) rank[sa[i]] = i;
+ // rang inverse : rank[sa[i]] = i
+ for (let i = 0; i < n; i++) rank[sa[i]] = i;
 
-  let h = 0; // longueur du LCP courant
+ let h = 0; // longueur du LCP courant
 
-  for (let i = 0; i < n; i++) {
-    if (rank[i] > 0) {
-      const j = sa[rank[i] - 1]; // suffix précédent dans l'ordre trié
-      while (i + h < n && j + h < n && str[i + h] === str[j + h]) h++;
-      lcp[rank[i]] = h;
-      if (h > 0) h--; // le LCP du prochain suffix est au moins h-1
-    }
+ for (let i = 0; i < n; i++) {
+  if (rank[i] > 0) {
+   const j = sa[rank[i] - 1]; // suffix précédent dans l'ordre trié
+   while (i + h < n && j + h < n && str[i + h] === str[j + h]) h++;
+   lcp[rank[i]] = h;
+   if (h > 0) h--; // le LCP du prochain suffix est au moins h-1
   }
+ }
 
-  return lcp;
+ return lcp;
 }
 
 buildLCPArray("banana", [5, 3, 1, 0, 4, 2]);
@@ -230,11 +230,11 @@ Le LCP array permet de trouver la plus longue sous-string répétée, de compter
 ## 7) COMPLEXITÉ GLOBALE
 
 ```
-Construction naïve    : O(n² log n)  en temps, O(n) en espace
-Construction efficace : O(n log² n)  en temps, O(n) en espace
-SA-IS (optimal)       : O(n)         : hors scope
-Recherche de pattern  : O(m log n)   après construction
-LCP array             : O(n)         après suffix array
+Construction naïve  : O(n² log n) en temps, O(n) en espace
+Construction efficace : O(n log² n) en temps, O(n) en espace
+SA-IS (optimal)    : O(n)     : hors scope
+Recherche de pattern : O(m log n)  après construction
+LCP array       : O(n)     après suffix array
 ```
 
 ---
@@ -249,7 +249,7 @@ Naruto a une liste de 20 jutsu. Il tape les premiers caractères et veut l'autoc
 
 ```js
 const jutsu =
-  "rasengan rasenshuriken shadow clone great ball rasengan chidori chidori blade";
+ "rasengan rasenshuriken shadow clone great ball rasengan chidori chidori blade";
 ```
 
 Construis le suffix array sur ce corpus. Implémente `autocomplete(prefix)` : retourne tous les mots qui commencent par `prefix`. Utilise la recherche binaire sur le suffix array.
@@ -265,7 +265,7 @@ Deux joueurs ont soumis leurs analyses de match. Tu veux savoir si l'un a copié
 ```js
 const analyse1 = "messi controle le jeu par sa vision et sa technique de balle";
 const analyse2 =
-  "la technique de balle et la vision du jeu de messi sont uniques";
+ "la technique de balle et la vision du jeu de messi sont uniques";
 ```
 
 Construis un suffix array sur la concaténation `analyse1 + "#" + analyse2` (le `#` est un séparateur qui n'apparaît pas dans le texte). Trouve la plus longue sous-string commune entre les deux analyses. Utilise le LCP array.

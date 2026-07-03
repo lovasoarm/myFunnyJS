@@ -19,8 +19,8 @@ Un shinobi français télécharge aussi les traductions japonaises et malgaches 
 ```js
 // Correct : chargement dynamique, seulement la langue active
 async function chargerTraductions(locale) {
-  const module = await import(`./locales/${locale}.json`); // (import dynamique : un seul fichier chargé)
-  return module.default;
+ const module = await import(`./locales/${locale}.json`); // (import dynamique : un seul fichier chargé)
+ return module.default;
 }
 
 const traductions = await chargerTraductions('fr'); // (seul fr.json est téléchargé)
@@ -35,11 +35,11 @@ Avec lazy loading --> seule la langue active est chargée --> poids minimal, par
 
 ```js
 function detecterLangue() {
-  const langueNavigateur = navigator.language; // ("fr-FR", "ja-JP"...)
-  const languesSupportees = ['fr', 'en', 'ja', 'mg'];
-  const langueCourte = langueNavigateur.split('-')[0]; // ("fr-FR" devient "fr")
+ const langueNavigateur = navigator.language; // ("fr-FR", "ja-JP"...)
+ const languesSupportees = ['fr', 'en', 'ja', 'mg'];
+ const langueCourte = langueNavigateur.split('-')[0]; // ("fr-FR" devient "fr")
 
-  return languesSupportees.includes(langueCourte) ? langueCourte : 'en'; // (fallback si non supportée)
+ return languesSupportees.includes(langueCourte) ? langueCourte : 'en'; // (fallback si non supportée)
 }
 ```
 
@@ -50,17 +50,17 @@ Risque réel : forcer une langue par défaut sans détecter celle du navigateur,
 ```
 locales/
 ├── fr/
-│   ├── auth.json
-│   ├── profil.json
-│   └── radio.json
+│  ├── auth.json
+│  ├── profil.json
+│  └── radio.json
 ├── en/
-│   ├── auth.json
-│   ├── profil.json
-│   └── radio.json
+│  ├── auth.json
+│  ├── profil.json
+│  └── radio.json
 └── ja/
-    ├── auth.json
-    ├── profil.json
-    └── radio.json
+  ├── auth.json
+  ├── profil.json
+  └── radio.json
 ```
 
 Un fichier par namespace, par langue. Ça permet de charger SEULEMENT le namespace nécessaire à la page courante, en plus de la langue.
@@ -68,8 +68,8 @@ Un fichier par namespace, par langue. Ça permet de charger SEULEMENT le namespa
 ```js
 // Charger uniquement ce dont la page a besoin : langue ET contexte
 async function chargerNamespace(locale, namespace) {
-  const module = await import(`./locales/${locale}/${namespace}.json`);
-  return module.default;
+ const module = await import(`./locales/${locale}/${namespace}.json`);
+ return module.default;
 }
 
 const traductionsAuth = await chargerNamespace('fr', 'auth'); // (page de chakra_gate : juste 'auth', pas 'radio')
@@ -86,13 +86,13 @@ const traductionsAuth = await chargerNamespace('fr', 'auth'); // (page de chakra
 ```js
 // Script de vérification à lancer en CI (intégration continue, voir module 31_annexes)
 function verifierClesManquantes(traductionsBase, traductionsCible) {
-  const clesBase = Object.keys(traductionsBase);
-  const clesCible = Object.keys(traductionsCible);
-  const manquantes = clesBase.filter(cle => !clesCible.includes(cle));
+ const clesBase = Object.keys(traductionsBase);
+ const clesCible = Object.keys(traductionsCible);
+ const manquantes = clesBase.filter(cle => !clesCible.includes(cle));
 
-  if (manquantes.length > 0) {
-    throw new Error(`Clés manquantes en anglais : ${manquantes.join(', ')}`); // (bloque le build, pas la prod)
-  }
+ if (manquantes.length > 0) {
+  throw new Error(`Clés manquantes en anglais : ${manquantes.join(', ')}`); // (bloque le build, pas la prod)
+ }
 }
 ```
 
@@ -104,14 +104,14 @@ Trapsoul Radio supporte français, anglais, japonais et malgache. Voici comment 
 
 ```js
 async function initialiserI18n() {
-  const locale = detecterLangue(); // (étape 2 : détection)
-  const namespace = determinerNamespacePage(); // ("radio", "profil", "auth" selon la page)
+ const locale = detecterLangue(); // (étape 2 : détection)
+ const namespace = determinerNamespacePage(); // ("radio", "profil", "auth" selon la page)
 
-  const traductions = await chargerNamespace(locale, namespace); // (étape 3 : chargement ciblé)
+ const traductions = await chargerNamespace(locale, namespace); // (étape 3 : chargement ciblé)
 
-  return {
-    t: (cle, params) => pluraliser(params?.nombre, cle, locale, traductions) ?? traductions[cle], // (étape 1+4 combinées)
-  };
+ return {
+  t: (cle, params) => pluraliser(params?.nombre, cle, locale, traductions) ?? traductions[cle], // (étape 1+4 combinées)
+ };
 }
 ```
 

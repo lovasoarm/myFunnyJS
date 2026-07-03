@@ -14,19 +14,19 @@ Le ratio de contraste se calcule entre 1:1 (aucun contraste, même couleur) et 2
 // Voici la version honnête, pas édulcorée, pour comprendre ce qui se passe dessous :
 
 function luminanceRelative(r, g, b) {
-  const composantes = [r, g, b].map(canal => {
-    const ratio = canal / 255;
-    // (chaque canal est "corrigé" selon une courbe non linéaire avant d'être pondéré)
-    return ratio <= 0.03928 ? ratio / 12.92 : Math.pow((ratio + 0.055) / 1.055, 2.4);
-  });
-  const [r2, g2, b2] = composantes;
-  return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b2; // (vert > rouge > bleu dans le poids final)
+ const composantes = [r, g, b].map(canal => {
+  const ratio = canal / 255;
+  // (chaque canal est "corrigé" selon une courbe non linéaire avant d'être pondéré)
+  return ratio <= 0.03928 ? ratio / 12.92 : Math.pow((ratio + 0.055) / 1.055, 2.4);
+ });
+ const [r2, g2, b2] = composantes;
+ return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b2; // (vert > rouge > bleu dans le poids final)
 }
 
 function ratioContraste(luminanceA, luminanceB) {
-  const plusClair = Math.max(luminanceA, luminanceB);
-  const plusFonce = Math.min(luminanceA, luminanceB);
-  return (plusClair + 0.05) / (plusFonce + 0.05); // (formule officielle WCAG, +0.05 évite la division par zéro)
+ const plusClair = Math.max(luminanceA, luminanceB);
+ const plusFonce = Math.min(luminanceA, luminanceB);
+ return (plusClair + 0.05) / (plusFonce + 0.05); // (formule officielle WCAG, +0.05 évite la division par zéro)
 }
 ```
 
@@ -35,9 +35,9 @@ Tu n'écriras presque jamais cette formule à la main en prod (les outils le fon
 ## 2) LES SEUILS WCAG : AA ET AAA
 
 ```
-Texte normal, niveau AA   --> ratio minimum 4.5:1
-Texte large (18px+ gras)  --> ratio minimum 3:1
-Niveau AAA (plus strict)  --> ratio minimum 7:1 pour le texte normal
+Texte normal, niveau AA  --> ratio minimum 4.5:1
+Texte large (18px+ gras) --> ratio minimum 3:1
+Niveau AAA (plus strict) --> ratio minimum 7:1 pour le texte normal
 ```
 
 ```js
@@ -55,8 +55,8 @@ Walter White ne mélange jamais une formule "à peu près" : il calcule exacteme
 ```js
 // Piège classique : la couleur seule porte tout le sens
 function afficherStatutMission(statut) {
-  const couleur = statut === 'reussie' ? 'green' : 'red';
-  element.style.color = couleur; // (vert = ok, rouge = échec, mais pour un daltonique ?)
+ const couleur = statut === 'reussie' ? 'green' : 'red';
+ element.style.color = couleur; // (vert = ok, rouge = échec, mais pour un daltonique ?)
 }
 ```
 
@@ -65,12 +65,12 @@ Un daltonique rouge-vert (le type le plus fréquent) voit ces deux couleurs pres
 ```js
 // Correct : la couleur ACCOMPAGNE l'info, elle ne la PORTE pas seule
 function afficherStatutMission(statut) {
-  const config = statut === 'reussie'
-    ? { couleur: 'green', icone: '', texte: 'Réussie' }
-    : { couleur: 'red', icone: '', texte: 'Échouée' };
+ const config = statut === 'reussie'
+  ? { couleur: 'green', icone: '', texte: 'Réussie' }
+  : { couleur: 'red', icone: '', texte: 'Échouée' };
 
-  element.style.color = config.couleur;
-  element.textContent = `${config.icone} ${config.texte}`; // (icône + texte : redondance volontaire et nécessaire)
+ element.style.color = config.couleur;
+ element.textContent = `${config.icone} ${config.texte}`; // (icône + texte : redondance volontaire et nécessaire)
 }
 ```
 
@@ -94,9 +94,9 @@ document.querySelector('#email-erreur').textContent = 'Format d\'email invalide'
 ## 5) OUTILS RÉELS POUR VÉRIFIER
 
 ```
-Chrome DevTools  --> inspecter un élément, l'onglet Contraste s'affiche directement sur la couleur
+Chrome DevTools --> inspecter un élément, l'onglet Contraste s'affiche directement sur la couleur
 WebAIM Contrast Checker --> coller deux codes hex, ratio calculé instantanément
-Lighthouse        --> audit automatique qui liste tous les contrastes insuffisants d'une page
+Lighthouse    --> audit automatique qui liste tous les contrastes insuffisants d'une page
 Simulateurs de daltonisme --> voir la page "à travers les yeux" d'un daltonique
 ```
 

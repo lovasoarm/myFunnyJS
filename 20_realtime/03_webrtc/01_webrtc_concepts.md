@@ -1,7 +1,7 @@
 # 01_WEBRTC_CONCEPTS : LE VOCABULAIRE SANS LA PEUR
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 WebRTC c'est le seul endroit dans le web où deux navigateurs se parlent directement.
 Pas de serveur intermédiaire pour les données. Peer-to-peer pur.
@@ -18,15 +18,15 @@ Ce module décompose chaque pièce du puzzle. Le code réel : connexion, DataCha
 
 ```
 Alice (navigateur) ---------- [internet + NATs] ---------- Bob (navigateur)
-                                    |
-                              [Signaling Server]
-                           (serveur de rendezvous)
-                                    |
-                         Échange de SDP et ICE candidates
-                                    |
-                    Une fois connectés, les données passent direct
-                    Alice <========================> Bob
-                          (pas par le serveur signaling)
+                  |
+               [Signaling Server]
+              (serveur de rendezvous)
+                  |
+             Échange de SDP et ICE candidates
+                  |
+          Une fois connectés, les données passent direct
+          Alice <========================> Bob
+             (pas par le serveur signaling)
 ```
 
 Deux phases distinctes :
@@ -66,14 +66,14 @@ Ce que tu fais : le transporter via ton serveur de signaling d'Alice à Bob et v
 L'échange SDP :
 
 ```
-Alice                    Serveur Signaling               Bob
-  |                            |                          |
-  |--- createOffer() --------->|                          |
-  |    (génère SDP local)      |--- forward SDP --------->|
-  |                            |                          | setRemoteDescription()
-  |                            |<-- createAnswer() -------|
-  |    setRemoteDescription()  |--- forward answer ------>|
-  |<-- answer reçu ------------|                          |
+Alice          Serveur Signaling        Bob
+ |              |             |
+ |--- createOffer() --------->|             |
+ |  (génère SDP local)   |--- forward SDP --------->|
+ |              |             | setRemoteDescription()
+ |              |<-- createAnswer() -------|
+ |  setRemoteDescription() |--- forward answer ------>|
+ |<-- answer reçu ------------|             |
 ```
 
 ---
@@ -93,13 +93,13 @@ Chacune de ces possibilités de connexion s'appelle un **ICE candidate** (candid
 ```js
 // le navigateur génère des ICE candidates automatiquement
 peerConnection.onicecandidate = (event) => {
-  if (event.candidate) {
-    // envoyer ce candidate à l'autre pair via le signaling server
-    signalingServer.send({
-      type: "ice_candidate",
-      candidate: event.candidate,
-    });
-  }
+ if (event.candidate) {
+  // envoyer ce candidate à l'autre pair via le signaling server
+  signalingServer.send({
+   type: "ice_candidate",
+   candidate: event.candidate,
+  });
+ }
 };
 ```
 
@@ -114,7 +114,7 @@ STUN (Session Traversal Utilities for NAT) c'est simple : un serveur qui te dit 
 
 ```
 Ton navigateur -------- "C'est quoi mon IP ?" --------> Serveur STUN
-                <------- "Tu arrives avec 203.0.113.1:54321" --------
+        <------- "Tu arrives avec 203.0.113.1:54321" --------
 ```
 
 Le serveur STUN retourne ton IP publique et le port que le NAT a ouvert.
@@ -124,10 +124,10 @@ Google fournit des serveurs STUN publics gratuits :
 
 ```js
 const config = {
-  iceServers: [
-    { urls: "stun:stun.l.google.com:19302" },
-    { urls: "stun:stun1.l.google.com:19302" },
-  ],
+ iceServers: [
+  { urls: "stun:stun.l.google.com:19302" },
+  { urls: "stun:stun1.l.google.com:19302" },
+ ],
 };
 
 const peerConnection = new RTCPeerConnection(config);
@@ -153,14 +153,14 @@ Inconvénient : ça coûte de la bande passante côté serveur. TURN est ton bud
 
 ```js
 const config = {
-  iceServers: [
-    { urls: "stun:stun.l.google.com:19302" },
-    {
-      urls: "turn:ton-serveur-turn.com:3478",
-      username: "alice", // credentials TURN:obligatoires
-      credential: "motdepasse",
-    },
-  ],
+ iceServers: [
+  { urls: "stun:stun.l.google.com:19302" },
+  {
+   urls: "turn:ton-serveur-turn.com:3478",
+   username: "alice", // credentials TURN:obligatoires
+   credential: "motdepasse",
+  },
+ ],
 };
 ```
 
@@ -172,27 +172,27 @@ Héberger le tien avec Coturn (implémentation open source de TURN) ou payer un 
 ## 6) LE FLUX COMPLET DE CONNEXION
 
 ```
-Alice                          Signaling              Bob
-  |                               |                    |
-  | new RTCPeerConnection()        |                    |
-  | getUserMedia() -> stream       |                    |
-  | addTrack(stream)               |                    |
-  |                               |                    |
-  | createOffer()                  |                    |
-  | setLocalDescription(offer)     |                    |
-  |--- send offer ---------------->|--- forward ------->|
-  |                               |                    | setRemoteDescription(offer)
-  |                               |                    | createAnswer()
-  |                               |                    | setLocalDescription(answer)
-  |<-- receive answer ------------|<--- forward --------|
-  | setRemoteDescription(answer)   |                    |
-  |                               |                    |
-  |--- ice candidate ------------->|--- forward ------->| addIceCandidate()
-  |<-- ice candidate -------------|<--- forward --------|
-  | addIceCandidate()              |                    |
-  |                               |                    |
-  |<===== CONNEXION P2P ÉTABLIE ========================>|
-  |        (flux audio/vidéo direct)                    |
+Alice             Signaling       Bob
+ |                |          |
+ | new RTCPeerConnection()    |          |
+ | getUserMedia() -> stream    |          |
+ | addTrack(stream)        |          |
+ |                |          |
+ | createOffer()         |          |
+ | setLocalDescription(offer)   |          |
+ |--- send offer ---------------->|--- forward ------->|
+ |                |          | setRemoteDescription(offer)
+ |                |          | createAnswer()
+ |                |          | setLocalDescription(answer)
+ |<-- receive answer ------------|<--- forward --------|
+ | setRemoteDescription(answer)  |          |
+ |                |          |
+ |--- ice candidate ------------->|--- forward ------->| addIceCandidate()
+ |<-- ice candidate -------------|<--- forward --------|
+ | addIceCandidate()       |          |
+ |                |          |
+ |<===== CONNEXION P2P ÉTABLIE ========================>|
+ |    (flux audio/vidéo direct)          |
 ```
 
 Six étapes clés :

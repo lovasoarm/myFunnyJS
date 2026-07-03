@@ -41,7 +41,7 @@ Même principe, syntaxe plus simple. Utile pour des mesures rapides pendant le d
 console.time("transformation");
 
 for (let i = 0; i < 100_000; i++) {
-  transformEnTitan(i);
+ transformEnTitan(i);
 }
 
 console.timeEnd("transformation");
@@ -78,43 +78,43 @@ Tu mesures minimum 10 fois. Tu prends la médiane, pas la moyenne.
 ```js
 // Walter White benchmark ses recettes avant de les scaler
 function benchmark(label, fn, runs = 10) {
-  const times = [];
+ const times = [];
 
-  // warm-up : le JIT a besoin de quelques runs pour optimiser
-  for (let i = 0; i < 3; i++) fn();
+ // warm-up : le JIT a besoin de quelques runs pour optimiser
+ for (let i = 0; i < 3; i++) fn();
 
-  // mesures réelles
-  for (let i = 0; i < runs; i++) {
-    const start = performance.now();
-    fn();
-    times.push(performance.now() - start);
-  }
+ // mesures réelles
+ for (let i = 0; i < runs; i++) {
+  const start = performance.now();
+  fn();
+  times.push(performance.now() - start);
+ }
 
-  times.sort((a, b) => a - b);
-  const median = times[Math.floor(runs / 2)];
-  const min = times[0];
-  const max = times[runs - 1];
+ times.sort((a, b) => a - b);
+ const median = times[Math.floor(runs / 2)];
+ const min = times[0];
+ const max = times[runs - 1];
 
-  console.log(
-    `[${label}] median: ${median.toFixed(3)}ms | min: ${min.toFixed(3)}ms | max: ${max.toFixed(3)}ms`,
-  );
+ console.log(
+  `[${label}] median: ${median.toFixed(3)}ms | min: ${min.toFixed(3)}ms | max: ${max.toFixed(3)}ms`,
+ );
 }
 
 // comparer deux implémentations
 const data = Array.from({ length: 10_000 }, (_, i) => i);
 
 benchmark("for loop", () => {
-  let sum = 0;
-  for (let i = 0; i < data.length; i++) sum += data[i];
+ let sum = 0;
+ for (let i = 0; i < data.length; i++) sum += data[i];
 });
 
 benchmark("reduce", () => {
-  data.reduce((acc, n) => acc + n, 0);
+ data.reduce((acc, n) => acc + n, 0);
 });
 
 // résultat possible :
 // [for loop] median: 0.041ms | min: 0.038ms | max: 0.112ms
-// [reduce]   median: 0.089ms | min: 0.081ms | max: 0.241ms
+// [reduce]  median: 0.089ms | min: 0.081ms | max: 0.241ms
 ```
 
 Le `for` classique gagne ici. Pas parce que `reduce` est mauvais : parce que sur des petits tableaux, l'overhead de créer une closure à chaque step coûte quelque chose.
@@ -129,7 +129,7 @@ Les premiers appels d'une fonction sont plus lents que les suivants.
 
 ```js
 function calculerDegats(attaque, defense) {
-  return Math.max(0, attaque - defense) * 1.5;
+ return Math.max(0, attaque - defense) * 1.5;
 }
 
 // premier appel : le moteur interprète
@@ -167,14 +167,14 @@ performance.mark("survivants-ok");
 performance.measure("temps-perimetre", "securisation-debut", "perimetre-ok");
 performance.measure("temps-survivants", "perimetre-ok", "survivants-ok");
 performance.measure(
-  "securisation-totale",
-  "securisation-debut",
-  "survivants-ok",
+ "securisation-totale",
+ "securisation-debut",
+ "survivants-ok",
 );
 
 const mesures = performance.getEntriesByType("measure");
 mesures.forEach((m) => {
-  console.log(`${m.name}: ${m.duration.toFixed(2)}ms`);
+ console.log(`${m.name}: ${m.duration.toFixed(2)}ms`);
 });
 
 // "temps-perimetre: 234.12ms"
@@ -196,21 +196,21 @@ Il veut savoir laquelle est le goulot d'étranglement.
 
 ```js
 function preparerIngredients(quantite) {
-  let total = 0;
-  for (let i = 0; i < quantite * 1000; i++) total += Math.sqrt(i);
-  return total;
+ let total = 0;
+ for (let i = 0; i < quantite * 1000; i++) total += Math.sqrt(i);
+ return total;
 }
 
 function cuire(lot) {
-  let resultat = lot;
-  for (let i = 0; i < 500_000; i++) resultat = resultat * 0.9999 + 0.0001;
-  return resultat;
+ let resultat = lot;
+ for (let i = 0; i < 500_000; i++) resultat = resultat * 0.9999 + 0.0001;
+ return resultat;
 }
 
 function conditionner(jutsu) {
-  return JSON.parse(
-    JSON.stringify({ jutsu, timestamp: Date.now(), batch: Math.random() }),
-  );
+ return JSON.parse(
+  JSON.stringify({ jutsu, timestamp: Date.now(), batch: Math.random() }),
+ );
 }
 ```
 
@@ -226,21 +226,21 @@ Tu as une liste de 50 000 joueurs. Tu dois trouver un joueur par son nom.
 
 ```js
 const joueurs = Array.from({ length: 50_000 }, (_, i) => ({
-  id: i,
-  nom: `Joueur_${i}`,
-  score: Math.floor(Math.random() * 100),
+ id: i,
+ nom: `Joueur_${i}`,
+ score: Math.floor(Math.random() * 100),
 }));
 
 // version A : chercher dans un tableau
 function chercherDansTableau(joueurs, nom) {
-  return joueurs.find((j) => j.nom === nom);
+ return joueurs.find((j) => j.nom === nom);
 }
 
 // version B : chercher dans une Map (à toi de la construire)
 const joueurMap = new Map(joueurs.map((j) => [j.nom, j]));
 
 function chercherDansMap(map, nom) {
-  return map.get(nom);
+ return map.get(nom);
 }
 ```
 
@@ -257,16 +257,16 @@ Prends la fonction suivante :
 
 ```js
 function analyserMatchNaruto(techniques) {
-  return techniques
-    .filter((t) => t.chakra > 50)
-    .map((t) => ({ ...t, degats: t.chakra * t.multiplicateur }))
-    .reduce((acc, t) => acc + t.degats, 0);
+ return techniques
+  .filter((t) => t.chakra > 50)
+  .map((t) => ({ ...t, degats: t.chakra * t.multiplicateur }))
+  .reduce((acc, t) => acc + t.degats, 0);
 }
 
 const techniques = Array.from({ length: 1000 }, (_, i) => ({
-  nom: `Technique_${i}`,
-  chakra: Math.random() * 100,
-  multiplicateur: Math.random() * 3,
+ nom: `Technique_${i}`,
+ chakra: Math.random() * 100,
+ multiplicateur: Math.random() * 3,
 }));
 ```
 

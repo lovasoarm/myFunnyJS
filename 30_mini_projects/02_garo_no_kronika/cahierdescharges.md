@@ -4,9 +4,9 @@ Temps de lecture ~14 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Variables env : aucune
 Outils externes: aucun
 
 # Installation
@@ -46,10 +46,10 @@ $ node src/index.js
 [CONSEIL] Rapport : 2/2 missions réussies | 0 armures désintégrées
 
 $ npm test
-PASS  tests/dispatcher.test.js (18 tests)
-PASS  tests/knight.test.js (14 tests)
-PASS  tests/armor.test.js (12 tests)
-PASS  tests/council.test.js (10 tests)
+PASS tests/dispatcher.test.js (18 tests)
+PASS tests/knight.test.js (14 tests)
+PASS tests/armor.test.js (12 tests)
+PASS tests/council.test.js (10 tests)
 ```
 
 Ce projet est différent du premier : tu gères de l'asynchrone réel (des opérations qui prennent du temps et qui peuvent se produire en parallèle), des erreurs qui doivent se propager proprement, et un flux d'événements en temps réel vers un observateur.
@@ -84,29 +84,29 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 ### Résumé visuel
 
 ```
-03_async             --> dispatcher.js (allSettled), missionRunner.js (race + timeout)
-04_error_handling    --> errors/ (custom errors), propagation dans missionRunner.js
-20_realtime          --> streamEmitter.js (Chevalier émet), streamReceiver.js (Conseil écoute)
-15_architecture      --> découplage total Conseil / Chevalier via événements
+03_async       --> dispatcher.js (allSettled), missionRunner.js (race + timeout)
+04_error_handling  --> errors/ (custom errors), propagation dans missionRunner.js
+20_realtime     --> streamEmitter.js (Chevalier émet), streamReceiver.js (Conseil écoute)
+15_architecture   --> découplage total Conseil / Chevalier via événements
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 src/index.js
-  --> council.detectHorror(location, level)        // horror détecté
-  --> dispatcher.assign(horror, availableKnights)  // choisit quel chevalier
-        --> knight.prepareMission(horror)           // le chevalier se prépare
-              --> armor.equip(knight)               // prépare l'armure (async, délai réel)
-              --> missionRunner.run(knight, horror) // lance le combat
-                    --> Promise.race([
-                          combat.fight(knight, horror),  // le combat lui-même
-                          timeout(99900)                  // le timer d'armure
-                        ])
-                    --> streamEmitter.emit(event)   // chaque événement streamé
-  --> council.streamReceiver.on(event, handler)    // le conseil écoute en parallèle
-  --> Promise.allSettled([mission1, mission2, ...]) // attend toutes les missions
-  --> council.buildReport(results)                  // rapport final
+ --> council.detectHorror(location, level)    // horror détecté
+ --> dispatcher.assign(horror, availableKnights) // choisit quel chevalier
+    --> knight.prepareMission(horror)      // le chevalier se prépare
+       --> armor.equip(knight)        // prépare l'armure (async, délai réel)
+       --> missionRunner.run(knight, horror) // lance le combat
+          --> Promise.race([
+             combat.fight(knight, horror), // le combat lui-même
+             timeout(99900)         // le timer d'armure
+            ])
+          --> streamEmitter.emit(event)  // chaque événement streamé
+ --> council.streamReceiver.on(event, handler)  // le conseil écoute en parallèle
+ --> Promise.allSettled([mission1, mission2, ...]) // attend toutes les missions
+ --> council.buildReport(results)         // rapport final
 ```
 
 Le point clé : `council.streamReceiver` écoute pendant que les missions tournent. Ce n'est pas séquentiel. Les deux se passent en même temps.
@@ -116,25 +116,25 @@ Le point clé : `council.streamReceiver` écoute pendant que les missions tourne
 ```
 src/
 ├── council/
-│   ├── council.js
-│   ├── dispatcher.js
-│   └── streamReceiver.js
+│  ├── council.js
+│  ├── dispatcher.js
+│  └── streamReceiver.js
 │
 ├── knight/
-│   ├── knight.js
-│   └── streamEmitter.js
+│  ├── knight.js
+│  └── streamEmitter.js
 │
 ├── armor/
-│   └── armor.js
+│  └── armor.js
 │
 ├── engine/
-│   ├── missionRunner.js
-│   └── combat.js
+│  ├── missionRunner.js
+│  └── combat.js
 │
 ├── errors/
-│   ├── ArmorCollapseError.js
-│   ├── HorrorEscapeError.js
-│   └── KnightDownError.js
+│  ├── ArmorCollapseError.js
+│  ├── HorrorEscapeError.js
+│  └── KnightDownError.js
 │
 └── index.js
 
@@ -196,15 +196,15 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/errors/          --> zéro dépendance, juste des classes, testables immédiatement
-2. src/armor/armor.js   --> dépend uniquement d'un timer, testable avec des timeouts courts
+1. src/errors/     --> zéro dépendance, juste des classes, testables immédiatement
+2. src/armor/armor.js  --> dépend uniquement d'un timer, testable avec des timeouts courts
 3. src/knight/knight.js --> données statiques + état simple
-4. src/knight/streamEmitter.js + src/council/streamReceiver.js  --> les deux ensemble
+4. src/knight/streamEmitter.js + src/council/streamReceiver.js --> les deux ensemble
 5. src/engine/combat.js --> dépend de knight, testable avec des mocks de knight
 6. src/engine/missionRunner.js --> dépend de armor + combat + errors
-7. src/council/dispatcher.js   --> dépend de knight + missionRunner
-8. src/council/council.js      --> orchestre tout
-9. src/index.js                --> branche, démo complète
+7. src/council/dispatcher.js  --> dépend de knight + missionRunner
+8. src/council/council.js   --> orchestre tout
+9. src/index.js        --> branche, démo complète
 ```
 
 ## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
@@ -232,44 +232,44 @@ import { equipArmor } from '../src/armor/armor.js';
 import { createKnight } from '../src/knight/knight.js';
 
 describe('armor', () => {
-  test('equip() résout quand le délai de préparation est écoulé', async () => {
-    const leon = createKnight('leon');
-    const armor = await equipArmor(leon);
-    expect(armor.equipped).toBe(true);
-    expect(armor.knight).toBe('leon');
-  });
+ test('equip() résout quand le délai de préparation est écoulé', async () => {
+  const leon = createKnight('leon');
+  const armor = await equipArmor(leon);
+  expect(armor.equipped).toBe(true);
+  expect(armor.knight).toBe('leon');
+ });
 
-  test('timeout reject avec ArmorCollapseError après 99.9s simulées', async () => {
-    // On passe un timeout court (50ms) pour le test
-    const leon = createKnight('leon');
-    const { timeout } = await equipArmor(leon);
+ test('timeout reject avec ArmorCollapseError après 99.9s simulées', async () => {
+  // On passe un timeout court (50ms) pour le test
+  const leon = createKnight('leon');
+  const { timeout } = await equipArmor(leon);
 
-    await expect(timeout(50)).rejects.toThrow('ArmorCollapseError');
-  });
+  await expect(timeout(50)).rejects.toThrow('ArmorCollapseError');
+ });
 });
 
 // tests/dispatcher.test.js
 import { dispatch } from '../src/council/dispatcher.js';
 
 describe('dispatcher', () => {
-  test('allSettled retourne les deux résultats même si une mission échoue', async () => {
-    const horrors = [
-      { location: 'Est', level: 'CRITIQUE' },
-      { location: 'Ouest', level: 'MODÉRÉ' }
-    ];
-    const knights = [
-      { id: 'leon', available: true },
-      { id: 'alfonso', available: true }
-    ];
+ test('allSettled retourne les deux résultats même si une mission échoue', async () => {
+  const horrors = [
+   { location: 'Est', level: 'CRITIQUE' },
+   { location: 'Ouest', level: 'MODÉRÉ' }
+  ];
+  const knights = [
+   { id: 'leon', available: true },
+   { id: 'alfonso', available: true }
+  ];
 
-    const results = await dispatch(horrors, knights);
+  const results = await dispatch(horrors, knights);
 
-    // allSettled ne throw jamais : on lit le statut
-    expect(results).toHaveLength(2);
-    results.forEach(r => {
-      expect(['fulfilled', 'rejected']).toContain(r.status);
-    });
+  // allSettled ne throw jamais : on lit le statut
+  expect(results).toHaveLength(2);
+  results.forEach(r => {
+   expect(['fulfilled', 'rejected']).toContain(r.status);
   });
+ });
 });
 ```
 
@@ -317,14 +317,14 @@ streamReceiver. Ils ne se connaissent pas directement.
 
 ## Alternatives considérées
 - Polling depuis le Conseil toutes les Xms : rejeté, parce que ça crée un couplage
-  temporel (le Conseil dépend du fait que le Chevalier réponde à la bonne fréquence)
-  et génère des appels inutiles.
+ temporel (le Conseil dépend du fait que le Chevalier réponde à la bonne fréquence)
+ et génère des appels inutiles.
 - Callback direct passé au Chevalier : rejeté, parce que ça couple le Chevalier au
-  Conseil. Si le Conseil change, le Chevalier doit changer aussi.
+ Conseil. Si le Conseil change, le Chevalier doit changer aussi.
 
 ## Conséquences
 - Ajouter un nouveau type d'observateur (un journaliste, un historien) = s'abonner
-  au même streamEmitter. Zéro modification du Chevalier.
+ au même streamEmitter. Zéro modification du Chevalier.
 - Les tests du Chevalier n'ont pas besoin de mocker le Conseil.
 ```
 

@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~9 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -44,45 +44,45 @@ Chaque concept avec son code, son comportement runtime, et son équivalent dans 
 ## DIAGRAMME COMPLET DE L'EVENT LOOP
 
 ```
-                    CODE SOURCE
-                        |
-                        v
-              +-----------------+
-              |   CALL STACK    |
-              |  (exécution     |
-              |   synchrone)    |
-              +-----------------+
-                        |
-              stack vide |
-                        v
-              +-----------------+       +-----------------+
-              | MICROTASK QUEUE |       |      HEAP       |
-              |                 |       |  (objets en     |
-              | Promise.then()  |       |   mémoire)      |
-              | await résolution|       +-----------------+
-              | queueMicrotask()|
-              +-----------------+
-                        |
-            queue vide  |
-                        v
-              +-----------------+
-              |   RENDU         |
-              | (navigateur)    |
-              +-----------------+
-                        |
-                        v
-              +-----------------+
-              | MACROTASK QUEUE |
-              |                 |
-              | setTimeout()    |
-              | setInterval()   |
-              | rAF()           |
-              | I/O callbacks   |
-              +-----------------+
-                        |
-              UNE tâche |
-                        v
-                retour au début
+          CODE SOURCE
+            |
+            v
+       +-----------------+
+       |  CALL STACK  |
+       | (exécution   |
+       |  synchrone)  |
+       +-----------------+
+            |
+       stack vide |
+            v
+       +-----------------+    +-----------------+
+       | MICROTASK QUEUE |    |   HEAP    |
+       |         |    | (objets en   |
+       | Promise.then() |    |  mémoire)   |
+       | await résolution|    +-----------------+
+       | queueMicrotask()|
+       +-----------------+
+            |
+      queue vide |
+            v
+       +-----------------+
+       |  RENDU     |
+       | (navigateur)  |
+       +-----------------+
+            |
+            v
+       +-----------------+
+       | MACROTASK QUEUE |
+       |         |
+       | setTimeout()  |
+       | setInterval()  |
+       | rAF()      |
+       | I/O callbacks  |
+       +-----------------+
+            |
+       UNE tâche |
+            v
+        retour au début
 ```
 
 ---
@@ -90,9 +90,9 @@ Chaque concept avec son code, son comportement runtime, et son équivalent dans 
 ## LES 3 RÈGLES QUI EXPLIQUENT TOUT
 
 ```
-1. call stack se vide          --> microtask queue se vide entièrement
-2. microtask queue vide        --> rendu navigateur (si nécessaire) --> UNE macrotask
-3. après la macrotask          --> retour à la règle 1
+1. call stack se vide     --> microtask queue se vide entièrement
+2. microtask queue vide    --> rendu navigateur (si nécessaire) --> UNE macrotask
+3. après la macrotask     --> retour à la règle 1
 ```
 
 Tout le reste est une conséquence de ces trois règles.

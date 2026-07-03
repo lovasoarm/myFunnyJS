@@ -24,11 +24,11 @@ Le dev qui pense que `#champPrivé` protège vraiment quelque chose, alors qu'il
 Tu rencontres ce module partout, même sans le voir :
 
 ```
-Framework front (composants, classes de base)   --> prototype chain
-ORM (mapping objet-relationnel)                  --> classes, héritage de modèles
-Erreurs custom (HorrorEscapeError, etc.)         --> extends Error
-Librairie tierce mal documentée                  --> tu dois lire son prototype à la main
-DevTools, debug d'un bug "this is undefined"     --> call-site, bind
+Framework front (composants, classes de base)  --> prototype chain
+ORM (mapping objet-relationnel)         --> classes, héritage de modèles
+Erreurs custom (HorrorEscapeError, etc.)     --> extends Error
+Librairie tierce mal documentée         --> tu dois lire son prototype à la main
+DevTools, debug d'un bug "this is undefined"   --> call-site, bind
 ```
 
 Même si tu fais 100% fonctionnel dans ton code à toi, tu consommes du code OOP écrit par d'autres. Node, le DOM, les classes d'erreur natives : tout ça repose sur ce mécanisme. Tu ne peux pas l'éviter, tu peux juste choisir de le comprendre ou de le subir.
@@ -53,17 +53,17 @@ Tu deviens capable de lire le code source d'une lib que tu ne connais pas, et de
 ## CE QUI CASSE QUAND TU L'IGNORES
 
 ```
-Tu ignores le prototype  -->  tu ne sais pas où vit une méthode
-                          -->  tu la redéfinis par accident
-                          -->  bug silencieux, comportement écrasé
+Tu ignores le prototype --> tu ne sais pas où vit une méthode
+             --> tu la redéfinis par accident
+             --> bug silencieux, comportement écrasé
 
-Tu ignores this           -->  tu passes une méthode en callback
-                          -->  this devient undefined
-                          -->  crash en prod sur un cas que la démo ne testait pas
+Tu ignores this      --> tu passes une méthode en callback
+             --> this devient undefined
+             --> crash en prod sur un cas que la démo ne testait pas
 
-Tu ignores la composition -->  tu empiles les extends
-                          -->  changement dans la classe racine
-                          -->  tout l'arbre d'héritage explose
+Tu ignores la composition --> tu empiles les extends
+             --> changement dans la classe racine
+             --> tout l'arbre d'héritage explose
 ```
 
 ## CE QU'ON FAIT DANS CE MODULE

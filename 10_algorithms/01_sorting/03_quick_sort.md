@@ -27,20 +27,20 @@ Parcours :
 [1] <= 1 --> passe à gauche (c'est le pivot)
 
 Résultat : [1, 1, 8, 10, 6, 2, 3]
-                ^
-                le pivot est à sa place définitive (index 1 dans cet exemple)
+        ^
+        le pivot est à sa place définitive (index 1 dans cet exemple)
 ```
 
 ```
 Avant partition :
 [3, 6, 8, 10, 1, 2, 1]
-                      ^pivot
+           ^pivot
 
 Après partition :
 [1, 1 | 8, 10, 6, 2, 3]
-       ^
-       pivotIndex : tout à gauche est <= pivot
-                    tout à droite est > pivot
+    ^
+    pivotIndex : tout à gauche est <= pivot
+          tout à droite est > pivot
 ```
 
 ---
@@ -49,33 +49,33 @@ Après partition :
 
 ```js
 function quickSort(arr, low = 0, high = arr.length - 1) {
-  if (low >= high) return arr // cas de base : sous-tableau de 0 ou 1 élément
+ if (low >= high) return arr // cas de base : sous-tableau de 0 ou 1 élément
 
-  const pivotIndex = partition(arr, low, high)
+ const pivotIndex = partition(arr, low, high)
 
-  // trier récursivement les deux moitiés
-  quickSort(arr, low, pivotIndex - 1)
-  quickSort(arr, pivotIndex + 1, high)
+ // trier récursivement les deux moitiés
+ quickSort(arr, low, pivotIndex - 1)
+ quickSort(arr, pivotIndex + 1, high)
 
-  return arr
+ return arr
 }
 
 function partition(arr, low, high) {
-  const pivot = arr[high] // on prend le dernier comme pivot
-  let i = low - 1 // i = index de la dernière valeur <= pivot
+ const pivot = arr[high] // on prend le dernier comme pivot
+ let i = low - 1 // i = index de la dernière valeur <= pivot
 
-  for (let j = low; j < high; j++) {
-    if (arr[j] <= pivot) {
-      i++
-      // swap : arr[j] passe dans la zone gauche
-      ;[arr[i], arr[j]] = [arr[j], arr[i]]
-    }
+ for (let j = low; j < high; j++) {
+  if (arr[j] <= pivot) {
+   i++
+   // swap : arr[j] passe dans la zone gauche
+   ;[arr[i], arr[j]] = [arr[j], arr[i]]
   }
+ }
 
-  // on place le pivot à sa position finale
-  ;[arr[i + 1], arr[high]] = [arr[high], arr[i + 1]]
+ // on place le pivot à sa position finale
+ ;[arr[i + 1], arr[high]] = [arr[high], arr[i + 1]]
 
-  return i + 1 // index final du pivot
+ return i + 1 // index final du pivot
 }
 
 const scores = [38, 27, 43, 3, 9, 82, 10]
@@ -95,8 +95,8 @@ Pivot = dernier élément = 5
 
 Partition :
 [1, 2, 3, 4 | 5]
-              ^ pivot à sa place
-              
+       ^ pivot à sa place
+       
 Récursion gauche : [1, 2, 3, 4]
 Pivot = 4
 [1, 2, 3 | 4]
@@ -112,16 +112,16 @@ Sur un tableau déjà trié avec pivot = dernier élément :
 
 ```
 Partitions équilibrées (idéal) :
-         [1..n]
-        /       \
-   [1..n/2]  [n/2..n]    log n niveaux x n opérations = O(n log n)
+     [1..n]
+    /    \
+  [1..n/2] [n/2..n]  log n niveaux x n opérations = O(n log n)
 
 Partitions déséquilibrées (pire cas) :
-    [1..n]
-   /       \
- []        [1..n-1]
-           /      \
-         []       [1..n-2]    n niveaux x n opérations = O(n²)
+  [1..n]
+  /    \
+ []    [1..n-1]
+      /   \
+     []    [1..n-2]  n niveaux x n opérations = O(n²)
 ```
 
 ---
@@ -130,22 +130,22 @@ Partitions déséquilibrées (pire cas) :
 
 ```js
 function quickSortRandom(arr, low = 0, high = arr.length - 1) {
-  if (low >= high) return arr
+ if (low >= high) return arr
 
-  const pivotIndex = partitionRandom(arr, low, high)
-  quickSortRandom(arr, low, pivotIndex - 1)
-  quickSortRandom(arr, pivotIndex + 1, high)
+ const pivotIndex = partitionRandom(arr, low, high)
+ quickSortRandom(arr, low, pivotIndex - 1)
+ quickSortRandom(arr, pivotIndex + 1, high)
 
-  return arr
+ return arr
 }
 
 function partitionRandom(arr, low, high) {
-  // on choisit un pivot aléatoire et on le met en dernier
-  const randomIndex = low + Math.floor(Math.random() * (high - low + 1))
-  ;[arr[randomIndex], arr[high]] = [arr[high], arr[randomIndex]]
+ // on choisit un pivot aléatoire et on le met en dernier
+ const randomIndex = low + Math.floor(Math.random() * (high - low + 1))
+ ;[arr[randomIndex], arr[high]] = [arr[high], arr[randomIndex]]
 
-  // le reste c'est exactement partition() d'avant
-  return partition(arr, low, high)
+ // le reste c'est exactement partition() d'avant
+ return partition(arr, low, high)
 }
 ```
 
@@ -156,13 +156,13 @@ Avec un pivot aléatoire, la probabilité de tomber sur le pire cas à chaque ni
 ## 5) QUICK SORT VS MERGE SORT : LA VRAIE DIFFÉRENCE
 
 ```
-                   Quick Sort          Merge Sort
-Complexité moy.    O(n log n)          O(n log n)
-Complexité pire    O(n²)               O(n log n)
-Mémoire            O(log n) stack      O(n) tableaux
-Stable             NON                 OUI
-Cache-friendly     OUI (in-place)      moins (allocations)
-Usage réel         V8 pour primitives  Tim Sort (grands tris)
+          Quick Sort     Merge Sort
+Complexité moy.  O(n log n)     O(n log n)
+Complexité pire  O(n²)        O(n log n)
+Mémoire      O(log n) stack   O(n) tableaux
+Stable       NON         OUI
+Cache-friendly   OUI (in-place)   moins (allocations)
+Usage réel     V8 pour primitives Tim Sort (grands tris)
 ```
 
 Quick sort est plus rapide en pratique parce qu'il est **cache-friendly** : il travaille sur le même tableau en mémoire, sans créer de nouvelles allocations. Le processeur précharge les données adjacentes. Moins de cache miss.
@@ -172,9 +172,9 @@ Quick sort est plus rapide en pratique parce qu'il est **cache-friendly** : il t
 // ce comportement peut surprendre
 
 const matchs = [
-  { tour: 1, but: "Mbappé" },
-  { tour: 3, but: "Messi" },
-  { tour: 1, but: "Vinicius" }, // même tour que Mbappé
+ { tour: 1, but: "Mbappé" },
+ { tour: 3, but: "Messi" },
+ { tour: 1, but: "Vinicius" }, // même tour que Mbappé
 ]
 
 quickSort(matchs, ...) // ne garantit pas Mbappé avant Vinicius
@@ -194,32 +194,32 @@ Si le tableau contient beaucoup de valeurs identiques, le Quick sort classique l
 // 3 zones : < pivot | == pivot | > pivot
 
 function quickSortThreeWay(arr, low = 0, high = arr.length - 1) {
-  if (low >= high) return arr
+ if (low >= high) return arr
 
-  const pivot = arr[low]
-  let lt = low   // arr[low..lt-1] < pivot
-  let gt = high  // arr[gt+1..high] > pivot
-  let i = low    // pointeur courant
+ const pivot = arr[low]
+ let lt = low  // arr[low..lt-1] < pivot
+ let gt = high // arr[gt+1..high] > pivot
+ let i = low  // pointeur courant
 
-  while (i <= gt) {
-    if (arr[i] < pivot) {
-      ;[arr[lt], arr[i]] = [arr[i], arr[lt]]
-      lt++
-      i++
-    } else if (arr[i] > pivot) {
-      ;[arr[i], arr[gt]] = [arr[gt], arr[i]]
-      gt-- // ne pas incrémenter i : l'élément swappé n'a pas encore été examiné
-    } else {
-      i++ // == pivot : déjà à sa place dans la zone du milieu
-    }
+ while (i <= gt) {
+  if (arr[i] < pivot) {
+   ;[arr[lt], arr[i]] = [arr[i], arr[lt]]
+   lt++
+   i++
+  } else if (arr[i] > pivot) {
+   ;[arr[i], arr[gt]] = [arr[gt], arr[i]]
+   gt-- // ne pas incrémenter i : l'élément swappé n'a pas encore été examiné
+  } else {
+   i++ // == pivot : déjà à sa place dans la zone du milieu
   }
+ }
 
-  // récursion sur les zones < et > seulement
-  // la zone == pivot est déjà en place définitivement
-  quickSortThreeWay(arr, low, lt - 1)
-  quickSortThreeWay(arr, gt + 1, high)
+ // récursion sur les zones < et > seulement
+ // la zone == pivot est déjà en place définitivement
+ quickSortThreeWay(arr, low, lt - 1)
+ quickSortThreeWay(arr, gt + 1, high)
 
-  return arr
+ return arr
 }
 
 // sur un tableau avec beaucoup de doublons :
@@ -239,10 +239,10 @@ Tu as un tableau de joueurs avec `{ nom, goals, assists }`. Implémente un quick
 
 ```js
 const joueurs = [
-  { nom: "Mbappé", goals: 28, assists: 8 },
-  { nom: "Messi", goals: 22, assists: 18 },
-  { nom: "De Bruyne", goals: 9, assists: 21 },
-  { nom: "Haaland", goals: 35, assists: 4 },
+ { nom: "Mbappé", goals: 28, assists: 8 },
+ { nom: "Messi", goals: 22, assists: 18 },
+ { nom: "De Bruyne", goals: 9, assists: 21 },
+ { nom: "Haaland", goals: 35, assists: 4 },
 ]
 ```
 

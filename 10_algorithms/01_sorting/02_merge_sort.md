@@ -19,18 +19,18 @@ Merge sort exploite ça :
 ```
 [38, 27, 43, 3, 9, 82, 10]
 
-           Diviser
-          /        \
-  [38, 27, 43]   [3, 9, 82, 10]
-   /      \        /         \
-[38]  [27,43]  [3,9]      [82,10]
-       / \      / \         /  \
-     [27][43] [3] [9]     [82] [10]
+      Diviser
+     /    \
+ [38, 27, 43]  [3, 9, 82, 10]
+  /   \    /     \
+[38] [27,43] [3,9]   [82,10]
+    / \   / \     / \
+   [27][43] [3] [9]   [82] [10]
 
-           Fusionner
-     [27,43]    [3,9]      [10,82]
-  [27, 38, 43]  [3, 9, 10, 82]
-        [3, 9, 10, 27, 38, 43, 82]
+      Fusionner
+   [27,43]  [3,9]   [10,82]
+ [27, 38, 43] [3, 9, 10, 82]
+    [3, 9, 10, 27, 38, 43, 82]
 ```
 
 ---
@@ -39,38 +39,38 @@ Merge sort exploite ça :
 
 ```js
 function mergeSort(arr) {
-  // cas de base : un tableau de 0 ou 1 élément est déjà trié
-  if (arr.length <= 1) return arr
+ // cas de base : un tableau de 0 ou 1 élément est déjà trié
+ if (arr.length <= 1) return arr
 
-  const mid = Math.floor(arr.length / 2)
+ const mid = Math.floor(arr.length / 2)
 
-  // diviser
-  const left = mergeSort(arr.slice(0, mid))
-  const right = mergeSort(arr.slice(mid))
+ // diviser
+ const left = mergeSort(arr.slice(0, mid))
+ const right = mergeSort(arr.slice(mid))
 
-  // fusionner les deux moitiés triées
-  return merge(left, right)
+ // fusionner les deux moitiés triées
+ return merge(left, right)
 }
 
 function merge(left, right) {
-  const result = []
-  let i = 0 // pointeur gauche
-  let j = 0 // pointeur droit
+ const result = []
+ let i = 0 // pointeur gauche
+ let j = 0 // pointeur droit
 
-  // on compare les têtes des deux listes et on prend le plus petit
-  while (i < left.length && j < right.length) {
-    if (left[i] <= right[j]) {
-      result.push(left[i])
-      i++
-    } else {
-      result.push(right[j])
-      j++
-    }
+ // on compare les têtes des deux listes et on prend le plus petit
+ while (i < left.length && j < right.length) {
+  if (left[i] <= right[j]) {
+   result.push(left[i])
+   i++
+  } else {
+   result.push(right[j])
+   j++
   }
+ }
 
-  // il reste peut-être des éléments dans une des deux listes
-  // on les colle directement : ils sont déjà triés
-  return result.concat(left.slice(i)).concat(right.slice(j))
+ // il reste peut-être des éléments dans une des deux listes
+ // on les colle directement : ils sont déjà triés
+ return result.concat(left.slice(i)).concat(right.slice(j))
 }
 
 console.log(mergeSort([38, 27, 43, 3, 9, 82, 10]))
@@ -84,10 +84,10 @@ console.log(mergeSort([38, 27, 43, 3, 9, 82, 10]))
 ```
 n = 8 éléments
 
-Niveau 0 (diviser) :  1 tableau de 8
-Niveau 1 :            2 tableaux de 4
-Niveau 2 :            4 tableaux de 2
-Niveau 3 :            8 tableaux de 1   <-- cas de base atteint
+Niveau 0 (diviser) : 1 tableau de 8
+Niveau 1 :      2 tableaux de 4
+Niveau 2 :      4 tableaux de 2
+Niveau 3 :      8 tableaux de 1  <-- cas de base atteint
 
 Nombre de niveaux = log₂(8) = 3
 ```
@@ -95,24 +95,24 @@ Nombre de niveaux = log₂(8) = 3
 À chaque niveau, on fusionne **n éléments au total** (chaque élément est traité une fois).
 
 ```
-Niveau 3 (fusion) :  8 opérations
-Niveau 2 (fusion) :  8 opérations
-Niveau 1 (fusion) :  8 opérations
-                    ---------------
-Total :              3 * 8 = 24 = n * log n
+Niveau 3 (fusion) : 8 opérations
+Niveau 2 (fusion) : 8 opérations
+Niveau 1 (fusion) : 8 opérations
+          ---------------
+Total :       3 * 8 = 24 = n * log n
 ```
 
 ```
-            Comparaisons
-            |
-  50M       |                             n²
-            |
-  130K      |                      n log n *
-            |              *
-            |        *
-            |   *
-            |_________________________________ n
-             1K  3K  5K  7K  10K
+      Comparaisons
+      |
+ 50M    |               n²
+      |
+ 130K   |           n log n *
+      |       *
+      |    *
+      |  *
+      |_________________________________ n
+       1K 3K 5K 7K 10K
 ```
 
 Pour 10 000 éléments : Insertion sort fait ~50M opérations. Merge sort : ~130 000.
@@ -132,31 +132,31 @@ Pour 10 000 éléments : Insertion sort fait ~50M opérations. Merge sort : ~130
 ```js
 // exemple qui casse : tri sur des objets avec propriété manquante
 const data = [
-  { joueur: "Messi", buts: 45 },
-  { joueur: "Mbappé", buts: 52 },
-  { joueur: "Haaland" } // pas de propriété "buts"
+ { joueur: "Messi", buts: 45 },
+ { joueur: "Mbappé", buts: 52 },
+ { joueur: "Haaland" } // pas de propriété "buts"
 ]
 
 // un comparateur naïf va comparer undefined avec des nombres
 // le résultat est imprévisible : NaN dans les comparaisons
 function mergeSortBy(arr, key) {
-  if (arr.length <= 1) return arr
-  const mid = Math.floor(arr.length / 2)
-  const left = mergeSortBy(arr.slice(0, mid), key)
-  const right = mergeSortBy(arr.slice(mid), key)
-  return mergeBy(left, right, key)
+ if (arr.length <= 1) return arr
+ const mid = Math.floor(arr.length / 2)
+ const left = mergeSortBy(arr.slice(0, mid), key)
+ const right = mergeSortBy(arr.slice(mid), key)
+ return mergeBy(left, right, key)
 }
 
 function mergeBy(left, right, key) {
-  const result = []
-  let i = 0, j = 0
-  while (i < left.length && j < right.length) {
-    const a = left[i][key] ?? -Infinity  // défense contre undefined
-    const b = right[j][key] ?? -Infinity
-    if (a <= b) { result.push(left[i]); i++ }
-    else { result.push(right[j]); j++ }
-  }
-  return result.concat(left.slice(i)).concat(right.slice(j))
+ const result = []
+ let i = 0, j = 0
+ while (i < left.length && j < right.length) {
+  const a = left[i][key] ?? -Infinity // défense contre undefined
+  const b = right[j][key] ?? -Infinity
+  if (a <= b) { result.push(left[i]); i++ }
+  else { result.push(right[j]); j++ }
+ }
+ return result.concat(left.slice(i)).concat(right.slice(j))
 }
 ```
 
@@ -171,10 +171,10 @@ Tim Sort (Python, Java, V8 pour les tableaux > 64 éléments) est une hybridatio
 // ce qui explique pourquoi il est stable depuis Node 11 et Chrome 70
 
 const joueurs = [
-  { nom: "Messi", goals: 45 },
-  { nom: "Mbappé", goals: 52 },
-  { nom: "Ronaldo", goals: 45 },
-  { nom: "Haaland", goals: 52 },
+ { nom: "Messi", goals: 45 },
+ { nom: "Mbappé", goals: 52 },
+ { nom: "Ronaldo", goals: 45 },
+ { nom: "Haaland", goals: 52 },
 ]
 
 // stable : les ex-aequo gardent leur ordre original
@@ -194,11 +194,11 @@ Implémente `mergeSortByScore` qui trie des joueurs de foot par `score` décrois
 
 ```js
 const classement = [
-  { nom: "Messi", score: 580 },
-  { nom: "Mbappé", score: 612 },
-  { nom: "Vinicius", score: 612 },
-  { nom: "Bellingham", score: 490 },
-  { nom: "Rodri", score: 550 }
+ { nom: "Messi", score: 580 },
+ { nom: "Mbappé", score: 612 },
+ { nom: "Vinicius", score: 612 },
+ { nom: "Bellingham", score: 490 },
+ { nom: "Rodri", score: 550 }
 ]
 // résultat : Mbappé, Vinicius, Messi, Rodri, Bellingham
 ```

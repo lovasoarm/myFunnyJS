@@ -6,33 +6,33 @@ Ton terminal, c'est ton katana. Pas d'IDE qui te tient la main. Dix ordres_missi
 ## Le kit minimum
 
 ```
-pwd                # où suis-je
-ls -la             # qui vit ici (fichiers cachés inclus)
-cd dossier         # entrer
-cd ..              # sortir
-mkdir -p a/b/c     # créer une arbo
-rm -rf poubelle    # supprimer (attention: pas de corbeille)
-cp -r src dst      # copier
-mv old new         # renommer/déplacer
-cat fichier        # afficher
-less fichier       # afficher gros fichier (q pour quitter)
+pwd        # où suis-je
+ls -la       # qui vit ici (fichiers cachés inclus)
+cd dossier     # entrer
+cd ..       # sortir
+mkdir -p a/b/c   # créer une arbo
+rm -rf poubelle  # supprimer (attention: pas de corbeille)
+cp -r src dst   # copier
+mv old new     # renommer/déplacer
+cat fichier    # afficher
+less fichier    # afficher gros fichier (q pour quitter)
 ```
 
 ## Chercher : `find` + `grep`
 
 ```
-find . -name "*.md"            # tous les .md sous ici
-grep -rn "TODO" .              # chercher "TODO" récursif avec n° ligne
-find . -name "*.js" | xargs grep -l "eval"   # combo
+find . -name "*.md"      # tous les .md sous ici
+grep -rn "TODO" .       # chercher "TODO" récursif avec n° ligne
+find . -name "*.js" | xargs grep -l "eval"  # combo
 ```
 
 ## Pipe et redirection
 
 ```
-cmd1 | cmd2        # sortie de 1 devient entrée de 2
-cmd > fichier      # écraser
-cmd >> fichier     # ajouter à la fin
-cmd 2> err.log     # rediriger les erreurs
+cmd1 | cmd2    # sortie de 1 devient entrée de 2
+cmd > fichier   # écraser
+cmd >> fichier   # ajouter à la fin
+cmd 2> err.log   # rediriger les erreurs
 ```
 
 ## Piège

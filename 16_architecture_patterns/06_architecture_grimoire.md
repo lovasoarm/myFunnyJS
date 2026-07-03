@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~9 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -30,7 +30,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | Listener | Fonction abonnée à un event : elle s'exécute à chaque fois que l'event est émis | `bus.on('event', (data) => { ... })` | Un garde posté à un checkpoint (il attend, et réagit quand quelqu'un passe) / Un ultra dans le stade (il attend le but, puis il explose) |
 | Microservices | Architecture où chaque domaine fonctionnel est un service indépendant avec son propre process, sa propre DB, et son propre déploiement | `OrderService / PaymentService / UserService` chacun sur son port | Fox River divisé en cellules indépendantes / Un groupe de Chevaliers de Garo : chacun autonome, chacun avec sa zone |
 | Monolithe | Application où tout le code vit dans un seul process, une seule base de code, un seul déploiement : pas forcément mauvais si bien structuré | `app.use('/orders', ordersRouter)` (tout dans le même serveur) | Un immeuble entier sous un même toit / La ville de Konoha : tout dans les murs, une seule administration |
-| API Gateway | Point d'entrée unique qui route les requêtes vers les bons services internes : gère l'auth, le logging, le rate-limiting | `GET /api/orders  -->  OrderService:3001` | Le réceptionniste de Prison Break (filtre qui entre, redirige vers la bonne aile) / Le capitaine qui reçoit les alertes et dispatche les Chevaliers |
+| API Gateway | Point d'entrée unique qui route les requêtes vers les bons services internes : gère l'auth, le logging, le rate-limiting | `GET /api/orders --> OrderService:3001` | Le réceptionniste de Prison Break (filtre qui entre, redirige vers la bonne aile) / Le capitaine qui reçoit les alertes et dispatche les Chevaliers |
 | Service Discovery | Mécanisme qui permet aux services de se trouver dynamiquement : pas d'IP en dur (hard-coded), un registre central tient la liste | `registry.resolve('payment-service') --> http://10.0.0.5:3002` | L'annuaire du camp (tu cherches "médecin", tu trouves la tente 7) / Kōsenjō de Garo : chaque Chevalier s'enregistre et le Conseil sait où il est |
 | Couplage | Dépendance entre deux composants : fort couplage = un changement dans A casse B ; faible couplage = A et B peuvent évoluer indépendamment | `A.method()` directement dans B = fort / EventBus entre A et B = faible | Des cellules de prison communicantes (fort) vs cellules isolées avec messagers (faible) / Passe en jeu direct (fort) vs jeu en triangle avec intermédiaire (faible) |
 | Cohésion | Degré auquel les éléments d'un module font la même chose : forte cohésion = tout ce qui est dans le module travaille pour le même objectif | `UserService` qui gère auth + profil + préférences (fort) / UserService qui gère auth + stock (faible) | Un poste de garde (tout le monde surveille l'entrée) / Un cuisinier qui fait aussi la compta (faible cohésion) |

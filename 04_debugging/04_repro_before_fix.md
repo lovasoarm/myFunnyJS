@@ -1,7 +1,7 @@
 # 03 : Reproduis avant de corriger
 Temps de lecture ~5 min
 
->  **Principe universel** : un bug qu'on ne sait pas reproduire n'est pas un bug : c'est une croyance. Vrai partout, du JS au distribué.
+> **Principe universel** : un bug qu'on ne sait pas reproduire n'est pas un bug : c'est une croyance. Vrai partout, du JS au distribué.
 
 ## Règle non négociable
 

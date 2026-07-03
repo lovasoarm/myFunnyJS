@@ -5,7 +5,7 @@ Deux scripts pour t'entraîner à trouver une fuite mémoire réelle, pas théor
 ## Ce que tu as
 
 - `leaky.js` : script instrumenté qui log `rss / heap / cache size / listeners count`
-  toutes les secondes. Il contient AU MOINS UNE fuite. Peut-être deux.
+ toutes les secondes. Il contient AU MOINS UNE fuite. Peut-être deux.
 
 ## Ta mission (3 étapes, dans l'ordre)
 

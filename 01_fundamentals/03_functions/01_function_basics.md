@@ -24,7 +24,7 @@ C'est pour ça qu'on dit que les fonctions sont des **first-class citizens** : d
 
 ```javascript
 function greet() {
-  console.log("Hello");
+ console.log("Hello");
 }
 ```
 
@@ -57,7 +57,7 @@ Tu ne copies pas le code. Tu copies **la référence** (adresse mémoire). `copy
 let actions = [];
 
 actions.push(function () {
-  console.log("Attack");
+ console.log("Attack");
 });
 
 actions[0](); // Attack
@@ -71,11 +71,11 @@ Pourquoi ça marche ? Parce qu'une fonction est une valeur. Comme un nombre. Com
 
 ```javascript
 function execute(fn) {
-  fn();
+ fn();
 }
 
 execute(function () {
-  console.log("Boom");
+ console.log("Boom");
 });
 ```
 
@@ -97,9 +97,9 @@ C'est la base de :
 
 ```javascript
 function outer() {
-  return function () {
-    console.log("Inside");
-  };
+ return function () {
+  console.log("Inside");
+ };
 }
 
 let fn = outer();
@@ -176,13 +176,13 @@ Ce n'est **pas une copie**. C'est un **pointeur** : une deuxième étiquette sur
 
 ## 7) POURQUOI C'EST CRUCIAL ?
 
-| Concept                 | Repose sur les fonctions-objets |
+| Concept         | Repose sur les fonctions-objets |
 | ----------------------- | ------------------------------- |
-| Callbacks               | ok                              |
-| Closures                | ok                              |
-| Hooks React             | ok                              |
-| Middleware              | ok                              |
-| Architecture JS moderne | ok                              |
+| Callbacks        | ok               |
+| Closures        | ok               |
+| Hooks React       | ok               |
+| Middleware       | ok               |
+| Architecture JS moderne | ok               |
 
 Si tu comprends que les fonctions sont des objets, tu comprends pourquoi JS est flexible.
 Si tu ne comprends pas ça, tu **subis** le langage.

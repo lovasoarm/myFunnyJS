@@ -21,7 +21,7 @@ const pattern = /naruto/
 
 // constructeur : utile quand le pattern est dynamique
 const mot = "sasuke"
-const pattern2 = new RegExp(mot)   // équivalent à /sasuke/
+const pattern2 = new RegExp(mot)  // équivalent à /sasuke/
 ```
 
 Tester si ça matche :
@@ -29,8 +29,8 @@ Tester si ça matche :
 ```js
 const texte = "Naruto est le meilleur ninja de Konoha"
 
-/naruto/.test(texte)   // false : sensible à la casse
-/Naruto/.test(texte)   // true
+/naruto/.test(texte)  // false : sensible à la casse
+/Naruto/.test(texte)  // true
 ```
 
 `.test()` retourne `true` ou `false`. C'est ta validation de base.
@@ -42,18 +42,18 @@ const texte = "Naruto est le meilleur ninja de Konoha"
 Les flags se placent après le deuxième slash.
 
 ```js
-/naruto/i    // i : case-insensitive
-/naruto/g    // g : global : trouve toutes les occurrences, pas juste la première
-/naruto/m    // m : multiline : ^ et $ matchent début/fin de chaque ligne
-/naruto/s    // s : dotAll : le point . matche aussi les \n
-/naruto/gi   // combinaison : global + case-insensitive
+/naruto/i  // i : case-insensitive
+/naruto/g  // g : global : trouve toutes les occurrences, pas juste la première
+/naruto/m  // m : multiline : ^ et $ matchent début/fin de chaque ligne
+/naruto/s  // s : dotAll : le point . matche aussi les \n
+/naruto/gi  // combinaison : global + case-insensitive
 ```
 
 ```js
 const texte = "Naruto, naruto, NARUTO"
 
-texte.match(/naruto/)    // ["naruto"] : une seule occurrence
-texte.match(/naruto/gi)  // ["Naruto", "naruto", "NARUTO"] : toutes, sans casse
+texte.match(/naruto/)  // ["naruto"] : une seule occurrence
+texte.match(/naruto/gi) // ["Naruto", "naruto", "NARUTO"] : toutes, sans casse
 ```
 
 Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurrence.
@@ -64,30 +64,30 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 
 ```js
 // caractères spéciaux
-\d    // un chiffre : [0-9]
-\D    // pas un chiffre
-\w    // un mot : [a-zA-Z0-9_]
-\W    // pas un mot
-\s    // un espace blanc (espace, tab, \n)
-\S    // pas un espace blanc
+\d  // un chiffre : [0-9]
+\D  // pas un chiffre
+\w  // un mot : [a-zA-Z0-9_]
+\W  // pas un mot
+\s  // un espace blanc (espace, tab, \n)
+\S  // pas un espace blanc
 
 // le point
-.     // n'importe quel caractère sauf \n
-\.    // un point littéral (le \ échappe le sens spécial)
+.   // n'importe quel caractère sauf \n
+\.  // un point littéral (le \ échappe le sens spécial)
 
 // classes personnalisées
-[abc]    // a OU b OU c
-[a-z]    // n'importe quelle minuscule
-[A-Z]    // n'importe quelle majuscule
-[0-9]    // n'importe quel chiffre : équivalent à \d
-[^abc]   // tout SAUF a, b, c  : le ^ dans une classe signifie "pas"
+[abc]  // a OU b OU c
+[a-z]  // n'importe quelle minuscule
+[A-Z]  // n'importe quelle majuscule
+[0-9]  // n'importe quel chiffre : équivalent à \d
+[^abc]  // tout SAUF a, b, c : le ^ dans une classe signifie "pas"
 ```
 
 ```js
-/\d/.test("3")        // true
-/\d/.test("abc")      // false
-/[aeiou]/.test("naruto")  // true -> il y a des voyelles
-/[^aeiou]/.test("aaa")    // false -> que des voyelles, pas de consonnes
+/\d/.test("3")    // true
+/\d/.test("abc")   // false
+/[aeiou]/.test("naruto") // true -> il y a des voyelles
+/[^aeiou]/.test("aaa")  // false -> que des voyelles, pas de consonnes
 ```
 
 ---
@@ -95,24 +95,24 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ## 4) LES QUANTIFICATEURS : combien de fois ?
 
 ```js
-?    // 0 ou 1 fois (optionnel)
-*    // 0 ou plusieurs fois
-+    // 1 ou plusieurs fois (au moins une)
-{n}  // exactement n fois
+?  // 0 ou 1 fois (optionnel)
+*  // 0 ou plusieurs fois
++  // 1 ou plusieurs fois (au moins une)
+{n} // exactement n fois
 {n,} // n fois ou plus
 {n,m}// entre n et m fois
 ```
 
 ```js
-/colou?r/.test("color")   // true -> le u est optionnel
-/colou?r/.test("colour")  // true
+/colou?r/.test("color")  // true -> le u est optionnel
+/colou?r/.test("colour") // true
 
-/\d+/.test("42")    // true -> au moins un chiffre
-/\d+/.test("")      // false
+/\d+/.test("42")  // true -> au moins un chiffre
+/\d+/.test("")   // false
 
-/\d{4}/.test("2024")   // true -> exactement 4 chiffres
-/\d{4}/.test("24")     // false
-/\d{2,4}/.test("242")  // true -> entre 2 et 4 chiffres
+/\d{4}/.test("2024")  // true -> exactement 4 chiffres
+/\d{4}/.test("24")   // false
+/\d{2,4}/.test("242") // true -> entre 2 et 4 chiffres
 ```
 
 ---
@@ -120,23 +120,23 @@ Le flag `g` est critique : sans lui, `.match()` s'arrête à la première occurr
 ## 5) ANCRES : où dans la chaîne ?
 
 ```js
-^    // début de la chaîne (ou début de ligne avec flag m)
-$    // fin de la chaîne (ou fin de ligne avec flag m)
-\b   // word boundary -> frontière entre \w et \W
+^  // début de la chaîne (ou début de ligne avec flag m)
+$  // fin de la chaîne (ou fin de ligne avec flag m)
+\b  // word boundary -> frontière entre \w et \W
 ```
 
 ```js
-/^Naruto/.test("Naruto est fort")   // true -> commence par Naruto
+/^Naruto/.test("Naruto est fort")  // true -> commence par Naruto
 /^Naruto/.test("Fort comme Naruto") // false -> ne commence pas par Naruto
 
-/ninja$/.test("il est ninja")   // true -> finit par ninja
+/ninja$/.test("il est ninja")  // true -> finit par ninja
 /ninja$/.test("ninja débutant") // false
 
 // sans ancres
-/\d+/.test("abc123def")   // true -> trouve les chiffres n'importe où
+/\d+/.test("abc123def")  // true -> trouve les chiffres n'importe où
 // avec ancres
 /^\d+$/.test("abc123def") // false -> la chaîne entière ne doit être que des chiffres
-/^\d+$/.test("123456")    // true
+/^\d+$/.test("123456")  // true
 ```
 
 Le combo `^...$` est essentiel pour la validation : il force la regex à s'appliquer à toute la chaîne, pas juste à une partie.
@@ -154,7 +154,7 @@ const resultat = texte.match(/\d+/)
 // resultat vaut null : pas de match
 
 // si tu fais ça sans vérifier :
-console.log(resultat[0])   // TypeError: Cannot read properties of null
+console.log(resultat[0])  // TypeError: Cannot read properties of null
 ```
 
 Toujours vérifier avant d'utiliser le résultat :
@@ -162,9 +162,9 @@ Toujours vérifier avant d'utiliser le résultat :
 ```js
 const resultat = texte.match(/\d+/)
 if (resultat) {
-  console.log(resultat[0])
+ console.log(resultat[0])
 } else {
-  console.log("aucun chiffre trouvé")
+ console.log("aucun chiffre trouvé")
 }
 
 // ou avec le optional chaining
@@ -178,16 +178,16 @@ Si tu oublies ce check une fois en prod, t'as un crash silencieux sur un cas lim
 ## 7) ALTERNANCE ET GROUPES : choisir et regrouper
 
 ```js
-|    // OU logique
-()   // groupe : isole une partie du pattern
+|  // OU logique
+()  // groupe : isole une partie du pattern
 (?:) // groupe non-capturant : groupe sans stocker dans les résultats
 ```
 
 ```js
-/Naruto|Sasuke|Sakura/.test("Sasuke est fort")   // true
+/Naruto|Sasuke|Sakura/.test("Sasuke est fort")  // true
 
 // groupes pour regrouper des quantificateurs
-/(?:na)+/.test("nanana")   // true : "na" répété
+/(?:na)+/.test("nanana")  // true : "na" répété
 ```
 
 ---
@@ -221,7 +221,7 @@ Un texte issu d'une déclaration officielle. Tu dois vérifier s'il contient :
 ## EXO 3 : le nettoyeur de setlist
 Tu reçois une chaîne qui représente une setlist de concert (trapsoul). Format inconsistant :
 ```
-"1. Money - Drake  \n2.Nights-Frank Ocean\n  3. CRANES IN THE SKY - Solange"
+"1. Money - Drake \n2.Nights-Frank Ocean\n 3. CRANES IN THE SKY - Solange"
 ```
 
 Écris une regex qui trouve tous les titres de chansons (le texte entre le tiret et la fin de la ligne, nettoyé des espaces). Résultat attendu : `["Drake", "Frank Ocean", "Solange"]` (les artistes dans ce cas).

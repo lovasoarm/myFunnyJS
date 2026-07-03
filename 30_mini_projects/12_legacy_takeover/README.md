@@ -1,6 +1,5 @@
 [PORTFOLIO]
 
-[INTEMPOREL]
 [ATELIER]
 
 # Mini-projet 12 : Legacy Takeover

@@ -112,11 +112,11 @@ console.log(playerObject.name); // "Blob"
 
 Cookies = autre système de stockage, mais avec une différence majeure :
 
-|                   | LocalStorage                        | Cookies                  |
+|          | LocalStorage            | Cookies         |
 | ----------------- | ----------------------------------- | ------------------------ |
-| Envoyé au serveur | non                                 | **oui, automatiquement** |
-| Simplicité        | simple                              | plus complexe            |
-| Utilisé pour      | préférences, thème, données locales | auth, sessions, tracking |
+| Envoyé au serveur | non                 | **oui, automatiquement** |
+| Simplicité    | simple               | plus complexe      |
+| Utilisé pour   | préférences, thème, données locales | auth, sessions, tracking |
 
 LocalStorage reste côté navigateur. Les cookies font l'aller-retour avec le serveur à chaque requête.
 
@@ -205,10 +205,10 @@ _Indice : `localStorage.getItem("theme")`_
 # RÉSUMÉ
 
 ```
-setItem    → sauvegarder
-getItem    → lire
+setItem  → sauvegarder
+getItem  → lire
 removeItem → supprimer
-clear      → tout effacer
+clear   → tout effacer
 ```
 
 LocalStorage ne parle que strings. Donc :

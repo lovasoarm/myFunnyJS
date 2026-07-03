@@ -14,31 +14,31 @@ Ce fichier t'apprend à lire le rapport comme un outil, pas comme un bulletin de
 Lighthouse a 5 catégories. Elles ne se lisent pas de la même façon.
 
 ```
-Performance      =>  métriques mesurées à l'exécution
-                     LCP, INP, CLS + FCP, TTFB, Speed Index
+Performance   => métriques mesurées à l'exécution
+           LCP, INP, CLS + FCP, TTFB, Speed Index
 
-Accessibility    =>  règles WCAG vérifiées automatiquement
-                     contrast, aria, keyboard navigation
+Accessibility  => règles WCAG vérifiées automatiquement
+           contrast, aria, keyboard navigation
 
-Best Practices   =>  sécurité, HTTPS, APIs dépréciées
+Best Practices  => sécurité, HTTPS, APIs dépréciées
 
-SEO              =>  métadonnées, structure, mobile-friendliness
+SEO       => métadonnées, structure, mobile-friendliness
 
-PWA              =>  Progressive Web App : manifest, service worker
+PWA       => Progressive Web App : manifest, service worker
 ```
 
 Pour la performance : t'as un score global + les métriques individuelles + deux sections sous les métriques : **Opportunities** et **Diagnostics**.
 
 ```
 Score global (0-100)
-  |
-  +-- Métriques (LCP, INP, CLS, FCP, TTFB, Speed Index)
-  |
-  +-- Opportunities    : corrections avec impact estimé en secondes
-  |
-  +-- Diagnostics      : problèmes sans estimation de gain
-  |
-  +-- Passed audits    : ce qui est déjà bon (souvent ignoré à tort)
+ |
+ +-- Métriques (LCP, INP, CLS, FCP, TTFB, Speed Index)
+ |
+ +-- Opportunities  : corrections avec impact estimé en secondes
+ |
+ +-- Diagnostics   : problèmes sans estimation de gain
+ |
+ +-- Passed audits  : ce qui est déjà bon (souvent ignoré à tort)
 ```
 
 ---
@@ -48,12 +48,12 @@ Score global (0-100)
 Lighthouse pondère les métriques différemment pour calculer le score global :
 
 ```
-LCP              =>  25% du score
-INP              =>  10% du score
-CLS              =>  15% du score
-FCP              =>  10% du score    (First Contentful Paint)
-Speed Index      =>  10% du score
-TTFB             =>  30% du score    (Time to First Byte)
+LCP       => 25% du score
+INP       => 10% du score
+CLS       => 15% du score
+FCP       => 10% du score  (First Contentful Paint)
+Speed Index   => 10% du score
+TTFB       => 30% du score  (Time to First Byte)
 ```
 
 TTFB est le temps entre la requête et le premier octet reçu. C'est le serveur. Si TTFB est mauvais, aucune optimisation front ne va vraiment aider.
@@ -66,7 +66,7 @@ console.log(`TTFB: ${ttfb}ms`)
 
 // seuils
 // < 800ms : vert
-// < 1800ms : orange  
+// < 1800ms : orange 
 // >= 1800ms : rouge
 ```
 
@@ -82,10 +82,10 @@ Chaque opportunity a une **estimation de gain en secondes**. Lighthouse te dit :
 
 Exemples d'opportunities :
 ```
-Serve images in next-gen formats         =>  économie estimée : 2.3s
-Eliminate render-blocking resources      =>  économie estimée : 1.1s
-Remove unused JavaScript                 =>  économie estimée : 0.8s
-Properly size images                     =>  économie estimée : 0.5s
+Serve images in next-gen formats     => économie estimée : 2.3s
+Eliminate render-blocking resources   => économie estimée : 1.1s
+Remove unused JavaScript         => économie estimée : 0.8s
+Properly size images           => économie estimée : 0.5s
 ```
 
 **Règle** : commence par les opportunities avec le plus grand gain. Ignore les optimisations à 50ms si tu as une opportunity à 2 secondes.
@@ -96,9 +96,9 @@ Les diagnostics signalent des problèmes mais sans estimation de gain. Ce sont d
 
 Exemples :
 ```
-Avoid enormous network payloads          =>  informationnel
-Serve static assets with efficient cache policy  =>  informationnel
-Avoid chaining critical requests         =>  informationnel
+Avoid enormous network payloads     => informationnel
+Serve static assets with efficient cache policy => informationnel
+Avoid chaining critical requests     => informationnel
 ```
 
 Les diagnostics comptent, mais ils passent après les opportunities quand tu dois prioriser.
@@ -115,11 +115,11 @@ Toujours regarder les métriques individuelles, pas seulement le score.
 
 ```
 Score global : 85/100
-  LCP : 4.8s  (rouge)     <-- problème critique
-  INP : 180ms (vert)
-  CLS : 0.05  (vert)
-  FCP : 1.2s  (vert)
-  TTFB: 210ms (vert)
+ LCP : 4.8s (rouge)   <-- problème critique
+ INP : 180ms (vert)
+ CLS : 0.05 (vert)
+ FCP : 1.2s (vert)
+ TTFB: 210ms (vert)
 ```
 
 Dans ce cas, le site est probablement bien perçu mais une image lourde gâche tout.
@@ -166,31 +166,31 @@ import lighthouse from 'lighthouse'
 import * as chromeLauncher from 'chrome-launcher'
 
 async function runAudit(url) {
-  // ouvrir Chrome en mode headless
-  const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] })
+ // ouvrir Chrome en mode headless
+ const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] })
 
-  const result = await lighthouse(url, {
-    port: chrome.port,
-    // preset mobile par défaut, le plus important pour les CWV
-    formFactor: 'mobile',
-    screenEmulation: {
-      mobile: true,
-      width: 390,
-      height: 844,
-    },
-  })
+ const result = await lighthouse(url, {
+  port: chrome.port,
+  // preset mobile par défaut, le plus important pour les CWV
+  formFactor: 'mobile',
+  screenEmulation: {
+   mobile: true,
+   width: 390,
+   height: 844,
+  },
+ })
 
-  await chrome.kill()
+ await chrome.kill()
 
-  // extraire les métriques clés
-  const { lcp, inp, cls, fcp, ttfb } = result.lhr.audits
-  
-  return {
-    score: result.lhr.categories.performance.score * 100,
-    lcp: lcp.numericValue,
-    inp: inp.numericValue,
-    cls: cls.numericValue,
-  }
+ // extraire les métriques clés
+ const { lcp, inp, cls, fcp, ttfb } = result.lhr.audits
+ 
+ return {
+  score: result.lhr.categories.performance.score * 100,
+  lcp: lcp.numericValue,
+  inp: inp.numericValue,
+  cls: cls.numericValue,
+ }
 }
 ```
 
@@ -221,8 +221,8 @@ Tu as servi 16x plus de pixels que nécessaire. Fix : générer une version 300x
 ### Étape 4 : estimer l'effort vs le gain
 
 ```
-Opportunity : Serve images in next-gen formats  =>  gain 2.1s, effort : moyen
-Opportunity : Remove unused CSS                =>  gain 0.3s, effort : élevé
+Opportunity : Serve images in next-gen formats => gain 2.1s, effort : moyen
+Opportunity : Remove unused CSS        => gain 0.3s, effort : élevé
 
 => commence par les images
 ```
@@ -240,20 +240,20 @@ Voici un rapport fictif d'une page type dashboard de stats de foot :
 ```
 Performance score : 58
 
-LCP  : 5.2s   (rouge)   poids : 25%
-INP  : 320ms  (orange)  poids : 10%
-CLS  : 0.12   (orange)  poids : 15%
-FCP  : 1.8s   (vert)
-TTFB : 420ms  (vert)
+LCP : 5.2s  (rouge)  poids : 25%
+INP : 320ms (orange) poids : 10%
+CLS : 0.12  (orange) poids : 15%
+FCP : 1.8s  (vert)
+TTFB : 420ms (vert)
 
 Opportunities :
-  Properly size images               =>  -2.1s   (image hero 4Mo)
-  Eliminate render-blocking resources =>  -1.3s   (4 scripts en head)
-  Remove unused JavaScript           =>  -0.6s   (bundle analytics)
+ Properly size images        => -2.1s  (image hero 4Mo)
+ Eliminate render-blocking resources => -1.3s  (4 scripts en head)
+ Remove unused JavaScript      => -0.6s  (bundle analytics)
 
 Diagnostics :
-  Avoid enormous network payloads    (total : 8.2MB)
-  Serve static assets with efficient cache policy
+ Avoid enormous network payloads  (total : 8.2MB)
+ Serve static assets with efficient cache policy
 ```
 
 ### Lecture du rapport
@@ -279,16 +279,16 @@ Tu reçois ce rapport Lighthouse pour le site du club de foot de tes rêves :
 ```
 Score : 61
 
-LCP  : 4.1s  (rouge)
-INP  : 440ms (orange)
-CLS  : 0.08  (vert)
-TTFB : 1.9s  (orange)
+LCP : 4.1s (rouge)
+INP : 440ms (orange)
+CLS : 0.08 (vert)
+TTFB : 1.9s (orange)
 
 Opportunities :
-  Serve images in next-gen formats    =>  -1.8s
-  Reduce server response times        =>  ?
-  Remove unused CSS                   =>  -0.4s
-  Eliminate render-blocking resources =>  -0.7s
+ Serve images in next-gen formats  => -1.8s
+ Reduce server response times    => ?
+ Remove unused CSS          => -0.4s
+ Eliminate render-blocking resources => -0.7s
 ```
 
 1. Quel est le problème le plus critique dans ce rapport ?

@@ -1,15 +1,15 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS
 
 > Ce module reutilise : tous les modules pratiques (build, lint, format, package).
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ce module est différent des 30 autres. Et faut le dire cash avant d'aller plus loin.
 
@@ -26,27 +26,27 @@ Dans Walking Dead, Rick Grimes aurait pu partir explorer sans lampe, sans radio,
 Trois gadgets maison, mentionnés directement dans le cahier des charges du mini-projet `03_walking_dead_protocol` :
 
 ```
-logger structuré   --> savoir ce qui s'est passé, dans quel ordre, avec quel contexte
-benchmark kit       --> savoir si ton code est rapide ou juste "pas lent en apparence"
-debug toolkit       --> savoir où ça casse sans semer des console.log partout
+logger structuré  --> savoir ce qui s'est passé, dans quel ordre, avec quel contexte
+benchmark kit    --> savoir si ton code est rapide ou juste "pas lent en apparence"
+debug toolkit    --> savoir où ça casse sans semer des console.log partout
 ```
 
 Plus un quatrième, ajouté parce que les 9 mini-projets partagent tous la même structure de dossier (`cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, `src/`, `tests/`) :
 
 ```
-cli scaffolder      --> génère cette structure en une ordre_mission, au lieu de la recréer à la main 9 fois
+cli scaffolder   --> génère cette structure en une ordre_mission, au lieu de la recréer à la main 9 fois
 ```
 
 ```
-                    [31_TOOLS : L'ATELIER]
-                            |
-        +-------------+-----------+-----------+
-        |             |           |           |
-     logger       benchmark     debug      scaffolder
-        |             |           |           |
-        v             v           v           v
-   utilisé dans   utilisé dans  utilisé   utilisé pour
-   CHAQUE projet   les algos    partout   CHAQUE mini-projet
+          [31_TOOLS : L'ATELIER]
+              |
+    +-------------+-----------+-----------+
+    |       |      |      |
+   logger    benchmark   debug   scaffolder
+    |       |      |      |
+    v       v      v      v
+  utilisé dans  utilisé dans utilisé  utilisé pour
+  CHAQUE projet  les algos  partout  CHAQUE mini-projet
 ```
 
 ---
@@ -87,12 +87,12 @@ Ce module vit PAS dans le flux normal de progression. Il vit À CÔTÉ, comme un
 
 ```
 01_fundamentals --> 03_async --> ... --> 30_mini_projects
-                                              |
-                                              v
-                                    [PIOCHE DANS 32_tools]
-                                    à chaque fois que t'as besoin
-                                    de logger, mesurer, débugger,
-                                    ou scaffolder un nouveau projet
+                       |
+                       v
+                  [PIOCHE DANS 32_tools]
+                  à chaque fois que t'as besoin
+                  de logger, mesurer, débugger,
+                  ou scaffolder un nouveau projet
 ```
 
 C'est pour ça que ce module a pas vraiment de "moment" dans la progression. Tu peux le consulter dès le module 06 (testing), ou attendre le mini-projet 1. Les deux sont valides.
@@ -102,10 +102,10 @@ C'est pour ça que ce module a pas vraiment de "moment" dans la progression. Tu 
 ## QUAND ÇA DEVIENT IMPORTANT, QUAND ÇA DEVIENT INDISPENSABLE
 
 ```
-exercices courts (5-25 min)     --> optionnel, un console.log suffit largement
-un mini-projet entier            --> le logger et le debug toolkit deviennent vite indispensables
+exercices courts (5-25 min)   --> optionnel, un console.log suffit largement
+un mini-projet entier      --> le logger et le debug toolkit deviennent vite indispensables
 plusieurs implémentations à comparer --> le benchmark kit devient la seule façon honnête de trancher
-9 mini-projets à démarrer         --> le scaffolder évite une corvée répétitive et source d'erreurs
+9 mini-projets à démarrer     --> le scaffolder évite une corvée répétitive et source d'erreurs
 ```
 
 Comment tu sais que t'en as besoin : le jour où tu commentes/décommentes des `console.log` en boucle pour comprendre un bug, t'as besoin du debug toolkit. Le jour où tu dis "je pense que cette version est plus rapide" sans l'avoir mesuré, t'as besoin du benchmark kit.
@@ -119,8 +119,8 @@ Alternative : utiliser direct des libs externes (Winston pour les logs, Benchmar
 Le choix ici : construire ces outils TOI-MÊME, en JS pur, sans dépendance. Pourquoi :
 
 ```
-gain  --> tu comprends EXACTEMENT ce qui se passe dans l'outil que tu utilises
-          aucune boîte noire, aucune magie, tu peux le modifier à volonté
+gain --> tu comprends EXACTEMENT ce qui se passe dans l'outil que tu utilises
+     aucune boîte noire, aucune magie, tu peux le modifier à volonté
 perte --> tes outils maison sont moins complets qu'une lib mature et testée par des milliers de devs
 ```
 
@@ -131,13 +131,13 @@ C'est un compromis pédagogique assumé : tu construis le marteau pour comprendr
 ## MODERNE, LEGACY, OU INTEMPOREL
 
 ```
-le BESOIN de logger structuré      --> intemporel, ça bougera jamais
-le BESOIN de mesurer la perf       --> intemporel, pareil
+le BESOIN de logger structuré   --> intemporel, ça bougera jamais
+le BESOIN de mesurer la perf    --> intemporel, pareil
 le BESOIN de débugger efficacement --> intemporel, pareil
-le BESOIN de scaffolder un projet  --> intemporel, pareil
+le BESOIN de scaffolder un projet --> intemporel, pareil
 
 les outils précis qu'on construit ici --> volontairement simples, conçus pour être compris,
-                                            pas pour rivaliser avec Winston ou Pino en prod
+                      pas pour rivaliser avec Winston ou Pino en prod
 ```
 
 Ce module t'apprend des principes qui survivent à n'importe quel outil du marché : structurer un log, isoler une mesure de perf, créer un point d'inspection. Le jour où tu utilises Pino en vrai projet, tu sauras EXACTEMENT ce qu'il fait sous le capot, parce que t'auras construit une version simplifiée toi-même.
@@ -159,16 +159,16 @@ C'est un module utilitaire. Tu peux vivre sans, comme un campeur peut vivre sans
 
 ```
 prérequis avant ce module :
-01_fundamentals             --> fonctions, closures : la base pour construire des outils réutilisables
+01_fundamentals       --> fonctions, closures : la base pour construire des outils réutilisables
 08_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
-04_error_handling           --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
+04_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
 16_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-30_mini_projects     --> chaque projet démarre plus vite, se débugge plus vite, se mesure plus vite
-26_observability      --> tu as déjà manipulé un logger basique, le concept de correlation ID te parle déjà
+30_mini_projects   --> chaque projet démarre plus vite, se débugge plus vite, se mesure plus vite
+26_observability   --> tu as déjà manipulé un logger basique, le concept de correlation ID te parle déjà
 ```
 
 ---
@@ -187,15 +187,15 @@ Ce qui devient plus simple après ce module :
 ```
 "console.log suffit, pourquoi construire un logger"
 --> faux dès que t'as plus d'un fichier qui logge. Sans structure ni niveau (info/warn/error),
-    un flux de logs devient illisible en quelques minutes.
+  un flux de logs devient illisible en quelques minutes.
 
 "mesurer la perf, c'est pour les gros projets seulement"
 --> faux. Même sur un petit exercice, comparer deux implémentations te forme l'œil
-    à reconnaître ce qui coûte cher AVANT que ça devienne un vrai problème.
+  à reconnaître ce qui coûte cher AVANT que ça devienne un vrai problème.
 
 "le debug toolkit c'est juste console.log avec un nom différent"
 --> faux si bien construit. Un bon outil de debug donne du CONTEXTE (où, quand, avec quel état),
-    pas juste une valeur isolée.
+  pas juste une valeur isolée.
 ```
 
 ---

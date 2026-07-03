@@ -10,12 +10,12 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Ce proje
 ```typescript
 // types/i18n.ts
 type TranslationKeys = {
-  'player.play': string;
-  'player.pause': string;
-  'player.skip': string;
-  'track.duration': string;
-  'track.artist': string;
-  'playlist.empty': string;
+ 'player.play': string;
+ 'player.pause': string;
+ 'player.skip': string;
+ 'track.duration': string;
+ 'track.artist': string;
+ 'playlist.empty': string;
 };
 
 type Translation = Record<keyof TranslationKeys, string>;
@@ -26,8 +26,8 @@ Test : créer une traduction incomplète volontairement.
 ```typescript
 // Ce code DOIT provoquer une erreur de compilation
 const incomplet: Translation = {
-  'player.play': 'Play',
-  // 'player.pause' manquant
+ 'player.play': 'Play',
+ // 'player.pause' manquant
 };
 // TypeScript : Property 'player.pause' is missing in type...
 ```
@@ -40,24 +40,24 @@ Si TypeScript ne signale pas ça, les types sont mal définis. Ce "test" ne tour
 
 ```typescript
 test('getTranslation() retourne la traduction correcte pour une clé donnée', () => {
-  const service = new I18nService('fr');
-  expect(service.get('player.play')).toBe('Lire');
+ const service = new I18nService('fr');
+ expect(service.get('player.play')).toBe('Lire');
 });
 
 test('getTranslation() utilise le fallback anglais si la clé manque en malgache', () => {
-  const service = new I18nService('mg');
-  // 'track.duration' n'existe pas encore en malgache
-  expect(service.get('track.duration')).toBe('Duration'); // fallback EN
+ const service = new I18nService('mg');
+ // 'track.duration' n'existe pas encore en malgache
+ expect(service.get('track.duration')).toBe('Duration'); // fallback EN
 });
 
 test('pluralize() gère les règles de pluralisation par locale', () => {
-  const fr = new I18nService('fr');
-  expect(fr.pluralize('track', 1)).toBe('1 morceau');
-  expect(fr.pluralize('track', 3)).toBe('3 morceaux');
+ const fr = new I18nService('fr');
+ expect(fr.pluralize('track', 1)).toBe('1 morceau');
+ expect(fr.pluralize('track', 3)).toBe('3 morceaux');
 
-  const ja = new I18nService('ja');
-  // le japonais n'a pas de pluriel morphologique : même forme
-  expect(ja.pluralize('track', 3)).toBe('3曲');
+ const ja = new I18nService('ja');
+ // le japonais n'a pas de pluriel morphologique : même forme
+ expect(ja.pluralize('track', 3)).toBe('3曲');
 });
 ```
 
@@ -69,18 +69,18 @@ La règle de pluralisation japonaise a nécessité de factoriser la logique par 
 
 ```typescript
 test('formatDuration() affiche 3:42 en FR et EN', () => {
-  const fr = new DateFormatter('fr');
-  const en = new DateFormatter('en');
-  expect(fr.formatDuration(222)).toBe('3:42'); // 222 secondes
-  expect(en.formatDuration(222)).toBe('3:42'); // même format international
+ const fr = new DateFormatter('fr');
+ const en = new DateFormatter('en');
+ expect(fr.formatDuration(222)).toBe('3:42'); // 222 secondes
+ expect(en.formatDuration(222)).toBe('3:42'); // même format international
 });
 
 test('formatDuration() utilise Intl.DateTimeFormat, pas de bibliothèque externe', () => {
-  // Vérification : pas d'import vers moment, luxon, date-fns dans le fichier
-  const source = fs.readFileSync('./src/formatting/dates.ts', 'utf8');
-  expect(source).not.toContain('import moment');
-  expect(source).not.toContain('import { format }');
-  expect(source).toContain('Intl.DateTimeFormat');
+ // Vérification : pas d'import vers moment, luxon, date-fns dans le fichier
+ const source = fs.readFileSync('./src/formatting/dates.ts', 'utf8');
+ expect(source).not.toContain('import moment');
+ expect(source).not.toContain('import { format }');
+ expect(source).toContain('Intl.DateTimeFormat');
 });
 ```
 
@@ -92,26 +92,26 @@ Le deuxième test vérifie directement le code source pour s'assurer qu'aucune b
 
 ```typescript
 test('skip() passe à la track suivante dans la playlist', () => {
-  const engine = new PlayerEngine(playlist3Tracks);
-  engine.play();
-  engine.skip();
-  expect(engine.getState().currentTrack.id).toBe(playlist3Tracks[1].id);
+ const engine = new PlayerEngine(playlist3Tracks);
+ engine.play();
+ engine.skip();
+ expect(engine.getState().currentTrack.id).toBe(playlist3Tracks[1].id);
 });
 
 test('skip() sur la dernière track revient à la première (mode loop)', () => {
-  const engine = new PlayerEngine(playlist3Tracks);
-  engine.playTrack(playlist3Tracks[2]); // dernière track
-  engine.skip();
-  expect(engine.getState().currentTrack.id).toBe(playlist3Tracks[0].id);
+ const engine = new PlayerEngine(playlist3Tracks);
+ engine.playTrack(playlist3Tracks[2]); // dernière track
+ engine.skip();
+ expect(engine.getState().currentTrack.id).toBe(playlist3Tracks[0].id);
 });
 
 test('pause() ne modifie pas la track en cours', () => {
-  const engine = new PlayerEngine(playlist3Tracks);
-  engine.play();
-  const trackAvantPause = engine.getState().currentTrack;
-  engine.pause();
-  expect(engine.getState().currentTrack).toEqual(trackAvantPause);
-  expect(engine.getState().isPlaying).toBe(false);
+ const engine = new PlayerEngine(playlist3Tracks);
+ engine.play();
+ const trackAvantPause = engine.getState().currentTrack;
+ engine.pause();
+ expect(engine.getState().currentTrack).toEqual(trackAvantPause);
+ expect(engine.getState().isPlaying).toBe(false);
 });
 ```
 
@@ -124,22 +124,22 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 expect.extend(toHaveNoViolations);
 
 test('le lecteur principal n\'a aucune violation WCAG', async () => {
-  document.body.innerHTML = renderPlayer(defaultTrack);
-  const results = await axe(document.body);
-  expect(results).toHaveNoViolations();
+ document.body.innerHTML = renderPlayer(defaultTrack);
+ const results = await axe(document.body);
+ expect(results).toHaveNoViolations();
 });
 
 test('aria-live est défini sur l\'élément de la track en cours', () => {
-  document.body.innerHTML = renderPlayer(defaultTrack);
-  const liveRegion = document.querySelector('[aria-live]');
-  expect(liveRegion).not.toBeNull();
-  expect(liveRegion?.getAttribute('aria-live')).toBe('polite');
+ document.body.innerHTML = renderPlayer(defaultTrack);
+ const liveRegion = document.querySelector('[aria-live]');
+ expect(liveRegion).not.toBeNull();
+ expect(liveRegion?.getAttribute('aria-live')).toBe('polite');
 });
 
 test('le bouton play a un aria-label descriptif', () => {
-  document.body.innerHTML = renderPlayer(defaultTrack);
-  const playBtn = document.querySelector('button[aria-label]');
-  expect(playBtn?.getAttribute('aria-label')).toMatch(/lire|play/i);
+ document.body.innerHTML = renderPlayer(defaultTrack);
+ const playBtn = document.querySelector('button[aria-label]');
+ expect(playBtn?.getAttribute('aria-label')).toMatch(/lire|play/i);
 });
 ```
 

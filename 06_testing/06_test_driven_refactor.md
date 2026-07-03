@@ -15,16 +15,16 @@ Si les tests passent avant et après le refacto : t'as gardé le comportement ex
 
 ```
 Avant refacto :
-   vote valide accepté
-   double vote rejeté
-   joueur vide rejeté
-  --> tu refactorises l'implémentation interne
+  vote valide accepté
+  double vote rejeté
+  joueur vide rejeté
+ --> tu refactorises l'implémentation interne
 
 Après refacto :
-   vote valide accepté         (toujours)
-   double vote rejeté          (toujours)
-   joueur vide rejeté          (toujours)
-  --> comportement préservé
+  vote valide accepté     (toujours)
+  double vote rejeté     (toujours)
+  joueur vide rejeté     (toujours)
+ --> comportement préservé
 ```
 
 Si un test change pendant un refacto, deux cas : soit le test était mal écrit, soit tu as changé un comportement sans t'en rendre compte. Dans les deux cas : stop et analyse.
@@ -44,18 +44,18 @@ La situation classique : tu hérites d'un module spaghetti. Zéro test. Tu dois 
 // Rick a codé ça en pleine attaque zombie. Ça tourne. Personne n'ose y toucher.
 
 function traiterRation(inventaire, personnages) {
-  let total = 0;
-  for (let i = 0; i < personnages.length; i++) {
-    if (personnages[i].statut !== "mort") {
-      total += personnages[i].faim > 7 ? 2 : 1;
-    }
+ let total = 0;
+ for (let i = 0; i < personnages.length; i++) {
+  if (personnages[i].statut !== "mort") {
+   total += personnages[i].faim > 7 ? 2 : 1;
   }
-  if (total > inventaire.rations) {
-    inventaire.alerte = true;
-    return { ok: false, manque: total - inventaire.rations };
-  }
-  inventaire.rations -= total;
-  return { ok: true };
+ }
+ if (total > inventaire.rations) {
+  inventaire.alerte = true;
+  return { ok: false, manque: total - inventaire.rations };
+ }
+ inventaire.rations -= total;
+ return { ok: true };
 }
 ```
 
@@ -65,45 +65,45 @@ Ces tests ne testent pas une belle architecture : ils testent ce que le code fai
 ```js
 // gestionCamp.test.js
 describe("traiterRation", () => {
-  it("distribue 1 ration par personne standard", () => {
-    const inventaire = { rations: 10 };
-    const personnages = [
-      { statut: "vivant", faim: 3 },
-      { statut: "vivant", faim: 5 },
-    ];
-    const résultat = traiterRation(inventaire, personnages);
-    expect(résultat.ok).toBe(true);
-    expect(inventaire.rations).toBe(8);
-  });
+ it("distribue 1 ration par personne standard", () => {
+  const inventaire = { rations: 10 };
+  const personnages = [
+   { statut: "vivant", faim: 3 },
+   { statut: "vivant", faim: 5 },
+  ];
+  const résultat = traiterRation(inventaire, personnages);
+  expect(résultat.ok).toBe(true);
+  expect(inventaire.rations).toBe(8);
+ });
 
-  it("distribue 2 rations si faim > 7", () => {
-    const inventaire = { rations: 10 };
-    const personnages = [{ statut: "vivant", faim: 9 }];
-    traiterRation(inventaire, personnages);
-    expect(inventaire.rations).toBe(8);
-  });
+ it("distribue 2 rations si faim > 7", () => {
+  const inventaire = { rations: 10 };
+  const personnages = [{ statut: "vivant", faim: 9 }];
+  traiterRation(inventaire, personnages);
+  expect(inventaire.rations).toBe(8);
+ });
 
-  it("ignore les morts", () => {
-    const inventaire = { rations: 10 };
-    const personnages = [
-      { statut: "mort", faim: 9 },
-      { statut: "vivant", faim: 3 },
-    ];
-    traiterRation(inventaire, personnages);
-    expect(inventaire.rations).toBe(9);
-  });
+ it("ignore les morts", () => {
+  const inventaire = { rations: 10 };
+  const personnages = [
+   { statut: "mort", faim: 9 },
+   { statut: "vivant", faim: 3 },
+  ];
+  traiterRation(inventaire, personnages);
+  expect(inventaire.rations).toBe(9);
+ });
 
-  it("lève une alerte si rations insuffisantes", () => {
-    const inventaire = { rations: 1 };
-    const personnages = [
-      { statut: "vivant", faim: 3 },
-      { statut: "vivant", faim: 3 },
-    ];
-    const résultat = traiterRation(inventaire, personnages);
-    expect(résultat.ok).toBe(false);
-    expect(résultat.manque).toBe(1);
-    expect(inventaire.alerte).toBe(true);
-  });
+ it("lève une alerte si rations insuffisantes", () => {
+  const inventaire = { rations: 1 };
+  const personnages = [
+   { statut: "vivant", faim: 3 },
+   { statut: "vivant", faim: 3 },
+  ];
+  const résultat = traiterRation(inventaire, personnages);
+  expect(résultat.ok).toBe(false);
+  expect(résultat.manque).toBe(1);
+  expect(inventaire.alerte).toBe(true);
+ });
 });
 ```
 
@@ -118,21 +118,21 @@ Tous verts. Maintenant on peut refactoriser en sécurité.
 // même comportement, code lisible. Rick peut dormir.
 
 function calculerRationsNécessaires(personnages) {
-  return personnages
-    .filter((p) => p.statut !== "mort")
-    .reduce((total, p) => total + (p.faim > 7 ? 2 : 1), 0);
+ return personnages
+  .filter((p) => p.statut !== "mort")
+  .reduce((total, p) => total + (p.faim > 7 ? 2 : 1), 0);
 }
 
 function traiterRation(inventaire, personnages) {
-  const rationsNécessaires = calculerRationsNécessaires(personnages);
+ const rationsNécessaires = calculerRationsNécessaires(personnages);
 
-  if (rationsNécessaires > inventaire.rations) {
-    inventaire.alerte = true;
-    return { ok: false, manque: rationsNécessaires - inventaire.rations };
-  }
+ if (rationsNécessaires > inventaire.rations) {
+  inventaire.alerte = true;
+  return { ok: false, manque: rationsNécessaires - inventaire.rations };
+ }
 
-  inventaire.rations -= rationsNécessaires;
-  return { ok: true };
+ inventaire.rations -= rationsNécessaires;
+ return { ok: true };
 }
 ```
 
@@ -165,7 +165,7 @@ Exemple : tu renommes un paramètre, tu changes le format de retour.
 Dans ce cas, les tests doivent changer aussi. Mais c'est un changement conscient, pas accidentel.
 
 ```
-Comportement préservé    --> tests ne changent pas
+Comportement préservé  --> tests ne changent pas
 Interface modifiée intentionnellement --> tests se mettent à jour, on sait pourquoi
 ```
 
@@ -183,14 +183,14 @@ Le camp tourne dessus depuis 3 semaines. Personne n'a de tests. T-Dog vient de s
 
 ```js
 function planifierGardes(gardes, postes) {
-  const plan = {};
-  for (let i = 0; i < postes.length; i++) {
-    const g = gardes[i % gardes.length];
-    if (g && g.disponible !== false) {
-      plan[postes[i]] = g.nom;
-    }
+ const plan = {};
+ for (let i = 0; i < postes.length; i++) {
+  const g = gardes[i % gardes.length];
+  if (g && g.disponible !== false) {
+   plan[postes[i]] = g.nom;
   }
-  return plan;
+ }
+ return plan;
 }
 ```
 
@@ -209,19 +209,19 @@ Cette fonction tourne en production chez un média sportif depuis 2 ans. Elle ag
 
 ```js
 function publierClassement(votes, joueurs) {
-  const totaux = {};
-  for (const v of votes) {
-    if (!joueurs.find((j) => j.id === v.joueurId)) continue;
-    totaux[v.joueurId] = (totaux[v.joueurId] || 0) + v.points;
-  }
-  const classement = Object.entries(totaux)
-    .sort((a, b) => b[1] - a[1])
-    .map(([id, points], i) => ({
-      rang: i + 1,
-      joueur: joueurs.find((j) => j.id === Number(id)).nom,
-      points,
-    }));
-  return { classement, vainqueur: classement[0]?.joueur ?? null };
+ const totaux = {};
+ for (const v of votes) {
+  if (!joueurs.find((j) => j.id === v.joueurId)) continue;
+  totaux[v.joueurId] = (totaux[v.joueurId] || 0) + v.points;
+ }
+ const classement = Object.entries(totaux)
+  .sort((a, b) => b[1] - a[1])
+  .map(([id, points], i) => ({
+   rang: i + 1,
+   joueur: joueurs.find((j) => j.id === Number(id)).nom,
+   points,
+  }));
+ return { classement, vainqueur: classement[0]?.joueur ?? null };
 }
 ```
 

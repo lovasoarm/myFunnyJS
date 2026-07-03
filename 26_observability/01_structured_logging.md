@@ -1,7 +1,7 @@
 # Arrête d'écrire des logs que personne ne peut chercher
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Le Conseil de Surveillance de Garo reçoit chaque nuit des milliers de lignes du type "Chevalier a combattu un Horror". Ça veut tout dire et rien dire : lequel des 200 Chevaliers, quel Horror, dans quel quartier, ça a duré combien de temps ? Un log en texte libre, c'est une note griffonnée sur un post-it : ça te dit quelque chose au moment où tu l'écris, et ça devient inutile 10 minutes après.
 
@@ -32,10 +32,10 @@ console.log(`Le Chevalier ${knightId} a combattu un Horror dans le quartier ${di
 
 // Bon : log structuré, chaque champ est une donnée exploitable
 logger.warn({
-  event: 'horror_combat',     // type d'événement, toujours en snake_case (mots séparés par underscore)
-  knightId,                   // qui est concerné
-  district,                   // contexte géographique
-  outcome: 'armor_critical'   // pourquoi précisément ça mérite un warning
+ event: 'horror_combat',   // type d'événement, toujours en snake_case (mots séparés par underscore)
+ knightId,          // qui est concerné
+ district,          // contexte géographique
+ outcome: 'armor_critical'  // pourquoi précisément ça mérite un warning
 })
 ```
 
@@ -46,26 +46,26 @@ Le pourquoi : un humain qui lit `console.log` comprend une seule ligne à la foi
 ## 2) LES NIVEAUX DE LOG : PAS TOUT AU MÊME ÉTAGE
 
 ```
-DEBUG  --> détail technique fin, utile en dev, bruyant en prod
-INFO   --> événement normal qui mérite d'être tracé (Chevalier en patrouille, combat gagné)
-WARN   --> quelque chose d'anormal mais pas cassant (armure endommagée mais tenable)
-ERROR  --> quelque chose a vraiment cassé, une action a échoué
-FATAL  --> le process ne peut plus continuer, il va s'arrêter
+DEBUG --> détail technique fin, utile en dev, bruyant en prod
+INFO  --> événement normal qui mérite d'être tracé (Chevalier en patrouille, combat gagné)
+WARN  --> quelque chose d'anormal mais pas cassant (armure endommagée mais tenable)
+ERROR --> quelque chose a vraiment cassé, une action a échoué
+FATAL --> le process ne peut plus continuer, il va s'arrêter
 ```
 
 ```js
-logger.debug({ event: 'patrol_scan', district: 'nord' })             // bruit utile seulement en dev
-logger.info({ event: 'patrol_started', knightId: 'leon_42' })        // trace normale
-logger.warn({ event: 'armor_damage', integrity: 0.4 })                // pas cassé, mais à surveiller
-logger.error({ event: 'armor_collapse', knightId: 'leon_42' })        // ça a cassé
+logger.debug({ event: 'patrol_scan', district: 'nord' })       // bruit utile seulement en dev
+logger.info({ event: 'patrol_started', knightId: 'leon_42' })    // trace normale
+logger.warn({ event: 'armor_damage', integrity: 0.4 })        // pas cassé, mais à surveiller
+logger.error({ event: 'armor_collapse', knightId: 'leon_42' })    // ça a cassé
 ```
 
 Le risque réel : si tout part en `INFO` (ou pire, tout en `ERROR`), le Conseil arrête de regarder les logs après deux semaines, parce que tout y ressemble à une urgence ou rien n'y ressemble à une urgence. Un niveau mal calibré tue la confiance dans les logs avant même qu'un vrai incident arrive.
 
 ```
 Mauvaise calibration :
-ERROR: scan de routine sans Horror détecté     <-- c'est juste normal, pas une erreur
-ERROR: armure désintégrée, Chevalier à terre    <-- ça, c'est un vrai ERROR
+ERROR: scan de routine sans Horror détecté   <-- c'est juste normal, pas une erreur
+ERROR: armure désintégrée, Chevalier à terre  <-- ça, c'est un vrai ERROR
 --> les deux ont le même poids visuel, le Conseil ignore les alertes ERROR à force
 ```
 
@@ -85,9 +85,9 @@ qu'ils appartiennent à la MÊME alerte
 ```js
 // Middleware qui génère ou propage un correlation ID dès l'entrée de l'alerte
 app.use((req, res, next) => {
-  req.alertId = req.headers['x-alert-id'] || crypto.randomUUID()
-  // si un service amont a déjà posé un ID, on le garde, sinon on en crée un
-  next()
+ req.alertId = req.headers['x-alert-id'] || crypto.randomUUID()
+ // si un service amont a déjà posé un ID, on le garde, sinon on en crée un
+ next()
 })
 
 // Chaque log de cette alerte embarque le même ID, peu importe le service

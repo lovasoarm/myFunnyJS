@@ -19,8 +19,8 @@ let secretTactics = "4-3-3 contre-attaque";
 
 // n'importe quelle fonction peut lire ET modifier ces données
 function anyFunction() {
-  budget = 0; // oops:quelqu'un vient de ruiner le club
-  secretTactics = ""; // oops:les tactiques fuitent
+ budget = 0; // oops:quelqu'un vient de ruiner le club
+ secretTactics = ""; // oops:les tactiques fuitent
 }
 ```
 
@@ -38,31 +38,31 @@ Le Module Pattern classique combine deux mécanismes :
 
 ```js
 const ClubBarça = (() => {
-  // --- PRIVÉ : personne n'y accède directement ---
-  let budget = 500_000_000; // le coffre:invisible de l'extérieur
-  let secretTactics = "4-3-3 contre-attaque"; // classé confidentiel
+ // --- PRIVÉ : personne n'y accède directement ---
+ let budget = 500_000_000; // le coffre:invisible de l'extérieur
+ let secretTactics = "4-3-3 contre-attaque"; // classé confidentiel
 
-  const _validateTransfer = (amount) => {
-    // préfixe _ = convention pour "privé, touche pas"
-    return amount > 0 && amount <= budget;
-  };
+ const _validateTransfer = (amount) => {
+  // préfixe _ = convention pour "privé, touche pas"
+  return amount > 0 && amount <= budget;
+ };
 
-  // --- PUBLIC : ce qu'on expose volontairement ---
-  return {
-    getClubName: () => "FC Barcelona",
+ // --- PUBLIC : ce qu'on expose volontairement ---
+ return {
+  getClubName: () => "FC Barcelona",
 
-    transfer: (playerName, amount) => {
-      if (!_validateTransfer(amount)) {
-        throw new Error(
-          `Transfert refusé : budget insuffisant ou montant invalide`,
-        );
-      }
-      budget -= amount; // mutation contrôlée, uniquement via cette méthode
-      return `${playerName} signé pour ${amount}M€`;
-    },
+  transfer: (playerName, amount) => {
+   if (!_validateTransfer(amount)) {
+    throw new Error(
+     `Transfert refusé : budget insuffisant ou montant invalide`,
+    );
+   }
+   budget -= amount; // mutation contrôlée, uniquement via cette méthode
+   return `${playerName} signé pour ${amount}M€`;
+  },
 
-    getBudget: () => budget, // lecture autorisée, modification interdite depuis l'extérieur
-  };
+  getBudget: () => budget, // lecture autorisée, modification interdite depuis l'extérieur
+ };
 })(); // les () à la fin : ça s'exécute immédiatement
 
 // ce qui est accessible
@@ -80,17 +80,17 @@ Diagramme :
 
 ```
 IIFE s'exécute
-    |
-    +--> variables privées (budget, secretTactics, _validateTransfer)
-    |         |
-    |         | closure : elles restent en vie
-    |         |
-    +--> return { getClubName, transfer, getBudget }
-                    |
-                    | seuls ces éléments sont accessibles depuis l'extérieur
-                    v
-              ClubBarça.transfer(...)   OK
-              ClubBarça.budget          undefined
+  |
+  +--> variables privées (budget, secretTactics, _validateTransfer)
+  |     |
+  |     | closure : elles restent en vie
+  |     |
+  +--> return { getClubName, transfer, getBudget }
+          |
+          | seuls ces éléments sont accessibles depuis l'extérieur
+          v
+       ClubBarça.transfer(...)  OK
+       ClubBarça.budget     undefined
 ```
 
 ---
@@ -101,23 +101,23 @@ Même pattern, mais configurable à l'initialisation :
 
 ```js
 const createClub = (name, initialBudget) => {
-  // factory de modules : chaque club a son propre scope privé
-  let budget = initialBudget;
-  let transfers = []; // historique privé des transferts
+ // factory de modules : chaque club a son propre scope privé
+ let budget = initialBudget;
+ let transfers = []; // historique privé des transferts
 
-  return {
-    name,
+ return {
+  name,
 
-    sign: (player, fee) => {
-      if (fee > budget) throw new Error(`${name} : fonds insuffisants`);
-      budget -= fee;
-      transfers.push({ player, fee }); // on mutate uniquement en interne
-      return `${player} rejoint ${name}`;
-    },
+  sign: (player, fee) => {
+   if (fee > budget) throw new Error(`${name} : fonds insuffisants`);
+   budget -= fee;
+   transfers.push({ player, fee }); // on mutate uniquement en interne
+   return `${player} rejoint ${name}`;
+  },
 
-    getTransferHistory: () => [...transfers], // copie défensive:on donne une copie, pas la référence
-    getBudget: () => budget,
-  };
+  getTransferHistory: () => [...transfers], // copie défensive:on donne une copie, pas la référence
+  getBudget: () => budget,
+ };
 };
 
 const psg = createClub("PSG", 800_000_000);
@@ -148,9 +148,9 @@ const _validateTransfer = (amount) => amount > 0 && amount <= budget;
 export const getClubName = () => "FC Barcelona"; // public : exporté explicitement
 
 export const transfer = (player, amount) => {
-  if (!_validateTransfer(amount)) throw new Error("Transfert refusé");
-  budget -= amount;
-  return `${player} signé`;
+ if (!_validateTransfer(amount)) throw new Error("Transfert refusé");
+ budget -= amount;
+ return `${player} signé`;
 };
 ```
 
@@ -172,15 +172,15 @@ Pas besoin d'IIFE. Le fichier lui-même est le module. Ce qui n'est pas `export`
 
 ```js
 const createTeam = () => {
-  const players = ["Ter Stegen", "Araújo", "Pedri"];
+ const players = ["Ter Stegen", "Araújo", "Pedri"];
 
-  return {
-    // DANGER : on retourne la référence directe au tableau
-    getPlayersDangerous: () => players,
+ return {
+  // DANGER : on retourne la référence directe au tableau
+  getPlayersDangerous: () => players,
 
-    // SAFE : on retourne une copie:l'état interne ne peut pas être muté de l'extérieur
-    getPlayersSafe: () => [...players],
-  };
+  // SAFE : on retourne une copie:l'état interne ne peut pas être muté de l'extérieur
+  getPlayersSafe: () => [...players],
+ };
 };
 
 const team = createTeam();

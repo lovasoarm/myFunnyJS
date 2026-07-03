@@ -36,7 +36,7 @@ Résumé :
 ## 2) `==` VS `===`
 
 ```javascript
-console.log(5 == "5");  // true
+console.log(5 == "5"); // true
 console.log(5 === "5"); // false
 ```
 
@@ -50,8 +50,8 @@ console.log(5 === "5"); // false
 ## 3) LES CAS TORDUS
 
 ```javascript
-console.log(false == 0);       // true
-console.log("" == 0);          // true
+console.log(false == 0);    // true
+console.log("" == 0);     // true
 console.log(null == undefined); // true
 ```
 
@@ -74,7 +74,7 @@ Tu contrôles la conversion. Pas de magie cachée.
 
 ```javascript
 // String vers Number
-Number("10");   // 10
+Number("10");  // 10
 parseInt("10"); // 10
 
 // Number vers String
@@ -103,13 +103,13 @@ false, 0, "", null, undefined, NaN
 
 ```javascript
 if ("hello") {
-  console.log("C'est vrai"); // s'exécute : string non vide = truthy
+ console.log("C'est vrai"); // s'exécute : string non vide = truthy
 }
 if ("0") {
-  console.log("Aussi vrai"); // s'exécute : "0" est une string non vide
+ console.log("Aussi vrai"); // s'exécute : "0" est une string non vide
 }
 if (0) {
-  console.log("Jamais"); // ne s'exécute pas : 0 est falsy
+ console.log("Jamais"); // ne s'exécute pas : 0 est falsy
 }
 ```
 
@@ -133,17 +133,17 @@ Si tu ne maîtrises pas la coercion, tu **subis** JavaScript.
 **Étape 1 : observe et comprends chaque résultat :**
 
 ```javascript
-console.log("10" + 5);   // "105" ← string, pas number
-console.log("10" - 5);   // 5
-console.log(true + 1);   // 2
-console.log(false + 1);  // 1
+console.log("10" + 5);  // "105" ← string, pas number
+console.log("10" - 5);  // 5
+console.log(true + 1);  // 2
+console.log(false + 1); // 1
 ```
 
 **Étape 2 : compare :**
 
 ```javascript
-console.log(null == 0);          // false
-console.log(null == undefined);  // true
+console.log(null == 0);     // false
+console.log(null == undefined); // true
 console.log(null === undefined); // false
 ```
 
@@ -152,9 +152,9 @@ console.log(null === undefined); // false
 ```javascript
 let input = "0";
 if (input) {
-  console.log("truthy");
+ console.log("truthy");
 } else {
-  console.log("falsy");
+ console.log("falsy");
 }
 ```
 

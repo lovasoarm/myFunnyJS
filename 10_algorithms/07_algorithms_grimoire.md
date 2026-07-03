@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~12 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -48,32 +48,32 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 ## CHOISIR LE BON ALGORITHME
 
 ```
-Problème                         Algorithme
+Problème             Algorithme
 ──────────────────────────────────────────────────────────────
-Toutes les solutions              Backtracking
-Solution optimale, contraintes    DP ou Greedy
+Toutes les solutions       Backtracking
+Solution optimale, contraintes  DP ou Greedy
 complexes
 
-Chemin le plus court              Dijkstra (poids positifs)
-(graphe pondéré)                  Bellman-Ford (poids négatifs)
-                                  A* (destination connue + heuristique)
-                                  BFS (non pondéré)
+Chemin le plus court       Dijkstra (poids positifs)
+(graphe pondéré)         Bellman-Ford (poids négatifs)
+                 A* (destination connue + heuristique)
+                 BFS (non pondéré)
 
-Ordre de dépendances              Topological Sort (Kahn ou DFS)
-Détecter un cycle                 DFS colorié (WHITE/GRAY/BLACK)
+Ordre de dépendances       Topological Sort (Kahn ou DFS)
+Détecter un cycle         DFS colorié (WHITE/GRAY/BLACK)
 
-Optimisation sur grille           DP (si mouvements restreints)
-                                  BFS/Dijkstra (si 4+ directions)
-                                  A* (si destination connue)
+Optimisation sur grille      DP (si mouvements restreints)
+                 BFS/Dijkstra (si 4+ directions)
+                 A* (si destination connue)
 
-Maximiser/minimiser une           DP (si chevauchement + sous-structure)
-quantité sur une séquence         Greedy (si propriété greedy vérifiable)
+Maximiser/minimiser une      DP (si chevauchement + sous-structure)
+quantité sur une séquence     Greedy (si propriété greedy vérifiable)
 
-Compter des combinaisons          DP (comptage)
-Lister des combinaisons           Backtracking
+Compter des combinaisons     DP (comptage)
+Lister des combinaisons      Backtracking
 
-Couvrir un arbre/graphe           DFS (exploration complète)
-entièrement                       BFS (niveau par niveau)
+Couvrir un arbre/graphe      DFS (exploration complète)
+entièrement            BFS (niveau par niveau)
 ```
 
 ---
@@ -81,26 +81,26 @@ entièrement                       BFS (niveau par niveau)
 ## COMPLEXITÉS CLÉS
 
 ```
-Algorithme              Temps           Espace
+Algorithme       Temps      Espace
 ──────────────────────────────────────────────
-Bubble Sort             O(n²)           O(1)
-Merge Sort              O(n log n)      O(n)
-Quick Sort              O(n log n) avg  O(log n)
-Binary Search           O(log n)        O(1)
+Bubble Sort       O(n²)      O(1)
+Merge Sort       O(n log n)   O(n)
+Quick Sort       O(n log n) avg O(log n)
+Binary Search      O(log n)    O(1)
 
-DP Fibonacci            O(n)            O(n) / O(1) avec optimisation
-DP Knapsack             O(n*W)          O(n*W) / O(W) avec optimisation
-DP LCS                  O(m*n)          O(m*n) / O(min(m,n))
+DP Fibonacci      O(n)      O(n) / O(1) avec optimisation
+DP Knapsack       O(n*W)     O(n*W) / O(W) avec optimisation
+DP LCS         O(m*n)     O(m*n) / O(min(m,n))
 
-Backtracking Permut.    O(n!)           O(n)
-Backtracking Subsets    O(2^n)          O(n)
-N-Queens                O(n!)           O(n)
+Backtracking Permut.  O(n!)      O(n)
+Backtracking Subsets  O(2^n)     O(n)
+N-Queens        O(n!)      O(n)
 
-Dijkstra (binary heap)  O((V+E)log V)   O(V)
-Bellman-Ford            O(V*E)          O(V)
-A*                      O(E log V)      O(V)
-BFS/DFS                 O(V+E)          O(V)
-Topological Sort        O(V+E)          O(V)
+Dijkstra (binary heap) O((V+E)log V)  O(V)
+Bellman-Ford      O(V*E)     O(V)
+A*           O(E log V)   O(V)
+BFS/DFS         O(V+E)     O(V)
+Topological Sort    O(V+E)     O(V)
 ```
 
 ---

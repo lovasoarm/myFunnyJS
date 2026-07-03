@@ -7,22 +7,22 @@ toujours le même :
 ```
 1. Prends UN concept clé du module que tu viens de finir.
 2. Réimplémente-le (ou explique-le en pseudocode exécutable) dans un langage
-   non-JS de ton choix : Python, Rust, Go, Java, C, pseudo-langage.
+  non-JS de ton choix : Python, Rust, Go, Java, C, pseudo-langage.
 3. Écris 5 lignes : ce qui a été plus facile, plus dur, plus clair, plus obscur,
-   et le concept invariant que tu as vu émerger.
+  et le concept invariant que tu as vu émerger.
 4. Range ce document dans le sous-dossier `transferts/` de ton portfolio.
 ```
 
 ## Table des exercices imposés
 
-| Après module          | Concept à transférer                        | Cible suggérée      |
+| Après module     | Concept à transférer            | Cible suggérée   |
 |-----------------------|---------------------------------------------|---------------------|
-| 01_fundamentals       | Closure + scope lexical                     | Python ou Rust      |
-| 03_async              | Event loop / microtask                      | Pseudo-Rust ou Go   |
-| 08_memory_performance | Cycle de vie objet + retainer               | Java (GC roots)     |
-| 09_data_structures    | Hash map avec collision                     | C ou Zig            |
-| 13_design_patterns    | Observer OU Strategy                        | Go (interfaces)     |
-| 17_architecture       | Injection de dépendance minimale            | Python (protocols)  |
+| 01_fundamentals    | Closure + scope lexical           | Python ou Rust   |
+| 03_async       | Event loop / microtask           | Pseudo-Rust ou Go  |
+| 08_memory_performance | Cycle de vie objet + retainer        | Java (GC roots)   |
+| 09_data_structures  | Hash map avec collision           | C ou Zig      |
+| 13_design_patterns  | Observer OU Strategy            | Go (interfaces)   |
+| 17_architecture    | Injection de dépendance minimale      | Python (protocols) |
 
 ## Règle non négociable
 

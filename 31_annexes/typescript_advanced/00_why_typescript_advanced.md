@@ -11,20 +11,20 @@ TypeScript de base, tu connais déjà : types, interfaces, generics. Ce module v
 Trois problèmes concrets, trois solutions :
 
 ```
-"j'utilise une lib JS sans types"      --> fichiers de déclaration (.d.ts)
+"j'utilise une lib JS sans types"   --> fichiers de déclaration (.d.ts)
 "mon compilateur TS fait n'importe quoi" --> comprendre tsconfig.json en profondeur
-"j'ai un vieux projet JS à migrer"      --> stratégie de migration progressive
+"j'ai un vieux projet JS à migrer"   --> stratégie de migration progressive
 ```
 
 ```
-                  [PROJET RÉEL]
-                       |
-        +--------------+--------------+
-        |              |              |
-  libs sans types   config TS     code JS legacy
-        |              |              |
-        v              v              v
-   .d.ts files    tsconfig.json   migration .js --> .ts
+         [PROJET RÉEL]
+            |
+    +--------------+--------------+
+    |       |       |
+ libs sans types  config TS   code JS legacy
+    |       |       |
+    v       v       v
+  .d.ts files  tsconfig.json  migration .js --> .ts
 ```
 
 Ces trois sujets, c'est ce qui sépare un dev qui "utilise TypeScript" d'un dev qui "maîtrise TypeScript dans un vrai projet".
@@ -58,18 +58,18 @@ Pas de stratégie de migration :
 ## OÙ ÇA VIT DANS UN VRAI SYSTÈME
 
 ```
-                    [TON CODE TYPESCRIPT]
-                            |
-              +-------------+-------------+
-              |                           |
-        [DÉPENDANCES NPM]           [COMPILATEUR TSC]
-              |                           |
-     certaines ont des types      lit tsconfig.json
-     certaines n'en ont pas       applique les règles strictes
-              |                           |
-              v                           v
-        besoin de .d.ts          détermine ce qui compile
-        pour les typer            et ce qui est rejeté
+          [TON CODE TYPESCRIPT]
+              |
+       +-------------+-------------+
+       |              |
+    [DÉPENDANCES NPM]      [COMPILATEUR TSC]
+       |              |
+   certaines ont des types   lit tsconfig.json
+   certaines n'en ont pas    applique les règles strictes
+       |              |
+       v              v
+    besoin de .d.ts     détermine ce qui compile
+    pour les typer      et ce qui est rejeté
 ```
 
 Un projet TypeScript en prod, c'est jamais 100% du code écrit par toi avec des types parfaits dès le départ. C'est un mélange : tes types, des types de libs externes, parfois du JS legacy pas encore migré. Ce module te donne les outils pour gérer ce mélange sans paniquer.
@@ -79,10 +79,10 @@ Un projet TypeScript en prod, c'est jamais 100% du code écrit par toi avec des 
 ## QUAND ÇA DEVIENT IMPORTANT, QUAND ÇA DEVIENT INDISPENSABLE
 
 ```
-tu écris du TS sur un projet greenfield (parti de zéro)     --> les bases (module 14) suffisent
-tu utilises une lib sans types officiels                     --> .d.ts devient nécessaire
-ton équipe se dispute sur le niveau de strictness du projet  --> tsconfig.json devient un sujet politique
-tu hérites d'un projet JS de 50 000 lignes à migrer           --> stratégie de migration obligatoire
+tu écris du TS sur un projet greenfield (parti de zéro)   --> les bases (module 14) suffisent
+tu utilises une lib sans types officiels           --> .d.ts devient nécessaire
+ton équipe se dispute sur le niveau de strictness du projet --> tsconfig.json devient un sujet politique
+tu hérites d'un projet JS de 50 000 lignes à migrer      --> stratégie de migration obligatoire
 ```
 
 Comment tu sais que t'en as besoin : le jour où tu tapes `// @ts-ignore` ou `any` pour la troisième fois dans la même semaine juste pour avancer, t'as un problème de compréhension de la toolchain TS, pas un problème de syntaxe.
@@ -98,7 +98,7 @@ Alternative à une vraie config tsconfig : copier-coller la config d'un projet t
 Alternative à une stratégie de migration : tout réécrire d'un coup. Ça marche sur un petit projet. Sur un gros projet en prod, c'est le meilleur moyen de paralyser l'équipe pendant des semaines et d'introduire une masse de régressions d'un coup.
 
 ```
-gain de cette approche  --> contrôle total sur ce qui est typé, comment, et à quel rythme
+gain de cette approche --> contrôle total sur ce qui est typé, comment, et à quel rythme
 perte de cette approche --> ça demande de comprendre des mécanismes qu'un simple "any" permettrait d'ignorer
 ```
 
@@ -107,9 +107,9 @@ perte de cette approche --> ça demande de comprendre des mécanismes qu'un simp
 ## MODERNE, LEGACY, OU INTEMPOREL
 
 ```
-.d.ts                    --> intemporel tant que JS et TS coexistent. Le besoin ne disparaît pas.
-tsconfig.json (concept)   --> intemporel. Les options précises évoluent, le besoin de configurer reste.
-migration JS vers TS      --> sujet permanent. Il y aura toujours du JS legacy à migrer quelque part.
+.d.ts          --> intemporel tant que JS et TS coexistent. Le besoin ne disparaît pas.
+tsconfig.json (concept)  --> intemporel. Les options précises évoluent, le besoin de configurer reste.
+migration JS vers TS   --> sujet permanent. Il y aura toujours du JS legacy à migrer quelque part.
 ```
 
 TypeScript lui-même évolue chaque année (nouvelles features de type, nouvelles options de compilateur). Mais les TROIS problèmes que ce module traite (typer l'externe, configurer le compilateur, migrer du legacy) sont structurels. Ils existeront tant que TypeScript existera, parce qu'ils découlent de la nature même du langage : une surcouche optionnelle au-dessus de JS.
@@ -119,9 +119,9 @@ TypeScript lui-même évolue chaque année (nouvelles features de type, nouvelle
 ## NOYAU DUR OU PÉRIPHÉRIQUE
 
 ```
-.d.ts                --> noyau dur dès que tu touches à une lib sans types officiels (fréquent).
-tsconfig.json         --> noyau dur. Chaque projet TS en a un, le comprendre n'est pas optionnel.
-migration JS vers TS  --> périphérique si tu démarres toujours en greenfield, noyau dur sinon.
+.d.ts        --> noyau dur dès que tu touches à une lib sans types officiels (fréquent).
+tsconfig.json     --> noyau dur. Chaque projet TS en a un, le comprendre n'est pas optionnel.
+migration JS vers TS --> périphérique si tu démarres toujours en greenfield, noyau dur sinon.
 ```
 
 ---
@@ -130,16 +130,16 @@ migration JS vers TS  --> périphérique si tu démarres toujours en greenfield,
 
 ```
 prérequis avant ce module :
-14_typescript complet  --> types, interfaces, generics, utility types : la base doit être solide
-06_modules              --> import/export, ESM vs CJS : indispensable pour comprendre la résolution de modules en TS
-15_runtime_env           --> comprendre Node et CommonJS aide à comprendre pourquoi certaines libs n'ont pas de types ESM propres
+14_typescript complet --> types, interfaces, generics, utility types : la base doit être solide
+06_modules       --> import/export, ESM vs CJS : indispensable pour comprendre la résolution de modules en TS
+15_runtime_env      --> comprendre Node et CommonJS aide à comprendre pourquoi certaines libs n'ont pas de types ESM propres
 ```
 
 Ce qui devient plus simple après ce module :
 ```
-22_security              --> tu lis et comprends les types stricts des libs de sécurité sans paniquer
+22_security       --> tu lis et comprends les types stricts des libs de sécurité sans paniquer
 n'importe quel projet en équipe --> tu négocies un tsconfig.json en connaissance de cause, pas à l'aveugle
-contribution open source  --> tu sais écrire un .d.ts pour proposer des types à une lib qui n'en a pas
+contribution open source --> tu sais écrire un .d.ts pour proposer des types à une lib qui n'en a pas
 ```
 
 ---

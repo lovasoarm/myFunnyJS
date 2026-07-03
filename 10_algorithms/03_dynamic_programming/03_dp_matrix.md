@@ -16,10 +16,10 @@ Une grille `m x n`. Chaque cellule `grid[i][j]` est soit un coût, soit un obsta
 Les mouvements autorisés définissent tout : vers le bas et vers la droite uniquement (problèmes classiques), ou dans 4 directions (problèmes avec obstacles). Les deux ont la même mécanique, pas la même complexité.
 
 ```
-  0   1   2   3     ← colonnes (j)
+ 0  1  2  3   ← colonnes (j)
 0 [1] [3] [1] [2]
 1 [1] [5] [1] [1]
-2 [4] [2] [1] [1]   ← lignes (i)
+2 [4] [2] [1] [1]  ← lignes (i)
 ```
 
 Le chemin optimal de `(0,0)` à `(2,3)` n'est pas forcément le plus court en distance : c'est celui dont la somme des coûts est minimale.
@@ -38,37 +38,37 @@ dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
 
 ```js
 function minPathSum(grid) {
-  const m = grid.length
-  const n = grid[0].length
-  const dp = Array.from({ length: m }, () => new Array(n).fill(0))
+ const m = grid.length
+ const n = grid[0].length
+ const dp = Array.from({ length: m }, () => new Array(n).fill(0))
 
-  // point de départ : juste le coût de la cellule elle-même
-  dp[0][0] = grid[0][0]
+ // point de départ : juste le coût de la cellule elle-même
+ dp[0][0] = grid[0][0]
 
-  // première ligne : on peut seulement venir de gauche
+ // première ligne : on peut seulement venir de gauche
+ for (let j = 1; j < n; j++) {
+  dp[0][j] = dp[0][j - 1] + grid[0][j]
+ }
+
+ // première colonne : on peut seulement venir du dessus
+ for (let i = 1; i < m; i++) {
+  dp[i][0] = dp[i - 1][0] + grid[i][0]
+ }
+
+ // le reste : minimum entre venir du dessus ou de gauche
+ for (let i = 1; i < m; i++) {
   for (let j = 1; j < n; j++) {
-    dp[0][j] = dp[0][j - 1] + grid[0][j]
+   dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1])
   }
+ }
 
-  // première colonne : on peut seulement venir du dessus
-  for (let i = 1; i < m; i++) {
-    dp[i][0] = dp[i - 1][0] + grid[i][0]
-  }
-
-  // le reste : minimum entre venir du dessus ou de gauche
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1])
-    }
-  }
-
-  return dp[m - 1][n - 1]
+ return dp[m - 1][n - 1]
 }
 
 const grid = [
-  [1, 3, 1],
-  [1, 5, 1],
-  [4, 2, 1]
+ [1, 3, 1],
+ [1, 5, 1],
+ [4, 2, 1]
 ]
 console.log(minPathSum(grid)) // 7 => chemin : 1→3→1→1→1
 ```
@@ -76,10 +76,10 @@ console.log(minPathSum(grid)) // 7 => chemin : 1→3→1→1→1
 **Trace d'exécution sur cette grille :**
 
 ```
-grille originale :        table dp remplie :
-[1, 3, 1]                 [1,  4,  5]
-[1, 5, 1]         -->     [2,  7,  6]
-[4, 2, 1]                 [6,  8,  7]
+grille originale :    table dp remplie :
+[1, 3, 1]         [1, 4, 5]
+[1, 5, 1]     -->   [2, 7, 6]
+[4, 2, 1]         [6, 8, 7]
 
 réponse : dp[2][2] = 7
 ```
@@ -98,18 +98,18 @@ dp[i][j] = dp[i-1][j] + dp[i][j-1]
 
 ```js
 function uniquePaths(m, n) {
-  // toute la première ligne a exactement 1 chemin possible (aller tout à droite)
-  // toute la première colonne a exactement 1 chemin possible (aller tout en bas)
-  const dp = Array.from({ length: m }, () => new Array(n).fill(1))
+ // toute la première ligne a exactement 1 chemin possible (aller tout à droite)
+ // toute la première colonne a exactement 1 chemin possible (aller tout en bas)
+ const dp = Array.from({ length: m }, () => new Array(n).fill(1))
 
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      // venir du dessus + venir de gauche
-      dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
-    }
+ for (let i = 1; i < m; i++) {
+  for (let j = 1; j < n; j++) {
+   // venir du dessus + venir de gauche
+   dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
   }
+ }
 
-  return dp[m - 1][n - 1]
+ return dp[m - 1][n - 1]
 }
 
 console.log(uniquePaths(3, 7)) // 28
@@ -136,39 +136,39 @@ La règle change : si une cellule est un obstacle, `dp[i][j] = 0`. Si la cellule
 
 ```js
 function uniquePathsWithObstacles(obstacleGrid) {
-  const m = obstacleGrid.length
-  const n = obstacleGrid[0].length
+ const m = obstacleGrid.length
+ const n = obstacleGrid[0].length
 
-  // départ ou arrivée bloqués : aucun chemin possible
-  if (obstacleGrid[0][0] === 1 || obstacleGrid[m - 1][n - 1] === 1) return 0
+ // départ ou arrivée bloqués : aucun chemin possible
+ if (obstacleGrid[0][0] === 1 || obstacleGrid[m - 1][n - 1] === 1) return 0
 
-  const dp = Array.from({ length: m }, () => new Array(n).fill(0))
-  dp[0][0] = 1
+ const dp = Array.from({ length: m }, () => new Array(n).fill(0))
+ dp[0][0] = 1
 
-  // première colonne : dès qu'il y a un obstacle, tout ce qui suit est 0
-  for (let i = 1; i < m; i++) {
-    dp[i][0] = obstacleGrid[i][0] === 1 ? 0 : dp[i - 1][0]
-  }
+ // première colonne : dès qu'il y a un obstacle, tout ce qui suit est 0
+ for (let i = 1; i < m; i++) {
+  dp[i][0] = obstacleGrid[i][0] === 1 ? 0 : dp[i - 1][0]
+ }
 
-  // première ligne : même logique
+ // première ligne : même logique
+ for (let j = 1; j < n; j++) {
+  dp[0][j] = obstacleGrid[0][j] === 1 ? 0 : dp[0][j - 1]
+ }
+
+ for (let i = 1; i < m; i++) {
   for (let j = 1; j < n; j++) {
-    dp[0][j] = obstacleGrid[0][j] === 1 ? 0 : dp[0][j - 1]
+   // obstacle : cellule inaccessible, contribution = 0
+   dp[i][j] = obstacleGrid[i][j] === 1 ? 0 : dp[i - 1][j] + dp[i][j - 1]
   }
+ }
 
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      // obstacle : cellule inaccessible, contribution = 0
-      dp[i][j] = obstacleGrid[i][j] === 1 ? 0 : dp[i - 1][j] + dp[i][j - 1]
-    }
-  }
-
-  return dp[m - 1][n - 1]
+ return dp[m - 1][n - 1]
 }
 
 const grid = [
-  [0, 0, 0],
-  [0, 1, 0], // obstacle au centre
-  [0, 0, 0]
+ [0, 0, 0],
+ [0, 1, 0], // obstacle au centre
+ [0, 0, 0]
 ]
 console.log(uniquePathsWithObstacles(grid)) // 2 (le centre est bloqué)
 ```
@@ -181,25 +181,25 @@ Pour `minPathSum` et `uniquePaths`, on n'a besoin que de la ligne précédente �
 
 ```js
 function minPathSumOptimized(grid) {
-  const n = grid[0].length
-  // dp représente la ligne courante, initialisée avec la première ligne
-  const dp = [...grid[0]]
+ const n = grid[0].length
+ // dp représente la ligne courante, initialisée avec la première ligne
+ const dp = [...grid[0]]
 
-  // on accumule la première ligne vers la droite
-  for (let j = 1; j < n; j++) dp[j] += dp[j - 1]
+ // on accumule la première ligne vers la droite
+ for (let j = 1; j < n; j++) dp[j] += dp[j - 1]
 
-  for (let i = 1; i < grid.length; i++) {
-    // première colonne : on vient forcément du dessus
-    dp[0] += grid[i][0]
+ for (let i = 1; i < grid.length; i++) {
+  // première colonne : on vient forcément du dessus
+  dp[0] += grid[i][0]
 
-    for (let j = 1; j < n; j++) {
-      // dp[j] contient encore la valeur d'en haut (avant update)
-      // dp[j-1] contient la valeur de gauche (déjà mise à jour)
-      dp[j] = grid[i][j] + Math.min(dp[j], dp[j - 1])
-    }
+  for (let j = 1; j < n; j++) {
+   // dp[j] contient encore la valeur d'en haut (avant update)
+   // dp[j-1] contient la valeur de gauche (déjà mise à jour)
+   dp[j] = grid[i][j] + Math.min(dp[j], dp[j - 1])
   }
+ }
 
-  return dp[n - 1]
+ return dp[n - 1]
 }
 ```
 
@@ -214,20 +214,20 @@ Les bords d'une grille DP sont le seul endroit où la formule générale ne s'ap
 ```js
 // MAUVAIS : oublier d'initialiser les bords
 function broken(grid) {
-  const dp = Array.from({ length: grid.length }, () =>
-    new Array(grid[0].length).fill(0)
-  )
-  // on commence directement à i=0, j=0 sans initialisation des bords
-  // dp[i-1][j] sur la première ligne = dp[-1][j] = undefined
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[0].length; j++) {
-      dp[i][j] = grid[i][j] + Math.min(
-        dp[i - 1]?.[j] ?? Infinity, // le ?. cache le bug au lieu de le corriger
-        dp[i]?.[j - 1] ?? Infinity
-      )
-    }
+ const dp = Array.from({ length: grid.length }, () =>
+  new Array(grid[0].length).fill(0)
+ )
+ // on commence directement à i=0, j=0 sans initialisation des bords
+ // dp[i-1][j] sur la première ligne = dp[-1][j] = undefined
+ for (let i = 0; i < grid.length; i++) {
+  for (let j = 0; j < grid[0].length; j++) {
+   dp[i][j] = grid[i][j] + Math.min(
+    dp[i - 1]?.[j] ?? Infinity, // le ?. cache le bug au lieu de le corriger
+    dp[i]?.[j - 1] ?? Infinity
+   )
   }
-  return dp[grid.length - 1][grid[0].length - 1]
+ }
+ return dp[grid.length - 1][grid[0].length - 1]
 }
 
 // CORRECT : initialiser explicitement les bords avant la boucle principale

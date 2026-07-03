@@ -57,9 +57,9 @@ Le risque réel : scale out exige que ton code soit "stateless" (sans état loca
 let activeUsers = {} // existe UNIQUEMENT sur ce serveur précis
 
 app.post('/chakra_gate', (req, res) => {
-  activeUsers[req.body.userId] = true
-  // Si la prochaine requête de ce user atterrit sur un AUTRE serveur,
-  // ce serveur-là ne sait RIEN de cette connexion
+ activeUsers[req.body.userId] = true
+ // Si la prochaine requête de ce user atterrit sur un AUTRE serveur,
+ // ce serveur-là ne sait RIEN de cette connexion
 })
 ```
 
@@ -67,8 +67,8 @@ app.post('/chakra_gate', (req, res) => {
 // Bon pour le scale out : état externalisé, partagé par TOUS les serveurs
 // (vu en détail dans 24_databases/04_redis_caching)
 app.post('/chakra_gate', async (req, res) => {
-  await redis.set(`active:${req.body.userId}`, true)
-  // N'IMPORTE QUEL serveur peut lire cette info ensuite
+ await redis.set(`active:${req.body.userId}`, true)
+ // N'IMPORTE QUEL serveur peut lire cette info ensuite
 })
 ```
 
@@ -98,11 +98,11 @@ En pratique, la plupart des architectures sérieuses font les deux, pas un choix
 
 ```
 Chaque serveur individuel : dimensionné raisonnablement (scale up modéré)
-                              |
-                              v
+               |
+               v
 Plusieurs de ces serveurs en parallèle (scale out)
-                              |
-                              v
+               |
+               v
 Load balancer qui répartit entre eux (vu dans 01_load_balancing)
 ```
 
@@ -117,10 +117,10 @@ Le pourquoi : scale up pur a un plafond et zéro redondance. Scale out pur avec 
 const cache = new Map() // cache en mémoire locale du process
 
 function getCachedProduct(id) {
-  if (cache.has(id)) return cache.get(id)
-  const product = fetchFromDB(id)
-  cache.set(id, product)
-  return product
+ if (cache.has(id)) return cache.get(id)
+ const product = fetchFromDB(id)
+ cache.set(id, product)
+ return product
 }
 
 // exemple réaliste : on scale out de 1 à 4 serveurs pour absorber le trafic du Black Friday
@@ -143,35 +143,35 @@ Le tableau de décision de la section 3 dit quoi choisir. Ce qui manque : à que
 
 ```
 PHASE 0 : 0 à 100 users actifs
-  --> un seul serveur, taille raisonnable
-  --> scale up si ça rame, mais d'abord profiler (le problème est souvent dans le code)
-  --> scale out ici = over-engineering certain
+ --> un seul serveur, taille raisonnable
+ --> scale up si ça rame, mais d'abord profiler (le problème est souvent dans le code)
+ --> scale out ici = over-engineering certain
 
 PHASE 1 : 100 à 10 000 users
-  --> première vraie question : est-ce que mon DB tient ?
-  --> scale up le serveur DB en premier (souvent le vrai goulot)
-  --> si un serveur app suffit avec 90% CPU : scale up avant scale out
-  --> c'est ici qu'on prépare le code stateless, pas qu'on scale out
+ --> première vraie question : est-ce que mon DB tient ?
+ --> scale up le serveur DB en premier (souvent le vrai goulot)
+ --> si un serveur app suffit avec 90% CPU : scale up avant scale out
+ --> c'est ici qu'on prépare le code stateless, pas qu'on scale out
 
 PHASE 2 : 10 000 à 1 million users
-  --> scale out devient pertinent : un seul serveur ne peut plus absorber
-  --> load balancer + plusieurs instances app (vues dans 01_load_balancing)
-  --> DB : lire/écrire répartis (read replicas), pas juste plus gros
-  --> le code stateless payé en phase 1 est rentabilisé ici
+ --> scale out devient pertinent : un seul serveur ne peut plus absorber
+ --> load balancer + plusieurs instances app (vues dans 01_load_balancing)
+ --> DB : lire/écrire répartis (read replicas), pas juste plus gros
+ --> le code stateless payé en phase 1 est rentabilisé ici
 
 PHASE 3 : 1 million+ users
-  --> plus une question de scale unique : architecture distribués, sharding,
-      CDN pour les assets, caches multiples (Redis vu dans 24_databases/04)
-  --> à ce stade les décisions d'architecture precèdent les décisions d'infra
+ --> plus une question de scale unique : architecture distribués, sharding,
+   CDN pour les assets, caches multiples (Redis vu dans 24_databases/04)
+ --> à ce stade les décisions d'architecture precèdent les décisions d'infra
 ```
 
 Le signal concret pour scaler : pas un seuil en nombre d'users, mais des métriques.
 
 ```
-CPU > 70% en moyenne sur 10 minutes            --> il faut scale
-Temps de réponse p99 > 500ms                   --> quelque chose ne scale plus
-DB connections pool saturé                     --> la DB est le goulot, pas l'app
-Memory > 85% utilisée en régime normal         --> fuite ou machine trop petite
+CPU > 70% en moyenne sur 10 minutes      --> il faut scale
+Temps de réponse p99 > 500ms          --> quelque chose ne scale plus
+DB connections pool saturé           --> la DB est le goulot, pas l'app
+Memory > 85% utilisée en régime normal     --> fuite ou machine trop petite
 ```
 
 La règle qui évite de scale trop tôt : mesure d'abord. Un `console.time()` ou

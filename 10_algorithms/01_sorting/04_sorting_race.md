@@ -18,12 +18,12 @@ const duplicates = n => Array.from({ length: n }, () => Math.random() * 10 | 0)
 
 // timer propre
 function benchmark(label, fn, arr) {
-  const input = [...arr] // on ne mute pas le tableau de référence
-  const start = performance.now()
-  fn(input)
-  const duration = performance.now() - start
-  console.log(`${label.padEnd(20)} : ${duration.toFixed(2).padStart(8)} ms`)
-  return duration
+ const input = [...arr] // on ne mute pas le tableau de référence
+ const start = performance.now()
+ fn(input)
+ const duration = performance.now() - start
+ console.log(`${label.padEnd(20)} : ${duration.toFixed(2).padStart(8)} ms`)
+ return duration
 }
 ```
 
@@ -36,14 +36,14 @@ function benchmark(label, fn, arr) {
 // (reprises des leçons précédentes)
 
 for (const n of [10_000, 100_000, 1_000_000]) {
-  console.log(`\n=== n = ${n.toLocaleString()} ===`)
-  const data = random(n)
+ console.log(`\n=== n = ${n.toLocaleString()} ===`)
+ const data = random(n)
 
-  benchmark('bubble sort',    arr => bubbleSort(arr),               data) // skip pour n > 10k
-  benchmark('insertion sort', arr => insertionSort(arr),            data) // skip pour n > 50k
-  benchmark('merge sort',     arr => mergeSort(arr),                data)
-  benchmark('quick sort',     arr => quickSortRandom([...arr]),     data)
-  benchmark('Array.sort',     arr => arr.sort((a, b) => a - b),     data)
+ benchmark('bubble sort',  arr => bubbleSort(arr),        data) // skip pour n > 10k
+ benchmark('insertion sort', arr => insertionSort(arr),      data) // skip pour n > 50k
+ benchmark('merge sort',   arr => mergeSort(arr),        data)
+ benchmark('quick sort',   arr => quickSortRandom([...arr]),   data)
+ benchmark('Array.sort',   arr => arr.sort((a, b) => a - b),   data)
 }
 ```
 
@@ -51,24 +51,24 @@ for (const n of [10_000, 100_000, 1_000_000]) {
 
 ```
 === n = 10 000 ===
-bubble sort          :   350.00 ms
-insertion sort       :    28.00 ms
-merge sort           :     3.50 ms
-quick sort           :     2.80 ms
-Array.sort           :     1.20 ms
+bubble sort     :  350.00 ms
+insertion sort    :  28.00 ms
+merge sort      :   3.50 ms
+quick sort      :   2.80 ms
+Array.sort      :   1.20 ms
 
 === n = 100 000 ===
-bubble sort          : [skip - >30s]
-insertion sort       :  2800.00 ms
-merge sort           :    45.00 ms
-quick sort           :    30.00 ms
-Array.sort           :    12.00 ms
+bubble sort     : [skip - >30s]
+insertion sort    : 2800.00 ms
+merge sort      :  45.00 ms
+quick sort      :  30.00 ms
+Array.sort      :  12.00 ms
 
 === n = 1 000 000 ===
-insertion sort       :  [skip - impraticable]
-merge sort           :   550.00 ms
-quick sort           :   320.00 ms
-Array.sort           :   130.00 ms
+insertion sort    : [skip - impraticable]
+merge sort      :  550.00 ms
+quick sort      :  320.00 ms
+Array.sort      :  130.00 ms
 ```
 
 ---
@@ -79,14 +79,14 @@ Array.sort           :   130.00 ms
 const SIZES = [10_000, 100_000]
 
 function raceOn(label, dataFn) {
-  console.log(`\n--- Données : ${label} ---`)
-  for (const n of SIZES) {
-    const data = dataFn(n)
-    console.log(`n = ${n}`)
-    benchmark('merge sort', arr => mergeSort(arr), data)
-    benchmark('quick sort', arr => quickSortRandom([...arr]), data)
-    benchmark('Array.sort', arr => arr.sort((a, b) => a - b), data)
-  }
+ console.log(`\n--- Données : ${label} ---`)
+ for (const n of SIZES) {
+  const data = dataFn(n)
+  console.log(`n = ${n}`)
+  benchmark('merge sort', arr => mergeSort(arr), data)
+  benchmark('quick sort', arr => quickSortRandom([...arr]), data)
+  benchmark('Array.sort', arr => arr.sort((a, b) => a - b), data)
+ }
 }
 
 raceOn('aléatoire', random)
@@ -99,18 +99,18 @@ raceOn('doublons', duplicates)
 
 ```
 Données triées :
-  merge sort   --> pareil, O(n log n) garanti
-  quick sort   --> pareil avec pivot random, O(n log n) moyen
-  Array.sort   --> beaucoup plus rapide : Tim Sort détecte les runs triés
+ merge sort  --> pareil, O(n log n) garanti
+ quick sort  --> pareil avec pivot random, O(n log n) moyen
+ Array.sort  --> beaucoup plus rapide : Tim Sort détecte les runs triés
 
 Données inversées :
-  merge sort   --> identique à aléatoire
-  quick sort   --> identique à aléatoire (pivot random)
-  Array.sort   --> très rapide : Tim Sort détecte le run inversé et l'inverse d'un coup
+ merge sort  --> identique à aléatoire
+ quick sort  --> identique à aléatoire (pivot random)
+ Array.sort  --> très rapide : Tim Sort détecte le run inversé et l'inverse d'un coup
 
 Données avec doublons :
-  quick sort classique --> ralenti sur certaines distributions
-  quick sort 3-way     --> gagne ici
+ quick sort classique --> ralenti sur certaines distributions
+ quick sort 3-way   --> gagne ici
 ```
 
 ---
@@ -127,7 +127,7 @@ Tim Sort est une hybridation :
 ```
 Tableau avec runs naturels :
 [1, 3, 5, 7 | 8, 6, 4, 2 | 10, 11, 12]
- run trié      run inversé   run trié
+ run trié   run inversé  run trié
 
 Tim Sort :
 1. Détecte les 3 runs
@@ -140,9 +140,9 @@ Résultat : beaucoup moins d'opérations que Merge Sort pur sur les données "r�
 ```js
 // démonstration du comportement avec runs
 const avecRuns = [
-  ...sorted(1000),           // déjà trié
-  ...reversed(1000),         // à l'envers
-  ...random(1000)            // aléatoire
+ ...sorted(1000),      // déjà trié
+ ...reversed(1000),     // à l'envers
+ ...random(1000)      // aléatoire
 ].slice(0, 2000)
 
 console.time('array sort avec runs')
@@ -156,16 +156,16 @@ console.timeEnd('array sort avec runs')
 ## 5) CHOISIR LE BON ALGO SELON LE CONTEXTE
 
 ```
-Contexte                          Algo recommandé
---------------------------------  ----------------
-Données primitives en JS          Array.sort() (Tim Sort)
-Objets avec comparateur custom    Array.sort() (stable depuis Node 11)
-Stabilité critique                Merge Sort (ou Array.sort stable)
-Mémoire contrainte                Quick Sort in-place
-Linked list à trier               Merge Sort (pas d'accès aléatoire nécessaire)
+Contexte             Algo recommandé
+-------------------------------- ----------------
+Données primitives en JS     Array.sort() (Tim Sort)
+Objets avec comparateur custom  Array.sort() (stable depuis Node 11)
+Stabilité critique        Merge Sort (ou Array.sort stable)
+Mémoire contrainte        Quick Sort in-place
+Linked list à trier        Merge Sort (pas d'accès aléatoire nécessaire)
 Données avec beaucoup de doublons Quick Sort 3-way
-Très petits tableaux (< 20)       Insertion Sort (overhead minimal)
-Pédagogie / entretiens            Savoir implémenter les trois
+Très petits tableaux (< 20)    Insertion Sort (overhead minimal)
+Pédagogie / entretiens      Savoir implémenter les trois
 ```
 
 ---
@@ -175,10 +175,10 @@ Pédagogie / entretiens            Savoir implémenter les trois
 ```
 n = 100 000
 
-Insertion sort :  ~5 000 000 000 opérations  (50 milliards sur 1M)
-Merge sort :          ~1 700 000 opérations
-Quick sort :          ~1 700 000 opérations
-Tim Sort :               < 1 000 000 opérations (avec runs naturels)
+Insertion sort : ~5 000 000 000 opérations (50 milliards sur 1M)
+Merge sort :     ~1 700 000 opérations
+Quick sort :     ~1 700 000 opérations
+Tim Sort :        < 1 000 000 opérations (avec runs naturels)
 ```
 
 La différence entre O(n²) et O(n log n) n'est pas abstraite. Sur 100k éléments, c'est la différence entre "2 secondes" et "45ms". Sur 1M, c'est la différence entre "se lever et aller faire un café" et "ça tourne déjà".
@@ -208,10 +208,10 @@ Tu reçois un tableau de 100 000 entrées de match avec `{ équipe, buts, passes
 
 ```js
 const stats = Array.from({ length: 100_000 }, () => ({
-  équipe: ["PSG", "Real", "Bayern", "City"][Math.random() * 4 | 0],
-  buts: Math.random() * 5 | 0,
-  passes: Math.random() * 20 | 0,
-  minutes: 90
+ équipe: ["PSG", "Real", "Bayern", "City"][Math.random() * 4 | 0],
+ buts: Math.random() * 5 | 0,
+ passes: Math.random() * 20 | 0,
+ minutes: 90
 }))
 ```
 

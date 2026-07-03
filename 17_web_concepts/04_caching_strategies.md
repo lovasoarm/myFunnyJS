@@ -1,7 +1,7 @@
 # CACHING STRATEGIES : METTRE EN CACHE SANS METTRE EN DANGER
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Walter White a un problème de distribution.
 Chaque client veut sa livraison immédiate. Il ne peut pas tout produire à la demande.
@@ -25,7 +25,7 @@ Délai : 200ms à 2s selon le réseau et la DB
 Avec cache navigateur :
 
 ```
-Client --> Cache local  (si hit)  --> Client
+Client --> Cache local (si hit) --> Client
 Délai : 0ms
 ```
 
@@ -40,13 +40,13 @@ Le cache est une hiérarchie. Chaque niveau en a un :
 
 ```
 Navigateur (memory cache, disk cache)
-    |
+  |
 CDN / Proxy cache
-    |
+  |
 API Gateway cache
-    |
+  |
 Application cache (Redis, Memcached)
-    |
+  |
 Base de données (query cache)
 ```
 
@@ -58,28 +58,28 @@ Base de données (query cache)
 
 ```
 Cache-Control: max-age=3600
-=>  stocker en cache, valide pendant 3600 secondes (1 heure)
+=> stocker en cache, valide pendant 3600 secondes (1 heure)
 
 Cache-Control: no-cache
-=>  stocker en cache mais revalider (vérifier) auprès du serveur avant d'utiliser
+=> stocker en cache mais revalider (vérifier) auprès du serveur avant d'utiliser
 
 Cache-Control: no-store
-=>  ne jamais stocker, toujours re-télécharger (données sensibles : session, banking)
+=> ne jamais stocker, toujours re-télécharger (données sensibles : session, banking)
 
 Cache-Control: private
-=>  seulement dans le cache du navigateur, pas dans les CDNs ni les proxys partagés
+=> seulement dans le cache du navigateur, pas dans les CDNs ni les proxys partagés
 
 Cache-Control: public
-=>  peut être stocké partout : navigateur, CDN, proxy
+=> peut être stocké partout : navigateur, CDN, proxy
 
 Cache-Control: s-maxage=86400
-=>  durée de validité spécifiquement pour les CDNs (s = shared)
+=> durée de validité spécifiquement pour les CDNs (s = shared)
 
 Cache-Control: stale-while-revalidate=60
-=>  servir le cache périmé pendant 60s PENDANT qu'on récupère la version fraîche en arrière-plan
+=> servir le cache périmé pendant 60s PENDANT qu'on récupère la version fraîche en arrière-plan
 
 Cache-Control: immutable
-=>  ce fichier ne changera jamais (CSS/JS avec hash dans le nom), ne revalide jamais
+=> ce fichier ne changera jamais (CSS/JS avec hash dans le nom), ne revalide jamais
 ```
 
 Exemples concrets selon le type de ressource :
@@ -90,27 +90,27 @@ Exemples concrets selon le type de ressource :
 // Assets statiques avec hash (ex: main.abc123.js) : ne changent jamais
 // Si le fichier change, il a un nouveau nom donc un nouveau hash
 app.use('/static', express.static('dist', {
-  setHeaders(res) {
-    res.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 an
-  }
+ setHeaders(res) {
+  res.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 an
+ }
 }));
 
 // Pages HTML : revalider à chaque fois (le contenu change souvent)
 app.get('/', (req, res) => {
-  res.set('Cache-Control', 'no-cache'); // stocker mais vérifier si c'est encore frais
-  res.sendFile('index.html');
+ res.set('Cache-Control', 'no-cache'); // stocker mais vérifier si c'est encore frais
+ res.sendFile('index.html');
 });
 
 // API avec données qui changent : pas de cache CDN, cache court navigateur
 app.get('/api/scores', (req, res) => {
-  res.set('Cache-Control', 'private, max-age=30'); // 30s dans le navigateur uniquement
-  res.json(scores);
+ res.set('Cache-Control', 'private, max-age=30'); // 30s dans le navigateur uniquement
+ res.json(scores);
 });
 
 // Données sensibles : jamais en cache
 app.get('/api/account', (req, res) => {
-  res.set('Cache-Control', 'no-store'); // ne stocker nulle part
-  res.json(accountData);
+ res.set('Cache-Control', 'no-store'); // ne stocker nulle part
+ res.json(accountData);
 });
 ```
 
@@ -124,13 +124,13 @@ Si la ressource n'a pas changé, le serveur répond 304 Not Modified : pas de t�
 
 ```
 1ère requête :
-Client  --GET /api/products-->  Serveur
-        <--200 OK + data + ETag: "abc123"--
+Client --GET /api/products--> Serveur
+    <--200 OK + data + ETag: "abc123"--
 
 2ème requête (If-None-Match) :
-Client  --GET /api/products + If-None-Match: "abc123"-->  Serveur
-Si data n'a pas changé :  <--304 Not Modified (pas de body)--
-Si data a changé :        <--200 OK + nouvelle data + ETag: "xyz789"--
+Client --GET /api/products + If-None-Match: "abc123"--> Serveur
+Si data n'a pas changé : <--304 Not Modified (pas de body)--
+Si data a changé :    <--200 OK + nouvelle data + ETag: "xyz789"--
 ```
 
 ```js
@@ -138,23 +138,23 @@ Si data a changé :        <--200 OK + nouvelle data + ETag: "xyz789"--
 import crypto from 'crypto';
 
 app.get('/api/products', (req, res) => {
-  const products = getProducts(); // récupérer les données
-  const data = JSON.stringify(products);
+ const products = getProducts(); // récupérer les données
+ const data = JSON.stringify(products);
 
-  // Générer un ETag basé sur le contenu : si le contenu change, l'ETag change
-  const etag = `"${crypto.createHash('md5').update(data).digest('hex')}"`;
+ // Générer un ETag basé sur le contenu : si le contenu change, l'ETag change
+ const etag = `"${crypto.createHash('md5').update(data).digest('hex')}"`;
 
-  // Vérifier si le client a déjà cette version
-  if (req.headers['if-none-match'] === etag) {
-    return res.status(304).end(); // pas de body : économie de bande passante
-  }
+ // Vérifier si le client a déjà cette version
+ if (req.headers['if-none-match'] === etag) {
+  return res.status(304).end(); // pas de body : économie de bande passante
+ }
 
-  res.set({
-    'ETag': etag,
-    'Cache-Control': 'public, max-age=0, must-revalidate', // revalider à chaque fois
-  });
+ res.set({
+  'ETag': etag,
+  'Cache-Control': 'public, max-age=0, must-revalidate', // revalider à chaque fois
+ });
 
-  res.json(products);
+ res.json(products);
 });
 ```
 
@@ -162,16 +162,16 @@ app.get('/api/products', (req, res) => {
 
 ```js
 app.get('/api/article', (req, res) => {
-  const article = getArticle();
-  const lastModified = article.updatedAt.toUTCString();
+ const article = getArticle();
+ const lastModified = article.updatedAt.toUTCString();
 
-  // Si le client a la version de cette date ou plus récente : 304
-  if (req.headers['if-modified-since'] === lastModified) {
-    return res.status(304).end();
-  }
+ // Si le client a la version de cette date ou plus récente : 304
+ if (req.headers['if-modified-since'] === lastModified) {
+  return res.status(304).end();
+ }
 
-  res.set('Last-Modified', lastModified);
-  res.json(article);
+ res.set('Last-Modified', lastModified);
+ res.json(article);
 });
 ```
 
@@ -182,8 +182,8 @@ app.get('/api/article', (req, res) => {
 Le problème classique : tu veux du cache mais pas de données trop vieilles.
 
 ```
-max-age trop court  =>  trop de requêtes serveur
-max-age trop long   =>  données périmées affichées
+max-age trop court => trop de requêtes serveur
+max-age trop long  => données périmées affichées
 ```
 
 `stale-while-revalidate` (périmé pendant la revalidation) résout ça :
@@ -198,10 +198,10 @@ Comportement :
 - Après 360s : toujours vérifier auprès du serveur avant de répondre.
 
 ```
-Utilisation à t=50s   --> cache frais, réponse immédiate
-Utilisation à t=90s   --> cache périmé, réponse immédiate + refresh en cours
-Utilisation à t=70s   --> maintenant c'est le cache frais du refresh
-Utilisation à t=400s  --> revalider avec le serveur
+Utilisation à t=50s  --> cache frais, réponse immédiate
+Utilisation à t=90s  --> cache périmé, réponse immédiate + refresh en cours
+Utilisation à t=70s  --> maintenant c'est le cache frais du refresh
+Utilisation à t=400s --> revalider avec le serveur
 ```
 
 C'est la stratégie parfaite pour du contenu qui change mais pas trop vite : articles de blog, classements, données de catalogue.
@@ -215,34 +215,34 @@ Pour les données coûteuses à recalculer (requêtes DB complexes, appels API e
 ```js
 // Pattern cache-aside (cache en parallèle) : lire le cache avant la DB
 async function getLeaderboard() {
-  const cacheKey = 'ballon-dor:leaderboard:2026';
+ const cacheKey = 'ballon-dor:leaderboard:2026';
 
-  // 1. Vérifier le cache d'abord (Redis ultra rapide : < 1ms)
-  const cached = await redis.get(cacheKey);
-  if (cached) {
-    return JSON.parse(cached); // cache hit (succès) : on évite la DB
-  }
+ // 1. Vérifier le cache d'abord (Redis ultra rapide : < 1ms)
+ const cached = await redis.get(cacheKey);
+ if (cached) {
+  return JSON.parse(cached); // cache hit (succès) : on évite la DB
+ }
 
-  // 2. Cache miss (raté) : aller chercher en base (peut prendre 50ms à 500ms)
-  const leaderboard = await db.query(`
-    SELECT players.name, SUM(votes.points) as total
-    FROM votes JOIN players ON votes.player_id = players.id
-    GROUP BY players.id ORDER BY total DESC LIMIT 10
-  `);
+ // 2. Cache miss (raté) : aller chercher en base (peut prendre 50ms à 500ms)
+ const leaderboard = await db.query(`
+  SELECT players.name, SUM(votes.points) as total
+  FROM votes JOIN players ON votes.player_id = players.id
+  GROUP BY players.id ORDER BY total DESC LIMIT 10
+ `);
 
-  // 3. Stocker en cache avec TTL (Time To Live : durée de vie)
-  await redis.setex(cacheKey, 3600, JSON.stringify(leaderboard)); // TTL : 1 heure
+ // 3. Stocker en cache avec TTL (Time To Live : durée de vie)
+ await redis.setex(cacheKey, 3600, JSON.stringify(leaderboard)); // TTL : 1 heure
 
-  return leaderboard;
+ return leaderboard;
 }
 
 // Invalidation (suppression) du cache quand les données changent
 async function addVote(playerId, points) {
-  await db.insertVote(playerId, points);
+ await db.insertVote(playerId, points);
 
-  // Les votes ont changé : le classement en cache est périmé
-  await redis.del('ballon-dor:leaderboard:2026'); // invalider le cache
-  // La prochaine requête recalculera et re-populera le cache
+ // Les votes ont changé : le classement en cache est périmé
+ await redis.del('ballon-dor:leaderboard:2026'); // invalider le cache
+ // La prochaine requête recalculera et re-populera le cache
 }
 ```
 
@@ -263,28 +263,28 @@ La DB est submergée.
 const locks = new Map();
 
 async function getCachedData(key, fetchFn) {
-  const cached = await redis.get(key);
-  if (cached) return JSON.parse(cached);
+ const cached = await redis.get(key);
+ if (cached) return JSON.parse(cached);
 
-  // Si une requête est déjà en train de recalculer, attendre son résultat
-  if (locks.has(key)) {
-    await locks.get(key); // attendre que le verrou soit libéré
-    return JSON.parse(await redis.get(key)); // maintenant le cache est chaud
-  }
+ // Si une requête est déjà en train de recalculer, attendre son résultat
+ if (locks.has(key)) {
+  await locks.get(key); // attendre que le verrou soit libéré
+  return JSON.parse(await redis.get(key)); // maintenant le cache est chaud
+ }
 
-  // Premier à arriver : poser le verrou
-  let resolve;
-  const lock = new Promise(r => (resolve = r)); // créer une promesse non résolue
-  locks.set(key, lock);
+ // Premier à arriver : poser le verrou
+ let resolve;
+ const lock = new Promise(r => (resolve = r)); // créer une promesse non résolue
+ locks.set(key, lock);
 
-  try {
-    const data = await fetchFn();
-    await redis.setex(key, 3600, JSON.stringify(data));
-    return data;
-  } finally {
-    resolve(); // libérer le verrou
-    locks.delete(key);
-  }
+ try {
+  const data = await fetchFn();
+  await redis.setex(key, 3600, JSON.stringify(data));
+  return data;
+ } finally {
+  resolve(); // libérer le verrou
+  locks.delete(key);
+ }
 }
 ```
 

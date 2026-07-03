@@ -24,13 +24,13 @@ Contrainte dure : tout est fonctionnel. Pas de `let` hors des fonctions. Pas de 
 
 ```js
 const donnéesBrutes = [
-  { id: "p01", nom: "Messi",    buts: "45",  passes: 20,  aCL: true,  actif: true,  salaire: 150 },
-  { id: "p02", nom: "Mbappé",   buts: 52,    passes: "15",aCL: false, actif: true,  salaire: 180 },
-  { id: "p03", nom: "Haaland",  buts: 60,    passes: 8,   aCL: true,  actif: true,  salaire: 200 },
-  { id: "p04", nom: "Benzema",  buts: null,  passes: 12,  aCL: true,  actif: false, salaire: 120 },
-  { id: "p05", nom: "",         buts: 38,    passes: 18,  aCL: false, actif: true,  salaire: null },
-  { id: "p06", nom: "De Bruyne",buts: 22,    passes: 35,  aCL: true,  actif: true,  salaire: 160 },
-  { id: "p07", nom: "Salah",    buts: NaN,   passes: 14,  aCL: false, actif: true,  salaire: 140 }
+ { id: "p01", nom: "Messi",  buts: "45", passes: 20, aCL: true, actif: true, salaire: 150 },
+ { id: "p02", nom: "Mbappé",  buts: 52,  passes: "15",aCL: false, actif: true, salaire: 180 },
+ { id: "p03", nom: "Haaland", buts: 60,  passes: 8,  aCL: true, actif: true, salaire: 200 },
+ { id: "p04", nom: "Benzema", buts: null, passes: 12, aCL: true, actif: false, salaire: 120 },
+ { id: "p05", nom: "",     buts: 38,  passes: 18, aCL: false, actif: true, salaire: null },
+ { id: "p06", nom: "De Bruyne",buts: 22,  passes: 35, aCL: true, actif: true, salaire: 160 },
+ { id: "p07", nom: "Salah",  buts: NaN,  passes: 14, aCL: false, actif: true, salaire: 140 }
 ]
 ```
 
@@ -42,18 +42,18 @@ const donnéesBrutes = [
 
 ```js
 // 1. filtrerActifs(joueurs)
-//    Garde seulement les joueurs avec actif === true
+//  Garde seulement les joueurs avec actif === true
 
 // 2. filtrerDonnéesValides(joueurs)
-//    Élimine les joueurs avec :
-//    - nom vide ou manquant
-//    - buts null, undefined, ou NaN (utilise Number.isFinite)
-//    - passes null, undefined, ou NaN
+//  Élimine les joueurs avec :
+//  - nom vide ou manquant
+//  - buts null, undefined, ou NaN (utilise Number.isFinite)
+//  - passes null, undefined, ou NaN
 
 // 3. normaliserTypes(joueurs)
-//    Convertit buts et passes en number (ils peuvent arriver en string)
-//    Retourne un nouveau tableau avec des objets corrigés
-//    Si la conversion échoue ou donne NaN : la valeur reste 0
+//  Convertit buts et passes en number (ils peuvent arriver en string)
+//  Retourne un nouveau tableau avec des objets corrigés
+//  Si la conversion échoue ou donne NaN : la valeur reste 0
 ```
 
 ---
@@ -62,21 +62,21 @@ const donnéesBrutes = [
 
 ```js
 // 4. calculerScore(coefficients) -> joueurs -> joueurs avec champ "score"
-//    coefficients = { buts: number, passes: number, cl: number }
-//    score = buts * coefficients.buts + passes * coefficients.passes + (aCL ? coefficients.cl : 0)
-//    Curryfiée : les coefficients se fixent d'abord
+//  coefficients = { buts: number, passes: number, cl: number }
+//  score = buts * coefficients.buts + passes * coefficients.passes + (aCL ? coefficients.cl : 0)
+//  Curryfiée : les coefficients se fixent d'abord
 
 // 5. ajouterCategorie(joueurs)
-//    Ajoute un champ "categorie" selon le score :
-//    score >= 60 : "Ballon d'Or"
-//    score >= 40 : "Top 5"
-//    score >= 25 : "Nominé"
-//    < 25        : "Hors course"
+//  Ajoute un champ "categorie" selon le score :
+//  score >= 60 : "Ballon d'Or"
+//  score >= 40 : "Top 5"
+//  score >= 25 : "Nominé"
+//  < 25    : "Hors course"
 
 // 6. ajouterRang(joueurs)
-//    Ajoute un champ "rang" qui est la position dans le classement (1-based)
-//    rang 1 = score le plus élevé
-//    Les joueurs doivent déjà être triés par score décroissant
+//  Ajoute un champ "rang" qui est la position dans le classement (1-based)
+//  rang 1 = score le plus élevé
+//  Les joueurs doivent déjà être triés par score décroissant
 ```
 
 ---
@@ -85,27 +85,27 @@ const donnéesBrutes = [
 
 ```js
 // 7. trierParScore(joueurs)
-//    Retourne un nouveau tableau trié par score décroissant
-//    Ne mute pas le tableau original (attention à sort)
+//  Retourne un nouveau tableau trié par score décroissant
+//  Ne mute pas le tableau original (attention à sort)
 
 // 8. formaterRapport(joueurs)
-//    Transforme chaque joueur en entrée de rapport :
-//    {
-//      rang: 1,
-//      nom: "Haaland",
-//      categorie: "Ballon d'Or",
-//      score: 72.4,
-//      details: "60 buts · 8 passes · Champions League "
-//    }
+//  Transforme chaque joueur en entrée de rapport :
+//  {
+//   rang: 1,
+//   nom: "Haaland",
+//   categorie: "Ballon d'Or",
+//   score: 72.4,
+//   details: "60 buts · 8 passes · Champions League "
+//  }
 
 // 9. genererSommaire(joueurs)
-//    Retourne un objet de synthèse (réduction) :
-//    {
-//      totalCandidats: number,
-//      moyenneScore: number (arrondi à 1 décimale),
-//      ballonDorCandidat: string (nom du rang 1),
-//      categorieDistribution: { "Ballon d'Or": n, "Top 5": n, "Nominé": n, "Hors course": n }
-//    }
+//  Retourne un objet de synthèse (réduction) :
+//  {
+//   totalCandidats: number,
+//   moyenneScore: number (arrondi à 1 décimale),
+//   ballonDorCandidat: string (nom du rang 1),
+//   categorieDistribution: { "Ballon d'Or": n, "Top 5": n, "Nominé": n, "Hors course": n }
+//  }
 ```
 
 ---
@@ -118,13 +118,13 @@ const donnéesBrutes = [
 
 // Pipeline attendu :
 // filtrerActifs
-//   -> filtrerDonnéesValides
-//   -> normaliserTypes
-//   -> calculerScore({ buts: 0.6, passes: 0.4, cl: 30 })
-//   -> trierParScore
-//   -> ajouterRang
-//   -> ajouterCategorie
-//   -> formaterRapport
+//  -> filtrerDonnéesValides
+//  -> normaliserTypes
+//  -> calculerScore({ buts: 0.6, passes: 0.4, cl: 30 })
+//  -> trierParScore
+//  -> ajouterRang
+//  -> ajouterCategorie
+//  -> formaterRapport
 
 // const analyserSaison = pipe(...)
 // const rapport = analyserSaison(donnéesBrutes)
@@ -140,19 +140,19 @@ const donnéesBrutes = [
 ```js
 // rapport (après pipeline) :
 [
-  { rang: 1, nom: "Haaland",   categorie: "Ballon d'Or", score: 72.4,  details: "60 buts · 8 passes · Champions League " },
-  { rang: 2, nom: "Mbappé",    categorie: "Top 5",       score: 37.2,  details: "52 buts · 15 passes · Champions League " },
-  { rang: 3, nom: "De Bruyne", categorie: "Top 5",       score: 40.2,  details: "22 buts · 35 passes · Champions League " },
-  { rang: 4, nom: "Messi",     categorie: "Ballon d'Or", score: 56.0,  details: "45 buts · 20 passes · Champions League " }
-  // ordre exact selon ton implémentation du scoring
+ { rang: 1, nom: "Haaland",  categorie: "Ballon d'Or", score: 72.4, details: "60 buts · 8 passes · Champions League " },
+ { rang: 2, nom: "Mbappé",  categorie: "Top 5",    score: 37.2, details: "52 buts · 15 passes · Champions League " },
+ { rang: 3, nom: "De Bruyne", categorie: "Top 5",    score: 40.2, details: "22 buts · 35 passes · Champions League " },
+ { rang: 4, nom: "Messi",   categorie: "Ballon d'Or", score: 56.0, details: "45 buts · 20 passes · Champions League " }
+ // ordre exact selon ton implémentation du scoring
 ]
 
 // sommaire :
 {
-  totalCandidats: 4,
-  moyenneScore: ...,
-  ballonDorCandidat: "Haaland",
-  categorieDistribution: { "Ballon d'Or": 2, "Top 5": 2, "Nominé": 0, "Hors course": 0 }
+ totalCandidats: 4,
+ moyenneScore: ...,
+ ballonDorCandidat: "Haaland",
+ categorieDistribution: { "Ballon d'Or": 2, "Top 5": 2, "Nominé": 0, "Hors course": 0 }
 }
 ```
 
@@ -167,8 +167,8 @@ const donnéesBrutes = [
 
 // filtrerActifs
 test("filtre les joueurs inactifs", () => {
-  const entrée = [{ actif: true }, { actif: false }, { actif: true }]
-  expect(filtrerActifs(entrée)).toHaveLength(2)
+ const entrée = [{ actif: true }, { actif: false }, { actif: true }]
+ expect(filtrerActifs(entrée)).toHaveLength(2)
 })
 
 // filtrerDonnéesValides

@@ -1,5 +1,4 @@
 Temps de lecture ~8 min
-[INTEMPOREL]
 
 Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.
 
@@ -16,22 +15,22 @@ Tu utilises `for...of` sur des arrays, des strings, des Maps. Mais qu'est-ce qui
 Deux interfaces constituent le protocole d'itération JS :
 
 ```
-Iterable     --> un objet qui a une méthode [Symbol.iterator]()
-Iterator     --> un objet avec une méthode next() qui retourne { value, done }
+Iterable   --> un objet qui a une méthode [Symbol.iterator]()
+Iterator   --> un objet avec une méthode next() qui retourne { value, done }
 ```
 
 ```
 for...of appelle [Symbol.iterator]() sur l'objet
-              |
-              v
-         reçoit un iterator
-              |
-              v
-     appelle .next() à chaque tour de boucle
-              |
-              v
-     { value: X, done: false }  --> X est passé à la variable de la boucle
-     { value: undefined, done: true }  --> la boucle s'arrête
+       |
+       v
+     reçoit un iterator
+       |
+       v
+   appelle .next() à chaque tour de boucle
+       |
+       v
+   { value: X, done: false } --> X est passé à la variable de la boucle
+   { value: undefined, done: true } --> la boucle s'arrête
 ```
 
 `Symbol.iterator` (symbol : type primitif unique, utilisé comme clé de propriété non-collision) est une clé de propriété standard de JS. Quand un objet a cette propriété et qu'elle retourne un iterator valide, cet objet est itérable.
@@ -47,14 +46,14 @@ const joueurs = ['Naruto', 'Sasuke', 'Sakura']
 const iterator = joueurs[Symbol.iterator]()
 
 // appeler next() à la main
-console.log(iterator.next())  // { value: 'Naruto', done: false }
-console.log(iterator.next())  // { value: 'Sasuke', done: false }
-console.log(iterator.next())  // { value: 'Sakura', done: false }
-console.log(iterator.next())  // { value: undefined, done: true }
+console.log(iterator.next()) // { value: 'Naruto', done: false }
+console.log(iterator.next()) // { value: 'Sasuke', done: false }
+console.log(iterator.next()) // { value: 'Sakura', done: false }
+console.log(iterator.next()) // { value: undefined, done: true }
 
 // for...of fait exactement ça, mais automatiquement
 for (const j of joueurs) {
-  console.log(j)  // 'Naruto', 'Sasuke', 'Sakura'
+ console.log(j) // 'Naruto', 'Sasuke', 'Sakura'
 }
 ```
 
@@ -69,32 +68,32 @@ L'array est itérable parce qu'il a `[Symbol.iterator]` défini nativement. Les 
 // objectif : pouvoir écrire "for (const ninja of squad) {...}"
 
 const squad = {
-  membres: ['Naruto', 'Sasuke', 'Sakura', 'Kakashi'],
+ membres: ['Naruto', 'Sasuke', 'Sakura', 'Kakashi'],
 
-  [Symbol.iterator]() {      // méthode dont la clé est Symbol.iterator
-    let index = 0
-    const membres = this.membres
+ [Symbol.iterator]() {   // méthode dont la clé est Symbol.iterator
+  let index = 0
+  const membres = this.membres
 
-    return {                 // retourne un iterator
-      next() {               // iterator a obligatoirement next()
-        if (index < membres.length) {
-          return { value: membres[index++], done: false }
-        }
-        return { value: undefined, done: true }
-      }
+  return {         // retourne un iterator
+   next() {        // iterator a obligatoirement next()
+    if (index < membres.length) {
+     return { value: membres[index++], done: false }
     }
+    return { value: undefined, done: true }
+   }
   }
+ }
 }
 
 for (const ninja of squad) {
-  console.log(ninja)  // 'Naruto', 'Sasuke', 'Sakura', 'Kakashi'
+ console.log(ninja) // 'Naruto', 'Sasuke', 'Sakura', 'Kakashi'
 }
 
 // le spread operator utilise aussi Symbol.iterator
-const liste = [...squad]  // ['Naruto', 'Sasuke', 'Sakura', 'Kakashi']
+const liste = [...squad] // ['Naruto', 'Sasuke', 'Sakura', 'Kakashi']
 
 // la déstructuration aussi
-const [leader, ...reste] = squad  // leader = 'Naruto', reste = [...]
+const [leader, ...reste] = squad // leader = 'Naruto', reste = [...]
 ```
 
 ---
@@ -106,35 +105,35 @@ const [leader, ...reste] = squad  // leader = 'Naruto', reste = [...]
 // seulement les ninjas disponibles pour une mission
 
 const missionPool = {
-  ninjas: [
-    { nom: 'Naruto', disponible: true },
-    { nom: 'Sasuke', disponible: false },   // en mission solo
-    { nom: 'Sakura', disponible: true },
-    { nom: 'Rock Lee', disponible: false }, // blessé
-    { nom: 'Kakashi', disponible: true },
-  ],
+ ninjas: [
+  { nom: 'Naruto', disponible: true },
+  { nom: 'Sasuke', disponible: false },  // en mission solo
+  { nom: 'Sakura', disponible: true },
+  { nom: 'Rock Lee', disponible: false }, // blessé
+  { nom: 'Kakashi', disponible: true },
+ ],
 
-  [Symbol.iterator]() {
-    let index = 0
-    const ninjas = this.ninjas
+ [Symbol.iterator]() {
+  let index = 0
+  const ninjas = this.ninjas
 
-    return {
-      next() {
-        // avancer jusqu'au prochain disponible
-        while (index < ninjas.length && !ninjas[index].disponible) {
-          index++
-        }
-        if (index < ninjas.length) {
-          return { value: ninjas[index++].nom, done: false }
-        }
-        return { value: undefined, done: true }
-      }
+  return {
+   next() {
+    // avancer jusqu'au prochain disponible
+    while (index < ninjas.length && !ninjas[index].disponible) {
+     index++
     }
+    if (index < ninjas.length) {
+     return { value: ninjas[index++].nom, done: false }
+    }
+    return { value: undefined, done: true }
+   }
   }
+ }
 }
 
 for (const ninja of missionPool) {
-  console.log(ninja)  // 'Naruto', 'Sakura', 'Kakashi' (Sasuke et Lee sautés)
+ console.log(ninja) // 'Naruto', 'Sakura', 'Kakashi' (Sasuke et Lee sautés)
 }
 ```
 
@@ -146,29 +145,29 @@ La logique de filtrage est dans l'iterator, pas dans la boucle. Le consommateur 
 
 ```js
 const squad = {
-  membres: ['Naruto', 'Sasuke'],
-  [Symbol.iterator]() {
-    let index = 0     // index dans la closure de l'iterator
-    return {
-      next: () => {
-        if (index < this.membres.length) {
-          return { value: this.membres[index++], done: false }
-        }
-        return { value: undefined, done: true }
-      }
+ membres: ['Naruto', 'Sasuke'],
+ [Symbol.iterator]() {
+  let index = 0   // index dans la closure de l'iterator
+  return {
+   next: () => {
+    if (index < this.membres.length) {
+     return { value: this.membres[index++], done: false }
     }
+    return { value: undefined, done: true }
+   }
   }
+ }
 }
 
-for (const n of squad) console.log(n)  // 'Naruto', 'Sasuke'
-for (const n of squad) console.log(n)  // 'Naruto', 'Sasuke' : OK, nouvel iterator créé
+for (const n of squad) console.log(n) // 'Naruto', 'Sasuke'
+for (const n of squad) console.log(n) // 'Naruto', 'Sasuke' : OK, nouvel iterator créé
 
 // mais si tu récupères l'iterator et le rejoues...
 const it = squad[Symbol.iterator]()
-it.next()  // { value: 'Naruto', done: false }
-it.next()  // { value: 'Sasuke', done: false }
-it.next()  // { value: undefined, done: true }
-it.next()  // { value: undefined, done: true } -- ÉPUISÉ : il ne repart pas à zéro
+it.next() // { value: 'Naruto', done: false }
+it.next() // { value: 'Sasuke', done: false }
+it.next() // { value: undefined, done: true }
+it.next() // { value: undefined, done: true } -- ÉPUISÉ : il ne repart pas à zéro
 // un iterator est à usage unique : pour recommencer, il faut en créer un nouveau
 ```
 
@@ -184,14 +183,14 @@ Dans l'univers de Garo, les missions nocturnes s'attribuent par priorité : Chev
 
 ```js
 const fileDesMissions = {
-  chevaliers: [
-    { nom: 'Léon', rang: 'or', hors_combat: false },
-    { nom: 'Alfonso', rang: 'or', hors_combat: true },
-    { nom: 'Ema', rang: 'argent', hors_combat: false },
-    { nom: 'Germán', rang: 'or', hors_combat: false },
-    { nom: 'Zoro', rang: 'aspirant', hors_combat: false },
-  ],
-  // implémenter [Symbol.iterator]
+ chevaliers: [
+  { nom: 'Léon', rang: 'or', hors_combat: false },
+  { nom: 'Alfonso', rang: 'or', hors_combat: true },
+  { nom: 'Ema', rang: 'argent', hors_combat: false },
+  { nom: 'Germán', rang: 'or', hors_combat: false },
+  { nom: 'Zoro', rang: 'aspirant', hors_combat: false },
+ ],
+ // implémenter [Symbol.iterator]
 }
 ```
 
@@ -211,10 +210,10 @@ Crée un objet `analyseur(scores, taille)` qui retourne un itérable. À chaque 
 ```js
 const scores = [1, 3, 2, 4, 1, 5, 2]
 // fenêtre de 3 : [1,3,2], [3,2,4], [2,4,1], [4,1,5], [1,5,2]
-// moyennes      :  2,       3,       2.33,    3.33,    2.67
+// moyennes   : 2,    3,    2.33,  3.33,  2.67
 
 for (const moy of analyseur(scores, 3)) {
-  console.log(moy.toFixed(2))
+ console.log(moy.toFixed(2))
 }
 // 2.00, 3.00, 2.33, 3.33, 2.67
 ```

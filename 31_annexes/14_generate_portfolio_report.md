@@ -8,10 +8,10 @@ Temps de lecture ~5 min
 1. **Page de garde** : nom, dates, 3 phrases sur toi.
 2. **Sommaire** : projets traités.
 3. Pour chaque projet :
-   - Problème résolu (1 §)
-   - Décisions clés (extraits d'ADR)
-   - Ce qui a cassé (extraits de POSTMORTEM)
-   - Dépendances externes (extraits du Ledger)
+  - Problème résolu (1 §)
+  - Décisions clés (extraits d'ADR)
+  - Ce qui a cassé (extraits de POSTMORTEM)
+  - Dépendances externes (extraits du Ledger)
 4. **Bilan** : compétences transférables (renvoie à `transferability/`).
 
 ## Version manuelle

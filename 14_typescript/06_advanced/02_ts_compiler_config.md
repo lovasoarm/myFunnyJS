@@ -1,7 +1,7 @@
 # TS COMPILER CONFIG : TSCONFIG.JSON : CHAQUE OPTION EXPLIQUÉE AVEC SON IMPACT RÉEL
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Un plan d'évasion sans règles précises, c'est le chaos. "On sort par où on peut, quand on peut" : ça finit mal. `tsconfig.json` c'est le règlement strict du plan : qui a le droit de faire quoi, qu'est-ce qui est toléré, qu'est-ce qui fait tout annuler. Une option mal comprise dans ce fichier, c'est une faille dans le plan que personne a vue venir.
 
@@ -11,22 +11,22 @@ Un plan d'évasion sans règles précises, c'est le chaos. "On sort par où on p
 
 ```json
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "strict": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+ "compilerOptions": {
+  "target": "ES2022",
+  "module": "ESNext",
+  "strict": true,
+  "outDir": "./dist",
+  "rootDir": "./src"
+ },
+ "include": ["src/**/*"],
+ "exclude": ["node_modules", "dist"]
 }
 ```
 
 ```
-compilerOptions  --> le coeur : comment TS doit compiler et vérifier ton code
-include           --> quels fichiers le compilateur doit considérer
-exclude           --> quels fichiers il doit ignorer complètement
+compilerOptions --> le coeur : comment TS doit compiler et vérifier ton code
+include      --> quels fichiers le compilateur doit considérer
+exclude      --> quels fichiers il doit ignorer complètement
 ```
 
 **Technique :** `tsc` (le compilateur TypeScript) lit ce fichier avant de toucher à un seul fichier source. Chaque option change soit la SORTIE (le JS généré), soit la VÉRIFICATION (ce qui est accepté ou rejeté à la compilation).
@@ -37,8 +37,8 @@ exclude           --> quels fichiers il doit ignorer complètement
 
 ```json
 {
-  "target": "ES2022",   // quelle version de JS le code COMPILÉ doit utiliser
-  "module": "ESNext"    // quel système de modules le code COMPILÉ doit utiliser
+ "target": "ES2022",  // quelle version de JS le code COMPILÉ doit utiliser
+ "module": "ESNext"  // quel système de modules le code COMPILÉ doit utiliser
 }
 ```
 
@@ -69,31 +69,31 @@ pas d'une habitude héritée.
 
 ```json
 {
-  "strict": true   // active TOUTES les vérifications strictes d'un coup
+ "strict": true  // active TOUTES les vérifications strictes d'un coup
 }
 ```
 
 `strict: true` n'est pas une seule option : c'est un interrupteur qui en active plusieurs en même temps.
 
 ```
-strictNullChecks         --> null et undefined doivent être gérés explicitement
-noImplicitAny             --> interdit les types "any" implicites (non déclarés)
-strictFunctionTypes       --> vérifie la compatibilité des types de fonctions plus rigoureusement
+strictNullChecks     --> null et undefined doivent être gérés explicitement
+noImplicitAny       --> interdit les types "any" implicites (non déclarés)
+strictFunctionTypes    --> vérifie la compatibilité des types de fonctions plus rigoureusement
 strictPropertyInitialization --> force l'initialisation des propriétés de classe
-alwaysStrict               --> émet du JS en mode strict ("use strict")
+alwaysStrict        --> émet du JS en mode strict ("use strict")
 ```
 
 ```ts
 // SANS strictNullChecks :
 function trouverPrisonnier(id: number): string {
-  const prisonniers = { 1: "Michael", 2: "Lincoln" };
-  return prisonniers[id]; // peut retourner undefined, mais TS te laisse faire
+ const prisonniers = { 1: "Michael", 2: "Lincoln" };
+ return prisonniers[id]; // peut retourner undefined, mais TS te laisse faire
 }
 
 // AVEC strictNullChecks :
 function trouverPrisonnier(id: number): string | undefined {
-  const prisonniers: Record<number, string> = { 1: "Michael", 2: "Lincoln" };
-  return prisonniers[id]; // TS T'OBLIGE à déclarer "| undefined", sinon erreur de compilation
+ const prisonniers: Record<number, string> = { 1: "Michael", 2: "Lincoln" };
+ return prisonniers[id]; // TS T'OBLIGE à déclarer "| undefined", sinon erreur de compilation
 }
 ```
 
@@ -111,8 +111,8 @@ de jamais l'avoir activée. La première approche est un choix. La seconde est u
 
 ```json
 {
-  "allowJs": true,    // autorise les fichiers .js à coexister dans un projet TS
-  "checkJs": true      // applique la vérification de type MÊME sur les fichiers .js
+ "allowJs": true,  // autorise les fichiers .js à coexister dans un projet TS
+ "checkJs": true   // applique la vérification de type MÊME sur les fichiers .js
 }
 ```
 
@@ -125,7 +125,7 @@ de jamais l'avoir activée. La première approche est un choix. La seconde est u
  * @returns {number}
  */
 function calculerTemps(distance, vitesse) {
-  return distance / vitesse;
+ return distance / vitesse;
 }
 
 calculerTemps("200", 50); // TS hurle, MÊME dans ce fichier .js, grâce à checkJs + JSDoc
@@ -139,13 +139,13 @@ calculerTemps("200", 50); // TS hurle, MÊME dans ce fichier .js, grâce à chec
 
 ```json
 {
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@plans/*": ["plans/*"],
-      "@comms/*": ["communications/*"]
-    }
+ "compilerOptions": {
+  "baseUrl": "./src",
+  "paths": {
+   "@plans/*": ["plans/*"],
+   "@comms/*": ["communications/*"]
   }
+ }
 }
 ```
 
@@ -166,26 +166,26 @@ import { RadioCrypte } from '@comms/radio';
 ```
 PROJET GREENFIELD (parti de zéro), backend Node :
 {
-  "target": "ES2022",
-  "module": "NodeNext",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true
+ "target": "ES2022",
+ "module": "NodeNext",
+ "strict": true,
+ "esModuleInterop": true,
+ "skipLibCheck": true
 }
 
 PROJET DE MIGRATION PROGRESSIVE :
 {
-  "allowJs": true,
-  "checkJs": false,        // active fichier par fichier via JSDoc, pas globalement au début
-  "strict": false,         // active progressivement, option par option, pas d'un coup
-  "noImplicitAny": false   // souvent le dernier interrupteur qu'on active, le plus douloureux
+ "allowJs": true,
+ "checkJs": false,    // active fichier par fichier via JSDoc, pas globalement au début
+ "strict": false,     // active progressivement, option par option, pas d'un coup
+ "noImplicitAny": false  // souvent le dernier interrupteur qu'on active, le plus douloureux
 }
 
 LIBRAIRIE PUBLIÉE SUR NPM :
 {
-  "declaration": true,     // génère automatiquement les .d.ts pour les consommateurs
-  "declarationMap": true,  // permet de naviguer du .d.ts vers le .ts source en debug
-  "strict": true
+ "declaration": true,   // génère automatiquement les .d.ts pour les consommateurs
+ "declarationMap": true, // permet de naviguer du .d.ts vers le .ts source en debug
+ "strict": true
 }
 ```
 

@@ -19,31 +19,31 @@ Si tu n'as pas de tests, ta première étape n'est pas de refactorer : c'est d'�
 ```js
 // code moche du Walking Dead Protocol, mais qui marche
 function checkRations(camp) {
-  let total = 0
-  for (let i = 0; i < camp.survivors.length; i++) {
-    total += camp.survivors[i].rationNeed
-  }
-  if (camp.foodStock < total) return 'CRITIQUE'
-  if (camp.foodStock < total * 1.5) return 'ATTENTION'
-  return 'OK'
+ let total = 0
+ for (let i = 0; i < camp.survivors.length; i++) {
+  total += camp.survivors[i].rationNeed
+ }
+ if (camp.foodStock < total) return 'CRITIQUE'
+ if (camp.foodStock < total * 1.5) return 'ATTENTION'
+ return 'OK'
 }
 ```
 
 ```js
 // premier réflexe : fige le comportement avec un test, AVANT de toucher au code
 test('retourne CRITIQUE quand le stock est insuffisant', () => {
-  const camp = { foodStock: 5, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
-  expect(checkRations(camp)).toBe('CRITIQUE')
+ const camp = { foodStock: 5, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
+ expect(checkRations(camp)).toBe('CRITIQUE')
 })
 
 test('retourne ATTENTION quand le stock est juste', () => {
-  const camp = { foodStock: 8, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
-  expect(checkRations(camp)).toBe('ATTENTION')
+ const camp = { foodStock: 8, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
+ expect(checkRations(camp)).toBe('ATTENTION')
 })
 
 test('retourne OK quand le stock est large', () => {
-  const camp = { foodStock: 20, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
-  expect(checkRations(camp)).toBe('OK')
+ const camp = { foodStock: 20, survivors: [{ rationNeed: 3 }, { rationNeed: 3 }] }
+ expect(checkRations(camp)).toBe('OK')
 })
 ```
 
@@ -60,27 +60,27 @@ La bonne approche : une transformation à la fois, tests verts entre chaque éta
 ```js
 // étape 0 : code de départ (déjà couvert par les 3 tests au-dessus)
 function checkRations(camp) {
-  let total = 0
-  for (let i = 0; i < camp.survivors.length; i++) {
-    total += camp.survivors[i].rationNeed
-  }
-  if (camp.foodStock < total) return 'CRITIQUE'
-  if (camp.foodStock < total * 1.5) return 'ATTENTION'
-  return 'OK'
+ let total = 0
+ for (let i = 0; i < camp.survivors.length; i++) {
+  total += camp.survivors[i].rationNeed
+ }
+ if (camp.foodStock < total) return 'CRITIQUE'
+ if (camp.foodStock < total * 1.5) return 'ATTENTION'
+ return 'OK'
 }
 ```
 
 ```js
 // étape 1 : extraire le calcul du total (transformation isolée, tests relancés)
 function calculateTotalRationNeed(survivors) {
-  return survivors.reduce((sum, survivor) => sum + survivor.rationNeed, 0)
+ return survivors.reduce((sum, survivor) => sum + survivor.rationNeed, 0)
 }
 
 function checkRations(camp) {
-  const total = calculateTotalRationNeed(camp.survivors)
-  if (camp.foodStock < total) return 'CRITIQUE'
-  if (camp.foodStock < total * 1.5) return 'ATTENTION'
-  return 'OK'
+ const total = calculateTotalRationNeed(camp.survivors)
+ if (camp.foodStock < total) return 'CRITIQUE'
+ if (camp.foodStock < total * 1.5) return 'ATTENTION'
+ return 'OK'
 }
 ```
 
@@ -89,10 +89,10 @@ function checkRations(camp) {
 const ATTENTION_MULTIPLIER = 1.5
 
 function checkRations(camp) {
-  const total = calculateTotalRationNeed(camp.survivors)
-  if (camp.foodStock < total) return 'CRITIQUE'
-  if (camp.foodStock < total * ATTENTION_MULTIPLIER) return 'ATTENTION'
-  return 'OK'
+ const total = calculateTotalRationNeed(camp.survivors)
+ if (camp.foodStock < total) return 'CRITIQUE'
+ if (camp.foodStock < total * ATTENTION_MULTIPLIER) return 'ATTENTION'
+ return 'OK'
 }
 ```
 
@@ -101,21 +101,21 @@ function checkRations(camp) {
 const ATTENTION_MULTIPLIER = 1.5
 
 function getRationStatus(foodStock, totalNeed) {
-  if (foodStock < totalNeed) return 'CRITIQUE'
-  if (foodStock < totalNeed * ATTENTION_MULTIPLIER) return 'ATTENTION'
-  return 'OK'
+ if (foodStock < totalNeed) return 'CRITIQUE'
+ if (foodStock < totalNeed * ATTENTION_MULTIPLIER) return 'ATTENTION'
+ return 'OK'
 }
 
 function checkRations(camp) {
-  const total = calculateTotalRationNeed(camp.survivors)
-  return getRationStatus(camp.foodStock, total)
+ const total = calculateTotalRationNeed(camp.survivors)
+ return getRationStatus(camp.foodStock, total)
 }
 ```
 
 ```
 étape 0 --> étape 1 --> étape 2 --> étape 3
-   tests     tests       tests       tests
-   verts     verts       verts       verts
+  tests   tests    tests    tests
+  verts   verts    verts    verts
 ```
 
 À chaque étape, le comportement est identique, mais la structure devient lisible. Si tu casses quelque chose à l'étape 2, tu sais exactement où chercher : c'est forcément dans ce que tu viens de changer.
@@ -134,7 +134,7 @@ Critères pour choisir :
 ```js
 // avant : DistributionRouter fait tout, personne n'ose y toucher
 class DistributionRouter {
-  calculateRoute(from, to, riskMap) { /* dijkstra mélangé avec validation et logging */ }
+ calculateRoute(from, to, riskMap) { /* dijkstra mélangé avec validation et logging */ }
 }
 ```
 
@@ -156,12 +156,12 @@ Le piège classique : "améliorer" une condition et changer son sens sans le voi
 ```js
 // avant
 function canEnterArmory(survivor) {
-  return survivor.trustLevel > 5 && !survivor.isInjured
+ return survivor.trustLevel > 5 && !survivor.isInjured
 }
 
 // "refacto" qui semble équivalent... mais qui inverse la logique d'injure
 function canEnterArmory(survivor) {
-  return survivor.trustLevel > 5 || survivor.isInjured // <- || au lieu de && !
+ return survivor.trustLevel > 5 || survivor.isInjured // <- || au lieu de && !
 }
 ```
 
@@ -176,10 +176,10 @@ Voici une fonction du Ballon d'Or :
 
 ```js
 function getRankLabel(points) {
-  if (points >= 500) return 'Légende'
-  if (points >= 200) return 'Top 10'
-  if (points >= 50) return 'Nominé'
-  return 'Non classé'
+ if (points >= 500) return 'Légende'
+ if (points >= 200) return 'Top 10'
+ if (points >= 50) return 'Nominé'
+ return 'Non classé'
 }
 ```
 
@@ -196,12 +196,12 @@ Compare ces deux versions d'une fonction qui détermine si une armure de Garo do
 ```js
 // avant
 function shouldCollapse(fightDuration, armorIntegrity) {
-  return fightDuration > 99.9 || armorIntegrity <= 0
+ return fightDuration > 99.9 || armorIntegrity <= 0
 }
 
 // après "refacto"
 function shouldCollapse(fightDuration, armorIntegrity) {
-  return fightDuration >= 99.9 || armorIntegrity < 0
+ return fightDuration >= 99.9 || armorIntegrity < 0
 }
 ```
 

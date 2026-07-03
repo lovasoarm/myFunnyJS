@@ -13,15 +13,15 @@ Google, Stripe, et la plupart des équipes de trading algorithmique le font sur 
 ## 1) LES DEUX RÔLES
 
 ```
-DRIVER (pilote)                    NAVIGATOR (copilote)
-----------------------------       ----------------------------
-il tape le code                    il pense à l'algorithme
-il parle à voix haute              il repère les bugs avant qu'ils arrivent
-il suit les instructions           il vérifie que la direction est bonne
-il ne prend pas de décisions       il ne touche pas au clavier
-  majeures seul
-il pose des questions si           il pose des questions sur le why,
-  quelque chose n'est pas clair      pas sur le how
+DRIVER (pilote)          NAVIGATOR (copilote)
+----------------------------    ----------------------------
+il tape le code          il pense à l'algorithme
+il parle à voix haute       il repère les bugs avant qu'ils arrivent
+il suit les instructions      il vérifie que la direction est bonne
+il ne prend pas de décisions    il ne touche pas au clavier
+ majeures seul
+il pose des questions si      il pose des questions sur le why,
+ quelque chose n'est pas clair   pas sur le how
 ```
 
 **Ce n'est pas une hiérarchie.** Le driver n'est pas subordonné au navigator.
@@ -35,13 +35,13 @@ Le cerveau en mode "écriture de code" et le cerveau en mode "lecture critique d
 
 ```
 DRIVER : focus étroit
-         --> syntaxe, logique locale, ce que la fonction fait maintenant
+     --> syntaxe, logique locale, ce que la fonction fait maintenant
 
 NAVIGATOR : focus large
-            --> "est-ce qu'on est en train de résoudre le bon problème ?"
-            --> "ce cas null sera jamais géré avec cette approche"
-            --> "on a fait quelque chose de similaire dans le module auth, 
-                 on pourrait réutiliser"
+      --> "est-ce qu'on est en train de résoudre le bon problème ?"
+      --> "ce cas null sera jamais géré avec cette approche"
+      --> "on a fait quelque chose de similaire dans le module auth, 
+         on pourrait réutiliser"
 ```
 
 En solo, t'essaies de faire les deux en même temps. Et t'es moins bon dans les deux.
@@ -60,7 +60,7 @@ Le switch entre driver et navigator doit être régulier. Deux formats principau
 **Pomodoro (minuteur) :**
 ```
 25 min : A est driver, B est navigator
-pause  : 5 minutes de débrief
+pause : 5 minutes de débrief
 25 min : B est driver, A est navigator
 ```
 
@@ -81,25 +81,25 @@ penser à la fois au test et à l'implémentation, alternativement.
 ## 4) LES ERREURS QUI TUENT UNE SESSION DE PAIR
 
 ```
-ERREUR                             CE QUI SE PASSE
----------------------------        ----------------------------------
-le navigator "backseat drives"     le driver perd confiance et tape
-(corrige chaque typo, chaque       plus vite pour "en finir"
+ERREUR               CE QUI SE PASSE
+---------------------------    ----------------------------------
+le navigator "backseat drives"   le driver perd confiance et tape
+(corrige chaque typo, chaque    plus vite pour "en finir"
 micro-décision)
 
-le driver code en silence          le navigator s'ennuie et décroche
-sans expliquer                     mentalement au bout de 10 minutes
+le driver code en silence     le navigator s'ennuie et décroche
+sans expliquer           mentalement au bout de 10 minutes
 
-pas de switch pendant 2 heures     le navigator finit par coder dans
-                                   sa tête en parallèle, l'énergie tombe
+pas de switch pendant 2 heures   le navigator finit par coder dans
+                  sa tête en parallèle, l'énergie tombe
 
-le pair devient une validation     "tu peux regarder ce que j'ai fait ?"
-  passive                          ce n'est pas du pair, c'est une review
-                                   asynchrone habillée en pair
+le pair devient une validation   "tu peux regarder ce que j'ai fait ?"
+ passive             ce n'est pas du pair, c'est une review
+                  asynchrone habillée en pair
 
-un dev plus senior qui "sait"      le junior code sous pression, le
-et qui corrige tout le temps       senior pense enseigner, les deux
-                                   sont frustrés
+un dev plus senior qui "sait"   le junior code sous pression, le
+et qui corrige tout le temps    senior pense enseigner, les deux
+                  sont frustrés
 ```
 
 ---
@@ -110,10 +110,10 @@ La plupart des équipes sont maintenant distribuées. Le pair à distance foncti
 
 **Outils :**
 ```
-VS Code Live Share     -- partage de curseur en temps réel, le mieux en 2026
-tmux + ssh             -- vieux mais fiable, bonne option pour les setups CLI
-Screen dans Zoom/Meet  -- facile mais le lag casse le rythme
-Tuple                  -- outil dédié au pair, qualité vidéo et latence optimisées
+VS Code Live Share   -- partage de curseur en temps réel, le mieux en 2026
+tmux + ssh       -- vieux mais fiable, bonne option pour les setups CLI
+Screen dans Zoom/Meet -- facile mais le lag casse le rythme
+Tuple         -- outil dédié au pair, qualité vidéo et latence optimisées
 ```
 
 **Règles supplémentaires pour le remote :**
@@ -128,14 +128,14 @@ Tuple                  -- outil dédié au pair, qualité vidéo et latence opti
 Le pair n'est pas adapté à tout. Utiliser le pair sur les mauvais problèmes : perte de temps et frustration.
 
 ```
-BON POUR LE PAIR                   MAUVAIS POUR LE PAIR
---------------------------         --------------------------
-code critique (auth, tribut)     tâches répétitives (migrations de données)
-débogage d'un bug complexe         lecture de documentation
-onboarding d'un nouveau dev        recherche exploratoire solo
-décisions d'architecture           écriture de tests unitaires simples
-implémentation d'algo complexe     configuration de projet (npm init, etc.)
-code qui va faire l'objet          
+BON POUR LE PAIR          MAUVAIS POUR LE PAIR
+--------------------------     --------------------------
+code critique (auth, tribut)   tâches répétitives (migrations de données)
+débogage d'un bug complexe     lecture de documentation
+onboarding d'un nouveau dev    recherche exploratoire solo
+décisions d'architecture      écriture de tests unitaires simples
+implémentation d'algo complexe   configuration de projet (npm init, etc.)
+code qui va faire l'objet     
 d'une revue importante
 ```
 

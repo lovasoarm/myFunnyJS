@@ -27,10 +27,10 @@ Pourquoi ? Le réseau prend du temps. Pendant que la réponse voyage, JS continu
 
 ```js
 fetch("https://jsonplaceholder.typicode.com/users")
-  .then((response) => response.json())   // étape 1 : décoder la réponse en objet JS
-  .then((data) => {
-    console.log(data)                    // étape 2 : utiliser les données
-  })
+ .then((response) => response.json())  // étape 1 : décoder la réponse en objet JS
+ .then((data) => {
+  console.log(data)          // étape 2 : utiliser les données
+ })
 ```
 
 `.then()` = "quand la réponse est prête, fais ça". Les APIs retournent du JSON (format texte standard pour transporter des objets), `response.json()` le transforme en vrai objet JS.
@@ -42,12 +42,12 @@ fetch("https://jsonplaceholder.typicode.com/users")
 `async/await` est du sucre syntaxique (syntactic sugar : syntaxe plus lisible qui fait la même chose) au-dessus des Promises. Tu n'as pas besoin de tout comprendre maintenant, mais tu vas le voir partout :
 
 ```js
-async function chargerJoueurs() {          // async = cette fonction peut attendre
-  const response = await fetch(            // await = attendre que fetch réponde
-    "https://jsonplaceholder.typicode.com/users"
-  )
-  const data = await response.json()       // await encore : décoder le JSON prend aussi du temps
-  console.log(data)
+async function chargerJoueurs() {     // async = cette fonction peut attendre
+ const response = await fetch(      // await = attendre que fetch réponde
+  "https://jsonplaceholder.typicode.com/users"
+ )
+ const data = await response.json()    // await encore : décoder le JSON prend aussi du temps
+ console.log(data)
 }
 
 chargerJoueurs()
@@ -63,22 +63,22 @@ Le réseau peut répondre avec une erreur (serveur down, URL incorrecte, etc.). 
 
 ```js
 async function chargerJoueurs() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users")
+ const response = await fetch("https://jsonplaceholder.typicode.com/users")
 
-  if (!response.ok) {                      // ok = true si code HTTP entre 200 et 299
-    console.log("Erreur serveur :", response.status)  // 404, 500, etc.
-    return
-  }
+ if (!response.ok) {           // ok = true si code HTTP entre 200 et 299
+  console.log("Erreur serveur :", response.status) // 404, 500, etc.
+  return
+ }
 
-  const joueurs = await response.json()
-  console.log(joueurs)
+ const joueurs = await response.json()
+ console.log(joueurs)
 }
 ```
 
 ```
-response.ok      --> true si le serveur a bien répondu (200-299), false sinon
-response.status  --> le code HTTP exact : 200, 201, 404, 500...
-response.json()  --> transforme le texte JSON reçu en objet JS utilisable
+response.ok   --> true si le serveur a bien répondu (200-299), false sinon
+response.status --> le code HTTP exact : 200, 201, 404, 500...
+response.json() --> transforme le texte JSON reçu en objet JS utilisable
 ```
 
 ---
@@ -89,30 +89,30 @@ Le réseau peut totalement échouer (pas de connexion, serveur injoignable). `tr
 
 ```js
 async function chargerAvecProtection() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+ try {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users")
 
-    if (!response.ok) {
-      throw new Error("Serveur en galère : " + response.status)
-      //               ^ crée une erreur et la lance vers le catch
-    }
-
-    const data = await response.json()
-    console.log("Données :", data.length, "entrées")
-  } catch (erreur) {
-    console.log("Panne réseau ou serveur :", erreur.message)
-  } finally {
-    console.log("Requête terminée (succès ou pas)")
-    // finally s'exécute TOUJOURS : utile pour cacher un spinner, fermer une connexion
+  if (!response.ok) {
+   throw new Error("Serveur en galère : " + response.status)
+   //        ^ crée une erreur et la lance vers le catch
   }
+
+  const data = await response.json()
+  console.log("Données :", data.length, "entrées")
+ } catch (erreur) {
+  console.log("Panne réseau ou serveur :", erreur.message)
+ } finally {
+  console.log("Requête terminée (succès ou pas)")
+  // finally s'exécute TOUJOURS : utile pour cacher un spinner, fermer une connexion
+ }
 }
 ```
 
 ```
-try     -->  ce qui peut planter
-catch   -->  si ça plante : on arrive ici avec l'erreur
-finally -->  s'exécute dans tous les cas, erreur ou pas
-throw   -->  lance une erreur manuellement vers le catch
+try   --> ce qui peut planter
+catch  --> si ça plante : on arrive ici avec l'erreur
+finally --> s'exécute dans tous les cas, erreur ou pas
+throw  --> lance une erreur manuellement vers le catch
 ```
 
 ---
@@ -123,16 +123,16 @@ throw   -->  lance une erreur manuellement vers le catch
 
 ```js
 async function signalerMenace(data) {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",   // on dit au serveur ce qu'on envoie
-    },
-    body: JSON.stringify(data),             // objet JS -> texte JSON pour le transport
-  })
+ const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  method: "POST",
+  headers: {
+   "Content-Type": "application/json",  // on dit au serveur ce qu'on envoie
+  },
+  body: JSON.stringify(data),       // objet JS -> texte JSON pour le transport
+ })
 
-  const resultat = await response.json()
-  console.log("Enregistré :", resultat)
+ const resultat = await response.json()
+ console.log("Enregistré :", resultat)
 }
 
 signalerMenace({ menace: "Titan Colossal", niveau: "CRITIQUE", secteur: "Mur Maria" })
@@ -147,12 +147,12 @@ signalerMenace({ menace: "Titan Colossal", niveau: "CRITIQUE", secteur: "Mur Mar
 ```
 FETCH :\
 
-1) envoyer requête  -->  fetch(url, options)
-2) attendre réponse -->  await ou .then()
-3) vérifier status  -->  response.ok
-4) décoder JSON     -->  await response.json()
-5) utiliser données -->  le reste de ta fonction
-6) gérer les pannes -->  try/catch autour de tout ça
+1) envoyer requête --> fetch(url, options)
+2) attendre réponse --> await ou .then()
+3) vérifier status --> response.ok
+4) décoder JSON   --> await response.json()
+5) utiliser données --> le reste de ta fonction
+6) gérer les pannes --> try/catch autour de tout ça
 ```
 
 ---
@@ -179,8 +179,8 @@ Transforme chaque entrée en dossier structuré avec `map` :
 
 ```js
 {
-  codenom: name,      // le nom devient le nom de code
-  zone: address.city  // la ville devient la zone d'opération
+ codenom: name,   // le nom devient le nom de code
+ zone: address.city // la ville devient la zone d'opération
 }
 ```
 

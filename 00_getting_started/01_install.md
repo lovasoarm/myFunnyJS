@@ -1,10 +1,10 @@
 # 01 : Installation pas-à-pas (Windows / macOS / Linux)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : les URLs changent, le protocole ne change pas :
+> **INTEMPOREL** : les URLs changent, le protocole ne change pas :
 > *installer proprement → vérifier → figer la version → documenter*.
 
-[PERISSABLE] Les numéros de version ci-dessous sont à jour pour 2026. Voir `.nvmrc`
+Les numéros de version ci-dessous sont à jour pour 2026. Voir `.nvmrc`
 à la racine pour la version canonique en cours.
 
 ---
@@ -25,7 +25,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 # ferme et rouvre le terminal
 nvm install --lts
 nvm use --lts
-node -v   # doit renvoyer v20.x ou plus
+node -v  # doit renvoyer v20.x ou plus
 ```
 
 ### Windows
@@ -57,7 +57,7 @@ Vérifie : `git --version`.
 Configure une fois pour toutes :
 
 ```bash
-git config --global user.name  "Ton Prénom"
+git config --global user.name "Ton Prénom"
 git config --global user.email "toi@example.com"
 git config --global init.defaultBranch main
 ```
@@ -96,7 +96,7 @@ Les trois doivent répondre. Sinon → retour à l'étape correspondante.
 
 ```bash
 cd chemin/vers/MyFunnyJS_Thor_Edition
-nvm use    # lit .nvmrc automatiquement
+nvm use  # lit .nvmrc automatiquement
 ```
 
 Si `nvm use` renvoie "version not installed" → `nvm install`.
@@ -106,9 +106,9 @@ Si `nvm use` renvoie "version not installed" → `nvm install`.
 ## Permissions (piège classique)
 
 - **macOS/Linux** : ne fais **jamais** `sudo npm install -g …`. C'est le signe
-  que ton install Node est mal placée. Réinstalle via `nvm`.
+ que ton install Node est mal placée. Réinstalle via `nvm`.
 - **Windows** : si un `npm install` échoue avec `EPERM`, ferme les processus
-  Node/VSCode ouverts et relance en tant qu'shinobi (pas admin).
+ Node/VSCode ouverts et relance en tant qu'shinobi (pas admin).
 
 ---
 

@@ -14,7 +14,7 @@ L'avantage concret : tu peux "pré-remplir" les premiers arguments et obtenir un
 ```js
 // fonction normale : 2 arguments
 function multiplier(facteur, valeur) {
-  return facteur * valeur;
+ return facteur * valeur;
 }
 
 multiplier(2, 50); // 100
@@ -22,9 +22,9 @@ multiplier(3, 50); // 150
 
 // version curryfiée : une fonction qui retourne une fonction
 function multiplier(facteur) {
-  return function (valeur) {
-    return facteur * valeur;
-  };
+ return function (valeur) {
+  return facteur * valeur;
+ };
 }
 
 // ou en arrow
@@ -51,7 +51,7 @@ Le vrai pouvoir : créer des fonctions spécialisées à partir d'une fonction g
 ```js
 // fonction générale de filtrage
 const filtrerParSeuil = (seuil) => (joueurs) =>
-  joueurs.filter((j) => j.buts >= seuil);
+ joueurs.filter((j) => j.buts >= seuil);
 
 // spécialisations
 const filtrerMeilleursButteurs = filtrerParSeuil(50);
@@ -65,16 +65,16 @@ pipe(filtrerMeilleursButteurs, calculerScore, trierParScore)(joueurs);
 ```js
 // pattern fréquent : currying + composition pour construire des pipelines flexibles
 const ajouterChamp = (nomChamp, calculer) => (objet) => ({
-  ...objet,
-  [nomChamp]: calculer(objet),
+ ...objet,
+ [nomChamp]: calculer(objet),
 });
 
 const ajouterScore = ajouterChamp(
-  "score",
-  (j) => j.buts * 0.5 + j.passes * 0.3,
+ "score",
+ (j) => j.buts * 0.5 + j.passes * 0.3,
 );
 const ajouterNiveau = ajouterChamp("niveau", (j) =>
-  j.score > 50 ? "elite" : "standard",
+ j.score > 50 ? "elite" : "standard",
 );
 
 pipe(ajouterScore, ajouterNiveau)(joueur);
@@ -89,19 +89,19 @@ Transformer manuellement chaque fonction c'est pénible. On peut automatiser.
 ```js
 // curry générique : transforme f(a,b,c) en f(a)(b)(c)
 function curry(fn) {
-  return function curryé(...args) {
-    if (args.length >= fn.length) {
-      // on a tous les arguments : on exécute
-      return fn(...args);
-    }
-    // il manque des arguments : on retourne une fonction qui attend la suite
-    return (...autresArgs) => curryé(...args, ...autresArgs);
-  };
+ return function curryé(...args) {
+  if (args.length >= fn.length) {
+   // on a tous les arguments : on exécute
+   return fn(...args);
+  }
+  // il manque des arguments : on retourne une fonction qui attend la suite
+  return (...autresArgs) => curryé(...args, ...autresArgs);
+ };
 }
 
 // une fonction normale
 function calculerDegats(force, defense, multiplicateur) {
-  return Math.max(0, (force - defense) * multiplicateur);
+ return Math.max(0, (force - defense) * multiplicateur);
 }
 
 const calculerDegatsC = curry(calculerDegats);
@@ -130,10 +130,10 @@ Le currying brille sur les fonctions de config, de requête, de transformation.
 ```js
 // construction de requêtes pour la Prison Break API
 const creerRequete = (methode) => (endpoint) => (corps) => ({
-  method: methode,
-  url: `https://api.foxriver.prison${endpoint}`,
-  body: corps ? JSON.stringify(corps) : undefined,
-  headers: { "Content-Type": "application/json" },
+ method: methode,
+ url: `https://api.foxriver.prison${endpoint}`,
+ body: corps ? JSON.stringify(corps) : undefined,
+ headers: { "Content-Type": "application/json" },
 });
 
 const GET = creerRequete("GET");
@@ -148,18 +148,18 @@ const ajouterPrisonnier = POST("/prisonniers");
 // utilisation
 const requêteListePrisonniers = getPrisonniers(null);
 const requêteAjoutMichael = ajouterPrisonnier({
-  nom: "Scofield",
-  cellule: "A08",
+ nom: "Scofield",
+ cellule: "A08",
 });
 ```
 
 ```js
 // logger curryifié
 const log = (niveau) => (contexte) => (message) => ({
-  niveau,
-  contexte,
-  message,
-  timestamp: new Date().toISOString(),
+ niveau,
+ contexte,
+ message,
+ timestamp: new Date().toISOString(),
 });
 
 const error = log("ERROR");
@@ -181,7 +181,7 @@ La fonction `curry` automatique se base sur `fn.length` pour savoir combien d'ar
 
 ```js
 function maFonction(a, b, c = 10) {
-  return a + b + c;
+ return a + b + c;
 }
 
 maFonction.length; // 2:JS ne compte pas c car il a une valeur par défaut
@@ -200,11 +200,11 @@ Fix : évite les valeurs par défaut dans les fonctions que tu curries. Passe to
 Nuance importante, couverte en détail dans `05_partial_application.md`.
 
 ```
-curry :              f(a, b, c)  =>  f(a)(b)(c)
-                     transforme la signature
+curry :       f(a, b, c) => f(a)(b)(c)
+           transforme la signature
 
 partial application : f(a, b, c) avec a fixé => g(b, c)
-                     pré-remplit des arguments
+           pré-remplit des arguments
 ```
 
 ```js
@@ -255,14 +255,14 @@ Vérifie qu'elle fonctionne sur :
 
 ```js
 const candidats = [
-  { nom: "Messi", buts: 45, passes: 20, aCL: true, equipe: "Inter Miami" },
-  { nom: "Mbappé", buts: 52, passes: 15, aCL: false, equipe: "Real Madrid" },
-  { nom: "Haaland", buts: 60, passes: 8, aCL: true, equipe: "Man City" },
+ { nom: "Messi", buts: 45, passes: 20, aCL: true, equipe: "Inter Miami" },
+ { nom: "Mbappé", buts: 52, passes: 15, aCL: false, equipe: "Real Madrid" },
+ { nom: "Haaland", buts: 60, passes: 8, aCL: true, equipe: "Man City" },
 ];
 
 // Construis un pipeline avec des fonctions curryfiées :
 // filtrerParEquipe(equipe)(joueurs)
-// ajouterScoreBonus(bonusButs, bonusPasses)(joueurs)   <- par joueur dans le map
+// ajouterScoreBonus(bonusButs, bonusPasses)(joueurs)  <- par joueur dans le map
 // prendreTop(n)(joueurs)
 
 // Puis compose-les avec pipe pour obtenir le top 2 des joueurs pas du Real Madrid

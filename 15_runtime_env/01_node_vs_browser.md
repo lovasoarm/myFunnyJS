@@ -13,19 +13,19 @@ JS ne s'exécute pas seul. Il faut un moteur. Les deux utilisent V8 (le moteur d
 
 ```
 [ ton code JS ]
-       |
-       v
+    |
+    v
 [ V8 : il exécute le JS ]
-       |
-  _____|_____
-  |         |
-  v         v
-[Node]   [Browser]
-  |         |
-  v         v
-[fs, os,  [DOM, window,
- net,      fetch, canvas,
- child_   localStorage,
+    |
+ _____|_____
+ |     |
+ v     v
+[Node]  [Browser]
+ |     |
+ v     v
+[fs, os, [DOM, window,
+ net,   fetch, canvas,
+ child_  localStorage,
  process] Web Audio...]
 ```
 
@@ -41,8 +41,8 @@ Le navigateur ajoute des APIs UI : DOM, rendu, interactions shinobi, stockage we
 ```js
 // le DOM : accès direct à la page HTML
 document.querySelector(".card").addEventListener("click", () => {
-  // l'shinobi a cliqué : on réagit
-  document.title = "clicked";
+ // l'shinobi a cliqué : on réagit
+ document.title = "clicked";
 });
 
 // le stockage web : persistance sans fichier
@@ -122,27 +122,27 @@ console.log(typeof globalThis); // 'object':c'est l'API universelle depuis ES202
 ```js
 // méthode solide : tester globalThis
 function getRuntime() {
-  if (typeof window !== 'undefined') return 'browser'
-  if (typeof process !== 'undefined' && process.versions?.node) return 'node'
-  return 'unknown'
+ if (typeof window !== 'undefined') return 'browser'
+ if (typeof process !== 'undefined' && process.versions?.node) return 'node'
+ return 'unknown'
 }
 
 // usage concret : une lib qui s'adapte
 function readConfig(path) {
-  const runtime = getRuntime()
+ const runtime = getRuntime()
 
-  if (runtime === 'node') {
-    // on lit depuis le disque
-    const { readFileSync } = await import('node:fs')
-    return JSON.parse(readFileSync(path, 'utf-8'))
-  }
+ if (runtime === 'node') {
+  // on lit depuis le disque
+  const { readFileSync } = await import('node:fs')
+  return JSON.parse(readFileSync(path, 'utf-8'))
+ }
 
-  if (runtime === 'browser') {
-    // on lit depuis le localStorage ou une API
-    return JSON.parse(localStorage.getItem(path) ?? '{}')
-  }
+ if (runtime === 'browser') {
+  // on lit depuis le localStorage ou une API
+  return JSON.parse(localStorage.getItem(path) ?? '{}')
+ }
 
-  throw new Error(`runtime inconnu : ${runtime}`)
+ throw new Error(`runtime inconnu : ${runtime}`)
 }
 ```
 
@@ -153,20 +153,20 @@ Pourquoi c'est utile : les libs isomorphiques (qui tournent dans les deux enviro
 ## 5) LE TABLEAU QUI RÉSUME TOUT
 
 ```
-API / fonctionnalité       Node      Browser   Notes
+API / fonctionnalité    Node   Browser  Notes
 ---------------------------------------------------------
-Moteur JS                   V8         V8       même coeur
-Event loop                  oui        oui      même mécanisme
-fetch                       v18+       oui      attention aux versions
-DOM (document, window)      non        oui      ne pas importer côté Node
-localStorage                non        oui      --
-fs (lecture fichiers)       oui        non      --
-process.env                 oui        non      --
-Worker Threads              oui        --       Web Workers côté navigateur
-WebSocket (client)          oui*       oui      *via lib ws en Node
-Canvas / WebGL              non        oui      --
-crypto (Web Crypto API)     v15+       oui      API unifiée depuis Node 15
-globalThis                  oui        oui      l'objet global universel
+Moteur JS          V8     V8    même coeur
+Event loop         oui    oui   même mécanisme
+fetch            v18+    oui   attention aux versions
+DOM (document, window)   non    oui   ne pas importer côté Node
+localStorage        non    oui   --
+fs (lecture fichiers)    oui    non   --
+process.env         oui    non   --
+Worker Threads       oui    --    Web Workers côté navigateur
+WebSocket (client)     oui*    oui   *via lib ws en Node
+Canvas / WebGL       non    oui   --
+crypto (Web Crypto API)   v15+    oui   API unifiée depuis Node 15
+globalThis         oui    oui   l'objet global universel
 ```
 
 ---
@@ -179,11 +179,11 @@ T'écris une fonction `describeRuntime()` qui retourne un objet :
 
 ```js
 {
-  name: 'node' | 'browser' | 'unknown',
-  version: string | null,   // version Node si disponible
-  canReadFiles: boolean,
-  canAccessDOM: boolean,
-  globalObject: 'window' | 'global' | 'globalThis'
+ name: 'node' | 'browser' | 'unknown',
+ version: string | null,  // version Node si disponible
+ canReadFiles: boolean,
+ canAccessDOM: boolean,
+ globalObject: 'window' | 'global' | 'globalThis'
 }
 ```
 
@@ -211,10 +211,10 @@ Ce code plante. T'as 3 bugs liés au mauvais environnement :
 import fs from "fs";
 
 export function saveSession(userId, data) {
-  window.sessionId = userId;
-  localStorage.setItem("user", JSON.stringify(data));
-  fs.writeFileSync(`./sessions/${userId}.json`, JSON.stringify(data));
-  document.title = `Session : ${userId}`;
+ window.sessionId = userId;
+ localStorage.setItem("user", JSON.stringify(data));
+ fs.writeFileSync(`./sessions/${userId}.json`, JSON.stringify(data));
+ document.title = `Session : ${userId}`;
 }
 ```
 

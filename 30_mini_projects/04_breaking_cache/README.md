@@ -28,16 +28,16 @@ $ node src/index.js
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Variables env : aucune
 Outils externes: aucun
 ```
 
 ```bash
 npm install
-node src/index.js   # charge le graphe, lance tous les algos, écrit les benchmarks
-npm test             # lance la suite de tests
+node src/index.js  # charge le graphe, lance tous les algos, écrit les benchmarks
+npm test       # lance la suite de tests
 ```
 
 Pas de build step. Le code tourne tel qu'il est écrit.
@@ -49,31 +49,31 @@ Pas de build step. Le code tourne tel qu'il est écrit.
 ```
 src/
 ├── graph/
-│   ├── graphBuilder.js     # construit le graphe depuis les données brutes
-│   ├── adjacencyList.js    # représentation par liste d'adjacence
-│   └── graphData.js        # villes et routes du réseau Walter White
+│  ├── graphBuilder.js   # construit le graphe depuis les données brutes
+│  ├── adjacencyList.js  # représentation par liste d'adjacence
+│  └── graphData.js    # villes et routes du réseau Walter White
 │
 ├── algorithms/
-│   ├── dijkstra.js         # chemin le plus sûr dans un graphe pondéré
-│   ├── bfs.js              # détection de routes compromises
-│   └── dfs.js              # exploration complète du réseau
+│  ├── dijkstra.js     # chemin le plus sûr dans un graphe pondéré
+│  ├── bfs.js       # détection de routes compromises
+│  └── dfs.js       # exploration complète du réseau
 │
 ├── structures/
-│   ├── minHeap.js          # min-heap pour prioriser les urgences
-│   └── priorityQueue.js    # abstraction au-dessus du heap
+│  ├── minHeap.js     # min-heap pour prioriser les urgences
+│  └── priorityQueue.js  # abstraction au-dessus du heap
 │
 ├── sorting/
-│   ├── quickSort.js        # rapide en pratique, unstable
-│   ├── mergeSort.js        # stable, garanti O(n log n)
-│   └── sortingRace.js      # comparaison sur 10k, 100k, 1M éléments
+│  ├── quickSort.js    # rapide en pratique, unstable
+│  ├── mergeSort.js    # stable, garanti O(n log n)
+│  └── sortingRace.js   # comparaison sur 10k, 100k, 1M éléments
 │
 ├── dp/
-│   └── stockOptimizer.js   # knapsack : maximiser le stock sous contraintes
+│  └── stockOptimizer.js  # knapsack : maximiser le stock sous contraintes
 │
 ├── profiling/
-│   └── benchmarker.js      # performance.now() sur chaque algo
+│  └── benchmarker.js   # performance.now() sur chaque algo
 │
-└── index.js                # point d'entrée : lance tout, sort les résultats
+└── index.js        # point d'entrée : lance tout, sort les résultats
 
 tests/
 ├── graph.test.js
@@ -87,23 +87,23 @@ Flux d'appel principal :
 
 ```
 index.js
-  --> graphBuilder.build(graphData)
-  --> dijkstra.shortestPath(graph, "ABQ", "Juarez")
-  --> minHeap.extractMin()           # distributeur le plus urgent
-  --> sortingRace.compare(lots)      # quickSort vs mergeSort
-  --> stockOptimizer.knapsack(stock, contraintes)
-  --> benchmarker.report()
+ --> graphBuilder.build(graphData)
+ --> dijkstra.shortestPath(graph, "ABQ", "Juarez")
+ --> minHeap.extractMin()      # distributeur le plus urgent
+ --> sortingRace.compare(lots)   # quickSort vs mergeSort
+ --> stockOptimizer.knapsack(stock, contraintes)
+ --> benchmarker.report()
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module                  | Où ça se voit                                                                |
+| Module         | Où ça se voit                                |
 | ----------------------- | ---------------------------------------------------------------------------- |
-| `09_data_structures`    | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js`          |
-| `10_algorithms`         | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
-| `08_memory_performance` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé        |
+| `09_data_structures`  | `graphBuilder.js` (graphe), `minHeap.js` (heap), `adjacencyList.js`     |
+| `10_algorithms`     | `dijkstra.js`, `bfs.js`, `quickSort.js`, `mergeSort.js`, `stockOptimizer.js` |
+| `08_memory_performance` | `benchmarker.js` : `performance.now()` sur chaque algo, Big-O analysé    |
 
 ---
 
@@ -121,15 +121,15 @@ index.js
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md    --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md     --> ce qui a coincé, ce qui a été appris
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

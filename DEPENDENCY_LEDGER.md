@@ -175,12 +175,12 @@ Sur les 4 sessions, combien de fois CAS D (l'IA a coûté du temps) :
 ## EXEMPLE REMPLI (à copier au bon endroit)
 
 <!--
-| Date       | Module | Tâche                       | Ratio IA / moi | Note (0-5) | Décision retenue                       |
+| Date    | Module | Tâche            | Ratio IA / moi | Note (0-5) | Décision retenue            |
 |------------|--------|-----------------------------|----------------|------------|----------------------------------------|
-| 2026-01-14 | 03     | Implémenter debounce        | 40 / 60        | 4          | J'ai gardé mon impl, l'IA a simplifié 2 lignes. |
-| 2026-01-20 | 05     | Debug race sur setTimeout   | 10 / 90        | 5          | Hypothèse posée seul, IA a validé.     |
-| 2026-02-01 | 08     | Heap snapshot arena         | 0 / 100        | 5          | Fait entièrement seul, IA n'a pas aidé.|
-| 2026-02-15 | 14     | Types génériques `pMap`     | 60 / 40        | 2          | Trop dépendant. À refaire seul.        |
+| 2026-01-14 | 03   | Implémenter debounce    | 40 / 60    | 4     | J'ai gardé mon impl, l'IA a simplifié 2 lignes. |
+| 2026-01-20 | 05   | Debug race sur setTimeout  | 10 / 90    | 5     | Hypothèse posée seul, IA a validé.   |
+| 2026-02-01 | 08   | Heap snapshot arena     | 0 / 100    | 5     | Fait entièrement seul, IA n'a pas aidé.|
+| 2026-02-15 | 14   | Types génériques `pMap`   | 60 / 40    | 2     | Trop dépendant. À refaire seul.    |
 -->
 
 ## Règle de calcul

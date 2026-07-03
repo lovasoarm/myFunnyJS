@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~7 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -22,7 +22,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | Terme | Définition | Code | Analogies |
 |-------|-----------|------|-----------|
 | Promise | Objet qui représente une valeur qui n'est pas encore disponible. Trois états : pending, fulfilled, rejected. | `const p = new Promise((resolve, reject) => { ... })` | Un ticket de livraison Amazon / une promesse de paie en fin de mois |
-| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {})  // reste pending pour toujours` | Une ordre_mission en cours de préparation / un match pas encore sifflé |
+| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {}) // reste pending pour toujours` | Une ordre_mission en cours de préparation / un match pas encore sifflé |
 | fulfilled | La Promise a résolu avec succès. `resolve(valeur)` a été appelé. Le `.then()` reçoit la valeur. | `resolve("Naruto a gagné")` | Le colis livré / le but marqué |
 | rejected | La Promise a échoué. `reject(erreur)` a été appelé ou une exception a été throwée. Le `.catch()` reçoit l'erreur. | `reject(new Error("mission échouée"))` | Le colis perdu / le carton rouge |
 | resolve | Fonction qui termine une Promise avec succès. Appelée une seule fois. Si appelée plusieurs fois, les appels suivants sont ignorés. | `new Promise((resolve) => resolve(42))` | Valider une mission / signer le bon de livraison |
@@ -38,4 +38,4 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 | Promise.any() | La première qui réussit suffit. Si toutes échouent, rejette avec un `AggregateError`. | `Promise.any([mirror1(), mirror2()]).then(data => ...)` | Un seul fragment suffit pour activer le cristal / un seul but pour gagner |
 | AggregateError | Erreur throwée par `Promise.any()` quand toutes les Promises rejettent. Contient `.errors` : le tableau de toutes les erreurs. | `err.errors.forEach(e => console.log(e.message))` | Le rapport d'échec total / tous les équipiers tombés |
 | thenable | Tout objet avec une méthode `.then()`. JS le traite comme une Promise dans les chaînes. | `const t = { then: (resolve) => resolve(42) }` | Un contrat non officiel mais respecté / une parole sans papier mais valable |
-| microtask | Une Promise résolue ne déclenche pas `.then()` immédiatement. Elle s'inscrit dans la microtask queue, après le code synchrone courant. | `Promise.resolve().then(() => console.log("après"))  // log après le code sync` | La livraison express mais pas instantanée / le message envoyé mais lu entre deux tâches |
+| microtask | Une Promise résolue ne déclenche pas `.then()` immédiatement. Elle s'inscrit dans la microtask queue, après le code synchrone courant. | `Promise.resolve().then(() => console.log("après")) // log après le code sync` | La livraison express mais pas instantanée / le message envoyé mais lu entre deux tâches |

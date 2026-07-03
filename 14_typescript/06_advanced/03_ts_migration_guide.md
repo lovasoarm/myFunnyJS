@@ -1,7 +1,7 @@
 # TS MIGRATION GUIDE : MIGRER DU JS PUR VERS TYPESCRIPT : SANS TOUT RÉÉCRIRE EN UNE NUIT
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Michael a jamais essayé de faire sortir tous les prisonniers de Fox River en une seule nuit, par la même porte. Trop risqué, trop de points de défaillance simultanés. Le plan se fait par étapes, chaque étape validée avant de passer à la suivante. Migrer un projet JS vers TypeScript, c'est exactement ce genre de plan : progressif, vérifié à chaque pas, jamais en un seul bloc.
 
@@ -14,10 +14,10 @@ PLAN NAÏF :
 "on bloque les nouvelles features pendant 2 semaines, on réécrit tout en TS"
 
 CE QUI SE PASSE EN VRAI :
-semaine 1   --> motivation au top, 30% du projet migré
-semaine 2   --> ça traîne, des cas complexes bloquent, 50% migré
-semaine 3   --> la pression business force à reprendre les nouvelles features
-résultat    --> projet à moitié migré, état hybride cassé, pire qu'avant
+semaine 1  --> motivation au top, 30% du projet migré
+semaine 2  --> ça traîne, des cas complexes bloquent, 50% migré
+semaine 3  --> la pression business force à reprendre les nouvelles features
+résultat  --> projet à moitié migré, état hybride cassé, pire qu'avant
 ```
 
 **Pourquoi ça échoue structurellement :** une migration complète d'un coup, c'est un changement à fort risque sur TOUT le système en même temps, sans pouvoir isoler un problème. Si un bug apparaît après la migration, impossible de savoir s'il vient du fichier A, B, ou C parmi les 200 fichiers migrés simultanément.
@@ -34,22 +34,22 @@ et VÉRIFIABLE à chaque étape pour l'équipe technique.
 ```json
 // tsconfig.json, première version, ultra permissive
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": false,
-    "strict": false,
-    "noEmitOnError": false
-  },
-  "include": ["src/**/*"]
+ "compilerOptions": {
+  "allowJs": true,
+  "checkJs": false,
+  "strict": false,
+  "noEmitOnError": false
+ },
+ "include": ["src/**/*"]
 }
 ```
 
 ```
 ÉTAT DU PROJET APRÈS CETTE ÉTAPE :
 src/
-├── ancien-module.js     <-- toujours du JS pur, AUCUN changement requis
-├── autre-module.js      <-- pareil
-└── index.js              <-- pareil
+├── ancien-module.js   <-- toujours du JS pur, AUCUN changement requis
+├── autre-module.js   <-- pareil
+└── index.js       <-- pareil
 
 Rien n'a changé dans le code. Le projet compile (tsc) sans qu'aucune ligne ait bougé.
 ```
@@ -71,7 +71,7 @@ Rien n'a changé dans le code. Le projet compile (tsc) sans qu'aucune ligne ait 
  * @returns {number} minutes restantes
  */
 function tempsAvantComptage(heureActuelle, heureComptage) {
-  return heureComptage - heureActuelle;
+ return heureComptage - heureActuelle;
 }
 
 module.exports = { tempsAvantComptage };
@@ -80,10 +80,10 @@ module.exports = { tempsAvantComptage };
 ```json
 // tsconfig.json mis à jour
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true   // <-- activé maintenant
-  }
+ "compilerOptions": {
+  "allowJs": true,
+  "checkJs": true  // <-- activé maintenant
+ }
 }
 ```
 
@@ -104,16 +104,16 @@ tempsAvantComptage("8h00", 1200);
 GRAPHE DE DÉPENDANCES TYPIQUE D'UN PROJET :
 
 index.js
-  └── routes.js
-        └── controllers.js
-              └── utils.js     <-- AUCUNE dépendance interne, c'est une "feuille"
-              └── validators.js <-- pareil, une feuille
+ └── routes.js
+    └── controllers.js
+       └── utils.js   <-- AUCUNE dépendance interne, c'est une "feuille"
+       └── validators.js <-- pareil, une feuille
 ```
 
 ```
 ORDRE DE MIGRATION RECOMMANDÉ : des feuilles vers la racine
 
-1. utils.js --> utils.ts        (zéro dépendance interne à gérer)
+1. utils.js --> utils.ts    (zéro dépendance interne à gérer)
 2. validators.js --> validators.ts (idem)
 3. controllers.js --> controllers.ts (dépend de utils et validators, DÉJÀ migrés)
 4. routes.js --> routes.ts
@@ -125,7 +125,7 @@ ORDRE DE MIGRATION RECOMMANDÉ : des feuilles vers la racine
 ```js
 // utils.ts, premier fichier migré
 export function genererIdEvasion(prefixe: string, numero: number): string {
-  return `${prefixe}-${numero.toString().padStart(4, '0')}`;
+ return `${prefixe}-${numero.toString().padStart(4, '0')}`;
 }
 ```
 
@@ -173,12 +173,12 @@ checklist de fin de migration :
 ```json
 // tsconfig.json final, projet entièrement migré
 {
-  "compilerOptions": {
-    "strict": true,
-    "allowJs": false,    // plus besoin, signe que la migration est complète
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
-  }
+ "compilerOptions": {
+  "strict": true,
+  "allowJs": false,  // plus besoin, signe que la migration est complète
+  "noUnusedLocals": true,
+  "noUnusedParameters": true
+ }
 }
 ```
 

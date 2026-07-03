@@ -40,8 +40,8 @@ Si l'event loop est occupée (code sync long, microtasks en cascade), le délai 
 const debut = Date.now()
 
 setTimeout(() => {
-  const reel = Date.now() - debut
-  console.log(`délai réel : ${reel}ms`) // souvent plus que 0
+ const reel = Date.now() - debut
+ console.log(`délai réel : ${reel}ms`) // souvent plus que 0
 }, 0)
 
 // boucle qui bloque l'event loop pendant 200ms
@@ -65,13 +65,13 @@ Mais si le callback prend plus de N ms, les exécutions se chevauchent ou se per
 let secondes = 0
 
 const ticker = setInterval(() => {
-  secondes++
-  console.log(`${secondes}ème minute - en cours`)
-  
-  if (secondes >= 90) {
-    clearInterval(ticker)
-    console.log("Fin du match")
-  }
+ secondes++
+ console.log(`${secondes}ème minute - en cours`)
+ 
+ if (secondes >= 90) {
+  clearInterval(ticker)
+  console.log("Fin du match")
+ }
 }, 1000)
 ```
 
@@ -83,19 +83,19 @@ Pour un interval précis avec des opérations async : pattern `setTimeout` récu
 ```js
 // Pattern correct pour interval précis avec async
 async function tickerFiable(duree) {
-  let secondes = 0
+ let secondes = 0
+ 
+ const tick = async () => {
+  secondes++
+  await recupererStatsLive() // opération async variable
+  console.log(`minute ${secondes}`)
   
-  const tick = async () => {
-    secondes++
-    await recupererStatsLive() // opération async variable
-    console.log(`minute ${secondes}`)
-    
-    if (secondes < 90) {
-      setTimeout(tick, duree) // planifie le prochain tick après avoir fini
-    }
+  if (secondes < 90) {
+   setTimeout(tick, duree) // planifie le prochain tick après avoir fini
   }
-  
-  setTimeout(tick, duree) // premier tick
+ }
+ 
+ setTimeout(tick, duree) // premier tick
 }
 ```
 
@@ -109,13 +109,13 @@ C'est une macrotask spéciale : synchronisée avec le refresh screen (60fps = to
 ```js
 // Animation fluide du pourcentage de possession
 function animerPossession(cible, actuel = 0) {
-  if (actuel >= cible) return
-  
-  const prochain = Math.min(actuel + 1, cible)
-  document.getElementById("possession").textContent = `${prochain}%`
-  
-  // planifie la prochaine frame : pas de setTimeout, pas de setInterval
-  requestAnimationFrame(() => animerPossession(cible, prochain))
+ if (actuel >= cible) return
+ 
+ const prochain = Math.min(actuel + 1, cible)
+ document.getElementById("possession").textContent = `${prochain}%`
+ 
+ // planifie la prochaine frame : pas de setTimeout, pas de setInterval
+ requestAnimationFrame(() => animerPossession(cible, prochain))
 }
 
 animerPossession(67) // animer jusqu'à 67% de possession
@@ -135,12 +135,12 @@ Du code synchrone long bloque tout : setTimeout, rendu, interactions shinobi.
 ```js
 // Walking Dead version : Rick doit analyser les menaces PENDANT que les zombies attaquent
 function analyserMenaces(zombies) {
-  // MAUVAIS : bloque l'UI pendant l'analyse
-  let score = 0
-  for (let z of zombies) {
-    score += calculerMenace(z) // calcul lourd
-  }
-  return score
+ // MAUVAIS : bloque l'UI pendant l'analyse
+ let score = 0
+ for (let z of zombies) {
+  score += calculerMenace(z) // calcul lourd
+ }
+ return score
 }
 
 // Le bouton "Fermer les portes" ne répond plus pendant analyserMenaces()
@@ -153,19 +153,19 @@ La solution : couper le travail en chunks avec setTimeout.
 ```js
 // BIEN : céder l'event loop régulièrement
 async function analyserMenacesAsync(zombies) {
-  let score = 0
+ let score = 0
+ 
+ for (let i = 0; i < zombies.length; i++) {
+  score += calculerMenace(zombies[i])
   
-  for (let i = 0; i < zombies.length; i++) {
-    score += calculerMenace(zombies[i])
-    
-    // toutes les 100 unités, on cède l'event loop
-    if (i % 100 === 0) {
-      await new Promise(resolve => setTimeout(resolve, 0))
-      // l'event loop peut traiter d'autres macrotasks/microtasks ici
-    }
+  // toutes les 100 unités, on cède l'event loop
+  if (i % 100 === 0) {
+   await new Promise(resolve => setTimeout(resolve, 0))
+   // l'event loop peut traiter d'autres macrotasks/microtasks ici
   }
-  
-  return score
+ }
+ 
+ return score
 }
 ```
 
@@ -178,22 +178,22 @@ async function analyserMenacesAsync(zombies) {
 call stack : [main()]
 
 PENDANT L'EXÉCUTION SYNC :
-setTimeout(A, 0)  --> A va dans macrotask queue
-Promise.then(B)   --> B va dans microtask queue
-setTimeout(C, 0)  --> C va dans macrotask queue
-Promise.then(D)   --> D va dans microtask queue
+setTimeout(A, 0) --> A va dans macrotask queue
+Promise.then(B)  --> B va dans microtask queue
+setTimeout(C, 0) --> C va dans macrotask queue
+Promise.then(D)  --> D va dans microtask queue
 
 QUAND main() FINIT :
 call stack vide --> event loop démarre
 
 TOUR 1 :
-  microtask queue : B, D  --> B s'exécute, D s'exécute, queue vide
-  rendu navigateur (si nécessaire)
-  macrotask queue : A, C  --> A s'exécute (UN SEUL)
+ microtask queue : B, D --> B s'exécute, D s'exécute, queue vide
+ rendu navigateur (si nécessaire)
+ macrotask queue : A, C --> A s'exécute (UN SEUL)
 
 TOUR 2 :
-  microtask queue : vide  --> rien
-  macrotask queue : C     --> C s'exécute
+ microtask queue : vide --> rien
+ macrotask queue : C   --> C s'exécute
 
 RÉSULTAT : B --> D --> A --> C
 ```
@@ -210,15 +210,15 @@ Explique pourquoi et corrige sans utiliser `async/await`.
 
 ```js
 function simulerMatch() {
-  setTimeout(() => console.log("But de Messi ! (35e minute)"), 100)
-  
-  Promise.resolve().then(() => console.log("Carton jaune (30e minute)"))
-  
-  setTimeout(() => console.log("Coup d'envoi (0e minute)"), 0)
-  
-  console.log("Les équipes entrent sur le terrain")
-  
-  Promise.resolve().then(() => console.log("Coin droit (25e minute)"))
+ setTimeout(() => console.log("But de Messi ! (35e minute)"), 100)
+ 
+ Promise.resolve().then(() => console.log("Carton jaune (30e minute)"))
+ 
+ setTimeout(() => console.log("Coup d'envoi (0e minute)"), 0)
+ 
+ console.log("Les équipes entrent sur le terrain")
+ 
+ Promise.resolve().then(() => console.log("Coin droit (25e minute)"))
 }
 
 simulerMatch()
@@ -238,10 +238,10 @@ La barre monte de 2% par frame. Elle s'arrête à 100%.
 const barre = document.getElementById("chakra-bar")
 
 function chargerChakra(actuel = 0) {
-  // à compléter
-  // contrainte : utiliser requestAnimationFrame
-  // contrainte : stopper à 100
-  // contrainte : mettre à jour barre.style.width = actuel + "%"
+ // à compléter
+ // contrainte : utiliser requestAnimationFrame
+ // contrainte : stopper à 100
+ // contrainte : mettre à jour barre.style.width = actuel + "%"
 }
 
 chargerChakra()
@@ -258,18 +258,18 @@ Refactore-la pour qu'elle reste responsive : chunk de 1000 zombies à la fois, y
 ```js
 // AVANT : freeze l'UI
 function compterZombies(liste) {
-  let dangereux = 0
-  for (let z of liste) {
-    if (z.niveau > 5) dangereux++
-  }
-  return dangereux
+ let dangereux = 0
+ for (let z of liste) {
+  if (z.niveau > 5) dangereux++
+ }
+ return dangereux
 }
 
 // APRÈS : à toi de l'écrire
 // contrainte : retourner une Promise qui résout avec le compte final
 // contrainte : utiliser setTimeout(resolve, 0) pour céder l'event loop
 async function compterZombiesAsync(liste) {
-  // à compléter
+ // à compléter
 }
 ```
 

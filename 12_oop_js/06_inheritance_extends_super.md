@@ -7,25 +7,25 @@ Temps de lecture ~8 min
 
 ```js
 class Ninja {
-  constructor(nom) {
-    this.nom = nom;
-    this.chakra = 100;
-  }
+ constructor(nom) {
+  this.nom = nom;
+  this.chakra = 100;
+ }
 
-  attaquer() {
-    return `${this.nom} attaque à mains nues`;
-  }
+ attaquer() {
+  return `${this.nom} attaque à mains nues`;
+ }
 }
 
 class NinjaSensei extends Ninja {
-  constructor(nom, technique) {
-    super(nom); // appelle le constructor de Ninja avec this
-    this.technique = technique;
-  }
+ constructor(nom, technique) {
+  super(nom); // appelle le constructor de Ninja avec this
+  this.technique = technique;
+ }
 
-  enseigner() {
-    return `${this.nom} enseigne ${this.technique}`;
-  }
+ enseigner() {
+  return `${this.nom} enseigne ${this.technique}`;
+ }
 }
 
 const kakashi = new NinjaSensei("Kakashi", "Chidori");
@@ -43,10 +43,10 @@ kakashi --> NinjaSensei.prototype --> Ninja.prototype --> Object.prototype --> n
 
 ```js
 class NinjaCasse extends Ninja {
-  constructor(nom, technique) {
-    this.technique = technique; // ReferenceError : doit appeler super() avant
-    super(nom);
-  }
+ constructor(nom, technique) {
+  this.technique = technique; // ReferenceError : doit appeler super() avant
+  super(nom);
+ }
 }
 ```
 
@@ -56,10 +56,10 @@ Dans une classe qui `extends`, `this` n'existe pas encore au début du `construc
 
 ```js
 class NinjaSensei extends Ninja {
-  attaquer() {
-    const base = super.attaquer(); // version du parent
-    return `${base}, puis enchaîne avec ${this.technique}`;
-  }
+ attaquer() {
+  const base = super.attaquer(); // version du parent
+  return `${base}, puis enchaîne avec ${this.technique}`;
+ }
 }
 
 const kakashi2 = new NinjaSensei("Kakashi", "Chidori");
@@ -84,21 +84,21 @@ Cinq niveaux. Maintenant, une question simple : où est définie la méthode `at
 
 ```
 naruto2.attaquer()
-   |
-   v
-Hokage a "attaquer" ?      cherche...
-   |
-   v
-NinjaElite a "attaquer" ?  cherche...
-   |
-   v
-Ninja2 a "attaquer" ?      cherche...
-   |
-   v
-Combattant a "attaquer" ?  cherche...
-   |
-   v
-Entite a "attaquer" ?      trouvé, ou pas trouvé, 5 niveaux plus tard
+  |
+  v
+Hokage a "attaquer" ?   cherche...
+  |
+  v
+NinjaElite a "attaquer" ? cherche...
+  |
+  v
+Ninja2 a "attaquer" ?   cherche...
+  |
+  v
+Combattant a "attaquer" ? cherche...
+  |
+  v
+Entite a "attaquer" ?   trouvé, ou pas trouvé, 5 niveaux plus tard
 ```
 
 Plus la chaîne est longue, plus un changement dans `Entite` (le sommet) a un effet en cascade imprévisible sur tous les niveaux du dessous. Un dev qui modifie `Combattant` ne sait pas toujours qui hérite de quoi 3 niveaux plus bas. C'est exactement le risque réel que vos propres mini-projets pointent ailleurs dans le curriculum (refactoring, SOLID) : le couplage fort entre classes empilées.
@@ -107,24 +107,24 @@ Plus la chaîne est longue, plus un changement dans `Entite` (le sommet) a un ef
 
 ```js
 class Entite {
-  constructor() {
-    this.vivant = true;
-  }
+ constructor() {
+  this.vivant = true;
+ }
 }
 
 class Combattant extends Entite {
-  constructor() {
-    super();
-    this.pv = 100;
-  }
+ constructor() {
+  super();
+  this.pv = 100;
+ }
 }
 
 // six mois plus tard, quelqu'un "corrige" Entite :
 class Entite {
-  constructor(nom) {
-    this.nom = nom; // ajout d'un paramètre obligatoire dans l'esprit du dev
-    this.vivant = true;
-  }
+ constructor(nom) {
+  this.nom = nom; // ajout d'un paramètre obligatoire dans l'esprit du dev
+  this.vivant = true;
+ }
 }
 
 // Combattant n'a jamais été mis à jour :

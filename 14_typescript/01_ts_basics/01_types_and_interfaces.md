@@ -1,7 +1,7 @@
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 TypeScript te donne deux façons de décrire la forme d'un objet : `type` et `interface`.
 La plupart des devs utilisent les deux au hasard. Mauvaise idée.
@@ -16,16 +16,16 @@ Une interface décrit la forme d'un objet. Comme un accord signé entre deux mod
 
 ```ts
 interface Ninja {
-  name: string;
-  chakra: number;
-  village: string;
+ name: string;
+ chakra: number;
+ village: string;
 }
 
 // Le contrat est respecté : Naruto est bien un Ninja
 const naruto: Ninja = {
-  name: "Naruto",
-  chakra: 9000,
-  village: "Konoha",
+ name: "Naruto",
+ chakra: 9000,
+ village: "Konoha",
 };
 ```
 
@@ -34,17 +34,17 @@ Si tu déclares la même interface deux fois, TypeScript les fusionne. Pas d'err
 
 ```ts
 interface Ninja {
-  name: string;
+ name: string;
 }
 
 interface Ninja {
-  jutsu: string[]; // TypeScript ajoute ça à l'interface existante, pas d'erreur
+ jutsu: string[]; // TypeScript ajoute ça à l'interface existante, pas d'erreur
 }
 
 // Maintenant Ninja = { name: string, jutsu: string[] }
 const kakashi: Ninja = {
-  name: "Kakashi",
-  jutsu: ["Chidori", "Sharingan Copy"],
+ name: "Kakashi",
+ jutsu: ["Chidori", "Sharingan Copy"],
 };
 ```
 
@@ -58,14 +58,14 @@ C'est la **declaration merging**. Puissant. Et dangereux si tu ne sais pas que �
 
 ```ts
 type Ninja = {
-  name: string;
-  chakra: number;
+ name: string;
+ chakra: number;
 };
 
 // Exactement pareil qu'avec interface pour un objet simple
 const sasuke: Ninja = {
-  name: "Sasuke",
-  chakra: 7500,
+ name: "Sasuke",
+ chakra: 7500,
 };
 ```
 
@@ -96,22 +96,22 @@ Les deux peuvent s'étendre. La syntaxe diffère.
 ```ts
 // Interface étend une interface
 interface Ninja {
-  name: string;
-  chakra: number;
+ name: string;
+ chakra: number;
 }
 
 interface SageNinja extends Ninja {
-  sageMode: boolean; // un Ninja normal + le mode Sage
+ sageMode: boolean; // un Ninja normal + le mode Sage
 }
 
 // Type étend un type (intersection)
 type Ninja = {
-  name: string;
-  chakra: number;
+ name: string;
+ chakra: number;
 };
 
 type SageNinja = Ninja & {
-  sageMode: boolean; // même résultat, syntaxe différente
+ sageMode: boolean; // même résultat, syntaxe différente
 };
 ```
 
@@ -120,11 +120,11 @@ La vraie différence : `interface extends` donne une erreur si les propriétés 
 
 ```ts
 interface A {
-  value: string;
+ value: string;
 }
 
 interface B extends A {
-  value: number; // ERREUR : "number" n'est pas compatible avec "string"
+ value: number; // ERREUR : "number" n'est pas compatible avec "string"
 }
 
 type A = { value: string };
@@ -137,8 +137,8 @@ type B = A & { value: number };
 Diagramme :
 
 ```
-interface extends interface  -->  erreur immédiate si conflit
-type & type                  -->  never silencieux si conflit
+interface extends interface --> erreur immédiate si conflit
+type & type         --> never silencieux si conflit
 ```
 
 ---
@@ -146,13 +146,13 @@ type & type                  -->  never silencieux si conflit
 ## 4) LA RÈGLE SIMPLE POUR CHOISIR
 
 ```
-objet public d'une API / lib / module partagé   -->  interface
-  (la declaration merging permet à d'autres de l'étendre)
+objet public d'une API / lib / module partagé  --> interface
+ (la declaration merging permet à d'autres de l'étendre)
 
-union / intersection / tuple / type complexe    -->  type
-  (interface ne peut pas faire ça)
+union / intersection / tuple / type complexe  --> type
+ (interface ne peut pas faire ça)
 
-objet interne à un fichier ou une fonction      -->  type ou interface, peu importe
+objet interne à un fichier ou une fonction   --> type ou interface, peu importe
 ```
 
 En pratique dans MyFunnyJS : les types des modules exportés utilisent `interface`. Tout ce qui est complexe (union de statuts, tuples, types conditionnels) utilise `type`.
@@ -166,7 +166,7 @@ C'est le bug classique avec les librairies tierces. Tu étends une interface dep
 ```ts
 // quelque part dans ton code (ou dans un fichier d'un collègue)
 interface Window {
-  myCustomThing: () => void; // tu ajoutes ça à l'interface globale Window du navigateur
+ myCustomThing: () => void; // tu ajoutes ça à l'interface globale Window du navigateur
 }
 
 // maintenant PARTOUT dans ton projet, window.myCustomThing existe pour TypeScript

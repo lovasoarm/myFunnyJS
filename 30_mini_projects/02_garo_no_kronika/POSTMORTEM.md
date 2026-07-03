@@ -18,11 +18,11 @@ Le bug le plus instructif du projet. Première version de `armor.js` :
 ```js
 // Version rejetée
 async function equipArmor(knight) {
-  await delay(knight.prepTime);
-  setTimeout(() => {
-    throw new ArmorCollapseError({ knight: knight.id }); // PROBLÈME ICI
-  }, 99900);
-  return { equipped: true };
+ await delay(knight.prepTime);
+ setTimeout(() => {
+  throw new ArmorCollapseError({ knight: knight.id }); // PROBLÈME ICI
+ }, 99900);
+ return { equipped: true };
 }
 ```
 

@@ -30,11 +30,11 @@ Et le pire scénario : une "réécriture complète" est décidée parce que pers
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-fonction de 200 lignes qui fait tout                      --> long method (code smell) --> découpage en petites fonctions
-classe qui connaît trop de choses sur les autres           --> feature envy              --> redistribution des responsabilités
-classe qui fait tout dans le système                        --> god class                  --> séparation selon SOLID
-code dupliqué à 5 endroits différents                        --> DRY violé                  --> extraction en fonction réutilisable
-ajout d'une feature impossible sans casser autre chose         --> couplage fort              --> refactoring vers DIP/SRP
+fonction de 200 lignes qui fait tout           --> long method (code smell) --> découpage en petites fonctions
+classe qui connaît trop de choses sur les autres      --> feature envy       --> redistribution des responsabilités
+classe qui fait tout dans le système            --> god class         --> séparation selon SOLID
+code dupliqué à 5 endroits différents            --> DRY violé         --> extraction en fonction réutilisable
+ajout d'une feature impossible sans casser autre chose     --> couplage fort       --> refactoring vers DIP/SRP
 ```
 
 Un refactoring bien fait ne se voit pas de l'extérieur : l'shinobi final ne remarque rien, parce que le comportement reste identique. C'est un investissement invisible pour l'shinobi, mais payant directement pour l'équipe qui doit continuer à faire évoluer le système.

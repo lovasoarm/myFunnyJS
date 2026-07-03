@@ -1,9 +1,8 @@
 Temps de lecture ~8 min
-[INTEMPOREL]
 
->  **Mesure avant d'optimiser.** Toute optimisation sans profiling est superstition.
+> **Mesure avant d'optimiser.** Toute optimisation sans profiling est superstition.
 
->  **Principe universel derrière** : mémoire, allocations, GC : le vocabulaire change, les problèmes (fuite, fragmentation, cache miss) sont identiques en Java, Go, Rust, Python.
+> **Principe universel derrière** : mémoire, allocations, GC : le vocabulaire change, les problèmes (fuite, fragmentation, cache miss) sont identiques en Java, Go, Rust, Python.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : MEMORY & PERFORMANCE
 
@@ -36,11 +35,11 @@ Le piège de la copie surface/profondeur est différent mais tout aussi discret 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-boucle imbriquée sur une grande liste      --> O(n²)            --> lenteur qui explose avec le volume
-listener jamais retiré (event listener)    --> référence bloquée --> fuite mémoire progressive
-objet partagé copié en surface             --> shallow copy      --> mutation qui fuit ailleurs
-animation ou scroll qui lag                --> Core Web Vitals   --> UX dégradée (LCP, INP, CLS)
-budget de performance non respecté en CI   --> régression silencieuse --> app de plus en plus lente
+boucle imbriquée sur une grande liste   --> O(n²)      --> lenteur qui explose avec le volume
+listener jamais retiré (event listener)  --> référence bloquée --> fuite mémoire progressive
+objet partagé copié en surface       --> shallow copy   --> mutation qui fuit ailleurs
+animation ou scroll qui lag        --> Core Web Vitals  --> UX dégradée (LCP, INP, CLS)
+budget de performance non respecté en CI  --> régression silencieuse --> app de plus en plus lente
 ```
 
 Chaque app qui grandit finit par rencontrer ce mur : ce qui fonctionnait à petite échelle ne fonctionne plus à grande échelle. Le seul moyen de le voir venir avant que les shinobis le découvrent, c'est de mesurer (profiling) et de comprendre la complexité de ce que tu écris.

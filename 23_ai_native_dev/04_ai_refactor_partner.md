@@ -1,7 +1,7 @@
 # L'IA EN SPARRING PARTNER : CHALLENGER, PAS REMPLAÇANT
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Le refactoring (restructuration du code sans changer son comportement) c'est l'exercice le plus risqué en dev. Tu touches du code qui fonctionne. Une erreur et tu régresses. Faire ça seul c'est dur : t'as des angles morts sur ton propre code.
 
@@ -38,27 +38,27 @@ La règle : **tu restes le juge**. Elle propose, tu décides, tu comprends, tu t
 
 ```
 ÉTAPE 1 : Tests en place d'abord
-  --> JAMAIS de refactoring sans filet de sécurité
-  --> si t'as pas de tests, l'IA te génère les tests avant qu'on touche au code
+ --> JAMAIS de refactoring sans filet de sécurité
+ --> si t'as pas de tests, l'IA te génère les tests avant qu'on touche au code
 
 ÉTAPE 2 : Montre le code à l'IA
-  --> contexte : qu'est-ce que cette fonction est censée faire ?
-  --> objectif : qu'est-ce qui te choque dans ce code ?
+ --> contexte : qu'est-ce que cette fonction est censée faire ?
+ --> objectif : qu'est-ce qui te choque dans ce code ?
 
 ÉTAPE 3 : Demande un diagnostic, pas une solution
-  --> "Liste les problèmes que tu vois dans ce code. Ne réécris pas encore."
+ --> "Liste les problèmes que tu vois dans ce code. Ne réécris pas encore."
 
 ÉTAPE 4 : Évalue le diagnostic
-  --> est-ce que t'es d'accord ? qu'est-ce qu'elle a raté ? qu'est-ce qu'elle a vu que t'avais pas ?
+ --> est-ce que t'es d'accord ? qu'est-ce qu'elle a raté ? qu'est-ce qu'elle a vu que t'avais pas ?
 
 ÉTAPE 5 : Refactore un problème à la fois
-  --> "Résous seulement le problème X. Garde tout le reste identique."
+ --> "Résous seulement le problème X. Garde tout le reste identique."
 
 ÉTAPE 6 : Tests passent toujours
-  --> après chaque micro-refactoring : tes tests repassent. Si non : rollback immédiat.
+ --> après chaque micro-refactoring : tes tests repassent. Si non : rollback immédiat.
 
 ÉTAPE 7 : Comprends la différence
-  --> "Explique exactement ce que tu as changé et pourquoi c'est mieux."
+ --> "Explique exactement ce que tu as changé et pourquoi c'est mieux."
 ```
 
 ---
@@ -70,23 +70,23 @@ La plupart des devs demandent à l'IA de refactorer directement. Erreur. Demande
 ```js
 // Le code du camp de survie de Rick, version spaghetti
 function gererSurvivant(survivant, camp, config, db) {
-  if (survivant && survivant.competences && survivant.competences.length > 0) {
-    let score = 0
-    for (let i = 0; i < survivant.competences.length; i++) {
-      if (survivant.competences[i].active) {
-        score += survivant.competences[i].valeur * survivant.competences[i].niveau
-        if (survivant.rang === 'veteran') {
-          score = score * 1.3
-        }
-      }
+ if (survivant && survivant.competences && survivant.competences.length > 0) {
+  let score = 0
+  for (let i = 0; i < survivant.competences.length; i++) {
+   if (survivant.competences[i].active) {
+    score += survivant.competences[i].valeur * survivant.competences[i].niveau
+    if (survivant.rang === 'veteran') {
+     score = score * 1.3
     }
-    if (score > 0) {
-      db.survivants.insert({ campId: camp.id, score: score, date: new Date() })
-      config.notifService.send(camp.responsable, 'Survivant intégré', `Score : ${score}`)
-      return { succes: true, score: score }
-    }
+   }
   }
-  return { succes: false }
+  if (score > 0) {
+   db.survivants.insert({ campId: camp.id, score: score, date: new Date() })
+   config.notifService.send(camp.responsable, 'Survivant intégré', `Score : ${score}`)
+   return { succes: true, score: score }
+  }
+ }
+ return { succes: false }
 }
 ```
 
@@ -116,30 +116,30 @@ Une fois le diagnostic fait, on refactore en tranches. Chaque tranche change une
 ```js
 // ÉTAPE 1 : Extraire le calcul du score (SRP)
 function calculerScoreSurvivant(
-  competences: Competence[],
-  estVeteran: boolean
+ competences: Competence[],
+ estVeteran: boolean
 ): number {
-  const competencesActives = competences.filter(c => c.active)
+ const competencesActives = competences.filter(c => c.active)
 
-  const sousTotal = competencesActives.reduce(
-    (sum, c) => sum + c.valeur * c.niveau,
-    0
-  )
+ const sousTotal = competencesActives.reduce(
+  (sum, c) => sum + c.valeur * c.niveau,
+  0
+ )
 
-  // le bonus vétéran s'applique sur le total, pas sur chaque compétence
-  // c'est un bug fix ET un refactoring en même temps : à noter dans le commit
-  return estVeteran ? sousTotal * 1.3 : sousTotal
+ // le bonus vétéran s'applique sur le total, pas sur chaque compétence
+ // c'est un bug fix ET un refactoring en même temps : à noter dans le commit
+ return estVeteran ? sousTotal * 1.3 : sousTotal
 }
 
 // Test de ÉTAPE 1 avant de continuer
 test('calcule le score sans bonus', () => {
-  const competences = [{ valeur: 10, niveau: 2, active: true }]
-  expect(calculerScoreSurvivant(competences, false)).toBe(20)
+ const competences = [{ valeur: 10, niveau: 2, active: true }]
+ expect(calculerScoreSurvivant(competences, false)).toBe(20)
 })
 
 test('applique le bonus vétéran sur le total', () => {
-  const competences = [{ valeur: 10, niveau: 2, active: true }]
-  expect(calculerScoreSurvivant(competences, true)).toBeCloseTo(26, 1) // 20 * 1.3
+ const competences = [{ valeur: 10, niveau: 2, active: true }]
+ expect(calculerScoreSurvivant(competences, true)).toBeCloseTo(26, 1) // 20 * 1.3
 })
 
 // Les tests passent. On continue.
@@ -148,41 +148,41 @@ test('applique le bonus vétéran sur le total', () => {
 ```js
 // ÉTAPE 2 : Extraire la persistance (SRP + injectabilité)
 async function enregistrerSurvivant(
-  repository: SurvivantRepository,  // interface, pas l'objet db directement
-  campId: string,
-  score: number
+ repository: SurvivantRepository, // interface, pas l'objet db directement
+ campId: string,
+ score: number
 ): Promise<void> {
-  await repository.insert({ campId, score, date: new Date() })
+ await repository.insert({ campId, score, date: new Date() })
 }
 ```
 
 ```js
 // ÉTAPE 3 : La fonction principale devient un orchestrateur propre
 async function integrerSurvivant(
-  survivant: Survivant,
-  camp: Camp,
-  deps: { repository: SurvivantRepository; notifService: NotifService }
+ survivant: Survivant,
+ camp: Camp,
+ deps: { repository: SurvivantRepository; notifService: NotifService }
 ): Promise<ResultatIntegration> {
-  if (!survivant.competences?.length) {
-    return { succes: false, raison: 'Aucune compétence déclarée' }
-    // maintenant l'appelant sait pourquoi ça a raté
-  }
+ if (!survivant.competences?.length) {
+  return { succes: false, raison: 'Aucune compétence déclarée' }
+  // maintenant l'appelant sait pourquoi ça a raté
+ }
 
-  const score = calculerScoreSurvivant(survivant.competences, survivant.rang === 'veteran')
+ const score = calculerScoreSurvivant(survivant.competences, survivant.rang === 'veteran')
 
-  if (score === 0) {
-    return { succes: false, raison: 'Toutes les compétences sont inactives' }
-  }
+ if (score === 0) {
+  return { succes: false, raison: 'Toutes les compétences sont inactives' }
+ }
 
-  await enregistrerSurvivant(deps.repository, camp.id, score)
+ await enregistrerSurvivant(deps.repository, camp.id, score)
 
-  await deps.notifService.send(
-    camp.responsable,
-    'Survivant intégré',
-    `Score : ${score}`
-  )
+ await deps.notifService.send(
+  camp.responsable,
+  'Survivant intégré',
+  `Score : ${score}`
+ )
 
-  return { succes: true, score }
+ return { succes: true, score }
 }
 ```
 
@@ -197,27 +197,27 @@ Le code dupliqué (DRY : Don't Repeat Yourself) est difficile à voir quand t'es
 ```js
 // Tu montres ces deux fonctions à l'IA :
 function validerChimisteCuisinier(chimiste) {
-  if (!chimiste.nom || chimiste.nom.length < 2) {
-    throw new Error('Nom invalide')
-  }
-  if (!chimiste.specialite || chimiste.specialite.length < 3) {
-    throw new Error('Spécialité invalide')
-  }
-  if (chimiste.role !== 'cuisinier') {
-    throw new Error('Pas un cuisinier')
-  }
+ if (!chimiste.nom || chimiste.nom.length < 2) {
+  throw new Error('Nom invalide')
+ }
+ if (!chimiste.specialite || chimiste.specialite.length < 3) {
+  throw new Error('Spécialité invalide')
+ }
+ if (chimiste.role !== 'cuisinier') {
+  throw new Error('Pas un cuisinier')
+ }
 }
 
 function validerChimisteAssistant(chimiste) {
-  if (!chimiste.nom || chimiste.nom.length < 2) {
-    throw new Error('Nom invalide')
-  }
-  if (!chimiste.specialite || chimiste.specialite.length < 3) {
-    throw new Error('Spécialité invalide')
-  }
-  if (!['assistant', 'stagiaire'].includes(chimiste.role)) {
-    throw new Error('Rôle invalide')
-  }
+ if (!chimiste.nom || chimiste.nom.length < 2) {
+  throw new Error('Nom invalide')
+ }
+ if (!chimiste.specialite || chimiste.specialite.length < 3) {
+  throw new Error('Spécialité invalide')
+ }
+ if (!['assistant', 'stagiaire'].includes(chimiste.role)) {
+  throw new Error('Rôle invalide')
+ }
 }
 
 // Prompt :
@@ -237,20 +237,20 @@ L'IA ne peut pas :
 
 ```
 VOIR TON CONTEXTE BUSINESS
-  --> Elle ne sait pas que ce champ "status" peut avoir 12 valeurs dans ta logique métier
-  --> Elle va simplifier et casser quelque chose qui semblait évident
+ --> Elle ne sait pas que ce champ "status" peut avoir 12 valeurs dans ta logique métier
+ --> Elle va simplifier et casser quelque chose qui semblait évident
 
 COMPRENDRE TES CONTRAINTES HISTORIQUES
-  --> "On garde ce format bizarre pour compatibilité avec le système legacy"
-  --> L'IA va le "corriger" : c'est une régression déguisée en amélioration
+ --> "On garde ce format bizarre pour compatibilité avec le système legacy"
+ --> L'IA va le "corriger" : c'est une régression déguisée en amélioration
 
 SAVOIR CE QUI VA CHANGER DEMAIN
-  --> "Ce module va intégrer 3 autres services dans 2 sprints"
-  --> Elle va refactorer pour aujourd'hui. Toi tu penses à demain.
+ --> "Ce module va intégrer 3 autres services dans 2 sprints"
+ --> Elle va refactorer pour aujourd'hui. Toi tu penses à demain.
 
 GARANTIR QUE SON REFACTORING EST ÉQUIVALENT
-  --> Surtout sur du code avec des effets de bord complexes
-  --> Les tests sont le seul filet réel
+ --> Surtout sur du code avec des effets de bord complexes
+ --> Les tests sont le seul filet réel
 ```
 
 ---

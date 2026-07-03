@@ -13,16 +13,16 @@ Inconvénient : complexité ajoutée, et certains états (sessions, vu plus bas)
 ## 1) LE PRINCIPE : UN POINT D'ENTRÉE, PLUSIEURS SERVEURS DERRIÈRE
 
 ```
-                          +----------+
-         requête 1  ----> | Server A |
-                          +----------+
+             +----------+
+     requête 1 ----> | Server A |
+             +----------+
 USER --> LOAD BALANCER -->
-                          +----------+
-         requête 2  ----> | Server B |
-                          +----------+
-                          +----------+
-         requête 3  ----> | Server C |
-                          +----------+
+             +----------+
+     requête 2 ----> | Server B |
+             +----------+
+             +----------+
+     requête 3 ----> | Server C |
+             +----------+
 ```
 
 Le pourquoi : l'shinobi tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
@@ -33,9 +33,9 @@ const servers = ['10.0.0.1', '10.0.0.2', '10.0.0.3']
 let currentIndex = 0
 
 function pickServer() {
-  const server = servers[currentIndex]
-  currentIndex = (currentIndex + 1) % servers.length // boucle, jamais d'index hors limite
-  return server
+ const server = servers[currentIndex]
+ currentIndex = (currentIndex + 1) % servers.length // boucle, jamais d'index hors limite
+ return server
 }
 ```
 
@@ -67,14 +67,14 @@ Server C : [requête légère] [vide] [vide] --> sous-utilisé
 ```js
 // Chaque serveur a un compteur de connexions actives
 const servers = [
-  { ip: '10.0.0.1', activeConnections: 12 },
-  { ip: '10.0.0.2', activeConnections: 3 },
-  { ip: '10.0.0.3', activeConnections: 8 }
+ { ip: '10.0.0.1', activeConnections: 12 },
+ { ip: '10.0.0.2', activeConnections: 3 },
+ { ip: '10.0.0.3', activeConnections: 8 }
 ]
 
 function pickServer() {
-  // on trie et on prend celui qui a le moins de connexions ouvertes en ce moment
-  return servers.reduce((min, s) => s.activeConnections < min.activeConnections ? s : min)
+ // on trie et on prend celui qui a le moins de connexions ouvertes en ce moment
+ return servers.reduce((min, s) => s.activeConnections < min.activeConnections ? s : min)
 }
 ```
 
@@ -83,8 +83,8 @@ Le pourquoi : contrairement à round-robin, cet algo regarde l'état RÉEL du sy
 ```
 LEAST CONNECTIONS, contrairement à round-robin :
 Server A (12 connexions actives) --> évité temporairement
-Server B (3 connexions actives)  --> reçoit la prochaine requête
-Server C (8 connexions actives)  --> en attente de son tour
+Server B (3 connexions actives) --> reçoit la prochaine requête
+Server C (8 connexions actives) --> en attente de son tour
 ```
 
 Le quand : utile dès que tes requêtes ont des durées très variables (certaines rapides, certaines lourdes). Round-robin suffit quand tes requêtes sont globalement homogènes en coût.
@@ -128,12 +128,12 @@ N'importe quel serveur peut traiter N'IMPORTE QUELLE requête de N'IMPORTE QUEL 
 ```js
 // Le load balancer interroge périodiquement chaque serveur
 async function healthCheck(server) {
-  try {
-    const res = await fetch(`http://${server.ip}/health`, { timeout: 2000 })
-    return res.status === 200
-  } catch {
-    return false // pas de réponse = serveur considéré mort
-  }
+ try {
+  const res = await fetch(`http://${server.ip}/health`, { timeout: 2000 })
+  return res.status === 200
+ } catch {
+  return false // pas de réponse = serveur considéré mort
+ }
 }
 
 // toutes les X secondes, le load balancer retire les serveurs en échec de la rotation

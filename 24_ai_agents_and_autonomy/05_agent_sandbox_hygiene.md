@@ -20,9 +20,9 @@ haine, sans intention : juste par cohérence avec une consigne mal bornée.
 ## Le principe : capabilities, pas confiance
 
 ```
-Confiance                       Capability
----------                       ----------
-"je fais confiance à l'agent"   "l'agent ne PEUT PAS faire X, même s'il veut"
+Confiance            Capability
+---------            ----------
+"je fais confiance à l'agent"  "l'agent ne PEUT PAS faire X, même s'il veut"
 ```
 
 En pratique :

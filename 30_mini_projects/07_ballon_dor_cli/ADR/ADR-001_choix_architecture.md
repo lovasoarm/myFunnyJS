@@ -13,13 +13,13 @@ Le projet est un outil CLI Node.js. Il couvre `16_runtime_env` (process.argv, fi
 Les votes sont persistés dans `data/votes.json`, un fichier JSON structuré lu et écrit via `fs.readFileSync`/`fs.writeFileSync`. Chaque écriture est atomique : on écrit dans un fichier temporaire `data/votes.tmp.json`, puis on renomme (`fs.renameSync`) vers `data/votes.json`. Le renommage est atomique sur la plupart des systèmes de fichiers UNIX : pas de fenêtre de corruption partielle.
 
 ```
-data/votes.json  --> { "Mbappé": 12, "Haaland": 9, "Bellingham": 7, ... }
+data/votes.json --> { "Mbappé": 12, "Haaland": 9, "Bellingham": 7, ... }
 
 Cycle de lecture-écriture :
-1. fs.readFileSync('data/votes.json')   --> charger l'état actuel
+1. fs.readFileSync('data/votes.json')  --> charger l'état actuel
 2. modifier les votes en mémoire
 3. fs.writeFileSync('data/votes.tmp.json', JSON.stringify(newState))
-4. fs.renameSync('data/votes.tmp.json', 'data/votes.json')  --> atomique
+4. fs.renameSync('data/votes.tmp.json', 'data/votes.json') --> atomique
 ```
 
 Les Worker Threads (module 15) servent uniquement aux simulations de vote massif (`cli.js simulate --count 10000`) : la simulation est CPU-bound et peut paralléliser sans risque car elle écrit dans un buffer en mémoire, pas directement dans le fichier.

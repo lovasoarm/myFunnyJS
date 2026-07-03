@@ -16,10 +16,10 @@ Savoir pourquoi un objet partagé entre deux modules vient de niquer ton état g
 MyFunnyJS construit quatre capacités. Pas quatre listes de méthodes. Quatre façons de penser.
 
 ```
-Axe 1   RUNTIME         comprendre ce que la machine fait vraiment
-Axe 2   LECTURE         lire un code inconnu sans avoir besoin de le réécrire
-Axe 3   DEBUG           formuler une hypothèse, la prouver, corriger juste
-Axe 4   ARCHITECTURE    choisir une structure adaptée au problème, pas à la mode
+Axe 1  RUNTIME     comprendre ce que la machine fait vraiment
+Axe 2  LECTURE     lire un code inconnu sans avoir besoin de le réécrire
+Axe 3  DEBUG      formuler une hypothèse, la prouver, corriger juste
+Axe 4  ARCHITECTURE  choisir une structure adaptée au problème, pas à la mode
 ```
 
 Chaque axe a 4 niveaux. Pas pour te flatter. Pour te situer.
@@ -32,10 +32,10 @@ Le runtime (moteur d'exécution), c'est ce qui tourne sous ton code pendant que 
 Tant que tu le vois pas, tu codes à l'aveugle : ton code marche par chance, pas par compréhension.
 
 ```
-N1   Tu sais que JS exécute ligne par ligne, mais l'event loop c'est encore flou
-N2   Tu sais expliquer pourquoi un setTimeout(fn, 0) passe après le code synchrone
-N3   Tu sais tracer microtasks vs macrotasks sans te planter sur l'ordre
-N4   Tu sais lire un flamegraph et dire où le CPU part en fumée
+N1  Tu sais que JS exécute ligne par ligne, mais l'event loop c'est encore flou
+N2  Tu sais expliquer pourquoi un setTimeout(fn, 0) passe après le code synchrone
+N3  Tu sais tracer microtasks vs macrotasks sans te planter sur l'ordre
+N4  Tu sais lire un flamegraph et dire où le CPU part en fumée
 ```
 
 **Modules qui construisent cet axe :** `03_async` (event loop, callbacks, promises), `08_memory_performance` (GC, profiling), `15_runtime_env` (Node vs navigateur).
@@ -60,10 +60,10 @@ Si tu hésites entre B et C : t'es encore en N1-N2. Si tu réponds A, D, C, B di
 Lire du code, c'est invisible. Personne te demande "t'as bien lu ?". Et pourtant 80% du métier, c'est lire du code que t'as pas écrit.
 
 ```
-N1   Tu lis un fichier isolé et tu comprends ce qu'il fait
-N2   Tu suis une donnée à travers 3-4 fichiers sans te perdre
-N3   Tu repères la zone à risque dans un module avant de le toucher
-N4   Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
+N1  Tu lis un fichier isolé et tu comprends ce qu'il fait
+N2  Tu suis une donnée à travers 3-4 fichiers sans te perdre
+N3  Tu repères la zone à risque dans un module avant de le toucher
+N4  Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
 ```
 
 **Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `28_team_craft` (navigation de codebase).
@@ -80,10 +80,10 @@ Le mauvais réflexe : ajouter des `console.log` partout et espérer voir le bug 
 Le bon réflexe : formuler ce que tu penses qui se passe, vérifier un seul point, confirmer ou rejeter.
 
 ```
-N1   Tu trouves le bug en mettant des console.log un peu partout, par tâtonnement
-N2   Tu formules une hypothèse avant de toucher au debugger
-N3   Tu sais isoler la cause avec un seul test ciblé, pas une fouille générale
-N4   Tu débuggue en prod sans reproduire localement (logs, snapshots, feature flags)
+N1  Tu trouves le bug en mettant des console.log un peu partout, par tâtonnement
+N2  Tu formules une hypothèse avant de toucher au debugger
+N3  Tu sais isoler la cause avec un seul test ciblé, pas une fouille générale
+N4  Tu débuggue en prod sans reproduire localement (logs, snapshots, feature flags)
 ```
 
 **Modules qui construisent cet axe :** `05_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `27_observability` (debug en prod).
@@ -99,10 +99,10 @@ Si t'arrives à l'écrire avant de chercher : N2. Si ton hypothèse était juste
 N'importe qui peut copier un pattern vu sur un blog. La vraie compétence, c'est savoir pourquoi celui-là et pas un autre, ici, maintenant.
 
 ```
-N1   Tu connais les patterns par leur nom (Factory, Observer, Singleton)
-N2   Tu sais dire pourquoi un pattern précis résout un problème précis
-N3   Tu sais refuser un pattern parce qu'il complique plus qu'il résout
-N4   Tu conçois une architecture from scratch et tu anticipes ce qui va casser dans 6 mois
+N1  Tu connais les patterns par leur nom (Factory, Observer, Singleton)
+N2  Tu sais dire pourquoi un pattern précis résout un problème précis
+N3  Tu sais refuser un pattern parce qu'il complique plus qu'il résout
+N4  Tu conçois une architecture from scratch et tu anticipes ce qui va casser dans 6 mois
 ```
 
 **Modules qui construisent cet axe :** `12_design_patterns`, `13_refactoring`, `16_architecture_patterns`.
@@ -121,10 +121,10 @@ Un dev solide est rarement N4 partout. Un dev qui code l'archi d'un système dis
 Ce qui compte : savoir où sont tes trous, pas viser le 4/4/4/4.
 
 ```
-PROFIL TYPIQUE D'UN JUNIOR        Runtime N1   Lecture N1   Debug N1   Architecture N1
-PROFIL TYPIQUE APRÈS 01-08        Runtime N2   Lecture N2   Debug N2   Architecture N1
-PROFIL TYPIQUE APRÈS 09-15        Runtime N2   Lecture N2   Debug N2   Architecture N3
-PROFIL TYPIQUE APRÈS 22-29        Runtime N3   Lecture N3   Debug N3   Architecture N3
+PROFIL TYPIQUE D'UN JUNIOR    Runtime N1  Lecture N1  Debug N1  Architecture N1
+PROFIL TYPIQUE APRÈS 01-08    Runtime N2  Lecture N2  Debug N2  Architecture N1
+PROFIL TYPIQUE APRÈS 09-15    Runtime N2  Lecture N2  Debug N2  Architecture N3
+PROFIL TYPIQUE APRÈS 22-29    Runtime N3  Lecture N3  Debug N3  Architecture N3
 ```
 
 Ces profils sont des repères, pas des objectifs à cocher. Si t'es Runtime N3 dès le module 04 parce que t'as déjà fait du Node avant : tant mieux, avance.
@@ -157,30 +157,30 @@ savoir pourquoi elle compte. Et un truc appris sans raison s'oublie vite.
 T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer. Donc :
 
 - **Un module à la fois, jusqu'au bout.** Pas trois modules en parallèle "pour varier".
-  Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui
-  en termine un avant d'ouvrir le suivant.
+ Le cerveau qui jongle entre plusieurs sujets non finis retient moins bien que celui qui
+ en termine un avant d'ouvrir le suivant.
 - **Le grimoire en fin de module, c'est ton check de compréhension.** Si tu le lis et que
-  des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
-  Grave de continuer en faisant semblant d'avoir compris.
+ des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
+ Grave de continuer en faisant semblant d'avoir compris.
 - **Les mini-projets (`31_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
-  isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
-  savoir qui ne se connectent pas entre eux.
+ isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
+ savoir qui ne se connectent pas entre eux.
 - **Stagner sur un concept, c'est normal.** Closures, event loop, prototype chain : tout le
-  monde galère dessus la première fois. Le `02_scope/03_scope_escape_room.md` et compagnie
-  sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
-  deux essais.
+ monde galère dessus la première fois. Le `02_scope/03_scope_escape_room.md` et compagnie
+ sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
+ deux essais.
 - **`03_WHERE_YOU_STAND.md` n'est pas un quiz à remplir.** C'est
-  une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
-  (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
-  ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
-  sinon les 4 axes te parlent encore de rien de concret.
+ une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
+ (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
+ ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,
+ sinon les 4 axes te parlent encore de rien de concret.
 - **L'event loop, le call stack, le cycle HTTP : tu vas les croiser dans plusieurs modules.**
-  `32_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
-  une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
-  c'est voulu.
+ `32_annexes/01_ascii_charte.md` regroupe les 8 schémas canoniques. Même schéma partout, pas
+ une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
+ c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
-  `32_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
-  fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
+ `32_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
+ fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)
 
@@ -188,13 +188,13 @@ Tous les modules ne se valent pas en charge cognitive. Ceux-là méritent plus d
 une lecture en diagonale :
 
 ```
-03_async              =>  l'event loop tord le cerveau la première fois, c'est normal
-08_memory_performance =>  beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
-09_data_structures    =>  10_algorithms en dépend direct, bâcler l'un casse l'autre
-14_typescript         =>  le système de types a son propre raisonnement, différent de JS
+03_async       => l'event loop tord le cerveau la première fois, c'est normal
+08_memory_performance => beaucoup de mécanique invisible (GC, profiling) à visualiser sans la voir tourner
+09_data_structures  => 10_algorithms en dépend direct, bâcler l'un casse l'autre
+14_typescript     => le système de types a son propre raisonnement, différent de JS
 16_architecture_patterns => abstrait par nature, les exemples concrets sont indispensables ici
-22_security           =>  chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
-30_oop_js             =>  la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
+22_security      => chaque sous-thème (XSS, CSRF, auth) est dense seul, ne pas les fusionner
+30_oop_js       => la chaîne de prototype clarifie tout, mais seulement si tu ne la survoles pas
 ```
 
 Sur ces modules-là : ralentis. Fais les trois niveaux d'exemple (minimal, réaliste, qui casse)
@@ -203,11 +203,11 @@ sans en sauter un. C'est exactement là que se joue la différence entre "j'ai l
 ### Temps estimé (ordre de grandeur, pas un chronomètre)
 
 ```
-01-06   Fondamentaux              =>  le socle, prends ton temps, tout le reste s'appuie dessus
-07-13   Structures et pratiques   =>  bloc dense, data structures + algos + TS demandent de la pratique répétée
-14-21   Système web complet       =>  large mais plus horizontal, beaucoup de modules courts et ciblés
-22-27   Ingénierie senior         =>  plus rapide à lire, mais demande déjà les blocs précédents pour faire sens
-29      Mini-projets               =>  le vrai test : ça prend autant de temps que tu acceptes d'y mettre
+01-06  Fondamentaux       => le socle, prends ton temps, tout le reste s'appuie dessus
+07-13  Structures et pratiques  => bloc dense, data structures + algos + TS demandent de la pratique répétée
+14-21  Système web complet    => large mais plus horizontal, beaucoup de modules courts et ciblés
+22-27  Ingénierie senior     => plus rapide à lire, mais demande déjà les blocs précédents pour faire sens
+29   Mini-projets        => le vrai test : ça prend autant de temps que tu acceptes d'y mettre
 ```
 
 Pas de nombre d'heures donné ici : ça dépend trop de ton rythme, de ton niveau de départ, et

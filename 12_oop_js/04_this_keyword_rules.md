@@ -7,10 +7,10 @@ Temps de lecture ~7 min
 
 ```js
 const ninja = {
-  nom: "Naruto",
-  presenter() {
-    return `Je suis ${this.nom}`;
-  }
+ nom: "Naruto",
+ presenter() {
+  return `Je suis ${this.nom}`;
+ }
 };
 
 ninja.presenter(); // "Je suis Naruto" : this = ninja, l'objet avant le point
@@ -35,12 +35,12 @@ setTimeout(ninja.presenter, 1000); // même bug : presenter perd son "this"
 
 ```js
 const ninja2 = {
-  nom: "Sasuke",
-  presenterDans: function() {
-    setTimeout(() => {
-      console.log(`Je suis ${this.nom}`); // "Je suis Sasuke"
-    }, 1000);
-  }
+ nom: "Sasuke",
+ presenterDans: function() {
+  setTimeout(() => {
+   console.log(`Je suis ${this.nom}`); // "Je suis Sasuke"
+  }, 1000);
+ }
 };
 
 ninja2.presenterDans();
@@ -50,10 +50,10 @@ Une arrow function ne définit jamais son propre `this`. Elle va chercher le `th
 
 ```js
 const ninja3 = {
-  nom: "Sakura",
-  presenterCasse: () => {
-    console.log(`Je suis ${this.nom}`); // undefined : this vient du scope global ici, pas de ninja3
-  }
+ nom: "Sakura",
+ presenterCasse: () => {
+  console.log(`Je suis ${this.nom}`); // undefined : this vient du scope global ici, pas de ninja3
+ }
 };
 
 ninja3.presenterCasse(); // "Je suis undefined"
@@ -65,13 +65,13 @@ Une arrow function définie directement comme méthode d'un objet littéral ne c
 
 ```js
 class Bouton {
-  constructor(nom) {
-    this.nom = nom;
-  }
+ constructor(nom) {
+  this.nom = nom;
+ }
 
-  onClick() {
-    console.log(`${this.nom} cliqué`);
-  }
+ onClick() {
+  console.log(`${this.nom} cliqué`);
+ }
 }
 
 const bouton = new Bouton("Activer le Rasengan");
@@ -84,11 +84,11 @@ document.querySelector("#btn").addEventListener("click", bouton.onClick);
 
 ```
 écriture du code : bouton.onClick semble "lié" à bouton
-        |
-        v
+    |
+    v
 exécution réelle au clic : onClick appelée seule, this perdu
-        |
-        v
+    |
+    v
 this.nom --> undefined.nom --> crash ou résultat faux
 ```
 
@@ -97,10 +97,10 @@ this.nom --> undefined.nom --> crash ou résultat faux
 ```js
 // 1. arrow function dans le constructeur (this figé à la création de l'instance)
 class BoutonA {
-  constructor(nom) {
-    this.nom = nom;
-    this.onClick = () => console.log(`${this.nom} cliqué`);
-  }
+ constructor(nom) {
+  this.nom = nom;
+  this.onClick = () => console.log(`${this.nom} cliqué`);
+ }
 }
 
 // 2. bind explicite (vu en détail au fichier 05)

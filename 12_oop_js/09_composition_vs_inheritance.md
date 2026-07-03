@@ -7,19 +7,19 @@ Le fichier 06 a montré le piège des hiérarchies profondes. Ce fichier répond
 
 ```js
 class Horror {
-  constructor(nom) {
-    this.nom = nom;
-  }
+ constructor(nom) {
+  this.nom = nom;
+ }
 
-  apparaitre() {
-    return `${this.nom} surgit de l'ombre`;
-  }
+ apparaitre() {
+  return `${this.nom} surgit de l'ombre`;
+ }
 }
 
 class HorrorAlpha extends Horror {
-  devorer() {
-    return `${this.nom} devore sa cible`;
-  }
+ devorer() {
+  return `${this.nom} devore sa cible`;
+ }
 }
 ```
 
@@ -29,22 +29,22 @@ class HorrorAlpha extends Horror {
 
 ```js
 const peutVoler = {
-  voler() {
-    return `${this.nom} s'envole`;
-  }
+ voler() {
+  return `${this.nom} s'envole`;
+ }
 };
 
 const peutNager = {
-  nager() {
-    return `${this.nom} plonge sous l'eau`;
-  }
+ nager() {
+  return `${this.nom} plonge sous l'eau`;
+ }
 };
 
 class HorrorAmphibie {
-  constructor(nom) {
-    this.nom = nom;
-    Object.assign(this, peutVoler, peutNager); // composition : possède ces capacités
-  }
+ constructor(nom) {
+  this.nom = nom;
+  Object.assign(this, peutVoler, peutNager); // composition : possède ces capacités
+ }
 }
 
 const titan = new HorrorAmphibie("Titan des Abysses");
@@ -57,13 +57,13 @@ titan.nager(); // "Titan des Abysses plonge sous l'eau"
 ## 3) LE TEST QUI TRANCHE : "IS-A" OU "HAS-A" ?
 
 ```
-Un Carré EST une Forme               -->  is-a, extends légitime
-Un Carré A une Couleur               -->  has-a, composition (propriété, pas héritage)
+Un Carré EST une Forme        --> is-a, extends légitime
+Un Carré A une Couleur        --> has-a, composition (propriété, pas héritage)
 
-Un ChevalierGaro EST un Chevalier     -->  is-a, extends légitime
-Un ChevalierGaro A une ArmureDeFeu    -->  has-a, composition
+Un ChevalierGaro EST un Chevalier   --> is-a, extends légitime
+Un ChevalierGaro A une ArmureDeFeu  --> has-a, composition
 
-Un AdminUser EST un User              -->  is-a, parfois légitime, parfois piège (voir section 5)
+Un AdminUser EST un User       --> is-a, parfois légitime, parfois piège (voir section 5)
 ```
 
 Si tu hésites entre les deux mots en français pour décrire la relation, c'est souvent le signal que tu es en train de forcer un `extends` là où une simple propriété aurait suffi.
@@ -72,21 +72,21 @@ Si tu hésites entre les deux mots en français pour décrire la relation, c'est
 
 ```js
 const Combattant = (Base) => class extends Base {
-  attaquer() {
-    return `${this.nom} attaque`;
-  }
+ attaquer() {
+  return `${this.nom} attaque`;
+ }
 };
 
 const Soigneur = (Base) => class extends Base {
-  soigner(cible) {
-    return `${this.nom} soigne ${cible}`;
-  }
+ soigner(cible) {
+  return `${this.nom} soigne ${cible}`;
+ }
 };
 
 class Entite {
-  constructor(nom) {
-    this.nom = nom;
-  }
+ constructor(nom) {
+  this.nom = nom;
+ }
 }
 
 class Paladin extends Combattant(Soigneur(Entite)) {}
@@ -102,13 +102,13 @@ Un mixin (fonction qui prend une classe et retourne une classe étendue) permet 
 
 ```js
 class Oiseau {
-  voler() {
-    return `${this.nom} s'envole`;
-  }
+ voler() {
+  return `${this.nom} s'envole`;
+ }
 }
 
 class Pingouin extends Oiseau {
-  // un pingouin EST un oiseau... mais ne vole pas
+ // un pingouin EST un oiseau... mais ne vole pas
 }
 
 const pingu = new Pingouin();
@@ -120,13 +120,13 @@ Biologiquement, un pingouin EST un oiseau. Mais dans ce modèle de code, `Oiseau
 
 ```
 hiérarchie pensée à la création :
-   Oiseau --> tous volent
+  Oiseau --> tous volent
 
 réalité qui arrive plus tard :
-   Pingouin extends Oiseau, mais ne vole pas
-   Autruche extends Oiseau, mais ne vole pas non plus
-        |
-        v
+  Pingouin extends Oiseau, mais ne vole pas
+  Autruche extends Oiseau, mais ne vole pas non plus
+    |
+    v
 chaque nouveau cas force soit un mensonge (override qui annule le comportement),
 soit un if() qui vérifie le type avant d'appeler voler()
 ```

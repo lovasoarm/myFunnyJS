@@ -1,4 +1,4 @@
-#  _recall_15.md : modules 11–15
+# _recall_15.md : modules 11–15
 Temps de lecture ~5 min
 
 > Rappel espacé. Réponds **sans revoir les fichiers**. Note ton score.
@@ -43,14 +43,14 @@ Parmi les décisions prises dans les modules précédents (ou dans tes mini-proj
 
 ---
 
-##  EXERCICE DE TRANSFERT
+## EXERCICE DE TRANSFERT
 
 Prends UN concept clé de ce module. Réécris son fonctionnement en pseudo-code, puis dans un autre langage que JS (Python, Go, Rust au choix). But : prouver que ta compréhension n'est pas syntaxique.
 
 Livrable : un fichier `transfert_<concept>.md` dans ton dépôt.
 
 
-##  REMISE EN CAUSE
+## REMISE EN CAUSE
 
 **Quelle croyance technique avais-tu il y a quelques modules qui a changé aujourd'hui ?**
 

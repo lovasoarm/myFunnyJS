@@ -7,10 +7,10 @@ Objectif P6 : montrer que ta méthode MyFunnyJS survit au changement de langage.
 ```rust
 // pseudo-code
 async fn main() {
-    spawn(async { println!("A"); });
-    println!("B");
-    yield_now().await;
-    println!("C");
+  spawn(async { println!("A"); });
+  println!("B");
+  yield_now().await;
+  println!("C");
 }
 ```
 

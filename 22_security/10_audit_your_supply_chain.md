@@ -11,14 +11,14 @@ Un dev qui n'inspecte pas ses `node_modules` empoisonnera sa boîte à la premi�
 1. `npm audit --production` → note nombre de vulnérabilités par sévérité.
 2. `npm ls --all | wc -l` → nombre total de packages transitifs (souvent > 500).
 3. Choisis 3 dépendances directes de ton `package.json`. Pour chacune :
-   - qui est le mainteneur ? (github handle, dernière activité)
-   - poids réel installé (`du -sh node_modules/<pkg>`)
-   - présence d'un script `postinstall` (`node -e "console.log(require('./node_modules/<pkg>/package.json').scripts)"`)
+  - qui est le mainteneur ? (github handle, dernière activité)
+  - poids réel installé (`du -sh node_modules/<pkg>`)
+  - présence d'un script `postinstall` (`node -e "console.log(require('./node_modules/<pkg>/package.json').scripts)"`)
 4. Génère un SBOM CycloneDX :
-   `npx @cyclonedx/cyclonedx-npm --output-file sbom.json`
+  `npx @cyclonedx/cyclonedx-npm --output-file sbom.json`
 5. Ajoute dans ton `DEPENDENCY_LEDGER.md` une section "Supply chain check" avec
-   date, résultats, décisions prises (retirer un package, épingler une version,
-   remplacer par une alternative plus légère).
+  date, résultats, décisions prises (retirer un package, épingler une version,
+  remplacer par une alternative plus légère).
 
 ---
 

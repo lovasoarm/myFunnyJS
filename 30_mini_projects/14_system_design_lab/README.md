@@ -13,9 +13,9 @@ Deux services qui se parlent via une queue, avec retry, idempotence et tracing. 
 Tu construis un mini-écosystème :
 
 ```
-   [ API-Front ] ──HTTP──► [ Broker (Redis/RabbitMQ) ] ──► [ Worker ]
-        ▲                                                       │
-        └─────────────── tracing (OpenTelemetry) ◄──────────────┘
+  [ API-Front ] ──HTTP──► [ Broker (Redis/RabbitMQ) ] ──► [ Worker ]
+    ▲                            │
+    └─────────────── tracing (OpenTelemetry) ◄──────────────┘
 ```
 
 Contraintes non négociables :

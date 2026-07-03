@@ -14,13 +14,13 @@ Prérequis : graphes (`09_data_structures/08_graphs`), heaps (`09_data_structure
 Dijkstra est un greedy sur un graphe. À chaque étape, on traite le noeud non visité le plus proche du départ. Pourquoi c'est optimal ? Parce qu'avec des poids positifs, un chemin déjà trouvé vers un noeud ne peut qu'empirer si on passe par d'autres noeuds non visités. Le noeud le plus proche est définitivement réglé.
 
 ```
-               2         4
-    [A] ──────── [B] ──────── [D]
-     |            |
-   5 |          3 |
-     |            |
-    [C] ──────── [E]
-          1
+        2     4
+  [A] ──────── [B] ──────── [D]
+   |      |
+  5 |     3 |
+   |      |
+  [C] ──────── [E]
+     1
 ```
 
 Depuis A : dist[A]=0, dist[B]=2, dist[C]=5, dist[D]=6, dist[E]=5.
@@ -34,94 +34,94 @@ La clé de performance : utiliser une priority queue (min-heap) pour toujours tr
 
 ```js
 class MinHeap {
-  constructor() { this.heap = [] }
+ constructor() { this.heap = [] }
 
-  push(item) {
-    this.heap.push(item)
-    this._bubbleUp(this.heap.length - 1)
+ push(item) {
+  this.heap.push(item)
+  this._bubbleUp(this.heap.length - 1)
+ }
+
+ pop() {
+  const top = this.heap[0]
+  const last = this.heap.pop()
+  if (this.heap.length > 0) {
+   this.heap[0] = last
+   this._sinkDown(0)
   }
+  return top
+ }
 
-  pop() {
-    const top = this.heap[0]
-    const last = this.heap.pop()
-    if (this.heap.length > 0) {
-      this.heap[0] = last
-      this._sinkDown(0)
-    }
-    return top
+ get size() { return this.heap.length }
+
+ _bubbleUp(i) {
+  while (i > 0) {
+   const parent = Math.floor((i - 1) / 2)
+   if (this.heap[parent][0] <= this.heap[i][0]) break
+   ;[this.heap[parent], this.heap[i]] = [this.heap[i], this.heap[parent]]
+   i = parent
   }
+ }
 
-  get size() { return this.heap.length }
-
-  _bubbleUp(i) {
-    while (i > 0) {
-      const parent = Math.floor((i - 1) / 2)
-      if (this.heap[parent][0] <= this.heap[i][0]) break
-      ;[this.heap[parent], this.heap[i]] = [this.heap[i], this.heap[parent]]
-      i = parent
-    }
+ _sinkDown(i) {
+  const n = this.heap.length
+  while (true) {
+   let smallest = i
+   const l = 2 * i + 1, r = 2 * i + 2
+   if (l < n && this.heap[l][0] < this.heap[smallest][0]) smallest = l
+   if (r < n && this.heap[r][0] < this.heap[smallest][0]) smallest = r
+   if (smallest === i) break
+   ;[this.heap[smallest], this.heap[i]] = [this.heap[i], this.heap[smallest]]
+   i = smallest
   }
-
-  _sinkDown(i) {
-    const n = this.heap.length
-    while (true) {
-      let smallest = i
-      const l = 2 * i + 1, r = 2 * i + 2
-      if (l < n && this.heap[l][0] < this.heap[smallest][0]) smallest = l
-      if (r < n && this.heap[r][0] < this.heap[smallest][0]) smallest = r
-      if (smallest === i) break
-      ;[this.heap[smallest], this.heap[i]] = [this.heap[i], this.heap[smallest]]
-      i = smallest
-    }
-  }
+ }
 }
 
 function dijkstra(graph, start) {
-  // graph : Map<node, Array<[neighbor, weight]>>
-  const dist = new Map()
-  const prev = new Map() // pour reconstruire le chemin
-  const pq = new MinHeap()
+ // graph : Map<node, Array<[neighbor, weight]>>
+ const dist = new Map()
+ const prev = new Map() // pour reconstruire le chemin
+ const pq = new MinHeap()
 
-  // initialiser toutes les distances à Infinity
-  for (const node of graph.keys()) {
-    dist.set(node, Infinity)
-    prev.set(node, null)
+ // initialiser toutes les distances à Infinity
+ for (const node of graph.keys()) {
+  dist.set(node, Infinity)
+  prev.set(node, null)
+ }
+
+ dist.set(start, 0)
+ pq.push([0, start]) // [distance, node]
+
+ while (pq.size > 0) {
+  const [currDist, node] = pq.pop()
+
+  // si on a déjà trouvé un chemin plus court : ignorer
+  if (currDist > dist.get(node)) continue
+
+  for (const [neighbor, weight] of (graph.get(node) || [])) {
+   const newDist = currDist + weight
+
+   if (newDist < dist.get(neighbor)) {
+    dist.set(neighbor, newDist)
+    prev.set(neighbor, node)
+    pq.push([newDist, neighbor])
+   }
   }
+ }
 
-  dist.set(start, 0)
-  pq.push([0, start]) // [distance, node]
-
-  while (pq.size > 0) {
-    const [currDist, node] = pq.pop()
-
-    // si on a déjà trouvé un chemin plus court : ignorer
-    if (currDist > dist.get(node)) continue
-
-    for (const [neighbor, weight] of (graph.get(node) || [])) {
-      const newDist = currDist + weight
-
-      if (newDist < dist.get(neighbor)) {
-        dist.set(neighbor, newDist)
-        prev.set(neighbor, node)
-        pq.push([newDist, neighbor])
-      }
-    }
-  }
-
-  return { dist, prev }
+ return { dist, prev }
 }
 
 // Reconstruire le chemin depuis start vers target
 function getPath(prev, start, target) {
-  const path = []
-  let current = target
+ const path = []
+ let current = target
 
-  while (current !== null) {
-    path.unshift(current)
-    current = prev.get(current)
-  }
+ while (current !== null) {
+  path.unshift(current)
+  current = prev.get(current)
+ }
 
-  return path[0] === start ? path : [] // pas de chemin si le départ n'est pas là
+ return path[0] === start ? path : [] // pas de chemin si le départ n'est pas là
 }
 ```
 
@@ -132,13 +132,13 @@ function getPath(prev, start, target) {
 ```js
 // Réseau de distribution de Walter : villes et temps de trajet (en minutes)
 const network = new Map([
-  ["ABQ", [["Santa Fe", 60], ["El Paso", 280], ["Tucson", 420]]],
-  ["Santa Fe", [["ABQ", 60], ["Denver", 390]]],
-  ["El Paso", [["ABQ", 280], ["Tucson", 280], ["Phoenix", 430]]],
-  ["Tucson", [["ABQ", 420], ["El Paso", 280], ["Phoenix", 115]]],
-  ["Phoenix", [["Tucson", 115], ["El Paso", 430], ["Las Vegas", 290]]],
-  ["Denver", [["Santa Fe", 390], ["Las Vegas", 750]]],
-  ["Las Vegas", [["Phoenix", 290], ["Denver", 750]]],
+ ["ABQ", [["Santa Fe", 60], ["El Paso", 280], ["Tucson", 420]]],
+ ["Santa Fe", [["ABQ", 60], ["Denver", 390]]],
+ ["El Paso", [["ABQ", 280], ["Tucson", 280], ["Phoenix", 430]]],
+ ["Tucson", [["ABQ", 420], ["El Paso", 280], ["Phoenix", 115]]],
+ ["Phoenix", [["Tucson", 115], ["El Paso", 430], ["Las Vegas", 290]]],
+ ["Denver", [["Santa Fe", 390], ["Las Vegas", 750]]],
+ ["Las Vegas", [["Phoenix", 290], ["Denver", 750]]],
 ])
 
 const { dist, prev } = dijkstra(network, "ABQ")
@@ -153,34 +153,34 @@ console.log(getPath(prev, "ABQ", "Las Vegas"))
 init : dist = {ABQ:0, tous:Inf}, pq = [(0, "ABQ")]
 
 Pop (0, ABQ) :
-  Santa Fe : 0+60=60 < Inf => dist[Santa Fe]=60, push (60, "Santa Fe")
-  El Paso  : 0+280=280 < Inf => dist[El Paso]=280, push (280, "El Paso")
-  Tucson   : 0+420=420 < Inf => dist[Tucson]=420, push (420, "Tucson")
+ Santa Fe : 0+60=60 < Inf => dist[Santa Fe]=60, push (60, "Santa Fe")
+ El Paso : 0+280=280 < Inf => dist[El Paso]=280, push (280, "El Paso")
+ Tucson  : 0+420=420 < Inf => dist[Tucson]=420, push (420, "Tucson")
 
 Pop (60, Santa Fe) :
-  ABQ     : 60+60=120 > dist[ABQ](0) => skip
-  Denver  : 60+390=450 < Inf => dist[Denver]=450, push (450, "Denver")
+ ABQ   : 60+60=120 > dist[ABQ](0) => skip
+ Denver : 60+390=450 < Inf => dist[Denver]=450, push (450, "Denver")
 
 Pop (280, El Paso) :
-  ABQ    : 280+280=560 > 0 => skip
-  Tucson : 280+280=560 > dist[Tucson](420) => skip
-  Phoenix: 280+430=710 < Inf => dist[Phoenix]=710... (sera amélioré plus tard)
+ ABQ  : 280+280=560 > 0 => skip
+ Tucson : 280+280=560 > dist[Tucson](420) => skip
+ Phoenix: 280+430=710 < Inf => dist[Phoenix]=710... (sera amélioré plus tard)
 
 Pop (420, Tucson) :
-  Phoenix: 420+115=535 < 710 => dist[Phoenix]=535, push (535, "Phoenix")
+ Phoenix: 420+115=535 < 710 => dist[Phoenix]=535, push (535, "Phoenix")
 
 Pop (450, Denver) :
-  Las Vegas : 450+750=1200 < Inf => ...
+ Las Vegas : 450+750=1200 < Inf => ...
 
 Pop (535, Phoenix) :
-  Las Vegas : 535+290=825 < 1200 => dist[Las Vegas]=825...
-  
+ Las Vegas : 535+290=825 < 1200 => dist[Las Vegas]=825...
+ 
 ... Mais El Paso → Tucson → Phoenix → Las Vegas = 280+280+115+290 = 965 ? 
-  Non : ABQ → El Paso → Tucson = 280+280=560 > ABQ → Santa Fe → ... 
-  Chemin optimal : ABQ(0) → El Paso(280) → Tucson(280+280=560)?
-  Non car dist[Tucson] = 420 via direct ABQ→Tucson, pas via El Paso.
-  Phoenix depuis Tucson : 420+115 = 535
-  Las Vegas depuis Phoenix : 535+290 = 825
+ Non : ABQ → El Paso → Tucson = 280+280=560 > ABQ → Santa Fe → ... 
+ Chemin optimal : ABQ(0) → El Paso(280) → Tucson(280+280=560)?
+ Non car dist[Tucson] = 420 via direct ABQ→Tucson, pas via El Paso.
+ Phoenix depuis Tucson : 420+115 = 535
+ Las Vegas depuis Phoenix : 535+290 = 825
 
 Résultat final dist[Las Vegas] = 825 (pas 695 comme montré ci-dessus)
 => l'exemple numérique est ce qu'il est, la trace confirme le mécanisme
@@ -191,11 +191,11 @@ Résultat final dist[Las Vegas] = 825 (pas 695 comme montré ci-dessus)
 ## 4) COMPLEXITÉ ET CHOIX DE STRUCTURE
 
 ```
-Implémentation           Complexité
+Implémentation      Complexité
 ─────────────────────────────────────
-Array trié (naïf)        O(V²)
-Binary heap (MinHeap)    O((V + E) log V)
-Fibonacci heap           O(V log V + E)
+Array trié (naïf)    O(V²)
+Binary heap (MinHeap)  O((V + E) log V)
+Fibonacci heap      O(V log V + E)
 ```
 
 En pratique : binary heap pour la majorité des cas. Fibonacci heap en théorie uniquement (complexe à implémenter, constants élevés).
@@ -205,7 +205,7 @@ V = nombre de noeuds (vertices)
 E = nombre d'arêtes (edges)
 
 Graphe dense (E ≈ V²) : array trié peut être compétitif
-Graphe sparse (E ≈ V)  : binary heap clairement meilleur
+Graphe sparse (E ≈ V) : binary heap clairement meilleur
 ```
 
 ---
@@ -216,10 +216,10 @@ Dijkstra **ne fonctionne pas** avec des poids négatifs. La preuve : avec un poi
 
 ```js
 const brokenGraph = new Map([
-  ["A", [["B", 4], ["C", 2]]],
-  ["B", [["D", -1]]],  // poids négatif
-  ["C", [["B", -3]]],  // poids négatif
-  ["D", []],
+ ["A", [["B", 4], ["C", 2]]],
+ ["B", [["D", -1]]], // poids négatif
+ ["C", [["B", -3]]], // poids négatif
+ ["D", []],
 ])
 
 // Dijkstra va "finaliser" C avant B (dist=2 < 4)
@@ -238,31 +238,31 @@ Parfois on veut les K meilleurs chemins, pas juste le meilleur.
 
 ```js
 function dijkstraKShortest(graph, start, target, k) {
-  // on autorise de revisiter les noeuds jusqu'à k fois
-  const count = new Map()
-  for (const node of graph.keys()) count.set(node, 0)
+ // on autorise de revisiter les noeuds jusqu'à k fois
+ const count = new Map()
+ for (const node of graph.keys()) count.set(node, 0)
 
-  const pq = new MinHeap()
-  pq.push([0, start])
-  const results = []
+ const pq = new MinHeap()
+ pq.push([0, start])
+ const results = []
 
-  while (pq.size > 0 && results.length < k) {
-    const [dist, node] = pq.pop()
-    count.set(node, count.get(node) + 1)
+ while (pq.size > 0 && results.length < k) {
+  const [dist, node] = pq.pop()
+  count.set(node, count.get(node) + 1)
 
-    // un noeud peut être visité au plus k fois
-    if (count.get(node) > k) continue
+  // un noeud peut être visité au plus k fois
+  if (count.get(node) > k) continue
 
-    if (node === target) results.push(dist)
+  if (node === target) results.push(dist)
 
-    for (const [neighbor, weight] of (graph.get(node) || [])) {
-      if (count.get(neighbor) < k) {
-        pq.push([dist + weight, neighbor])
-      }
-    }
+  for (const [neighbor, weight] of (graph.get(node) || [])) {
+   if (count.get(neighbor) < k) {
+    pq.push([dist + weight, neighbor])
+   }
   }
+ }
 
-  return results // liste des k plus courtes distances vers target
+ return results // liste des k plus courtes distances vers target
 }
 ```
 
@@ -278,12 +278,12 @@ León Luis (Garo) patrouille la ville. La ville est un graphe de quartiers conne
 
 ```js
 const city = new Map([
-  ["Shinjuku",  [["Shibuya", 12], ["Akihabara", 25], ["Ikebukuro", 18]]],
-  ["Shibuya",   [["Shinjuku", 12], ["Roppongi", 8], ["Ginza", 22]]],
-  ["Roppongi",  [["Shibuya", 8], ["Ginza", 10], ["Akihabara", 30]]],
-  ["Ginza",     [["Roppongi", 10], ["Shibuya", 22], ["Akihabara", 15]]],
-  ["Akihabara", [["Shinjuku", 25], ["Ginza", 15], ["Ikebukuro", 20]]],
-  ["Ikebukuro", [["Shinjuku", 18], ["Akihabara", 20]]],
+ ["Shinjuku", [["Shibuya", 12], ["Akihabara", 25], ["Ikebukuro", 18]]],
+ ["Shibuya",  [["Shinjuku", 12], ["Roppongi", 8], ["Ginza", 22]]],
+ ["Roppongi", [["Shibuya", 8], ["Ginza", 10], ["Akihabara", 30]]],
+ ["Ginza",   [["Roppongi", 10], ["Shibuya", 22], ["Akihabara", 15]]],
+ ["Akihabara", [["Shinjuku", 25], ["Ginza", 15], ["Ikebukuro", 20]]],
+ ["Ikebukuro", [["Shinjuku", 18], ["Akihabara", 20]]],
 ])
 ```
 
@@ -311,11 +311,11 @@ Puis : trouver le camp le plus éloigné. Si la distance dépasse 200km, affiche
 
 ```js
 const roads = new Map([
-  ["Alexandria", [["Hilltop", 50], ["Kingdom", 120], ["Saviors", 80]]],
-  ["Hilltop",    [["Alexandria", 50], ["Kingdom", 90], ["Oceanside", 110]]],
-  ["Kingdom",    [["Alexandria", 120], ["Hilltop", 90], ["Saviors", 40]]],
-  ["Saviors",    [["Alexandria", 80], ["Kingdom", 40]]],
-  ["Oceanside",  [["Hilltop", 110]]],
+ ["Alexandria", [["Hilltop", 50], ["Kingdom", 120], ["Saviors", 80]]],
+ ["Hilltop",  [["Alexandria", 50], ["Kingdom", 90], ["Oceanside", 110]]],
+ ["Kingdom",  [["Alexandria", 120], ["Hilltop", 90], ["Saviors", 40]]],
+ ["Saviors",  [["Alexandria", 80], ["Kingdom", 40]]],
+ ["Oceanside", [["Hilltop", 110]]],
 ])
 ```
 

@@ -35,12 +35,12 @@ Le dev qui ne comprend pas les probabilités livre des systèmes de tirage truqu
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-condition complexe sur plusieurs critères  --> logique booléenne --> AND/OR/NOT bien posés
-rotation d'un index dans un tableau circulaire --> modulo       --> cycle propre sans bug
+condition complexe sur plusieurs critères --> logique booléenne --> AND/OR/NOT bien posés
+rotation d'un index dans un tableau circulaire --> modulo    --> cycle propre sans bug
 flags multiples compactés dans un seul nombre --> bit manipulation --> mémoire optimisée
-clé de cache ou de hash table              --> hashing          --> distribution uniforme
-tirage aléatoire, critique, A/B test       --> probabilités     --> résultat statistiquement correct
-positionnement, distance entre deux points --> géométrie        --> calculs de coordonnées fiables
+clé de cache ou de hash table       --> hashing     --> distribution uniforme
+tirage aléatoire, critique, A/B test    --> probabilités   --> résultat statistiquement correct
+positionnement, distance entre deux points --> géométrie    --> calculs de coordonnées fiables
 ```
 
 Ces maths apparaissent dans des endroits que tu ne soupçonnes pas : un cache LRU (least recently used) repose sur du hashing, un système de permissions compact repose sur des bit flags, une UI de carte interactive repose sur de la géométrie de base.

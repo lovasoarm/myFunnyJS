@@ -1,7 +1,7 @@
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu as un type avec 10 propriétés. Tu veux une version readonly de ce type. Une version optionnelle. Une version où chaque valeur est une fonction plutôt qu'une donnée brute. Sans les mapped types, tu réécris tout à la main. Avec les mapped types, tu le génères en une ligne.
 
@@ -16,9 +16,9 @@ C'est le mécanisme derrière `Readonly`, `Partial`, `Required`, `Record` : tous
 // pour chaque clé K de T, génère une propriété
 
 type ReadonlyPlayer = {
-  [K in keyof Player]: Player[K];
-  // on recopie chaque propriété telle quelle
-  // utile pour vérifier la structure:mais ici on ne transforme rien encore
+ [K in keyof Player]: Player[K];
+ // on recopie chaque propriété telle quelle
+ // utile pour vérifier la structure:mais ici on ne transforme rien encore
 };
 
 // équivalent à Player:pas très utile en soi
@@ -31,31 +31,31 @@ type ReadonlyPlayer = {
 
 ```ts
 interface Player {
-  id: number;
-  name: string;
-  goals: number;
+ id: number;
+ name: string;
+ goals: number;
 }
 
 // ajouter readonly sur toutes les propriétés
 type Frozen<T> = {
-  readonly [K in keyof T]: T[K];
+ readonly [K in keyof T]: T[K];
 };
 
 // enlever readonly
 type Mutable<T> = {
-  -readonly [K in keyof T]: T[K];
-  // le - avant readonly l'enlève
+ -readonly [K in keyof T]: T[K];
+ // le - avant readonly l'enlève
 };
 
 // rendre optionnel
 type Optional<T> = {
-  [K in keyof T]?: T[K];
+ [K in keyof T]?: T[K];
 };
 
 // rendre obligatoire (enlever le ?)
 type Mandatory<T> = {
-  [K in keyof T]-?: T[K];
-  // le - avant ? l'enlève
+ [K in keyof T]-?: T[K];
+ // le - avant ? l'enlève
 };
 
 // test
@@ -70,34 +70,34 @@ type MutablePlayer = Mutable<Frozen<Player>>;
 ```ts
 // chaque propriété devient un getter
 type Getters<T> = {
-  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
+ [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
 };
 
 interface Player {
-  name: string;
-  goals: number;
+ name: string;
+ goals: number;
 }
 
 type PlayerGetters = Getters<Player>;
 // {
-//   getName: () => string
-//   getGoals: () => number
+//  getName: () => string
+//  getGoals: () => number
 // }
 ```
 
 ```ts
 // chaque propriété devient un observable (callback pattern)
 type Observable<T> = {
-  [K in keyof T]: {
-    value: T[K];
-    subscribe: (callback: (newValue: T[K]) => void) => void;
-  };
+ [K in keyof T]: {
+  value: T[K];
+  subscribe: (callback: (newValue: T[K]) => void) => void;
+ };
 };
 
 type ObservablePlayer = Observable<Player>;
 // {
-//   name: { value: string, subscribe: (callback: (v: string) => void) => void }
-//   goals: { value: number, subscribe: (callback: (v: number) => void) => void }
+//  name: { value: string, subscribe: (callback: (v: string) => void) => void }
+//  goals: { value: number, subscribe: (callback: (v: number) => void) => void }
 // }
 ```
 
@@ -108,42 +108,42 @@ type ObservablePlayer = Observable<Player>;
 ```ts
 // renommer les clés pendant le mapping
 type EventHandlers<T> = {
-  [K in keyof T as `on${Capitalize<string & K>}Change`]: (value: T[K]) => void;
+ [K in keyof T as `on${Capitalize<string & K>}Change`]: (value: T[K]) => void;
 };
 
 interface PlayerState {
-  name: string;
-  goals: number;
-  club: string;
+ name: string;
+ goals: number;
+ club: string;
 }
 
 type PlayerHandlers = EventHandlers<PlayerState>;
 // {
-//   onNameChange: (value: string) => void
-//   onGoalsChange: (value: number) => void
-//   onClubChange: (value: string) => void
+//  onNameChange: (value: string) => void
+//  onGoalsChange: (value: number) => void
+//  onClubChange: (value: string) => void
 // }
 ```
 
 ```ts
 // filtrer des clés pendant le mapping avec never
 type OnlyStringProps<T> = {
-  [K in keyof T as T[K] extends string ? K : never]: T[K];
+ [K in keyof T as T[K] extends string ? K : never]: T[K];
 };
 
 interface Mixed {
-  name: string;
-  age: number;
-  club: string;
-  goals: number;
-  nationality: string;
+ name: string;
+ age: number;
+ club: string;
+ goals: number;
+ nationality: string;
 }
 
 type StringProps = OnlyStringProps<Mixed>;
 // {
-//   name: string
-//   club: string
-//   nationality: string
+//  name: string
+//  club: string
+//  nationality: string
 // }
 // age et goals ont été filtrés (number ne satisfait pas extends string => never)
 ```
@@ -157,27 +157,27 @@ Les deux se combinent naturellement. Mapped types itèrent sur les clés. Condit
 ```ts
 // transformer les types selon ce qu'ils sont
 type Nullable<T> = {
-  [K in keyof T]: T[K] | null;
+ [K in keyof T]: T[K] | null;
 };
 
 type Stringified<T> = {
-  [K in keyof T]: T[K] extends number ? string : T[K];
-  // les numbers deviennent des strings, le reste reste pareil
+ [K in keyof T]: T[K] extends number ? string : T[K];
+ // les numbers deviennent des strings, le reste reste pareil
 };
 
 interface RawStats {
-  goals: number;
-  assists: number;
-  name: string;
-  club: string;
+ goals: number;
+ assists: number;
+ name: string;
+ club: string;
 }
 
 type DisplayStats = Stringified<RawStats>;
 // {
-//   goals: string     <- number => string
-//   assists: string   <- number => string
-//   name: string      <- string => string (inchangé)
-//   club: string      <- string => string (inchangé)
+//  goals: string   <- number => string
+//  assists: string  <- number => string
+//  name: string   <- string => string (inchangé)
+//  club: string   <- string => string (inchangé)
 // }
 ```
 
@@ -188,20 +188,20 @@ type DisplayStats = Stringified<RawStats>;
 ```ts
 // DeepReadonly : descend dans tous les objets imbriqués
 type DeepReadonly<T> = {
-  readonly [K in keyof T]: T[K] extends object
-    ? DeepReadonly<T[K]> // si c'est un objet, on descend récursivement
-    : T[K]; // sinon on garde tel quel
+ readonly [K in keyof T]: T[K] extends object
+  ? DeepReadonly<T[K]> // si c'est un objet, on descend récursivement
+  : T[K]; // sinon on garde tel quel
 };
 
 interface TeamConfig {
+ name: string;
+ coach: {
   name: string;
-  coach: {
-    name: string;
-    tactics: {
-      formation: string;
-      pressing: boolean;
-    };
+  tactics: {
+   formation: string;
+   pressing: boolean;
   };
+ };
 }
 
 type FrozenTeam = DeepReadonly<TeamConfig>;
@@ -215,26 +215,26 @@ type FrozenTeam = DeepReadonly<TeamConfig>;
 ```ts
 // Record<K, V> est un mapped type sur une union
 type Record<K extends keyof any, V> = {
-  [P in K]: V;
+ [P in K]: V;
 };
 
 // Utile pour créer des maps typées
 type Position = "attaquant" | "milieu" | "défenseur" | "gardien";
 
 type PositionConfig = Record<
-  Position,
-  {
-    minPlayers: number;
-    maxPlayers: number;
-    zone: "offensive" | "defensive" | "middle";
-  }
+ Position,
+ {
+  minPlayers: number;
+  maxPlayers: number;
+  zone: "offensive" | "defensive" | "middle";
+ }
 >;
 
 const config: PositionConfig = {
-  attaquant: { minPlayers: 1, maxPlayers: 3, zone: "offensive" },
-  milieu: { minPlayers: 3, maxPlayers: 5, zone: "middle" },
-  défenseur: { minPlayers: 3, maxPlayers: 5, zone: "defensive" },
-  gardien: { minPlayers: 1, maxPlayers: 1, zone: "defensive" },
+ attaquant: { minPlayers: 1, maxPlayers: 3, zone: "offensive" },
+ milieu: { minPlayers: 3, maxPlayers: 5, zone: "middle" },
+ défenseur: { minPlayers: 3, maxPlayers: 5, zone: "defensive" },
+ gardien: { minPlayers: 1, maxPlayers: 1, zone: "defensive" },
 };
 ```
 
@@ -245,35 +245,35 @@ const config: PositionConfig = {
 ```ts
 // générer automatiquement un schéma de validation depuis un type
 type ValidationSchema<T> = {
-  [K in keyof T]: {
-    required: boolean;
-    validate: (value: T[K]) => boolean;
-    errorMessage: string;
-  };
+ [K in keyof T]: {
+  required: boolean;
+  validate: (value: T[K]) => boolean;
+  errorMessage: string;
+ };
 };
 
 interface VoteForm {
-  playerId: number;
-  score: number;
-  comment: string;
+ playerId: number;
+ score: number;
+ comment: string;
 }
 
 const schema: ValidationSchema<VoteForm> = {
-  playerId: {
-    required: true,
-    validate: (v) => v > 0,
-    errorMessage: "L'ID du joueur doit être positif",
-  },
-  score: {
-    required: true,
-    validate: (v) => v >= 1 && v <= 10,
-    errorMessage: "Le score doit être entre 1 et 10",
-  },
-  comment: {
-    required: false,
-    validate: (v) => v.length <= 500,
-    errorMessage: "Le commentaire ne peut pas dépasser 500 caractères",
-  },
+ playerId: {
+  required: true,
+  validate: (v) => v > 0,
+  errorMessage: "L'ID du joueur doit être positif",
+ },
+ score: {
+  required: true,
+  validate: (v) => v >= 1 && v <= 10,
+  errorMessage: "Le score doit être entre 1 et 10",
+ },
+ comment: {
+  required: false,
+  validate: (v) => v.length <= 500,
+  errorMessage: "Le commentaire ne peut pas dépasser 500 caractères",
+ },
 };
 // si tu ajoutes un champ à VoteForm sans l'ajouter au schema : erreur TS
 ```
@@ -285,7 +285,7 @@ const schema: ValidationSchema<VoteForm> = {
 ```ts
 // mapped type sur une union : comportement inattendu
 type MappedUnion<T> = {
-  [K in keyof T]: T[K];
+ [K in keyof T]: T[K];
 };
 
 type PlayerOrTeam = Player | Team;
@@ -301,7 +301,7 @@ type Result = MappedUnion<PlayerOrTeam>;
 ```ts
 // -readonly et -? ne fonctionnent pas si la propriété n'avait pas ces modificateurs
 interface Strict {
-  name: string; // pas de ?, pas de readonly
+ name: string; // pas de ?, pas de readonly
 }
 
 type Mandatory<T> = { [K in keyof T]-?: T[K] };

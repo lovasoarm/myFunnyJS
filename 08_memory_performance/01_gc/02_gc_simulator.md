@@ -17,9 +17,9 @@ Chaque objet en mémoire a deux propriétés qui comptent :
 ```js
 // On modélise un objet vivant
 const obj = {
-  id: "A",
-  ref: null, // référence vers un autre objet (ou null)
-  alive: true, // le GC le verra-t-il encore ?
+ id: "A",
+ ref: null, // référence vers un autre objet (ou null)
+ alive: true, // le GC le verra-t-il encore ?
 };
 ```
 
@@ -27,17 +27,17 @@ Le simulateur va recréer le cycle mark-and-sweep complet :
 
 ```
 Phase 1 : MARK
-  Partir des roots (variables actives)
-  Parcourir toutes les références
-  Marquer chaque objet atteignable
+ Partir des roots (variables actives)
+ Parcourir toutes les références
+ Marquer chaque objet atteignable
 
 Phase 2 : SWEEP
-  Parcourir tous les objets alloués
-  Détruire ceux qui ne sont pas marqués
-  Libérer la mémoire
+ Parcourir tous les objets alloués
+ Détruire ceux qui ne sont pas marqués
+ Libérer la mémoire
 
 Phase 3 : RAPPORT
-  Afficher ce qui a survécu et pourquoi
+ Afficher ce qui a survécu et pourquoi
 ```
 
 ---
@@ -55,54 +55,54 @@ let roots = [];
 
 // Allouer un objet et l'enregistrer dans le heap
 function allocate(id, refs = []) {
-  const obj = { id, refs, marked: false };
-  heap.push(obj);
-  console.log(`[ALLOC] ${id} créé`);
-  return obj;
+ const obj = { id, refs, marked: false };
+ heap.push(obj);
+ console.log(`[ALLOC] ${id} créé`);
+ return obj;
 }
 
 // Phase MARK : parcourir depuis les roots et marquer
 function mark() {
-  const queue = [...roots];
+ const queue = [...roots];
 
-  while (queue.length > 0) {
-    const obj = queue.shift();
-    if (obj.marked) continue; // déjà vu, on évite les cycles infinis
+ while (queue.length > 0) {
+  const obj = queue.shift();
+  if (obj.marked) continue; // déjà vu, on évite les cycles infinis
 
-    obj.marked = true;
-    console.log(`[MARK]  ${obj.id} → atteignable`);
+  obj.marked = true;
+  console.log(`[MARK] ${obj.id} → atteignable`);
 
-    // on ajoute ses références à visiter
-    for (const ref of obj.refs) {
-      if (!ref.marked) queue.push(ref);
-    }
+  // on ajoute ses références à visiter
+  for (const ref of obj.refs) {
+   if (!ref.marked) queue.push(ref);
   }
+ }
 }
 
 // Phase SWEEP : détruire ce qui n'est pas marqué
 function sweep() {
-  const survivors = [];
+ const survivors = [];
 
-  for (const obj of heap) {
-    if (obj.marked) {
-      obj.marked = false; // reset pour le prochain cycle GC
-      survivors.push(obj);
-    } else {
-      console.log(`[SWEEP] ${obj.id} → détruit (mémoire libérée)`);
-    }
+ for (const obj of heap) {
+  if (obj.marked) {
+   obj.marked = false; // reset pour le prochain cycle GC
+   survivors.push(obj);
+  } else {
+   console.log(`[SWEEP] ${obj.id} → détruit (mémoire libérée)`);
   }
+ }
 
-  // le heap ne contient plus que les survivants
-  heap.length = 0;
-  heap.push(...survivors);
+ // le heap ne contient plus que les survivants
+ heap.length = 0;
+ heap.push(...survivors);
 }
 
 // Lancer un cycle GC complet
 function runGC() {
-  console.log("\n─── GC CYCLE START ───");
-  mark();
-  sweep();
-  console.log(`─── GC CYCLE END : ${heap.length} objet(s) en vie ───\n`);
+ console.log("\n─── GC CYCLE START ───");
+ mark();
+ sweep();
+ console.log(`─── GC CYCLE END : ${heap.length} objet(s) en vie ───\n`);
 }
 ```
 
@@ -136,11 +136,11 @@ runGC();
 
 ```
 roots
-  │
-  └──► Kakashi ──► Naruto ──► Sasuke
-             │               ▲
-             ├──────────────►┘
-             └──► Sakura
+ │
+ └──► Kakashi ──► Naruto ──► Sasuke
+       │        ▲
+       ├──────────────►┘
+       └──► Sakura
 ```
 
 ---
@@ -160,19 +160,19 @@ kabuto.refs = [orochimaru]; // cycle entre eux deux
 
 runGC();
 // → Orochimaru : NON marqué → détruit
-// → Kabuto     : NON marqué → détruit
+// → Kabuto   : NON marqué → détruit
 // Le cycle entre eux n'empêche pas leur destruction
 // Mark-and-sweep gère les cycles. Reference counting non.
 ```
 
 ```
 roots
-  │
-  └──► Kakashi ──► ...
+ │
+ └──► Kakashi ──► ...
 
-  X (pas de chemin vers Orochimaru)
+ X (pas de chemin vers Orochimaru)
 
-  Orochimaru ◄──► Kabuto   (cycle isolé = tous les deux détruits)
+ Orochimaru ◄──► Kabuto  (cycle isolé = tous les deux détruits)
 ```
 
 ---
@@ -191,7 +191,7 @@ missionLog.push(mission1);
 missionLog.push(mission3); // mission3 est dans le log:pour toujours
 
 // On "supprime" les références locales
-// mission1 = null  (simulation)
+// mission1 = null (simulation)
 // mission2 = null
 // mission3 = null
 
@@ -199,16 +199,16 @@ missionLog.push(mission3); // mission3 est dans le log:pour toujours
 roots = [kakashi, ...missionLog];
 
 runGC();
-// → mission1  : marquée (dans missionLog):SURVIT alors qu'on pensait l'avoir supprimée
-// → mission2  : NON marquée → détruite (personne ne la référence)
-// → mission3  : marquée (dans missionLog):SURVIT. C'est la fuite.
+// → mission1 : marquée (dans missionLog):SURVIT alors qu'on pensait l'avoir supprimée
+// → mission2 : NON marquée → détruite (personne ne la référence)
+// → mission3 : marquée (dans missionLog):SURVIT. C'est la fuite.
 ```
 
 ```
 roots
-  ├──► Kakashi ──► ...
-  └──► missionLog ──► mission1 (survit)
-                  └──► mission3 (survit : fuite cachée)
+ ├──► Kakashi ──► ...
+ └──► missionLog ──► mission1 (survit)
+         └──► mission3 (survit : fuite cachée)
 
 mission2 (isolé → détruit)
 ```
@@ -225,14 +225,14 @@ Dans Chrome, tu peux voir le heap en vrai :
 DevTools → Memory → Take heap snapshot
 
 Colonnes importantes :
-  Constructor   → le type de l'objet (Array, Object, closure...)
-  Retained size → mémoire totale libérée si cet objet disparaissait
-  Shallow size  → mémoire de l'objet lui-même sans ses références
+ Constructor  → le type de l'objet (Array, Object, closure...)
+ Retained size → mémoire totale libérée si cet objet disparaissait
+ Shallow size → mémoire de l'objet lui-même sans ses références
 
 Ce qui révèle une fuite :
-  → prendre deux snapshots avec du temps entre les deux
-  → filtrer sur "Objects allocated between snapshots"
-  → si tu vois des objets qui grossissent sans raison : fuite
+ → prendre deux snapshots avec du temps entre les deux
+ → filtrer sur "Objects allocated between snapshots"
+ → si tu vois des objets qui grossissent sans raison : fuite
 ```
 
 Indicateur rapide en Node :
@@ -240,8 +240,8 @@ Indicateur rapide en Node :
 ```js
 // Snapshot de la mémoire utilisée à ce moment précis
 function memSnapshot(label) {
-  const used = process.memoryUsage().heapUsed;
-  console.log(`[MEM] ${label} : ${(used / 1024 / 1024).toFixed(2)} MB`);
+ const used = process.memoryUsage().heapUsed;
+ console.log(`[MEM] ${label} : ${(used / 1024 / 1024).toFixed(2)} MB`);
 }
 
 memSnapshot("avant allocation");
@@ -262,14 +262,14 @@ Voici un état mémoire. Trace quels objets survivent et lesquels sont détruits
 ```
 roots = [App]
 
-App       → refs: [UserService, Logger]
+App    → refs: [UserService, Logger]
 UserService → refs: [Cache, DB]
-Logger    → refs: [FileWriter]
-Cache     → refs: [UserService]   ← cycle avec UserService
-DB        → refs: []
+Logger  → refs: [FileWriter]
+Cache   → refs: [UserService]  ← cycle avec UserService
+DB    → refs: []
 FileWriter → refs: []
-OldSession → refs: [Cache]        ← plus de root vers OldSession
-OrphanObj → refs: []              ← totalement isolé
+OldSession → refs: [Cache]    ← plus de root vers OldSession
+OrphanObj → refs: []       ← totalement isolé
 ```
 
 **Ta mission :** lister les objets marqués et les objets détruits. Expliquer pourquoi `OldSession` et `Cache` ont des comportements différents malgré le cycle.
@@ -302,30 +302,30 @@ Ce code tourne en Node. Après 10 000 itérations, l'app utilise 800 MB de RAM. 
 
 ```js
 const eventBus = {
-  listeners: {},
-  on(event, fn) {
-    if (!this.listeners[event]) this.listeners[event] = [];
-    this.listeners[event].push(fn);
-  },
-  emit(event, data) {
-    (this.listeners[event] || []).forEach((fn) => fn(data));
-  },
+ listeners: {},
+ on(event, fn) {
+  if (!this.listeners[event]) this.listeners[event] = [];
+  this.listeners[event].push(fn);
+ },
+ emit(event, data) {
+  (this.listeners[event] || []).forEach((fn) => fn(data));
+ },
 };
 
 // Système de scoring pour chaque épisode de Walking Dead
 function processEpisode(episodeId) {
-  const scores = new Array(50_000).fill(0);
+ const scores = new Array(50_000).fill(0);
 
-  eventBus.on("score_update", (data) => {
-    // capture scores par closure
-    scores[data.index] = data.value;
-  });
+ eventBus.on("score_update", (data) => {
+  // capture scores par closure
+  scores[data.index] = data.value;
+ });
 
-  return scores.reduce((a, b) => a + b, 0);
+ return scores.reduce((a, b) => a + b, 0);
 }
 
 for (let i = 0; i < 10_000; i++) {
-  processEpisode(i);
+ processEpisode(i);
 }
 ```
 

@@ -24,31 +24,31 @@ Passe 1 :
 [8,1] --> swap --> [3,5,1,8,9,2]
 [8,9] --> ok
 [9,2] --> swap --> [3,5,1,8,2,9]
-                              ^
-                              9 est en place, définitivement
+               ^
+               9 est en place, définitivement
 ```
 
 ```js
 function bubbleSort(arr) {
-  const a = [...arr] // on ne mute pas l'original : Walter White ne laisse pas de traces
+ const a = [...arr] // on ne mute pas l'original : Walter White ne laisse pas de traces
 
-  for (let i = 0; i < a.length; i++) {
-    let swapped = false
+ for (let i = 0; i < a.length; i++) {
+  let swapped = false
 
-    // chaque passe : on compare jusqu'à l'avant-dernière position non triée
-    for (let j = 0; j < a.length - 1 - i; j++) {
-      if (a[j] > a[j + 1]) {
-        // swap classique : deux lignes, zéro variable temporaire
-        ;[a[j], a[j + 1]] = [a[j + 1], a[j]]
-        swapped = true
-      }
-    }
-
-    // optimisation : si aucun swap cette passe, c'est déjà trié
-    if (!swapped) break
+  // chaque passe : on compare jusqu'à l'avant-dernière position non triée
+  for (let j = 0; j < a.length - 1 - i; j++) {
+   if (a[j] > a[j + 1]) {
+    // swap classique : deux lignes, zéro variable temporaire
+    ;[a[j], a[j + 1]] = [a[j + 1], a[j]]
+    swapped = true
+   }
   }
 
-  return a
+  // optimisation : si aucun swap cette passe, c'est déjà trié
+  if (!swapped) break
+ }
+
+ return a
 }
 
 console.log(bubbleSort([5, 3, 8, 1, 9, 2]))
@@ -78,28 +78,28 @@ Nouvelle carte : 1
 On recule 8 --> [3, 5, _, 8]
 On recule 5 --> [3, _, 5, 8]
 On recule 3 --> [_, 3, 5, 8]
-On insère 1  --> [1, 3, 5, 8]
+On insère 1 --> [1, 3, 5, 8]
 ```
 
 ```js
 function insertionSort(arr) {
-  const a = [...arr]
+ const a = [...arr]
 
-  for (let i = 1; i < a.length; i++) {
-    const current = a[i] // la carte qu'on tient en main
-    let j = i - 1
+ for (let i = 1; i < a.length; i++) {
+  const current = a[i] // la carte qu'on tient en main
+  let j = i - 1
 
-    // on recule tous les éléments plus grands que current
-    while (j >= 0 && a[j] > current) {
-      a[j + 1] = a[j] // décalage vers la droite
-      j--
-    }
-
-    // on pose la carte à sa place
-    a[j + 1] = current
+  // on recule tous les éléments plus grands que current
+  while (j >= 0 && a[j] > current) {
+   a[j + 1] = a[j] // décalage vers la droite
+   j--
   }
 
-  return a
+  // on pose la carte à sa place
+  a[j + 1] = current
+ }
+
+ return a
 }
 
 console.log(insertionSort([5, 3, 8, 1, 9, 2]))
@@ -142,9 +142,9 @@ Sur des tableaux complètement aléatoires : les deux souffrent pareil.
 // La différence devient visible très vite
 
 function benchmark(sortFn, arr) {
-  const start = performance.now()
-  sortFn([...arr])
-  return performance.now() - start
+ const start = performance.now()
+ sortFn([...arr])
+ return performance.now() - start
 }
 
 const big = Array.from({ length: 10_000 }, () => Math.random() * 10_000 | 0)
@@ -158,22 +158,22 @@ console.log('insertion sort :', benchmark(insertionSort, big).toFixed(2), 'ms')
 ## 4) VISUALISER LE O(n²)
 
 ```
-n = 4 :  comparaisons = 3 + 2 + 1 = 6
-n = 8 :  comparaisons = 7 + 6 + ... + 1 = 28
+n = 4 : comparaisons = 3 + 2 + 1 = 6
+n = 8 : comparaisons = 7 + 6 + ... + 1 = 28
 n = 16 : comparaisons = 120
 n = 1000 : ~500 000 comparaisons
 n = 10000 : ~50 000 000 comparaisons
 
-             Nombre d'opérations
-             |
- 50M         |                                    *
-             |
- 12.5M       |                         *
-             |
-  0.5M       |             *
-             |     *
-             |____________________________ n
-             1K   3K   7K   10K
+       Nombre d'opérations
+       |
+ 50M     |                  *
+       |
+ 12.5M    |             *
+       |
+ 0.5M    |       *
+       |   *
+       |____________________________ n
+       1K  3K  7K  10K
 ```
 
 La courbe n'est pas linéaire. Elle explose. C'est ça le O(n²) dans la vraie vie.
@@ -189,10 +189,10 @@ Tu reçois un tableau de joueurs avec leurs scores de vote. Implémente un **ins
 
 ```js
 const candidats = [
-  { nom: "Messi", score: 580 },
-  { nom: "Mbappé", score: 612 },
-  { nom: "Vinicius", score: 612 },
-  { nom: "Bellingham", score: 490 }
+ { nom: "Messi", score: 580 },
+ { nom: "Mbappé", score: 612 },
+ { nom: "Vinicius", score: 612 },
+ { nom: "Bellingham", score: 490 }
 ]
 // résultat attendu : Mbappé, Vinicius, Messi, Bellingham
 // (Vinicius reste après Mbappé : même score, ordre original conservé)

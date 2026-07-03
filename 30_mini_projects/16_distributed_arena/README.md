@@ -1,5 +1,4 @@
 [PORTFOLIO]
-[INTEMPOREL]
 [ATELIER]
 
 # 16 : DISTRIBUTED ARENA
@@ -33,15 +32,15 @@ métriques à l'appui, que ton total final est correct ou honnêtement dégradé
 ```
 $ node coordinator.js &
 $ for i in 1 2 3 4; do node worker.js $i & done
-$ node chaos.js --scenario race          # 500 incréments simultanés
+$ node chaos.js --scenario race     # 500 incréments simultanés
 $ node verify.js
-   expected = 500  observed = 500        [OK]
-$ node chaos.js --scenario kill-mid      # kill un worker à mi-parcours
+  expected = 500 observed = 500    [OK]
+$ node chaos.js --scenario kill-mid   # kill un worker à mi-parcours
 $ node verify.js
-   expected = 500  observed = 500        [OK, retry idempotent]
-$ node chaos.js --scenario network-drop  # drop 30% des messages
+  expected = 500 observed = 500    [OK, retry idempotent]
+$ node chaos.js --scenario network-drop # drop 30% des messages
 $ node verify.js
-   expected = 500  observed = 500        [OK, at-least-once + dédup]
+  expected = 500 observed = 500    [OK, at-least-once + dédup]
 ```
 
 ---
@@ -53,7 +52,7 @@ $ node verify.js
 3. `chaos.js` : injecte 3 scénarios (`race`, `kill-mid`, `network-drop`).
 4. `verify.js` : compare total observé vs attendu, sort code 0 ou 1.
 5. `ADR-001-idempotence.md` : pourquoi tu as choisi une clé UUID par op et pas un
-   compteur monotone par worker. Trade-offs.
+  compteur monotone par worker. Trade-offs.
 
 Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.
 
@@ -73,12 +72,12 @@ Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS
 ## PIÈGES CONNUS (ne pas les éviter, les traverser)
 
 - **Le retry naïf casse tout.** Un `retry` sans clé d'idempotence double le compteur
-  au premier drop réseau. Tu vas le voir. C'est la leçon.
+ au premier drop réseau. Tu vas le voir. C'est la leçon.
 - **`Date.now()` comme clé** : deux workers peuvent collisionner à la même ms. Utilise
-  `crypto.randomUUID()`.
+ `crypto.randomUUID()`.
 - **Coordinator unique = SPOF.** À la fin du projet, écris 3 lignes dans l'ADR sur
-  comment tu ferais un vrai consensus (Raft, Paxos) : tu ne l'implémentes pas, tu
-  démontres que tu sais que c'est là.
+ comment tu ferais un vrai consensus (Raft, Paxos) : tu ne l'implémentes pas, tu
+ démontres que tu sais que c'est là.
 
 ---
 

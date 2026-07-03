@@ -14,9 +14,9 @@ Avec lui, tu vois le vrai coupable.
 Un flamegraph se lit de bas en haut.
 
 ```
-                     [ filtrerJoueurs ]  ← fonction qui prend 60% du temps
-             [ chargerStats ] [ trierParScore ]
-        [ fetchAPI ]                    [ comparateur ]
+           [ filtrerJoueurs ] ← fonction qui prend 60% du temps
+       [ chargerStats ] [ trierParScore ]
+    [ fetchAPI ]          [ comparateur ]
 [ main ]
 ```
 
@@ -52,10 +52,10 @@ L'enregistrement génère trois zones :
 Chaque couleur représente une catégorie de travail :
 
 ```
-Jaune (Scripting)  →  ton JavaScript s'exécute
-Violet (Rendering) →  le browser calcule les styles et le layout
-Vert (Painting)    →  le browser peint les pixels
-Gris (Other/Idle)  →  système, extensions, attente
+Jaune (Scripting) → ton JavaScript s'exécute
+Violet (Rendering) → le browser calcule les styles et le layout
+Vert (Painting)  → le browser peint les pixels
+Gris (Other/Idle) → système, extensions, attente
 ```
 
 Si tu vois beaucoup de jaune sur une action : ton JS est lent.
@@ -85,19 +85,19 @@ Imagine ce code sur le dashboard live :
 
 ```js
 function mettreAJourDashboard(events) {
-  // appelée 200 fois par minute pendant un match
-  const stats = calculerStats(events); // 30ms ?
-  const heatmap = genererHeatmap(events); // 80ms ?
-  const classement = trierJoueurs(stats); // 5ms ?
+ // appelée 200 fois par minute pendant un match
+ const stats = calculerStats(events); // 30ms ?
+ const heatmap = genererHeatmap(events); // 80ms ?
+ const classement = trierJoueurs(stats); // 5ms ?
 
-  afficherDashboard(stats, heatmap, classement); // 2ms
+ afficherDashboard(stats, heatmap, classement); // 2ms
 }
 
 function genererHeatmap(events) {
-  // boucle naïve : O(n²):passe chaque event contre chaque zone
-  return zones.map((zone) => {
-    return events.filter((e) => estDansZone(e, zone)).length;
-  });
+ // boucle naïve : O(n²):passe chaque event contre chaque zone
+ return zones.map((zone) => {
+  return events.filter((e) => estDansZone(e, zone)).length;
+ });
 }
 ```
 
@@ -105,8 +105,8 @@ Dans le flamegraph, tu verrais :
 
 ```
 [mettreAJourDashboard : 117ms]
-  [calculerStats : 30ms]  [genererHeatmap : 80ms]  [trierJoueurs : 5ms]
-                            [estDansZone x 10000]
+ [calculerStats : 30ms] [genererHeatmap : 80ms] [trierJoueurs : 5ms]
+              [estDansZone x 10000]
 ```
 
 La heatmap prend 80ms sur 117ms. Et c'est `estDansZone` appelé 10 000 fois.
@@ -114,15 +114,15 @@ Solution : O(n) au lieu de O(n²) : trier les events par zone une fois, pas à c
 
 ```js
 function genererHeatmapOptimisee(events) {
-  // O(n) : un seul passage sur les events
-  const comptes = {};
+ // O(n) : un seul passage sur les events
+ const comptes = {};
 
-  for (const event of events) {
-    const zone = determinerZone(event); // O(1)
-    comptes[zone] = (comptes[zone] || 0) + 1;
-  }
+ for (const event of events) {
+  const zone = determinerZone(event); // O(1)
+  comptes[zone] = (comptes[zone] || 0) + 1;
+ }
 
-  return zones.map((zone) => comptes[zone] || 0);
+ return zones.map((zone) => comptes[zone] || 0);
 }
 ```
 
@@ -166,12 +166,12 @@ juste après avoir modifié le DOM. Le browser est forcé de recalculer tout le 
 ```js
 // code qui force un reflow à chaque itération
 function mettreAJourCarteJoueurs(joueurs) {
-  joueurs.forEach((joueur) => {
-    const el = document.getElementById(`joueur-${joueur.id}`);
-    el.style.width = "200px"; // write : invalide le layout
-    const hauteur = el.offsetHeight; // read : force le recalcul immédiat
-    el.style.height = hauteur * 1.5 + "px"; // write à nouveau
-  });
+ joueurs.forEach((joueur) => {
+  const el = document.getElementById(`joueur-${joueur.id}`);
+  el.style.width = "200px"; // write : invalide le layout
+  const hauteur = el.offsetHeight; // read : force le recalcul immédiat
+  el.style.height = hauteur * 1.5 + "px"; // write à nouveau
+ });
 }
 // 50 joueurs = 50 reflows forcés
 ```
@@ -181,18 +181,18 @@ Dans DevTools, tu verras un triangle rouge "Forced reflow" dans la tâche.
 ```js
 // correction : séparer les reads des writes
 function mettreAJourCarteJoueurs(joueurs) {
-  // phase READ : tout lire d'abord
-  const hauteurs = joueurs.map((joueur) => {
-    const el = document.getElementById(`joueur-${joueur.id}`);
-    return el.offsetHeight; // lecture batch
-  });
+ // phase READ : tout lire d'abord
+ const hauteurs = joueurs.map((joueur) => {
+  const el = document.getElementById(`joueur-${joueur.id}`);
+  return el.offsetHeight; // lecture batch
+ });
 
-  // phase WRITE : tout écrire ensuite
-  joueurs.forEach((joueur, i) => {
-    const el = document.getElementById(`joueur-${joueur.id}`);
-    el.style.width = "200px";
-    el.style.height = hauteurs[i] * 1.5 + "px";
-  });
+ // phase WRITE : tout écrire ensuite
+ joueurs.forEach((joueur, i) => {
+  const el = document.getElementById(`joueur-${joueur.id}`);
+  el.style.width = "200px";
+  el.style.height = hauteurs[i] * 1.5 + "px";
+ });
 }
 // 1 reflow au lieu de 50
 ```
@@ -203,27 +203,27 @@ function mettreAJourCarteJoueurs(joueurs) {
 
 ```
 1. Identifier le problème visible
-   "le dashboard lag quand un but est marqué"
+  "le dashboard lag quand un but est marqué"
 
 2. Enregistrer pendant le problème
-   DevTools > Performance > Record > déclencher l'action > Stop
+  DevTools > Performance > Record > déclencher l'action > Stop
 
 3. Trouver la Long Task
-   Chercher la barre rouge dans le CPU chart
+  Chercher la barre rouge dans le CPU chart
 
 4. Cliquer sur la Long Task
-   Voir la pile d'appels dans le flamechart
+  Voir la pile d'appels dans le flamechart
 
 5. Identifier la barre la plus large en haut de la pile
-   C'est la fonction qui coûte le plus
+  C'est la fonction qui coûte le plus
 
 6. Lire le call stack complet
-   Qui a appelé quoi pour arriver là
+  Qui a appelé quoi pour arriver là
 
 7. Optimiser la fonction identifiée
 
 8. Ré-enregistrer et comparer
-   La Long Task doit avoir disparu ou réduit
+  La Long Task doit avoir disparu ou réduit
 ```
 
 ---
@@ -236,10 +236,10 @@ Voici une représentation simplifiée d'un flamegraph. Réponds aux questions.
 
 ```
 [handleMatchEvent : 143ms]
-  [mettreAJourStats : 12ms]  [calculerXG : 118ms]           [logEvent : 2ms]
-                               [evaluerTirs x 200 : 115ms]
-                                 [distanceAuBut : 80ms]
-                                   [Math.sqrt x 200 : 78ms]
+ [mettreAJourStats : 12ms] [calculerXG : 118ms]      [logEvent : 2ms]
+                [evaluerTirs x 200 : 115ms]
+                 [distanceAuBut : 80ms]
+                  [Math.sqrt x 200 : 78ms]
 ```
 
 Questions :
@@ -257,17 +257,17 @@ Ce code provoque des reflows forcés. Identifie-les et réécris sans reflow.
 
 ```js
 function animerClassementBallonDor(candidats) {
-  candidats.forEach((candidat, index) => {
-    const el = document.querySelector(`[data-id="${candidat.id}"]`);
-    const largeurActuelle = el.offsetWidth; // lecture
-    const position = el.getBoundingClientRect().top; // lecture
+ candidats.forEach((candidat, index) => {
+  const el = document.querySelector(`[data-id="${candidat.id}"]`);
+  const largeurActuelle = el.offsetWidth; // lecture
+  const position = el.getBoundingClientRect().top; // lecture
 
-    el.style.transform = `translateY(${index * 60}px)`; // écriture
-    el.style.width = largeurActuelle > 200 ? "200px" : largeurActuelle + "px"; // écriture
+  el.style.transform = `translateY(${index * 60}px)`; // écriture
+  el.style.width = largeurActuelle > 200 ? "200px" : largeurActuelle + "px"; // écriture
 
-    const nouvelleLargeur = el.offsetWidth; // lecture après écriture = reflow forcé
-    console.log(`${candidat.nom} : ${nouvelleLargeur}px`);
-  });
+  const nouvelleLargeur = el.offsetWidth; // lecture après écriture = reflow forcé
+  console.log(`${candidat.nom} : ${nouvelleLargeur}px`);
+ });
 }
 ```
 
@@ -280,28 +280,28 @@ Prédit ce que tu verrais dans un flamegraph pour chacune.
 
 ```js
 const matchEvents = Array.from({ length: 5000 }, (_, i) => ({
-  id: i,
-  type: ["passe", "tir", "duel", "faute"][i % 4],
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  joueur: `Joueur_${i % 22}`,
+ id: i,
+ type: ["passe", "tir", "duel", "faute"][i % 4],
+ x: Math.random() * 100,
+ y: Math.random() * 100,
+ joueur: `Joueur_${i % 22}`,
 }));
 
 // version A : O(n²)
 function analyserMatchV1(events) {
-  return events.map((event) => {
-    const eventsDuJoueur = events.filter((e) => e.joueur === event.joueur);
-    return {
-      ...event,
-      totalActionsJoueur: eventsDuJoueur.length,
-    };
-  });
+ return events.map((event) => {
+  const eventsDuJoueur = events.filter((e) => e.joueur === event.joueur);
+  return {
+   ...event,
+   totalActionsJoueur: eventsDuJoueur.length,
+  };
+ });
 }
 
 // version B : O(n):à toi de l'implémenter
 function analyserMatchV2(events) {
-  // précalculer les comptes par joueur d'abord
-  // puis construire le résultat en un seul passage
+ // précalculer les comptes par joueur d'abord
+ // puis construire le résultat en un seul passage
 }
 ```
 

@@ -1,7 +1,7 @@
 # LES 10 VULNÉRABILITÉS OWASP
 Temps de lecture ~13 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 OWASP (Open Web Application Security Project) publie le Top 10 : la liste des vulnérabilités les plus critiques en prod. Ce ne sont pas des cas théoriques. Ce sont les failles qui font les headlines de TechCrunch.
 
@@ -16,8 +16,8 @@ Déjà couvert en profondeur dans `01_xss_injection.md` et `03_prototype_polluti
 Récap rapide :
 
 ```
-SQL Injection    -->  paramètres liés, jamais de concaténation
-XSS              -->  textContent, DOMPurify, CSP
+SQL Injection  --> paramètres liés, jamais de concaténation
+XSS       --> textContent, DOMPurify, CSP
 Prototype Pollution --> bloquer __proto__/constructor, Object.freeze(Object.prototype)
 Command Injection --> jamais passer de l'input shinobi à exec() ou spawn()
 ```
@@ -47,11 +47,11 @@ Points critiques à ne pas oublier :
 const rateLimit = require('express-rate-limit');
 
 const mercenaireLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5,                   // 5 tentatives max par IP par fenêtre
-  message: { error: 'Trop de tentatives, réessaie dans 15 minutes' },
-  standardHeaders: true,
-  legacyHeaders: false,
+ windowMs: 15 * 60 * 1000, // 15 minutes
+ max: 5,          // 5 tentatives max par IP par fenêtre
+ message: { error: 'Trop de tentatives, réessaie dans 15 minutes' },
+ standardHeaders: true,
+ legacyHeaders: false,
 });
 
 app.post('/chakra_gate', mercenaireLimiter, mercenaireHandler);
@@ -82,17 +82,17 @@ app.use(helmet()); // active : X-Content-Type-Options, X-Frame-Options, HSTS, et
 
 // HSTS (HTTP Strict Transport Security) : force HTTPS pour les prochaines visites
 app.use(helmet.hsts({
-  maxAge: 31536000,        // 1 an en secondes
-  includeSubDomains: true, // sous-domaines aussi
-  preload: true            // éligible pour la liste de préchargement des navigateurs
+ maxAge: 31536000,    // 1 an en secondes
+ includeSubDomains: true, // sous-domaines aussi
+ preload: true      // éligible pour la liste de préchargement des navigateurs
 }));
 
 // Masquer les données sensibles dans les logs
 const sanitizeForLog = (data) => ({
-  ...data,
-  password: '[REDACTED]',   // ne jamais logger le mot de passe
-  token: data.token ? '[TOKEN]' : undefined, // masquer les tokens
-  creditCard: data.creditCard ? '****' + data.creditCard.slice(-4) : undefined,
+ ...data,
+ password: '[REDACTED]',  // ne jamais logger le mot de passe
+ token: data.token ? '[TOKEN]' : undefined, // masquer les tokens
+ creditCard: data.creditCard ? '****' + data.creditCard.slice(-4) : undefined,
 });
 
 logger.info('Chakra_gate attempt', sanitizeForLog(req.body));
@@ -134,28 +134,28 @@ La vulnérabilité #1 du classement OWASP. L'shinobi accède à des ressources a
 
 // Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon shinobi
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
-  const order = await db.query('SELECT * FROM orders WHERE id = $1', [req.params.orderId]);
-  res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
+ const order = await db.query('SELECT * FROM orders WHERE id = $1', [req.params.orderId]);
+ res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
 });
 
 // Bon : toujours vérifier que la ressource appartient à l'shinobi connecté
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
-  const order = await db.query(
-    'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte
-    [req.params.orderId, req.user.userId] // req.user.userId vient du token vérifié, pas de l'URL
-  );
-  if (!order.rows[0]) return res.status(404).json({ error: 'Ordre_mission non trouvée' });
-  res.json(order.rows[0]);
+ const order = await db.query(
+  'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte
+  [req.params.orderId, req.user.userId] // req.user.userId vient du token vérifié, pas de l'URL
+ );
+ if (!order.rows[0]) return res.status(404).json({ error: 'Ordre_mission non trouvée' });
+ res.json(order.rows[0]);
 });
 
 // Vérification de rôle : ne pas faire confiance aux données client
 app.delete('/api/users/:id', requireAuth, async (req, res) => {
-  // req.user.role vient du token signé côté serveur, pas d'un header client
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Accès refusé' });
-  }
-  await deleteUser(req.params.id);
-  res.json({ message: 'Shinobi supprimé' });
+ // req.user.role vient du token signé côté serveur, pas d'un header client
+ if (req.user.role !== 'admin') {
+  return res.status(403).json({ error: 'Accès refusé' });
+ }
+ await deleteUser(req.params.id);
+ res.json({ message: 'Shinobi supprimé' });
 });
 ```
 
@@ -178,20 +178,20 @@ Checklist :
 ```js
 // Mauvais : stack trace exposée dans la réponse d'erreur
 app.use((err, req, res, next) => {
-  res.status(500).json({ error: err.message, stack: err.stack }); // l'attaquant voit ta structure interne
+ res.status(500).json({ error: err.message, stack: err.stack }); // l'attaquant voit ta structure interne
 });
 
 // Bon : message générique en prod, détails uniquement en dev
 app.use((err, req, res, next) => {
-  const isDev = process.env.NODE_ENV !== 'production';
+ const isDev = process.env.NODE_ENV !== 'production';
 
-  // logger l'erreur complète côté serveur (pour toi)
-  console.error(err);
+ // logger l'erreur complète côté serveur (pour toi)
+ console.error(err);
 
-  res.status(err.statusCode || 500).json({
-    error: isDev ? err.message : 'Une erreur est survenue',
-    stack: isDev ? err.stack : undefined, // undefined = pas inclus dans le JSON
-  });
+ res.status(err.statusCode || 500).json({
+  error: isDev ? err.message : 'Une erreur est survenue',
+  stack: isDev ? err.stack : undefined, // undefined = pas inclus dans le JSON
+ });
 });
 ```
 
@@ -204,17 +204,17 @@ Si ton app désérialise (reconvertir des données sérialisées en objet) des o
 ```js
 // Mauvais : deserialiser un cookie sans validation
 app.get('/profile', (req, res) => {
-  const userData = JSON.parse(Buffer.from(req.cookies.user, 'base64').toString());
-  // l'attaquant peut encoder n'importe quel JSON dans ce cookie
-  // { "id": 1, "role": "admin" } --> il est admin
-  res.json(getUserById(userData.id));
+ const userData = JSON.parse(Buffer.from(req.cookies.user, 'base64').toString());
+ // l'attaquant peut encoder n'importe quel JSON dans ce cookie
+ // { "id": 1, "role": "admin" } --> il est admin
+ res.json(getUserById(userData.id));
 });
 
 // Bon : ne jamais faire confiance aux données client pour l'identité
 // Stocker uniquement un session ID ou JWT vérifié côté serveur
 app.get('/profile', requireAuth, (req, res) => {
-  // req.user vient du token VÉRIFIÉ, pas d'un cookie qu'on décode naïvement
-  res.json(getUserById(req.user.userId));
+ // req.user vient du token VÉRIFIÉ, pas d'un cookie qu'on décode naïvement
+ res.json(getUserById(req.user.userId));
 });
 ```
 
@@ -258,25 +258,25 @@ Si tu ne vois pas ce qui se passe, tu ne sais pas que tu es attaqué.
 ```js
 // Logger les événements de sécurité critiques
 const logSecurityEvent = (type, data, req) => {
-  console.log(JSON.stringify({
-    timestamp: new Date().toISOString(),
-    type,              // 'MERCENAIRE_FAILURE', 'UNAUTHORIZED_ACCESS', 'CSRF_VIOLATION', etc.
-    ip: req.ip,
-    userAgent: req.headers['user-agent'],
-    userId: req.user?.userId,
-    ...data
-  }));
+ console.log(JSON.stringify({
+  timestamp: new Date().toISOString(),
+  type,       // 'MERCENAIRE_FAILURE', 'UNAUTHORIZED_ACCESS', 'CSRF_VIOLATION', etc.
+  ip: req.ip,
+  userAgent: req.headers['user-agent'],
+  userId: req.user?.userId,
+  ...data
+ }));
 };
 
 // Exemples d'événements à logger
 app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
-  const user = await verifyCredentials(req.body.email, req.body.password);
-  if (!user) {
-    logSecurityEvent('MERCENAIRE_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
-    return res.status(401).json({ error: 'Identifiants incorrects' });
-  }
-  logSecurityEvent('MERCENAIRE_SUCCESS', { userId: user.id }, req);
-  // ...
+ const user = await verifyCredentials(req.body.email, req.body.password);
+ if (!user) {
+  logSecurityEvent('MERCENAIRE_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
+  return res.status(401).json({ error: 'Identifiants incorrects' });
+ }
+ logSecurityEvent('MERCENAIRE_SUCCESS', { userId: user.id }, req);
+ // ...
 });
 
 // Déclencher une alerte si trop d'échecs de chakra_gate depuis la même IP
@@ -292,40 +292,40 @@ SSRF (Server-Side Request Forgery : falsification de requête côté serveur) : 
 ```js
 // Mauvais : ton serveur fait une requête vers une URL fournie par l'shinobi
 app.post('/fetch-preview', async (req, res) => {
-  const { url } = req.body;
-  const response = await fetch(url); // l'attaquant envoie url = "http://169.254.169.254/latest/meta-data/"
-  // --> sur AWS, cette IP est le metadata endpoint : il obtient les credentials AWS de ton serveur
-  res.json(await response.json());
+ const { url } = req.body;
+ const response = await fetch(url); // l'attaquant envoie url = "http://169.254.169.254/latest/meta-data/"
+ // --> sur AWS, cette IP est le metadata endpoint : il obtient les credentials AWS de ton serveur
+ res.json(await response.json());
 });
 
 // Bon : valider que l'URL est vers une destination autorisée
 const isAllowedUrl = (url) => {
-  try {
-    const parsed = new URL(url);
-    // bloquer les adresses privées et les métadonnées cloud
-    const blockedPatterns = [
-      /^127\./,           // localhost
-      /^192\.168\./,      // réseau local
-      /^10\./,            // réseau privé
-      /^169\.254\./,      // link-local (AWS metadata, Azure metadata)
-      /^::1$/,            // IPv6 localhost
-      /localhost/i,
-    ];
-    return (
-      ['http:', 'https:'].includes(parsed.protocol) &&
-      !blockedPatterns.some((p) => p.test(parsed.hostname))
-    );
-  } catch {
-    return false; // URL malformée
-  }
+ try {
+  const parsed = new URL(url);
+  // bloquer les adresses privées et les métadonnées cloud
+  const blockedPatterns = [
+   /^127\./,      // localhost
+   /^192\.168\./,   // réseau local
+   /^10\./,      // réseau privé
+   /^169\.254\./,   // link-local (AWS metadata, Azure metadata)
+   /^::1$/,      // IPv6 localhost
+   /localhost/i,
+  ];
+  return (
+   ['http:', 'https:'].includes(parsed.protocol) &&
+   !blockedPatterns.some((p) => p.test(parsed.hostname))
+  );
+ } catch {
+  return false; // URL malformée
+ }
 };
 
 app.post('/fetch-preview', async (req, res) => {
-  if (!isAllowedUrl(req.body.url)) {
-    return res.status(400).json({ error: 'URL non autorisée' });
-  }
-  const response = await fetch(req.body.url);
-  res.json(await response.json());
+ if (!isAllowedUrl(req.body.url)) {
+  return res.status(400).json({ error: 'URL non autorisée' });
+ }
+ const response = await fetch(req.body.url);
+ res.json(await response.json());
 });
 ```
 

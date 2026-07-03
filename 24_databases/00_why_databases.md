@@ -3,7 +3,7 @@
 > Ce module reutilise : async (03_async), scalabilite (25_scalability).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ton app peut avoir le frontend le plus poli du monde, l'architecture la plus propre, l'API la mieux documentée : si tes données sont mal modélisées, tout le reste s'effondre dès que le volume augmente. Une requête qui prend 5ms sur 1000 lignes peut en prendre 8 secondes sur 10 millions, juste parce que personne n'a posé un index au bon endroit.
 
@@ -34,11 +34,11 @@ Et sans cache bien pensé, chaque lecture d'une donnée consultée des milliers 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-recherche fréquente sur une colonne précise           --> index             --> requête rapide même à grande échelle
-données fortement relationnelles (profils, ordres_mission)  --> SQL               --> intégrité référentielle garantie
-données flexibles, schéma qui évolue souvent            --> NoSQL document    --> flexibilité sans migration lourde
-donnée consultée des milliers de fois par seconde       --> Redis cache       --> latence quasi nulle
-accès JS à la base de données                            --> ORM/query builder --> requêtes sûres et lisibles
+recherche fréquente sur une colonne précise      --> index       --> requête rapide même à grande échelle
+données fortement relationnelles (profils, ordres_mission) --> SQL        --> intégrité référentielle garantie
+données flexibles, schéma qui évolue souvent      --> NoSQL document  --> flexibilité sans migration lourde
+donnée consultée des milliers de fois par seconde    --> Redis cache    --> latence quasi nulle
+accès JS à la base de données              --> ORM/query builder --> requêtes sûres et lisibles
 ```
 
 Le choix de la base de données et de sa modélisation n'est jamais "juste un détail technique" : c'est une décision structurelle qui détermine directement la capacité du système à tenir la charge réelle, pas la charge de la démo.

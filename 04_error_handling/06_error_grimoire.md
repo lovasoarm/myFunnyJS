@@ -44,13 +44,13 @@ Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies
 
 ```
 Error
-├── TypeError          : mauvais type
-├── ReferenceError     : variable inconnue
-├── RangeError         : valeur hors limites
-├── SyntaxError        : code malformé (parsing)
-├── URIError           : URI malformée
-├── EvalError          : problème eval (rare)
-└── AggregateError     : groupe d'erreurs (Promise.any)
+├── TypeError     : mauvais type
+├── ReferenceError   : variable inconnue
+├── RangeError     : valeur hors limites
+├── SyntaxError    : code malformé (parsing)
+├── URIError      : URI malformée
+├── EvalError     : problème eval (rare)
+└── AggregateError   : groupe d'erreurs (Promise.any)
 ```
 
 ---
@@ -60,11 +60,11 @@ Error
 ```
 Error
 └── AppError (base de domaine)
-    ├── ValidationError     : données invalides
-    ├── NotFoundError       : ressource manquante
-    ├── AuthError           : accès refusé
-    ├── DatabaseError       : problème de persistance
-    └── ServiceError        : erreur de couche service
+  ├── ValidationError   : données invalides
+  ├── NotFoundError    : ressource manquante
+  ├── AuthError      : accès refusé
+  ├── DatabaseError    : problème de persistance
+  └── ServiceError    : erreur de couche service
 ```
 
 ---
@@ -72,16 +72,16 @@ Error
 ## QUAND UTILISER QUOI
 
 ```
-Situation                                  Solution
+Situation                 Solution
 ----------------------------------------------------------
-Condition impossible à compenser           fail-fast + throw
-Erreur transitoire (réseau, timeout)       retry avec backoff
-Feature dégradable                         fallback
-Service externe souvent KO                 circuit breaker
-Erreur d'une sous-couche à enrichir        wrapping avec cause
-Erreur hors de ta responsabilité           rethrow
-Multiple Promises, résultats indépendants  Promise.allSettled
-Logs lisibles en prod                      custom error + serialisation JSON
+Condition impossible à compenser      fail-fast + throw
+Erreur transitoire (réseau, timeout)    retry avec backoff
+Feature dégradable             fallback
+Service externe souvent KO         circuit breaker
+Erreur d'une sous-couche à enrichir    wrapping avec cause
+Erreur hors de ta responsabilité      rethrow
+Multiple Promises, résultats indépendants Promise.allSettled
+Logs lisibles en prod           custom error + serialisation JSON
 ```
 
 ---

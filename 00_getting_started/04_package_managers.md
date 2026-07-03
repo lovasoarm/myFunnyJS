@@ -12,12 +12,12 @@ Un package manager, c'est ton système de logistique. Il descend du code des aut
 ## npm : 6 ordres_mission
 
 ```
-npm init -y            # créer package.json
-npm install            # installer tout ce qui est dans package.json
-npm install lodash     # ajouter une dep
-npm install -D vitest  # dep de dev seulement
-npm uninstall lodash   # retirer
-npm run test           # lancer un script défini
+npm init -y      # créer package.json
+npm install      # installer tout ce qui est dans package.json
+npm install lodash   # ajouter une dep
+npm install -D vitest # dep de dev seulement
+npm uninstall lodash  # retirer
+npm run test      # lancer un script défini
 ```
 
 ## pnpm (recommandé 2026)

@@ -14,15 +14,15 @@ Cette contrainte est sa force : elle garantit un ordre d'accès prévisible.
 LIFO : Last In, First Out. Le dernier élément ajouté est le premier retiré.
 
 ```
-push("Eren")     push("Mikasa")    push("Armin")
-     ↓                 ↓                ↓
-  ┌────────┐       ┌────────┐       ┌────────┐
-  │ Eren   │       │Mikasa  │       │ Armin  │  <-- sommet (top)
-  └────────┘       ├────────┤       ├────────┤
-                   │ Eren   │       │Mikasa  │
-                   └────────┘       ├────────┤
-                                    │ Eren   │
-                                    └────────┘
+push("Eren")   push("Mikasa")  push("Armin")
+   ↓         ↓        ↓
+ ┌────────┐    ┌────────┐    ┌────────┐
+ │ Eren  │    │Mikasa │    │ Armin │ <-- sommet (top)
+ └────────┘    ├────────┤    ├────────┤
+          │ Eren  │    │Mikasa │
+          └────────┘    ├────────┤
+                  │ Eren  │
+                  └────────┘
 
 pop() retourne "Armin"
 pop() retourne "Mikasa"
@@ -39,41 +39,41 @@ La façon la plus simple en JS : utiliser un tableau et traiter uniquement sa fi
 
 ```js
 class Stack {
-  constructor() {
-    this.items = []  // le stockage interne
-  }
+ constructor() {
+  this.items = [] // le stockage interne
+ }
 
-  // ajouter au sommet : O(1) amorti
-  push(value) {
-    this.items.push(value)
-  }
+ // ajouter au sommet : O(1) amorti
+ push(value) {
+  this.items.push(value)
+ }
 
-  // retirer du sommet : O(1)
-  pop() {
-    if (this.isEmpty()) return null  // pas d'erreur silencieuse : on retourne null
-    return this.items.pop()
-  }
+ // retirer du sommet : O(1)
+ pop() {
+  if (this.isEmpty()) return null // pas d'erreur silencieuse : on retourne null
+  return this.items.pop()
+ }
 
-  // regarder le sommet sans retirer : O(1)
-  peek() {
-    if (this.isEmpty()) return null
-    return this.items[this.items.length - 1]
-  }
+ // regarder le sommet sans retirer : O(1)
+ peek() {
+  if (this.isEmpty()) return null
+  return this.items[this.items.length - 1]
+ }
 
-  // vérifier si la stack est vide
-  isEmpty() {
-    return this.items.length === 0
-  }
+ // vérifier si la stack est vide
+ isEmpty() {
+  return this.items.length === 0
+ }
 
-  // taille actuelle
-  get size() {
-    return this.items.length
-  }
+ // taille actuelle
+ get size() {
+  return this.items.length
+ }
 
-  // affichage : sommet en premier
-  print() {
-    return [...this.items].reverse().join(" | ")
-  }
+ // affichage : sommet en premier
+ print() {
+  return [...this.items].reverse().join(" | ")
+ }
 }
 ```
 
@@ -85,31 +85,31 @@ Quand JS exécute du code, il empile les appels de fonctions sur la call stack. 
 
 ```js
 function third() {
-  console.log("je suis en haut")  // troisième à s'exécuter
+ console.log("je suis en haut") // troisième à s'exécuter
 }
 
 function second() {
-  third()  // on pousse third() sur la stack
+ third() // on pousse third() sur la stack
 }
 
 function first() {
-  second()  // on pousse second() sur la stack
+ second() // on pousse second() sur la stack
 }
 
-first()  // on pousse first() sur la stack
+first() // on pousse first() sur la stack
 ```
 
 ```
 Évolution de la call stack :
 
-push first()    push second()    push third()    pop third()    pop second()    pop first()
-┌─────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    vide
-│ first() │    │ second() │    │ third()  │    │ second() │    │ first()  │
-└─────────┘    ├──────────┤    ├──────────┤    ├──────────┤    └──────────┘
-               │ first()  │    │ second() │    │ first()  │
-               └──────────┘    ├──────────┤    └──────────┘
-                               │ first()  │
-                               └──────────┘
+push first()  push second()  push third()  pop third()  pop second()  pop first()
+┌─────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  vide
+│ first() │  │ second() │  │ third() │  │ second() │  │ first() │
+└─────────┘  ├──────────┤  ├──────────┤  ├──────────┤  └──────────┘
+        │ first() │  │ second() │  │ first() │
+        └──────────┘  ├──────────┤  └──────────┘
+                │ first() │
+                └──────────┘
 ```
 
 Le "Maximum call stack size exceeded" ? C'est quand la stack déborde parce qu'une récursion n'a pas de cas de base.
@@ -124,48 +124,48 @@ Avec une linked list, c'est toujours O(1) strict : on manipule juste le head.
 
 ```js
 class Node {
-  constructor(value) {
-    this.value = value
-    this.next = null
-  }
+ constructor(value) {
+  this.value = value
+  this.next = null
+ }
 }
 
 class Stack {
-  constructor() {
-    this.top = null   // le sommet : le head de la liste
-    this.size = 0
-  }
+ constructor() {
+  this.top = null  // le sommet : le head de la liste
+  this.size = 0
+ }
 
-  push(value) {
-    const node = new Node(value)
-    node.next = this.top  // le nouveau node pointe vers l'ancien sommet
-    this.top = node       // le nouveau node devient le sommet
-    this.size++
-  }
+ push(value) {
+  const node = new Node(value)
+  node.next = this.top // le nouveau node pointe vers l'ancien sommet
+  this.top = node    // le nouveau node devient le sommet
+  this.size++
+ }
 
-  pop() {
-    if (!this.top) return null
-    const value = this.top.value
-    this.top = this.top.next  // le sommet descend d'un cran
-    this.size--
-    return value
-  }
+ pop() {
+  if (!this.top) return null
+  const value = this.top.value
+  this.top = this.top.next // le sommet descend d'un cran
+  this.size--
+  return value
+ }
 
-  peek() {
-    return this.top ? this.top.value : null
-  }
+ peek() {
+  return this.top ? this.top.value : null
+ }
 
-  isEmpty() {
-    return this.top === null
-  }
+ isEmpty() {
+  return this.top === null
+ }
 }
 ```
 
 ```
-push("A") : [A] --> null       top = A
-push("B") : [B] --> [A] --> null   top = B
-push("C") : [C] --> [B] --> [A] --> null   top = C
-pop()  :    [B] --> [A] --> null   retourne "C", top = B
+push("A") : [A] --> null    top = A
+push("B") : [B] --> [A] --> null  top = B
+push("C") : [C] --> [B] --> [A] --> null  top = C
+pop() :  [B] --> [A] --> null  retourne "C", top = B
 ```
 
 ---
@@ -185,14 +185,14 @@ console.log(history.peek())
 // { url: "/api/goals", status: 404 }
 
 // retirer les requêtes en ordre inverse (LIFO)
-console.log(history.pop())  // { url: "/api/goals", status: 404 }
-console.log(history.pop())  // { url: "/api/match/42", status: 200 }
-console.log(history.size)   // 1
+console.log(history.pop()) // { url: "/api/goals", status: 404 }
+console.log(history.pop()) // { url: "/api/match/42", status: 200 }
+console.log(history.size)  // 1
 
 // vérifier si la stack est vide
-console.log(history.isEmpty())  // false
+console.log(history.isEmpty()) // false
 history.pop()
-console.log(history.isEmpty())  // true
+console.log(history.isEmpty()) // true
 ```
 
 ---
@@ -215,12 +215,12 @@ Donne la séquence exacte d'état de la call stack pour ce code. Note chaque pus
 
 ```js
 function countdown(n) {
-  if (n === 0) {
-    console.log("Fini")
-    return
-  }
-  console.log(n)
-  countdown(n - 1)
+ if (n === 0) {
+  console.log("Fini")
+  return
+ }
+ console.log(n)
+ countdown(n - 1)
 }
 
 countdown(3)

@@ -17,9 +17,9 @@ Avant d'écrire la moindre ligne de test, lecture complète de `campV1.js`. Aucu
 
 ```js
 test('legacy : campV1 affiche le statut initial correctement', () => {
-  const output = runLegacyCamp(['status']);
-  expect(output).toContain('Alexandria');
-  expect(output).toContain('jour');
+ const output = runLegacyCamp(['status']);
+ expect(output).toContain('Alexandria');
+ expect(output).toContain('jour');
 });
 ```
 
@@ -29,8 +29,8 @@ Vert directement : on décrit ce que le code fait déjà, pas ce qu'il devrait f
 
 ```js
 test('legacy : consume avec une quantité supérieure au stock', () => {
-  const output = runLegacyCamp(['consume', 'food', '9999']);
-  expect(output).toContain('jours restants');
+ const output = runLegacyCamp(['consume', 'food', '9999']);
+ expect(output).toContain('jours restants');
 });
 ```
 
@@ -57,9 +57,9 @@ Même méthode appliquée à `guards.test.js` et `security.test.js` : observer l
 
 ```js
 test('write puis read retourne les mêmes données', async () => {
-  await fileStore.write('test.json', { a: 1 });
-  const data = await fileStore.read('test.json');
-  expect(data).toEqual({ a: 1 });
+ await fileStore.write('test.json', { a: 1 });
+ const data = await fileStore.read('test.json');
+ expect(data).toEqual({ a: 1 });
 });
 ```
 
@@ -71,8 +71,8 @@ Red d'abord, volontairement, avant toute implémentation :
 
 ```js
 test('consume throw si quantité insuffisante', () => {
-  const inv = { food: { units: 10, dailyConsumption: 3 } };
-  expect(() => consume(inv, 'food', 100)).toThrow('InsufficientResourceError');
+ const inv = { food: { units: 10, dailyConsumption: 3 } };
+ expect(() => consume(inv, 'food', 100)).toThrow('InsufficientResourceError');
 });
 ```
 
@@ -80,9 +80,9 @@ Rouge (la fonction n'existe même pas encore). Implémentation minimale pour pas
 
 ```js
 test('consume ne mute pas l\'inventaire original', () => {
-  const inv = { food: { units: 42, dailyConsumption: 3 } };
-  consume(inv, 'food', 9);
-  expect(inv.food.units).toBe(42);
+ const inv = { food: { units: 42, dailyConsumption: 3 } };
+ consume(inv, 'food', 9);
+ expect(inv.food.units).toBe(42);
 });
 ```
 
@@ -94,9 +94,9 @@ Test du cas limite 2 du cahier des charges, écrit avant l'implémentation :
 
 ```js
 test('rotate priorise le remplissage d\'un poste vacant plutôt qu\'une rotation normale', () => {
-  const guards = { postA: 'Daryl', postB: null }; // poste B vacant
-  const result = rotateGuards(guards, ['Glenn', 'Carl']);
-  expect(result.postB).not.toBeNull(); // priorité au poste vacant
+ const guards = { postA: 'Daryl', postB: null }; // poste B vacant
+ const result = rotateGuards(guards, ['Glenn', 'Carl']);
+ expect(result.postB).not.toBeNull(); // priorité au poste vacant
 });
 ```
 
@@ -106,8 +106,8 @@ Rouge au premier essai : la première implémentation faisait juste une rotation
 
 ```js
 test('status affiche les ressources du camp', () => {
-  const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
-  expect(output).toContain('CAMP');
+ const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
+ expect(output).toContain('CAMP');
 });
 ```
 
@@ -117,15 +117,15 @@ Vert une fois le routeur branché correctement. Pas de surprise architecturale i
 
 ```js
 test('le thread principal reçoit un événement threat du Worker', (done) => {
-  const worker = new Worker('./src/workers/threatSimulator.js', {
-    workerData: { intensity: 'haute', duration: 100, perimeters: ['sud'] }
-  });
+ const worker = new Worker('./src/workers/threatSimulator.js', {
+  workerData: { intensity: 'haute', duration: 100, perimeters: ['sud'] }
+ });
 
-  worker.on('message', (msg) => {
-    expect(msg.type).toBe('threat');
-    worker.terminate();
-    done();
-  });
+ worker.on('message', (msg) => {
+  expect(msg.type).toBe('threat');
+  worker.terminate();
+  done();
+ });
 });
 ```
 
@@ -135,14 +135,14 @@ Test du cas limite 5 (Worker qui plante) :
 
 ```js
 test('une exception dans le Worker ne crashe pas le process principal', (done) => {
-  const worker = new Worker('./src/workers/threatSimulator.js', {
-    workerData: { intensity: 'invalide' } // déclenche une erreur volontaire dans le Worker
-  });
+ const worker = new Worker('./src/workers/threatSimulator.js', {
+  workerData: { intensity: 'invalide' } // déclenche une erreur volontaire dans le Worker
+ });
 
-  worker.on('error', (err) => {
-    expect(err).toBeDefined();
-    done(); // le test passe SI l'erreur est capturée proprement, pas si le process crashe
-  });
+ worker.on('error', (err) => {
+  expect(err).toBeDefined();
+  done(); // le test passe SI l'erreur est capturée proprement, pas si le process crashe
+ });
 });
 ```
 

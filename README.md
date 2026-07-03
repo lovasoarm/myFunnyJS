@@ -32,15 +32,15 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 ## ROADMAP CONDENSÉE (33 modules)
 
 ```
-01 -> 07   Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
-08 -> 11   Memory · Data Structures · Algorithms · Functional
-12 -> 16   OOP · Patterns · Refactoring · TypeScript · Runtime
-17 -> 22   Architecture · Web Concepts · Web Inclusive · Realtime · API · Security
-23 -> 24   AI-Native Dev · AI Agents & Autonomy
-25 -> 29   Databases · Scalability · Observability · Team · Edge Cases
-30         16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
-31         Annexes : transférabilité, interview, portfolio, career, éthique
-32         Tools
+01 -> 07  Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
+08 -> 11  Memory · Data Structures · Algorithms · Functional
+12 -> 16  OOP · Patterns · Refactoring · TypeScript · Runtime
+17 -> 22  Architecture · Web Concepts · Web Inclusive · Realtime · API · Security
+23 -> 24  AI-Native Dev · AI Agents & Autonomy
+25 -> 29  Databases · Scalability · Observability · Team · Edge Cases
+30     16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
+31     Annexes : transférabilité, interview, portfolio, career, éthique
+32     Tools
 ```
 
 Arborescence complète, dépendances entre modules et noyau dur détaillé : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).
@@ -50,7 +50,7 @@ Arborescence complète, dépendances entre modules et noyau dur détaillé : [`3
 ## COMMENT DÉMARRER (5 min)
 
 ```bash
-node -v      # >= 20 (voir .nvmrc)
+node -v   # >= 20 (voir .nvmrc)
 git --version
 ```
 

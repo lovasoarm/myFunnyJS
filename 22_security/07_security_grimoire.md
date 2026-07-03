@@ -1,7 +1,7 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~13 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
@@ -57,38 +57,38 @@ Le lexique de sécurité que tout dev web doit avoir en tête. Pas une liste Wik
 
 ```
 Attaques côté client
-  XSS                   -->  injecte du code dans ta page
-    defense             -->  textContent / DOMPurify / CSP
+ XSS          --> injecte du code dans ta page
+  defense       --> textContent / DOMPurify / CSP
 
-  CSRF                  -->  déclenche des actions à ta place
-    defense             -->  token CSRF / SameSite cookie
+ CSRF         --> déclenche des actions à ta place
+  defense       --> token CSRF / SameSite cookie
 
 Attaques côté serveur
-  SQL Injection         -->  manipule tes requêtes DB
-    defense             -->  prepared statements
+ SQL Injection     --> manipule tes requêtes DB
+  defense       --> prepared statements
 
-  SSRF                  -->  force ton serveur à faire des requêtes internes
-    defense             -->  validation URL + blocage IP privées
+ SSRF         --> force ton serveur à faire des requêtes internes
+  defense       --> validation URL + blocage IP privées
 
-  Prototype Pollution   -->  modifie Object.prototype globalement
-    defense             -->  blocage clés dangereuses / Object.freeze
+ Prototype Pollution  --> modifie Object.prototype globalement
+  defense       --> blocage clés dangereuses / Object.freeze
 
 Attaques sur les credentials (identifiants)
-  Brute Force           -->  tester des milliers de mots de passe
-    defense             -->  rate limiting + bcrypt (lent)
+ Brute Force      --> tester des milliers de mots de passe
+  defense       --> rate limiting + bcrypt (lent)
 
-  Timing Attack         -->  deviner via le temps de réponse
-    defense             -->  timingSafeEqual + dummy compare
+ Timing Attack     --> deviner via le temps de réponse
+  defense       --> timingSafeEqual + dummy compare
 
-  Rainbow Table         -->  retrouver le mot de passe depuis le hash
-    defense             -->  salt unique (inclus dans bcrypt)
+ Rainbow Table     --> retrouver le mot de passe depuis le hash
+  defense       --> salt unique (inclus dans bcrypt)
 
 Contrôle d'accès
-  IDOR                  -->  accéder à la ressource d'un autre user
-    defense             -->  double contrainte (id + user_id) en DB
+ IDOR         --> accéder à la ressource d'un autre user
+  defense       --> double contrainte (id + user_id) en DB
 
-  Privilege Escalation  -->  obtenir des droits supérieurs
-    defense             -->  vérification de rôle côté serveur, jamais côté client
+ Privilege Escalation --> obtenir des droits supérieurs
+  defense       --> vérification de rôle côté serveur, jamais côté client
 ```
 
 ---
@@ -97,34 +97,34 @@ Contrôle d'accès
 
 ```
 1. Stocker des mots de passe en MD5 ou SHA256 (trop rapide, cassable par GPU)
-   --> fix : bcrypt cost >= 12
+  --> fix : bcrypt cost >= 12
 
 2. Faire confiance au rôle venant du cookie ou du body de la requête
-   --> fix : rôle extrait du token signé côté serveur
+  --> fix : rôle extrait du token signé côté serveur
 
 3. `Access-Control-Allow-Origin: *` avec `credentials: true`
-   --> fix : origin précise quand credentials sont nécessaires
+  --> fix : origin précise quand credentials sont nécessaires
 
 4. JWT stocké en localStorage (accessible par XSS)
-   --> fix : access token en mémoire, refresh token en cookie httpOnly
+  --> fix : access token en mémoire, refresh token en cookie httpOnly
 
 5. Pas de validation sur les IDs dans les URLs (IDOR)
-   --> fix : WHERE id = $1 AND user_id = $2 sur toutes les requêtes de ressources
+  --> fix : WHERE id = $1 AND user_id = $2 sur toutes les requêtes de ressources
 
 6. Stack traces exposées en prod
-   --> fix : message générique en prod, log détaillé côté serveur uniquement
+  --> fix : message générique en prod, log détaillé côté serveur uniquement
 
 7. Secrets dans le code source
-   --> fix : .env + .gitignore + variables d'environnement en CI/CD
+  --> fix : .env + .gitignore + variables d'environnement en CI/CD
 
 8. `eval()` ou `child_process.exec()` avec un input shinobi
-   --> fix : execFile avec args séparés, ou éviter complètement
+  --> fix : execFile avec args séparés, ou éviter complètement
 
 9. Pas de rate limiting sur les endpoints de chakra_gate
-   --> fix : express-rate-limit + verrouillage après N échecs
+  --> fix : express-rate-limit + verrouillage après N échecs
 
 10. npm audit jamais lancé
-    --> fix : npm audit dans la CI, bloquant sur critical
+  --> fix : npm audit dans la CI, bloquant sur critical
 ```
 
 ---
@@ -132,12 +132,12 @@ Contrôle d'accès
 ## HEADERS DE SÉCURITÉ : LA RÉFÉRENCE
 
 ```
-Content-Security-Policy   -->  contrôle les sources de scripts, styles, iframes
-X-Content-Type-Options    -->  empêche le navigateur de deviner le type MIME
-X-Frame-Options           -->  empêche l'affichage dans une iframe (clickjacking)
-Strict-Transport-Security -->  force HTTPS pour les futures visites
-Referrer-Policy           -->  contrôle ce qui est envoyé dans le header Referer
-Permissions-Policy        -->  limite l'accès aux APIs navigateur (caméra, géoloc, etc.)
+Content-Security-Policy  --> contrôle les sources de scripts, styles, iframes
+X-Content-Type-Options  --> empêche le navigateur de deviner le type MIME
+X-Frame-Options      --> empêche l'affichage dans une iframe (clickjacking)
+Strict-Transport-Security --> force HTTPS pour les futures visites
+Referrer-Policy      --> contrôle ce qui est envoyé dans le header Referer
+Permissions-Policy    --> limite l'accès aux APIs navigateur (caméra, géoloc, etc.)
 
 helmet() configure tout ça en une ligne.
 ```

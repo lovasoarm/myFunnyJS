@@ -17,18 +17,18 @@ Avec `async/await`, elles se catchent dans un `try/catch` classique.
 ```js
 // version Promise
 fetchKnight('leon')
-  .then(data => console.log(data))
-  .catch(err => console.error('Leon est tombé :', err))
+ .then(data => console.log(data))
+ .catch(err => console.error('Leon est tombé :', err))
 
 // version async/await
 async function getKnight() {
-  try {
-    const data = await fetchKnight('leon')
-    console.log(data)
-  } catch (err) {
-    // si fetchKnight() rejette : on arrive ici
-    console.error('Leon est tombé :', err)
-  }
+ try {
+  const data = await fetchKnight('leon')
+  console.log(data)
+ } catch (err) {
+  // si fetchKnight() rejette : on arrive ici
+  console.error('Leon est tombé :', err)
+ }
 }
 ```
 
@@ -41,16 +41,16 @@ rejets de Promise, erreurs réseau, erreurs de parsing JSON : tout.
 
 ```js
 async function getKnight() {
-  try {
-    // fetchKnight démarre...
-    const promise = fetchKnight('leon')
+ try {
+  // fetchKnight démarre...
+  const promise = fetchKnight('leon')
 
-    // ...mais on n'await pas
-    // si la Promise rejette : personne ne l'attrape
-    // le catch ci-dessous ne sera JAMAIS appelé
-  } catch (err) {
-    console.error(err) // jamais exécuté
-  }
+  // ...mais on n'await pas
+  // si la Promise rejette : personne ne l'attrape
+  // le catch ci-dessous ne sera JAMAIS appelé
+ } catch (err) {
+  console.error(err) // jamais exécuté
+ }
 }
 ```
 
@@ -63,17 +63,17 @@ Une Promise non-awaitée qui rejette = une `UnhandledPromiseRejection`.
 
 ```js
 async function executeHorrorMission(horrorId) {
-  try {
-    const horror = await detectHorror(horrorId)       // peut rater
-    const knight = await dispatchKnight(horror.zone)  // peut rater
-    const result = await startCombat(knight, horror)  // peut rater
-    return result
-  } catch (err) {
-    // on sait qu'il y a eu une erreur, mais laquelle ?
-    // detectHorror ? dispatchKnight ? startCombat ?
-    // impossible à savoir sans info supplémentaire
-    console.error('mission échouée :', err.message)
-  }
+ try {
+  const horror = await detectHorror(horrorId)    // peut rater
+  const knight = await dispatchKnight(horror.zone) // peut rater
+  const result = await startCombat(knight, horror) // peut rater
+  return result
+ } catch (err) {
+  // on sait qu'il y a eu une erreur, mais laquelle ?
+  // detectHorror ? dispatchKnight ? startCombat ?
+  // impossible à savoir sans info supplémentaire
+  console.error('mission échouée :', err.message)
+ }
 }
 ```
 
@@ -82,25 +82,25 @@ Si tu as besoin de savoir exactement où ça a raté :
 
 ```js
 async function executeHorrorMission(horrorId) {
-  let horror
-  try {
-    horror = await detectHorror(horrorId)
-  } catch (err) {
-    throw new Error(`Détection échouée pour ${horrorId} : ${err.message}`)
-  }
+ let horror
+ try {
+  horror = await detectHorror(horrorId)
+ } catch (err) {
+  throw new Error(`Détection échouée pour ${horrorId} : ${err.message}`)
+ }
 
-  let knight
-  try {
-    knight = await dispatchKnight(horror.zone)
-  } catch (err) {
-    throw new Error(`Dispatch échoué pour zone ${horror.zone} : ${err.message}`)
-  }
+ let knight
+ try {
+  knight = await dispatchKnight(horror.zone)
+ } catch (err) {
+  throw new Error(`Dispatch échoué pour zone ${horror.zone} : ${err.message}`)
+ }
 
-  try {
-    return await startCombat(knight, horror)
-  } catch (err) {
-    throw new Error(`Combat échoué : ${knight.name} vs ${horror.name} : ${err.message}`)
-  }
+ try {
+  return await startCombat(knight, horror)
+ } catch (err) {
+  throw new Error(`Combat échoué : ${knight.name} vs ${horror.name} : ${err.message}`)
+ }
 }
 ```
 
@@ -116,30 +116,30 @@ Renoncer au premier échec : souvent la mauvaise décision.
 ```js
 // retente jusqu'à maxAttempts fois avant d'abandonner
 async function withRetry(fn, maxAttempts = 3, delayMs = 1000) {
-  let lastError
+ let lastError
 
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    try {
-      return await fn()
-    } catch (err) {
-      lastError = err
-      console.warn(`Tentative ${attempt}/${maxAttempts} échouée : ${err.message}`)
+ for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+  try {
+   return await fn()
+  } catch (err) {
+   lastError = err
+   console.warn(`Tentative ${attempt}/${maxAttempts} échouée : ${err.message}`)
 
-      if (attempt < maxAttempts) {
-        // attendre avant de retenter : laisse le temps au serveur de respirer
-        await new Promise(resolve => setTimeout(resolve, delayMs * attempt))
-        // delayMs * attempt = backoff exponentiel progressif
-      }
-    }
+   if (attempt < maxAttempts) {
+    // attendre avant de retenter : laisse le temps au serveur de respirer
+    await new Promise(resolve => setTimeout(resolve, delayMs * attempt))
+    // delayMs * attempt = backoff exponentiel progressif
+   }
   }
+ }
 
-  // toutes les tentatives ont échoué : on propage l'erreur
-  throw new Error(`Échec après ${maxAttempts} tentatives : ${lastError.message}`)
+ // toutes les tentatives ont échoué : on propage l'erreur
+ throw new Error(`Échec après ${maxAttempts} tentatives : ${lastError.message}`)
 }
 
 // utilisation
 async function getKnightWithRetry() {
-  return withRetry(() => fetchKnight('leon'), 3, 500)
+ return withRetry(() => fetchKnight('leon'), 3, 500)
 }
 ```
 
@@ -151,28 +151,28 @@ Une Promise sans timeout peut attendre indéfiniment. L'shinobi attend. L'UI fre
 
 ```js
 function withTimeout(promise, ms) {
-  const timeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error(`Timeout après ${ms}ms`)), ms)
-  )
+ const timeout = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error(`Timeout après ${ms}ms`)), ms)
+ )
 
-  // Promise.race : le premier qui se résout gagne
-  // si le timeout gagne : l'erreur est propagée
-  // si la Promise originale gagne : le timeout est ignoré
-  return Promise.race([promise, timeout])
+ // Promise.race : le premier qui se résout gagne
+ // si le timeout gagne : l'erreur est propagée
+ // si la Promise originale gagne : le timeout est ignoré
+ return Promise.race([promise, timeout])
 }
 
 // si fetchMission prend plus de 3s : erreur de timeout
 async function getMissionSafe() {
-  try {
-    const mission = await withTimeout(fetchMission('leon'), 3000)
-    return mission
-  } catch (err) {
-    if (err.message.includes('Timeout')) {
-      console.error("Leon ne répond plus. On envoie Rei.")
-      return fetchMission('rei') // fallback
-    }
-    throw err // autre type d'erreur : on la propage
+ try {
+  const mission = await withTimeout(fetchMission('leon'), 3000)
+  return mission
+ } catch (err) {
+  if (err.message.includes('Timeout')) {
+   console.error("Leon ne répond plus. On envoie Rei.")
+   return fetchMission('rei') // fallback
   }
+  throw err // autre type d'erreur : on la propage
+ }
 }
 ```
 
@@ -182,22 +182,22 @@ async function getMissionSafe() {
 
 ```js
 async function getHorrorData(horrorId) {
-  try {
-    // tente l'API principale
-    return await fetchFromPrimaryAPI(horrorId)
-  } catch (primaryErr) {
-    console.warn('API principale indispo, tentative backup...')
+ try {
+  // tente l'API principale
+  return await fetchFromPrimaryAPI(horrorId)
+ } catch (primaryErr) {
+  console.warn('API principale indispo, tentative backup...')
 
-    try {
-      // fallback sur l'API de backup
-      return await fetchFromBackupAPI(horrorId)
-    } catch (backupErr) {
-      // les deux APIs sont mortes
-      // retourne des données dégradées plutôt que de crasher
-      console.error('Backup aussi indispo. Mode dégradé.')
-      return { id: horrorId, name: 'Unknown Horror', threat: 'unknown' }
-    }
+  try {
+   // fallback sur l'API de backup
+   return await fetchFromBackupAPI(horrorId)
+  } catch (backupErr) {
+   // les deux APIs sont mortes
+   // retourne des données dégradées plutôt que de crasher
+   console.error('Backup aussi indispo. Mode dégradé.')
+   return { id: horrorId, name: 'Unknown Horror', threat: 'unknown' }
   }
+ }
 }
 ```
 
@@ -212,28 +212,28 @@ Résultat dégradé > crash total. L'shinobi voit quelque chose, même si c'est 
 
 ```js
 async function getAllKnightReports(knights) {
-  const results = await Promise.allSettled(
-    knights.map(knight => fetchReport(knight))
-  )
+ const results = await Promise.allSettled(
+  knights.map(knight => fetchReport(knight))
+ )
 
-  // results = tableau d'objets :
-  // { status: 'fulfilled', value: ... }
-  // { status: 'rejected', reason: ... }
+ // results = tableau d'objets :
+ // { status: 'fulfilled', value: ... }
+ // { status: 'rejected', reason: ... }
 
-  const reports = []
-  const failures = []
+ const reports = []
+ const failures = []
 
-  for (const result of results) {
-    if (result.status === 'fulfilled') {
-      reports.push(result.value)
-    } else {
-      failures.push(result.reason)
-      console.warn('Un rapport manquant :', result.reason.message)
-    }
+ for (const result of results) {
+  if (result.status === 'fulfilled') {
+   reports.push(result.value)
+  } else {
+   failures.push(result.reason)
+   console.warn('Un rapport manquant :', result.reason.message)
   }
+ }
 
-  // on retourne ce qu'on a, même incomplet
-  return { reports, failures }
+ // on retourne ce qu'on a, même incomplet
+ return { reports, failures }
 }
 ```
 
@@ -264,14 +264,14 @@ Leon part en mission. Sa réponse prend parfois plus de 5 secondes.
 
 ```js
 function callLeon() {
-  return new Promise((resolve, reject) => {
-    const delay = Math.random() > 0.5 ? 2000 : 8000
-    setTimeout(() => resolve('Leon disponible'), delay)
-  })
+ return new Promise((resolve, reject) => {
+  const delay = Math.random() > 0.5 ? 2000 : 8000
+  setTimeout(() => resolve('Leon disponible'), delay)
+ })
 }
 
 function callRei() {
-  return new Promise(resolve => setTimeout(() => resolve('Rei disponible'), 1000))
+ return new Promise(resolve => setTimeout(() => resolve('Rei disponible'), 1000))
 }
 ```
 
@@ -285,14 +285,14 @@ function callRei() {
 
 ```js
 function fetchReport(name) {
-  return new Promise((resolve, reject) => {
-    // 30% de chance d'échouer
-    if (Math.random() < 0.3) {
-      reject(new Error(`${name} : rapport indisponible`))
-    } else {
-      resolve(`${name} : mission accomplie`)
-    }
-  })
+ return new Promise((resolve, reject) => {
+  // 30% de chance d'échouer
+  if (Math.random() < 0.3) {
+   reject(new Error(`${name} : rapport indisponible`))
+  } else {
+   resolve(`${name} : mission accomplie`)
+  }
+ })
 }
 
 const knights = ['Leon', 'Rei', 'Kouga', 'Leo', 'Bado']

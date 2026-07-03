@@ -1,7 +1,7 @@
 # RFC simulation : soumets une décision technique
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : la capacité à écrire, défendre et amender une RFC survit
+> **INTEMPOREL** : la capacité à écrire, défendre et amender une RFC survit
 > aux frameworks, aux langages et aux tendances managériales.
 
 ## Rappel : c'est quoi une RFC ?

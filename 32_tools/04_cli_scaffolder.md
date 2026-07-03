@@ -1,13 +1,13 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # CLI SCAFFOLDER : GÉNÉRER UNE STRUCTURE DE PROJET EN UNE ORDRE_MISSION, PAS NEUF FOIS À LA MAIN
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Les 9 mini-projets de MyFunnyJS partagent tous la même arborescence cible : `cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, puis les dossiers de travail `src/` et `tests/` que l'apprenant crée pendant le projet. Recréer cette base à la main, projet après projet, c'est le genre de tâche répétitive où une faute de frappe ou un dossier oublié finit toujours par arriver. Un scaffolder (générateur de structure) élimine ce risque en une ordre_mission.
 
@@ -38,12 +38,12 @@ const path = require('path');
 
 // fs.mkdirSync crée un dossier, "recursive: true" crée aussi les parents si besoin
 function creerDossier(cheminComplet) {
-  fs.mkdirSync(cheminComplet, { recursive: true });
+ fs.mkdirSync(cheminComplet, { recursive: true });
 }
 
 // fs.writeFileSync crée un fichier avec un contenu initial
 function creerFichier(cheminComplet, contenu = "") {
-  fs.writeFileSync(cheminComplet, contenu, 'utf-8');
+ fs.writeFileSync(cheminComplet, contenu, 'utf-8');
 }
 ```
 
@@ -57,38 +57,38 @@ function creerFichier(cheminComplet, contenu = "") {
 // scaffold.js (suite)
 
 const STRUCTURE_MINI_PROJET = {
-  fichiers: [
-    "cahierdescharges.md",
-    "README.md",
-    "TDD_JOURNAL.md",
-    "POSTMORTEM.md",
-  ],
-  dossiers: ["ADR", "src", "tests"],
+ fichiers: [
+  "cahierdescharges.md",
+  "README.md",
+  "TDD_JOURNAL.md",
+  "POSTMORTEM.md",
+ ],
+ dossiers: ["ADR", "src", "tests"],
 };
 
 function genererMiniProjet(nomProjet) {
-  const racine = path.join(process.cwd(), nomProjet);
+ const racine = path.join(process.cwd(), nomProjet);
 
-  if (fs.existsSync(racine)) {
-    throw new Error(`Le dossier "${nomProjet}" existe déjà, scaffolding annulé`);
-  }
+ if (fs.existsSync(racine)) {
+  throw new Error(`Le dossier "${nomProjet}" existe déjà, scaffolding annulé`);
+ }
 
-  creerDossier(racine);
+ creerDossier(racine);
 
-  // chaque fichier markdown démarre avec un titre minimal, pas vide
-  STRUCTURE_MINI_PROJET.fichiers.forEach(nomFichier => {
-    const titre = nomFichier.replace(".md", "").replace(/_/g, " ");
-    creerFichier(
-      path.join(racine, nomFichier),
-      `# ${titre}\n\n> À compléter.\n`
-    );
-  });
+ // chaque fichier markdown démarre avec un titre minimal, pas vide
+ STRUCTURE_MINI_PROJET.fichiers.forEach(nomFichier => {
+  const titre = nomFichier.replace(".md", "").replace(/_/g, " ");
+  creerFichier(
+   path.join(racine, nomFichier),
+   `# ${titre}\n\n> À compléter.\n`
+  );
+ });
 
-  STRUCTURE_MINI_PROJET.dossiers.forEach(nomDossier => {
-    creerDossier(path.join(racine, nomDossier));
-  });
+ STRUCTURE_MINI_PROJET.dossiers.forEach(nomDossier => {
+  creerDossier(path.join(racine, nomDossier));
+ });
 
-  return racine;
+ return racine;
 }
 
 module.exports = { genererMiniProjet };
@@ -121,16 +121,16 @@ const { genererMiniProjet } = require('./scaffold');
 const nomProjet = process.argv[2];
 
 if (!nomProjet) {
-  console.error("Usage : node cli.js <nom-du-projet>");
-  process.exit(1); // code de sortie différent de 0 = signale une erreur au shell
+ console.error("Usage : node cli.js <nom-du-projet>");
+ process.exit(1); // code de sortie différent de 0 = signale une erreur au shell
 }
 
 try {
-  const chemin = genererMiniProjet(nomProjet);
-  console.log(`Projet "${nomProjet}" généré avec succès dans ${chemin}`);
+ const chemin = genererMiniProjet(nomProjet);
+ console.log(`Projet "${nomProjet}" généré avec succès dans ${chemin}`);
 } catch (erreur) {
-  console.error(`Échec : ${erreur.message}`);
-  process.exit(1);
+ console.error(`Échec : ${erreur.message}`);
+ process.exit(1);
 }
 ```
 
@@ -149,23 +149,23 @@ node cli.js 10_nouveau_projet
 ```js
 // Permettre de choisir QUELS éléments générer, pas toujours tout
 function genererStructure(nomProjet, options = {}) {
-  const {
-    inclureADR = true,
-    inclureTests = true,
-  } = options;
+ const {
+  inclureADR = true,
+  inclureTests = true,
+ } = options;
 
-  const racine = path.join(process.cwd(), nomProjet);
-  creerDossier(racine);
+ const racine = path.join(process.cwd(), nomProjet);
+ creerDossier(racine);
 
-  STRUCTURE_MINI_PROJET.fichiers.forEach(nomFichier => {
-    creerFichier(path.join(racine, nomFichier), `# ${nomFichier.replace(".md", "")}\n`);
-  });
+ STRUCTURE_MINI_PROJET.fichiers.forEach(nomFichier => {
+  creerFichier(path.join(racine, nomFichier), `# ${nomFichier.replace(".md", "")}\n`);
+ });
 
-  creerDossier(path.join(racine, "src"));
-  if (inclureTests) creerDossier(path.join(racine, "tests"));
-  if (inclureADR) creerDossier(path.join(racine, "ADR"));
+ creerDossier(path.join(racine, "src"));
+ if (inclureTests) creerDossier(path.join(racine, "tests"));
+ if (inclureADR) creerDossier(path.join(racine, "ADR"));
 
-  return racine;
+ return racine;
 }
 ```
 

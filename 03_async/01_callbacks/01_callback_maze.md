@@ -15,12 +15,12 @@ Une fonction passée à une autre fonction, pour être appelée plus tard.
 ```js
 // exemple minimal
 function direBonjour(nom, callback) {
-  const message = "Salut " + nom
-  callback(message) // on appelle la fonction qu'on a reçue
+ const message = "Salut " + nom
+ callback(message) // on appelle la fonction qu'on a reçue
 }
 
 direBonjour("Naruto", function(msg) {
-  console.log(msg) // "Salut Naruto"
+ console.log(msg) // "Salut Naruto"
 })
 ```
 
@@ -35,8 +35,8 @@ afficher(data)
 
 // avec callback : JS continue de tourner
 lireFichier("stats.json", function(data) {
-  // cette fonction est appelée quand le fichier est prêt
-  afficher(data)
+ // cette fonction est appelée quand le fichier est prêt
+ afficher(data)
 })
 // ce code s'exécute PENDANT que le fichier se lit
 faireAutreChose()
@@ -52,15 +52,15 @@ Convention Node.js. Toutes les librairies Node respectent ça : **le premier arg
 const fs = require("fs")
 
 fs.readFile("mission.txt", "utf8", function(err, data) {
-  // err : null si tout va bien, une Error si ça a merdé
-  // data : le contenu du fichier si tout va bien
+ // err : null si tout va bien, une Error si ça a merdé
+ // data : le contenu du fichier si tout va bien
 
-  if (err) {
-    console.error("Fichier introuvable :", err.message)
-    return // sortir immédiatement : ne pas continuer avec data = undefined
-  }
+ if (err) {
+  console.error("Fichier introuvable :", err.message)
+  return // sortir immédiatement : ne pas continuer avec data = undefined
+ }
 
-  console.log("Mission :", data)
+ console.log("Mission :", data)
 })
 ```
 
@@ -69,11 +69,11 @@ Le `return` après le `if (err)` est critique. Beaucoup de bugs viennent de l'ab
 ```js
 // BUG CLASSIQUE : pas de return après l'erreur
 fs.readFile("mission.txt", "utf8", function(err, data) {
-  if (err) {
-    console.error("Erreur :", err.message)
-    // pas de return : le code continue
-  }
-  console.log(data.toUpperCase()) // TypeError: Cannot read properties of undefined
+ if (err) {
+  console.error("Erreur :", err.message)
+  // pas de return : le code continue
+ }
+ console.log(data.toUpperCase()) // TypeError: Cannot read properties of undefined
 })
 ```
 
@@ -85,8 +85,8 @@ Une opération async. Simple.
 
 ```js
 obtenirJoueur(id, function(err, joueur) {
-  if (err) return gererErreur(err)
-  console.log(joueur)
+ if (err) return gererErreur(err)
+ console.log(joueur)
 })
 ```
 
@@ -94,12 +94,12 @@ Deux opérations en séquence : déjà moins propre.
 
 ```js
 obtenirJoueur(id, function(err, joueur) {
-  if (err) return gererErreur(err)
+ if (err) return gererErreur(err)
 
-  obtenirClub(joueur.clubId, function(err, club) {
-    if (err) return gererErreur(err)
-    console.log(joueur.nom, "joue au", club.nom)
-  })
+ obtenirClub(joueur.clubId, function(err, club) {
+  if (err) return gererErreur(err)
+  console.log(joueur.nom, "joue au", club.nom)
+ })
 })
 ```
 
@@ -107,17 +107,17 @@ Trois opérations. Tu commences à sentir que quelque chose ne va pas.
 
 ```js
 obtenirJoueur(id, function(err, joueur) {
+ if (err) return gererErreur(err)
+
+ obtenirClub(joueur.clubId, function(err, club) {
   if (err) return gererErreur(err)
 
-  obtenirClub(joueur.clubId, function(err, club) {
-    if (err) return gererErreur(err)
+  obtenirStadium(club.stadiumId, function(err, stadium) {
+   if (err) return gererErreur(err)
 
-    obtenirStadium(club.stadiumId, function(err, stadium) {
-      if (err) return gererErreur(err)
-
-      console.log(joueur.nom, "joue à", stadium.nom)
-    })
+   console.log(joueur.nom, "joue à", stadium.nom)
   })
+ })
 })
 ```
 
@@ -125,23 +125,23 @@ Quatre. La pyramide de la mort est là.
 
 ```js
 obtenirJoueur(id, function(err, joueur) {
+ if (err) return gererErreur(err)
+
+ obtenirClub(joueur.clubId, function(err, club) {
   if (err) return gererErreur(err)
 
-  obtenirClub(joueur.clubId, function(err, club) {
+  obtenirStadium(club.stadiumId, function(err, stadium) {
+   if (err) return gererErreur(err)
+
+   obtenirCapacite(stadium.id, function(err, capacite) {
     if (err) return gererErreur(err)
 
-    obtenirStadium(club.stadiumId, function(err, stadium) {
-      if (err) return gererErreur(err)
-
-      obtenirCapacite(stadium.id, function(err, capacite) {
-        if (err) return gererErreur(err)
-
-        // t'es à 4 niveaux d'indentation
-        // et on a pas encore géré les cas limites
-        console.log(joueur.nom, "dans un stade de", capacite, "places")
-      })
-    })
+    // t'es à 4 niveaux d'indentation
+    // et on a pas encore géré les cas limites
+    console.log(joueur.nom, "dans un stade de", capacite, "places")
+   })
   })
+ })
 })
 ```
 
@@ -156,21 +156,21 @@ La solution immédiate : **nommer les fonctions** et les sortir du callback.
 ```js
 // avant : tout imbriqué
 obtenirJoueur(id, function(err, joueur) {
-  obtenirClub(joueur.clubId, function(err, club) {
-    afficher(joueur, club)
-  })
+ obtenirClub(joueur.clubId, function(err, club) {
+  afficher(joueur, club)
+ })
 })
 
 // après : fonctions nommées, séquence lisible
 function surClubRecu(err, club) {
-  if (err) return gererErreur(err)
-  afficher(joueurEnMemoire, club)
+ if (err) return gererErreur(err)
+ afficher(joueurEnMemoire, club)
 }
 
 function surJoueurRecu(err, joueur) {
-  if (err) return gererErreur(err)
-  joueurEnMemoire = joueur
-  obtenirClub(joueur.clubId, surClubRecu)
+ if (err) return gererErreur(err)
+ joueurEnMemoire = joueur
+ obtenirClub(joueur.clubId, surClubRecu)
 }
 
 obtenirJoueur(id, surJoueurRecu)
@@ -189,12 +189,12 @@ Quand tu passes un callback à une fonction tierce, tu lui confies le contrôle.
 ```js
 // tu passes ton callback à une librairie tierce
 bibliothequeExterne.charger(options, function(err, resultat) {
-  // cette librairie peut :
-  // - appeler ton callback 0 fois (bug silencieux)
-  // - l'appeler 2 fois (double traitement)
-  // - l'appeler avec des arguments dans le mauvais ordre
-  // - ne jamais l'appeler si une exception est levée
-  traiterResultat(resultat)
+ // cette librairie peut :
+ // - appeler ton callback 0 fois (bug silencieux)
+ // - l'appeler 2 fois (double traitement)
+ // - l'appeler avec des arguments dans le mauvais ordre
+ // - ne jamais l'appeler si une exception est levée
+ traiterResultat(resultat)
 })
 ```
 
@@ -239,20 +239,20 @@ Ce code a 3 bugs. Trouve-les, nomme-les, corrige-les.
 
 ```js
 function chargerProfil(userId, callback) {
-  lireFichier("profils/" + userId + ".json", function(err, data) {
-    if (err) {
-      console.log("Erreur fichier")
-    }
-    const profil = JSON.parse(data)
-    callback(profil)
-  })
+ lireFichier("profils/" + userId + ".json", function(err, data) {
+  if (err) {
+   console.log("Erreur fichier")
+  }
+  const profil = JSON.parse(data)
+  callback(profil)
+ })
 }
 
 chargerProfil("kakashi", function(profil) {
-  chargerProfil("naruto", function(profil) {
-    console.log("Kakashi :", profil.nom)
-    console.log("Naruto :", profil.nom)
-  })
+ chargerProfil("naruto", function(profil) {
+  console.log("Kakashi :", profil.nom)
+  console.log("Naruto :", profil.nom)
+ })
 })
 ```
 

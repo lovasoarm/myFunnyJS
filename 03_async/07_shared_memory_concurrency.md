@@ -23,8 +23,8 @@ w1.postMessage(sab); w2.postMessage(sab);
 
 // worker.js
 onmessage = (e) => {
-  const v = new Int32Array(e.data);
-  for (let i=0;i<100000;i++) v[0]++; // [NON] pas atomique
+ const v = new Int32Array(e.data);
+ for (let i=0;i<100000;i++) v[0]++; // [NON] pas atomique
 };
 ```
 
@@ -43,7 +43,7 @@ Le CPU réordonne les lectures/écritures pour la perf. Sans `Atomics`, tu n'as 
 
 ---
 
-##  MISSION
+## MISSION
 
 Écris deux Workers qui incrémentent un compteur partagé 1M de fois chacun. Compare : version naïve vs `Atomics.add`. Note l'écart au résultat attendu et le temps.
 
@@ -51,7 +51,7 @@ Bonus : implémente un mutex avec `Atomics.wait` / `Atomics.notify`.
 
 ---
 
-## [INTEMPOREL] PRINCIPES DURABLES
+## PRINCIPES DURABLES
 
 - Mémoire partagée = data races par défaut.
 - `Atomics` = opérations indivisibles, obligatoires dès qu'on partage.

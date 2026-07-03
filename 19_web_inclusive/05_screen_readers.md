@@ -88,10 +88,10 @@ Priorité de calcul du nom accessible :
 ## 4) LES DIFFÉRENCES ENTRE LECTEURS D'ÉCRAN
 
 ```
-VoiceOver (macOS/iOS)  --> intégré nativement, raccourci VO+flèches, très utilisé sur mobile
-NVDA (Windows)         --> gratuit et open source, le plus testé par la communauté dev
-TalkBack (Android)     --> intégré nativement, gestes tactiles spécifiques
-JAWS (Windows)         --> payant, encore très présent en entreprise et administration
+VoiceOver (macOS/iOS) --> intégré nativement, raccourci VO+flèches, très utilisé sur mobile
+NVDA (Windows)     --> gratuit et open source, le plus testé par la communauté dev
+TalkBack (Android)   --> intégré nativement, gestes tactiles spécifiques
+JAWS (Windows)     --> payant, encore très présent en entreprise et administration
 ```
 
 Risque réel : tester UNIQUEMENT avec un lecteur d'écran (souvent VoiceOver parce que tu es sur Mac) et assumer que ça marche pareil partout. Les implémentations ARIA varient légèrement entre eux. Un `aria-live` qui fonctionne nickel sur NVDA peut avoir un comportement différent sur VoiceOver.

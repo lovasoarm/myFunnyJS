@@ -13,11 +13,11 @@ Une classe ou une fonction a UNE seule raison de changer.
 ```js
 // mauvais : cette classe gère le combat ET l'affichage ET la sauvegarde
 class Ninja {
-  attack(target) {
-    target.hp -= this.power
-    console.log(`${this.name} attaque ${target.name}`)
-    localStorage.setItem('lastFight', JSON.stringify({ attacker: this.name }))
-  }
+ attack(target) {
+  target.hp -= this.power
+  console.log(`${this.name} attaque ${target.name}`)
+  localStorage.setItem('lastFight', JSON.stringify({ attacker: this.name }))
+ }
 }
 ```
 
@@ -26,22 +26,22 @@ Si demain tu changes le système de log, ou le système de save, tu touches `Nin
 ```js
 // bon : chaque classe a une seule responsabilité
 class Ninja {
-  attack(target) {
-    target.hp -= this.power
-    return { attacker: this.name, target: target.name, damage: this.power }
-  }
+ attack(target) {
+  target.hp -= this.power
+  return { attacker: this.name, target: target.name, damage: this.power }
+ }
 }
 
 class BattleLogger {
-  log(result) {
-    console.log(`${result.attacker} attaque ${result.target} pour ${result.damage}`)
-  }
+ log(result) {
+  console.log(`${result.attacker} attaque ${result.target} pour ${result.damage}`)
+ }
 }
 
 class FightHistory {
-  save(result) {
-    localStorage.setItem('lastFight', JSON.stringify(result))
-  }
+ save(result) {
+  localStorage.setItem('lastFight', JSON.stringify(result))
+ }
 }
 ```
 
@@ -56,9 +56,9 @@ Ton code doit être ouvert à l'extension, fermé à la modification. Tu ajoutes
 ```js
 // mauvais : chaque nouveau jutsu = on rouvre la fonction et on ajoute un if
 function castJutsu(type, target) {
-  if (type === 'rasengan') return applyDamage(target, 50)
-  if (type === 'chidori') return applyDamage(target, 60)
-  if (type === 'kamehameha') return applyDamage(target, 80) // ajouté en douce, risque de tout casser
+ if (type === 'rasengan') return applyDamage(target, 50)
+ if (type === 'chidori') return applyDamage(target, 60)
+ if (type === 'kamehameha') return applyDamage(target, 80) // ajouté en douce, risque de tout casser
 }
 ```
 
@@ -67,13 +67,13 @@ Chaque nouvelle technique = tu rouvres une fonction qui marchait. Risque de rég
 ```js
 // bon : chaque jutsu est un objet indépendant, la fonction centrale ne change jamais
 const jutsus = {
-  rasengan: target => applyDamage(target, 50),
-  chidori: target => applyDamage(target, 60),
-  kamehameha: target => applyDamage(target, 80)
+ rasengan: target => applyDamage(target, 50),
+ chidori: target => applyDamage(target, 60),
+ kamehameha: target => applyDamage(target, 80)
 }
 
 function castJutsu(type, target) {
-  return jutsus[type](target)
+ return jutsus[type](target)
 }
 
 // ajouter un jutsu = ajouter une entrée, zéro risque sur l'existant
@@ -82,8 +82,8 @@ jutsus.rasenshuriken = target => applyDamage(target, 100)
 
 ```
 castJutsu --> lookup dans jutsus --> exécution
-                    ^
-                    ajouter ici, jamais toucher castJutsu
+          ^
+          ajouter ici, jamais toucher castJutsu
 ```
 
 ---
@@ -95,19 +95,19 @@ Si `B` hérite de `A`, tu dois pouvoir utiliser `B` partout où `A` est attendu,
 ```js
 // mauvais : ChevalierBronze casse le contrat de Chevalier
 class Chevalier {
-  fight() {
-    return 'combat lancé'
-  }
+ fight() {
+  return 'combat lancé'
+ }
 }
 
 class ChevalierBronze extends Chevalier {
-  fight() {
-    throw new Error('pas encore prêt pour combattre') // surprise !
-  }
+ fight() {
+  throw new Error('pas encore prêt pour combattre') // surprise !
+ }
 }
 
 function startBattle(chevalier) {
-  return chevalier.fight() // crash si c'est un ChevalierBronze
+ return chevalier.fight() // crash si c'est un ChevalierBronze
 }
 ```
 
@@ -116,19 +116,19 @@ Le code appelant fait confiance au contrat `fight()`. Si une sous-classe trahit 
 ```js
 // bon : chaque sous-classe respecte le contrat, même si le résultat diffère
 class Chevalier {
-  fight() {
-    return 'combat lancé'
-  }
+ fight() {
+  return 'combat lancé'
+ }
 }
 
 class ChevalierBronze extends Chevalier {
-  fight() {
-    return 'combat lancé en mode entraînement' // respecte le contrat, comportement adapté
-  }
+ fight() {
+  return 'combat lancé en mode entraînement' // respecte le contrat, comportement adapté
+ }
 }
 
 function startBattle(chevalier) {
-  return chevalier.fight() // marche pour tous les types de Chevalier
+ return chevalier.fight() // marche pour tous les types de Chevalier
 }
 ```
 
@@ -141,38 +141,38 @@ Pas d'interface fourre-tout. Personne ne doit dépendre de méthodes qu'il n'uti
 ```js
 // mauvais : un seul "contrat" géant pour tous les survivants
 class Survivor {
-  fight() { /* ... */ }
-  cook() { /* ... */ }
-  drive() { /* ... */ }
-  negotiate() { /* ... */ }
+ fight() { /* ... */ }
+ cook() { /* ... */ }
+ drive() { /* ... */ }
+ negotiate() { /* ... */ }
 }
 
 // Carl (10 ans) doit "implémenter" negotiate et drive même si ça lui sert à rien
 class Carl extends Survivor {
-  fight() { return 'attaque avec le couteau' }
-  cook() { throw new Error('pas son rôle') }
-  drive() { throw new Error('trop jeune') }
-  negotiate() { throw new Error('pas son rôle') }
+ fight() { return 'attaque avec le couteau' }
+ cook() { throw new Error('pas son rôle') }
+ drive() { throw new Error('trop jeune') }
+ negotiate() { throw new Error('pas son rôle') }
 }
 ```
 
 ```js
 // bon : interfaces séparées, chacun implémente seulement ce qui le concerne
 class Fighter {
-  fight() { /* ... */ }
+ fight() { /* ... */ }
 }
 
 class Cook {
-  cook() { /* ... */ }
+ cook() { /* ... */ }
 }
 
 class Driver {
-  drive() { /* ... */ }
+ drive() { /* ... */ }
 }
 
 // Carl ne dépend que de ce qu'il fait vraiment
 class Carl extends Fighter {
-  fight() { return 'attaque avec le couteau' }
+ fight() { return 'attaque avec le couteau' }
 }
 ```
 
@@ -187,16 +187,16 @@ Le code de haut niveau ne doit pas dépendre du détail d'implémentation, mais 
 ```js
 // mauvais : PrisonBreakPlan dépend directement de MySQLDatabase
 class MySQLDatabase {
-  save(plan) { /* écrit dans MySQL */ }
+ save(plan) { /* écrit dans MySQL */ }
 }
 
 class PrisonBreakPlan {
-  constructor() {
-    this.db = new MySQLDatabase() // couplage direct, dur à changer
-  }
-  saveProgress(data) {
-    this.db.save(data)
-  }
+ constructor() {
+  this.db = new MySQLDatabase() // couplage direct, dur à changer
+ }
+ saveProgress(data) {
+  this.db.save(data)
+ }
 }
 ```
 
@@ -205,20 +205,20 @@ Si demain Michael Scofield migre vers Redis, tu dois modifier `PrisonBreakPlan`.
 ```js
 // bon : PrisonBreakPlan dépend d'une abstraction, pas d'une implémentation précise
 class PrisonBreakPlan {
-  constructor(storage) {
-    this.storage = storage // injecté de l'extérieur, n'importe quel storage avec .save()
-  }
-  saveProgress(data) {
-    this.storage.save(data)
-  }
+ constructor(storage) {
+  this.storage = storage // injecté de l'extérieur, n'importe quel storage avec .save()
+ }
+ saveProgress(data) {
+  this.storage.save(data)
+ }
 }
 
 class MySQLDatabase {
-  save(plan) { /* écrit dans MySQL */ }
+ save(plan) { /* écrit dans MySQL */ }
 }
 
 class RedisStorage {
-  save(plan) { /* écrit dans Redis */ }
+ save(plan) { /* écrit dans Redis */ }
 }
 
 // on injecte ce qu'on veut, PrisonBreakPlan n'en sait rien
@@ -227,8 +227,8 @@ const plan = new PrisonBreakPlan(new RedisStorage())
 
 ```
 PrisonBreakPlan --> Storage (abstraction)
-                       ^
-                       MySQLDatabase / RedisStorage (détails interchangeables)
+            ^
+            MySQLDatabase / RedisStorage (détails interchangeables)
 ```
 
 Risque évité : sans inversion de dépendance, changer une techno = réécrire toute la logique métier qui n'a rien à voir avec le stockage.
@@ -242,12 +242,12 @@ Lis ce bloc et identifie quelle lettre de SOLID est violée (une seule lettre, j
 
 ```js
 class ApiResponse {
-  parseAndLog(data) {
-    const parsed = JSON.parse(data)
-    console.log('Réponse reçue:', parsed)
-    fetch('/analytics', { method: 'POST', body: JSON.stringify(parsed) })
-    return parsed
-  }
+ parseAndLog(data) {
+  const parsed = JSON.parse(data)
+  console.log('Réponse reçue:', parsed)
+  fetch('/analytics', { method: 'POST', body: JSON.stringify(parsed) })
+  return parsed
+ }
 }
 ```
 
@@ -258,9 +258,9 @@ Tu as un système de notation pour le Ballon d'Or avec cette fonction :
 
 ```js
 function calculateBonus(category, baseScore) {
-  if (category === 'goals') return baseScore * 1.5
-  if (category === 'assists') return baseScore * 1.2
-  if (category === 'titles') return baseScore * 2
+ if (category === 'goals') return baseScore * 1.5
+ if (category === 'assists') return baseScore * 1.2
+ if (category === 'titles') return baseScore * 2
 }
 ```
 

@@ -16,13 +16,13 @@ Mais qui vérifie que le format que le service A retourne est bien celui que le 
 
 ```
 Service A (API joueurs) :
-  GET /joueurs/:id --> { id, name, stats }
-  <-- "j'ai changé 'name' en 'fullName' parce que c'est plus clair"
+ GET /joueurs/:id --> { id, name, stats }
+ <-- "j'ai changé 'name' en 'fullName' parce que c'est plus clair"
 
 Service B (dashboard) :
-  attend { id, name, stats }
-  <-- tous ses tests passent, ils utilisent des mocks
-  <-- en prod : name est undefined partout
+ attend { id, name, stats }
+ <-- tous ses tests passent, ils utilisent des mocks
+ <-- en prod : name est undefined partout
 ```
 
 Les tests unitaires et d'intégration de chaque service passent. Le bug n'est visible qu'en prod.
@@ -53,27 +53,27 @@ Un contrat basique, à la main :
 ```js
 // contract.json:le contrat défini par le Consumer (service B)
 {
-  "consumer": "dashboard",
-  "provider": "joueurs-api",
-  "interactions": [
-    {
-      "description": "récupérer un joueur par ID",
-      "request": {
-        "method": "GET",
-        "path": "/joueurs/10"
-      },
-      "response": {
-        "status": 200,
-        "body": {
-          "id": 10,
-          "name": "Lionel Messi",   // le consumer attend 'name'
-          "stats": {
-            "buts": 700
-          }
-        }
-      }
+ "consumer": "dashboard",
+ "provider": "joueurs-api",
+ "interactions": [
+  {
+   "description": "récupérer un joueur par ID",
+   "request": {
+    "method": "GET",
+    "path": "/joueurs/10"
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "id": 10,
+     "name": "Lionel Messi",  // le consumer attend 'name'
+     "stats": {
+      "buts": 700
+     }
     }
-  ]
+   }
+  }
+ ]
 }
 ```
 
@@ -89,17 +89,17 @@ Pour des projets JS simples, on peut valider des contrats sans Pact.
 ```js
 // contractValidator.js:validateur de contrat maison
 function validContrat(réponseRéelle, schémaAttendu) {
-  for (const [clé, typeAttendu] of Object.entries(schémaAttendu)) {
-    if (!(clé in réponseRéelle)) {
-      throw new Error(`Contrat cassé : champ '${clé}' absent de la réponse`);
-    }
-    if (typeof réponseRéelle[clé] !== typeAttendu) {
-      throw new Error(
-        `Contrat cassé : '${clé}' doit être ${typeAttendu}, reçu ${typeof réponseRéelle[clé]}`,
-      );
-    }
+ for (const [clé, typeAttendu] of Object.entries(schémaAttendu)) {
+  if (!(clé in réponseRéelle)) {
+   throw new Error(`Contrat cassé : champ '${clé}' absent de la réponse`);
   }
-  return true;
+  if (typeof réponseRéelle[clé] !== typeAttendu) {
+   throw new Error(
+    `Contrat cassé : '${clé}' doit être ${typeAttendu}, reçu ${typeof réponseRéelle[clé]}`,
+   );
+  }
+ }
+ return true;
 }
 
 module.exports = { validContrat };
@@ -112,16 +112,16 @@ const { getJoueur } = require("./joueurAPI"); // la vraie implémentation
 
 // Le contrat : ce que le consumer dashboard attend
 const contratJoueur = {
-  id: "number",
-  name: "string", // si l'API retourne 'fullName', ce test casse
-  buts: "number",
+ id: "number",
+ name: "string", // si l'API retourne 'fullName', ce test casse
+ buts: "number",
 };
 
 describe("Contrat : joueurs-api --> dashboard", () => {
-  it("GET /joueurs/:id respecte le contrat du consumer", async () => {
-    const réponse = await getJoueur(10);
-    expect(() => validContrat(réponse, contratJoueur)).not.toThrow();
-  });
+ it("GET /joueurs/:id respecte le contrat du consumer", async () => {
+  const réponse = await getJoueur(10);
+  expect(() => validContrat(réponse, contratJoueur)).not.toThrow();
+ });
 });
 ```
 
@@ -147,30 +147,30 @@ Concept clé de Pact :
 const { PactV3, MatchersV3 } = require("@pact-foundation/pact");
 
 const provider = new PactV3({
-  consumer: "dashboard",
-  provider: "joueurs-api",
+ consumer: "dashboard",
+ provider: "joueurs-api",
 });
 
 describe("consumer contract", () => {
-  it("peut récupérer un joueur", async () => {
-    await provider
-      .addInteraction({
-        uponReceiving: "une requête pour un joueur par ID",
-        withRequest: { method: "GET", path: "/joueurs/10" },
-        willRespondWith: {
-          status: 200,
-          body: {
-            id: MatchersV3.integer(10),
-            name: MatchersV3.string("Lionel Messi"),
-            buts: MatchersV3.integer(700),
-          },
-        },
-      })
-      .executeTest(async (mockProvider) => {
-        const joueur = await getJoueur(mockProvider.url, 10);
-        expect(joueur.name).toBe("Lionel Messi");
-      });
-  });
+ it("peut récupérer un joueur", async () => {
+  await provider
+   .addInteraction({
+    uponReceiving: "une requête pour un joueur par ID",
+    withRequest: { method: "GET", path: "/joueurs/10" },
+    willRespondWith: {
+     status: 200,
+     body: {
+      id: MatchersV3.integer(10),
+      name: MatchersV3.string("Lionel Messi"),
+      buts: MatchersV3.integer(700),
+     },
+    },
+   })
+   .executeTest(async (mockProvider) => {
+    const joueur = await getJoueur(mockProvider.url, 10);
+    expect(joueur.name).toBe("Lionel Messi");
+   });
+ });
 });
 // --> génère un fichier pact que le provider vérifie
 ```
@@ -183,14 +183,14 @@ Pour ce curriculum, la mécanique manuelle suffit pour comprendre le concept. Pa
 
 ```
 Ça vaut le coup si :
-  - deux équipes différentes gèrent les deux services
-  - les services déploient indépendamment
-  - l'API est consommée par plusieurs clients
+ - deux équipes différentes gèrent les deux services
+ - les services déploient indépendamment
+ - l'API est consommée par plusieurs clients
 
 Ça ne vaut pas le coup si :
-  - un seul dev gère les deux services
-  - déploiements toujours synchronisés
-  - l'API est interne et jamais consommée par l'extérieur
+ - un seul dev gère les deux services
+ - déploiements toujours synchronisés
+ - l'API est interne et jamais consommée par l'extérieur
 ```
 
 Le contract testing est un outil d'équipe, pas un outil solo.
@@ -231,7 +231,7 @@ Le consumer `awards-dashboard` commence à remonter des erreurs : des champs son
 
 ```
 TypeError: Cannot read properties of undefined (reading 'buts')
-  at formatStatligne (awards-dashboard/src/renderer.js:42)
+ at formatStatligne (awards-dashboard/src/renderer.js:42)
 ```
 
 **Le contrat que le consumer avait documenté (et mocké dans ses tests) :**
@@ -239,9 +239,9 @@ TypeError: Cannot read properties of undefined (reading 'buts')
 ```js
 // awards-dashboard/tests/mocks/statsMock.js
 const mockJoueur = {
-  joueur: 'Vinicius Jr',
-  buts: 22,
-  assists: 11
+ joueur: 'Vinicius Jr',
+ buts: 22,
+ assists: 11
 }
 ```
 

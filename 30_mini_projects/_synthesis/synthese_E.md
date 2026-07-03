@@ -22,20 +22,20 @@ C'est le projet le plus exigeant parce qu'il croise 7 modules, dont certains qui
 ```
 src/
 ├── core/
-│   ├── CodeAnalyzer.js         classe OOP, responsabilité unique : analyser
-│   ├── PromptBuilder.js        construit le prompt envoyé à l'Oracle
-│   └── OutputValidator.js      valide ce que l'Oracle retourne
+│  ├── CodeAnalyzer.js     classe OOP, responsabilité unique : analyser
+│  ├── PromptBuilder.js    construit le prompt envoyé à l'Oracle
+│  └── OutputValidator.js   valide ce que l'Oracle retourne
 ├── validators/
-│   ├── Validator.js             classe de base
-│   ├── StrictValidator.js       extends Validator
-│   └── LLMOutputValidator.js    extends StrictValidator
+│  ├── Validator.js       classe de base
+│  ├── StrictValidator.js    extends Validator
+│  └── LLMOutputValidator.js  extends StrictValidator
 ├── db/
-│   └── analysisStore.js        persistance des analyses
+│  └── analysisStore.js    persistance des analyses
 ├── observability/
-│   ├── logger.js                logging structuré avec correlation ID
-│   └── metrics.js               compteurs et alerting basique
+│  ├── logger.js        logging structuré avec correlation ID
+│  └── metrics.js        compteurs et alerting basique
 └── edgeCases/
-    └── knownTraps.js            les pièges JS volontairement injectés en test
+  └── knownTraps.js      les pièges JS volontairement injectés en test
 
 tests/
 └── pipeline.test.js

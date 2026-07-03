@@ -18,24 +18,24 @@ Sans composition, les transformations s'imbriquent et deviennent illisibles.
 // calculer leur score Ballon d'Or, les trier, prendre le top 3
 
 const joueurs = [
-  { nom: "Messi",   buts: 45, passes: 20, actif: true,  aCL: true  },
-  { nom: "Mbappé",  buts: 52, passes: 15, actif: true,  aCL: false },
-  { nom: "Haaland", buts: 60, passes: 8,  actif: true,  aCL: true  },
-  { nom: "Benzema", buts: 30, passes: 12, actif: false, aCL: true  }
+ { nom: "Messi",  buts: 45, passes: 20, actif: true, aCL: true },
+ { nom: "Mbappé", buts: 52, passes: 15, actif: true, aCL: false },
+ { nom: "Haaland", buts: 60, passes: 8, actif: true, aCL: true },
+ { nom: "Benzema", buts: 30, passes: 12, actif: false, aCL: true }
 ]
 
 // Version imbriquée : illisible
 const top3 = joueurs
-  .filter(j => j.actif)
-  .map(j => ({ ...j, score: j.buts * 0.5 + j.passes * 0.3 + (j.aCL ? 30 : 0) }))
-  .sort((a, b) => b.score - a.score)
-  .slice(0, 3)
+ .filter(j => j.actif)
+ .map(j => ({ ...j, score: j.buts * 0.5 + j.passes * 0.3 + (j.aCL ? 30 : 0) }))
+ .sort((a, b) => b.score - a.score)
+ .slice(0, 3)
 
 // Version composée : chaque étape a un nom
 const filtrerActifs = joueurs => joueurs.filter(j => j.actif)
 const calculerScore = joueurs => joueurs.map(j => ({
-  ...j,
-  score: j.buts * 0.5 + j.passes * 0.3 + (j.aCL ? 30 : 0)
+ ...j,
+ score: j.buts * 0.5 + j.passes * 0.3 + (j.aCL ? 30 : 0)
 }))
 const trierParScore = joueurs => [...joueurs].sort((a, b) => b.score - a.score)
 const prendreTop = n => joueurs => joueurs.slice(0, n)
@@ -59,10 +59,10 @@ const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x)
 
 // même pipeline qu'avant, mais lisible de gauche à droite
 const nommerTop3BallonDor = pipe(
-  filtrerActifs,
-  calculerScore,
-  trierParScore,
-  prendreTop(3)
+ filtrerActifs,
+ calculerScore,
+ trierParScore,
+ prendreTop(3)
 )
 
 const résultat = nommerTop3BallonDor(joueurs)
@@ -71,17 +71,17 @@ const résultat = nommerTop3BallonDor(joueurs)
 
 ```
 joueurs
-  │
-  ▼ filtrerActifs
+ │
+ ▼ filtrerActifs
 [actifs seulement]
-  │
-  ▼ calculerScore
+ │
+ ▼ calculerScore
 [actifs + score]
-  │
-  ▼ trierParScore
+ │
+ ▼ trierParScore
 [triés par score]
-  │
-  ▼ prendreTop(3)
+ │
+ ▼ prendreTop(3)
 [top 3]
 ```
 
@@ -97,10 +97,10 @@ const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x)
 
 // même résultat que pipe mais ordre inversé dans la déclaration
 const nommerTop3 = compose(
-  prendreTop(3),   // 4e appliquée
-  trierParScore,   // 3e appliquée
-  calculerScore,   // 2e appliquée
-  filtrerActifs    // 1re appliquée
+ prendreTop(3),  // 4e appliquée
+ trierParScore,  // 3e appliquée
+ calculerScore,  // 2e appliquée
+ filtrerActifs  // 1re appliquée
 )
 ```
 
@@ -126,11 +126,11 @@ const filtrerParSeuil = seuil => joueurs => joueurs.filter(j => j.buts >= seuil)
 const filtrerParSeuil = seuil => joueurs => joueurs.filter(j => j.buts >= seuil)
 
 pipe(
-  filtrerActifs,
-  filtrerParSeuil(40), // on "fixe" le seuil d'abord, on obtient une fonction unaire
-  calculerScore,
-  trierParScore,
-  prendreTop(3)
+ filtrerActifs,
+ filtrerParSeuil(40), // on "fixe" le seuil d'abord, on obtient une fonction unaire
+ calculerScore,
+ trierParScore,
+ prendreTop(3)
 )(joueurs)
 ```
 
@@ -144,31 +144,31 @@ Les Chevaliers de la Flamme reçoivent des missions. Chaque mission passe par un
 
 ```js
 const missions = [
-  { id: "m1", chevalier: "Leon",  priorite: 3, zone: "nord", actif: true  },
-  { id: "m2", chevalier: "Rei",   priorite: 1, zone: "sud",  actif: true  },
-  { id: "m3", chevalier: "Kouga", priorite: 2, zone: "est",  actif: false },
-  { id: "m4", chevalier: "Leon",  priorite: 5, zone: "nord", actif: true  }
+ { id: "m1", chevalier: "Leon", priorite: 3, zone: "nord", actif: true },
+ { id: "m2", chevalier: "Rei",  priorite: 1, zone: "sud", actif: true },
+ { id: "m3", chevalier: "Kouga", priorite: 2, zone: "est", actif: false },
+ { id: "m4", chevalier: "Leon", priorite: 5, zone: "nord", actif: true }
 ]
 
-const filtrerActives    = ms => ms.filter(m => m.actif)
-const trierParPriorite  = ms => [...ms].sort((a, b) => b.priorite - a.priorite)
-const formaterDispatch  = ms => ms.map(m => ({
-  ...m,
-  label: `[MISSION ${m.id.toUpperCase()}] ${m.chevalier} → Zone ${m.zone}`
+const filtrerActives  = ms => ms.filter(m => m.actif)
+const trierParPriorite = ms => [...ms].sort((a, b) => b.priorite - a.priorite)
+const formaterDispatch = ms => ms.map(m => ({
+ ...m,
+ label: `[MISSION ${m.id.toUpperCase()}] ${m.chevalier} → Zone ${m.zone}`
 }))
 const limiter = n => ms => ms.slice(0, n)
 
 const preparerDispatch = pipe(
-  filtrerActives,
-  trierParPriorite,
-  formaterDispatch,
-  limiter(2)
+ filtrerActives,
+ trierParPriorite,
+ formaterDispatch,
+ limiter(2)
 )
 
 console.log(preparerDispatch(missions))
 // [
-//   { ..., label: "[MISSION M4] Leon → Zone nord" },
-//   { ..., label: "[MISSION M1] Leon → Zone nord" }
+//  { ..., label: "[MISSION M4] Leon → Zone nord" },
+//  { ..., label: "[MISSION M1] Leon → Zone nord" }
 // ]
 ```
 
@@ -182,13 +182,13 @@ Si une fonction dans le pipe ne retourne rien (ou retourne `undefined`), tout le
 
 ```js
 const loggerEtPasser = données => {
-  console.log(données) // oubli du return
+ console.log(données) // oubli du return
 }
 
 pipe(
-  filtrerActifs,
-  loggerEtPasser, // retourne undefined
-  calculerScore   // reçoit undefined : TypeError
+ filtrerActifs,
+ loggerEtPasser, // retourne undefined
+ calculerScore  // reçoit undefined : TypeError
 )(joueurs)
 ```
 
@@ -196,8 +196,8 @@ Fix :
 
 ```js
 const loggerEtPasser = données => {
-  console.log(données)
-  return données // toujours retourner pour continuer le flux
+ console.log(données)
+ return données // toujours retourner pour continuer le flux
 }
 ```
 
@@ -205,15 +205,15 @@ Ou avec une version générique de tap :
 
 ```js
 const tap = fn => données => {
-  fn(données) // exécute l'effet de bord (log, etc.)
-  return données // repassse les données inchangées
+ fn(données) // exécute l'effet de bord (log, etc.)
+ return données // repassse les données inchangées
 }
 
 pipe(
-  filtrerActifs,
-  tap(console.log), // log sans casser le pipeline
-  calculerScore,
-  trierParScore
+ filtrerActifs,
+ tap(console.log), // log sans casser le pipeline
+ calculerScore,
+ trierParScore
 )(joueurs)
 ```
 
@@ -240,12 +240,12 @@ Walter White a des données de production de lots. Construit un pipeline qui :
 
 ```js
 const lots = [
-  { ref: "LOT-01", rendement: 99.2 },
-  { ref: "LOT-02", rendement: 87.5 },
-  { ref: "LOT-03", rendement: 95.1 },
-  { ref: "LOT-04", rendement: 91.8 },
-  { ref: "LOT-05", rendement: 99.8 },
-  { ref: "LOT-06", rendement: 78.2 }
+ { ref: "LOT-01", rendement: 99.2 },
+ { ref: "LOT-02", rendement: 87.5 },
+ { ref: "LOT-03", rendement: 95.1 },
+ { ref: "LOT-04", rendement: 91.8 },
+ { ref: "LOT-05", rendement: 99.8 },
+ { ref: "LOT-06", rendement: 78.2 }
 ]
 ```
 
@@ -263,11 +263,11 @@ Tu as une liste de tirs sur but. Construis un pipeline qui calcule le xG total d
 
 ```js
 const tirs = [
-  { id: 1, minute: 23, xG: 0.12, joueur: "Mbappé",  miTemps: 1 },
-  { id: 2, minute: 67, xG: 0.45, joueur: "Haaland", miTemps: 2 },
-  { id: 3, minute: 71, xG: 0.08, joueur: "Messi",   miTemps: 2 },
-  { id: 4, minute: 38, xG: 0.32, joueur: "Mbappé",  miTemps: 1 },
-  { id: 5, minute: 89, xG: 0.71, joueur: "Haaland", miTemps: 2 }
+ { id: 1, minute: 23, xG: 0.12, joueur: "Mbappé", miTemps: 1 },
+ { id: 2, minute: 67, xG: 0.45, joueur: "Haaland", miTemps: 2 },
+ { id: 3, minute: 71, xG: 0.08, joueur: "Messi",  miTemps: 2 },
+ { id: 4, minute: 38, xG: 0.32, joueur: "Mbappé", miTemps: 1 },
+ { id: 5, minute: 89, xG: 0.71, joueur: "Haaland", miTemps: 2 }
 ]
 
 // Résultat attendu : 1.24 (xG total 2e mi-temps)

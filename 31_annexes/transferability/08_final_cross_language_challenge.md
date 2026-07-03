@@ -35,24 +35,24 @@ Choisis UN concept parmi :
 Rédige `ADR-CROSS-LANG.md` structuré :
 
 ```
-Contexte     : le problème réel à résoudre
-Options      : approche JS | approche Python | approche Rust
-Trade-offs   : coût cognitif, perf, sûreté, ergonomie, écosystème
-Décision     : quel langage tu choisirais POUR CE PROBLÈME et pourquoi
-Contrepoint  : dans quel cas tu changerais d'avis
+Contexte   : le problème réel à résoudre
+Options   : approche JS | approche Python | approche Rust
+Trade-offs  : coût cognitif, perf, sûreté, ergonomie, écosystème
+Décision   : quel langage tu choisirais POUR CE PROBLÈME et pourquoi
+Contrepoint : dans quel cas tu changerais d'avis
 ```
 
 ---
 
 ## GRILLE DE VALIDATION (auto-évaluation honnête, 10 points)
 
-- [ ] 2/2 bugs Python trouvés en < 60 min                            (2 pts)
-- [ ] 2/2 bugs Rust trouvés en < 60 min                              (2 pts)
-- [ ] Chaque diagnostic tient en 3 lignes, sans jargon inutile       (1 pt)
-- [ ] ADR cite 3+ trade-offs mesurables (pas d'opinions)             (2 pts)
-- [ ] Contrepoint réel (pas symbolique)                              (1 pt)
-- [ ] Concept CrazyDevs correctement identifié pour chaque bug       (1 pt)
-- [ ] Tu peux défendre l'ADR 20 min face à un pair (simulation)      (1 pt)
+- [ ] 2/2 bugs Python trouvés en < 60 min              (2 pts)
+- [ ] 2/2 bugs Rust trouvés en < 60 min               (2 pts)
+- [ ] Chaque diagnostic tient en 3 lignes, sans jargon inutile    (1 pt)
+- [ ] ADR cite 3+ trade-offs mesurables (pas d'opinions)       (2 pts)
+- [ ] Contrepoint réel (pas symbolique)               (1 pt)
+- [ ] Concept CrazyDevs correctement identifié pour chaque bug    (1 pt)
+- [ ] Tu peux défendre l'ADR 20 min face à un pair (simulation)   (1 pt)
 
 **Seuil de validation : 8/10.** En dessous, tu recommences avec un autre triplet
 de bugs (voir `pool_bugs/` dans ce dossier).

@@ -13,8 +13,8 @@ Chaque groupe a un **représentant** (root). Deux éléments sont dans le même 
 
 ```
 Départ : chaque élément est son propre représentant
-0  1  2  3  4  5
-↑  ↑  ↑  ↑  ↑  ↑
+0 1 2 3 4 5
+↑ ↑ ↑ ↑ ↑ ↑
 (chacun pointe vers lui-même)
 
 union(0, 1) : 0 et 1 dans le même groupe → un des deux devient représentant de l'autre
@@ -31,51 +31,51 @@ find(1) et find(4) retournent des représentants différents → groupes distinc
 
 ```js
 class UnionFind {
-  constructor(n) {
-    // parent[i] : le parent de l'élément i
-    // au départ, chaque élément est son propre parent (sa propre racine)
-    this.parent = Array.from({ length: n }, (_, i) => i)
-    // rank[i] : hauteur approximative du sous-arbre enraciné en i
-    // utilisé pour l'union by rank
-    this.rank   = new Array(n).fill(0)
-    // nombre de composants distincts
-    this.count  = n
+ constructor(n) {
+  // parent[i] : le parent de l'élément i
+  // au départ, chaque élément est son propre parent (sa propre racine)
+  this.parent = Array.from({ length: n }, (_, i) => i)
+  // rank[i] : hauteur approximative du sous-arbre enraciné en i
+  // utilisé pour l'union by rank
+  this.rank  = new Array(n).fill(0)
+  // nombre de composants distincts
+  this.count = n
+ }
+
+ // trouver la racine de l'élément x
+ // sans optimisation : O(n) dans le pire cas (arbre dégénéré)
+ find(x) {
+  if (this.parent[x] !== x) {
+   return this.find(this.parent[x])
+  }
+  return x
+ }
+
+ // fusionner les groupes de x et y
+ union(x, y) {
+  const rootX = this.find(x)
+  const rootY = this.find(y)
+
+  if (rootX === rootY) return false // déjà dans le même groupe
+
+  // attache l'arbre le plus petit sous le plus grand
+  if (this.rank[rootX] < this.rank[rootY]) {
+   this.parent[rootX] = rootY
+  } else if (this.rank[rootX] > this.rank[rootY]) {
+   this.parent[rootY] = rootX
+  } else {
+   // même rank : on choisit rootX, et on augmente son rank
+   this.parent[rootY] = rootX
+   this.rank[rootX]++
   }
 
-  // trouver la racine de l'élément x
-  // sans optimisation : O(n) dans le pire cas (arbre dégénéré)
-  find(x) {
-    if (this.parent[x] !== x) {
-      return this.find(this.parent[x])
-    }
-    return x
-  }
+  this.count-- // un composant de moins
+  return true  // fusion effectuée
+ }
 
-  // fusionner les groupes de x et y
-  union(x, y) {
-    const rootX = this.find(x)
-    const rootY = this.find(y)
-
-    if (rootX === rootY) return false  // déjà dans le même groupe
-
-    // attache l'arbre le plus petit sous le plus grand
-    if (this.rank[rootX] < this.rank[rootY]) {
-      this.parent[rootX] = rootY
-    } else if (this.rank[rootX] > this.rank[rootY]) {
-      this.parent[rootY] = rootX
-    } else {
-      // même rank : on choisit rootX, et on augmente son rank
-      this.parent[rootY] = rootX
-      this.rank[rootX]++
-    }
-
-    this.count--  // un composant de moins
-    return true   // fusion effectuée
-  }
-
-  connected(x, y) {
-    return this.find(x) === this.find(y)
-  }
+ connected(x, y) {
+  return this.find(x) === this.find(y)
+ }
 }
 ```
 
@@ -87,11 +87,11 @@ Sans path compression, `find` peut remonter une longue chaîne de parents. Avec 
 
 ```js
 find(x) {
-  if (this.parent[x] !== x) {
-    // path compression : on met à jour le parent de x directement vers la racine
-    this.parent[x] = this.find(this.parent[x])
-  }
-  return this.parent[x]
+ if (this.parent[x] !== x) {
+  // path compression : on met à jour le parent de x directement vers la racine
+  this.parent[x] = this.find(this.parent[x])
+ }
+ return this.parent[x]
 }
 ```
 
@@ -100,8 +100,8 @@ Avant et après path compression :
 ```
 Avant find(4) :
 1 → 2 → 3 → 5 (racine)
-        ↑
-        4
+    ↑
+    4
 
 Après find(4) (path compression) :
 5 (racine)
@@ -122,7 +122,7 @@ Sans union by rank, on risque de créer des arbres très profonds (dégénérés
 Sans union by rank, en fusionnant dans le mauvais ordre :
 union(0,1) → union(1,2) → union(2,3) → union(3,4)
 
-Résultat : 0 → 1 → 2 → 3 → 4  (liste chaînée, find = O(n))
+Résultat : 0 → 1 → 2 → 3 → 4 (liste chaînée, find = O(n))
 
 Avec union by rank :
 les deux arbres restent peu profonds, find reste O(log n) au pire
@@ -144,22 +144,22 @@ const idx = Object.fromEntries(survivors.map((s, i) => [s, i]))
 const uf = new UnionFind(survivors.length)
 
 // connexions découvertes au fil du temps
-uf.union(idx["Rick"],     idx["Daryl"])
-uf.union(idx["Rick"],     idx["Carl"])
-uf.union(idx["Glenn"],    idx["Maggie"])
-uf.union(idx["Maggie"],   idx["Hershel"])
+uf.union(idx["Rick"],   idx["Daryl"])
+uf.union(idx["Rick"],   idx["Carl"])
+uf.union(idx["Glenn"],  idx["Maggie"])
+uf.union(idx["Maggie"],  idx["Hershel"])
 uf.union(idx["Michonne"], idx["Rick"])
 
 // questions
-uf.connected(idx["Daryl"], idx["Carl"])    // true  : même camp Rick
-uf.connected(idx["Glenn"], idx["Hershel"]) // true  : même camp Glenn/Maggie
-uf.connected(idx["Rick"],  idx["Glenn"])   // false : deux camps distincts
-uf.count  // 2 : deux composants
+uf.connected(idx["Daryl"], idx["Carl"])  // true : même camp Rick
+uf.connected(idx["Glenn"], idx["Hershel"]) // true : même camp Glenn/Maggie
+uf.connected(idx["Rick"], idx["Glenn"])  // false : deux camps distincts
+uf.count // 2 : deux composants
 
 // fusion des deux camps
 uf.union(idx["Rick"], idx["Glenn"])
-uf.connected(idx["Daryl"], idx["Hershel"])  // true : maintenant un seul camp
-uf.count  // 1
+uf.connected(idx["Daryl"], idx["Hershel"]) // true : maintenant un seul camp
+uf.count // 1
 ```
 
 ---
@@ -170,23 +170,23 @@ Alternative à DFS pour la détection de cycle dans un graphe non dirigé. Plus 
 
 ```js
 function hasCycle(edges, n) {
-  const uf = new UnionFind(n)
+ const uf = new UnionFind(n)
 
-  for (const [u, v] of edges) {
-    if (uf.connected(u, v)) {
-      // u et v sont déjà dans le même composant
-      // ajouter cette arête crée un cycle
-      return true
-    }
-    uf.union(u, v)
+ for (const [u, v] of edges) {
+  if (uf.connected(u, v)) {
+   // u et v sont déjà dans le même composant
+   // ajouter cette arête crée un cycle
+   return true
   }
+  uf.union(u, v)
+ }
 
-  return false
+ return false
 }
 
 // dépendances circulaires dans les modules CrazyDevs
-const deps = [[0,1], [1,2], [2,3], [3,1]]  // 3 → 1 crée un cycle
-hasCycle(deps, 4)  // true
+const deps = [[0,1], [1,2], [2,3], [3,1]] // 3 → 1 crée un cycle
+hasCycle(deps, 4) // true
 ```
 
 ---
@@ -194,10 +194,10 @@ hasCycle(deps, 4)  // true
 ## 7) COMPLEXITÉ
 
 ```
-Sans optimisation    : find O(n),    union O(n)
-Union by rank seul   : find O(log n), union O(log n)
+Sans optimisation  : find O(n),  union O(n)
+Union by rank seul  : find O(log n), union O(log n)
 Path compression seul: find O(log n) amorti
-Les deux ensemble    : find O(α(n)), union O(α(n))  ← quasi O(1)
+Les deux ensemble  : find O(α(n)), union O(α(n)) ← quasi O(1)
 ```
 
 ---
@@ -212,11 +212,11 @@ Un tournoi ninja forme des équipes au fur et à mesure des victoires. Deux ninj
 
 ```js
 const battles = [
-  ["Naruto",  "Kiba"],
-  ["Sasuke",  "Zaku"],
-  ["Naruto",  "Neji"],
-  ["Sasuke",  "Rock Lee"],
-  ["Naruto",  "Sasuke"],
+ ["Naruto", "Kiba"],
+ ["Sasuke", "Zaku"],
+ ["Naruto", "Neji"],
+ ["Sasuke", "Rock Lee"],
+ ["Naruto", "Sasuke"],
 ]
 ```
 

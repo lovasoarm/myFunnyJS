@@ -15,12 +15,12 @@ En prod : `addEventListener`, EventEmitter Node.js, les stores Redux, les subjec
 
 ```
 Publisher (source)
-    |
-    |--> notifie tous les abonnés
-    |
-    +--> Subscriber 1
-    +--> Subscriber 2
-    +--> Subscriber 3
+  |
+  |--> notifie tous les abonnés
+  |
+  +--> Subscriber 1
+  +--> Subscriber 2
+  +--> Subscriber 3
 ```
 
 Le Publisher ne connaît pas les Subscribers. Les Subscribers s'abonnent et se désabonnent librement. Le découplage est total.
@@ -31,42 +31,42 @@ Le Publisher ne connaît pas les Subscribers. Les Subscribers s'abonnent et se d
 
 ```js
 class EventEmitter {
-  constructor() {
-    // une Map event --> liste de callbacks
-    this.listeners = new Map()
-  }
+ constructor() {
+  // une Map event --> liste de callbacks
+  this.listeners = new Map()
+ }
 
-  on(event, callback) {
-    if (!this.listeners.has(event)) {
-      this.listeners.set(event, [])
-    }
-    this.listeners.get(event).push(callback)
-    // retourner une fonction de désabonnement : pratique en prod
-    return () => this.off(event, callback)
+ on(event, callback) {
+  if (!this.listeners.has(event)) {
+   this.listeners.set(event, [])
   }
+  this.listeners.get(event).push(callback)
+  // retourner une fonction de désabonnement : pratique en prod
+  return () => this.off(event, callback)
+ }
 
-  off(event, callback) {
-    if (!this.listeners.has(event)) return
-    const callbacks = this.listeners.get(event).filter(cb => cb !== callback)
-    this.listeners.set(event, callbacks)
-  }
+ off(event, callback) {
+  if (!this.listeners.has(event)) return
+  const callbacks = this.listeners.get(event).filter(cb => cb !== callback)
+  this.listeners.set(event, callbacks)
+ }
 
-  emit(event, ...args) {
-    if (!this.listeners.has(event)) return
-    // on copie le tableau avant de l'itérer
-    // un callback pourrait appeler off() et modifier le tableau pendant l'itération
-    const callbacks = [...this.listeners.get(event)]
-    callbacks.forEach(cb => cb(...args))
-  }
+ emit(event, ...args) {
+  if (!this.listeners.has(event)) return
+  // on copie le tableau avant de l'itérer
+  // un callback pourrait appeler off() et modifier le tableau pendant l'itération
+  const callbacks = [...this.listeners.get(event)]
+  callbacks.forEach(cb => cb(...args))
+ }
 
-  once(event, callback) {
-    // wrapper qui se désabonne automatiquement après le premier déclenchement
-    const wrapper = (...args) => {
-      callback(...args)
-      this.off(event, wrapper)
-    }
-    this.on(event, wrapper)
+ once(event, callback) {
+  // wrapper qui se désabonne automatiquement après le premier déclenchement
+  const wrapper = (...args) => {
+   callback(...args)
+   this.off(event, wrapper)
   }
+  this.on(event, wrapper)
+ }
 }
 ```
 
@@ -79,34 +79,34 @@ const matchBus = new EventEmitter()
 
 // Subscriber 1 : le tableau d'affichage
 matchBus.on("goal", ({ scorer, team, minute }) => {
-  console.log(`[SCOREBOARD] ${team} : but de ${scorer} à la ${minute}'`)
+ console.log(`[SCOREBOARD] ${team} : but de ${scorer} à la ${minute}'`)
 })
 
 // Subscriber 2 : les stats live
 matchBus.on("goal", ({ scorer }) => {
-  console.log(`[STATS] +1 but enregistré pour ${scorer}`)
+ console.log(`[STATS] +1 but enregistré pour ${scorer}`)
 })
 
 // Subscriber 3 : le système de notification push
 matchBus.on("goal", ({ team, minute }) => {
-  console.log(`[PUSH] notification envoyée : ${team} marque à ${minute}'`)
+ console.log(`[PUSH] notification envoyée : ${team} marque à ${minute}'`)
 })
 
 // Subscriber 4 : le classement
 matchBus.on("goal", ({ team }) => {
-  console.log(`[RANKING] mise à jour du classement pour ${team}`)
+ console.log(`[RANKING] mise à jour du classement pour ${team}`)
 })
 
 // Subscriber 5 : alerte une seule fois si penalty
 matchBus.once("penalty", ({ team }) => {
-  console.log(`[ALERT] premier penalty du match pour ${team}`)
+ console.log(`[ALERT] premier penalty du match pour ${team}`)
 })
 
 // le Publisher : la logique de jeu ne connaît aucun des subscribers
 function scoreGoal(scorer, team, minute) {
-  // ... logique de validation du but
-  matchBus.emit("goal", { scorer, team, minute })
-  // c'est tout : les quatre systèmes réagissent automatiquement
+ // ... logique de validation du but
+ matchBus.emit("goal", { scorer, team, minute })
+ // c'est tout : les quatre systèmes réagissent automatiquement
 }
 
 scoreGoal("Messi", "Barcelona", 23)
@@ -124,53 +124,53 @@ Pattern plus avancé : l'Observer protège un état et notifie automatiquement q
 
 ```js
 class ReactiveStore {
-  constructor(initialState) {
-    this.state = { ...initialState }
-    this.emitter = new EventEmitter()
-  }
+ constructor(initialState) {
+  this.state = { ...initialState }
+  this.emitter = new EventEmitter()
+ }
 
-  get(key) {
-    return this.state[key]
-  }
+ get(key) {
+  return this.state[key]
+ }
 
-  set(key, value) {
-    const oldValue = this.state[key]
-    if (oldValue === value) return   // pas de changement : pas de notification
+ set(key, value) {
+  const oldValue = this.state[key]
+  if (oldValue === value) return  // pas de changement : pas de notification
 
-    this.state[key] = value
-    // notifie sur l'event spécifique à la clé
-    this.emitter.emit(`change:${key}`, { key, oldValue, newValue: value })
-    // et sur un event global
-    this.emitter.emit("change", { key, oldValue, newValue: value })
-  }
+  this.state[key] = value
+  // notifie sur l'event spécifique à la clé
+  this.emitter.emit(`change:${key}`, { key, oldValue, newValue: value })
+  // et sur un event global
+  this.emitter.emit("change", { key, oldValue, newValue: value })
+ }
 
-  watch(key, callback) {
-    return this.emitter.on(`change:${key}`, callback)
-  }
+ watch(key, callback) {
+  return this.emitter.on(`change:${key}`, callback)
+ }
 
-  watchAll(callback) {
-    return this.emitter.on("change", callback)
-  }
+ watchAll(callback) {
+  return this.emitter.on("change", callback)
+ }
 }
 
 // état du camp zombie
 const campStore = new ReactiveStore({
-  survivors: 12,
-  food: 45,
-  threat: "low"
+ survivors: 12,
+ food: 45,
+ threat: "low"
 })
 
 // chaque watcher réagit indépendamment
 const unsubFood = campStore.watch("food", ({ newValue }) => {
-  if (newValue < 10) console.log("[CRITICAL] rations en dessous du seuil d'urgence")
+ if (newValue < 10) console.log("[CRITICAL] rations en dessous du seuil d'urgence")
 })
 
 campStore.watch("threat", ({ oldValue, newValue }) => {
-  console.log(`[THREAT] niveau de menace : ${oldValue} --> ${newValue}`)
+ console.log(`[THREAT] niveau de menace : ${oldValue} --> ${newValue}`)
 })
 
 campStore.watchAll(({ key, newValue }) => {
-  console.log(`[LOG] ${key} mis à jour : ${newValue}`)
+ console.log(`[LOG] ${key} mis à jour : ${newValue}`)
 })
 
 campStore.set("food", 8)
@@ -183,7 +183,7 @@ campStore.set("threat", "high")
 
 // désabonnement propre quand le watcher n'est plus nécessaire
 unsubFood()
-campStore.set("food", 3)   // plus de [CRITICAL] : le watcher food est désabonné
+campStore.set("food", 3)  // plus de [CRITICAL] : le watcher food est désabonné
 ```
 
 ---
@@ -194,39 +194,39 @@ C'est le bug le plus courant avec Observer : on s'abonne, on oublie de se désab
 
 ```js
 class Dashboard {
-  constructor(store) {
-    this.store = store
-    // PIÈGE : on s'abonne mais on ne stocke pas la fonction de désabonnement
-    this.store.watch("score", this.updateDisplay.bind(this))
-  }
+ constructor(store) {
+  this.store = store
+  // PIÈGE : on s'abonne mais on ne stocke pas la fonction de désabonnement
+  this.store.watch("score", this.updateDisplay.bind(this))
+ }
 
-  updateDisplay({ newValue }) {
-    console.log(`Score: ${newValue}`)
-  }
+ updateDisplay({ newValue }) {
+  console.log(`Score: ${newValue}`)
+ }
 
-  destroy() {
-    // le Dashboard est détruit mais le callback est encore en mémoire
-    // store.listeners.get("change:score") contient encore une référence à ce Dashboard
-    // memory leak garanti si on crée/détruit beaucoup de Dashboards
-  }
+ destroy() {
+  // le Dashboard est détruit mais le callback est encore en mémoire
+  // store.listeners.get("change:score") contient encore une référence à ce Dashboard
+  // memory leak garanti si on crée/détruit beaucoup de Dashboards
+ }
 }
 
 // version corrigée
 class Dashboard {
-  constructor(store) {
-    this.store = store
-    // on stocke la fonction de désabonnement
-    this.unsubscribe = this.store.watch("score", this.updateDisplay.bind(this))
-  }
+ constructor(store) {
+  this.store = store
+  // on stocke la fonction de désabonnement
+  this.unsubscribe = this.store.watch("score", this.updateDisplay.bind(this))
+ }
 
-  updateDisplay({ newValue }) {
-    console.log(`Score: ${newValue}`)
-  }
+ updateDisplay({ newValue }) {
+  console.log(`Score: ${newValue}`)
+ }
 
-  destroy() {
-    // désabonnement propre : le callback est retiré de la liste
-    this.unsubscribe()
-  }
+ destroy() {
+  // désabonnement propre : le callback est retiré de la liste
+  this.unsubscribe()
+ }
 }
 ```
 
@@ -295,23 +295,23 @@ Ce code Observer a deux bugs. Lesquels ?
 
 ```js
 class EventBus {
-  constructor() {
-    this.listeners = {}
-  }
+ constructor() {
+  this.listeners = {}
+ }
 
-  on(event, callback) {
-    this.listeners[event] = this.listeners[event] || []
-    this.listeners[event].push(callback)
-  }
+ on(event, callback) {
+  this.listeners[event] = this.listeners[event] || []
+  this.listeners[event].push(callback)
+ }
 
-  emit(event, data) {
-    this.listeners[event].forEach(cb => cb(data))
-  }
+ emit(event, data) {
+  this.listeners[event].forEach(cb => cb(data))
+ }
 }
 
 const bus = new EventBus()
 bus.on("goal", () => console.log("but !"))
-bus.emit("offside")   // bug 1
+bus.emit("offside")  // bug 1
 bus.emit("goal", { scorer: "Messi" })
 
 // bug 2 : cherche dans la mécanique du on/off

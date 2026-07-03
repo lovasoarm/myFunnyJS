@@ -3,7 +3,7 @@
 > Ce module reutilise : debug (04_debugging), erreurs (05_error_handling).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ton app est en prod. Un shinobi signale un bug vague : "ça marche pas parfois". Tu n'as aucun log structuré, aucune trace, aucune métrique. Tu es aveugle, et tu débugues en production à l'aveugle, en ajoutant des logs et en redéployant, en espérant reproduire le bug avant que d'autres shinobis ne le signalent aussi.
 
@@ -34,11 +34,11 @@ Et sans alerting proactif, les problèmes de performance ou de taux d'erreur gra
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-erreur en prod sans contexte exploitable                       --> structured logging   --> JSON avec correlation ID
-requête qui traverse plusieurs microservices                    --> distributed tracing  --> suivi complet de bout en bout
-dégradation de performance progressive et invisible              --> métriques + alerting --> détection avant la crise
-exception capturée mais sans contexte sur ce qui s'est passé      --> Sentry              --> capture enrichie et priorisée
-bug impossible à reproduire localement                              --> debug en prod       --> snapshots et feature flags
+erreur en prod sans contexte exploitable            --> structured logging  --> JSON avec correlation ID
+requête qui traverse plusieurs microservices          --> distributed tracing --> suivi complet de bout en bout
+dégradation de performance progressive et invisible       --> métriques + alerting --> détection avant la crise
+exception capturée mais sans contexte sur ce qui s'est passé   --> Sentry       --> capture enrichie et priorisée
+bug impossible à reproduire localement               --> debug en prod    --> snapshots et feature flags
 ```
 
 L'observabilité n'est jamais "optionnelle" sur un système qui a des shinobis réels : c'est la seule façon de savoir si ton système est en bonne santé sans attendre qu'un humain te le dise après coup, souvent frustré.

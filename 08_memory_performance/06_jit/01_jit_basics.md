@@ -13,14 +13,14 @@ V8 ne compile pas ton code une seule fois. Il le fait en deux passes, avec deux 
 
 ```
 ton code source
-      |
-      v
-  Ignition (interpréteur : exécute ligne par ligne, rapide à démarrer)
-      |
-      v   (si une fonction tourne souvent : "hot function")
-      |
-      v
-  TurboFan (compilateur optimisant : transforme en code machine ultra rapide)
+   |
+   v
+ Ignition (interpréteur : exécute ligne par ligne, rapide à démarrer)
+   |
+   v  (si une fonction tourne souvent : "hot function")
+   |
+   v
+ TurboFan (compilateur optimisant : transforme en code machine ultra rapide)
 ```
 
 **Ignition** démarre vite. Il transforme ton code en bytecode (instructions intermédiaires, plus rapides à lire qu'une string de code source) et l'exécute direct. Pas d'optimisation, juste de la rapidité de démarrage.
@@ -38,11 +38,11 @@ JS n'a pas de classes fixes comme Java ou C++. Mais V8 en crée quand même en i
 ```js
 // le moteur de combat de rasengan_engine
 function creerNinja(nom, chakra) {
-  const ninja = {}
-  ninja.nom = nom       // V8 crée une hidden class C0 (juste {})
-  ninja.chakra = chakra // V8 transitionne vers C1 ({nom})
-                         // puis vers C2 ({nom, chakra})
-  return ninja
+ const ninja = {}
+ ninja.nom = nom    // V8 crée une hidden class C0 (juste {})
+ ninja.chakra = chakra // V8 transitionne vers C1 ({nom})
+             // puis vers C2 ({nom, chakra})
+ return ninja
 }
 
 const naruto = creerNinja('Naruto', 100)
@@ -73,7 +73,7 @@ Pour aller encore plus vite, V8 retient "la dernière fois où j'ai accédé à 
 
 ```js
 function getChakra(ninja) {
-  return ninja.chakra
+ return ninja.chakra
 }
 
 // si getChakra() est toujours appelée avec des objets de la même hidden class :
@@ -95,7 +95,7 @@ TurboFan optimise sur la base d'hypothèses ("cette variable est toujours un num
 
 ```js
 function additionner(a, b) {
-  return a + b
+ return a + b
 }
 
 // phase 1 : appelée 50 000 fois avec des numbers
@@ -115,12 +115,12 @@ Une deopt isolée ne tue pas ton app. Le vrai problème, c'est une fonction hot 
 ## 5) CE QUI DÉCLENCHE UNE DEOPT EN PRATIQUE
 
 ```
-type qui change sur un paramètre        --> deopt potentielle
-forme d'objet qui varie (hidden class)  --> inline cache dégradé
-tableau qui mélange types               --> array devient "dictionary mode"
-try/catch mal placé (cas datés)         --> empêchait l'optimisation sur vieux V8
-arguments en nombre variable            --> empêche certaines optimisations
-delete sur une propriété d'objet        --> casse la hidden class
+type qui change sur un paramètre    --> deopt potentielle
+forme d'objet qui varie (hidden class) --> inline cache dégradé
+tableau qui mélange types        --> array devient "dictionary mode"
+try/catch mal placé (cas datés)     --> empêchait l'optimisation sur vieux V8
+arguments en nombre variable      --> empêche certaines optimisations
+delete sur une propriété d'objet    --> casse la hidden class
 ```
 
 Le cas du tableau mérite un mot. V8 optimise différemment un tableau de numbers purs (`[1, 2, 3]`, stocké de façon compacte) et un tableau mixte (`[1, 'deux', {trois: 3}]`, stocké en mode dictionnaire, beaucoup plus lent à parcourir). Mélanger les types dans un tableau qui tourne dans une boucle chaude, c'est annuler une partie de l'optimisation par construction.
@@ -141,16 +141,16 @@ Ce code crée 10 000 ninjas pour une simulation de bataille. Identifie pourquoi 
 
 ```js
 function creerNinjaBataille(nom, chakra, estBoss) {
-  const ninja = { nom, chakra }
-  if (estBoss) {
-    ninja.titre = 'Boss' // ajouté seulement pour certains
-  }
-  return ninja
+ const ninja = { nom, chakra }
+ if (estBoss) {
+  ninja.titre = 'Boss' // ajouté seulement pour certains
+ }
+ return ninja
 }
 
 const armee = []
 for (let i = 0; i < 10000; i++) {
-  armee.push(creerNinjaBataille(`ninja${i}`, 100, i % 100 === 0))
+ armee.push(creerNinjaBataille(`ninja${i}`, 100, i % 100 === 0))
 }
 ```
 
@@ -164,7 +164,7 @@ Un calcul de score tourne sur un tableau de stats de joueurs. Le tableau commenc
 const scores = [42, 87, 15, 93, 28, 71]
 
 function calculerMoyenne(arr) {
-  return arr.reduce((acc, val) => acc + val, 0) / arr.length
+ return arr.reduce((acc, val) => acc + val, 0) / arr.length
 }
 
 console.log(calculerMoyenne(scores))

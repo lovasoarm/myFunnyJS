@@ -12,9 +12,9 @@ Mais GraphQL n'est pas une solution universelle : il a ses coûts, ses pièges, 
 
 En REST, pour afficher la fiche d'un joueur avec son équipe et ses stats de match :
 ```
-GET /players/7          -->  { id, name, teamId }
-GET /teams/1            -->  { id, name, stadium }
-GET /players/7/stats    -->  { goals, assists, matches }
+GET /players/7     --> { id, name, teamId }
+GET /teams/1      --> { id, name, stadium }
+GET /players/7/stats  --> { goals, assists, matches }
 ```
 
 3 requêtes. 3 allers-retours réseau. Souvent du over-fetching (tu reçois des champs dont tu as pas besoin).
@@ -22,17 +22,17 @@ GET /players/7/stats    -->  { goals, assists, matches }
 En GraphQL, une seule requête :
 ```graphql
 query {
-  player(id: "7") {
-    name
-    team {
-      name
-      stadium
-    }
-    stats {
-      goals
-      assists
-    }
+ player(id: "7") {
+  name
+  team {
+   name
+   stadium
   }
+  stats {
+   goals
+   assists
+  }
+ }
 }
 ```
 
@@ -47,20 +47,20 @@ Le client choisit les champs. Le serveur livre exactement ça.
 **Operation** : ce que le client envoie. `query` pour lire, `mutation` pour écrire, `subscription` pour le temps réel.
 
 ```
-Client                    GraphQL Server
-  |                             |
-  |  query { player(id:"7") {   |
-  |    name                     |
-  |    goals                    |
-  |  }}                         |
-  |----------------------------> |
-  |                             |  schema : Player a name, goals
-  |                             |  resolver : trouve le joueur, retourne name + goals
-  |  { data: { player: {        |
-  |    name: "Mbappé",          |
-  |    goals: 30                |
-  |  }}}                        |
-  |<---------------------------- |
+Client          GraphQL Server
+ |               |
+ | query { player(id:"7") {  |
+ |  name           |
+ |  goals          |
+ | }}             |
+ |----------------------------> |
+ |               | schema : Player a name, goals
+ |               | resolver : trouve le joueur, retourne name + goals
+ | { data: { player: {    |
+ |  name: "Mbappé",     |
+ |  goals: 30        |
+ | }}}            |
+ |<---------------------------- |
 ```
 
 ---
@@ -72,41 +72,41 @@ Client                    GraphQL Server
 import { gql } from 'graphql-tag'
 
 export const typeDefs = gql`
-  # Type de base : décrit la structure d'un joueur
-  type Player {
-    id: ID!          # ! = non-nullable : toujours présent
-    name: String!
-    team: Team       # relation : un Player a une Team (nullable)
-    goals: Int!
-    assists: Int
-  }
+ # Type de base : décrit la structure d'un joueur
+ type Player {
+  id: ID!     # ! = non-nullable : toujours présent
+  name: String!
+  team: Team    # relation : un Player a une Team (nullable)
+  goals: Int!
+  assists: Int
+ }
 
-  type Team {
-    id: ID!
-    name: String!
-    players: [Player!]!  # tableau de Players non-nullable
-  }
+ type Team {
+  id: ID!
+  name: String!
+  players: [Player!]! # tableau de Players non-nullable
+ }
 
-  # Query : toutes les opérations de lecture
-  type Query {
-    players: [Player!]!              # liste tous les joueurs
-    player(id: ID!): Player          # joueur par id (peut être null si introuvable)
-    team(id: ID!): Team
-  }
+ # Query : toutes les opérations de lecture
+ type Query {
+  players: [Player!]!       # liste tous les joueurs
+  player(id: ID!): Player     # joueur par id (peut être null si introuvable)
+  team(id: ID!): Team
+ }
 
-  # Mutation : toutes les opérations d'écriture
-  type Mutation {
-    createPlayer(input: CreatePlayerInput!): Player!
-    updateGoals(id: ID!, goals: Int!): Player
-    deletePlayer(id: ID!): Boolean!
-  }
+ # Mutation : toutes les opérations d'écriture
+ type Mutation {
+  createPlayer(input: CreatePlayerInput!): Player!
+  updateGoals(id: ID!, goals: Int!): Player
+  deletePlayer(id: ID!): Boolean!
+ }
 
-  # Input type : structure attendue pour les mutations
-  input CreatePlayerInput {
-    name: String!
-    teamId: ID!
-    goals: Int
-  }
+ # Input type : structure attendue pour les mutations
+ input CreatePlayerInput {
+  name: String!
+  teamId: ID!
+  goals: Int
+ }
 `
 ```
 
@@ -115,74 +115,74 @@ export const typeDefs = gql`
 
 // données simulées
 const players = [
-  { id: '1', name: 'Mbappé',  teamId: '1', goals: 30, assists: 12 },
-  { id: '2', name: 'Haaland', teamId: '2', goals: 27, assists: 8  },
+ { id: '1', name: 'Mbappé', teamId: '1', goals: 30, assists: 12 },
+ { id: '2', name: 'Haaland', teamId: '2', goals: 27, assists: 8 },
 ]
 const teams = [
-  { id: '1', name: 'Real Madrid' },
-  { id: '2', name: 'Man City'    },
+ { id: '1', name: 'Real Madrid' },
+ { id: '2', name: 'Man City'  },
 ]
 
 export const resolvers = {
-  // resolvers de Query
-  Query: {
-    // parent : l'objet parent (null pour les top-level queries)
-    // args : les arguments passés dans la query
-    // context : données partagées (user authentifié, DB connection, etc.)
-    players: (parent, args, context) => players,
+ // resolvers de Query
+ Query: {
+  // parent : l'objet parent (null pour les top-level queries)
+  // args : les arguments passés dans la query
+  // context : données partagées (user authentifié, DB connection, etc.)
+  players: (parent, args, context) => players,
 
-    player: (parent, { id }, context) => {
-      return players.find(p => p.id === id) ?? null
-    },
-
-    team: (parent, { id }, context) => {
-      return teams.find(t => t.id === id) ?? null
-    }
+  player: (parent, { id }, context) => {
+   return players.find(p => p.id === id) ?? null
   },
 
-  // resolvers de Mutation
-  Mutation: {
-    createPlayer: (parent, { input }, context) => {
-      const newPlayer = {
-        id: String(players.length + 1),
-        ...input,
-        goals: input.goals ?? 0,
-        assists: 0
-      }
-      players.push(newPlayer)
-      return newPlayer
-    },
-
-    updateGoals: (parent, { id, goals }, context) => {
-      const player = players.find(p => p.id === id)
-      if (!player) return null
-      player.goals = goals
-      return player
-    },
-
-    deletePlayer: (parent, { id }, context) => {
-      const index = players.findIndex(p => p.id === id)
-      if (index === -1) return false
-      players.splice(index, 1)
-      return true
-    }
-  },
-
-  // resolvers de champs : quand un Player a un champ complexe (Team)
-  Player: {
-    // appelé quand le client demande player.team
-    // parent = l'objet Player résolu par le resolver Query.player
-    team: (parent, args, context) => {
-      return teams.find(t => t.id === parent.teamId) ?? null
-    }
-  },
-
-  // quand une Team demande ses players
-  Team: {
-    players: (parent, args, context) => {
-      return players.filter(p => p.teamId === parent.id)
-    }
+  team: (parent, { id }, context) => {
+   return teams.find(t => t.id === id) ?? null
   }
+ },
+
+ // resolvers de Mutation
+ Mutation: {
+  createPlayer: (parent, { input }, context) => {
+   const newPlayer = {
+    id: String(players.length + 1),
+    ...input,
+    goals: input.goals ?? 0,
+    assists: 0
+   }
+   players.push(newPlayer)
+   return newPlayer
+  },
+
+  updateGoals: (parent, { id, goals }, context) => {
+   const player = players.find(p => p.id === id)
+   if (!player) return null
+   player.goals = goals
+   return player
+  },
+
+  deletePlayer: (parent, { id }, context) => {
+   const index = players.findIndex(p => p.id === id)
+   if (index === -1) return false
+   players.splice(index, 1)
+   return true
+  }
+ },
+
+ // resolvers de champs : quand un Player a un champ complexe (Team)
+ Player: {
+  // appelé quand le client demande player.team
+  // parent = l'objet Player résolu par le resolver Query.player
+  team: (parent, args, context) => {
+   return teams.find(t => t.id === parent.teamId) ?? null
+  }
+ },
+
+ // quand une Team demande ses players
+ Team: {
+  players: (parent, args, context) => {
+   return players.filter(p => p.teamId === parent.id)
+  }
+ }
 }
 ```
 
@@ -203,9 +203,9 @@ await server.start()
 // monte GraphQL sur /graphql
 // context : fonction appelée à chaque requête pour injecter les dépendances partagées
 app.use('/graphql', expressMiddleware(server, {
-  context: async ({ req }) => ({
-    user: req.user ?? null  // inject l'shinobi authentifié si dispo
-  })
+ context: async ({ req }) => ({
+  user: req.user ?? null // inject l'shinobi authentifié si dispo
+ })
 }))
 
 app.listen(3000)
@@ -218,32 +218,32 @@ app.listen(3000)
 ```graphql
 # Query : lire un joueur avec ses données d'équipe
 query GetPlayer($id: ID!) {
-  player(id: $id) {
-    name
-    goals
-    team {
-      name
-    }
+ player(id: $id) {
+  name
+  goals
+  team {
+   name
   }
+ }
 }
 # variables : { "id": "1" }
 
 # Query : liste filtrée (le schema doit supporter les args de filtre)
 query GetAllPlayers {
-  players {
-    id
-    name
-    goals
-  }
+ players {
+  id
+  name
+  goals
+ }
 }
 
 # Mutation : créer un joueur
 mutation CreatePlayer($input: CreatePlayerInput!) {
-  createPlayer(input: $input) {
-    id
-    name
-    goals
-  }
+ createPlayer(input: $input) {
+  id
+  name
+  goals
+ }
 }
 # variables : { "input": { "name": "Vinicius", "teamId": "1", "goals": 15 } }
 ```
@@ -277,9 +277,9 @@ Si tu demandes 100 players avec leur team, GraphQL appelle le resolver `Player.t
 
 ```
 query { players { name team { name } } }
-  --> resolve players : 1 requête DB (100 players)
-  --> pour chaque player : resolve Player.team --> 100 requêtes DB
-  --> total : 101 requêtes DB
+ --> resolve players : 1 requête DB (100 players)
+ --> pour chaque player : resolve Player.team --> 100 requêtes DB
+ --> total : 101 requêtes DB
 ```
 
 Fix : DataLoader (batching de requêtes). Pas couvert ici mais à connaître avant de shipper en prod.
@@ -314,13 +314,13 @@ Teste le cas où le client demande `players { name seasons { year goals } }`.
 Voici une mutation qui a un bug de N+1 :
 ```js
 Mutation: {
-  assignPlayersToTeam: async (_, { teamId, playerIds }) => {
-    // pour chaque playerId : une requête DB séparée
-    const players = await Promise.all(
-      playerIds.map(id => db.findPlayer(id))
-    )
-    // ...
-  }
+ assignPlayersToTeam: async (_, { teamId, playerIds }) => {
+  // pour chaque playerId : une requête DB séparée
+  const players = await Promise.all(
+   playerIds.map(id => db.findPlayer(id))
+  )
+  // ...
+ }
 }
 ```
 Propose une version qui batch les requêtes DB en une seule.

@@ -4,9 +4,9 @@ Temps de lecture ~15 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+ (pas obligatoire d'installer les deps du repo cloné)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+ (pas obligatoire d'installer les deps du repo cloné)
+Variables env : aucune
 Outils externes: git
 
 # tu ne construis rien depuis zéro ici : tu clones, tu lis, tu corriges un point précis
@@ -26,19 +26,19 @@ Ce que tu dois produire à la fin :
 
 ```
 [CARTOGRAPHIE] 2h chrono, MAP.md jutsu
-  - point d'entrée réel localisé
-  - 6 fichiers où vit la vraie logique
-  - diagramme ASCII du flux principal
-  - liste honnête de ce qui reste flou
+ - point d'entrée réel localisé
+ - 6 fichiers où vit la vraie logique
+ - diagramme ASCII du flux principal
+ - liste honnête de ce qui reste flou
 
 [BUGFIX] 1 bug imposé, corrigé
-  - test qui échouait avant : ROUGE
-  - test qui passe après : VERT
-  - cause réelle expliquée, pas juste constatée
+ - test qui échouait avant : ROUGE
+ - test qui passe après : VERT
+ - cause réelle expliquée, pas juste constatée
 
 [ADR RÉTROSPECTIVE] 1 décision d'architecture du repo, déduite
-  - indices : date des commits, contraintes visibles, absence de TS à l'époque
-  - "la prendrais-tu pareil en 2026 ?"
+ - indices : date des commits, contraintes visibles, absence de TS à l'époque
+ - "la prendrais-tu pareil en 2026 ?"
 ```
 
 Trois livrables, zéro ligne de feature à construire toi-même.
@@ -63,14 +63,14 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 ### Modules mobilisés en lecture, sans être le cœur du projet
 
 ```
-04_debugging  --> lire une stack trace dans un contexte inconnu, sans le confort
-                                   d'un code que tu as toi-même écrit
-04_error_handling             --> comprendre une stratégie de gestion d'erreur que tu n'as pas
-                                   choisie, parfois incohérente avec ce que t'as appris ici
+04_debugging --> lire une stack trace dans un contexte inconnu, sans le confort
+                  d'un code que tu as toi-même écrit
+04_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
+                  choisie, parfois incohérente avec ce que t'as appris ici
 14_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
-                                   projet t'interdit explicitement le refactoring "pendant que t'y es"
-06_testing                    --> lire des tests existants comme documentation du comportement
-                                   attendu, surtout quand le code source seul ne suffit pas
+                  projet t'interdit explicitement le refactoring "pendant que t'y es"
+06_testing          --> lire des tests existants comme documentation du comportement
+                  attendu, surtout quand le code source seul ne suffit pas
 ```
 
 ## CRITÈRE DE CHOIX DU DÉPÔT : LES 4 RÈGLES
@@ -79,29 +79,29 @@ Le dépôt que tu choisis doit cocher les 4 critères. Si un seul critère manqu
 
 ```
 CRITÈRE 1 : TAILLE MESURABLE, NI MICRO NI MONSTRE
-  --> entre 3 000 et 20 000 lignes de JS/TS hors node_modules
-  --> mesure-le toi-même, ne fais confiance à personne :
-      find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
-  --> en dessous de 3 000 lignes : pas assez de surface pour une vraie cartographie
-  --> au-dessus de 20 000 lignes : tu ne couvres rien en 2h, tu papillonnes
+ --> entre 3 000 et 20 000 lignes de JS/TS hors node_modules
+ --> mesure-le toi-même, ne fais confiance à personne :
+   find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
+ --> en dessous de 3 000 lignes : pas assez de surface pour une vraie cartographie
+ --> au-dessus de 20 000 lignes : tu ne couvres rien en 2h, tu papillonnes
 
 CRITÈRE 2 : DOCUMENTATION VOLONTAIREMENT LÉGÈRE OU ABSENTE
-  --> README minimal (installation basique, pas d'architecture expliquée), ou inexistant
-  --> aucun fichier ADR/, aucun docs/architecture.md
-  --> si le repo a une doc d'architecture complète : choisis-en un autre, ça fausse l'exercice
+ --> README minimal (installation basique, pas d'architecture expliquée), ou inexistant
+ --> aucun fichier ADR/, aucun docs/architecture.md
+ --> si le repo a une doc d'architecture complète : choisis-en un autre, ça fausse l'exercice
 
 CRITÈRE 3 : ASSEZ ÂGÉ POUR QUE L'ADR RÉTROSPECTIVE AIT UN SENS
-  --> premiers commits significatifs datant d'au moins 3-4 ans
-  --> permet de chercher des indices temporels : absence de TS à l'époque, conventions
-      pré-async/await, dépendances aujourd'hui dépréciées
-  --> un repo créé il y a 6 mois ne donne aucun recul à déduire
+ --> premiers commits significatifs datant d'au moins 3-4 ans
+ --> permet de chercher des indices temporels : absence de TS à l'époque, conventions
+   pré-async/await, dépendances aujourd'hui dépréciées
+ --> un repo créé il y a 6 mois ne donne aucun recul à déduire
 
 CRITÈRE 4 : UN BUG TROUVABLE ET CORRIGEABLE EN PEU DE LIGNES
-  --> soit une issue ouverte non résolue, simple à reproduire
-  --> soit un bug que TU repères toi-même en lisant (un edge case mal géré, une
-      condition `if (!value)` qui rate `"0"` ou `0`, une coercition douteuse)
-  --> la correction doit tenir en 1 à 5 lignes : ce projet n'est pas un projet de
-      refactoring, c'est un projet de précision chirurgicale
+ --> soit une issue ouverte non résolue, simple à reproduire
+ --> soit un bug que TU repères toi-même en lisant (un edge case mal géré, une
+   condition `if (!value)` qui rate `"0"` ou `0`, une coercition douteuse)
+ --> la correction doit tenir en 1 à 5 lignes : ce projet n'est pas un projet de
+   refactoring, c'est un projet de précision chirurgicale
 ```
 
 ### 3 CANDIDATS DE DÉPART (pas une liste fermée : des points de départ)
@@ -110,25 +110,25 @@ Ces 3 suggestions cochent a priori les 4 critères au moment où ce cahier des c
 
 ```
 CANDIDAT A : un petit parser ou un petit moteur de templating JS, abandonné ou
-             peu maintenu, trouvé via GitHub en filtrant par taille et par date
-             du dernier commit significatif > 3 ans
-             --> profil recherché : utilitaire pur, pas de framework autour,
-                 logique métier concentrée dans peu de fichiers
+       peu maintenu, trouvé via GitHub en filtrant par taille et par date
+       du dernier commit significatif > 3 ans
+       --> profil recherché : utilitaire pur, pas de framework autour,
+         logique métier concentrée dans peu de fichiers
 
 CANDIDAT B : un petit serveur HTTP fait main ou une petite CLI Node, écrit par
-             un seul auteur (pas une org avec process de contribution lourd),
-             avec un README qui dit "ça marche, voilà comment lancer" et rien
-             de plus
-             --> profil recherché : assez de logique pour avoir un vrai flux
-                 de requête à tracer, comme dans `04_navigate_codebase.md`
+       un seul auteur (pas une org avec process de contribution lourd),
+       avec un README qui dit "ça marche, voilà comment lancer" et rien
+       de plus
+       --> profil recherché : assez de logique pour avoir un vrai flux
+         de requête à tracer, comme dans `04_navigate_codebase.md`
 
 CANDIDAT C : un plugin ou une extension pour un outil plus gros (un plugin
-             ESLint, un plugin webpack ancienne génération, un middleware
-             Express tiers peu connu), avec une API publique claire mais une
-             implémentation interne non documentée
-             --> profil recherché : structure imposée par l'écosystème hôte
-                 (donc moins chaotique qu'un repo perso), mais logique interne
-                 opaque
+       ESLint, un plugin webpack ancienne génération, un middleware
+       Express tiers peu connu), avec une API publique claire mais une
+       implémentation interne non documentée
+       --> profil recherché : structure imposée par l'écosystème hôte
+         (donc moins chaotique qu'un repo perso), mais logique interne
+         opaque
 ```
 
 **Comment chercher concrètement** : GitHub, filtre par langage (JavaScript ou TypeScript), tri par "least recently updated" sur des repos avec un nombre d'étoiles modeste (ni 0 ni 50k). Un repo à 50k étoiles a une doc soignée par construction : ça casse le Critère 2. Un repo à 0 étoile et 2 commits n'a probablement pas assez de substance : ça casse le Critère 1.
@@ -153,18 +153,18 @@ Le chrono démarre quand tu ouvres le premier fichier. Applique la méthode de `
 
 ```
 1. Les 5 questions avant d'ouvrir un fichier
-   (ce que le projet fait, architecture haut niveau, dépendances qui comptent,
-   comment le lancer, où sont les tests)
+  (ce que le projet fait, architecture haut niveau, dépendances qui comptent,
+  comment le lancer, où sont les tests)
 
 2. Lire l'arborescence comme une carte
-   (identifier les couches, repérer un éventuel "cimetière" type utils/ à 40 fichiers)
+  (identifier les couches, repérer un éventuel "cimetière" type utils/ à 40 fichiers)
 
 3. Suivre le flux d'une opération de bout en bout
-   (depuis le point d'entrée jusqu'à la logique métier réelle)
+  (depuis le point d'entrée jusqu'à la logique métier réelle)
 
 4. git log comme source d'info
-   (git log --oneline -20, git blame sur les fichiers centraux, dater les
-   décisions visibles)
+  (git log --oneline -20, git blame sur les fichiers centraux, dater les
+  décisions visibles)
 
 5. Trouver les points d'entrée critiques
 ```
@@ -236,15 +236,15 @@ Le point de résistance majeur est l'Étape 1. La tentation la plus forte : cont
 ## LES DOCUMENTS DE CE PROJET
 
 ```
-cahierdescharges.md   --> ce fichier : spécification complète
-README.md              --> pitch et structure de ce que tu produis
-TDD_JOURNAL.md          --> gabarit fourni : journal d'investigation (partie 1)
-                            + TDD classique du bugfix (partie 2)
-POSTMORTEM.md           --> gabarit fourni : ce qui a coincé, ce qui a été appris
-ADR/                    --> gabarit fourni avec exemple rempli (Express) :
-                            décision d'architecture du repo cloné, déduite après coup
-MAP.md                  --> À CRÉER TOI-MÊME (Étape 1)
-BUGFIX.md               --> À CRÉER TOI-MÊME (Étape 2)
+cahierdescharges.md  --> ce fichier : spécification complète
+README.md       --> pitch et structure de ce que tu produis
+TDD_JOURNAL.md     --> gabarit fourni : journal d'investigation (partie 1)
+              + TDD classique du bugfix (partie 2)
+POSTMORTEM.md      --> gabarit fourni : ce qui a coincé, ce qui a été appris
+ADR/          --> gabarit fourni avec exemple rempli (Express) :
+              décision d'architecture du repo cloné, déduite après coup
+MAP.md         --> À CRÉER TOI-MÊME (Étape 1)
+BUGFIX.md        --> À CRÉER TOI-MÊME (Étape 2)
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI

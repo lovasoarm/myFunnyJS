@@ -12,7 +12,7 @@ Cas réels : scores cumulés en temps réel, statistiques de match live, fréque
 ```
 Tableau de stats de passes par minute pendant un match :
 [3, 1, 4, 1, 5, 9, 2, 6]
- 0  1  2  3  4  5  6  7
+ 0 1 2 3 4 5 6 7
 
 Requête : somme entre minute 2 et minute 5 ?
 Naïf : arr[2] + arr[3] + arr[4] + arr[5] = 4+1+5+9 = 19 : O(n)
@@ -21,8 +21,8 @@ Update : Messi vient de faire 3 passes de plus à la minute 3 → arr[3] += 3
 Tableau de préfixes : il faut tout recalculer : O(n)
 
 Fenwick Tree :
-  update(3, +3) : O(log n)
-  query(2, 5)   : O(log n)
+ update(3, +3) : O(log n)
+ query(2, 5)  : O(log n)
 ```
 
 ---
@@ -33,13 +33,13 @@ Le Fenwick Tree utilise la représentation binaire des indices pour décider que
 
 ```
 Index en binaire :
-1 = 001  → couvre 1 élément  (lui-même)
-2 = 010  → couvre 2 éléments (indices 1..2)
-3 = 011  → couvre 1 élément  (lui-même)
-4 = 100  → couvre 4 éléments (indices 1..4)
-5 = 101  → couvre 1 élément  (lui-même)
-6 = 110  → couvre 2 éléments (indices 5..6)
-7 = 111  → couvre 1 élément  (lui-même)
+1 = 001 → couvre 1 élément (lui-même)
+2 = 010 → couvre 2 éléments (indices 1..2)
+3 = 011 → couvre 1 élément (lui-même)
+4 = 100 → couvre 4 éléments (indices 1..4)
+5 = 101 → couvre 1 élément (lui-même)
+6 = 110 → couvre 2 éléments (indices 5..6)
+7 = 111 → couvre 1 élément (lui-même)
 8 = 1000 → couvre 8 éléments (indices 1..8)
 ```
 
@@ -48,8 +48,8 @@ La règle : le nombre d'éléments couverts par l'index i = le bit le plus bas d
 ```
 lowbit(i) = i & (-i)
 
-lowbit(6) = 6 & (-6) = 110 & 010 = 010 = 2  → couvre 2 éléments
-lowbit(4) = 4 & (-4) = 100 & 100 = 100 = 4  → couvre 4 éléments
+lowbit(6) = 6 & (-6) = 110 & 010 = 010 = 2 → couvre 2 éléments
+lowbit(4) = 4 & (-4) = 100 & 100 = 100 = 4 → couvre 4 éléments
 ```
 
 ---
@@ -60,40 +60,40 @@ Le Fenwick Tree est 1-indexé (l'index 0 est ignoré).
 
 ```js
 class FenwickTree {
-  constructor(n) {
-    // tree[i] contient la somme partielle selon la règle lowbit
-    this.tree = new Array(n + 1).fill(0)
-    this.n    = n
-  }
+ constructor(n) {
+  // tree[i] contient la somme partielle selon la règle lowbit
+  this.tree = new Array(n + 1).fill(0)
+  this.n  = n
+ }
 
-  // bit le plus bas : la clé de toute la structure
-  _lowbit(i) {
-    return i & (-i)
-  }
+ // bit le plus bas : la clé de toute la structure
+ _lowbit(i) {
+  return i & (-i)
+ }
 
-  // update : ajoute delta à l'index i (1-indexé)
-  // propage la mise à jour vers le haut en O(log n)
-  update(i, delta) {
-    while (i <= this.n) {
-      this.tree[i] += delta
-      i += this._lowbit(i)  // monte au parent responsible
-    }
+ // update : ajoute delta à l'index i (1-indexé)
+ // propage la mise à jour vers le haut en O(log n)
+ update(i, delta) {
+  while (i <= this.n) {
+   this.tree[i] += delta
+   i += this._lowbit(i) // monte au parent responsible
   }
+ }
 
-  // prefix sum : somme de tree[1..i] en O(log n)
-  prefixSum(i) {
-    let sum = 0
-    while (i > 0) {
-      sum += this.tree[i]
-      i -= this._lowbit(i)  // descend au sous-arbre précédent
-    }
-    return sum
+ // prefix sum : somme de tree[1..i] en O(log n)
+ prefixSum(i) {
+  let sum = 0
+  while (i > 0) {
+   sum += this.tree[i]
+   i -= this._lowbit(i) // descend au sous-arbre précédent
   }
+  return sum
+ }
 
-  // range sum : somme de tree[l..r] en O(log n)
-  rangeSum(l, r) {
-    return this.prefixSum(r) - this.prefixSum(l - 1)
-  }
+ // range sum : somme de tree[l..r] en O(log n)
+ rangeSum(l, r) {
+  return this.prefixSum(r) - this.prefixSum(l - 1)
+ }
 }
 ```
 
@@ -104,25 +104,25 @@ class FenwickTree {
 ```js
 // O(n log n) : appeler update pour chaque élément
 function buildFromArray(arr) {
-  const ft = new FenwickTree(arr.length)
-  for (let i = 0; i < arr.length; i++) {
-    ft.update(i + 1, arr[i])  // +1 : 1-indexé
-  }
-  return ft
+ const ft = new FenwickTree(arr.length)
+ for (let i = 0; i < arr.length; i++) {
+  ft.update(i + 1, arr[i]) // +1 : 1-indexé
+ }
+ return ft
 }
 
 // O(n) : méthode plus efficace
 function buildFromArrayFast(arr) {
-  const n  = arr.length
-  const ft = new FenwickTree(n)
-  // copie directe
-  for (let i = 1; i <= n; i++) ft.tree[i] = arr[i - 1]
-  // propage vers le haut
-  for (let i = 1; i <= n; i++) {
-    const parent = i + (i & (-i))
-    if (parent <= n) ft.tree[parent] += ft.tree[i]
-  }
-  return ft
+ const n = arr.length
+ const ft = new FenwickTree(n)
+ // copie directe
+ for (let i = 1; i <= n; i++) ft.tree[i] = arr[i - 1]
+ // propage vers le haut
+ for (let i = 1; i <= n; i++) {
+  const parent = i + (i & (-i))
+  if (parent <= n) ft.tree[parent] += ft.tree[i]
+ }
+ return ft
 }
 ```
 
@@ -135,19 +135,19 @@ Le dashboard des Ultras reçoit les stats de passes d'un match de Champions Leag
 ```js
 // passes par minute (minutes 1 à 10)
 const passes = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
-const ft     = buildFromArray(passes)
+const ft   = buildFromArray(passes)
 
 // somme des passes entre la 3e et la 7e minute (1-indexé)
-ft.rangeSum(3, 7)  // 4 + 1 + 5 + 9 + 2 = 21
+ft.rangeSum(3, 7) // 4 + 1 + 5 + 9 + 2 = 21
 
 // Messi vient d'être crédité de 3 passes supplémentaires à la minute 4
 ft.update(4, 3)
 
 // recalcul instantané
-ft.rangeSum(3, 7)  // 4 + 4 + 5 + 9 + 2 = 24
+ft.rangeSum(3, 7) // 4 + 4 + 5 + 9 + 2 = 24
 
 // total sur tout le match (minutes 1 à 10)
-ft.prefixSum(10)   // 39 + 3 = 42
+ft.prefixSum(10)  // 39 + 3 = 42
 ```
 
 ---
@@ -159,9 +159,9 @@ Visualiser ce qui se passe quand on fait `update(3, +5)` sur un Fenwick Tree de 
 ```
 update(3, 5) :
 
-i=3 : tree[3] += 5  (lowbit(3) = 1, prochain = 3+1 = 4)
-i=4 : tree[4] += 5  (lowbit(4) = 4, prochain = 4+4 = 8)
-i=8 : tree[8] += 5  (lowbit(8) = 8, prochain = 8+8 = 16 > n, stop)
+i=3 : tree[3] += 5 (lowbit(3) = 1, prochain = 3+1 = 4)
+i=4 : tree[4] += 5 (lowbit(4) = 4, prochain = 4+4 = 8)
+i=8 : tree[8] += 5 (lowbit(8) = 8, prochain = 8+8 = 16 > n, stop)
 
 Seulement 3 opérations pour n=8 : O(log 8) = O(3)
 ```
@@ -171,9 +171,9 @@ Et pour `prefixSum(7)` :
 ```
 prefixSum(7) :
 
-i=7 : sum += tree[7]  (lowbit(7) = 1, prochain = 7-1 = 6)
-i=6 : sum += tree[6]  (lowbit(6) = 2, prochain = 6-2 = 4)
-i=4 : sum += tree[4]  (lowbit(4) = 4, prochain = 4-4 = 0, stop)
+i=7 : sum += tree[7] (lowbit(7) = 1, prochain = 7-1 = 6)
+i=6 : sum += tree[6] (lowbit(6) = 2, prochain = 6-2 = 4)
+i=4 : sum += tree[4] (lowbit(4) = 4, prochain = 4-4 = 0, stop)
 
 3 opérations pour n=8 : O(log 8) = O(3)
 ```
@@ -183,11 +183,11 @@ i=4 : sum += tree[4]  (lowbit(4) = 4, prochain = 4-4 = 0, stop)
 ## 7) COMPARAISON
 
 ```
-Structure              | Update   | Query (range sum)  | Espace
-Tableau brut           | O(1)     | O(n)               | O(n)
-Tableau de préfixes    | O(n)     | O(1)               | O(n)
-Fenwick Tree           | O(log n) | O(log n)           | O(n)
-Segment Tree           | O(log n) | O(log n)           | O(4n)
+Structure       | Update  | Query (range sum) | Espace
+Tableau brut      | O(1)   | O(n)        | O(n)
+Tableau de préfixes  | O(n)   | O(1)        | O(n)
+Fenwick Tree      | O(log n) | O(log n)      | O(n)
+Segment Tree      | O(log n) | O(log n)      | O(4n)
 ```
 
 Fenwick Tree vs Segment Tree : le Fenwick est plus simple à implémenter et plus compact en mémoire. Le Segment Tree supporte plus de types de requêtes (min, max, GCD, pas seulement la somme). Pour les sommes de préfixes dynamiques : Fenwick.
@@ -237,9 +237,9 @@ _~20 min_
 Problème classique de sorting : compter le nombre d'inversions dans un tableau (paires i < j où arr[i] > arr[j]). Une mesure du "désordre" du tableau.
 
 ```js
-countInversions([3, 1, 2, 5, 4])  // 3 : (3,1), (3,2), (5,4)
-countInversions([1, 2, 3, 4, 5])  // 0 : déjà trié
-countInversions([5, 4, 3, 2, 1])  // 10 : complètement inversé
+countInversions([3, 1, 2, 5, 4]) // 3 : (3,1), (3,2), (5,4)
+countInversions([1, 2, 3, 4, 5]) // 0 : déjà trié
+countInversions([5, 4, 3, 2, 1]) // 10 : complètement inversé
 ```
 
 Implémente avec Fenwick Tree en O(n log n). Pour chaque élément, compte combien d'éléments déjà insérés sont plus grands que lui.

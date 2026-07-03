@@ -12,8 +12,8 @@ Tout finit par toucher le disque. Les fichiers de config, les logs, les exports 
 import fs from "node:fs";
 
 fs.readFile("./votes.json", "utf-8", (err, data) => {
-  if (err) throw err;
-  console.log(JSON.parse(data));
+ if (err) throw err;
+ console.log(JSON.parse(data));
 });
 
 // la version moderne : fs/promises:async/await natif
@@ -34,28 +34,28 @@ import { readFile, writeFile, appendFile } from "node:fs/promises";
 
 // ---- lire ----
 async function loadVotes(filepath) {
-  try {
-    const raw = await readFile(filepath, "utf-8");
-    return JSON.parse(raw);
-  } catch (err) {
-    if (err.code === "ENOENT") {
-      // fichier inexistant : retourner un état vide plutôt que crasher
-      return [];
-    }
-    throw err; // autre erreur (permissions, disque plein...) : on laisse remonter
+ try {
+  const raw = await readFile(filepath, "utf-8");
+  return JSON.parse(raw);
+ } catch (err) {
+  if (err.code === "ENOENT") {
+   // fichier inexistant : retourner un état vide plutôt que crasher
+   return [];
   }
+  throw err; // autre erreur (permissions, disque plein...) : on laisse remonter
+ }
 }
 
 // ---- écrire (remplace le contenu entier) ----
 async function saveVotes(filepath, votes) {
-  await writeFile(filepath, JSON.stringify(votes, null, 2), "utf-8");
-  // null, 2 = JSON indenté avec 2 espaces:lisible dans le terminal
+ await writeFile(filepath, JSON.stringify(votes, null, 2), "utf-8");
+ // null, 2 = JSON indenté avec 2 espaces:lisible dans le terminal
 }
 
 // ---- ajouter sans écraser ----
 async function appendLog(filepath, entry) {
-  const line = JSON.stringify(entry) + "\n"; // NDJSON : un objet JSON par ligne
-  await appendFile(filepath, line, "utf-8");
+ const line = JSON.stringify(entry) + "\n"; // NDJSON : un objet JSON par ligne
+ await appendFile(filepath, line, "utf-8");
 }
 ```
 
@@ -101,34 +101,34 @@ import { access, stat, constants } from "node:fs/promises";
 
 // vérifier l'existence d'un fichier ou dossier
 async function exists(filepath) {
-  try {
-    await access(filepath, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
+ try {
+  await access(filepath, constants.F_OK);
+  return true;
+ } catch {
+  return false;
+ }
 }
 
 // vérifier les permissions
 async function isReadable(filepath) {
-  try {
-    await access(filepath, constants.R_OK);
-    return true;
-  } catch {
-    return false;
-  }
+ try {
+  await access(filepath, constants.R_OK);
+  return true;
+ } catch {
+  return false;
+ }
 }
 
 // infos sur un fichier
 async function getFileInfo(filepath) {
-  const info = await stat(filepath);
-  return {
-    size: info.size, // en octets
-    isFile: info.isFile(),
-    isDirectory: info.isDirectory(),
-    modified: info.mtime, // Date de dernière modification
-    created: info.birthtime, // Date de création
-  };
+ const info = await stat(filepath);
+ return {
+  size: info.size, // en octets
+  isFile: info.isFile(),
+  isDirectory: info.isDirectory(),
+  modified: info.mtime, // Date de dernière modification
+  created: info.birthtime, // Date de création
+ };
 }
 ```
 
@@ -150,11 +150,11 @@ const entries = await readdir("./data");
 // avec les infos sur chaque entrée
 const detailed = await readdir("./data", { withFileTypes: true });
 detailed.forEach((entry) => {
-  if (entry.isFile()) {
-    console.log(`fichier : ${entry.name}`);
-  } else if (entry.isDirectory()) {
-    console.log(`dossier : ${entry.name}/`);
-  }
+ if (entry.isFile()) {
+  console.log(`fichier : ${entry.name}`);
+ } else if (entry.isDirectory()) {
+  console.log(`dossier : ${entry.name}/`);
+ }
 });
 
 // supprimer (récursivement)
@@ -172,25 +172,25 @@ import path from "node:path";
 
 // lister tous les fichiers d'un dossier récursivement
 async function walkDir(dir, extensions = null) {
-  const entries = await readdir(dir, { withFileTypes: true });
-  const files = [];
+ const entries = await readdir(dir, { withFileTypes: true });
+ const files = [];
 
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
+ for (const entry of entries) {
+  const fullPath = path.join(dir, entry.name);
 
-    if (entry.isDirectory()) {
-      // récursion : on descend dans le sous-dossier
-      const subFiles = await walkDir(fullPath, extensions);
-      files.push(...subFiles);
-    } else if (entry.isFile()) {
-      // filtre optionnel par extension
-      if (!extensions || extensions.includes(path.extname(entry.name))) {
-        files.push(fullPath);
-      }
-    }
+  if (entry.isDirectory()) {
+   // récursion : on descend dans le sous-dossier
+   const subFiles = await walkDir(fullPath, extensions);
+   files.push(...subFiles);
+  } else if (entry.isFile()) {
+   // filtre optionnel par extension
+   if (!extensions || extensions.includes(path.extname(entry.name))) {
+    files.push(fullPath);
+   }
   }
+ }
 
-  return files;
+ return files;
 }
 
 // trouver tous les fichiers JSON dans le dossier data
@@ -209,39 +209,39 @@ import { createReadStream } from "node:fs";
 
 // lire un CSV ligne par ligne sans le charger en mémoire
 async function parseCSV(filepath) {
-  const stream = createReadStream(filepath);
-  const rl = createInterface({ input: stream, crlfDelay: Infinity });
+ const stream = createReadStream(filepath);
+ const rl = createInterface({ input: stream, crlfDelay: Infinity });
 
-  const rows = [];
-  let isFirstLine = true;
+ const rows = [];
+ let isFirstLine = true;
 
-  for await (const line of rl) {
-    if (isFirstLine) {
-      isFirstLine = false;
-      continue; // on saute le header
-    }
-    if (line.trim()) {
-      // on ignore les lignes vides
-      rows.push(line.split(",").map((s) => s.trim()));
-    }
+ for await (const line of rl) {
+  if (isFirstLine) {
+   isFirstLine = false;
+   continue; // on saute le header
   }
+  if (line.trim()) {
+   // on ignore les lignes vides
+   rows.push(line.split(",").map((s) => s.trim()));
+  }
+ }
 
-  return rows;
+ return rows;
 }
 
 // interactif : poser une question dans le terminal et attendre la réponse
 function prompt(question) {
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+ const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+ });
 
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      rl.close();
-      resolve(answer.trim());
-    });
+ return new Promise((resolve) => {
+  rl.question(question, (answer) => {
+   rl.close();
+   resolve(answer.trim());
   });
+ });
 }
 
 // usage

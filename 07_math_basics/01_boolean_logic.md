@@ -23,9 +23,9 @@ false && quelqueChoseDeCoûteux(); // quelqueChoseDeCoûteux() n'est jamais appe
 **Table de vérité AND :**
 
 ```
-true  && true  => true
-true  && false => false
-false && true  => false   // stoppe ici, ne va pas plus loin
+true && true => true
+true && false => false
+false && true => false  // stoppe ici, ne va pas plus loin
 false && false => false
 ```
 
@@ -42,9 +42,9 @@ true || quelqueChoseDeCoûteux(); // idem, jamais évalué
 **Table de vérité OR :**
 
 ```
-true  || true  => true   // stoppe ici
-true  || false => true   // stoppe ici
-false || true  => true
+true || true => true  // stoppe ici
+true || false => true  // stoppe ici
+false || true => true
 false || false => false
 ```
 
@@ -137,17 +137,17 @@ NaN;
 {
 } // objet vide : TRUTHY:attention
 "0" - // la chaîne "0" : TRUTHY
-  1; // n'importe quel nombre non-zéro
+ 1; // n'importe quel nombre non-zéro
 ```
 
 ```js
 // le piège classique
 if ([]) {
-  console.log("tableau vide = truthy"); // s'exécute
+ console.log("tableau vide = truthy"); // s'exécute
 }
 
 if ([] == false) {
-  console.log("mais == false aussi"); // s'exécute aussi
+ console.log("mais == false aussi"); // s'exécute aussi
 }
 // JS fait de la coercition avec ==
 // avec === ça ne passerait pas:utilise toujours ===
@@ -160,28 +160,28 @@ if ([] == false) {
 Deux règles qui permettent de réécrire n'importe quelle condition négative :
 
 ```
-!(A && B)  <=>  !A || !B
-!(A || B)  <=>  !A && !B
+!(A && B) <=> !A || !B
+!(A || B) <=> !A && !B
 ```
 
 ```js
 // version illisible
 if (!(estAdmin && estActif)) {
-  refuserAcces();
+ refuserAcces();
 }
 
 // version De Morgan:même logique, plus lisible
 if (!estAdmin || !estActif) {
-  refuserAcces();
+ refuserAcces();
 }
 
 // autre exemple : bloquer si pas ninja ET pas Hokage
 if (!(estNinja || estHokage)) {
-  bloquerEntree();
+ bloquerEntree();
 }
 // devient :
 if (!estNinja && !estHokage) {
-  bloquerEntree();
+ bloquerEntree();
 }
 ```
 
@@ -192,25 +192,25 @@ C'est utile en code review. Si quelqu'un écrit `!(a && b)`, tu proposes `!a || 
 ## 5) PRIORITÉ DES OPÉRATEURS
 
 ```
-!   (NOT)       : priorité la plus haute
-&&  (AND)
-||  (OR)        : priorité la plus basse
-??              : même niveau que ||
+!  (NOT)    : priorité la plus haute
+&& (AND)
+|| (OR)    : priorité la plus basse
+??       : même niveau que ||
 ```
 
 ```js
 // sans parenthèses : peut surprendre
 true ||
-  (false &&
-    false(
-      // => true || (false && false)  => true || false  => true
-      // && est évalué avant ||
+ (false &&
+  false(
+   // => true || (false && false) => true || false => true
+   // && est évalué avant ||
 
-      // avec parenthèses : explicite
-      true || false,
-    ) &&
-    false);
-// => true && false  => false
+   // avec parenthèses : explicite
+   true || false,
+  ) &&
+  false);
+// => true && false => false
 
 // règle : si tu mixes && et || sans parenthèses, tu joues avec le feu
 // ajoute des parenthèses:le compilateur te remercie pas mais tes collègues oui
@@ -232,22 +232,22 @@ Implémenter la fonction `peutOuvrirPorte(garde)` qui retourne `true` ou `false`
 
 ```js
 const garde1 = {
-  badge: true,
-  shiftActif: true,
-  superviseur: false,
-  alerteActive: false,
+ badge: true,
+ shiftActif: true,
+ superviseur: false,
+ alerteActive: false,
 };
 const garde2 = {
-  badge: false,
-  shiftActif: true,
-  superviseur: true,
-  alerteActive: false,
+ badge: false,
+ shiftActif: true,
+ superviseur: true,
+ alerteActive: false,
 };
 const garde3 = {
-  badge: true,
-  shiftActif: true,
-  superviseur: true,
-  alerteActive: true,
+ badge: true,
+ shiftActif: true,
+ superviseur: true,
+ alerteActive: true,
 };
 // garde1 => true, garde2 => true, garde3 => false
 ```

@@ -1,22 +1,22 @@
 # Éthique & Licences (annexe indispensable)
 Temps de lecture ~6 min
 
-> [INTEMPOREL] **INTEMPOREL** : le droit d'auteur logiciel existe depuis les années 80,
+> **INTEMPOREL** : le droit d'auteur logiciel existe depuis les années 80,
 > les licences OSS depuis les années 90, l'AI Act depuis 2024. La logique
 > juridique bouge lentement : vs la mode technique.
 
 ## 1. Licences OSS de base
 
-| Licence     | Peux-tu vendre ? | Dois-tu ouvrir tes modifs ? | Attribution ? |
+| Licence   | Peux-tu vendre ? | Dois-tu ouvrir tes modifs ? | Attribution ? |
 |-------------|------------------|-----------------------------|---------------|
-| MIT         | Oui              | Non                         | Oui (notice)  |
-| Apache 2.0  | Oui              | Non                         | Oui + brevets |
-| BSD-3       | Oui              | Non                         | Oui           |
-| GPL v3      | Oui              | **Oui** (copyleft fort)     | Oui           |
-| LGPL        | Oui              | Modifs de la lib oui        | Oui           |
-| AGPL        | Oui              | **Oui même en SaaS**        | Oui           |
-| Unlicense   | Oui              | Non                         | Non           |
-| Proprio     | Selon contrat    | -                           | -             |
+| MIT     | Oui       | Non             | Oui (notice) |
+| Apache 2.0 | Oui       | Non             | Oui + brevets |
+| BSD-3    | Oui       | Non             | Oui      |
+| GPL v3   | Oui       | **Oui** (copyleft fort)   | Oui      |
+| LGPL    | Oui       | Modifs de la lib oui    | Oui      |
+| AGPL    | Oui       | **Oui même en SaaS**    | Oui      |
+| Unlicense  | Oui       | Non             | Non      |
+| Proprio   | Selon contrat  | -              | -       |
 
 ### Piège classique
 
@@ -26,35 +26,35 @@ avant de la vendorer.
 
 ## 2. Code généré par IA : statut juridique
 
-État en 2026 (à re-vérifier tous les 6 mois : [PERISSABLE] **PÉRISSABLE**) :
+État en 2026 (à re-vérifier tous les 6 mois : **PÉRISSABLE**) :
 
 - **USA** : l'US Copyright Office refuse le copyright sur du code purement
-  généré par IA sans intervention humaine créative.
+ généré par IA sans intervention humaine créative.
 - **EU (AI Act, entré en vigueur 2024)** : obligation de transparence sur
-  les contenus générés + traçabilité du dataset d'entraînement pour les
-  modèles à haut risque.
+ les contenus générés + traçabilité du dataset d'entraînement pour les
+ modèles à haut risque.
 - **Reproduction littérale d'un training set** : plusieurs procès en cours
-  (Copilot, Stability). Tant que non tranchés, **assume que la sortie IA
-  peut contenir du code sous licence**.
+ (Copilot, Stability). Tant que non tranchés, **assume que la sortie IA
+ peut contenir du code sous licence**.
 
 ### Règles Thor
 
 1. Ne demande **jamais** à l'IA de "reproduire l'algorithme de X". Demande
-   un algorithme, décris-le fonctionnellement.
+  un algorithme, décris-le fonctionnellement.
 2. Passe toute sortie IA dans un scanner de licence (ex: `licensee`, `scancode`).
 3. Documente dans `AI_USAGE.md` : quand tu as utilisé l'IA, sur quel code,
-   quelle validation.
+  quelle validation.
 4. Pour du code destiné à un client / employeur : vérifie leur politique
-   IA **avant** de coller quoi que ce soit.
+  IA **avant** de coller quoi que ce soit.
 
 ## 3. Éthique : au-delà du légal
 
 - **Consentement** : si tu scrapes, respecte robots.txt, rate-limit, ToS.
 - **Vie privée** : minimise les données collectées (GDPR "minimisation").
 - **Biais** : si tu entraînes un modèle, mesure les biais sur les groupes
-  protégés. Documente les limites dans un "model card".
+ protégés. Documente les limites dans un "model card".
 - **Dark patterns** : refuse d'implémenter des interfaces qui trompent
-  l'shinobi (opt-out caché, faux boutons, honte du décochage).
+ l'shinobi (opt-out caché, faux boutons, honte du décochage).
 - **Impact énergétique** : voir `31_annexes/03_finops_greenops.md`.
 
 ## 4. Checklist avant de publier

@@ -10,23 +10,23 @@ Temps de lecture ~9 min
 Erreur fréquente : penser qu'un container Docker c'est comme une machine virtuelle (VM). C'est faux, et la différence compte.
 
 ```
-MACHINE VIRTUELLE                    CONTAINER DOCKER
-------------------                   -----------------
-simule un OS complet                 partage le noyau (kernel) de l'OS hôte
-démarre en dizaines de secondes      démarre en millisecondes
-pèse plusieurs Go                    pèse souvent quelques dizaines de Mo
-isolation totale                     isolation au niveau processus
+MACHINE VIRTUELLE          CONTAINER DOCKER
+------------------          -----------------
+simule un OS complet         partage le noyau (kernel) de l'OS hôte
+démarre en dizaines de secondes   démarre en millisecondes
+pèse plusieurs Go          pèse souvent quelques dizaines de Mo
+isolation totale           isolation au niveau processus
 ```
 
 ```
 [MACHINE HÔTE]
-    |
-    +-- [Container 1] -- ton app Node, isolée
-    +-- [Container 2] -- une base de données, isolée
-    +-- [Container 3] -- un cache Redis, isolé
-    
-    (tous partagent le même kernel, mais chacun voit son propre filesystem,
-     ses propres processus, son propre réseau)
+  |
+  +-- [Container 1] -- ton app Node, isolée
+  +-- [Container 2] -- une base de données, isolée
+  +-- [Container 3] -- un cache Redis, isolé
+  
+  (tous partagent le même kernel, mais chacun voit son propre filesystem,
+   ses propres processus, son propre réseau)
 ```
 
 **Technique :** un container utilise des fonctionnalités du noyau Linux (namespaces, cgroups) pour isoler un processus comme s'il tournait seul sur sa machine, sans le coût de virtualiser un OS entier. C'est pour ça que c'est rapide et léger comparé à une VM classique.
@@ -62,20 +62,20 @@ CMD ["node", "src/index.js"]
 
 ```
 ordre des instructions dockerfile --> chaque ligne crée une "couche" (layer) en cache
-si une couche n'a pas changé      --> Docker la réutilise, pas besoin de la refaire
+si une couche n'a pas changé   --> Docker la réutilise, pas besoin de la refaire
 ```
 
 **Pourquoi l'ordre compte (et pourquoi on copie package.json AVANT le code) :**
 
 ```
 MAUVAIS ORDRE :
-COPY . .              <-- copie tout, y compris le code qui change à CHAQUE commit
-RUN npm ci             <-- cette étape se relance à CHAQUE build, même pour 1 ligne changée
+COPY . .       <-- copie tout, y compris le code qui change à CHAQUE commit
+RUN npm ci       <-- cette étape se relance à CHAQUE build, même pour 1 ligne changée
 
 BON ORDRE :
-COPY package.json ./   <-- ce fichier change rarement
-RUN npm ci              <-- cette étape lourde reste EN CACHE tant que package.json bouge pas
-COPY . .                <-- le code change souvent, mais cette étape est rapide
+COPY package.json ./  <-- ce fichier change rarement
+RUN npm ci       <-- cette étape lourde reste EN CACHE tant que package.json bouge pas
+COPY . .        <-- le code change souvent, mais cette étape est rapide
 ```
 
 **Qui casse en prod :** un mauvais ordre dans le Dockerfile fait que chaque build réinstalle TOUTES les dépendances même pour un changement d'une ligne de code. Sur un gros projet, ça transforme un build de 30 secondes en build de 10 minutes, à chaque déploiement.
@@ -107,11 +107,11 @@ CMD ["node", "dist/index.js"]
 ```
 
 ```
-image avec UN SEUL stage (tout en un)  --> contient outils de build + code source + node_modules dev
-                                            facilement 500 Mo à 1 Go
+image avec UN SEUL stage (tout en un) --> contient outils de build + code source + node_modules dev
+                      facilement 500 Mo à 1 Go
 
-image avec multi-stage                 --> contient SEULEMENT le code compilé + dépendances de prod
-                                            souvent 80-150 Mo
+image avec multi-stage         --> contient SEULEMENT le code compilé + dépendances de prod
+                      souvent 80-150 Mo
 ```
 
 **Technique :** chaque `FROM` démarre un nouveau stage indépendant. `COPY --from=builder` permet de piocher des fichiers d'un stage précédent sans embarquer tout son contenu. Le stage final ne garde aucune trace des outils de compilation, des devDependencies, ou du code source brut.
@@ -127,26 +127,26 @@ Une vraie app a rarement un seul container. Elle a une app, une base de données
 ```yaml
 # docker-compose.yml
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"     # port machine hôte : port container
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgres://camp:secret@db:5432/survivants
+ app:
+  build: .
+  ports:
+   - "3000:3000"   # port machine hôte : port container
+  depends_on:
+   - db
+  environment:
+   - DATABASE_URL=postgres://camp:secret@db:5432/survivants
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=camp
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=survivants
-    volumes:
-      - db_data:/var/lib/postgresql/data   # persiste les données même si le container redémarre
+ db:
+  image: postgres:16-alpine
+  environment:
+   - POSTGRES_USER=camp
+   - POSTGRES_PASSWORD=secret
+   - POSTGRES_DB=survivants
+  volumes:
+   - db_data:/var/lib/postgresql/data  # persiste les données même si le container redémarre
 
 volumes:
-  db_data:
+ db_data:
 ```
 
 ```js

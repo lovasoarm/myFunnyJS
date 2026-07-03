@@ -14,15 +14,15 @@ La structure de base :
 
 ```js
 try {
-  // le code qui peut exploser
-  const result = riskyOperation();
-  console.log(result);
+ // le code qui peut exploser
+ const result = riskyOperation();
+ console.log(result);
 } catch (error) {
-  // ce qui se passe quand ça explose
-  console.error("ça a pété :", error.message);
+ // ce qui se passe quand ça explose
+ console.error("ça a pété :", error.message);
 } finally {
-  // ce qui tourne TOUJOURS:succès ou explosion
-  console.log("nettoyage garanti");
+ // ce qui tourne TOUJOURS:succès ou explosion
+ console.log("nettoyage garanti");
 }
 ```
 
@@ -42,26 +42,26 @@ Tout ce qui lève une exception synchrone :
 
 ```js
 try {
-  null.property; // TypeError : t'essaies d'accéder à une prop de null
+ null.property; // TypeError : t'essaies d'accéder à une prop de null
 } catch (e) {
-  console.log(e.name); // "TypeError"
-  console.log(e.message); // "Cannot read properties of null"
+ console.log(e.name); // "TypeError"
+ console.log(e.message); // "Cannot read properties of null"
 }
 ```
 
 ```js
 try {
-  undeclaredVariable; // ReferenceError : variable inexistante
+ undeclaredVariable; // ReferenceError : variable inexistante
 } catch (e) {
-  console.log(e.name); // "ReferenceError"
+ console.log(e.name); // "ReferenceError"
 }
 ```
 
 ```js
 try {
-  throw new Error("Sasuke a abandonné Konoha"); // erreur manuelle
+ throw new Error("Sasuke a abandonné Konoha"); // erreur manuelle
 } catch (e) {
-  console.log(e.message); // "Sasuke a abandonné Konoha"
+ console.log(e.message); // "Sasuke a abandonné Konoha"
 }
 ```
 
@@ -77,13 +77,13 @@ Voilà où les gens se font avoir.
 
 ```js
 try {
-  setTimeout(() => {
-    throw new Error("Titan Colossal en approche");
-    // cette erreur est levée APRÈS que le try/catch a fini de tourner
-    // le catch ne la voit jamais
-  }, 1000);
+ setTimeout(() => {
+  throw new Error("Titan Colossal en approche");
+  // cette erreur est levée APRÈS que le try/catch a fini de tourner
+  // le catch ne la voit jamais
+ }, 1000);
 } catch (e) {
-  console.log("jamais exécuté");
+ console.log("jamais exécuté");
 }
 
 // l'erreur tombe dans le vide:uncaught exception
@@ -93,21 +93,21 @@ Pourquoi ? Le `try/catch` tourne, puis rend la main à l'event loop. Quand le ti
 
 ```
 event loop :
-  1. try/catch s'exécute  -->  pas d'erreur  -->  catch ignoré
-  2. ... 1000ms plus tard ...
-  3. callback du setTimeout  -->  throw  -->  personne pour attraper  -->  crash
+ 1. try/catch s'exécute --> pas d'erreur --> catch ignoré
+ 2. ... 1000ms plus tard ...
+ 3. callback du setTimeout --> throw --> personne pour attraper --> crash
 ```
 
 ### 3.2) Les Promises non catchées
 
 ```js
 try {
-  fetch("https://api.inexistante.io/joueurs");
-  // fetch retourne une Promise
-  // une Promise rejetée n'est pas une exception synchrone
-  // le try/catch ne la voit pas
+ fetch("https://api.inexistante.io/joueurs");
+ // fetch retourne une Promise
+ // une Promise rejetée n'est pas une exception synchrone
+ // le try/catch ne la voit pas
 } catch (e) {
-  console.log("jamais exécuté");
+ console.log("jamais exécuté");
 }
 ```
 
@@ -119,12 +119,12 @@ Solution : `.catch()` sur la Promise, ou `async/await` avec `try/catch`.
 
 ```js
 try {
-  document.querySelector("#btn").addEventListener("click", () => {
-    throw new Error("clic qui explose");
-    // cette erreur sort du try/catch
-  });
+ document.querySelector("#btn").addEventListener("click", () => {
+  throw new Error("clic qui explose");
+  // cette erreur sort du try/catch
+ });
 } catch (e) {
-  console.log("jamais exécuté");
+ console.log("jamais exécuté");
 }
 ```
 
@@ -138,11 +138,11 @@ Quand tu `catch(e)`, `e` c'est un objet. Ses propriétés utiles :
 
 ```js
 try {
-  undefined.length;
+ undefined.length;
 } catch (e) {
-  console.log(e.name); // "TypeError"
-  console.log(e.message); // "Cannot read properties of undefined"
-  console.log(e.stack); // la stack trace complète:l'or en debug
+ console.log(e.name); // "TypeError"
+ console.log(e.message); // "Cannot read properties of undefined"
+ console.log(e.stack); // la stack trace complète:l'or en debug
 }
 ```
 
@@ -150,9 +150,9 @@ La `stack` c'est ton meilleur ami. Elle te dit exactement où dans le code l'err
 
 ```
 Error: Cannot read properties of undefined
-    at getPlayerStats (stats.js:42:15)
-    at processMatch (match.js:18:5)
-    at main (index.js:3:1)
+  at getPlayerStats (stats.js:42:15)
+  at processMatch (match.js:18:5)
+  at main (index.js:3:1)
 ```
 
 Tu lis de bas en haut : `main` a appelé `processMatch`, qui a appelé `getPlayerStats`, qui a pété ligne 42.
@@ -174,18 +174,18 @@ Toujours utiliser `new Error()` ou une sous-classe. Pourquoi ? Stack trace. Sans
 
 ```js
 function calculerXG(tirs) {
-  if (!Array.isArray(tirs)) {
-    throw new Error("tirs doit être un tableau, reçu : " + typeof tirs);
-    // message explicite = debug rapide
-  }
-  return tirs.reduce((sum, tir) => sum + tir.probabilite, 0);
+ if (!Array.isArray(tirs)) {
+  throw new Error("tirs doit être un tableau, reçu : " + typeof tirs);
+  // message explicite = debug rapide
+ }
+ return tirs.reduce((sum, tir) => sum + tir.probabilite, 0);
 }
 
 try {
-  calculerXG("Messi");
+ calculerXG("Messi");
 } catch (e) {
-  console.log(e.message);
-  // "tirs doit être un tableau, reçu : string"
+ console.log(e.message);
+ // "tirs doit être un tableau, reçu : string"
 }
 ```
 
@@ -195,20 +195,20 @@ try {
 
 ```js
 function chargerDonneeesMatch(id) {
-  let connexion = null;
+ let connexion = null;
 
-  try {
-    connexion = ouvrirConnexion();
-    const data = connexion.query(`SELECT * FROM matchs WHERE id = ${id}`);
-    return data;
-  } catch (e) {
-    console.error("erreur pendant la requête :", e.message);
-    return null;
-  } finally {
-    // peu importe ce qui s'est passé dans try ou catch
-    // on ferme la connexion
-    if (connexion) connexion.close();
-  }
+ try {
+  connexion = ouvrirConnexion();
+  const data = connexion.query(`SELECT * FROM matchs WHERE id = ${id}`);
+  return data;
+ } catch (e) {
+  console.error("erreur pendant la requête :", e.message);
+  return null;
+ } finally {
+  // peu importe ce qui s'est passé dans try ou catch
+  // on ferme la connexion
+  if (connexion) connexion.close();
+ }
 }
 ```
 
@@ -218,13 +218,13 @@ Attention à ça :
 
 ```js
 function piege() {
-  try {
-    return "valeur du try";
-  } finally {
-    return "valeur du finally";
-    // le finally écrase le return du try
-    // résultat : "valeur du finally"
-  }
+ try {
+  return "valeur du try";
+ } finally {
+  return "valeur du finally";
+  // le finally écrase le return du try
+  // résultat : "valeur du finally"
+ }
 }
 
 console.log(piege()); // "valeur du finally"
@@ -240,24 +240,24 @@ JS n'a pas de multi-catch natif comme Java. Tu gères avec `instanceof` ou en li
 
 ```js
 function traiterJoueur(id) {
-  try {
-    const joueur = trouverJoueur(id);
-    const stats = chargerStats(joueur);
-    return stats;
-  } catch (e) {
-    if (e instanceof TypeError) {
-      // données malformées
-      console.error("données invalides :", e.message);
-      return null;
-    }
-    if (e.name === "NotFoundError") {
-      // joueur inexistant
-      console.error("joueur introuvable :", id);
-      return null;
-    }
-    // erreur non gérée ici : on la propage
-    throw e;
+ try {
+  const joueur = trouverJoueur(id);
+  const stats = chargerStats(joueur);
+  return stats;
+ } catch (e) {
+  if (e instanceof TypeError) {
+   // données malformées
+   console.error("données invalides :", e.message);
+   return null;
   }
+  if (e.name === "NotFoundError") {
+   // joueur inexistant
+   console.error("joueur introuvable :", id);
+   return null;
+  }
+  // erreur non gérée ici : on la propage
+  throw e;
+ }
 }
 ```
 
@@ -289,11 +289,11 @@ Explique pourquoi ce code ne catch pas l'erreur, puis corrige-le :
 
 ```js
 try {
-  setTimeout(() => {
-    throw new Error("Gear 5 activé trop tôt");
-  }, 500);
+ setTimeout(() => {
+  throw new Error("Gear 5 activé trop tôt");
+ }, 500);
 } catch (e) {
-  console.log("attrapé :", e.message);
+ console.log("attrapé :", e.message);
 }
 ```
 

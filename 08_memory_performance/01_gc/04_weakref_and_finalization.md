@@ -9,9 +9,9 @@ Une référence normale garde en vie. Une `WeakRef` dit : "si personne d'autre n
 let user = { id: 1, name: "Naruto" }
 const ref = new WeakRef(user)
 
-user = null           // plus de référence forte
+user = null      // plus de référence forte
 // à un moment, le GC collecte
-ref.deref()           // undefined (peut-être)
+ref.deref()      // undefined (peut-être)
 ```
 
 **Peut-être** : le moment du GC n'est pas garanti. Ne base **jamais** ta logique métier là-dessus.
@@ -21,14 +21,14 @@ ref.deref()           // undefined (peut-être)
 Cache d'objets lourds indexés par ID, où tu acceptes de recharger si le GC est passé :
 
 ```js
-const cache = new Map()  // id -> WeakRef
+const cache = new Map() // id -> WeakRef
 function getUser(id) {
-  const ref = cache.get(id)
-  const u = ref?.deref()
-  if (u) return u
-  const fresh = loadUser(id)
-  cache.set(id, new WeakRef(fresh))
-  return fresh
+ const ref = cache.get(id)
+ const u = ref?.deref()
+ if (u) return u
+ const fresh = loadUser(id)
+ cache.set(id, new WeakRef(fresh))
+ return fresh
 }
 ```
 
@@ -40,7 +40,7 @@ Callback quand un objet est GC'd :
 
 ```js
 const reg = new FinalizationRegistry((token) => {
-  console.log("collected", token)
+ console.log("collected", token)
 })
 reg.register(user, "user-1")
 ```

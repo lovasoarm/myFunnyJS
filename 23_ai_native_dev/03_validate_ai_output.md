@@ -1,7 +1,7 @@
 # CE QUE L'IA GÉNÈRE, TU NE LE CROIS PAS : TU LE VALIDES
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 L'IA peut générer du code qui compile, qui passe les tests qu'elle a elle-même écrits, et qui explose quand un vrai shinobi l'utilise. Ce n'est pas de la malveillance : c'est de l'optimisme statistique. Elle génère ce qui ressemble à la bonne réponse. Ton boulot : vérifier si c'est la vraie réponse.
 
@@ -15,24 +15,24 @@ Il n'existe pas qu'une façon de valider. Il en existe 4, et elles se cumulent.
 
 ```
 NIVEAU 1 : LECTURE CRITIQUE
-  --> tu lis chaque ligne, tu comprends ce qu'elle fait
-  --> coût : 2-10 minutes
-  --> attrape : la logique cassée, les raccourcis dangereux
+ --> tu lis chaque ligne, tu comprends ce qu'elle fait
+ --> coût : 2-10 minutes
+ --> attrape : la logique cassée, les raccourcis dangereux
 
 NIVEAU 2 : TYPAGE STATIQUE (TypeScript / Zod)
-  --> les types vérifient la forme des données au compile-time et au runtime
-  --> coût : quelques dizaines de lignes
-  --> attrape : les données qui ne ressemblent pas à ce qu'on attend
+ --> les types vérifient la forme des données au compile-time et au runtime
+ --> coût : quelques dizaines de lignes
+ --> attrape : les données qui ne ressemblent pas à ce qu'on attend
 
 NIVEAU 3 : TESTS UNITAIRES
-  --> tu testes les cas que l'IA n'a pas pensé à couvrir
-  --> coût : autant que les tests
-  --> attrape : les edge cases, les cas limites, les comportements inattendus
+ --> tu testes les cas que l'IA n'a pas pensé à couvrir
+ --> coût : autant que les tests
+ --> attrape : les edge cases, les cas limites, les comportements inattendus
 
 NIVEAU 4 : TESTS D'INTÉGRATION
-  --> tu testes le module dans son contexte réel
-  --> coût : le plus élevé
-  --> attrape : les interactions entre composants que l'IA n'a pas vues
+ --> tu testes le module dans son contexte réel
+ --> coût : le plus élevé
+ --> attrape : les interactions entre composants que l'IA n'a pas vues
 ```
 
 Pour du code zone verte (utilitaires simples) : niveau 1 + 2 suffisent souvent.
@@ -47,31 +47,31 @@ Quand tu lis du code généré par l'Oracle ou par n'importe quel LLM, ces patte
 ```js
 // RED FLAG 1 : catch vide ou trop générique
 try {
-  await analyserCodeNinja(jutsu)
+ await analyserCodeNinja(jutsu)
 } catch(e) {
-  console.error(e) // l'erreur est avalée, pas propagée, l'appelant ne sait rien
+ console.error(e) // l'erreur est avalée, pas propagée, l'appelant ne sait rien
 }
 
 // RED FLAG 2 : validation de type absente
 function calculerPuissance(guerrier) {
-  return guerrier.chakra * 1.5 // si guerrier est undefined ? si chakra est un string ?
+ return guerrier.chakra * 1.5 // si guerrier est undefined ? si chakra est un string ?
 }
 
 // RED FLAG 3 : mutation silencieuse
 function renforcerEquipe(equipe, newMember) {
-  equipe.membres.push(newMember)  // mutation directe de l'objet passé en paramètre
-  return equipe                   // l'appelant ne sait pas que son objet a changé
+ equipe.membres.push(newMember) // mutation directe de l'objet passé en paramètre
+ return equipe          // l'appelant ne sait pas que son objet a changé
 }
 
 // RED FLAG 4 : async sans await
 async function sauvegarderMission(mission) {
-  db.insert(mission)              // pas d'await : la fonction retourne AVANT l'insertion
-  return { success: true }        // succès menteur
+ db.insert(mission)       // pas d'await : la fonction retourne AVANT l'insertion
+ return { success: true }    // succès menteur
 }
 
 // RED FLAG 5 : comparaison avec == au lieu de ===
-if (chakraLevel == null) {        // vrai pour null ET undefined ET 0 ET ''
-  // peut-être voulu, probablement pas
+if (chakraLevel == null) {    // vrai pour null ET undefined ET 0 ET ''
+ // peut-être voulu, probablement pas
 }
 ```
 
@@ -86,32 +86,32 @@ import { z } from 'zod'
 
 // Tu définis ce que tu attends de la sortie LLM
 const AnalyseCodeSchema = z.object({
-  bugs: z.array(z.object({
-    ligne: z.number().int().positive(),
-    severite: z.enum(['critique', 'majeur', 'mineur']),
-    description: z.string().min(10),
-    suggestion: z.string().optional(),
-  })),
-  scoreFiabilite: z.number().min(0).max(10),
-  resume: z.string().max(500),
+ bugs: z.array(z.object({
+  ligne: z.number().int().positive(),
+  severite: z.enum(['critique', 'majeur', 'mineur']),
+  description: z.string().min(10),
+  suggestion: z.string().optional(),
+ })),
+ scoreFiabilite: z.number().min(0).max(10),
+ resume: z.string().max(500),
 })
 
-type AnalyseCode = z.infer<typeof AnalyseCodeSchema>  // TypeScript type déduit du schema
+type AnalyseCode = z.infer<typeof AnalyseCodeSchema> // TypeScript type déduit du schema
 
 // Validation à la frontière du module : l'Oracle ne passe pas sans contrôle
 function traiterAnalyseOracle(rawData: unknown): AnalyseCode {
-  const analyse = AnalyseCodeSchema.parse(rawData)
-  // ici on sait que analyse est valide : le reste du code peut lui faire confiance
-  return analyse
+ const analyse = AnalyseCodeSchema.parse(rawData)
+ // ici on sait que analyse est valide : le reste du code peut lui faire confiance
+ return analyse
 }
 
 // safeParse() si tu veux gérer l'erreur proprement sans lancer d'exception
 function tenterAnalyse(rawData: unknown): { ok: true; analyse: AnalyseCode } | { ok: false; erreur: string } {
-  const result = AnalyseCodeSchema.safeParse(rawData)
-  if (!result.success) {
-    return { ok: false, erreur: result.error.message }
-  }
-  return { ok: true, analyse: result.data }
+ const result = AnalyseCodeSchema.safeParse(rawData)
+ if (!result.success) {
+  return { ok: false, erreur: result.error.message }
+ }
+ return { ok: true, analyse: result.data }
 }
 ```
 
@@ -127,48 +127,48 @@ L'IA génère du texte. Si tu lui demandes du JSON, elle génère du texte qui r
 import { z } from 'zod'
 
 const OracleCodeReviewSchema = z.object({
-  problemes: z.array(z.object({
-    ligne: z.number().int().positive(),
-    severite: z.enum(['erreur', 'avertissement', 'info']),
-    message: z.string().min(10),   // pas de messages vides ou de 2 caractères
-    suggestion: z.string().optional(),
-  })),
-  resume: z.string().max(500),
-  score: z.number().min(0).max(10),
+ problemes: z.array(z.object({
+  ligne: z.number().int().positive(),
+  severite: z.enum(['erreur', 'avertissement', 'info']),
+  message: z.string().min(10),  // pas de messages vides ou de 2 caractères
+  suggestion: z.string().optional(),
+ })),
+ resume: z.string().max(500),
+ score: z.number().min(0).max(10),
 })
 
 async function demanderCodeReview(code: string) {
-  const reponseOracle = await appellerLLM(`
-    Analyse ce code JavaScript et retourne UNIQUEMENT un JSON valide avec cette structure :
-    {
-      "problemes": [{ "ligne": number, "severite": "erreur"|"avertissement"|"info", "message": string, "suggestion": string? }],
-      "resume": string,
-      "score": number entre 0 et 10
-    }
-    Code à analyser :
-    ${code}
-  `)
-
-  // L'Oracle peut envoyer du markdown avec des backticks autour : on nettoie
-  const nettoye = reponseOracle
-    .replace(/```json\n?/g, '')   // retire les blocs markdown code
-    .replace(/```\n?/g, '')        // retire la fermeture
-    .trim()
-
-  let parse: unknown
-  try {
-    parse = JSON.parse(nettoye)   // peut encore échouer sur du JSON mal formé
-  } catch {
-    throw new Error(`Oracle a retourné du JSON invalide : ${nettoye.slice(0, 100)}`)
+ const reponseOracle = await appellerLLM(`
+  Analyse ce code JavaScript et retourne UNIQUEMENT un JSON valide avec cette structure :
+  {
+   "problemes": [{ "ligne": number, "severite": "erreur"|"avertissement"|"info", "message": string, "suggestion": string? }],
+   "resume": string,
+   "score": number entre 0 et 10
   }
+  Code à analyser :
+  ${code}
+ `)
 
-  // Validation du schema : si ça passe, on a un objet garanti correct
-  const result = OracleCodeReviewSchema.safeParse(parse)
-  if (!result.success) {
-    throw new Error(`L'Oracle ne respecte pas le schema attendu : ${result.error.message}`)
-  }
+ // L'Oracle peut envoyer du markdown avec des backticks autour : on nettoie
+ const nettoye = reponseOracle
+  .replace(/```json\n?/g, '')  // retire les blocs markdown code
+  .replace(/```\n?/g, '')    // retire la fermeture
+  .trim()
 
-  return result.data  // TypeScript sait maintenant exactement le type de cet objet
+ let parse: unknown
+ try {
+  parse = JSON.parse(nettoye)  // peut encore échouer sur du JSON mal formé
+ } catch {
+  throw new Error(`Oracle a retourné du JSON invalide : ${nettoye.slice(0, 100)}`)
+ }
+
+ // Validation du schema : si ça passe, on a un objet garanti correct
+ const result = OracleCodeReviewSchema.safeParse(parse)
+ if (!result.success) {
+  throw new Error(`L'Oracle ne respecte pas le schema attendu : ${result.error.message}`)
+ }
+
+ return result.data // TypeScript sait maintenant exactement le type de cet objet
 }
 ```
 
@@ -192,36 +192,36 @@ Méthode : après avoir généré une fonction, demande-toi :
 ```js
 // L'Oracle génère cette fonction
 function calculerScoreNinja(puissance: number, experienceAns: number): number {
-  return puissance + (experienceAns * 10)
+ return puissance + (experienceAns * 10)
 }
 
 // L'Oracle écrit ce test :
 test('calcule le score standard', () => {
-  expect(calculerScoreNinja(500, 3)).toBe(530) // ça marche, tout va bien
+ expect(calculerScoreNinja(500, 3)).toBe(530) // ça marche, tout va bien
 })
 
 // Toi tu écris LES VRAIS tests :
 describe('calculerScoreNinja', () => {
-  test('score standard : puissance + bonus expérience', () => {
-    expect(calculerScoreNinja(500, 3)).toBe(530)
-  })
+ test('score standard : puissance + bonus expérience', () => {
+  expect(calculerScoreNinja(500, 3)).toBe(530)
+ })
 
-  test('retourne la puissance brute si expérience est 0', () => {
-    expect(calculerScoreNinja(500, 0)).toBe(500)
-  })
+ test('retourne la puissance brute si expérience est 0', () => {
+  expect(calculerScoreNinja(500, 0)).toBe(500)
+ })
 
-  test('refuse une puissance négative', () => {
-    expect(() => calculerScoreNinja(-100, 3)).toThrow()
-  })
+ test('refuse une puissance négative', () => {
+  expect(() => calculerScoreNinja(-100, 3)).toThrow()
+ })
 
-  test('refuse une expérience négative', () => {
-    expect(() => calculerScoreNinja(500, -1)).toThrow()
-  })
+ test('refuse une expérience négative', () => {
+  expect(() => calculerScoreNinja(500, -1)).toThrow()
+ })
 
-  test('gère les flottants de précision : le classique JS', () => {
-    // 0.1 + 0.2 !== 0.3 : l'Oracle ne voit pas ce problème, toi tu le catches
-    expect(calculerScoreNinja(0.1, 0.2)).toBeCloseTo(0.1 + 0.2 * 10, 5)
-  })
+ test('gère les flottants de précision : le classique JS', () => {
+  // 0.1 + 0.2 !== 0.3 : l'Oracle ne voit pas ce problème, toi tu le catches
+  expect(calculerScoreNinja(0.1, 0.2)).toBeCloseTo(0.1 + 0.2 * 10, 5)
+ })
 })
 ```
 
@@ -236,32 +236,32 @@ La validation ne concerne pas qu'une fonction. Elle concerne les points d'entré
 import { z } from 'zod'
 
 const InputAnalyseSchema = z.object({
-  code: z.string().min(1),
-  language: z.enum(['javascript', 'typescript']),
-  contexte: z.string().max(500).optional(),
+ code: z.string().min(1),
+ language: z.enum(['javascript', 'typescript']),
+ contexte: z.string().max(500).optional(),
 })
 
 const OutputAnalyseSchema = z.object({
-  scoreQualite: z.number().min(0).max(10),
-  problemesDetectes: z.number().int().min(0),
-  hallucinations: z.array(z.string()), // ce que l'Oracle a inventé
+ scoreQualite: z.number().min(0).max(10),
+ problemesDetectes: z.number().int().min(0),
+ hallucinations: z.array(z.string()), // ce que l'Oracle a inventé
 })
 
 // La fonction exposée est un wrapper qui valide les deux bouts
 async function analyserAvecOracle(rawInput: unknown) {
-  // 1. Valide l'entrée avant de faire quoi que ce soit
-  const input = InputAnalyseSchema.parse(rawInput)
+ // 1. Valide l'entrée avant de faire quoi que ce soit
+ const input = InputAnalyseSchema.parse(rawInput)
 
-  // 2. La logique (appel LLM + parsing)
-  const reponse = await demanderCodeReview(input.code)
+ // 2. La logique (appel LLM + parsing)
+ const reponse = await demanderCodeReview(input.code)
 
-  // 3. Valide la sortie avant de la retourner
-  return OutputAnalyseSchema.parse({
-    scoreQualite: reponse.score,
-    problemesDetectes: reponse.problemes.length,
-    hallucinations: detecterHallucinations(reponse),
-  })
-  // si la sortie ne matche pas, ça casse ici, pas chez l'appelant
+ // 3. Valide la sortie avant de la retourner
+ return OutputAnalyseSchema.parse({
+  scoreQualite: reponse.score,
+  problemesDetectes: reponse.problemes.length,
+  hallucinations: detecterHallucinations(reponse),
+ })
+ // si la sortie ne matche pas, ça casse ici, pas chez l'appelant
 }
 ```
 

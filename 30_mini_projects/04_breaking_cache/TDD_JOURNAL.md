@@ -13,12 +13,12 @@ Le heap est utilisé par Dijkstra. Si Dijkstra est testé avant le heap, les tes
 
 ```js
 test('insert() maintient la propriété de heap (parent <= enfants)', () => {
-  const heap = new MinHeap();
-  heap.insert({ priorite: 5, ville: 'ABQ' });
-  heap.insert({ priorite: 2, ville: 'Juarez' });
-  heap.insert({ priorite: 8, ville: 'Santa Fe' });
+ const heap = new MinHeap();
+ heap.insert({ priorite: 5, ville: 'ABQ' });
+ heap.insert({ priorite: 2, ville: 'Juarez' });
+ heap.insert({ priorite: 8, ville: 'Santa Fe' });
 
-  expect(heap.peek().priorite).toBe(2); // minimum toujours en tête
+ expect(heap.peek().priorite).toBe(2); // minimum toujours en tête
 });
 ```
 
@@ -28,12 +28,12 @@ Rouge. Implémenté `insert` avec `bubbleUp`. Vert.
 
 ```js
 test('extractMin() retourne le minimum et maintient la propriété après extraction', () => {
-  const heap = new MinHeap();
-  [5, 2, 8, 1, 9, 3].forEach(p => heap.insert({ priorite: p }));
+ const heap = new MinHeap();
+ [5, 2, 8, 1, 9, 3].forEach(p => heap.insert({ priorite: p }));
 
-  expect(heap.extractMin().priorite).toBe(1);
-  expect(heap.extractMin().priorite).toBe(2);
-  expect(heap.extractMin().priorite).toBe(3);
+ expect(heap.extractMin().priorite).toBe(1);
+ expect(heap.extractMin().priorite).toBe(2);
+ expect(heap.extractMin().priorite).toBe(3);
 });
 ```
 
@@ -47,20 +47,20 @@ Le graphe doit être testable indépendamment de Dijkstra.
 
 ```js
 test('addEdge() crée une route bidirectionnelle avec cout et risque', () => {
-  const graph = new AdjacencyList();
-  graph.addEdge('ABQ', 'Juarez', { cout: 10, risque: 0.3 });
+ const graph = new AdjacencyList();
+ graph.addEdge('ABQ', 'Juarez', { cout: 10, risque: 0.3 });
 
-  expect(graph.getNeighbors('ABQ')).toContainEqual({
-    destination: 'Juarez', cout: 10, risque: 0.3
-  });
-  expect(graph.getNeighbors('Juarez')).toContainEqual({
-    destination: 'ABQ', cout: 10, risque: 0.3
-  });
+ expect(graph.getNeighbors('ABQ')).toContainEqual({
+  destination: 'Juarez', cout: 10, risque: 0.3
+ });
+ expect(graph.getNeighbors('Juarez')).toContainEqual({
+  destination: 'ABQ', cout: 10, risque: 0.3
+ });
 });
 
 test('un noeud sans voisins retourne un tableau vide, pas une erreur', () => {
-  const graph = new AdjacencyList();
-  expect(graph.getNeighbors('ville-inexistante')).toEqual([]);
+ const graph = new AdjacencyList();
+ expect(graph.getNeighbors('ville-inexistante')).toEqual([]);
 });
 ```
 
@@ -74,14 +74,14 @@ Le cahier des charges prévenait : Dijkstra est l'algo le plus complexe du proje
 
 ```js
 test('retourne la distance 0 pour source === destination', () => {
-  expect(dijkstra(graph, 'ABQ', 'ABQ').cout).toBe(0);
+ expect(dijkstra(graph, 'ABQ', 'ABQ').cout).toBe(0);
 });
 
 test('trouve le chemin le plus court dans un graphe simple', () => {
-  // A --5-- B --3-- C
-  const result = dijkstra(simpleGraph, 'A', 'C');
-  expect(result.cout).toBe(8);
-  expect(result.chemin).toEqual(['A', 'B', 'C']);
+ // A --5-- B --3-- C
+ const result = dijkstra(simpleGraph, 'A', 'C');
+ expect(result.cout).toBe(8);
+ expect(result.chemin).toEqual(['A', 'B', 'C']);
 });
 ```
 
@@ -89,11 +89,11 @@ Le cas `A --> C` avec un raccourci `A --20-- C` :
 
 ```js
 test('préfère le chemin indirect si il est moins cher', () => {
-  // A --5-- B --3-- C
-  // A --------20--- C  (direct mais plus cher)
-  const result = dijkstra(graphAvecRaccourci, 'A', 'C');
-  expect(result.cout).toBe(8);   // passe par B, pas direct
-  expect(result.chemin).toEqual(['A', 'B', 'C']);
+ // A --5-- B --3-- C
+ // A --------20--- C (direct mais plus cher)
+ const result = dijkstra(graphAvecRaccourci, 'A', 'C');
+ expect(result.cout).toBe(8);  // passe par B, pas direct
+ expect(result.chemin).toEqual(['A', 'B', 'C']);
 });
 ```
 
@@ -107,15 +107,15 @@ Tests classiques de traversée, plus simples après Dijkstra.
 
 ```js
 test('bfs() visite tous les noeuds connectés exactement une fois', () => {
-  const visited = bfs(graph, 'ABQ');
-  expect(new Set(visited).size).toBe(visited.length); // pas de doublon
-  expect(visited.length).toBe(graph.nodeCount());
+ const visited = bfs(graph, 'ABQ');
+ expect(new Set(visited).size).toBe(visited.length); // pas de doublon
+ expect(visited.length).toBe(graph.nodeCount());
 });
 
 test('dfs() respecte l\'ordre profondeur avant largeur', () => {
-  // sur un graphe linéaire A --> B --> C --> D
-  const result = dfs(linearGraph, 'A');
-  expect(result).toEqual(['A', 'B', 'C', 'D']); // profondeur complète d'abord
+ // sur un graphe linéaire A --> B --> C --> D
+ const result = dfs(linearGraph, 'A');
+ expect(result).toEqual(['A', 'B', 'C', 'D']); // profondeur complète d'abord
 });
 ```
 
@@ -127,17 +127,17 @@ Tests de tri sur des cas connus.
 
 ```js
 test('quickSort trie correctement un tableau de lots par priorité', () => {
-  const lots = [{ id: 3, urgence: 5 }, { id: 1, urgence: 1 }, { id: 2, urgence: 3 }];
-  const triés = quickSort(lots, (a, b) => a.urgence - b.urgence);
-  expect(triés.map(l => l.urgence)).toEqual([1, 3, 5]);
+ const lots = [{ id: 3, urgence: 5 }, { id: 1, urgence: 1 }, { id: 2, urgence: 3 }];
+ const triés = quickSort(lots, (a, b) => a.urgence - b.urgence);
+ expect(triés.map(l => l.urgence)).toEqual([1, 3, 5]);
 });
 
 test('mergeSort est stable : éléments égaux gardent leur ordre initial', () => {
-  const lots = [{ id: 1, urgence: 3 }, { id: 2, urgence: 3 }, { id: 3, urgence: 1 }];
-  const triés = mergeSort(lots, (a, b) => a.urgence - b.urgence);
-  // les deux éléments à urgence=3 restent dans l'ordre id:1 avant id:2
-  expect(triés[1].id).toBe(1);
-  expect(triés[2].id).toBe(2);
+ const lots = [{ id: 1, urgence: 3 }, { id: 2, urgence: 3 }, { id: 3, urgence: 1 }];
+ const triés = mergeSort(lots, (a, b) => a.urgence - b.urgence);
+ // les deux éléments à urgence=3 restent dans l'ordre id:1 avant id:2
+ expect(triés[1].id).toBe(1);
+ expect(triés[2].id).toBe(2);
 });
 ```
 
@@ -149,17 +149,17 @@ Le test de stabilité de `mergeSort` a confirmé un choix d'implémentation : ut
 
 ```js
 test('knapsack retourne la valeur maximale sous la contrainte de poids', () => {
-  const items = [
-    { nom: 'bleu', valeur: 60, poids: 10 },
-    { nom: 'rouge', valeur: 100, poids: 20 },
-    { nom: 'vert', valeur: 120, poids: 30 },
-  ];
-  const result = knapsack(items, 50);
-  expect(result.valeurTotale).toBe(220); // rouge + vert
+ const items = [
+  { nom: 'bleu', valeur: 60, poids: 10 },
+  { nom: 'rouge', valeur: 100, poids: 20 },
+  { nom: 'vert', valeur: 120, poids: 30 },
+ ];
+ const result = knapsack(items, 50);
+ expect(result.valeurTotale).toBe(220); // rouge + vert
 });
 
 test('ne sélectionne rien si capacité 0', () => {
-  expect(knapsack(items, 0).valeurTotale).toBe(0);
+ expect(knapsack(items, 0).valeurTotale).toBe(0);
 });
 ```
 
@@ -168,15 +168,15 @@ test('ne sélectionne rien si capacité 0', () => {
 ## RÉCAPITULATIF DE L'ORDRE RÉEL
 
 ```
-1. minHeap.js          (pré-requis pour Dijkstra)
-2. adjacencyList.js    (graphe isolé, sans algo)
-3. graphBuilder.js     (construction depuis les données)
-4. dijkstra.js         (algo principal, le plus long à tester)
-5. bfs.js + dfs.js     (traversées)
-6. quickSort.js        (tri en place, unstable)
-7. mergeSort.js        (tri stable)
-8. stockOptimizer.js   (DP, dernier)
-9. benchmarker.js      (pas de tests unitaires : vérification à l'oeil)
+1. minHeap.js     (pré-requis pour Dijkstra)
+2. adjacencyList.js  (graphe isolé, sans algo)
+3. graphBuilder.js   (construction depuis les données)
+4. dijkstra.js     (algo principal, le plus long à tester)
+5. bfs.js + dfs.js   (traversées)
+6. quickSort.js    (tri en place, unstable)
+7. mergeSort.js    (tri stable)
+8. stockOptimizer.js  (DP, dernier)
+9. benchmarker.js   (pas de tests unitaires : vérification à l'oeil)
 ```
 
 Total : 47 tests à la fin, répartis sur 5 fichiers de test.

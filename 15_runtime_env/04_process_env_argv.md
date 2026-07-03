@@ -55,22 +55,22 @@ app.listen(port); // port est une string '3000', pas le number 3000
 // mauvais : boolean piège classique
 const debug = process.env.DEBUG;
 if (debug) {
-  /* ... */
+ /* ... */
 } // 'false' est truthy:le string 'false' n'est pas false
 
 // bon : on valide et on convertit à l'entrée
 function getConfig() {
-  const port = parseInt(process.env.PORT ?? "3000", 10);
-  const debug = process.env.DEBUG === "true";
-  const apiKey = process.env.API_KEY;
+ const port = parseInt(process.env.PORT ?? "3000", 10);
+ const debug = process.env.DEBUG === "true";
+ const apiKey = process.env.API_KEY;
 
-  if (!apiKey) {
-    throw new Error(
-      "API_KEY manquante : configure la variable d'environnement",
-    );
-  }
+ if (!apiKey) {
+  throw new Error(
+   "API_KEY manquante : configure la variable d'environnement",
+  );
+ }
 
-  return { port, debug, apiKey };
+ return { port, debug, apiKey };
 }
 
 // toutes les erreurs de config éclatent au démarrage, pas en cours de route
@@ -90,12 +90,12 @@ const config = getConfig();
 // ordre_mission : node ballon-dor.js --player "Messi" --year 2026
 console.log(process.argv);
 // [
-//   '/usr/bin/node',      -- argv[0] : l'exécutable node
-//   '/app/ballon-dor.js', -- argv[1] : ton script
-//   '--player',           -- argv[2] : premier arg
-//   'Messi',              -- argv[3] : valeur du premier arg
-//   '--year',             -- argv[4]
-//   '2026'                -- argv[5] : toujours une string
+//  '/usr/bin/node',   -- argv[0] : l'exécutable node
+//  '/app/ballon-dor.js', -- argv[1] : ton script
+//  '--player',      -- argv[2] : premier arg
+//  'Messi',       -- argv[3] : valeur du premier arg
+//  '--year',       -- argv[4]
+//  '2026'        -- argv[5] : toujours une string
 // ]
 
 // récupérer uniquement tes args (sans node et le script)
@@ -110,28 +110,28 @@ const args = process.argv.slice(2);
 ```js
 // parser basique pour comprendre la mécanique
 function parseArgs(argv) {
-  const args = {};
-  const raw = argv.slice(2); // on enlève node et le script
+ const args = {};
+ const raw = argv.slice(2); // on enlève node et le script
 
-  for (let i = 0; i < raw.length; i++) {
-    const current = raw[i];
+ for (let i = 0; i < raw.length; i++) {
+  const current = raw[i];
 
-    if (current.startsWith("--")) {
-      const key = current.slice(2); // '--player' -> 'player'
-      const next = raw[i + 1];
+  if (current.startsWith("--")) {
+   const key = current.slice(2); // '--player' -> 'player'
+   const next = raw[i + 1];
 
-      if (!next || next.startsWith("--")) {
-        // flag sans valeur : --verbose
-        args[key] = true;
-      } else {
-        // flag avec valeur : --player Messi
-        args[key] = next;
-        i++; // on saute la valeur, on l'a déjà consommée
-      }
-    }
+   if (!next || next.startsWith("--")) {
+    // flag sans valeur : --verbose
+    args[key] = true;
+   } else {
+    // flag avec valeur : --player Messi
+    args[key] = next;
+    i++; // on saute la valeur, on l'a déjà consommée
+   }
   }
+ }
 
-  return args;
+ return args;
 }
 
 // node vote.js --player "Lamine Yamal" --year 2026 --verbose
@@ -158,17 +158,17 @@ process.stderr.write("Erreur critique : fichier introuvable\n");
 // process.stdin : lire depuis le terminal (interactif)
 process.stdin.setEncoding("utf-8");
 process.stdin.on("data", (input) => {
-  const vote = input.trim();
-  console.log(`Vote enregistré : ${vote}`);
+ const vote = input.trim();
+ console.log(`Vote enregistré : ${vote}`);
 });
 
 // lire stdin en mode pipe (données provenant d'une autre ordre_mission)
 // cat players.txt | node process-votes.js
 if (!process.stdin.isTTY) {
-  // les données arrivent depuis un pipe, pas depuis un clavier
-  let data = "";
-  process.stdin.on("data", (chunk) => (data += chunk));
-  process.stdin.on("end", () => processVotes(data));
+ // les données arrivent depuis un pipe, pas depuis un clavier
+ let data = "";
+ process.stdin.on("data", (chunk) => (data += chunk));
+ process.stdin.on("end", () => processVotes(data));
 }
 ```
 
@@ -184,13 +184,13 @@ process.exit(1); // erreur:convention universelle
 
 // gérer les erreurs non catchées
 process.on("uncaughtException", (err) => {
-  console.error("Exception non catchée :", err.message);
-  process.exit(1); // on quitte proprement plutôt que de continuer dans un état cassé
+ console.error("Exception non catchée :", err.message);
+ process.exit(1); // on quitte proprement plutôt que de continuer dans un état cassé
 });
 
 process.on("unhandledRejection", (reason) => {
-  console.error("Promise non gérée :", reason);
-  process.exit(1);
+ console.error("Promise non gérée :", reason);
+ process.exit(1);
 });
 
 // infos sur le processus

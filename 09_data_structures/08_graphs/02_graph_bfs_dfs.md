@@ -14,11 +14,11 @@ Visite les noeuds niveau par niveau, en s'éloignant progressivement du point de
 ```
 Graphe (non dirigé, non pondéré) :
 
-     A
-    / \
-   B   C
-  / \   \
- D   E   F
+   A
+  / \
+  B  C
+ / \  \
+ D  E  F
 ```
 
 BFS depuis A :
@@ -34,26 +34,26 @@ Outil : une queue (FIFO).
 
 ```js
 function bfs(graph, start) {
-  const visited = new Set()
-  const queue   = [start]
-  const result  = []
+ const visited = new Set()
+ const queue  = [start]
+ const result = []
 
-  visited.add(start)
+ visited.add(start)
 
-  while (queue.length > 0) {
-    const current = queue.shift()  // prend le premier (FIFO)
-    result.push(current)
+ while (queue.length > 0) {
+  const current = queue.shift() // prend le premier (FIFO)
+  result.push(current)
 
-    // enfile tous les voisins non encore visités
-    for (const { node } of graph.getNeighbors(current)) {
-      if (!visited.has(node)) {
-        visited.add(node)
-        queue.push(node)
-      }
-    }
+  // enfile tous les voisins non encore visités
+  for (const { node } of graph.getNeighbors(current)) {
+   if (!visited.has(node)) {
+    visited.add(node)
+    queue.push(node)
+   }
   }
+ }
 
-  return result
+ return result
 }
 ```
 
@@ -67,43 +67,43 @@ Pour retourner le chemin et pas juste l'ordre de visite, on trace les parents.
 
 ```js
 function bfsShortestPath(graph, start, end) {
-  if (start === end) return [start]
+ if (start === end) return [start]
 
-  const visited = new Set()
-  const queue   = [start]
-  const parent  = new Map()  // { noeud : noeud parent }
+ const visited = new Set()
+ const queue  = [start]
+ const parent = new Map() // { noeud : noeud parent }
 
-  visited.add(start)
+ visited.add(start)
 
-  while (queue.length > 0) {
-    const current = queue.shift()
+ while (queue.length > 0) {
+  const current = queue.shift()
 
-    for (const { node } of graph.getNeighbors(current)) {
-      if (!visited.has(node)) {
-        visited.add(node)
-        parent.set(node, current)
-        queue.push(node)
+  for (const { node } of graph.getNeighbors(current)) {
+   if (!visited.has(node)) {
+    visited.add(node)
+    parent.set(node, current)
+    queue.push(node)
 
-        // destination atteinte : reconstruction du chemin
-        if (node === end) return reconstructPath(parent, start, end)
-      }
-    }
+    // destination atteinte : reconstruction du chemin
+    if (node === end) return reconstructPath(parent, start, end)
+   }
   }
+ }
 
-  return null  // pas de chemin
+ return null // pas de chemin
 }
 
 function reconstructPath(parent, start, end) {
-  const path = []
-  let current = end
+ const path = []
+ let current = end
 
-  while (current !== start) {
-    path.unshift(current)
-    current = parent.get(current)
-  }
+ while (current !== start) {
+  path.unshift(current)
+  current = parent.get(current)
+ }
 
-  path.unshift(start)
-  return path
+ path.unshift(start)
+ return path
 }
 ```
 
@@ -112,14 +112,14 @@ Trace sur le plan d'évasion de Fox River (Michael cherche le chemin le plus cou
 ```js
 const prison = new Graph(false)
 prison.addEdge("Cellule B5", "Couloir 3")
-prison.addEdge("Couloir 3",  "Salle médicale")
-prison.addEdge("Couloir 3",  "Cuisine")
-prison.addEdge("Cuisine",    "Sortie")
+prison.addEdge("Couloir 3", "Salle médicale")
+prison.addEdge("Couloir 3", "Cuisine")
+prison.addEdge("Cuisine",  "Sortie")
 prison.addEdge("Salle médicale", "Sortie")
 
 bfsShortestPath(prison, "Cellule B5", "Sortie")
-// --> ["Cellule B5", "Couloir 3", "Cuisine", "Sortie"]  (3 arêtes)
-// --> ["Cellule B5", "Couloir 3", "Salle médicale", "Sortie"]  (3 arêtes aussi)
+// --> ["Cellule B5", "Couloir 3", "Cuisine", "Sortie"] (3 arêtes)
+// --> ["Cellule B5", "Couloir 3", "Salle médicale", "Sortie"] (3 arêtes aussi)
 // BFS retourne l'un des deux (les deux font 3 arêtes, les deux sont "plus courts")
 ```
 
@@ -132,11 +132,11 @@ Va aussi loin que possible dans une direction avant de revenir en arrière.
 ```
 Même graphe :
 
-     A
-    / \
-   B   C
-  / \   \
- D   E   F
+   A
+  / \
+  B  C
+ / \  \
+ D  E  F
 
 DFS depuis A (version récursive, gauche d'abord) :
 A --> B --> D (cul-de-sac, revient) --> E (cul-de-sac, revient) --> C --> F
@@ -149,38 +149,38 @@ Outil : une stack (LIFO) : ou simplement la call stack via récursion.
 ```js
 // version récursive
 function dfsRecursive(graph, start, visited = new Set(), result = []) {
-  visited.add(start)
-  result.push(start)
+ visited.add(start)
+ result.push(start)
 
-  for (const { node } of graph.getNeighbors(start)) {
-    if (!visited.has(node)) {
-      dfsRecursive(graph, node, visited, result)
-    }
+ for (const { node } of graph.getNeighbors(start)) {
+  if (!visited.has(node)) {
+   dfsRecursive(graph, node, visited, result)
   }
+ }
 
-  return result
+ return result
 }
 
 // version itérative (stack explicite)
 function dfsIterative(graph, start) {
-  const visited = new Set()
-  const stack   = [start]
-  const result  = []
+ const visited = new Set()
+ const stack  = [start]
+ const result = []
 
-  while (stack.length > 0) {
-    const current = stack.pop()  // prend le dernier (LIFO)
+ while (stack.length > 0) {
+  const current = stack.pop() // prend le dernier (LIFO)
 
-    if (!visited.has(current)) {
-      visited.add(current)
-      result.push(current)
+  if (!visited.has(current)) {
+   visited.add(current)
+   result.push(current)
 
-      for (const { node } of graph.getNeighbors(current)) {
-        if (!visited.has(node)) stack.push(node)
-      }
-    }
+   for (const { node } of graph.getNeighbors(current)) {
+    if (!visited.has(node)) stack.push(node)
+   }
   }
+ }
 
-  return result
+ return result
 }
 ```
 
@@ -191,25 +191,25 @@ function dfsIterative(graph, start) {
 ```
 Même graphe, même point de départ A :
 
-     A
-    / \
-   B   C
-  / \   \
- D   E   F
+   A
+  / \
+  B  C
+ / \  \
+ D  E  F
 
-BFS : A, B, C, D, E, F   (niveau par niveau : proche avant lointain)
-DFS : A, B, D, E, C, F   (profondeur d'abord : loin avant large)
+BFS : A, B, C, D, E, F  (niveau par niveau : proche avant lointain)
+DFS : A, B, D, E, C, F  (profondeur d'abord : loin avant large)
 ```
 
 ```
-                BFS                         DFS
-Structure       Queue (FIFO)                Stack (LIFO)
-Ordre           Niveau par niveau           Profondeur d'abord
-Mémoire         O(largeur max du graphe)    O(profondeur max)
-Chemin court    Garantit le plus court      Ne garantit pas
-Détection cycle Oui                         Oui
-Topological sort Non                        Oui
-Explorat. complète Oui                      Oui
+        BFS             DFS
+Structure    Queue (FIFO)        Stack (LIFO)
+Ordre      Niveau par niveau      Profondeur d'abord
+Mémoire     O(largeur max du graphe)  O(profondeur max)
+Chemin court  Garantit le plus court   Ne garantit pas
+Détection cycle Oui             Oui
+Topological sort Non            Oui
+Explorat. complète Oui           Oui
 ```
 
 ---
@@ -237,31 +237,31 @@ DFS explore toutes les branches. Avec backtracking, on peut lister tous les chem
 
 ```js
 function allPaths(graph, start, end) {
-  const allRoutes = []
+ const allRoutes = []
 
-  function dfs(current, path) {
-    if (current === end) {
-      allRoutes.push([...path])  // copie le chemin actuel
-      return
-    }
-
-    for (const { node } of graph.getNeighbors(current)) {
-      if (!path.includes(node)) {  // évite les cycles
-        path.push(node)
-        dfs(node, path)
-        path.pop()  // backtrack
-      }
-    }
+ function dfs(current, path) {
+  if (current === end) {
+   allRoutes.push([...path]) // copie le chemin actuel
+   return
   }
 
-  dfs(start, [start])
-  return allRoutes
+  for (const { node } of graph.getNeighbors(current)) {
+   if (!path.includes(node)) { // évite les cycles
+    path.push(node)
+    dfs(node, path)
+    path.pop() // backtrack
+   }
+  }
+ }
+
+ dfs(start, [start])
+ return allRoutes
 }
 
 allPaths(prison, "Cellule B5", "Sortie")
 // [
-//   ["Cellule B5", "Couloir 3", "Cuisine", "Sortie"],
-//   ["Cellule B5", "Couloir 3", "Salle médicale", "Sortie"]
+//  ["Cellule B5", "Couloir 3", "Cuisine", "Sortie"],
+//  ["Cellule B5", "Couloir 3", "Salle médicale", "Sortie"]
 // ]
 ```
 
@@ -279,11 +279,11 @@ Le camp de Rick a un graphe de contacts entre survivants (non dirigé). Si un su
 
 ```js
 const contacts = new Graph(false)
-contacts.addEdge("Rick",    "Daryl")
-contacts.addEdge("Rick",    "Glenn")
-contacts.addEdge("Daryl",   "Michonne")
-contacts.addEdge("Glenn",   "Maggie")
-contacts.addEdge("Maggie",  "Hershel")
+contacts.addEdge("Rick",  "Daryl")
+contacts.addEdge("Rick",  "Glenn")
+contacts.addEdge("Daryl",  "Michonne")
+contacts.addEdge("Glenn",  "Maggie")
+contacts.addEdge("Maggie", "Hershel")
 contacts.addEdge("Michonne","Carl")
 ```
 
@@ -309,12 +309,12 @@ Un graphe dirigé représente les résultats de matchs aller du groupe A :
 
 ```js
 const group = new Graph(true)
-group.addEdge("Bayern",       "Barcelona",  { goals: "3-2" })
-group.addEdge("Barcelona",    "PSG",        { goals: "4-1" })
-group.addEdge("PSG",          "Juventus",   { goals: "2-0" })
-group.addEdge("Juventus",     "Bayern",     { goals: "1-3" })
-group.addEdge("Bayern",       "PSG",        { goals: "2-1" })
-group.addEdge("Barcelona",    "Juventus",   { goals: "1-1" })
+group.addEdge("Bayern",    "Barcelona", { goals: "3-2" })
+group.addEdge("Barcelona",  "PSG",    { goals: "4-1" })
+group.addEdge("PSG",     "Juventus",  { goals: "2-0" })
+group.addEdge("Juventus",   "Bayern",   { goals: "1-3" })
+group.addEdge("Bayern",    "PSG",    { goals: "2-1" })
+group.addEdge("Barcelona",  "Juventus",  { goals: "1-1" })
 ```
 
 1. BFS depuis "Bayern" : dans quel ordre les équipes sont-elles atteignables ?

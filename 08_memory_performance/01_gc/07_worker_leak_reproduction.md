@@ -15,9 +15,9 @@ Prérequis : `05_heap_snapshot_hands_on.md`, `06_detached_dom_leak.md`.
 // main.js
 import { Worker } from 'node:worker_threads';
 for (let i = 0; i < 100; i++) {
-  const w = new Worker('./worker.js');
-  w.postMessage({ id: i });
-  //  on ne fait jamais w.terminate() ni on n'attend 'exit'
+ const w = new Worker('./worker.js');
+ w.postMessage({ id: i });
+ // on ne fait jamais w.terminate() ni on n'attend 'exit'
 }
 ```
 
@@ -29,8 +29,8 @@ alors que `heapUsed` semble normal. Un `--inspect` sur le main ne voit rien.
 ## 2) PROTOCOLE MULTI-HEAP
 
 ```
-1. Lance le main avec :  node --expose-gc --inspect main.js
-2. Trouve les workers :  ps -o pid,command | grep worker
+1. Lance le main avec : node --expose-gc --inspect main.js
+2. Trouve les workers : ps -o pid,command | grep worker
 3. Attache l'inspecteur à CHAQUE worker (chacun ouvre un port différent)
 4. Snapshot dans chaque inspecteur SÉPARÉMENT
 5. Somme les heapUsed. Compare à rss. Le manque = mémoire native ou workers non attachés.
@@ -42,7 +42,7 @@ Alternative programmatique :
 // dans le worker :
 import { parentPort } from 'node:worker_threads';
 setInterval(() => {
-  parentPort.postMessage({ heap: process.memoryUsage() });
+ parentPort.postMessage({ heap: process.memoryUsage() });
 }, 5000);
 ```
 
@@ -54,25 +54,25 @@ Le main agrège et log. Tu vois la courbe par worker.
 
 ```js
 class WorkerPool {
-  constructor(size, script) {
-    this.workers = Array.from({ length: size }, () => new Worker(script));
-    this.free = [...this.workers];
-    this.queue = [];
-  }
-  run(payload) {
-    return new Promise((resolve) => {
-      const task = { payload, resolve };
-      this.free.length ? this._dispatch(this.free.pop(), task) : this.queue.push(task);
-    });
-  }
-  _dispatch(w, task) {
-    w.once('message', (r) => {
-      task.resolve(r);
-      this.queue.length ? this._dispatch(w, this.queue.shift()) : this.free.push(w);
-    });
-    w.postMessage(task.payload);
-  }
-  async destroy() { await Promise.all(this.workers.map(w => w.terminate())); }
+ constructor(size, script) {
+  this.workers = Array.from({ length: size }, () => new Worker(script));
+  this.free = [...this.workers];
+  this.queue = [];
+ }
+ run(payload) {
+  return new Promise((resolve) => {
+   const task = { payload, resolve };
+   this.free.length ? this._dispatch(this.free.pop(), task) : this.queue.push(task);
+  });
+ }
+ _dispatch(w, task) {
+  w.once('message', (r) => {
+   task.resolve(r);
+   this.queue.length ? this._dispatch(w, this.queue.shift()) : this.free.push(w);
+  });
+  w.postMessage(task.payload);
+ }
+ async destroy() { await Promise.all(this.workers.map(w => w.terminate())); }
 }
 ```
 

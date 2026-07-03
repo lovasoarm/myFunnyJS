@@ -32,6 +32,6 @@ Tu vas signer des contrats. Certains te feront perdre la propriété de TON code
 - Négocie 3 clauses (jamais 0, jamais 10).
 - Garde une copie signée en PDF hors du drive de l'employeur.
 
-## [INTEMPOREL] PRINCIPES DURABLES
+## PRINCIPES DURABLES
 
 Un contrat mal lu est plus dangereux qu'un bug en prod. Le bug tu le fixes ; le contrat te suit 5 ans.

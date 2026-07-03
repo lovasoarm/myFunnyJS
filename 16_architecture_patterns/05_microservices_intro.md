@@ -22,11 +22,11 @@ Résultat : le chaos distribué.
 
 ```
 [OrderService]
-     |
-     |-- [UserService]
-     |-- [PaymentService]
-     |-- [NotificationService]
-     |-- [InventoryService]
+   |
+   |-- [UserService]
+   |-- [PaymentService]
+   |-- [NotificationService]
+   |-- [InventoryService]
 
 Tout dans un seul process (processus), une seule base de code, un seul déploiement.
 ```
@@ -34,9 +34,9 @@ Tout dans un seul process (processus), une seule base de code, un seul déploiem
 **Microservices :**
 
 ```
-[OrderService]     -->  HTTP / Message Queue  -->  [PaymentService]
-[UserService]      -->  HTTP / Message Queue  -->  [NotificationService]
-[InventoryService] -->  HTTP / Message Queue  -->  [OrderService]
+[OrderService]   --> HTTP / Message Queue --> [PaymentService]
+[UserService]   --> HTTP / Message Queue --> [NotificationService]
+[InventoryService] --> HTTP / Message Queue --> [OrderService]
 
 Chaque service = process indépendant, base de code indépendante, déploiement indépendant.
 ```
@@ -51,13 +51,13 @@ Netflix a 400 millions d'users. Toi tu as 400.
 Les vraies raisons valides :
 
 ```
-Raison                        Explication
------------------------------  --------------------------------------------------
-Scale indépendant              Le PaymentService a 10x plus de charge que le UserService
-Deploy indépendant             L'équipe Payment déploie sans attendre l'équipe User
-Isolation des pannes           Le NotificationService plante, les tributs continuent
-Technologie différente         PaymentService en Go (perf), OrderService en Node, ML en Python
-Équipes autonomes              Chaque équipe possède son service, pas de bottleneck inter-équipe
+Raison            Explication
+----------------------------- --------------------------------------------------
+Scale indépendant       Le PaymentService a 10x plus de charge que le UserService
+Deploy indépendant       L'équipe Payment déploie sans attendre l'équipe User
+Isolation des pannes      Le NotificationService plante, les tributs continuent
+Technologie différente     PaymentService en Go (perf), OrderService en Node, ML en Python
+Équipes autonomes       Chaque équipe possède son service, pas de bottleneck inter-équipe
 ```
 
 Les mauvaises raisons :
@@ -78,7 +78,7 @@ Deux modes principaux :
 **Synchrone (synchronous) : requête → réponse immédiate**
 
 ```
-OrderService  --HTTP GET-->  UserService  --200 OK + data-->  OrderService
+OrderService --HTTP GET--> UserService --200 OK + data--> OrderService
 ```
 
 Avantage : simple, immédiat, résultat garanti.
@@ -88,25 +88,25 @@ C'est du couplage temporel (temporal coupling) : les deux doivent être vivants 
 ```js
 // OrderService qui appelle UserService directement via HTTP
 async function getUser(userId) {
-  // fetch vers le service externe : si ça timeout (délai dépassé), on gère l'erreur
-  const response = await fetch(`http://user-service/users/${userId}`, {
-    signal: AbortSignal.timeout(3000), // timeout (délai max) à 3 secondes
-  });
+ // fetch vers le service externe : si ça timeout (délai dépassé), on gère l'erreur
+ const response = await fetch(`http://user-service/users/${userId}`, {
+  signal: AbortSignal.timeout(3000), // timeout (délai max) à 3 secondes
+ });
 
-  if (!response.ok) {
-    // Le service est down ou a retourné une erreur : on le gère proprement
-    throw new Error(`UserService error: ${response.status}`);
-  }
+ if (!response.ok) {
+  // Le service est down ou a retourné une erreur : on le gère proprement
+  throw new Error(`UserService error: ${response.status}`);
+ }
 
-  return response.json();
+ return response.json();
 }
 ```
 
 **Asynchrone (asynchronous) : message queue (file de messages)**
 
 ```
-OrderService  --PUBLISH-->  [Queue: order.created]  <--CONSUME--  NotificationService
-                                                     <--CONSUME--  InventoryService
+OrderService --PUBLISH--> [Queue: order.created] <--CONSUME-- NotificationService
+                           <--CONSUME-- InventoryService
 ```
 
 Avantage : découplage total dans le temps. NotificationService peut être down : le message attend.
@@ -115,20 +115,20 @@ Inconvénient : plus complexe, résultat non immédiat, debugging plus difficile
 ```js
 // Simuler une message queue simple en JS (sans Redis ni RabbitMQ pour l'exemple)
 class MessageQueue {
-  #queues = new Map(); // Map des channels avec leurs messages en attente
+ #queues = new Map(); // Map des channels avec leurs messages en attente
 
-  // Publier un message dans une queue
-  publish(queueName, message) {
-    if (!this.#queues.has(queueName)) {
-      this.#queues.set(queueName, []);
-    }
-    this.#queues.get(queueName).push(message); // le message attend en queue
+ // Publier un message dans une queue
+ publish(queueName, message) {
+  if (!this.#queues.has(queueName)) {
+   this.#queues.set(queueName, []);
   }
+  this.#queues.get(queueName).push(message); // le message attend en queue
+ }
 
-  // Consommer (lire et supprimer) le prochain message d'une queue
-  consume(queueName) {
-    return this.#queues.get(queueName)?.shift() ?? null; // shift() prend le premier élément
-  }
+ // Consommer (lire et supprimer) le prochain message d'une queue
+ consume(queueName) {
+  return this.#queues.get(queueName)?.shift() ?? null; // shift() prend le premier élément
+ }
 }
 
 const queue = new MessageQueue();
@@ -139,7 +139,7 @@ queue.publish('order.created', { orderId: 'ORD-007', userId: 'U-001', total: 299
 // NotificationService consomme indépendamment (peut être décalé dans le temps)
 const order = queue.consume('order.created');
 if (order) {
-  console.log(`Notification : ordre_mission ${order.orderId} créée`);
+ console.log(`Notification : ordre_mission ${order.orderId} créée`);
 }
 ```
 
@@ -151,9 +151,9 @@ En microservices, les services ne s'appellent pas par IP fixe.
 Ils utilisent du service discovery (découverte de services) : un registre centralisé.
 
 ```
-Client  -->  [API Gateway]  -->  [Service Registry]  -->  [OrderService instance 1]
-                                                      -->  [OrderService instance 2]
-                                                      -->  [PaymentService]
+Client --> [API Gateway] --> [Service Registry] --> [OrderService instance 1]
+                           --> [OrderService instance 2]
+                           --> [PaymentService]
 ```
 
 **API Gateway (passerelle API) :** point d'entrée unique.
@@ -170,9 +170,9 @@ Le client doit connaître toutes les adresses. Cauchemar.
 
 Avec API Gateway :
 ```
-Client --> Gateway:80 --> /orders  -->  OrderService
-                      --> /users   -->  UserService
-                      --> /payment -->  PaymentService
+Client --> Gateway:80 --> /orders --> OrderService
+           --> /users  --> UserService
+           --> /payment --> PaymentService
 ```
 
 ---
@@ -193,9 +193,9 @@ Pire qu'un vrai monolithe : la latence (délai de réseau) s'additionne à chaqu
 **Piège 2 : data sharing (partage de base de données)**
 
 ```
-OrderService  --|
-                |--> [Shared DB]   <-- INTERDIT
-UserService   --|
+OrderService --|
+        |--> [Shared DB]  <-- INTERDIT
+UserService  --|
 ```
 
 Si deux services partagent la même DB, ils sont couplés au niveau des données.
@@ -205,7 +205,7 @@ Règle absolue : une DB par service. Toujours.
 **Piège 3 : microservices trop petits**
 
 ```
-[GetUserNameService]  [GetUserEmailService]  [GetUserAgeService]
+[GetUserNameService] [GetUserEmailService] [GetUserAgeService]
 ```
 
 Ce n'est pas des microservices. C'est de la folie.
@@ -243,14 +243,14 @@ Le bon chemin :
 
 ```
 Phase 1 : Monolithe bien structuré (modules indépendants, pas de couplage interne)
-     |
-     v
+   |
+   v
 Phase 2 : Identifier les domaines qui ont des besoins différents (scale, déploiement, équipe)
-     |
-     v
+   |
+   v
 Phase 3 : Extraire progressivement les domaines en services
-     |
-     v
+   |
+   v
 Phase 4 : Microservices avec API Gateway, service discovery, monitoring distribué
 ```
 

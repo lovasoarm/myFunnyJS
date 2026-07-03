@@ -17,22 +17,22 @@ Node.js génère un fichier `.cpuprofile` directement sans bibliothèque externe
 // script.js : traitement de données Walking Dead
 // on simule une supply chain qui calcule les rations pour 300 survivants
 const survivors = Array.from({ length: 300 }, (_, i) => ({
-  id: i,
-  name: `Survivor_${i}`,
-  calories: Math.floor(Math.random() * 2000) + 1500,
+ id: i,
+ name: `Survivor_${i}`,
+ calories: Math.floor(Math.random() * 2000) + 1500,
 }))
 
 function calculateDailyNeed(group) {
-  // O(n²) naïf : pour chaque survivant, on recalcule la moyenne du groupe entier
-  return group.map(s => {
-    const avg = group.reduce((sum, x) => sum + x.calories, 0) / group.length
-    return { ...s, surplus: s.calories - avg }
-  })
+ // O(n²) naïf : pour chaque survivant, on recalcule la moyenne du groupe entier
+ return group.map(s => {
+  const avg = group.reduce((sum, x) => sum + x.calories, 0) / group.length
+  return { ...s, surplus: s.calories - avg }
+ })
 }
 
 // Appel 10 000 fois pour simuler une charge réelle
 for (let i = 0; i < 10_000; i++) {
-  calculateDailyNeed(survivors)
+ calculateDailyNeed(survivors)
 }
 ```
 
@@ -63,14 +63,14 @@ const nodes = profile.nodes
 
 // Trouver les fonctions les plus coûteuses (hitCount élevé)
 const hotNodes = nodes
-  .filter(n => n.hitCount > 0)
-  .sort((a, b) => b.hitCount - a.hitCount)
-  .slice(0, 10)
+ .filter(n => n.hitCount > 0)
+ .sort((a, b) => b.hitCount - a.hitCount)
+ .slice(0, 10)
 
 // Afficher les 10 plus coûteuses
 hotNodes.forEach(n => {
-  const fn = n.callFrame
-  console.log(`[${n.hitCount} hits] ${fn.functionName || '(anonymous)'} : ${fn.url}:${fn.lineNumber}`)
+ const fn = n.callFrame
+ console.log(`[${n.hitCount} hits] ${fn.functionName || '(anonymous)'} : ${fn.url}:${fn.lineNumber}`)
 })
 ```
 
@@ -87,9 +87,9 @@ hotNodes.forEach(n => {
 npm install -g clinic
 
 # Trois outils disponibles
-clinic doctor -- node script.js      # diagnostic général : CPU, event loop, mémoire
-clinic flame -- node script.js       # flamegraph interactif
-clinic bubbleprof -- node script.js  # profil async : temps passé à attendre vs à travailler
+clinic doctor -- node script.js   # diagnostic général : CPU, event loop, mémoire
+clinic flame -- node script.js    # flamegraph interactif
+clinic bubbleprof -- node script.js # profil async : temps passé à attendre vs à travailler
 ```
 
 ```bash
@@ -121,22 +121,22 @@ Le cas le plus fréquent en prod Node : une opération CPU-intensive qui bloque 
 const http = require('http')
 
 function computeOptimalRotation(survivors) {
-  // Tri + calcul : opération synchrone coûteuse
-  // Sur 10 000 survivants, ça prend ~200ms
-  return survivors
-    .sort((a, b) => a.fatigue - b.fatigue)
-    .map((s, i) => ({ ...s, shift: i % 3 }))
+ // Tri + calcul : opération synchrone coûteuse
+ // Sur 10 000 survivants, ça prend ~200ms
+ return survivors
+  .sort((a, b) => a.fatigue - b.fatigue)
+  .map((s, i) => ({ ...s, shift: i % 3 }))
 }
 
 const server = http.createServer((req, res) => {
-  if (req.url === '/rotate') {
-    // PROBLÈME : cette opération bloque pendant ~200ms
-    // pendant ce temps, AUCUNE autre requête ne peut être traitée
-    const rotation = computeOptimalRotation(generateSurvivors(10_000))
-    res.end(JSON.stringify(rotation))
-  } else {
-    res.end('camp is up')
-  }
+ if (req.url === '/rotate') {
+  // PROBLÈME : cette opération bloque pendant ~200ms
+  // pendant ce temps, AUCUNE autre requête ne peut être traitée
+  const rotation = computeOptimalRotation(generateSurvivors(10_000))
+  res.end(JSON.stringify(rotation))
+ } else {
+  res.end('camp is up')
+ }
 })
 
 server.listen(3000)

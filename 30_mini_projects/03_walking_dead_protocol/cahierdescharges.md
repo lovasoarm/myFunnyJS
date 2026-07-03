@@ -4,14 +4,14 @@ Temps de lecture ~17 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Variables env : aucune
 Outils externes: Playwright (installé via npm install)
 
 # Installation
 $ npm install
-$ npx playwright install chromium   # navigateur pour les tests E2E
+$ npx playwright install chromium  # navigateur pour les tests E2E
 
 # Lancer le camp (le CLI de gestion)
 $ node src/cli.js status
@@ -55,13 +55,13 @@ $ node src/cli.js add-threat --level 4 --perimeter south
 [ALERTE] Niveau critique : évacuation possible dans 2h
 
 $ npm test
-PASS  tests/inventory.test.js (22 tests)
-PASS  tests/guards.test.js (18 tests)
-PASS  tests/security.test.js (16 tests)
-PASS  tests/cli.test.js (20 tests)
+PASS tests/inventory.test.js (22 tests)
+PASS tests/guards.test.js (18 tests)
+PASS tests/security.test.js (16 tests)
+PASS tests/cli.test.js (20 tests)
 
 $ npm run test:e2e
-PASS  e2e/campWorkflow.spec.js (8 scénarios)
+PASS e2e/campWorkflow.spec.js (8 scénarios)
 ```
 
 Ce projet a deux versions coexistantes : `legacy/campV1.js` (jamais modifié) et `src/` (ta v2 propre). Même comportement observable, structure interne entièrement différente.
@@ -95,68 +95,68 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 ### Résumé visuel
 
 ```
-06_testing    --> tests/ (unit + integration), e2e/ (Playwright), mocks/
+06_testing  --> tests/ (unit + integration), e2e/ (Playwright), mocks/
 14_refactoring --> legacy/ -> src/ (SOLID, code smells éliminés)
 16_runtime_env --> src/cli.js (argv), src/store/fileStore.js (fs), src/workers/
-32_tools       --> src/logger/ (JSON structuré), src/debug/ (replay de scénarios)
+32_tools    --> src/logger/ (JSON structuré), src/debug/ (replay de scénarios)
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 terminal: node src/cli.js consume --resource food --amount 3
-  --> argsParser.parse(process.argv)         // { command: 'consume', resource: 'food', amount: 3 }
-  --> commandRouter.route(parsedArgs)         // route vers consumeHandler
-  --> consumeHandler.execute(args)
-        --> inventoryService.consume('food', 3)
-              --> fileStore.read('inventory.json')    // lit l'état actuel
-              --> inventoryService.validate(current, 3) // assez de ressources ?
-              --> inventoryService.applyConsumption(current, 3) // calcule le nouvel état
-              --> fileStore.write('inventory.json', updated)    // persiste
-              --> alertService.check(updated)         // seuils dépassés ?
-        --> logger.info('consume', { resource: 'food', amount: 3, remaining: 11 })
-        --> renderer.print(result)            // affiche dans stdout
-  --> process.exit(0)
+ --> argsParser.parse(process.argv)     // { command: 'consume', resource: 'food', amount: 3 }
+ --> commandRouter.route(parsedArgs)     // route vers consumeHandler
+ --> consumeHandler.execute(args)
+    --> inventoryService.consume('food', 3)
+       --> fileStore.read('inventory.json')  // lit l'état actuel
+       --> inventoryService.validate(current, 3) // assez de ressources ?
+       --> inventoryService.applyConsumption(current, 3) // calcule le nouvel état
+       --> fileStore.write('inventory.json', updated)  // persiste
+       --> alertService.check(updated)     // seuils dépassés ?
+    --> logger.info('consume', { resource: 'food', amount: 3, remaining: 11 })
+    --> renderer.print(result)      // affiche dans stdout
+ --> process.exit(0)
 
 (Worker Thread : tourne en arrière-plan pendant les simulations)
 threatSimulator
-  --> parentPort.postMessage({ type: 'threat', level, perimeter })
-  --> securityService.registerThreat(threat)
-  --> alertService.evaluate(threats)
+ --> parentPort.postMessage({ type: 'threat', level, perimeter })
+ --> securityService.registerThreat(threat)
+ --> alertService.evaluate(threats)
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
 
 ```
 legacy/
-└── campV1.js                       # le spaghetti original : jamais modifié
+└── campV1.js            # le spaghetti original : jamais modifié
 
 src/
-├── cli.js                          # point d'entrée, branche les ordres_mission
+├── cli.js             # point d'entrée, branche les ordres_mission
 ├── parser/
-│   └── argsParser.js               # parse process.argv
+│  └── argsParser.js        # parse process.argv
 ├── router/
-│   └── commandRouter.js            # route vers le bon handler
+│  └── commandRouter.js      # route vers le bon handler
 ├── handlers/
-│   ├── statusHandler.js
-│   ├── consumeHandler.js
-│   ├── rotateGuardsHandler.js
-│   ├── addThreatHandler.js
-│   └── resetHandler.js
+│  ├── statusHandler.js
+│  ├── consumeHandler.js
+│  ├── rotateGuardsHandler.js
+│  ├── addThreatHandler.js
+│  └── resetHandler.js
 ├── services/
-│   ├── inventoryService.js
-│   ├── guardService.js
-│   └── securityService.js
+│  ├── inventoryService.js
+│  ├── guardService.js
+│  └── securityService.js
 ├── store/
-│   └── fileStore.js                # lecture/écriture JSON (fs.promises)
+│  └── fileStore.js        # lecture/écriture JSON (fs.promises)
 ├── alerts/
-│   └── alertService.js             # seuils et alertes
+│  └── alertService.js       # seuils et alertes
 ├── workers/
-│   └── threatSimulator.js          # Worker Thread pour simulations
+│  └── threatSimulator.js     # Worker Thread pour simulations
 ├── logger/
-│   └── structuredLogger.js         # JSON logging avec timestamp et niveau
+│  └── structuredLogger.js     # JSON logging avec timestamp et niveau
 └── debug/
-    └── scenarioReplayer.js         # rejoue un scénario depuis les logs
+  └── scenarioReplayer.js     # rejoue un scénario depuis les logs
 
 tests/
 ├── inventory.test.js
@@ -168,7 +168,7 @@ e2e/
 └── campWorkflow.spec.js
 
 mocks/
-├── fileStore.mock.js               # mock du filesystem pour les tests unitaires
+├── fileStore.mock.js        # mock du filesystem pour les tests unitaires
 └── alertService.mock.js
 ```
 
@@ -225,24 +225,24 @@ PHASE 1 : couvrir le legacy avant de toucher quoi que ce soit
 2. Écrire tests/inventory.test.js sur le comportement observé du v1 (sans modifier v1)
 3. Écrire tests/guards.test.js idem
 4. Écrire tests/security.test.js idem
-   => à ce stade : les tests décrivent le legacy. Ils sont verts sur v1.
+  => à ce stade : les tests décrivent le legacy. Ils sont verts sur v1.
 
 PHASE 2 : construire la v2 module par module, test vert à chaque étape
 
-5. src/store/fileStore.js        --> zéro dépendance, mockable immédiatement
+5. src/store/fileStore.js    --> zéro dépendance, mockable immédiatement
 6. src/logger/structuredLogger.js --> zéro dépendance
-7. src/alerts/alertService.js    --> dépend uniquement de l'état (objet pur)
+7. src/alerts/alertService.js  --> dépend uniquement de l'état (objet pur)
 8. src/services/inventoryService.js --> dépend de alertService
-9. src/services/guardService.js     --> indépendant des autres services
+9. src/services/guardService.js   --> indépendant des autres services
 10. src/services/securityService.js --> dépend de alertService
-11. src/parser/argsParser.js         --> indépendant
-12. src/handlers/                    --> dépendent des services
-13. src/router/commandRouter.js      --> dépend des handlers
-14. src/cli.js                       --> branche tout
-15. tests/cli.test.js                --> teste les ordres_mission via execSync
-16. src/workers/threatSimulator.js   --> en dernier (Worker Thread)
-17. src/debug/scenarioReplayer.js    --> en dernier
-18. e2e/campWorkflow.spec.js         --> une fois que tout tourne
+11. src/parser/argsParser.js     --> indépendant
+12. src/handlers/          --> dépendent des services
+13. src/router/commandRouter.js   --> dépend des handlers
+14. src/cli.js            --> branche tout
+15. tests/cli.test.js        --> teste les ordres_mission via execSync
+16. src/workers/threatSimulator.js  --> en dernier (Worker Thread)
+17. src/debug/scenarioReplayer.js  --> en dernier
+18. e2e/campWorkflow.spec.js     --> une fois que tout tourne
 ```
 
 La règle de la phase 1 est non-négociable : si tu n'as pas de tests sur le v1 avant de commencer la v2, tu n'as aucun filet de sécurité.
@@ -272,63 +272,63 @@ La zone de résistance inattendue est la phase 1 : écrire des tests sur du code
 import { consume, addSupply, getDaysRemaining, isLow } from '../src/services/inventoryService.js';
 
 describe('inventoryService', () => {
-  const baseInventory = {
-    food: { units: 42, dailyConsumption: 3 },  // 14 jours
-    ammo: { units: 847 },
-    medicine: { units: 3, lowThreshold: 10 }
-  };
+ const baseInventory = {
+  food: { units: 42, dailyConsumption: 3 }, // 14 jours
+  ammo: { units: 847 },
+  medicine: { units: 3, lowThreshold: 10 }
+ };
 
-  test('consume réduit les unités correctement', () => {
-    const updated = consume(baseInventory, 'food', 9);
-    expect(updated.food.units).toBe(33);
-  });
+ test('consume réduit les unités correctement', () => {
+  const updated = consume(baseInventory, 'food', 9);
+  expect(updated.food.units).toBe(33);
+ });
 
-  test('consume ne mute pas l\'inventaire original', () => {
-    consume(baseInventory, 'food', 9);
-    expect(baseInventory.food.units).toBe(42); // original intact
-  });
+ test('consume ne mute pas l\'inventaire original', () => {
+  consume(baseInventory, 'food', 9);
+  expect(baseInventory.food.units).toBe(42); // original intact
+ });
 
-  test('getDaysRemaining calcule correctement', () => {
-    expect(getDaysRemaining(baseInventory, 'food')).toBe(14);
-  });
+ test('getDaysRemaining calcule correctement', () => {
+  expect(getDaysRemaining(baseInventory, 'food')).toBe(14);
+ });
 
-  test('isLow détecte quand une ressource est sous le seuil', () => {
-    expect(isLow(baseInventory, 'medicine')).toBe(true);  // 3 < 10
-    expect(isLow(baseInventory, 'food')).toBe(false);
-  });
+ test('isLow détecte quand une ressource est sous le seuil', () => {
+  expect(isLow(baseInventory, 'medicine')).toBe(true); // 3 < 10
+  expect(isLow(baseInventory, 'food')).toBe(false);
+ });
 
-  test('consume throw si quantité insuffisante', () => {
-    expect(() => consume(baseInventory, 'food', 100)).toThrow('InsufficientResourceError');
-  });
+ test('consume throw si quantité insuffisante', () => {
+  expect(() => consume(baseInventory, 'food', 100)).toThrow('InsufficientResourceError');
+ });
 });
 
 // tests/cli.test.js
 import { execSync } from 'child_process';
 
 beforeEach(() => {
-  // Réinitialise l'état du camp avant chaque test CLI
-  execSync('node src/cli.js reset --confirm', { encoding: 'utf-8' });
+ // Réinitialise l'état du camp avant chaque test CLI
+ execSync('node src/cli.js reset --confirm', { encoding: 'utf-8' });
 });
 
 test('status affiche les ressources du camp', () => {
-  const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
-  expect(output).toContain('CAMP');
-  expect(output).toContain('INVENTAIRE');
-  expect(output).toContain('SECURITE');
+ const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
+ expect(output).toContain('CAMP');
+ expect(output).toContain('INVENTAIRE');
+ expect(output).toContain('SECURITE');
 });
 
 test('consume réduit les ressources et l\'affiche', () => {
-  const output = execSync(
-    'node src/cli.js consume --resource food --amount 3',
-    { encoding: 'utf-8' }
-  );
-  expect(output).toContain('11 jours');
+ const output = execSync(
+  'node src/cli.js consume --resource food --amount 3',
+  { encoding: 'utf-8' }
+ );
+ expect(output).toContain('11 jours');
 });
 
 test('exit 1 si ressource inconnue', () => {
-  expect(() => execSync(
-    'node src/cli.js consume --resource dragon --amount 1'
-  )).toThrow(); // execSync throw si exit code != 0
+ expect(() => execSync(
+  'node src/cli.js consume --resource dragon --amount 1'
+ )).toThrow(); // execSync throw si exit code != 0
 });
 ```
 
@@ -341,28 +341,28 @@ import { execSync } from 'child_process';
 // On teste les workflows complets, pas les fonctions isolées
 
 test('workflow complet : consommation + alerte de seuil', () => {
-  execSync('node src/cli.js reset --confirm');
+ execSync('node src/cli.js reset --confirm');
 
-  // Consommer jusqu'au seuil critique
-  execSync('node src/cli.js consume --resource medicine --amount 2');
-  const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
+ // Consommer jusqu'au seuil critique
+ execSync('node src/cli.js consume --resource medicine --amount 2');
+ const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
 
-  expect(output).toContain('CRITIQUE');
-  expect(output).toContain('medicine');
+ expect(output).toContain('CRITIQUE');
+ expect(output).toContain('medicine');
 });
 
 test('workflow rotation de garde : assign, rotate, verify', () => {
-  execSync('node src/cli.js reset --confirm');
-  execSync('node src/cli.js assign-guard --post A --guard Daryl');
-  execSync('node src/cli.js assign-guard --post B --guard Michonne');
+ execSync('node src/cli.js reset --confirm');
+ execSync('node src/cli.js assign-guard --post A --guard Daryl');
+ execSync('node src/cli.js assign-guard --post B --guard Michonne');
 
-  const before = execSync('node src/cli.js status', { encoding: 'utf-8' });
-  expect(before).toContain('Daryl');
+ const before = execSync('node src/cli.js status', { encoding: 'utf-8' });
+ expect(before).toContain('Daryl');
 
-  execSync('node src/cli.js rotate-guards');
+ execSync('node src/cli.js rotate-guards');
 
-  const after = execSync('node src/cli.js status', { encoding: 'utf-8' });
-  expect(after).not.toContain('Daryl'); // Daryl a changé de poste
+ const after = execSync('node src/cli.js status', { encoding: 'utf-8' });
+ expect(after).not.toContain('Daryl'); // Daryl a changé de poste
 });
 ```
 
@@ -412,23 +412,23 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 
 ## Alternatives considérées
 - Réécrire d'abord, tester après : rejeté. Si la v2 a un bug, on ne sait pas
-  si c'est un bug introduit ou un comportement qui existait déjà dans le v1.
-  Sans tests, on ne peut pas distinguer les deux.
+ si c'est un bug introduit ou un comportement qui existait déjà dans le v1.
+ Sans tests, on ne peut pas distinguer les deux.
 - Réécrire d'un bloc et tester le résultat final : rejeté. Un refactoring d'un
-  bloc est un remplacement, pas un refactoring. On perd la traçabilité.
+ bloc est un remplacement, pas un refactoring. On perd la traçabilité.
 
 ## Conséquences
 - La phase 1 (tests sur le legacy) prend du temps qui ne jutsu pas de features.
-  C'est un investissement, pas du temps perdu.
+ C'est un investissement, pas du temps perdu.
 - Chaque commit de refactoring peut être vérifié en lançant npm test.
-  Si un test passe au rouge, on sait exactement quelle étape a cassé quelque chose.
+ Si un test passe au rouge, on sait exactement quelle étape a cassé quelque chose.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
 ```
 [ ] legacy/campV1.js est couvert par des tests avant que la v2 soit commencée
-    (vérifiable par git : les tests sur le legacy sont dans un commit séparé)
+  (vérifiable par git : les tests sur le legacy sont dans un commit séparé)
 [ ] les 5 ordres_mission (status, consume, rotate-guards, add-threat, reset) fonctionnent
 [ ] les services ne lisent ni n'écrivent jamais le filesystem directement
 [ ] les 5 cas limites ont chacun un test qui passe

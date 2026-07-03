@@ -1,7 +1,7 @@
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 TS vérifie les types à la compilation. Mais la data arrive à runtime : depuis une API, un formulaire, un fichier JSON. TS ne peut pas deviner ce que l'API t'envoie vraiment.
 
@@ -15,18 +15,18 @@ C'est le pont entre le monde statique de TS et le monde chaotique du runtime.
 
 ```ts
 function process(value: string | number | boolean): string {
-  if (typeof value === "string") {
-    // ici TS sait que value est string
-    return value.toUpperCase();
-  }
+ if (typeof value === "string") {
+  // ici TS sait que value est string
+  return value.toUpperCase();
+ }
 
-  if (typeof value === "number") {
-    // ici TS sait que value est number
-    return value.toFixed(2);
-  }
+ if (typeof value === "number") {
+  // ici TS sait que value est number
+  return value.toFixed(2);
+ }
 
-  // ici TS sait que value est boolean (les deux autres ont été éliminés)
-  return value ? "actif" : "inactif";
+ // ici TS sait que value est boolean (les deux autres ont été éliminés)
+ return value ? "actif" : "inactif";
 }
 ```
 
@@ -38,38 +38,38 @@ function process(value: string | number | boolean): string {
 
 ```ts
 class NinjaError extends Error {
-  constructor(
-    message: string,
-    public readonly ninjaName: string,
-  ) {
-    super(message);
-    this.name = "NinjaError";
-  }
+ constructor(
+  message: string,
+  public readonly ninjaName: string,
+ ) {
+  super(message);
+  this.name = "NinjaError";
+ }
 }
 
 class ChakraError extends Error {
-  constructor(
-    message: string,
-    public readonly chakraLevel: number,
-  ) {
-    super(message);
-    this.name = "ChakraError";
-  }
+ constructor(
+  message: string,
+  public readonly chakraLevel: number,
+ ) {
+  super(message);
+  this.name = "ChakraError";
+ }
 }
 
 function handleError(err: NinjaError | ChakraError | Error): string {
-  if (err instanceof NinjaError) {
-    // ici TS sait que err est NinjaError
-    return `${err.ninjaName} a foiré : ${err.message}`;
-  }
+ if (err instanceof NinjaError) {
+  // ici TS sait que err est NinjaError
+  return `${err.ninjaName} a foiré : ${err.message}`;
+ }
 
-  if (err instanceof ChakraError) {
-    // ici TS sait que err est ChakraError
-    return `Chakra insuffisant (niveau ${err.chakraLevel}) : ${err.message}`;
-  }
+ if (err instanceof ChakraError) {
+  // ici TS sait que err est ChakraError
+  return `Chakra insuffisant (niveau ${err.chakraLevel}) : ${err.message}`;
+ }
 
-  // ici TS sait que err est Error de base
-  return `Erreur générique : ${err.message}`;
+ // ici TS sait que err est Error de base
+ return `Erreur générique : ${err.message}`;
 }
 ```
 
@@ -81,32 +81,32 @@ function handleError(err: NinjaError | ChakraError | Error): string {
 
 ```ts
 type Goal = {
-  type: "goal";
-  scorer: string;
-  minute: number;
+ type: "goal";
+ scorer: string;
+ minute: number;
 };
 
 type Card = {
-  type: "card";
-  player: string;
-  color: "yellow" | "red";
+ type: "card";
+ player: string;
+ color: "yellow" | "red";
 };
 
 type MatchEvent = Goal | Card;
 
 function isGoal(event: MatchEvent): event is Goal {
-  return "scorer" in event;
-  // si l'objet a une propriété scorer, c'est un Goal
+ return "scorer" in event;
+ // si l'objet a une propriété scorer, c'est un Goal
 }
 
 function processEvent(event: MatchEvent): void {
-  if ("scorer" in event) {
-    // TS sait que event est Goal
-    console.log(`But de ${event.scorer} à la ${event.minute}e`);
-  } else {
-    // TS sait que event est Card
-    console.log(`Carton ${event.color} pour ${event.player}`);
-  }
+ if ("scorer" in event) {
+  // TS sait que event est Goal
+  console.log(`But de ${event.scorer} à la ${event.minute}e`);
+ } else {
+  // TS sait que event est Card
+  console.log(`Carton ${event.color} pour ${event.player}`);
+ }
 }
 ```
 
@@ -118,47 +118,47 @@ Un type predicate est une fonction qui retourne `value is Type`. Si la fonction 
 
 ```ts
 interface Player {
-  id: number;
-  name: string;
-  goals: number;
+ id: number;
+ name: string;
+ goals: number;
 }
 
 // sans type predicate
 function checkPlayer(value: unknown): boolean {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "id" in value &&
-    "name" in value
-  );
+ return (
+  typeof value === "object" &&
+  value !== null &&
+  "id" in value &&
+  "name" in value
+ );
 }
 
 const data: unknown = fetchPlayer();
 if (checkPlayer(data)) {
-  data.name; // ERREUR : TS sait pas que data est Player:checkPlayer retourne boolean
+ data.name; // ERREUR : TS sait pas que data est Player:checkPlayer retourne boolean
 }
 ```
 
 ```ts
 // avec type predicate : value is Player
 function isPlayer(value: unknown): value is Player {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "id" in value &&
-    typeof (value as any).id === "number" &&
-    "name" in value &&
-    typeof (value as any).name === "string" &&
-    "goals" in value &&
-    typeof (value as any).goals === "number"
-  );
+ return (
+  typeof value === "object" &&
+  value !== null &&
+  "id" in value &&
+  typeof (value as any).id === "number" &&
+  "name" in value &&
+  typeof (value as any).name === "string" &&
+  "goals" in value &&
+  typeof (value as any).goals === "number"
+ );
 }
 
 const data: unknown = fetchPlayer();
 if (isPlayer(data)) {
-  // ici TS sait que data est Player
-  console.log(data.name); // OK
-  console.log(data.goals); // OK
+ // ici TS sait que data est Player
+ console.log(data.name); // OK
+ console.log(data.goals); // OK
 }
 ```
 
@@ -171,9 +171,9 @@ C'est la technique centrale pour valider de la data externe. Chaque endpoint API
 ```ts
 // asserts value is Player : si la fonction retourne (sans throw), TS sait que value est Player
 function assertIsPlayer(value: unknown): asserts value is Player {
-  if (!isPlayer(value)) {
-    throw new TypeError(`Expected Player, got ${JSON.stringify(value)}`);
-  }
+ if (!isPlayer(value)) {
+  throw new TypeError(`Expected Player, got ${JSON.stringify(value)}`);
+ }
 }
 
 const data: unknown = fetchPlayer();
@@ -186,12 +186,12 @@ console.log(data.name); // OK:TS a intégré l'assertion
 ```ts
 // pattern commun : assertNonNull
 function assertNonNull<T>(
-  value: T | null | undefined,
-  message?: string,
+ value: T | null | undefined,
+ message?: string,
 ): asserts value is T {
-  if (value == null) {
-    throw new Error(message ?? "Expected non-null value");
-  }
+ if (value == null) {
+  throw new Error(message ?? "Expected non-null value");
+ }
 }
 
 const player = getPlayerOrNull(1);
@@ -207,23 +207,23 @@ On en a parlé dans le fichier précédent. Avec les type guards, le discriminan
 
 ```ts
 type AsyncState<T> =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; data: T }
-  | { status: "error"; message: string; code: number };
+ | { status: "idle" }
+ | { status: "loading" }
+ | { status: "success"; data: T }
+ | { status: "error"; message: string; code: number };
 
 // type predicate sur une discriminated union
 function isSuccess<T>(
-  state: AsyncState<T>,
+ state: AsyncState<T>,
 ): state is Extract<AsyncState<T>, { status: "success" }> {
-  return state.status === "success";
+ return state.status === "success";
 }
 
 function getPlayerData(state: AsyncState<Player>): Player | null {
-  if (isSuccess(state)) {
-    return state.data; // TS sait que state.data existe
-  }
-  return null;
+ if (isSuccess(state)) {
+  return state.data; // TS sait que state.data existe
+ }
+ return null;
 }
 ```
 
@@ -234,37 +234,37 @@ function getPlayerData(state: AsyncState<Player>): Player | null {
 ```ts
 // réponse API brute = unknown par défaut
 interface TrackData {
-  id: string;
-  title: string;
-  artist: string;
-  duration: number; // en secondes
+ id: string;
+ title: string;
+ artist: string;
+ duration: number; // en secondes
 }
 
 function isTrackData(value: unknown): value is TrackData {
-  if (typeof value !== "object" || value === null) return false;
+ if (typeof value !== "object" || value === null) return false;
 
-  const v = value as Record<string, unknown>;
+ const v = value as Record<string, unknown>;
 
-  return (
-    typeof v.id === "string" &&
-    typeof v.title === "string" &&
-    typeof v.artist === "string" &&
-    typeof v.duration === "number" &&
-    v.duration >= 0
-  );
+ return (
+  typeof v.id === "string" &&
+  typeof v.title === "string" &&
+  typeof v.artist === "string" &&
+  typeof v.duration === "number" &&
+  v.duration >= 0
+ );
 }
 
 async function fetchTrack(id: string): Promise<TrackData> {
-  const response = await fetch(`/api/tracks/${id}`);
-  const raw: unknown = await response.json();
+ const response = await fetch(`/api/tracks/${id}`);
+ const raw: unknown = await response.json();
 
-  if (!isTrackData(raw)) {
-    throw new TypeError(
-      `API returned invalid TrackData: ${JSON.stringify(raw)}`,
-    );
-  }
+ if (!isTrackData(raw)) {
+  throw new TypeError(
+   `API returned invalid TrackData: ${JSON.stringify(raw)}`,
+  );
+ }
 
-  return raw; // TS sait que c'est TrackData
+ return raw; // TS sait que c'est TrackData
 }
 ```
 
@@ -275,14 +275,14 @@ async function fetchTrack(id: string): Promise<TrackData> {
 ```ts
 // type predicate qui ment : TS te fait confiance même si tu te trompes
 function isPlayer(value: unknown): value is Player {
-  return typeof value === "object" && value !== null;
-  // tu vérifies juste que c'est un objet, pas que c'est un Player
+ return typeof value === "object" && value !== null;
+ // tu vérifies juste que c'est un objet, pas que c'est un Player
 }
 
 const data: unknown = { name: "Messi" }; // pas de goals, pas de id
 if (isPlayer(data)) {
-  // TS pense que c'est un Player
-  console.log(data.goals.toFixed(0)); // runtime : TypeError:goals est undefined
+ // TS pense que c'est un Player
+ console.log(data.goals.toFixed(0)); // runtime : TypeError:goals est undefined
 }
 // règle : un type predicate doit vérifier TOUTES les propriétés du type
 ```

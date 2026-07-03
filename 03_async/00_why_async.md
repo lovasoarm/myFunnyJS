@@ -30,11 +30,11 @@ Le débogage devient un cauchemar : les erreurs async qu'on oublie de catcher to
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-appel API                     --> Promise --> attente --> résolution ou rejet
-upload de fichier             --> stream asynchrone  --> progress events
-notification temps réel       --> WebSocket/SSE      --> event loop qui dispatch
+appel API           --> Promise --> attente --> résolution ou rejet
+upload de fichier       --> stream asynchrone --> progress events
+notification temps réel    --> WebSocket/SSE   --> event loop qui dispatch
 plusieurs requêtes en parallèle --> Promise.all/allSettled --> agrégation
-timeout sur une opération     --> Promise.race       --> annulation logique
+timeout sur une opération   --> Promise.race    --> annulation logique
 ```
 
 Chaque fois que ton code attend quelque chose qui ne dépend pas du CPU local (réseau, disque, timer), l'event loop est dans la boucle. Un backend Node, un dashboard qui poll une API, une UI qui réagit à des clics pendant qu'un fetch tourne en fond : tout ça, c'est le même mécanisme.
@@ -89,22 +89,22 @@ En Python, `asyncio` a aussi une boucle d'événements et des coroutines (`async
 ## Modèle mental (schéma ASCII)
 
 ```text
-        +---------------------+
-        |     JS Engine       |
-        |   +-------------+   |
-        |   | Call Stack  |   |   <- ta fonction courante
-        |   +-------------+   |
-        +----------|----------+
-                   |  vide ?
-                   v
-        +----------------------+
-        |    Microtask Queue   |  <- Promises, queueMicrotask
-        +----------------------+
-                   |  vide ?
-                   v
-        +----------------------+
-        |     Task Queue       |  <- setTimeout, I/O, events
-        +----------------------+
+    +---------------------+
+    |   JS Engine    |
+    |  +-------------+  |
+    |  | Call Stack |  |  <- ta fonction courante
+    |  +-------------+  |
+    +----------|----------+
+          | vide ?
+          v
+    +----------------------+
+    |  Microtask Queue  | <- Promises, queueMicrotask
+    +----------------------+
+          | vide ?
+          v
+    +----------------------+
+    |   Task Queue    | <- setTimeout, I/O, events
+    +----------------------+
 
 Regle : Call Stack se vide -> on draine TOUTES les microtasks -> puis UNE task -> rerendu (browser) -> on recommence.
 ```

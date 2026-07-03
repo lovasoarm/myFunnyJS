@@ -16,13 +16,13 @@ Ce fichier t'apprend à écrire des docs que les devs ouvrent et ferment satisfa
 Ils n'ont pas le même objectif. Les confondre jutsu des docs qui font tout mal.
 
 ```
-TYPE            QUESTION QU'IL RÉPOND          EXEMPLE
------------     -----------------------        ----------------------------------
-Tutorial        "comment je démarre ?"         quickstart, hello world
-How-to          "comment je fais X ?"          "comment configurer l'auth JWT"
-Reference       "qu'est-ce que X fait ?"       doc d'API, liste des params
-Explanation     "pourquoi ça fonctionne        "architecture du système de cache"
-                comme ça ?"
+TYPE      QUESTION QU'IL RÉPOND     EXEMPLE
+-----------   -----------------------    ----------------------------------
+Tutorial    "comment je démarre ?"     quickstart, hello world
+How-to     "comment je fais X ?"     "comment configurer l'auth JWT"
+Reference    "qu'est-ce que X fait ?"    doc d'API, liste des params
+Explanation   "pourquoi ça fonctionne    "architecture du système de cache"
+        comme ça ?"
 ```
 
 **L'erreur la plus fréquente :** mélanger les quatre dans un seul document.
@@ -58,34 +58,34 @@ Une ligne qui explique ce que ça fait. Pas ce que c'est : ce que ça fait.
 \```bash
 git clone https://github.com/...
 cd nom-du-projet
-cp .env.example .env     # remplis les variables -- voir section Configuration
+cp .env.example .env   # remplis les variables -- voir section Configuration
 npm install
-npm run migrate          # initialise la DB
-npm run dev              # localhost:3000
+npm run migrate     # initialise la DB
+npm run dev       # localhost:3000
 \```
 
 ## Configuration
 Variables d'environnement requises :
-| Variable          | Description                    | Exemple             |
+| Variable     | Description          | Exemple       |
 |-------------------|--------------------------------|---------------------|
-| DATABASE_URL      | connexion PostgreSQL            | postgresql://...    |
-| JWT_SECRET        | clé de signature des tokens     | 64 chars minimum    |
-| REDIS_URL         | optionnel, active le cache      | redis://localhost   |
+| DATABASE_URL   | connexion PostgreSQL      | postgresql://...  |
+| JWT_SECRET    | clé de signature des tokens   | 64 chars minimum  |
+| REDIS_URL     | optionnel, active le cache   | redis://localhost  |
 
 ## Structure du projet
 \```
 src/
-├── routes/      -- handlers HTTP, validation des inputs
-├── services/    -- logique métier, pas de HTTP ici
-├── db/          -- requêtes SQL, pas d'ORM
-└── middleware/  -- auth, rate limiting, error handling
+├── routes/   -- handlers HTTP, validation des inputs
+├── services/  -- logique métier, pas de HTTP ici
+├── db/     -- requêtes SQL, pas d'ORM
+└── middleware/ -- auth, rate limiting, error handling
 \```
 
 ## Tests
 \```bash
-npm test              # tous les tests
-npm run test:unit     # tests unitaires uniquement
-npm run test:e2e      # nécessite une DB de test configurée
+npm test       # tous les tests
+npm run test:unit   # tests unitaires uniquement
+npm run test:e2e   # nécessite une DB de test configurée
 \```
 
 ## Liens
@@ -154,7 +154,7 @@ Pas d'explications profondes. Juste : situation → ordres_mission → résultat
 ssh user@prod-server
 cd /opt/prison-break-api
 pm2 restart prison-break-api
-pm2 logs prison-break-api --lines 50   # vérifier que le démarrage est propre
+pm2 logs prison-break-api --lines 50  # vérifier que le démarrage est propre
 \```
 
 Résultat attendu : `[prison-break-api] online` dans les logs dans les 10 secondes.
@@ -167,7 +167,7 @@ Si le service reste en `errored` : voir section "Erreurs au démarrage" ci-desso
 Situation : les données de match affichées sont incorrectes / périmées.
 
 \```bash
-redis-cli -u $REDIS_URL FLUSHDB   # vide uniquement la DB utilisée par ce service
+redis-cli -u $REDIS_URL FLUSHDB  # vide uniquement la DB utilisée par ce service
 # NE PAS utiliser FLUSHALL : ça vide toutes les DB Redis du serveur
 \```
 
@@ -241,11 +241,11 @@ jusqu'à saturation mémoire.
 - pas de runbook pour ce type d'incident
 
 ## Actions
-| Action                                       | Responsable | Deadline   |
+| Action                    | Responsable | Deadline  |
 |----------------------------------------------|-------------|------------|
-| ajouter maxmemory-policy dans le setup Redis | [nom]       | 2026-04-21 |
-| créer runbook "Redis saturation mémoire"     | [nom]       | 2026-04-28 |
-| ajouter test d'éviction dans les smoke tests | [nom]       | 2026-05-05 |
+| ajouter maxmemory-policy dans le setup Redis | [nom]    | 2026-04-21 |
+| créer runbook "Redis saturation mémoire"   | [nom]    | 2026-04-28 |
+| ajouter test d'éviction dans les smoke tests | [nom]    | 2026-05-05 |
 ```
 
 **Ce qu'on n'écrit PAS dans un post-mortem :** les noms en mode blame. "Paul a oublié de configurer Redis" n'aide personne. "La configuration Redis n'était pas vérifiée dans le setup initial" identifie le problème sans détruire quelqu'un.
@@ -284,7 +284,7 @@ const scores = players.map(p => p.score).sort((a, b) => b - a).slice(0, 5);
 
 // 2.
 if (Date.now() - lastVoteTimestamp < 86400000) {
-  throw new QuotaExceededError('daily limit reached');
+ throw new QuotaExceededError('daily limit reached');
 }
 
 // 3.

@@ -1,7 +1,7 @@
 # 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 WebSocket c'est un tunnel bidirectionnel.
 SSE (Server-Sent Events : événements envoyés par le serveur) c'est différent : le serveur parle, le client écoute.
@@ -54,50 +54,50 @@ const app = express();
 const clients = new Set();
 
 app.get("/events", (req, res) => {
-  // headers obligatoires pour SSE
-  res.setHeader("Content-Type", "text/event-stream"); // type MIME SSE
-  res.setHeader("Cache-Control", "no-cache"); // pas de mise en cache
-  res.setHeader("Connection", "keep-alive"); // connexion persistante
+ // headers obligatoires pour SSE
+ res.setHeader("Content-Type", "text/event-stream"); // type MIME SSE
+ res.setHeader("Cache-Control", "no-cache"); // pas de mise en cache
+ res.setHeader("Connection", "keep-alive"); // connexion persistante
 
-  // pour les proxies (intermédiaires réseau) qui bufferisent (stockent avant d'envoyer) les réponses
-  res.flushHeaders();
+ // pour les proxies (intermédiaires réseau) qui bufferisent (stockent avant d'envoyer) les réponses
+ res.flushHeaders();
 
-  // enregistrer ce client
-  clients.add(res);
-  console.log(`Client SSE connecté : total : ${clients.size}`);
+ // enregistrer ce client
+ clients.add(res);
+ console.log(`Client SSE connecté : total : ${clients.size}`);
 
-  // envoyer un event de confirmation de connexion
-  res.write(`data: ${JSON.stringify({ type: "connected" })}\n\n`);
+ // envoyer un event de confirmation de connexion
+ res.write(`data: ${JSON.stringify({ type: "connected" })}\n\n`);
 
-  // nettoyer quand le client se déconnecte
-  req.on("close", () => {
-    clients.delete(res);
-    console.log(`Client SSE déconnecté : restants : ${clients.size}`);
-  });
+ // nettoyer quand le client se déconnecte
+ req.on("close", () => {
+  clients.delete(res);
+  console.log(`Client SSE déconnecté : restants : ${clients.size}`);
+ });
 });
 
 // fonction pour broadcaster un event à tous les clients SSE
 function sendEvent(eventType, data, id = null) {
-  const lines = [];
-  if (id !== null) lines.push(`id: ${id}`);
-  if (eventType !== "message") lines.push(`event: ${eventType}`); // 'message' est le type par défaut
-  lines.push(`data: ${JSON.stringify(data)}`);
-  lines.push(""); // ligne vide finale = \n\n quand joint avec \n
+ const lines = [];
+ if (id !== null) lines.push(`id: ${id}`);
+ if (eventType !== "message") lines.push(`event: ${eventType}`); // 'message' est le type par défaut
+ lines.push(`data: ${JSON.stringify(data)}`);
+ lines.push(""); // ligne vide finale = \n\n quand joint avec \n
 
-  const payload = lines.join("\n") + "\n";
+ const payload = lines.join("\n") + "\n";
 
-  clients.forEach((client) => {
-    client.write(payload);
-  });
+ clients.forEach((client) => {
+  client.write(payload);
+ });
 }
 
 // simuler des events de match toutes les 5 secondes
 setInterval(() => {
-  sendEvent("match_update", {
-    minute: Math.floor(Math.random() * 90),
-    possession: { home: 55, away: 45 },
-    xG: { home: 1.4, away: 0.8 },
-  });
+ sendEvent("match_update", {
+  minute: Math.floor(Math.random() * 90),
+  possession: { home: 55, away: 45 },
+  xG: { home: 1.4, away: 0.8 },
+ });
 }, 5000);
 
 app.listen(3000, () => console.log("SSE serveur actif sur port 3000"));
@@ -114,36 +114,36 @@ const source = new EventSource("/events");
 
 // event par défaut (type "message")
 source.addEventListener("message", (event) => {
-  const data = JSON.parse(event.data);
-  console.log("Event reçu :", data);
+ const data = JSON.parse(event.data);
+ console.log("Event reçu :", data);
 });
 
 // events typés:le type correspond au champ "event:" envoyé par le serveur
 source.addEventListener("match_update", (event) => {
-  const update = JSON.parse(event.data);
-  console.log(
-    `Minute ${update.minute} : possession home : ${update.possession.home}%`,
-  );
+ const update = JSON.parse(event.data);
+ console.log(
+  `Minute ${update.minute} : possession home : ${update.possession.home}%`,
+ );
 });
 
 source.addEventListener("goal", (event) => {
-  const goal = JSON.parse(event.data);
-  console.log(`GOAL ! ${goal.team} à la ${goal.minute}e minute`);
+ const goal = JSON.parse(event.data);
+ console.log(`GOAL ! ${goal.team} à la ${goal.minute}e minute`);
 });
 
 // connexion établie
 source.addEventListener("open", () => {
-  console.log("SSE connecté");
+ console.log("SSE connecté");
 });
 
 // erreur:EventSource retente automatiquement, pas besoin de gérer manuellement
 source.addEventListener("error", (event) => {
-  if (event.readyState === EventSource.CLOSED) {
-    console.log("Connexion SSE fermée définitivement");
-  } else {
-    console.log("Erreur SSE : retry automatique en cours...");
-    // le navigateur va retenter tout seul dans quelques secondes
-  }
+ if (event.readyState === EventSource.CLOSED) {
+  console.log("Connexion SSE fermée définitivement");
+ } else {
+  console.log("Erreur SSE : retry automatique en cours...");
+  // le navigateur va retenter tout seul dans quelques secondes
+ }
 });
 
 // fermer manuellement si besoin (exemple : shinobi quitte la page)
@@ -161,27 +161,27 @@ Et il envoie le dernier `id` reçu dans le header `Last-Event-ID`.
 ```js
 // côté serveur : utiliser les IDs pour reprendre depuis le bon endroit
 app.get("/events", (req, res) => {
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-  res.flushHeaders();
+ res.setHeader("Content-Type", "text/event-stream");
+ res.setHeader("Cache-Control", "no-cache");
+ res.setHeader("Connection", "keep-alive");
+ res.flushHeaders();
 
-  // récupérer le dernier ID reçu par ce client (null si première connexion)
-  const lastEventId = req.headers["last-event-id"];
+ // récupérer le dernier ID reçu par ce client (null si première connexion)
+ const lastEventId = req.headers["last-event-id"];
 
-  if (lastEventId) {
-    // le client se reconnecte : lui envoyer les events manqués
-    const missedEvents = getEventsSince(parseInt(lastEventId));
-    missedEvents.forEach((event) => {
-      res.write(`id: ${event.id}\ndata: ${JSON.stringify(event.data)}\n\n`);
-    });
-  }
+ if (lastEventId) {
+  // le client se reconnecte : lui envoyer les events manqués
+  const missedEvents = getEventsSince(parseInt(lastEventId));
+  missedEvents.forEach((event) => {
+   res.write(`id: ${event.id}\ndata: ${JSON.stringify(event.data)}\n\n`);
+  });
+ }
 
-  // configurer le délai de retry (optionnel:défaut navigateur : 3 secondes)
-  res.write("retry: 5000\n\n"); // retry en 5 secondes si connexion perdue
+ // configurer le délai de retry (optionnel:défaut navigateur : 3 secondes)
+ res.write("retry: 5000\n\n"); // retry en 5 secondes si connexion perdue
 
-  clients.add(res);
-  req.on("close", () => clients.delete(res));
+ clients.add(res);
+ req.on("close", () => clients.delete(res));
 });
 ```
 
@@ -190,15 +190,15 @@ app.get("/events", (req, res) => {
 ## 5) SSE VS WEBSOCKET : QUAND CHOISIR QUOI
 
 ```
-                    SSE                         WebSocket
+          SSE             WebSocket
 -----------------------------------------------------------------
-Direction         Serveur --> Client           Bidirectionnel
-Protocole         HTTP/1.1                     WS (upgrade HTTP)
-Reconnexion       Automatique (navigateur)     Manuelle
-Proxies/CDN       Transparent                  Peut bloquer
-Auth              Headers HTTP classiques       Custom (handshake)
-Coût serveur      Connexion HTTP longue         Connexion WS dédiée
-Cas parfaits      Feeds, notifs, dashboards    Chat, jeux, co-édition
+Direction     Serveur --> Client      Bidirectionnel
+Protocole     HTTP/1.1           WS (upgrade HTTP)
+Reconnexion    Automatique (navigateur)   Manuelle
+Proxies/CDN    Transparent         Peut bloquer
+Auth       Headers HTTP classiques    Custom (handshake)
+Coût serveur   Connexion HTTP longue     Connexion WS dédiée
+Cas parfaits   Feeds, notifs, dashboards  Chat, jeux, co-édition
 ```
 
 Règle simple : si le client n'a pas besoin d'envoyer de données en temps réel, SSE suffit.
@@ -214,12 +214,12 @@ Nginx, par exemple, peut accumuler les events avant de les envoyer d'un coup : c
 ```nginx
 # config Nginx pour SSE : obligatoire en prod
 location /events {
-    proxy_pass http://localhost:3000;
-    proxy_http_version 1.1;
-    proxy_set_header Connection '';     # désactiver keep-alive sur le proxy
-    proxy_buffering off;                # désactiver le buffering : CRITIQUE
-    proxy_cache off;                    # pas de cache
-    proxy_read_timeout 86400;          # 24h : garder la connexion ouverte
+  proxy_pass http://localhost:3000;
+  proxy_http_version 1.1;
+  proxy_set_header Connection '';   # désactiver keep-alive sur le proxy
+  proxy_buffering off;        # désactiver le buffering : CRITIQUE
+  proxy_cache off;          # pas de cache
+  proxy_read_timeout 86400;     # 24h : garder la connexion ouverte
 }
 ```
 

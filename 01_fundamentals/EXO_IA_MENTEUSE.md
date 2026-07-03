@@ -9,11 +9,11 @@ Tu demandes à une IA générique de générer un tracker de progression pour tr
 
 ```js
 function trackHealthBars(bars) {
-  for (var i = 0; i < bars.length; i++) {
-    setTimeout(() => {
-      console.log(`Barre ${i} : ${bars[i]}% de vie`);
-    }, 100 * i);
-  }
+ for (var i = 0; i < bars.length; i++) {
+  setTimeout(() => {
+   console.log(`Barre ${i} : ${bars[i]}% de vie`);
+  }, 100 * i);
+ }
 }
 
 trackHealthBars([100, 60, 30]);

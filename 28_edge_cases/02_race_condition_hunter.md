@@ -1,7 +1,7 @@
 # 01 : Race Condition Hunter
 Temps de lecture ~5 min
 
->  **Principe universel** : deux acteurs, une ressource, aucun ordre garanti = danger. Vrai en JS async, en threads, en microservices.
+> **Principe universel** : deux acteurs, une ressource, aucun ordre garanti = danger. Vrai en JS async, en threads, en microservices.
 
 ## Bug fourni
 

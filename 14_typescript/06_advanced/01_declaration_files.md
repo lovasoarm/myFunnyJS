@@ -1,7 +1,7 @@
 # DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Michael a accès au plan de Fox River, mais c'est un vieux plan, dessiné à la main, sans légende. Il sait que chaque salle existe, mais pas ce qu'elle contient exactement. Un fichier `.d.ts` c'est cette légende qu'on rajoute par-dessus : ça décrit la FORME de quelque chose qui existe déjà, sans le réécrire.
 
@@ -12,7 +12,7 @@ Michael a accès au plan de Fox River, mais c'est un vieux plan, dessiné à la 
 ```js
 // Une lib JS classique, sans aucun type, genre "fox-river-utils.js"
 function calculerTempsEvasion(distance, vitesse) {
-  return distance / vitesse;
+ return distance / vitesse;
 }
 
 module.exports = { calculerTempsEvasion };
@@ -27,7 +27,7 @@ export { calculerTempsEvasion };
 ```
 
 ```
-fichier .js   --> contient le VRAI code qui s'exécute
+fichier .js  --> contient le VRAI code qui s'exécute
 fichier .d.ts --> contient SEULEMENT la description des types, jamais exécuté
 ```
 
@@ -72,19 +72,19 @@ import { uneFonction } from 'lib-sans-types-du-tout';
 ```js
 // fox-river-comms.js (le vrai code JS de la lib, sans types)
 class RadioCrypte {
-  constructor(frequence) {
-    this.frequence = frequence;
-    this.historique = [];
-  }
+ constructor(frequence) {
+  this.frequence = frequence;
+  this.historique = [];
+ }
 
-  envoyer(message) {
-    this.historique.push(message);
-    return true;
-  }
+ envoyer(message) {
+  this.historique.push(message);
+  return true;
+ }
 
-  recevoir() {
-    return this.historique.pop() || null;
-  }
+ recevoir() {
+  return this.historique.pop() || null;
+ }
 }
 
 module.exports = { RadioCrypte };
@@ -93,13 +93,13 @@ module.exports = { RadioCrypte };
 ```ts
 // fox-river-comms.d.ts (le plan détaillé, écrit à côté)
 declare class RadioCrypte {
-  constructor(frequence: number);
+ constructor(frequence: number);
 
-  frequence: number;
-  historique: string[];
+ frequence: number;
+ historique: string[];
 
-  envoyer(message: string): boolean;
-  recevoir(): string | null;
+ envoyer(message: string): boolean;
+ recevoir(): string | null;
 }
 
 export { RadioCrypte };
@@ -129,12 +129,12 @@ Certaines choses n'ont jamais été des modules importables : des variables glob
 // On dit à TypeScript : "il existe une variable globale FOX_RIVER_CONFIG,
 // injectée par un script chargé avant le tien, fais-lui confiance"
 declare global {
-  interface Window {
-    FOX_RIVER_CONFIG: {
-      planActif: boolean;
-      niveauAlerte: number;
-    };
-  }
+ interface Window {
+  FOX_RIVER_CONFIG: {
+   planActif: boolean;
+   niveauAlerte: number;
+  };
+ }
 }
 
 export {}; // nécessaire pour que ce fichier soit traité comme un module
@@ -143,7 +143,7 @@ export {}; // nécessaire pour que ce fichier soit traité comme un module
 ```ts
 // N'importe où dans ton code, maintenant typé correctement :
 if (window.FOX_RIVER_CONFIG.planActif) {
-  console.log(`Niveau d'alerte : ${window.FOX_RIVER_CONFIG.niveauAlerte}`);
+ console.log(`Niveau d'alerte : ${window.FOX_RIVER_CONFIG.niveauAlerte}`);
 }
 // Sans ce .d.ts, TypeScript hurlerait : "Property 'FOX_RIVER_CONFIG' does not exist on type 'Window'"
 ```

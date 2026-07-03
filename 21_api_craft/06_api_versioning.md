@@ -20,16 +20,16 @@ Le versioning sépare les générations de contrats :
 
 ```
 Changements NON breaking (pas besoin de nouvelle version) :
-  --> ajouter un nouveau champ optionnel dans la réponse
-  --> ajouter un nouveau endpoint
-  --> ajouter un query param optionnel
+ --> ajouter un nouveau champ optionnel dans la réponse
+ --> ajouter un nouveau endpoint
+ --> ajouter un query param optionnel
 
 Changements breaking (nécessitent une nouvelle version) :
-  --> renommer ou supprimer un champ existant
-  --> changer le type d'un champ (string --> number)
-  --> changer la structure d'une réponse
-  --> rendre optionnel un champ obligatoire (ou l'inverse)
-  --> changer le comportement d'un endpoint existant
+ --> renommer ou supprimer un champ existant
+ --> changer le type d'un champ (string --> number)
+ --> changer la structure d'une réponse
+ --> rendre optionnel un champ obligatoire (ou l'inverse)
+ --> changer le comportement d'un endpoint existant
 ```
 
 ---
@@ -68,15 +68,15 @@ C'est ce qu'on implémente.
 
 ```
 src/
-  routes/
-    v1/
-      players.router.js    --> format v1 de la ressource players
-      teams.router.js
-    v2/
-      players.router.js    --> format v2 (champs renommés, nouvelle structure)
-      teams.router.js
-      stats.router.js      --> nouveau endpoint ajouté en v2
-  app.js
+ routes/
+  v1/
+   players.router.js  --> format v1 de la ressource players
+   teams.router.js
+  v2/
+   players.router.js  --> format v2 (champs renommés, nouvelle structure)
+   teams.router.js
+   stats.router.js   --> nouveau endpoint ajouté en v2
+ app.js
 ```
 
 ```js
@@ -86,9 +86,9 @@ const router = Router()
 
 // v1 : format legacy
 router.get('/', (req, res) => {
-  res.json([
-    { player_id: 1, player_name: 'Mbappé', nb_goals: 30 }  // snake_case, noms verbeux
-  ])
+ res.json([
+  { player_id: 1, player_name: 'Mbappé', nb_goals: 30 } // snake_case, noms verbeux
+ ])
 })
 
 export default router
@@ -101,22 +101,22 @@ const router = Router()
 
 // v2 : format modernisé (camelCase, champs renommés, pagination)
 router.get('/', (req, res) => {
-  const { page = 1, limit = 20 } = req.query
+ const { page = 1, limit = 20 } = req.query
 
-  res.json({
-    data: [
-      { id: 1, name: 'Mbappé', goals: 30 }  // camelCase, noms courts
-    ],
-    pagination: {
-      page: Number(page),
-      limit: Number(limit),
-      total: 1
-    }
-  })
+ res.json({
+  data: [
+   { id: 1, name: 'Mbappé', goals: 30 } // camelCase, noms courts
+  ],
+  pagination: {
+   page: Number(page),
+   limit: Number(limit),
+   total: 1
+  }
+ })
 })
 
-router.get('/:id/stats', (req, res) => {  // nouveau endpoint en v2
-  res.json({ playerId: req.params.id, goals: 30, assists: 12, xG: 28.5 })
+router.get('/:id/stats', (req, res) => { // nouveau endpoint en v2
+ res.json({ playerId: req.params.id, goals: 30, assists: 12, xG: 28.5 })
 })
 
 export default router
@@ -153,13 +153,13 @@ La logique métier reste partagée. Seule la couche de présentation (format de 
 // logique métier partagée entre toutes les versions
 
 export function getAllPlayers({ teamFilter } = {}) {
-  let result = players
-  if (teamFilter) result = result.filter(p => p.team === teamFilter)
-  return result
+ let result = players
+ if (teamFilter) result = result.filter(p => p.team === teamFilter)
+ return result
 }
 
 export function getPlayerById(id) {
-  return players.find(p => p.id === id) ?? null
+ return players.find(p => p.id === id) ?? null
 }
 ```
 
@@ -168,9 +168,9 @@ export function getPlayerById(id) {
 import { getAllPlayers } from '../../services/players.service.js'
 
 router.get('/', (req, res) => {
-  const data = getAllPlayers()
-  // transforme en format v1
-  res.json(data.map(p => ({ player_id: p.id, player_name: p.name, nb_goals: p.goals })))
+ const data = getAllPlayers()
+ // transforme en format v1
+ res.json(data.map(p => ({ player_id: p.id, player_name: p.name, nb_goals: p.goals })))
 })
 ```
 
@@ -179,16 +179,16 @@ router.get('/', (req, res) => {
 import { getAllPlayers } from '../../services/players.service.js'
 
 router.get('/', (req, res) => {
-  const data = getAllPlayers()
-  // transforme en format v2 (même service, présentation différente)
-  res.json({ data: data.map(p => ({ id: p.id, name: p.name, goals: p.goals })) })
+ const data = getAllPlayers()
+ // transforme en format v2 (même service, présentation différente)
+ res.json({ data: data.map(p => ({ id: p.id, name: p.name, goals: p.goals })) })
 })
 ```
 
 Séparation claire :
 ```
-service  -->  logique métier, accès data (partagé)
-router   -->  format de réponse, validation des inputs (par version)
+service --> logique métier, accès data (partagé)
+router  --> format de réponse, validation des inputs (par version)
 ```
 
 ---
@@ -201,15 +201,15 @@ La dépréciation est un processus, pas un acte brutal.
 ```js
 // middleware de dépréciation : avertit le client que v1 est deprecated
 function deprecationWarning(version, sunsetDate) {
-  return (req, res, next) => {
-    // Deprecation header : standard IETF pour indiquer la date de dépréciation
-    res.set('Deprecation', `version="${version}"`)
-    // Sunset header : date à laquelle l'API sera retirée
-    res.set('Sunset', sunsetDate)
-    // lien vers la doc de migration
-    res.set('Link', '</docs/migration-v2>; rel="successor-version"')
-    next()
-  }
+ return (req, res, next) => {
+  // Deprecation header : standard IETF pour indiquer la date de dépréciation
+  res.set('Deprecation', `version="${version}"`)
+  // Sunset header : date à laquelle l'API sera retirée
+  res.set('Sunset', sunsetDate)
+  // lien vers la doc de migration
+  res.set('Link', '</docs/migration-v2>; rel="successor-version"')
+  next()
+ }
 }
 
 // monte le middleware sur toutes les routes v1
@@ -218,13 +218,13 @@ app.use('/v1', deprecationWarning('v1', 'Sat, 31 Dec 2026 23:59:59 GMT'), v1Rout
 
 Plan de dépréciation type :
 ```
-Annonce               -->  6 mois avant sunset
-Header Deprecation    -->  dès l'annonce
-Header Sunset         -->  dès l'annonce
-Monitoring            -->  tracker le trafic v1 pour mesurer la migration
-Rappels               -->  email aux dev qui utilisent encore v1 (via logs API keys)
-Sunset                -->  v1 renvoie 410 Gone
-Suppression           -->  3 mois après sunset, code retiré
+Annonce        --> 6 mois avant sunset
+Header Deprecation  --> dès l'annonce
+Header Sunset     --> dès l'annonce
+Monitoring      --> tracker le trafic v1 pour mesurer la migration
+Rappels        --> email aux dev qui utilisent encore v1 (via logs API keys)
+Sunset        --> v1 renvoie 410 Gone
+Suppression      --> 3 mois après sunset, code retiré
 ```
 
 ---

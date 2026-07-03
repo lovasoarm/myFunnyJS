@@ -1,7 +1,7 @@
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > Ce fichier est niveau avancé.
 > Prérequis minimum : `01_ts_basics/` complet + `02_ts_intermediate/` complet.
@@ -52,7 +52,7 @@ type IsArray<T> = T extends any[] ? "array" : "not array";
 
 type H = IsArray<string | number[]>;
 // TS distribue :
-// string extends any[] ? "array" : "not array"  => "not array"
+// string extends any[] ? "array" : "not array" => "not array"
 // number[] extends any[] ? "array" : "not array" => "array"
 // résultat : "not array" | "array"
 ```
@@ -94,7 +94,7 @@ type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 // si T est une fonction, R est son type de retour
 
 function getPlayerStats(): { goals: number; assists: number } {
-  return { goals: 31, assists: 12 };
+ return { goals: 31, assists: 12 };
 }
 
 type Stats = ReturnType<typeof getPlayerStats>;
@@ -122,8 +122,8 @@ type O = Awaited<string>; // string (pas une Promise)
 ```ts
 // extraire les paramètres d'une fonction
 type FirstParameter<T> = T extends (first: infer F, ...rest: any[]) => any
-  ? F
-  : never;
+ ? F
+ : never;
 
 function vote(playerId: number, score: number, comment?: string): void {}
 
@@ -136,15 +136,15 @@ type P = FirstParameter<typeof vote>; // number
 
 ```ts
 // type de sérialisation : string, number, boolean => valeur
-//                         objet => JSON string
-//                         fonction => undefined (non sérialisable)
+//             objet => JSON string
+//             fonction => undefined (non sérialisable)
 type Serializable<T> = T extends string | number | boolean
-  ? T
-  : T extends object
-    ? string
-    : T extends Function
-      ? undefined
-      : never;
+ ? T
+ : T extends object
+  ? string
+  : T extends Function
+   ? undefined
+   : never;
 
 type Q = Serializable<string>; // string
 type R = Serializable<Player>; // string (sérialisé en JSON)
@@ -159,18 +159,18 @@ type S = Serializable<() => void>; // undefined
 // utility type récursif qui rend tout readonly, même les objets imbriqués
 // Partial natif est shallow:DeepReadonly descend dans les niveaux
 type DeepReadonly<T> = T extends (infer E)[]
-  ? ReadonlyArray<DeepReadonly<E>>
-  : T extends object
-    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-    : T;
+ ? ReadonlyArray<DeepReadonly<E>>
+ : T extends object
+  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+  : T;
 
 interface TeamConfig {
-  name: string;
-  stats: {
-    wins: number;
-    losses: number;
-    players: { id: number; name: string }[];
-  };
+ name: string;
+ stats: {
+  wins: number;
+  losses: number;
+  players: { id: number; name: string }[];
+ };
 }
 
 type FrozenTeam = DeepReadonly<TeamConfig>;
@@ -186,14 +186,14 @@ type FrozenTeam = DeepReadonly<TeamConfig>;
 function wrapValue(value: string): { value: string };
 function wrapValue(value: number): { value: number };
 function wrapValue(value: any) {
-  return { value };
+ return { value };
 }
 
 // avec conditional types : une seule signature
 type Wrapped<T> = T extends string | number ? { value: T } : never;
 
 function wrapValue<T extends string | number>(value: T): Wrapped<T> {
-  return { value } as Wrapped<T>;
+ return { value } as Wrapped<T>;
 }
 
 const a = wrapValue("Messi"); // { value: string }

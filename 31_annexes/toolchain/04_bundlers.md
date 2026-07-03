@@ -13,11 +13,11 @@ Ton code en dev ressemble à ça :
 src/
 ├── index.js
 ├── camp/
-│   ├── inventaire.js
-│   ├── rations.js
-│   └── garde.js
+│  ├── inventaire.js
+│  ├── rations.js
+│  └── garde.js
 └── utils/
-    └── format.js
+  └── format.js
 ```
 
 ```js
@@ -29,12 +29,12 @@ import { calculerRations } from "./camp/rations.js";
 Le navigateur PEUT charger des modules ESM (ES Modules) nativement aujourd'hui. Mais à grande échelle, ça pose des problèmes concrets :
 
 ```
-sans bundler  --> le navigateur fait une requête HTTP PAR fichier importé
-                  100 fichiers = 100 requêtes réseau au chargement de la page
-                  chaque requête a sa propre latence
+sans bundler --> le navigateur fait une requête HTTP PAR fichier importé
+         100 fichiers = 100 requêtes réseau au chargement de la page
+         chaque requête a sa propre latence
 
-avec bundler  --> tout est regroupé en 1 ou quelques fichiers optimisés
-                  100 fichiers = 1 requête réseau
+avec bundler --> tout est regroupé en 1 ou quelques fichiers optimisés
+         100 fichiers = 1 requête réseau
 ```
 
 **Technique :** un bundler construit un graphe de dépendances (qui importe quoi) en partant d'un point d'entrée, puis assemble tout dans un ordre cohérent, en éliminant ce qui n'est jamais utilisé.
@@ -48,13 +48,13 @@ avec bundler  --> tout est regroupé en 1 ou quelques fichiers optimisés
 ```js
 // utils/survival.js
 export function calculerRations(nourriture, personnes) {
-  return nourriture / personnes;
+ return nourriture / personnes;
 }
 export function calculerMenace(zombies, distance) {
-  return zombies / distance;
+ return zombies / distance;
 }
 export function calculerMoral(événements, temps) {
-  return événements / temps;
+ return événements / temps;
 }
 
 // index.js : on utilise SEULEMENT calculerRations
@@ -95,12 +95,12 @@ Usage : applications complexes qui ont besoin de configurations avancées, proje
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  mode: "production", // active tree shaking, minification, optimisations automatiques
+ entry: "./src/index.js",
+ output: {
+  filename: "bundle.js",
+  path: path.resolve(__dirname, "dist"),
+ },
+ mode: "production", // active tree shaking, minification, optimisations automatiques
 };
 ```
 
@@ -157,20 +157,20 @@ Règle générale : commence par Vite pour les nouveaux projets. Si tu hits une 
 Un bundler moderne fait souvent bien plus que concaténer des fichiers :
 
 ```
-Minification         → supprime les espaces, raccourcit les noms de variables
-                       "function calculerRations(nourriture, personnes)" → "function a(b,c)"
-                       réduit souvent de 40-60% la taille du fichier final
+Minification     → supprime les espaces, raccourcit les noms de variables
+            "function calculerRations(nourriture, personnes)" → "function a(b,c)"
+            réduit souvent de 40-60% la taille du fichier final
 
-Source maps          → fichiers qui relient le code minifié au code source original
-                       quand une erreur arrive en prod, la stack trace pointe vers le bon fichier
+Source maps     → fichiers qui relient le code minifié au code source original
+            quand une erreur arrive en prod, la stack trace pointe vers le bon fichier
 
-Code splitting       → diviser le bundle en morceaux chargés à la demande
-                       la page de classement n'a pas besoin du code de vote au chargement initial
+Code splitting    → diviser le bundle en morceaux chargés à la demande
+            la page de classement n'a pas besoin du code de vote au chargement initial
 
-Asset processing     → images compressées, CSS transpilé, fonts sous-ensemble
+Asset processing   → images compressées, CSS transpilé, fonts sous-ensemble
 
 Environment variables → remplacer process.env.NODE_ENV par "production" dans le bundle
-                        toutes les branches "if dev" disparaissent du bundle final
+            toutes les branches "if dev" disparaissent du bundle final
 ```
 
 ---

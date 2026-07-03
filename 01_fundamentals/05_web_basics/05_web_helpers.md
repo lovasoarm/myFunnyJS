@@ -19,7 +19,7 @@ On crée un helper une fois :
 
 ```javascript
 function $(selector) {
-  return document.querySelector(selector);
+ return document.querySelector(selector);
 }
 ```
 
@@ -33,8 +33,8 @@ Et on écrit juste `$("#button")`. Plus rapide. Plus propre. Plus lisible. C'est
 
 ```javascript
 function $(selector) {
-  // "$" est un nom valide en JS
-  return document.querySelector(selector);
+ // "$" est un nom valide en JS
+ return document.querySelector(selector);
 }
 
 $("#title"); // premier élément correspondant
@@ -44,7 +44,7 @@ $("#title"); // premier élément correspondant
 
 ```javascript
 function $all(selector) {
-  return document.querySelectorAll(selector);
+ return document.querySelectorAll(selector);
 }
 
 $all(".card"); // NodeList de tous les éléments correspondants
@@ -54,11 +54,11 @@ $all(".card"); // NodeList de tous les éléments correspondants
 
 ```javascript
 function on(element, event, callback) {
-  element.addEventListener(event, callback);
+ element.addEventListener(event, callback);
 }
 
 on($("#btn"), "click", () => {
-  console.log("clicked");
+ console.log("clicked");
 });
 ```
 
@@ -66,7 +66,7 @@ on($("#btn"), "click", () => {
 
 ```javascript
 function create(tag) {
-  return document.createElement(tag);
+ return document.createElement(tag);
 }
 
 let div = create("div");
@@ -76,7 +76,7 @@ let div = create("div");
 
 ```javascript
 function append(parent, child) {
-  parent.appendChild(child);
+ parent.appendChild(child);
 }
 ```
 
@@ -84,7 +84,7 @@ function append(parent, child) {
 
 ```javascript
 function setText(element, text) {
-  element.textContent = text;
+ element.textContent = text;
 }
 ```
 
@@ -92,11 +92,11 @@ function setText(element, text) {
 
 ```javascript
 function addClass(element, className) {
-  element.classList.add(className);
+ element.classList.add(className);
 }
 
 function removeClass(element, className) {
-  element.classList.remove(className);
+ element.classList.remove(className);
 }
 ```
 
@@ -104,7 +104,7 @@ function removeClass(element, className) {
 
 ```javascript
 function remove(element) {
-  element.remove();
+ element.remove();
 }
 ```
 
@@ -118,10 +118,10 @@ setText(button, "Spawn Monster");
 append(document.body, button);
 
 on(button, "click", () => {
-  let monster = create("div");
-  setText(monster, "Un slime apparaît");
-  addClass(monster, "monster");
-  append(document.body, monster);
+ let monster = create("div");
+ setText(monster, "Un slime apparaît");
+ addClass(monster, "monster");
+ append(document.body, monster);
 });
 ```
 

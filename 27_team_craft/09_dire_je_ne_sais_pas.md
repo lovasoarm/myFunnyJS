@@ -1,7 +1,7 @@
 # Dire "je ne sais pas" : un pouvoir
 Temps de lecture ~5 min
 
->  **Principe universel** : la confiance technique se gagne en admettant les zones d'ombre, pas en les masquant.
+> **Principe universel** : la confiance technique se gagne en admettant les zones d'ombre, pas en les masquant.
 
 ## Formulations types
 

@@ -14,22 +14,22 @@ Ce fichier démonte chacune, explique les pièges, et te donne les bons patterns
 // UNDEFINED : une variable existe mais n'a pas de valeur assignée
 let chakra;
 console.log(chakra); // undefined
-                     // la variable existe dans le scope : elle n'a juste pas de valeur
+           // la variable existe dans le scope : elle n'a juste pas de valeur
 
 // NULL : une absence intentionnelle, décidée par le développeur
 let currentEnemy = null; // "il n'y a pas d'ennemi actuellement"
-                         // c'est une décision explicite, pas un oubli
+             // c'est une décision explicite, pas un oubli
 
 // NaN : le résultat d'une opération mathématique invalide
 const damage = parseInt("rasengan"); // "rasengan" n'est pas un nombre
 console.log(damage); // NaN
-                     // Not a Number : une valeur numérique qui représente une erreur de calcul
+           // Not a Number : une valeur numérique qui représente une erreur de calcul
 ```
 
 ```
 undefined --> "personne n'a rien mis ici"
-null      --> "quelqu'un a décidé qu'il n'y avait rien ici"
-NaN       --> "quelqu'un a essayé de calculer quelque chose d'impossible"
+null   --> "quelqu'un a décidé qu'il n'y avait rien ici"
+NaN    --> "quelqu'un a essayé de calculer quelque chose d'impossible"
 ```
 
 Naruto sans chakra assigné : `undefined` (oubli du développeur).
@@ -42,17 +42,17 @@ Naruto divisé par zéro jutsu : `NaN` (résultat d'un calcul impossible).
 
 ```javascript
 console.log(typeof undefined); // "undefined" -- logique
-console.log(typeof null);      // "object"    -- BUG historique de JS depuis 1995
-                               //                jamais corrigé pour ne pas casser le web
-console.log(typeof NaN);       // "number"    -- NaN est de type number
-                               //                même s'il ne représente pas un nombre valide
+console.log(typeof null);   // "object"  -- BUG historique de JS depuis 1995
+                //        jamais corrigé pour ne pas casser le web
+console.log(typeof NaN);    // "number"  -- NaN est de type number
+                //        même s'il ne représente pas un nombre valide
 
 // conséquence : typeof ne permet pas de détecter null
 function processTarget(target) {
-  if (typeof target === 'object') {
-    // null passe ici aussi
-    target.health -= 10; // TypeError: Cannot read properties of null
-  }
+ if (typeof target === 'object') {
+  // null passe ici aussi
+  target.health -= 10; // TypeError: Cannot read properties of null
+ }
 }
 ```
 
@@ -60,14 +60,14 @@ Le guard correct pour null :
 
 ```javascript
 function processTarget(target) {
-  if (target !== null && typeof target === 'object') {
-    target.health -= 10; // là c'est safe
-  }
+ if (target !== null && typeof target === 'object') {
+  target.health -= 10; // là c'est safe
+ }
 }
 
 // ou plus concis avec optional chaining (chaînage optionnel)
 function processTarget(target) {
-  target?.health && (target.health -= 10);
+ target?.health && (target.health -= 10);
 }
 ```
 
@@ -78,26 +78,26 @@ function processTarget(target) {
 ```javascript
 // NaN n'est jamais égal à NaN : c'est la seule valeur JS avec cette propriété
 console.log(NaN === NaN); // false
-console.log(NaN == NaN);  // false
+console.log(NaN == NaN); // false
 
 // comment le détecter ?
 // MAUVAISE APPROCHE
 function isInvalidDamage(dmg) {
-  return dmg === NaN; // toujours false, même si dmg est NaN
+ return dmg === NaN; // toujours false, même si dmg est NaN
 }
 
 // BONNE APPROCHE : Number.isNaN (ES6)
 function isInvalidDamage(dmg) {
-  return Number.isNaN(dmg); // true seulement si dmg est exactement NaN
+ return Number.isNaN(dmg); // true seulement si dmg est exactement NaN
 }
 
 // ATTENTION : isNaN() (sans Number.) est différent
-console.log(isNaN("rasengan")); // true  -- convertit la string en NaN d'abord
+console.log(isNaN("rasengan")); // true -- convertit la string en NaN d'abord
 console.log(Number.isNaN("rasengan")); // false -- "rasengan" n'est pas NaN, c'est une string
 ```
 
 ```
-isNaN()        : convertit d'abord en nombre, puis vérifie
+isNaN()    : convertit d'abord en nombre, puis vérifie
 Number.isNaN() : vérifie si la valeur EST exactement NaN, sans conversion
 
 En 2026 : utilise toujours Number.isNaN()
@@ -113,8 +113,8 @@ console.log(total); // NaN -- un seul NaN et tout le calcul est perdu
 
 // se défendre
 const safeTotal = scores
-  .filter(s => Number.isFinite(s)) // Number.isFinite exclut NaN ET Infinity
-  .reduce((acc, s) => acc + s, 0);
+ .filter(s => Number.isFinite(s)) // Number.isFinite exclut NaN ET Infinity
+ .reduce((acc, s) => acc + s, 0);
 console.log(safeTotal); // 25 -- propre
 ```
 
@@ -126,21 +126,21 @@ Ils ne se comportent pas pareil dans les opérations :
 
 ```javascript
 // addition
-console.log(null + 1);      // 1      -- null est converti en 0
-console.log(undefined + 1); // NaN    -- undefined est converti en NaN
+console.log(null + 1);   // 1   -- null est converti en 0
+console.log(undefined + 1); // NaN  -- undefined est converti en NaN
 
 // comparaison avec ==
-console.log(null == undefined);  // true  -- cas spécial de la spec
-console.log(null == 0);          // false -- null ne vaut que null ou undefined en ==
-console.log(null == false);      // false -- même chose
+console.log(null == undefined); // true -- cas spécial de la spec
+console.log(null == 0);     // false -- null ne vaut que null ou undefined en ==
+console.log(null == false);   // false -- même chose
 console.log(undefined == false); // false -- même chose
 
 // piège classique
 function getPlayerScore(player) {
-  if (player.score == null) { // attrape null ET undefined en même temps
-    return 0;
-  }
-  return player.score;
+ if (player.score == null) { // attrape null ET undefined en même temps
+  return 0;
+ }
+ return player.score;
 }
 // ici == null est un des rares cas où == est intentionnel et documenté
 // c'est le seul pattern "standard" qui utilise == en 2026
@@ -178,8 +178,8 @@ const chakra = ninja?.chakra || 0;
 ```
 
 ```
-||   : remplace toute valeur falsy (fausse) : 0, "", false, null, undefined, NaN
-??   : remplace uniquement null et undefined
+||  : remplace toute valeur falsy (fausse) : 0, "", false, null, undefined, NaN
+??  : remplace uniquement null et undefined
 En 2026 : utilise ?? quand tu veux une valeur par défaut pour "absent"
 ```
 
@@ -190,18 +190,18 @@ En 2026 : utilise ?? quand tu veux une valeur par défaut pour "absent"
 ```javascript
 // tableau de référence pour ne plus jamais se tromper
 
-//                    undefined    null       NaN
-// typeof             "undefined"  "object"   "number"
-// === undefined      true         false      false
-// === null           false        true       false
-// Number.isNaN()     false        false      true
-// == null            true         true       false
-// Boolean()          false        false      false
-// Number()           NaN          0          NaN
-// String()           "undefined"  "null"     "NaN"
-// + 1                NaN          1          NaN
-// ?? "default"       "default"    "default"  NaN   <-- NaN passe, c'est une valeur
-// || "default"       "default"    "default"  "default" <-- NaN est falsy
+//          undefined  null    NaN
+// typeof       "undefined" "object"  "number"
+// === undefined   true     false   false
+// === null      false    true    false
+// Number.isNaN()   false    false   true
+// == null      true     true    false
+// Boolean()     false    false   false
+// Number()      NaN     0     NaN
+// String()      "undefined" "null"   "NaN"
+// + 1        NaN     1     NaN
+// ?? "default"    "default"  "default" NaN  <-- NaN passe, c'est une valeur
+// || "default"    "default"  "default" "default" <-- NaN est falsy
 ```
 
 ---
@@ -211,21 +211,21 @@ En 2026 : utilise ?? quand tu veux une valeur par défaut pour "absent"
 
 ```javascript
 // Le parseInt silencieux
-parseInt("9 chakra units") // --> 9   (pas d'erreur, juste silencieux)
-parseInt("chakra 9")       // --> NaN (le premier char n'est pas un chiffre)
+parseInt("9 chakra units") // --> 9  (pas d'erreur, juste silencieux)
+parseInt("chakra 9")    // --> NaN (le premier char n'est pas un chiffre)
 
 // ça entre dans un calcul :
 const damage = parseInt(userInput) + 10
 // si userInput = "forte attaque" : NaN + 10 --> NaN
-// si userInput = "5 coups"       : 5 + 10 --> 15  (surprise)
+// si userInput = "5 coups"    : 5 + 10 --> 15 (surprise)
 // le fix : Number(userInput) échoue proprement sur "5 coups" : NaN
 ```
 
 ```javascript
 // L'addition avec null qui surprend
-null + 1        // --> 1   (null est coercé en 0)
-undefined + 1   // --> NaN (undefined est coercé en NaN)
-null + "score"  // --> "nullscore" (null est coercé en string "null")
+null + 1    // --> 1  (null est coercé en 0)
+undefined + 1  // --> NaN (undefined est coercé en NaN)
+null + "score" // --> "nullscore" (null est coercé en string "null")
 undefined + "score" // --> "undefinedscore" (même chose)
 
 // en prod : une propriété manquante sur un objet API + une opération arithmétique
@@ -273,11 +273,11 @@ Rick reçoit des rapports de sécurité. Chaque rapport a une structure variable
 
 ```javascript
 const reports = [
-  { sector: "A", threat: 5 },
-  { sector: "B" },               // threat absent
-  { sector: "C", threat: null }, // zone évaluée, aucune menace
-  { sector: "D", threat: NaN },  // erreur de capteur
-  null,                           // rapport corrompu
+ { sector: "A", threat: 5 },
+ { sector: "B" },        // threat absent
+ { sector: "C", threat: null }, // zone évaluée, aucune menace
+ { sector: "D", threat: NaN }, // erreur de capteur
+ null,              // rapport corrompu
 ];
 ```
 
@@ -293,27 +293,27 @@ Ce code a un bug. Trouve-le, explique ce qui se passe étape par étape, et corr
 
 ```javascript
 function applyJutsu(ninja, jutsuName) {
-  const jutsu = ninja.jutsus[jutsuName];
+ const jutsu = ninja.jutsus[jutsuName];
 
-  if (jutsu != null) {
-    const cost = jutsu.chakraCost;
-    if (ninja.chakra - cost > 0) {
-      return {
-        ...ninja,
-        chakra: ninja.chakra - cost,
-        lastJutsu: jutsuName,
-      };
-    }
+ if (jutsu != null) {
+  const cost = jutsu.chakraCost;
+  if (ninja.chakra - cost > 0) {
+   return {
+    ...ninja,
+    chakra: ninja.chakra - cost,
+    lastJutsu: jutsuName,
+   };
   }
+ }
 
-  return ninja;
+ return ninja;
 }
 
 const naruto = {
-  chakra: 100,
-  jutsus: {
-    rasengan: { chakraCost: 0 }, // jutsu gratuit
-  },
+ chakra: 100,
+ jutsus: {
+  rasengan: { chakraCost: 0 }, // jutsu gratuit
+ },
 };
 
 const result = applyJutsu(naruto, "rasengan");

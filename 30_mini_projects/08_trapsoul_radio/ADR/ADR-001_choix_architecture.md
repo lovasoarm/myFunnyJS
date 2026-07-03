@@ -15,22 +15,22 @@ On type les clés de traduction en TypeScript : le dictionnaire de traductions e
 ```typescript
 // Toutes les clés sont un type union littéral
 type TranslationKey =
-  | 'player.play'
-  | 'player.pause'
-  | 'player.next'
-  | 'track.by'
-  | 'error.notFound'
-  | 'nav.home'
-  | 'nav.discover';
+ | 'player.play'
+ | 'player.pause'
+ | 'player.next'
+ | 'track.by'
+ | 'error.notFound'
+ | 'nav.home'
+ | 'nav.discover';
 
 // Chaque locale est un Record complet sur ce type
 type Translations = Record<TranslationKey, string>;
 
 // Si une clé est manquante dans ja.ts, TypeScript bloque la compilation
 const ja: Translations = {
-  'player.play': '再生',
-  'player.pause': '一時停止',
-  // 'player.next' manquant --> erreur TS : Property 'player.next' is missing
+ 'player.play': '再生',
+ 'player.pause': '一時停止',
+ // 'player.next' manquant --> erreur TS : Property 'player.next' is missing
 };
 ```
 

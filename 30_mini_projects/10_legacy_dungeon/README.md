@@ -1,6 +1,5 @@
 [PORTFOLIO]
 
-[INTEMPOREL]
 [ATELIER]
 
 # LEGACY DUNGEON
@@ -118,7 +117,7 @@ ADR/ --> décision d'architecture du repo, déduite après coup
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

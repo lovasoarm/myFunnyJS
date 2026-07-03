@@ -3,7 +3,7 @@
 > Ce module reutilise : async (03_async), backpressure (03_async/06).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Un chat où il faut rafraîchir la page pour voir les nouveaux messages. Un dashboard de match qui affiche le score d'il y a 5 minutes. Une app de notifications qui ne notifie jamais en direct. Ce sont des jutsus cassés aux yeux d'un shinobi de 2026, habitué à voir les choses apparaître instantanément.
 
@@ -47,11 +47,11 @@ Et sur des cas critiques comme un chat ou un système d'alerte, ne pas gérer co
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-chat en direct, messagerie instantanée                      --> WebSocket    --> communication bidirectionnelle persistante
-flux d'actualité, score de match en direct                  --> SSE          --> push unidirectionnel simple du serveur
-appel vidéo, partage d'écran entre deux shinobis         --> WebRTC       --> peer-to-peer à faible latence
-notification poussée en temps réel                           --> WebSocket/SSE --> alerte instantanée sans polling
-dashboard d'analytics avec données qui changent en continu   --> SSE          --> mise à jour live sans rechargement
+chat en direct, messagerie instantanée           --> WebSocket  --> communication bidirectionnelle persistante
+flux d'actualité, score de match en direct         --> SSE     --> push unidirectionnel simple du serveur
+appel vidéo, partage d'écran entre deux shinobis     --> WebRTC    --> peer-to-peer à faible latence
+notification poussée en temps réel              --> WebSocket/SSE --> alerte instantanée sans polling
+dashboard d'analytics avec données qui changent en continu  --> SSE     --> mise à jour live sans rechargement
 ```
 
 Ces mécanismes apparaissent dans tout jutsu qui a une dimension "live" : un système de trading qui affiche les prix en direct, un outil de collaboration où plusieurs shinobis voient les modifications des autres en temps réel, un système de monitoring qui alerte instantanément en cas de problème.

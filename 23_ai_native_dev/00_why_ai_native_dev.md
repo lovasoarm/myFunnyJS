@@ -3,7 +3,7 @@
 > Ce module reutilise : team craft (28_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 L'IA génère du code en quelques secondes. Du code qui compile, qui a l'air propre, qui répond exactement à ta demande. Et qui peut quand même contenir une fonction qui n'existe pas, une logique métier subtilement fausse, ou une faille de sécurité que tu copies-colles sans la vérifier parce que "ça avait l'air bon".
 
@@ -43,11 +43,11 @@ Et sur le plan de la compétence individuelle, le dev qui ne développe jamais s
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-fonction générée par l'IA qui n'existe pas réellement            --> hallucination       --> validation par typage/tests
-JSON retourné par un LLM mal formé ou tronqué                     --> output non fiable   --> parsing strict (ex : Zod)
-suggestion de refactoring proposée par l'IA                       --> AI refactor partner --> revue critique avant adoption
-tests générés automatiquement par l'IA                            --> AI test generator   --> vérification qu'ils testent vraiment quelque chose
-prompt mal formulé qui donne une réponse plausible mais fausse    --> prompt engineering  --> demande précise et contextualisée
+fonction générée par l'IA qui n'existe pas réellement      --> hallucination    --> validation par typage/tests
+JSON retourné par un LLM mal formé ou tronqué           --> output non fiable  --> parsing strict (ex : Zod)
+suggestion de refactoring proposée par l'IA            --> AI refactor partner --> revue critique avant adoption
+tests générés automatiquement par l'IA              --> AI test generator  --> vérification qu'ils testent vraiment quelque chose
+prompt mal formulé qui donne une réponse plausible mais fausse  --> prompt engineering --> demande précise et contextualisée
 ```
 
 L'IA s'intègre désormais dans chaque étape du développement : génération de code, suggestion de refactoring, génération de tests, revue de code assistée. Chacune de ces étapes a besoin d'un garde-fou humain qui valide, pas qui accepte par défaut.

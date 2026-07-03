@@ -61,9 +61,9 @@ Les premiers tests de `edgeCases.test.js` vérifiaient surtout des cas de malfor
 1. Poser le schéma Zod en premier, avant n'importe quel autre fichier
 2. Séparer les timeouts (first-token vs inter-token) dès le départ
 3. Ajouter une couche de vérification sémantique (noms de fonctions valides)
-   dans StrictValidator dès la conception, pas en correctif
+  dans StrictValidator dès la conception, pas en correctif
 4. Logger chaque sortie brute de l'IA dans un fichier séparé pour debug
-   (en dev uniquement : en prod, la sortie brute ne doit pas traîner)
+  (en dev uniquement : en prod, la sortie brute ne doit pas traîner)
 5. Documenter l'ADR du schéma Zod avant de commencer à coder le stream
 ```
 

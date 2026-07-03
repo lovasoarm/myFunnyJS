@@ -17,18 +17,18 @@ Cet élément, c'est généralement une image hero, un bloc de texte principal, 
 
 ```
 Navigation start
-     |
-     |-----> réseau --> parser HTML --> style --> layout --> paint
-                                                              |
-                                                         LCP event
+   |
+   |-----> réseau --> parser HTML --> style --> layout --> paint
+                               |
+                             LCP event
 ```
 
 ### Les seuils
 
 ```
-LCP < 2.5s    =>  vert   : bien
-LCP < 4s      =>  orange : à améliorer
-LCP >= 4s     =>  rouge  : mauvais
+LCP < 2.5s  => vert  : bien
+LCP < 4s   => orange : à améliorer
+LCP >= 4s   => rouge : mauvais
 ```
 
 ### Ce qui fait exploser le LCP
@@ -67,17 +67,17 @@ LCP >= 4s     =>  rouge  : mauvais
 ```js
 // PerformanceObserver : observe les événements de rendu
 const observer = new PerformanceObserver((list) => {
-  const entries = list.getEntries()
-  // le dernier entry LCP est le plus récent (l'élément le plus grand)
-  const lcp = entries[entries.length - 1]
+ const entries = list.getEntries()
+ // le dernier entry LCP est le plus récent (l'élément le plus grand)
+ const lcp = entries[entries.length - 1]
 
-  console.log('LCP element:', lcp.element)
-  console.log('LCP time:', lcp.startTime, 'ms')
+ console.log('LCP element:', lcp.element)
+ console.log('LCP time:', lcp.startTime, 'ms')
 
-  // alerte si on passe dans l'orange
-  if (lcp.startTime > 2500) {
-    console.warn('LCP trop lent : shinobi qui attend')
-  }
+ // alerte si on passe dans l'orange
+ if (lcp.startTime > 2500) {
+  console.warn('LCP trop lent : shinobi qui attend')
+ }
 })
 
 // "largest-contentful-paint" : le type d'entrée qu'on observe
@@ -96,20 +96,20 @@ INP remplace FID (First Input Delay) depuis 2024. La différence : FID mesurait 
 
 ```
 User clique sur un bouton
-         |
-         |---> event handler JS s'exécute
-         |---> navigateur calcule le nouveau layout
-         |---> navigateur peint le résultat
-                    |
-                  INP = ce délai total
+     |
+     |---> event handler JS s'exécute
+     |---> navigateur calcule le nouveau layout
+     |---> navigateur peint le résultat
+          |
+         INP = ce délai total
 ```
 
 ### Les seuils
 
 ```
-INP < 200ms    =>  vert   : réactif
-INP < 500ms    =>  orange : lent
-INP >= 500ms   =>  rouge  : l'shinobi sent que le site est cassé
+INP < 200ms  => vert  : réactif
+INP < 500ms  => orange : lent
+INP >= 500ms  => rouge : l'shinobi sent que le site est cassé
 ```
 
 ### Ce qui fait exploser l'INP
@@ -118,20 +118,20 @@ INP >= 500ms   =>  rouge  : l'shinobi sent que le site est cassé
 ```js
 // mauvais : calcul lourd directement dans le click handler
 button.addEventListener('click', () => {
-  // ce calcul bloque le thread pendant 600ms
-  // l'shinobi clique, rien ne se passe visuellement
-  const result = computePlayerRankings(10000) // O(n²)
-  displayResult(result)
+ // ce calcul bloque le thread pendant 600ms
+ // l'shinobi clique, rien ne se passe visuellement
+ const result = computePlayerRankings(10000) // O(n²)
+ displayResult(result)
 })
 
 // correct : couper le travail pour laisser le rendu passer
 button.addEventListener('click', async () => {
-  // scheduler.yield() cède le thread au navigateur entre deux tâches
-  // le bouton visuellement réagit d'abord, puis le calcul suit
-  showLoadingState()
-  await scheduler.yield()
-  const result = computePlayerRankings(10000)
-  displayResult(result)
+ // scheduler.yield() cède le thread au navigateur entre deux tâches
+ // le bouton visuellement réagit d'abord, puis le calcul suit
+ showLoadingState()
+ await scheduler.yield()
+ const result = computePlayerRankings(10000)
+ displayResult(result)
 })
 ```
 
@@ -139,22 +139,22 @@ button.addEventListener('click', async () => {
 ```js
 // mauvais : 50 composants re-render en même temps sur un seul clic
 function handleFilterChange(value) {
-  setFilter(value)        // trigger re-render global
-  updateURL(value)        // manipulation DOM
-  trackAnalytics(value)   // requête réseau synchrone
-  rebuildIndex(items)     // recalcul de 5000 items
+ setFilter(value)    // trigger re-render global
+ updateURL(value)    // manipulation DOM
+ trackAnalytics(value)  // requête réseau synchrone
+ rebuildIndex(items)   // recalcul de 5000 items
 }
 
 // correct : prioriser le feedback visuel, différer le reste
 function handleFilterChange(value) {
-  setFilter(value)        // feedback immédiat à l'shinobi
-  
-  // le reste peut attendre 16ms
-  requestAnimationFrame(() => {
-    updateURL(value)
-    trackAnalytics(value)
-    rebuildIndex(items)
-  })
+ setFilter(value)    // feedback immédiat à l'shinobi
+ 
+ // le reste peut attendre 16ms
+ requestAnimationFrame(() => {
+  updateURL(value)
+  trackAnalytics(value)
+  rebuildIndex(items)
+ })
 }
 ```
 
@@ -162,20 +162,20 @@ function handleFilterChange(value) {
 
 ```js
 const observer = new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    // inputDelay : temps entre l'interaction et le début de l'event handler
-    // processingTime : temps passé dans l'event handler
-    // presentationDelay : temps entre la fin du handler et l'affichage
-    const total = entry.duration
+ for (const entry of list.getEntries()) {
+  // inputDelay : temps entre l'interaction et le début de l'event handler
+  // processingTime : temps passé dans l'event handler
+  // presentationDelay : temps entre la fin du handler et l'affichage
+  const total = entry.duration
 
-    console.log(`Interaction: ${entry.name}`)
-    console.log(`Total INP: ${total}ms`)
-    console.log(`Input delay: ${entry.processingStart - entry.startTime}ms`)
+  console.log(`Interaction: ${entry.name}`)
+  console.log(`Total INP: ${total}ms`)
+  console.log(`Input delay: ${entry.processingStart - entry.startTime}ms`)
 
-    if (total > 200) {
-      console.warn(`Interaction lente détectée : ${total}ms`)
-    }
+  if (total > 200) {
+   console.warn(`Interaction lente détectée : ${total}ms`)
   }
+ }
 })
 
 observer.observe({ type: 'event', durationThreshold: 16, buffered: true })
@@ -193,17 +193,17 @@ C'est le score qui explose quand une pub se charge et pousse tout le contenu ver
 
 ```
 Score CLS = somme de (impact fraction * distance fraction)
-                              |                  |
-                    % de la viewport         déplacement
-                    affectée par le shift    relatif à la viewport
+               |         |
+          % de la viewport     déplacement
+          affectée par le shift  relatif à la viewport
 ```
 
 ### Les seuils
 
 ```
-CLS < 0.1     =>  vert   : stable
-CLS < 0.25    =>  orange : instable
-CLS >= 0.25   =>  rouge  : la page saute dans tous les sens
+CLS < 0.1   => vert  : stable
+CLS < 0.25  => orange : instable
+CLS >= 0.25  => rouge : la page saute dans tous les sens
 ```
 
 ### Ce qui fait exploser le CLS
@@ -218,9 +218,9 @@ CLS >= 0.25   =>  rouge  : la page saute dans tous les sens
 
 <!-- ou avec CSS : même effet -->
 <style>
-  .hero-img {
-    aspect-ratio: 4/3; /* réserve l'espace proportionnellement */
-  }
+ .hero-img {
+  aspect-ratio: 4/3; /* réserve l'espace proportionnellement */
+ }
 </style>
 ```
 
@@ -228,10 +228,10 @@ CLS >= 0.25   =>  rouge  : la page saute dans tous les sens
 ```js
 // mauvais : bannière publicitaire insérée en haut après chargement
 setTimeout(() => {
-  const banner = document.createElement('div')
-  banner.className = 'promo-banner'
-  document.body.insertBefore(banner, document.body.firstChild)
-  // tout le contenu se décale vers le bas : CLS +0.3
+ const banner = document.createElement('div')
+ banner.className = 'promo-banner'
+ document.body.insertBefore(banner, document.body.firstChild)
+ // tout le contenu se décale vers le bas : CLS +0.3
 }, 2000)
 
 // correct : réserver l'espace à l'avance
@@ -241,8 +241,8 @@ setTimeout(() => {
 ```css
 /* réserver l'espace pour une bannière qui chargera plus tard */
 .promo-banner-placeholder {
-  min-height: 90px; /* hauteur max anticipée */
-  width: 100%;
+ min-height: 90px; /* hauteur max anticipée */
+ width: 100%;
 }
 ```
 
@@ -253,10 +253,10 @@ font-family: 'CustomFont', sans-serif;
 
 /* correct : size-adjust pour que le fallback ait les mêmes dimensions */
 @font-face {
-  font-family: 'CustomFont';
-  src: url('custom-font.woff2');
-  font-display: swap; /* affiche le fallback pendant le chargement */
-  size-adjust: 105%; /* ajuste la taille du fallback pour limiter le shift */
+ font-family: 'CustomFont';
+ src: url('custom-font.woff2');
+ font-display: swap; /* affiche le fallback pendant le chargement */
+ size-adjust: 105%; /* ajuste la taille du fallback pour limiter le shift */
 }
 ```
 
@@ -266,24 +266,24 @@ font-family: 'CustomFont', sans-serif;
 let clsScore = 0
 
 const observer = new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    // hadRecentInput : exclut les shifts causés par une interaction shinobi
-    // (un scroll ou un clic qui cause un shift ne compte pas)
-    if (!entry.hadRecentInput) {
-      clsScore += entry.value
-      console.log(`Layout shift détecté : +${entry.value}`)
-      console.log(`CLS cumulé : ${clsScore}`)
-    }
+ for (const entry of list.getEntries()) {
+  // hadRecentInput : exclut les shifts causés par une interaction shinobi
+  // (un scroll ou un clic qui cause un shift ne compte pas)
+  if (!entry.hadRecentInput) {
+   clsScore += entry.value
+   console.log(`Layout shift détecté : +${entry.value}`)
+   console.log(`CLS cumulé : ${clsScore}`)
   }
+ }
 })
 
 observer.observe({ type: 'layout-shift', buffered: true })
 
 // afficher le score final quand l'shinobi quitte la page
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    console.log(`CLS final : ${clsScore}`)
-  }
+ if (document.visibilityState === 'hidden') {
+  console.log(`CLS final : ${clsScore}`)
+ }
 })
 ```
 
@@ -295,16 +295,16 @@ LCP, INP, CLS ne s'analysent pas séparément. Ils racontent une histoire :
 
 ```
 LCP élevé + INP ok + CLS ok
-  => le contenu charge lentement mais l'app est réactive une fois chargée
-  => problème réseau / ressources lourdes
+ => le contenu charge lentement mais l'app est réactive une fois chargée
+ => problème réseau / ressources lourdes
 
 LCP ok + INP élevé + CLS ok
-  => la page affiche vite mais réagit lentement aux interactions
-  => JS trop lourd sur le thread principal
+ => la page affiche vite mais réagit lentement aux interactions
+ => JS trop lourd sur le thread principal
 
 LCP ok + INP ok + CLS élevé
-  => la page charge et réagit bien mais le contenu saute partout
-  => images sans dimensions, contenu injecté dynamiquement
+ => la page charge et réagit bien mais le contenu saute partout
+ => images sans dimensions, contenu injecté dynamiquement
 ```
 
 ### Mesurer les trois en une passe
@@ -315,15 +315,15 @@ LCP ok + INP ok + CLS élevé
 import { onLCP, onINP, onCLS } from 'web-vitals'
 
 function sendToAnalytics({ name, value, rating }) {
-  // rating : "good" | "needs-improvement" | "poor"
-  console.log(`${name}: ${Math.round(value)}ms : ${rating}`)
+ // rating : "good" | "needs-improvement" | "poor"
+ console.log(`${name}: ${Math.round(value)}ms : ${rating}`)
 }
 
 onLCP(sendToAnalytics)
 onINP(sendToAnalytics)
 onCLS(({ name, value, rating }) => {
-  // CLS est un score sans unité, pas une durée
-  console.log(`${name}: ${value.toFixed(3)} : ${rating}`)
+ // CLS est un score sans unité, pas une durée
+ console.log(`${name}: ${value.toFixed(3)} : ${rating}`)
 })
 ```
 

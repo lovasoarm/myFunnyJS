@@ -8,19 +8,19 @@ Temps de lecture ~7 min
 ```js
 // Ça casse (mais fun) : la pluralisation à la française appliquée partout
 function direResultats(nombre) {
-  return `${nombre} résultat${nombre > 1 ? 's' : ''}`;
+ return `${nombre} résultat${nombre > 1 ? 's' : ''}`;
 }
 // "1 résultat", "2 résultats" : ok en français
 // Mais cette fonction ne marche QUE pour le français : elle suppose qu'il existe exactement 2 formes
 ```
 
 ```
-Langue     Nombre de formes plurielles   Exemple
-Français   2 (singulier / pluriel)        1 résultat / 2 résultats
-Anglais    2 (singulier / pluriel)        1 result / 2 results
-Japonais   1 (aucune distinction)         結果 (identique pour 1 ou 100)
-Russe      4 (one / few / many / other)   1 / 2-4 / 5-20 / 21+ ont des formes différentes
-Arabe      6 formes différentes            zero / one / two / few / many / other
+Langue   Nombre de formes plurielles  Exemple
+Français  2 (singulier / pluriel)    1 résultat / 2 résultats
+Anglais  2 (singulier / pluriel)    1 result / 2 results
+Japonais  1 (aucune distinction)     結果 (identique pour 1 ou 100)
+Russe   4 (one / few / many / other)  1 / 2-4 / 5-20 / 21+ ont des formes différentes
+Arabe   6 formes différentes      zero / one / two / few / many / other
 ```
 
 Le russe distingue 4 catégories selon des règles de divisibilité particulières. L'arabe en a 6. Coder "if nombre > 1, ajoute un s" casse instantanément sur ces langues.
@@ -34,9 +34,9 @@ console.log(regleFr.select(1)); // "one"
 console.log(regleFr.select(2)); // "other"
 
 const regleRu = new Intl.PluralRules('ru-RU');
-console.log(regleRu.select(1));  // "one"
-console.log(regleRu.select(2));  // "few"
-console.log(regleRu.select(5));  // "many"
+console.log(regleRu.select(1)); // "one"
+console.log(regleRu.select(2)); // "few"
+console.log(regleRu.select(5)); // "many"
 console.log(regleRu.select(21)); // "one" (oui, 21 redevient "one" en russe, règle de divisibilité)
 ```
 
@@ -47,26 +47,26 @@ console.log(regleRu.select(21)); // "one" (oui, 21 redevient "one" en russe, rè
 ```js
 // Fichier de traduction avec une entrée par catégorie grammaticale
 const traductionsFr = {
-  resultats: {
-    one: '{nombre} résultat',
-    other: '{nombre} résultats',
-  },
+ resultats: {
+  one: '{nombre} résultat',
+  other: '{nombre} résultats',
+ },
 };
 
 const traductionsRu = {
-  resultats: {
-    one: '{nombre} результат',
-    few: '{nombre} результата',
-    many: '{nombre} результатов',
-    other: '{nombre} результатов',
-  },
+ resultats: {
+  one: '{nombre} результат',
+  few: '{nombre} результата',
+  many: '{nombre} результатов',
+  other: '{nombre} результатов',
+ },
 };
 
 function pluraliser(nombre, cle, locale, traductions) {
-  const regle = new Intl.PluralRules(locale);
-  const categorie = regle.select(nombre); // ("one", "few", "many", "other")
-  const gabarit = traductions[cle][categorie] ?? traductions[cle].other;
-  return gabarit.replace('{nombre}', nombre); // (injecte le nombre dans le texte choisi)
+ const regle = new Intl.PluralRules(locale);
+ const categorie = regle.select(nombre); // ("one", "few", "many", "other")
+ const gabarit = traductions[cle][categorie] ?? traductions[cle].other;
+ return gabarit.replace('{nombre}', nombre); // (injecte le nombre dans le texte choisi)
 }
 
 console.log(pluraliser(1, 'resultats', 'fr-FR', traductionsFr)); // "1 résultat"
@@ -83,17 +83,17 @@ Trapsoul Radio affiche "X auditeurs en direct". Si l'app sort à l'international
 
 ```js
 const traductionsAuditeurs = {
-  fr: { one: '{n} auditeur en direct', other: '{n} auditeurs en direct' },
-  en: { one: '{n} listener live', other: '{n} listeners live' },
-  ja: { other: '{n}人のリスナーが視聴中' }, // (japonais : une seule forme, pas de "one")
+ fr: { one: '{n} auditeur en direct', other: '{n} auditeurs en direct' },
+ en: { one: '{n} listener live', other: '{n} listeners live' },
+ ja: { other: '{n}人のリスナーが視聴中' }, // (japonais : une seule forme, pas de "one")
 };
 
 function direAuditeurs(nombre, locale) {
-  const regle = new Intl.PluralRules(locale);
-  const categorie = regle.select(nombre);
-  const gabarits = traductionsAuditeurs[locale.slice(0, 2)];
-  const gabarit = gabarits[categorie] ?? gabarits.other; // (fallback si la catégorie n'existe pas dans cette langue)
-  return gabarit.replace('{n}', nombre);
+ const regle = new Intl.PluralRules(locale);
+ const categorie = regle.select(nombre);
+ const gabarits = traductionsAuditeurs[locale.slice(0, 2)];
+ const gabarit = gabarits[categorie] ?? gabarits.other; // (fallback si la catégorie n'existe pas dans cette langue)
+ return gabarit.replace('{n}', nombre);
 }
 ```
 
@@ -104,7 +104,7 @@ Risque réel : oublier le fallback `?? gabarits.other`. Si le japonais n'a qu'un
 ```js
 // Ça casse (mais fun) : oublier le cas zéro, qui a parfois sa propre forme
 function direMessages(nombre) {
-  return nombre === 1 ? '1 message' : `${nombre} messages`;
+ return nombre === 1 ? '1 message' : `${nombre} messages`;
 }
 console.log(direMessages(0)); // "0 messages" : grammaticalement correct en français, mais...
 ```

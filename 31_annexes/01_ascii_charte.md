@@ -10,11 +10,11 @@ Cette charte fixe 8 schémas canoniques. Quand un module a besoin d'un de ces 8 
 
 **Règle de syntaxe commune :**
 ```
-A --> B            une étape suit une autre
-A --> B --> C       une séquence
-A -.-> B            relation indirecte ou asynchrone (ligne pointillée)
-[ ]                  une boîte = un état ou un composant
-( )                  une parenthèse = une précision courte
+A --> B      une étape suit une autre
+A --> B --> C    une séquence
+A -.-> B      relation indirecte ou asynchrone (ligne pointillée)
+[ ]         une boîte = un état ou un composant
+( )         une parenthèse = une précision courte
 ```
 
 ---
@@ -31,12 +31,12 @@ a()
 
 ÉTAT DE LA STACK PENDANT L'EXÉCUTION :
 
-  |        |        |  c()   |        |
-  |  b()   |  b()   |  b()   |  b()   |
-  |  a()   |  a()   |  a()   |  a()   |
-  +--------+--------+--------+--------+
-   a appelle  b appelle  c       c finit,
-   b           c        s'exécute  retour à b
+ |    |    | c()  |    |
+ | b()  | b()  | b()  | b()  |
+ | a()  | a()  | a()  | a()  |
+ +--------+--------+--------+--------+
+  a appelle b appelle c    c finit,
+  b      c    s'exécute retour à b
 ```
 
 Si tu stack des appels sans jamais redescendre (récursion sans fin) : `RangeError: Maximum call stack size exceeded`. C'est littéralement la stack qui déborde.
@@ -50,16 +50,16 @@ Si tu stack des appels sans jamais redescendre (récursion sans fin) : `RangeErr
 Le mécanisme qui décide quoi exécuter ensuite quand le call stack est vide.
 
 ```
-[ CALL STACK ]  <--  vidée en premier, toujours
-       |
-       v  (stack vide ?)
-[ MICROTASK QUEUE ]   <--  Promises, queueMicrotask : vidée ENTIÈREMENT avant la suite
-       |
-       v  (microtasks vidées ?)
-[ MACROTASK QUEUE ]   <--  setTimeout, setInterval, I/O : UNE tâche à la fois
-       |
-       v
-   retour au call stack, le cycle recommence
+[ CALL STACK ] <-- vidée en premier, toujours
+    |
+    v (stack vide ?)
+[ MICROTASK QUEUE ]  <-- Promises, queueMicrotask : vidée ENTIÈREMENT avant la suite
+    |
+    v (microtasks vidées ?)
+[ MACROTASK QUEUE ]  <-- setTimeout, setInterval, I/O : UNE tâche à la fois
+    |
+    v
+  retour au call stack, le cycle recommence
 ```
 
 Ordre d'exécution typique :
@@ -76,12 +76,12 @@ synchrone --> toutes les microtasks --> une macrotask --> toutes les microtasks 
 Le stack stocke les valeurs primitives et les références. Le heap stocke les objets eux-mêmes.
 
 ```
-STACK                          HEAP
-+----------------+             +------------------------+
-| a  -> 42        |             |                        |
-| obj -> 0x4F2A ----------->     | 0x4F2A : { x: 1, y: 2 } |
-| obj2 -> 0x4F2A --------/       |                        |
-+----------------+             +------------------------+
+STACK             HEAP
++----------------+       +------------------------+
+| a -> 42    |       |            |
+| obj -> 0x4F2A ----------->   | 0x4F2A : { x: 1, y: 2 } |
+| obj2 -> 0x4F2A --------/    |            |
++----------------+       +------------------------+
 
 obj et obj2 pointent vers LA MÊME adresse mémoire.
 Muter obj.x modifie ce que obj2 voit aussi.
@@ -99,23 +99,23 @@ Une Promise a 3 états. Une fois résolue ou rejetée, elle reste figée dans ce
 
 ```
 new Promise()
-      |
-      v
-  [ PENDING ]
-   /        \
-  v          v
-[ FULFILLED ]  [ REJECTED ]
-  (resolve)      (reject)
-      |              |
-      v              v
-   .then()        .catch()
+   |
+   v
+ [ PENDING ]
+  /    \
+ v     v
+[ FULFILLED ] [ REJECTED ]
+ (resolve)   (reject)
+   |       |
+   v       v
+  .then()    .catch()
 ```
 
 Avec `await` :
 ```
 await promise()
-  --> si FULFILLED : la valeur résolue, exécution continue
-  --> si REJECTED  : une exception levée, à catcher avec try/catch
+ --> si FULFILLED : la valeur résolue, exécution continue
+ --> si REJECTED : une exception levée, à catcher avec try/catch
 ```
 
 **Référencé dans :** `03_async/02_promises`, `03_async/03_async_await`, `04_error_handling/04_async_error_traps`.
@@ -128,20 +128,20 @@ Une requête HTTP traverse une chaîne de middlewares avant d'atteindre le handl
 
 ```
 CLIENT
-  |
-  v
-[ Middleware: auth ]        (vérifie le token, sinon coupe ici)
-  |
-  v
-[ Middleware: validation ]  (vérifie le payload, sinon coupe ici)
-  |
-  v
-[ Handler ]                 (logique métier, génère la réponse)
-  |
-  v
-[ Middleware: error handler ]  (catch les erreurs remontées)
-  |
-  v
+ |
+ v
+[ Middleware: auth ]    (vérifie le token, sinon coupe ici)
+ |
+ v
+[ Middleware: validation ] (vérifie le payload, sinon coupe ici)
+ |
+ v
+[ Handler ]         (logique métier, génère la réponse)
+ |
+ v
+[ Middleware: error handler ] (catch les erreurs remontées)
+ |
+ v
 CLIENT (réponse)
 ```
 
@@ -157,11 +157,11 @@ Le principe de la clean architecture : le domaine (la logique métier) ne dépen
 
 ```
 [ UI / Présentation ]
-        |
-        v  (dépend de)
+    |
+    v (dépend de)
 [ Domaine / Logique métier ]
-        ^
-        |  (dépend de, via interface)
+    ^
+    | (dépend de, via interface)
 [ Infra / DB, API externes, framework ]
 ```
 
@@ -177,17 +177,17 @@ Le trajet d'une requête entre l'shinobi et ton serveur final, avec les points d
 
 ```
 CLIENT
-  |
-  v
-[ EDGE / CDN ]     <--  cache statique, peut répondre direct sans aller plus loin
-  |  (cache miss)
-  v
-[ LOAD BALANCER ]  <--  répartit vers une instance
-  |
-  v
-[ ORIGIN SERVER ]  <--  ton code qui tourne vraiment
-  |
-  v
+ |
+ v
+[ EDGE / CDN ]   <-- cache statique, peut répondre direct sans aller plus loin
+ | (cache miss)
+ v
+[ LOAD BALANCER ] <-- répartit vers une instance
+ |
+ v
+[ ORIGIN SERVER ] <-- ton code qui tourne vraiment
+ |
+ v
 [ DATABASE ]
 ```
 
@@ -202,13 +202,13 @@ Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'
 Le schéma générique de tout pipeline de traitement de données, du plus simple `.map().filter()` jusqu'à un pipeline d'ingestion d'events complet.
 
 ```
-[ SOURCE ]        d'où vient la donnée brute (API, fichier, stream, DB)
-    |
-    v
-[ TRANSFORM ]     map, filter, validate, normalize : la donnée change de forme
-    |
-    v
-[ SINK ]          où la donnée atterrit (DB, UI, fichier, autre service)
+[ SOURCE ]    d'où vient la donnée brute (API, fichier, stream, DB)
+  |
+  v
+[ TRANSFORM ]   map, filter, validate, normalize : la donnée change de forme
+  |
+  v
+[ SINK ]     où la donnée atterrit (DB, UI, fichier, autre service)
 ```
 
 Une erreur dans TRANSFORM doit jamais silencieusement corrompre ce qui arrive au SINK. D'où l'intérêt de valider à chaque étape, pas juste à la fin.

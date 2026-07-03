@@ -1,7 +1,7 @@
 # 06 : CI/CD basics (feedback automatique)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : la CI existe depuis Cruise Control (2001). Les YAML
+> **INTEMPOREL** : la CI existe depuis Cruise Control (2001). Les YAML
 > changent, l'idée non : **chaque push est vérifié automatiquement**.
 
 ## Objectif
@@ -20,21 +20,21 @@ Fichier : `.github/workflows/ci.yml`
 ```yaml
 name: ci
 on:
-  push:
-    branches: [main]
-  pull_request:
+ push:
+  branches: [main]
+ pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-      - run: npm ci --ignore-scripts
-      - run: node --test tests/
-      - run: npm run lint --if-present
+ test:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v4
+   - uses: actions/setup-node@v4
+    with:
+     node-version-file: '.nvmrc'
+   - run: npm ci --ignore-scripts
+   - run: node --test tests/
+   - run: npm run lint --if-present
 ```
 
 ## Pourquoi `--ignore-scripts`
@@ -48,10 +48,10 @@ d'attaque supply chain**. Voir `22_security/09_supply_chain_sbom.md`.
 Ajoute pour accélérer :
 
 ```yaml
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+   - uses: actions/setup-node@v4
+    with:
+     node-version-file: '.nvmrc'
+     cache: 'npm'
 ```
 
 ## Signalisation dans le README

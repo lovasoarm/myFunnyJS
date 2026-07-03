@@ -1,6 +1,5 @@
 [PORTFOLIO]
 
-[INTEMPOREL]
 [ATELIER]
 
 # ORACLE GLITCH
@@ -140,7 +139,7 @@ ADR/ --> décisions d'architecture documentées
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

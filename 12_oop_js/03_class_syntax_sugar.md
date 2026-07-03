@@ -8,23 +8,23 @@ Temps de lecture ~10 min
 ```js
 // version "class"
 class Ninja {
-  constructor(nom, village) {
-    this.nom = nom;
-    this.village = village;
-  }
+ constructor(nom, village) {
+  this.nom = nom;
+  this.village = village;
+ }
 
-  presenter() {
-    return `${this.nom}, ninja du village ${this.village}`;
-  }
+ presenter() {
+  return `${this.nom}, ninja du village ${this.village}`;
+ }
 }
 
 // version constructeur classique : strictement équivalente en mécanisme
 function NinjaOldSchool(nom, village) {
-  this.nom = nom;
-  this.village = village;
+ this.nom = nom;
+ this.village = village;
 }
 NinjaOldSchool.prototype.presenter = function () {
-  return `${this.nom}, ninja du village ${this.village}`;
+ return `${this.nom}, ninja du village ${this.village}`;
 };
 ```
 
@@ -47,9 +47,9 @@ Contrairement à une fonction constructeur classique (fichier 02, section 3), un
 
 ```js
 class Test {
-  presenter() {
-    return "salut";
-  }
+ presenter() {
+  return "salut";
+ }
 }
 console.log(Object.keys(Test.prototype)); // []
 ```
@@ -58,7 +58,7 @@ Les méthodes de `class` sont non énumérables (elles n'apparaissent pas dans u
 
 ```js
 class Zone {
-  presenter() {}
+ presenter() {}
 }
 Zone(); // erreur, vu plus haut
 
@@ -72,8 +72,8 @@ Le code à l'intérieur d'une `class` tourne toujours en mode strict (strict mod
 
 ```
 new Ninja("Naruto", "Konoha")
-   |
-   v
+  |
+  v
 1. objet vide créé, [[Prototype]] = Ninja.prototype
 2. constructor() exécuté avec this = cet objet
 3. this retourné automatiquement
@@ -85,9 +85,9 @@ C'est exactement la séquence du fichier 02. `class` ne retire aucune étape, el
 
 ```js
 class Compte {
-  constructor(solde) {
-    this.solde = solde;
-  }
+ constructor(solde) {
+  this.solde = solde;
+ }
 }
 
 const compte = new Compte(100);
@@ -105,26 +105,26 @@ ES2022 a ajouté les class fields : la propriété déclarée directement dans l
 ```js
 // AVANT ES2022 : toutes les propriétés passaient par le constructor
 class NinjaOld {
-  constructor(nom) {
-    this.nom = nom;
-    this.chakra = 100; // propriété initialisée dans le constructor
-    this.missions = []; // tableau partagé... ou pas ? (on y revient)
-  }
+ constructor(nom) {
+  this.nom = nom;
+  this.chakra = 100; // propriété initialisée dans le constructor
+  this.missions = []; // tableau partagé... ou pas ? (on y revient)
+ }
 }
 
 // AVEC ES2022 : class fields, posées directement dans la classe
 class Ninja {
-  chakra = 100; // chaque instance a SA PROPRE valeur chakra = 100
-  missions = []; // chaque instance a son PROPRE tableau (pas partagé)
-  #secret = "clé secrète"; // # : champ privé, inaccessible de l'extérieur
+ chakra = 100; // chaque instance a SA PROPRE valeur chakra = 100
+ missions = []; // chaque instance a son PROPRE tableau (pas partagé)
+ #secret = "clé secrète"; // # : champ privé, inaccessible de l'extérieur
 
-  constructor(nom) {
-    this.nom = nom; // le constructor ne gère plus que les params dynamiques
-  }
+ constructor(nom) {
+  this.nom = nom; // le constructor ne gère plus que les params dynamiques
+ }
 
-  révéler() {
-    return this.#secret; // accessible uniquement ici
-  }
+ révéler() {
+  return this.#secret; // accessible uniquement ici
+ }
 }
 
 const n1 = new Ninja("Naruto");
@@ -139,15 +139,15 @@ console.log(n1.#secret); // SyntaxError : champ privé inaccessible de l'extéri
 **Le piège classique résolu** : avant les class fields, si tu mettais `this.missions = []` dans le prototype (par accident ou par habitude), TOUTES les instances partageaient le MÊME tableau. Avec `missions = []` en class field, chaque instance obtient son propre tableau à la création. Plus de partage accidentel.
 
 ```
-Avec prototype partagé (bug classique) :   Avec class field (correct) :
+Avec prototype partagé (bug classique) :  Avec class field (correct) :
 
-NinjaOld.prototype.missions = []           Ninja.prototype N'A PAS missions
-       |                                          |
-n1.__proto__ --> missions (partagé)         n1   --> missions (propre)
-n2.__proto__ --> missions (partagé)         n2   --> missions (propre)
+NinjaOld.prototype.missions = []      Ninja.prototype N'A PAS missions
+    |                     |
+n1.__proto__ --> missions (partagé)     n1  --> missions (propre)
+n2.__proto__ --> missions (partagé)     n2  --> missions (propre)
 
-n1.missions.push("A")                       n1.missions.push("A")
-n2.missions // ["A"] : oups                 n2.missions // [] : correct
+n1.missions.push("A")            n1.missions.push("A")
+n2.missions // ["A"] : oups         n2.missions // [] : correct
 ```
 
 ## 6) LA DIFFÉRENCE AVEC TYPESCRIPT
@@ -157,23 +157,23 @@ TypeScript ajoute des annotations au-dessus des class fields ES2022, mais le mé
 ```js
 // TypeScript
 class Ninja {
-  nom: string               // annotation de type : n'existe pas au runtime
-  readonly village: string  // readonly TS : erreur de compilation si réassigné
-  #chakra = 100             // champ privé JS : vrai runtime, visible dans les erreurs JS
+ nom: string        // annotation de type : n'existe pas au runtime
+ readonly village: string // readonly TS : erreur de compilation si réassigné
+ #chakra = 100       // champ privé JS : vrai runtime, visible dans les erreurs JS
 
-  constructor(nom: string, village: string) {
-    this.nom = nom
-    this.village = village
-  }
+ constructor(nom: string, village: string) {
+  this.nom = nom
+  this.village = village
+ }
 }
 
 // JavaScript compilé (ce qui s'exécute vraiment)
 class Ninja {
-  #chakra = 100             // le seul qui survit : c'est du JS réel
-  constructor(nom, village) {
-    this.nom = nom
-    this.village = village
-  }
+ #chakra = 100       // le seul qui survit : c'est du JS réel
+ constructor(nom, village) {
+  this.nom = nom
+  this.village = village
+ }
 }
 ```
 
@@ -205,9 +205,9 @@ Une feature a été livrée en prod. Les tests passent. Mais un shinobi signale 
 
 ```js
 class Ninja {
-  constructor(nom) {
-    this.nom = nom;
-  }
+ constructor(nom) {
+  this.nom = nom;
+ }
 }
 Ninja.prototype.missions = []; // posé à la main sur le prototype
 
@@ -233,13 +233,13 @@ Le tech lead te demande de choisir entre deux approches pour protéger la propri
 ```js
 // Option A : champ privé JS
 class Chevalier {
-  #niveau = 1
-  getNiveau() { return this.#niveau }
+ #niveau = 1
+ getNiveau() { return this.#niveau }
 }
 
 // Option B : readonly TypeScript
 class Chevalier {
-  readonly niveau: number = 1
+ readonly niveau: number = 1
 }
 ```
 

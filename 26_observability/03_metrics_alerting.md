@@ -13,24 +13,24 @@ Inconvénient : agrège, donc perd le détail individuel (pour ça, retour aux l
 
 ```
 COUNTER (compteur)
-  --> une valeur qui ne fait QUE monter, jamais redescendre
-  --> exemple : nombre total de buts marqués sur une carrière
+ --> une valeur qui ne fait QUE monter, jamais redescendre
+ --> exemple : nombre total de buts marqués sur une carrière
 
 GAUGE (jauge)
-  --> une valeur qui monte ET descend librement, l'état actuel
-  --> exemple : nombre de joueurs encore sur le terrain en ce moment
+ --> une valeur qui monte ET descend librement, l'état actuel
+ --> exemple : nombre de joueurs encore sur le terrain en ce moment
 
 HISTOGRAM (histogramme)
-  --> distribue les valeurs observées dans des compartiments (buckets),
-      pour calculer des percentiles plutôt qu'une seule moyenne
-  --> exemple : la distance parcourue par chaque joueur à chaque match de la saison
+ --> distribue les valeurs observées dans des compartiments (buckets),
+   pour calculer des percentiles plutôt qu'une seule moyenne
+ --> exemple : la distance parcourue par chaque joueur à chaque match de la saison
 ```
 
 ```js
 // Counter : ne décroît jamais, sert à compter des occurrences cumulées
 let totalGoals = 0
 function onGoalScored() {
-  totalGoals++ // incrémenté à chaque but, jamais remis à zéro manuellement
+ totalGoals++ // incrémenté à chaque but, jamais remis à zéro manuellement
 }
 
 // Gauge : photo de l'état présent, peut monter ou descendre
@@ -40,7 +40,7 @@ function onSubstitution() { /* le nombre reste stable, mais peut varier en cas d
 
 // Histogram : on enregistre chaque distance parcourue, l'outil calcule les percentiles derrière
 function onMatchEnd(distanceKm) {
-  matchDistanceHistogram.observe(distanceKm) // un point ajouté à la distribution
+ matchDistanceHistogram.observe(distanceKm) // un point ajouté à la distribution
 }
 ```
 
@@ -54,10 +54,10 @@ Le pourquoi confondre les trois est un piège classique : utiliser un counter po
 10 matchs, temps de possession en % : 52, 55, 48, 51, 49, 50, 53, 47, 50, 5
 
 MOYENNE : (52+55+48+51+49+50+53+47+50+5) / 10 = 46%
-  --> donne l'impression que l'équipe domine moins qu'elle ne le fait vraiment
+ --> donne l'impression que l'équipe domine moins qu'elle ne le fait vraiment
 
-P50 (médiane) : 50%        --> la moitié des matchs sont équilibrés ou dominés
-P99 (le pire match) : 5%   --> 1 match sur les 10 a été un naufrage total de possession
+P50 (médiane) : 50%    --> la moitié des matchs sont équilibrés ou dominés
+P99 (le pire match) : 5%  --> 1 match sur les 10 a été un naufrage total de possession
 ```
 
 Le pourquoi le P99 compte plus que la moyenne : la moyenne est écrasée par les valeurs normales et cache les cas extrêmes. Le P99 te dit "voici la pire expérience vécue", et sur une saison de 38 matchs, ce 1% peut représenter exactement le match qui a fait perdre le titre, pendant que le bilan moyen restait flatteur.
@@ -67,9 +67,9 @@ Dashboard qui ment :
 "Possession moyenne sur la saison : 54%" --> tout semble parfait
 
 Dashboard honnête :
-P50 : 55%   --> la majorité des matchs sont dominés
-P95 : 35%   --> déjà plus tendu, à surveiller
-P99 : 5%    --> 1% des matchs ont été un calvaire, et la moyenne ne le montrait pas
+P50 : 55%  --> la majorité des matchs sont dominés
+P95 : 35%  --> déjà plus tendu, à surveiller
+P99 : 5%  --> 1% des matchs ont été un calvaire, et la moyenne ne le montrait pas
 ```
 
 ---
@@ -77,17 +77,17 @@ P99 : 5%    --> 1% des matchs ont été un calvaire, et la moyenne ne le montrai
 ## 3) LES MÉTRIQUES QUI COMPTENT VRAIMENT : LES GOLDEN SIGNALS
 
 ```
-LATENCY (latence)      --> combien de temps prennent les requêtes
-TRAFFIC (trafic)       --> combien de requêtes le système reçoit
-ERRORS (erreurs)       --> quel pourcentage de requêtes échoue
-SATURATION             --> à quel point les ressources (CPU, RAM, queue) sont pleines
+LATENCY (latence)   --> combien de temps prennent les requêtes
+TRAFFIC (trafic)    --> combien de requêtes le système reçoit
+ERRORS (erreurs)    --> quel pourcentage de requêtes échoue
+SATURATION       --> à quel point les ressources (CPU, RAM, queue) sont pleines
 ```
 
 ```js
 // Exemple de métriques exposées pour un endpoint, format Prometheus typique
 httpRequestsTotal.inc({ method: 'POST', route: '/orders', status: 500 }) // traffic + errors
-httpRequestDuration.observe({ route: '/orders' }, durationMs)            // latency
-cpuUsageGauge.set(currentCpuPercent)                                     // saturation
+httpRequestDuration.observe({ route: '/orders' }, durationMs)      // latency
+cpuUsageGauge.set(currentCpuPercent)                   // saturation
 ```
 
 Le pourquoi ces 4 signaux suffisent dans la majorité des cas : c'est l'équivalent des 4 jauges qu'un coach regarde en priorité pendant un match, la forme physique de l'équipe, le nombre d'occasions générées, le pourcentage d'échecs sur les transmissions, et la fatigue accumulée. Un dashboard qui n'a que ces 4 métriques, bien faites, vaut mieux que 50 métriques exotiques que personne ne regarde jamais.
@@ -98,22 +98,22 @@ Le pourquoi ces 4 signaux suffisent dans la majorité des cas : c'est l'équival
 
 ```
 MÉTRIQUE dépasse un SEUIL pendant une DURÉE
-    |
-    v
+  |
+  v
 ALERTE déclenchée
-    |
-    v
+  |
+  v
 notification (Slack, PagerDuty, SMS selon la gravité)
 ```
 
 ```js
 // Règle d'alerte typique (pseudo-config, format proche de Prometheus Alertmanager)
 const alertRule = {
-  metric: 'error_rate',
-  threshold: 0.05,        // 5% d'erreurs
-  duration: '5m',         // pendant au moins 5 minutes, pas un pic d'1 seconde
-  severity: 'critical',
-  notify: ['#alerts-prod', 'pagerduty-oncall']
+ metric: 'error_rate',
+ threshold: 0.05,    // 5% d'erreurs
+ duration: '5m',     // pendant au moins 5 minutes, pas un pic d'1 seconde
+ severity: 'critical',
+ notify: ['#alerts-prod', 'pagerduty-oncall']
 }
 ```
 

@@ -13,10 +13,10 @@ Quand tu accèdes à une propriété sur un objet, JS cherche dans cet ordre :
 
 ```
 objet lui-même
-  --> son prototype (__proto__)
-    --> le prototype du prototype
-      --> ... jusqu'à Object.prototype
-        --> null (fin de chaîne)
+ --> son prototype (__proto__)
+  --> le prototype du prototype
+   --> ... jusqu'à Object.prototype
+    --> null (fin de chaîne)
 ```
 
 ```js
@@ -51,19 +51,19 @@ console.log(ninja.village); // "Konoha" : hérité de sensei
 
 ```
 1. Modification de prototype à runtime = dés-optimisation du moteur JS
-   Le moteur a compilé la structure de l'objet. Tu la changes ? Il recompile.
+  Le moteur a compilé la structure de l'objet. Tu la changes ? Il recompile.
 
 2. La propriété __proto__ est une propriété accessor sur Object.prototype
-   Elle peut être shadowed (masquée) ou supprimée : comportement imprévisible
+  Elle peut être shadowed (masquée) ou supprimée : comportement imprévisible
 
 3. Les objets créés avec Object.create(null) n'ont pas __proto__
-   Donc ton code qui compte dessus explose sur ces objets
+  Donc ton code qui compte dessus explose sur ces objets
 ```
 
 ```js
 // Alternative correcte : Object.getPrototypeOf et Object.setPrototypeOf
 const proto = Object.getPrototypeOf(ninja); // accès en lecture, propre
-// Object.setPrototypeOf(ninja, sensei)     // modification, mais à éviter quand même
+// Object.setPrototypeOf(ninja, sensei)   // modification, mais à éviter quand même
 
 // Encore mieux : définir le prototype à la création
 const ninja = Object.create(sensei);
@@ -88,14 +88,14 @@ console.log(ninja.hasOwnProperty("village")); // false : héritée de sensei
 
 // Le for...in parcourt aussi les propriétés héritées
 for (const key in ninja) {
-  console.log(key); // "nom", "village" : les deux
+ console.log(key); // "nom", "village" : les deux
 }
 
 // Pour itérer seulement sur les propriétés directes :
 for (const key in ninja) {
-  if (ninja.hasOwnProperty(key)) {
-    console.log(key); // "nom" seulement
-  }
+ if (ninja.hasOwnProperty(key)) {
+  console.log(key); // "nom" seulement
+ }
 }
 
 // Ou simplement :
@@ -130,10 +130,10 @@ Si tu permets à du code externe de modifier `Object.prototype`, toutes les inst
 ```js
 // Cas simple : une fonction de merge naïve
 function merge(cible, source) {
-  for (const key in source) {
-    cible[key] = source[key]; // aucune vérification sur la clé
-  }
-  return cible;
+ for (const key in source) {
+  cible[key] = source[key]; // aucune vérification sur la clé
+ }
+ return cible;
 }
 
 // Payload d'attaque reçu depuis une API ou un formulaire
@@ -153,11 +153,11 @@ Le diagramme :
 ```
 payload.__proto__ = Object.prototype
 merge() écrit sur payload.__proto__
-             |
-             v
+       |
+       v
 Object.prototype.admin = true
-             |
-             v
+       |
+       v
 TOUS les {} dans l'app ont maintenant admin = true
 ```
 
@@ -169,13 +169,13 @@ TOUS les {} dans l'app ont maintenant admin = true
 // Librairie de merge, de clonage profond, ou de parsing de query string
 // Si elle itère sur les clés sans vérification :
 function deepMerge(cible, source) {
-  for (const key in source) {
-    if (typeof source[key] === "object") {
-      deepMerge(cible[key], source[key]); // récursion sans vérifier si key = "__proto__"
-    } else {
-      cible[key] = source[key];
-    }
+ for (const key in source) {
+  if (typeof source[key] === "object") {
+   deepMerge(cible[key], source[key]); // récursion sans vérifier si key = "__proto__"
+  } else {
+   cible[key] = source[key];
   }
+ }
 }
 ```
 
@@ -184,16 +184,16 @@ function deepMerge(cible, source) {
 ```js
 // Fix 1 : vérifier la clé avant d'écrire
 function mergeSafe(cible, source) {
-  for (const key in source) {
-    // Bloquer les clés dangereuses
-    if (key === "__proto__" || key === "constructor" || key === "prototype") {
-      continue; // on ignore ces clés:jamais de bypass ici
-    }
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      cible[key] = source[key];
-    }
+ for (const key in source) {
+  // Bloquer les clés dangereuses
+  if (key === "__proto__" || key === "constructor" || key === "prototype") {
+   continue; // on ignore ces clés:jamais de bypass ici
   }
-  return cible;
+  if (Object.prototype.hasOwnProperty.call(source, key)) {
+   cible[key] = source[key];
+  }
+ }
+ return cible;
 }
 
 // Fix 2 : utiliser Object.create(null) pour les objets qui stockent des données externes
@@ -216,7 +216,7 @@ La propriété `constructor` sur un objet pointe vers la fonction qui l'a créé
 
 ```js
 function Ninja(nom) {
-  this.nom = nom;
+ this.nom = nom;
 }
 
 const naruto = new Ninja("Naruto");
@@ -232,14 +232,14 @@ Le problème : quand tu redéfinis `prototype`, tu perds `constructor`.
 
 ```js
 function Ninja(nom) {
-  this.nom = nom;
+ this.nom = nom;
 }
 
 // Mauvaise pratique : remplacement total du prototype
 Ninja.prototype = {
-  attaquer() {
-    return `${this.nom} attaque`;
-  },
+ attaquer() {
+  return `${this.nom} attaque`;
+ },
 };
 // constructor est maintenant Object, pas Ninja
 console.log(new Ninja("Naruto").constructor === Ninja); // false
@@ -247,10 +247,10 @@ console.log(new Ninja("Naruto").constructor === Object); // true
 
 // Fix : restaurer constructor manuellement
 Ninja.prototype = {
-  constructor: Ninja, // on restaure le lien
-  attaquer() {
-    return `${this.nom} attaque`;
-  },
+ constructor: Ninja, // on restaure le lien
+ attaquer() {
+  return `${this.nom} attaque`;
+ },
 };
 ```
 
@@ -279,8 +279,8 @@ Le shadow avec `Object.defineProperty` peut rendre une propriété non-énuméra
 ```js
 const proto = {};
 Object.defineProperty(proto, "niveau", {
-  value: 1,
-  writable: false, // lecture seule sur le prototype
+ value: 1,
+ writable: false, // lecture seule sur le prototype
 });
 
 const objet = Object.create(proto);
@@ -315,7 +315,7 @@ Object.prototype.debug = true; // pollution simulée
 
 const stats = { buts: 10 };
 for (const key in stats) {
-  console.log(key); // "buts", "debug" : debug vient de Object.prototype
+ console.log(key); // "buts", "debug" : debug vient de Object.prototype
 }
 // Fix : toujours filtrer avec hasOwn ou Object.keys dans les for...in critiques
 

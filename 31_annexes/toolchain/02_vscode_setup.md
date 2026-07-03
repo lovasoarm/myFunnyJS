@@ -33,16 +33,16 @@ survivant.arm // <-- VSCode te propose "arme" en autocomplétion
 Pas besoin de 80 extensions. Le camp voyage léger.
 
 ```
-ESLint              --> détecte les erreurs de style ET les vrais bugs potentiels avant l'exécution
-Prettier            --> formate le code automatiquement, fin des débats sur les espaces
-GitLens             --> voit qui a écrit quelle ligne et pourquoi, directement dans l'éditeur
-Error Lens          --> affiche les erreurs inline, pas juste dans un panneau qu'on regarde jamais
+ESLint       --> détecte les erreurs de style ET les vrais bugs potentiels avant l'exécution
+Prettier      --> formate le code automatiquement, fin des débats sur les espaces
+GitLens       --> voit qui a écrit quelle ligne et pourquoi, directement dans l'éditeur
+Error Lens     --> affiche les erreurs inline, pas juste dans un panneau qu'on regarde jamais
 ```
 
 ```js
 // Sans ESLint, ce genre de bug part en prod sans prévenir :
-if (rationsRestantes = 0) {  // bug classique : = au lieu de ===
-  alerterPenurie();
+if (rationsRestantes = 0) { // bug classique : = au lieu de ===
+ alerterPenurie();
 }
 // ESLint hurle immédiatement : "Expected a conditional expression and instead saw an assignment"
 ```
@@ -50,8 +50,8 @@ if (rationsRestantes = 0) {  // bug classique : = au lieu de ===
 **Pourquoi ça compte :** ESLint et Prettier ont des rôles différents qu'on confond souvent.
 
 ```
-ESLint    --> qualité et correction du code (logique, bugs potentiels, conventions)
-Prettier  --> apparence du code (indentation, guillemets, longueur de ligne)
+ESLint  --> qualité et correction du code (logique, bugs potentiels, conventions)
+Prettier --> apparence du code (indentation, guillemets, longueur de ligne)
 ```
 
 L'un détecte les pièges, l'autre uniformise le style. Les deux ensemble, configurés pour pas se marcher dessus, c'est le combo standard en 2026.
@@ -64,22 +64,22 @@ Un fichier `.vscode/settings.json` à la racine du projet, c'est une config qui 
 
 ```json
 {
-  // formate automatiquement à chaque sauvegarde, fini le "j'oublie de formater"
-  "editor.formatOnSave": true,
+ // formate automatiquement à chaque sauvegarde, fini le "j'oublie de formater"
+ "editor.formatOnSave": true,
 
-  // utilise Prettier comme formateur par défaut pour le JS et le TS
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+ // utilise Prettier comme formateur par défaut pour le JS et le TS
+ "editor.defaultFormatter": "esbenp.prettier-vscode",
 
-  // ESLint corrige automatiquement ce qu'il peut à la sauvegarde
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
+ // ESLint corrige automatiquement ce qu'il peut à la sauvegarde
+ "editor.codeActionsOnSave": {
+  "source.fixAll.eslint": "explicit"
+ },
 
-  // n'affiche pas les fichiers générés dans l'arborescence, moins de bruit visuel
-  "files.exclude": {
-    "node_modules": true,
-    "dist": true
-  }
+ // n'affiche pas les fichiers générés dans l'arborescence, moins de bruit visuel
+ "files.exclude": {
+  "node_modules": true,
+  "dist": true
+ }
 }
 ```
 
@@ -96,24 +96,24 @@ VSCode a un débogueur (debugger) intégré qui peut s'attacher directement à u
 ```json
 // .vscode/launch.json
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug camp-manager",
-      "program": "${workspaceFolder}/src/index.js",
-      "skipFiles": ["<node_internals>/**"]
-    }
-  ]
+ "version": "0.2.0",
+ "configurations": [
+  {
+   "type": "node",
+   "request": "launch",
+   "name": "Debug camp-manager",
+   "program": "${workspaceFolder}/src/index.js",
+   "skipFiles": ["<node_internals>/**"]
+  }
+ ]
 }
 ```
 
 ```js
 // Dans ton code, tu poses un breakpoint (point d'arrêt) en cliquant à gauche de la ligne
 function calculerRations(survivants, stock) {
-  const rationParPersonne = stock / survivants.length; // <-- breakpoint ici
-  return rationParPersonne;
+ const rationParPersonne = stock / survivants.length; // <-- breakpoint ici
+ return rationParPersonne;
 }
 
 // L'exécution s'arrête EXACTEMENT à cette ligne

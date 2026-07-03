@@ -17,18 +17,18 @@ Prérequis : `05_heap_snapshot_hands_on.md`.
 <button id="unmount">Unmount</button>
 <div id="host"></div>
 <script>
-const cache = [];              // <-- coupable silencieux
+const cache = [];       // <-- coupable silencieux
 
 document.getElementById('mount').onclick = () => {
-  const el = document.createElement('div');
-  el.textContent = 'panel ' + cache.length;
-  el.onclick = () => console.log(el.textContent);   // closure capture `el`
-  cache.push(el);                                    // <-- retenu à vie
-  document.getElementById('host').appendChild(el);
+ const el = document.createElement('div');
+ el.textContent = 'panel ' + cache.length;
+ el.onclick = () => console.log(el.textContent);  // closure capture `el`
+ cache.push(el);                  // <-- retenu à vie
+ document.getElementById('host').appendChild(el);
 };
 
 document.getElementById('unmount').onclick = () => {
-  document.getElementById('host').innerHTML = '';    // "détaché", mais...
+ document.getElementById('host').innerHTML = '';  // "détaché", mais...
 };
 </script>
 ```
@@ -42,11 +42,11 @@ document.getElementById('unmount').onclick = () => {
 ## 2) LES 3 CAUSES CANONIQUES
 
 ```
-CAUSE                              COMMENT LA RECONNAÎTRE                FIX
---------------------------------   -----------------------------------   ------------------------
-1. Cache/registre global           Array/Map/Set qui ne se vide jamais   WeakMap/WeakSet OU vider
-2. Event listener non retiré       addEventListener sans removeListener  AbortController.signal
-3. Timer/interval non annulé       setInterval qui référence un nœud     clearInterval au unmount
+CAUSE               COMMENT LA RECONNAÎTRE        FIX
+--------------------------------  -----------------------------------  ------------------------
+1. Cache/registre global      Array/Map/Set qui ne se vide jamais  WeakMap/WeakSet OU vider
+2. Event listener non retiré    addEventListener sans removeListener AbortController.signal
+3. Timer/interval non annulé    setInterval qui référence un nœud   clearInterval au unmount
 ```
 
 ---
@@ -57,7 +57,7 @@ CAUSE                              COMMENT LA RECONNAÎTRE                FIX
 const ac = new AbortController();
 el.addEventListener('click', handler, { signal: ac.signal });
 // au unmount :
-ac.abort();                       // retire TOUS les listeners liés en 1 appel
+ac.abort();            // retire TOUS les listeners liés en 1 appel
 ```
 
 Pourquoi c'est mieux que `removeEventListener` : tu n'as pas à garder une référence

@@ -18,17 +18,17 @@ Tout ce qui n'est pas "en train de s'exécuter maintenant" attend dans une file 
 ## LE SCHÉMA À GRAVER
 
 ```
-        ┌────────────────────────┐
-        │      CALL STACK        │  ← 1 seule pile, LIFO
-        │  [fonction courante]   │     "je fais UNE chose"
-        └────────────▲───────────┘
-                     │ (event loop pousse quand vide)
-   ┌─────────────────┴─────────────────┐
-   │                                   │
-┌──┴──────────────┐            ┌───────┴──────────┐
-│ MICROTASK QUEUE │  ←priorité│  MACROTASK QUEUE │
-│  .then / await  │            │ setTimeout, I/O  │
-└─────────────────┘            └──────────────────┘
+    ┌────────────────────────┐
+    │   CALL STACK    │ ← 1 seule pile, LIFO
+    │ [fonction courante]  │   "je fais UNE chose"
+    └────────────▲───────────┘
+           │ (event loop pousse quand vide)
+  ┌─────────────────┴─────────────────┐
+  │                  │
+┌──┴──────────────┐      ┌───────┴──────────┐
+│ MICROTASK QUEUE │ ←priorité│ MACROTASK QUEUE │
+│ .then / await │      │ setTimeout, I/O │
+└─────────────────┘      └──────────────────┘
 ```
 
 Règle : la pile doit être VIDE pour que l'event loop pousse un nouveau job. Et il vide TOUTES les microtasks avant de toucher à une seule macrotask.
@@ -41,7 +41,7 @@ Il n'y a pas de "thread magique" qui exécute les I/O. C'est l'OS (libuv, kernel
 
 ---
 
-##  MINI-EXERCICE DE VISUALISATION
+## MINI-EXERCICE DE VISUALISATION
 
 Dessine (à la main, sur papier) l'état de la pile et des deux files après chaque ligne :
 
@@ -56,7 +56,7 @@ console.log("D");
 
 ---
 
-## [INTEMPOREL] PRINCIPES DURABLES
+## PRINCIPES DURABLES
 
 - Une pile, plusieurs files.
 - Microtasks battent macrotasks.

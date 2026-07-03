@@ -1,7 +1,7 @@
 # 10 : AI Hallucination Gym
 Temps de lecture ~5 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > 10 réponses IA volontairement fausses. Ta mission : les **démonter point par point**.
 

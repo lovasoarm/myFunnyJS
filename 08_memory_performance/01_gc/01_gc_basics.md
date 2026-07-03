@@ -14,12 +14,12 @@ Comprendre le GC, c'est comprendre pourquoi certains bugs n'ont pas de stacktrac
 Quand tu crées un objet en JS, deux zones entrent en jeu :
 
 ```
-STACK                        HEAP
-─────────────────────        ──────────────────────────────
-│ variable `ninja`  │───────►│ { name: "Naruto", chakra: 9000 } │
-│ variable `score`  │        │                                   │
-│ ...               │        │ { name: "Sasuke", chakra: 8500 }  │
-─────────────────────        ──────────────────────────────
+STACK            HEAP
+─────────────────────    ──────────────────────────────
+│ variable `ninja` │───────►│ { name: "Naruto", chakra: 9000 } │
+│ variable `score` │    │                  │
+│ ...        │    │ { name: "Sasuke", chakra: 8500 } │
+─────────────────────    ──────────────────────────────
 ```
 
 - **Stack** : les variables locales, les primitives, les références vers les objets
@@ -53,15 +53,15 @@ Visuellement :
 
 ```
 Roots
-  │
-  ├──► Ninja A (marqué)
-  │       └──► Jutsu A1 (marqué)
-  │
-  ├──► Ninja B (marqué)
-  │
-  │
-  X──► Ancien objet de combat (PAS marqué = détruit)
-  X──► Tableau de logs (PAS marqué = détruit)
+ │
+ ├──► Ninja A (marqué)
+ │    └──► Jutsu A1 (marqué)
+ │
+ ├──► Ninja B (marqué)
+ │
+ │
+ X──► Ancien objet de combat (PAS marqué = détruit)
+ X──► Tableau de logs (PAS marqué = détruit)
 ```
 
 Tout ce qui est accessible depuis les roots survit.
@@ -80,7 +80,7 @@ let clone = { name: "Kage Bunshin", power: 100 };
 
 // Le clone disparaît:la mémoire peut être libérée
 clone = null;
-//  plus aucune référence → le GC peut nettoyer
+// plus aucune référence → le GC peut nettoyer
 
 // ---
 
@@ -90,7 +90,7 @@ let ennemi = { name: "T-Bag" }; // oui, T-Bag, il s'est infiltré
 activeNinjas.push(ennemi);
 
 ennemi = null;
-//  la mémoire ne sera PAS libérée
+// la mémoire ne sera PAS libérée
 // activeNinjas[0] pointe encore vers l'objet
 // T-Bag reste en mémoire:pour l'éternité
 ```
@@ -120,14 +120,14 @@ vegeta = null;
 AVANT null
 ──────────
 roots ──► goku ──► vegeta
-               ◄──────────
+        ◄──────────
 
 APRÈS null
 ──────────
-roots    (plus de connexion vers goku/vegeta)
+roots  (plus de connexion vers goku/vegeta)
 
 goku ──► vegeta
-     ◄──────────
+   ◄──────────
 Les deux se tiennent... mais plus personne ne les tient depuis les roots.
 ```
 
@@ -148,9 +148,9 @@ Une fuite mémoire, c'est un objet qu'on ne veut plus, mais que le GC ne peut pa
 const prisonLogs = [];
 
 function logEvent(event) {
-  prisonLogs.push({ event, timestamp: Date.now() });
-  // on ajoute, on n'enlève jamais
-  // après 100 000 events : 100 000 objets en mémoire, pour toujours
+ prisonLogs.push({ event, timestamp: Date.now() });
+ // on ajoute, on n'enlève jamais
+ // après 100 000 events : 100 000 objets en mémoire, pour toujours
 }
 ```
 
@@ -161,8 +161,8 @@ const MAX_LOGS = 500;
 const prisonLogs = [];
 
 function logEvent(event) {
-  if (prisonLogs.length >= MAX_LOGS) prisonLogs.shift();
-  prisonLogs.push({ event, timestamp: Date.now() });
+ if (prisonLogs.length >= MAX_LOGS) prisonLogs.shift();
+ prisonLogs.push({ event, timestamp: Date.now() });
 }
 ```
 
@@ -173,10 +173,10 @@ function logEvent(event) {
 ```js
 // Chaque fois qu'un Chevalier de la Flamme entre en combat
 function startCombat(knight) {
-  document.addEventListener("keydown", knight.handleInput);
-  // le combat finit... mais le listener reste attaché
-  // chaque nouveau combat en ajoute un autre
-  // Walter White dirait : c'est de la mauvaise chimie
+ document.addEventListener("keydown", knight.handleInput);
+ // le combat finit... mais le listener reste attaché
+ // chaque nouveau combat en ajoute un autre
+ // Walter White dirait : c'est de la mauvaise chimie
 }
 ```
 
@@ -184,11 +184,11 @@ Correction : retirer le listener quand on n'en a plus besoin.
 
 ```js
 function startCombat(knight) {
-  document.addEventListener("keydown", knight.handleInput);
+ document.addEventListener("keydown", knight.handleInput);
 
-  return function cleanup() {
-    document.removeEventListener("keydown", knight.handleInput);
-  };
+ return function cleanup() {
+  document.removeEventListener("keydown", knight.handleInput);
+ };
 }
 
 const stop = startCombat(knight);
@@ -203,13 +203,13 @@ stop(); // on libère
 ```js
 // Le cache de métriques du dashboard des ultras
 function createCache() {
-  const bigData = new Array(1_000_000).fill("stat");
+ const bigData = new Array(1_000_000).fill("stat");
 
-  return function getMetric(id) {
-    // cette closure capture bigData en entier
-    // bigData vivra aussi longtemps que getMetric est en vie
-    return bigData[id];
-  };
+ return function getMetric(id) {
+  // cette closure capture bigData en entier
+  // bigData vivra aussi longtemps que getMetric est en vie
+  return bigData[id];
+ };
 }
 
 const cache = createCache();
@@ -220,13 +220,13 @@ Correction : extraire seulement ce dont on a besoin.
 
 ```js
 function createCache() {
-  const bigData = new Array(1_000_000).fill("stat");
-  const needed = { 0: bigData[0], 1: bigData[1], 2: bigData[2] };
-  // bigData peut maintenant être collecté par le GC
+ const bigData = new Array(1_000_000).fill("stat");
+ const needed = { 0: bigData[0], 1: bigData[1], 2: bigData[2] };
+ // bigData peut maintenant être collecté par le GC
 
-  return function getMetric(id) {
-    return needed[id];
-  };
+ return function getMetric(id) {
+  return needed[id];
+ };
 }
 ```
 
@@ -259,8 +259,8 @@ map ──► { key: bouton ──► objet DOM (bloqué) }
 
 WeakMap :
 map ── ~ ──► { key: bouton } (référence faible)
-              objet DOM ← plus accessible depuis root = GC le détruit
-              entrée WeakMap disparaît avec lui
+       objet DOM ← plus accessible depuis root = GC le détruit
+       entrée WeakMap disparaît avec lui
 ```
 
 ---
@@ -275,17 +275,17 @@ T-Bag s'est infiltré dans le système de Fox River. À chaque connexion, on cr�
 const sessions = {};
 
 function createSession(userId) {
-  sessions[userId] = {
-    userId,
-    token: Math.random().toString(36),
-    createdAt: Date.now(),
-    data: new Array(10_000).fill("payload"),
-  };
-  return sessions[userId].token;
+ sessions[userId] = {
+  userId,
+  token: Math.random().toString(36),
+  createdAt: Date.now(),
+  data: new Array(10_000).fill("payload"),
+ };
+ return sessions[userId].token;
 }
 
 function getSession(userId) {
-  return sessions[userId];
+ return sessions[userId];
 }
 ```
 
@@ -301,12 +301,12 @@ Dans le dashboard des ultras, chaque fois qu'un nouveau match commence, on attac
 
 ```js
 function startLiveMatch(matchId) {
-  const handler = (event) => {
-    if (event.detail.matchId === matchId) {
-      updateScore(event.detail);
-    }
-  };
-  window.addEventListener("matchEvent", handler);
+ const handler = (event) => {
+  if (event.detail.matchId === matchId) {
+   updateScore(event.detail);
+  }
+ };
+ window.addEventListener("matchEvent", handler);
 }
 ```
 
@@ -323,14 +323,14 @@ Voici deux implémentations d'un système de cache pour les ninjas actifs en com
 const ninjaCache = new Map();
 
 function registerNinja(ninja) {
-  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
+ ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
 }
 
 // Version B:WeakMap
 const ninjaCache = new WeakMap();
 
 function registerNinja(ninja) {
-  ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
+ ninjaCache.set(ninja, { combatStart: Date.now(), jutsuCount: 0 });
 }
 ```
 

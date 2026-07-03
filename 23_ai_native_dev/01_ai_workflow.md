@@ -1,7 +1,7 @@
 # L'IA DANS TON FLUX : OUTIL, PAS BÉQUILLE
 Temps de lecture ~12 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 En 2026, tout le monde "utilise l'IA". La moitié copie-colle du code qu'elle ne comprend pas. L'autre moitié refuse l'outil par principe. Les deux ont tort.
 
@@ -18,22 +18,22 @@ L'IA est un outil. Comme un linter, comme un compilateur : il fait ce qu'il fait
 Ce qu'elle gère sans te décevoir :
 
 ```
-génération de boilerplate      -->  scaffolding rapide, pas de réflexion requise
-documentation de fonctions     -->  JSDoc, commentaires, README
-transformation mécanique       -->  renommer, reformatter, convertir JSON <-> TS types
-premier jet de tests unitaires -->  la structure est là, toi tu valides le sens
-recherche de pattern           -->  "est-ce qu'il y a un meilleur algo ici ?"
-explication de code inconnu    -->  "c'est quoi ce RegEx de 3 lignes ?"
+génération de boilerplate   --> scaffolding rapide, pas de réflexion requise
+documentation de fonctions   --> JSDoc, commentaires, README
+transformation mécanique    --> renommer, reformatter, convertir JSON <-> TS types
+premier jet de tests unitaires --> la structure est là, toi tu valides le sens
+recherche de pattern      --> "est-ce qu'il y a un meilleur algo ici ?"
+explication de code inconnu  --> "c'est quoi ce RegEx de 3 lignes ?"
 ```
 
 Ce qu'elle bâcle régulièrement :
 
 ```
-logique métier complexe        -->  elle invente des règles qui n'existent pas
-sécurité                       -->  code fonctionnel, vulnérabilité invisible
-architecture                   -->  elle suit les patterns populaires, pas les tiens
-tests réels                    -->  elle génère des tests qui passent, pas des tests utiles
-intégration dans ton codebase  -->  elle ne connaît pas tes conventions
+logique métier complexe    --> elle invente des règles qui n'existent pas
+sécurité            --> code fonctionnel, vulnérabilité invisible
+architecture          --> elle suit les patterns populaires, pas les tiens
+tests réels          --> elle génère des tests qui passent, pas des tests utiles
+intégration dans ton codebase --> elle ne connaît pas tes conventions
 ```
 
 La règle d'or : **l'IA génère, toi tu valides**. Pas le contraire.
@@ -46,29 +46,29 @@ Voici comment ça doit tourner dans ta tête, pas comment les tutos Instagram le
 
 ```
 PROBLÈME
-    |
-    v
+  |
+  v
 COMPRENDS le problème toi-même (30 secondes minimum)
-    |
-    v
+  |
+  v
 DÉCOMPOSE ce que tu veux (quoi, pas comment)
-    |
-    v
+  |
+  v
 PROMPT précis à l'IA
-    |
-    v
+  |
+  v
 LIS le code généré ligne par ligne
-    |
-    v
+  |
+  v
 IDENTIFIE ce qui est bon / faux / manquant
-    |
-    v
+  |
+  v
 INTÈGRE ou corrige manuellement
-    |
-    v
+  |
+  v
 TESTE (pas "ça semble marcher" : tes tests automatiques)
-    |
-    v
+  |
+  v
 COMPRENDS pourquoi ça marche
 ```
 
@@ -112,9 +112,9 @@ const deepClone = (obj) => JSON.parse(JSON.stringify(obj))
 
 // Zone rouge : tu réécris toi-même ou tu audites ligne par ligne
 async function verifyToken(token) {
-  // L'IA va produire quelque chose qui "fonctionne"
-  // mais va rater la vérification de l'expiration, l'audience, l'issuer
-  // si tu ne lui dis pas explicitement
+ // L'IA va produire quelque chose qui "fonctionne"
+ // mais va rater la vérification de l'expiration, l'audience, l'issuer
+ // si tu ne lui dis pas explicitement
 }
 ```
 
@@ -171,21 +171,21 @@ Le piège classique : tu renvoies tout l'historique de chat à chaque message po
 ```js
 // Dangereux : pas de limite, pas de contrôle
 async function demanderAOracle(historique, nouveauMessage) {
-  return await client.messages.create({
-    model: "claude-sonnet-4-6",
-    messages: [...historique, nouveauMessage]  // grossit à l'infini
-  })
+ return await client.messages.create({
+  model: "claude-sonnet-4-6",
+  messages: [...historique, nouveauMessage] // grossit à l'infini
+ })
 }
 
 // Mieux : tu gères la fenêtre toi-même
 async function demanderAOracle(historique, nouveauMessage) {
-  const MAX_HISTORIQUE = 10                         // tu décides combien de tours tu gardes
-  const historiqueReduit = historique.slice(-MAX_HISTORIQUE)
-  return await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 1000,                               // tu plafonnes aussi la sortie
-    messages: [...historiqueReduit, nouveauMessage]
-  })
+ const MAX_HISTORIQUE = 10             // tu décides combien de tours tu gardes
+ const historiqueReduit = historique.slice(-MAX_HISTORIQUE)
+ return await client.messages.create({
+  model: "claude-sonnet-4-6",
+  max_tokens: 1000,                // tu plafonnes aussi la sortie
+  messages: [...historiqueReduit, nouveauMessage]
+ })
 }
 ```
 
@@ -193,16 +193,16 @@ Trois réflexes à prendre avant de brancher un LLM en prod :
 
 ```
 1. ESTIME avant de coder
-   --> combien d'appels par jour, combien de tokens par appel, prix par token du modèle
-   --> fais le calcul sur un mois avant de valider l'archi, pas après la facture
+  --> combien d'appels par jour, combien de tokens par appel, prix par token du modèle
+  --> fais le calcul sur un mois avant de valider l'archi, pas après la facture
 
 2. PLAFONNE tout ce qui peut grossir
-   --> max_tokens en sortie, taille de l'historique envoyé, taille des documents joints
-   --> un input non plafonné + un shinobi qui colle un PDF entier = facture qui explose
+  --> max_tokens en sortie, taille de l'historique envoyé, taille des documents joints
+  --> un input non plafonné + un shinobi qui colle un PDF entier = facture qui explose
 
 3. SURVEILLE en prod comme une métrique business
-   --> coût par shinobi actif, pas juste coût total
-   --> alerte si un seul compte génère 1000x la conso moyenne (bug ou abus)
+  --> coût par shinobi actif, pas juste coût total
+  --> alerte si un seul compte génère 1000x la conso moyenne (bug ou abus)
 ```
 
 ---
@@ -215,21 +215,21 @@ En solo c'est simple. En équipe, ça se complique.
 RÈGLES D'ÉQUIPE QUI ÉVITENT LE CHAOS :
 
 1. Code AI = code reviewé comme n'importe quel autre code
-   --> pas de "mais c'est l'IA qui l'a écrit donc ça doit être bon"
+  --> pas de "mais c'est l'IA qui l'a écrit donc ça doit être bon"
 
 2. Tests obligatoires sur tout code généré
-   --> l'IA peut générer des tests aussi, mais un humain valide leur sens
+  --> l'IA peut générer des tests aussi, mais un humain valide leur sens
 
 3. Pas de secrets dans les prompts envoyés à un LLM externe
-   --> clés API, données shinobis, schéma DB : jamais dans le contexte
+  --> clés API, données shinobis, schéma DB : jamais dans le contexte
 
 4. Conventions de codebase explicites
-   --> si tu ne donnes pas ton eslint, tes conventions de nommage, ton architecture
-   --> l'IA va inventer les siennes. C'est le chaos.
+  --> si tu ne donnes pas ton eslint, tes conventions de nommage, ton architecture
+  --> l'IA va inventer les siennes. C'est le chaos.
 
 5. Traçabilité des décisions
-   --> si un module entier vient de l'IA, note-le en commentaire ou ADR
-   --> pour que ton équipe sache qui comprend vraiment ce code
+  --> si un module entier vient de l'IA, note-le en commentaire ou ADR
+  --> pour que ton équipe sache qui comprend vraiment ce code
 ```
 
 ---
@@ -240,21 +240,21 @@ Voici la progression qui te rend difficile à remplacer, même avec l'IA :
 
 ```
 NIVEAU 1 : Tu utilises l'IA comme un moteur de recherche amélioré
-  --> tu demandes des exemples, tu les recopies, ça marche parfois
+ --> tu demandes des exemples, tu les recopies, ça marche parfois
 
 NIVEAU 2 : Tu décomposes le problème avant de prompter
-  --> tu sais ce que tu veux, l'IA t'économise le temps de l'écrire
+ --> tu sais ce que tu veux, l'IA t'économise le temps de l'écrire
 
 NIVEAU 3 : Tu valides et tu corriges la sortie
-  --> tu lis le code, tu vois les bugs, tu améliores
+ --> tu lis le code, tu vois les bugs, tu améliores
 
 NIVEAU 4 : Tu utilises l'IA comme sparring partner
-  --> tu lui soumets TES solutions pour challenger tes choix
-  --> tu lui demandes "qu'est-ce que j'ai raté ?"
+ --> tu lui soumets TES solutions pour challenger tes choix
+ --> tu lui demandes "qu'est-ce que j'ai raté ?"
 
 NIVEAU 5 : Tu arbitres entre plusieurs approches
-  --> tu lui demandes 3 solutions différentes, tu choisis en connaissance de cause
-  --> tu sais pourquoi tu choisis, pas juste laquelle choisir
+ --> tu lui demandes 3 solutions différentes, tu choisis en connaissance de cause
+ --> tu sais pourquoi tu choisis, pas juste laquelle choisir
 ```
 
 L'objectif de MyFunnyJS : t'emmener au niveau 4-5. Pas juste t'apprendre à prompter.

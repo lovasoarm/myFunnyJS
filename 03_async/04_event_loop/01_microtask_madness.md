@@ -16,13 +16,13 @@ JS est single-threaded : une seule chose à la fois, pas de parallélisme natif.
 Mais le moteur gère deux files d'attente avec des priorités différentes.
 
 ```
-CALL STACK           MICROTASK QUEUE        MACROTASK QUEUE
-(exécution)          (haute priorité)       (basse priorité)
------------          ----------------       ---------------
-code sync            Promise.then()         setTimeout()
-                     queueMicrotask()       setInterval()
-                     MutationObserver       setImmediate()
-                     await (résolution)     I/O callbacks
+CALL STACK      MICROTASK QUEUE    MACROTASK QUEUE
+(exécution)     (haute priorité)    (basse priorité)
+-----------     ----------------    ---------------
+code sync      Promise.then()     setTimeout()
+           queueMicrotask()    setInterval()
+           MutationObserver    setImmediate()
+           await (résolution)   I/O callbacks
 ```
 
 La règle d'or :
@@ -34,18 +34,18 @@ call stack vide --> vider toute la microtask queue --> prendre UNE macrotask -->
 C'est ça l'event loop.
 
 ```
-CALL STACK              WEB APIs / Node APIs        TASK QUEUES
-----------              --------------------        -----------
-|  fn()  |  ---------> | fetch (réseau)   |         Microtask :  [ resolvePromise() ]
-|  main()|             | setTimeout       | -------> Macrotask :  [ setTimeout_cb()  ]
-----------             | fs.readFile      |         -----------
-     ^                  --------------------               |
-     |                                                     |
-     +-------------------- EVENT LOOP --------------------+
-                     (call stack vide ?
-                      oui -> microtask en premier,
-                             puis UNE macrotask,
-                             puis recommence)
+CALL STACK       WEB APIs / Node APIs    TASK QUEUES
+----------       --------------------    -----------
+| fn() | ---------> | fetch (réseau)  |     Microtask : [ resolvePromise() ]
+| main()|       | setTimeout    | -------> Macrotask : [ setTimeout_cb() ]
+----------       | fs.readFile   |     -----------
+   ^         --------------------        |
+   |                           |
+   +-------------------- EVENT LOOP --------------------+
+           (call stack vide ?
+           oui -> microtask en premier,
+               puis UNE macrotask,
+               puis recommence)
 
 Ordre de priorité : Microtask AVANT Macrotask, toujours.
 Une Promise résolue passe devant un setTimeout(fn, 0), sans exception.
@@ -59,15 +59,15 @@ Chaque appel de fonction empile une frame. Chaque `return` dépile.
 
 ```js
 function tuer(villain) {
-  return `${villain} est éliminé`
+ return `${villain} est éliminé`
 }
 
 function mission(ninja) {
-  const cible = "Pain"
-  return tuer(cible)
-  // tuer() est empilé par-dessus mission()
-  // quand tuer() return, il est dépilé
-  // mission() continue et return à son tour
+ const cible = "Pain"
+ return tuer(cible)
+ // tuer() est empilé par-dessus mission()
+ // quand tuer() return, il est dépilé
+ // mission() continue et return à son tour
 }
 
 mission("Naruto")
@@ -77,7 +77,7 @@ Visualisation de la pile :
 
 ```
 APPEL :
-[mission("Naruto")]   --> [tuer("Pain")]   --> return "Pain est éliminé"
+[mission("Naruto")]  --> [tuer("Pain")]  --> return "Pain est éliminé"
 
 DÉPILAGE :
 tuer() sort --> mission() sort --> call stack vide
@@ -104,7 +104,7 @@ Sources de microtasks :
 console.log("A")
 
 Promise.resolve().then(() => {
-  console.log("B") // microtask
+ console.log("B") // microtask
 })
 
 console.log("C")
@@ -125,14 +125,14 @@ console.log("C")
 console.log("début")
 
 Promise.resolve()
-  .then(() => {
-    console.log("microtask 1")
-    // on planifie une nouvelle microtask depuis une microtask
-    return Promise.resolve()
-  })
-  .then(() => {
-    console.log("microtask 2")
-  })
+ .then(() => {
+  console.log("microtask 1")
+  // on planifie une nouvelle microtask depuis une microtask
+  return Promise.resolve()
+ })
+ .then(() => {
+  console.log("microtask 2")
+ })
 
 console.log("fin")
 
@@ -142,12 +142,12 @@ console.log("fin")
 Ce qui se passe dans le moteur :
 
 ```
-1. code sync tourne        --> "début", "fin" sont affichés
-2. call stack vide         --> event loop vérifie microtask queue
-3. microtask 1 s'exécute   --> affiche "microtask 1", planifie microtask 2
-4. microtask 2 planifiée   --> elle s'ajoute à la microtask queue
-5. event loop continue     --> microtask 2 s'exécute
-6. queue vide              --> event loop peut passer aux macrotasks
+1. code sync tourne    --> "début", "fin" sont affichés
+2. call stack vide     --> event loop vérifie microtask queue
+3. microtask 1 s'exécute  --> affiche "microtask 1", planifie microtask 2
+4. microtask 2 planifiée  --> elle s'ajoute à la microtask queue
+5. event loop continue   --> microtask 2 s'exécute
+6. queue vide       --> event loop peut passer aux macrotasks
 ```
 
 La microtask queue se vide entièrement avant que l'event loop passe à autre chose.
@@ -161,12 +161,12 @@ Si une microtask en planifie une autre : cette nouvelle s'exécute dans le même
 
 ```js
 async function naruto() {
-  console.log("Naruto commence")
-  
-  await Promise.resolve()
-  // tout ce qui suit le await est une microtask
-  
-  console.log("Naruto finit son rasengan")
+ console.log("Naruto commence")
+ 
+ await Promise.resolve()
+ // tout ce qui suit le await est une microtask
+ 
+ console.log("Naruto finit son rasengan")
 }
 
 console.log("avant")
@@ -179,12 +179,12 @@ console.log("après")
 Ligne par ligne :
 
 ```
-"avant"                   --> code sync
-naruto() est appelée      --> entre dans la fonction
-"Naruto commence"         --> code sync dans naruto()
-await Promise.resolve()   --> suspend naruto(), sort de la fonction
-"après"                   --> code sync du dessus reprend
-call stack vide           --> microtask queue : reprendre naruto()
+"avant"          --> code sync
+naruto() est appelée   --> entre dans la fonction
+"Naruto commence"     --> code sync dans naruto()
+await Promise.resolve()  --> suspend naruto(), sort de la fonction
+"après"          --> code sync du dessus reprend
+call stack vide      --> microtask queue : reprendre naruto()
 "Naruto finit son rasengan" --> suite de naruto()
 ```
 
@@ -200,8 +200,8 @@ Une microtask qui s'appelle elle-même bloque tout.
 ```js
 // NE PAS FAIRE EN PROD
 function blackHole() {
-  Promise.resolve().then(blackHole)
-  // planifie une microtask qui planifie une microtask qui planifie...
+ Promise.resolve().then(blackHole)
+ // planifie une microtask qui planifie une microtask qui planifie...
 }
 
 blackHole()
@@ -231,11 +231,11 @@ Promise.resolve().then(() => console.log("3"))
 console.log("4")
 
 Promise.resolve()
-  .then(() => {
-    console.log("5")
-    return Promise.resolve()
-  })
-  .then(() => console.log("6"))
+ .then(() => {
+  console.log("5")
+  return Promise.resolve()
+ })
+ .then(() => console.log("6"))
 
 setTimeout(() => console.log("7"), 0)
 ```
@@ -251,16 +251,16 @@ Si tu t'es trompé : identifie exactement quelle règle tu as ratée.
 
 ```js
 async function sasuke(jutsu) {
-  console.log(`${jutsu} - début`)
-  
-  const resultat = await fetch_simulé(jutsu)
-  
-  console.log(`${jutsu} - résultat reçu : ${resultat}`)
-  return resultat
+ console.log(`${jutsu} - début`)
+ 
+ const resultat = await fetch_simulé(jutsu)
+ 
+ console.log(`${jutsu} - résultat reçu : ${resultat}`)
+ return resultat
 }
 
 function fetch_simulé(nom) {
-  return Promise.resolve(`${nom} a réussi`)
+ return Promise.resolve(`${nom} a réussi`)
 }
 
 console.log("Départ")
@@ -281,14 +281,14 @@ Il ne le fait pas. Trouve pourquoi et corrige sans changer la logique métier.
 
 ```js
 async function pipeline() {
-  setTimeout(() => console.log("étape 4 : archivage"), 0)
-  
-  console.log("étape 1 : lancement")
-  
-  await Promise.resolve()
-  console.log("étape 3 : traitement")
-  
-  Promise.resolve().then(() => console.log("étape 2 : validation"))
+ setTimeout(() => console.log("étape 4 : archivage"), 0)
+ 
+ console.log("étape 1 : lancement")
+ 
+ await Promise.resolve()
+ console.log("étape 3 : traitement")
+ 
+ Promise.resolve().then(() => console.log("étape 2 : validation"))
 }
 
 pipeline()
@@ -321,18 +321,18 @@ console.log("F")
 
 Timeline :
 ```
-t=0  | STACK       | MICROTASK Q      | MACROTASK Q
+t=0 | STACK    | MICROTASK Q   | MACROTASK Q
 -----|-------------|------------------|-------------------
-     | log("A")    |                  | setTimeout(cb_B)
-     | log("F")    | then(cb_C)       |
-     |             | queueMT(cb_D)    |
-     |             | then(cb_E)       |
+   | log("A")  |         | setTimeout(cb_B)
+   | log("F")  | then(cb_C)    |
+   |       | queueMT(cb_D)  |
+   |       | then(cb_E)    |
 -----|-------------|------------------|-------------------
-     | drain micro | -> log C         |
-     |             | -> log D         |
-     |             | -> log E         |
+   | drain micro | -> log C     |
+   |       | -> log D     |
+   |       | -> log E     |
 -----|-------------|------------------|-------------------
-     | macro tick  |                  | -> log B
+   | macro tick |         | -> log B
 ```
 
 Sortie : `A F C D E B`.

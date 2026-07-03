@@ -49,7 +49,7 @@ let html = "<div><h1>Hello</h1></div>";
 // Maintenant
 let html = `
 <div>
-  <h1>Hello</h1>
+ <h1>Hello</h1>
 </div>
 `;
 ```
@@ -67,8 +67,8 @@ let player = { name: "Blob", hp: 100 };
 
 let html = `
 <div class="player">
-  <h2>${player.name}</h2>
-  <p>HP : ${player.hp}</p>
+ <h2>${player.name}</h2>
+ <p>HP : ${player.hp}</p>
 </div>
 `;
 ```
@@ -93,20 +93,20 @@ Les apps web affichent souvent des listes. On génère le HTML en itérant :
 
 ```javascript
 let players = [
-  { name: "Blob", hp: 100 },
-  { name: "Zorg", hp: 80 },
-  { name: "Kraken", hp: 300 },
+ { name: "Blob", hp: 100 },
+ { name: "Zorg", hp: 80 },
+ { name: "Kraken", hp: 300 },
 ];
 
 let html = "";
 
 players.forEach((player) => {
-  html += `
-  <div class="player">
-    <h3>${player.name}</h3>
-    <p>HP : ${player.hp}</p>
-  </div>
-  `;
+ html += `
+ <div class="player">
+  <h3>${player.name}</h3>
+  <p>HP : ${player.hp}</p>
+ </div>
+ `;
 });
 
 document.body.innerHTML = html;
@@ -122,12 +122,12 @@ Les ingénieurs créent des fonctions de template pour **réutiliser du HTML dyn
 
 ```javascript
 function createPlayerCard(player) {
-  return `
-  <div class="player">
-    <h2>${player.name}</h2>
-    <p>HP : ${player.hp}</p>
-  </div>
-  `;
+ return `
+ <div class="player">
+  <h2>${player.name}</h2>
+  <p>HP : ${player.hp}</p>
+ </div>
+ `;
 }
 
 let card = createPlayerCard({ name: "Blob", hp: 100 });
@@ -171,16 +171,16 @@ Si tu comprends ça, tu comprends le moteur du frontend. Le reste, c'est du conf
 
 ```javascript
 let heroes = [
-  { name: "Blob", level: 5 },
-  { name: "Zorg", level: 9 },
-  { name: "Neko", level: 3 },
+ { name: "Blob", level: 5 },
+ { name: "Zorg", level: 9 },
+ { name: "Neko", level: 3 },
 ];
 ```
 
 Génère une carte HTML pour chaque héros :
 
 ```
-Hero  : Blob
+Hero : Blob
 Level : 5
 ```
 
@@ -202,9 +202,9 @@ Ensuite génère plusieurs armes depuis un tableau.
 
 ```javascript
 [
-  { name: "Goblin", hp: 30 },
-  { name: "Dragon", hp: 500 },
-  { name: "Slime", hp: 10 },
+ { name: "Goblin", hp: 30 },
+ { name: "Dragon", hp: 500 },
+ { name: "Slime", hp: 10 },
 ];
 ```
 
@@ -212,8 +212,8 @@ Génère une liste HTML :
 
 ```html
 <ul>
-  <li>Goblin - 30hp</li>
-  ...
+ <li>Goblin - 30hp</li>
+ ...
 </ul>
 ```
 

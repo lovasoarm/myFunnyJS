@@ -10,12 +10,12 @@ Durée totale enquête : XX min
 - Courbe (6 points minimum) :
 
 ```
-t=10s  rss=___MB   heap=___MB
-t=20s  rss=___MB   heap=___MB
-t=30s  rss=___MB   heap=___MB
-t=40s  rss=___MB   heap=___MB
-t=50s  rss=___MB   heap=___MB
-t=60s  rss=___MB   heap=___MB
+t=10s rss=___MB  heap=___MB
+t=20s rss=___MB  heap=___MB
+t=30s rss=___MB  heap=___MB
+t=40s rss=___MB  heap=___MB
+t=50s rss=___MB  heap=___MB
+t=60s rss=___MB  heap=___MB
 ```
 
 ## 2) Hypothèse initiale (AVANT le snapshot)
@@ -33,9 +33,9 @@ Une phrase. Pas plus. Écrite avant d'ouvrir DevTools.
 
 | Rang | Objet | # Delta | Size Delta | Retainer path (résumé) |
 |------|-------|---------|------------|-------------------------|
-| 1    |       |         |            |                         |
-| 2    |       |         |            |                         |
-| 3    |       |         |            |                         |
+| 1  |    |     |      |             |
+| 2  |    |     |      |             |
+| 3  |    |     |      |             |
 
 ## 5) Cause racine
 
@@ -53,7 +53,7 @@ Une phrase. Pointe la ligne coupable (fichier:ligne).
 Courbe rss APRÈS fix, mêmes 6 points :
 
 ```
-t=10s  rss=___MB
+t=10s rss=___MB
 ...
 ```
 

@@ -1,4 +1,4 @@
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07 (mais le squelette conceptuel est intemporel)
+PÉRISSABLE : vérifié 2026-07 (mais le squelette conceptuel est intemporel)
 
 # POURQUOI CE MODULE EXISTE
 
@@ -31,24 +31,24 @@ C'est le nouveau piège. Ce module l'anatomise.
 ## LES 3 COMPÉTENCES CIBLES
 
 1. **Cahier des charges vérifiable machine.** Un prompt vague donne 40 actions
-   vagues. Un cahier des charges avec critères d'acceptation binaires (tests qui
-   passent, fichier X existe, métrique Y sous seuil Z) borne l'agent.
+  vagues. Un cahier des charges avec critères d'acceptation binaires (tests qui
+  passent, fichier X existe, métrique Y sous seuil Z) borne l'agent.
 2. **Audit d'une trace d'agent.** Lire les 40 actions comme on lit une stack trace :
-   trouver la décision qui a tout dévié.
+  trouver la décision qui a tout dévié.
 3. **Refuser une trace.** Reconnaître qu'un agent a bien fait le job DEMANDÉ mais
-   pas le job VOULU. Politesse à part, savoir revert.
+  pas le job VOULU. Politesse à part, savoir revert.
 
 ---
 
 ## PLAN DU MODULE
 
-- `01_agents_vs_copilots.md`         : différence fondamentale, quand utiliser quoi
-- `02_verifiable_specifications.md`  : écrire un cahier des charges bornable
-- `03_reading_agent_traces.md`       : analyser une trace de 40 actions
-- `04_refusing_a_trace.md`           : l'art du revert argumenté
-- `05_agent_sandbox_hygiene.md`      : sécurité : ce qu'on ne laisse jamais faire
-- `06_agents_grimoire.md`            : synthèse
-- `07_agent_hallucination_gym.md`    : 10 traces piégées, à démonter
+- `01_agents_vs_copilots.md`     : différence fondamentale, quand utiliser quoi
+- `02_verifiable_specifications.md` : écrire un cahier des charges bornable
+- `03_reading_agent_traces.md`    : analyser une trace de 40 actions
+- `04_refusing_a_trace.md`      : l'art du revert argumenté
+- `05_agent_sandbox_hygiene.md`   : sécurité : ce qu'on ne laisse jamais faire
+- `06_agents_grimoire.md`      : synthèse
+- `07_agent_hallucination_gym.md`  : 10 traces piégées, à démonter
 
 ---
 

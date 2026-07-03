@@ -1,7 +1,7 @@
 # GENERICS : ÉCRIRE UNE FOIS, UTILISER POUR N'IMPORTE QUEL TYPE
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu as une fonction qui trie des joueurs de foot. Une autre qui trie des tracks SZA. Une autre qui trie des ninjas. Le code est identique. Seul le type change. Sans les generics, tu copies-colles. Avec les generics, tu écris une fois et c'est fini.
 
@@ -16,9 +16,9 @@ Sans generics, tu as deux options : `any` (qui désactive TS et te protège de r
 ```ts
 // sans generics : version any = TS en mode spectateur
 function getFirst(arr: any[]): any {
-  return arr[0];
-  // TS ne sait pas ce que tu récupères
-  // il va pas te dire si tu appelles .toUpperCase() sur un number
+ return arr[0];
+ // TS ne sait pas ce que tu récupères
+ // il va pas te dire si tu appelles .toUpperCase() sur un number
 }
 
 // résultat : ton editor te ment
@@ -29,8 +29,8 @@ result.toUpperCase(); // TS dit ok:runtime dit TypeError
 ```ts
 // avec generics : TS suit le type d'entrée jusqu'à la sortie
 function getFirst<T>(arr: T[]): T {
-  return arr[0];
-  // T est une variable de type:elle se fixe à l'appel
+ return arr[0];
+ // T est une variable de type:elle se fixe à l'appel
 }
 
 const score = getFirst([10, 20, 30]); // T = number, score est number
@@ -45,12 +45,12 @@ score.toUpperCase(); // ERREUR de compilation : parfait, c'est ce qu'on veut
 ```ts
 // une variable de type entre chevrons
 function identity<T>(value: T): T {
-  return value;
+ return value;
 }
 
 // plusieurs variables de type
 function pair<A, B>(a: A, b: B): [A, B] {
-  return [a, b];
+ return [a, b];
 }
 
 // inférence : TS devine T tout seul si possible
@@ -68,22 +68,22 @@ const z = identity<boolean>(true);
 ```ts
 // une interface générique pour une réponse API
 interface ApiResponse<T> {
-  data: T;
-  status: number;
-  timestamp: string;
+ data: T;
+ status: number;
+ timestamp: string;
 }
 
 // interface pour un joueur de foot
 interface Player {
-  name: string;
-  goals: number;
+ name: string;
+ goals: number;
 }
 
 // tu l'utilises avec le bon type
 const response: ApiResponse<Player> = {
-  data: { name: "Mbappé", goals: 31 },
-  status: 200,
-  timestamp: "2026-03-15",
+ data: { name: "Mbappé", goals: 31 },
+ status: 200,
+ timestamp: "2026-03-15",
 };
 
 // et TS sait que response.data.goals est un number
@@ -93,30 +93,30 @@ const response: ApiResponse<Player> = {
 ```ts
 // generic pour une pile (stack):on en a parlé en module 09
 interface Stack<T> {
-  push(item: T): void;
-  pop(): T | undefined;
-  peek(): T | undefined;
-  size: number;
+ push(item: T): void;
+ pop(): T | undefined;
+ peek(): T | undefined;
+ size: number;
 }
 
 class NinjaStack<T> implements Stack<T> {
-  private items: T[] = [];
+ private items: T[] = [];
 
-  push(item: T): void {
-    this.items.push(item);
-  }
+ push(item: T): void {
+  this.items.push(item);
+ }
 
-  pop(): T | undefined {
-    return this.items.pop();
-  }
+ pop(): T | undefined {
+  return this.items.pop();
+ }
 
-  peek(): T | undefined {
-    return this.items[this.items.length - 1];
-  }
+ peek(): T | undefined {
+  return this.items[this.items.length - 1];
+ }
 
-  get size(): number {
-    return this.items.length;
-  }
+ get size(): number {
+  return this.items.length;
+ }
 }
 
 const chakraStack = new NinjaStack<number>();
@@ -134,12 +134,12 @@ Parfois T peut être n'importe quoi, mais toi t'as besoin qu'il ait certaines pr
 ```ts
 // sans contrainte : TS ne sait pas si T a une propriété name
 function getPlayerName<T>(player: T): string {
-  return player.name; // ERREUR : Property 'name' does not exist on type 'T'
+ return player.name; // ERREUR : Property 'name' does not exist on type 'T'
 }
 
 // avec contrainte : on dit que T doit avoir au minimum une propriété name
 function getPlayerName<T extends { name: string }>(player: T): string {
-  return player.name; // OK
+ return player.name; // OK
 }
 
 // ça marche avec n'importe quel objet qui a un name
@@ -151,16 +151,16 @@ getPlayerName({ goals: 31 }); // ERREUR : name manque
 ```ts
 // contrainte avec une interface
 interface HasId {
-  id: number;
+ id: number;
 }
 
 function findById<T extends HasId>(items: T[], id: number): T | undefined {
-  return items.find((item) => item.id === id);
+ return items.find((item) => item.id === id);
 }
 
 const ninjas = [
-  { id: 1, name: "Naruto", chakra: 1000 },
-  { id: 2, name: "Sasuke", chakra: 800 },
+ { id: 1, name: "Naruto", chakra: 1000 },
+ { id: 2, name: "Sasuke", chakra: 800 },
 ];
 
 const found = findById(ninjas, 1); // T = { id: number, name: string, chakra: number }
@@ -175,8 +175,8 @@ found?.name; // TS sait que c'est un string
 // K extends keyof T : K doit être une clé qui existe sur T
 // c'est un des patterns les plus utiles en TS
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-  return obj[key];
-  // T[K] = le type de la valeur à la clé K dans T
+ return obj[key];
+ // T[K] = le type de la valeur à la clé K dans T
 }
 
 const player = { name: "Ronaldo", goals: 450, club: "Al-Nassr" };
@@ -193,18 +193,18 @@ getProperty(player, "rating"); // ERREUR : "rating" n'existe pas sur ce type
 ```ts
 // filter typé : même signature que Array.filter mais plus explicite
 function filter<T>(arr: T[], predicate: (item: T) => boolean): T[] {
-  return arr.filter(predicate);
+ return arr.filter(predicate);
 }
 
 // map typé : T en entrée, U en sortie
 function transform<T, U>(arr: T[], mapper: (item: T) => U): U[] {
-  return arr.map(mapper);
+ return arr.map(mapper);
 }
 
 const players = [
-  { name: "Messi", goals: 31 },
-  { name: "Haaland", goals: 28 },
-  { name: "Mbappé", goals: 35 },
+ { name: "Messi", goals: 31 },
+ { name: "Haaland", goals: 28 },
+ { name: "Mbappé", goals: 35 },
 ];
 
 // T = { name: string, goals: number }
@@ -222,8 +222,8 @@ const names = transform(players, (p) => p.name);
 ```ts
 // piège : utiliser any comme T
 function broken<T>(a: T, b: any): T {
-  return b; // TS accepte parce que any est assignable à tout
-  // mais en runtime, b peut être n'importe quoi
+ return b; // TS accepte parce que any est assignable à tout
+ // mais en runtime, b peut être n'importe quoi
 }
 
 const result = broken<number>("naruto", { goals: 31 });
@@ -235,13 +235,13 @@ const result = broken<number>("naruto", { goals: 31 });
 ```ts
 // piège : assumer que T[] a des méthodes de number
 function sum<T>(arr: T[]): number {
-  return arr.reduce((acc, val) => acc + val, 0);
-  // ERREUR : + n'est pas garanti sur T
+ return arr.reduce((acc, val) => acc + val, 0);
+ // ERREUR : + n'est pas garanti sur T
 }
 
 // correct : contraindre T
 function sum<T extends number>(arr: T[]): number {
-  return arr.reduce((acc, val) => acc + val, 0);
+ return arr.reduce((acc, val) => acc + val, 0);
 }
 ```
 

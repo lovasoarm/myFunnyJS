@@ -34,14 +34,14 @@ C'est volontaire. Tu dois d'abord ressentir la douleur de lire ce fichier avant 
 ```
 src/
 ├── legacy/
-│   └── voteCalculator.js          le code pourri d'origine, gardé pour comparaison
+│  └── voteCalculator.js     le code pourri d'origine, gardé pour comparaison
 ├── strategies/
-│   ├── voteStrategy.ts            l'interface commune
-│   ├── standardStrategy.ts
-│   ├── pondereeStrategy.ts
-│   └── continentaleStrategy.ts
-├── voteCalculator.ts              la nouvelle version, propre, typée
-└── types.ts                       tous les types et interfaces du domaine
+│  ├── voteStrategy.ts      l'interface commune
+│  ├── standardStrategy.ts
+│  ├── pondereeStrategy.ts
+│  └── continentaleStrategy.ts
+├── voteCalculator.ts       la nouvelle version, propre, typée
+└── types.ts            tous les types et interfaces du domaine
 
 tests/
 └── voteCalculator.test.ts

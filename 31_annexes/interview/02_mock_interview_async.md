@@ -15,13 +15,13 @@ Un worker Node traite des jobs. Le code est censé traiter 100 jobs en parallèl
 
 ```js
 async function runAll(jobs) {
-  const results = [];
-  jobs.forEach(async (job) => {
-    const r = await process(job);
-    results.push(r);
-  });
-  console.log("TERMINÉ", results.length);
-  return results;
+ const results = [];
+ jobs.forEach(async (job) => {
+  const r = await process(job);
+  results.push(r);
+ });
+ console.log("TERMINÉ", results.length);
+ return results;
 }
 ```
 

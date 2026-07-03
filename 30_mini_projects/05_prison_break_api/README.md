@@ -12,18 +12,18 @@ Fox River State Penitentiary. Michael Scofield a tatoué le plan sur son corps. 
 
 ```
 $ curl -X POST http://localhost:3000/auth/chakra_gate \
-  -H "Content-Type: application/json" \
-  -d '{"code": "scofield-83712", "pin": "S0a0r0i3"}'
+ -H "Content-Type: application/json" \
+ -d '{"code": "scofield-83712", "pin": "S0a0r0i3"}'
 
 { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "role": "inmate" }
 
 $ curl http://localhost:3000/plan/phase/2 \
-  -H "Authorization: Bearer eyJhbGc..."
+ -H "Authorization: Bearer eyJhbGc..."
 
 { "phase": 2, "objectif": "Infirmerie", "acces": ["couloir-C", "ventilation-3"] }
 
 $ curl -X POST http://localhost:3000/auth/chakra_gate \
-  -d '{"code": "tbag"; DROP TABLE prisonniers; --", "pin": "x"}'
+ -d '{"code": "tbag"; DROP TABLE prisonniers; --", "pin": "x"}'
 
 { "error": "InvalidCredentialsError", "code": 401 }
 // T-Bag n'a rien cassé
@@ -34,16 +34,16 @@ $ curl -X POST http://localhost:3000/auth/chakra_gate \
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : PORT (optionnel, défaut 3000)
+Node.js    : v20+
+npm      : v10+
+Variables env : PORT (optionnel, défaut 3000)
 Outils externes: aucun (SQLite embedded via better-sqlite3)
 ```
 
 ```bash
 npm install
-node src/server.js   # démarre l'API
-npm test              # tests (ne pas lancer le serveur en parallèle)
+node src/server.js  # démarre l'API
+npm test       # tests (ne pas lancer le serveur en parallèle)
 ```
 
 ---
@@ -52,34 +52,34 @@ npm test              # tests (ne pas lancer le serveur en parallèle)
 
 ```
 src/
-├── server.js               # point d'entrée Express
+├── server.js        # point d'entrée Express
 │
 ├── routes/
-│   ├── authRoutes.js       # POST /auth/chakra_gate, POST /auth/refresh
-│   ├── prisonnierRoutes.js # CRUD sur les profils
-│   ├── planRoutes.js       # GET /plan/phase/:n (auth requise)
-│   └── sectionRoutes.js    # GET /sections/:id/logs (accès restreint)
+│  ├── authRoutes.js    # POST /auth/chakra_gate, POST /auth/refresh
+│  ├── prisonnierRoutes.js # CRUD sur les profils
+│  ├── planRoutes.js    # GET /plan/phase/:n (auth requise)
+│  └── sectionRoutes.js  # GET /sections/:id/logs (accès restreint)
 │
 ├── middleware/
-│   ├── authMiddleware.js   # vérifie et décode le JWT
-│   ├── rateLimiter.js      # 5 tentatives max / 15min par IP sur /chakra_gate
-│   ├── sanitizer.js        # nettoyage des inputs contre XSS et injection SQL
-│   └── errorHandler.js     # handler global : format d'erreur uniforme
+│  ├── authMiddleware.js  # vérifie et décode le JWT
+│  ├── rateLimiter.js   # 5 tentatives max / 15min par IP sur /chakra_gate
+│  ├── sanitizer.js    # nettoyage des inputs contre XSS et injection SQL
+│  └── errorHandler.js   # handler global : format d'erreur uniforme
 │
 ├── services/
-│   ├── authService.js      # sign, verify, refresh du JWT
-│   ├── prisonnierService.js
-│   └── planService.js
+│  ├── authService.js   # sign, verify, refresh du JWT
+│  ├── prisonnierService.js
+│  └── planService.js
 │
 ├── db/
-│   ├── connection.js       # connexion SQLite unique (singleton)
-│   ├── schema.sql          # DDL : tables, indexes, contraintes
-│   └── seed.js             # données initiales (Fox River prêt à l'emploi)
+│  ├── connection.js    # connexion SQLite unique (singleton)
+│  ├── schema.sql     # DDL : tables, indexes, contraintes
+│  └── seed.js       # données initiales (Fox River prêt à l'emploi)
 │
 └── errors/
-    ├── AuthError.js
-    ├── NotFoundError.js
-    └── ForbiddenError.js
+  ├── AuthError.js
+  ├── NotFoundError.js
+  └── ForbiddenError.js
 
 tests/
 ├── auth.test.js
@@ -92,26 +92,26 @@ Flux d'une requête :
 
 ```
 client
-  --> rateLimiter (bloque si trop de tentatives)
-  --> sanitizer (nettoie l'input)
-  --> authMiddleware (vérifie le JWT si route protégée)
-  --> route handler
-  --> service
-  --> db
-  --> errorHandler (si ça plante)
-  --> client
+ --> rateLimiter (bloque si trop de tentatives)
+ --> sanitizer (nettoie l'input)
+ --> authMiddleware (vérifie le JWT si route protégée)
+ --> route handler
+ --> service
+ --> db
+ --> errorHandler (si ça plante)
+ --> client
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module            | Où ça se voit                                            |
+| Module      | Où ça se voit                      |
 | ----------------- | -------------------------------------------------------- |
-| `21_api_craft`    | Express complet, CRUD, error middleware, OpenAPI         |
-| `22_security`     | JWT, bcrypt, rate limiting, sanitization XSS/SQL         |
-| `24_databases`    | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `18_web_concepts` | HTTP verbes, status codes, browser render pipeline       |
+| `21_api_craft`  | Express complet, CRUD, error middleware, OpenAPI     |
+| `22_security`   | JWT, bcrypt, rate limiting, sanitization XSS/SQL     |
+| `24_databases`  | SQLite, modélisation, indexes, Redis cache sur les plans |
+| `18_web_concepts` | HTTP verbes, status codes, browser render pipeline    |
 
 ---
 
@@ -130,15 +130,15 @@ client
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md    --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md     --> ce qui a coincé, ce qui a été appris
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

@@ -1,7 +1,7 @@
 # Se souvenir vite pour ne pas redemander à chaque fois
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ta DB répond en 50ms à une requête. C'est rapide sur le papier. Mais si 10 000 shinobis demandent le même profil de mission à la seconde, tu refais ce calcul de 50ms 10 000 fois pour le même résultat. Le cache (mémoire tampon rapide) dit : calcule une fois, garde le résultat, ressors-le instantanément la prochaine fois.
 
@@ -18,36 +18,36 @@ Le pattern le plus courant : ton appli vérifie le cache avant d'aller en DB.
 
 ```
 REQUÊTE arrive
-    |
-    v
+  |
+  v
 Cache contient la donnée ?
-    |
-   OUI ---------> retourne direct (cache HIT, rapide)
-    |
-   NON
-    |
-    v
+  |
+  OUI ---------> retourne direct (cache HIT, rapide)
+  |
+  NON
+  |
+  v
 Va chercher en DB (cache MISS)
-    |
-    v
+  |
+  v
 Stocke le résultat dans le cache
-    |
-    v
+  |
+  v
 Retourne la donnée
 ```
 
 ```js
 async function getMission(id) {
-  const cacheKey = `mission:${id}`
-  const cached = await redis.get(cacheKey)
+ const cacheKey = `mission:${id}`
+ const cached = await redis.get(cacheKey)
 
-  if (cached) {
-    return JSON.parse(cached) // cache HIT, pas de requête DB du tout
-  }
+ if (cached) {
+  return JSON.parse(cached) // cache HIT, pas de requête DB du tout
+ }
 
-  const mission = await db.query('SELECT * FROM missions WHERE id = $1', [id])
-  await redis.set(cacheKey, JSON.stringify(mission), 'EX', 3600) // TTL 1h
-  return mission
+ const mission = await db.query('SELECT * FROM missions WHERE id = $1', [id])
+ await redis.set(cacheKey, JSON.stringify(mission), 'EX', 3600) // TTL 1h
+ return mission
 }
 ```
 
@@ -60,9 +60,9 @@ Le pourquoi : la première requête paie le coût DB, toutes les suivantes (pend
 TTL (time to live : durée de vie) définit combien de temps une clé reste valide avant expiration automatique.
 
 ```js
-await redis.set('session:abc123', data, 'EX', 3600)    // expire en 1h
-await redis.set('cache:ranking', json, 'EX', 60)        // expire en 1 minute
-await redis.set('otp:ninja:42', '482913', 'EX', 300)    // code OTP, expire en 5 min
+await redis.set('session:abc123', data, 'EX', 3600)  // expire en 1h
+await redis.set('cache:ranking', json, 'EX', 60)    // expire en 1 minute
+await redis.set('otp:ninja:42', '482913', 'EX', 300)  // code OTP, expire en 5 min
 ```
 
 Le pourquoi : sans TTL, une clé reste en RAM pour toujours, même si la donnée sous-jacente a changé en DB depuis longtemps. Tu finis par servir des données complètement obsolètes (stale data) à l'infini, ou par saturer la RAM avec des clés mortes que personne ne nettoie.
@@ -137,20 +137,20 @@ Le pourquoi : utiliser la bonne structure native évite de tout faire en JSON st
 
 ```
 CACHE-ASIDE (lazy loading)
-  --> l'appli vérifie le cache, sinon va en DB et remplit le cache
-  --> simple, le cache ne contient que ce qui a vraiment été demandé
+ --> l'appli vérifie le cache, sinon va en DB et remplit le cache
+ --> simple, le cache ne contient que ce qui a vraiment été demandé
 
 WRITE-THROUGH
-  --> chaque écriture en DB écrit AUSSI dans le cache, immédiatement
-  --> cache toujours à jour, mais chaque écriture coûte un peu plus cher
+ --> chaque écriture en DB écrit AUSSI dans le cache, immédiatement
+ --> cache toujours à jour, mais chaque écriture coûte un peu plus cher
 
 WRITE-BEHIND (write-back)
-  --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
-  --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
+ --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
+ --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
 
 STALE-WHILE-REVALIDATE (vu aussi dans 18_web_concepts/04_caching_strategies)
-  --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
-  --> l'shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
+ --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
+ --> l'shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```
 
 Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through quand la cohérence cache/DB est critique. Write-behind quand la vitesse d'écriture prime sur tout (analytics, compteurs de vues) et qu'une perte rare est tolérable.
@@ -162,11 +162,11 @@ Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through q
 ```js
 // exemple minimal : ça marche tranquille en dev
 async function getNinjaRanking() {
-  const cached = await redis.get('ninja:ranking:full')
-  if (cached) return JSON.parse(cached)
-  const ranking = await computeExpensiveRanking() // coûte 2 secondes à générer
-  await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
-  return ranking
+ const cached = await redis.get('ninja:ranking:full')
+ if (cached) return JSON.parse(cached)
+ const ranking = await computeExpensiveRanking() // coûte 2 secondes à générer
+ await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
+ return ranking
 }
 
 // exemple réaliste : 10 000 shinobis arrivent sur le tableau de classement
@@ -183,20 +183,20 @@ La correction : un verrou (lock) qui dit "une seule requête recalcule, les autr
 
 ```js
 async function getNinjaRanking() {
-  const cached = await redis.get('ninja:ranking:full')
-  if (cached) return JSON.parse(cached)
+ const cached = await redis.get('ninja:ranking:full')
+ if (cached) return JSON.parse(cached)
 
-  const lockAcquired = await redis.set('ranking:lock', '1', 'NX', 'EX', 5) // NX = only if not exists
-  if (!lockAcquired) {
-    // une autre requête recalcule déjà : on attend un peu et on relit le cache
-    await sleep(100)
-    return JSON.parse(await redis.get('ninja:ranking:full') ?? '[]')
-  }
+ const lockAcquired = await redis.set('ranking:lock', '1', 'NX', 'EX', 5) // NX = only if not exists
+ if (!lockAcquired) {
+  // une autre requête recalcule déjà : on attend un peu et on relit le cache
+  await sleep(100)
+  return JSON.parse(await redis.get('ninja:ranking:full') ?? '[]')
+ }
 
-  const ranking = await computeExpensiveRanking()
-  await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
-  await redis.del('ranking:lock')
-  return ranking
+ const ranking = await computeExpensiveRanking()
+ await redis.set('ninja:ranking:full', JSON.stringify(ranking), 'EX', 60)
+ await redis.del('ranking:lock')
+ return ranking
 }
 ```
 

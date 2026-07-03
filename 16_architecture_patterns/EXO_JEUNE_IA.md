@@ -9,7 +9,7 @@ Sans aucune assistance IA, sans autocompletion generative, resous le `drill_2` d
 ## Critere de reussite (deterministe)
 ```bash
 bash verification_pack/16_architecture_patterns/verify.sh solution.js
-# doit afficher : drill 2  OK
+# doit afficher : drill 2 OK
 ```
 
 ## Preuve a livrer

@@ -33,18 +33,18 @@ $ node src/cli.js consume --resource food --amount 3
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
+Node.js    : v20+
+npm      : v10+
 Outils externes: Playwright (installé via npm install)
 ```
 
 ```bash
 npm install
-npx playwright install chromium   # navigateur pour les tests E2E
+npx playwright install chromium  # navigateur pour les tests E2E
 
-node src/cli.js status   # interagir avec le camp
-npm test                  # tests unitaires + intégration
-npm run test:e2e          # tests E2E Playwright
+node src/cli.js status  # interagir avec le camp
+npm test         # tests unitaires + intégration
+npm run test:e2e     # tests E2E Playwright
 ```
 
 Pas de serveur web : le camp se gère en ligne de ordre_mission. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
@@ -55,49 +55,49 @@ Pas de serveur web : le camp se gère en ligne de ordre_mission. Playwright test
 
 ```
 legacy/
-└── campV1.js              # le spaghetti original : JAMAIS modifié, référence comportementale
+└── campV1.js       # le spaghetti original : JAMAIS modifié, référence comportementale
 
 src/
-├── cli.js                  # point d'entrée
-├── parser/argsParser.js    # parse process.argv
+├── cli.js         # point d'entrée
+├── parser/argsParser.js  # parse process.argv
 ├── router/commandRouter.js # route vers le bon handler
-├── handlers/               # statusHandler, consumeHandler, rotateGuardsHandler, addThreatHandler, resetHandler
-├── services/               # inventoryService, guardService, securityService : état pur, zéro fs direct
-├── store/fileStore.js      # seul point d'accès au filesystem (fs.promises)
-├── alerts/alertService.js  # seuils et alertes
-├── workers/threatSimulator.js  # Worker Thread, simulation de vagues de menaces
-├── logger/structuredLogger.js  # JSON logging (logs/camp.jsonl)
-└── debug/scenarioReplayer.js   # rejoue un état passé depuis les logs
+├── handlers/        # statusHandler, consumeHandler, rotateGuardsHandler, addThreatHandler, resetHandler
+├── services/        # inventoryService, guardService, securityService : état pur, zéro fs direct
+├── store/fileStore.js   # seul point d'accès au filesystem (fs.promises)
+├── alerts/alertService.js # seuils et alertes
+├── workers/threatSimulator.js # Worker Thread, simulation de vagues de menaces
+├── logger/structuredLogger.js # JSON logging (logs/camp.jsonl)
+└── debug/scenarioReplayer.js  # rejoue un état passé depuis les logs
 
-tests/        # unit + intégration
-e2e/          # Playwright
-mocks/        # fileStore.mock.js, alertService.mock.js
+tests/    # unit + intégration
+e2e/     # Playwright
+mocks/    # fileStore.mock.js, alertService.mock.js
 ```
 
 Flux d'une ordre_mission :
 
 ```
 node src/cli.js consume --resource food --amount 3
-  --> argsParser.parse(process.argv)
-  --> commandRouter.route(parsedArgs)
-  --> consumeHandler.execute(args)
-        --> inventoryService.consume('food', 3)   // état pur, pas de fs ici
-              --> fileStore.read / fileStore.write  // c'est le handler qui lit/écrit
-              --> alertService.check(updated)
-        --> logger.info('consume', { resource: 'food', amount: 3, remaining: 11 })
-        --> renderer.print(result)
+ --> argsParser.parse(process.argv)
+ --> commandRouter.route(parsedArgs)
+ --> consumeHandler.execute(args)
+    --> inventoryService.consume('food', 3)  // état pur, pas de fs ici
+       --> fileStore.read / fileStore.write // c'est le handler qui lit/écrit
+       --> alertService.check(updated)
+    --> logger.info('consume', { resource: 'food', amount: 3, remaining: 11 })
+    --> renderer.print(result)
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module           | Où ça se voit                                                                        |
+| Module      | Où ça se voit                                    |
 | ---------------- | ------------------------------------------------------------------------------------ |
-| `06_testing`     | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`                         |
-| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés                                  |
+| `06_testing`   | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`             |
+| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés                 |
 | `16_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
-| `32_tools`       | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)                 |
+| `32_tools`    | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)         |
 
 ---
 
@@ -107,7 +107,7 @@ node src/cli.js consume --resource food --amount 3
 1. legacy/campV1.js reste intact, jamais modifié : c'est la référence comportementale
 2. Aucune feature sans test rouge écrit avant : red/green/refactor, toujours
 3. Les services ne touchent jamais le filesystem directement : ils reçoivent
-   un état, retournent un nouvel état. Seul le handler appelle fileStore.
+  un état, retournent un nouvel état. Seul le handler appelle fileStore.
 ```
 
 ---
@@ -115,15 +115,15 @@ node src/cli.js consume --resource food --amount 3
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction en 2 phases, cas limites
-TDD_JOURNAL.md        --> phase 1 (couvrir le legacy) puis phase 2 (TDD sur la v2)
-POSTMORTEM.md         --> différences de comportement entre v1 et v2
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction en 2 phases, cas limites
+TDD_JOURNAL.md    --> phase 1 (couvrir le legacy) puis phase 2 (TDD sur la v2)
+POSTMORTEM.md     --> différences de comportement entre v1 et v2
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

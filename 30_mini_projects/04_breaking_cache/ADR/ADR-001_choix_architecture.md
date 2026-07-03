@@ -16,13 +16,13 @@ Tous les algorithmes et structures de données sont implémentés from scratch. 
 
 ```
 src/
-├── graph.js          (graphe orienté pondéré : adjacency list)
-├── heap.js           (min-heap : insert en O(log n), extractMin en O(log n))
-├── dijkstra.js       (chemin le plus court : O((V + E) log V) avec heap)
-├── bfs.js            (routes compromises : O(V + E))
-├── sorting.js        (mergeSort + quickSort : avec benchmarks comparatifs)
-├── knapsack.js       (DP tabulation : O(n × W) avec W = capacité du stock)
-└── profiler.js       (wrappeur performance.now() autour de chaque algo)
+├── graph.js     (graphe orienté pondéré : adjacency list)
+├── heap.js      (min-heap : insert en O(log n), extractMin en O(log n))
+├── dijkstra.js    (chemin le plus court : O((V + E) log V) avec heap)
+├── bfs.js      (routes compromises : O(V + E))
+├── sorting.js    (mergeSort + quickSort : avec benchmarks comparatifs)
+├── knapsack.js    (DP tabulation : O(n × W) avec W = capacité du stock)
+└── profiler.js    (wrappeur performance.now() autour de chaque algo)
 ```
 
 ## Alternatives considérées

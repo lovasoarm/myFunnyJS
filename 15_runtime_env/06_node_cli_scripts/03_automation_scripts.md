@@ -16,33 +16,33 @@ import { readdir, rename } from 'node:fs/promises'
 import path from 'node:path'
 
 async function normalizeFilenames(dir) {
-  const files = await readdir(dir)
-  const videoFiles = files.filter(f => f.endsWith('.mp4'))
+ const files = await readdir(dir)
+ const videoFiles = files.filter(f => f.endsWith('.mp4'))
 
-  const results = { renamed: 0, skipped: 0, errors: [] }
+ const results = { renamed: 0, skipped: 0, errors: [] }
 
-  for (const [index, filename] of videoFiles.entries()) {
-    const oldPath = path.join(dir, filename)
-    // format normalisé : numéro sur 3 chiffres, kebab-case
-    const number = String(index + 1).padStart(3, '0')
-    const newName = `2026-06-01_match-${number}.mp4`
-    const newPath = path.join(dir, newName)
+ for (const [index, filename] of videoFiles.entries()) {
+  const oldPath = path.join(dir, filename)
+  // format normalisé : numéro sur 3 chiffres, kebab-case
+  const number = String(index + 1).padStart(3, '0')
+  const newName = `2026-06-01_match-${number}.mp4`
+  const newPath = path.join(dir, newName)
 
-    if (filename === newName) {
-      results.skipped++
-      continue
-    }
-
-    try {
-      await rename(oldPath, newPath)
-      console.log(`${filename} --> ${newName}`)
-      results.renamed++
-    } catch (err) {
-      results.errors.push({ file: filename, error: err.message })
-    }
+  if (filename === newName) {
+   results.skipped++
+   continue
   }
 
-  return results
+  try {
+   await rename(oldPath, newPath)
+   console.log(`${filename} --> ${newName}`)
+   results.renamed++
+  } catch (err) {
+   results.errors.push({ file: filename, error: err.message })
+  }
+ }
+
+ return results
 }
 ```
 
@@ -60,48 +60,48 @@ import { createInterface } from 'node:readline'
 import path from 'node:path'
 
 async function csvToJson(inputPath, outputDir) {
-  await mkdir(outputDir, { recursive: true })
+ await mkdir(outputDir, { recursive: true })
 
-  const stream = createReadStream(inputPath)
-  const rl = createInterface({ input: stream })
+ const stream = createReadStream(inputPath)
+ const rl = createInterface({ input: stream })
 
-  let headers = null
-  const records = []
+ let headers = null
+ const records = []
 
-  for await (const line of rl) {
-    if (!line.trim()) continue
+ for await (const line of rl) {
+  if (!line.trim()) continue
 
-    const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''))
+  const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''))
 
-    if (!headers) {
-      headers = values  // première ligne = headers
-      continue
-    }
-
-    // assembler un objet depuis les headers et les valeurs
-    const record = Object.fromEntries(
-      headers.map((h, i) => [h, values[i] ?? null])
-    )
-    records.push(record)
+  if (!headers) {
+   headers = values // première ligne = headers
+   continue
   }
 
-  // enrichir les données avant de les écrire
-  const enriched = records.map((r, i) => ({
-    ...r,
-    id: i + 1,
-    processedAt: new Date().toISOString(),
-    // convertir les champs numériques
-    goals: parseInt(r.goals, 10) || 0,
-    assists: parseInt(r.assists, 10) || 0,
-  }))
-
-  const outputPath = path.join(
-    outputDir,
-    path.basename(inputPath, '.csv') + '.json'
+  // assembler un objet depuis les headers et les valeurs
+  const record = Object.fromEntries(
+   headers.map((h, i) => [h, values[i] ?? null])
   )
-  await writeFile(outputPath, JSON.stringify(enriched, null, 2))
+  records.push(record)
+ }
 
-  return { input: inputPath, output: outputPath, count: enriched.length }
+ // enrichir les données avant de les écrire
+ const enriched = records.map((r, i) => ({
+  ...r,
+  id: i + 1,
+  processedAt: new Date().toISOString(),
+  // convertir les champs numériques
+  goals: parseInt(r.goals, 10) || 0,
+  assists: parseInt(r.assists, 10) || 0,
+ }))
+
+ const outputPath = path.join(
+  outputDir,
+  path.basename(inputPath, '.csv') + '.json'
+ )
+ await writeFile(outputPath, JSON.stringify(enriched, null, 2))
+
+ return { input: inputPath, output: outputPath, count: enriched.length }
 }
 ```
 
@@ -117,49 +117,49 @@ import { readdir, stat, copyFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 
 async function syncDirs(source, dest) {
-  await mkdir(dest, { recursive: true })
+ await mkdir(dest, { recursive: true })
 
-  const entries = await readdir(source, { withFileTypes: true })
-  const report = { copied: [], skipped: [], errors: [] }
+ const entries = await readdir(source, { withFileTypes: true })
+ const report = { copied: [], skipped: [], errors: [] }
 
-  for (const entry of entries) {
-    const srcPath = path.join(source, entry.name)
-    const destPath = path.join(dest, entry.name)
+ for (const entry of entries) {
+  const srcPath = path.join(source, entry.name)
+  const destPath = path.join(dest, entry.name)
 
-    if (entry.isDirectory()) {
-      // récursion dans les sous-dossiers
-      const sub = await syncDirs(srcPath, destPath)
-      report.copied.push(...sub.copied)
-      report.skipped.push(...sub.skipped)
-      report.errors.push(...sub.errors)
-      continue
-    }
-
-    try {
-      const srcStat = await stat(srcPath)
-      let destStat = null
-
-      try {
-        destStat = await stat(destPath)
-      } catch {
-        // destination n'existe pas encore
-      }
-
-      const shouldCopy = !destStat || srcStat.mtime > destStat.mtime
-      // copier si : fichier absent OU source plus récente que destination
-
-      if (shouldCopy) {
-        await copyFile(srcPath, destPath)
-        report.copied.push(entry.name)
-      } else {
-        report.skipped.push(entry.name)
-      }
-    } catch (err) {
-      report.errors.push({ file: entry.name, error: err.message })
-    }
+  if (entry.isDirectory()) {
+   // récursion dans les sous-dossiers
+   const sub = await syncDirs(srcPath, destPath)
+   report.copied.push(...sub.copied)
+   report.skipped.push(...sub.skipped)
+   report.errors.push(...sub.errors)
+   continue
   }
 
-  return report
+  try {
+   const srcStat = await stat(srcPath)
+   let destStat = null
+
+   try {
+    destStat = await stat(destPath)
+   } catch {
+    // destination n'existe pas encore
+   }
+
+   const shouldCopy = !destStat || srcStat.mtime > destStat.mtime
+   // copier si : fichier absent OU source plus récente que destination
+
+   if (shouldCopy) {
+    await copyFile(srcPath, destPath)
+    report.copied.push(entry.name)
+   } else {
+    report.skipped.push(entry.name)
+   }
+  } catch (err) {
+   report.errors.push({ file: entry.name, error: err.message })
+  }
+ }
+
+ return report
 }
 ```
 
@@ -171,44 +171,44 @@ async function syncDirs(source, dest) {
 // générer un rapport markdown depuis des données JSON
 
 async function generateReport(votes, outputPath) {
-  // agréger les données
-  const byPlayer = {}
-  votes.forEach(({ player, points, journalist }) => {
-    if (!byPlayer[player]) {
-      byPlayer[player] = { points: 0, votes: 0, journalists: [] }
-    }
-    byPlayer[player].points += points
-    byPlayer[player].votes++
-    byPlayer[player].journalists.push(journalist)
-  })
+ // agréger les données
+ const byPlayer = {}
+ votes.forEach(({ player, points, journalist }) => {
+  if (!byPlayer[player]) {
+   byPlayer[player] = { points: 0, votes: 0, journalists: [] }
+  }
+  byPlayer[player].points += points
+  byPlayer[player].votes++
+  byPlayer[player].journalists.push(journalist)
+ })
 
-  // trier par points décroissants
-  const ranking = Object.entries(byPlayer)
-    .sort(([, a], [, b]) => b.points - a.points)
-    .map(([player, stats], index) => ({ rank: index + 1, player, ...stats }))
+ // trier par points décroissants
+ const ranking = Object.entries(byPlayer)
+  .sort(([, a], [, b]) => b.points - a.points)
+  .map(([player, stats], index) => ({ rank: index + 1, player, ...stats }))
 
-  // générer le markdown
-  const lines = [
-    '# Ballon d\'Or 2026 : Classement provisoire',
-    `> Généré le ${new Date().toLocaleDateString('fr-FR')} : ${votes.length} votes comptabilisés`,
-    '',
-    '| # | Joueur | Points | Votes |',
-    '|---|--------|--------|-------|',
-    ...ranking.slice(0, 10).map(r =>
-      `| ${r.rank} | ${r.player} | ${r.points} | ${r.votes} |`
-    ),
-    '',
-    '## Détail des votes',
-    ...ranking.slice(0, 3).map(r => [
-      `### ${r.rank}. ${r.player}`,
-      `${r.points} points de ${r.votes} journalistes`,
-      `Votants : ${r.journalists.join(', ')}`,
-      ''
-    ].join('\n'))
-  ]
+ // générer le markdown
+ const lines = [
+  '# Ballon d\'Or 2026 : Classement provisoire',
+  `> Généré le ${new Date().toLocaleDateString('fr-FR')} : ${votes.length} votes comptabilisés`,
+  '',
+  '| # | Joueur | Points | Votes |',
+  '|---|--------|--------|-------|',
+  ...ranking.slice(0, 10).map(r =>
+   `| ${r.rank} | ${r.player} | ${r.points} | ${r.votes} |`
+  ),
+  '',
+  '## Détail des votes',
+  ...ranking.slice(0, 3).map(r => [
+   `### ${r.rank}. ${r.player}`,
+   `${r.points} points de ${r.votes} journalistes`,
+   `Votants : ${r.journalists.join(', ')}`,
+   ''
+  ].join('\n'))
+ ]
 
-  await writeFile(outputPath, lines.join('\n'), 'utf-8')
-  return outputPath
+ await writeFile(outputPath, lines.join('\n'), 'utf-8')
+ return outputPath
 }
 ```
 
@@ -227,29 +227,29 @@ import { generateReport } from './report.js'
 import { loadVotes } from './votes.js'
 
 async function runPipeline() {
-  const steps = [
-    { name: 'Sync des données sources', fn: () => syncDirs('./raw', './data') },
-    { name: 'Transformation CSV → JSON', fn: () => csvToJson('./data/votes.csv', './processed') },
-    { name: 'Génération du rapport', fn: async () => {
-        const votes = await loadVotes('./processed/votes.json')
-        return generateReport(votes, './reports/ballon-dor-2026.md')
-    }},
-  ]
+ const steps = [
+  { name: 'Sync des données sources', fn: () => syncDirs('./raw', './data') },
+  { name: 'Transformation CSV → JSON', fn: () => csvToJson('./data/votes.csv', './processed') },
+  { name: 'Génération du rapport', fn: async () => {
+    const votes = await loadVotes('./processed/votes.json')
+    return generateReport(votes, './reports/ballon-dor-2026.md')
+  }},
+ ]
 
-  for (const step of steps) {
-    process.stdout.write(`${step.name}...`)
-    try {
-      const result = await step.fn()
-      process.stdout.write(' OK\n')
-      if (result) console.log('  ', JSON.stringify(result))
-    } catch (err) {
-      process.stdout.write(' ERREUR\n')
-      console.error(`  ${err.message}`)
-      process.exit(1)  // une étape échoue : on arrête tout
-    }
+ for (const step of steps) {
+  process.stdout.write(`${step.name}...`)
+  try {
+   const result = await step.fn()
+   process.stdout.write(' OK\n')
+   if (result) console.log(' ', JSON.stringify(result))
+  } catch (err) {
+   process.stdout.write(' ERREUR\n')
+   console.error(` ${err.message}`)
+   process.exit(1) // une étape échoue : on arrête tout
   }
+ }
 
-  console.log('\nPipeline terminé.')
+ console.log('\nPipeline terminé.')
 }
 
 runPipeline()

@@ -4,10 +4,10 @@ Temps de lecture ~13 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Docker         : v24+ (pour la containerisation : optionnel pour commencer)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Docker     : v24+ (pour la containerisation : optionnel pour commencer)
+Variables env : aucune
 Outils externes: Docker (en dernier, une fois que tout tourne en local)
 
 # Installation
@@ -40,7 +40,7 @@ $ node src/cli.js vote --player "Rodri" --journalist "France Football" --points 
 
 $ node src/cli.js rank
 [CLASSEMENT BALLON D'OR 2026]
-1. Rodri (Manchester City)  : 847 pts
+1. Rodri (Manchester City) : 847 pts
 2. Vinicius Jr (Real Madrid) : 761 pts
 3. Lamine Yamal (Barcelone) : 698 pts
 
@@ -51,10 +51,10 @@ $ node src/cli.js export --format csv --output results/classement.csv
 [EXPORT] Classement exporté : results/classement.csv
 
 $ npm test
-PASS  tests/voteService.test.js (20 tests)
-PASS  tests/rankingService.test.js (14 tests)
-PASS  tests/cli.test.js (12 tests)
-PASS  tests/errors.test.js (8 tests)
+PASS tests/voteService.test.js (20 tests)
+PASS tests/rankingService.test.js (14 tests)
+PASS tests/cli.test.js (12 tests)
+PASS tests/errors.test.js (8 tests)
 ```
 
 Ce projet a deux versions qui coexistent dans le repo : `legacy/ballonDorV1.js` (le code du stagiaire) et `src/` (ta v2 propre). Le comportement observable est identique. La structure interne, non.
@@ -92,64 +92,64 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ### Résumé visuel
 
 ```
-16_runtime_env  --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
-14_refactoring  --> legacy/ -> src/ (SOLID, séparation des couches)
+16_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
+14_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
 04_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
-31_annexes      --> Dockerfile, .github/workflows/ci.yml
+31_annexes   --> Dockerfile, .github/workflows/ci.yml
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 terminal: node src/cli.js vote --player "Rodri" --points 15 --journalist "FF"
-  --> argsParser.parse(process.argv)       // extrait { command: 'vote', player, points, journalist }
-  --> commandRouter.route(parsedArgs)      // route vers le bon handler
-  --> voteHandler.execute(args)
-        --> voteValidator.validate(args)   // throw InvalidVoteError si invalide
-        --> voteService.submitVote(vote)   // logique métier
-              --> jsonStore.read()         // lit l'état actuel du fichier JSON
-              --> jsonStore.write(updated) // écrit le nouvel état
-        --> voteRenderer.print(result)     // affiche le résultat dans stdout
-  --> process.exit(0)                      // succès
+ --> argsParser.parse(process.argv)    // extrait { command: 'vote', player, points, journalist }
+ --> commandRouter.route(parsedArgs)   // route vers le bon handler
+ --> voteHandler.execute(args)
+    --> voteValidator.validate(args)  // throw InvalidVoteError si invalide
+    --> voteService.submitVote(vote)  // logique métier
+       --> jsonStore.read()     // lit l'état actuel du fichier JSON
+       --> jsonStore.write(updated) // écrit le nouvel état
+    --> voteRenderer.print(result)   // affiche le résultat dans stdout
+ --> process.exit(0)           // succès
 
 (si erreur à n'importe quel niveau)
-  --> errorHandler.handle(err)             // classe l'erreur, affiche sur stderr
-  --> process.exit(1)                      // ou 2 selon la gravité
+ --> errorHandler.handle(err)       // classe l'erreur, affiche sur stderr
+ --> process.exit(1)           // ou 2 selon la gravité
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
 
 ```
 legacy/
-└── ballonDorV1.js              # le code original, jamais modifié
+└── ballonDorV1.js       # le code original, jamais modifié
 
 src/
-├── cli.js                      # point d'entrée, branche les ordres_mission
+├── cli.js           # point d'entrée, branche les ordres_mission
 ├── parser/
-│   └── argsParser.js           # parse process.argv en objet structuré
+│  └── argsParser.js      # parse process.argv en objet structuré
 ├── router/
-│   └── commandRouter.js        # route vers le bon handler selon la ordre_mission
+│  └── commandRouter.js    # route vers le bon handler selon la ordre_mission
 ├── handlers/
-│   ├── voteHandler.js
-│   ├── rankHandler.js
-│   ├── simulateHandler.js
-│   ├── resetHandler.js
-│   └── exportHandler.js
+│  ├── voteHandler.js
+│  ├── rankHandler.js
+│  ├── simulateHandler.js
+│  ├── resetHandler.js
+│  └── exportHandler.js
 ├── services/
-│   ├── voteService.js
-│   └── rankingService.js
+│  ├── voteService.js
+│  └── rankingService.js
 ├── validators/
-│   └── voteValidator.js
+│  └── voteValidator.js
 ├── store/
-│   └── jsonStore.js
+│  └── jsonStore.js
 ├── export/
-│   └── csvExporter.js
+│  └── csvExporter.js
 ├── errors/
-│   ├── InvalidVoteError.js
-│   ├── PlayerNotFoundError.js
-│   └── QuotaExceededError.js
+│  ├── InvalidVoteError.js
+│  ├── PlayerNotFoundError.js
+│  └── QuotaExceededError.js
 └── renderer/
-    └── cliRenderer.js
+  └── cliRenderer.js
 
 Dockerfile
 .github/workflows/ci.yml
@@ -200,34 +200,34 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/errors/              --> zéro dépendance, testables immédiatement
+1. src/errors/       --> zéro dépendance, testables immédiatement
 2. src/parser/argsParser.js --> indépendant, testable avec des argv mockés
-3. src/store/jsonStore.js   --> indépendant du reste de la logique
-4. src/validators/          --> dépend des errors
-5. src/services/voteService.js   --> dépend de store + validators
+3. src/store/jsonStore.js  --> indépendant du reste de la logique
+4. src/validators/     --> dépend des errors
+5. src/services/voteService.js  --> dépend de store + validators
 6. src/services/rankingService.js --> dépend de store
-7. src/export/csvExporter.js     --> dépend de rankingService
-8. src/handlers/                 --> dépend de tous les services
-9. src/router/commandRouter.js   --> dépend de tous les handlers
-10. src/renderer/cliRenderer.js  --> indépendant (pure présentation)
-11. src/cli.js                   --> branche tout
-12. Dockerfile + CI              --> en dernier, une fois que tout tourne
+7. src/export/csvExporter.js   --> dépend de rankingService
+8. src/handlers/         --> dépend de tous les services
+9. src/router/commandRouter.js  --> dépend de tous les handlers
+10. src/renderer/cliRenderer.js --> indépendant (pure présentation)
+11. src/cli.js          --> branche tout
+12. Dockerfile + CI       --> en dernier, une fois que tout tourne
 ```
 
 ## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
 
 **Durée totale estimée** : 14 à 20 heures de travail réel.
 
-| Étape                        | Durée estimée | Zone de résistance                                       |
+| Étape            | Durée estimée | Zone de résistance                    |
 | ---------------------------- | ------------- | -------------------------------------------------------- |
-| errors + parser              | 1h30          | Faible                                                   |
-| store + validators           | 2h            | Faible                                                   |
-| voteService + rankingService | 3h            | Moyenne : les edge cases de vote (quota, ex-aequo)       |
-| handlers + router            | 2h            | Faible                                                   |
-| cli.js + renderer            | 1h30          | Faible                                                   |
-| csvExporter                  | 1h            | Faible                                                   |
-| Dockerfile + CI              | 2-3h          | **Haute** si c'est la première fois qu'on containerise   |
-| Tests                        | 2-3h          | Moyenne : tester un CLI avec process.argv est inhabituel |
+| errors + parser       | 1h30     | Faible                          |
+| store + validators      | 2h      | Faible                          |
+| voteService + rankingService | 3h      | Moyenne : les edge cases de vote (quota, ex-aequo)    |
+| handlers + router      | 2h      | Faible                          |
+| cli.js + renderer      | 1h30     | Faible                          |
+| csvExporter         | 1h      | Faible                          |
+| Dockerfile + CI       | 2-3h     | **Haute** si c'est la première fois qu'on containerise  |
+| Tests            | 2-3h     | Moyenne : tester un CLI avec process.argv est inhabituel |
 
 Le Dockerfile et la CI sont le point de résistance pour quelqu'un qui ne l'a jamais fait. Commence par faire tourner le CLI sans Docker. Une fois que tout est vert en local, containerise.
 
@@ -241,47 +241,47 @@ import { resetStore } from "../src/store/jsonStore.js";
 beforeEach(() => resetStore()); // repart d'un état propre avant chaque test
 
 describe("voteService.submitVote", () => {
-  test("enregistre un vote valide", () => {
-    const result = submitVote({
-      player: "Rodri",
-      journalist: "FF",
-      points: 15,
-    });
-    expect(result.recorded).toBe(true);
-    expect(result.player).toBe("Rodri");
+ test("enregistre un vote valide", () => {
+  const result = submitVote({
+   player: "Rodri",
+   journalist: "FF",
+   points: 15,
   });
+  expect(result.recorded).toBe(true);
+  expect(result.player).toBe("Rodri");
+ });
 
-  test("throw QuotaExceededError si le même journaliste vote deux fois", () => {
-    submitVote({ player: "Rodri", journalist: "FF", points: 15 });
-    expect(() =>
-      submitVote({ player: "Vinicius", journalist: "FF", points: 12 }),
-    ).toThrow("QuotaExceededError");
-  });
+ test("throw QuotaExceededError si le même journaliste vote deux fois", () => {
+  submitVote({ player: "Rodri", journalist: "FF", points: 15 });
+  expect(() =>
+   submitVote({ player: "Vinicius", journalist: "FF", points: 12 }),
+  ).toThrow("QuotaExceededError");
+ });
 
-  test("throw InvalidVoteError si les points sont hors de 1-15", () => {
-    expect(() =>
-      submitVote({ player: "Rodri", journalist: "FF", points: 20 }),
-    ).toThrow("InvalidVoteError");
-  });
+ test("throw InvalidVoteError si les points sont hors de 1-15", () => {
+  expect(() =>
+   submitVote({ player: "Rodri", journalist: "FF", points: 20 }),
+  ).toThrow("InvalidVoteError");
+ });
 });
 
 // tests/cli.test.js:tester le CLI lui-même
 import { execSync } from "child_process";
 
 test("exit code 0 pour un vote valide", () => {
-  const result = execSync(
-    'node src/cli.js vote --player "Rodri" --journalist "Test" --points 10',
-    { encoding: "utf-8" },
-  );
-  expect(result).toContain("Rodri");
+ const result = execSync(
+  'node src/cli.js vote --player "Rodri" --journalist "Test" --points 10',
+  { encoding: "utf-8" },
+ );
+ expect(result).toContain("Rodri");
 });
 
 test("exit code 1 pour un vote invalide", () => {
-  expect(() =>
-    execSync(
-      'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99',
-    ),
-  ).toThrow(); // execSync throw si exit code != 0
+ expect(() =>
+  execSync(
+   'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99',
+  ),
+ ).toThrow(); // execSync throw si exit code != 0
 });
 ```
 
@@ -333,14 +333,14 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 ## Alternatives considérées
 
 - Un seul code exit 1 pour tout : rejeté car dans un script qui appelle le CLI,
-  on ne peut pas distinguer "le vote était invalide" de "le filesystem est cassé".
+ on ne peut pas distinguer "le vote était invalide" de "le filesystem est cassé".
 - Des codes spécifiques par type d'erreur (10, 11, 12...) : rejeté, sur-ingénierie.
-  La convention Unix établit 0/1/2, pas plus.
+ La convention Unix établit 0/1/2, pas plus.
 
 ## Conséquences
 
 - La CI peut détecter les erreurs système (exit 2) et alerter séparément des
-  erreurs de validation (exit 1).
+ erreurs de validation (exit 1).
 - Les scripts qui wrappent ce CLI peuvent brancher leur logique sur ces codes.
 ```
 

@@ -1,7 +1,7 @@
 # UTILITY TYPES : LES OUTILS QUI TRANSFORMENT TES TYPES SANS LES RÉÉCRIRE
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu as un type `Player` avec 12 propriétés. Tu veux un formulaire d'édition où tout est optionnel. Tu veux un résumé public avec seulement 3 champs. Tu veux une version en lecture seule pour l'affichage.
 
@@ -15,26 +15,26 @@ Les utility types de TS transforment des types existants. C'est du méta-typage 
 
 ```ts
 interface Player {
-  id: number;
-  name: string;
-  goals: number;
-  club: string;
-  nationality: string;
+ id: number;
+ name: string;
+ goals: number;
+ club: string;
+ nationality: string;
 }
 
 // formulaire de mise à jour : on n'envoie que ce qui change
 type PlayerUpdate = Partial<Player>;
 // équivalent à :
 // {
-//   id?: number
-//   name?: string
-//   goals?: number
-//   club?: string
-//   nationality?: string
+//  id?: number
+//  name?: string
+//  goals?: number
+//  club?: string
+//  nationality?: string
 // }
 
 function updatePlayer(id: number, changes: Partial<Player>): Player {
-  // implementation
+ // implementation
 }
 
 updatePlayer(1, { goals: 32 }); // OK:seulement goals
@@ -48,22 +48,22 @@ updatePlayer(1, { rating: 99 }); // ERREUR:rating n'existe pas sur Player
 
 ```ts
 interface DraftPlayer {
-  name: string;
-  goals?: number;
-  club?: string;
+ name: string;
+ goals?: number;
+ club?: string;
 }
 
 // version finale où tout doit être renseigné
 type ConfirmedPlayer = Required<DraftPlayer>;
 // {
-//   name: string
-//   goals: number     <- plus de ?
-//   club: string      <- plus de ?
+//  name: string
+//  goals: number   <- plus de ?
+//  club: string   <- plus de ?
 // }
 
 // utile pour valider qu'une entité est complète avant de la persister
 function savePlayer(player: Required<DraftPlayer>): void {
-  // on sait que tout est là
+ // on sait que tout est là
 }
 ```
 
@@ -73,28 +73,28 @@ function savePlayer(player: Required<DraftPlayer>): void {
 
 ```ts
 interface Player {
-  id: number;
-  name: string;
-  goals: number;
-  salary: number; // donnée sensible
-  privatePhone: string; // donnée sensible
+ id: number;
+ name: string;
+ goals: number;
+ salary: number; // donnée sensible
+ privatePhone: string; // donnée sensible
 }
 
 // profil public : seulement ce qu'on affiche
 type PublicProfile = Pick<Player, "id" | "name" | "goals">;
 // {
-//   id: number
-//   name: string
-//   goals: number
+//  id: number
+//  name: string
+//  goals: number
 // }
 
 function getPublicProfile(player: Player): PublicProfile {
-  return {
-    id: player.id,
-    name: player.name,
-    goals: player.goals,
-    // salary et privatePhone ne passent pas:TS le garantit
-  };
+ return {
+  id: player.id,
+  name: player.name,
+  goals: player.goals,
+  // salary et privatePhone ne passent pas:TS le garantit
+ };
 }
 ```
 
@@ -104,18 +104,18 @@ function getPublicProfile(player: Player): PublicProfile {
 
 ```ts
 interface Player {
-  id: number;
-  name: string;
-  goals: number;
-  salary: number;
+ id: number;
+ name: string;
+ goals: number;
+ salary: number;
 }
 
 // tout sauf l'id (pour la création, avant que la DB génère un id)
 type CreatePlayerPayload = Omit<Player, "id">;
 // {
-//   name: string
-//   goals: number
-//   salary: number
+//  name: string
+//  goals: number
+//  salary: number
 // }
 
 // tout sauf les données sensibles
@@ -136,8 +136,8 @@ type MinimalPlayer = Omit<Player, "salary" | "id">;
 type ClubRecord = Record<string, Player[]>;
 
 const ligue1: ClubRecord = {
-  PSG: [{ id: 1, name: "Mbappé", goals: 35, salary: 1000000 }],
-  Lyon: [{ id: 2, name: "Lacazette", goals: 12, salary: 400000 }],
+ PSG: [{ id: 1, name: "Mbappé", goals: 35, salary: 1000000 }],
+ Lyon: [{ id: 2, name: "Lacazette", goals: 12, salary: 400000 }],
 };
 
 // avec des clés union : parfait pour les config strictes
@@ -145,11 +145,11 @@ type Position = "attaquant" | "milieu" | "défenseur" | "gardien";
 type TeamSheet = Record<Position, Player[]>;
 
 const squad: TeamSheet = {
-  attaquant: [],
-  milieu: [],
-  défenseur: [],
-  gardien: [],
-  // si tu oublies une position : erreur TS
+ attaquant: [],
+ milieu: [],
+ défenseur: [],
+ gardien: [],
+ // si tu oublies une position : erreur TS
 };
 ```
 
@@ -159,11 +159,11 @@ type ChakraType = "feu" | "eau" | "vent" | "terre" | "foudre";
 type ChakraDamage = Record<ChakraType, number>;
 
 const damages: ChakraDamage = {
-  feu: 100,
-  eau: 80,
-  vent: 90,
-  terre: 70,
-  foudre: 120,
+ feu: 100,
+ eau: 80,
+ vent: 90,
+ terre: 70,
+ foudre: 120,
 };
 ```
 
@@ -173,19 +173,19 @@ const damages: ChakraDamage = {
 
 ```ts
 interface Config {
-  apiUrl: string;
-  timeout: number;
+ apiUrl: string;
+ timeout: number;
 }
 
 type FrozenConfig = Readonly<Config>;
 // {
-//   readonly apiUrl: string
-//   readonly timeout: number
+//  readonly apiUrl: string
+//  readonly timeout: number
 // }
 
 const config: FrozenConfig = {
-  apiUrl: "https://api.myfunnyjs.dev",
-  timeout: 5000,
+ apiUrl: "https://api.myfunnyjs.dev",
+ timeout: 5000,
 };
 
 config.timeout = 3000; // ERREUR TS : Cannot assign to 'timeout' because it is a read-only property
@@ -220,11 +220,11 @@ type NonCardEvents = Exclude<AllEvents, "yellowCard" | "redCard">;
 
 ```ts
 function getPlayerStats(id: number, season: string) {
-  return {
-    goals: 31,
-    assists: 12,
-    rating: 8.5,
-  };
+ return {
+  goals: 31,
+  assists: 12,
+  rating: 8.5,
+ };
 }
 
 // extraire le type de retour sans le réécrire
@@ -237,9 +237,9 @@ type GetStatsParams = Parameters<typeof getPlayerStats>;
 
 // utile quand tu veux wrapper une fonction existante
 function cachedGetPlayerStats(
-  ...args: Parameters<typeof getPlayerStats>
+ ...args: Parameters<typeof getPlayerStats>
 ): ReturnType<typeof getPlayerStats> {
-  // check cache, appelle getPlayerStats, retourne
+ // check cache, appelle getPlayerStats, retourne
 }
 ```
 
@@ -249,31 +249,31 @@ function cachedGetPlayerStats(
 
 ```ts
 interface FullPlayerProfile {
-  id: number;
-  name: string;
-  goals: number;
-  salary: number;
-  privatePhone: string;
-  createdAt: Date;
-  updatedAt: Date;
+ id: number;
+ name: string;
+ goals: number;
+ salary: number;
+ privatePhone: string;
+ createdAt: Date;
+ updatedAt: Date;
 }
 
 // payload pour créer un joueur : sans id ni dates (générés côté serveur), sans données sensibles
 type CreatePlayerInput = Omit<
-  FullPlayerProfile,
-  "id" | "salary" | "privatePhone" | "createdAt" | "updatedAt"
+ FullPlayerProfile,
+ "id" | "salary" | "privatePhone" | "createdAt" | "updatedAt"
 >;
 // { name: string, goals: number }
 
 // payload de mise à jour : tout optionnel sauf l'id
 type UpdatePlayerInput = Partial<Omit<FullPlayerProfile, "id">> & {
-  id: number;
+ id: number;
 };
 // { id: number, name?: string, goals?: number, ... }
 
 // version publique readonly
 type PublicPlayerView = Readonly<
-  Pick<FullPlayerProfile, "id" | "name" | "goals">
+ Pick<FullPlayerProfile, "id" | "name" | "goals">
 >;
 ```
 
@@ -284,29 +284,29 @@ type PublicPlayerView = Readonly<
 ```ts
 // Partial ne descend pas en profondeur (shallow)
 interface Team {
-  name: string;
-  stats: {
-    wins: number;
-    losses: number;
-  };
+ name: string;
+ stats: {
+  wins: number;
+  losses: number;
+ };
 }
 
 type PartialTeam = Partial<Team>;
 // {
-//   name?: string
-//   stats?: {          <- stats devient optionnel
-//     wins: number     <- mais wins reste REQUIRED à l'intérieur
-//     losses: number   <- idem
-//   }
+//  name?: string
+//  stats?: {     <- stats devient optionnel
+//   wins: number   <- mais wins reste REQUIRED à l'intérieur
+//   losses: number  <- idem
+//  }
 // }
 
 const t: PartialTeam = {
-  stats: { wins: 5 }, // ERREUR : losses manque:Partial n'a pas touché au nested object
+ stats: { wins: 5 }, // ERREUR : losses manque:Partial n'a pas touché au nested object
 };
 
 // si tu veux un Partial profond, il faut le faire à la main ou utiliser une lib
 type DeepPartial<T> = {
-  [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+ [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
 };
 // (mapped types:prochain fichier)
 ```

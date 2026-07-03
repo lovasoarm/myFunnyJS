@@ -29,9 +29,9 @@ import { Command } from "commander";
 const program = new Command();
 
 program
-  .name("ballon-dor")
-  .description("CLI pour gérer le vote du Ballon d'Or")
-  .version("1.0.0");
+ .name("ballon-dor")
+ .description("CLI pour gérer le vote du Ballon d'Or")
+ .version("1.0.0");
 
 program.parse();
 // node ballon-dor.js --help --> aide générée automatiquement
@@ -49,72 +49,72 @@ import { castVote, getRanking, resetVotes } from "./votes.js";
 const program = new Command();
 
 program
-  .name("ballon-dor")
-  .description("Système de vote du Ballon d'Or 2026")
-  .version("1.0.0");
+ .name("ballon-dor")
+ .description("Système de vote du Ballon d'Or 2026")
+ .version("1.0.0");
 
 // ordre_mission vote
 program
-  .command("vote")
-  .description("Enregistrer un vote de journaliste")
-  .requiredOption("-p, --player <nom>", "Nom du joueur")
-  .requiredOption("-n, --points <nombre>", "Points attribués (1-15)", parseInt)
-  .option("-j, --journalist <nom>", "Nom du journaliste", "Anonyme")
-  .option("--dry-run", "Simuler sans sauvegarder")
-  .action(async (options) => {
-    // options = { player: 'Messi', points: 12, journalist: 'Dupont', dryRun: false }
-    if (options.points < 1 || options.points > 15) {
-      console.error("Les points doivent être entre 1 et 15");
-      process.exit(1);
-    }
+ .command("vote")
+ .description("Enregistrer un vote de journaliste")
+ .requiredOption("-p, --player <nom>", "Nom du joueur")
+ .requiredOption("-n, --points <nombre>", "Points attribués (1-15)", parseInt)
+ .option("-j, --journalist <nom>", "Nom du journaliste", "Anonyme")
+ .option("--dry-run", "Simuler sans sauvegarder")
+ .action(async (options) => {
+  // options = { player: 'Messi', points: 12, journalist: 'Dupont', dryRun: false }
+  if (options.points < 1 || options.points > 15) {
+   console.error("Les points doivent être entre 1 et 15");
+   process.exit(1);
+  }
 
-    if (!options.dryRun) {
-      await castVote(options);
-      console.log(
-        `Vote enregistré : ${options.player} (${options.points} pts)`,
-      );
-    } else {
-      console.log(
-        `[DRY RUN] Vote simulé : ${options.player} (${options.points} pts)`,
-      );
-    }
-  });
+  if (!options.dryRun) {
+   await castVote(options);
+   console.log(
+    `Vote enregistré : ${options.player} (${options.points} pts)`,
+   );
+  } else {
+   console.log(
+    `[DRY RUN] Vote simulé : ${options.player} (${options.points} pts)`,
+   );
+  }
+ });
 
 // ordre_mission rank
 program
-  .command("rank")
-  .description("Afficher le classement actuel")
-  .option("-n, --top <nombre>", "Nombre de joueurs à afficher", parseInt, 10)
-  .option("--json", "Sortie en JSON")
-  .action(async (options) => {
-    const ranking = await getRanking();
-    const top = ranking.slice(0, options.top);
+ .command("rank")
+ .description("Afficher le classement actuel")
+ .option("-n, --top <nombre>", "Nombre de joueurs à afficher", parseInt, 10)
+ .option("--json", "Sortie en JSON")
+ .action(async (options) => {
+  const ranking = await getRanking();
+  const top = ranking.slice(0, options.top);
 
-    if (options.json) {
-      console.log(JSON.stringify(top, null, 2));
-    } else {
-      top.forEach((entry, i) => {
-        console.log(`${i + 1}. ${entry.player.padEnd(20)} ${entry.points} pts`);
-      });
-    }
-  });
+  if (options.json) {
+   console.log(JSON.stringify(top, null, 2));
+  } else {
+   top.forEach((entry, i) => {
+    console.log(`${i + 1}. ${entry.player.padEnd(20)} ${entry.points} pts`);
+   });
+  }
+ });
 
 // ordre_mission reset
 program
-  .command("reset")
-  .description("Remettre tous les votes à zéro")
-  .option("--force", "Réinitialiser sans confirmation")
-  .action(async (options) => {
-    if (!options.force) {
-      const { confirm } = await prompt("Effacer tous les votes ? (oui/non) : ");
-      if (confirm.toLowerCase() !== "oui") {
-        console.log("Annulé.");
-        return;
-      }
-    }
-    await resetVotes();
-    console.log("Tous les votes ont été réinitialisés.");
-  });
+ .command("reset")
+ .description("Remettre tous les votes à zéro")
+ .option("--force", "Réinitialiser sans confirmation")
+ .action(async (options) => {
+  if (!options.force) {
+   const { confirm } = await prompt("Effacer tous les votes ? (oui/non) : ");
+   if (confirm.toLowerCase() !== "oui") {
+    console.log("Annulé.");
+    return;
+   }
+  }
+  await resetVotes();
+  console.log("Tous les votes ont été réinitialisés.");
+ });
 
 program.parse();
 ```
@@ -126,15 +126,15 @@ program.parse();
 ```json
 // package.json
 {
-  "name": "ballon-dor-cli",
-  "version": "1.0.0",
-  "type": "module",
-  "bin": {
-    "ballon-dor": "./src/index.js"
-  },
-  "dependencies": {
-    "commander": "^12.0.0"
-  }
+ "name": "ballon-dor-cli",
+ "version": "1.0.0",
+ "type": "module",
+ "bin": {
+  "ballon-dor": "./src/index.js"
+ },
+ "dependencies": {
+  "commander": "^12.0.0"
+ }
 }
 ```
 
@@ -165,22 +165,22 @@ ballon-dor --help
 
 ```
 ballon-dor-cli/
-├── package.json          # bin, version, dependencies
+├── package.json     # bin, version, dependencies
 ├── src/
-│   ├── index.js          # point d'entrée : parse, route vers les ordres_mission
-│   ├── commands/
-│   │   ├── vote.js       # logique de la ordre_mission vote
-│   │   ├── rank.js       # logique de la ordre_mission rank
-│   │   └── reset.js      # logique de la ordre_mission reset
-│   ├── lib/
-│   │   ├── storage.js    # lecture/écriture des données
-│   │   ├── display.js    # fonctions d'affichage (couleurs, tableaux)
-│   │   └── validate.js   # validation des inputs
-│   └── utils/
-│       └── prompt.js     # wrapper autour de readline
+│  ├── index.js     # point d'entrée : parse, route vers les ordres_mission
+│  ├── commands/
+│  │  ├── vote.js    # logique de la ordre_mission vote
+│  │  ├── rank.js    # logique de la ordre_mission rank
+│  │  └── reset.js   # logique de la ordre_mission reset
+│  ├── lib/
+│  │  ├── storage.js  # lecture/écriture des données
+│  │  ├── display.js  # fonctions d'affichage (couleurs, tableaux)
+│  │  └── validate.js  # validation des inputs
+│  └── utils/
+│    └── prompt.js   # wrapper autour de readline
 └── tests/
-    ├── commands.test.js
-    └── storage.test.js
+  ├── commands.test.js
+  └── storage.test.js
 ```
 
 ```js
@@ -195,9 +195,9 @@ import { resetCommand } from './commands/reset.js'
 const program = new Command()
 
 program
-  .name('ballon-dor')
-  .description('Système de vote du Ballon d\'Or 2026')
-  .version('1.0.0')
+ .name('ballon-dor')
+ .description('Système de vote du Ballon d\'Or 2026')
+ .version('1.0.0')
 
 program.addCommand(voteCommand)
 program.addCommand(rankCommand)
@@ -212,7 +212,7 @@ program.parse()
 
 ```bash
 # vérifier que tout est propre
-npm pack --dry-run  # voir les fichiers qui seraient publiés
+npm pack --dry-run # voir les fichiers qui seraient publiés
 
 # ajouter un .npmignore pour exclure les fichiers de dev
 # (ou utiliser "files" dans package.json)
@@ -221,29 +221,29 @@ npm pack --dry-run  # voir les fichiers qui seraient publiés
 ```json
 // package.json complet pour publication
 {
-  "name": "ballon-dor-cli",
-  "version": "1.0.0",
-  "description": "CLI pour gérer les votes du Ballon d'Or",
-  "type": "module",
-  "main": "./src/index.js",
-  "bin": {
-    "ballon-dor": "./src/index.js"
-  },
-  "files": ["src/"],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "keywords": ["cli", "ballon-dor", "football"],
-  "dependencies": {
-    "commander": "^12.0.0"
-  },
-  "devDependencies": {
-    "vitest": "^1.0.0"
-  },
-  "scripts": {
-    "test": "vitest",
-    "start": "node src/index.js"
-  }
+ "name": "ballon-dor-cli",
+ "version": "1.0.0",
+ "description": "CLI pour gérer les votes du Ballon d'Or",
+ "type": "module",
+ "main": "./src/index.js",
+ "bin": {
+  "ballon-dor": "./src/index.js"
+ },
+ "files": ["src/"],
+ "engines": {
+  "node": ">=18.0.0"
+ },
+ "keywords": ["cli", "ballon-dor", "football"],
+ "dependencies": {
+  "commander": "^12.0.0"
+ },
+ "devDependencies": {
+  "vitest": "^1.0.0"
+ },
+ "scripts": {
+  "test": "vitest",
+  "start": "node src/index.js"
+ }
 }
 ```
 
@@ -266,13 +266,13 @@ ballon-dor --help
 
 // src/lib/ranking.js
 export function computeRanking(votes) {
-  const totals = {};
-  votes.forEach(({ player, points }) => {
-    totals[player] = (totals[player] ?? 0) + points;
-  });
-  return Object.entries(totals)
-    .sort(([, a], [, b]) => b - a)
-    .map(([player, points], i) => ({ rank: i + 1, player, points }));
+ const totals = {};
+ votes.forEach(({ player, points }) => {
+  totals[player] = (totals[player] ?? 0) + points;
+ });
+ return Object.entries(totals)
+  .sort(([, a], [, b]) => b - a)
+  .map(([player, points], i) => ({ rank: i + 1, player, points }));
 }
 
 // tests/ranking.test.js
@@ -280,22 +280,22 @@ import { describe, it, expect } from "vitest";
 import { computeRanking } from "../src/lib/ranking.js";
 
 describe("computeRanking", () => {
-  it("trie par points décroissants", () => {
-    const votes = [
-      { player: "Messi", points: 8 },
-      { player: "Vini", points: 12 },
-      { player: "Messi", points: 5 },
-    ];
-    const result = computeRanking(votes);
-    expect(result[0].player).toBe("Vini");
-    expect(result[0].points).toBe(12);
-    expect(result[1].player).toBe("Messi");
-    expect(result[1].points).toBe(13); // 8 + 5
-  });
+ it("trie par points décroissants", () => {
+  const votes = [
+   { player: "Messi", points: 8 },
+   { player: "Vini", points: 12 },
+   { player: "Messi", points: 5 },
+  ];
+  const result = computeRanking(votes);
+  expect(result[0].player).toBe("Vini");
+  expect(result[0].points).toBe(12);
+  expect(result[1].player).toBe("Messi");
+  expect(result[1].points).toBe(13); // 8 + 5
+ });
 
-  it("retourne un tableau vide si pas de votes", () => {
-    expect(computeRanking([])).toEqual([]);
-  });
+ it("retourne un tableau vide si pas de votes", () => {
+  expect(computeRanking([])).toEqual([]);
+ });
 });
 ```
 

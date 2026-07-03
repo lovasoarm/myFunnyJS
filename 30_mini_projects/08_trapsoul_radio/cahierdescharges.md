@@ -4,15 +4,15 @@ Temps de lecture ~14 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-TypeScript     : v5+ (installé comme dépendance locale)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+TypeScript   : v5+ (installé comme dépendance locale)
+Variables env : aucune
 Outils externes: axe-cli (pour les vérifications a11y), Lighthouse CLI
 
 # Installation
 $ npm install
-$ npm install -g @axe-core/cli lighthouse   # outils de vérification
+$ npm install -g @axe-core/cli lighthouse  # outils de vérification
 
 # Démarrer un serveur local (http-server ou équivalent)
 $ npx http-server dist/ -p 3000
@@ -42,15 +42,15 @@ Ce que tu dois voir à la fin :
 
 ```
 // Depuis le terminal (vérifications techniques)
-$ npx tsc --noImplicitAny  
-    0 errors
+$ npx tsc --noImplicitAny 
+  0 errors
 
 $ npx axe http://localhost:3000
-    0 violations
+  0 violations
 
 $ npx lighthouse http://localhost:3000 --only-categories=performance,accessibility
-    Performance: 94
-    Accessibility: 100
+  Performance: 94
+  Accessibility: 100
 
 // Depuis l'interface (comportement visible)
 - La track en cours change avec le nom, l'artiste, la durée
@@ -90,32 +90,32 @@ Ce projet teste un réflexe que les devs n'ont pas naturellement : penser l'inte
 ### Résumé visuel
 
 ```
-15_typescript   --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
+15_typescript  --> types stricts, TranslationKey typé, Playlist<Track>, Readonly<Config>
 18_web_concepts --> LCP < 2.5s, CLS < 0.1, INP < 200ms, metadata dynamiques
 19_web_inclusive --> ARIA roles, navigation clavier, skip links, contraste WCAG AA
-19_web_inclusive/i18n         --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
+19_web_inclusive/i18n     --> Intl.DateTimeFormat, Intl.NumberFormat, pluralisation manuelle, 4 locales
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 Navigateur charge la page
-  --> localeDetector.detect()          // détecte la langue du navigateur
-  --> i18n.init(locale)                // charge les traductions pour la locale
-  --> player.init(playlist)            // initialise le lecteur avec la playlist
-  --> render(AppShell)                 // rendu initial de l'interface
+ --> localeDetector.detect()     // détecte la langue du navigateur
+ --> i18n.init(locale)        // charge les traductions pour la locale
+ --> player.init(playlist)      // initialise le lecteur avec la playlist
+ --> render(AppShell)         // rendu initial de l'interface
 
 Shinobi clique "Piste suivante" (ou appuie sur espace)
-  --> player.next()                    // passe à la track suivante
-  --> player.updateState(newTrack)     // met à jour l'état
-  --> render(NowPlaying, newTrack)     // re-render le composant maintenant-en-lecture
-  --> aria.announce(newTrack.title)    // annonce au lecteur d'écran via aria-live
-  --> document.title = t('now_playing', { track: newTrack }) // met à jour le titre de l'onglet
+ --> player.next()          // passe à la track suivante
+ --> player.updateState(newTrack)   // met à jour l'état
+ --> render(NowPlaying, newTrack)   // re-render le composant maintenant-en-lecture
+ --> aria.announce(newTrack.title)  // annonce au lecteur d'écran via aria-live
+ --> document.title = t('now_playing', { track: newTrack }) // met à jour le titre de l'onglet
 
 Shinobi change la langue
-  --> i18n.setLocale('ja')             // bascule vers le japonais
-  --> i18n.reloadAll()                 // recharge toutes les traductions
-  --> render(FullApp)                  // re-render complet de l'interface
+ --> i18n.setLocale('ja')       // bascule vers le japonais
+ --> i18n.reloadAll()         // recharge toutes les traductions
+ --> render(FullApp)         // re-render complet de l'interface
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
@@ -123,39 +123,39 @@ Shinobi change la langue
 ```
 src/
 ├── i18n/
-│   ├── types.ts
-│   ├── localeDetector.ts
-│   ├── translator.ts
-│   └── locales/
-│       ├── fr.ts
-│       ├── en.ts
-│       ├── ja.ts
-│       └── mg.ts
+│  ├── types.ts
+│  ├── localeDetector.ts
+│  ├── translator.ts
+│  └── locales/
+│    ├── fr.ts
+│    ├── en.ts
+│    ├── ja.ts
+│    └── mg.ts
 │
 ├── player/
-│   ├── player.ts
-│   ├── playlist.ts
-│   └── audioController.ts
+│  ├── player.ts
+│  ├── playlist.ts
+│  └── audioController.ts
 │
 ├── components/
-│   ├── NowPlaying.ts
-│   ├── TrackList.ts
-│   ├── LanguageSwitcher.ts
-│   ├── SkipLink.ts
-│   └── Modal.ts
+│  ├── NowPlaying.ts
+│  ├── TrackList.ts
+│  ├── LanguageSwitcher.ts
+│  ├── SkipLink.ts
+│  └── Modal.ts
 │
 ├── types/
-│   ├── track.ts
-│   └── playlist.ts
+│  ├── track.ts
+│  └── playlist.ts
 │
 ├── a11y/
-│   ├── focusManager.ts
-│   ├── ariaAnnouncer.ts
-│   └── keyboardNav.ts
+│  ├── focusManager.ts
+│  ├── ariaAnnouncer.ts
+│  └── keyboardNav.ts
 │
 ├── utils/
-│   ├── dateFormatter.ts
-│   └── numberFormatter.ts
+│  ├── dateFormatter.ts
+│  └── numberFormatter.ts
 │
 └── index.ts
 
@@ -207,17 +207,17 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/types/             --> types de base, aucune logique
-2. src/i18n/types.ts      --> TranslationKey doit exister avant les composants
+1. src/types/       --> types de base, aucune logique
+2. src/i18n/types.ts   --> TranslationKey doit exister avant les composants
 3. src/i18n/locales/fr.ts --> commencer par une locale, les autres après
 4. src/i18n/translator.ts --> dépend des types et des locales
-5. src/utils/             --> Intl wrappers, testables seuls
-6. src/player/player.ts   --> logique pure, testable sans DOM
+5. src/utils/       --> Intl wrappers, testables seuls
+6. src/player/player.ts  --> logique pure, testable sans DOM
 7. src/a11y/ariaAnnouncer.ts --> simple, peu de dépendances
-8. src/a11y/focusManager.ts  --> plus complexe, dépend du DOM
-9. src/a11y/keyboardNav.ts   --> dépend de focusManager
-10. src/components/          --> dépendent de player + i18n + a11y
-11. src/index.ts             --> branche tout
+8. src/a11y/focusManager.ts --> plus complexe, dépend du DOM
+9. src/a11y/keyboardNav.ts  --> dépend de focusManager
+10. src/components/     --> dépendent de player + i18n + a11y
+11. src/index.ts       --> branche tout
 12. Vérifications finales : axe, Lighthouse, tsc
 ```
 
@@ -249,50 +249,50 @@ Le focus trap et les vérifications axe sont les deux points où la plupart des 
 import { t, setLocale } from '../src/i18n/translator';
 
 describe('translator', () => {
-  test('retourne la traduction française par défaut', () => {
-    setLocale('fr');
-    expect(t('player.now_playing')).toBe('En lecture');
-  });
+ test('retourne la traduction française par défaut', () => {
+  setLocale('fr');
+  expect(t('player.now_playing')).toBe('En lecture');
+ });
 
-  test('bascule vers le japonais', () => {
-    setLocale('ja');
-    expect(t('player.now_playing')).toBe('再生中');
-  });
+ test('bascule vers le japonais', () => {
+  setLocale('ja');
+  expect(t('player.now_playing')).toBe('再生中');
+ });
 
-  test('pluralisation en français : 1 titre / N titres', () => {
-    setLocale('fr');
-    expect(t('playlist.track_count', { count: 1 })).toBe('1 titre');
-    expect(t('playlist.track_count', { count: 5 })).toBe('5 titres');
-  });
+ test('pluralisation en français : 1 titre / N titres', () => {
+  setLocale('fr');
+  expect(t('playlist.track_count', { count: 1 })).toBe('1 titre');
+  expect(t('playlist.track_count', { count: 5 })).toBe('5 titres');
+ });
 
-  test('pluralisation en malgache', () => {
-    setLocale('mg');
-    expect(t('playlist.track_count', { count: 1 })).toBe('1 hira');
-    expect(t('playlist.track_count', { count: 5 })).toBe('5 hira');
-  });
+ test('pluralisation en malgache', () => {
+  setLocale('mg');
+  expect(t('playlist.track_count', { count: 1 })).toBe('1 hira');
+  expect(t('playlist.track_count', { count: 5 })).toBe('5 hira');
+ });
 });
 
 // tests/a11y.test.ts
 import { FocusManager } from '../src/a11y/focusManager';
 
 describe('FocusManager', () => {
-  test('le focus reste dans la modal quand on tabule depuis le dernier élément', () => {
-    document.body.innerHTML = `
-      <div id="modal">
-        <button id="btn1">Fermer</button>
-        <button id="btn2">Confirmer</button>
-      </div>
-    `;
-    const modal = document.getElementById('modal')!;
-    const fm = new FocusManager(modal);
-    fm.trapFocus();
+ test('le focus reste dans la modal quand on tabule depuis le dernier élément', () => {
+  document.body.innerHTML = `
+   <div id="modal">
+    <button id="btn1">Fermer</button>
+    <button id="btn2">Confirmer</button>
+   </div>
+  `;
+  const modal = document.getElementById('modal')!;
+  const fm = new FocusManager(modal);
+  fm.trapFocus();
 
-    // Simuler Tab depuis le dernier bouton
-    document.getElementById('btn2')!.focus();
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
-    
-    expect(document.activeElement?.id).toBe('btn1'); // wrapping
-  });
+  // Simuler Tab depuis le dernier bouton
+  document.getElementById('btn2')!.focus();
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+  
+  expect(document.activeElement?.id).toBe('btn1'); // wrapping
+ });
 });
 ```
 
@@ -343,11 +343,11 @@ servant de référence). Toute nouvelle locale doit satisfaire ce type.
 ## Alternatives considérées
 - `string` : rejeté, erreurs à runtime non détectables.
 - Générer les types depuis un JSON : trop complexe pour ce projet, nécessite
-  un step de build supplémentaire.
+ un step de build supplémentaire.
 
 ## Conséquences
 - Ajouter une clé = l'ajouter dans `fr.ts` (la référence), puis TypeScript
-  indique quelles autres locales doivent être mises à jour.
+ indique quelles autres locales doivent être mises à jour.
 - Les composants qui utilisent `t()` ont l'autocomplétion sur les clés valides.
 ```
 

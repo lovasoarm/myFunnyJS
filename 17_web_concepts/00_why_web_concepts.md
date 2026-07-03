@@ -3,7 +3,7 @@
 > Ce module reutilise : async (03_async), securite (22_security).
 Temps de lecture ~7 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Tu sais écrire un `fetch`. Mais sais-tu pourquoi une requête échoue avec un 403 et pas un 401 ? Tu ne sais peut-être pas non plus ce qui se passe entre le moment où le navigateur reçoit du HTML et le moment où le pixel apparaît à l'écran, ni quand le cache devient ton allié ou ton pire ennemi.
 
@@ -34,11 +34,11 @@ Et le dev qui confond authentification et autorisation construit un système où
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-requête qui échoue sans raison claire           --> status codes HTTP --> diagnostic précis de l'erreur
-contenu qui devient obsolète chez l'shinobi  --> stratégie de cache --> invalidation correcte
-shinobi connecté qui accède à trop de choses --> auth vs authz     --> vérification de permissions distincte
-app lente au premier chargement                  --> rendu SSR/SSG/CSR --> choix du bon mode selon le besoin
-données échangées entre client et serveur        --> sérialisation     --> format adapté (JSON, Protobuf)
+requête qui échoue sans raison claire      --> status codes HTTP --> diagnostic précis de l'erreur
+contenu qui devient obsolète chez l'shinobi --> stratégie de cache --> invalidation correcte
+shinobi connecté qui accède à trop de choses --> auth vs authz   --> vérification de permissions distincte
+app lente au premier chargement         --> rendu SSR/SSG/CSR --> choix du bon mode selon le besoin
+données échangées entre client et serveur    --> sérialisation   --> format adapté (JSON, Protobuf)
 ```
 
 Ces concepts ne sont pas spécifiques à un framework : ils sont la couche commune que tout système web partage, peu importe ce qui tourne par-dessus. Un dev qui change de stack tous les deux ans (et ça arrive) garde cette compréhension intacte, parce qu'elle ne dépend pas de l'outil.

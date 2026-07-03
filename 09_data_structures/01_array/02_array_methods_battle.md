@@ -15,9 +15,9 @@ Le match commence.
 
 ```js
 const players = [
-  { name: "Messi", goals: 36 },
-  { name: "Mbappé", goals: 29 },
-  { name: "Haaland", goals: 52 },
+ { name: "Messi", goals: 36 },
+ { name: "Mbappé", goals: 29 },
+ { name: "Haaland", goals: 52 },
 ]
 
 // on veut juste les noms : O(n), nouveau tableau
@@ -51,7 +51,7 @@ const scores = [88, 72, 95, 61]
 
 // on veut juste afficher les scores
 scores.forEach((score, index) => {
-  console.log(`Joueur ${index + 1} : ${score} pts`)
+ console.log(`Joueur ${index + 1} : ${score} pts`)
 })
 
 // forEach est fait pour ça : déclencher un effet à chaque élément
@@ -80,17 +80,17 @@ const jutsu = ["Rasengan", "Chidori", "Amaterasu", "Susanoo"]
 
 // interruption possible : break fonctionne
 for (const technique of jutsu) {
-  if (technique === "Amaterasu") break  // on s'arrête là
-  console.log(technique)
+ if (technique === "Amaterasu") break // on s'arrête là
+ console.log(technique)
 }
 // affiche "Rasengan", "Chidori"
 
 // async/await fonctionne à l'intérieur
 async function loadJutsu(list) {
-  for (const name of list) {
-    const data = await fetchJutsuData(name)  // attend vraiment chaque appel
-    console.log(data)
-  }
+ for (const name of list) {
+  const data = await fetchJutsuData(name) // attend vraiment chaque appel
+  console.log(data)
+ }
 }
 ```
 
@@ -101,15 +101,15 @@ const names = ["Naruto", "Sasuke", "Sakura"]
 
 // FAUX : forEach n'attend pas les promises
 names.forEach(async name => {
-  const data = await fetch(`/api/ninja/${name}`)
-  // forEach lance tout en parallèle sans attendre
-  // l'ordre des résultats est imprévisible
+ const data = await fetch(`/api/ninja/${name}`)
+ // forEach lance tout en parallèle sans attendre
+ // l'ordre des résultats est imprévisible
 })
 
 // CORRECT : for...of attend vraiment chaque étape
 for (const name of names) {
-  const data = await fetch(`/api/ninja/${name}`)
-  // séquentiel et prévisible
+ const data = await fetch(`/api/ninja/${name}`)
+ // séquentiel et prévisible
 }
 ```
 
@@ -121,19 +121,19 @@ for (const name of names) {
 
 ```js
 const matchEvents = [
-  { type: "goal", team: "A", minute: 12 },
-  { type: "goal", team: "B", minute: 34 },
-  { type: "goal", team: "A", minute: 67 },
-  { type: "yellow", team: "B", minute: 78 },
-  { type: "goal", team: "A", minute: 89 },
+ { type: "goal", team: "A", minute: 12 },
+ { type: "goal", team: "B", minute: 34 },
+ { type: "goal", team: "A", minute: 67 },
+ { type: "yellow", team: "B", minute: 78 },
+ { type: "goal", team: "A", minute: 89 },
 ]
 
 // compter les buts par équipe en une seule passe
 const goals = matchEvents.reduce((acc, event) => {
-  if (event.type !== "goal") return acc
-  // acc est l'accumulateur : on le met à jour et on le retourne
-  acc[event.team] = (acc[event.team] || 0) + 1
-  return acc
+ if (event.type !== "goal") return acc
+ // acc est l'accumulateur : on le met à jour et on le retourne
+ acc[event.team] = (acc[event.team] || 0) + 1
+ return acc
 }, {})
 
 // goals = { A: 3, B: 1 }
@@ -146,24 +146,24 @@ const goals = matchEvents.reduce((acc, event) => {
 
 ```js
 const tracks = [
-  { title: "Location", genre: "trapsoul" },
-  { title: "Frozen", genre: "rnb" },
-  { title: "Codeine Dreaming", genre: "trapsoul" },
-  { title: "Beautiful", genre: "country" },
-  { title: "Die A Happy Man", genre: "country" },
+ { title: "Location", genre: "trapsoul" },
+ { title: "Frozen", genre: "rnb" },
+ { title: "Codeine Dreaming", genre: "trapsoul" },
+ { title: "Beautiful", genre: "country" },
+ { title: "Die A Happy Man", genre: "country" },
 ]
 
 // grouper par genre
 const byGenre = tracks.reduce((acc, track) => {
-  if (!acc[track.genre]) acc[track.genre] = []
-  acc[track.genre].push(track.title)
-  return acc
+ if (!acc[track.genre]) acc[track.genre] = []
+ acc[track.genre].push(track.title)
+ return acc
 }, {})
 
 // byGenre = {
-//   trapsoul: ["Location", "Codeine Dreaming"],
-//   rnb: ["Frozen"],
-//   country: ["Beautiful", "Die A Happy Man"]
+//  trapsoul: ["Location", "Codeine Dreaming"],
+//  rnb: ["Frozen"],
+//  country: ["Beautiful", "Die A Happy Man"]
 // }
 ```
 
@@ -184,16 +184,16 @@ const total = arr.reduce((a, b) => a + b, 0)
 ## 5) LE MATCH : QUAND UTILISER QUOI
 
 ```
-Situation                                        Méthode
+Situation                    Méthode
 ──────────────────────────────────────────────────────────────────
-Transformer chaque élément, même longueur        map
-Effet de bord sur chaque élément (log, save)     forEach
-Besoin de break ou d'async séquentiel            for...of
-Réduire à une valeur (somme, objet, groupby)     reduce
-Besoin d'index ET de break                       for...of avec entries()
-Vérifier si un élément existe                    some / find
-Vérifier si tous les éléments valident           every
-Filtrer                                          filter
+Transformer chaque élément, même longueur    map
+Effet de bord sur chaque élément (log, save)   forEach
+Besoin de break ou d'async séquentiel      for...of
+Réduire à une valeur (somme, objet, groupby)   reduce
+Besoin d'index ET de break            for...of avec entries()
+Vérifier si un élément existe          some / find
+Vérifier si tous les éléments valident      every
+Filtrer                     filter
 ```
 
 ---
@@ -202,22 +202,22 @@ Filtrer                                          filter
 
 ```js
 const survivors = [
-  { name: "Rick", alive: true, kills: 34 },
-  { name: "Carl", alive: true, kills: 12 },
-  { name: "Lori", alive: false, kills: 3 },
-  { name: "Daryl", alive: true, kills: 89 },
-  { name: "Shane", alive: false, kills: 21 },
+ { name: "Rick", alive: true, kills: 34 },
+ { name: "Carl", alive: true, kills: 12 },
+ { name: "Lori", alive: false, kills: 3 },
+ { name: "Daryl", alive: true, kills: 89 },
+ { name: "Shane", alive: false, kills: 21 },
 ]
 
 // chaîne filter + map : deux passes sur le tableau
 const topAlive = survivors
-  .filter(s => s.alive)           // passe 1 : crée un nouveau tableau
-  .map(s => s.name.toUpperCase()) // passe 2 : crée encore un tableau
+ .filter(s => s.alive)      // passe 1 : crée un nouveau tableau
+ .map(s => s.name.toUpperCase()) // passe 2 : crée encore un tableau
 
 // avec reduce : une seule passe
 const topAliveOptimized = survivors.reduce((acc, s) => {
-  if (s.alive) acc.push(s.name.toUpperCase())
-  return acc
+ if (s.alive) acc.push(s.name.toUpperCase())
+ return acc
 }, [])
 
 // sur 20 survivants la différence est nulle
@@ -240,12 +240,12 @@ Ce code est cassé. Trouve le bug avant de l'exécuter, explique pourquoi les r�
 
 ```js
 async function loadEpisodes(ids) {
-  const results = []
-  ids.forEach(async id => {
-    const ep = await fetchEpisode(id)
-    results.push(ep.title)
-  })
-  return results
+ const results = []
+ ids.forEach(async id => {
+  const ep = await fetchEpisode(id)
+  results.push(ep.title)
+ })
+ return results
 }
 
 const episodes = await loadEpisodes([3, 1, 2])

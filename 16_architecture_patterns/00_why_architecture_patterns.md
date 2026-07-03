@@ -49,11 +49,11 @@ Et le pire scénario : un projet qui a choisi les microservices trop tôt, sans 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-logique métier mélangée à l'accès base de données      --> clean architecture --> séparation domaine/infra
-état de l'app difficile à suivre dans une UI complexe   --> MVC                --> séparation modèle/vue/contrôleur
-système qui doit réagir à des événements externes       --> event-driven       --> découplage producteur/réaction
-projet qui grossit et devient difficile à découper      --> microservices      --> services indépendants déployables
-code global qui fuit partout sans encapsulation         --> module pattern     --> frontières claires et explicites
+logique métier mélangée à l'accès base de données   --> clean architecture --> séparation domaine/infra
+état de l'app difficile à suivre dans une UI complexe  --> MVC        --> séparation modèle/vue/contrôleur
+système qui doit réagir à des événements externes    --> event-driven    --> découplage producteur/réaction
+projet qui grossit et devient difficile à découper   --> microservices   --> services indépendants déployables
+code global qui fuit partout sans encapsulation     --> module pattern   --> frontières claires et explicites
 ```
 
 L'architecture n'est jamais visible pour l'shinobi final : il ne voit jamais "ah, ce système utilise du Clean Architecture". Mais il ressent directement les conséquences : un système bien architecturé évolue vite et reste stable, un système mal architecturé devient lent à faire évoluer et de plus en plus fragile.

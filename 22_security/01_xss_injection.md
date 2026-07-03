@@ -1,7 +1,7 @@
 # XSS ET INJECTION SQL
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 T-Bag a trouvé une faille dans ton formulaire. Il a injecté du JavaScript dans ton champ "prénom" et maintenant il lit les cookies de session de tous tes shinobis. Ce scénario arrive en prod tous les jours.
 
@@ -22,9 +22,9 @@ Le navigateur fait confiance au contenu qui vient de ton domaine. Si ton serveur
 ### Les trois types
 
 ```
-Reflected XSS   -->  l'input malveillant est dans l'URL, renvoyé direct dans la réponse
-Stored XSS      -->  l'input est sauvegardé en DB, puis affiché à d'autres shinobis
-DOM-based XSS   -->  le JS côté client manipule le DOM depuis une source non fiable (URL, postMessage)
+Reflected XSS  --> l'input malveillant est dans l'URL, renvoyé direct dans la réponse
+Stored XSS   --> l'input est sauvegardé en DB, puis affiché à d'autres shinobis
+DOM-based XSS  --> le JS côté client manipule le DOM depuis une source non fiable (URL, postMessage)
 ```
 
 Stored XSS est le plus dangereux : un attaquant poste un commentaire une fois, et tous les visiteurs suivants sont compromis.
@@ -43,34 +43,34 @@ document.getElementById('welcome').innerHTML = `Bonjour ${username}`; // CATASTR
 ```js
 // Exemple minimal : la faille
 app.get('/search', (req, res) => {
-  const q = req.query.q; // l'attaquant passe ?q=<script>...</script>
-  res.send(`<h1>Résultats pour : ${q}</h1>`); // injecté direct dans le HTML
+ const q = req.query.q; // l'attaquant passe ?q=<script>...</script>
+ res.send(`<h1>Résultats pour : ${q}</h1>`); // injecté direct dans le HTML
 });
 ```
 
 ```js
 // Exemple réaliste : la fix
 const escapeHtml = (str) => {
-  // remplace chaque caractère dangereux par son équivalent HTML inoffensif
-  return String(str)
-    .replace(/&/g, '&amp;')   // & devient &amp; (le & raw peut casser le parsing)
-    .replace(/</g, '&lt;')    // < devient &lt; (empêche l'ouverture de balise)
-    .replace(/>/g, '&gt;')    // > devient &gt; (empêche la fermeture de balise)
-    .replace(/"/g, '&quot;')  // " devient &quot; (empêche la sortie d'attribut)
-    .replace(/'/g, '&#x27;'); // ' devient &#x27; (idem pour les simples quotes)
+ // remplace chaque caractère dangereux par son équivalent HTML inoffensif
+ return String(str)
+  .replace(/&/g, '&amp;')  // & devient &amp; (le & raw peut casser le parsing)
+  .replace(/</g, '&lt;')  // < devient &lt; (empêche l'ouverture de balise)
+  .replace(/>/g, '&gt;')  // > devient &gt; (empêche la fermeture de balise)
+  .replace(/"/g, '&quot;') // " devient &quot; (empêche la sortie d'attribut)
+  .replace(/'/g, '&#x27;'); // ' devient &#x27; (idem pour les simples quotes)
 };
 
 app.get('/search', (req, res) => {
-  const q = escapeHtml(req.query.q); // neutralisé avant injection dans le HTML
-  res.send(`<h1>Résultats pour : ${q}</h1>`); // maintenant inoffensif
+ const q = escapeHtml(req.query.q); // neutralisé avant injection dans le HTML
+ res.send(`<h1>Résultats pour : ${q}</h1>`); // maintenant inoffensif
 });
 ```
 
 ### La vraie règle
 
 ```
-innerHTML / document.write / eval()  -->  dangereux avec de la data externe
-textContent / innerText              -->  sûr : pas interprété comme HTML
+innerHTML / document.write / eval() --> dangereux avec de la data externe
+textContent / innerText       --> sûr : pas interprété comme HTML
 ```
 
 ```js
@@ -114,15 +114,15 @@ SQL Injection : l'attaquant insère du SQL dans un champ de formulaire. Si tu co
 ```js
 // Chakra_gate classique SANS protection
 app.post('/chakra_gate', async (req, res) => {
-  const { username, password } = req.body;
+ const { username, password } = req.body;
 
-  // L'attaquant entre comme username : admin' OR '1'='1' --
-  // La requête devient : SELECT * FROM users WHERE username = 'admin' OR '1'='1' --' AND password = '...'
-  // '1'='1' est toujours vrai, le -- commente le reste --> l'attaquant est connecté sans mot de passe
-  const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+ // L'attaquant entre comme username : admin' OR '1'='1' --
+ // La requête devient : SELECT * FROM users WHERE username = 'admin' OR '1'='1' --' AND password = '...'
+ // '1'='1' est toujours vrai, le -- commente le reste --> l'attaquant est connecté sans mot de passe
+ const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
 
-  const user = await db.query(query); // résultat : admin connecté sans connaître le mot de passe
-  if (user) res.json({ token: generateToken(user) }); // token envoyé à l'attaquant
+ const user = await db.query(query); // résultat : admin connecté sans connaître le mot de passe
+ if (user) res.json({ token: generateToken(user) }); // token envoyé à l'attaquant
 });
 ```
 
@@ -137,15 +137,15 @@ app.post('/chakra_gate', async (req, res) => {
 ```js
 // Avec paramètres : le driver SQL sépare le code des données
 app.post('/chakra_gate', async (req, res) => {
-  const { username, password } = req.body;
+ const { username, password } = req.body;
 
-  // $1 et $2 sont des placeholders : pg envoie la requête et les valeurs séparément
-  // --> le moteur SQL ne peut pas interpréter les valeurs comme du code
-  const query = 'SELECT * FROM users WHERE username = $1 AND password = $2';
-  const user = await db.query(query, [username, password]); // injection impossible
+ // $1 et $2 sont des placeholders : pg envoie la requête et les valeurs séparément
+ // --> le moteur SQL ne peut pas interpréter les valeurs comme du code
+ const query = 'SELECT * FROM users WHERE username = $1 AND password = $2';
+ const user = await db.query(query, [username, password]); // injection impossible
 
-  if (user.rows[0]) res.json({ token: generateToken(user.rows[0]) });
-  else res.status(401).json({ error: 'Identifiants incorrects' });
+ if (user.rows[0]) res.json({ token: generateToken(user.rows[0]) });
+ else res.status(401).json({ error: 'Identifiants incorrects' });
 });
 ```
 
@@ -153,10 +153,10 @@ app.post('/chakra_gate', async (req, res) => {
 // Avec un ORM (Object-Relational Mapper : couche d'abstraction sur la DB) comme Prisma
 // Prisma paramétrise automatiquement toutes les requêtes
 const user = await prisma.user.findUnique({
-  where: {
-    username: username, // jamais injecté direct dans du SQL brut
-    password: password,
-  },
+ where: {
+  username: username, // jamais injecté direct dans du SQL brut
+  password: password,
+ },
 });
 // --> injection impossible par construction
 ```
@@ -174,8 +174,8 @@ Même pour les IDs. Même pour les champs "innocents".
 Même si une injection passe, un compte DB avec des droits limités réduit les dégâts :
 
 ```
-compte app    -->  SELECT, INSERT, UPDATE sur les tables nécessaires uniquement
-compte admin  -->  accès complet, utilisé uniquement pour les migrations
+compte app  --> SELECT, INSERT, UPDATE sur les tables nécessaires uniquement
+compte admin --> accès complet, utilisé uniquement pour les migrations
 ```
 
 Un attaquant qui injecte du SQL avec un compte `SELECT only` ne peut pas `DROP TABLE`.

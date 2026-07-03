@@ -10,7 +10,7 @@ Avant 2015, il n'y avait pas de `class` en JS. Pour fabriquer des objets en sér
 Quand tu écris `new MaFonction()`, le moteur fait quatre choses dans l'ordre :
 
 ```
-1. crée un objet vide              {}
+1. crée un objet vide       {}
 2. lie son [[Prototype]] à MaFonction.prototype
 3. exécute MaFonction avec this = ce nouvel objet
 4. retourne this (sauf si la fonction retourne déjà un objet explicitement)
@@ -18,15 +18,15 @@ Quand tu écris `new MaFonction()`, le moteur fait quatre choses dans l'ordre :
 
 ```js
 function Ninja(nom, village) {
-  // à ce point, "this" est l'objet vide créé à l'étape 1
-  this.nom = nom
-  this.village = village
-  // pas de return : le moteur retourne this automatiquement (étape 4)
+ // à ce point, "this" est l'objet vide créé à l'étape 1
+ this.nom = nom
+ this.village = village
+ // pas de return : le moteur retourne this automatiquement (étape 4)
 }
 
 // méthode partagée : posée sur Ninja.prototype, pas dans le constructeur
 Ninja.prototype.presenter = function() {
-  return `${this.nom}, ninja du village ${this.village}`
+ return `${this.nom}, ninja du village ${this.village}`
 }
 
 const naruto = new Ninja("Naruto", "Konoha")
@@ -42,19 +42,19 @@ naruto.presenter() // "Naruto, ninja du village Konoha"
 ```js
 // MAUVAIS : une nouvelle fonction recréée à chaque instance
 function NinjaLourd(nom) {
-  this.nom = nom
-  this.presenter = function() {     // recréée à CHAQUE new NinjaLourd()
-    return `${this.nom} se présente`
-  }
+ this.nom = nom
+ this.presenter = function() {   // recréée à CHAQUE new NinjaLourd()
+  return `${this.nom} se présente`
+ }
 }
 
 // BON : une seule fonction partagée par toutes les instances
 function NinjaLeger(nom) {
-  this.nom = nom
-  // pas de méthode ici
+ this.nom = nom
+ // pas de méthode ici
 }
 NinjaLeger.prototype.presenter = function() {
-  return `${this.nom} se présente`
+ return `${this.nom} se présente`
 }
 ```
 
@@ -73,12 +73,12 @@ C'est la vraie raison d'être du prototype : économiser la mémoire sur le comp
 
 ```js
 function Ninja(nom) {
-  this.nom = nom
+ this.nom = nom
 }
 
-const sasuke = Ninja("Sasuke")  // oubli de "new"
+const sasuke = Ninja("Sasuke") // oubli de "new"
 
-console.log(sasuke)        // undefined : la fonction ne retourne rien
+console.log(sasuke)    // undefined : la fonction ne retourne rien
 console.log(globalThis.nom) // "Sasuke" en mode non strict : this valait globalThis !
 ```
 
@@ -90,15 +90,15 @@ Protection possible dans une fonction constructeur :
 
 ```js
 function Ninja(nom) {
-  // garde : si appelé sans new, this n'est pas une instance de Ninja
-  if (!(this instanceof Ninja)) {
-    throw new Error("Ninja doit être appelé avec new")
-  }
-  this.nom = nom
+ // garde : si appelé sans new, this n'est pas une instance de Ninja
+ if (!(this instanceof Ninja)) {
+  throw new Error("Ninja doit être appelé avec new")
+ }
+ this.nom = nom
 }
 
-Ninja("Sasuke")      // Error: Ninja doit être appelé avec new
-new Ninja("Sasuke")  // OK
+Ninja("Sasuke")   // Error: Ninja doit être appelé avec new
+new Ninja("Sasuke") // OK
 ```
 
 ---
@@ -108,9 +108,9 @@ new Ninja("Sasuke")  // OK
 ```js
 const naruto = new Ninja("Naruto")
 
-naruto instanceof Ninja          // true
-naruto instanceof Object         // true aussi : Object.prototype est dans la chaîne
-"naruto" instanceof Ninja        // false : une string n'a pas Ninja.prototype dans sa chaîne
+naruto instanceof Ninja     // true
+naruto instanceof Object     // true aussi : Object.prototype est dans la chaîne
+"naruto" instanceof Ninja    // false : une string n'a pas Ninja.prototype dans sa chaîne
 ```
 
 `instanceof` ne vérifie pas un "type" au sens classique. Il vérifie si `Ninja.prototype` se trouve quelque part dans la chaîne de prototypes de `naruto`. C'est un test sur la chaîne vue au fichier 01, pas un système de types séparé.
@@ -125,19 +125,19 @@ Avant `class extends`, l'héritage se faisait manuellement. Comprendre ça expli
 
 ```js
 function Ninja(nom, village) {
-  this.nom = nom
-  this.village = village
+ this.nom = nom
+ this.village = village
 }
 Ninja.prototype.presenter = function() {
-  return `${this.nom} de ${this.village}`
+ return `${this.nom} de ${this.village}`
 }
 
 // Jonin hérite de Ninja
 function Jonin(nom, village, specialite) {
-  // 1. appeler le constructeur parent avec le bon "this"
-  Ninja.call(this, nom, village)
-  // .call : exécute Ninja avec "this" = l'instance de Jonin en cours de création
-  this.specialite = specialite
+ // 1. appeler le constructeur parent avec le bon "this"
+ Ninja.call(this, nom, village)
+ // .call : exécute Ninja avec "this" = l'instance de Jonin en cours de création
+ this.specialite = specialite
 }
 
 // 2. lier la chaîne de prototypes
@@ -149,14 +149,14 @@ Jonin.prototype.constructor = Jonin
 
 // 4. ajouter des méthodes propres à Jonin
 Jonin.prototype.mission = function() {
-  return `${this.nom} : mission de ${this.specialite}`
+ return `${this.nom} : mission de ${this.specialite}`
 }
 
 const kakashi = new Jonin("Kakashi", "Konoha", "copie de jutsus")
-kakashi.presenter()  // "Kakashi de Konoha" : hérité de Ninja
-kakashi.mission()    // "Kakashi : mission de copie de jutsus" : propre à Jonin
-kakashi instanceof Ninja  // true : Ninja.prototype est dans la chaîne
-kakashi instanceof Jonin  // true
+kakashi.presenter() // "Kakashi de Konoha" : hérité de Ninja
+kakashi.mission()  // "Kakashi : mission de copie de jutsus" : propre à Jonin
+kakashi instanceof Ninja // true : Ninja.prototype est dans la chaîne
+kakashi instanceof Jonin // true
 ```
 
 C'est exactement ce que `class Jonin extends Ninja` génère en interne, en plus lisible et avec `super` pour remplacer `Ninja.call(this, ...)`.
@@ -167,19 +167,19 @@ C'est exactement ce que `class Jonin extends Ninja` génère en interne, en plus
 
 ```js
 function Ninja(nom) {
-  this.nom = nom
+ this.nom = nom
 }
 Ninja.prototype.presenter = function() {
-  return `${this.nom} se présente`
+ return `${this.nom} se présente`
 }
 
 const naruto = new Ninja("Naruto")
 
 // ERREUR : remplacement complet du prototype après création d'une instance
 Ninja.prototype = {
-  presenter() {
-    return "présentation générique"
-  }
+ presenter() {
+  return "présentation générique"
+ }
 }
 
 naruto.presenter() // "Naruto se présente" : encore l'ancien prototype !

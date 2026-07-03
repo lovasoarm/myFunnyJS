@@ -3,7 +3,7 @@ Temps de lecture ~3 min
 
 > Pourquoi ce module existe.
 
-Le référentiel est la boussole du curriculum. Il définit ce que tu dois savoir (`competences.md`), ce qui vieillit mal (`MATRICE_PERENNITE.md`), et quoi faire quand tu bloques (`SORTIR_D_UN_PLATEAU.md`).
+Le référentiel est la boussole du curriculum. Il définit ce que tu dois savoir (`competences.md`) et quoi faire quand tu bloques (`SORTIR_D_UN_PLATEAU.md`).
 
 Ce n'est pas du contenu à lire linéairement. C'est un manuel à ré-ouvrir tous les 3 modules pour te repositionner.
 

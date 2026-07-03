@@ -1,7 +1,7 @@
 # 00 : Les 8 sophismes du distribué (fallacies)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : formulés par Peter Deutsch chez Sun en 1994. Toujours vrais
+> **INTEMPOREL** : formulés par Peter Deutsch chez Sun en 1994. Toujours vrais
 > en 2026. Le seront en 2036. Aucun framework ne les efface.
 
 Chaque sophisme est une **croyance implicite fausse** que ton code trahit
@@ -27,14 +27,14 @@ souvent sans que tu le saches.
 
 ```js
 async function retry(fn, { max = 5 } = {}) {
-  for (let i = 0; i < max; i++) {
-    try { return await fn(); }
-    catch (e) {
-      if (i === max - 1) throw e;
-      const wait = Math.min(30_000, (2 ** i) * 100) + Math.random() * 100;
-      await new Promise(r => setTimeout(r, wait));
-    }
+ for (let i = 0; i < max; i++) {
+  try { return await fn(); }
+  catch (e) {
+   if (i === max - 1) throw e;
+   const wait = Math.min(30_000, (2 ** i) * 100) + Math.random() * 100;
+   await new Promise(r => setTimeout(r, wait));
   }
+ }
 }
 ```
 

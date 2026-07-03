@@ -15,10 +15,10 @@ Ici : juste les deux réflexes de survie pour la suite du curriculum.
 
 ```js
 const ninja = {
-  name: "Naruto",
-  cri() {
-    console.log(this.name) // this = ninja, parce que ninja.cri()
-  }
+ name: "Naruto",
+ cri() {
+  console.log(this.name) // this = ninja, parce que ninja.cri()
+ }
 }
 
 ninja.cri() // "Naruto"
@@ -35,16 +35,16 @@ Une arrow function ne crée pas son propre `this`. Elle hérite du contexte où 
 
 ```js
 const timer = {
-  name: "Bombe",
-  start() {
-    setTimeout(function () {
-      console.log(this.name) // undefined : this perdu dans le callback classique
-    }, 100)
+ name: "Bombe",
+ start() {
+  setTimeout(function () {
+   console.log(this.name) // undefined : this perdu dans le callback classique
+  }, 100)
 
-    setTimeout(() => {
-      console.log(this.name) // "Bombe" : arrow hérite du this de start()
-    }, 100)
-  }
+  setTimeout(() => {
+   console.log(this.name) // "Bombe" : arrow hérite du this de start()
+  }, 100)
+ }
 }
 
 timer.start()

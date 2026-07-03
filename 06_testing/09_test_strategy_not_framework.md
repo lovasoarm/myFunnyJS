@@ -1,7 +1,7 @@
 # 09 : Stratégie de tests (pas framework)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : les frameworks passeront (Jest → Vitest → Node --test → …),
+> **INTEMPOREL** : les frameworks passeront (Jest → Vitest → Node --test → …),
 > la stratégie ne bougera pas.
 
 ## Objet du fichier
@@ -12,18 +12,18 @@ Décider **quoi tester, à quel niveau, à quel coût**. Rien sur `expect()` ou
 ## La pyramide (et ses limites)
 
 ```
-        /\        e2e (rare, cher, lent, révèle des bugs uniques)
-       /--\       intégration (modéré, réaliste, coûteux à maintenir)
-      /----\      unitaire (nombreux, rapides, ciblés)
-     /______\
+    /\    e2e (rare, cher, lent, révèle des bugs uniques)
+    /--\    intégration (modéré, réaliste, coûteux à maintenir)
+   /----\   unitaire (nombreux, rapides, ciblés)
+   /______\
 ```
 
 - **Unitaire** : une fonction pure ou une classe isolée. Cible : logique
-  métier, invariants.
+ métier, invariants.
 - **Intégration** : plusieurs modules ensemble (ex: route + service + DB
-  mémoire). Cible : contrats entre couches.
+ mémoire). Cible : contrats entre couches.
 - **E2E** : le système complet, comme un shinobi. Cible : *happy paths*
-  critiques uniquement (checkout, chakra_gate).
+ critiques uniquement (checkout, chakra_gate).
 
 **Nouvelle réalité** : la pyramide devient un **trapèze** : beaucoup
 d'intégration en mémoire (SQLite-in-mem, HTTP local), peu de vrai E2E.
@@ -31,9 +31,9 @@ d'intégration en mémoire (SQLite-in-mem, HTTP local), peu de vrai E2E.
 ## Faux positifs / faux négatifs
 
 - **Faux positif** : test vert alors que le code est cassé
-  (assertion trop laxe, mock qui ment).
+ (assertion trop laxe, mock qui ment).
 - **Faux négatif** : test rouge alors que le code est bon
-  (assertion trop stricte, dépendance externe flaky).
+ (assertion trop stricte, dépendance externe flaky).
 
 Un test flaky est **toujours** un des deux. Voir `04_debugging/07_flaky_bugs.md`.
 

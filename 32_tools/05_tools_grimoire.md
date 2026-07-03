@@ -1,11 +1,11 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
 > Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
@@ -21,7 +21,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # TOOLS GRIMOIRE
 
@@ -65,8 +65,8 @@ L'établi complet. Les 4 gadgets maison construits dans ce module, leur rôle ex
 ```
 BOUGERA (probablement) :
 - tu remplaceras sans doute ces outils maison par des libs matures en vrai projet de prod
-  (Winston ou Pino pour le logger, Tinybench pour le benchmark, des frameworks CLI comme
-  Commander ou Yargs pour le scaffolder)
+ (Winston ou Pino pour le logger, Tinybench pour le benchmark, des frameworks CLI comme
+ Commander ou Yargs pour le scaffolder)
 
 RESTERA :
 - le besoin de structurer un log avec niveau et contexte, peu importe l'outil derrière

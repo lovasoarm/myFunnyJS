@@ -32,8 +32,8 @@ VS Code affiche les mêmes panneaux qu'un navigateur, directement dans l'éditeu
 ### Via Node.js en terminal
 
 ```bash
-node --inspect script.js       # démarre Node avec le debugger activé
-node --inspect-brk script.js   # idem, mais pause au tout premier démarrage
+node --inspect script.js    # démarre Node avec le debugger activé
+node --inspect-brk script.js  # idem, mais pause au tout premier démarrage
 ```
 
 Puis ouvrir Chrome et aller sur `chrome://inspect`.
@@ -51,9 +51,9 @@ Cliquer sur le numéro de ligne dans l'onglet Sources. Une pastille bleue appara
 
 ```js
 function calculerPuissance(base, niveau) {
-  const chakraBase = base * 100           // <-- breakpoint ici
-  const multiplicateur = Math.pow(2, niveau)
-  return chakraBase * multiplicateur
+ const chakraBase = base * 100      // <-- breakpoint ici
+ const multiplicateur = Math.pow(2, niveau)
+ return chakraBase * multiplicateur
 }
 ```
 
@@ -89,43 +89,43 @@ JS évalue et logue à chaque passage, sans s'arrêter, sans modifier le code.
 Une fois en pause sur un breakpoint, tu as quatre actions.
 
 ```
-F8   (ou bouton Play)           Resume / Continue
-     --> reprend l'exécution jusqu'au prochain breakpoint ou la fin du programme
+F8  (ou bouton Play)      Resume / Continue
+   --> reprend l'exécution jusqu'au prochain breakpoint ou la fin du programme
 
-F10  (ou Step Over)             Passer à la ligne suivante
-     --> exécute la ligne courante sans entrer dans les fonctions appelées
+F10 (ou Step Over)       Passer à la ligne suivante
+   --> exécute la ligne courante sans entrer dans les fonctions appelées
 
-F11  (ou Step Into)             Entrer dans la fonction
-     --> si la ligne courante appelle une fonction : entre dans son code
+F11 (ou Step Into)       Entrer dans la fonction
+   --> si la ligne courante appelle une fonction : entre dans son code
 
-Shift+F11 (ou Step Out)         Sortir de la fonction courante
-     --> exécute le reste de la fonction et revient à l'appelant
+Shift+F11 (ou Step Out)     Sortir de la fonction courante
+   --> exécute le reste de la fonction et revient à l'appelant
 ```
 
 ### Quand utiliser quoi
 
 ```
-SITUATION                               ACTION
+SITUATION                ACTION
 
-Tu cherches la ligne qui plante         F10 (step over) jusqu'à la trouver
+Tu cherches la ligne qui plante     F10 (step over) jusqu'à la trouver
 Tu veux inspecter une fonction suspecte F11 (step into) pour y entrer
-Tu as déjà vu ce que tu voulais         Shift+F11 (step out) pour sortir
-Tu veux aller au prochain breakpoint    F8 (continue)
+Tu as déjà vu ce que tu voulais     Shift+F11 (step out) pour sortir
+Tu veux aller au prochain breakpoint  F8 (continue)
 ```
 
 Exemple : combat DBZ, le score de puissance sort à 0 alors qu'il devrait être à 9000.
 
 ```js
 function combatDBZ(goku, vegeta) {
-  const puissanceGoku   = calculerPuissance(goku)    // ligne 3 : step into ici
-  const puissanceVegeta = calculerPuissance(vegeta)
-  return puissanceGoku > puissanceVegeta ? 'Goku' : 'Vegeta'
+ const puissanceGoku  = calculerPuissance(goku)  // ligne 3 : step into ici
+ const puissanceVegeta = calculerPuissance(vegeta)
+ return puissanceGoku > puissanceVegeta ? 'Goku' : 'Vegeta'
 }
 
 function calculerPuissance(combattant) {
-  const base = combattant.stats.force               // ligne 8 : qu'est-ce que stats ?
-  const niveau = combattant.stats.niveau
-  return base * Math.pow(10, niveau)
+ const base = combattant.stats.force        // ligne 8 : qu'est-ce que stats ?
+ const niveau = combattant.stats.niveau
+ return base * Math.pow(10, niveau)
 }
 ```
 
@@ -144,8 +144,8 @@ Démarche :
 La pile d'appels en cours au moment de la pause.
 
 ```
-combatDBZ (combat.js:3)        <-- fonction où tu es actuellement
-<anonymous> (game.js:45)       <-- qui a appelé combatDBZ
+combatDBZ (combat.js:3)    <-- fonction où tu es actuellement
+<anonymous> (game.js:45)    <-- qui a appelé combatDBZ
 ```
 
 Cliquer sur une entrée du call stack : le code de cette fonction s'affiche au centre, avec ses variables locales.
@@ -160,12 +160,12 @@ Trois sections :
 
 ```js
 function creerCompteur(depart) {
-  let count = depart  // sera visible dans "Closure" depuis les fonctions internes
+ let count = depart // sera visible dans "Closure" depuis les fonctions internes
 
-  return function incrementer(step) {
-    count += step   // ici, "count" apparaît dans Closure, pas dans Local
-    return count
-  }
+ return function incrementer(step) {
+  count += step  // ici, "count" apparaît dans Closure, pas dans Local
+  return count
+ }
 }
 ```
 
@@ -176,9 +176,9 @@ Si une variable vaut `undefined` alors qu'elle devrait avoir une valeur : cherch
 Tu peux évaluer des expressions JS pendant la pause.
 
 ```
-goku.stats.force * 10        --> 0 (si force est 0, pas undefined)
-typeof goku.stats.niveau     --> "string" (si niveau est "3" au lieu de 3)
-JSON.stringify(vegeta)       --> voir tout l'objet sans surprise
+goku.stats.force * 10    --> 0 (si force est 0, pas undefined)
+typeof goku.stats.niveau   --> "string" (si niveau est "3" au lieu de 3)
+JSON.stringify(vegeta)    --> voir tout l'objet sans surprise
 ```
 
 Utile pour tester une hypothèse sans modifier le code.
@@ -193,16 +193,16 @@ Créer un fichier `.vscode/launch.json` à la racine du projet :
 
 ```json
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug script",
-      "program": "${workspaceFolder}/src/index.js",
-      "console": "integratedTerminal"
-    }
-  ]
+ "version": "0.2.0",
+ "configurations": [
+  {
+   "type": "node",
+   "request": "launch",
+   "name": "Debug script",
+   "program": "${workspaceFolder}/src/index.js",
+   "console": "integratedTerminal"
+  }
+ ]
 }
 ```
 
@@ -234,14 +234,14 @@ Alternative si le breakpoint de mutation n'est pas disponible : wrapper la propr
 ```js
 // Transformer une propriété en setter qui loggue toute modification
 function watchProperty(obj, prop) {
-  let val = obj[prop]
-  Object.defineProperty(obj, prop, {
-    get: () => val,
-    set: (newVal) => {
-      console.trace(`[WATCH] ${prop} changed: ${val} --> ${newVal}`)
-      val = newVal
-    }
-  })
+ let val = obj[prop]
+ Object.defineProperty(obj, prop, {
+  get: () => val,
+  set: (newVal) => {
+   console.trace(`[WATCH] ${prop} changed: ${val} --> ${newVal}`)
+   val = newVal
+  }
+ })
 }
 
 watchProperty(stock, 'munitions')
@@ -258,23 +258,23 @@ Le moteur de combat DBZ calcule des scores incorrects. Lance ce code dans le nav
 
 ```js
 const combattants = {
-  goku:   { stats: { force: '9000', niveau: 1 } },   // intentionnellement problématique
-  vegeta: { stats: { force: 8500, niveau: 1 } }
+ goku:  { stats: { force: '9000', niveau: 1 } },  // intentionnellement problématique
+ vegeta: { stats: { force: 8500, niveau: 1 } }
 }
 
 function calculerPuissance(combattant) {
-  const base = combattant.stats.force
-  const niveau = combattant.stats.niveau
-  return base * Math.pow(10, niveau)
+ const base = combattant.stats.force
+ const niveau = combattant.stats.niveau
+ return base * Math.pow(10, niveau)
 }
 
 function combat(a, b) {
-  const pa = calculerPuissance(combattants[a])
-  const pb = calculerPuissance(combattants[b])
-  return pa > pb ? a : b
+ const pa = calculerPuissance(combattants[a])
+ const pb = calculerPuissance(combattants[b])
+ return pa > pb ? a : b
 }
 
-console.log(combat('goku', 'vegeta'))  // doit retourner 'goku' mais retourne 'vegeta'
+console.log(combat('goku', 'vegeta')) // doit retourner 'goku' mais retourne 'vegeta'
 ```
 
 Exercice :
@@ -290,27 +290,27 @@ Le stock de munitions du camp de Rick baisse plus vite que prévu. Utilise `watc
 
 ```js
 const camp = {
-  stock: { munitions: 500, nourriture: 200, medicaments: 50 }
+ stock: { munitions: 500, nourriture: 200, medicaments: 50 }
 }
 
 watchProperty(camp.stock, 'munitions')
 
 async function rondeNocturne(camp) {
-  const gardes = ['Rick', 'Daryl', 'Michonne']
-  await Promise.all(gardes.map(async nom => {
-    const tirs = Math.floor(Math.random() * 20) + 5
-    camp.stock.munitions -= tirs
-    console.log(`${nom} a tiré ${tirs} fois`)
-  }))
+ const gardes = ['Rick', 'Daryl', 'Michonne']
+ await Promise.all(gardes.map(async nom => {
+  const tirs = Math.floor(Math.random() * 20) + 5
+  camp.stock.munitions -= tirs
+  console.log(`${nom} a tiré ${tirs} fois`)
+ }))
 }
 
 async function patrouille(camp) {
-  camp.stock.munitions = camp.stock.munitions - 10  // consommation de patrouille
+ camp.stock.munitions = camp.stock.munitions - 10 // consommation de patrouille
 }
 
 // Les deux lancés en parallèle
 Promise.all([rondeNocturne(camp), patrouille(camp)])
-  .then(() => console.log('Stock final:', camp.stock.munitions))
+ .then(() => console.log('Stock final:', camp.stock.munitions))
 ```
 
 Exercice :

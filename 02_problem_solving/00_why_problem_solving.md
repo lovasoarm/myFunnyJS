@@ -30,11 +30,11 @@ Et sur le plan de l'évolution du code : un dev qui conçoit uniquement pour le 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-ticket flou ("ça marche pas pour ce cas")          --> read fuzzy requirements --> problème précis et attaquable
-système complexe à construire                       --> decompose               --> pièces indépendantes et testables
-plusieurs solutions possibles à un même problème     --> choose an approach      --> comparaison avant écriture
-fonctionnalité qui va probablement évoluer            --> design for change       --> structure qui absorbe le changement
-logique métier complexe avant le code                  --> model before code       --> contrats clairs entre les pièces
+ticket flou ("ça marche pas pour ce cas")     --> read fuzzy requirements --> problème précis et attaquable
+système complexe à construire            --> decompose        --> pièces indépendantes et testables
+plusieurs solutions possibles à un même problème   --> choose an approach   --> comparaison avant écriture
+fonctionnalité qui va probablement évoluer      --> design for change    --> structure qui absorbe le changement
+logique métier complexe avant le code         --> model before code    --> contrats clairs entre les pièces
 ```
 
 Cette compétence apparaît avant même la première ligne de code : en réunion de planification, en lecture de ticket, en conception d'architecture. C'est la phase invisible qui déterminera si le code qui suivra sera solide ou bricolé.

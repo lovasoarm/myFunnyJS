@@ -21,28 +21,28 @@ let _totalMatchs = 0
 const _historique = []
 
 const _validerScore = (score) => {
-  if (typeof score !== "number" || score < 0) {
-    throw new Error(`Score invalide : ${score}`)
-  }
+ if (typeof score !== "number" || score < 0) {
+  throw new Error(`Score invalide : ${score}`)
+ }
 }
 
 // public : l'interface que le monde voit
 export const enregistrerScore = (score) => {
-  _validerScore(score)
-  _historique.push(score)
-  _totalMatchs++
+ _validerScore(score)
+ _historique.push(score)
+ _totalMatchs++
 }
 
 export const getMoyenne = () =>
-  _historique.length === 0
-    ? 0
-    : _historique.reduce((a, b) => a + b, 0) / _historique.length
+ _historique.length === 0
+  ? 0
+  : _historique.reduce((a, b) => a + b, 0) / _historique.length
 
 export const getStats = () => ({
-  totalMatchs: _totalMatchs,
-  moyenne: getMoyenne(),
-  // on retourne une copie, pas la référence directe
-  historique: [..._historique]
+ totalMatchs: _totalMatchs,
+ moyenne: getMoyenne(),
+ // on retourne une copie, pas la référence directe
+ historique: [..._historique]
 })
 ```
 
@@ -63,22 +63,22 @@ export const resoudreJutsu = (jutsu, chakra) => jutsu.coutChakra <= chakra
 
 // internal/combatLogger.js
 export const logCombat = (attaquant, cible, resultat) =>
-  `[COMBAT] ${attaquant} vs ${cible} : ${resultat}`
+ `[COMBAT] ${attaquant} vs ${cible} : ${resultat}`
 ```
 
 ```js
-// combat.js  <-- la façade
+// combat.js <-- la façade
 import { calculerChakra } from "./internal/chakraEngine.js"
 import { resoudreJutsu } from "./internal/jutsuResolver.js"
 import { logCombat } from "./internal/combatLogger.js"
 
 // l'API publique : une seule fonction claire
 export const lancerAttaque = (attaquant, cible, jutsu) => {
-  const chakra = calculerChakra(attaquant)
-  const succes = resoudreJutsu(jutsu, chakra)
-  const log = logCombat(attaquant.nom, cible.nom, succes ? "TOUCHÉ" : "RATÉ")
-  console.log(log)
-  return succes
+ const chakra = calculerChakra(attaquant)
+ const succes = resoudreJutsu(jutsu, chakra)
+ const log = logCombat(attaquant.nom, cible.nom, succes ? "TOUCHÉ" : "RATÉ")
+ console.log(log)
+ return succes
 }
 ```
 
@@ -101,15 +101,15 @@ En ES6, un module est chargé une seule fois. Si deux fichiers importent le mêm
 ```js
 // config.js
 const _config = {
-  apiUrl: "https://api.crazydevs.io",
-  timeout: 5000,
-  debug: false
+ apiUrl: "https://api.crazydevs.io",
+ timeout: 5000,
+ debug: false
 }
 
 export const getConfig = () => ({ ..._config })
 
 export const setDebug = (val) => {
-  _config.debug = val
+ _config.debug = val
 }
 ```
 
@@ -122,7 +122,7 @@ setDebug(true)
 ```js
 // moduleB.js
 import { getConfig } from "./config.js"
-console.log(getConfig().debug)  // true
+console.log(getConfig().debug) // true
 // moduleA et moduleB partagent le même _config
 ```
 
@@ -138,16 +138,16 @@ Pour les systèmes extensibles. Un module "core" (le coeur) expose une méthode 
 
 ```js
 // core/jutsuRegistry.js
-const _registry = new Map()   // ← ça, c'est l'unique instance (singleton)
+const _registry = new Map()  // ← ça, c'est l'unique instance (singleton)
 
 export const register = (nom, fn) => {
-  if (_registry.has(nom)) throw new Error(`Jutsu "${nom}" déjà enregistré`)
-  _registry.set(nom, fn)
+ if (_registry.has(nom)) throw new Error(`Jutsu "${nom}" déjà enregistré`)
+ _registry.set(nom, fn)
 }
 
 export const executer = (nom, ...args) => {
-  if (!_registry.has(nom)) throw new Error(`Jutsu "${nom}" inconnu`)
-  return _registry.get(nom)(...args)
+ if (!_registry.has(nom)) throw new Error(`Jutsu "${nom}" inconnu`)
+ return _registry.get(nom)(...args)
 }
 
 export const lister = () => [..._registry.keys()]
@@ -158,18 +158,18 @@ export const lister = () => [..._registry.keys()]
 import { register } from "../core/jutsuRegistry.js"
 
 register("rasengan", (puissance) => ({
-  nom: "Rasengan",
-  degats: puissance * 150,
-  element: "vent"
+ nom: "Rasengan",
+ degats: puissance * 150,
+ element: "vent"
 }))
 ```
 
 ```js
 // main.js
-import "../plugins/rasengan.js"   // juste importer suffit : le plugin s'enregistre
+import "../plugins/rasengan.js"  // juste importer suffit : le plugin s'enregistre
 import { executer, lister } from "./core/jutsuRegistry.js"
 
-console.log(lister())          // ["rasengan"]
+console.log(lister())     // ["rasengan"]
 console.log(executer("rasengan", 3))
 ```
 
@@ -189,7 +189,7 @@ export const nom = "Eren"
 
 // n'importe qui peut faire :
 // import { score } de "./player.js"
-// score = 9999   <- ERREUR en strict mode pour les live bindings (le lien en direct entre ton import et la variable originale dans le module)
+// score = 9999  <- ERREUR en strict mode pour les live bindings (le lien en direct entre ton import et la variable originale dans le module)
 // mais une valeur mutable exposée crée une dépendance sur l'implémentation interne
 ```
 

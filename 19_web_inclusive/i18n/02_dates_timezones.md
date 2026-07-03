@@ -30,7 +30,7 @@ Certains pays appliquent l'heure d'été (passage en avance ou en retard d'une h
 ```js
 // Ça casse (mais fun) : calculer "dans 24h" en ajoutant des millisecondes brutes
 function dansUneJournee(date) {
-  return new Date(date.getTime() + 24 * 60 * 60 * 1000); // (faux le jour du changement d'heure !)
+ return new Date(date.getTime() + 24 * 60 * 60 * 1000); // (faux le jour du changement d'heure !)
 }
 // Le jour du passage à l'heure d'été, une journée locale dure 23h, pas 24h
 // Résultat : un rendez-vous "demain à la même heure" peut tomber une heure à côté
@@ -41,17 +41,17 @@ Le piège exact : `getTime()` renvoie des millisecondes depuis 1970, une mesure 
 ```js
 // Correct : raisonner sur le CALENDRIER (année, mois, jour), pas sur les millisecondes brutes
 function dansUneJournee(date) {
-  const lendemain = new Date(date); // (copie de la date d'origine)
-  lendemain.setDate(lendemain.getDate() + 1); // (avance d'UN jour calendaire, peu importe sa durée réelle en heures)
-  return lendemain;
+ const lendemain = new Date(date); // (copie de la date d'origine)
+ lendemain.setDate(lendemain.getDate() + 1); // (avance d'UN jour calendaire, peu importe sa durée réelle en heures)
+ return lendemain;
 }
 // setDate() raisonne en "jours du calendrier", pas en millisecondes : le moteur JS gère
 // lui-même la conversion, y compris les jours de 23h ou 25h lors d'un changement d'heure
 ```
 
 ```
-Millisecondes brutes (+86400000)  --> ignore le calendrier --> faux les jours de changement d'heure
-Composants de date (setDate +1)   --> respecte le calendrier --> correct même les jours de changement d'heure
+Millisecondes brutes (+86400000) --> ignore le calendrier --> faux les jours de changement d'heure
+Composants de date (setDate +1)  --> respecte le calendrier --> correct même les jours de changement d'heure
 ```
 
 Risque réel : coder l'arithmétique des dates en millisecondes brutes marche 363 jours sur 365, et plante exactement les jours de changement d'heure. Ces bugs sont les pires : rares, donc jamais détectés en test, et catastrophiques en prod le jour J. La règle simple à retenir : pour "+1 jour", "+1 mois", "+1 an", utilise toujours les méthodes `setDate`, `setMonth`, `setFullYear` du calendrier, jamais l'addition de millisecondes.
@@ -63,9 +63,9 @@ Risque réel : coder l'arithmétique des dates en millisecondes brutes marche 36
 const dateUTC = new Date('2026-06-16T11:30:00.000Z');
 
 const formatteurTokyo = new Intl.DateTimeFormat('ja-JP', {
-  timeZone: 'Asia/Tokyo',
-  dateStyle: 'full',
-  timeStyle: 'short',
+ timeZone: 'Asia/Tokyo',
+ dateStyle: 'full',
+ timeStyle: 'short',
 });
 
 console.log(formatteurTokyo.format(dateUTC)); // (affiche l'heure correcte pour Tokyo, calcul automatique)
@@ -73,7 +73,7 @@ console.log(formatteurTokyo.format(dateUTC)); // (affiche l'heure correcte pour 
 
 ```
 Même instant UTC --> formatteur Tokyo --> "16 juin 2026, 20:30"
-Même instant UTC --> formatteur Tana   --> "16 juin 2026, 14:30"
+Même instant UTC --> formatteur Tana  --> "16 juin 2026, 14:30"
 ```
 
 Une seule vérité stockée (UTC), des affichages multiples calculés à la demande. C'est le principe de single source of truth du module 18_web_concepts appliqué aux dates.
@@ -84,7 +84,7 @@ Une seule vérité stockée (UTC), des affichages multiples calculés à la dema
 // Ça casse (mais fun) : faire confiance à l'heure locale de la machine de l'shinobi
 const heureLocale = new Date(); // (et si l'shinobi a réglé sa machine sur le faux fuseau ?)
 if (heureLocale.getHours() >= 22) {
-  bloquerAccesNocturne(); // (logique de sécurité basée sur une horloge qu'on ne contrôle pas)
+ bloquerAccesNocturne(); // (logique de sécurité basée sur une horloge qu'on ne contrôle pas)
 }
 ```
 
@@ -93,8 +93,8 @@ Pour toute logique sensible (sécurité, planification, facturation), ne fais JA
 ```js
 // Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par l'shinobi
 function estHeureNocturne(maintenantUTC, fuseauSpectateur) {
-  const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauSpectateur });
-  return heureLocaleReelle.hour >= 22;
+ const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauSpectateur });
+ return heureLocaleReelle.hour >= 22;
 }
 ```
 
@@ -108,8 +108,8 @@ const heureRendezVous = new Date('2026-06-16T22:00:00.000Z'); // (référence un
 
 // Chaque Chevalier l'affiche dans SON fuseau local, mais c'est le MÊME instant pour tous
 ['Asia/Tokyo', 'Europe/Paris', 'America/New_York'].forEach(fuseau => {
-  const formatteur = new Intl.DateTimeFormat('fr-FR', { timeZone: fuseau, timeStyle: 'short' });
-  console.log(`${fuseau} : ${formatteur.format(heureRendezVous)}`);
+ const formatteur = new Intl.DateTimeFormat('fr-FR', { timeZone: fuseau, timeStyle: 'short' });
+ console.log(`${fuseau} : ${formatteur.format(heureRendezVous)}`);
 });
 ```
 

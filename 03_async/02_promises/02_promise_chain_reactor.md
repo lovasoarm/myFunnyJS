@@ -19,11 +19,11 @@ Pas de tunnel sans plan. Pas de plan sans contact. Pas de contact sans argent.
 
 ```js
 obtenirFinancement()
-  .then(argent => contacterComplice(argent))    // reçoit le résultat de l'étape précédente
-  .then(complice => dessinerPlan(complice))      // reçoit ce que contacterComplice a résolu
-  .then(plan => creuser(plan))                   // et ainsi de suite
-  .then(tunnel => console.log("sortie trouvée :", tunnel))
-  .catch(err => console.log("plan compromis :", err.message))
+ .then(argent => contacterComplice(argent))  // reçoit le résultat de l'étape précédente
+ .then(complice => dessinerPlan(complice))   // reçoit ce que contacterComplice a résolu
+ .then(plan => creuser(plan))          // et ainsi de suite
+ .then(tunnel => console.log("sortie trouvée :", tunnel))
+ .catch(err => console.log("plan compromis :", err.message))
 ```
 
 Un seul `.catch()` à la fin attrape n'importe quelle erreur dans toute la chaîne.
@@ -40,25 +40,25 @@ Si tu retournes une Promise : la chaîne attend qu'elle se résout avant de cont
 
 ```js
 Promise.resolve(100)
-  .then(n => n * 2)           // retourne 200 (valeur brute => wrappée)
-  .then(n => n + 50)          // reçoit 200, retourne 250
-  .then(n => {
-    return fetchBonus(n)      // retourne une Promise => la chaîne attend
-  })
-  .then(resultat => {
-    // ici on a le résultat résolu de fetchBonus
-    console.log(resultat)
-  })
+ .then(n => n * 2)      // retourne 200 (valeur brute => wrappée)
+ .then(n => n + 50)     // reçoit 200, retourne 250
+ .then(n => {
+  return fetchBonus(n)   // retourne une Promise => la chaîne attend
+ })
+ .then(resultat => {
+  // ici on a le résultat résolu de fetchBonus
+  console.log(resultat)
+ })
 ```
 
 Erreur classique : oublier le `return`.
 
 ```js
 .then(n => {
-  fetchBonus(n)               // oublié le return => la chaîne passe à None
+ fetchBonus(n)        // oublié le return => la chaîne passe à None
 })
 .then(resultat => {
-  console.log(resultat)       // undefined. fetchBonus a tourné mais personne l'a attendu.
+ console.log(resultat)    // undefined. fetchBonus a tourné mais personne l'a attendu.
 })
 ```
 
@@ -73,19 +73,19 @@ Exemple : T-Bag bloque l'accès aux fournitures. Mais Michael a un plan B.
 
 ```js
 obtenirFinancement()
-  .then(argent => obtenirFournitures(argent))
-  .catch(err => {
-    // T-Bag a volé les fournitures. Plan B : improviser avec ce qu'on a.
-    console.log("fournitures bloquées, on improvise")
-    return { outils: ["cuillère", "corde"], improvise: true }
-    // si on retourne ici, la chaîne CONTINUE avec ce fallback
-  })
-  .then(fournitures => dessinerPlan(fournitures))   // reçoit le fallback ou les vraies fournitures
-  .then(plan => creuser(plan))
-  .catch(err => {
-    // ce catch ne voit que les erreurs après le premier catch
-    console.log("évasion impossible :", err.message)
-  })
+ .then(argent => obtenirFournitures(argent))
+ .catch(err => {
+  // T-Bag a volé les fournitures. Plan B : improviser avec ce qu'on a.
+  console.log("fournitures bloquées, on improvise")
+  return { outils: ["cuillère", "corde"], improvise: true }
+  // si on retourne ici, la chaîne CONTINUE avec ce fallback
+ })
+ .then(fournitures => dessinerPlan(fournitures))  // reçoit le fallback ou les vraies fournitures
+ .then(plan => creuser(plan))
+ .catch(err => {
+  // ce catch ne voit que les erreurs après le premier catch
+  console.log("évasion impossible :", err.message)
+ })
 ```
 
 Ce que `.catch()` fait quand il retourne une valeur : il transforme une rejection en resolution.
@@ -95,8 +95,8 @@ Si tu veux que l'erreur continue à se propager : ne retourne rien, ou re-throw.
 
 ```js
 .catch(err => {
-  console.log("logged :", err.message)
-  throw err    // re-throw => la prochaine étape voit toujours une erreur
+ console.log("logged :", err.message)
+ throw err  // re-throw => la prochaine étape voit toujours une erreur
 })
 ```
 
@@ -108,13 +108,13 @@ Walter White nettoie le labo. Peu importe si la cuisson s'est bien passée ou pa
 
 ```js
 preparerLot()
-  .then(lot => livrerLot(lot))
-  .catch(err => console.log("lot perdu :", err.message))
-  .finally(() => {
-    // cleanup garanti : connexions fermées, logs écrits, ressources libérées
-    nettoyerLaboratoire()
-    fermerConnexionDB()
-  })
+ .then(lot => livrerLot(lot))
+ .catch(err => console.log("lot perdu :", err.message))
+ .finally(() => {
+  // cleanup garanti : connexions fermées, logs écrits, ressources libérées
+  nettoyerLaboratoire()
+  fermerConnexionDB()
+ })
 ```
 
 `finally` :
@@ -131,22 +131,22 @@ Des Promises imbriquées. Le pire des deux mondes.
 ```js
 // MAUVAIS : pyramid of doom avec des .then() imbriqués
 obtenirFinancement().then(argent => {
-  contacterComplice(argent).then(complice => {
-    dessinerPlan(complice).then(plan => {
-      creuser(plan).then(tunnel => {
-        console.log(tunnel)
-      })
-    })
+ contacterComplice(argent).then(complice => {
+  dessinerPlan(complice).then(plan => {
+   creuser(plan).then(tunnel => {
+    console.log(tunnel)
+   })
   })
+ })
 })
 
 // BON : chaîne plate, chaque étape retourne sa Promise
 obtenirFinancement()
-  .then(argent => contacterComplice(argent))
-  .then(complice => dessinerPlan(complice))
-  .then(plan => creuser(plan))
-  .then(tunnel => console.log(tunnel))
-  .catch(err => console.log(err.message))
+ .then(argent => contacterComplice(argent))
+ .then(complice => dessinerPlan(complice))
+ .then(plan => creuser(plan))
+ .then(tunnel => console.log(tunnel))
+ .catch(err => console.log(err.message))
 ```
 
 La version imbriquée casse la propagation d'erreur. Chaque niveau a ses propres erreurs isolées.
@@ -160,20 +160,20 @@ Le cas le plus courant en prod : fetch → parse → filtrer → afficher.
 
 ```js
 fetch("https://api.paradis.sc/personnages")
-  .then(response => {
-    if (!response.ok) {
-      // on transforme une réponse HTTP d'erreur en rejection de Promise
-      throw new Error(`HTTP ${response.status}`)
-    }
-    return response.json()    // retourne une Promise
-  })
-  .then(personnages => personnages.filter(p => p.regiment === "Exploration"))
-  .then(soldats => soldats.map(s => ({ nom: s.nom, rang: s.rang })))
-  .then(data => afficher(data))
-  .catch(err => {
-    // attrape : erreur réseau, HTTP error, erreur de parse JSON, erreur dans filter ou map
-    console.log("impossible de charger les personnages :", err.message)
-  })
+ .then(response => {
+  if (!response.ok) {
+   // on transforme une réponse HTTP d'erreur en rejection de Promise
+   throw new Error(`HTTP ${response.status}`)
+  }
+  return response.json()  // retourne une Promise
+ })
+ .then(personnages => personnages.filter(p => p.regiment === "Exploration"))
+ .then(soldats => soldats.map(s => ({ nom: s.nom, rang: s.rang })))
+ .then(data => afficher(data))
+ .catch(err => {
+  // attrape : erreur réseau, HTTP error, erreur de parse JSON, erreur dans filter ou map
+  console.log("impossible de charger les personnages :", err.message)
+ })
 ```
 
 Chaque `.then()` fait une seule chose. La chaîne est lisible ligne par ligne.

@@ -23,12 +23,12 @@ Les quatre sources les plus courantes :
 ```js
 // le dashboard des Ultras ajoute un listener à chaque match
 function lancerMatch(matchId) {
-  const data = chargerDonneesMatch(matchId) // gros objet en mémoire
+ const data = chargerDonneesMatch(matchId) // gros objet en mémoire
 
-  document.addEventListener('keydown', (e) => {
-    // cette closure retient `data` en mémoire
-    if (e.key === 'r') afficherStats(data)
-  })
+ document.addEventListener('keydown', (e) => {
+  // cette closure retient `data` en mémoire
+  if (e.key === 'r') afficherStats(data)
+ })
 }
 
 // problème : chaque appel à lancerMatch() ajoute un listener
@@ -37,16 +37,16 @@ function lancerMatch(matchId) {
 
 // correction :
 function lancerMatch(matchId) {
-  const data = chargerDonneesMatch(matchId)
+ const data = chargerDonneesMatch(matchId)
 
-  const handler = (e) => {
-    if (e.key === 'r') afficherStats(data)
-  }
+ const handler = (e) => {
+  if (e.key === 'r') afficherStats(data)
+ }
 
-  document.addEventListener('keydown', handler)
+ document.addEventListener('keydown', handler)
 
-  // retourner un cleanup ou l'appeler quand le match se termine
-  return () => document.removeEventListener('keydown', handler)
+ // retourner un cleanup ou l'appeler quand le match se termine
+ return () => document.removeEventListener('keydown', handler)
 }
 ```
 
@@ -55,25 +55,25 @@ function lancerMatch(matchId) {
 ```js
 // cooldown du jutsu de Naruto : mise à jour toutes les 100ms
 function demarrerCooldown(jutsu) {
-  const interval = setInterval(() => {
-    jutsu.cooldown -= 100
-    if (jutsu.cooldown <= 0) {
-      jutsu.pret = true
-      // BUG : on oublie de clearInterval
-      // l'intervalle tourne pour toujours, retient jutsu en mémoire
-    }
-  }, 100)
+ const interval = setInterval(() => {
+  jutsu.cooldown -= 100
+  if (jutsu.cooldown <= 0) {
+   jutsu.pret = true
+   // BUG : on oublie de clearInterval
+   // l'intervalle tourne pour toujours, retient jutsu en mémoire
+  }
+ }, 100)
 }
 
 // correction :
 function demarrerCooldown(jutsu) {
-  const interval = setInterval(() => {
-    jutsu.cooldown -= 100
-    if (jutsu.cooldown <= 0) {
-      jutsu.pret = true
-      clearInterval(interval) // ici
-    }
-  }, 100)
+ const interval = setInterval(() => {
+  jutsu.cooldown -= 100
+  if (jutsu.cooldown <= 0) {
+   jutsu.pret = true
+   clearInterval(interval) // ici
+  }
+ }, 100)
 }
 ```
 
@@ -84,10 +84,10 @@ function demarrerCooldown(jutsu) {
 const statsCache = new Map()
 
 function getStats(joueurId) {
-  if (!statsCache.has(joueurId)) {
-    statsCache.set(joueurId, chargerStats(joueurId))
-  }
-  return statsCache.get(joueurId)
+ if (!statsCache.has(joueurId)) {
+  statsCache.set(joueurId, chargerStats(joueurId))
+ }
+ return statsCache.get(joueurId)
 }
 
 // problème : statsCache grossit à l'infini
@@ -98,10 +98,10 @@ function getStats(joueurId) {
 const weakCache = new WeakMap() // les clés doivent être des objets
 
 function getStats(joueurObj) {
-  if (!weakCache.has(joueurObj)) {
-    weakCache.set(joueurObj, chargerStats(joueurObj.id))
-  }
-  return weakCache.get(joueurObj)
+ if (!weakCache.has(joueurObj)) {
+  weakCache.set(joueurObj, chargerStats(joueurObj.id))
+ }
+ return weakCache.get(joueurObj)
 }
 // quand joueurObj n'est plus référencé ailleurs, le GC peut supprimer l'entrée
 ```
@@ -111,24 +111,24 @@ function getStats(joueurObj) {
 ```js
 // analyse de match : on garde une référence inutile à un gros tableau
 function creerAnalyseur(historique) {
-  // historique peut peser plusieurs MB
-  const premierMatch = historique[0] // on veut juste ça
+ // historique peut peser plusieurs MB
+ const premierMatch = historique[0] // on veut juste ça
 
-  return {
-    getPremierMatch: () => premierMatch,
-    // problème : la closure retient TOUT historique en mémoire
-    // même si on n'a besoin que de premierMatch
-  }
+ return {
+  getPremierMatch: () => premierMatch,
+  // problème : la closure retient TOUT historique en mémoire
+  // même si on n'a besoin que de premierMatch
+ }
 }
 
 // correction : extraire ce dont on a besoin, laisser le reste au GC
 function creerAnalyseur(historique) {
-  const premierMatch = { ...historique[0] } // copie, pas référence
-  // historique peut maintenant être collecté par le GC
+ const premierMatch = { ...historique[0] } // copie, pas référence
+ // historique peut maintenant être collecté par le GC
 
-  return {
-    getPremierMatch: () => premierMatch
-  }
+ return {
+  getPremierMatch: () => premierMatch
+ }
 }
 ```
 
@@ -179,11 +179,11 @@ Avant d'aller dans DevTools, tu peux déjà logger l'usage mémoire en Node.
 ```js
 // Node.js uniquement
 function logMemoire(label) {
-  const mem = process.memoryUsage()
-  console.log(`[${label}]`)
-  console.log(`  heap utilisé : ${(mem.heapUsed / 1024 / 1024).toFixed(2)} MB`)
-  console.log(`  heap total   : ${(mem.heapTotal / 1024 / 1024).toFixed(2)} MB`)
-  console.log(`  RSS          : ${(mem.rss / 1024 / 1024).toFixed(2)} MB`)
+ const mem = process.memoryUsage()
+ console.log(`[${label}]`)
+ console.log(` heap utilisé : ${(mem.heapUsed / 1024 / 1024).toFixed(2)} MB`)
+ console.log(` heap total  : ${(mem.heapTotal / 1024 / 1024).toFixed(2)} MB`)
+ console.log(` RSS     : ${(mem.rss / 1024 / 1024).toFixed(2)} MB`)
 }
 
 logMemoire('avant')
@@ -192,19 +192,19 @@ logMemoire('avant')
 const leakArray = []
 
 for (let i = 0; i < 10_000; i++) {
-  leakArray.push({
-    id: i,
-    data: new Array(1000).fill('zombie'), // chaque objet pèse ~8KB
-    timestamp: Date.now()
-  })
+ leakArray.push({
+  id: i,
+  data: new Array(1000).fill('zombie'), // chaque objet pèse ~8KB
+  timestamp: Date.now()
+ })
 }
 
 logMemoire('après fuite simulée')
 
 // [avant]
-//   heap utilisé : 4.23 MB
+//  heap utilisé : 4.23 MB
 // [après fuite simulée]
-//   heap utilisé : 92.17 MB
+//  heap utilisé : 92.17 MB
 ```
 
 ---
@@ -219,32 +219,32 @@ C'est une règle, pas une option.
 // chaque Chevalier s'abonne aux alertes Horror
 
 class Chevalier {
-  constructor(nom) {
-    this.nom = nom
-    this.listeners = []
+ constructor(nom) {
+  this.nom = nom
+  this.listeners = []
+ }
+
+ sAbonnerAuxAlertes(emitter) {
+  const handler = (horror) => this.reagir(horror)
+
+  emitter.on('horror-detecte', handler)
+
+  // stocker la référence pour pouvoir cleanup plus tard
+  this.listeners.push({ emitter, event: 'horror-detecte', handler })
+ }
+
+ reagir(horror) {
+  console.log(`${this.nom} répond à l'Horror ${horror.id}`)
+ }
+
+ // appelé quand le Chevalier se retire
+ cleanup() {
+  for (const { emitter, event, handler } of this.listeners) {
+   emitter.off(event, handler)
   }
-
-  sAbonnerAuxAlertes(emitter) {
-    const handler = (horror) => this.reagir(horror)
-
-    emitter.on('horror-detecte', handler)
-
-    // stocker la référence pour pouvoir cleanup plus tard
-    this.listeners.push({ emitter, event: 'horror-detecte', handler })
-  }
-
-  reagir(horror) {
-    console.log(`${this.nom} répond à l'Horror ${horror.id}`)
-  }
-
-  // appelé quand le Chevalier se retire
-  cleanup() {
-    for (const { emitter, event, handler } of this.listeners) {
-      emitter.off(event, handler)
-    }
-    this.listeners = []
-    console.log(`${this.nom} a nettoyé tous ses listeners`)
-  }
+  this.listeners = []
+  console.log(`${this.nom} a nettoyé tous ses listeners`)
+ }
 }
 
 const leon = new Chevalier('León Luís')
@@ -265,34 +265,34 @@ Depuis ES2021, JS a des outils pour les caches qui doivent laisser le GC travail
 const cache = new Map()
 
 function getOrLoad(key, loader) {
-  const ref = cache.get(key)
-  const cached = ref?.deref() // .deref() retourne l'objet ou undefined si collecté
+ const ref = cache.get(key)
+ const cached = ref?.deref() // .deref() retourne l'objet ou undefined si collecté
 
-  if (cached) return cached
+ if (cached) return cached
 
-  const value = loader()
-  cache.set(key, new WeakRef(value))
+ const value = loader()
+ cache.set(key, new WeakRef(value))
 
-  return value
+ return value
 }
 
 // FinalizationRegistry : être notifié quand un objet est collecté
 const registry = new FinalizationRegistry((key) => {
-  console.log(`L'objet associé à "${key}" a été collecté : nettoyage de la Map`)
-  cache.delete(key)
+ console.log(`L'objet associé à "${key}" a été collecté : nettoyage de la Map`)
+ cache.delete(key)
 })
 
 function getOrLoadWithRegistry(key, loader) {
-  const ref = cache.get(key)
-  const cached = ref?.deref()
+ const ref = cache.get(key)
+ const cached = ref?.deref()
 
-  if (cached) return cached
+ if (cached) return cached
 
-  const value = loader()
-  cache.set(key, new WeakRef(value))
-  registry.register(value, key) // notifier quand value est collecté
+ const value = loader()
+ cache.set(key, new WeakRef(value))
+ registry.register(value, key) // notifier quand value est collecté
 
-  return value
+ return value
 }
 ```
 
@@ -309,39 +309,39 @@ Ce code a une fuite. Trouve-la, explique pourquoi, corrige-la.
 
 ```js
 class RadioTrapSoul {
-  constructor() {
-    this.playlist = []
-    this.listeners = []
-  }
+ constructor() {
+  this.playlist = []
+  this.listeners = []
+ }
 
-  ajouterTrack(track) {
-    this.playlist.push(track)
-    this.notifier('track-ajoutee', track)
-  }
+ ajouterTrack(track) {
+  this.playlist.push(track)
+  this.notifier('track-ajoutee', track)
+ }
 
-  onEvent(event, callback) {
-    this.listeners.push({ event, callback })
-  }
+ onEvent(event, callback) {
+  this.listeners.push({ event, callback })
+ }
 
-  notifier(event, data) {
-    this.listeners
-      .filter(l => l.event === event)
-      .forEach(l => l.callback(data))
-  }
+ notifier(event, data) {
+  this.listeners
+   .filter(l => l.event === event)
+   .forEach(l => l.callback(data))
+ }
 }
 
 const radio = new RadioTrapSoul()
 
 // l'app ajoute un listener à chaque fois que l'shinobi change de page
 function changerDePage(pageId) {
-  radio.onEvent('track-ajoutee', (track) => {
-    console.log(`Page ${pageId} : nouvelle track : ${track.titre}`)
-  })
+ radio.onEvent('track-ajoutee', (track) => {
+  console.log(`Page ${pageId} : nouvelle track : ${track.titre}`)
+ })
 }
 
 // simuler 50 changements de page
 for (let i = 0; i < 50; i++) {
-  changerDePage(i)
+ changerDePage(i)
 }
 
 radio.ajouterTrack({ titre: 'Bryson Tiller : Exchange' })
@@ -356,8 +356,8 @@ Implémente le cleanup correctement.
 
 ```js
 function demarrerSurveillance(camp) {
-  // à toi de jouer
-  // retourner une fonction cleanup
+ // à toi de jouer
+ // retourner une fonction cleanup
 }
 
 const camp = { nom: 'Prison', survivants: 30, niveau: 'secure' }
@@ -374,17 +374,17 @@ Quand la limite est atteinte, la plus ancienne entrée est supprimée (FIFO).
 
 ```js
 class StatsCacheUltras {
-  constructor(maxSize = 100) {
-    // à implémenter
-  }
+ constructor(maxSize = 100) {
+  // à implémenter
+ }
 
-  get(joueurId) {
-    // à implémenter
-  }
+ get(joueurId) {
+  // à implémenter
+ }
 
-  set(joueurId, stats) {
-    // à implémenter
-  }
+ set(joueurId, stats) {
+  // à implémenter
+ }
 }
 ```
 

@@ -1,7 +1,7 @@
 # AUTHENTIFICATION ET AUTORISATION : DEUX PROBLÈMES DIFFÉRENTS
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 À Fox River, il y a deux barrières distinctes.
 La première : qui es-tu ? (Prisonnier ? Garde ? Visiteur ?)
@@ -21,9 +21,9 @@ Bug de sécurité garanti.
 Trois façons classiques de prouver son identité :
 
 ```
-Ce que tu sais    =>  mot de passe, PIN, réponse secrète
-Ce que tu as      =>  téléphone (OTP), clé physique, certificat
-Ce que tu es      =>  empreinte digitale, reconnaissance faciale (biométrie)
+Ce que tu sais  => mot de passe, PIN, réponse secrète
+Ce que tu as   => téléphone (OTP), clé physique, certificat
+Ce que tu es   => empreinte digitale, reconnaissance faciale (biométrie)
 ```
 
 MFA (Multi-Factor Authentication : authentification multi-facteurs) = combiner au moins deux de ces catégories.
@@ -33,24 +33,24 @@ En web, les deux patterns les plus courants :
 **Session-based (sessions) :** le serveur crée une session et donne un identifiant (cookie) au client.
 
 ```
-Client  --POST /chakra_gate {email, password}-->  Serveur
+Client --POST /chakra_gate {email, password}--> Serveur
 Serveur vérifie les credentials (identifiants)
 Serveur crée une session en base : { sessionId: "xyz", userId: 42, expiresAt: ... }
-Serveur  --Set-Cookie: sessionId=xyz; HttpOnly; Secure-->  Client
+Serveur --Set-Cookie: sessionId=xyz; HttpOnly; Secure--> Client
 
-Client  --GET /profile + Cookie: sessionId=xyz-->  Serveur
+Client --GET /profile + Cookie: sessionId=xyz--> Serveur
 Serveur vérifie la session en base, retourne les données du user
 ```
 
 **JWT-based (JSON Web Token) :** le serveur génère un token signé, le client le stocke et l'envoie.
 
 ```
-Client  --POST /chakra_gate {email, password}-->  Serveur
+Client --POST /chakra_gate {email, password}--> Serveur
 Serveur vérifie les credentials
 Serveur génère un JWT signé avec sa clé secrète
-Serveur  --200 OK {token: "eyJ..."}-->  Client
+Serveur --200 OK {token: "eyJ..."}--> Client
 
-Client  --GET /profile + Authorization: Bearer eyJ...-->  Serveur
+Client --GET /profile + Authorization: Bearer eyJ...--> Serveur
 Serveur vérifie la signature du JWT (pas besoin de DB)
 Serveur retourne les données si la signature est valide
 ```
@@ -63,7 +63,7 @@ Un JWT (JSON Web Token) a trois parties séparées par des points :
 
 ```
 eyJhbGciOiJIUzI1NiJ9 . eyJ1c2VySWQiOjQyfQ . SflKxwRJSMeKKF2QT4fwpMeJf36P
-      Header                   Payload              Signature
+   Header          Payload       Signature
 ```
 
 ```js
@@ -73,7 +73,7 @@ const [headerB64, payloadB64] = token.split('.');
 
 // base64url decode (décodage base64 adapté aux URLs)
 const header = JSON.parse(atob(headerB64));
-// => { "alg": "HS256" }  -- l'algorithme utilisé pour la signature
+// => { "alg": "HS256" } -- l'algorithme utilisé pour la signature
 
 const payload = JSON.parse(atob(payloadB64));
 // => { "userId": 42, "role": "prisoner", "iat": 1720000000, "exp": 1720086400 }
@@ -90,41 +90,41 @@ const SECRET = process.env.JWT_SECRET; // jamais en dur dans le code
 
 // Générer un token à la connexion
 function generateTokens(userId, role) {
-  const accessToken = jwt.sign(
-    { userId, role },         // payload : données utiles dans le token
-    SECRET,                   // clé secrète pour signer
-    { expiresIn: '15m' }     // access token court : 15 minutes
-  );
+ const accessToken = jwt.sign(
+  { userId, role },     // payload : données utiles dans le token
+  SECRET,          // clé secrète pour signer
+  { expiresIn: '15m' }   // access token court : 15 minutes
+ );
 
-  const refreshToken = jwt.sign(
-    { userId },
-    process.env.REFRESH_SECRET, // clé différente pour le refresh token
-    { expiresIn: '7d' }        // refresh token long : 7 jours
-  );
+ const refreshToken = jwt.sign(
+  { userId },
+  process.env.REFRESH_SECRET, // clé différente pour le refresh token
+  { expiresIn: '7d' }    // refresh token long : 7 jours
+ );
 
-  return { accessToken, refreshToken };
+ return { accessToken, refreshToken };
 }
 
 // Middleware de vérification : s'assurer que le token est valide
 function requireAuth(req, res, next) {
-  const authHeader = req.headers.authorization;
+ const authHeader = req.headers.authorization;
 
-  if (!authHeader?.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Token manquant' });
+ if (!authHeader?.startsWith('Bearer ')) {
+  return res.status(401).json({ error: 'Token manquant' });
+ }
+
+ const token = authHeader.split(' ')[1]; // extraire le token après "Bearer "
+
+ try {
+  const decoded = jwt.verify(token, SECRET); // vérifie signature ET expiration
+  req.user = decoded; // attacher les infos du user à la requête
+  next();
+ } catch (err) {
+  if (err.name === 'TokenExpiredError') {
+   return res.status(401).json({ error: 'TOKEN_EXPIRED' }); // le client doit refresh
   }
-
-  const token = authHeader.split(' ')[1]; // extraire le token après "Bearer "
-
-  try {
-    const decoded = jwt.verify(token, SECRET); // vérifie signature ET expiration
-    req.user = decoded; // attacher les infos du user à la requête
-    next();
-  } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      return res.status(401).json({ error: 'TOKEN_EXPIRED' }); // le client doit refresh
-    }
-    return res.status(401).json({ error: 'Token invalide' });
-  }
+  return res.status(401).json({ error: 'Token invalide' });
+ }
 }
 ```
 
@@ -151,43 +151,43 @@ Client re-tente la requête originale avec le nouvel access token
 ```js
 // Côté client : interceptor (intercepteur) qui gère automatiquement le refresh
 async function apiFetch(url, options = {}) {
-  let accessToken = localStorage.getItem('accessToken'); // ATTENTION : voir note sécurité
+ let accessToken = localStorage.getItem('accessToken'); // ATTENTION : voir note sécurité
 
-  const response = await fetch(url, {
+ const response = await fetch(url, {
+  ...options,
+  headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },
+ });
+
+ if (response.status === 401) {
+  const body = await response.json();
+
+  if (body.error === 'TOKEN_EXPIRED') {
+   // Tenter le refresh
+   const refreshed = await refreshAccessToken();
+   if (!refreshed) {
+    // Refresh échoué : déconnecter l'shinobi
+    logout();
+    throw new Error('Session expirée : reconnexion requise');
+   }
+
+   // Re-tenter la requête avec le nouveau token
+   accessToken = localStorage.getItem('accessToken');
+   return fetch(url, {
     ...options,
     headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },
-  });
-
-  if (response.status === 401) {
-    const body = await response.json();
-
-    if (body.error === 'TOKEN_EXPIRED') {
-      // Tenter le refresh
-      const refreshed = await refreshAccessToken();
-      if (!refreshed) {
-        // Refresh échoué : déconnecter l'shinobi
-        logout();
-        throw new Error('Session expirée : reconnexion requise');
-      }
-
-      // Re-tenter la requête avec le nouveau token
-      accessToken = localStorage.getItem('accessToken');
-      return fetch(url, {
-        ...options,
-        headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },
-      });
-    }
+   });
   }
+ }
 
-  return response;
+ return response;
 }
 ```
 
 **Note sécurité : localStorage vs cookie HttpOnly**
 
 ```
-localStorage   =>  accessible par JS --> vulnérable aux attaques XSS
-cookie HttpOnly =>  inaccessible par JS --> protégé contre XSS
+localStorage  => accessible par JS --> vulnérable aux attaques XSS
+cookie HttpOnly => inaccessible par JS --> protégé contre XSS
 
 Recommandation : stocker les tokens dans des cookies HttpOnly, Secure, SameSite=Strict.
 Le cookie est envoyé automatiquement par le navigateur sur chaque requête.
@@ -205,33 +205,33 @@ Deux patterns principaux :
 ```js
 // Les rôles définissent des groupes de permissions
 const PERMISSIONS = {
-  admin: ['read:all', 'write:all', 'delete:all', 'manage:users'],
-  guard: ['read:prisoners', 'write:reports', 'read:schedule'],
-  prisoner: ['read:ownProfile', 'write:ownRequests'],
+ admin: ['read:all', 'write:all', 'delete:all', 'manage:users'],
+ guard: ['read:prisoners', 'write:reports', 'read:schedule'],
+ prisoner: ['read:ownProfile', 'write:ownRequests'],
 };
 
 // Middleware d'autorisation
 function requirePermission(permission) {
-  return (req, res, next) => {
-    const userPermissions = PERMISSIONS[req.user.role] || [];
+ return (req, res, next) => {
+  const userPermissions = PERMISSIONS[req.user.role] || [];
 
-    if (!userPermissions.includes(permission)) {
-      // 403 : authentifié mais PAS autorisé (différent de 401 : pas authentifié)
-      return res.status(403).json({ error: `Permission requise : ${permission}` });
-    }
+  if (!userPermissions.includes(permission)) {
+   // 403 : authentifié mais PAS autorisé (différent de 401 : pas authentifié)
+   return res.status(403).json({ error: `Permission requise : ${permission}` });
+  }
 
-    next();
-  };
+  next();
+ };
 }
 
 // Utilisation dans les routes
 app.delete('/api/prisoners/:id',
-  requireAuth,                          // 1. authentifié ?
-  requirePermission('delete:all'),      // 2. autorisé à supprimer ?
-  async (req, res) => {
-    await deletePrisoner(req.params.id);
-    res.status(204).end();
-  }
+ requireAuth,             // 1. authentifié ?
+ requirePermission('delete:all'),   // 2. autorisé à supprimer ?
+ async (req, res) => {
+  await deletePrisoner(req.params.id);
+  res.status(204).end();
+ }
 );
 ```
 
@@ -242,28 +242,28 @@ Plus flexible que RBAC : la décision dépend de plusieurs attributs contextuels
 ```js
 // L'autorisation dépend de l'user, de la ressource, et du contexte
 function canAccess(user, resource, action) {
-  // Un prisonnier peut seulement lire son propre profil
-  if (action === 'read' && resource.type === 'prisoner') {
-    return user.role === 'admin' || user.role === 'guard' || user.id === resource.id;
-  }
+ // Un prisonnier peut seulement lire son propre profil
+ if (action === 'read' && resource.type === 'prisoner') {
+  return user.role === 'admin' || user.role === 'guard' || user.id === resource.id;
+ }
 
-  // Seul le créateur d'un rapport peut le modifier, ou un admin
-  if (action === 'update' && resource.type === 'report') {
-    return user.role === 'admin' || resource.createdBy === user.id;
-  }
+ // Seul le créateur d'un rapport peut le modifier, ou un admin
+ if (action === 'update' && resource.type === 'report') {
+  return user.role === 'admin' || resource.createdBy === user.id;
+ }
 
-  // Par défaut : refuser
-  return false;
+ // Par défaut : refuser
+ return false;
 }
 
 app.get('/api/prisoners/:id', requireAuth, async (req, res) => {
-  const prisoner = await getPrisoner(req.params.id);
+ const prisoner = await getPrisoner(req.params.id);
 
-  if (!canAccess(req.user, { type: 'prisoner', id: prisoner.id }, 'read')) {
-    return res.status(403).json({ error: 'Accès refusé' });
-  }
+ if (!canAccess(req.user, { type: 'prisoner', id: prisoner.id }, 'read')) {
+  return res.status(403).json({ error: 'Accès refusé' });
+ }
 
-  res.json(prisoner);
+ res.json(prisoner);
 });
 ```
 

@@ -18,13 +18,13 @@ Une fois que t'as codé une solution, tu es attaché à elle. Psychologiquement.
 Comparer sur papier (ou en pseudo-code) : ça coûte rien et ça t'évite de t'attacher à quelque chose avant d'avoir réfléchi.
 
 ```
-Approche A   vs   Approche B
-    |                  |
-avantages         avantages
-inconvénients     inconvénients
-coût de change    coût de change
-    |                  |
-    +--> décision documentée
+Approche A  vs  Approche B
+  |         |
+avantages     avantages
+inconvénients   inconvénients
+coût de change  coût de change
+  |         |
+  +--> décision documentée
 ```
 
 ---
@@ -51,7 +51,7 @@ joueurs.sort((a, b) => b.buts - a.buts)[0]
 // Approche B : un seul passage avec reduce
 // O(n) -- plus rapide -- préserve l'ordre -- un peu moins lisible au premier coup d'oeil
 joueurs.reduce((meilleur, joueur) =>
-  joueur.buts > meilleur.buts ? joueur : meilleur
+ joueur.buts > meilleur.buts ? joueur : meilleur
 )
 
 // Décision : sur 50 joueurs, la différence de perf est négligeable
@@ -76,12 +76,12 @@ Approche A : stocker les routes dans un tableau trié manuellement
 Approche B : stocker les routes dans un graphe avec Dijkstra
 
 Et si Walter ajoute une nouvelle ville demain ?
-  Approche A : tu retries tout le tableau. Fragile.
-  Approche B : tu ajoutes un noeud et ses arêtes. Le reste change pas.
+ Approche A : tu retries tout le tableau. Fragile.
+ Approche B : tu ajoutes un noeud et ses arêtes. Le reste change pas.
 
 Et si Walter a besoin du chemin le plus sûr ET du chemin le plus rapide ?
-  Approche A : tu refactores tout.
-  Approche B : tu ajoutes un paramètre de pondération. Le reste tient.
+ Approche A : tu refactores tout.
+ Approche B : tu ajoutes un paramètre de pondération. Le reste tient.
 
 Décision : Approche B. Le surcoût de complexité initiale est justifié par la flexibilité.
 ```
@@ -125,7 +125,7 @@ Le format minimal : trois lignes.
 
 ```
 // DÉCISION : Approche B (graphe + Dijkstra) pour le système de routes
-// RAISON   : les specs vont évoluer (nouvelles villes, nouveaux critères de pondération)
+// RAISON  : les specs vont évoluer (nouvelles villes, nouveaux critères de pondération)
 // TRADE-OFF : complexité initiale plus haute, mais coût de changement divisé par 3
 ```
 
@@ -145,9 +145,9 @@ Approche A : callbacks chaînés
 // gestion d'erreurs catastrophique : si un combat crash, les autres s'arrêtent
 
 notifierCombat(chevalier1, (résultat1) => {
-  notifierCombat(chevalier2, (résultat2) => {
-    // bienvenue en callback hell
-  })
+ notifierCombat(chevalier2, (résultat2) => {
+  // bienvenue en callback hell
+ })
 })
 
 // ---
@@ -158,16 +158,16 @@ Approche B : Promise.allSettled
 // un combat qui crash n'affecte pas les autres
 
 const résultats = await Promise.allSettled([
-  notifierCombat(chevalier1),
-  notifierCombat(chevalier2)
+ notifierCombat(chevalier1),
+ notifierCombat(chevalier2)
 ])
 résultats.forEach(r => r.status === "fulfilled"
-  ? logSuccès(r.value)
-  : logEchec(r.reason)
+ ? logSuccès(r.value)
+ : logEchec(r.reason)
 )
 
 // DÉCISION : Approche B
-// RAISON   : indépendance des combats, gestion d'erreur propre par défaut
+// RAISON  : indépendance des combats, gestion d'erreur propre par défaut
 // TRADE-OFF : légèrement moins lisible pour quelqu'un qui découvre les Promises
 ```
 
@@ -206,7 +206,7 @@ Voici le code :
 ```js
 // rechercher un item dans l'inventaire de 5000 éléments
 function trouverItem(inventaire, nom) {
-  return inventaire.find(item => item.nom === nom)
+ return inventaire.find(item => item.nom === nom)
 }
 
 // cette fonction est appelée 200 fois par seconde lors d'une attaque de zombies

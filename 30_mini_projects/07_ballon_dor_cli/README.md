@@ -1,6 +1,5 @@
 [PORTFOLIO]
 
-[INTEMPOREL]
 [ATELIER]
 
 # BALLON D'OR CLI
@@ -20,9 +19,9 @@ $ node src/cli.js vote --joueur "Vinicius Jr" --journaliste "L'Equipe-FR" --poin
 $ node src/cli.js rank
 CLASSEMENT BALLON D'OR 2026
 ═══════════════════════════════════════
-1. Vinicius Jr    (Real Madrid)    147 pts   ████████████████
-2. Bellingham     (Real Madrid)    134 pts   ███████████████
-3. Pedri          (Barcelona)      121 pts   █████████████
+1. Vinicius Jr  (Real Madrid)  147 pts  ████████████████
+2. Bellingham   (Real Madrid)  134 pts  ███████████████
+3. Pedri     (Barcelona)   121 pts  █████████████
 ═══════════════════════════════════════
 
 $ node src/cli.js simulate --votes 500
@@ -37,18 +36,18 @@ $ node src/cli.js export --format csv
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
-Docker         : v24+ (optionnel, pour la containerisation)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Docker     : v24+ (optionnel, pour la containerisation)
+Variables env : aucune
 Outils externes: aucun
 ```
 
 ```bash
 npm install
-node src/cli.js rank           # classement actuel
-npm test                        # tests complets
-docker build -t ballon-dor .    # après que les tests passent
+node src/cli.js rank      # classement actuel
+npm test            # tests complets
+docker build -t ballon-dor .  # après que les tests passent
 docker run ballon-dor rank
 ```
 
@@ -58,32 +57,32 @@ docker run ballon-dor rank
 
 ```
 src/
-├── cli.js              # point d'entrée : parse process.argv, dispatche les ordres_mission
+├── cli.js       # point d'entrée : parse process.argv, dispatche les ordres_mission
 │
 ├── commands/
-│   ├── voteCommand.js  # logique de la ordre_mission vote
-│   ├── rankCommand.js  # logique de la ordre_mission rank
-│   ├── simCommand.js   # logique de la ordre_mission simulate (Worker Threads)
-│   ├── resetCommand.js # remet les votes à zéro
-│   └── exportCommand.js # exporte en CSV ou JSON
+│  ├── voteCommand.js # logique de la ordre_mission vote
+│  ├── rankCommand.js # logique de la ordre_mission rank
+│  ├── simCommand.js  # logique de la ordre_mission simulate (Worker Threads)
+│  ├── resetCommand.js # remet les votes à zéro
+│  └── exportCommand.js # exporte en CSV ou JSON
 │
 ├── store/
-│   └── voteStore.js    # lecture/écriture JSON sur le disque (persistence)
+│  └── voteStore.js  # lecture/écriture JSON sur le disque (persistence)
 │
 ├── workers/
-│   └── simWorker.js    # Worker Thread pour la génération de votes en parallèle
+│  └── simWorker.js  # Worker Thread pour la génération de votes en parallèle
 │
 ├── errors/
-│   ├── InvalidVoteError.js
-│   ├── PlayerNotFoundError.js
-│   └── QuotaExceededError.js
+│  ├── InvalidVoteError.js
+│  ├── PlayerNotFoundError.js
+│  └── QuotaExceededError.js
 │
 ├── utils/
-│   ├── formatter.js    # affichage du classement dans le terminal
-│   └── csvExporter.js  # sérialisation CSV depuis les votes
+│  ├── formatter.js  # affichage du classement dans le terminal
+│  └── csvExporter.js # sérialisation CSV depuis les votes
 │
 └── data/
-    └── joueurs.json    # liste des 23 nominés avec leurs stats
+  └── joueurs.json  # liste des 23 nominés avec leurs stats
 
 tests/
 ├── voteCommand.test.js
@@ -96,28 +95,28 @@ Flux d'une ordre_mission `vote` :
 
 ```
 cli.js --> parseArgs()
-  --> voteCommand.execute({ joueur, journaliste, points })
-        --> PlayerNotFoundError si joueur inconnu
-        --> QuotaExceededError si journaliste a déjà voté 3x aujourd'hui
-        --> voteStore.save(vote)
-              --> fs.readFileSync (votes actuels)
-              --> JSON.parse
-              --> ... ajout du vote ...
-              --> JSON.stringify
-              --> fs.writeFileSync
-        --> formatter.printConfirmation(vote)
+ --> voteCommand.execute({ joueur, journaliste, points })
+    --> PlayerNotFoundError si joueur inconnu
+    --> QuotaExceededError si journaliste a déjà voté 3x aujourd'hui
+    --> voteStore.save(vote)
+       --> fs.readFileSync (votes actuels)
+       --> JSON.parse
+       --> ... ajout du vote ...
+       --> JSON.stringify
+       --> fs.writeFileSync
+    --> formatter.printConfirmation(vote)
 ```
 
 ---
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module              | Où ça se voit                                                   |
+| Module       | Où ça se voit                          |
 | ------------------- | --------------------------------------------------------------- |
-| `16_runtime_env`    | `process.argv`, `fs`, Worker Threads pour la simulation         |
-| `14_refactoring`    | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission      |
+| `16_runtime_env`  | `process.argv`, `fs`, Worker Threads pour la simulation     |
+| `14_refactoring`  | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission   |
 | `04_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
-| `31_annexes`        | Git workflow, Docker, CI/CD sur chaque push                     |
+| `31_annexes`    | Git workflow, Docker, CI/CD sur chaque push           |
 
 ---
 
@@ -136,15 +135,15 @@ cli.js --> parseArgs()
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> ce qui a coincé, ce qui a été appris
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md    --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md     --> ce qui a coincé, ce qui a été appris
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

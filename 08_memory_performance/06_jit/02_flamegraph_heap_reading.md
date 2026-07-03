@@ -18,7 +18,7 @@ Un flamegraph empile des barres horizontales. Chaque barre = une fonction appel�
 ```
 |------------------ main() -------------------|
 |---- chargerStats() ----||--- afficherUI() ---|
-|-- fetch() --|--parse()--|     |-- render() --|
+|-- fetch() --|--parse()--|   |-- render() --|
 ```
 
 Lecture de base :
@@ -35,16 +35,16 @@ La règle d'or : tu ne cherches jamais "la fonction la plus lente en absolu", tu
 DevTools donne deux chiffres par fonction, et les confondre fait perdre un temps fou en debug.
 
 ```
-Total time  : temps passé dans la fonction ET tout ce qu'elle appelle
-Self time   : temps passé UNIQUEMENT dans le corps de la fonction elle-même
+Total time : temps passé dans la fonction ET tout ce qu'elle appelle
+Self time  : temps passé UNIQUEMENT dans le corps de la fonction elle-même
 ```
 
 ```js
 // dashboard live des ultras_dashboard
 function traiterEventsMatch(events) {
-  const parsed = events.map(parseEvent)      // appelle parseEvent() x N
-  const stats = calculerStatsLourdes(parsed) // calcul CPU intensif
-  return stats
+ const parsed = events.map(parseEvent)   // appelle parseEvent() x N
+ const stats = calculerStatsLourdes(parsed) // calcul CPU intensif
+ return stats
 }
 ```
 
@@ -55,11 +55,11 @@ Si `traiterEventsMatch` affiche un total time énorme mais un self time proche d
 ## 3) LECTURE GUIDÉE : UN FLAMEGRAPH AVEC UN VRAI PROBLÈME
 
 ```
-main()                                          [total: 4200ms | self: 5ms]
-└── traiterCombat()                             [total: 4180ms | self: 12ms]
-    ├── calculerDegats()                        [total: 80ms  | self: 75ms]
-    ├── verifierEsquive()                       [total: 45ms  | self: 40ms]
-    └── synchroniserEtatGlobal()                [total: 4050ms| self: 4040ms]
+main()                     [total: 4200ms | self: 5ms]
+└── traiterCombat()               [total: 4180ms | self: 12ms]
+  ├── calculerDegats()            [total: 80ms | self: 75ms]
+  ├── verifierEsquive()            [total: 45ms | self: 40ms]
+  └── synchroniserEtatGlobal()        [total: 4050ms| self: 4040ms]
 ```
 
 Lecture, étape par étape :
@@ -84,13 +84,13 @@ Le protocole de détection en 3 photos :
 
 ```
 Snapshot 1 (état initial)
-      |
-      v   (faire une action qui DEVRAIT être neutre, genre ouvrir/fermer un panneau)
-      |
+   |
+   v  (faire une action qui DEVRAIT être neutre, genre ouvrir/fermer un panneau)
+   |
 Snapshot 2
-      |
-      v   (refaire la MÊME action plusieurs fois)
-      |
+   |
+   v  (refaire la MÊME action plusieurs fois)
+   |
 Snapshot 3
 ```
 
@@ -104,11 +104,11 @@ C'est la colonne la plus utile et la moins regardée. Pour un objet suspect, "Re
 
 ```
 EventEmitter (camp de Rick)
-  └── _events
-       └── 'alerte-zombie'
-            └── (closure) handleAlerte
-                 └── [[Scopes]]
-                      └── campData (12.4 MB) ← le vrai poids
+ └── _events
+    └── 'alerte-zombie'
+      └── (closure) handleAlerte
+         └── [[Scopes]]
+           └── campData (12.4 MB) ← le vrai poids
 ```
 
 Cette chaîne se lit comme une enquête : `campData` ne devrait probablement pas être retenu par un listener d'event toujours actif. Le suspect n'est pas `campData` lui-même, c'est le listener `handleAlerte` jamais retiré qui le garde en otage. La correction n'est pas "alléger campData", c'est "retirer le listener au bon moment" (le sujet du module `04_profiling/02_memory_leak_hunter.md`, mais vu cette fois depuis l'outil plutôt que depuis le code).
@@ -131,14 +131,14 @@ Le rapport texte donne un classement par "ticks" (échantillons CPU pris à inte
 
 ```
 [Summary]:
-   ticks  total  nonlib   name
-   8421   42.1%   45.3%  JavaScript
-   6203   31.0%   33.4%  C++
-   ...
+  ticks total nonlib  name
+  8421  42.1%  45.3% JavaScript
+  6203  31.0%  33.4% C++
+  ...
 
 [Bottom up (heavy) profile]:
-  ticks parent  name
-  4102   20.5%  LazyCompile *calculerStatsLourdes script.js:142
+ ticks parent name
+ 4102  20.5% LazyCompile *calculerStatsLourdes script.js:142
 ```
 
 `calculerStatsLourdes` qui concentre 20% des ticks à elle seule : c'est ta cible de profiling, exactement comme une barre large dans un flamegraph DevTools.
@@ -152,10 +152,10 @@ Le rapport texte donne un classement par "ticks" (échantillons CPU pris à inte
 Voici un flamegraph simplifié issu d'une simulation de la cuisine de Walter (breaking_cache). Désigne la fonction réellement responsable de la lenteur, en justifiant ta lecture self time vs total time.
 
 ```
-genererRapportStock()        [total: 3800ms | self: 8ms]
-├── chargerInventaire()      [total: 120ms  | self: 110ms]
-├── calculerPrix()           [total: 90ms   | self: 85ms]
-└── trierParRisque()         [total: 3580ms | self: 3570ms]
+genererRapportStock()    [total: 3800ms | self: 8ms]
+├── chargerInventaire()   [total: 120ms | self: 110ms]
+├── calculerPrix()      [total: 90ms  | self: 85ms]
+└── trierParRisque()     [total: 3580ms | self: 3570ms]
 ```
 
 ## EXO 2 : LA FUITE DANS LES RETAINERS
@@ -164,10 +164,10 @@ Un dashboard live affiche les retainers suivants pour un objet `MatchState` de 8
 
 ```
 MatchState (8 MB)
-  └── intervalCallback
-       └── (closure) updateScoreboard
-            └── [[Scopes]]
-                 └── currentMatch
+ └── intervalCallback
+    └── (closure) updateScoreboard
+      └── [[Scopes]]
+         └── currentMatch
 ```
 
 Explique ce que cette chaîne révèle, et écris la correction (pas besoin de code complet, juste l'idée précise de ce qu'il faut appeler et quand).

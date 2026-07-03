@@ -26,24 +26,24 @@ Avant, un serveur physique était un coût fixe décidé une fois, par quelqu'un
 ### Ce qui coûte vraiment cher, et ce qui ne coûte presque rien
 
 ```
-Ressources oubliées qui tournent pour rien   -->  coût le plus bête, le plus fréquent
-Sur-provisionnement "au cas où"               -->  10 instances pour un trafic qui en demande 2
-Requêtes N+1 et données non cachées           -->  multiplie le coût de calcul sans valeur ajoutée
-Logs et métriques jamais nettoyés              -->  stockage qui grossit indéfiniment, jamais purgé
-Vrai calcul intensif (IA, vidéo, gros batch)   -->  cher par nature, mais au moins justifié
+Ressources oubliées qui tournent pour rien  --> coût le plus bête, le plus fréquent
+Sur-provisionnement "au cas où"        --> 10 instances pour un trafic qui en demande 2
+Requêtes N+1 et données non cachées      --> multiplie le coût de calcul sans valeur ajoutée
+Logs et métriques jamais nettoyés       --> stockage qui grossit indéfiniment, jamais purgé
+Vrai calcul intensif (IA, vidéo, gros batch)  --> cher par nature, mais au moins justifié
 ```
 
 ```js
 // Mauvais : un cron qui poll une API externe toutes les 10 secondes, 24h/24, pour une donnée qui change une fois par jour
 setInterval(async () => {
-  const data = await fetchExternalRanking();
-  await cache.set('ranking', data);
+ const data = await fetchExternalRanking();
+ await cache.set('ranking', data);
 }, 10_000); // 8640 appels par jour pour une donnée qui bouge... une fois par jour
 
 // Correct : la fréquence colle au taux de changement réel de la donnée
 setInterval(async () => {
-  const data = await fetchExternalRanking();
-  await cache.set('ranking', data);
+ const data = await fetchExternalRanking();
+ await cache.set('ranking', data);
 }, 3_600_000); // une fois par heure suffit largement, le coût d'appel chute de 99%
 ```
 
@@ -57,13 +57,13 @@ const instance = await cloud.createInstance({ type: 't3.medium' });
 
 // Une ressource taguée devient traçable : qui l'a créée, pourquoi, jusqu'à quand
 const instance = await cloud.createInstance({
-  type: 't3.medium',
-  tags: {
-    team: 'ultras-dashboard',
-    environment: 'staging',
-    owner: 'backend-team',
-    expiresAt: '2026-09-01', // une ressource de staging sans date d'expiration finit oubliée pour toujours
-  },
+ type: 't3.medium',
+ tags: {
+  team: 'ultras-dashboard',
+  environment: 'staging',
+  owner: 'backend-team',
+  expiresAt: '2026-09-01', // une ressource de staging sans date d'expiration finit oubliée pour toujours
+ },
 });
 ```
 
@@ -86,20 +86,20 @@ Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par l'shi
 ```js
 // Mauvais : recalculer un classement complet à chaque requête, même si rien n'a changé
 app.get('/ranking', async (req, res) => {
-  const allMatches = await db.matches.findAll(); // charge tout, à chaque appel
-  const ranking = computeFullRanking(allMatches); // recalcul intégral, à chaque appel
-  res.json(ranking);
+ const allMatches = await db.matches.findAll(); // charge tout, à chaque appel
+ const ranking = computeFullRanking(allMatches); // recalcul intégral, à chaque appel
+ res.json(ranking);
 });
 
 // Correct : on calcule une fois, on sert depuis le cache tant que rien n'a changé
 app.get('/ranking', async (req, res) => {
-  const cached = await cache.get('ranking');
-  if (cached) return res.json(cached); // zéro calcul CPU, zéro accès DB, zéro watt gaspillé
+ const cached = await cache.get('ranking');
+ if (cached) return res.json(cached); // zéro calcul CPU, zéro accès DB, zéro watt gaspillé
 
-  const allMatches = await db.matches.findAll();
-  const ranking = computeFullRanking(allMatches);
-  await cache.set('ranking', ranking, { ttl: 300 });
-  res.json(ranking);
+ const allMatches = await db.matches.findAll();
+ const ranking = computeFullRanking(allMatches);
+ await cache.set('ranking', ranking, { ttl: 300 });
+ res.json(ranking);
 });
 ```
 
@@ -123,10 +123,10 @@ cron.schedule('0 13 * * *', runNightlyReportGeneration); // tâche non urgente, 
 Optimiser sans mesurer, c'est sortir le Kaioken sans savoir combien de ki il reste. Les outils existent pour chiffrer précisément ce qu'un bout de code coûte, en argent et en énergie.
 
 ```
-AWS Cost Explorer / GCP Billing  -->  coût détaillé par service, par tag, par période
-Carbon footprint tools (cloud)    -->  estimation de l'empreinte CO2 par charge de travail
-Lighthouse (déjà vu en 08)         -->  un score de perf élevé corrèle presque toujours avec moins d'énergie
-node --prof (déjà vu en 08)        -->  identifier le code qui consomme le plus de CPU, donc le plus de watts
+AWS Cost Explorer / GCP Billing --> coût détaillé par service, par tag, par période
+Carbon footprint tools (cloud)  --> estimation de l'empreinte CO2 par charge de travail
+Lighthouse (déjà vu en 08)     --> un score de perf élevé corrèle presque toujours avec moins d'énergie
+node --prof (déjà vu en 08)    --> identifier le code qui consomme le plus de CPU, donc le plus de watts
 ```
 
 ```js
@@ -141,9 +141,9 @@ console.timeEnd('computeFullRanking'); // computeFullRanking: 842ms : voilà la 
 ## 4) CE QUI EST INVARIANT, CE QUI VA BOUGER
 
 ```
-Invariant   -->  mesurer avant d'optimiser, taguer ses ressources, éviter le gaspillage évident
-Semi-stable -->  les outils de billing et de carbon tracking (les noms changent, le principe reste)
-Conjoncturel -->  les chiffres précis d'intensité carbone par région, les prix exacts du cloud
+Invariant  --> mesurer avant d'optimiser, taguer ses ressources, éviter le gaspillage évident
+Semi-stable --> les outils de billing et de carbon tracking (les noms changent, le principe reste)
+Conjoncturel --> les chiffres précis d'intensité carbone par région, les prix exacts du cloud
 ```
 
 Le réflexe à garder ne vieillit pas : avant d'ajouter une ressource, un cron, un appel répété, se demander combien ça coûte et combien ça consomme. Les outils précis pour le mesurer changeront. La question, elle, reste valable.

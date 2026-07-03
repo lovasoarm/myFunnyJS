@@ -34,16 +34,16 @@ $ node src/index.js
 ## INSTALLATION
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Variables env : aucune
 Outils externes: aucun
 ```
 
 ```bash
 npm install
-node src/index.js   # lance la démo
-npm test             # lance la suite de tests
+node src/index.js  # lance la démo
+npm test       # lance la suite de tests
 ```
 
 ---
@@ -53,25 +53,25 @@ npm test             # lance la suite de tests
 ```
 src/
 ├── council/
-│   ├── council.js          # détecte, dispatche, construit le rapport
-│   ├── dispatcher.js        # choisit quel Chevalier va où
-│   └── streamReceiver.js    # écoute les événements de combat, ne fait aucun appel sortant
+│  ├── council.js     # détecte, dispatche, construit le rapport
+│  ├── dispatcher.js    # choisit quel Chevalier va où
+│  └── streamReceiver.js  # écoute les événements de combat, ne fait aucun appel sortant
 │
 ├── knight/
-│   ├── knight.js             # le Chevalier, son armure, son état
-│   └── streamEmitter.js      # émet les événements de combat
+│  ├── knight.js       # le Chevalier, son armure, son état
+│  └── streamEmitter.js   # émet les événements de combat
 │
 ├── armor/
-│   └── armor.js              # préparation de l'armure, timer des 99,9s
+│  └── armor.js       # préparation de l'armure, timer des 99,9s
 │
 ├── engine/
-│   ├── missionRunner.js      # Promise.race entre combat et timeout
-│   └── combat.js             # simule le combat lui-même
+│  ├── missionRunner.js   # Promise.race entre combat et timeout
+│  └── combat.js       # simule le combat lui-même
 │
 ├── errors/
-│   ├── ArmorCollapseError.js
-│   ├── HorrorEscapeError.js
-│   └── KnightDownError.js
+│  ├── ArmorCollapseError.js
+│  ├── HorrorEscapeError.js
+│  └── KnightDownError.js
 │
 └── index.js
 
@@ -86,16 +86,16 @@ Flux d'appel complet :
 
 ```
 index.js
-  --> council.detectHorror(location, level)
-  --> dispatcher.assign(horror, availableKnights)
-        --> knight.prepareMission(horror)
-              --> armor.equip(knight)
-              --> missionRunner.run(knight, horror)
-                    --> Promise.race([combat.fight(...), timeout(99900)])
-                    --> streamEmitter.emit(event)
-  --> council.streamReceiver.on(event, handler)   // écoute EN PARALLÈLE des missions
-  --> Promise.allSettled([mission1, mission2, ...])
-  --> council.buildReport(results)
+ --> council.detectHorror(location, level)
+ --> dispatcher.assign(horror, availableKnights)
+    --> knight.prepareMission(horror)
+       --> armor.equip(knight)
+       --> missionRunner.run(knight, horror)
+          --> Promise.race([combat.fight(...), timeout(99900)])
+          --> streamEmitter.emit(event)
+ --> council.streamReceiver.on(event, handler)  // écoute EN PARALLÈLE des missions
+ --> Promise.allSettled([mission1, mission2, ...])
+ --> council.buildReport(results)
 ```
 
 Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel : les deux choses se passent en même temps.
@@ -104,12 +104,12 @@ Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel :
 
 ## MODULES CRAZYDEVS COUVERTS
 
-| Module                     | Où ça se voit                                                           |
+| Module           | Où ça se voit                              |
 | -------------------------- | ----------------------------------------------------------------------- |
-| `03_async`                 | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)       |
-| `04_error_handling`        | `errors/` (erreurs custom typées), propagation dans `missionRunner.js`  |
-| `20_realtime`              | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
-| `17_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven)        |
+| `03_async`         | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)    |
+| `04_error_handling`    | `errors/` (erreurs custom typées), propagation dans `missionRunner.js` |
+| `20_realtime`       | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
+| `17_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven)    |
 
 ---
 
@@ -126,15 +126,15 @@ Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel :
 ## DOCUMENTS DU PROJET
 
 ```
-cahierdescharges.md   --> spécification complète, ordre de construction, cas limites
-TDD_JOURNAL.md        --> trace de l'écriture des tests, dans l'ordre réel
-POSTMORTEM.md         --> bugs async rencontrés, décisions prises
-ADR/                  --> décisions d'architecture documentées
+cahierdescharges.md  --> spécification complète, ordre de construction, cas limites
+TDD_JOURNAL.md    --> trace de l'écriture des tests, dans l'ordre réel
+POSTMORTEM.md     --> bugs async rencontrés, décisions prises
+ADR/         --> décisions d'architecture documentées
 ```
 
 ---
 
-## BENCH & DÉCISIONS (obligatoire : Thor Edition)
+## BENCH & DÉCISIONS (obligatoire)
 
 Aucun mini-projet n'est "fini" sans cette section. Documente au moins **un**
 trade-off chiffré :

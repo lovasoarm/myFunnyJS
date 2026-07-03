@@ -18,21 +18,21 @@ C'est ça et rien d'autre. Cette règle unique suffit à garantir la recherche d
 ```
 Arbre valide :
 
-          8
-        /   \
-       3     10
-      / \      \
-     1   6      14
-        / \    /
-       4   7  13
+     8
+    /  \
+    3   10
+   / \   \
+   1  6   14
+    / \  /
+    4  7 13
 
 Pour le noeud 8 :
-  gauche (3, 1, 6, 4, 7) --> tous < 8 : OK
-  droite (10, 14, 13)    --> tous > 8 : OK
+ gauche (3, 1, 6, 4, 7) --> tous < 8 : OK
+ droite (10, 14, 13)  --> tous > 8 : OK
 
 Pour le noeud 3 :
-  gauche (1)      --> 1 < 3 : OK
-  droite (6, 4, 7) --> tous > 3 : OK
+ gauche (1)   --> 1 < 3 : OK
+ droite (6, 4, 7) --> tous > 3 : OK
 ```
 
 ---
@@ -41,17 +41,17 @@ Pour le noeud 3 :
 
 ```js
 class Node {
-  constructor(value) {
-    this.value = value
-    this.left  = null   // sous-arbre gauche : valeurs < this.value
-    this.right = null   // sous-arbre droit  : valeurs > this.value
-  }
+ constructor(value) {
+  this.value = value
+  this.left = null  // sous-arbre gauche : valeurs < this.value
+  this.right = null  // sous-arbre droit : valeurs > this.value
+ }
 }
 
 class BST {
-  constructor() {
-    this.root = null
-  }
+ constructor() {
+  this.root = null
+ }
 }
 ```
 
@@ -63,36 +63,36 @@ On descend l'arbre en comparant à chaque noeud. Gauche si inférieur, droite si
 
 ```js
 insert(value) {
-  const newNode = new Node(value)
+ const newNode = new Node(value)
 
-  // arbre vide : le premier noeud devient la racine
-  if (!this.root) {
-    this.root = newNode
+ // arbre vide : le premier noeud devient la racine
+ if (!this.root) {
+  this.root = newNode
+  return this
+ }
+
+ let current = this.root
+
+ while (true) {
+  // doublon : on ignore (convention classique du BST)
+  if (value === current.value) return this
+
+  if (value < current.value) {
+   // aller à gauche
+   if (!current.left) {
+    current.left = newNode
     return this
+   }
+   current = current.left
+  } else {
+   // aller à droite
+   if (!current.right) {
+    current.right = newNode
+    return this
+   }
+   current = current.right
   }
-
-  let current = this.root
-
-  while (true) {
-    // doublon : on ignore (convention classique du BST)
-    if (value === current.value) return this
-
-    if (value < current.value) {
-      // aller à gauche
-      if (!current.left) {
-        current.left = newNode
-        return this
-      }
-      current = current.left
-    } else {
-      // aller à droite
-      if (!current.right) {
-        current.right = newNode
-        return this
-      }
-      current = current.right
-    }
-  }
+ }
 }
 ```
 
@@ -101,18 +101,18 @@ Trace d'une insertion sur l'arbre du score de Messi (Ballon d'Or) :
 ```
 Insertion de [8, 3, 10, 1, 6] dans l'ordre :
 
-insert(8)  -->  8 devient racine
-insert(3)  -->  3 < 8 : gauche de 8
-insert(10) -->  10 > 8 : droite de 8
-insert(1)  -->  1 < 8 : gauche | 1 < 3 : gauche de 3
-insert(6)  -->  6 < 8 : gauche | 6 > 3 : droite de 3
+insert(8) --> 8 devient racine
+insert(3) --> 3 < 8 : gauche de 8
+insert(10) --> 10 > 8 : droite de 8
+insert(1) --> 1 < 8 : gauche | 1 < 3 : gauche de 3
+insert(6) --> 6 < 8 : gauche | 6 > 3 : droite de 3
 
 Résultat :
-    8
-   / \
-  3   10
+  8
+  / \
+ 3  10
  / \
-1   6
+1  6
 ```
 
 ---
@@ -123,18 +123,18 @@ Même logique : on descend, on compare, on va à gauche ou à droite.
 
 ```js
 search(value) {
-  let current = this.root
+ let current = this.root
 
-  while (current) {
-    if (value === current.value) return current  // trouvé
-    if (value < current.value) {
-      current = current.left   // cherche à gauche
-    } else {
-      current = current.right  // cherche à droite
-    }
+ while (current) {
+  if (value === current.value) return current // trouvé
+  if (value < current.value) {
+   current = current.left  // cherche à gauche
+  } else {
+   current = current.right // cherche à droite
   }
+ }
 
-  return null  // pas trouvé
+ return null // pas trouvé
 }
 ```
 
@@ -143,11 +143,11 @@ Chaque comparaison élimine la moitié restante de l'arbre. C'est la recherche b
 ```
 Chercher 6 dans l'arbre :
 
-     8      -->  6 < 8 : on part à gauche
-    / \
-   3   10   -->  6 > 3 : on part à droite
+   8   --> 6 < 8 : on part à gauche
   / \
- 1   6      -->  6 === 6 : trouvé en 3 comparaisons
+  3  10  --> 6 > 3 : on part à droite
+ / \
+ 1  6   --> 6 === 6 : trouvé en 3 comparaisons
 ```
 
 ---
@@ -158,72 +158,72 @@ Supprimer un noeud dans un BST a trois cas distincts.
 
 ```
 Cas 1 : le noeud est une feuille (pas d'enfants)
-  --> on l'efface simplement
+ --> on l'efface simplement
 
 Cas 2 : le noeud a un seul enfant
-  --> on remplace le noeud par son enfant
+ --> on remplace le noeud par son enfant
 
 Cas 3 : le noeud a deux enfants
-  --> on remplace la valeur du noeud par son successeur in-order
-      (le plus petit du sous-arbre droit)
-  --> puis on supprime ce successeur
+ --> on remplace la valeur du noeud par son successeur in-order
+   (le plus petit du sous-arbre droit)
+ --> puis on supprime ce successeur
 ```
 
 ```js
 delete(value) {
-  this.root = this._deleteNode(this.root, value)
+ this.root = this._deleteNode(this.root, value)
 }
 
 _deleteNode(node, value) {
-  if (!node) return null
+ if (!node) return null
 
-  if (value < node.value) {
-    // le noeud à supprimer est dans le sous-arbre gauche
-    node.left = this._deleteNode(node.left, value)
-  } else if (value > node.value) {
-    // le noeud à supprimer est dans le sous-arbre droit
-    node.right = this._deleteNode(node.right, value)
-  } else {
-    // on a trouvé le noeud à supprimer
+ if (value < node.value) {
+  // le noeud à supprimer est dans le sous-arbre gauche
+  node.left = this._deleteNode(node.left, value)
+ } else if (value > node.value) {
+  // le noeud à supprimer est dans le sous-arbre droit
+  node.right = this._deleteNode(node.right, value)
+ } else {
+  // on a trouvé le noeud à supprimer
 
-    // Cas 1 : feuille
-    if (!node.left && !node.right) return null
+  // Cas 1 : feuille
+  if (!node.left && !node.right) return null
 
-    // Cas 2a : seulement un enfant droit
-    if (!node.left) return node.right
+  // Cas 2a : seulement un enfant droit
+  if (!node.left) return node.right
 
-    // Cas 2b : seulement un enfant gauche
-    if (!node.right) return node.left
+  // Cas 2b : seulement un enfant gauche
+  if (!node.right) return node.left
 
-    // Cas 3 : deux enfants
-    // trouver le successeur in-order (minimum du sous-arbre droit)
-    const successor = this._findMin(node.right)
-    node.value = successor.value
-    // supprimer le successeur de sa position originale
-    node.right = this._deleteNode(node.right, successor.value)
-  }
+  // Cas 3 : deux enfants
+  // trouver le successeur in-order (minimum du sous-arbre droit)
+  const successor = this._findMin(node.right)
+  node.value = successor.value
+  // supprimer le successeur de sa position originale
+  node.right = this._deleteNode(node.right, successor.value)
+ }
 
-  return node
+ return node
 }
 
 _findMin(node) {
-  // le minimum d'un BST est toujours le plus à gauche
-  while (node.left) node = node.left
-  return node
+ // le minimum d'un BST est toujours le plus à gauche
+ while (node.left) node = node.left
+ return node
 }
 ```
 
 Trace sur le cas 3 : supprimer le noeud 3 :
 
 ```
-Avant :             Après :
-    8                   8
-   / \                 / \
-  3   10       -->    4   10
- / \                 / \
-1   6               1   6
-   / \                    \
-  4   7                    7
+Avant :       Après :
+  8          8
+  / \         / \
+ 3  10    -->  4  10
+ / \         / \
+1  6        1  6
+  / \          \
+ 4  7          7
 
 Successeur de 3 = min du sous-arbre droit de 3 = 4
 On remplace 3 par 4, puis on supprime 4 de sa position originale
@@ -240,13 +240,13 @@ Insertion de [1, 2, 3, 4, 5] dans l'ordre :
 
 1
  \
-  2
+ 2
+  \
+  3
    \
-    3
-     \
-      4
-       \
-        5
+   4
+    \
+    5
 
 Hauteur : O(n)
 Recherche : O(n), pas O(log n)

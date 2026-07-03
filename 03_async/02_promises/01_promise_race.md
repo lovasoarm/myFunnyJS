@@ -20,20 +20,20 @@ La formation de Naruto pour une mission S-rank. Si un seul tombe, la mission éc
 
 ```js
 const mission = Promise.all([
-  recupererChakraNaruto(),    // async
-  recupererChakraSasuke(),    // async
-  recupererChakraSakura()     // async
+ recupererChakraNaruto(),  // async
+ recupererChakraSasuke(),  // async
+ recupererChakraSakura()   // async
 ])
 
 // tout le monde revient => on démarre
 mission.then(([chakraNaruto, chakraSasuke, chakraSakura]) => {
-  console.log("formation complète, on attaque")
+ console.log("formation complète, on attaque")
 })
 
 // Sasuke déserte => tout s'arrête
 // le catch se déclenche dès la première rejection
 mission.catch(err => {
-  console.log("mission annulée :", err.message)
+ console.log("mission annulée :", err.message)
 })
 ```
 
@@ -48,13 +48,13 @@ Gojo contre Sukuna. Peu importe qui frappe en premier, c'est lui qui détermine 
 
 ```js
 const combat = Promise.race([
-  gojoAttaque(),    // 200ms
-  sukunaCounter()   // 150ms
+ gojoAttaque(),  // 200ms
+ sukunaCounter()  // 150ms
 ])
 
 // Sukuna est plus rapide => c'est lui qui remporte la race
 combat.then(resultat => {
-  console.log("premier coup :", resultat) // résultat de sukunaCounter
+ console.log("premier coup :", resultat) // résultat de sukunaCounter
 })
 ```
 
@@ -65,17 +65,17 @@ Cas d'usage réel : timeout maison.
 
 ```js
 function avecTimeout(promise, ms) {
-  const timer = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error(`timeout après ${ms}ms`)), ms)
-  )
+ const timer = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error(`timeout après ${ms}ms`)), ms)
+ )
 
-  // la première qui se résout (ou rejette) gagne
-  return Promise.race([promise, timer])
+ // la première qui se résout (ou rejette) gagne
+ return Promise.race([promise, timer])
 }
 
 avecTimeout(fetchDonneesMission(), 3000)
-  .then(data => console.log("données reçues :", data))
-  .catch(err => console.log("trop long :", err.message))
+ .then(data => console.log("données reçues :", data))
+ .catch(err => console.log("trop long :", err.message))
 ```
 
 Si l'API répond en 5 secondes : le timer gagne. La Promise de fetch continue de vivre,
@@ -90,19 +90,19 @@ On veut le rapport complet, pas juste les vivants.
 
 ```js
 const missions = Promise.allSettled([
-  evacuerVillage1(),  // résout
-  evacuerVillage2(),  // rejette : attaque surprise
-  evacuerVillage3()   // résout
+ evacuerVillage1(), // résout
+ evacuerVillage2(), // rejette : attaque surprise
+ evacuerVillage3()  // résout
 ])
 
 missions.then(resultats => {
-  resultats.forEach((res, i) => {
-    if (res.status === "fulfilled") {
-      console.log(`village ${i + 1} sauvé :`, res.value)
-    } else {
-      console.log(`village ${i + 1} perdu :`, res.reason.message)
-    }
-  })
+ resultats.forEach((res, i) => {
+  if (res.status === "fulfilled") {
+   console.log(`village ${i + 1} sauvé :`, res.value)
+  } else {
+   console.log(`village ${i + 1} perdu :`, res.reason.message)
+  }
+ })
 })
 ```
 
@@ -120,19 +120,19 @@ Une seule suffit à le trouver. On se fout de savoir qui échoue.
 
 ```js
 const recherche = Promise.any([
-  equipeA.chercher(),  // rejette
-  equipeB.chercher(),  // résout en premier => gagne
-  equipeC.chercher()   // résout mais trop tard
+ equipeA.chercher(), // rejette
+ equipeB.chercher(), // résout en premier => gagne
+ equipeC.chercher()  // résout mais trop tard
 ])
 
 recherche.then(fragment => {
-  console.log("fragment trouvé par :", fragment)
+ console.log("fragment trouvé par :", fragment)
 })
 
 // Si TOUTES rejettent => AggregateError
 recherche.catch(err => {
-  console.log("toutes les équipes ont échoué")
-  console.log(err.errors) // tableau de toutes les erreurs
+ console.log("toutes les équipes ont échoué")
+ console.log(err.errors) // tableau de toutes les erreurs
 })
 ```
 
@@ -143,12 +143,12 @@ recherche.catch(err => {
 ## TABLEAU RÉCAPITULATIF
 
 ```
-Combinator         Résout quand          Rejette quand
+Combinator     Résout quand     Rejette quand
 ---------------------------------------------------------
-Promise.all        TOUS réussissent      UN seul échoue
-Promise.race       LE PREMIER finit      LE PREMIER échoue
-Promise.allSettled TOUS finissent        jamais
-Promise.any        UN seul réussit       TOUS échouent
+Promise.all    TOUS réussissent   UN seul échoue
+Promise.race    LE PREMIER finit   LE PREMIER échoue
+Promise.allSettled TOUS finissent    jamais
+Promise.any    UN seul réussit    TOUS échouent
 ```
 
 ---
@@ -179,8 +179,8 @@ Implémente `genererRapport(operations)` qui prend un tableau de Promises et ret
 
 ```js
 {
-  reussies: [{ index: 0, resultat: "..." }, ...],
-  echouees: [{ index: 2, erreur: "..." }, ...]
+ reussies: [{ index: 0, resultat: "..." }, ...],
+ echouees: [{ index: 2, erreur: "..." }, ...]
 }
 ```
 

@@ -16,38 +16,38 @@ Inconvénient : complexité ajoutée, cohérence éventuelle (vu dans `24_databa
 
 ```
 PRODUCTEUR (ton serveur API)
-    |
-    v
-  pousse un message dans la FILE
-    |
-    v
+  |
+  v
+ pousse un message dans la FILE
+  |
+  v
 FILE (la queue elle-même, qui stocke les messages en attente)
-    |
-    v
-  un ou plusieurs CONSOMMATEURS (workers) lisent et traitent
+  |
+  v
+ un ou plusieurs CONSOMMATEURS (workers) lisent et traitent
 ```
 
 ```js
 // Producteur : ton endpoint d'upload, ultra rapide
 app.post('/upload', async (req, res) => {
-  const fileId = await saveFile(req.file) // rapide : juste sauvegarder le fichier brut
+ const fileId = await saveFile(req.file) // rapide : juste sauvegarder le fichier brut
 
-  await queue.push('video-processing', { fileId, userId: req.user.id })
-  // on pousse la tâche lourde dans la file, et on répond TOUT DE SUITE
+ await queue.push('video-processing', { fileId, userId: req.user.id })
+ // on pousse la tâche lourde dans la file, et on répond TOUT DE SUITE
 
-  res.json({ status: 'uploaded', message: 'Traitement en cours' })
+ res.json({ status: 'uploaded', message: 'Traitement en cours' })
 })
 
 // Consommateur : un process séparé, qui tourne en continu
 async function worker() {
-  while (true) {
-    const job = await queue.pop('video-processing')
-    if (job) {
-      await generateThumbnail(job.fileId)
-      await compressVideo(job.fileId)
-      await notifyUser(job.userId)
-    }
+ while (true) {
+  const job = await queue.pop('video-processing')
+  if (job) {
+   await generateThumbnail(job.fileId)
+   await compressVideo(job.fileId)
+   await notifyUser(job.userId)
   }
+ }
 }
 ```
 
@@ -83,16 +83,16 @@ Workers (lourds, lents) --> 10 instances pour absorber la charge de traitement
 
 ```
 AT-MOST-ONCE
-  --> le message peut être perdu, mais jamais traité deux fois
-  --> rare en pratique, dangereux pour des tâches importantes
+ --> le message peut être perdu, mais jamais traité deux fois
+ --> rare en pratique, dangereux pour des tâches importantes
 
 AT-LEAST-ONCE
-  --> le message est garanti d'être traité, mais PEUT être traité plusieurs fois
-  --> le cas le plus courant en pratique (la plupart des queues fonctionnent ainsi)
+ --> le message est garanti d'être traité, mais PEUT être traité plusieurs fois
+ --> le cas le plus courant en pratique (la plupart des queues fonctionnent ainsi)
 
 EXACTLY-ONCE
-  --> le message est traité une fois et une seule, ni plus ni moins
-  --> très difficile à garantir réellement, coûteux, rarement nécessaire
+ --> le message est traité une fois et une seule, ni plus ni moins
+ --> très difficile à garantir réellement, coûteux, rarement nécessaire
 ```
 
 Le risque réel avec at-least-once (le cas par défaut) : si ton worker traite un message, mais crash juste APRÈS le traitement et AVANT de confirmer ("ack", acknowledgment) à la queue qu'il a fini, la queue va renvoyer le même message à un autre worker, qui va le retraiter.
@@ -100,9 +100,9 @@ Le risque réel avec at-least-once (le cas par défaut) : si ton worker traite u
 ```js
 // exemple qui casse avec at-least-once mal géré
 async function processPayment(job) {
-  await chargeCreditCard(job.amount) // étape 1 : prélève l'argent
-  // CRASH ICI, avant de pouvoir confirmer à la queue
-  await queue.ack(job.id) // jamais atteint
+ await chargeCreditCard(job.amount) // étape 1 : prélève l'argent
+ // CRASH ICI, avant de pouvoir confirmer à la queue
+ await queue.ack(job.id) // jamais atteint
 }
 // La queue, n'ayant pas reçu l'ack, renvoie le message
 // Un autre worker reprend le job depuis le début --> double prélèvement
@@ -113,14 +113,14 @@ La correction : rendre l'opération idempotente (vue aussi dans `21_api_craft/04
 ```js
 // Idempotent : un identifiant unique de transaction empêche le double traitement
 async function processPayment(job) {
-  const alreadyProcessed = await db.query(
-    'SELECT id FROM payments WHERE idempotency_key = $1', [job.idempotencyKey]
-  )
-  if (alreadyProcessed.rows.length > 0) {
-    return // déjà fait, on ne refacture pas
-  }
-  await chargeCreditCard(job.amount, job.idempotencyKey)
-  await queue.ack(job.id)
+ const alreadyProcessed = await db.query(
+  'SELECT id FROM payments WHERE idempotency_key = $1', [job.idempotencyKey]
+ )
+ if (alreadyProcessed.rows.length > 0) {
+  return // déjà fait, on ne refacture pas
+ }
+ await chargeCreditCard(job.amount, job.idempotencyKey)
+ await queue.ack(job.id)
 }
 ```
 
@@ -130,28 +130,28 @@ async function processPayment(job) {
 
 ```
 Message échoue --> retry automatique --> échoue encore --> retry --> échoue encore
-                                                                        |
-                                                                        v
-                                                          après N tentatives :
-                                                          DEAD LETTER QUEUE
-                                                          (file d'attente des morts)
+                                    |
+                                    v
+                             après N tentatives :
+                             DEAD LETTER QUEUE
+                             (file d'attente des morts)
 ```
 
 Le pourquoi : sans ça, un message qui échoue systématiquement (genre une donnée corrompue qui fait crasher le worker à chaque fois) tourne en boucle de retry infinie, consommant des ressources pour rien, et masquant le fait qu'il y a un vrai problème à régler.
 
 ```js
 async function processWithRetry(job, maxRetries = 3) {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      await processJob(job)
-      return // succès, on s'arrête là
-    } catch (err) {
-      if (attempt === maxRetries) {
-        await deadLetterQueue.push(job) // on abandonne, mais on garde une trace
-        await alertTeam(`Job ${job.id} a échoué ${maxRetries} fois`, err)
-      }
-    }
+ for (let attempt = 1; attempt <= maxRetries; attempt++) {
+  try {
+   await processJob(job)
+   return // succès, on s'arrête là
+  } catch (err) {
+   if (attempt === maxRetries) {
+    await deadLetterQueue.push(job) // on abandonne, mais on garde une trace
+    await alertTeam(`Job ${job.id} a échoué ${maxRetries} fois`, err)
+   }
   }
+ }
 }
 ```
 

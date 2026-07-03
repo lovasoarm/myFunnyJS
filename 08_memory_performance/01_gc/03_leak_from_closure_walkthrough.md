@@ -7,15 +7,15 @@ Le GC est intelligent, mais il obéit à une règle bête : **si c'est atteignab
 
 ```js
 function attachHandler(bigData) {
-  return function onClick() {
-    console.log("clicked")
-    // bigData n'est jamais lu, mais capturé
-  }
+ return function onClick() {
+  console.log("clicked")
+  // bigData n'est jamais lu, mais capturé
+ }
 }
 
 const handlers = []
 for (let i = 0; i < 1000; i++) {
-  handlers.push(attachHandler(new Array(100000).fill(i)))
+ handlers.push(attachHandler(new Array(100000).fill(i)))
 }
 ```
 
@@ -35,10 +35,10 @@ Dans DevTools > Memory > Heap snapshot : filtre par "closure", tu vois les 1000 
 
 ```js
 function attachHandler(bigData) {
-  const summary = bigData.length  // extrais ce que tu utilises
-  return function onClick() {
-    console.log("clicked", summary)
-  }
+ const summary = bigData.length // extrais ce que tu utilises
+ return function onClick() {
+  console.log("clicked", summary)
+ }
 }
 ```
 

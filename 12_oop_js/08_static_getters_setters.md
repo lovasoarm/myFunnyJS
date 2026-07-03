@@ -7,33 +7,33 @@ Temps de lecture ~8 min
 
 ```js
 class Ninja {
-  static villageOrigine = "Konoha"; // sur la classe, pas sur chaque instance
+ static villageOrigine = "Konoha"; // sur la classe, pas sur chaque instance
 
-  static creerGenin(nom) {
-    return new Ninja(nom, Ninja.villageOrigine);
-  }
+ static creerGenin(nom) {
+  return new Ninja(nom, Ninja.villageOrigine);
+ }
 
-  constructor(nom, village) {
-    this.nom = nom;
-    this.village = village;
-  }
+ constructor(nom, village) {
+  this.nom = nom;
+  this.village = village;
+ }
 }
 
-Ninja.villageOrigine;        // "Konoha", accessible sans instance
+Ninja.villageOrigine;    // "Konoha", accessible sans instance
 const naruto = Ninja.creerGenin("Naruto");
-naruto.villageOrigine;       // undefined : static n'existe pas sur l'instance
+naruto.villageOrigine;    // undefined : static n'existe pas sur l'instance
 ```
 
 ```
 Ninja (la classe)
-  |-- static villageOrigine
-  |-- static creerGenin()
-  |
-  v
+ |-- static villageOrigine
+ |-- static creerGenin()
+ |
+ v
 naruto (une instance)
-  |-- nom
-  |-- village
-  (pas de villageOrigine ici, ce n'est pas hérité par les instances)
+ |-- nom
+ |-- village
+ (pas de villageOrigine ici, ce n'est pas hérité par les instances)
 ```
 
 `static` sert pour tout ce qui concerne la classe en tant que concept, pas une instance précise : compteurs globaux, factory methods (méthode qui fabrique des instances selon une logique précise), constantes liées au type.
@@ -42,14 +42,14 @@ naruto (une instance)
 
 ```js
 class Ninja2 {
-  constructor(chakraActuel, chakraMax) {
-    this._chakraActuel = chakraActuel;
-    this._chakraMax = chakraMax;
-  }
+ constructor(chakraActuel, chakraMax) {
+  this._chakraActuel = chakraActuel;
+  this._chakraMax = chakraMax;
+ }
 
-  get pourcentageChakra() {
-    return Math.round((this._chakraActuel / this._chakraMax) * 100);
-  }
+ get pourcentageChakra() {
+  return Math.round((this._chakraActuel / this._chakraMax) * 100);
+ }
 }
 
 const n = new Ninja2(40, 100);
@@ -62,29 +62,29 @@ Sans `get`, il faudrait écrire `n.pourcentageChakra()`, une méthode classique.
 
 ```js
 class Ninja3 {
-  constructor(chakraMax) {
-    this._chakraActuel = 0;
-    this._chakraMax = chakraMax;
-  }
+ constructor(chakraMax) {
+  this._chakraActuel = 0;
+  this._chakraMax = chakraMax;
+ }
 
-  set chakraActuel(valeur) {
-    if (valeur < 0) {
-      this._chakraActuel = 0;
-    } else if (valeur > this._chakraMax) {
-      this._chakraActuel = this._chakraMax;
-    } else {
-      this._chakraActuel = valeur;
-    }
+ set chakraActuel(valeur) {
+  if (valeur < 0) {
+   this._chakraActuel = 0;
+  } else if (valeur > this._chakraMax) {
+   this._chakraActuel = this._chakraMax;
+  } else {
+   this._chakraActuel = valeur;
   }
+ }
 
-  get chakraActuel() {
-    return this._chakraActuel;
-  }
+ get chakraActuel() {
+  return this._chakraActuel;
+ }
 }
 
 const n2 = new Ninja3(100);
 n2.chakraActuel = 150; // appelle le set, pas une affectation brute
-n2.chakraActuel;       // 100, plafonné par la logique du set
+n2.chakraActuel;    // 100, plafonné par la logique du set
 ```
 
 `n2.chakraActuel = 150` a l'air d'une simple affectation. En réalité, ça déclenche la méthode `set`, qui applique une règle de validation avant de toucher au vrai champ interne `_chakraActuel`. C'est l'usage le plus sain de `set` : transformer une affectation en porte de contrôle, sans changer la syntaxe utilisée par celui qui appelle.
@@ -93,20 +93,20 @@ n2.chakraActuel;       // 100, plafonné par la logique du set
 
 ```js
 class Armee {
-  constructor(soldats) {
-    this.soldats = soldats; // tableau de milliers de soldats
-  }
+ constructor(soldats) {
+  this.soldats = soldats; // tableau de milliers de soldats
+ }
 
-  get puissanceTotale() {
-    console.log("recalcul de la puissance totale"); // pour voir l'effet
-    return this.soldats.reduce((total, s) => total + s.puissance, 0);
-  }
+ get puissanceTotale() {
+  console.log("recalcul de la puissance totale"); // pour voir l'effet
+  return this.soldats.reduce((total, s) => total + s.puissance, 0);
+ }
 }
 
 const armee = new Armee(unTableauDeMilleSoldats);
 
 if (armee.puissanceTotale > 1000 && armee.puissanceTotale < 5000) {
-  // "recalcul de la puissance totale" logué DEUX fois : deux accès, deux recalculs complets
+ // "recalcul de la puissance totale" logué DEUX fois : deux accès, deux recalculs complets
 }
 ```
 
@@ -116,14 +116,14 @@ Le code a l'air de lire une simple propriété deux fois. En réalité, deux rec
 
 ```js
 class Configuration {
-  static #instance;
+ static #instance;
 
-  static get instance() {
-    if (!Configuration.#instance) {
-      Configuration.#instance = new Configuration();
-    }
-    return Configuration.#instance;
+ static get instance() {
+  if (!Configuration.#instance) {
+   Configuration.#instance = new Configuration();
   }
+  return Configuration.#instance;
+ }
 }
 
 Configuration.instance; // crée l'instance unique au premier appel, la réutilise après

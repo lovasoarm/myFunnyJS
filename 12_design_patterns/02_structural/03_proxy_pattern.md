@@ -17,28 +17,28 @@ En prod : validation de formulaires, lazy loading, observabilité de l'état, pr
 const target = { name: "Naruto", chakra: 100 }
 
 const handler = {
-  // intercepte les lectures : obj.property
-  get(target, property) {
-    console.log(`[READ] ${String(property)}`)
-    return target[property]   // on délègue à l'original
-  },
+ // intercepte les lectures : obj.property
+ get(target, property) {
+  console.log(`[READ] ${String(property)}`)
+  return target[property]  // on délègue à l'original
+ },
 
-  // intercepte les écritures : obj.property = value
-  set(target, property, value) {
-    console.log(`[WRITE] ${String(property)} = ${value}`)
-    target[property] = value
-    return true   // set doit retourner true : sinon TypeError en strict mode
-  }
+ // intercepte les écritures : obj.property = value
+ set(target, property, value) {
+  console.log(`[WRITE] ${String(property)} = ${value}`)
+  target[property] = value
+  return true  // set doit retourner true : sinon TypeError en strict mode
+ }
 }
 
 const ninja = new Proxy(target, handler)
 
-ninja.name           // [READ] name --> "Naruto"
-ninja.chakra = 80    // [WRITE] chakra = 80
-ninja.chakra         // [READ] chakra --> 80
+ninja.name      // [READ] name --> "Naruto"
+ninja.chakra = 80  // [WRITE] chakra = 80
+ninja.chakra     // [READ] chakra --> 80
 
 // l'original est modifié aussi : le Proxy ne copie pas, il intercepte
-console.log(target.chakra)   // 80
+console.log(target.chakra)  // 80
 ```
 
 ---
@@ -49,37 +49,37 @@ Cas concret : tu ne veux pas qu'un bug ou qu'un shinobi mette des données inval
 
 ```js
 function createValidatedNinja(ninja) {
-  return new Proxy(ninja, {
-    set(target, property, value) {
-      // chakra : doit rester entre 0 et 100
-      if (property === "chakra") {
-        if (typeof value !== "number") {
-          throw new TypeError(`chakra doit être un nombre, reçu : ${typeof value}`)
-        }
-        if (value < 0 || value > 100) {
-          throw new RangeError(`chakra hors limites : ${value} (attendu 0-100)`)
-        }
-      }
-
-      // name : string non vide
-      if (property === "name") {
-        if (typeof value !== "string" || value.trim() === "") {
-          throw new TypeError("name doit être une string non vide")
-        }
-      }
-
-      target[property] = value
-      return true
+ return new Proxy(ninja, {
+  set(target, property, value) {
+   // chakra : doit rester entre 0 et 100
+   if (property === "chakra") {
+    if (typeof value !== "number") {
+     throw new TypeError(`chakra doit être un nombre, reçu : ${typeof value}`)
     }
-  })
+    if (value < 0 || value > 100) {
+     throw new RangeError(`chakra hors limites : ${value} (attendu 0-100)`)
+    }
+   }
+
+   // name : string non vide
+   if (property === "name") {
+    if (typeof value !== "string" || value.trim() === "") {
+     throw new TypeError("name doit être une string non vide")
+    }
+   }
+
+   target[property] = value
+   return true
+  }
+ })
 }
 
 const naruto = createValidatedNinja({ name: "Naruto", chakra: 100 })
 
-naruto.chakra = 80      // ok
-naruto.chakra = 150     // RangeError : chakra hors limites
-naruto.chakra = "full"  // TypeError : chakra doit être un nombre
-naruto.name = ""        // TypeError : name doit être une string non vide
+naruto.chakra = 80   // ok
+naruto.chakra = 150   // RangeError : chakra hors limites
+naruto.chakra = "full" // TypeError : chakra doit être un nombre
+naruto.name = ""    // TypeError : name doit être une string non vide
 ```
 
 Sans Proxy : tu répètes cette validation partout où tu modifies l'objet.
@@ -93,57 +93,57 @@ Le Proxy intercepte la première lecture d'une propriété coûteuse, calcule, s
 
 ```js
 function createLazyStats(playerId) {
-  const cache = {}
+ const cache = {}
 
-  return new Proxy({}, {
-    get(target, property) {
-      // si déjà calculé : on retourne le cache directement
-      if (property in cache) {
-        console.log(`[CACHE HIT] ${property}`)
-        return cache[property]
-      }
+ return new Proxy({}, {
+  get(target, property) {
+   // si déjà calculé : on retourne le cache directement
+   if (property in cache) {
+    console.log(`[CACHE HIT] ${property}`)
+    return cache[property]
+   }
 
-      // sinon : on calcule (simulé ici)
-      if (property === "careerGoals") {
-        console.log(`[COMPUTE] calcul des buts en carrière pour ${playerId}...`)
-        cache[property] = 672   // en vrai : requête DB ou calcul lourd
-        return cache[property]
-      }
+   // sinon : on calcule (simulé ici)
+   if (property === "careerGoals") {
+    console.log(`[COMPUTE] calcul des buts en carrière pour ${playerId}...`)
+    cache[property] = 672  // en vrai : requête DB ou calcul lourd
+    return cache[property]
+   }
 
-      if (property === "heatmap") {
-        console.log(`[COMPUTE] génération de la heatmap...`)
-        cache[property] = { zones: ["left", "center"], intensity: 0.87 }
-        return cache[property]
-      }
+   if (property === "heatmap") {
+    console.log(`[COMPUTE] génération de la heatmap...`)
+    cache[property] = { zones: ["left", "center"], intensity: 0.87 }
+    return cache[property]
+   }
 
-      return undefined
-    }
-  })
+   return undefined
+  }
+ })
 }
 
 const messiStats = createLazyStats("messi")
 
-messiStats.careerGoals    // [COMPUTE] calcul...  --> 672
-messiStats.careerGoals    // [CACHE HIT]           --> 672
-messiStats.heatmap        // [COMPUTE] génération...
-messiStats.heatmap        // [CACHE HIT]
+messiStats.careerGoals  // [COMPUTE] calcul... --> 672
+messiStats.careerGoals  // [CACHE HIT]      --> 672
+messiStats.heatmap    // [COMPUTE] génération...
+messiStats.heatmap    // [CACHE HIT]
 ```
 
 Diagramme :
 
 ```
-appelant          Proxy                     données réelles
-   |                |                             |
-   |--.careerGoals->|                             |
-                    |--> cache miss               |
-                    |--> [COMPUTE] ------------->|
-                    |<-- résultat ---------------|
-                    |--> cache.set(result)        |
-   |<-- résultat ---|                             |
-   |                |                             |
-   |--.careerGoals->|                             |
-                    |--> cache hit                |
-   |<-- résultat ---|   (pas de calcul)           |
+appelant     Proxy           données réelles
+  |        |               |
+  |--.careerGoals->|               |
+          |--> cache miss        |
+          |--> [COMPUTE] ------------->|
+          |<-- résultat ---------------|
+          |--> cache.set(result)    |
+  |<-- résultat ---|               |
+  |        |               |
+  |--.careerGoals->|               |
+          |--> cache hit        |
+  |<-- résultat ---|  (pas de calcul)      |
 ```
 
 ---
@@ -156,45 +156,45 @@ Walter White a des données que personne ne doit toucher directement.
 const PRIVATE = Symbol("private")
 
 function createProtectedFormula(data) {
-  const privateData = { ...data }   // on travaille sur une copie
+ const privateData = { ...data }  // on travaille sur une copie
 
-  return new Proxy(privateData, {
-    get(target, property) {
-      // les propriétés qui commencent par _ sont privées
-      if (typeof property === "string" && property.startsWith("_")) {
-        throw new Error(`Accès refusé : ${property} est privé`)
-      }
-      return target[property]
-    },
+ return new Proxy(privateData, {
+  get(target, property) {
+   // les propriétés qui commencent par _ sont privées
+   if (typeof property === "string" && property.startsWith("_")) {
+    throw new Error(`Accès refusé : ${property} est privé`)
+   }
+   return target[property]
+  },
 
-    set(target, property, value) {
-      if (typeof property === "string" && property.startsWith("_")) {
-        throw new Error(`Modification refusée : ${property} est en lecture seule`)
-      }
-      target[property] = value
-      return true
-    },
+  set(target, property, value) {
+   if (typeof property === "string" && property.startsWith("_")) {
+    throw new Error(`Modification refusée : ${property} est en lecture seule`)
+   }
+   target[property] = value
+   return true
+  },
 
-    // intercepte les suppressions
-    deleteProperty(target, property) {
-      if (typeof property === "string" && property.startsWith("_")) {
-        throw new Error(`Suppression refusée : ${property} est protégé`)
-      }
-      delete target[property]
-      return true
-    }
-  })
+  // intercepte les suppressions
+  deleteProperty(target, property) {
+   if (typeof property === "string" && property.startsWith("_")) {
+    throw new Error(`Suppression refusée : ${property} est protégé`)
+   }
+   delete target[property]
+   return true
+  }
+ })
 }
 
 const formula = createProtectedFormula({
-  name: "Blue Sky",
-  purity: 99.1,
-  _secretIngredient: "methylamine"   // propriété privée
+ name: "Blue Sky",
+ purity: 99.1,
+ _secretIngredient: "methylamine"  // propriété privée
 })
 
-formula.name                    // "Blue Sky"
-formula.purity                  // 99.1
-formula._secretIngredient       // Error : Accès refusé
+formula.name          // "Blue Sky"
+formula.purity         // 99.1
+formula._secretIngredient    // Error : Accès refusé
 formula._secretIngredient = "x" // Error : Modification refusée
 ```
 
@@ -206,38 +206,38 @@ Version simplifiée de ce que font Vue.js et MobX : détecter automatiquement le
 
 ```js
 function createObservable(target, onChange) {
-  return new Proxy(target, {
-    set(obj, property, value) {
-      const oldValue = obj[property]
-      obj[property] = value
+ return new Proxy(target, {
+  set(obj, property, value) {
+   const oldValue = obj[property]
+   obj[property] = value
 
-      // notifie seulement si la valeur a vraiment changé
-      if (oldValue !== value) {
-        onChange(property, oldValue, value)
-      }
+   // notifie seulement si la valeur a vraiment changé
+   if (oldValue !== value) {
+    onChange(property, oldValue, value)
+   }
 
-      return true
-    }
-  })
+   return true
+  }
+ })
 }
 
 // état du camp dans Walking Dead
 let campState = createObservable(
-  { survivors: 12, food: 45, ammo: 200, security: "medium" },
-  (prop, oldVal, newVal) => {
-    console.log(`[STATE CHANGE] ${prop}: ${oldVal} --> ${newVal}`)
-    if (prop === "food" && newVal < 10) {
-      console.log("[ALERT] rations critiques : convocation du conseil immédiate")
-    }
-    if (prop === "security" && newVal === "low") {
-      console.log("[ALERT] niveau de sécurité critique : doublement des gardes")
-    }
+ { survivors: 12, food: 45, ammo: 200, security: "medium" },
+ (prop, oldVal, newVal) => {
+  console.log(`[STATE CHANGE] ${prop}: ${oldVal} --> ${newVal}`)
+  if (prop === "food" && newVal < 10) {
+   console.log("[ALERT] rations critiques : convocation du conseil immédiate")
   }
+  if (prop === "security" && newVal === "low") {
+   console.log("[ALERT] niveau de sécurité critique : doublement des gardes")
+  }
+ }
 )
 
-campState.food = 40     // [STATE CHANGE] food: 45 --> 40
-campState.food = 8      // [STATE CHANGE] food: 45 --> 8  +  [ALERT] rations critiques
-campState.security = "low"   // [STATE CHANGE] security: medium --> low  +  [ALERT]
+campState.food = 40   // [STATE CHANGE] food: 45 --> 40
+campState.food = 8   // [STATE CHANGE] food: 45 --> 8 + [ALERT] rations critiques
+campState.security = "low"  // [STATE CHANGE] security: medium --> low + [ALERT]
 ```
 
 ---
@@ -251,8 +251,8 @@ const plain = { x: 1, y: 2 }
 const proxied = new Proxy({ x: 1, y: 2 }, { get(t, p) { return t[p] } })
 
 // en boucle à 10M iterations :
-// plain.x          : ~5ms
-// proxied.x        : ~40ms (x8 plus lent)
+// plain.x     : ~5ms
+// proxied.x    : ~40ms (x8 plus lent)
 
 // règle : Proxy sur les données d'état applicatif, oui
 // Proxy sur les inner loops de calcul : non
@@ -265,26 +265,26 @@ const proxied = new Proxy({ x: 1, y: 2 }, { get(t, p) { return t[p] } })
 ```js
 // Proxy sur une classe : le `this` part en vrille
 class Knight {
-  constructor(name) {
-    this.name = name
-    this._health = 100
-  }
-  takeDamage(dmg) {
-    // `this` ici est le Proxy, pas l'instance Knight
-    this._health -= dmg        // OK pour les primitives
-    return this._health
-  }
+ constructor(name) {
+  this.name = name
+  this._health = 100
+ }
+ takeDamage(dmg) {
+  // `this` ici est le Proxy, pas l'instance Knight
+  this._health -= dmg    // OK pour les primitives
+  return this._health
+ }
 }
 
 const leon = new Proxy(new Knight("León"), {
-  get(target, prop) {
-    const val = target[prop]
-    // si c'est une méthode, on la bind sur le Proxy... pas sur la vraie instance
-    return typeof val === 'function' ? val.bind(target) : val
-    // sans ce bind : `this` dans takeDamage est le Proxy
-    // avec ce bind : `this` est l'instance → ça marche
-    // oublier le bind : le Proxy intercepte ses propres set depuis les méthodes internes
-  }
+ get(target, prop) {
+  const val = target[prop]
+  // si c'est une méthode, on la bind sur le Proxy... pas sur la vraie instance
+  return typeof val === 'function' ? val.bind(target) : val
+  // sans ce bind : `this` dans takeDamage est le Proxy
+  // avec ce bind : `this` est l'instance → ça marche
+  // oublier le bind : le Proxy intercepte ses propres set depuis les méthodes internes
+ }
 })
 
 // Sans bind : leon.takeDamage(10) peut planter ou produire un comportement inattendu
@@ -298,7 +298,7 @@ Deuxième cas : `Proxy.revocable()` : le Proxy révocable qui est révoqué trop
 
 ```js
 const { proxy, revoke } = Proxy.revocable({ chakra: 500 }, {
-  get(t, p) { return t[p] }
+ get(t, p) { return t[p] }
 })
 
 revoke() // l'armure se désintègre
@@ -347,13 +347,13 @@ Ce Proxy est censé logguer toutes les modifications. Pourquoi ne log-t-il rien 
 const state = { score: 0, players: ["Messi"] }
 
 const proxy = new Proxy(state, {
-  set(target, property, value) {
-    console.log(`[CHANGE] ${property}`)
-    target[property] = value
-  }
+ set(target, property, value) {
+  console.log(`[CHANGE] ${property}`)
+  target[property] = value
+ }
 })
 
-proxy.score = 1           // censé logger
+proxy.score = 1      // censé logger
 proxy.players.push("CR7") // censé logger
 ```
 

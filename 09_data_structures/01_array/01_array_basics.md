@@ -14,11 +14,11 @@ On apprend pas juste les méthodes. On apprend ce qu'elles coûtent.
 Un tableau c'est une séquence d'emplacements contigus en mémoire. L'index, c'est juste un offset depuis le début.
 
 ```
-index :    0       1       2       3
-           ┌───────┬───────┬───────┬───────┐
-valeur :   │"Luffy"│"Zoro" │"Nami" │"Sanji"│
-           └───────┴───────┴───────┴───────┘
-adresse :  0x100   0x108   0x110   0x118
+index :  0    1    2    3
+      ┌───────┬───────┬───────┬───────┐
+valeur :  │"Luffy"│"Zoro" │"Nami" │"Sanji"│
+      └───────┴───────┴───────┴───────┘
+adresse : 0x100  0x108  0x110  0x118
 ```
 
 Accéder à `arr[2]` = aller directement à `adresse_base + (2 * taille_slot)`.
@@ -85,18 +85,18 @@ copy.push("Leorio");
 C'est là que ça devient intéressant. Insérer à la fin coûte presque rien. Insérer au début coûte cher.
 
 ```
-Avant :   [ A | B | C | D ]
-                       ↑
-                    push("E")
-Après :   [ A | B | C | D | E ]   // O(1) : on ajoute juste à la fin
+Avant :  [ A | B | C | D ]
+            ↑
+          push("E")
+Après :  [ A | B | C | D | E ]  // O(1) : on ajoute juste à la fin
 ```
 
 ```
-Avant :   [ A | B | C | D ]
-          ↑
-       unshift("Z")
-Après :   [ Z | A | B | C | D ]
-          // O(n) : tout le monde décale d'une case vers la droite
+Avant :  [ A | B | C | D ]
+     ↑
+    unshift("Z")
+Après :  [ Z | A | B | C | D ]
+     // O(n) : tout le monde décale d'une case vers la droite
 ```
 
 ```js
@@ -118,15 +118,15 @@ jugadores.splice(2, 0, "De Bruyne");
 ### Le tableau des coûts
 
 ```
-Opération            Position     Coût
+Opération      Position   Coût
 ─────────────────────────────────────────
-Lecture / Écriture   n'importe    O(1)
-push / pop           fin          O(1) *
-unshift / shift      début        O(n)
-splice insert        milieu       O(n)
-splice delete        milieu       O(n)
-indexOf / find       partout      O(n)
-slice                n'importe    O(k)
+Lecture / Écriture  n'importe  O(1)
+push / pop      fin     O(1) *
+unshift / shift   début    O(n)
+splice insert    milieu    O(n)
+splice delete    milieu    O(n)
+indexOf / find    partout   O(n)
+slice        n'importe  O(k)
 
 * O(1) amorti : JS agrandit le tableau par blocs, pas case par case
 ```
@@ -202,10 +202,10 @@ Ce code a un bug silencieux. Trouve-le avant de l'exécuter, explique ce qui se 
 
 ```js
 function buildDropTable(size) {
-  const drops = [];
-  drops[size - 1] = "Legendary Sword";
-  drops[0] = "Common Stone";
-  return drops;
+ const drops = [];
+ drops[size - 1] = "Legendary Sword";
+ drops[0] = "Common Stone";
+ return drops;
 }
 
 const loot = buildDropTable(5);

@@ -1,7 +1,7 @@
 # 01 : La méthode Polya (avant de toucher au clavier)
 Temps de lecture ~5 min
 
->  **Principe universel** : résoudre un problème, ce n'est **pas** commencer à taper. C'est une routine en 4 étapes qui existe depuis 1945 et n'a jamais vieilli.
+> **Principe universel** : résoudre un problème, ce n'est **pas** commencer à taper. C'est une routine en 4 étapes qui existe depuis 1945 et n'a jamais vieilli.
 
 ## Les 4 étapes
 

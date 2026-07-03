@@ -21,12 +21,12 @@ Si tu codes ce module en pensant "je vais juste utiliser une closure ici, un try
 
 ```
 src/
-├── reseauDeVeille.js       le coeur du système
-├── alerteHorror.js         le modèle d'une alerte
-└── dispatcher.js           la logique d'assignation aux Chevaliers
+├── reseauDeVeille.js    le coeur du système
+├── alerteHorror.js     le modèle d'une alerte
+└── dispatcher.js      la logique d'assignation aux Chevaliers
 
 tests/
-└── reseauDeVeille.test.js  suite de tests qui couvre les 3 fichiers ci-dessus
+└── reseauDeVeille.test.js suite de tests qui couvre les 3 fichiers ci-dessus
 ```
 
 ---

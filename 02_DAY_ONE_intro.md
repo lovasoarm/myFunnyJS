@@ -19,10 +19,10 @@ Pas un développeur "qui sait faire une todo-list". Un **ingénieur** qui :
 ## Le contrat
 
 - **Tu lis chaque `.md` avant de coder.** Copier une solution sans la comprendre,
-  c'est regarder quelqu'un faire des pompes à ta place.
+ c'est regarder quelqu'un faire des pompes à ta place.
 - **Tu remplis TDD_JOURNAL et POSTMORTEM.** L'expérience non écrite s'oublie.
 - **Tu mesures ta dépendance à l'IA** (DEPENDENCY_LEDGER.md). Une règle non
-  mesurée reste une croyance.
+ mesurée reste une croyance.
 
 ## Ratio lecture / écriture (règle Thor)
 

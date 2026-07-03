@@ -8,11 +8,11 @@ et "cahier des charges d'un contrat" : mêmes rigueurs.
 ## Le format B.O.R.N.É.
 
 ```
-B   Behavior            que fait le système APRÈS la tâche ? (verbe d'action)
-O   Observability       quelle ordre_mission/log prouve le succès sans ambiguïté ?
-R   Regression tests    quels tests existants doivent continuer à passer ?
-N   Non-goals           qu'est-ce que l'agent n'a PAS le droit de toucher ?
-É   Escape hatch        signal explicite d'échec : "si tu ne peux pas, dis-le"
+B  Behavior      que fait le système APRÈS la tâche ? (verbe d'action)
+O  Observability    quelle ordre_mission/log prouve le succès sans ambiguïté ?
+R  Regression tests  quels tests existants doivent continuer à passer ?
+N  Non-goals      qu'est-ce que l'agent n'a PAS le droit de toucher ?
+É  Escape hatch    signal explicite d'échec : "si tu ne peux pas, dis-le"
 ```
 
 ## Exemple avant / après
@@ -24,12 +24,12 @@ N   Non-goals           qu'est-ce que l'agent n'a PAS le droit de toucher ?
 ### Après (B.O.R.N.É., agent contrôlable)
 
 ```
-B  : POST /chakra_gate {email,password} renvoie 200 + {token} ; les autres routes exigent
-     header Authorization: Bearer <token> et renvoient 401 sinon.
-O  : `npm test -- auth` passe. `curl -X GET /users` renvoie 401 sans header.
-R  : tous les tests existants passent (`npm test` global).
-N  : ne pas modifier la couche DB, ne pas ajouter de dépendance > 100 KB.
-É  : si le stockage secret n'est pas défini (env JWT_SECRET), stoppe et demande.
+B : POST /chakra_gate {email,password} renvoie 200 + {token} ; les autres routes exigent
+   header Authorization: Bearer <token> et renvoient 401 sinon.
+O : `npm test -- auth` passe. `curl -X GET /users` renvoie 401 sans header.
+R : tous les tests existants passent (`npm test` global).
+N : ne pas modifier la couche DB, ne pas ajouter de dépendance > 100 KB.
+É : si le stockage secret n'est pas défini (env JWT_SECRET), stoppe et demande.
 ```
 
 L'agent qui rend un PR contre cette spec est auditable en 5 min. L'agent qui rend

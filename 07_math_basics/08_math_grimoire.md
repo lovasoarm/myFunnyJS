@@ -1,4 +1,4 @@
-#  Page verrouillée
+# Page verrouillée
 Temps de lecture ~11 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**

@@ -11,13 +11,13 @@ Pense à l'armure de Garo : de l'extérieur, tu vois le Chevalier se battre. Tu 
 
 ```js
 class GuerrierOldSchool {
-  constructor(chakra) {
-    this._chakra = chakra; // underscore : convention, pas une protection réelle
-  }
+ constructor(chakra) {
+  this._chakra = chakra; // underscore : convention, pas une protection réelle
+ }
 
-  utiliserJutsu(cout) {
-    this._chakra -= cout;
-  }
+ utiliserJutsu(cout) {
+  this._chakra -= cout;
+ }
 }
 
 const naruto = new GuerrierOldSchool(1000);
@@ -34,22 +34,22 @@ Le `_` devant un nom de propriété est une convention visuelle entre devs : "ne
 
 ```js
 function creerGuerrier(chakraInitial) {
-  let chakra = chakraInitial; // capturé par closure, inaccessible de l'extérieur
+ let chakra = chakraInitial; // capturé par closure, inaccessible de l'extérieur
 
-  return {
-    utiliserJutsu(cout) {
-      chakra -= cout;
-    },
-    getChakra() {
-      return chakra;
-    }
-  };
+ return {
+  utiliserJutsu(cout) {
+   chakra -= cout;
+  },
+  getChakra() {
+   return chakra;
+  }
+ };
 }
 
 const sasuke = creerGuerrier(800);
 sasuke.utiliserJutsu(300);
 sasuke.getChakra(); // 500
-sasuke.chakra;       // undefined : chakra n'a jamais existé sur l'objet retourné
+sasuke.chakra;    // undefined : chakra n'a jamais existé sur l'objet retourné
 ```
 
 La variable `chakra` vit dans le scope de `creerGuerrier`, pas sur l'objet retourné. Aucune façon d'y accéder depuis l'extérieur, même avec `Object.keys` ou `for...in`. C'est une vraie privacy, mais elle a un coût : pas de `class`, pas d'héritage facile, chaque instance recrée ses propres fonctions (le piège mémoire du fichier 02, section 2).
@@ -60,25 +60,25 @@ La variable `chakra` vit dans le scope de `creerGuerrier`, pas sur l'objet retou
 
 ```js
 class Guerrier {
-  #chakra; // déclaration du champ privé
+ #chakra; // déclaration du champ privé
 
-  constructor(chakraInitial) {
-    this.#chakra = chakraInitial;
-  }
+ constructor(chakraInitial) {
+  this.#chakra = chakraInitial;
+ }
 
-  utiliserJutsu(cout) {
-    this.#chakra -= cout;
-  }
+ utiliserJutsu(cout) {
+  this.#chakra -= cout;
+ }
 
-  getChakra() {
-    return this.#chakra;
-  }
+ getChakra() {
+  return this.#chakra;
+ }
 }
 
 const kakashi = new Guerrier(700);
 kakashi.utiliserJutsu(200);
 kakashi.getChakra(); // 500
-kakashi.#chakra;       // SyntaxError, même en lecture : inaccessible depuis l'extérieur
+kakashi.#chakra;    // SyntaxError, même en lecture : inaccessible depuis l'extérieur
 ```
 
 `#chakra` n'est pas une convention : c'est imposé par le moteur JS. Tenter d'y accéder depuis l'extérieur de la classe est une erreur de syntaxe, détectée avant même l'exécution. Contrairement à la closure, le champ privé fonctionne avec l'héritage et reste posé sur le prototype mécanisme de `class`, donc une seule définition de méthode partagée par toutes les instances.
@@ -86,7 +86,7 @@ kakashi.#chakra;       // SyntaxError, même en lecture : inaccessible depuis l'
 **Détail qui surprend tout le monde une fois :** un champ `#` n'existe même pas en tant que clé sur l'objet pour `in` ou `Object.hasOwn`. Ce n'est pas juste "protégé", c'est invisible structurellement.
 
 ```js
-console.log('chakra' in kakashi);  // false, même pas une question de valeur
+console.log('chakra' in kakashi); // false, même pas une question de valeur
 console.log(Object.keys(kakashi)); // [] : le champ privé n'apparaît jamais
 ```
 
@@ -98,26 +98,26 @@ console.log(Object.keys(kakashi)); // [] : le champ privé n'apparaît jamais
 
 ```js
 class ArmureGaro {
-  #chakraRestant = 100;
-  #activee = false;
+ #chakraRestant = 100;
+ #activee = false;
 
-  // méthode privée : la logique d'activation interne, jamais exposée
-  #verifierConditions() {
-    return this.#chakraRestant > 10 && !this.#activee;
-  }
+ // méthode privée : la logique d'activation interne, jamais exposée
+ #verifierConditions() {
+  return this.#chakraRestant > 10 && !this.#activee;
+ }
 
-  activer() {
-    if (!this.#verifierConditions()) {
-      throw new Error("Conditions non réunies : l'armure refuse de s'activer");
-    }
-    this.#activee = true;
-    return "Armure activée. Compte à rebours : 99.9 secondes.";
+ activer() {
+  if (!this.#verifierConditions()) {
+   throw new Error("Conditions non réunies : l'armure refuse de s'activer");
   }
+  this.#activee = true;
+  return "Armure activée. Compte à rebours : 99.9 secondes.";
+ }
 }
 
 const armure = new ArmureGaro();
-console.log(armure.activer());        // OK
-armure.#verifierConditions();         // SyntaxError : méthode invisible depuis l'extérieur
+console.log(armure.activer());    // OK
+armure.#verifierConditions();     // SyntaxError : méthode invisible depuis l'extérieur
 ```
 
 L'avantage réel : `#verifierConditions` peut changer complètement de logique interne (nouvelle règle, nouveau seuil) sans jamais casser le code qui utilise `ArmureGaro` depuis l'extérieur. Personne d'extérieur n'a de lien vers cette méthode : tu es libre de la réécrire entièrement.
@@ -130,32 +130,32 @@ L'avantage réel : `#verifierConditions` peut changer complètement de logique i
 
 ```js
 class CompteurDeCombat {
-  static #totalCombats = 0; // privé ET partagé par toutes les instances
-  #degatsInfliges = 0;
+ static #totalCombats = 0; // privé ET partagé par toutes les instances
+ #degatsInfliges = 0;
 
-  enregistrerCoup(degats) {
-    this.#degatsInfliges += degats;
-    CompteurDeCombat.#totalCombats++;
-  }
+ enregistrerCoup(degats) {
+  this.#degatsInfliges += degats;
+  CompteurDeCombat.#totalCombats++;
+ }
 
-  get degats() {
-    return this.#degatsInfliges; // lecture contrôlée, pas d'accès direct au champ
-  }
+ get degats() {
+  return this.#degatsInfliges; // lecture contrôlée, pas d'accès direct au champ
+ }
 
-  set degats(valeur) {
-    if (valeur < 0) throw new RangeError("Les dégâts ne peuvent pas être négatifs");
-    this.#degatsInfliges = valeur;
-  }
+ set degats(valeur) {
+  if (valeur < 0) throw new RangeError("Les dégâts ne peuvent pas être négatifs");
+  this.#degatsInfliges = valeur;
+ }
 
-  static get totalCombats() {
-    return CompteurDeCombat.#totalCombats;
-  }
+ static get totalCombats() {
+  return CompteurDeCombat.#totalCombats;
+ }
 }
 
 const combat1 = new CompteurDeCombat();
 combat1.enregistrerCoup(50);
-combat1.degats = 80;          // passe par le setter, valide la valeur
-console.log(combat1.degats);  // 80
+combat1.degats = 80;     // passe par le setter, valide la valeur
+console.log(combat1.degats); // 80
 console.log(CompteurDeCombat.totalCombats); // 1, partagé, invisible de l'extérieur sauf via le getter statique
 ```
 
@@ -166,13 +166,13 @@ Le `set degats` montre la vraie valeur de l'encapsulation ici : tu peux exposer 
 ## 6) CLOSURE VS `#` : DEUX OUTILS, DEUX USAGES
 
 ```
-Closure         -->  privacy par scope, fonctionne partout (objets, modules, factories)
-                 -->  coût mémoire si utilisée massivement en factory de classe
-                 -->  pas d'héritage naturel
+Closure     --> privacy par scope, fonctionne partout (objets, modules, factories)
+         --> coût mémoire si utilisée massivement en factory de classe
+         --> pas d'héritage naturel
 
-Champ privé #   -->  privacy intégrée à class, vérifiée par le moteur
-                 -->  compatible avec l'héritage, économe en mémoire (sur prototype)
-                 -->  uniquement disponible à l'intérieur d'une classe
+Champ privé #  --> privacy intégrée à class, vérifiée par le moteur
+         --> compatible avec l'héritage, économe en mémoire (sur prototype)
+         --> uniquement disponible à l'intérieur d'une classe
 ```
 
 Cas concret où tu choisis l'un plutôt que l'autre : si tu construis un système avec des sous-classes (`Guerrier` → `Hokage` → `SeptiemeHokage`), `#` gagne, parce que la closure ne transmet pas d'état privé à travers `extends` proprement. Si tu écris un module simple sans hiérarchie de classes, la closure reste légitime, plus légère, et plus ancienne donc plus largement comprise par toute équipe.
@@ -183,16 +183,16 @@ Cas concret où tu choisis l'un plutôt que l'autre : si tu construis un systèm
 
 ```js
 class CompteChakra {
-  #chakra = 0;
+ #chakra = 0;
 
-  constructor(chakraInitial) {
-    this.#chakra = chakraInitial;
-  }
+ constructor(chakraInitial) {
+  this.#chakra = chakraInitial;
+ }
 
-  consommer(montant) {
-    this.#chakra -= montant; // aucune vérification : le chakra peut devenir négatif
-    return this.#chakra;
-  }
+ consommer(montant) {
+  this.#chakra -= montant; // aucune vérification : le chakra peut devenir négatif
+  return this.#chakra;
+ }
 }
 
 const naruto = new CompteChakra(50);
@@ -205,7 +205,7 @@ naruto.consommer(1000); // -950, et personne ne le voit venir depuis l'extérieu
 
 ```js
 class Sensei {
-  #nom = "Kakashi";
+ #nom = "Kakashi";
 }
 
 const k = new Sensei();

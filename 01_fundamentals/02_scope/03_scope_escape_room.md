@@ -23,10 +23,10 @@ Temps de lecture ~7 min
 const vault1 = createVault("dragon");
 const vault2 = createVault("unicorn");
 
-vault1("dragon");  // Access granted
+vault1("dragon"); // Access granted
 vault1("unicorn"); // Access denied
 vault2("unicorn"); // Access granted
-vault2("dragon");  // Access denied
+vault2("dragon"); // Access denied
 ```
 
 > **Question :** Pourquoi chaque coffre garde son propre secret après la mort de `createVault` ?
@@ -54,7 +54,7 @@ const counter2 = createLimitedCounter(4);
 counter1(); // 1
 counter1(); // 2
 counter1(); // Limit reached
-counter2(); // 1  <-- pas de contamination
+counter2(); // 1 <-- pas de contamination
 counter2(); // 2
 ```
 
@@ -70,9 +70,9 @@ Lis ce code. **Ne le lance pas encore. Réfléchis d'abord.**
 
 ```js
 for (var i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log("Door number:", i);
-  }, 100);
+ setTimeout(function () {
+  console.log("Door number:", i);
+ }, 100);
 }
 ```
 
@@ -91,9 +91,9 @@ Door number: 4
 
 ```js
 for (let i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log("Door number:", i);
-  }, 100);
+ setTimeout(function () {
+  console.log("Door number:", i);
+ }, 100);
 }
 ```
 

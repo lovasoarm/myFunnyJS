@@ -30,11 +30,11 @@ Les tests aussi en pâtissent directement : une fonction qui mute ses arguments 
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-state d'une UI (React, Vue, vanilla JS)        --> mutation directe   --> bug de rendu impossible à tracer
-transformation de liste de données              --> map/filter/reduce  --> pipeline sans effet de bord
-configuration partagée entre modules            --> immutabilité       --> aucun module ne corrompt les autres
-fonction de calcul réutilisée partout           --> fonction pure      --> testable isolément, sans piège
-construction de comportements combinables        --> composition        --> fonctions assemblées en pipeline
+state d'une UI (React, Vue, vanilla JS)    --> mutation directe  --> bug de rendu impossible à tracer
+transformation de liste de données       --> map/filter/reduce --> pipeline sans effet de bord
+configuration partagée entre modules      --> immutabilité    --> aucun module ne corrompt les autres
+fonction de calcul réutilisée partout      --> fonction pure   --> testable isolément, sans piège
+construction de comportements combinables    --> composition    --> fonctions assemblées en pipeline
 ```
 
 Le pattern fonctionnel n'est pas une lubie académique : c'est la base de la gestion d'état dans des bibliothèques modernes. Redux, par exemple, repose entièrement sur l'immutabilité. Et `map`, `filter`, `reduce` sont devenus les outils par défaut pour transformer des données en JS moderne pour exactement cette raison.

@@ -52,8 +52,8 @@ const menuButton = document.querySelector('#menu-toggle');
 menuButton.setAttribute('aria-expanded', 'false'); // (état initial : fermé)
 
 function toggleMenu() {
-  const estOuvert = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!estOuvert)); // (bascule l'état)
+ const estOuvert = menuButton.getAttribute('aria-expanded') === 'true';
+ menuButton.setAttribute('aria-expanded', String(!estOuvert)); // (bascule l'état)
 }
 ```
 
@@ -85,7 +85,7 @@ scoreLive.setAttribute('aria-live', 'polite');
 // (quand le score change, le lecteur d'écran l'annonce sans interrompre ce que l'shinobi fait)
 
 function majScore(nouveauScore) {
-  scoreLive.textContent = `Score : ${nouveauScore}`; // (déclenche l'annonce automatiquement)
+ scoreLive.textContent = `Score : ${nouveauScore}`; // (déclenche l'annonce automatiquement)
 }
 ```
 

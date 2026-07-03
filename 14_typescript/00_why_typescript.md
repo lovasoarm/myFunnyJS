@@ -5,7 +5,7 @@
 > Ce module reutilise : types dynamiques (11_functional_js), design patterns (12_design_patterns).
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.
 
@@ -36,11 +36,11 @@ Et le refactoring devient un cauchemar : renommer une propriété dans un gros p
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-fonction qui reçoit des données externes (API)        --> type incorrect non détecté --> crash en prod
-propriété qui peut être null ou undefined              --> oubli de vérification      --> "cannot read property of undefined"
-refactoring d'une structure de données partagée         --> sans typage                --> régression silencieuse ailleurs
-fonction générique réutilisable (liste, cache, etc.)    --> generics                   --> réutilisation sans perdre la sécurité de type
-données venant d'un formulaire ou d'une requête         --> type guards                --> validation à l'exécution
+fonction qui reçoit des données externes (API)    --> type incorrect non détecté --> crash en prod
+propriété qui peut être null ou undefined       --> oubli de vérification   --> "cannot read property of undefined"
+refactoring d'une structure de données partagée     --> sans typage        --> régression silencieuse ailleurs
+fonction générique réutilisable (liste, cache, etc.)  --> generics          --> réutilisation sans perdre la sécurité de type
+données venant d'un formulaire ou d'une requête     --> type guards        --> validation à l'exécution
 ```
 
 TypeScript apparaît partout où une donnée traverse une frontière : appel API, formulaire shinobi, fonction partagée entre modules. Chaque frontière est un endroit où une donnée peut arriver dans une forme différente de celle attendue, et c'est exactement là que TypeScript intervient.

@@ -12,13 +12,13 @@ Ce fichier, c'est le moment où on sort les chiffres réels. Pas des formules th
 Sur différentes tailles de données, avec les opérations estimées :
 
 ```
-n          O(n log n)           O(n²)
-────────   ──────────────────   ──────────────────────────
-100        700 ops              10 000 ops
-1 000      10 000 ops           1 000 000 ops
-10 000     130 000 ops          100 000 000 ops
-100 000    1 700 000 ops        10 000 000 000 ops
-1 000 000  20 000 000 ops       1 000 000 000 000 ops
+n     O(n log n)      O(n²)
+────────  ──────────────────  ──────────────────────────
+100    700 ops       10 000 ops
+1 000   10 000 ops      1 000 000 ops
+10 000   130 000 ops     100 000 000 ops
+100 000  1 700 000 ops    10 000 000 000 ops
+1 000 000 20 000 000 ops    1 000 000 000 000 ops
 ```
 
 À 100 000 éléments : O(n log n) fait ~1,7 million d'opérations.
@@ -31,19 +31,19 @@ O(n²) en fait **10 milliards**. C'est 6 000 fois plus.
 ```js
 // Outil de mesure minimaliste
 function bench(label, fn) {
-  const start = performance.now();
-  const result = fn();
-  const end = performance.now();
-  console.log(`[${label}] : ${(end - start).toFixed(2)}ms`);
-  return result;
+ const start = performance.now();
+ const result = fn();
+ const end = performance.now();
+ console.log(`[${label}] : ${(end - start).toFixed(2)}ms`);
+ return result;
 }
 
 // Générer un tableau de n éléments aléatoires
 function generateData(n) {
-  return Array.from({ length: n }, (_, i) => ({
-    id: i,
-    score: Math.random() * 1000,
-  }));
+ return Array.from({ length: n }, (_, i) => ({
+  id: i,
+  score: Math.random() * 1000,
+ }));
 }
 ```
 
@@ -54,31 +54,31 @@ function generateData(n) {
 ```js
 // Bubble sort:O(n²)
 function bubbleSort(arr) {
-  const a = [...arr]; // on ne mute pas l'original
-  for (let i = 0; i < a.length; i++) {
-    for (let j = 0; j < a.length - i - 1; j++) {
-      if (a[j].score > a[j + 1].score) {
-        [a[j], a[j + 1]] = [a[j + 1], a[j]];
-      }
-    }
+ const a = [...arr]; // on ne mute pas l'original
+ for (let i = 0; i < a.length; i++) {
+  for (let j = 0; j < a.length - i - 1; j++) {
+   if (a[j].score > a[j + 1].score) {
+    [a[j], a[j + 1]] = [a[j + 1], a[j]];
+   }
   }
-  return a;
+ }
+ return a;
 }
 
 // Array.sort natif:O(n log n) sous le capot (TimSort dans V8)
 function nativeSort(arr) {
-  return [...arr].sort((a, b) => a.score - b.score);
+ return [...arr].sort((a, b) => a.score - b.score);
 }
 
 // La course
 const sizes = [100, 1_000, 5_000, 10_000];
 
 for (const n of sizes) {
-  const data = generateData(n);
+ const data = generateData(n);
 
-  console.log(`\n── n = ${n} ──`);
-  bench(`bubble sort  O(n²)    `, () => bubbleSort(data));
-  bench(`native sort  O(n log n)`, () => nativeSort(data));
+ console.log(`\n── n = ${n} ──`);
+ bench(`bubble sort O(n²)  `, () => bubbleSort(data));
+ bench(`native sort O(n log n)`, () => nativeSort(data));
 }
 ```
 
@@ -86,20 +86,20 @@ Résultats typiques (machine standard, Node 20) :
 
 ```
 ── n = 100 ──
-bubble sort  O(n²)     : 0.08ms
-native sort  O(n log n): 0.02ms
+bubble sort O(n²)   : 0.08ms
+native sort O(n log n): 0.02ms
 
 ── n = 1 000 ──
-bubble sort  O(n²)     : 6ms
-native sort  O(n log n): 0.3ms
+bubble sort O(n²)   : 6ms
+native sort O(n log n): 0.3ms
 
 ── n = 5 000 ──
-bubble sort  O(n²)     : 140ms
-native sort  O(n log n): 1.2ms
+bubble sort O(n²)   : 140ms
+native sort O(n log n): 1.2ms
 
 ── n = 10 000 ──
-bubble sort  O(n²)     : 580ms
-native sort  O(n log n): 2.5ms
+bubble sort O(n²)   : 580ms
+native sort O(n log n): 2.5ms
 ```
 
 À 10 000 éléments : bubble sort prend **230 fois plus longtemps**. Et ça empire de façon quadratique après.
@@ -111,25 +111,25 @@ native sort  O(n log n): 2.5ms
 ```js
 // Recherche linéaire:O(n)
 function linearSearch(arr, targetId) {
-  for (const item of arr) {
-    if (item.id === targetId) return item;
-  }
-  return null;
+ for (const item of arr) {
+  if (item.id === targetId) return item;
+ }
+ return null;
 }
 
 // Recherche binaire:O(log n):nécessite un tableau trié
 function binarySearch(arr, targetId) {
-  let left = 0;
-  let right = arr.length - 1;
+ let left = 0;
+ let right = arr.length - 1;
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    if (arr[mid].id === targetId) return arr[mid];
-    if (arr[mid].id < targetId) left = mid + 1;
-    else right = mid - 1;
-  }
+ while (left <= right) {
+  const mid = Math.floor((left + right) / 2);
+  if (arr[mid].id === targetId) return arr[mid];
+  if (arr[mid].id < targetId) left = mid + 1;
+  else right = mid - 1;
+ }
 
-  return null;
+ return null;
 }
 
 // Données triées par id (requis pour binary search)
@@ -138,23 +138,23 @@ const sortedData = generateData(LARGE).sort((a, b) => a.id - b.id);
 
 // On cherche 1000 cibles différentes pour avoir une mesure représentative
 const targets = Array.from({ length: 1000 }, () =>
-  Math.floor(Math.random() * LARGE),
+ Math.floor(Math.random() * LARGE),
 );
 
-bench("linear search  O(n)    ", () => {
-  for (const t of targets) linearSearch(sortedData, t);
+bench("linear search O(n)  ", () => {
+ for (const t of targets) linearSearch(sortedData, t);
 });
 
-bench("binary search  O(log n)", () => {
-  for (const t of targets) binarySearch(sortedData, t);
+bench("binary search O(log n)", () => {
+ for (const t of targets) binarySearch(sortedData, t);
 });
 ```
 
 Résultats typiques sur 100 000 éléments, 1000 recherches :
 
 ```
-linear search  O(n)     : 85ms    ← parcourt en moyenne 50 000 éléments par recherche
-binary search  O(log n) : 0.4ms   ← parcourt max 17 éléments par recherche
+linear search O(n)   : 85ms  ← parcourt en moyenne 50 000 éléments par recherche
+binary search O(log n) : 0.4ms  ← parcourt max 17 éléments par recherche
 ```
 
 200 fois plus rapide. Pour chercher dans une liste de candidats au Ballon d'Or, c'est anecdotique. Pour un moteur de recherche sur des millions d'entrées, c'est la différence entre utilisable et inutilisable.
@@ -166,36 +166,36 @@ binary search  O(log n) : 0.4ms   ← parcourt max 17 éléments par recherche
 ```js
 // Version naïve:O(n²)
 function hasDuplicateNaive(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i].id === arr[j].id) return true;
-    }
+ for (let i = 0; i < arr.length; i++) {
+  for (let j = i + 1; j < arr.length; j++) {
+   if (arr[i].id === arr[j].id) return true;
   }
-  return false;
+ }
+ return false;
 }
 
 // Version avec Set:O(n)
 function hasDuplicateSet(arr) {
-  const seen = new Set();
-  for (const item of arr) {
-    if (seen.has(item.id)) return true;
-    seen.add(item.id);
-  }
-  return false;
+ const seen = new Set();
+ for (const item of arr) {
+  if (seen.has(item.id)) return true;
+  seen.add(item.id);
+ }
+ return false;
 }
 
 const sizes2 = [1_000, 5_000, 10_000, 50_000];
 
 for (const n of sizes2) {
-  // Cas pessimiste : pas de doublon, on parcourt tout
-  const data = generateData(n);
+ // Cas pessimiste : pas de doublon, on parcourt tout
+ const data = generateData(n);
 
-  console.log(`\n── n = ${n} ──`);
-  if (n <= 10_000) {
-    // au-delà bubble sort prend trop de temps pour être intéressant
-    bench(`naive O(n²)`, () => hasDuplicateNaive(data));
-  }
-  bench(`set   O(n) `, () => hasDuplicateSet(data));
+ console.log(`\n── n = ${n} ──`);
+ if (n <= 10_000) {
+  // au-delà bubble sort prend trop de temps pour être intéressant
+  bench(`naive O(n²)`, () => hasDuplicateNaive(data));
+ }
+ bench(`set  O(n) `, () => hasDuplicateSet(data));
 }
 ```
 
@@ -204,19 +204,19 @@ Résultats typiques :
 ```
 ── n = 1 000 ──
 naive O(n²) : 3ms
-set   O(n)  : 0.05ms
+set  O(n) : 0.05ms
 
 ── n = 5 000 ──
 naive O(n²) : 80ms
-set   O(n)  : 0.2ms
+set  O(n) : 0.2ms
 
 ── n = 10 000 ──
 naive O(n²) : 310ms
-set   O(n)  : 0.4ms
+set  O(n) : 0.4ms
 
 ── n = 50 000 ──
 (naive : estimé > 7 secondes)
-set   O(n)  : 2ms
+set  O(n) : 2ms
 ```
 
 ---
@@ -226,21 +226,21 @@ set   O(n)  : 2ms
 ```
 temps (ms)
 │
-│                                            O(n²)
-│                                         ╱
-│                                      ╱
-│                                   ╱
-│                                ╱
-│                             ╱
-│                       ╱
+│                      O(n²)
+│                     ╱
+│                   ╱
 │                  ╱
-│           ╱                   O(n log n)
-│     ╱                   ────────────────────
-│  ╱             O(n) ─────────────────
-│ ────────────────────────────────────   O(log n)
-│ ──────────────────────────────────────────────  O(1)
+│                ╱
+│               ╱
+│            ╱
+│         ╱
+│      ╱          O(n log n)
+│   ╱          ────────────────────
+│ ╱       O(n) ─────────────────
+│ ────────────────────────────────────  O(log n)
+│ ────────────────────────────────────────────── O(1)
 └──────────────────────────────────────────────── n
-   100   1k    10k   100k   1M
+  100  1k  10k  100k  1M
 ```
 
 Le point de douleur de O(n²) se situe entre 10 000 et 100 000 éléments. En dessous, c'est tolérable. Au-dessus, c'est rédhibitoire.
@@ -250,14 +250,14 @@ Le point de douleur de O(n²) se situe entre 10 000 et 100 000 éléments. En de
 ## 7) QUAND EST-CE QUE ÇA COMPTE EN PROD ?
 
 ```
-Opération                     Taille typique    Complexité à viser
-──────────────────────────    ───────────────   ──────────────────
-Trier une liste de résultats  10–10 000         O(n log n) ou moins
-Chercher un shinobi       1M+               O(log n) ou O(1)
-Détecter des doublons         10k–1M            O(n)
-Construire un index           1M+               O(n)
-Matcher deux ensembles        100k+             O(n) avec Set/Map
-Générer toutes les paires     >1 000            Éviter O(n²)
+Opération           Taille typique  Complexité à viser
+──────────────────────────  ───────────────  ──────────────────
+Trier une liste de résultats 10–10 000     O(n log n) ou moins
+Chercher un shinobi    1M+        O(log n) ou O(1)
+Détecter des doublons     10k–1M      O(n)
+Construire un index      1M+        O(n)
+Matcher deux ensembles    100k+       O(n) avec Set/Map
+Générer toutes les paires   >1 000      Éviter O(n²)
 ```
 
 La règle empirique : si les données peuvent dépasser 10 000 éléments et que l'opération doit être interactive, O(n²) n'est pas acceptable.
@@ -280,17 +280,17 @@ La supply chain de Walter White a un bug de performance. Cette fonction tourne s
 
 ```js
 function findComplementaryRoutes(routes, budget) {
-  const valid = [];
+ const valid = [];
 
-  for (let i = 0; i < routes.length; i++) {
-    for (let j = i + 1; j < routes.length; j++) {
-      if (routes[i].cost + routes[j].cost === budget) {
-        valid.push([routes[i].id, routes[j].id]);
-      }
-    }
+ for (let i = 0; i < routes.length; i++) {
+  for (let j = i + 1; j < routes.length; j++) {
+   if (routes[i].cost + routes[j].cost === budget) {
+    valid.push([routes[i].id, routes[j].id]);
+   }
   }
+ }
 
-  return valid;
+ return valid;
 }
 ```
 
@@ -305,9 +305,9 @@ _(Indice : le problème "two sum" a une solution O(n) avec une Map)_
 Tu as mesuré ces temps sur ton système :
 
 ```
-n = 1 000   → 2ms
-n = 2 000   → 8ms
-n = 4 000   → 32ms
+n = 1 000  → 2ms
+n = 2 000  → 8ms
+n = 4 000  → 32ms
 ```
 
 En déduire :

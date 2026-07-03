@@ -20,11 +20,11 @@ npm install --save-dev jest
 Dans `package.json` :
 ```json
 {
-  "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
-  }
+ "scripts": {
+  "test": "jest",
+  "test:watch": "jest --watch",
+  "test:coverage": "jest --coverage"
+ }
 }
 ```
 
@@ -33,11 +33,11 @@ C'est tout. Jest trouve automatiquement les fichiers `*.test.js` ou `*.spec.js`.
 Structure recommandée :
 ```
 src/
-  vote/
-    calculeKDA.js
-    calculeKDA.test.js   ← jest le détecte automatiquement
-    classement.js
-    classement.test.js
+ vote/
+  calculeKDA.js
+  calculeKDA.test.js  ← jest le détecte automatiquement
+  classement.js
+  classement.test.js
 ```
 
 ---
@@ -50,18 +50,18 @@ src/
 const { calculerScore } = require('./classement')
 
 describe('calculerScore', () => {
-  // describe = grouper les tests d'une même unité
+ // describe = grouper les tests d'une même unité
 
-  it('calcule le score pondéré d\'un vote journaliste', () => {
-    // it = un test, une phrase qui décrit le comportement
-    // un journaliste français vote pour Messi : 10 points → pondération pays × 1.0 → 10
-    expect(calculerScore({ points: 10, ponderation: 1.0 })).toBe(10)
-  })
+ it('calcule le score pondéré d\'un vote journaliste', () => {
+  // it = un test, une phrase qui décrit le comportement
+  // un journaliste français vote pour Messi : 10 points → pondération pays × 1.0 → 10
+  expect(calculerScore({ points: 10, ponderation: 1.0 })).toBe(10)
+ })
 
-  it('applique la pondération correctement', () => {
-    // zone de vote avec pondération 0.8 → 10 points → 8 points effectifs
-    expect(calculerScore({ points: 10, ponderation: 0.8 })).toBe(8)
-  })
+ it('applique la pondération correctement', () => {
+  // zone de vote avec pondération 0.8 → 10 points → 8 points effectifs
+  expect(calculerScore({ points: 10, ponderation: 0.8 })).toBe(8)
+ })
 })
 ```
 
@@ -74,15 +74,15 @@ describe('calculerScore', () => {
 
 ```js
 // valeurs primitives
-expect(score).toBe(25)              // égalité stricte (===)
-expect(score).not.toBe(0)           // négation
+expect(score).toBe(25)       // égalité stricte (===)
+expect(score).not.toBe(0)      // négation
 
 // objets et tableaux (comparaison profonde)
 expect(joueur).toEqual({ nom: 'Messi', points: 613 })
 // toBe échouerait sur les objets (référence différente)
 
 // nombres flottants : le classique 0.1 + 0.2 !== 0.3
-expect(0.1 + 0.2).toBeCloseTo(0.3)  // jamais toBe avec des flottants
+expect(0.1 + 0.2).toBeCloseTo(0.3) // jamais toBe avec des flottants
 
 // valeurs d'existence
 expect(valeur).toBeDefined()
@@ -95,11 +95,11 @@ expect(classement).toHaveLength(3)
 expect(classement).toContain('Messi')
 
 // strings
-expect(message).toMatch(/erreur/)   // regex
+expect(message).toMatch(/erreur/)  // regex
 
 // erreurs
 expect(() => {
-  validerVote(null)
+ validerVote(null)
 }).toThrow('Journaliste requis')
 ```
 
@@ -114,38 +114,38 @@ Avant le vote du Ballon d'Or, on prépare la salle. Après le dépouillement, on
 
 ```js
 describe('gestion des votes Ballon d\'Or', () => {
-  let votes
+ let votes
 
-  beforeEach(() => {
-    // s'exécute avant CHAQUE test : repart d'un classement vide
-    votes = [
-      { journaliste: 'john', joueur: 'Messi', points: 10 },
-      { journaliste: 'jane', joueur: 'Ronaldo', points: 10 }
-    ]
-  })
+ beforeEach(() => {
+  // s'exécute avant CHAQUE test : repart d'un classement vide
+  votes = [
+   { journaliste: 'john', joueur: 'Messi', points: 10 },
+   { journaliste: 'jane', joueur: 'Ronaldo', points: 10 }
+  ]
+ })
 
-  afterEach(() => {
-    // s'exécute après CHAQUE test : nettoie les effets de bord
-    votes = null
-  })
+ afterEach(() => {
+  // s'exécute après CHAQUE test : nettoie les effets de bord
+  votes = null
+ })
 
-  beforeAll(() => {
-    // une seule fois avant tous les tests : connexion DB simulée, etc.
-  })
+ beforeAll(() => {
+  // une seule fois avant tous les tests : connexion DB simulée, etc.
+ })
 
-  afterAll(() => {
-    // une seule fois après tous les tests
-  })
+ afterAll(() => {
+  // une seule fois après tous les tests
+ })
 
-  it('contient 2 votes initiaux', () => {
-    expect(votes).toHaveLength(2)
-  })
+ it('contient 2 votes initiaux', () => {
+  expect(votes).toHaveLength(2)
+ })
 
-  it('peut ajouter un vote', () => {
-    votes.push({ journaliste: 'marc', joueur: 'Vinicius', points: 8 })
-    expect(votes).toHaveLength(3)
-    // le beforeEach remet votes à 2 pour le test suivant
-  })
+ it('peut ajouter un vote', () => {
+  votes.push({ journaliste: 'marc', joueur: 'Vinicius', points: 8 })
+  expect(votes).toHaveLength(3)
+  // le beforeEach remet votes à 2 pour le test suivant
+ })
 })
 ```
 
@@ -159,13 +159,13 @@ Une seule règle : toujours `await` dans les tests async. Sans ça, Jest peut pa
 ```js
 // RECOMMANDÉ : async/await propre
 it('agrège les votes de tous les journalistes', async () => {
-  const classement = await aggregerVotes('saison-2025')
-  expect(classement[0].joueur).toBe('Messi')
+ const classement = await aggregerVotes('saison-2025')
+ expect(classement[0].joueur).toBe('Messi')
 })
 
 // si la fonction rejette une Promise :
 it('rejette si la saison n\'existe pas', async () => {
-  await expect(aggregerVotes('saison-1900')).rejects.toThrow('Saison introuvable')
+ await expect(aggregerVotes('saison-1900')).rejects.toThrow('Saison introuvable')
 })
 ```
 
@@ -186,9 +186,9 @@ Jest génère un rapport qui montre :
 
 ```
 -------------|---------|----------|---------|---------
-File         | % Stmts | % Branch | % Funcs | % Lines
+File     | % Stmts | % Branch | % Funcs | % Lines
 -------------|---------|----------|---------|---------
-classement.js|   85.71 |    66.67 |     100 |   85.71
+classement.js|  85.71 |  66.67 |   100 |  85.71
 ```
 
 66.67% sur Branch veut dire qu'une branche `if` ou `else` n'a jamais été testée.
@@ -235,11 +235,11 @@ Lance coverage sur ce fichier :
 
 ```js
 function validerVoteJournaliste(vote) {
-  if (!vote) return { valide: false, raison: 'vote manquant' }
-  if (!vote.journalisteId) return { valide: false, raison: 'id manquant' }
-  if (vote.points < 1 || vote.points > 10) return { valide: false, raison: 'points hors limite' }
-  if (vote.annee !== 2025) return { valide: false, raison: 'mauvaise annee' }
-  return { valide: true }
+ if (!vote) return { valide: false, raison: 'vote manquant' }
+ if (!vote.journalisteId) return { valide: false, raison: 'id manquant' }
+ if (vote.points < 1 || vote.points > 10) return { valide: false, raison: 'points hors limite' }
+ if (vote.annee !== 2025) return { valide: false, raison: 'mauvaise annee' }
+ return { valide: true }
 }
 ```
 

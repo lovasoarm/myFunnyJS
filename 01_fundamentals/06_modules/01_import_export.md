@@ -22,8 +22,8 @@ const chakraNaruto = 9999
 // main.js
 import { rasengan, kagebunshin } from "./jutsu.js"
 
-console.log(rasengan(2))        // 18000
-console.log(kagebunshin(3))     // ["clone", "clone", "clone"]
+console.log(rasengan(2))    // 18000
+console.log(kagebunshin(3))   // ["clone", "clone", "clone"]
 ```
 
 Règle : ce que tu n'exportes pas reste privé. `chakraNaruto` n'est accessible nulle part ailleurs. C'est le principe d'encapsulation sans avoir besoin de classes ni de patterns compliqués.
@@ -37,10 +37,10 @@ Chaque fichier peut avoir exactement un `export default`. C'est l'export "signat
 ```js
 // ninja.js
 const creerNinja = (nom, village) => ({
-  nom,
-  village,
-  chakra: 100,
-  attaquer: (cible) => `${nom} attaque ${cible} !`
+ nom,
+ village,
+ chakra: 100,
+ attaquer: (cible) => `${nom} attaque ${cible} !`
 })
 
 export default creerNinja
@@ -52,14 +52,14 @@ import creerNinja from "./ninja.js"
 // pas d'accolades -> c'est le default
 
 const naruto = creerNinja("Naruto", "Konoha")
-console.log(naruto.attaquer("Pain"))   // "Naruto attaque Pain !"
+console.log(naruto.attaquer("Pain"))  // "Naruto attaque Pain !"
 ```
 
 La différence avec les exports nommés : à l'import, tu peux appeler ça comme tu veux.
 
 ```js
-import buildNinja from "./ninja.js"   // même fichier, nom différent -> valide
-import n from "./ninja.js"            // aussi valide
+import buildNinja from "./ninja.js"  // même fichier, nom différent -> valide
+import n from "./ninja.js"      // aussi valide
 ```
 
 ---
@@ -75,9 +75,9 @@ export const TITAN_TYPES = ["Colossal", "Cuirassé", "Féminin", "Bestial"]
 export const estDangereux = (titan) => titan.taille > 15
 
 const analyserTitan = (titan) => ({
-  type: titan.type,
-  menace: estDangereux(titan) ? "CRITIQUE" : "CONTROLÉE",
-  taille: titan.taille
+ type: titan.type,
+ menace: estDangereux(titan) ? "CRITIQUE" : "CONTROLÉE",
+ taille: titan.taille
 })
 
 export default analyserTitan
@@ -86,7 +86,7 @@ export default analyserTitan
 ```js
 // main.js
 import analyserTitan, { TITAN_TYPES, estDangereux } from "./titanscan.js"
-// ^-- default           ^-- nommés dans les accolades
+// ^-- default      ^-- nommés dans les accolades
 ```
 
 ---
@@ -99,8 +99,8 @@ Si tu veux importer tout ce qu'un module exporte sous un seul nom :
 // main.js
 import * as Jutsu from "./jutsu.js"
 
-Jutsu.rasengan(3)     // fonctionne
-Jutsu.kagebunshin(5)  // fonctionne
+Jutsu.rasengan(3)   // fonctionne
+Jutsu.kagebunshin(5) // fonctionne
 ```
 
 Utile quand un module exporte beaucoup de fonctions liées et que tu veux garder le contexte visible (`Jutsu.rasengan` plutôt que juste `rasengan`).
@@ -138,7 +138,7 @@ import { quelqueChose } from "./b.js"
 export const valeurA = "A"
 
 // b.js
-import { valeurA } from "./a.js"   // b importe a qui importe b...
+import { valeurA } from "./a.js"  // b importe a qui importe b...
 export const quelqueChose = valeurA + "B"
 ```
 
@@ -154,11 +154,11 @@ Les imports statiques (`import ... from`) sont analysés au démarrage. Le dynam
 
 ```js
 const chargerModule = async (mode) => {
-  if (mode === "combat") {
-    const { rasengan } = await import("./jutsu.js")
-    return rasengan
-  }
-  // jutsu.js n'est pas chargé si mode !== "combat"
+ if (mode === "combat") {
+  const { rasengan } = await import("./jutsu.js")
+  return rasengan
+ }
+ // jutsu.js n'est pas chargé si mode !== "combat"
 }
 ```
 

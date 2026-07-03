@@ -16,11 +16,11 @@ Le client peut écrire du code dessus sans surprises.
 ```js
 // format standard CrazyDevs API
 {
-  "error": {
-    "code": "PLAYER_NOT_FOUND",    // code machine : pour le client qui branche une logique dessus
-    "message": "joueur 99 introuvable",  // message humain : pour les logs et le debug
-    "status": 404                   // status HTTP répété dans le body : pratique pour les logs
-  }
+ "error": {
+  "code": "PLAYER_NOT_FOUND",  // code machine : pour le client qui branche une logique dessus
+  "message": "joueur 99 introuvable", // message humain : pour les logs et le debug
+  "status": 404          // status HTTP répété dans le body : pratique pour les logs
+ }
 }
 ```
 
@@ -40,37 +40,37 @@ On crée des classes avec un status attaché.
 
 // classe de base : toutes les erreurs API héritent d'ici
 export class AppError extends Error {
-  constructor(message, statusCode, code) {
-    super(message)           // passe le message à Error natif
-    this.statusCode = statusCode  // status HTTP : 400, 404, 409, etc.
-    this.code = code         // code machine : 'PLAYER_NOT_FOUND', etc.
-    this.isOperational = true  // distingue erreur métier vs bug inattendu
-  }
+ constructor(message, statusCode, code) {
+  super(message)      // passe le message à Error natif
+  this.statusCode = statusCode // status HTTP : 400, 404, 409, etc.
+  this.code = code     // code machine : 'PLAYER_NOT_FOUND', etc.
+  this.isOperational = true // distingue erreur métier vs bug inattendu
+ }
 }
 
 // erreurs spécialisées : plus parlantes dans le code
 export class NotFoundError extends AppError {
-  constructor(resource, id) {
-    super(`${resource} ${id} introuvable`, 404, 'NOT_FOUND')
-  }
+ constructor(resource, id) {
+  super(`${resource} ${id} introuvable`, 404, 'NOT_FOUND')
+ }
 }
 
 export class ValidationError extends AppError {
-  constructor(message) {
-    super(message, 400, 'VALIDATION_ERROR')
-  }
+ constructor(message) {
+  super(message, 400, 'VALIDATION_ERROR')
+ }
 }
 
 export class ConflictError extends AppError {
-  constructor(message) {
-    super(message, 409, 'CONFLICT')
-  }
+ constructor(message) {
+  super(message, 409, 'CONFLICT')
+ }
 }
 
 export class UnauthorizedError extends AppError {
-  constructor() {
-    super('authentification requise', 401, 'UNAUTHORIZED')
-  }
+ constructor() {
+  super('authentification requise', 401, 'UNAUTHORIZED')
+ }
 }
 ```
 
@@ -79,24 +79,24 @@ Utilisation dans un handler :
 import { NotFoundError, ValidationError } from './errors/AppError.js'
 
 router.get('/:id', (req, res, next) => {
-  const player = players.find(p => p.id === Number(req.params.id))
+ const player = players.find(p => p.id === Number(req.params.id))
 
-  if (!player) {
-    // on throw pas, on passe à next() : Express le route vers le middleware d'erreur
-    return next(new NotFoundError('joueur', req.params.id))
-  }
+ if (!player) {
+  // on throw pas, on passe à next() : Express le route vers le middleware d'erreur
+  return next(new NotFoundError('joueur', req.params.id))
+ }
 
-  res.json(player)
+ res.json(player)
 })
 
 router.post('/', (req, res, next) => {
-  const { name } = req.body
+ const { name } = req.body
 
-  if (!name) {
-    return next(new ValidationError('name est requis'))
-  }
+ if (!name) {
+  return next(new ValidationError('name est requis'))
+ }
 
-  // ...
+ // ...
 })
 ```
 
@@ -111,34 +111,34 @@ Il doit être monté **après toutes les routes**.
 // middleware/errorHandler.js
 
 export function errorHandler(err, req, res, next) {
-  // logger l'erreur dans tous les cas (en prod : Sentry, pino, winston)
-  console.error({
-    method: req.method,
-    path: req.path,
-    error: err.message,
-    stack: err.stack
-  })
+ // logger l'erreur dans tous les cas (en prod : Sentry, pino, winston)
+ console.error({
+  method: req.method,
+  path: req.path,
+  error: err.message,
+  stack: err.stack
+ })
 
-  // erreur opérationnelle connue : on peut lui faire confiance
-  if (err.isOperational) {
-    return res.status(err.statusCode).json({
-      error: {
-        code: err.code,
-        message: err.message,
-        status: err.statusCode
-      }
-    })
+ // erreur opérationnelle connue : on peut lui faire confiance
+ if (err.isOperational) {
+  return res.status(err.statusCode).json({
+   error: {
+    code: err.code,
+    message: err.message,
+    status: err.statusCode
+   }
+  })
+ }
+
+ // erreur inconnue / bug non géré : 500 générique
+ // on ne révèle JAMAIS les détails techniques en prod (stack trace, paths internes)
+ res.status(500).json({
+  error: {
+   code: 'INTERNAL_ERROR',
+   message: 'une erreur est survenue',
+   status: 500
   }
-
-  // erreur inconnue / bug non géré : 500 générique
-  // on ne révèle JAMAIS les détails techniques en prod (stack trace, paths internes)
-  res.status(500).json({
-    error: {
-      code: 'INTERNAL_ERROR',
-      message: 'une erreur est survenue',
-      status: 500
-    }
-  })
+ })
 }
 ```
 
@@ -151,7 +151,7 @@ import { errorHandler } from './middleware/errorHandler.js'
 
 // gestionnaire de route inconnue : doit être après toutes les routes
 app.use((req, res, next) => {
-  next(new NotFoundError('route', req.path))
+ next(new NotFoundError('route', req.path))
 })
 
 // middleware d'erreur : TOUJOURS en dernier
@@ -161,10 +161,10 @@ app.use(errorHandler)
 Flux d'une erreur :
 ```
 route handler --> next(new NotFoundError())
-  --> Express voit un objet Error passé à next()
-  --> skip tous les middlewares normaux
-  --> atterrit sur errorHandler(err, req, res, next)
-  --> renvoie la réponse d'erreur formatée
+ --> Express voit un objet Error passé à next()
+ --> skip tous les middlewares normaux
+ --> atterrit sur errorHandler(err, req, res, next)
+ --> renvoie la réponse d'erreur formatée
 ```
 
 ---
@@ -177,8 +177,8 @@ Une Promise rejetée sans catch crashe le processus silencieusement.
 ```js
 // BUG : si db.findPlayer() rejecte, Express ne le catch pas
 router.get('/:id', async (req, res) => {
-  const player = await db.findPlayer(req.params.id)  // peut rejeter
-  res.json(player)
+ const player = await db.findPlayer(req.params.id) // peut rejeter
+ res.json(player)
 })
 ```
 
@@ -187,12 +187,12 @@ Deux solutions :
 **Option A : try/catch + next()**
 ```js
 router.get('/:id', async (req, res, next) => {
-  try {
-    const player = await db.findPlayer(req.params.id)
-    res.json(player)
-  } catch (err) {
-    next(err)  // passe l'erreur au middleware global
-  }
+ try {
+  const player = await db.findPlayer(req.params.id)
+  res.json(player)
+ } catch (err) {
+  next(err) // passe l'erreur au middleware global
+ }
 })
 ```
 
@@ -201,7 +201,7 @@ router.get('/:id', async (req, res, next) => {
 // utils/asyncHandler.js
 // wrapper qui catch automatiquement les erreurs async et les passe à next()
 export const asyncHandler = (fn) => (req, res, next) => {
-  Promise.resolve(fn(req, res, next)).catch(next)
+ Promise.resolve(fn(req, res, next)).catch(next)
 }
 ```
 
@@ -210,8 +210,8 @@ import { asyncHandler } from './utils/asyncHandler.js'
 
 // plus de try/catch à répéter : asyncHandler le fait pour toi
 router.get('/:id', asyncHandler(async (req, res) => {
-  const player = await db.findPlayer(req.params.id)
-  res.json(player)
+ const player = await db.findPlayer(req.params.id)
+ res.json(player)
 }))
 ```
 
@@ -230,41 +230,41 @@ Le middleware d'erreur attrape ce qui passe. La validation empêche le pire de p
 import { z } from 'zod'
 
 export const validate = (schema) => (req, res, next) => {
-  const result = schema.safeParse(req.body)
+ const result = schema.safeParse(req.body)
 
-  if (!result.success) {
-    // Zod format les erreurs : les mapper vers le format API
-    const errors = result.error.errors.map(e => ({
-      field: e.path.join('.'),
-      message: e.message
-    }))
+ if (!result.success) {
+  // Zod format les erreurs : les mapper vers le format API
+  const errors = result.error.errors.map(e => ({
+   field: e.path.join('.'),
+   message: e.message
+  }))
 
-    return res.status(400).json({
-      error: {
-        code: 'VALIDATION_ERROR',
-        message: 'données invalides',
-        status: 400,
-        fields: errors  // détail des champs invalides
-      }
-    })
-  }
+  return res.status(400).json({
+   error: {
+    code: 'VALIDATION_ERROR',
+    message: 'données invalides',
+    status: 400,
+    fields: errors // détail des champs invalides
+   }
+  })
+ }
 
-  req.validatedBody = result.data  // données validées et typées
-  next()
+ req.validatedBody = result.data // données validées et typées
+ next()
 }
 ```
 
 ```js
 const playerSchema = z.object({
-  name: z.string().min(2),
-  team: z.string(),
-  goals: z.number().int().min(0).optional()
+ name: z.string().min(2),
+ team: z.string(),
+ goals: z.number().int().min(0).optional()
 })
 
 // validate() tourne avant le handler : si ça passe pas, le handler tourne jamais
 router.post('/', validate(playerSchema), (req, res) => {
-  const { name, team, goals } = req.validatedBody  // garanti valide
-  // ...
+ const { name, team, goals } = req.validatedBody // garanti valide
+ // ...
 })
 ```
 
@@ -286,10 +286,10 @@ res.status(500).json({ error: { code: 'INTERNAL_ERROR', message: 'erreur serveur
 **Appeler `next()` après avoir déjà envoyé une réponse**
 ```js
 router.get('/:id', (req, res, next) => {
-  if (!player) res.status(404).json({ error: 'not found' })  // réponse envoyée
-  // ... code qui continue et appelle next()
-  // Express : "headers already sent" crash
-  // FIX : return res.status(404).json(...)
+ if (!player) res.status(404).json({ error: 'not found' }) // réponse envoyée
+ // ... code qui continue et appelle next()
+ // Express : "headers already sent" crash
+ // FIX : return res.status(404).json(...)
 })
 ```
 

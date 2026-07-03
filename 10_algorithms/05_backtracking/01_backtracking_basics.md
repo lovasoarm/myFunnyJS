@@ -18,13 +18,13 @@ En prod, backtracking c'est les solveurs de contraintes, les générateurs de pu
 **Le pruning :** avant d'explorer une branche, vérifier si elle peut mener à une solution. Si non : couper. C'est ce qui sépare un backtracking efficace d'une force brute naïve.
 
 ```
-              []
-           /  |  \
-         [1] [2] [3]
-         /\   ...
-      [1,2][1,3]
-       /
-    [1,2,3]  ← solution si valide
+       []
+      / | \
+     [1] [2] [3]
+     /\  ...
+   [1,2][1,3]
+    /
+  [1,2,3] ← solution si valide
 ```
 
 ---
@@ -35,25 +35,25 @@ Tous les problèmes de backtracking ont la même structure :
 
 ```js
 function backtrack(state, choices, result) {
-  // cas de base : est-ce qu'on a une solution complète ?
-  if (isSolution(state)) {
-    result.push([...state]); // copier, pas référencer
-    return;
-  }
+ // cas de base : est-ce qu'on a une solution complète ?
+ if (isSolution(state)) {
+  result.push([...state]); // copier, pas référencer
+  return;
+ }
 
-  for (const choice of choices) {
-    // est-ce que ce choix est valide depuis l'état actuel ?
-    if (!isValid(state, choice)) continue; // pruning
+ for (const choice of choices) {
+  // est-ce que ce choix est valide depuis l'état actuel ?
+  if (!isValid(state, choice)) continue; // pruning
 
-    // faire le choix : étendre l'état
-    state.push(choice);
+  // faire le choix : étendre l'état
+  state.push(choice);
 
-    // explorer depuis ce nouvel état
-    backtrack(state, nextChoices(state, choice), result);
+  // explorer depuis ce nouvel état
+  backtrack(state, nextChoices(state, choice), result);
 
-    // défaire le choix : retour en arrière
-    state.pop();
-  }
+  // défaire le choix : retour en arrière
+  state.pop();
+ }
 }
 ```
 
@@ -67,29 +67,29 @@ Générer toutes les permutations d'un tableau.
 
 ```js
 function permutations(nums) {
-  const result = [];
+ const result = [];
 
-  function backtrack(current, remaining) {
-    // cas de base : plus rien à placer, on a une permutation complète
-    if (remaining.length === 0) {
-      result.push([...current]);
-      return;
-    }
-
-    for (let i = 0; i < remaining.length; i++) {
-      // choisir remaining[i]
-      current.push(remaining[i]);
-
-      // explorer : remaining sans l'élément choisi
-      backtrack(current, [...remaining.slice(0, i), ...remaining.slice(i + 1)]);
-
-      // défaire
-      current.pop();
-    }
+ function backtrack(current, remaining) {
+  // cas de base : plus rien à placer, on a une permutation complète
+  if (remaining.length === 0) {
+   result.push([...current]);
+   return;
   }
 
-  backtrack([], nums);
-  return result;
+  for (let i = 0; i < remaining.length; i++) {
+   // choisir remaining[i]
+   current.push(remaining[i]);
+
+   // explorer : remaining sans l'élément choisi
+   backtrack(current, [...remaining.slice(0, i), ...remaining.slice(i + 1)]);
+
+   // défaire
+   current.pop();
+  }
+ }
+
+ backtrack([], nums);
+ return result;
 }
 
 console.log(permutations([1, 2, 3]));
@@ -100,13 +100,13 @@ console.log(permutations([1, 2, 3]));
 **Arbre de décision :**
 
 ```
-                []
-          /     |     \
-        [1]    [2]    [3]
-       /   \
-    [1,2] [1,3]
-      |      |
-  [1,2,3] [1,3,2]
+        []
+     /   |   \
+    [1]  [2]  [3]
+    /  \
+  [1,2] [1,3]
+   |   |
+ [1,2,3] [1,3,2]
 ```
 
 Complexité : `O(n!)`. Sur `n=10` : 3.6 millions. Sur `n=15` : 1.3 trillion. Le pruning devient vital dès que n grandit.
@@ -119,21 +119,21 @@ Générer tous les sous-ensembles d'un tableau (le power set).
 
 ```js
 function subsets(nums) {
-  const result = [];
+ const result = [];
 
-  function backtrack(start, current) {
-    // chaque état partiel est un sous-ensemble valide : on l'ajoute
-    result.push([...current]);
+ function backtrack(start, current) {
+  // chaque état partiel est un sous-ensemble valide : on l'ajoute
+  result.push([...current]);
 
-    for (let i = start; i < nums.length; i++) {
-      current.push(nums[i]);
-      backtrack(i + 1, current); // start = i+1 : on ne revient pas en arrière
-      current.pop();
-    }
+  for (let i = start; i < nums.length; i++) {
+   current.push(nums[i]);
+   backtrack(i + 1, current); // start = i+1 : on ne revient pas en arrière
+   current.pop();
   }
+ }
 
-  backtrack(0, []);
-  return result;
+ backtrack(0, []);
+ return result;
 }
 
 console.log(subsets([1, 2, 3]));
@@ -153,40 +153,40 @@ C'est le problème où le pruning fait toute la différence. Sans pruning : `O(N
 
 ```js
 function solveNQueens(n) {
-  const result = [];
-  // cols[i] = colonne de la reine dans la ligne i
-  const cols = [];
+ const result = [];
+ // cols[i] = colonne de la reine dans la ligne i
+ const cols = [];
 
-  function isValid(row, col) {
-    for (let r = 0; r < row; r++) {
-      if (
-        cols[r] === col || // même colonne
-        cols[r] - col === r - row || // même diagonale
-        cols[r] - col === row - r // même anti-diagonale
-      )
-        return false;
-    }
-    return true;
+ function isValid(row, col) {
+  for (let r = 0; r < row; r++) {
+   if (
+    cols[r] === col || // même colonne
+    cols[r] - col === r - row || // même diagonale
+    cols[r] - col === row - r // même anti-diagonale
+   )
+    return false;
+  }
+  return true;
+ }
+
+ function backtrack(row) {
+  if (row === n) {
+   // convertir cols[] en représentation visuelle
+   result.push(cols.map((c) => ".".repeat(c) + "Q" + ".".repeat(n - c - 1)));
+   return;
   }
 
-  function backtrack(row) {
-    if (row === n) {
-      // convertir cols[] en représentation visuelle
-      result.push(cols.map((c) => ".".repeat(c) + "Q" + ".".repeat(n - c - 1)));
-      return;
-    }
+  for (let col = 0; col < n; col++) {
+   if (!isValid(row, col)) continue; // pruning : conflit détecté, skip cette colonne
 
-    for (let col = 0; col < n; col++) {
-      if (!isValid(row, col)) continue; // pruning : conflit détecté, skip cette colonne
-
-      cols[row] = col;
-      backtrack(row + 1);
-      // pas besoin de "défaire" cols[row] explicitement : il sera écrasé au prochain tour
-    }
+   cols[row] = col;
+   backtrack(row + 1);
+   // pas besoin de "défaire" cols[row] explicitement : il sera écrasé au prochain tour
   }
+ }
 
-  backtrack(0);
-  return result;
+ backtrack(0);
+ return result;
 }
 
 console.log(solveNQueens(4).length); // 2 solutions pour 4x4
@@ -219,27 +219,27 @@ Trouver toutes les combinaisons de nombres dans `candidates` qui somment à `tar
 
 ```js
 function combinationSum(candidates, target) {
-  const result = [];
-  candidates.sort((a, b) => a - b); // tri pour le pruning
+ const result = [];
+ candidates.sort((a, b) => a - b); // tri pour le pruning
 
-  function backtrack(start, current, remaining) {
-    if (remaining === 0) {
-      result.push([...current]);
-      return;
-    }
-
-    for (let i = start; i < candidates.length; i++) {
-      // pruning : si le candidat dépasse le remaining, tous les suivants aussi (tableau trié)
-      if (candidates[i] > remaining) break;
-
-      current.push(candidates[i]);
-      backtrack(i, current, remaining - candidates[i]); // i, pas i+1 : réutilisation permise
-      current.pop();
-    }
+ function backtrack(start, current, remaining) {
+  if (remaining === 0) {
+   result.push([...current]);
+   return;
   }
 
-  backtrack(0, [], target);
-  return result;
+  for (let i = start; i < candidates.length; i++) {
+   // pruning : si le candidat dépasse le remaining, tous les suivants aussi (tableau trié)
+   if (candidates[i] > remaining) break;
+
+   current.push(candidates[i]);
+   backtrack(i, current, remaining - candidates[i]); // i, pas i+1 : réutilisation permise
+   current.pop();
+  }
+ }
+
+ backtrack(0, [], target);
+ return result;
 }
 
 // Les pièces de chakra de Naruto : quelles combinaisons font exactement 7 ?
@@ -255,23 +255,23 @@ Le `break` au lieu de `continue` est le pruning crucial ici. Puisque le tableau 
 
 ```js
 function permutationsBuggy(nums) {
-  const result = [];
+ const result = [];
 
-  function backtrack(current) {
-    if (current.length === nums.length) {
-      result.push(current); // BUG : référence, pas copie
-      return;
-    }
-    for (const n of nums) {
-      if (current.includes(n)) continue;
-      current.push(n);
-      backtrack(current);
-      current.pop();
-    }
+ function backtrack(current) {
+  if (current.length === nums.length) {
+   result.push(current); // BUG : référence, pas copie
+   return;
   }
+  for (const n of nums) {
+   if (current.includes(n)) continue;
+   current.push(n);
+   backtrack(current);
+   current.pop();
+  }
+ }
 
-  backtrack([]);
-  return result;
+ backtrack([]);
+ return result;
 }
 
 // Résultat : tableau de tableaux vides
@@ -292,26 +292,26 @@ Si les mêmes sous-problèmes apparaissent plusieurs fois (ce qui n'est pas touj
 
 ```js
 function wordBreak(s, wordDict) {
-  const wordSet = new Set(wordDict);
-  const memo = new Map(); // état -> résultat
+ const wordSet = new Set(wordDict);
+ const memo = new Map(); // état -> résultat
 
-  function canBreak(start) {
-    if (start === s.length) return true;
-    if (memo.has(start)) return memo.get(start); // résultat déjà calculé
+ function canBreak(start) {
+  if (start === s.length) return true;
+  if (memo.has(start)) return memo.get(start); // résultat déjà calculé
 
-    for (let end = start + 1; end <= s.length; end++) {
-      const word = s.slice(start, end);
-      if (wordSet.has(word) && canBreak(end)) {
-        memo.set(start, true);
-        return true;
-      }
-    }
-
-    memo.set(start, false);
-    return false;
+  for (let end = start + 1; end <= s.length; end++) {
+   const word = s.slice(start, end);
+   if (wordSet.has(word) && canBreak(end)) {
+    memo.set(start, true);
+    return true;
+   }
   }
 
-  return canBreak(0);
+  memo.set(start, false);
+  return false;
+ }
+
+ return canBreak(0);
 }
 
 // "leetcode" avec dict ["leet", "code"] => true

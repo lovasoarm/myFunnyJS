@@ -1,13 +1,13 @@
-> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `[INTEMPOREL] Principes durables` en bas.
+> (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 [PÉRISSABLE 12-24 mois]
 
-> [PERISSABLE] **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
+> **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
 # BENCHMARK KIT : SAVOIR SI TON CODE EST RAPIDE, PAS JUSTE "PAS LENT EN APPARENCE"
 Temps de lecture ~8 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 "Je pense que cette version est plus rapide" c'est une opinion. Un benchmark (mesure de performance comparative) c'est un fait. La différence entre les deux, c'est souvent la différence entre optimiser ce qui compte vraiment et perdre du temps sur un détail qui change rien.
 
@@ -18,15 +18,15 @@ Temps de lecture ~8 min
 ```js
 // Deux façons de filtrer un tableau, laquelle est la plus rapide ?
 function filtrerAvecFilter(tableau) {
-  return tableau.filter(x => x > 10);
+ return tableau.filter(x => x > 10);
 }
 
 function filtrerAvecBoucle(tableau) {
-  const resultat = [];
-  for (let i = 0; i < tableau.length; i++) {
-    if (tableau[i] > 10) resultat.push(tableau[i]);
-  }
-  return resultat;
+ const resultat = [];
+ for (let i = 0; i < tableau.length; i++) {
+  if (tableau[i] > 10) resultat.push(tableau[i]);
+ }
+ return resultat;
 }
 ```
 
@@ -61,42 +61,42 @@ Ce mécanisme de base existe déjà ailleurs dans le curriculum (module performa
 // benchmark.js
 
 function mesurer(nom, fn, iterations = 1000) {
-  // on "chauffe" le moteur JS avant de mesurer pour de vrai
-  // (le JIT optimise le code après quelques exécutions, sans warmup
-  // tu mesures aussi le coût de cette optimisation, ce qui fausse le résultat)
-  for (let i = 0; i < 10; i++) fn();
+ // on "chauffe" le moteur JS avant de mesurer pour de vrai
+ // (le JIT optimise le code après quelques exécutions, sans warmup
+ // tu mesures aussi le coût de cette optimisation, ce qui fausse le résultat)
+ for (let i = 0; i < 10; i++) fn();
 
-  const debut = performance.now();
+ const debut = performance.now();
 
-  for (let i = 0; i < iterations; i++) {
-    fn();
-  }
+ for (let i = 0; i < iterations; i++) {
+  fn();
+ }
 
-  const fin = performance.now();
-  const dureeTotale = fin - debut;
-  const dureeMoyenne = dureeTotale / iterations;
+ const fin = performance.now();
+ const dureeTotale = fin - debut;
+ const dureeMoyenne = dureeTotale / iterations;
 
-  return {
-    nom,
-    iterations,
-    dureeTotale_ms: Number(dureeTotale.toFixed(3)),
-    dureeMoyenne_ms: Number(dureeMoyenne.toFixed(6)),
-  };
+ return {
+  nom,
+  iterations,
+  dureeTotale_ms: Number(dureeTotale.toFixed(3)),
+  dureeMoyenne_ms: Number(dureeMoyenne.toFixed(6)),
+ };
 }
 
 function comparer(candidats, iterations = 1000) {
-  // candidats : [{ nom: "...", fn: () => {...} }, ...]
-  const resultats = candidats.map(c => mesurer(c.nom, c.fn, iterations));
+ // candidats : [{ nom: "...", fn: () => {...} }, ...]
+ const resultats = candidats.map(c => mesurer(c.nom, c.fn, iterations));
 
-  // trie du plus rapide au plus lent
-  resultats.sort((a, b) => a.dureeMoyenne_ms - b.dureeMoyenne_ms);
+ // trie du plus rapide au plus lent
+ resultats.sort((a, b) => a.dureeMoyenne_ms - b.dureeMoyenne_ms);
 
-  const plusRapide = resultats[0];
+ const plusRapide = resultats[0];
 
-  return resultats.map(r => ({
-    ...r,
-    facteurVsPlusRapide: Number((r.dureeMoyenne_ms / plusRapide.dureeMoyenne_ms).toFixed(2)),
-  }));
+ return resultats.map(r => ({
+  ...r,
+  facteurVsPlusRapide: Number((r.dureeMoyenne_ms / plusRapide.dureeMoyenne_ms).toFixed(2)),
+ }));
 }
 
 module.exports = { mesurer, comparer };
@@ -109,8 +109,8 @@ const { comparer } = require('./benchmark');
 const tableauTest = Array.from({ length: 10000 }, (_, i) => i);
 
 const resultats = comparer([
-  { nom: "filter natif", fn: () => filtrerAvecFilter(tableauTest) },
-  { nom: "boucle manuelle", fn: () => filtrerAvecBoucle(tableauTest) },
+ { nom: "filter natif", fn: () => filtrerAvecFilter(tableauTest) },
+ { nom: "boucle manuelle", fn: () => filtrerAvecBoucle(tableauTest) },
 ], 5000);
 
 console.table(resultats);
@@ -145,7 +145,7 @@ PLUSIEURS ITÉRATIONS MOYENNÉES --> lisse ce bruit, donne une mesure représent
 ## 5) CE QUE LE BENCHMARK NE TE DIT PAS
 
 ```
-le benchmark te dit  --> QUELLE version est plus rapide, ET DE COMBIEN
+le benchmark te dit --> QUELLE version est plus rapide, ET DE COMBIEN
 le benchmark te dit PAS --> SI cette différence compte vraiment dans ton contexte réel
 ```
 

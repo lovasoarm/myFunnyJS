@@ -23,10 +23,10 @@ Pour un **min-heap** : chaque noeud est plus petit ou égal à ses enfants.
 
 Max-heap example (les meilleurs scoreurs) :
 ```
-           Mbappé(35)
-          /           \
-    Haaland(31)     Salah(28)
-    /      \          /     \
+      Mbappé(35)
+     /      \
+  Haaland(31)   Salah(28)
+  /   \     /   \
 Kane(24) Benzema(22) Son(18) Lewandowski(24)
 ```
 
@@ -47,28 +47,28 @@ On stocke le heap dans un tableau. L'arbre est implicite : pas de pointeurs.
 
 ```
 Arbre :
-           Mbappé(35)          index 0
-          /           \
-    Haaland(31)     Salah(28)  index 1, 2
-    /      \
-Kane(24) Benzema(22)           index 3, 4
+      Mbappé(35)     index 0
+     /      \
+  Haaland(31)   Salah(28) index 1, 2
+  /   \
+Kane(24) Benzema(22)      index 3, 4
 
 Tableau : [35, 31, 28, 24, 22]
-            0   1   2   3   4
+      0  1  2  3  4
 ```
 
 Formules pour naviguer :
 ```
-parent(i)      = Math.floor((i - 1) / 2)
+parent(i)   = Math.floor((i - 1) / 2)
 enfantGauche(i) = 2 * i + 1
-enfantDroit(i)  = 2 * i + 2
+enfantDroit(i) = 2 * i + 2
 ```
 
 Vérification sur l'exemple :
 ```
-enfantGauche(0) = 1  =>  tableau[1] = 31  (Haaland) 
-enfantDroit(0)  = 2  =>  tableau[2] = 28  (Salah) 
-parent(3)       = 1  =>  tableau[1] = 31  (Haaland, parent de Kane) 
+enfantGauche(0) = 1 => tableau[1] = 31 (Haaland) 
+enfantDroit(0) = 2 => tableau[2] = 28 (Salah) 
+parent(3)    = 1 => tableau[1] = 31 (Haaland, parent de Kane) 
 ```
 
 Pourquoi c'est brillant : pas d'allocation de noeuds, pas de pointeurs, cache-friendly.
@@ -80,89 +80,89 @@ Un arbre de n éléments = un tableau de n éléments. Rien de plus.
 
 ```js
 class MaxHeap {
-  constructor() {
-    this.data = []
+ constructor() {
+  this.data = []
+ }
+
+ size() {
+  return this.data.length
+ }
+
+ peek() {
+  // O(1) : la racine est toujours le max
+  return this.data[0] ?? null
+ }
+
+ // index helpers
+ _parent(i)   { return Math.floor((i - 1) / 2) }
+ _leftChild(i)  { return 2 * i + 1 }
+ _rightChild(i) { return 2 * i + 2 }
+
+ _swap(i, j) {
+  [this.data[i], this.data[j]] = [this.data[j], this.data[i]]
+ }
+
+ insert(value) {
+  // on ajoute en fin de tableau (feuille)
+  this.data.push(value)
+  // puis on remonte jusqu'à ce que la propriété heap soit restaurée
+  this._bubbleUp(this.data.length - 1)
+ }
+
+ _bubbleUp(index) {
+  while (index > 0) {
+   const parentIndex = this._parent(index)
+
+   if (this.data[parentIndex] < this.data[index]) {
+    // le parent est plus petit que l'enfant : violation de la propriété heap
+    // on échange et on continue à monter
+    this._swap(parentIndex, index)
+    index = parentIndex
+   } else {
+    break // propriété heap respectée : on arrête
+   }
   }
+ }
 
-  size() {
-    return this.data.length
+ extractMax() {
+  if (this.data.length === 0) return null
+  if (this.data.length === 1) return this.data.pop()
+
+  const max = this.data[0]
+
+  // on met la dernière feuille à la racine
+  // puis on la fait descendre
+  this.data[0] = this.data.pop()
+  this._siftDown(0)
+
+  return max
+ }
+
+ _siftDown(index) {
+  const n = this.data.length
+
+  while (true) {
+   let plus_grand = index
+   const gauche = this._leftChild(index)
+   const droite = this._rightChild(index)
+
+   // trouver le plus grand parmi le noeud, son fils gauche, son fils droit
+   if (gauche < n && this.data[gauche] > this.data[plus_grand]) {
+    plus_grand = gauche
+   }
+   if (droite < n && this.data[droite] > this.data[plus_grand]) {
+    plus_grand = droite
+   }
+
+   if (plus_grand !== index) {
+    // le noeud courant n'est pas le plus grand : on descend
+    this._swap(index, plus_grand)
+    index = plus_grand
+   } else {
+    break // on est à la bonne place
+   }
   }
-
-  peek() {
-    // O(1) : la racine est toujours le max
-    return this.data[0] ?? null
-  }
-
-  // index helpers
-  _parent(i)      { return Math.floor((i - 1) / 2) }
-  _leftChild(i)   { return 2 * i + 1 }
-  _rightChild(i)  { return 2 * i + 2 }
-
-  _swap(i, j) {
-    [this.data[i], this.data[j]] = [this.data[j], this.data[i]]
-  }
-
-  insert(value) {
-    // on ajoute en fin de tableau (feuille)
-    this.data.push(value)
-    // puis on remonte jusqu'à ce que la propriété heap soit restaurée
-    this._bubbleUp(this.data.length - 1)
-  }
-
-  _bubbleUp(index) {
-    while (index > 0) {
-      const parentIndex = this._parent(index)
-
-      if (this.data[parentIndex] < this.data[index]) {
-        // le parent est plus petit que l'enfant : violation de la propriété heap
-        // on échange et on continue à monter
-        this._swap(parentIndex, index)
-        index = parentIndex
-      } else {
-        break  // propriété heap respectée : on arrête
-      }
-    }
-  }
-
-  extractMax() {
-    if (this.data.length === 0) return null
-    if (this.data.length === 1) return this.data.pop()
-
-    const max = this.data[0]
-
-    // on met la dernière feuille à la racine
-    // puis on la fait descendre
-    this.data[0] = this.data.pop()
-    this._siftDown(0)
-
-    return max
-  }
-
-  _siftDown(index) {
-    const n = this.data.length
-
-    while (true) {
-      let plus_grand = index
-      const gauche  = this._leftChild(index)
-      const droite  = this._rightChild(index)
-
-      // trouver le plus grand parmi le noeud, son fils gauche, son fils droit
-      if (gauche < n && this.data[gauche] > this.data[plus_grand]) {
-        plus_grand = gauche
-      }
-      if (droite < n && this.data[droite] > this.data[plus_grand]) {
-        plus_grand = droite
-      }
-
-      if (plus_grand !== index) {
-        // le noeud courant n'est pas le plus grand : on descend
-        this._swap(index, plus_grand)
-        index = plus_grand
-      } else {
-        break  // on est à la bonne place
-      }
-    }
-  }
+ }
 }
 ```
 
@@ -174,37 +174,37 @@ class MaxHeap {
 MaxHeap vide : []
 
 insert(10) :
-  data = [10]
-  bubbleUp(0) : index=0, rien à faire
+ data = [10]
+ bubbleUp(0) : index=0, rien à faire
 
 insert(20) :
-  data = [10, 20]
-  bubbleUp(1) : parent(1)=0, data[0]=10 < data[1]=20 --> swap
-  data = [20, 10]
+ data = [10, 20]
+ bubbleUp(1) : parent(1)=0, data[0]=10 < data[1]=20 --> swap
+ data = [20, 10]
 
 insert(15) :
-  data = [20, 10, 15]
-  bubbleUp(2) : parent(2)=0, data[0]=20 > data[2]=15 --> stop
-  data = [20, 10, 15]
+ data = [20, 10, 15]
+ bubbleUp(2) : parent(2)=0, data[0]=20 > data[2]=15 --> stop
+ data = [20, 10, 15]
 
 insert(25) :
-  data = [20, 10, 15, 25]
-  bubbleUp(3) : parent(3)=1, data[1]=10 < data[3]=25 --> swap
-  data = [20, 25, 15, 10]
-  bubbleUp(1) : parent(1)=0, data[0]=20 < data[1]=25 --> swap
-  data = [25, 20, 15, 10]
+ data = [20, 10, 15, 25]
+ bubbleUp(3) : parent(3)=1, data[1]=10 < data[3]=25 --> swap
+ data = [20, 25, 15, 10]
+ bubbleUp(1) : parent(1)=0, data[0]=20 < data[1]=25 --> swap
+ data = [25, 20, 15, 10]
 
 extractMax() :
-  max = 25
-  data[0] = data.pop()  => data = [10, 20, 15]
-  siftDown(0) :
-    plus_grand = 0, gauche=1 (20>10 --> plus_grand=1), droite=2 (15<20 --> pas de changement)
-    plus_grand=1 !== 0 --> swap(0,1)
-    data = [20, 10, 15]
-    siftDown(1) :
-      gauche=3 (hors limites), droite=4 (hors limites)
-      plus_grand=1 --> stop
-  retourne 25
+ max = 25
+ data[0] = data.pop() => data = [10, 20, 15]
+ siftDown(0) :
+  plus_grand = 0, gauche=1 (20>10 --> plus_grand=1), droite=2 (15<20 --> pas de changement)
+  plus_grand=1 !== 0 --> swap(0,1)
+  data = [20, 10, 15]
+  siftDown(1) :
+   gauche=3 (hors limites), droite=4 (hors limites)
+   plus_grand=1 --> stop
+ retourne 25
 ```
 
 ---
@@ -216,64 +216,64 @@ Au lieu de "le parent doit être plus grand", "le parent doit être plus petit".
 
 ```js
 class MinHeap {
-  constructor() {
-    this.data = []
+ constructor() {
+  this.data = []
+ }
+
+ peek()  { return this.data[0] ?? null }
+ size()  { return this.data.length }
+
+ _parent(i)   { return Math.floor((i - 1) / 2) }
+ _leftChild(i) { return 2 * i + 1 }
+ _rightChild(i) { return 2 * i + 2 }
+ _swap(i, j)  { [this.data[i], this.data[j]] = [this.data[j], this.data[i]] }
+
+ insert(value) {
+  this.data.push(value)
+  this._bubbleUp(this.data.length - 1)
+ }
+
+ _bubbleUp(index) {
+  while (index > 0) {
+   const p = this._parent(index)
+   if (this.data[p] > this.data[index]) { // inversion : parent > enfant = violation
+    this._swap(p, index)
+    index = p
+   } else {
+    break
+   }
   }
+ }
 
-  peek()   { return this.data[0] ?? null }
-  size()   { return this.data.length }
+ extractMin() {
+  if (this.data.length === 0) return null
+  if (this.data.length === 1) return this.data.pop()
 
-  _parent(i)     { return Math.floor((i - 1) / 2) }
-  _leftChild(i)  { return 2 * i + 1 }
-  _rightChild(i) { return 2 * i + 2 }
-  _swap(i, j)    { [this.data[i], this.data[j]] = [this.data[j], this.data[i]] }
+  const min = this.data[0]
+  this.data[0] = this.data.pop()
+  this._siftDown(0)
+  return min
+ }
 
-  insert(value) {
-    this.data.push(value)
-    this._bubbleUp(this.data.length - 1)
+ _siftDown(index) {
+  const n = this.data.length
+
+  while (true) {
+   let plus_petit = index
+   const g = this._leftChild(index)
+   const d = this._rightChild(index)
+
+   if (g < n && this.data[g] < this.data[plus_petit]) plus_petit = g
+   if (d < n && this.data[d] < this.data[plus_petit]) plus_petit = d
+
+   if (plus_petit !== index) {
+    this._swap(index, plus_petit)
+    index = plus_petit
+   } else {
+    break
+   }
   }
-
-  _bubbleUp(index) {
-    while (index > 0) {
-      const p = this._parent(index)
-      if (this.data[p] > this.data[index]) {  // inversion : parent > enfant = violation
-        this._swap(p, index)
-        index = p
-      } else {
-        break
-      }
-    }
-  }
-
-  extractMin() {
-    if (this.data.length === 0) return null
-    if (this.data.length === 1) return this.data.pop()
-
-    const min = this.data[0]
-    this.data[0] = this.data.pop()
-    this._siftDown(0)
-    return min
-  }
-
-  _siftDown(index) {
-    const n = this.data.length
-
-    while (true) {
-      let plus_petit = index
-      const g = this._leftChild(index)
-      const d = this._rightChild(index)
-
-      if (g < n && this.data[g] < this.data[plus_petit]) plus_petit = g
-      if (d < n && this.data[d] < this.data[plus_petit]) plus_petit = d
-
-      if (plus_petit !== index) {
-        this._swap(index, plus_petit)
-        index = plus_petit
-      } else {
-        break
-      }
-    }
-  }
+ }
 }
 ```
 
@@ -289,40 +289,40 @@ On commence au dernier noeud interne et on siftDown vers le haut.
 
 ```js
 function heapifyMax(arr) {
-  const n = arr.length
+ const n = arr.length
 
-  // le dernier noeud interne est à Math.floor(n/2) - 1
-  // les éléments après sont des feuilles : déjà OK
-  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-    siftDownInPlace(arr, i, n)
-  }
+ // le dernier noeud interne est à Math.floor(n/2) - 1
+ // les éléments après sont des feuilles : déjà OK
+ for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+  siftDownInPlace(arr, i, n)
+ }
 
-  return arr  // modifié en place
+ return arr // modifié en place
 }
 
 function siftDownInPlace(arr, index, n) {
-  while (true) {
-    let plus_grand = index
-    const g = 2 * index + 1
-    const d = 2 * index + 2
+ while (true) {
+  let plus_grand = index
+  const g = 2 * index + 1
+  const d = 2 * index + 2
 
-    if (g < n && arr[g] > arr[plus_grand]) plus_grand = g
-    if (d < n && arr[d] > arr[plus_grand]) plus_grand = d
+  if (g < n && arr[g] > arr[plus_grand]) plus_grand = g
+  if (d < n && arr[d] > arr[plus_grand]) plus_grand = d
 
-    if (plus_grand !== index) {
-      [arr[index], arr[plus_grand]] = [arr[plus_grand], arr[index]]
-      index = plus_grand
-    } else {
-      break
-    }
+  if (plus_grand !== index) {
+   [arr[index], arr[plus_grand]] = [arr[plus_grand], arr[index]]
+   index = plus_grand
+  } else {
+   break
   }
+ }
 }
 
 // Classement des buteurs à heapifier
 const buteurs = [18, 35, 22, 24, 31, 28, 24]
 heapifyMax(buteurs)
 // => [35, 31, 28, 24, 22, 18, 24]
-//      ^-- Mbappé toujours au sommet
+//   ^-- Mbappé toujours au sommet
 ```
 
 Pourquoi O(n) et pas O(n log n) ?
@@ -352,9 +352,9 @@ h.insert(7)
 // si tu veux les éléments triés :
 const trie = []
 while (h.size() > 0) {
-  trie.push(h.extractMax())
+ trie.push(h.extractMax())
 }
-// => [10, 8, 7, 5, 3]  -- maintenant c'est trié (heap sort)
+// => [10, 8, 7, 5, 3] -- maintenant c'est trié (heap sort)
 // mais tu as vidé le heap pour ça
 ```
 

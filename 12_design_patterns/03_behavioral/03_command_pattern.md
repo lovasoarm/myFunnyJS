@@ -16,14 +16,14 @@ Inconvénient : pour une action simple à usage unique, transformer ça en objet
 
 ```js
 let camp = {
-  rations: 100,
-  gardes: ["Rick", "Daryl"],
+ rations: 100,
+ gardes: ["Rick", "Daryl"],
 }
 
 // on distribue 20 rations directement
 function distribuerRations(camp, quantite) {
-  camp.rations -= quantite
-  console.log(`${quantite} rations distribuées, reste : ${camp.rations}`)
+ camp.rations -= quantite
+ console.log(`${quantite} rations distribuées, reste : ${camp.rations}`)
 }
 
 distribuerRations(camp, 20)
@@ -47,15 +47,15 @@ distribuerRations(20) --> camp.rations -= 20 --> fini, oublié
 // une Command, c'est un objet avec deux méthodes : execute et undo
 // chacune sait comment FAIRE l'action, et comment la DÉFAIRE
 function createDistribuerRationsCommand(camp, quantite) {
-  return {
-    execute: () => {
-      camp.rations -= quantite
-    },
-    undo: () => {
-      camp.rations += quantite
-    },
-    description: `distribuer ${quantite} rations`,
-  }
+ return {
+  execute: () => {
+   camp.rations -= quantite
+  },
+  undo: () => {
+   camp.rations += quantite
+  },
+  description: `distribuer ${quantite} rations`,
+ }
 }
 
 let camp = { rations: 100 }
@@ -72,7 +72,7 @@ console.log(camp.rations) // 100, retour exact à l'état initial
 
 ```
 créer la Command --> execute() --> état modifié
-                  --> undo()    --> état restauré
+         --> undo()  --> état restauré
 ```
 
 La différence clé avec Strategy : Strategy encapsule un ALGORITHME interchangeable. Command encapsule une ACTION avec son inverse, prête à être stockée et rejouée plus tard.
@@ -90,32 +90,32 @@ La différence clé avec Strategy : Strategy encapsule un ALGORITHME interchange
 const historique = []
 
 function executer(command) {
-  command.execute()
-  historique.push(command)
-  console.log(`fait : ${command.description}`)
+ command.execute()
+ historique.push(command)
+ console.log(`fait : ${command.description}`)
 }
 
 function annulerDernier() {
-  const command = historique.pop()
-  if (!command) {
-    console.log("rien à annuler")
-    return
-  }
-  command.undo()
-  console.log(`annulé : ${command.description}`)
+ const command = historique.pop()
+ if (!command) {
+  console.log("rien à annuler")
+  return
+ }
+ command.undo()
+ console.log(`annulé : ${command.description}`)
 }
 
 let camp = { rations: 100, sentinelles: ["porte_nord"] }
 
 function createAjouterSentinelleCommand(camp, poste) {
-  return {
-    execute: () => camp.sentinelles.push(poste),
-    undo: () => camp.sentinelles.pop(),
-    description: `ajouter sentinelle à ${poste}`,
-  }
+ return {
+  execute: () => camp.sentinelles.push(poste),
+  undo: () => camp.sentinelles.pop(),
+  description: `ajouter sentinelle à ${poste}`,
+ }
 }
 
-executer(createDistribuerRationsCommand(camp, 20))      // fait : distribuer 20 rations
+executer(createDistribuerRationsCommand(camp, 20))   // fait : distribuer 20 rations
 executer(createAjouterSentinelleCommand(camp, "porte_sud")) // fait : ajouter sentinelle à porte_sud
 
 console.log(camp)
@@ -146,27 +146,27 @@ C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : m�
 Un undo/redo correct a DEUX piles, pas une.
 
 ```js
-const historique = []  // ordres_mission faites
-const annulees = []    // ordres_mission défaites, prêtes à être refaites
+const historique = [] // ordres_mission faites
+const annulees = []  // ordres_mission défaites, prêtes à être refaites
 
 function executer(command) {
-  command.execute()
-  historique.push(command)
-  annulees.length = 0 // CRUCIAL : une nouvelle action casse le futur "redo"
+ command.execute()
+ historique.push(command)
+ annulees.length = 0 // CRUCIAL : une nouvelle action casse le futur "redo"
 }
 
 function annuler() {
-  const command = historique.pop()
-  if (!command) return
-  command.undo()
-  annulees.push(command)
+ const command = historique.pop()
+ if (!command) return
+ command.undo()
+ annulees.push(command)
 }
 
 function refaire() {
-  const command = annulees.pop()
-  if (!command) return
-  command.execute()
-  historique.push(command)
+ const command = annulees.pop()
+ if (!command) return
+ command.execute()
+ historique.push(command)
 }
 ```
 
@@ -174,7 +174,7 @@ Le point piégeux : `annulees.length = 0` dans `executer`. Si tu annules 3 actio
 
 ```
 historique: [A, B, C] --> annuler x2 --> historique: [A], annulees: [C, B]
-                       --> nouvelle action D --> historique: [A, D], annulees: [] (vidé !)
+            --> nouvelle action D --> historique: [A, D], annulees: [] (vidé !)
 ```
 
 ---
@@ -186,31 +186,31 @@ Dans Garo, chaque mission arrive de façon asynchrone. Tu ne peux pas toutes les
 ```js
 // chaque mission est une Command : on sait l'exécuter, on sait la décrire
 function createMissionCommand(chevalier, horror) {
-  return {
-    execute: async () => {
-      console.log(`${chevalier} engage ${horror}`)
-      // simulate combat async
-      await new Promise((resolve) => setTimeout(resolve, 100))
-      return { chevalier, horror, resultat: "vaincu" }
-    },
-    description: `mission : ${chevalier} vs ${horror}`,
-  }
+ return {
+  execute: async () => {
+   console.log(`${chevalier} engage ${horror}`)
+   // simulate combat async
+   await new Promise((resolve) => setTimeout(resolve, 100))
+   return { chevalier, horror, resultat: "vaincu" }
+  },
+  description: `mission : ${chevalier} vs ${horror}`,
+ }
 }
 
 // la queue traite les missions une par une, dans l'ordre d'arrivée
 async function traiterQueue(queue) {
-  const resultats = []
-  for (const command of queue) {
-    console.log(`traitement : ${command.description}`)
-    const resultat = await command.execute()
-    resultats.push(resultat)
-  }
-  return resultats
+ const resultats = []
+ for (const command of queue) {
+  console.log(`traitement : ${command.description}`)
+  const resultat = await command.execute()
+  resultats.push(resultat)
+ }
+ return resultats
 }
 
 const queue = [
-  createMissionCommand("Kouga", "Horror_Garde"),
-  createMissionCommand("Rian", "Horror_Sombre"),
+ createMissionCommand("Kouga", "Horror_Garde"),
+ createMissionCommand("Rian", "Horror_Sombre"),
 ]
 
 traiterQueue(queue).then(console.log)
@@ -260,22 +260,22 @@ const historique = []
 const annulees = []
 
 function executer(command) {
-  command.execute()
-  historique.push(command)
+ command.execute()
+ historique.push(command)
 }
 
 function annuler() {
-  const command = historique.pop()
-  if (!command) return
-  command.undo()
-  annulees.push(command)
+ const command = historique.pop()
+ if (!command) return
+ command.undo()
+ annulees.push(command)
 }
 
 function refaire() {
-  const command = annulees.pop()
-  if (!command) return
-  command.execute()
-  historique.push(command)
+ const command = annulees.pop()
+ if (!command) return
+ command.execute()
+ historique.push(command)
 }
 ```
 

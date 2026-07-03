@@ -15,17 +15,17 @@ Et selon comment tu écris ta boucle, tu peux diviser ton temps d'exécution par
 ```js
 // sans async/await
 function getKnight() {
-  return fetch("/api/knight/leon")
-    .then((res) => res.json())
-    .then((data) => data);
+ return fetch("/api/knight/leon")
+  .then((res) => res.json())
+  .then((data) => data);
 }
 
 // avec async/await
 // c'est la même chose:la syntaxe change, pas le comportement
 async function getKnight() {
-  const res = await fetch("/api/knight/leon");
-  const data = await res.json();
-  return data;
+ const res = await fetch("/api/knight/leon");
+ const data = await res.json();
+ return data;
 }
 ```
 
@@ -33,13 +33,13 @@ Ce que le moteur JS fait réellement :
 
 ```
 appel à getKnight()
-  --> la fonction démarre
-  --> fetch() est lancé
-  --> await suspend getKnight()
-  --> la call stack est libérée, d'autres tâches peuvent tourner
-  --> quand fetch() se résout : getKnight() reprend
-  --> await res.json() : même chose
-  --> return data --> la Promise retournée par getKnight() se résout
+ --> la fonction démarre
+ --> fetch() est lancé
+ --> await suspend getKnight()
+ --> la call stack est libérée, d'autres tâches peuvent tourner
+ --> quand fetch() se résout : getKnight() reprend
+ --> await res.json() : même chose
+ --> return data --> la Promise retournée par getKnight() se résout
 ```
 
 `await` ne bloque pas le thread. Il suspend la fonction, rien d'autre.
@@ -54,13 +54,13 @@ Deux Knights partent en mission. Tu veux les résultats des deux.
 
 ```js
 async function getMissions() {
-  // Leon attend sa mission
-  const missionLeon = await fetchMission("leon"); // 2 secondes
-  // Zaruba attend que Leon finisse, puis attend sa mission
-  const missionZaruba = await fetchMission("zaruba"); // 2 secondes
-  // total : 4 secondes
+ // Leon attend sa mission
+ const missionLeon = await fetchMission("leon"); // 2 secondes
+ // Zaruba attend que Leon finisse, puis attend sa mission
+ const missionZaruba = await fetchMission("zaruba"); // 2 secondes
+ // total : 4 secondes
 
-  return [missionLeon, missionZaruba];
+ return [missionLeon, missionZaruba];
 }
 ```
 
@@ -71,14 +71,14 @@ Mais avec deux `await` en séquence, tu les forces à faire la queue.
 
 ```js
 async function getMissions() {
-  // les deux fetches démarrent EN MÊME TEMPS
-  const [missionLeon, missionZaruba] = await Promise.all([
-    fetchMission("leon"),
-    fetchMission("zaruba"),
-  ]);
-  // total : 2 secondes (le temps du plus lent)
+ // les deux fetches démarrent EN MÊME TEMPS
+ const [missionLeon, missionZaruba] = await Promise.all([
+  fetchMission("leon"),
+  fetchMission("zaruba"),
+ ]);
+ // total : 2 secondes (le temps du plus lent)
 
-  return [missionLeon, missionZaruba];
+ return [missionLeon, missionZaruba];
 }
 ```
 
@@ -96,8 +96,8 @@ const knights = ["leon", "zaruba", "rei"];
 
 // PIÈGE : ça a l'air d'attendre chaque knight, mais non
 knights.forEach(async (knight) => {
-  const mission = await fetchMission(knight);
-  console.log(mission);
+ const mission = await fetchMission(knight);
+ console.log(mission);
 });
 
 console.log("missions terminées"); // s'affiche EN PREMIER
@@ -113,8 +113,8 @@ console.log("missions terminées"); // s'affiche EN PREMIER
 // chaque knight attend que le précédent soit fini
 // lent, mais prévisible et correct
 for (const knight of knights) {
-  const mission = await fetchMission(knight);
-  console.log(mission); // dans l'ordre garanti
+ const mission = await fetchMission(knight);
+ console.log(mission); // dans l'ordre garanti
 }
 ```
 
@@ -124,7 +124,7 @@ for (const knight of knights) {
 // tous les fetches partent en même temps
 // on attend que tout soit résolu
 const missions = await Promise.all(
-  knights.map((knight) => fetchMission(knight)),
+ knights.map((knight) => fetchMission(knight)),
 );
 // missions = [missionLeon, missionZaruba, missionRei]
 // dans le même ordre que le tableau de départ:garanti
@@ -133,9 +133,9 @@ const missions = await Promise.all(
 Le résumé visuel :
 
 ```
-forEach + await  -->  lance sans attendre   -->  BROKEN
-for...of + await -->  séquentiel propre     -->  2s + 2s + 2s = 6s
-Promise.all      -->  parallèle propre      -->  max(2s, 2s, 2s) = 2s
+forEach + await --> lance sans attendre  --> BROKEN
+for...of + await --> séquentiel propre   --> 2s + 2s + 2s = 6s
+Promise.all   --> parallèle propre   --> max(2s, 2s, 2s) = 2s
 ```
 
 ---
@@ -149,16 +149,16 @@ Parfois, le séquentiel est obligatoire. Si tu dois utiliser le résultat d'une 
 // chaque étape dépend du résultat de la précédente
 
 async function executePlan() {
-  // étape 1 : infiltrer la salle des gardes
-  const accessCode = await infiltrateGuardRoom();
+ // étape 1 : infiltrer la salle des gardes
+ const accessCode = await infiltrateGuardRoom();
 
-  // accessCode est nécessaire pour l'étape 2
-  const tunnel = await digTunnel(accessCode);
+ // accessCode est nécessaire pour l'étape 2
+ const tunnel = await digTunnel(accessCode);
 
-  // tunnel est nécessaire pour l'étape 3
-  const exit = await reachExit(tunnel.coordinates);
+ // tunnel est nécessaire pour l'étape 3
+ const exit = await reachExit(tunnel.coordinates);
 
-  return exit;
+ return exit;
 }
 ```
 
@@ -174,8 +174,8 @@ const data = await fetch("/api/data");
 
 // correct : on emballe dans async
 async function loadData() {
-  const data = await fetch("/api/data");
-  return data;
+ const data = await fetch("/api/data");
+ return data;
 }
 
 // ou en top-level dans un module ES
@@ -193,9 +193,9 @@ Le Conseil de Surveillance de Garo doit récupérer les rapports de 5 Chevaliers
 
 ```js
 function fetchReport(knight) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(`Rapport de ${knight} : mission accomplie`), 1000);
-  });
+ return new Promise((resolve) => {
+  setTimeout(() => resolve(`Rapport de ${knight} : mission accomplie`), 1000);
+ });
 }
 ```
 
@@ -213,8 +213,8 @@ Ce code a l'air juste. Il est cassé.
 const horrors = ["Fetalis", "Angelia", "Kiba Galin"];
 
 horrors.forEach(async (horror) => {
-  const result = await eliminateHorror(horror);
-  console.log(`${horror} éliminé : ${result}`);
+ const result = await eliminateHorror(horror);
+ console.log(`${horror} éliminé : ${result}`);
 });
 
 console.log("Tous les Horrors ont été éliminés");

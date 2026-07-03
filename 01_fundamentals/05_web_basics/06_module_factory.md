@@ -23,13 +23,13 @@ Vraie utilité : tout projet vanilla JS (sans framework), tout legacy à mainten
 // ninja.js
 var data = { name: "Naruto", role: "genin" }; // pollue window.data
 var init = function () {
-  /* ... */
+ /* ... */
 }; // pollue window.init
 
 // combat.js
 var data = { jutsus: [], degats: 0 }; // ECRASE window.data de ninja.js
 var init = function () {
-  /* ... */
+ /* ... */
 }; // ECRASE window.init de ninja.js
 ```
 
@@ -44,9 +44,9 @@ L'IIFE (Immediately Invoked Function Expression : fonction qui s'exécute imméd
 ```js
 // La structure de base
 (function () {
-  // tout ce qui est ici est privé : invisible depuis l'extérieur
-  var secret = "invisible";
-  console.log(secret); // accessible ici
+ // tout ce qui est ici est privé : invisible depuis l'extérieur
+ var secret = "invisible";
+ console.log(secret); // accessible ici
 })();
 
 console.log(secret); // ReferenceError : secret n'existe pas dans ce scope
@@ -59,49 +59,49 @@ Pourquoi les deux paires de parenthèses ? La première `()` crée l'expression 
 ```js
 // ninja.js
 var NinjaModule = (function () {
-  // une seule variable dans window : NinjaModule
-  var data = { name: "Naruto" }; // privé : invisible de l'extérieur
-  var role = "genin"; // privé
+ // une seule variable dans window : NinjaModule
+ var data = { name: "Naruto" }; // privé : invisible de l'extérieur
+ var role = "genin"; // privé
 
-  function getDisplayName() {
-    // privé
-    return data.name + " (" + role + ")";
-  }
+ function getDisplayName() {
+  // privé
+  return data.name + " (" + role + ")";
+ }
 
-  return {
-    // seule cette partie est exposée
-    getName: function () {
-      return data.name;
-    },
-    getDisplay: getDisplayName,
-    setName: function (n) {
-      data.name = n;
-    },
-  };
+ return {
+  // seule cette partie est exposée
+  getName: function () {
+   return data.name;
+  },
+  getDisplay: getDisplayName,
+  setName: function (n) {
+   data.name = n;
+  },
+ };
 })();
 
 // combat.js
 var CombatModule = (function () {
-  // une seule variable dans window : CombatModule
-  var jutsus = []; // privé
+ // une seule variable dans window : CombatModule
+ var jutsus = []; // privé
 
-  return {
-    add: function (jutsu) {
-      jutsus.push(jutsu);
-    },
-    getCount: function () {
-      return jutsus.length;
-    },
-  };
+ return {
+  add: function (jutsu) {
+   jutsus.push(jutsu);
+  },
+  getCount: function () {
+   return jutsus.length;
+  },
+ };
 })();
 ```
 
 ```
-AVANT                      APRÈS
-window.data     <-- clash  window.NinjaModule.getName()
-window.data     <-- clash  window.CombatModule.add()
-window.init     <-- clash
-window.init     <-- clash
+AVANT           APRÈS
+window.data   <-- clash window.NinjaModule.getName()
+window.data   <-- clash window.CombatModule.add()
+window.init   <-- clash
+window.init   <-- clash
 ```
 
 Un seul nom exposé par module. Tout le reste est encapsulé.
@@ -115,23 +115,23 @@ L'IIFE crée un singleton (une seule instance). Mais parfois tu veux plusieurs i
 ```js
 // Chaque appel retourne un ninja indépendant
 function createNinja(name, chakra) {
-  // données privées : dans la closure (portée fermée de la fonction)
-  let _chakra = chakra;
-  let _name = name;
+ // données privées : dans la closure (portée fermée de la fonction)
+ let _chakra = chakra;
+ let _name = name;
 
-  // méthodes publiques exposées dans l'objet retourné
-  return {
-    getName() {
-      return _name; // accès aux données privées via closure
-    },
-    useJutsu(jutsuName, cost) {
-      if (_chakra < cost) {
-        return `${_name} n'a plus assez de chakra`;
-      }
-      _chakra -= cost; // modification de l'état privé
-      return `${_name} utilise ${jutsuName} (chakra restant : ${_chakra})`;
-    },
-  };
+ // méthodes publiques exposées dans l'objet retourné
+ return {
+  getName() {
+   return _name; // accès aux données privées via closure
+  },
+  useJutsu(jutsuName, cost) {
+   if (_chakra < cost) {
+    return `${_name} n'a plus assez de chakra`;
+   }
+   _chakra -= cost; // modification de l'état privé
+   return `${_name} utilise ${jutsuName} (chakra restant : ${_chakra})`;
+  },
+ };
 }
 
 const naruto = createNinja("Naruto", 1000);
@@ -156,19 +156,19 @@ L'IIFE a dominé pendant des années pour isoler le scope. ES6 a introduit `impo
 ```js
 // AVANT (IIFE)
 var CombatModule = (function () {
-  let jutsus = [];
-  return {
-    add(jutsu) {
-      jutsus.push(jutsu);
-    },
-  };
+ let jutsus = [];
+ return {
+  add(jutsu) {
+   jutsus.push(jutsu);
+  },
+ };
 })();
 
 // APRÈS (ES Module)
 // combat.js
 let jutsus = [];
 export function add(jutsu) {
-  jutsus.push(jutsu);
+ jutsus.push(jutsu);
 }
 
 // main.js
@@ -194,7 +194,7 @@ Le shérif Lucas Hood a besoin d'un scope isolé pour gérer une liste de suspec
 
 ```js
 var WatchModule = (function () {
-  // à compléter
+ // à compléter
 })();
 
 WatchModule.addSuspect("Proctor");

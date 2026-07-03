@@ -1,7 +1,7 @@
 # SÉRIALISATION : TRANSPORTER LES DONNÉES SANS LES PERDRE
 Temps de lecture ~9 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Walter White a un problème de communication.
 Il doit transmettre des instructions précises à ses distributeurs sans erreur de traduction.
@@ -23,11 +23,11 @@ Universel, lisible par les humains, supporté partout.
 ```js
 // Les bases : aller-retour JSON
 const data = {
-  ninja: 'Naruto',
-  level: 9001,
-  jutsus: ['Rasengan', 'Shadow Clone'],
-  stats: { chakra: 100, speed: 95 },
-  active: true,
+ ninja: 'Naruto',
+ level: 9001,
+ jutsus: ['Rasengan', 'Shadow Clone'],
+ stats: { chakra: 100, speed: 95 },
+ active: true,
 };
 
 const json = JSON.stringify(data);
@@ -41,15 +41,15 @@ const parsed = JSON.parse(json);
 
 ```js
 const problematic = {
-  fn: () => 'je suis une fonction',         // PERDU : les fonctions ne sérialisent pas
-  undef: undefined,                          // PERDU : undefined disparaît
-  sym: Symbol('id'),                         // PERDU : les Symbol disparaissent
-  inf: Infinity,                             // PERDU : devient null
-  nan: NaN,                                  // PERDU : devient null
-  date: new Date(),                          // DÉGRADÉ : devient une string ISO (pas une Date)
-  map: new Map([['key', 'value']]),          // PERDU : les Map deviennent {}
-  set: new Set([1, 2, 3]),                   // PERDU : les Set deviennent {}
-  circular: null,                            // EXPLOSE : les références circulaires throwent
+ fn: () => 'je suis une fonction',     // PERDU : les fonctions ne sérialisent pas
+ undef: undefined,             // PERDU : undefined disparaît
+ sym: Symbol('id'),             // PERDU : les Symbol disparaissent
+ inf: Infinity,               // PERDU : devient null
+ nan: NaN,                 // PERDU : devient null
+ date: new Date(),             // DÉGRADÉ : devient une string ISO (pas une Date)
+ map: new Map([['key', 'value']]),     // PERDU : les Map deviennent {}
+ set: new Set([1, 2, 3]),          // PERDU : les Set deviennent {}
+ circular: null,              // EXPLOSE : les références circulaires throwent
 };
 
 JSON.stringify(problematic);
@@ -65,18 +65,18 @@ JSON.stringify(problematic);
 ```js
 // Deuxième argument : replacer (transformateur) pour personnaliser la sérialisation
 const data = {
-  id: 'user_42',
-  password: 'motdepasse123', // ne jamais sérialiser ça en prod
-  createdAt: new Date(),
-  score: Infinity,
+ id: 'user_42',
+ password: 'motdepasse123', // ne jamais sérialiser ça en prod
+ createdAt: new Date(),
+ score: Infinity,
 };
 
 // Replacer fonction : contrôler ce qui est sérialisé
 const safe = JSON.stringify(data, (key, value) => {
-  if (key === 'password') return undefined; // exclure les données sensibles
-  if (value instanceof Date) return value.toISOString(); // normaliser les dates
-  if (!isFinite(value)) return null;       // remplacer Infinity et NaN
-  return value;
+ if (key === 'password') return undefined; // exclure les données sensibles
+ if (value instanceof Date) return value.toISOString(); // normaliser les dates
+ if (!isFinite(value)) return null;    // remplacer Infinity et NaN
+ return value;
 });
 // => '{"id":"user_42","createdAt":"2026-06-16T...","score":null}'
 
@@ -86,7 +86,7 @@ const minimal = JSON.stringify(data, ['id', 'score']);
 
 // Troisième argument : indentation pour lisibilité (debug uniquement, alourdit la taille)
 const pretty = JSON.stringify({ name: 'Naruto', level: 99 }, null, 2);
-// => '{\n  "name": "Naruto",\n  "level": 99\n}'
+// => '{\n "name": "Naruto",\n "level": 99\n}'
 ```
 
 ---
@@ -106,11 +106,11 @@ parsed.date instanceof Date; // => false
 
 // Pour restaurer les dates : utiliser le reviver (restaurateur)
 const restored = JSON.parse(json, (key, value) => {
-  // Détecter les strings qui ressemblent à des dates ISO
-  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value)) {
-    return new Date(value); // reconstruire l'objet Date
-  }
-  return value;
+ // Détecter les strings qui ressemblent à des dates ISO
+ if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value)) {
+  return new Date(value); // reconstruire l'objet Date
+ }
+ return value;
 });
 restored.date instanceof Date; // => true
 ```
@@ -125,11 +125,11 @@ Pour les systèmes à fort volume (microservices, temps réel, IoT), des formats
 **Comparaison :**
 
 ```
-Format        Lisible   Taille    Speed parse   Typage strict
-----------    -------   -------   -----------   -------------
-JSON          Oui       Grande    Moyen         Non
-MessagePack   Non       x0.6      Rapide        Non
-Protobuf      Non       x0.3      Très rapide   Oui (schema)
+Format    Lisible  Taille  Speed parse  Typage strict
+----------  -------  -------  -----------  -------------
+JSON     Oui    Grande  Moyen     Non
+MessagePack  Non    x0.6   Rapide    Non
+Protobuf   Non    x0.3   Très rapide  Oui (schema)
 ```
 
 **MessagePack :** JSON binaire. Même structure, 40% plus petit, plus rapide à parser.
@@ -149,7 +149,7 @@ const decoded = decode(binary);
 const jsonSize = new Blob([JSON.stringify(data)]).size; // en bytes
 const msgpackSize = binary.length;
 console.log(`JSON: ${jsonSize}b, MessagePack: ${msgpackSize}b`);
-// JSON: 65b, MessagePack: 43b  (sur cet exemple)
+// JSON: 65b, MessagePack: 43b (sur cet exemple)
 ```
 
 **Protobuf (Protocol Buffers) :** le format de Google. Schéma défini, typage strict, le plus compact.
@@ -160,9 +160,9 @@ console.log(`JSON: ${jsonSize}b, MessagePack: ${msgpackSize}b`);
 
 // Définition du schéma (ninja.proto) :
 // message Ninja {
-//   required string name = 1;
-//   required int32 level = 2;
-//   repeated string jutsus = 3;
+//  required string name = 1;
+//  required int32 level = 2;
+//  repeated string jutsus = 3;
 // }
 
 import protobuf from 'protobufjs';
@@ -188,20 +188,20 @@ Tu peux définir comment un objet se sérialise en JSON via `toJSON()` :
 
 ```js
 class Ninja {
-  constructor(name, level, secretTechnique) {
-    this.name = name;
-    this.level = level;
-    this._secretTechnique = secretTechnique; // underscore = convention "privé"
-  }
+ constructor(name, level, secretTechnique) {
+  this.name = name;
+  this.level = level;
+  this._secretTechnique = secretTechnique; // underscore = convention "privé"
+ }
 
-  // JSON.stringify appellera automatiquement toJSON si elle existe
-  toJSON() {
-    return {
-      name: this.name,
-      level: this.level,
-      // _secretTechnique n'est pas incluse : ne sort jamais dans l'API
-    };
-  }
+ // JSON.stringify appellera automatiquement toJSON si elle existe
+ toJSON() {
+  return {
+   name: this.name,
+   level: this.level,
+   // _secretTechnique n'est pas incluse : ne sort jamais dans l'API
+  };
+ }
 }
 
 const naruto = new Ninja('Naruto', 99, 'Six Paths Sage Mode');
@@ -223,24 +223,24 @@ import { createInterface } from 'readline';
 // NDJSON (Newline Delimited JSON) : un objet JSON par ligne
 // Permet de processer ligne par ligne sans charger tout le fichier
 async function processLargeDataset(filePath) {
-  const fileStream = createReadStream(filePath);
-  const rl = createInterface({ input: fileStream });
+ const fileStream = createReadStream(filePath);
+ const rl = createInterface({ input: fileStream });
 
-  let processedCount = 0;
+ let processedCount = 0;
 
-  for await (const line of rl) {
-    if (!line.trim()) continue; // ignorer les lignes vides
+ for await (const line of rl) {
+  if (!line.trim()) continue; // ignorer les lignes vides
 
-    try {
-      const record = JSON.parse(line); // parser une ligne = un objet
-      await processRecord(record);    // traiter sans tout garder en mémoire
-      processedCount++;
-    } catch {
-      console.error(`Ligne ${processedCount} invalide : ${line.slice(0, 50)}...`);
-    }
+  try {
+   const record = JSON.parse(line); // parser une ligne = un objet
+   await processRecord(record);  // traiter sans tout garder en mémoire
+   processedCount++;
+  } catch {
+   console.error(`Ligne ${processedCount} invalide : ${line.slice(0, 50)}...`);
   }
+ }
 
-  return processedCount;
+ return processedCount;
 }
 ```
 

@@ -1,7 +1,7 @@
 # 05 : Heap Snapshot Arena
 Temps de lecture ~5 min
 
-> [PERISSABLE] Outil V8 : [INTEMPOREL] **Principe universel intemporel** : diff de snapshots = méthode canonique pour traquer une fuite dans n'importe quel runtime managé (JVM, .NET, Python, Go pprof).
+> Outil V8 : **Principe universel intemporel** : diff de snapshots = méthode canonique pour traquer une fuite dans n'importe quel runtime managé (JVM, .NET, Python, Go pprof).
 
 ## Mission
 
@@ -17,11 +17,11 @@ Un serveur HTTP minimal qui, à chaque requête `/register`, ajoute un handler d
 import http from 'node:http';
 const listeners = new Map();
 http.createServer((req, res) => {
-  if (req.url === '/register') {
-    const big = new Array(100_000).fill(Math.random());
-    listeners.set(Math.random(), () => big.length);
-    res.end('ok');
-  }
+ if (req.url === '/register') {
+  const big = new Array(100_000).fill(Math.random());
+  listeners.set(Math.random(), () => big.length);
+  res.end('ok');
+ }
 }).listen(3000);
 ```
 

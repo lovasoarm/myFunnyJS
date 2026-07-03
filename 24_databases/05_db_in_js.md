@@ -1,7 +1,7 @@
 # Connecter ton code à la DB sans te perdre dans l'abstraction
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 T'as compris SQL, les modèles, le cache. Reste la vraie question côté code : comment ton JS parle concrètement à la DB. Trois niveaux d'abstraction (driver brut, query builder, ORM), chacun avec un vrai compromis, pas juste une question de goût.
 
@@ -16,16 +16,16 @@ Inconvénient : tu perds en visibilité sur ce qui part vraiment en SQL.
 
 ```
 DRIVER BRUT (pg, mysql2)
-  --> tu écris le SQL toi-même, le driver transporte juste la requête
-  --> contrôle total, verbosité maximale
+ --> tu écris le SQL toi-même, le driver transporte juste la requête
+ --> contrôle total, verbosité maximale
 
 QUERY BUILDER (Knex, Drizzle en mode builder)
-  --> tu construis la requête avec des méthodes JS, ça génère le SQL
-  --> bon compromis entre contrôle et confort
+ --> tu construis la requête avec des méthodes JS, ça génère le SQL
+ --> bon compromis entre contrôle et confort
 
 ORM (Prisma, Mongoose, Sequelize, Drizzle en mode ORM)
-  --> tu manipules des objets JS, l'ORM génère le SQL et fait le mapping
-  --> confort maximal, contrôle minimal sur ce qui part vraiment en requête
+ --> tu manipules des objets JS, l'ORM génère le SQL et fait le mapping
+ --> confort maximal, contrôle minimal sur ce qui part vraiment en requête
 ```
 
 ```
@@ -44,8 +44,8 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
 // tu écris le SQL, le driver l'envoie, point
 const result = await pool.query(
-  'SELECT id, ninja_name, rank FROM ninjas WHERE village = $1',
-  ['Konoha']
+ 'SELECT id, ninja_name, rank FROM ninjas WHERE village = $1',
+ ['Konoha']
 )
 console.log(result.rows) // un tableau d'objets JS, un par ligne
 ```
@@ -61,21 +61,21 @@ import { db } from './db'
 
 // Drizzle (exemple représentatif d'un query builder moderne)
 const activeNinjas = await db
-  .select({ id: ninjas.id, name: ninjas.ninja_name, rank: ninjas.rank })
-  .from(ninjas)
-  .where(eq(ninjas.village, 'Konoha'))
-  .orderBy(desc(ninjas.chakra_level))
-  .limit(20)
+ .select({ id: ninjas.id, name: ninjas.ninja_name, rank: ninjas.rank })
+ .from(ninjas)
+ .where(eq(ninjas.village, 'Konoha'))
+ .orderBy(desc(ninjas.chakra_level))
+ .limit(20)
 ```
 
 Le pourquoi : tu gardes une trace claire de ce qui va être généré en SQL (chaque méthode correspond presque 1:1 à une clause SQL), tout en profitant de l'autocomplétion TypeScript et de la sécurité contre l'injection (les valeurs sont automatiquement paramétrées).
 
 ```
-.select(...)   -->  SELECT ...
-.from(...)     -->  FROM ...
-.where(...)    -->  WHERE ...
-.orderBy(...)  -->  ORDER BY ...
-.limit(...)    -->  LIMIT ...
+.select(...)  --> SELECT ...
+.from(...)   --> FROM ...
+.where(...)  --> WHERE ...
+.orderBy(...) --> ORDER BY ...
+.limit(...)  --> LIMIT ...
 ```
 
 C'est le compromis le plus sain pour la majorité des projets : tu vois ce que tu construis, tu gardes la sécurité de typage, tu n'écris pas de SQL en string brute partout.
@@ -87,8 +87,8 @@ C'est le compromis le plus sain pour la majorité des projets : tu vois ce que t
 ```js
 // Prisma : tu manipules des relations comme des objets JS imbriqués
 const ninja = await prisma.ninja.findUnique({
-  where: { id: 1 },
-  include: { missions: true } // récupère aussi les missions liées
+ where: { id: 1 },
+ include: { missions: true } // récupère aussi les missions liées
 })
 
 console.log(ninja.missions) // un tableau de missions, déjà mappé en objets JS
@@ -103,8 +103,8 @@ Le piège classique, le problème N+1 (vu aussi en algo de complexité dans `08_
 const allNinjas = await prisma.ninja.findMany() // 1 requête, récupère 1000 ninjas
 
 for (const ninja of allNinjas) {
-  const missions = await prisma.mission.findMany({ where: { ninjaId: ninja.id } })
-  // 1 requête PAR NINJA --> 1000 requêtes supplémentaires
+ const missions = await prisma.mission.findMany({ where: { ninjaId: ninja.id } })
+ // 1 requête PAR NINJA --> 1000 requêtes supplémentaires
 }
 // Total : 1001 requêtes pour ce qui devrait en prendre 1 ou 2
 ```
@@ -138,10 +138,10 @@ toutes les DB (dev, staging, prod) appliquent les mêmes migrations dans le mêm
 ```js
 // Exemple Prisma : tu modifies le schéma déclaratif
 model Ninja {
-  id          Int    @id @default(autoincrement())
-  ninja_name  String
-  rank        String
-  kekkei_genkai String? // nouveau champ ajouté
+ id     Int  @id @default(autoincrement())
+ ninja_name String
+ rank    String
+ kekkei_genkai String? // nouveau champ ajouté
 }
 
 // puis tu génères la migration : prisma migrate dev --name add_kekkei_genkai
@@ -157,19 +157,19 @@ Le pourquoi : ton schéma de DB est aussi important que ton code, donc il doit s
 ```js
 // Mauvais : une nouvelle connexion TCP à chaque requête, coûteux
 async function getNinja(id) {
-  const client = new Client({ connectionString: process.env.DATABASE_URL })
-  await client.connect() // coût de connexion à CHAQUE appel
-  const result = await client.query('SELECT * FROM ninjas WHERE id = $1', [id])
-  await client.end()
-  return result.rows[0]
+ const client = new Client({ connectionString: process.env.DATABASE_URL })
+ await client.connect() // coût de connexion à CHAQUE appel
+ const result = await client.query('SELECT * FROM ninjas WHERE id = $1', [id])
+ await client.end()
+ return result.rows[0]
 }
 
 // Bon : un pool, réutilisé, qui gère un nombre limité de connexions ouvertes
 const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 10 })
 
 async function getNinja(id) {
-  const result = await pool.query('SELECT * FROM ninjas WHERE id = $1', [id])
-  return result.rows[0]
+ const result = await pool.query('SELECT * FROM ninjas WHERE id = $1', [id])
+ return result.rows[0]
 }
 ```
 

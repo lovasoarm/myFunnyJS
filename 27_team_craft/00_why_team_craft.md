@@ -17,11 +17,11 @@ Un codebase sans pratiques d'équipe ressemble à ça après 18 mois :
 
 ```
 src/
-├── utils.js          <-- 1800 lignes, personne sait ce qui est encore utilisé
-├── utils2.js         <-- "j'avais peur de casser utils.js"
-├── utils_old.js      <-- "au cas où"
-├── utils_FINAL.js    <-- commenté sur git le vendredi avant les vacances
-└── helperfunctions/  <-- le dossier du désespoir
+├── utils.js     <-- 1800 lignes, personne sait ce qui est encore utilisé
+├── utils2.js     <-- "j'avais peur de casser utils.js"
+├── utils_old.js   <-- "au cas où"
+├── utils_FINAL.js  <-- commenté sur git le vendredi avant les vacances
+└── helperfunctions/ <-- le dossier du désespoir
 ```
 
 Sans code review : les bugs passent en prod parce que personne regarde vraiment.
@@ -121,11 +121,11 @@ Ce module se place en fin de curriculum pour une raison : il présuppose que tu 
 ```
 modules précédents qui rendent ce module concret
 -------------------------------------------------
-14_refactoring        -->  tu sais ce qui mérite une review sérieuse
-02_problem_solving    -->  tu sais pourquoi les décisions d'archi comptent
-15_typescript         -->  tu as des types à documenter et des ADR à écrire
-16_runtime_env        -->  tu as un environnement à configurer et à documenter
-21_api_craft          -->  tu as des endpoints à documenter dans un README
+14_refactoring    --> tu sais ce qui mérite une review sérieuse
+02_problem_solving  --> tu sais pourquoi les décisions d'archi comptent
+15_typescript     --> tu as des types à documenter et des ADR à écrire
+16_runtime_env    --> tu as un environnement à configurer et à documenter
+21_api_craft     --> tu as des endpoints à documenter dans un README
 ```
 
 Si tu lis ce module au début du curriculum : tu comprends les concepts, mais ils restent abstraits. La douleur qu'ils résolvent, tu ne l'as pas encore vécue.

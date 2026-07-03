@@ -19,10 +19,10 @@ Pas du code. Pas encore. Juste des formes.
 Domaine : un tournoi de foot
 Entités : Équipe, Joueur, Match, Score, Classement
 
-Équipe     : { id, nom, joueurs: Joueur[] }
-Joueur     : { id, nom, poste, equipeId }
-Match      : { id, domicile: Équipe, extérieur: Équipe, score: Score, statut }
-Score      : { domicile: number, extérieur: number }
+Équipe   : { id, nom, joueurs: Joueur[] }
+Joueur   : { id, nom, poste, equipeId }
+Match   : { id, domicile: Équipe, extérieur: Équipe, score: Score, statut }
+Score   : { domicile: number, extérieur: number }
 Classement : { equipeId, points, goalDifference, joués }
 ```
 
@@ -36,13 +36,13 @@ Un contrat, c'est la promesse qu'un module fait à ceux qui l'appellent.
 
 ```
 // Contrat de calculerClassement
-// entrée  : Match[] -- tous les matchs joués jusqu'ici
-// sortie  : Classement[] -- trié par points décroissants
-// jamais  : de mutation sur les matchs en entrée
-// jamais  : d'effet de bord (pas d'écriture en DB, pas de log)
+// entrée : Match[] -- tous les matchs joués jusqu'ici
+// sortie : Classement[] -- trié par points décroissants
+// jamais : de mutation sur les matchs en entrée
+// jamais : d'effet de bord (pas d'écriture en DB, pas de log)
 
 function calculerClassement(matchs: Match[]): Classement[] {
-  // ...
+ // ...
 }
 ```
 
@@ -68,9 +68,9 @@ Entité : Match
 
 Besoin pour exister : deux équipes, un statut initial
 Invariant : score.domicile >= 0 && score.extérieur >= 0
-            statut ne peut pas revenir de "terminé" à "en cours"
+      statut ne peut pas revenir de "terminé" à "en cours"
 Transitions : "planifié" --> "en cours" --> "terminé"
-              jamais de saut : "planifié" --> "terminé" directement
+       jamais de saut : "planifié" --> "terminé" directement
 ```
 
 Un modèle sans invariants, c'est un modèle qui laisse entrer des données impossibles. Et des données impossibles produisent des bugs impossibles à tracer.
@@ -84,16 +84,16 @@ La plupart des devs débutants modélisent par ce qu'ils voient à l'écran.
 ```
 // Mauvais : modélisé par l'UI
 Joueur : {
-  nomAffiché: string,       // ce que t'affiches
-  photoUrl: string,          // ce que t'affiches
-  statsFormatées: string,    // "85 buts / 23 passes" -- fusion de deux données
+ nomAffiché: string,    // ce que t'affiches
+ photoUrl: string,     // ce que t'affiches
+ statsFormatées: string,  // "85 buts / 23 passes" -- fusion de deux données
 }
 
 // Correct : modélisé par le domaine
 Joueur : {
-  id: string,
-  nom: string,
-  stats: { buts: number, passes: number }
+ id: string,
+ nom: string,
+ stats: { buts: number, passes: number }
 }
 // l'affichage "85 buts / 23 passes" : c'est le boulot de la couche présentation
 ```
@@ -118,9 +118,9 @@ match.estTerminé = true
 
 // Correct : un type discriminant qui rend les états impossibles... impossibles
 type StatutMatch =
-  | { type: "planifié"; dateKickoff: Date }
-  | { type: "enCours"; minuteActuelle: number }
-  | { type: "terminé"; scoreFinal: Score }
+ | { type: "planifié"; dateKickoff: Date }
+ | { type: "enCours"; minuteActuelle: number }
+ | { type: "terminé"; scoreFinal: Score }
 
 // maintenant un match ne peut pas être "terminé" et "enCours" en même temps
 // le compilateur te protège
@@ -142,16 +142,16 @@ Un bon modèle se lit comme une histoire.
 type StatutArmure = "portée" | "détruite" | "enRecharge"
 
 type Chevalier = {
-  id: string
-  nom: string
-  armure: { statut: StatutArmure; tempsRestant: number }
+ id: string
+ nom: string
+ armure: { statut: StatutArmure; tempsRestant: number }
 }
 
 type Combat = {
-  chevalier: Chevalier
-  horror: Horror
-  débutAt: number       // timestamp
-  duréeMax: 99900       // en ms -- loi immuable des Chevaliers d'Or
+ chevalier: Chevalier
+ horror: Horror
+ débutAt: number    // timestamp
+ duréeMax: 99900    // en ms -- loi immuable des Chevaliers d'Or
 }
 ```
 
@@ -177,10 +177,10 @@ Identifie deux états impossibles que ton modèle doit rendre impossibles.
 T-Bag a modélisé les prisonniers comme ça :
 ```
 prisonnier = {
-  nomComplet: "Theodore Bagwell",
-  celluleEtSection: "A-5",      // fusion de deux données distinctes
-  statutEtDate: "libéré le 12/03", // fusion statut + date
-  dangereux: true
+ nomComplet: "Theodore Bagwell",
+ celluleEtSection: "A-5",   // fusion de deux données distinctes
+ statutEtDate: "libéré le 12/03", // fusion statut + date
+ dangereux: true
 }
 ```
 

@@ -1,7 +1,7 @@
 # 07 : Flaky bugs (les bugs non déterministes)
 Temps de lecture ~5 min
 
-> [INTEMPOREL] **INTEMPOREL** : race conditions, timing, ordre d'exécution : ces bugs
+> **INTEMPOREL** : race conditions, timing, ordre d'exécution : ces bugs
 > existent dans tous les langages avec du concurrent. Le protocole est le même.
 
 ## Le piège
@@ -19,9 +19,9 @@ Voici un compteur incrémenté depuis N callbacks asynchrones :
 ```js
 let count = 0;
 async function bump() {
-  const v = count;         // 1. lecture
-  await Promise.resolve(); // 2. yield
-  count = v + 1;           // 3. écriture
+ const v = count;     // 1. lecture
+ await Promise.resolve(); // 2. yield
+ count = v + 1;      // 3. écriture
 }
 await Promise.all(Array.from({length: 1000}, bump));
 console.log(count); // attendu 1000 : obtenu ?
@@ -30,17 +30,17 @@ console.log(count); // attendu 1000 : obtenu ?
 Tâches :
 
 1. **Reproduis** le bug avec un seed fixe (utilise un pRNG déterministe :
-   [mulberry32](https://stackoverflow.com/a/47593316)) pour ordonnancer les
-   yields dans un ordre reproductible.
+  [mulberry32](https://stackoverflow.com/a/47593316)) pour ordonnancer les
+  yields dans un ordre reproductible.
 2. **Logs différentiels** : instrumente les trois étapes (lecture, yield,
-   écriture) avec un `traceId` par appel. Compare deux exécutions et repère
-   les entrelacements fautifs.
+  écriture) avec un `traceId` par appel. Compare deux exécutions et repère
+  les entrelacements fautifs.
 3. **Replay déterministe** : écris un mini-scheduler qui rejoue la même
-   séquence d'entrelacements deux fois de suite. Le bug doit apparaître au
-   même endroit.
+  séquence d'entrelacements deux fois de suite. Le bug doit apparaître au
+  même endroit.
 4. **Corrige** : propose deux solutions (une mutex `p-limit`-style et une
-   variable atomique via `Atomics` sur un `SharedArrayBuffer`) et discute
-   leurs coûts.
+  variable atomique via `Atomics` sur un `SharedArrayBuffer`) et discute
+  leurs coûts.
 
 ## Livrable
 

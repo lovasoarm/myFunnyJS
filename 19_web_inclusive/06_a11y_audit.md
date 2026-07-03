@@ -13,9 +13,9 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 expect.extend(toHaveNoViolations);
 
 test('la page de profil ninja est accessible', async () => {
-  const { container } = render(<ProfilNinja nom="Sasuke" />);
-  const resultats = await axe(container);
-  expect(resultats).toHaveNoViolations(); // (échoue le test si une violation est détectée)
+ const { container } = render(<ProfilNinja nom="Sasuke" />);
+ const resultats = await axe(container);
+ expect(resultats).toHaveNoViolations(); // (échoue le test si une violation est détectée)
 });
 ```
 
@@ -64,7 +64,7 @@ Checklist manuelle minimale :
 const motionReduite = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!motionReduite) {
-  element.classList.add('animation-entree'); // (animation seulement si l'shinobi ne l'a pas désactivée)
+ element.classList.add('animation-entree'); // (animation seulement si l'shinobi ne l'a pas désactivée)
 }
 ```
 
@@ -73,12 +73,12 @@ Certaines personnes ont des troubles vestibulaires : une animation de parallax o
 ## 4) MÉTHODE COMPLÈTE D'AUDIT, ÉTAPE PAR ÉTAPE
 
 ```
-1. Lancer axe ou Lighthouse  --> récupérer la liste des violations automatiques
+1. Lancer axe ou Lighthouse --> récupérer la liste des violations automatiques
 2. Corriger les violations automatiques détectées --> labels, alt, contraste, rôles
-3. Tester au clavier seul     --> tab order, focus trap, skip links
+3. Tester au clavier seul   --> tab order, focus trap, skip links
 4. Tester avec lecteur d'écran --> noms accessibles, annonces dynamiques (aria-live)
 5. Vérifier prefers-reduced-motion et le zoom 200%
-6. Documenter les résultats   --> rapport avec gravité (bloquant / à corriger / acceptable)
+6. Documenter les résultats  --> rapport avec gravité (bloquant / à corriger / acceptable)
 ```
 
 Tu reconnais cette structure : c'est le même principe de gravité que le moteur d'audit du curriculum MyFunnyJS lui-même (bloquant, à corriger, améliorable, acceptable). L'accessibilité s'audite avec la même rigueur que tu audites du code.

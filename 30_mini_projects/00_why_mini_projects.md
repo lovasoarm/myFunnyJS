@@ -21,8 +21,8 @@ Tu lis un cahier des charges. Tu identifies les contraintes. Tu décides.
 Parfois tu te trompes. Tu documentes pourquoi tu as choisi, et pourquoi tu as changé d'avis.
 
 ```
-LEÇON           ->  concept donné, problème calibré, solution attendue
-MINI-PROJET     ->  objectif donné, aucune solution attendue, décisions à prendre
+LEÇON      -> concept donné, problème calibré, solution attendue
+MINI-PROJET   -> objectif donné, aucune solution attendue, décisions à prendre
 ```
 
 La tension entre ce que tu veux faire et ce que les contraintes permettent : c'est ça, le vrai métier.
@@ -35,13 +35,13 @@ Chaque projet a la même structure :
 
 ```
 30_mini_projects/XX_nom_du_projet/
-├── cahierdescharges.md     <-- le contrat avant le code
-├── README.md               <-- la doc du projet fini
-├── TDD_JOURNAL.md          <-- la trace des décisions de test
-├── POSTMORTEM.md           <-- ce qui a cassé et ce que tu as appris
-├── ADR/                    <-- les décisions techniques documentées
-├── src/                    <-- le code que tu vas créer
-└── tests/                  <-- les tests que tu vas créer
+├── cahierdescharges.md   <-- le contrat avant le code
+├── README.md        <-- la doc du projet fini
+├── TDD_JOURNAL.md     <-- la trace des décisions de test
+├── POSTMORTEM.md      <-- ce qui a cassé et ce que tu as appris
+├── ADR/          <-- les décisions techniques documentées
+├── src/          <-- le code que tu vas créer
+└── tests/         <-- les tests que tu vas créer
 ```
 
 ### cahierdescharges.md : le contrat avant le code
@@ -99,23 +99,23 @@ Acceptable pour ce cas d'usage (CLI mono-shinobi).
 
 ```
 ÉTAPE 1 : Lire le cahierdescharges.md en entier
-          Pas en diagonale. En entier.
-          Identifier les contraintes qui vont tout changer
-          (perf, sécurité, parallélisme, typage strict...)
+     Pas en diagonale. En entier.
+     Identifier les contraintes qui vont tout changer
+     (perf, sécurité, parallélisme, typage strict...)
 
 ÉTAPE 2 : Créer les premiers tests avant le premier fichier src/
-          Qu'est-ce que "ça marche" veut dire pour ce projet ?
-          Un test qui passe = une définition concrète du succès.
+     Qu'est-ce que "ça marche" veut dire pour ce projet ?
+     Un test qui passe = une définition concrète du succès.
 
 ÉTAPE 3 : Coder le minimum pour faire passer les tests
-          Pas l'architecture parfaite. Le minimum qui marche.
+     Pas l'architecture parfaite. Le minimum qui marche.
 
 ÉTAPE 4 : Documenter en continu
-          ADR au moment du choix. POSTMORTEM au fil des erreurs.
-          Pas à la fin : à la fin, tu ne te souviens plus des raisons.
+     ADR au moment du choix. POSTMORTEM au fil des erreurs.
+     Pas à la fin : à la fin, tu ne te souviens plus des raisons.
 
 ÉTAPE 5 : Refactorer sous le filet des tests
-          Si les tests passent toujours après refacto : tu n'as rien cassé.
+     Si les tests passent toujours après refacto : tu n'as rien cassé.
 ```
 
 Ce qu'on évite absolument :
@@ -135,17 +135,17 @@ La progression recommandée suit la logique du curriculum.
 Tu n'as pas besoin de finir tous les modules avant de commencer : chaque projet a ses prérequis propres.
 
 ```
-| Projet                    | Modules requis          | Moment recommandé       |
+| Projet          | Modules requis     | Moment recommandé    |
 |---------------------------|-------------------------|-------------------------|
-| 01_rasengan_engine        | 01 + 05 + 11 + 12       | Après module 12         |
-| 02_garo_no_kronika        | 03 + 04 + 15 + 20       | Après module 20         |
-| 03_walking_dead_protocol  | 06 + 13 + 15 + 32       | Après module 32         |
-| 04_breaking_cache         | 08 + 09 + 10            | Après module 10         |
-| 05_prison_break_api       | 17 + 21 + 22 + 24       | Après module 24         |
-| 06_ultras_dashboard       | 14 + 25 + 26            | Après module 26         |
-| 07_ballon_dor_cli         | 04 + 13 + 15 + 31       | Après module 31         |
-| 08_trapsoul_radio         | 14 + 17 + 18 + 19       | Après module 19         |
-| 09_oracle_glitch          | 23 + 27 + 28 + 29       | Après module 29         |
+| 01_rasengan_engine    | 01 + 05 + 11 + 12    | Après module 12     |
+| 02_garo_no_kronika    | 03 + 04 + 15 + 20    | Après module 20     |
+| 03_walking_dead_protocol | 06 + 13 + 15 + 32    | Après module 32     |
+| 04_breaking_cache     | 08 + 09 + 10      | Après module 10     |
+| 05_prison_break_api    | 17 + 21 + 22 + 24    | Après module 24     |
+| 06_ultras_dashboard    | 14 + 25 + 26      | Après module 26     |
+| 07_ballon_dor_cli     | 04 + 13 + 15 + 31    | Après module 31     |
+| 08_trapsoul_radio     | 14 + 17 + 18 + 19    | Après module 19     |
+| 09_oracle_glitch     | 23 + 27 + 28 + 29    | Après module 29     |
 ```
 
 Si tu hésite entre deux projets au même niveau : choisis celui dont le contexte narratif t'accroche le plus.

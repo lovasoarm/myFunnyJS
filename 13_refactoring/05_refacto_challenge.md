@@ -14,51 +14,51 @@ L'équipe de Trapsoul Radio t'envoie ce module de gestion de playlist. Il marche
 ```js
 // playlist-manager.js:touché par personne depuis 8 mois
 class PlaylistManager {
-  constructor() {
-    this.tracks = [];
-    this.history = [];
-  }
+ constructor() {
+  this.tracks = [];
+  this.history = [];
+ }
 
-  add(t) {
-    this.tracks.push(t);
-    console.log("ajout: " + t.title);
-    if (t.duration > 600) {
-      console.log("warning: track tres longue");
-    }
-    this.history.push({ action: "add", title: t.title, time: Date.now() });
+ add(t) {
+  this.tracks.push(t);
+  console.log("ajout: " + t.title);
+  if (t.duration > 600) {
+   console.log("warning: track tres longue");
   }
+  this.history.push({ action: "add", title: t.title, time: Date.now() });
+ }
 
-  remove(title) {
-    for (let i = 0; i < this.tracks.length; i++) {
-      if (this.tracks[i].title === title) {
-        this.tracks.splice(i, 1);
-        this.history.push({ action: "remove", title: title, time: Date.now() });
-        return true;
-      }
-    }
-    return false;
+ remove(title) {
+  for (let i = 0; i < this.tracks.length; i++) {
+   if (this.tracks[i].title === title) {
+    this.tracks.splice(i, 1);
+    this.history.push({ action: "remove", title: title, time: Date.now() });
+    return true;
+   }
   }
+  return false;
+ }
 
-  getTotal() {
-    let d = 0;
-    for (let i = 0; i <= this.tracks.length; i++) {
-      d = d + this.tracks[i].duration;
-    }
-    return d;
+ getTotal() {
+  let d = 0;
+  for (let i = 0; i <= this.tracks.length; i++) {
+   d = d + this.tracks[i].duration;
   }
+  return d;
+ }
 
-  getByGenre(g) {
-    let r = [];
-    for (let i = 0; i < this.tracks.length; i++) {
-      if (this.tracks[i].genre == g) r.push(this.tracks[i]);
-    }
-    return r;
+ getByGenre(g) {
+  let r = [];
+  for (let i = 0; i < this.tracks.length; i++) {
+   if (this.tracks[i].genre == g) r.push(this.tracks[i]);
   }
+  return r;
+ }
 
-  shuffle() {
-    this.tracks = this.tracks.sort(() => Math.random() - 0.5);
-    this.history.push({ action: "shuffle", title: "-", time: Date.now() });
-  }
+ shuffle() {
+  this.tracks = this.tracks.sort(() => Math.random() - 0.5);
+  this.history.push({ action: "shuffle", title: "-", time: Date.now() });
+ }
 }
 ```
 
@@ -79,10 +79,10 @@ Indices pour te lancer (cherche-en d'autres) :
 
 ```
 PlaylistManager (le god class en miniature)
-  --> gestion des tracks
-  --> logging console
-  --> historique
-  --> "shuffle" (biaisé)
+ --> gestion des tracks
+ --> logging console
+ --> historique
+ --> "shuffle" (biaisé)
 ```
 
 ---
@@ -96,7 +96,7 @@ Le `getTotal()` boucle de `i = 0` à `i <= this.tracks.length`. Sur un tableau d
 const tracks = [{ duration: 180 }, { duration: 200 }, { duration: 150 }];
 let d = 0;
 for (let i = 0; i <= tracks.length; i++) {
-  d = d + tracks[i].duration; // i=3 : tracks[3] est undefined, .duration crash
+ d = d + tracks[i].duration; // i=3 : tracks[3] est undefined, .duration crash
 }
 ```
 
@@ -111,36 +111,36 @@ Avant de fixer le bug, écris les tests pour le comportement ATTENDU (pas le com
 ```js
 // playlist-manager.test.js
 describe("PlaylistManager", () => {
-  test("getTotal additionne la durée de toutes les tracks", () => {
-    const pm = new PlaylistManager();
-    pm.add({ title: "A", duration: 180, genre: "trapsoul" });
-    pm.add({ title: "B", duration: 200, genre: "rnb" });
-    expect(pm.getTotal()).toBe(380);
-  });
+ test("getTotal additionne la durée de toutes les tracks", () => {
+  const pm = new PlaylistManager();
+  pm.add({ title: "A", duration: 180, genre: "trapsoul" });
+  pm.add({ title: "B", duration: 200, genre: "rnb" });
+  expect(pm.getTotal()).toBe(380);
+ });
 
-  test("getTotal retourne 0 sur une playlist vide", () => {
-    const pm = new PlaylistManager();
-    expect(pm.getTotal()).toBe(0);
-  });
+ test("getTotal retourne 0 sur une playlist vide", () => {
+  const pm = new PlaylistManager();
+  expect(pm.getTotal()).toBe(0);
+ });
 
-  test("remove enlève la bonne track et retourne true", () => {
-    const pm = new PlaylistManager();
-    pm.add({ title: "A", duration: 180, genre: "trapsoul" });
-    expect(pm.remove("A")).toBe(true);
-    expect(pm.getTotal()).toBe(0);
-  });
+ test("remove enlève la bonne track et retourne true", () => {
+  const pm = new PlaylistManager();
+  pm.add({ title: "A", duration: 180, genre: "trapsoul" });
+  expect(pm.remove("A")).toBe(true);
+  expect(pm.getTotal()).toBe(0);
+ });
 
-  test("remove retourne false si la track n'existe pas", () => {
-    const pm = new PlaylistManager();
-    expect(pm.remove("Inconnue")).toBe(false);
-  });
+ test("remove retourne false si la track n'existe pas", () => {
+  const pm = new PlaylistManager();
+  expect(pm.remove("Inconnue")).toBe(false);
+ });
 
-  test("getByGenre filtre correctement", () => {
-    const pm = new PlaylistManager();
-    pm.add({ title: "A", duration: 180, genre: "trapsoul" });
-    pm.add({ title: "B", duration: 200, genre: "rnb" });
-    expect(pm.getByGenre("trapsoul")).toHaveLength(1);
-  });
+ test("getByGenre filtre correctement", () => {
+  const pm = new PlaylistManager();
+  pm.add({ title: "A", duration: 180, genre: "trapsoul" });
+  pm.add({ title: "B", duration: 200, genre: "rnb" });
+  expect(pm.getByGenre("trapsoul")).toHaveLength(1);
+ });
 });
 ```
 
@@ -154,11 +154,11 @@ Lance ces tests sur le code original : le premier test (`getTotal` sur 2 tracks)
 
 ```js
 getTotal() {
-  let total = 0
-  for (let i = 0; i < this.tracks.length; i++) {
-    total += this.tracks[i].duration
-  }
-  return total
+ let total = 0
+ for (let i = 0; i < this.tracks.length; i++) {
+  total += this.tracks[i].duration
+ }
+ return total
 }
 ```
 
@@ -168,19 +168,19 @@ Relance les tests : `getTotal` passe maintenant au vert. Le bug est corrigé, et
 
 ```js
 getTotal() {
-  return this.tracks.reduce((total, track) => total + track.duration, 0)
+ return this.tracks.reduce((total, track) => total + track.duration, 0)
 }
 
 getByGenre(genre) {
-  return this.tracks.filter(track => track.genre === genre) // === au lieu de ==
+ return this.tracks.filter(track => track.genre === genre) // === au lieu de ==
 }
 
 remove(title) {
-  const index = this.tracks.findIndex(track => track.title === title)
-  if (index === -1) return false
-  this.tracks.splice(index, 1)
-  this.logAction('remove', title)
-  return true
+ const index = this.tracks.findIndex(track => track.title === title)
+ if (index === -1) return false
+ this.tracks.splice(index, 1)
+ this.logAction('remove', title)
+ return true
 }
 ```
 
@@ -188,42 +188,42 @@ remove(title) {
 
 ```js
 class PlaylistHistory {
-  constructor() {
-    this.entries = [];
-  }
-  record(action, title) {
-    this.entries.push({ action, title, time: Date.now() });
-  }
+ constructor() {
+  this.entries = [];
+ }
+ record(action, title) {
+  this.entries.push({ action, title, time: Date.now() });
+ }
 }
 ```
 
 ```js
 class PlaylistManager {
-  constructor(history = new PlaylistHistory()) {
-    this.tracks = [];
-    this.history = history;
-  }
+ constructor(history = new PlaylistHistory()) {
+  this.tracks = [];
+  this.history = history;
+ }
 
-  add(track) {
-    this.tracks.push(track);
-    this.history.record("add", track.title);
-  }
+ add(track) {
+  this.tracks.push(track);
+  this.history.record("add", track.title);
+ }
 
-  remove(title) {
-    const index = this.tracks.findIndex((t) => t.title === title);
-    if (index === -1) return false;
-    this.tracks.splice(index, 1);
-    this.history.record("remove", title);
-    return true;
-  }
+ remove(title) {
+  const index = this.tracks.findIndex((t) => t.title === title);
+  if (index === -1) return false;
+  this.tracks.splice(index, 1);
+  this.history.record("remove", title);
+  return true;
+ }
 
-  getTotal() {
-    return this.tracks.reduce((total, track) => total + track.duration, 0);
-  }
+ getTotal() {
+  return this.tracks.reduce((total, track) => total + track.duration, 0);
+ }
 
-  getByGenre(genre) {
-    return this.tracks.filter((track) => track.genre === genre);
-  }
+ getByGenre(genre) {
+  return this.tracks.filter((track) => track.genre === genre);
+ }
 }
 ```
 
@@ -233,14 +233,14 @@ class PlaylistManager {
 const LONG_TRACK_THRESHOLD_SECONDS = 600;
 
 class PlaylistManager {
-  // ...
-  add(track) {
-    this.tracks.push(track);
-    this.history.record("add", track.title);
-    if (track.duration > LONG_TRACK_THRESHOLD_SECONDS) {
-      this.history.record("warning_long_track", track.title);
-    }
+ // ...
+ add(track) {
+  this.tracks.push(track);
+  this.history.record("add", track.title);
+  if (track.duration > LONG_TRACK_THRESHOLD_SECONDS) {
+   this.history.record("warning_long_track", track.title);
   }
+ }
 }
 ```
 
@@ -260,13 +260,13 @@ v2 : PlaylistManager (tracks) + PlaylistHistory (logs) + bug corrigé + tests ve
 ```js
 // Fisher-Yates : le vrai algorithme de shuffle uniforme
 shuffle() {
-  const shuffled = [...this.tracks]
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-  }
-  this.tracks = shuffled
-  this.history.record('shuffle', '-')
+ const shuffled = [...this.tracks]
+ for (let i = shuffled.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1))
+  ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+ }
+ this.tracks = shuffled
+ this.history.record('shuffle', '-')
 }
 ```
 

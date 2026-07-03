@@ -48,11 +48,11 @@ Sans versioning, modifier la forme d'une réponse pour "l'améliorer" casse sile
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-ressource à créer/lire/modifier/supprimer       --> CRUD REST          --> verbes HTTP cohérents (GET, POST, PUT, PATCH, DELETE)
-erreur d'API mal formée                         --> error handling API --> format uniforme et status codes corrects
-shinobi qui doit prouver son identité        --> JWT                --> sign/verify/refresh sécurisé
-nouvelle version de l'API qui change la réponse  --> API versioning     --> anciens clients non cassés
-intégration par une équipe externe               --> OpenAPI/Swagger    --> contrat documenté et exploitable
+ressource à créer/lire/modifier/supprimer    --> CRUD REST     --> verbes HTTP cohérents (GET, POST, PUT, PATCH, DELETE)
+erreur d'API mal formée             --> error handling API --> format uniforme et status codes corrects
+shinobi qui doit prouver son identité    --> JWT        --> sign/verify/refresh sécurisé
+nouvelle version de l'API qui change la réponse --> API versioning   --> anciens clients non cassés
+intégration par une équipe externe        --> OpenAPI/Swagger  --> contrat documenté et exploitable
 ```
 
 Une API n'est jamais un détail technique isolé : c'est un contrat public (même en interne) que d'autres équipes vont construire par-dessus, et que tu ne peux plus changer aussi librement une fois que des clients en dépendent réellement.

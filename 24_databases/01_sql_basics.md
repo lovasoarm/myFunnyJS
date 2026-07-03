@@ -1,7 +1,7 @@
 # Parler à une base relationnelle sans la supplier
 Temps de lecture ~12 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 T'as un système qui tient en mémoire : tableaux JS, objets, variables. Tu restart le serveur : tout disparaît. Une DB (database : base de données) relationnelle, c'est la mémoire qui survit au crash. SQL (structured query language : langage de requête structuré), c'est la langue qu'elle comprend.
 
@@ -26,8 +26,8 @@ LIMIT 20;
 Le pourquoi technique : `SELECT *` ramène toutes les colonnes même celles que tu n'utilises pas (genre un champ `backstory` de 10 000 caractères). Chaque colonne en trop, c'est de la bande passante (network bandwidth) gaspillée et de la RAM en plus côté serveur DB et côté app.
 
 ```
-SELECT * FROM ninjas            -->  ramène tout, même ce que t'utilises pas
-SELECT id, ninja_name FROM ninjas -->  ramène juste ce qu'il faut
+SELECT * FROM ninjas      --> ramène tout, même ce que t'utilises pas
+SELECT id, ninja_name FROM ninjas --> ramène juste ce qu'il faut
 ```
 
 Le risque réel : tu fais `SELECT *` sur une table avec une colonne `JSON` ou `BLOB` (binary large object : gros bloc binaire, genre une image stockée en DB) de 5 Mo par ligne. Tu demandes 1000 lignes, ton serveur essaie de charger 5 Go en RAM. Crash. Comme lancer le Rasengan sans contrôle du chakra : la puissance est là, mais elle détruit celui qui la tient.
@@ -41,8 +41,8 @@ Le risque réel : tu fais `SELECT *` sur une table avec une colonne `JSON` ou `B
 SELECT *
 FROM missions
 WHERE status = 'active'
-  AND danger_level > 3
-  AND assigned_at BETWEEN '2026-01-01' AND '2026-06-01';
+ AND danger_level > 3
+ AND assigned_at BETWEEN '2026-01-01' AND '2026-06-01';
 ```
 
 Le pourquoi : `WHERE` filtre ligne par ligne avant que les résultats partent vers toi. Sans lui, c'est `SELECT *` sur toute la table, puis tu filtres en JS. Tu viens de transformer ta DB en simple disque dur et ton serveur Node en moteur de filtrage : exactement l'inverse de ce que chaque outil doit faire.
@@ -72,10 +72,10 @@ WHERE missions.status = 'active';
 ```
 
 ```
-INNER JOIN   -->  garde que les lignes qui matchent dans les deux tables
-LEFT JOIN    -->  garde tout missions, même si pas de ninja trouvé (ninja_id NULL)
-RIGHT JOIN   -->  l'inverse, rarement utilisé en pratique
-FULL JOIN    -->  garde tout des deux côtés, rare aussi
+INNER JOIN  --> garde que les lignes qui matchent dans les deux tables
+LEFT JOIN  --> garde tout missions, même si pas de ninja trouvé (ninja_id NULL)
+RIGHT JOIN  --> l'inverse, rarement utilisé en pratique
+FULL JOIN  --> garde tout des deux côtés, rare aussi
 ```
 
 Diagramme du `INNER JOIN` vs `LEFT JOIN` :
@@ -84,10 +84,10 @@ Diagramme du `INNER JOIN` vs `LEFT JOIN` :
 missions (5 lignes) --> JOIN --> ninjas (3 lignes)
 
 INNER JOIN : missions.ninja_id DOIT exister dans ninjas
-  résultat --> seulement les missions qui ont un ninja valide
+ résultat --> seulement les missions qui ont un ninja valide
 
 LEFT JOIN : tout missions, même orphelin
-  résultat --> toutes les missions, ninja = NULL si pas trouvé
+ résultat --> toutes les missions, ninja = NULL si pas trouvé
 ```
 
 Le risque réel : tu fais un `JOIN` sans `WHERE` ni `LIMIT` sur deux grosses tables. Tu viens de créer un jutsu cartésien (cross join : chaque ligne de A combinée avec chaque ligne de B) accidentel. 10 000 lignes x 10 000 lignes = 100 millions de lignes générées. Ton serveur DB fume. Même Naruto ne survive pas à ça sans préparation.
@@ -139,13 +139,13 @@ EXPLAIN SELECT * FROM missions WHERE status = 'active';
 ```
 Résultat typique (simplifié) :
 
-Seq Scan on missions          -->  mauvais signe : scan complet, pas d'index utilisé
-  Filter: status = 'active'
+Seq Scan on missions     --> mauvais signe : scan complet, pas d'index utilisé
+ Filter: status = 'active'
 
 vs
 
-Index Scan using idx_status -->  bon signe : l'index a été utilisé
-  Index Cond: status = 'active'
+Index Scan using idx_status --> bon signe : l'index a été utilisé
+ Index Cond: status = 'active'
 ```
 
 Le quoi : un outil de diagnostic intégré à la DB.
@@ -174,8 +174,8 @@ HAVING SUM(chakra_used) > 5000;
 Le pourquoi : `GROUP BY` + fonctions d'agrégation (`COUNT`, `SUM`, `AVG`, `MAX`, `MIN`) font en une requête ce qui te prendrait une boucle JS sur potentiellement des millions de lignes ramenées pour rien.
 
 ```
-WHERE   -->  filtre les LIGNES avant le groupement
-HAVING  -->  filtre les GROUPES après le groupement
+WHERE  --> filtre les LIGNES avant le groupement
+HAVING --> filtre les GROUPES après le groupement
 ```
 
 Erreur classique de débutant : utiliser `WHERE` pour filtrer sur une agrégation. Ça plante, parce que `WHERE` s'exécute avant que `SUM()` existe.

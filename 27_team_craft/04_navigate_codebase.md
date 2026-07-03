@@ -18,19 +18,19 @@ Les cinq premières questions à répondre sans toucher au code :
 
 ```
 1. Qu'est-ce que ce projet fait en production ?
-   --> README, description GitHub, tickets fermés récents
+  --> README, description GitHub, tickets fermés récents
 
 2. Quelle est l'architecture de haut niveau ?
-   --> ADR/, docs/architecture.md, README section "Structure"
+  --> ADR/, docs/architecture.md, README section "Structure"
 
 3. Quelles sont les dépendances principales ?
-   --> package.json (5 à 10 dépendances qui comptent, pas les 200)
+  --> package.json (5 à 10 dépendances qui comptent, pas les 200)
 
 4. Comment on fait tourner le projet localement ?
-   --> README section "Installation" -- si ça marche pas, c'est déjà une information
+  --> README section "Installation" -- si ça marche pas, c'est déjà une information
 
 5. Où sont les tests ?
-   --> dossier tests/ -- les tests racontent ce que le code est censé faire
+  --> dossier tests/ -- les tests racontent ce que le code est censé faire
 ```
 
 **Règle :** si tu ne peux pas répondre à ces cinq questions en 15 minutes, c'est que le projet manque de documentation. Note-le : c'est ta première contribution possible.
@@ -40,12 +40,12 @@ Les cinq premières questions à répondre sans toucher au code :
 ## 2) LIRE L'ARBORESCENCE COMME UNE CARTE
 
 ```
-MAUVAISE APPROCHE             BONNE APPROCHE
-----------------------        ----------------------
-ouvrir src/index.js           regarder la structure complète d'abord
-lire ligne par ligne          identifier les couches du système
-se perdre dans les imports    trouver le entry point (point d'entrée)
-chercher ce que fait X        comprendre où X vit dans le système
+MAUVAISE APPROCHE       BONNE APPROCHE
+----------------------    ----------------------
+ouvrir src/index.js      regarder la structure complète d'abord
+lire ligne par ligne     identifier les couches du système
+se perdre dans les imports  trouver le entry point (point d'entrée)
+chercher ce que fait X    comprendre où X vit dans le système
 ```
 
 L'arborescence te dit comment l'équipe pense :
@@ -53,15 +53,15 @@ L'arborescence te dit comment l'équipe pense :
 ```
 projet/
 ├── src/
-│   ├── routes/       <-- les endpoints HTTP : entrée du système
-│   ├── controllers/  <-- logique entre routes et services
-│   ├── services/     <-- logique métier : c'est ici que les trucs intéressants se passent
-│   ├── models/       <-- définitions de données / schémas
-│   ├── middleware/   <-- auth, logging, validation : ce qui s'applique à toutes les routes
-│   └── utils/        <-- fonctions utilitaires : souvent le cimetière du projet
+│  ├── routes/    <-- les endpoints HTTP : entrée du système
+│  ├── controllers/ <-- logique entre routes et services
+│  ├── services/   <-- logique métier : c'est ici que les trucs intéressants se passent
+│  ├── models/    <-- définitions de données / schémas
+│  ├── middleware/  <-- auth, logging, validation : ce qui s'applique à toutes les routes
+│  └── utils/    <-- fonctions utilitaires : souvent le cimetière du projet
 ├── tests/
-│   ├── unit/
-│   └── integration/
+│  ├── unit/
+│  └── integration/
 └── docs/
 ```
 
@@ -77,27 +77,27 @@ La meilleure façon de comprendre un backend : suivre une vraie requête de bout
 EXEMPLE : comprendre comment un vote Ballon d'Or est enregistré
 
 ÉTAPE 1 : trouver la route
-          --> grep "POST /vote" ou chercher dans routes/
-          --> app.post('/vote', authMiddleware, voteController.create)
+     --> grep "POST /vote" ou chercher dans routes/
+     --> app.post('/vote', authMiddleware, voteController.create)
 
 ÉTAPE 2 : lire le middleware (ce qui s'exécute avant le handler)
-          --> authMiddleware : vérifie le JWT, attache l'shinobi à req.user
-          --> voteController.create : le handler
+     --> authMiddleware : vérifie le JWT, attache l'shinobi à req.user
+     --> voteController.create : le handler
 
 ÉTAPE 3 : lire le handler
-          --> voteController.create appelle voteService.registerVote(req.user, req.body)
+     --> voteController.create appelle voteService.registerVote(req.user, req.body)
 
 ÉTAPE 4 : lire le service
-          --> voteService.registerVote :
-              1. vérifie que le journaliste n'a pas déjà voté
-              2. valide que le joueur existe
-              3. insère le vote en DB
-              4. invalide le cache si Redis est configuré
-              5. retourne le vote enregistré
+     --> voteService.registerVote :
+       1. vérifie que le journaliste n'a pas déjà voté
+       2. valide que le joueur existe
+       3. insère le vote en DB
+       4. invalide le cache si Redis est configuré
+       5. retourne le vote enregistré
 
 ÉTAPE 5 : lire les tests correspondants
-          --> tests/unit/voteService.test.js : vérifier ce qui est testé
-          --> les tests révèlent les edge cases (cas limites) que l'équipe a anticipés
+     --> tests/unit/voteService.test.js : vérifier ce qui est testé
+     --> les tests révèlent les edge cases (cas limites) que l'équipe a anticipés
 ```
 
 Après cet exercice : tu comprends comment un vote entre dans le système. Tu peux commencer à travailler sur les endpoints adjacents sans te perdre.
@@ -138,13 +138,13 @@ git log --grep="rate limiting" --oneline
 Dans chaque type de projet, il y a des fichiers qui orchestrent tout le reste.
 
 ```
-TYPE DE PROJET            POINT D'ENTRÉE
----------------------     -------------------
-API Node/Express          src/app.js ou src/index.js (là où les routes sont montées)
-CLI Node                  bin/cli.js ou src/cli.js (là où process.argv est parsé)
-Module npm                index.js à la racine (ce qui est exporté vers l'extérieur)
-App frontend (vanilla)    index.html + main.js
-Worker                    worker.js (là où le message handler est défini)
+TYPE DE PROJET      POINT D'ENTRÉE
+---------------------   -------------------
+API Node/Express     src/app.js ou src/index.js (là où les routes sont montées)
+CLI Node         bin/cli.js ou src/cli.js (là où process.argv est parsé)
+Module npm        index.js à la racine (ce qui est exporté vers l'extérieur)
+App frontend (vanilla)  index.html + main.js
+Worker          worker.js (là où le message handler est défini)
 ```
 
 Trouver le point d'entrée te donne le fil. Tout le reste est accessible depuis là.
@@ -187,24 +187,24 @@ find src/ -newer package.json -name "*.js" -type f
 Un dev senior qui rejoint une équipe et qui pose des questions auxquelles le README répond : ça envoie un mauvais signal.
 
 ```
-MAUVAISES QUESTIONS                BONNES QUESTIONS
---------------------------         --------------------------
-"comment fonctionne le projet ?"   "j'ai lu le README et les ADR,
-(trop large, montre que t'as       j'ai une question sur la décision
-pas cherché)                       ADR-003 sur Drizzle : est-ce qu'on
-                                   a des cas où on utilise des requêtes
-                                   brutes directement ?"
+MAUVAISES QUESTIONS        BONNES QUESTIONS
+--------------------------     --------------------------
+"comment fonctionne le projet ?"  "j'ai lu le README et les ADR,
+(trop large, montre que t'as    j'ai une question sur la décision
+pas cherché)            ADR-003 sur Drizzle : est-ce qu'on
+                  a des cas où on utilise des requêtes
+                  brutes directement ?"
 
-"où est le code de l'auth ?"       "j'ai tracé la requête POST /chakra_gate
-(cherchable en 2 minutes)          jusqu'à authService, mais je vois
-                                   pas où les refresh tokens sont
-                                   invalidés -- c'est dans le service
-                                   ou dans le middleware ?"
+"où est le code de l'auth ?"    "j'ai tracé la requête POST /chakra_gate
+(cherchable en 2 minutes)     jusqu'à authService, mais je vois
+                  pas où les refresh tokens sont
+                  invalidés -- c'est dans le service
+                  ou dans le middleware ?"
 
-"qui a écrit ça ?"                 "git blame m'indique que ce bloc
-(contexte manquant)                a été modifié en mars, le commit
-                                   dit 'fix edge case' -- est-ce que
-                                   vous savez quel edge case c'était ?"
+"qui a écrit ça ?"         "git blame m'indique que ce bloc
+(contexte manquant)        a été modifié en mars, le commit
+                  dit 'fix edge case' -- est-ce que
+                  vous savez quel edge case c'était ?"
 ```
 
 ---

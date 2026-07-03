@@ -19,10 +19,10 @@ La décomposition, c'est prendre 10 minutes pour penser avant d'écrire la premi
 
 ```
 problème flou
-    --> identifier les domaines
-    --> identifier les responsabilités
-    --> identifier les dépendances
-    --> coder chaque pièce séparément
+  --> identifier les domaines
+  --> identifier les responsabilités
+  --> identifier les dépendances
+  --> coder chaque pièce séparément
 ```
 
 ---
@@ -45,10 +45,10 @@ Mauvais : "coder un système de combat"
 
 Correct :
 
-NinjaStats    --> calcule les dégâts, gère le chakra, applique les buffs
-JutsuEngine   --> exécute un jutsu, retourne un résultat
-CombatLoop    --> orchestre les tours, appelle NinjaStats et JutsuEngine
-Display       --> affiche l'état du combat, ne touche à rien d'autre
+NinjaStats  --> calcule les dégâts, gère le chakra, applique les buffs
+JutsuEngine  --> exécute un jutsu, retourne un résultat
+CombatLoop  --> orchestre les tours, appelle NinjaStats et JutsuEngine
+Display    --> affiche l'état du combat, ne touche à rien d'autre
 ```
 
 Chaque pièce fait une chose. Chaque pièce peut être testée seule.
@@ -66,12 +66,12 @@ Ce quoi et ce quoi : c'est la frontière. C'est ce que tu documentes.
 
 ```
 NinjaStats
-  entrée : { chakra: number, force: number, niveau: number }
-  sortie  : { degats: number, chakraRestant: number }
+ entrée : { chakra: number, force: number, niveau: number }
+ sortie : { degats: number, chakraRestant: number }
 
 CombatLoop
-  entrée  : deux ninjas, un jutsu choisi
-  sortie  : le nouvel état du combat (jamais une mutation de l'ancien)
+ entrée : deux ninjas, un jutsu choisi
+ sortie : le nouvel état du combat (jamais une mutation de l'ancien)
 ```
 
 Si tu peux pas décrire l'entrée et la sortie d'une pièce en deux lignes : elle est trop grosse. Coupe-la.
@@ -86,10 +86,10 @@ Si tu peux pas décrire l'entrée et la sortie d'une pièce en deux lignes : ell
 // c'est pas une décomposition, c'est un fourre-tout avec un nom rassurant
 
 // Correct : une responsabilité par module
-// ninjaStats.js   --> tout ce qui concerne les stats
-// jutsuEngine.js  --> tout ce qui concerne l'exécution des jutsus
-// combatLoop.js   --> l'orchestration des tours
-// display.js      --> l'affichage, rien d'autre
+// ninjaStats.js  --> tout ce qui concerne les stats
+// jutsuEngine.js --> tout ce qui concerne l'exécution des jutsus
+// combatLoop.js  --> l'orchestration des tours
+// display.js   --> l'affichage, rien d'autre
 ```
 
 Le test : si tu changes quelque chose dans `ninjaStats.js`, est-ce que tu dois toucher à `display.js` ? Non ? Parfait. La décomposition tient.
@@ -120,13 +120,13 @@ Rick Grimes et Negan dans la même cellule : aucun peut sortir sans que l'autre 
 Un système bien décomposé a des niveaux clairs.
 
 ```
-Niveau haut   : orchestration    (CombatLoop)
-                      |
-                      v
-Niveau moyen  : logique métier   (JutsuEngine, NinjaStats)
-                      |
-                      v
-Niveau bas    : données/utilitaires (formules, constantes)
+Niveau haut  : orchestration  (CombatLoop)
+           |
+           v
+Niveau moyen : logique métier  (JutsuEngine, NinjaStats)
+           |
+           v
+Niveau bas  : données/utilitaires (formules, constantes)
 ```
 
 La règle : **le code d'un niveau appelle le niveau en dessous, jamais au-dessus**.

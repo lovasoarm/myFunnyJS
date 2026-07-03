@@ -12,18 +12,18 @@ Pourquoi ça compte : la compétence technique pure plafonne vite en valeur si t
 ## 1) LE PROTOCOLE : 5H, SEUL, SANS AIDE EXTÉRIEURE
 
 ```
-Préparation     --> 10 min   : lire tout le brief une fois, sans coder
-Sprint actif    --> 4h30     : chronométré, interruptions incluses
-Debrief         --> 20 min   : remplir le compte rendu de fin
+Préparation   --> 10 min  : lire tout le brief une fois, sans coder
+Sprint actif  --> 4h30   : chronométré, interruptions incluses
+Debrief     --> 20 min  : remplir le compte rendu de fin
 ```
 
 Règles strictes pour que la simulation ait une vraie valeur :
 
 ```
-pas d'IA pour décider des priorités        --> l'IA peut coder, jamais arbitrer
-pas de relecture du brief après le départ  --> comme un vrai sprint, l'info arrive en cours de route
-chronomètre visible en permanence          --> la pression temporelle fait partie de l'exercice
-log de chaque décision prise, à chaud      --> tu écris CE QUE tu décides ET pourquoi, sur le moment
+pas d'IA pour décider des priorités    --> l'IA peut coder, jamais arbitrer
+pas de relecture du brief après le départ --> comme un vrai sprint, l'info arrive en cours de route
+chronomètre visible en permanence     --> la pression temporelle fait partie de l'exercice
+log de chaque décision prise, à chaud   --> tu écris CE QUE tu décides ET pourquoi, sur le moment
 ```
 
 Le log de décisions est la partie la plus négligée et la plus utile. Un dev qui code vite sans noter pourquoi il a tranché entre deux options contradictoires ne pourra jamais défendre ce choix en daily, ni s'en souvenir au retro.
@@ -65,8 +65,8 @@ Trois personnes disent "priorité absolue". Une seule a raison sur le plan techn
 **Remonter le conflit au lieu de le trancher seul dans le silence**
 
 ```
-mauvais réflexe  : choisir en silence, espérer que ça passe
-bon réflexe      : message court et factuel à TOUTE l'équipe, pas juste à une personne
+mauvais réflexe : choisir en silence, espérer que ça passe
+bon réflexe   : message court et factuel à TOUTE l'équipe, pas juste à une personne
 
 "Je vois 3 demandes prioritaires qui ne tiennent pas ensemble dans le temps dispo.
 Je pars sur : fix du bug de vote d'abord (bloquant pour tout le reste),
@@ -90,9 +90,9 @@ Au-delà du conflit entre trois sources, il y a un deuxième piège dans le brie
 "ça doit être visible sur grand écran, donc lisible de loin"
 
 problème : aucun critère mesurable
-  - quelle taille de police minimum ?
-  - quelle distance de lecture cible ?
-  - quel contraste minimum ?
+ - quelle taille de police minimum ?
+ - quelle distance de lecture cible ?
+ - quel contraste minimum ?
 
 sans clarification : tu codes une interprétation, le PO en avait une autre
 résultat probable : retour en arrière vendredi, sous pression, pas le temps de refaire
@@ -102,7 +102,7 @@ La compétence ici n'est pas "deviner ce que le PO voulait vraiment". C'est savo
 
 ```
 mauvais : 5 questions séparées sur 5 messages, sur 2 heures
-bon     : 1 message groupé, envoyé une fois, qui débloque tout d'un coup
+bon   : 1 message groupé, envoyé une fois, qui débloque tout d'un coup
 
 "Pour le classement grand écran : je pars sur police 48px minimum
 et contraste fond noir / texte blanc, sauf si t'as une maquette précise.
@@ -144,13 +144,13 @@ La dernière question compte plus que les autres. La première fois, "subir le c
 ## 6) QUAND ÇA CASSE : LE CAS DU SPRINT QUI EXPLOSE EN VRAI
 
 ```
-8h00   PO confirme priorité classement, brief clair, sprint démarre serein
-9h45   Lead Tech signale le bug de vote, urgence non négociable selon lui
-11h20  coéquipier ajoute la demande CSV, "désolé c'est tombé ce matin"
-13h00  decision prise, message envoyé, fix du bug en cours
-14h30  pas de retour de l'équipe : tu continues sur ta lecture initiale
-16h00  fix du bug terminé et testé, début du classement
-17h30  fin du sprint, classement partiel livré, CSV reporté, fix livré
+8h00  PO confirme priorité classement, brief clair, sprint démarre serein
+9h45  Lead Tech signale le bug de vote, urgence non négociable selon lui
+11h20 coéquipier ajoute la demande CSV, "désolé c'est tombé ce matin"
+13h00 decision prise, message envoyé, fix du bug en cours
+14h30 pas de retour de l'équipe : tu continues sur ta lecture initiale
+16h00 fix du bug terminé et testé, début du classement
+17h30 fin du sprint, classement partiel livré, CSV reporté, fix livré
 ```
 
 Ce déroulé n'est pas un échec. Trois choses sur quatre demandées initialement ne sont pas dans l'état rêvé par chacune des trois sources. Mais la décision a été prise vite, argumentée, communiquée, et documentée. C'est ça, la compétence testée : pas livrer tout, livrer le bon arbitrage sous contrainte réelle.

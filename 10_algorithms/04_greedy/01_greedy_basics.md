@@ -24,13 +24,13 @@ Si une des deux manque : greedy donne une solution approchée, jamais garantie o
 Problème du rendu de monnaie avec pièces [1, 5, 10, 25] :
 rendre 41 centimes
 
-greedy : 25 + 10 + 5 + 1 = 4 pièces    OPTIMAL
+greedy : 25 + 10 + 5 + 1 = 4 pièces  OPTIMAL
 
 Problème du rendu de monnaie avec pièces [1, 3, 4] :
 rendre 6
 
 greedy : 4 + 1 + 1 = 3 pièces
-DP :     3 + 3     = 2 pièces          GREEDY RATE
+DP :   3 + 3   = 2 pièces     GREEDY RATE
 ```
 
 ---
@@ -45,33 +45,33 @@ Tu as N activités, chacune avec un début et une fin. Tu peux en faire une à l
 
 ```js
 function activitySelection(activities) {
-  // trier par heure de fin : l'activité qui libère le plus tôt passe devant
-  const sorted = [...activities].sort((a, b) => a.end - b.end)
+ // trier par heure de fin : l'activité qui libère le plus tôt passe devant
+ const sorted = [...activities].sort((a, b) => a.end - b.end)
 
-  const selected = [sorted[0]]
-  let lastEnd = sorted[0].end
+ const selected = [sorted[0]]
+ let lastEnd = sorted[0].end
 
-  for (let i = 1; i < sorted.length; i++) {
-    const activity = sorted[i]
-    // cette activité commence après que la précédente soit finie ?
-    if (activity.start >= lastEnd) {
-      selected.push(activity)
-      lastEnd = activity.end
-    }
-    // sinon : skip, on continue avec la prochaine
+ for (let i = 1; i < sorted.length; i++) {
+  const activity = sorted[i]
+  // cette activité commence après que la précédente soit finie ?
+  if (activity.start >= lastEnd) {
+   selected.push(activity)
+   lastEnd = activity.end
   }
+  // sinon : skip, on continue avec la prochaine
+ }
 
-  return selected
+ return selected
 }
 
 const activities = [
-  { name: "Entraînement Naruto", start: 1, end: 4 },
-  { name: "Combat Sasuke", start: 3, end: 5 },
-  { name: "Mission C", start: 0, end: 6 },
-  { name: "Briefing Kakashi", start: 5, end: 7 },
-  { name: "Mission B", start: 3, end: 9 },
-  { name: "Repos Hokage", start: 6, end: 10 },
-  { name: "Examen Chunin", start: 8, end: 11 },
+ { name: "Entraînement Naruto", start: 1, end: 4 },
+ { name: "Combat Sasuke", start: 3, end: 5 },
+ { name: "Mission C", start: 0, end: 6 },
+ { name: "Briefing Kakashi", start: 5, end: 7 },
+ { name: "Mission B", start: 3, end: 9 },
+ { name: "Repos Hokage", start: 6, end: 10 },
+ { name: "Examen Chunin", start: 8, end: 11 },
 ]
 
 console.log(activitySelection(activities).map(a => a.name))
@@ -83,12 +83,12 @@ console.log(activitySelection(activities).map(a => a.name))
 ```
 Tri par end : end=4, end=5, end=6, end=7, end=9, end=10, end=11
 
-Prise : end=4  (lastEnd=4)
-Skip :  start=3, 3 < 4
-Skip :  start=0, 0 < 4
-Prise : start=5 >= 4, end=7  (lastEnd=7)
-Skip :  start=3, 3 < 7
-Skip :  start=6, 6 < 7
+Prise : end=4 (lastEnd=4)
+Skip : start=3, 3 < 4
+Skip : start=0, 0 < 4
+Prise : start=5 >= 4, end=7 (lastEnd=7)
+Skip : start=3, 3 < 7
+Skip : start=6, 6 < 7
 Prise : start=8 >= 7, end=11 (lastEnd=11)
 
 Résultat : 3 activités... mais l'exemple en haut donne 4 ?
@@ -108,37 +108,37 @@ Tu as un sac de capacité `W`. Des objets avec un poids et une valeur. Tu peux p
 
 ```js
 function fractionalKnapsack(capacity, items) {
-  // trier par ratio valeur/poids : le plus rentable d'abord
-  const sorted = [...items].sort((a, b) =>
-    (b.value / b.weight) - (a.value / a.weight)
-  )
+ // trier par ratio valeur/poids : le plus rentable d'abord
+ const sorted = [...items].sort((a, b) =>
+  (b.value / b.weight) - (a.value / a.weight)
+ )
 
-  let totalValue = 0
-  let remaining = capacity
+ let totalValue = 0
+ let remaining = capacity
 
-  for (const item of sorted) {
-    if (remaining <= 0) break
+ for (const item of sorted) {
+  if (remaining <= 0) break
 
-    if (item.weight <= remaining) {
-      // on prend l'objet entier
-      totalValue += item.value
-      remaining -= item.weight
-    } else {
-      // on prend la fraction qui rentre
-      const fraction = remaining / item.weight
-      totalValue += item.value * fraction
-      remaining = 0
-    }
+  if (item.weight <= remaining) {
+   // on prend l'objet entier
+   totalValue += item.value
+   remaining -= item.weight
+  } else {
+   // on prend la fraction qui rentre
+   const fraction = remaining / item.weight
+   totalValue += item.value * fraction
+   remaining = 0
   }
+ }
 
-  return totalValue
+ return totalValue
 }
 
 // Les stocks de Walter White : valeur / poids = rentabilité par kg
 const items = [
-  { name: "Blue Sky", value: 60, weight: 10 },  // ratio 6
-  { name: "Meth basique", value: 100, weight: 20 }, // ratio 5
-  { name: "Précurseurs", value: 120, weight: 30 },  // ratio 4
+ { name: "Blue Sky", value: 60, weight: 10 }, // ratio 6
+ { name: "Meth basique", value: 100, weight: 20 }, // ratio 5
+ { name: "Précurseurs", value: 120, weight: 30 }, // ratio 4
 ]
 
 console.log(fractionalKnapsack(50, items)) // 240
@@ -181,17 +181,17 @@ Tableau d'entiers. Chaque valeur = nombre maximum de sauts depuis cette position
 
 ```js
 function canJump(nums) {
-  let maxReach = 0
+ let maxReach = 0
 
-  for (let i = 0; i < nums.length; i++) {
-    // si on ne peut pas atteindre cette position : bloqué
-    if (i > maxReach) return false
+ for (let i = 0; i < nums.length; i++) {
+  // si on ne peut pas atteindre cette position : bloqué
+  if (i > maxReach) return false
 
-    // mettre à jour la portée maximale depuis ici
-    maxReach = Math.max(maxReach, i + nums[i])
-  }
+  // mettre à jour la portée maximale depuis ici
+  maxReach = Math.max(maxReach, i + nums[i])
+ }
 
-  return true
+ return true
 }
 
 console.log(canJump([2, 3, 1, 1, 4])) // true
@@ -214,7 +214,7 @@ i=4 : 4 > maxReach(3) => return false
 ```
 Problème du rendu de monnaie avec pièces non standard [1, 3, 4], rendre 6 :
 Greedy : 4 + 1 + 1 = 3 pièces
-DP :     3 + 3     = 2 pièces
+DP :   3 + 3   = 2 pièces
 
 0/1 Knapsack (vu ci-dessus)
 
@@ -240,12 +240,12 @@ Cinq Chevaliers de la Flamme. Chacun peut prendre une mission par nuit. Les miss
 
 ```js
 const missions = [
-  { id: "M1", start: 0, end: 3 },
-  { id: "M2", start: 1, end: 4 },
-  { id: "M3", start: 3, end: 6 },
-  { id: "M4", start: 2, end: 5 },
-  { id: "M5", start: 5, end: 8 },
-  { id: "M6", start: 6, end: 9 },
+ { id: "M1", start: 0, end: 3 },
+ { id: "M2", start: 1, end: 4 },
+ { id: "M3", start: 3, end: 6 },
+ { id: "M4", start: 2, end: 5 },
+ { id: "M5", start: 5, end: 8 },
+ { id: "M6", start: 6, end: 9 },
 ]
 ```
 
@@ -274,7 +274,7 @@ Michael Scofield doit traverser des couloirs de la prison. Chaque cellule du cou
 ```js
 // couloirs[i] = nombre de pas max depuis i
 const corridors = [2, 3, 0, 1, 4] // true
-const blocked = [3, 2, 1, 0, 4]   // false
+const blocked = [3, 2, 1, 0, 4]  // false
 ```
 
 Implémenter `canEscape(corridor)` avec l'approche greedy `maxReach`.

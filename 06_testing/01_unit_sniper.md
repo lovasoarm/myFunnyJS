@@ -24,13 +24,13 @@ Si ton test fait ça, c'est un test d'intégration (voir `05_integration_reactor
 ```js
 // PAS un unit test : dépend d'une API externe
 async function testGetSurvivor() {
-  const survivor = await fetch('/api/survivors/rick') // appel réseau réel
-  assert(survivor.name === 'Rick')
+ const survivor = await fetch('/api/survivors/rick') // appel réseau réel
+ assert(survivor.name === 'Rick')
 }
 
 // UNIT TEST : la fonction est pure, isolée, prévisible
 function formatSurvivorName(prenom, rang, camp) {
-  return `[${rang.toUpperCase()}] ${prenom} · ${camp}`
+ return `[${rang.toUpperCase()}] ${prenom} · ${camp}`
 }
 
 // test :
@@ -46,9 +46,9 @@ Tout bon test unitaire suit ce pattern : **AAA : Arrange, Act, Assert**
 
 ```js
 // ARRANGE : prépare les données
-const nourriture = 48       // rations disponibles au camp
-const survivants = 12       // bouches à nourrir
-const joursPrevu = 3        // durée de la mission
+const nourriture = 48    // rations disponibles au camp
+const survivants = 12    // bouches à nourrir
+const joursPrevu = 3    // durée de la mission
 
 // ACT : appelle la fonction testée
 const rations = calculeRationsJournalieres(nourriture, survivants, joursPrevu)
@@ -70,7 +70,7 @@ C'est pourtant là que les bugs vivent.
 
 ```js
 function calculeRationsJournalieres(nourriture, survivants, jours) {
-  return nourriture / survivants / jours
+ return nourriture / survivants / jours
 }
 ```
 
@@ -81,9 +81,9 @@ expect(calculeRationsJournalieres(48, 12, 3)).toBe(4) // cas normal, journée tr
 
 Les tests que Daryl écrit avant de partir en mission :
 ```js
-expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)       // cas normal
-expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)         // plus de nourriture : 0
-expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity)  // 0 survivant : division par zéro → Infinity
+expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)    // cas normal
+expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)     // plus de nourriture : 0
+expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity) // 0 survivant : division par zéro → Infinity
 expect(calculeRationsJournalieres(48, 12, 0)).toBe(Infinity) // 0 jours : même problème
 expect(calculeRationsJournalieres(1, 3, 1)).toBeCloseTo(0.33) // flottant : pas toBe, mais toBeCloseTo
 ```
@@ -99,17 +99,17 @@ En lisant le test, tu comprends ce que la fonction est censée faire : même san
 
 ```js
 describe('calculeRationsJournalieres', () => {
-  it('retourne les rations correctes pour un camp normal', () => {
-    expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)
-  })
+ it('retourne les rations correctes pour un camp normal', () => {
+  expect(calculeRationsJournalieres(48, 12, 3)).toBe(4)
+ })
 
-  it('retourne 0 si le camp est vide de nourriture', () => {
-    expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)
-  })
+ it('retourne 0 si le camp est vide de nourriture', () => {
+  expect(calculeRationsJournalieres(0, 12, 3)).toBe(0)
+ })
 
-  it('retourne Infinity si personne à nourrir (division par zéro)', () => {
-    expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity)
-  })
+ it('retourne Infinity si personne à nourrir (division par zéro)', () => {
+  expect(calculeRationsJournalieres(48, 0, 3)).toBe(Infinity)
+ })
 })
 ```
 
@@ -128,29 +128,29 @@ Un test unitaire qui dépend d'un autre test : c'est une bombe à retardement. S
 let survivants = []
 
 it('ajoute un survivant au camp', () => {
-  survivants.push('Carol')
-  expect(survivants).toHaveLength(1)
+ survivants.push('Carol')
+ expect(survivants).toHaveLength(1)
 })
 
 it('retire un survivant du camp', () => {
-  // si test 1 n'a pas tourné, survivants est vide, ce test explose
-  survivants.pop()
-  expect(survivants).toHaveLength(0)
+ // si test 1 n'a pas tourné, survivants est vide, ce test explose
+ survivants.pop()
+ expect(survivants).toHaveLength(0)
 })
 ```
 
 ```js
 // CORRECT : chaque test gère son propre état
 it('ajoute un survivant au camp', () => {
-  const survivants = []
-  survivants.push('Carol')
-  expect(survivants).toHaveLength(1)
+ const survivants = []
+ survivants.push('Carol')
+ expect(survivants).toHaveLength(1)
 })
 
 it('retire un survivant du camp', () => {
-  const survivants = ['Carol']
-  survivants.pop()
-  expect(survivants).toHaveLength(0)
+ const survivants = ['Carol']
+ survivants.pop()
+ expect(survivants).toHaveLength(0)
 })
 ```
 
@@ -166,7 +166,7 @@ La fonction suivante vérifie si un survivant peut partir en mission de reconnai
 
 ```js
 function peutPartirEnMission(survivant) {
-  return survivant.stamina > 60 && survivant.blessures === 0 && survivant.munitions > 0
+ return survivant.stamina > 60 && survivant.blessures === 0 && survivant.munitions > 0
 }
 ```
 
@@ -185,7 +185,7 @@ Pour cette fonction de calcul de menace du camp :
 
 ```js
 function niveauMenace(zombiesDetectes, distancePérimètre) {
-  return zombiesDetectes / distancePérimètre
+ return zombiesDetectes / distancePérimètre
 }
 ```
 
@@ -202,13 +202,13 @@ Ce test teste trop de choses à la fois. Coupe-le en tests unitaires propres :
 
 ```js
 it('gère un survivant complet', () => {
-  const survivant = { nom: 'Michonne', kills: 40, blessures: 0 }
-  const nomFormaté = formatNom(survivant.nom)
-  const efficacite = calculeEfficacite(survivant.kills, survivant.blessures)
-  const rang = attribueRang(efficacite)
-  expect(nomFormaté).toBe('MICHONNE')
-  expect(efficacite).toBe(40)
-  expect(rang).toBe('elite')
+ const survivant = { nom: 'Michonne', kills: 40, blessures: 0 }
+ const nomFormaté = formatNom(survivant.nom)
+ const efficacite = calculeEfficacite(survivant.kills, survivant.blessures)
+ const rang = attribueRang(efficacite)
+ expect(nomFormaté).toBe('MICHONNE')
+ expect(efficacite).toBe(40)
+ expect(rang).toBe('elite')
 })
 ```
 

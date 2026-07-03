@@ -4,9 +4,9 @@ Temps de lecture ~13 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+
+Variables env : aucune
 Outils externes: aucun
 
 # Installation
@@ -43,11 +43,11 @@ $ node src/index.js
 [PERF] Tous les benchmarks dans logs/benchmarks.json
 
 $ npm test
-PASS  tests/graph.test.js (22 tests)
-PASS  tests/dijkstra.test.js (16 tests)
-PASS  tests/heap.test.js (14 tests)
-PASS  tests/sorting.test.js (12 tests)
-PASS  tests/dp.test.js (10 tests)
+PASS tests/graph.test.js (22 tests)
+PASS tests/dijkstra.test.js (16 tests)
+PASS tests/heap.test.js (14 tests)
+PASS tests/sorting.test.js (12 tests)
+PASS tests/dp.test.js (10 tests)
 ```
 
 Ce projet est pur algorithme et structure de données. Pas de CLI complexe, pas de streaming, pas de refactoring de legacy. Juste des structures bien choisies et des algorithmes mesurés.
@@ -77,25 +77,25 @@ Ce projet force à travailler avec des structures de données non triviales dans
 ### Résumé visuel
 
 ```
-09_data_structures  --> src/graph/ (graphe orienté pondéré), src/heap/ (min-heap)
-10_algorithms       --> src/algorithms/ (dijkstra, bfs, mergeSort, quickSort, knapsack)
-06_memory_perf      --> src/profiler/benchmarks.js, logs/benchmarks.json
+09_data_structures --> src/graph/ (graphe orienté pondéré), src/heap/ (min-heap)
+10_algorithms    --> src/algorithms/ (dijkstra, bfs, mergeSort, quickSort, knapsack)
+06_memory_perf   --> src/profiler/benchmarks.js, logs/benchmarks.json
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
 src/index.js
-  --> graphLoader.load('data/network.json')     // charge le réseau depuis un fichier JSON
-  --> graph.addNode(city) / graph.addEdge(...)  // construit le graphe en mémoire
-  --> dijkstra.findPath(graph, 'Labo', 'Albuquerque') // chemin optimal
-  --> bfs.findCompromisedRoutes(graph)          // routes compromises
-  --> priorityQueue.build(distributors)         // construit le heap depuis la liste
-  --> priorityQueue.extractMin()                // urgence n°1
-  --> benchmark.run('mergeSort', mergeSort, lots) // mesure le merge sort
-  --> benchmark.run('quickSort', quickSort, lots) // mesure le quick sort
-  --> knapsack.optimize(items, budget)          // DP : valeur max sous contrainte
-  --> benchmarkLogger.save('logs/benchmarks.json') // sauvegarde les perf
+ --> graphLoader.load('data/network.json')   // charge le réseau depuis un fichier JSON
+ --> graph.addNode(city) / graph.addEdge(...) // construit le graphe en mémoire
+ --> dijkstra.findPath(graph, 'Labo', 'Albuquerque') // chemin optimal
+ --> bfs.findCompromisedRoutes(graph)     // routes compromises
+ --> priorityQueue.build(distributors)     // construit le heap depuis la liste
+ --> priorityQueue.extractMin()        // urgence n°1
+ --> benchmark.run('mergeSort', mergeSort, lots) // mesure le merge sort
+ --> benchmark.run('quickSort', quickSort, lots) // mesure le quick sort
+ --> knapsack.optimize(items, budget)     // DP : valeur max sous contrainte
+ --> benchmarkLogger.save('logs/benchmarks.json') // sauvegarde les perf
 ```
 
 ## L'ARCHITECTURE DU CODE, FICHIER PAR FICHIER
@@ -103,21 +103,21 @@ src/index.js
 ```
 src/
 ├── graph/
-│   ├── graph.js
-│   └── graphLoader.js
+│  ├── graph.js
+│  └── graphLoader.js
 │
 ├── heap/
-│   └── minHeap.js
+│  └── minHeap.js
 │
 ├── algorithms/
-│   ├── dijkstra.js
-│   ├── bfs.js
-│   ├── mergeSort.js
-│   ├── quickSort.js
-│   └── knapsack.js
+│  ├── dijkstra.js
+│  ├── bfs.js
+│  ├── mergeSort.js
+│  ├── quickSort.js
+│  └── knapsack.js
 │
 ├── profiler/
-│   └── benchmarks.js
+│  └── benchmarks.js
 │
 └── index.js
 
@@ -145,12 +145,12 @@ tests/
 
 ```json
 {
-  "nodes": ["Labo", "Socorro", "Rio Rancho", "Albuquerque", "Santa Fe", "Las Cruces", "Roswell", "El Paso"],
-  "edges": [
-    { "from": "Labo",    "to": "Socorro",     "weight": 12, "risk": "faible" },
-    { "from": "Socorro", "to": "Rio Rancho",  "weight": 18, "risk": "faible" },
-    { "from": "Labo",    "to": "Albuquerque", "weight": 47, "risk": "élevé"  }
-  ]
+ "nodes": ["Labo", "Socorro", "Rio Rancho", "Albuquerque", "Santa Fe", "Las Cruces", "Roswell", "El Paso"],
+ "edges": [
+  { "from": "Labo",  "to": "Socorro",   "weight": 12, "risk": "faible" },
+  { "from": "Socorro", "to": "Rio Rancho", "weight": 18, "risk": "faible" },
+  { "from": "Labo",  "to": "Albuquerque", "weight": 47, "risk": "élevé" }
+ ]
 }
 ```
 
@@ -191,15 +191,15 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/graph/graph.js         --> structure de base, zéro dépendance
-2. src/heap/minHeap.js        --> indépendant, testable seul
+1. src/graph/graph.js     --> structure de base, zéro dépendance
+2. src/heap/minHeap.js    --> indépendant, testable seul
 3. src/algorithms/mergeSort.js + quickSort.js --> indépendants du graphe
 4. src/algorithms/knapsack.js --> indépendant du graphe
-5. src/graph/graphLoader.js   --> dépend de graph.js + fichier JSON
-6. src/algorithms/bfs.js      --> dépend de graph.js
+5. src/graph/graphLoader.js  --> dépend de graph.js + fichier JSON
+6. src/algorithms/bfs.js   --> dépend de graph.js
 7. src/algorithms/dijkstra.js --> dépend de graph.js + minHeap.js
 8. src/profiler/benchmarks.js --> wrape n'importe quelle fonction
-9. src/index.js               --> branche tout, lance la démo
+9. src/index.js        --> branche tout, lance la démo
 ```
 
 ## ESTIMATION DE TEMPS ET ZONES DE RÉSISTANCE
@@ -226,25 +226,25 @@ Le min-heap est le point de résistance le plus sous-estimé. L'insertion est si
 import { MinHeap } from '../src/heap/minHeap.js';
 
 describe('MinHeap', () => {
-  test('extractMin retourne toujours le plus petit élément', () => {
-    const heap = new MinHeap();
-    heap.insert('Las Cruces', 8);   // stock: 8
-    heap.insert('Santa Fe', 2);     // stock: 2 --> priorité max
-    heap.insert('Albuquerque', 15);
+ test('extractMin retourne toujours le plus petit élément', () => {
+  const heap = new MinHeap();
+  heap.insert('Las Cruces', 8);  // stock: 8
+  heap.insert('Santa Fe', 2);   // stock: 2 --> priorité max
+  heap.insert('Albuquerque', 15);
 
-    expect(heap.extractMin().item).toBe('Santa Fe');  // urgence n°1
-    expect(heap.extractMin().item).toBe('Las Cruces'); // urgence n°2
-  });
+  expect(heap.extractMin().item).toBe('Santa Fe'); // urgence n°1
+  expect(heap.extractMin().item).toBe('Las Cruces'); // urgence n°2
+ });
 
-  test("l'ordre est correct après plusieurs insertions et extractions", () => {
-    const heap = new MinHeap();
-    [7, 3, 1, 9, 2].forEach(p => heap.insert(`city-${p}`, p));
+ test("l'ordre est correct après plusieurs insertions et extractions", () => {
+  const heap = new MinHeap();
+  [7, 3, 1, 9, 2].forEach(p => heap.insert(`city-${p}`, p));
 
-    const extracted = [];
-    while (!heap.isEmpty()) extracted.push(heap.extractMin().priority);
+  const extracted = [];
+  while (!heap.isEmpty()) extracted.push(heap.extractMin().priority);
 
-    expect(extracted).toEqual([1, 2, 3, 7, 9]); // ordre croissant garanti
-  });
+  expect(extracted).toEqual([1, 2, 3, 7, 9]); // ordre croissant garanti
+ });
 });
 
 // tests/dijkstra.test.js
@@ -252,17 +252,17 @@ import { Graph } from '../src/graph/graph.js';
 import { findPath } from '../src/algorithms/dijkstra.js';
 
 describe('dijkstra', () => {
-  test('trouve le chemin de coût minimal dans un graphe simple', () => {
-    const g = new Graph();
-    g.addNode('A'); g.addNode('B'); g.addNode('C');
-    g.addEdge('A', 'B', 10);
-    g.addEdge('A', 'C', 3);
-    g.addEdge('C', 'B', 4);  // A->C->B coûte 7, moins que A->B (10)
+ test('trouve le chemin de coût minimal dans un graphe simple', () => {
+  const g = new Graph();
+  g.addNode('A'); g.addNode('B'); g.addNode('C');
+  g.addEdge('A', 'B', 10);
+  g.addEdge('A', 'C', 3);
+  g.addEdge('C', 'B', 4); // A->C->B coûte 7, moins que A->B (10)
 
-    const result = findPath(g, 'A', 'B');
-    expect(result.path).toEqual(['A', 'C', 'B']);
-    expect(result.cost).toBe(7);
-  });
+  const result = findPath(g, 'A', 'B');
+  expect(result.path).toEqual(['A', 'C', 'B']);
+  expect(result.cost).toBe(7);
+ });
 });
 ```
 
@@ -311,11 +311,11 @@ Liste d'adjacence. Le réseau a 8 villes mais seulement 14 routes sur 56 possibl
 
 ## Alternatives considérées
 - Matrice d'adjacence : rejetée car inefficace en espace O(V²) pour un graphe sparse.
-  Avantage de la matrice : vérifier si une arête existe entre A et B est O(1). Pas utile ici.
+ Avantage de la matrice : vérifier si une arête existe entre A et B est O(1). Pas utile ici.
 
 ## Conséquences
 - Vérifier l'existence d'une arête entre deux noeuds est O(degree) au lieu de O(1).
-  Acceptable ici car le degré moyen est faible (14 arêtes / 8 noeuds ≈ 1.75).
+ Acceptable ici car le degré moyen est faible (14 arêtes / 8 noeuds ≈ 1.75).
 - L'itération sur les voisins (ce que Dijkstra fait) est plus rapide sur une liste.
 ```
 

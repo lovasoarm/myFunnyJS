@@ -8,18 +8,18 @@ Tu affiches un prix : `1234.56`. En France, ça doit s'écrire `1 234,56`. Aux �
 ```js
 // Ça casse (mais fun) : remplacer un point par une virgule "pour faire propre en français"
 function formaterPrixFrancais(nombre) {
-  return nombre.toString().replace('.', ','); // (1234.56 devient "1234,56" : et le séparateur de milliers ?)
+ return nombre.toString().replace('.', ','); // (1234.56 devient "1234,56" : et le séparateur de milliers ?)
 }
 // Résultat : "1234,56" : techniquement correct pour le décimal, mais illisible sans séparateur de milliers
 // Et si le nombre est négatif, ou très grand, ce remplacement naïf part vite en vrille
 ```
 
 ```
-Pays         Séparateur décimal   Séparateur de milliers   Exemple
-France       virgule               espace                   1 234,56
-États-Unis   point                 virgule                   1,234.56
-Allemagne    virgule               point                     1.234,56
-Japon        point                 virgule                   1,234.56
+Pays     Séparateur décimal  Séparateur de milliers  Exemple
+France    virgule        espace          1 234,56
+États-Unis  point         virgule          1,234.56
+Allemagne  virgule        point           1.234,56
+Japon    point         virgule          1,234.56
 ```
 
 Le point et la virgule échangent littéralement leurs rôles entre la France et l'Allemagne. Un bricolage de `.replace()` ne peut JAMAIS couvrir tous les cas correctement.
@@ -46,21 +46,21 @@ console.log(formatteurDe.format(nombre)); // "1.234,56"
 ```js
 // Mauvais : coller le symbole devise à la main devant le nombre
 function afficherPrix(nombre) {
-  return `${nombre}€`; // (et si le prix est en dollars ? et la position du symbole ?)
+ return `${nombre}€`; // (et si le prix est en dollars ? et la position du symbole ?)
 }
 ```
 
 ```js
 // Correct : Intl gère aussi la position du symbole et l'espacement selon la locale
 const prixEnEuros = new Intl.NumberFormat('fr-FR', {
-  style: 'currency',
-  currency: 'EUR',
+ style: 'currency',
+ currency: 'EUR',
 }).format(1234.56);
 console.log(prixEnEuros); // "1 234,56 €" (symbole APRÈS, avec espace)
 
 const prixEnDollars = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+ style: 'currency',
+ currency: 'USD',
 }).format(1234.56);
 console.log(prixEnDollars); // "$1,234.56" (symbole AVANT, sans espace)
 ```

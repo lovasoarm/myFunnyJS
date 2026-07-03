@@ -16,10 +16,10 @@ On applique une approche TDD-first (Test-Driven Development : développement pil
 
 ```
 Ordre d'attaque :
-1. Lire le code existant  -->  comprendre ce qu'il fait (pas ce qu'il devrait faire)
-2. Écrire les tests       -->  capturer le comportement réel (même les bugs connus)
+1. Lire le code existant --> comprendre ce qu'il fait (pas ce qu'il devrait faire)
+2. Écrire les tests    --> capturer le comportement réel (même les bugs connus)
 3. Vérifier que les tests passent sur la v1
-4. Refactorer             -->  SOLID, SRP, DIP : un smell à la fois
+4. Refactorer       --> SOLID, SRP, DIP : un smell à la fois
 5. Vérifier que les tests passent toujours
 6. Ajouter les nouvelles features en TDD pur : test rouge --> code --> test vert
 ```

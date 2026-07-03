@@ -20,10 +20,10 @@ Ce que tu obtiens avec une spec OpenAPI :
 
 ```
 spec.yaml (OpenAPI)
-  --> Swagger UI        : doc interactive, testable dans le navigateur
-  --> Code generators   : client TypeScript, Python, Go, etc.
-  --> Request validator : valide que les requêtes respectent le contrat
-  --> Mock server       : serveur fictif pour les devs frontend pendant que le backend est en cours
+ --> Swagger UI    : doc interactive, testable dans le navigateur
+ --> Code generators  : client TypeScript, Python, Go, etc.
+ --> Request validator : valide que les requêtes respectent le contrat
+ --> Mock server    : serveur fictif pour les devs frontend pendant que le backend est en cours
 ```
 
 ---
@@ -35,237 +35,237 @@ spec.yaml (OpenAPI)
 openapi: 3.1.0
 
 info:
-  title: MyFunnyAPI - Champions League
-  version: 2.0.0
-  description: API de gestion des joueurs et équipes Champions League
+ title: MyFunnyAPI - Champions League
+ version: 2.0.0
+ description: API de gestion des joueurs et équipes Champions League
 
 servers:
-  - url: https://api.myfunny.dev/v2
-    description: Production
-  - url: http://localhost:3000/v2
-    description: Développement local
+ - url: https://api.myfunny.dev/v2
+  description: Production
+ - url: http://localhost:3000/v2
+  description: Développement local
 
 # composants réutilisables : schémas, réponses d'erreur, paramètres
 components:
-  schemas:
-    Player:
-      type: object
-      required: [id, name, goals]
-      properties:
-        id:
-          type: integer
-          example: 7
-        name:
-          type: string
-          example: Mbappé
-        team:
-          type: string
-          example: Real Madrid
-        goals:
-          type: integer
-          minimum: 0
-          example: 30
-        assists:
-          type: integer
-          minimum: 0
-          example: 12
+ schemas:
+  Player:
+   type: object
+   required: [id, name, goals]
+   properties:
+    id:
+     type: integer
+     example: 7
+    name:
+     type: string
+     example: Mbappé
+    team:
+     type: string
+     example: Real Madrid
+    goals:
+     type: integer
+     minimum: 0
+     example: 30
+    assists:
+     type: integer
+     minimum: 0
+     example: 12
 
-    CreatePlayerInput:
-      type: object
-      required: [name, team]
-      properties:
-        name:
-          type: string
-          minLength: 2
-          example: Vinicius
-        team:
-          type: string
-          example: Real Madrid
-        goals:
-          type: integer
-          minimum: 0
-          default: 0
+  CreatePlayerInput:
+   type: object
+   required: [name, team]
+   properties:
+    name:
+     type: string
+     minLength: 2
+     example: Vinicius
+    team:
+     type: string
+     example: Real Madrid
+    goals:
+     type: integer
+     minimum: 0
+     default: 0
 
-    Error:
-      type: object
-      required: [error]
-      properties:
-        error:
-          type: object
-          required: [code, message, status]
-          properties:
-            code:
-              type: string
-              example: PLAYER_NOT_FOUND
-            message:
-              type: string
-              example: joueur 99 introuvable
-            status:
-              type: integer
-              example: 404
+  Error:
+   type: object
+   required: [error]
+   properties:
+    error:
+     type: object
+     required: [code, message, status]
+     properties:
+      code:
+       type: string
+       example: PLAYER_NOT_FOUND
+      message:
+       type: string
+       example: joueur 99 introuvable
+      status:
+       type: integer
+       example: 404
 
-  # réponses d'erreur réutilisables sur plusieurs endpoints
-  responses:
-    NotFound:
-      description: Ressource introuvable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Token absent ou invalide
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+ # réponses d'erreur réutilisables sur plusieurs endpoints
+ responses:
+  NotFound:
+   description: Ressource introuvable
+   content:
+    application/json:
+     schema:
+      $ref: '#/components/schemas/Error'
+  Unauthorized:
+   description: Token absent ou invalide
+   content:
+    application/json:
+     schema:
+      $ref: '#/components/schemas/Error'
 
-  # schémas d'auth
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+ # schémas d'auth
+ securitySchemes:
+  bearerAuth:
+   type: http
+   scheme: bearer
+   bearerFormat: JWT
 
 # sécurité globale : tous les endpoints nécessitent un token sauf override
 security:
-  - bearerAuth: []
+ - bearerAuth: []
 
 paths:
-  /players:
-    get:
-      summary: Liste tous les joueurs
-      operationId: listPlayers
-      tags: [Players]
-      security: []  # override : cet endpoint est public
-      parameters:
-        - name: team
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filtre par équipe
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: 20
-      responses:
-        '200':
-          description: Liste des joueurs
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Player'
-                  pagination:
-                    type: object
-                    properties:
-                      page: { type: integer }
-                      limit: { type: integer }
-                      total: { type: integer }
+ /players:
+  get:
+   summary: Liste tous les joueurs
+   operationId: listPlayers
+   tags: [Players]
+   security: [] # override : cet endpoint est public
+   parameters:
+    - name: team
+     in: query
+     required: false
+     schema:
+      type: string
+     description: Filtre par équipe
+    - name: page
+     in: query
+     required: false
+     schema:
+      type: integer
+      minimum: 1
+      default: 1
+    - name: limit
+     in: query
+     required: false
+     schema:
+      type: integer
+      minimum: 1
+      maximum: 100
+      default: 20
+   responses:
+    '200':
+     description: Liste des joueurs
+     content:
+      application/json:
+       schema:
+        type: object
+        properties:
+         data:
+          type: array
+          items:
+           $ref: '#/components/schemas/Player'
+         pagination:
+          type: object
+          properties:
+           page: { type: integer }
+           limit: { type: integer }
+           total: { type: integer }
 
-    post:
-      summary: Crée un nouveau joueur
-      operationId: createPlayer
-      tags: [Players]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreatePlayerInput'
-      responses:
-        '201':
-          description: Joueur créé
-          headers:
-            Location:
-              schema:
-                type: string
-              description: URL du nouveau joueur
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Player'
-        '400':
-          description: Données invalides
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+  post:
+   summary: Crée un nouveau joueur
+   operationId: createPlayer
+   tags: [Players]
+   requestBody:
+    required: true
+    content:
+     application/json:
+      schema:
+       $ref: '#/components/schemas/CreatePlayerInput'
+   responses:
+    '201':
+     description: Joueur créé
+     headers:
+      Location:
+       schema:
+        type: string
+       description: URL du nouveau joueur
+     content:
+      application/json:
+       schema:
+        $ref: '#/components/schemas/Player'
+    '400':
+     description: Données invalides
+     content:
+      application/json:
+       schema:
+        $ref: '#/components/schemas/Error'
+    '401':
+     $ref: '#/components/responses/Unauthorized'
 
-  /players/{id}:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: ID du joueur
+ /players/{id}:
+  parameters:
+   - name: id
+    in: path
+    required: true
+    schema:
+     type: integer
+    description: ID du joueur
 
-    get:
-      summary: Récupère un joueur par son ID
-      operationId: getPlayer
-      tags: [Players]
-      security: []
-      responses:
-        '200':
-          description: Joueur trouvé
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Player'
-        '404':
-          $ref: '#/components/responses/NotFound'
+  get:
+   summary: Récupère un joueur par son ID
+   operationId: getPlayer
+   tags: [Players]
+   security: []
+   responses:
+    '200':
+     description: Joueur trouvé
+     content:
+      application/json:
+       schema:
+        $ref: '#/components/schemas/Player'
+    '404':
+     $ref: '#/components/responses/NotFound'
 
-    patch:
-      summary: Modifie partiellement un joueur
-      operationId: updatePlayer
-      tags: [Players]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name: { type: string }
-                team: { type: string }
-                goals: { type: integer, minimum: 0 }
-      responses:
-        '200':
-          description: Joueur mis à jour
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Player'
-        '404':
-          $ref: '#/components/responses/NotFound'
+  patch:
+   summary: Modifie partiellement un joueur
+   operationId: updatePlayer
+   tags: [Players]
+   requestBody:
+    required: true
+    content:
+     application/json:
+      schema:
+       type: object
+       properties:
+        name: { type: string }
+        team: { type: string }
+        goals: { type: integer, minimum: 0 }
+   responses:
+    '200':
+     description: Joueur mis à jour
+     content:
+      application/json:
+       schema:
+        $ref: '#/components/schemas/Player'
+    '404':
+     $ref: '#/components/responses/NotFound'
 
-    delete:
-      summary: Supprime un joueur
-      operationId: deletePlayer
-      tags: [Players]
-      responses:
-        '204':
-          description: Joueur supprimé
-        '404':
-          $ref: '#/components/responses/NotFound'
+  delete:
+   summary: Supprime un joueur
+   operationId: deletePlayer
+   tags: [Players]
+   responses:
+    '204':
+     description: Joueur supprimé
+    '404':
+     $ref: '#/components/responses/NotFound'
 ```
 
 ---
@@ -281,10 +281,10 @@ const swaggerDocument = YAML.load('./openapi.yaml')
 
 // monte Swagger UI sur /docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
-  customSiteTitle: 'MyFunnyAPI Docs',
-  swaggerOptions: {
-    persistAuthorization: true  // garde le token entre les requêtes de test
-  }
+ customSiteTitle: 'MyFunnyAPI Docs',
+ swaggerOptions: {
+  persistAuthorization: true // garde le token entre les requêtes de test
+ }
 }))
 ```
 
@@ -301,11 +301,11 @@ La spec peut faire plus que documenter : elle peut valider les requêtes entrant
 import OpenApiValidator from 'express-openapi-validator'
 
 app.use(
-  OpenApiValidator.middleware({
-    apiSpec: './openapi.yaml',
-    validateRequests: true,   // valide les requêtes entrantes contre la spec
-    validateResponses: false  // activer en dev pour détecter les divergences
-  })
+ OpenApiValidator.middleware({
+  apiSpec: './openapi.yaml',
+  validateRequests: true,  // valide les requêtes entrantes contre la spec
+  validateResponses: false // activer en dev pour détecter les divergences
+ })
 )
 
 // les erreurs de validation sont passées au errorHandler global
@@ -327,21 +327,21 @@ Alternative à écrire le YAML à la main : générer la spec depuis des annotat
 /**
  * @openapi
  * /players:
- *   get:
- *     summary: Liste tous les joueurs
- *     tags: [Players]
- *     responses:
- *       200:
- *         description: Liste des joueurs
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Player'
+ *  get:
+ *   summary: Liste tous les joueurs
+ *   tags: [Players]
+ *   responses:
+ *    200:
+ *     description: Liste des joueurs
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: array
+ *        items:
+ *         $ref: '#/components/schemas/Player'
  */
 router.get('/', (req, res) => {
-  // ...
+ // ...
 })
 ```
 
@@ -350,23 +350,23 @@ router.get('/', (req, res) => {
 import swaggerJsdoc from 'swagger-jsdoc'
 
 const spec = swaggerJsdoc({
-  definition: {
-    openapi: '3.1.0',
-    info: { title: 'MyFunnyAPI', version: '2.0.0' },
-  },
-  apis: ['./routes/**/*.js']  // scanne ces fichiers pour les annotations @openapi
+ definition: {
+  openapi: '3.1.0',
+  info: { title: 'MyFunnyAPI', version: '2.0.0' },
+ },
+ apis: ['./routes/**/*.js'] // scanne ces fichiers pour les annotations @openapi
 })
 ```
 
 **Spec-first vs Code-first :**
 ```
-Spec-first  -->  tu écris le YAML en premier, le code après
-              -->  le contrat est défini avant l'implémentation
-              -->  recommandé pour les APIs publiques ou avec plusieurs équipes
+Spec-first --> tu écris le YAML en premier, le code après
+       --> le contrat est défini avant l'implémentation
+       --> recommandé pour les APIs publiques ou avec plusieurs équipes
 
-Code-first  -->  tu écris le code, la spec est générée
-              -->  plus rapide pour prototyper
-              -->  risque de divergence si on oublie de mettre à jour les annotations
+Code-first --> tu écris le code, la spec est générée
+       --> plus rapide pour prototyper
+       --> risque de divergence si on oublie de mettre à jour les annotations
 ```
 
 ---
@@ -408,20 +408,20 @@ Voici une réponse réelle de l'API et ce que dit la spec. Identifie les diverge
 Spec :
 ```yaml
 Player:
-  properties:
-    id: { type: integer }
-    name: { type: string }
-    goals: { type: integer }
-    team: { type: string }
+ properties:
+  id: { type: integer }
+  name: { type: string }
+  goals: { type: integer }
+  team: { type: string }
 ```
 
 Réponse réelle :
 ```json
 {
-  "id": "7",
-  "player_name": "Mbappé",
-  "goals": 30,
-  "teamId": 1
+ "id": "7",
+ "player_name": "Mbappé",
+ "goals": 30,
+ "teamId": 1
 }
 ```
 

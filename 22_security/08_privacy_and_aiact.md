@@ -1,7 +1,7 @@
 # RGPD ET AI ACT : CE QUE TU N'AS PAS LE DROIT DE LOGGER
 Temps de lecture ~11 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Michael Scofield ne laisse jamais une trace de plus que nécessaire. Chaque carte, chaque appel, chaque mouvement dans Fox River : calculé pour ne rien révéler de plus que ce qui sert le plan. Dans ton code, c'est pareil. Chaque `console.log`, chaque colonne de DB, chaque payload envoyé à un service tiers est une trace. Et une trace mal gérée ne te fait pas juste perdre des points en code review : elle peut faire tomber toute l'équipe devant un régulateur.
 
@@ -17,8 +17,8 @@ Le RGPD encadre comment une entreprise collecte, stocke, utilise et supprime les
 
 ```
 donnée personnelle --> collectée --> traitée --> stockée --> un jour supprimée
-                                                                 ^
-                                            c'est cette étape que la majorité du code oublie
+                                 ^
+                      c'est cette étape que la majorité du code oublie
 ```
 
 ### Pourquoi ça existe
@@ -28,37 +28,37 @@ Avant le RGPD (applicable depuis 2018), une boîte pouvait collecter ce qu'elle 
 ### Les principes qui changent ton code
 
 ```
-Minimisation       -->  tu ne collectes que ce qui sert vraiment, pas "on sait jamais"
-Limitation de but   -->  une donnée collectée pour X ne sert pas à Y sans nouveau consentement
-Droit à l'oubli     -->  un shinobi peut demander la suppression complète de ses données
-Droit d'accès       -->  un shinobi peut demander un export de tout ce que tu as sur lui
-Portabilité         -->  cet export doit être dans un format réutilisable (JSON, pas un PDF scanné)
-Privacy by design   -->  la protection des données se pense AVANT d'écrire le endpoint, pas après un audit
+Minimisation    --> tu ne collectes que ce qui sert vraiment, pas "on sait jamais"
+Limitation de but  --> une donnée collectée pour X ne sert pas à Y sans nouveau consentement
+Droit à l'oubli   --> un shinobi peut demander la suppression complète de ses données
+Droit d'accès    --> un shinobi peut demander un export de tout ce que tu as sur lui
+Portabilité     --> cet export doit être dans un format réutilisable (JSON, pas un PDF scanné)
+Privacy by design  --> la protection des données se pense AVANT d'écrire le endpoint, pas après un audit
 ```
 
 ```js
 // Mauvais : collecte "au cas où", sans base légale claire
 function createUser(data) {
-  return db.users.insert({
-    email: data.email,
-    password: hash(data.password),
-    fullName: data.fullName,
-    phoneNumber: data.phoneNumber, // pourquoi ? le formulaire ne demandait même pas le téléphone
-    browserFingerprint: data.fingerprint, // collecté "pour la sécurité", jamais utilisé
-    lastKnownIP: data.ip, // gardé indéfiniment, jamais nettoyé
-  });
+ return db.users.insert({
+  email: data.email,
+  password: hash(data.password),
+  fullName: data.fullName,
+  phoneNumber: data.phoneNumber, // pourquoi ? le formulaire ne demandait même pas le téléphone
+  browserFingerprint: data.fingerprint, // collecté "pour la sécurité", jamais utilisé
+  lastKnownIP: data.ip, // gardé indéfiniment, jamais nettoyé
+ });
 }
 
 // Correct : on ne stocke que ce qui sert un but déclaré, avec une date d'expiration en tête
 function createUser(data) {
-  return db.users.insert({
-    email: data.email,
-    password: hash(data.password),
-    fullName: data.fullName,
-    createdAt: new Date(),
-    // lastKnownIP volontairement absent : utile pour le rate limiting, pas pour le profil shinobi
-    // si besoin de l'IP, elle vit dans les logs applicatifs avec sa propre rétention (cf. section 3)
-  });
+ return db.users.insert({
+  email: data.email,
+  password: hash(data.password),
+  fullName: data.fullName,
+  createdAt: new Date(),
+  // lastKnownIP volontairement absent : utile pour le rate limiting, pas pour le profil shinobi
+  // si besoin de l'IP, elle vit dans les logs applicatifs avec sa propre rétention (cf. section 3)
+ });
 }
 ```
 
@@ -69,19 +69,19 @@ Le piège classique : supprimer la ligne `users` mais oublier les 6 autres table
 ```js
 // Naïf : ça donne l'impression que c'est réglé, mais l'shinobi existe encore partout ailleurs
 async function deleteUser(userId) {
-  await db.users.delete(userId);
+ await db.users.delete(userId);
 }
 
 // Réel : un droit à l'oubli touche tout ce qui identifie la personne, pas une seule table
 async function deleteUser(userId) {
-  await db.transaction(async (trx) => {
-    await trx.sessions.deleteWhere({ userId });
-    await trx.comments.anonymize({ userId }); // anonymiser, pas toujours supprimer (cf. section 4)
-    await trx.auditLogs.redact({ userId }); // remplace l'identité, garde la trace de l'action
-    await trx.users.delete(userId);
-  });
-  await emailProvider.deleteContact(userId); // service tiers : souvent oublié, toujours visé par l'audit
-  await cache.invalidate(`user:${userId}`);
+ await db.transaction(async (trx) => {
+  await trx.sessions.deleteWhere({ userId });
+  await trx.comments.anonymize({ userId }); // anonymiser, pas toujours supprimer (cf. section 4)
+  await trx.auditLogs.redact({ userId }); // remplace l'identité, garde la trace de l'action
+  await trx.users.delete(userId);
+ });
+ await emailProvider.deleteContact(userId); // service tiers : souvent oublié, toujours visé par l'audit
+ await cache.invalidate(`user:${userId}`);
 }
 ```
 
@@ -94,10 +94,10 @@ async function deleteUser(userId) {
 L'AI Act (entré en application progressive depuis 2024, premières obligations concrètes effectives depuis 2025-2026) classe les systèmes d'IA par niveau de risque, et impose des obligations différentes selon ce niveau. Pour un dev qui branche un LLM (modèle de langage) sur son jutsu, ça touche directement le code.
 
 ```
-Risque inacceptable  -->  interdit (notation sociale, manipulation comportementale ciblée)
-Risque élevé          -->  obligations lourdes (traçabilité, supervision humaine, documentation)
-Risque limité         -->  obligation de transparence (l'shinobi doit savoir qu'il parle à une IA)
-Risque minimal        -->  pas d'obligation spécifique (la majorité des features IA grand public)
+Risque inacceptable --> interdit (notation sociale, manipulation comportementale ciblée)
+Risque élevé     --> obligations lourdes (traçabilité, supervision humaine, documentation)
+Risque limité     --> obligation de transparence (l'shinobi doit savoir qu'il parle à une IA)
+Risque minimal    --> pas d'obligation spécifique (la majorité des features IA grand public)
 ```
 
 ### Ce qui touche réellement ton code
@@ -105,17 +105,17 @@ Risque minimal        -->  pas d'obligation spécifique (la majorité des featur
 ```js
 // Mauvais : un chatbot qui ne se déclare jamais comme tel
 function renderChatMessage(text) {
-  return `<div class="message">${text}</div>`; // l'shinobi ne sait pas si c'est un humain ou pas
+ return `<div class="message">${text}</div>`; // l'shinobi ne sait pas si c'est un humain ou pas
 }
 
 // Correct : transparence explicite, exigée dès qu'un shinobi interagit avec une IA générative
 function renderChatMessage(text, isAIGenerated) {
-  return `
-    <div class="message">
-      ${isAIGenerated ? '<span class="ai-badge">Réponse générée par IA</span>' : ''}
-      ${text}
-    </div>
-  `;
+ return `
+  <div class="message">
+   ${isAIGenerated ? '<span class="ai-badge">Réponse générée par IA</span>' : ''}
+   ${text}
+  </div>
+ `;
 }
 ```
 
@@ -124,18 +124,18 @@ Pour un système classé "risque élevé" (recrutement automatisé, scoring de c
 ```js
 // Un système à risque élevé doit logger CE QUI A SERVI à la décision, pas juste le résultat
 async function scoreApplication(application) {
-  const result = await aiModel.predict(application);
+ const result = await aiModel.predict(application);
 
-  await auditLog.record({
-    modelVersion: aiModel.version, // traçabilité : quel modèle a décidé, quelle version
-    inputFeatures: application.relevantFields, // ce qui a été montré au modèle
-    output: result.score,
-    confidence: result.confidence,
-    timestamp: new Date(),
-    requiresHumanReview: result.confidence < 0.8, // seuil de supervision humaine obligatoire
-  });
+ await auditLog.record({
+  modelVersion: aiModel.version, // traçabilité : quel modèle a décidé, quelle version
+  inputFeatures: application.relevantFields, // ce qui a été montré au modèle
+  output: result.score,
+  confidence: result.confidence,
+  timestamp: new Date(),
+  requiresHumanReview: result.confidence < 0.8, // seuil de supervision humaine obligatoire
+ });
 
-  return result;
+ return result;
 }
 ```
 
@@ -146,25 +146,25 @@ async function scoreApplication(application) {
 C'est la question concrète que tout dev se pose un jour devant un `console.log(req.body)` posé pour débugger vite fait, jamais retiré.
 
 ```
-JAMAIS en clair dans un log     -->  mot de passe, token de session, numéro de carte, code 2FA
-À éviter sauf besoin justifié    -->  email complet, nom complet, adresse IP sans rotation
-OK avec rétention limitée        -->  ID shinobi technique (UUID), action effectuée, timestamp
-Toujours OK                      -->  métriques agrégées (nombre de requêtes, latence, taux d'erreur)
+JAMAIS en clair dans un log   --> mot de passe, token de session, numéro de carte, code 2FA
+À éviter sauf besoin justifié  --> email complet, nom complet, adresse IP sans rotation
+OK avec rétention limitée    --> ID shinobi technique (UUID), action effectuée, timestamp
+Toujours OK           --> métriques agrégées (nombre de requêtes, latence, taux d'erreur)
 ```
 
 ```js
 // Mauvais : ce log devient une preuve à charge si la DB de logs fuite un jour
 logger.info('Chakra_gate attempt', {
-  email: user.email,
-  password: req.body.password, // catastrophe : un mot de passe en clair dans des logs
-  creditCard: user.paymentMethod.last4, // pas nécessaire pour débugger un chakra_gate
+ email: user.email,
+ password: req.body.password, // catastrophe : un mot de passe en clair dans des logs
+ creditCard: user.paymentMethod.last4, // pas nécessaire pour débugger un chakra_gate
 });
 
 // Correct : on garde ce qui sert à débugger, on retire ce qui identifie ou compromet
 logger.info('Chakra_gate attempt', {
-  userId: user.id, // identifiant technique, pas l'email en clair
-  success: false,
-  ip: hashIP(req.ip), // hashée, pas stockée brute : utile pour détecter un pattern, pas pour identifier
+ userId: user.id, // identifiant technique, pas l'email en clair
+ success: false,
+ ip: hashIP(req.ip), // hashée, pas stockée brute : utile pour détecter un pattern, pas pour identifier
 });
 ```
 
@@ -173,9 +173,9 @@ La rétention compte autant que le contenu. Un log gardé éternellement, même 
 ```js
 // Politique de rétention explicite, pas "on verra plus tard"
 const LOG_RETENTION = {
-  debug: '7d',
-  security: '90d', // les logs de sécurité ont une durée plus longue, justifiée par leur usage
-  audit: '1y', // traçabilité réglementaire, durée alignée avec l'obligation légale
+ debug: '7d',
+ security: '90d', // les logs de sécurité ont une durée plus longue, justifiée par leur usage
+ audit: '1y', // traçabilité réglementaire, durée alignée avec l'obligation légale
 };
 ```
 
@@ -186,20 +186,20 @@ const LOG_RETENTION = {
 Le piège terminologique qui revient sans arrêt en revue de code.
 
 ```
-Pseudonymisation  -->  remplacer l'identité par un alias, mais la ré-identification reste possible
-                        (avec la table de correspondance)
-Anonymisation      -->  destruction complète du lien : impossible de revenir à la personne
+Pseudonymisation --> remplacer l'identité par un alias, mais la ré-identification reste possible
+            (avec la table de correspondance)
+Anonymisation   --> destruction complète du lien : impossible de revenir à la personne
 ```
 
 ```js
 // Pseudonymisation : T-Bag reste identifiable si quelqu'un a la clé de correspondance
 function pseudonymize(comment) {
-  return { ...comment, authorId: hash(comment.authorId) }; // réversible si on connaît la fonction hash + le seed
+ return { ...comment, authorId: hash(comment.authorId) }; // réversible si on connaît la fonction hash + le seed
 }
 
 // Anonymisation réelle : aucune table, aucune clé ne permet de revenir à la personne
 function anonymize(comment) {
-  return { ...comment, authorId: null, authorName: 'Shinobi supprimé' };
+ return { ...comment, authorId: null, authorName: 'Shinobi supprimé' };
 }
 ```
 
@@ -210,11 +210,11 @@ Une donnée "pseudonymisée" reste une donnée personnelle au sens du RGPD. Une 
 ## 5) LE RISQUE RÉEL QUAND C'EST IGNORÉ
 
 ```
-Amende RGPD          -->  jusqu'à 4% du chiffre d'affaires mondial annuel, ou 20M€
-Amende AI Act         -->  jusqu'à 7% du chiffre d'affaires mondial pour les usages interdits
-Risque réputationnel  -->  une fuite de données mal gérée tue la confiance plus vite qu'un bug visible
-Risque individuel      -->  le dev qui a posé le `console.log(req.body)` n'est pas poursuivi personnellement,
-                            mais c'est souvent son code qui devient la pièce à conviction de l'audit
+Amende RGPD     --> jusqu'à 4% du chiffre d'affaires mondial annuel, ou 20M€
+Amende AI Act     --> jusqu'à 7% du chiffre d'affaires mondial pour les usages interdits
+Risque réputationnel --> une fuite de données mal gérée tue la confiance plus vite qu'un bug visible
+Risque individuel   --> le dev qui a posé le `console.log(req.body)` n'est pas poursuivi personnellement,
+              mais c'est souvent son code qui devient la pièce à conviction de l'audit
 ```
 
 Ce n'est pas une checklist à cocher une fois en fin de projet. C'est une question à se poser à chaque endpoint qui touche une donnée personnelle, à chaque ligne de log ajoutée pour débugger, à chaque fois qu'un modèle d'IA reçoit un input qui vient d'un vrai shinobi.

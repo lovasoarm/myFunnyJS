@@ -46,11 +46,11 @@ Et sans message queue pour découpler les opérations lourdes, chaque requête q
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-trafic qui dépasse la capacité d'un seul serveur            --> load balancing       --> distribution sur plusieurs instances
-besoin de plus de capacité serveur                          --> scale up vs scale out --> stratégie selon le contexte
-shinobi (ou bot) qui spam les requêtes                   --> rate limiting        --> protection sans bloquer les légitimes
-opération lourde qui bloquerait le traitement synchrone       --> message queue        --> traitement découplé et asynchrone
-pic de trafic soudain (lancement, événement viral)            --> architecture scalable --> absorption sans effondrement
+trafic qui dépasse la capacité d'un seul serveur      --> load balancing    --> distribution sur plusieurs instances
+besoin de plus de capacité serveur             --> scale up vs scale out --> stratégie selon le contexte
+shinobi (ou bot) qui spam les requêtes          --> rate limiting    --> protection sans bloquer les légitimes
+opération lourde qui bloquerait le traitement synchrone    --> message queue    --> traitement découplé et asynchrone
+pic de trafic soudain (lancement, événement viral)      --> architecture scalable --> absorption sans effondrement
 ```
 
 La scalabilité n'apparaît pas uniquement sur les très grandes plateformes : même un projet de taille moyenne peut rencontrer un pic de trafic inattendu (une mention sur les réseaux sociaux, par exemple) qui révèle instantanément si l'architecture était prête ou non.

@@ -10,7 +10,7 @@ qui a orienté toutes les suivantes vers un chemin cohérent mais faux.
 ```
 1. Skim la trace : combien d'actions, quels fichiers touchés ?
 2. Identifie les DÉCISIONS (verbes : "j'ai choisi de", "puisque X, alors Y").
-   Les actions mécaniques (edit, run test) ne comptent pas.
+  Les actions mécaniques (edit, run test) ne comptent pas.
 3. Pour chaque décision, note : "est-ce que je l'aurais prise ?"
 4. La première décision où tu réponds NON = ta cause racine.
 5. Toutes les actions suivantes sont contaminées, même si elles compilent.

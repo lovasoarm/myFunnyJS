@@ -15,20 +15,20 @@ Ce fichier te donne la carte.
 
 ```
 ÉTAPE 1 : REPRODUIRE
-  Le bug doit se produire à volonté.
-  Si tu ne peux pas le déclencher toi-même : tu ne peux pas le corriger.
+ Le bug doit se produire à volonté.
+ Si tu ne peux pas le déclencher toi-même : tu ne peux pas le corriger.
 
 ÉTAPE 2 : ISOLER
-  Réduire le problème au minimum.
-  Supprimer tout ce qui n'est pas lié au bug jusqu'à avoir le cas minimal.
+ Réduire le problème au minimum.
+ Supprimer tout ce qui n'est pas lié au bug jusqu'à avoir le cas minimal.
 
 ÉTAPE 3 : CORRIGER
-  Changer une seule chose à la fois.
-  Tester après chaque changement.
+ Changer une seule chose à la fois.
+ Tester après chaque changement.
 
 ÉTAPE 4 : VÉRIFIER
-  S'assurer que le fix ne casse rien d'autre.
-  Rejouer le scénario de reproduction pour confirmer.
+ S'assurer que le fix ne casse rien d'autre.
+ Rejouer le scénario de reproduction pour confirmer.
 ```
 
 Ces étapes ne sont pas optionnelles. Elles ne changent pas d'ordre.
@@ -56,17 +56,17 @@ Exemple : le camp de Rick Grimes a un système d'inventaire. Le stock de munitio
 ```js
 // camp.js : gestion du stock
 function consommerMunitions(stock, quantite) {
-  stock.munitions -= quantite   // mutation directe sur l'objet stock
-  return stock
+ stock.munitions -= quantite  // mutation directe sur l'objet stock
+ return stock
 }
 
 // simulation.js : tick nocturne
 async function rondeNocturne(camp) {
-  const gardes = await getGardes()
-  gardes.forEach(async garde => {
-    const tirsEffectues = await simulerTir(garde)
-    consommerMunitions(camp.stock, tirsEffectues)  // stock muté en parallèle
-  })
+ const gardes = await getGardes()
+ gardes.forEach(async garde => {
+  const tirsEffectues = await simulerTir(garde)
+  consommerMunitions(camp.stock, tirsEffectues) // stock muté en parallèle
+ })
 }
 ```
 
@@ -84,8 +84,8 @@ Règle : enlève des choses jusqu'à ce que le bug disparaisse. La dernière cho
 ```
 Ton code a 300 lignes et plante sur la ligne 247.
 Tu commentes la moitié basse (150 lignes) : le bug disparaît ?
-  OUI --> le bug est dans les 150 lignes commentées.
-  NON --> le bug est dans les 150 lignes restantes.
+ OUI --> le bug est dans les 150 lignes commentées.
+ NON --> le bug est dans les 150 lignes restantes.
 Bisect mental : divise par deux à chaque fois.
 ```
 
@@ -98,15 +98,15 @@ Exemple camp Walking Dead isolé :
 const stock = { munitions: 100 }
 
 function consommer(stock, n) {
-  stock.munitions -= n  // mutation directe
+ stock.munitions -= n // mutation directe
 }
 
 // Deux appels simultanés sur le même objet
 Promise.all([
-  Promise.resolve().then(() => consommer(stock, 30)),
-  Promise.resolve().then(() => consommer(stock, 30))
+ Promise.resolve().then(() => consommer(stock, 30)),
+ Promise.resolve().then(() => consommer(stock, 30))
 ]).then(() => {
-  console.log(stock.munitions)  // attendu : 40, mais parfois 70 (une des deux mutations perdue)
+ console.log(stock.munitions) // attendu : 40, mais parfois 70 (une des deux mutations perdue)
 })
 ```
 
@@ -124,7 +124,7 @@ Si tu changes deux choses et que le bug reste : tu ne sais pas si l'une des deux
 ```js
 // Correction : ne pas muter l'objet reçu, retourner un nouvel état
 function consommer(stock, n) {
-  return { ...stock, munitions: stock.munitions - n }  // nouvel objet, pas de mutation
+ return { ...stock, munitions: stock.munitions - n } // nouvel objet, pas de mutation
 }
 ```
 
@@ -155,8 +155,8 @@ Règle d'or : quand tu corriges un bug, tu écris un test qui aurait détecté c
 Les deux servent. Ils ne servent pas au même moment.
 
 ```
-console.log   --> rapide, jetable, bon pour trouver OU ça casse
-debugger      --> puissant, lent à démarrer, bon pour comprendre POURQUOI ça casse
+console.log  --> rapide, jetable, bon pour trouver OU ça casse
+debugger   --> puissant, lent à démarrer, bon pour comprendre POURQUOI ça casse
 ```
 
 ### Utiliser `console.log` intelligemment
@@ -179,14 +179,14 @@ Sans ça, Chrome/Node affiche une référence live : quand tu regardes, l'objet 
 ```js
 // Piège classique
 const obj = { count: 0 }
-console.log(obj)        // affiche {count: 0}... ou peut-être {count: 3}
+console.log(obj)    // affiche {count: 0}... ou peut-être {count: 3}
 obj.count++
 obj.count++
 obj.count++
 // Chrome loggue la référence, pas la snapshot. Tu vois l'état final, pas l'état au moment du log.
 
 // Correct
-console.log(JSON.parse(JSON.stringify(obj)))  // snapshot immutable au moment de l'appel
+console.log(JSON.parse(JSON.stringify(obj))) // snapshot immutable au moment de l'appel
 ```
 
 Nettoyer les logs après : un `console.log('[DEBUG]')` qui reste en prod, ça pue.
@@ -213,8 +213,8 @@ Scénario classique : tu corriges sans reproduire. Le bug "disparaît". Deux heu
 // Bug rapporté : le score d'un match Ballon d'Or s'affiche en négatif
 // Diagnostic rapide (mauvais) : "ah, c'est sûrement parseInt qui manque"
 function afficherScore(joueur) {
-  joueur.score = parseInt(joueur.score)  // ajout rapide sans comprendre la source
-  return joueur.score
+ joueur.score = parseInt(joueur.score) // ajout rapide sans comprendre la source
+ return joueur.score
 }
 
 // Résultat : le score s'affiche correctement.
@@ -238,19 +238,19 @@ Le système de camp de Rick Grimes remonte un bug : "parfois, les rations distri
 let stockNourriture = 200
 
 async function distribuerRation(survivant) {
-  const besoin = await calculerBesoin(survivant)  // retourne un nombre entre 1 et 5
-  if (stockNourriture >= besoin) {
-    stockNourriture -= besoin
-    return { survivant: survivant.nom, recu: besoin }
-  }
-  return { survivant: survivant.nom, recu: 0 }
+ const besoin = await calculerBesoin(survivant) // retourne un nombre entre 1 et 5
+ if (stockNourriture >= besoin) {
+  stockNourriture -= besoin
+  return { survivant: survivant.nom, recu: besoin }
+ }
+ return { survivant: survivant.nom, recu: 0 }
 }
 
 const survivants = ['Rick', 'Daryl', 'Michonne', 'Glenn', 'Maggie',
-                    'Carl', 'Carol', 'Abraham', 'Rosita', 'Sasha']
+          'Carl', 'Carol', 'Abraham', 'Rosita', 'Sasha']
 
 survivants.forEach(nom => distribuerRation({ nom }))
-console.log('Stock restant:', stockNourriture)  // peut afficher un négatif
+console.log('Stock restant:', stockNourriture) // peut afficher un négatif
 ```
 
 Étapes :
@@ -264,16 +264,16 @@ Ce pipeline de scoring Ballon d'Or retourne parfois `NaN` comme score final. Pas
 
 ```js
 async function calculerScoreFinal(joueur) {
-  const votesPresse   = await getVotesPresse(joueur.id)    // retourne [] si aucun vote
-  const votesCoaches  = await getVotesCoaches(joueur.id)
-  const votesCapitaine = await getVotesCapitaine(joueur.id)
+ const votesPresse  = await getVotesPresse(joueur.id)  // retourne [] si aucun vote
+ const votesCoaches = await getVotesCoaches(joueur.id)
+ const votesCapitaine = await getVotesCapitaine(joueur.id)
 
-  const scorePresse    = votesPresse.reduce((acc, v) => acc + v.points, 0)
-  const scoreCoaches   = votesCoaches.reduce((acc, v) => acc + v.points, 0)
-  const scoreCapitaine = votesCapitaine.reduce((acc, v) => acc + v.points, 0)
+ const scorePresse  = votesPresse.reduce((acc, v) => acc + v.points, 0)
+ const scoreCoaches  = votesCoaches.reduce((acc, v) => acc + v.points, 0)
+ const scoreCapitaine = votesCapitaine.reduce((acc, v) => acc + v.points, 0)
 
-  const total = scorePresse + scoreCoaches + scoreCapitaine
-  return total / 3  // moyenne
+ const total = scorePresse + scoreCoaches + scoreCapitaine
+ return total / 3 // moyenne
 }
 ```
 

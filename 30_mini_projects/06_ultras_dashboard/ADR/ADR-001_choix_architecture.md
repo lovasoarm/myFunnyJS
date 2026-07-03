@@ -23,7 +23,7 @@ const diffuser: Pipeline<EnrichedEvent, void> = async (enriched) => { ... };
 
 // Composer ne compile que si les types s'enchaînent correctement
 const pipeline = compose(valider, enrichir, diffuser);
-//               ^ erreur TS si ValidatedEvent !== input de enrichir
+//        ^ erreur TS si ValidatedEvent !== input de enrichir
 ```
 
 ## Alternatives considérées

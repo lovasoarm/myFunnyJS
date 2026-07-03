@@ -20,78 +20,78 @@ Un opérateur traite un rapport à la fois. Si le Conseil est surchargé, les ra
 
 ```js
 class TicketSystem {
-  constructor(operateurs = 1) {
-    this.queue = new Queue(); // les tickets en attente
-    this.operateurs = operateurs; // capacité de traitement parallèle
-    this.enTraitement = []; // tickets actifs
-    this.traites = []; // historique
+ constructor(operateurs = 1) {
+  this.queue = new Queue(); // les tickets en attente
+  this.operateurs = operateurs; // capacité de traitement parallèle
+  this.enTraitement = []; // tickets actifs
+  this.traites = []; // historique
+ }
+
+ soumettre(chevalier, rapport) {
+  const ticket = {
+   id: Date.now() + Math.random(),
+   chevalier,
+   rapport,
+   soumisA: Date.now(),
+  };
+  this.queue.enqueue(ticket);
+  console.log(
+   `Ticket soumis par ${chevalier} : position : ${this.queue.size}`,
+  );
+  return ticket.id;
+ }
+
+ traiterProchain() {
+  if (this.queue.isEmpty()) {
+   console.log("Aucun rapport en attente");
+   return null;
   }
 
-  soumettre(chevalier, rapport) {
-    const ticket = {
-      id: Date.now() + Math.random(),
-      chevalier,
-      rapport,
-      soumisA: Date.now(),
-    };
-    this.queue.enqueue(ticket);
-    console.log(
-      `Ticket soumis par ${chevalier} : position : ${this.queue.size}`,
-    );
-    return ticket.id;
+  if (this.enTraitement.length >= this.operateurs) {
+   console.log("Tous les opérateurs sont occupés");
+   return null;
   }
 
-  traiterProchain() {
-    if (this.queue.isEmpty()) {
-      console.log("Aucun rapport en attente");
-      return null;
-    }
+  const ticket = this.queue.dequeue();
+  ticket.debutTraitement = Date.now();
+  this.enTraitement.push(ticket);
 
-    if (this.enTraitement.length >= this.operateurs) {
-      console.log("Tous les opérateurs sont occupés");
-      return null;
-    }
+  // simuler un traitement asynchrone
+  setTimeout(() => {
+   this.finaliser(ticket.id);
+  }, Math.random() * 1000);
 
-    const ticket = this.queue.dequeue();
-    ticket.debutTraitement = Date.now();
-    this.enTraitement.push(ticket);
+  return ticket;
+ }
 
-    // simuler un traitement asynchrone
-    setTimeout(() => {
-      this.finaliser(ticket.id);
-    }, Math.random() * 1000);
+ finaliser(id) {
+  const index = this.enTraitement.findIndex((t) => t.id === id);
+  if (index === -1) return;
 
-    return ticket;
-  }
+  const ticket = this.enTraitement.splice(index, 1)[0];
+  ticket.finTraitement = Date.now();
+  ticket.duree = ticket.finTraitement - ticket.debutTraitement;
+  this.traites.push(ticket);
 
-  finaliser(id) {
-    const index = this.enTraitement.findIndex((t) => t.id === id);
-    if (index === -1) return;
+  console.log(`Rapport de ${ticket.chevalier} traité en ${ticket.duree}ms`);
 
-    const ticket = this.enTraitement.splice(index, 1)[0];
-    ticket.finTraitement = Date.now();
-    ticket.duree = ticket.finTraitement - ticket.debutTraitement;
-    this.traites.push(ticket);
+  // automatiquement on prend le suivant
+  this.traiterProchain();
+ }
 
-    console.log(`Rapport de ${ticket.chevalier} traité en ${ticket.duree}ms`);
-
-    // automatiquement on prend le suivant
-    this.traiterProchain();
-  }
-
-  stats() {
-    return {
-      enAttente: this.queue.size,
-      enTraitement: this.enTraitement.length,
-      traites: this.traites.length,
-      tempsMovenMs: this.traites.length
-        ? Math.round(
-            this.traites.reduce((sum, t) => sum + t.duree, 0) /
-              this.traites.length,
-          )
-        : 0,
-    };
-  }
+ stats() {
+  return {
+   enAttente: this.queue.size,
+   enTraitement: this.enTraitement.length,
+   traites: this.traites.length,
+   tempsMovenMs: this.traites.length
+    ? Math.round(
+      this.traites.reduce((sum, t) => sum + t.duree, 0) /
+       this.traites.length,
+     )
+    : 0,
+  };
+ }
 }
 ```
 
@@ -110,11 +110,11 @@ Avec une stack (DFS), t'irais en profondeur d'abord : chemin le plus long, pas l
 
 ```
 Graphe :
-    A
-   / \
-  B   C
- / \   \
-D   E   F
+  A
+  / \
+ B  C
+ / \  \
+D  E  F
 
 BFS depuis A :
 niveau 0 : [A]
@@ -126,39 +126,39 @@ ordre de visite : A --> B --> C --> D --> E --> F
 
 ```js
 function bfs(graphe, depart) {
-  // graphe = { "A": ["B", "C"], "B": ["D", "E"], "C": ["F"], ... }
+ // graphe = { "A": ["B", "C"], "B": ["D", "E"], "C": ["F"], ... }
 
-  const queue = new Queue();
-  const visites = new Set(); // éviter les cycles
-  const ordre = [];
+ const queue = new Queue();
+ const visites = new Set(); // éviter les cycles
+ const ordre = [];
 
-  queue.enqueue(depart);
-  visites.add(depart);
+ queue.enqueue(depart);
+ visites.add(depart);
 
-  while (!queue.isEmpty()) {
-    const noeud = queue.dequeue();
-    ordre.push(noeud);
+ while (!queue.isEmpty()) {
+  const noeud = queue.dequeue();
+  ordre.push(noeud);
 
-    const voisins = graphe[noeud] || [];
+  const voisins = graphe[noeud] || [];
 
-    for (const voisin of voisins) {
-      if (!visites.has(voisin)) {
-        visites.add(voisin); // marquer AVANT d'enqueue
-        queue.enqueue(voisin); // pas après:sinon doublons possibles
-      }
-    }
+  for (const voisin of voisins) {
+   if (!visites.has(voisin)) {
+    visites.add(voisin); // marquer AVANT d'enqueue
+    queue.enqueue(voisin); // pas après:sinon doublons possibles
+   }
   }
+ }
 
-  return ordre;
+ return ordre;
 }
 
 // Exemple : réseau de Chevaliers d'Or
 const reseau = {
-  Leon: ["Alfonso", "Mendoza"],
-  Alfonso: ["Ryuga", "German"],
-  Mendoza: ["German"],
-  Ryuga: [],
-  German: ["Ryuga"],
+ Leon: ["Alfonso", "Mendoza"],
+ Alfonso: ["Ryuga", "German"],
+ Mendoza: ["German"],
+ Ryuga: [],
+ German: ["Ryuga"],
 };
 
 bfs(reseau, "Leon");
@@ -179,51 +179,51 @@ Pour les grilles, les labyrinthes, les réseaux sans poids : BFS est la bonne ar
 
 ```js
 function cheminLePlusCourt(graphe, depart, arrivee) {
-  if (depart === arrivee) return [depart];
+ if (depart === arrivee) return [depart];
 
-  const queue = new Queue();
-  const visites = new Set();
-  // stocker le chemin complet jusqu'à chaque noeud
-  // pas juste le noeud
-  const chemins = new Map();
+ const queue = new Queue();
+ const visites = new Set();
+ // stocker le chemin complet jusqu'à chaque noeud
+ // pas juste le noeud
+ const chemins = new Map();
 
-  queue.enqueue(depart);
-  visites.add(depart);
-  chemins.set(depart, [depart]);
+ queue.enqueue(depart);
+ visites.add(depart);
+ chemins.set(depart, [depart]);
 
-  while (!queue.isEmpty()) {
-    const noeud = queue.dequeue();
-    const cheminActuel = chemins.get(noeud);
+ while (!queue.isEmpty()) {
+  const noeud = queue.dequeue();
+  const cheminActuel = chemins.get(noeud);
 
-    const voisins = graphe[noeud] || [];
+  const voisins = graphe[noeud] || [];
 
-    for (const voisin of voisins) {
-      if (!visites.has(voisin)) {
-        const nouveauChemin = [...cheminActuel, voisin];
-        chemins.set(voisin, nouveauChemin);
+  for (const voisin of voisins) {
+   if (!visites.has(voisin)) {
+    const nouveauChemin = [...cheminActuel, voisin];
+    chemins.set(voisin, nouveauChemin);
 
-        if (voisin === arrivee) {
-          return nouveauChemin; // on arrête dès qu'on trouve
-        }
-
-        visites.add(voisin);
-        queue.enqueue(voisin);
-      }
+    if (voisin === arrivee) {
+     return nouveauChemin; // on arrête dès qu'on trouve
     }
-  }
 
-  return null; // pas de chemin entre depart et arrivee
+    visites.add(voisin);
+    queue.enqueue(voisin);
+   }
+  }
+ }
+
+ return null; // pas de chemin entre depart et arrivee
 }
 
 // Trouver le chemin entre deux ninjas dans le réseau de Konoha
 const konoha = {
-  Naruto: ["Sasuke", "Sakura", "Kakashi"],
-  Sasuke: ["Naruto", "Orochimaru"],
-  Sakura: ["Naruto", "Tsunade"],
-  Kakashi: ["Naruto", "Minato"],
-  Minato: ["Kakashi"],
-  Tsunade: ["Sakura"],
-  Orochimaru: ["Sasuke"],
+ Naruto: ["Sasuke", "Sakura", "Kakashi"],
+ Sasuke: ["Naruto", "Orochimaru"],
+ Sakura: ["Naruto", "Tsunade"],
+ Kakashi: ["Naruto", "Minato"],
+ Minato: ["Kakashi"],
+ Tsunade: ["Sakura"],
+ Orochimaru: ["Sasuke"],
 };
 
 cheminLePlusCourt(konoha, "Minato", "Orochimaru");
@@ -239,73 +239,73 @@ BFS trouve le chemin le plus court en nombre de cases.
 
 ```js
 function labyrintheBFS(grille, depart, arrivee) {
-  // grille[ligne][col] : 0 = libre, 1 = mur
-  // depart / arrivee : [ligne, col]
+ // grille[ligne][col] : 0 = libre, 1 = mur
+ // depart / arrivee : [ligne, col]
 
-  const lignes = grille.length;
-  const cols = grille[0].length;
-  const directions = [
-    [-1, 0],
-    [1, 0],
-    [0, -1],
-    [0, 1],
-  ]; // haut, bas, gauche, droite
+ const lignes = grille.length;
+ const cols = grille[0].length;
+ const directions = [
+  [-1, 0],
+  [1, 0],
+  [0, -1],
+  [0, 1],
+ ]; // haut, bas, gauche, droite
 
-  const queue = new Queue();
-  const visites = new Set();
-  const parent = new Map(); // pour reconstruire le chemin
+ const queue = new Queue();
+ const visites = new Set();
+ const parent = new Map(); // pour reconstruire le chemin
 
-  const cle = (l, c) => `${l},${c}`;
+ const cle = (l, c) => `${l},${c}`;
 
-  queue.enqueue(depart);
-  visites.add(cle(...depart));
+ queue.enqueue(depart);
+ visites.add(cle(...depart));
 
-  while (!queue.isEmpty()) {
-    const [l, c] = queue.dequeue();
+ while (!queue.isEmpty()) {
+  const [l, c] = queue.dequeue();
 
-    if (l === arrivee[0] && c === arrivee[1]) {
-      // reconstruire le chemin depuis la destination
-      const chemin = [];
-      let pos = cle(l, c);
+  if (l === arrivee[0] && c === arrivee[1]) {
+   // reconstruire le chemin depuis la destination
+   const chemin = [];
+   let pos = cle(l, c);
 
-      while (pos) {
-        chemin.unshift(pos.split(",").map(Number));
-        pos = parent.get(pos);
-      }
+   while (pos) {
+    chemin.unshift(pos.split(",").map(Number));
+    pos = parent.get(pos);
+   }
 
-      return chemin;
-    }
-
-    for (const [dl, dc] of directions) {
-      const nl = l + dl;
-      const nc = c + dc;
-      const k = cle(nl, nc);
-
-      if (
-        nl >= 0 &&
-        nl < lignes &&
-        nc >= 0 &&
-        nc < cols &&
-        grille[nl][nc] === 0 &&
-        !visites.has(k)
-      ) {
-        visites.add(k);
-        parent.set(k, cle(l, c));
-        queue.enqueue([nl, nc]);
-      }
-    }
+   return chemin;
   }
 
-  return null; // aucun chemin
+  for (const [dl, dc] of directions) {
+   const nl = l + dl;
+   const nc = c + dc;
+   const k = cle(nl, nc);
+
+   if (
+    nl >= 0 &&
+    nl < lignes &&
+    nc >= 0 &&
+    nc < cols &&
+    grille[nl][nc] === 0 &&
+    !visites.has(k)
+   ) {
+    visites.add(k);
+    parent.set(k, cle(l, c));
+    queue.enqueue([nl, nc]);
+   }
+  }
+ }
+
+ return null; // aucun chemin
 }
 
 // Le plan d'évasion de Michael Scofield
 const prison = [
-  [0, 1, 0, 0, 0],
-  [0, 1, 0, 1, 0],
-  [0, 0, 0, 1, 0],
-  [1, 1, 0, 0, 0],
-  [0, 0, 0, 1, 0],
+ [0, 1, 0, 0, 0],
+ [0, 1, 0, 1, 0],
+ [0, 0, 0, 1, 0],
+ [1, 1, 0, 0, 0],
+ [0, 0, 0, 1, 0],
 ];
 
 labyrintheBFS(prison, [0, 0], [4, 4]);
@@ -321,44 +321,44 @@ La queue absorbe le surplus. Les workers traitent à leur rythme.
 
 ```js
 class TaskScheduler {
-  constructor(concurrence = 3) {
-    this.queue = new Queue();
-    this.actifs = 0;
-    this.concurrence = concurrence; // max tasks simultanées
+ constructor(concurrence = 3) {
+  this.queue = new Queue();
+  this.actifs = 0;
+  this.concurrence = concurrence; // max tasks simultanées
+ }
+
+ ajouter(task) {
+  // task = fonction async qui retourne une Promise
+  this.queue.enqueue(task);
+  this.traiter(); // essaye de démarrer si un slot est libre
+ }
+
+ async traiter() {
+  if (this.actifs >= this.concurrence || this.queue.isEmpty()) return;
+
+  this.actifs++;
+  const task = this.queue.dequeue();
+
+  try {
+   await task();
+  } catch (err) {
+   console.error("Task échouée :", err.message);
+  } finally {
+   this.actifs--;
+   this.traiter(); // on prend la suivante dès qu'on libère un slot
   }
-
-  ajouter(task) {
-    // task = fonction async qui retourne une Promise
-    this.queue.enqueue(task);
-    this.traiter(); // essaye de démarrer si un slot est libre
-  }
-
-  async traiter() {
-    if (this.actifs >= this.concurrence || this.queue.isEmpty()) return;
-
-    this.actifs++;
-    const task = this.queue.dequeue();
-
-    try {
-      await task();
-    } catch (err) {
-      console.error("Task échouée :", err.message);
-    } finally {
-      this.actifs--;
-      this.traiter(); // on prend la suivante dès qu'on libère un slot
-    }
-  }
+ }
 }
 
 // Exemple : 10 analyses de code, max 3 en parallèle
 const scheduler = new TaskScheduler(3);
 
 for (let i = 1; i <= 10; i++) {
-  scheduler.ajouter(async () => {
-    const duree = Math.random() * 500 + 100;
-    await new Promise((resolve) => setTimeout(resolve, duree));
-    console.log(`Analyse ${i} terminée (${Math.round(duree)}ms)`);
-  });
+ scheduler.ajouter(async () => {
+  const duree = Math.random() * 500 + 100;
+  await new Promise((resolve) => setTimeout(resolve, duree));
+  console.log(`Analyse ${i} terminée (${Math.round(duree)}ms)`);
+ });
 }
 ```
 

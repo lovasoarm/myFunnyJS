@@ -11,8 +11,8 @@ En pratique : tu as une fonction qui prend 3 arguments. Tu fixes le premier main
 ## 1) LA DIFFÉRENCE AVEC LE CURRYING
 
 ```js
-// curry : f(a, b, c)  ->  f(a)(b)(c) :chaque arg séparé, obligatoirement
-// partial : f(a, b, c) avec a=10  ->  g(b, c) :le reste ensemble ou séparé
+// curry : f(a, b, c) -> f(a)(b)(c) :chaque arg séparé, obligatoirement
+// partial : f(a, b, c) avec a=10 -> g(b, c) :le reste ensemble ou séparé
 
 // curry
 const add = (a) => (b) => a + b;
@@ -20,7 +20,7 @@ add(10)(5); // 15:forcément séquentiel
 
 // partial application
 function additionner(a, b, c) {
-  return a + b + c;
+ return a + b + c;
 }
 
 const additionnerA10 = additionner.bind(null, 10);
@@ -39,7 +39,7 @@ Partial = tu fixes des arguments, le reste est appelé normalement.
 
 ```js
 function calculerSalaire(tauxBase, heures, primes) {
-  return tauxBase * heures + primes;
+ return tauxBase * heures + primes;
 }
 
 // on fixe le taux de base
@@ -61,25 +61,25 @@ salaireDesigner(35, 300); // 70 * 35 + 300 = 2750
 ```js
 // partial basique
 function partial(fn, ...argsFixés) {
-  return function (...autresArgs) {
-    return fn(...argsFixés, ...autresArgs);
-  };
+ return function (...autresArgs) {
+  return fn(...argsFixés, ...autresArgs);
+ };
 }
 
 // exemple Ballon d'Or
 function calculerScore(bonusButs, bonusPasses, bonusCL, joueur) {
-  return (
-    joueur.buts * bonusButs +
-    joueur.passes * bonusPasses +
-    (joueur.aCL ? bonusCL : 0)
-  );
+ return (
+  joueur.buts * bonusButs +
+  joueur.passes * bonusPasses +
+  (joueur.aCL ? bonusCL : 0)
+ );
 }
 
 // on fixe les coefficients, pas le joueur
 const scorerJoueur = partial(calculerScore, 0.5, 0.3, 30);
 
 scorerJoueur({ buts: 45, passes: 20, aCL: true }); // 45*0.5 + 20*0.3 + 30 = 58.5
-scorerJoueur({ buts: 60, passes: 8, aCL: false }); // 60*0.5 + 8*0.3  + 0  = 32.4
+scorerJoueur({ buts: 60, passes: 8, aCL: false }); // 60*0.5 + 8*0.3 + 0 = 32.4
 ```
 
 ---
@@ -91,22 +91,22 @@ L'application partielle brille quand tu as des paramètres de contexte (env, tok
 ```js
 // fonction générale d'appel API
 async function apiCall(baseURL, token, endpoint, body) {
-  const response = await fetch(`${baseURL}${endpoint}`, {
-    method: body ? "POST" : "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  return response.json();
+ const response = await fetch(`${baseURL}${endpoint}`, {
+  method: body ? "POST" : "GET",
+  headers: {
+   Authorization: `Bearer ${token}`,
+   "Content-Type": "application/json",
+  },
+  body: body ? JSON.stringify(body) : undefined,
+ });
+ return response.json();
 }
 
 // configuration fixée selon l'environnement
 const prisonBreakAPI = partial(
-  apiCall,
-  "https://api.foxriver.com",
-  process.env.AUTH_TOKEN,
+ apiCall,
+ "https://api.foxriver.com",
+ process.env.AUTH_TOKEN,
 );
 
 // utilisation : plus besoin de répéter base URL et token
@@ -123,26 +123,26 @@ const ajouterAlert = (data) => prisonBreakAPI("/alertes", data);
 
 ```
 CURRY quand :
-  - tu veux composer dans un pipe
-  - chaque argument arrive à un moment différent
-  - tu veux des fonctions unaires strictes
+ - tu veux composer dans un pipe
+ - chaque argument arrive à un moment différent
+ - tu veux des fonctions unaires strictes
 
 PARTIAL quand :
-  - tu veux fixer du contexte (config, token, env)
-  - les arguments restants arrivent ensemble
-  - la fonction existante n'est pas curryfiée
-  - tu travailles avec du code tiers que tu ne peux pas modifier
+ - tu veux fixer du contexte (config, token, env)
+ - les arguments restants arrivent ensemble
+ - la fonction existante n'est pas curryfiée
+ - tu travailles avec du code tiers que tu ne peux pas modifier
 ```
 
 ```js
 // curry : composition directe dans pipe
 const filtrerParZone = (zone) => (missions) =>
-  missions.filter((m) => m.zone === zone);
+ missions.filter((m) => m.zone === zone);
 
 pipe(
-  filtrerParZone("nord"), // s'insère naturellement
-  trierParPriorite,
-  prendreTop(2),
+ filtrerParZone("nord"), // s'insère naturellement
+ trierParPriorite,
+ prendreTop(2),
 )(missions);
 
 // partial : configuration d'une fonction existante
@@ -163,33 +163,33 @@ Version maison minimale :
 const _ = Symbol("placeholder");
 
 function partialWithHoles(fn, ...argsFixés) {
-  return function (...autresArgs) {
-    let idxAutres = 0;
-    const argsComplets = argsFixés.map((arg) =>
-      arg === _ ? autresArgs[idxAutres++] : arg,
-    );
-    // ajoute les args restants pas encore utilisés
-    while (idxAutres < autresArgs.length) {
-      argsComplets.push(autresArgs[idxAutres++]);
-    }
-    return fn(...argsComplets);
-  };
+ return function (...autresArgs) {
+  let idxAutres = 0;
+  const argsComplets = argsFixés.map((arg) =>
+   arg === _ ? autresArgs[idxAutres++] : arg,
+  );
+  // ajoute les args restants pas encore utilisés
+  while (idxAutres < autresArgs.length) {
+   argsComplets.push(autresArgs[idxAutres++]);
+  }
+  return fn(...argsComplets);
+ };
 }
 
 function dispatcherMission(chevalier, niveauHorreur, zone) {
-  return {
-    chevalier,
-    niveauHorreur,
-    zone,
-    urgence: niveauHorreur >= 4 ? "critique" : "standard",
-  };
+ return {
+  chevalier,
+  niveauHorreur,
+  zone,
+  urgence: niveauHorreur >= 4 ? "critique" : "standard",
+ };
 }
 
 // on fixe la zone (3e arg) mais pas le chevalier (1er)
 const missionNord = partialWithHoles(dispatcherMission, _, _, "nord");
 
 missionNord("Leon", 5); // { chevalier: "Leon", niveauHorreur: 5, zone: "nord", urgence: "critique" }
-missionNord("Rei", 2); // { chevalier: "Rei",  niveauHorreur: 2, zone: "nord", urgence: "standard" }
+missionNord("Rei", 2); // { chevalier: "Rei", niveauHorreur: 2, zone: "nord", urgence: "standard" }
 ```
 
 ---
@@ -200,11 +200,11 @@ L'application partielle avec `.bind` perd le contexte `this` des méthodes.
 
 ```js
 const joueur = {
-  nom: "Messi",
-  buts: 45,
-  décrire() {
-    return `${this.nom} a marqué ${this.buts} buts`;
-  },
+ nom: "Messi",
+ buts: 45,
+ décrire() {
+  return `${this.nom} a marqué ${this.buts} buts`;
+ },
 };
 
 const décrirePartiel = joueur.décrire.bind(null); // this = null
@@ -231,11 +231,11 @@ const décrireMessi = partial(décrireJoueur, { nom: "Messi", buts: 45 });
 
 ```js
 function créerMission(serveur, token, niveau, chevalier, zone) {
-  return {
-    url: `${serveur}/missions`,
-    auth: token,
-    payload: { niveau, chevalier, zone },
-  };
+ return {
+  url: `${serveur}/missions`,
+  auth: token,
+  payload: { niveau, chevalier, zone },
+ };
 }
 
 // 1. Utilise partial pour créer missionServeurProd (serveur et token fixés)
@@ -252,11 +252,11 @@ function créerMission(serveur, token, niveau, chevalier, zone) {
 // Saison monde : bonusButs=0.7, bonusPasses=0.2, bonusCL=50
 
 function calculerScore(bonusButs, bonusPasses, bonusCL, joueur) {
-  return (
-    joueur.buts * bonusButs +
-    joueur.passes * bonusPasses +
-    (joueur.aCL ? bonusCL : 0)
-  );
+ return (
+  joueur.buts * bonusButs +
+  joueur.passes * bonusPasses +
+  (joueur.aCL ? bonusCL : 0)
+ );
 }
 
 // Crée scorerSaisonReg et scorerSaisonMonde avec partial
@@ -284,13 +284,13 @@ Montre les 3 usages. Explique lequel tu utiliserais dans un pipe et pourquoi.
 
 ```js
 function formatLog(service, niveau, correlationId, message) {
-  return JSON.stringify({
-    service,
-    niveau,
-    correlationId,
-    message,
-    timestamp: new Date().toISOString(),
-  });
+ return JSON.stringify({
+  service,
+  niveau,
+  correlationId,
+  message,
+  timestamp: new Date().toISOString(),
+ });
 }
 
 // Crée des loggers spécialisés avec partial :

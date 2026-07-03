@@ -14,16 +14,16 @@ La raison : copier un objet en JS ne signifie pas forcément copier ce qu'il con
 En JS, les données se divisent en deux catégories :
 
 ```
-STACK (valeurs primitives)          HEAP (objets, tableaux, fonctions)
---------------------------          ----------------------------------
-| score    = 42          |          | { hp: 100,                     |
-| level    = 7           |          |   name: "Naruto",              |
-| ninja ----> [ ref ] ---+--------> |   jutsus: ["Rasengan", ...]    |
---------------------------          | }                              |
-                                    ----------------------------------
+STACK (valeurs primitives)     HEAP (objets, tableaux, fonctions)
+--------------------------     ----------------------------------
+| score  = 42     |     | { hp: 100,           |
+| level  = 7      |     |  name: "Naruto",       |
+| ninja ----> [ ref ] ---+--------> |  jutsus: ["Rasengan", ...]  |
+--------------------------     | }               |
+                  ----------------------------------
 
-Copier score  : nouvelle valeur indépendante. Changer l'une ne change pas l'autre.
-Copier ninja  : même objet dans le heap. Modifier depuis deux endroits = même objet muté.
+Copier score : nouvelle valeur indépendante. Changer l'une ne change pas l'autre.
+Copier ninja : même objet dans le heap. Modifier depuis deux endroits = même objet muté.
 C'est pour ça que deux variables peuvent "bouger ensemble" sans qu'on l'ait demandé.
 ```
 
@@ -50,15 +50,15 @@ console.log(naruto.power); // → 1:l'original est aussi touché
 ```
 PRIMITIVES
 ──────────
-chakra      → [9000]
-cloneChakra → [9000]   ← copie indépendante
+chakra   → [9000]
+cloneChakra → [9000]  ← copie indépendante
 
 OBJETS
 ──────
-naruto      ──┐
-              ▼
+naruto   ──┐
+       ▼
 shadowClone ──► { name: "Naruto", power: 9000 }
-              ← les deux pointent vers le même objet
+       ← les deux pointent vers le même objet
 ```
 
 ---
@@ -71,9 +71,9 @@ Une shallow copy crée un **nouvel objet** avec les mêmes propriétés de premi
 
 ```js
 const ninja = {
-  name: "Sasuke",
-  stats: { speed: 95, power: 85 }, // objet imbriqué
-  jutsus: ["Chidori", "Sharingan"], // tableau imbriqué
+ name: "Sasuke",
+ stats: { speed: 95, power: 85 }, // objet imbriqué
+ jutsus: ["Chidori", "Sharingan"], // tableau imbriqué
 };
 
 const copy = { ...ninja };
@@ -94,9 +94,9 @@ console.log(ninja.jutsus); // → ["Chidori", "Sharingan", "Susanoo"]:touché
 APRÈS SPREAD
 ────────────
 ninja ──► { name: "Sasuke", stats: ──┐, jutsus: ──┐ }
-copy  ──► { name: "Itachi", stats: ──┘, jutsus: ──┘ }
-                                  ▲              ▲
-                          objet partagé   tableau partagé
+copy ──► { name: "Itachi", stats: ──┘, jutsus: ──┘ }
+                 ▲       ▲
+             objet partagé  tableau partagé
 ```
 
 `name` est une primitive : chaque objet a sa propre valeur.
@@ -134,10 +134,10 @@ Une deep copy duplique l'objet **et tous les objets imbriqués**. Aucune référ
 
 ```js
 const ninja = {
-  name: "Sasuke",
-  stats: { speed: 95, power: 85 },
-  jutsus: ["Chidori", "Sharingan"],
-  sensei: { name: "Kakashi", rank: "Jonin" },
+ name: "Sasuke",
+ stats: { speed: 95, power: 85 },
+ jutsus: ["Chidori", "Sharingan"],
+ sensei: { name: "Kakashi", rank: "Jonin" },
 };
 
 const deepCopy = structuredClone(ninja);
@@ -184,18 +184,18 @@ Fonctionnait avant `structuredClone`. Mais :
 
 ```js
 const problematic = {
-  name: "Walter",
-  cook: () => "meth", // ← fonction : PERDUE dans la copie
-  date: new Date(), // ← Date : converti en string, pas en Date
-  value: undefined, // ← undefined : PERDU (clé supprimée)
-  score: NaN, // ← NaN : converti en null
+ name: "Walter",
+ cook: () => "meth", // ← fonction : PERDUE dans la copie
+ date: new Date(), // ← Date : converti en string, pas en Date
+ value: undefined, // ← undefined : PERDU (clé supprimée)
+ score: NaN, // ← NaN : converti en null
 };
 
 const bad = JSON.parse(JSON.stringify(problematic));
-// bad.cook      → undefined (la fonction a disparu)
-// bad.date      → string (plus un objet Date)
-// bad.value     → clé inexistante
-// bad.score     → null
+// bad.cook   → undefined (la fonction a disparu)
+// bad.date   → string (plus un objet Date)
+// bad.value   → clé inexistante
+// bad.score   → null
 ```
 
 **Règle :** utilise `structuredClone` si tu es en environnement moderne (Node 17+, Chrome 98+). Utilise JSON en dernier recours sur des données purement sérialisables.
@@ -205,13 +205,13 @@ const bad = JSON.parse(JSON.stringify(problematic));
 ## 4) LE TABLEAU DE DÉCISION
 
 ```
-Tu as besoin de...                        Utilise...
-─────────────────────────────────────     ──────────────────
-copier un objet plat (pas d'imbrication)  { ...obj }
-copier un tableau d'éléments simples      [...arr]
-copier en profondeur, données modernes    structuredClone()
+Tu as besoin de...            Utilise...
+─────────────────────────────────────   ──────────────────
+copier un objet plat (pas d'imbrication) { ...obj }
+copier un tableau d'éléments simples   [...arr]
+copier en profondeur, données modernes  structuredClone()
 copier en profondeur, vieux environnement JSON.parse(JSON.stringify())
-copier en gardant les fonctions           bibliothèque lodash _.cloneDeep()
+copier en gardant les fonctions      bibliothèque lodash _.cloneDeep()
 ```
 
 ---
@@ -223,39 +223,39 @@ Dans tout système avec un état (Redux, Zustand, signal custom), shallow vs dee
 ```js
 // Système de stats de match pour les ultras
 const matchState = {
-  score: { home: 0, away: 0 },
-  events: [],
-  players: {
-    mbappe: { goals: 0, assists: 2 },
-  },
+ score: { home: 0, away: 0 },
+ events: [],
+ players: {
+  mbappe: { goals: 0, assists: 2 },
+ },
 };
 
 // MAUVAISE mise à jour:mute l'état directement
 function badGoal(team) {
-  matchState.score[team]++; // mutation directe
-  // un comparateur shallow (===) ne verra aucune différence
-  // matchState est toujours le même objet en mémoire
-  // React, Vue, ou ton système de détection ne se déclenchera pas
+ matchState.score[team]++; // mutation directe
+ // un comparateur shallow (===) ne verra aucune différence
+ // matchState est toujours le même objet en mémoire
+ // React, Vue, ou ton système de détection ne se déclenchera pas
 }
 
 // BONNE mise à jour:retourne un nouvel état
 function goal(state, team) {
-  return {
-    ...state,
-    score: {
-      ...state.score,
-      [team]: state.score[team] + 1,
-    },
-  };
-  // nouveau score, nouvel objet → détection de changement = OK
-  // mais attention : events et players sont toujours partagés (shallow)
+ return {
+  ...state,
+  score: {
+   ...state.score,
+   [team]: state.score[team] + 1,
+  },
+ };
+ // nouveau score, nouvel objet → détection de changement = OK
+ // mais attention : events et players sont toujours partagés (shallow)
 }
 
 // MEILLEURE mise à jour si events ou players changent aussi
 function goalDeep(state, team) {
-  const newState = structuredClone(state);
-  newState.score[team]++;
-  return newState;
+ const newState = structuredClone(state);
+ newState.score[team]++;
+ return newState;
 }
 ```
 
@@ -302,15 +302,15 @@ Rick a un camp. Chaque camp a un inventaire avec des ressources imbriquées. Une
 
 ```js
 const campState = {
-  name: "Prison",
-  resources: {
-    food: { cans: 50, water: 20 },
-    weapons: ["rifle", "axe", "crossbow"],
-  },
-  survivors: [
-    { name: "Rick", role: "leader" },
-    { name: "Daryl", role: "scout" },
-  ],
+ name: "Prison",
+ resources: {
+  food: { cans: 50, water: 20 },
+  weapons: ["rifle", "axe", "crossbow"],
+ },
+ survivors: [
+  { name: "Rick", role: "leader" },
+  { name: "Daryl", role: "scout" },
+ ],
 };
 ```
 

@@ -24,16 +24,16 @@ entrée quelconque --> [fonction de hachage] --> sortie taille fixe
 ```js
 // hash naïf : somme des codes ASCII modulo une taille de table
 function simpleHash(key, tableSize) {
-  let hash = 0
-  for (let i = 0; i < key.length; i++) {
-    hash += key.charCodeAt(i)
-  }
-  return hash % tableSize
+ let hash = 0
+ for (let i = 0; i < key.length; i++) {
+  hash += key.charCodeAt(i)
+ }
+ return hash % tableSize
 }
 
-simpleHash("Naruto", 100)   // 63
-simpleHash("naruto", 100)   // 63  <- problème : collision avec minuscule !
-simpleHash("Sasuke", 100)   // 63  <- re-collision
+simpleHash("Naruto", 100)  // 63
+simpleHash("naruto", 100)  // 63 <- problème : collision avec minuscule !
+simpleHash("Sasuke", 100)  // 63 <- re-collision
 ```
 
 Ce hash est trop simple : trop de collisions. En prod, on utilise des algos comme djb2, MurmurHash ou SHA-256.
@@ -49,28 +49,28 @@ En cryptographie, une collision c'est une catastrophe.
 ```js
 // djb2 : bien mieux que la somme ASCII
 function djb2(key) {
-  let hash = 5381
-  for (let i = 0; i < key.length; i++) {
-    // hash * 33 + charCode : formule magique prouvée empiriquement
-    hash = ((hash << 5) + hash) ^ key.charCodeAt(i)
-    hash = hash >>> 0  // force unsigned 32-bit
-  }
-  return hash
+ let hash = 5381
+ for (let i = 0; i < key.length; i++) {
+  // hash * 33 + charCode : formule magique prouvée empiriquement
+  hash = ((hash << 5) + hash) ^ key.charCodeAt(i)
+  hash = hash >>> 0 // force unsigned 32-bit
+ }
+ return hash
 }
 
-djb2("Naruto")   // 2847392819
-djb2("naruto")   // 3291048572  <- complètement différent
-djb2("Sasuke")   // 1920384756  <- plus de collision visible
+djb2("Naruto")  // 2847392819
+djb2("naruto")  // 3291048572 <- complètement différent
+djb2("Sasuke")  // 1920384756 <- plus de collision visible
 ```
 
 **Résoudre les collisions dans une hash table :**
 
 ```
-Chaining (chaînage)           Open addressing (sondage linéaire)
+Chaining (chaînage)      Open addressing (sondage linéaire)
 
-table[3] --> ["Naruto", 100]  table[3] = ["Naruto", 100]
-             ["Sasuke", 80]   table[4] = ["Sasuke", 80]  <- décalé
-             ["Kakashi", 95]  table[5] = ["Kakashi", 95] <- décalé
+table[3] --> ["Naruto", 100] table[3] = ["Naruto", 100]
+       ["Sasuke", 80]  table[4] = ["Sasuke", 80] <- décalé
+       ["Kakashi", 95] table[5] = ["Kakashi", 95] <- décalé
 ```
 
 Le `Map` natif de JS gère tout ça pour toi. Mais maintenant tu sais pourquoi il existe.
@@ -84,45 +84,45 @@ Le `Map` de JS est une hash table. Insertion, lookup, suppression : O(1) amorti.
 ```js
 // ce que Map fait internalement (version pédagogique)
 class HashTable {
-  constructor(size = 53) {
-    this.table = new Array(size)
-    this.size = size
-  }
+ constructor(size = 53) {
+  this.table = new Array(size)
+  this.size = size
+ }
 
-  _hash(key) {
-    let hash = 5381
-    for (let i = 0; i < key.length; i++) {
-      hash = ((hash << 5) + hash) ^ key.charCodeAt(i)
-      hash = hash >>> 0
-    }
-    return hash % this.size
+ _hash(key) {
+  let hash = 5381
+  for (let i = 0; i < key.length; i++) {
+   hash = ((hash << 5) + hash) ^ key.charCodeAt(i)
+   hash = hash >>> 0
   }
+  return hash % this.size
+ }
 
-  set(key, value) {
-    const index = this._hash(key)
-    // chaining : chaque case est un tableau de paires [clé, valeur]
-    if (!this.table[index]) this.table[index] = []
-    // on cherche si la clé existe déjà
-    const existing = this.table[index].find(([k]) => k === key)
-    if (existing) {
-      existing[1] = value  // mise à jour
-    } else {
-      this.table[index].push([key, value])  // nouvelle entrée
-    }
+ set(key, value) {
+  const index = this._hash(key)
+  // chaining : chaque case est un tableau de paires [clé, valeur]
+  if (!this.table[index]) this.table[index] = []
+  // on cherche si la clé existe déjà
+  const existing = this.table[index].find(([k]) => k === key)
+  if (existing) {
+   existing[1] = value // mise à jour
+  } else {
+   this.table[index].push([key, value]) // nouvelle entrée
   }
+ }
 
-  get(key) {
-    const index = this._hash(key)
-    if (!this.table[index]) return undefined
-    const pair = this.table[index].find(([k]) => k === key)
-    return pair ? pair[1] : undefined
-  }
+ get(key) {
+  const index = this._hash(key)
+  if (!this.table[index]) return undefined
+  const pair = this.table[index].find(([k]) => k === key)
+  return pair ? pair[1] : undefined
+ }
 }
 
 const scores = new HashTable()
 scores.set("Naruto", 9500)
 scores.set("Sasuke", 8800)
-scores.get("Naruto")  // 9500 en O(1)
+scores.get("Naruto") // 9500 en O(1)
 ```
 
 ---
@@ -132,11 +132,11 @@ scores.get("Naruto")  // 9500 en O(1)
 Deux usages, deux familles, deux exigences complètement différentes.
 
 ```
-Hash de structure (Map, cache)      Hash cryptographique (bcrypt, SHA-256)
----------------------------------   ------------------------------------
-Rapide : priorité performance       Lent : intentionnellement difficile
-Collisions tolérées                 Collisions = vulnérabilité critique
-djb2, MurmurHash, xxHash            SHA-256, bcrypt, Argon2
+Hash de structure (Map, cache)   Hash cryptographique (bcrypt, SHA-256)
+---------------------------------  ------------------------------------
+Rapide : priorité performance    Lent : intentionnellement difficile
+Collisions tolérées         Collisions = vulnérabilité critique
+djb2, MurmurHash, xxHash      SHA-256, bcrypt, Argon2
 ```
 
 **Pourquoi bcrypt est lent ?**
@@ -153,8 +153,8 @@ djb2, MurmurHash, xxHash            SHA-256, bcrypt, Argon2
 import bcrypt from "bcrypt"
 
 async function hashPassword(password) {
-  const salt = await bcrypt.genSalt(12)  // 12 rounds = ~250ms
-  return bcrypt.hash(password, salt)
+ const salt = await bcrypt.genSalt(12) // 12 rounds = ~250ms
+ return bcrypt.hash(password, salt)
 }
 
 // stocké en DB : "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LeI..."
@@ -169,13 +169,13 @@ async function hashPassword(password) {
 ```js
 // hash le contenu pour générer une clé de cache stable
 function contentHash(data) {
-  const str = JSON.stringify(data)
-  let hash = 5381
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) + hash) ^ str.charCodeAt(i)
-    hash = hash >>> 0
-  }
-  return hash.toString(16)  // "2f8a4b1c"
+ const str = JSON.stringify(data)
+ let hash = 5381
+ for (let i = 0; i < str.length; i++) {
+  hash = ((hash << 5) + hash) ^ str.charCodeAt(i)
+  hash = hash >>> 0
+ }
+ return hash.toString(16) // "2f8a4b1c"
 }
 
 // si les données changent, le hash change
@@ -188,13 +188,13 @@ cache.set(key, results, TTL_1H)
 ```js
 // identifier des documents identiques sans les comparer mot à mot
 function dedupeDocuments(docs) {
-  const seen = new Map()
-  return docs.filter(doc => {
-    const hash = contentHash(doc)
-    if (seen.has(hash)) return false
-    seen.set(hash, true)
-    return true
-  })
+ const seen = new Map()
+ return docs.filter(doc => {
+  const hash = contentHash(doc)
+  if (seen.has(hash)) return false
+  seen.set(hash, true)
+  return true
+ })
 }
 ```
 
@@ -203,12 +203,12 @@ function dedupeDocuments(docs) {
 // git fait exactement ça : chaque commit est identifié par son hash
 // si quelqu'un modifie un fichier, le hash change, on le détecte
 async function verifyFile(content, expectedHash) {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(content)
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("")
-  return hashHex === expectedHash
+ const encoder = new TextEncoder()
+ const data = encoder.encode(content)
+ const hashBuffer = await crypto.subtle.digest("SHA-256", data)
+ const hashArray = Array.from(new Uint8Array(hashBuffer))
+ const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("")
+ return hashHex === expectedHash
 }
 ```
 
@@ -223,7 +223,7 @@ if (userHash == storedHash) { ... }
 // JS peut faire de la coercition sur les strings hexadécimales
 // utilise === toujours
 
-if (userHash === storedHash) { ... }  // correct
+if (userHash === storedHash) { ... } // correct
 ```
 
 **Piège 2 : hash d'objets**
@@ -233,13 +233,13 @@ const key = { id: 1 }
 map.set(key, "Naruto")
 
 // ça marche... mais :
-map.get({ id: 1 })  // undefined !
+map.get({ id: 1 }) // undefined !
 // { id: 1 } !== { id: 1 } en JS : deux objets différents en mémoire
 // Map compare les références, pas les valeurs
 
 // solution : sérialiser la clé
 map.set(JSON.stringify(key), "Naruto")
-map.get(JSON.stringify({ id: 1 }))  // "Naruto"
+map.get(JSON.stringify({ id: 1 })) // "Naruto"
 ```
 
 **Piège 3 : timing attacks sur la comparaison de tokens**
@@ -252,8 +252,8 @@ if (token === storedToken) { ... }
 // CORRECT : comparison en temps constant (crypto)
 import { timingSafeEqual } from "crypto"
 const safe = timingSafeEqual(
-  Buffer.from(token),
-  Buffer.from(storedToken)
+ Buffer.from(token),
+ Buffer.from(storedToken)
 )
 ```
 
@@ -272,10 +272,10 @@ Implémente une fonction `dedupeCaptures(events)` qui :
 
 ```js
 const events = [
-  { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" },
-  { pokemonId: "charizard", timestamp: 1700000001, trainer: "Ash" },
-  { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" },  // doublon
-  { pokemonId: "mewtwo", timestamp: 1700000002, trainer: "Ash" },
+ { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" },
+ { pokemonId: "charizard", timestamp: 1700000001, trainer: "Ash" },
+ { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" }, // doublon
+ { pokemonId: "mewtwo", timestamp: 1700000002, trainer: "Ash" },
 ]
 // résultat attendu : 3 events (le doublon pikachu éliminé)
 ```
@@ -293,12 +293,12 @@ Tu dois implémenter un cache memoize qui :
 
 ```js
 function memoize(fn) {
-  // ton implémentation
+ // ton implémentation
 }
 
 const computeFormula = memoize(async (compound, temperature, pressure) => {
-  await sleep(2000)  // simulation calcul long
-  return `${compound}_${temperature}_${pressure}_processed`
+ await sleep(2000) // simulation calcul long
+ return `${compound}_${temperature}_${pressure}_processed`
 })
 
 // premier appel : 2 secondes
@@ -322,9 +322,9 @@ Implémente `verifyLogChain(logs)` qui :
 
 ```js
 const logs = [
-  { id: 1, content: "T-Bag entered cell block D", hash: "...", prevHash: null },
-  { id: 2, content: "T-Bag met with Abruzzi", hash: "...", prevHash: "..." },
-  { id: 3, content: "T-Bag accessed the infirmary", hash: "...", prevHash: "..." },
+ { id: 1, content: "T-Bag entered cell block D", hash: "...", prevHash: null },
+ { id: 2, content: "T-Bag met with Abruzzi", hash: "...", prevHash: "..." },
+ { id: 3, content: "T-Bag accessed the infirmary", hash: "...", prevHash: "..." },
 ]
 // c'est exactement comme ça que la blockchain fonctionne
 ```

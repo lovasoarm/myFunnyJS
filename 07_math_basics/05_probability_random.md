@@ -15,28 +15,28 @@ Sinon ton RNG ment. Il génère des résultats qui *semblent* aléatoires mais q
 Il utilise un PRNG (Pseudo-Random Number Generator) : pas vraiment aléatoire, déterministe si on connaît la graine.
 
 ```js
-Math.random()       // 0.7234...
-Math.random()       // 0.1891...
+Math.random()    // 0.7234...
+Math.random()    // 0.1891...
 
 // transformer en entier entre min et max (inclus)
 function randInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+ return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-randInt(1, 6)   // simule un dé : 1 à 6
-randInt(0, 99)  // pourcentage : 0 à 99
+randInt(1, 6)  // simule un dé : 1 à 6
+randInt(0, 99) // pourcentage : 0 à 99
 
 // piège classique :
-Math.floor(Math.random() * 6) + 1  // correct : 1-6
-Math.round(Math.random() * 6)      // FAUX : 0 et 6 ont moitié moins de chances
+Math.floor(Math.random() * 6) + 1 // correct : 1-6
+Math.round(Math.random() * 6)   // FAUX : 0 et 6 ont moitié moins de chances
 ```
 
 **Pourquoi `Math.round` est biaisé :**
 ```
 Math.round distribue les probabilités comme ça :
-0         : [0.0, 0.5[  --> 50% de chance
-1, 2, 3, 4, 5 : chacun [n-0.5, n+0.5[  --> 100% de chance
-6         : [5.5, 6.0]  --> 50% de chance
+0     : [0.0, 0.5[ --> 50% de chance
+1, 2, 3, 4, 5 : chacun [n-0.5, n+0.5[ --> 100% de chance
+6     : [5.5, 6.0] --> 50% de chance
 
 0 et 6 ont moitié moins de chances que les autres.
 Math.floor évite ça complètement.
@@ -56,21 +56,21 @@ const picked = ninjas[randInt(0, ninjas.length - 1)]
 
 // distribution pondérée : Naruto est 3x plus probable que Sasuke
 function weightedRandom(items) {
-  // items = [{ value, weight }, ...]
-  const totalWeight = items.reduce((sum, item) => sum + item.weight, 0)
-  let random = Math.random() * totalWeight
+ // items = [{ value, weight }, ...]
+ const totalWeight = items.reduce((sum, item) => sum + item.weight, 0)
+ let random = Math.random() * totalWeight
 
-  for (const item of items) {
-    random -= item.weight
-    if (random <= 0) return item.value
-  }
+ for (const item of items) {
+  random -= item.weight
+  if (random <= 0) return item.value
+ }
 }
 
 const result = weightedRandom([
-  { value: "Naruto",  weight: 60 },   // 60% de chances
-  { value: "Sasuke",  weight: 20 },   // 20%
-  { value: "Sakura",  weight: 15 },   // 15%
-  { value: "Kakashi", weight: 5  },   // 5%
+ { value: "Naruto", weight: 60 },  // 60% de chances
+ { value: "Sasuke", weight: 20 },  // 20%
+ { value: "Sakura", weight: 15 },  // 15%
+ { value: "Kakashi", weight: 5 },  // 5%
 ])
 ```
 
@@ -78,9 +78,9 @@ const result = weightedRandom([
 ```
 poids total = 100
 
-0         60        80        95   100
+0     60    80    95  100
 |---------|---------|---------|-----|
-  Naruto    Sasuke   Sakura  Kakashi
+ Naruto  Sasuke  Sakura Kakashi
 
 random() * 100 --> tombe dans la zone --> résultat
 ```
@@ -95,38 +95,38 @@ Les vrais systèmes utilisent des pity systems et des pseudo-random pour éviter
 ```js
 // drop rate naïf : 1% de chances
 function naiveDrop() {
-  return Math.random() < 0.01  // peut échouer 500x de suite
+ return Math.random() < 0.01 // peut échouer 500x de suite
 }
 
 // pity system : la probabilité augmente si on échoue
 class PityDrop {
-  constructor(baseRate, pityThreshold) {
-    this.baseRate = baseRate        // 0.01 = 1%
-    this.pityThreshold = pityThreshold  // après 100 essais, garanti
-    this.attempts = 0
+ constructor(baseRate, pityThreshold) {
+  this.baseRate = baseRate    // 0.01 = 1%
+  this.pityThreshold = pityThreshold // après 100 essais, garanti
+  this.attempts = 0
+ }
+
+ roll() {
+  this.attempts++
+
+  // pity garantied
+  if (this.attempts >= this.pityThreshold) {
+   this.attempts = 0
+   return true
   }
 
-  roll() {
-    this.attempts++
+  // taux qui augmente progressivement après 50% du seuil
+  const progressRate = this.attempts > this.pityThreshold * 0.5
+   ? this.baseRate + (this.attempts / this.pityThreshold) * 0.5
+   : this.baseRate
 
-    // pity garantied
-    if (this.attempts >= this.pityThreshold) {
-      this.attempts = 0
-      return true
-    }
-
-    // taux qui augmente progressivement après 50% du seuil
-    const progressRate = this.attempts > this.pityThreshold * 0.5
-      ? this.baseRate + (this.attempts / this.pityThreshold) * 0.5
-      : this.baseRate
-
-    if (Math.random() < progressRate) {
-      this.attempts = 0
-      return true
-    }
-
-    return false
+  if (Math.random() < progressRate) {
+   this.attempts = 0
+   return true
   }
+
+  return false
+ }
 }
 
 const chakraDrop = new PityDrop(0.01, 100)
@@ -148,15 +148,15 @@ squad.sort(() => Math.random() - 0.5)
 
 // CORRECT : Fisher-Yates shuffle
 function fisherYates(arr) {
-  const result = [...arr]  // on ne mute pas l'original
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = randInt(0, i)  // j dans [0, i]
-    ;[result[i], result[j]] = [result[j], result[i]]  // swap
-  }
-  return result
+ const result = [...arr] // on ne mute pas l'original
+ for (let i = result.length - 1; i > 0; i--) {
+  const j = randInt(0, i) // j dans [0, i]
+  ;[result[i], result[j]] = [result[j], result[i]] // swap
+ }
+ return result
 }
 
-fisherYates(squad)  // distribution uniforme garantie
+fisherYates(squad) // distribution uniforme garantie
 ```
 
 **Pourquoi `.sort()` est biaisé :**
@@ -179,19 +179,19 @@ Un bon générateur jutsu des fréquences qui convergent vers les probabilités 
 ```js
 // vérifier qu'un dé à 6 faces est équitable
 function testDie(rollFn, trials = 100000) {
-  const counts = {}
+ const counts = {}
 
-  for (let i = 0; i < trials; i++) {
-    const roll = rollFn()
-    counts[roll] = (counts[roll] || 0) + 1
-  }
+ for (let i = 0; i < trials; i++) {
+  const roll = rollFn()
+  counts[roll] = (counts[roll] || 0) + 1
+ }
 
-  console.log("Distribution (théorique : 16.67% chacun) :")
-  for (const [face, count] of Object.entries(counts)) {
-    const pct = ((count / trials) * 100).toFixed(2)
-    const bar = "█".repeat(Math.round(count / trials * 100))
-    console.log(`Face ${face}: ${pct}% ${bar}`)
-  }
+ console.log("Distribution (théorique : 16.67% chacun) :")
+ for (const [face, count] of Object.entries(counts)) {
+  const pct = ((count / trials) * 100).toFixed(2)
+  const bar = "█".repeat(Math.round(count / trials * 100))
+  console.log(`Face ${face}: ${pct}% ${bar}`)
+ }
 }
 
 testDie(() => randInt(1, 6))
@@ -210,16 +210,16 @@ Pour les tokens de session, les UUID, les codes de reset de mot de passe : utili
 
 ```js
 // DANGEREUX pour du code de sécurité
-const resetToken = Math.random().toString(36)  // prédictible
+const resetToken = Math.random().toString(36) // prédictible
 
 // CORRECT : aléatoire cryptographiquement sûr
 function secureToken(length = 32) {
-  const array = new Uint8Array(length)
-  crypto.getRandomValues(array)
-  return Array.from(array, b => b.toString(16).padStart(2, "0")).join("")
+ const array = new Uint8Array(length)
+ crypto.getRandomValues(array)
+ return Array.from(array, b => b.toString(16).padStart(2, "0")).join("")
 }
 
-secureToken()  // "a3f92c1b8e4d7f0a..."  imprévisible
+secureToken() // "a3f92c1b8e4d7f0a..." imprévisible
 
 // en Node.js :
 import { randomBytes } from "crypto"
@@ -228,7 +228,7 @@ const token = randomBytes(32).toString("hex")
 
 **Règle simple :**
 ```
-Math.random()          --> jeux, simulations, UI, shuffle de playlist
+Math.random()     --> jeux, simulations, UI, shuffle de playlist
 crypto.getRandomValues --> tokens, sessions, codes, tout ce qui a des implications de sécurité
 ```
 
@@ -242,20 +242,20 @@ Les stats de joueurs dans FIFA, les temps de réponse d'une API, les scores d'un
 ```js
 // Box-Muller transform : générer une distribution normale depuis Math.random()
 function normalRandom(mean = 0, stdDev = 1) {
-  const u1 = Math.random()
-  const u2 = Math.random()
-  // transformation mathématique qui jutsu une distribution en cloche
-  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
-  return mean + z * stdDev
+ const u1 = Math.random()
+ const u2 = Math.random()
+ // transformation mathématique qui jutsu une distribution en cloche
+ const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
+ return mean + z * stdDev
 }
 
 // générer des stats de joueur réalistes
 function generatePlayerStats() {
-  return {
-    pace:    Math.round(Math.min(99, Math.max(40, normalRandom(72, 10)))),
-    shoot:   Math.round(Math.min(99, Math.max(40, normalRandom(68, 12)))),
-    stamina: Math.round(Math.min(99, Math.max(40, normalRandom(75, 8)))),
-  }
+ return {
+  pace:  Math.round(Math.min(99, Math.max(40, normalRandom(72, 10)))),
+  shoot:  Math.round(Math.min(99, Math.max(40, normalRandom(68, 12)))),
+  stamina: Math.round(Math.min(99, Math.max(40, normalRandom(75, 8)))),
+ }
 }
 
 // la majorité des joueurs sera autour de 68-76

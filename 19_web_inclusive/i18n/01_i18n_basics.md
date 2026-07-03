@@ -8,7 +8,7 @@ i18n (internationalisation : le i, 18 lettres, puis n) c'est l'art de construire
 ```js
 // Ça casse (mais fun) : le texte codé en dur, mélangé à la logique
 function afficherMessageBienvenue(nomShinobi) {
-  return `Bienvenue, ${nomShinobi} !`; // (et si l'shinobi parle japonais ?)
+ return `Bienvenue, ${nomShinobi} !`; // (et si l'shinobi parle japonais ?)
 }
 ```
 
@@ -21,21 +21,21 @@ L'idée centrale : ton code ne contient JAMAIS de texte direct. Il contient des 
 ```js
 // fr.json
 {
-  "bienvenue": "Bienvenue, {nom} !",
-  "deconnexion": "Se déconnecter"
+ "bienvenue": "Bienvenue, {nom} !",
+ "deconnexion": "Se déconnecter"
 }
 
 // ja.json (japonais)
 {
-  "bienvenue": "ようこそ、{nom}さん！",
-  "deconnexion": "ログアウト"
+ "bienvenue": "ようこそ、{nom}さん！",
+ "deconnexion": "ログアウト"
 }
 ```
 
 ```js
 // Le code ne change JAMAIS, peu importe la langue active
 function afficherMessageBienvenue(nomShinobi, t) {
-  return t('bienvenue', { nom: nomShinobi }); // (t = fonction de traduction, "translate")
+ return t('bienvenue', { nom: nomShinobi }); // (t = fonction de traduction, "translate")
 }
 ```
 
@@ -52,23 +52,23 @@ Sur une grosse app, des centaines de clés dans un seul fichier plat devient ing
 ```js
 // Sans namespace : un fichier fourre-tout illisible
 {
-  "bienvenue": "Bienvenue",
-  "boutonValider": "Valider",
-  "erreurMotDePasse": "Mot de passe incorrect",
-  "titrePageProfil": "Mon profil"
-  // ... 500 clés plus tard, bon courage pour retrouver quoi que ce soit
+ "bienvenue": "Bienvenue",
+ "boutonValider": "Valider",
+ "erreurMotDePasse": "Mot de passe incorrect",
+ "titrePageProfil": "Mon profil"
+ // ... 500 clés plus tard, bon courage pour retrouver quoi que ce soit
 }
 
 // Avec namespace : organisé par contexte, comme des dossiers
 {
-  "auth": {
-    "bienvenue": "Bienvenue",
-    "erreurMotDePasse": "Mot de passe incorrect"
-  },
-  "profil": {
-    "titre": "Mon profil",
-    "boutonValider": "Valider"
-  }
+ "auth": {
+  "bienvenue": "Bienvenue",
+  "erreurMotDePasse": "Mot de passe incorrect"
+ },
+ "profil": {
+  "titre": "Mon profil",
+  "boutonValider": "Valider"
+ }
 }
 ```
 
@@ -86,13 +86,13 @@ Un fallback (langue de repli) c'est la langue utilisée quand la traduction dema
 
 ```js
 function t(cle, langue, traductions, langueFallback = 'en') {
-  const traductionDemandee = traductions[langue]?.[cle];
-  if (traductionDemandee) return traductionDemandee;
+ const traductionDemandee = traductions[langue]?.[cle];
+ if (traductionDemandee) return traductionDemandee;
 
-  const traductionFallback = traductions[langueFallback]?.[cle];
-  if (traductionFallback) return traductionFallback; // (mieux vaut de l'anglais que rien)
+ const traductionFallback = traductions[langueFallback]?.[cle];
+ if (traductionFallback) return traductionFallback; // (mieux vaut de l'anglais que rien)
 
-  return `[clé manquante: ${cle}]`; // (dernier recours : signaler le trou plutôt que cacher le bug)
+ return `[clé manquante: ${cle}]`; // (dernier recours : signaler le trou plutôt que cacher le bug)
 }
 ```
 
@@ -108,7 +108,7 @@ Risque réel : sans fallback ni signal d'erreur visible, une clé manquante affi
 ```js
 // Ça casse (mais fun) : construire une phrase en assemblant des morceaux traduits séparément
 function direNombreDeNinjas(nombre) {
-  return t('il_y_a') + ' ' + nombre + ' ' + t('ninjas'); // ("Il y a" + "5" + "ninjas")
+ return t('il_y_a') + ' ' + nombre + ' ' + t('ninjas'); // ("Il y a" + "5" + "ninjas")
 }
 // En français : "Il y a 5 ninjas" : ok
 // En japonais : l'ordre des mots n'est pas le même, ça donne un charabia grammaticalement faux
@@ -120,7 +120,7 @@ function direNombreDeNinjas(nombre) {
 // ja.json : "nombre_ninjas": "{nombre}人の忍者がいます" (l'ordre des mots change, et c'est normal)
 
 function direNombreDeNinjas(nombre, t) {
-  return t('nombre_ninjas', { nombre }); // (chaque langue gère SON propre ordre de mots)
+ return t('nombre_ninjas', { nombre }); // (chaque langue gère SON propre ordre de mots)
 }
 ```
 

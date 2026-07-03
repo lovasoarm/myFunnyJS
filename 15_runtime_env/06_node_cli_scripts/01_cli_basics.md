@@ -13,11 +13,11 @@ C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal
 // node ballon-dor.js vote --player "Lamine Yamal" --points 12 --journalist "Mbappe"
 //
 // process.argv :
-// [0] = '/usr/local/bin/node'    -- toujours là
-// [1] = '/app/ballon-dor.js'     -- toujours là
-// [2] = 'vote'                   -- ordre_mission principale
-// [3] = '--player'               -- flag
-// [4] = 'Lamine Yamal'           -- valeur du flag
+// [0] = '/usr/local/bin/node'  -- toujours là
+// [1] = '/app/ballon-dor.js'   -- toujours là
+// [2] = 'vote'          -- ordre_mission principale
+// [3] = '--player'        -- flag
+// [4] = 'Lamine Yamal'      -- valeur du flag
 // [5] = '--points'
 // [6] = '12'
 // [7] = '--journalist'
@@ -35,31 +35,31 @@ const [, , command, ...flags] = process.argv;
 ```js
 // parser les flags --key value et les boolean flags --verbose
 function parseFlags(args) {
-  const flags = {};
-  let i = 0;
+ const flags = {};
+ let i = 0;
 
-  while (i < args.length) {
-    const arg = args[i];
+ while (i < args.length) {
+  const arg = args[i];
 
-    if (arg.startsWith("--")) {
-      const key = arg.slice(2); // '--player' -> 'player'
-      const next = args[i + 1];
+  if (arg.startsWith("--")) {
+   const key = arg.slice(2); // '--player' -> 'player'
+   const next = args[i + 1];
 
-      if (!next || next.startsWith("--")) {
-        // flag booléen : --verbose sans valeur
-        flags[key] = true;
-        i++;
-      } else {
-        // flag avec valeur : --player "Messi"
-        flags[key] = next;
-        i += 2;
-      }
-    } else {
-      i++;
-    }
+   if (!next || next.startsWith("--")) {
+    // flag booléen : --verbose sans valeur
+    flags[key] = true;
+    i++;
+   } else {
+    // flag avec valeur : --player "Messi"
+    flags[key] = next;
+    i += 2;
+   }
+  } else {
+   i++;
   }
+ }
 
-  return flags;
+ return flags;
 }
 
 const [, , command, ...rawFlags] = process.argv;
@@ -102,17 +102,17 @@ process.stderr.write("Erreur critique : sortie\n"); // stderr
 ```js
 // les codes ANSI : séquences d'échappement que le terminal interprète comme des couleurs
 const COLORS = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  cyan: "\x1b[36m",
+ reset: "\x1b[0m",
+ bold: "\x1b[1m",
+ red: "\x1b[31m",
+ green: "\x1b[32m",
+ yellow: "\x1b[33m",
+ blue: "\x1b[34m",
+ cyan: "\x1b[36m",
 };
 
 function colorize(text, ...codes) {
-  return codes.map((c) => COLORS[c]).join("") + text + COLORS.reset;
+ return codes.map((c) => COLORS[c]).join("") + text + COLORS.reset;
 }
 
 console.log(colorize("Ballon d'Or 2026", "bold", "yellow"));
@@ -122,15 +122,15 @@ console.log(colorize(" Vote enregistré", "green"));
 // détecter si le terminal supporte les couleurs
 // (pour éviter les codes ANSI dans les fichiers de log ou les pipes)
 function supportsColor() {
-  return process.stdout.isTTY && process.env.TERM !== "dumb";
+ return process.stdout.isTTY && process.env.TERM !== "dumb";
 }
 
 function print(text, color = null) {
-  if (color && supportsColor()) {
-    console.log(colorize(text, color));
-  } else {
-    console.log(text); // version sans couleur pour les pipes et les fichiers
-  }
+ if (color && supportsColor()) {
+  console.log(colorize(text, color));
+ } else {
+  console.log(text); // version sans couleur pour les pipes et les fichiers
+ }
 }
 ```
 
@@ -143,36 +143,36 @@ const USAGE = `
 Usage : node ballon-dor.js <command> [options]
 
 Commands :
-  vote      Enregistrer un vote de journaliste
-  rank      Afficher le classement actuel
-  reset     Remettre les votes à zéro
+ vote   Enregistrer un vote de journaliste
+ rank   Afficher le classement actuel
+ reset   Remettre les votes à zéro
 
 Options :
-  --player <nom>        Nom du joueur (requis pour vote)
-  --points <1-15>       Points attribués (requis pour vote)
-  --journalist <nom>    Nom du journaliste
-  --dry-run             Simuler sans sauvegarder
-  --help                Afficher cette aide
+ --player <nom>    Nom du joueur (requis pour vote)
+ --points <1-15>    Points attribués (requis pour vote)
+ --journalist <nom>  Nom du journaliste
+ --dry-run       Simuler sans sauvegarder
+ --help        Afficher cette aide
 
 Exemples :
-  node ballon-dor.js vote --player "Messi" --points 12
-  node ballon-dor.js rank
+ node ballon-dor.js vote --player "Messi" --points 12
+ node ballon-dor.js rank
 `;
 
 function validateArgs(command, flags) {
-  const errors = [];
+ const errors = [];
 
-  if (command === "vote") {
-    if (!flags.player) errors.push("--player est requis pour la ordre_mission vote");
-    if (!flags.points) errors.push("--points est requis pour la ordre_mission vote");
+ if (command === "vote") {
+  if (!flags.player) errors.push("--player est requis pour la ordre_mission vote");
+  if (!flags.points) errors.push("--points est requis pour la ordre_mission vote");
 
-    const points = parseInt(flags.points, 10);
-    if (isNaN(points) || points < 1 || points > 15) {
-      errors.push("--points doit être un nombre entre 1 et 15");
-    }
+  const points = parseInt(flags.points, 10);
+  if (isNaN(points) || points < 1 || points > 15) {
+   errors.push("--points doit être un nombre entre 1 et 15");
   }
+ }
 
-  return errors;
+ return errors;
 }
 
 // point d'entrée principal
@@ -180,15 +180,15 @@ const [, , command, ...rawFlags] = process.argv;
 const flags = parseFlags(rawFlags);
 
 if (flags.help || !command) {
-  process.stdout.write(USAGE);
-  process.exit(0);
+ process.stdout.write(USAGE);
+ process.exit(0);
 }
 
 const errors = validateArgs(command, flags);
 if (errors.length > 0) {
-  errors.forEach((e) => console.error(colorize(` ${e}`, "red")));
-  process.stderr.write("\nUtilise --help pour voir les options disponibles\n");
-  process.exit(1);
+ errors.forEach((e) => console.error(colorize(` ${e}`, "red")));
+ process.stderr.write("\nUtilise --help pour voir les options disponibles\n");
+ process.exit(1);
 }
 ```
 
@@ -204,18 +204,18 @@ if (errors.length > 0) {
 // 127 = ordre_mission introuvable
 
 // dans un pipeline bash :
-// node vote.js && echo "succès"  -- "succès" s'affiche uniquement si exit(0)
-// node vote.js || node fallback.js  -- fallback si exit(1)
+// node vote.js && echo "succès" -- "succès" s'affiche uniquement si exit(0)
+// node vote.js || node fallback.js -- fallback si exit(1)
 
 // dans une CI/CD :
 // si le script sort avec un code != 0 : le pipeline échoue automatiquement
 
 try {
-  await runCommand(command, flags);
-  process.exit(0); // succès
+ await runCommand(command, flags);
+ process.exit(0); // succès
 } catch (err) {
-  console.error(colorize(` ${err.message}`, "red"));
-  process.exit(1); // erreur
+ console.error(colorize(` ${err.message}`, "red"));
+ process.exit(1); // erreur
 }
 ```
 

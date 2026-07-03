@@ -4,9 +4,9 @@ Temps de lecture ~14 min
 ## PRÉREQUIS
 
 ```
-Node.js        : v20+
-npm            : v10+  (inclus avec Node.js)
-Variables env  : aucune
+Node.js    : v20+
+npm      : v10+ (inclus avec Node.js)
+Variables env : aucune
 Outils externes: aucun
 
 # Installation
@@ -39,10 +39,10 @@ $ node src/index.js
 [FIN] Sasuke KO au tour 3. Chakra restant de Naruto : 68/200.
 
 $ npm test
-PASS  tests/fighter.test.js (16 tests)
-PASS  tests/jutsu.test.js (14 tests)
-PASS  tests/combat.test.js (20 tests)
-PASS  tests/rng.test.js (8 tests)
+PASS tests/fighter.test.js (16 tests)
+PASS tests/jutsu.test.js (14 tests)
+PASS tests/combat.test.js (20 tests)
+PASS tests/rng.test.js (8 tests)
 ```
 
 Ce projet est le premier. Tu pars d'une page blanche. Tu construis tout de zéro, sans framework, sans bibliothèque externe, juste du JS pur et des décisions de conception.
@@ -76,9 +76,9 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 ### Résumé visuel
 
 ```
-01_fundamentals    --> structure des fighters, HOF dans combat.js
-07_math_basics     --> rng.js (probabilités), cooldownCycle.js (modulo)
-11_functional_js   --> turnResolver.js (immutabilité, pas de mutation d'état)
+01_fundamentals  --> structure des fighters, HOF dans combat.js
+07_math_basics   --> rng.js (probabilités), cooldownCycle.js (modulo)
+11_functional_js  --> turnResolver.js (immutabilité, pas de mutation d'état)
 13_design_patterns --> fighterFactory.js (Factory), jutsus/ (Strategy)
 ```
 
@@ -86,16 +86,16 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 
 ```
 src/index.js
-  --> fighterFactory.createFighter("naruto")   // crée un fighter Naruto
-  --> fighterFactory.createFighter("sasuke")   // crée un fighter Sasuke
-  --> combat.start(naruto, sasuke)             // lance le combat
-        --> turnResolver.resolve(state)        // résout le tour courant
-              --> jutsuRegistry.getJutsu(...)  // récupère le jutsu actif
-              --> rng.roll(probability)        // tire le dé (esquive, crit)
-              --> damageCalc.compute(...)      // calcule les dégâts
-              --> cooldownCycle.tick(...)      // met à jour les cooldowns
-        --> combat.nextTurn(newState)          // passe au tour suivant
-  --> combatLogger.printResult(finalState)    // affiche le résultat final
+ --> fighterFactory.createFighter("naruto")  // crée un fighter Naruto
+ --> fighterFactory.createFighter("sasuke")  // crée un fighter Sasuke
+ --> combat.start(naruto, sasuke)       // lance le combat
+    --> turnResolver.resolve(state)    // résout le tour courant
+       --> jutsuRegistry.getJutsu(...) // récupère le jutsu actif
+       --> rng.roll(probability)    // tire le dé (esquive, crit)
+       --> damageCalc.compute(...)   // calcule les dégâts
+       --> cooldownCycle.tick(...)   // met à jour les cooldowns
+    --> combat.nextTurn(newState)     // passe au tour suivant
+ --> combatLogger.printResult(finalState)  // affiche le résultat final
 ```
 
 Chaque flèche est un appel de fonction. Chaque fonction reçoit ce dont elle a besoin en paramètre, retourne un résultat, ne modifie rien en dehors d'elle.
@@ -105,25 +105,25 @@ Chaque flèche est un appel de fonction. Chaque fonction reçoit ce dont elle a 
 ```
 src/
 ├── fighters/
-│   ├── fighterFactory.js
-│   └── fighterStats.js
+│  ├── fighterFactory.js
+│  └── fighterStats.js
 │
 ├── jutsus/
-│   ├── jutsuRegistry.js
-│   ├── narutoJutsus.js
-│   └── sasukeJutsus.js
+│  ├── jutsuRegistry.js
+│  ├── narutoJutsus.js
+│  └── sasukeJutsus.js
 │
 ├── engine/
-│   ├── combat.js
-│   ├── turnResolver.js
-│   └── damageCalc.js
+│  ├── combat.js
+│  ├── turnResolver.js
+│  └── damageCalc.js
 │
 ├── utils/
-│   ├── rng.js
-│   └── cooldownCycle.js
+│  ├── rng.js
+│  └── cooldownCycle.js
 │
 ├── logger/
-│   └── combatLogger.js
+│  └── combatLogger.js
 │
 └── index.js
 
@@ -190,17 +190,17 @@ tests/
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
 
 ```
-1. src/utils/rng.js          --> zéro dépendance, testable immédiatement
+1. src/utils/rng.js     --> zéro dépendance, testable immédiatement
 2. src/utils/cooldownCycle.js --> idem, zéro dépendance
 3. src/fighters/fighterStats.js --> données statiques, pas de logique
 4. src/jutsus/narutoJutsus.js + sasukeJutsus.js --> fonctions pures, testables seules
 5. src/fighters/fighterFactory.js --> dépend de fighterStats + jutsus
-6. src/jutsus/jutsuRegistry.js    --> dépend des jutsus
-7. src/engine/damageCalc.js       --> dépend de rng.js
-8. src/engine/turnResolver.js     --> dépend de tout ce qui précède
-9. src/engine/combat.js           --> orchestre turnResolver
-10. src/logger/combatLogger.js    --> formate le résultat final
-11. src/index.js                  --> branche tout ensemble
+6. src/jutsus/jutsuRegistry.js  --> dépend des jutsus
+7. src/engine/damageCalc.js    --> dépend de rng.js
+8. src/engine/turnResolver.js   --> dépend de tout ce qui précède
+9. src/engine/combat.js      --> orchestre turnResolver
+10. src/logger/combatLogger.js  --> formate le résultat final
+11. src/index.js         --> branche tout ensemble
 ```
 
 Règle : chaque fichier est testé avant de passer au suivant. Tu ne construis pas l'étage au-dessus si le sol n'est pas solide.
@@ -229,24 +229,24 @@ Le point de résistance majeur est `turnResolver.js`. C'est là que la tentation
 import { createFighter } from '../src/fighters/fighterFactory.js';
 
 describe('fighterFactory', () => {
-  test('crée un fighter Naruto avec les bonnes stats de base', () => {
-    const naruto = createFighter('naruto');
+ test('crée un fighter Naruto avec les bonnes stats de base', () => {
+  const naruto = createFighter('naruto');
 
-    expect(naruto.name).toBe('Naruto Uzumaki');
-    expect(naruto.chakra).toBe(200);          // chakra initial = chakra max
-    expect(naruto.chakraMax).toBe(200);
-    expect(naruto.speed).toBeGreaterThan(0);
-    expect(Array.isArray(naruto.jutsus)).toBe(true);
-    expect(naruto.jutsus.length).toBeGreaterThan(0);
-  });
+  expect(naruto.name).toBe('Naruto Uzumaki');
+  expect(naruto.chakra).toBe(200);     // chakra initial = chakra max
+  expect(naruto.chakraMax).toBe(200);
+  expect(naruto.speed).toBeGreaterThan(0);
+  expect(Array.isArray(naruto.jutsus)).toBe(true);
+  expect(naruto.jutsus.length).toBeGreaterThan(0);
+ });
 
-  test('retourne un nouvel objet à chaque appel (pas de référence partagée)', () => {
-    const n1 = createFighter('naruto');
-    const n2 = createFighter('naruto');
+ test('retourne un nouvel objet à chaque appel (pas de référence partagée)', () => {
+  const n1 = createFighter('naruto');
+  const n2 = createFighter('naruto');
 
-    n1.chakra = 0; // on mute n1 directement
-    expect(n2.chakra).toBe(200); // n2 ne doit pas être affecté
-  });
+  n1.chakra = 0; // on mute n1 directement
+  expect(n2.chakra).toBe(200); // n2 ne doit pas être affecté
+ });
 });
 
 // tests/combat.test.js
@@ -254,25 +254,25 @@ import { startCombat } from '../src/engine/combat.js';
 import { createFighter } from '../src/fighters/fighterFactory.js';
 
 describe('combat', () => {
-  test('retourne toujours un gagnant et un perdant', () => {
-    const naruto = createFighter('naruto');
-    const sasuke = createFighter('sasuke');
-    const result = startCombat(naruto, sasuke);
+ test('retourne toujours un gagnant et un perdant', () => {
+  const naruto = createFighter('naruto');
+  const sasuke = createFighter('sasuke');
+  const result = startCombat(naruto, sasuke);
 
-    expect(result.winner).toBeDefined();
-    expect(result.loser).toBeDefined();
-    expect(result.winner).not.toEqual(result.loser);
-  });
+  expect(result.winner).toBeDefined();
+  expect(result.loser).toBeDefined();
+  expect(result.winner).not.toEqual(result.loser);
+ });
 
-  test("ne modifie pas les fighters passés en entrée (immutabilité)", () => {
-    const naruto = createFighter('naruto');
-    const sasuke = createFighter('sasuke');
-    const chakraAvant = naruto.chakra;
+ test("ne modifie pas les fighters passés en entrée (immutabilité)", () => {
+  const naruto = createFighter('naruto');
+  const sasuke = createFighter('sasuke');
+  const chakraAvant = naruto.chakra;
 
-    startCombat(naruto, sasuke);
+  startCombat(naruto, sasuke);
 
-    expect(naruto.chakra).toBe(chakraAvant); // l'original n'est pas touché
-  });
+  expect(naruto.chakra).toBe(chakraAvant); // l'original n'est pas touché
+ });
 });
 ```
 
@@ -323,13 +323,13 @@ Le moteur appelle la fonction sans savoir ce qu'elle fait.
 
 ## Alternatives considérées
 - Un `switch` centralisé dans turnResolver.js : rejeté, parce qu'ajouter un nouveau
-  jutsu obligerait à modifier le moteur. Violation de l'OCP (Open/Closed Principle).
+ jutsu obligerait à modifier le moteur. Violation de l'OCP (Open/Closed Principle).
 - Une classe Jutsu avec héritage : rejeté, sur-ingénierie pour ce cas. Une fonction
-  suffit.
+ suffit.
 
 ## Conséquences
 - Ajouter un nouveau jutsu = créer une fonction dans le bon fichier + l'enregistrer
-  dans jutsuRegistry.js. Le moteur n'est jamais touché.
+ dans jutsuRegistry.js. Le moteur n'est jamais touché.
 - Les jutsus sont testables individuellement, sans lancer le moteur entier.
 ```
 

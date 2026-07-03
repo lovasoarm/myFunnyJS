@@ -29,10 +29,10 @@ Le cas le plus brutal : une erreur non gérée dans un serveur Node peut crasher
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-appel API externe              --> timeout/erreur réseau --> retry ou fallback
-parsing de donnée utilisateur  --> format invalide       --> erreur custom claire
-opération async oubliée        --> erreur silencieuse    --> bug fantôme en prod
-chaîne de microservices        --> qui catch quoi        --> propagation contrôlée
+appel API externe       --> timeout/erreur réseau --> retry ou fallback
+parsing de donnée utilisateur --> format invalide    --> erreur custom claire
+opération async oubliée    --> erreur silencieuse  --> bug fantôme en prod
+chaîne de microservices    --> qui catch quoi    --> propagation contrôlée
 opération critique vs secondaire --> fail-fast vs fallback --> stratégie adaptée
 ```
 

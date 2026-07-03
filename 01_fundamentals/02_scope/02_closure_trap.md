@@ -9,11 +9,11 @@ Temps de lecture ~8 min
 
 ```js
 function makeCounter() {
-  let count = 0; // variable locale : normalement elle mourrait ici
-  return function () {
-    count += 1;
-    return count;
-  };
+ let count = 0; // variable locale : normalement elle mourrait ici
+ return function () {
+  count += 1;
+  return count;
+ };
 }
 
 const counter = makeCounter();
@@ -32,9 +32,9 @@ console.log(counter()); // 3
 
 ```js
 for (var i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log("i vaut :", i);
-  }, 100);
+ setTimeout(function () {
+  console.log("i vaut :", i);
+ }, 100);
 }
 ```
 
@@ -51,10 +51,10 @@ i vaut : 4
 ```
 GLOBAL ENV
 |-- i ------------> 4
-         ^
-   callback #1 -------|
-   callback #2 -------|  <-- toutes pointent sur le même i
-   callback #3 -------|
+     ^
+  callback #1 -------|
+  callback #2 -------| <-- toutes pointent sur le même i
+  callback #3 -------|
 ```
 
 ---
@@ -65,29 +65,29 @@ GLOBAL ENV
 
 ```js
 for (let i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log("i vaut :", i); // 1, 2, 3
-  }, 100);
+ setTimeout(function () {
+  console.log("i vaut :", i); // 1, 2, 3
+ }, 100);
 }
 ```
 
 `let` crée une nouvelle variable `i` à chaque itération. Chaque callback capture sa propre copie.
 
 ```
-BLOCK ENV #1 --> i = 1  <-- callback #1 capture ça
-BLOCK ENV #2 --> i = 2  <-- callback #2 capture ça
-BLOCK ENV #3 --> i = 3  <-- callback #3 capture ça
+BLOCK ENV #1 --> i = 1 <-- callback #1 capture ça
+BLOCK ENV #2 --> i = 2 <-- callback #2 capture ça
+BLOCK ENV #3 --> i = 3 <-- callback #3 capture ça
 ```
 
 **Solution 2 : IIFE pour capturer la valeur :**
 
 ```js
 for (var i = 1; i <= 3; i++) {
-  (function (j) {
-    setTimeout(function () {
-      console.log("j vaut :", j); // 1, 2, 3
-    }, 100);
-  })(i);
+ (function (j) {
+  setTimeout(function () {
+   console.log("j vaut :", j); // 1, 2, 3
+  }, 100);
+ })(i);
 }
 ```
 
@@ -135,7 +135,7 @@ Si tu rates les closures, tu rates la moitié de comment JS fonctionne réelleme
 
 ```js
 function makeTeam() {
-  // ton code ici
+ // ton code ici
 }
 
 const alphaTeam = makeTeam();
@@ -186,17 +186,17 @@ Deux appels à la même factory = deux closures séparées = deux environnements
 
 ```
 +-----------------------------------------------+
-| GLOBAL env                                    |
-|   makeCounter (fn)                            |
-|   +---------------------------------------+   |
-|   | makeCounter() env                     |   |
-|   |   count = 0                           |   |
-|   |   +-------------------------------+   |   |
-|   |   | inner() env (returned)        |   |   |
-|   |   |   [[Scope]] -> makeCounter env|   |   |
-|   |   |             -> GLOBAL env     |   |   |
-|   |   +-------------------------------+   |   |
-|   +---------------------------------------+   |
+| GLOBAL env                  |
+|  makeCounter (fn)              |
+|  +---------------------------------------+  |
+|  | makeCounter() env           |  |
+|  |  count = 0              |  |
+|  |  +-------------------------------+  |  |
+|  |  | inner() env (returned)    |  |  |
+|  |  |  [[Scope]] -> makeCounter env|  |  |
+|  |  |       -> GLOBAL env   |  |  |
+|  |  +-------------------------------+  |  |
+|  +---------------------------------------+  |
 +-----------------------------------------------+
 ```
 

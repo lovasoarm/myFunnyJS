@@ -30,19 +30,19 @@ Diagramme canvas :
 
 ```
 (0,0) -----> x+
-  |
-  |
-  v
-  y+
+ |
+ |
+ v
+ y+
 ```
 
 Diagramme math classique :
 
 ```
-  y+
-  ^
-  |
-  |
+ y+
+ ^
+ |
+ |
 (0,0) -----> x+
 ```
 
@@ -56,9 +56,9 @@ La formule de Pythagore. Utile partout : déterminer si deux objets se touchent,
 
 ```js
 function distance(a, b) {
-  const dx = b.x - a.x
-  const dy = b.y - a.y
-  return Math.sqrt(dx * dx + dy * dy)
+ const dx = b.x - a.x
+ const dy = b.y - a.y
+ return Math.sqrt(dx * dx + dy * dy)
 }
 
 const messi = { x: 10, y: 20 }
@@ -72,11 +72,11 @@ console.log(distance(messi, but))
 
 ```js
 function distanceCarre(a, b) {
-  const dx = b.x - a.x
-  const dy = b.y - a.y
-  return dx * dx + dy * dy
-  // pas de sqrt : 2x plus rapide
-  // utile pour : "est-ce que A est plus proche de C que B ?"
+ const dx = b.x - a.x
+ const dy = b.y - a.y
+ return dx * dx + dy * dy
+ // pas de sqrt : 2x plus rapide
+ // utile pour : "est-ce que A est plus proche de C que B ?"
 }
 
 // si distanceCarre(A, C) < distanceCarre(B, C) => A est plus proche
@@ -92,34 +92,34 @@ La différence entre deux positions = un vecteur.
 ```js
 // vecteur de A vers B
 function vecteur(a, b) {
-  return { x: b.x - a.x, y: b.y - a.y }
+ return { x: b.x - a.x, y: b.y - a.y }
 }
 
 // magnitude (longueur) du vecteur
 function magnitude(v) {
-  return Math.sqrt(v.x * v.x + v.y * v.y)
+ return Math.sqrt(v.x * v.x + v.y * v.y)
 }
 
 // normaliser un vecteur = le ramener à une longueur de 1
 // utile pour avoir une DIRECTION pure, sans la vitesse
 function normaliser(v) {
-  const mag = magnitude(v)
-  if (mag === 0) return { x: 0, y: 0 } // éviter la division par zéro
-  return { x: v.x / mag, y: v.y / mag }
+ const mag = magnitude(v)
+ if (mag === 0) return { x: 0, y: 0 } // éviter la division par zéro
+ return { x: v.x / mag, y: v.y / mag }
 }
 
 const spawn = { x: 0, y: 0 }
 const cible = { x: 3, y: 4 }
 
-const dir = vecteur(spawn, cible)       // { x: 3, y: 4 }
-const mag = magnitude(dir)              // 5
-const unitDir = normaliser(dir)         // { x: 0.6, y: 0.8 }
+const dir = vecteur(spawn, cible)    // { x: 3, y: 4 }
+const mag = magnitude(dir)       // 5
+const unitDir = normaliser(dir)     // { x: 0.6, y: 0.8 }
 
 // pour déplacer un objet vers la cible à vitesse fixe :
 const vitesse = 10
 const deplacement = {
-  x: unitDir.x * vitesse,  // => 6
-  y: unitDir.y * vitesse   // => 8
+ x: unitDir.x * vitesse, // => 6
+ y: unitDir.y * vitesse  // => 8
 }
 ```
 
@@ -127,10 +127,10 @@ Diagramme :
 
 ```
 spawn (0,0) -----> dir {x:3, y:4} -----> cible (3,4)
-                     |
-                  magnitude = 5
-                     |
-               normaliser: {x:0.6, y:0.8}
+           |
+         magnitude = 5
+           |
+        normaliser: {x:0.6, y:0.8}
 ```
 
 ---
@@ -141,14 +141,14 @@ Deux vecteurs. Un seul nombre. Ce nombre dit si les vecteurs pointent dans la m�
 
 ```js
 function dotProduct(v1, v2) {
-  return v1.x * v2.x + v1.y * v2.y
+ return v1.x * v2.x + v1.y * v2.y
 }
 
 // si dot > 0 : même sens général (angle < 90°)
 // si dot = 0 : perpendiculaires
 // si dot < 0 : sens opposés (angle > 90°)
 
-const regardDuGardien = { x: 1, y: 0 }   // il regarde vers la droite
+const regardDuGardien = { x: 1, y: 0 }  // il regarde vers la droite
 const directionMbappé = { x: 0.8, y: 0.2 } // Mbappé fonce en diagonale
 
 const dot = dotProduct(regardDuGardien, directionMbappé)
@@ -173,12 +173,12 @@ La collision pixel-perfect coûte trop cher. En prod, on commence par tester si 
 ```js
 // rectangle représenté par coin supérieur gauche + largeur/hauteur
 function collisionRect(a, b) {
-  return (
-    a.x < b.x + b.width &&
-    a.x + a.width > b.x &&
-    a.y < b.y + b.height &&
-    a.y + a.height > b.y
-  )
+ return (
+  a.x < b.x + b.width &&
+  a.x + a.width > b.x &&
+  a.y < b.y + b.height &&
+  a.y + a.height > b.y
+ )
 }
 
 const saitama = { x: 100, y: 100, width: 50, height: 80 }
@@ -191,25 +191,25 @@ Diagramme :
 
 ```
 saitama:
-  (100,100) +--------+
-            |        |
-            |        |
-            +--------+ (150,180)
+ (100,100) +--------+
+      |    |
+      |    |
+      +--------+ (150,180)
 
 monstre:
-       (130,120) +-----------+
-                 |  OVERLAP  |
-                 |           |
-                 +-----------+ (190,210)
+    (130,120) +-----------+
+         | OVERLAP |
+         |      |
+         +-----------+ (190,210)
 ```
 
 **Collision cercle** (plus précise pour les sprites ronds) :
 
 ```js
 function collisionCercle(a, b) {
-  // a et b ont : x, y (centre), radius
-  const dist = distance(a, b)
-  return dist < a.radius + b.radius
+ // a et b ont : x, y (centre), radius
+ const dist = distance(a, b)
+ return dist < a.radius + b.radius
 }
 
 const luffy = { x: 200, y: 200, radius: 30 }
@@ -228,17 +228,17 @@ Est-ce que le curseur est dans une zone cliquable ? Est-ce qu'un joueur est dans
 ```js
 // point dans un rectangle
 function pointDansRect(point, rect) {
-  return (
-    point.x >= rect.x &&
-    point.x <= rect.x + rect.width &&
-    point.y >= rect.y &&
-    point.y <= rect.y + rect.height
-  )
+ return (
+  point.x >= rect.x &&
+  point.x <= rect.x + rect.width &&
+  point.y >= rect.y &&
+  point.y <= rect.y + rect.height
+ )
 }
 
 // point dans un cercle
 function pointDansCercle(point, cercle) {
-  return distance(point, cercle) <= cercle.radius
+ return distance(point, cercle) <= cercle.radius
 }
 
 const clic = { x: 250, y: 150 }
@@ -262,25 +262,25 @@ Lerp = Linear Interpolation. Ça calcule un point entre deux valeurs selon un po
 
 ```js
 function lerp(a, b, t) {
-  // t entre 0 et 1
-  // t=0 => a, t=1 => b, t=0.5 => milieu
-  return a + (b - a) * t
+ // t entre 0 et 1
+ // t=0 => a, t=1 => b, t=0.5 => milieu
+ return a + (b - a) * t
 }
 
 function lerpPoint(a, b, t) {
-  return {
-    x: lerp(a.x, b.x, t),
-    y: lerp(a.y, b.y, t)
-  }
+ return {
+  x: lerp(a.x, b.x, t),
+  y: lerp(a.y, b.y, t)
+ }
 }
 
 const depart = { x: 0, y: 0 }
 const arrivee = { x: 100, y: 200 }
 
-lerpPoint(depart, arrivee, 0)    // {x:0, y:0}
+lerpPoint(depart, arrivee, 0)  // {x:0, y:0}
 lerpPoint(depart, arrivee, 0.25) // {x:25, y:50}
-lerpPoint(depart, arrivee, 0.5)  // {x:50, y:100}
-lerpPoint(depart, arrivee, 1)    // {x:100, y:200}
+lerpPoint(depart, arrivee, 0.5) // {x:50, y:100}
+lerpPoint(depart, arrivee, 1)  // {x:100, y:200}
 ```
 
 Usages réels :
@@ -296,8 +296,8 @@ let cameraPos = { x: 0, y: 0 }
 const SMOOTH = 0.1 // plus petit = plus lent
 
 function updateCamera(playerPos) {
-  // chaque frame, la caméra avance de 10% vers le joueur
-  cameraPos = lerpPoint(cameraPos, playerPos, SMOOTH)
+ // chaque frame, la caméra avance de 10% vers le joueur
+ cameraPos = lerpPoint(cameraPos, playerPos, SMOOTH)
 }
 ```
 
@@ -316,17 +316,17 @@ function toDeg(rad) { return rad * 180 / PI }
 
 // angle entre deux points (en radians)
 function angle(a, b) {
-  return Math.atan2(b.y - a.y, b.x - a.x)
+ return Math.atan2(b.y - a.y, b.x - a.x)
 }
 
 // faire pivoter un point autour d'un centre
 function rotation(point, centre, angleRad) {
-  const dx = point.x - centre.x
-  const dy = point.y - centre.y
-  return {
-    x: centre.x + dx * Math.cos(angleRad) - dy * Math.sin(angleRad),
-    y: centre.y + dx * Math.sin(angleRad) + dy * Math.cos(angleRad)
-  }
+ const dx = point.x - centre.x
+ const dy = point.y - centre.y
+ return {
+  x: centre.x + dx * Math.cos(angleRad) - dy * Math.sin(angleRad),
+  y: centre.y + dx * Math.sin(angleRad) + dy * Math.cos(angleRad)
+ }
 }
 
 const balle = { x: 100, y: 0 }
@@ -347,7 +347,7 @@ Dans certains contextes (grille de cases, tableur, pathfinding sur une map), la 
 
 ```js
 function distanceManhattan(a, b) {
-  return Math.abs(b.x - a.x) + Math.abs(b.y - a.y)
+ return Math.abs(b.x - a.x) + Math.abs(b.y - a.y)
 }
 
 // dans un jeu de plateau type Shingeki no Kyojin :
@@ -364,9 +364,9 @@ console.log(distanceManhattan(depart, arrivee))
 Quand utiliser quoi :
 
 ```
-distance euclidienne  --> espace continu (canvas, physique, 3D)
-distance manhattan    --> grille de cases (jeux de plateau, pathfinding, maps)
-distance au carré     --> comparaison relative sans besoin de la valeur exacte
+distance euclidienne --> espace continu (canvas, physique, 3D)
+distance manhattan  --> grille de cases (jeux de plateau, pathfinding, maps)
+distance au carré   --> comparaison relative sans besoin de la valeur exacte
 ```
 
 ---
@@ -377,29 +377,29 @@ Cas réel : tu as des milliers de clics shinobi sur une page. Tu veux savoir que
 
 ```js
 function genererHeatmap(clics, largeur, hauteur, resolution = 50) {
-  // divise l'espace en cellules de taille "resolution"
-  const cols = Math.ceil(largeur / resolution)
-  const rows = Math.ceil(hauteur / resolution)
-  
-  // initialiser la grille à zéro
-  const grille = Array.from({ length: rows }, () => new Array(cols).fill(0))
+ // divise l'espace en cellules de taille "resolution"
+ const cols = Math.ceil(largeur / resolution)
+ const rows = Math.ceil(hauteur / resolution)
+ 
+ // initialiser la grille à zéro
+ const grille = Array.from({ length: rows }, () => new Array(cols).fill(0))
 
-  for (const clic of clics) {
-    const col = Math.floor(clic.x / resolution)
-    const row = Math.floor(clic.y / resolution)
-    
-    // vérifier les bornes avant d'accéder
-    if (col >= 0 && col < cols && row >= 0 && row < rows) {
-      grille[row][col]++
-    }
-  }
+ for (const clic of clics) {
+  const col = Math.floor(clic.x / resolution)
+  const row = Math.floor(clic.y / resolution)
   
-  return grille
+  // vérifier les bornes avant d'accéder
+  if (col >= 0 && col < cols && row >= 0 && row < rows) {
+   grille[row][col]++
+  }
+ }
+ 
+ return grille
 }
 
 const clicsSpectateurs = [
-  { x: 120, y: 80 }, { x: 125, y: 85 }, { x: 300, y: 200 },
-  { x: 118, y: 79 }, { x: 122, y: 82 }, { x: 301, y: 201 }
+ { x: 120, y: 80 }, { x: 125, y: 85 }, { x: 300, y: 200 },
+ { x: 118, y: 79 }, { x: 122, y: 82 }, { x: 301, y: 201 }
 ]
 
 const heatmap = genererHeatmap(clicsSpectateurs, 500, 400, 100)

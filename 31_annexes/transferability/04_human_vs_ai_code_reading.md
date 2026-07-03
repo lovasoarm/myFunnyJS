@@ -7,12 +7,12 @@ Deux styles, deux pièges, deux stratégies de lecture.
 ```js
 // écrit en 2019, jamais retouché, prod critique
 function processOrder(o) {
-  var t = 0;
-  for (var i = 0; i < o.items.length; i++) {
-    t += o.items[i].p * o.items[i].q; // p=prix, q=quantite
-    if (o.items[i].t) t += o.items[i].t; // taxe fixe si presente
-  }
-  return o.d ? t * (1 - o.d) : t; // d = discount 0..1
+ var t = 0;
+ for (var i = 0; i < o.items.length; i++) {
+  t += o.items[i].p * o.items[i].q; // p=prix, q=quantite
+  if (o.items[i].t) t += o.items[i].t; // taxe fixe si presente
+ }
+ return o.d ? t * (1 - o.d) : t; // d = discount 0..1
 }
 ```
 
@@ -24,11 +24,11 @@ implicite qu'un humain fatigué en 2019 a "casée" ici. Cherche cette logique av
 ```js
 // généré, "propre", ne compile pas dans ton runtime
 async function processOrder(order) {
-  const total = order.items.reduce(
-    (acc, item) => acc + item.price * item.qty + (item.tax ?? 0),
-    0
-  );
-  return order.discount ? total * (1 - order.discount) : total;
+ const total = order.items.reduce(
+  (acc, item) => acc + item.price * item.qty + (item.tax ?? 0),
+  0
+ );
+ return order.discount ? total * (1 - order.discount) : total;
 }
 ```
 

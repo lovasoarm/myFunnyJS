@@ -19,9 +19,9 @@ Le problème de Walter, c'est pas de coder un Dijkstra. N'importe qui sait taper
 
 ```
 src/
-├── reseauDistribution.js   le graphe et sa construction
-├── routeFinder.js          le calcul de meilleure route
-└── stockOptimizer.js       l'optimisation du stock par route (knapsack)
+├── reseauDistribution.js  le graphe et sa construction
+├── routeFinder.js     le calcul de meilleure route
+└── stockOptimizer.js    l'optimisation du stock par route (knapsack)
 
 tests/
 └── reseauDistribution.test.js

@@ -19,11 +19,11 @@ Tout système a des parties qui changent souvent et des parties qui changent rar
 ```
 Système de combat de ninjas
 
-Stable   : un ninja a du chakra -- il peut lancer des jutsus -- les dégâts sont calculés
+Stable  : un ninja a du chakra -- il peut lancer des jutsus -- les dégâts sont calculés
 Volatile : les formules de calcul des dégâts (équilibrage)
-           les jutsus disponibles (nouveau personnage = nouveaux jutsus)
-           le format de sauvegarde (JSON aujourd'hui, DB demain)
-           les règles de tournoi (modes de jeu différents)
+      les jutsus disponibles (nouveau personnage = nouveaux jutsus)
+      le format de sauvegarde (JSON aujourd'hui, DB demain)
+      les règles de tournoi (modes de jeu différents)
 ```
 
 La règle : **mettre ce qui est volatile derrière une frontière**. Le coeur stable ne doit jamais dépendre directement des détails volatils.
@@ -41,10 +41,10 @@ Pas de philosophie : en pratique, ça veut dire que quand une règle change, tu 
 // chaque nouveau jutsu = modifier CombatLoop = risque de régresser les autres jutsus
 
 function calculerDegats(jutsu, cible) {
-  if (jutsu === "rasengan") return cible.chakra - 50
-  if (jutsu === "chidori")  return cible.chakra - 60
-  if (jutsu === "susanoo")  return cible.chakra - 80
-  // nouveau jutsu : on MODIFIE cette fonction
+ if (jutsu === "rasengan") return cible.chakra - 50
+ if (jutsu === "chidori") return cible.chakra - 60
+ if (jutsu === "susanoo") return cible.chakra - 80
+ // nouveau jutsu : on MODIFIE cette fonction
 }
 
 // ---
@@ -53,14 +53,14 @@ function calculerDegats(jutsu, cible) {
 // nouveau jutsu = ajouter une entrée dans la map, rien d'autre ne change
 
 const jutsus = {
-  rasengan : { degats: (cible) => cible.chakra - 50 },
-  chidori  : { degats: (cible) => cible.chakra - 60 },
-  susanoo  : { degats: (cible) => cible.chakra - 80 },
-  // nouveau jutsu : on AJOUTE ici sans toucher au reste
+ rasengan : { degats: (cible) => cible.chakra - 50 },
+ chidori : { degats: (cible) => cible.chakra - 60 },
+ susanoo : { degats: (cible) => cible.chakra - 80 },
+ // nouveau jutsu : on AJOUTE ici sans toucher au reste
 }
 
 function calculerDegats(nomJutsu, cible) {
-  return jutsus[nomJutsu].degats(cible)
+ return jutsus[nomJutsu].degats(cible)
 }
 ```
 
@@ -86,8 +86,8 @@ Points de variabilité identifiés :
 Isolation :
 
 interface AudioSource {
-  getTrack(id: string): Promise<Track>
-  getNextTrack(current: Track): Promise<Track>
+ getTrack(id: string): Promise<Track>
+ getNextTrack(current: Track): Promise<Track>
 }
 
 // Implémentation aujourd'hui :
@@ -109,7 +109,7 @@ class StreamingAudioSource implements AudioSource { ... }
 
 // Mauvais : hardcodé pour Ligue 1
 function fetchMatchStats() {
-  return fetch("https://api.ligue1.fr/matches")
+ return fetch("https://api.ligue1.fr/matches")
 }
 
 // 3 semaines plus tard : "on ajoute la Premier League et la Bundesliga"
@@ -120,7 +120,7 @@ function fetchMatchStats() {
 // Correct : paramétré dès le départ pour ce qui va visiblement changer
 
 function fetchMatchStats(league: League) {
-  return fetch(league.apiUrl)
+ return fetch(league.apiUrl)
 }
 
 // 3 semaines plus tard : on ajoute un objet League pour la Premier League
@@ -139,9 +139,9 @@ Quand une API externe change (et elle changera), est-ce que ça casse tout ton s
 // Sans couche d'abstraction : l'API Sentry est dans tout le code
 // Sentry change son SDK : tu modifies 30 fichiers
 
-logger.captureException(err)           // dans combatLoop.js
-Sentry.addBreadcrumb({ ... })          // dans jutsusEngine.js
-Sentry.setUser({ id: ninja.id })       // dans authModule.js
+logger.captureException(err)      // dans combatLoop.js
+Sentry.addBreadcrumb({ ... })     // dans jutsusEngine.js
+Sentry.setUser({ id: ninja.id })    // dans authModule.js
 
 // ---
 
@@ -150,14 +150,14 @@ Sentry.setUser({ id: ninja.id })       // dans authModule.js
 
 // monitoring.js -- l'adaptateur
 export const monitoring = {
-  captureError: (err) => Sentry.captureException(err),
-  addContext: (ctx) => Sentry.addBreadcrumb(ctx),
-  setUser: (user) => Sentry.setUser(user)
+ captureError: (err) => Sentry.captureException(err),
+ addContext: (ctx) => Sentry.addBreadcrumb(ctx),
+ setUser: (user) => Sentry.setUser(user)
 }
 
 // partout ailleurs dans le code :
 import { monitoring } from "./monitoring"
-monitoring.captureError(err)     // le reste du code ne sait pas que c'est Sentry
+monitoring.captureError(err)   // le reste du code ne sait pas que c'est Sentry
 ```
 
 Si Datadog remplace Sentry demain : tu modifies `monitoring.js`. Une seule fois.
@@ -172,18 +172,18 @@ Avant de coder une feature, tu dessines ses frontières.
 Feature : système de notification du Conseil de Surveillance (garo_no_kronika)
 
 Frontière de la notification :
-  entrée  : CombatEvent (résultat d'un combat, quel qu'il soit)
-  sortie  : void (la notification est envoyée, le système de combat s'en fout du résultat)
-  contrat : le système de combat ne sait pas comment la notification est envoyée
-            (email, SSE, WebSocket, Slack : ça change pas le contrat)
+ entrée : CombatEvent (résultat d'un combat, quel qu'il soit)
+ sortie : void (la notification est envoyée, le système de combat s'en fout du résultat)
+ contrat : le système de combat ne sait pas comment la notification est envoyée
+      (email, SSE, WebSocket, Slack : ça change pas le contrat)
 
 Ce qui peut changer sans toucher au système de combat :
-  - le canal de notification (SSE aujourd'hui, WebSocket demain)
-  - le format du message (JSON, XML, proto)
-  - les destinataires (Conseil, Chevaliers, logs)
+ - le canal de notification (SSE aujourd'hui, WebSocket demain)
+ - le format du message (JSON, XML, proto)
+ - les destinataires (Conseil, Chevaliers, logs)
 
 Ce qui ne peut pas changer sans toucher au système de combat :
-  - la structure de CombatEvent (c'est le contrat, donc c'est stable)
+ - la structure de CombatEvent (c'est le contrat, donc c'est stable)
 ```
 
 ---
@@ -206,16 +206,16 @@ Voici une fonction du système d'évasion de Michael Scofield :
 
 ```js
 function validerCheckpoint(checkpoint, prisonnier) {
-  if (checkpoint.type === "grille") {
-    return prisonnier.outilsTunnel.includes("pince")
-  }
-  if (checkpoint.type === "garde") {
-    return prisonnier.déguisements.includes("uniforme")
-  }
-  if (checkpoint.type === "alarme") {
-    return prisonnier.compétences.includes("électronique")
-  }
-  return false
+ if (checkpoint.type === "grille") {
+  return prisonnier.outilsTunnel.includes("pince")
+ }
+ if (checkpoint.type === "garde") {
+  return prisonnier.déguisements.includes("uniforme")
+ }
+ if (checkpoint.type === "alarme") {
+  return prisonnier.compétences.includes("électronique")
+ }
+ return false
 }
 ```
 

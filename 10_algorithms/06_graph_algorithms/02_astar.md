@@ -9,7 +9,7 @@ La différence tient dans une seule ligne : la fonction de coût.
 
 ```
 Dijkstra : f(n) = g(n)
-A*       : f(n) = g(n) + h(n)
+A*    : f(n) = g(n) + h(n)
 
 g(n) = coût réel depuis le départ jusqu'à n
 h(n) = estimation (heuristique) du coût restant de n jusqu'à l'arrivée
@@ -27,16 +27,16 @@ L'heuristique `h(n)` doit être **admissible** : elle ne doit jamais surestimer 
 ```
 Grille 2D, mouvements dans 4 directions :
 h(n) = distance Manhattan = |x1-x2| + |y1-y2|
-       => sous-estime ou est exacte (jamais plus grand que le chemin réel)
-       => admissible 
+    => sous-estime ou est exacte (jamais plus grand que le chemin réel)
+    => admissible 
 
 Grille 2D, mouvements en 8 directions :
 h(n) = distance Chebyshev = max(|x1-x2|, |y1-y2|)
-       => admissible 
+    => admissible 
 
 Espace euclidien (coordonnées continues) :
 h(n) = distance euclidienne = sqrt((x1-x2)² + (y1-y2)²)
-       => admissible  (ligne droite = chemin le plus court)
+    => admissible (ligne droite = chemin le plus court)
 
 Heuristique nulle :
 h(n) = 0 => Dijkstra pur, toujours admissible mais pas de gain de perf
@@ -48,92 +48,92 @@ h(n) = 0 => Dijkstra pur, toujours admissible mais pas de gain de perf
 
 ```js
 function astar(grid, start, goal) {
-  // grid : tableau 2D, 0 = libre, 1 = obstacle
-  const rows = grid.length
-  const cols = grid[0].length
-  const [sr, sc] = start
-  const [gr, gc] = goal
+ // grid : tableau 2D, 0 = libre, 1 = obstacle
+ const rows = grid.length
+ const cols = grid[0].length
+ const [sr, sc] = start
+ const [gr, gc] = goal
 
-  function heuristic(r, c) {
-    // distance Manhattan : admissible pour mouvements en 4 directions
-    return Math.abs(r - gr) + Math.abs(c - gc)
+ function heuristic(r, c) {
+  // distance Manhattan : admissible pour mouvements en 4 directions
+  return Math.abs(r - gr) + Math.abs(c - gc)
+ }
+
+ function key(r, c) { return `${r},${c}` }
+
+ // g[key] = coût réel depuis le départ
+ const g = new Map()
+ g.set(key(sr, sc), 0)
+
+ // f[key] = g + h
+ const f = new Map()
+ f.set(key(sr, sc), heuristic(sr, sc))
+
+ // pour reconstruire le chemin
+ const cameFrom = new Map()
+
+ // open set : noeuds à explorer, triés par f
+ // (min-heap en prod, array trié ici pour lisibilité)
+ const openSet = [[f.get(key(sr, sc)), sr, sc]]
+ const openSetKeys = new Set([key(sr, sc)])
+
+ const directions = [[-1,0],[1,0],[0,-1],[0,1]]
+
+ while (openSet.length > 0) {
+  // extraire le noeud avec f minimal
+  openSet.sort((a, b) => a[0] - b[0])
+  const [, r, c] = openSet.shift()
+  const currKey = key(r, c)
+  openSetKeys.delete(currKey)
+
+  // arrivée atteinte : reconstruire le chemin
+  if (r === gr && c === gc) {
+   const path = []
+   let cur = currKey
+   while (cameFrom.has(cur)) {
+    const [pr, pc] = cur.split(",").map(Number)
+    path.unshift([pr, pc])
+    cur = cameFrom.get(cur)
+   }
+   path.unshift(start)
+   return path
   }
 
-  function key(r, c) { return `${r},${c}` }
+  for (const [dr, dc] of directions) {
+   const nr = r + dr
+   const nc = c + dc
 
-  // g[key] = coût réel depuis le départ
-  const g = new Map()
-  g.set(key(sr, sc), 0)
+   if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue
+   if (grid[nr][nc] === 1) continue // obstacle
 
-  // f[key] = g + h
-  const f = new Map()
-  f.set(key(sr, sc), heuristic(sr, sc))
+   const neighborKey = key(nr, nc)
+   const tentativeG = g.get(currKey) + 1 // coût d'une case = 1
 
-  // pour reconstruire le chemin
-  const cameFrom = new Map()
+   if (tentativeG < (g.get(neighborKey) ?? Infinity)) {
+    // meilleur chemin vers ce voisin trouvé
+    cameFrom.set(neighborKey, currKey)
+    g.set(neighborKey, tentativeG)
+    const fVal = tentativeG + heuristic(nr, nc)
+    f.set(neighborKey, fVal)
 
-  // open set : noeuds à explorer, triés par f
-  // (min-heap en prod, array trié ici pour lisibilité)
-  const openSet = [[f.get(key(sr, sc)), sr, sc]]
-  const openSetKeys = new Set([key(sr, sc)])
-
-  const directions = [[-1,0],[1,0],[0,-1],[0,1]]
-
-  while (openSet.length > 0) {
-    // extraire le noeud avec f minimal
-    openSet.sort((a, b) => a[0] - b[0])
-    const [, r, c] = openSet.shift()
-    const currKey = key(r, c)
-    openSetKeys.delete(currKey)
-
-    // arrivée atteinte : reconstruire le chemin
-    if (r === gr && c === gc) {
-      const path = []
-      let cur = currKey
-      while (cameFrom.has(cur)) {
-        const [pr, pc] = cur.split(",").map(Number)
-        path.unshift([pr, pc])
-        cur = cameFrom.get(cur)
-      }
-      path.unshift(start)
-      return path
+    if (!openSetKeys.has(neighborKey)) {
+     openSet.push([fVal, nr, nc])
+     openSetKeys.add(neighborKey)
     }
-
-    for (const [dr, dc] of directions) {
-      const nr = r + dr
-      const nc = c + dc
-
-      if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue
-      if (grid[nr][nc] === 1) continue // obstacle
-
-      const neighborKey = key(nr, nc)
-      const tentativeG = g.get(currKey) + 1 // coût d'une case = 1
-
-      if (tentativeG < (g.get(neighborKey) ?? Infinity)) {
-        // meilleur chemin vers ce voisin trouvé
-        cameFrom.set(neighborKey, currKey)
-        g.set(neighborKey, tentativeG)
-        const fVal = tentativeG + heuristic(nr, nc)
-        f.set(neighborKey, fVal)
-
-        if (!openSetKeys.has(neighborKey)) {
-          openSet.push([fVal, nr, nc])
-          openSetKeys.add(neighborKey)
-        }
-      }
-    }
+   }
   }
+ }
 
-  return null // pas de chemin
+ return null // pas de chemin
 }
 
 // Terrain de patrouille de León Luis : 0=libre, 1=obstacle
 const terrain = [
-  [0, 0, 0, 0, 1, 0],
-  [0, 1, 1, 0, 1, 0],
-  [0, 1, 0, 0, 0, 0],
-  [0, 1, 0, 1, 1, 0],
-  [0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 1, 0],
+ [0, 1, 1, 0, 1, 0],
+ [0, 1, 0, 0, 0, 0],
+ [0, 1, 0, 1, 1, 0],
+ [0, 0, 0, 0, 0, 0],
 ]
 
 const path = astar(terrain, [0, 0], [4, 5])
@@ -160,15 +160,15 @@ console.log(path)
 ```
 Grille 5×6, départ (0,0), arrivée (4,5) :
 
-Noeuds explorés par Dijkstra :     Noeuds explorés par A* :
-D D D D X .                        A A . . X .
-D X X D X .                        A X X A X .
-D X D D D D                        A X . A A A
-D X D X X D                        A X . X X A
-D D D D D D                        A A A A A A
+Noeuds explorés par Dijkstra :   Noeuds explorés par A* :
+D D D D X .            A A . . X .
+D X X D X .            A X X A X .
+D X D D D D            A X . A A A
+D X D X X D            A X . X X A
+D D D D D D            A A A A A A
 
-D = exploré par Dijkstra            A = exploré par A*
-X = obstacle                        X = obstacle
+D = exploré par Dijkstra      A = exploré par A*
+X = obstacle            X = obstacle
 ```
 
 ---
@@ -182,16 +182,16 @@ const TERRAIN_COST = { 0: 1, 2: 5, 3: 10 }
 // 0 = route (coût 1), 2 = forêt (coût 5), 3 = montagne (coût 10), 1 = obstacle
 
 function astarWeighted(grid, start, goal) {
-  // même structure, mais le coût d'une case = TERRAIN_COST[grid[nr][nc]]
-  // heuristique : distance Manhattan * coût_minimal = Manhattan * 1
-  //               (sous-estime toujours si coût minimum = 1)
+ // même structure, mais le coût d'une case = TERRAIN_COST[grid[nr][nc]]
+ // heuristique : distance Manhattan * coût_minimal = Manhattan * 1
+ //        (sous-estime toujours si coût minimum = 1)
 
-  function heuristic(r, c) {
-    return Math.abs(r - goal[0]) + Math.abs(c - goal[1]) // * 1 = coût minimum
-  }
+ function heuristic(r, c) {
+  return Math.abs(r - goal[0]) + Math.abs(c - goal[1]) // * 1 = coût minimum
+ }
 
-  // ... reste identique, juste changer `tentativeG = g.get(currKey) + 1`
-  // par `tentativeG = g.get(currKey) + TERRAIN_COST[grid[nr][nc]]`
+ // ... reste identique, juste changer `tentativeG = g.get(currKey) + 1`
+ // par `tentativeG = g.get(currKey) + TERRAIN_COST[grid[nr][nc]]`
 }
 ```
 
@@ -202,7 +202,7 @@ function astarWeighted(grid, start, goal) {
 ```js
 // Heuristique "pondérée" : multiplier h par un facteur > 1
 function heuristicOverestimate(r, c, gr, gc, weight = 2) {
-  return weight * (Math.abs(r - gr) + Math.abs(c - gc))
+ return weight * (Math.abs(r - gr) + Math.abs(c - gc))
 }
 
 // Résultat :
@@ -226,10 +226,10 @@ En jeu vidéo, des milliers d'entités cherchent des chemins chaque frame. Optim
 
 // Exemple de waypoint graph (Naruto-style : seuls les carrefours comptent)
 const waypointGraph = new Map([
-  // chaque waypoint connecté à ses voisins directs visibles
-  ["W1", [["W2", 15], ["W3", 22]]],
-  ["W2", [["W1", 15], ["W4", 18]]],
-  // ...
+ // chaque waypoint connecté à ses voisins directs visibles
+ ["W1", [["W2", 15], ["W3", 22]]],
+ ["W2", [["W1", 15], ["W4", 18]]],
+ // ...
 ])
 // Sur ce graphe réduit, A* est beaucoup plus rapide qu'en case par case
 ```
@@ -257,11 +257,11 @@ L'escouade de reconnaissance doit traverser un territoire avec différents types
 ```js
 // 0 = plaine (1), 1 = obstacle, 2 = forêt (3), 3 = marais (7), 4 = montagne (15)
 const territory = [
-  [0, 0, 2, 2, 1, 0, 0],
-  [0, 2, 2, 3, 1, 0, 0],
-  [0, 0, 3, 3, 0, 4, 0],
-  [0, 0, 0, 0, 0, 4, 0],
-  [0, 1, 1, 0, 0, 0, 0],
+ [0, 0, 2, 2, 1, 0, 0],
+ [0, 2, 2, 3, 1, 0, 0],
+ [0, 0, 3, 3, 0, 4, 0],
+ [0, 0, 0, 0, 0, 4, 0],
+ [0, 1, 1, 0, 0, 0, 0],
 ]
 ```
 

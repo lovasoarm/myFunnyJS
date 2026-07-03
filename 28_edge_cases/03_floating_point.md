@@ -70,10 +70,10 @@ console.log(sum === 1.0); // false
 ```javascript
 // PIÈGE : boucle dont la condition dépend d'une comparaison flottante
 for (let i = 0; i !== 1; i += 0.1) {
-  console.log(i);
-  // ne s'arrête jamais correctement : i passe par 0.9999999999999999
-  // puis dépasse 1.0 sans jamais être exactement 1.0
-  // boucle infinie
+ console.log(i);
+ // ne s'arrête jamais correctement : i passe par 0.9999999999999999
+ // puis dépasse 1.0 sans jamais être exactement 1.0
+ // boucle infinie
 }
 ```
 
@@ -90,14 +90,14 @@ for (let i = 0; i !== 1; i += 0.1) {
 const EPSILON = Number.EPSILON; // 2.220446049250313e-16 : la plus petite différence représentable
 
 function floatEqual(a, b, epsilon = Number.EPSILON) {
-  return Math.abs(a - b) < epsilon;
+ return Math.abs(a - b) < epsilon;
 }
 
 console.log(floatEqual(0.1 + 0.2, 0.3)); // true
 
 // pour des cas financiers où la précision à 2 décimales suffit :
 function floatEqualCents(a, b) {
-  return Math.abs(a - b) < 0.000001; // tolérance plus large, adapté aux euros
+ return Math.abs(a - b) < 0.000001; // tolérance plus large, adapté aux euros
 }
 ```
 
@@ -112,8 +112,8 @@ const tax = 0.20;
 const total = price * (1 + tax); // 23.987999999999996
 
 // BON : travailler en centimes (entiers)
-const priceInCents = 1999;      // 19.99€ en centimes
-const taxRate = 20;             // 20% en entier
+const priceInCents = 1999;   // 19.99€ en centimes
+const taxRate = 20;       // 20% en entier
 const totalInCents = Math.round(priceInCents * (1 + taxRate / 100));
 const total = totalInCents / 100; // 23.99€ propre
 ```
@@ -137,8 +137,8 @@ console.log(parseFloat(score.toFixed(2))); // 0.3 -- back to number
 const big = 9007199254740993n; // le n indique BigInt
 const normal = 9007199254740993;
 
-console.log(big);    // 9007199254740993n -- exact
-console.log(normal); // 9007199254740992  -- perd un bit, représentation incorrecte
+console.log(big);  // 9007199254740993n -- exact
+console.log(normal); // 9007199254740992 -- perd un bit, représentation incorrecte
 
 // BigInt ne fonctionne pas pour les décimaux : uniquement pour les très grands entiers
 // pour les calculs financiers avec décimales : bibliothèques comme decimal.js
@@ -163,11 +163,11 @@ console.log(Number.isSafeInteger(9007199254740992)); // true (pair, représentab
 console.log(Number.isSafeInteger(9007199254740993)); // false -- risque de perte de précision
 
 // Infinity : résultat d'un dépassement
-console.log(1 / 0);              // Infinity
-console.log(-1 / 0);             // -Infinity
-console.log(Infinity + 1);       // Infinity
+console.log(1 / 0);       // Infinity
+console.log(-1 / 0);       // -Infinity
+console.log(Infinity + 1);    // Infinity
 console.log(Number.isFinite(Infinity)); // false
-console.log(Number.isFinite(NaN));      // false -- NaN n'est pas fini non plus
+console.log(Number.isFinite(NaN));   // false -- NaN n'est pas fini non plus
 ```
 
 ---
@@ -177,17 +177,17 @@ console.log(Number.isFinite(NaN));      // false -- NaN n'est pas fini non plus
 ```javascript
 // surprises de l'arithmétique flottante en JS
 
-console.log(0.1 + 0.2);          // 0.30000000000000004
-console.log(0.3 - 0.1);          // 0.19999999999999998
-console.log(1.005.toFixed(2));    // "1.00" -- pas "1.01" : erreur d'arrondi
-console.log(0.1 * 0.2);          // 0.020000000000000004
-console.log(1 / 3 * 3);          // 1 -- ok dans ce cas précis
-console.log(0.1 / 0.3 * 3);      // 0.9999999999999999
+console.log(0.1 + 0.2);     // 0.30000000000000004
+console.log(0.3 - 0.1);     // 0.19999999999999998
+console.log(1.005.toFixed(2));  // "1.00" -- pas "1.01" : erreur d'arrondi
+console.log(0.1 * 0.2);     // 0.020000000000000004
+console.log(1 / 3 * 3);     // 1 -- ok dans ce cas précis
+console.log(0.1 / 0.3 * 3);   // 0.9999999999999999
 
 // les entiers < 2^53 sont exacts
-console.log(0.1 + 0.9);          // 1 -- exact
-console.log(1 + 2);              // 3 -- exact
-console.log(1000000 + 0.1);      // 1000000.1 -- exact
+console.log(0.1 + 0.9);     // 1 -- exact
+console.log(1 + 2);       // 3 -- exact
+console.log(1000000 + 0.1);   // 1000000.1 -- exact
 ```
 
 ---
@@ -197,20 +197,20 @@ console.log(1000000 + 0.1);      // 1000000.1 -- exact
 
 ```javascript
 // La comparaison qui échoue en silence
-const price = 0.1 + 0.2             // 0.30000000000000004
+const price = 0.1 + 0.2       // 0.30000000000000004
 if (price === 0.3) {
-  console.log("transaction OK")
+ console.log("transaction OK")
 }
 // Ne s'affiche jamais.
 // Si c'est un système de tribut : le bug passe en prod, personne ne comprend pourquoi les transactions "échouent"
 
 // Le fix :
-Math.abs(price - 0.3) < Number.EPSILON  // true
+Math.abs(price - 0.3) < Number.EPSILON // true
 ```
 
 ```javascript
 // toFixed qui ment
-(1.005).toFixed(2)  // --> "1.00" pas "1.01"
+(1.005).toFixed(2) // --> "1.00" pas "1.01"
 // 1.005 n'est pas représentable exactement en IEEE 754
 // il vaut 1.00499999... en binaire, donc toFixed arrondit à 1.00
 
@@ -222,10 +222,10 @@ Math.abs(price - 0.3) < Number.EPSILON  // true
 // Le bug des grandes boucles
 let total = 0
 for (let i = 0; i < 1_000_000; i++) {
-  total += 0.1
+ total += 0.1
 }
 // Expected : 100000
-// Got      : 100000.00000133288...
+// Got   : 100000.00000133288...
 // L'erreur s'accumule à chaque addition
 
 // En stats, en jeux, en simulations : cette dérive est réelle
@@ -242,18 +242,18 @@ Michael Scofield doit payer des gardiens. Le système calcule :
 
 ```javascript
 function calculateBribes(guards) {
-  // guards : [{ name: string, amount: number }]
-  const total = guards.reduce((sum, g) => sum + g.amount, 0);
-  if (total === 15.0) {
-    return "budget exact : évasion autorisée";
-  }
-  return `budget inexact : ${total}€ au lieu de 15€`;
+ // guards : [{ name: string, amount: number }]
+ const total = guards.reduce((sum, g) => sum + g.amount, 0);
+ if (total === 15.0) {
+  return "budget exact : évasion autorisée";
+ }
+ return `budget inexact : ${total}€ au lieu de 15€`;
 }
 
 const guards = [
-  { name: "Brad", amount: 4.50 },
-  { name: "Chad", amount: 5.25 },
-  { name: "Wade", amount: 5.25 },
+ { name: "Brad", amount: 4.50 },
+ { name: "Chad", amount: 5.25 },
+ { name: "Wade", amount: 5.25 },
 ];
 
 console.log(calculateBribes(guards)); // que retourne ça, et pourquoi ?
@@ -274,8 +274,8 @@ const increment = 0.1;
 const target = 1.0;
 
 while (chakraSpent !== target) {
-  chakraSpent += increment;
-  console.log(chakraSpent);
+ chakraSpent += increment;
+ console.log(chakraSpent);
 }
 console.log("cible atteinte");
 ```
@@ -290,12 +290,12 @@ Le système Ballon d'Or calcule une moyenne pondérée pour chaque joueur :
 
 ```javascript
 function weightedAverage(scores, weights) {
-  // scores : [number], weights : [number] (doivent sommer à 1)
-  const weightSum = weights.reduce((a, b) => a + b, 0);
-  if (weightSum !== 1) {
-    throw new Error(`les poids ne somment pas à 1 : ${weightSum}`);
-  }
-  return scores.reduce((total, score, i) => total + score * weights[i], 0);
+ // scores : [number], weights : [number] (doivent sommer à 1)
+ const weightSum = weights.reduce((a, b) => a + b, 0);
+ if (weightSum !== 1) {
+  throw new Error(`les poids ne somment pas à 1 : ${weightSum}`);
+ }
+ return scores.reduce((total, score, i) => total + score * weights[i], 0);
 }
 
 const scores = [9, 8, 7];

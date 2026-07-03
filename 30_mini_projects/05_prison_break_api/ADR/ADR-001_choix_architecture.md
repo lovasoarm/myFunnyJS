@@ -16,16 +16,16 @@ On utilise SQLite via `better-sqlite3` comme base de données principale. La DB 
 
 ```
 src/
-├── server.js         (Express : routing, middleware, démarrage)
-├── migrations.js     (CREATE TABLE IF NOT EXISTS : idempotent, safe à relancer)
-├── db.js             (singleton better-sqlite3 : une seule connexion partagée)
+├── server.js     (Express : routing, middleware, démarrage)
+├── migrations.js   (CREATE TABLE IF NOT EXISTS : idempotent, safe à relancer)
+├── db.js       (singleton better-sqlite3 : une seule connexion partagée)
 ├── routes/
-│   ├── prisoners.js  (CRUD prisonnier)
-│   ├── sections.js   (CRUD section + access logs)
-│   └── plan.js       (phases d'évasion : séquentielles, accès par rôle)
+│  ├── prisoners.js (CRUD prisonnier)
+│  ├── sections.js  (CRUD section + access logs)
+│  └── plan.js    (phases d'évasion : séquentielles, accès par rôle)
 └── middleware/
-    ├── auth.js       (vérification JWT sur chaque route protégée)
-    └── rateLimit.js  (IP-based : 100 req/min, T-Bag ne brute-forcera pas)
+  ├── auth.js    (vérification JWT sur chaque route protégée)
+  └── rateLimit.js (IP-based : 100 req/min, T-Bag ne brute-forcera pas)
 ```
 
 ## Alternatives considérées

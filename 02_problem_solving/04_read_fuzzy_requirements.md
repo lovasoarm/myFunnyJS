@@ -23,11 +23,11 @@ Rick Grimes ne pense pas en termes de structures de données. Il pense en termes
 Ton boulot : traduire son problème en problème technique.
 
 ```
-Ce qu'on reçoit                     Ce qu'on doit produire
-"ça marche pas"              -->     "fonction X retourne null pour input Y"
-"c'est lent"                 -->     "endpoint /api/camp prend 4s pour 200 records"
-"les stats sont fausses"     -->     "goalDifference calculé avec les matchs nuls inclus"
-"ça freeze parfois"          -->     "UI bloquée pendant 800ms lors de l'import CSV"
+Ce qu'on reçoit           Ce qu'on doit produire
+"ça marche pas"       -->   "fonction X retourne null pour input Y"
+"c'est lent"         -->   "endpoint /api/camp prend 4s pour 200 records"
+"les stats sont fausses"   -->   "goalDifference calculé avec les matchs nuls inclus"
+"ça freeze parfois"     -->   "UI bloquée pendant 800ms lors de l'import CSV"
 ```
 
 ---
@@ -55,10 +55,10 @@ Nouveau déploiement ? Nouvelles données ? Changement de config ? Pic de trafic
 Ticket reçu : "le classement du Ballon d'Or est faux"
 
 Après le protocole :
-- Actuellement   : Messi a 847 points mais apparaît 3ème
-- Attendu        : Messi devrait être 1er (plus de points que les deux devant lui)
-- Conditions     : seulement quand le vote dépasse 500 jurés
-- Impact         : la cérémonie est dans 48h, le résultat sera publié en live
+- Actuellement  : Messi a 847 points mais apparaît 3ème
+- Attendu    : Messi devrait être 1er (plus de points que les deux devant lui)
+- Conditions   : seulement quand le vote dépasse 500 jurés
+- Impact     : la cérémonie est dans 48h, le résultat sera publié en live
 - Changé récemment : on a migré le système de vote de JSON flat à une DB il y a 3 jours
 ```
 
@@ -77,15 +77,15 @@ La reproduction minimale : le plus petit exemple possible qui déclenche le prob
 
 // Reproduction minimale :
 const votes = [
-  { joueur: "Messi",   points: 847 },
-  { joueur: "Mbappé",  points: 712 },
-  { joueur: "Haaland", points: 698 }
+ { joueur: "Messi",  points: 847 },
+ { joueur: "Mbappé", points: 712 },
+ { joueur: "Haaland", points: 698 }
 ]
 
 const classement = calculerClassement(votes)
 console.log(classement[0].joueur)
 // attendu : "Messi"
-// obtenu  : "Haaland"
+// obtenu : "Haaland"
 
 // Le bug est maintenant isolé dans une fonction, sur 3 inputs
 // Plus besoin des 500 jurés, de la DB, ou du système de vote complet
@@ -119,15 +119,15 @@ Quand tu détectes une contradiction :
 ```
 // Présentation factuelle de la contradiction :
 // "Selon Spec A, un prisonnier a toujours exactement une cellule active.
-//  Selon Spec B, pendant un transfert, il en a deux.
+// Selon Spec B, pendant un transfert, il en a deux.
 //
-//  Option 1 : cellule unique avec un statut de transfert
-//    prisonnier = { celluleActive, statut: 'normal' | 'enTransfert' }
+// Option 1 : cellule unique avec un statut de transfert
+//  prisonnier = { celluleActive, statut: 'normal' | 'enTransfert' }
 //
-//  Option 2 : tableau de cellules avec des dates d'entrée/sortie
-//    prisonnier = { cellules: [ { id, entrée, sortie | null } ] }
+// Option 2 : tableau de cellules avec des dates d'entrée/sortie
+//  prisonnier = { cellules: [ { id, entrée, sortie | null } ] }
 //
-//  Quelle option correspond au comportement attendu ?"
+// Quelle option correspond au comportement attendu ?"
 ```
 
 ---
@@ -142,8 +142,8 @@ Demande reçue : "j'ai besoin d'un bouton qui rafraîchit la liste des matchs to
 Problème réel (après questions) : "la liste des matchs n'est pas à jour en temps réel"
 
 // La solution demandée : polling toutes les 5 secondes
-// Le vrai problème    : synchronisation en temps réel
-// La bonne solution   : WebSocket ou SSE
+// Le vrai problème  : synchronisation en temps réel
+// La bonne solution  : WebSocket ou SSE
 
 // Répondre à la demande Y sans comprendre le problème X :
 // --> un bouton qui rafraîchit toutes les 5 secondes et qui surcharge l'API
@@ -163,13 +163,13 @@ Une fois que le problème est précis, tu l'écris.
 Format minimal :
 
 ```
-CONTEXTE   : système de classement du Ballon d'Or
-PROBLÈME   : Messi (847pts) apparaît 3ème au lieu de 1er
+CONTEXTE  : système de classement du Ballon d'Or
+PROBLÈME  : Messi (847pts) apparaît 3ème au lieu de 1er
 CONDITIONS : reproductible avec > 500 jurés dans la DB
-CAUSE      : la requête de tri utilise ORDER BY total_pts mais total_pts
-             est calculé sans les votes du jury international (ajouté lors de la migration)
-FIX        : inclure jury_international_votes dans le calcul de total_pts
-TEST       : 3 jurés = ordre correct, 501 jurés = ordre correct
+CAUSE   : la requête de tri utilise ORDER BY total_pts mais total_pts
+       est calculé sans les votes du jury international (ajouté lors de la migration)
+FIX    : inclure jury_international_votes dans le calcul de total_pts
+TEST    : 3 jurés = ordre correct, 501 jurés = ordre correct
 ```
 
 Ce document : c'est ce que tu envoies avant de commencer à coder le fix.

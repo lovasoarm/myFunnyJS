@@ -1,7 +1,7 @@
 # Suivre une ordre_mission qui traverse 6 maillons sans perdre le fil
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Une ordre_mission de Walter White passe par le labo, le grossiste, deux distributeurs intermédiaires, et le point de livraison final. Le tout prend 3 heures au lieu de 30 minutes. Lequel des 5 maillons est lent ? Le correlation ID (vu dans `26_observability/01_structured_logging`) te dit QUE ces logs appartiennent à la même ordre_mission. Il ne te dit PAS où le temps a été perdu.
 
@@ -20,31 +20,31 @@ Inconvénient : overhead (coût supplémentaire) de performance et de stockage, 
 TRACE = le voyage complet d'une ordre_mission, du labo à la livraison
 
 TRACE "cmd-7f3a9b"
-  |
-  +-- SPAN "Labo (production)"        [0min ------ 20min]
-        |
-        +-- SPAN "Grossiste"               [20min --- 35min]
-        |
-        +-- SPAN "Distributeur"            [35min -------- 175min]   <-- LE COUPABLE
-              |
-              +-- SPAN "Route compromise, détour"  [40min --- 170min]
+ |
+ +-- SPAN "Labo (production)"    [0min ------ 20min]
+    |
+    +-- SPAN "Grossiste"        [20min --- 35min]
+    |
+    +-- SPAN "Distributeur"      [35min -------- 175min]  <-- LE COUPABLE
+       |
+       +-- SPAN "Route compromise, détour" [40min --- 170min]
 ```
 
 ```js
 // Un span minimal : un segment de temps, avec un nom et un parent
 function startSpan(name, parentSpanId, traceId) {
-  return {
-    spanId: crypto.randomUUID(),
-    parentSpanId,           // null si c'est le premier span de la trace
-    traceId,                // même traceId pour tous les spans d'une requête
-    name,                   // ex: "distributeur"
-    startTime: Date.now()
-  }
+ return {
+  spanId: crypto.randomUUID(),
+  parentSpanId,      // null si c'est le premier span de la trace
+  traceId,        // même traceId pour tous les spans d'une requête
+  name,          // ex: "distributeur"
+  startTime: Date.now()
+ }
 }
 
 function endSpan(span) {
-  span.duration = Date.now() - span.startTime // combien de temps ce maillon a pris
-  sendToTracingBackend(span) // envoyé à l'outil qui reconstruit l'arbre (Jaeger, Datadog APM)
+ span.duration = Date.now() - span.startTime // combien de temps ce maillon a pris
+ sendToTracingBackend(span) // envoyé à l'outil qui reconstruit l'arbre (Jaeger, Datadog APM)
 }
 ```
 
@@ -57,27 +57,27 @@ Le pourquoi : chaque span (segment) sait combien de temps il a pris ET quel est 
 ```
 Le Labo passe la ordre_mission au Grossiste :
 Le Labo pose des infos de suivi dans le colis sortant
-    |
-    v
+  |
+  v
 Le Grossiste les lit en entrée, et continue la MÊME trace, pas une nouvelle
 ```
 
 ```js
 // Labo (appelant) : propage le contexte de trace dans les headers HTTP
 async function passToGrossiste(traceId, parentSpanId) {
-  return fetch('http://grossiste/receive', {
-    headers: {
-      'traceparent': `00-${traceId}-${parentSpanId}-01` // format standard W3C Trace Context
-    }
-  })
+ return fetch('http://grossiste/receive', {
+  headers: {
+   'traceparent': `00-${traceId}-${parentSpanId}-01` // format standard W3C Trace Context
+  }
+ })
 }
 
 // Grossiste (appelé) : lit le header, continue la trace au lieu d'en créer une nouvelle
 app.use((req, res, next) => {
-  const incoming = req.headers['traceparent']
-  req.traceId = incoming ? parseTraceId(incoming) : crypto.randomUUID()
-  // si un traceparent existe déjà, on le respecte : on est un sous-span, pas une nouvelle trace
-  next()
+ const incoming = req.headers['traceparent']
+ req.traceId = incoming ? parseTraceId(incoming) : crypto.randomUUID()
+ // si un traceparent existe déjà, on le respecte : on est un sous-span, pas une nouvelle trace
+ next()
 })
 ```
 
@@ -86,10 +86,10 @@ Le risque réel : si un seul maillon de la chaîne oublie de propager le header 
 ```
 Propagation cassée :
 Labo --[traceId OK]--> Grossiste --[traceId OK]--> Distributeur --[OUBLI]--> Livraison
-                                                                       |
-                                                          nouvelle trace, déconnectée
-                                                          impossible de relier Livraison
-                                                          au reste du parcours
+                                    |
+                             nouvelle trace, déconnectée
+                             impossible de relier Livraison
+                             au reste du parcours
 ```
 
 ---
@@ -98,23 +98,23 @@ Labo --[traceId OK]--> Grossiste --[traceId OK]--> Distributeur --[OUBLI]--> Liv
 
 ```
 SAMPLING À 100%
-  --> chaque ordre_mission est tracée en détail
-  --> overhead de performance et coût de stockage énorme à grande échelle
+ --> chaque ordre_mission est tracée en détail
+ --> overhead de performance et coût de stockage énorme à grande échelle
 
 SAMPLING À 1%
-  --> 1 ordre_mission sur 100 est tracée, les 99 autres passent sans overhead
-  --> léger, mais tu peux manquer la trace EXACTE de l'incident qui t'intéresse
+ --> 1 ordre_mission sur 100 est tracée, les 99 autres passent sans overhead
+ --> léger, mais tu peux manquer la trace EXACTE de l'incident qui t'intéresse
 
 SAMPLING ADAPTATIF (le plus utilisé en prod)
-  --> trace systématiquement les ordres_mission en retard ou suspectes
-  --> trace un petit pourcentage des ordres_mission normales pour avoir une vue d'ensemble
+ --> trace systématiquement les ordres_mission en retard ou suspectes
+ --> trace un petit pourcentage des ordres_mission normales pour avoir une vue d'ensemble
 ```
 
 ```js
 function shouldSample(order) {
-  if (order.hasError) return true        // toujours tracer un incident
-  if (order.duration > 60 * 60 * 1000) return true  // toujours tracer un retard suspect
-  return Math.random() < 0.01             // sinon, 1% des ordres_mission normales
+ if (order.hasError) return true    // toujours tracer un incident
+ if (order.duration > 60 * 60 * 1000) return true // toujours tracer un retard suspect
+ return Math.random() < 0.01       // sinon, 1% des ordres_mission normales
 }
 ```
 
@@ -127,11 +127,11 @@ Le pourquoi : tracer 100% des ordres_mission d'une opération qui en traite des 
 ```
 TRACE cmd-7f3a9b : durée totale : 195min
 
-Labo              [====]                                              20min
-Grossiste              [==]                                           15min
-Distributeur               [================================]        140min
-  Route compromise           [==========================]              130min
-    Détour DEA évité            [========================]               120min
+Labo       [====]                       20min
+Grossiste       [==]                      15min
+Distributeur        [================================]    140min
+ Route compromise      [==========================]       130min
+  Détour DEA évité      [========================]        120min
 ```
 
 Le pourquoi cette lecture est immédiate : le span "Détour DEA évité" prend 120min sur un total de 195min. Le problème n'est ni le Labo, ni le Grossiste, ni même le Distributeur lui-même : c'est un détour de sécurité forcé qui traîne. Sans le waterfall, l'équipe aurait probablement commencé par optimiser la production au Labo, qui n'est pourtant pas le vrai coupable.

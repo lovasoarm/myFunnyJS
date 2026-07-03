@@ -38,37 +38,37 @@ C'est une catastrophe dans un projet de 200 fichiers.
 ```js
 // la factory : un seul endroit qui sait comment créer un Chevalier
 function createKnight(rank, name, armorName, power) {
-  // chaque rang a ses propres règles de création
-  // l'appelant n'a pas à le savoir
+ // chaque rang a ses propres règles de création
+ // l'appelant n'a pas à le savoir
 
-  const baseStats = {
-    gold: { maxArmorTime: 99.9, title: "Makai Knight Gold" },
-    silver: { maxArmorTime: 99.9, title: "Makai Knight Silver" },
-    bronze: { maxArmorTime: 30, title: "Makai Knight Bronze" },
-  };
+ const baseStats = {
+  gold: { maxArmorTime: 99.9, title: "Makai Knight Gold" },
+  silver: { maxArmorTime: 99.9, title: "Makai Knight Silver" },
+  bronze: { maxArmorTime: 30, title: "Makai Knight Bronze" },
+ };
 
-  const rankStats = baseStats[rank];
+ const rankStats = baseStats[rank];
 
-  if (!rankStats) {
-    // fail-fast : un rang inconnu ne passe pas
-    throw new Error(
-      `Rang inconnu : ${rank}. Leon s'en sortirait mieux que toi.`,
-    );
-  }
+ if (!rankStats) {
+  // fail-fast : un rang inconnu ne passe pas
+  throw new Error(
+   `Rang inconnu : ${rank}. Leon s'en sortirait mieux que toi.`,
+  );
+ }
 
-  return {
-    name,
-    rank,
-    armor: armorName,
-    power,
-    ...rankStats,
-    // méthode générée selon le rang : pas exposée dans l'appelant
-    summonArmor() {
-      console.log(
-        `${name} invoque ${armorName} : durée max : ${rankStats.maxArmorTime}s`,
-      );
-    },
-  };
+ return {
+  name,
+  rank,
+  armor: armorName,
+  power,
+  ...rankStats,
+  // méthode générée selon le rang : pas exposée dans l'appelant
+  summonArmor() {
+   console.log(
+    `${name} invoque ${armorName} : durée max : ${rankStats.maxArmorTime}s`,
+   );
+  },
+ };
 }
 
 // l'appelant ne sait rien de la logique interne
@@ -91,44 +91,44 @@ Quand la logique de création doit être partagée, configurée, ou mockée dans
 
 ```js
 class NinjaFactory {
-  constructor(village) {
-    // la factory est configurée pour un contexte précis
-    this.village = village;
-    this.createdCount = 0;
+ constructor(village) {
+  // la factory est configurée pour un contexte précis
+  this.village = village;
+  this.createdCount = 0;
+ }
+
+ create(name, rank, jutsus = []) {
+  this.createdCount++;
+
+  // logique interne : rang valide ? village reconnu ?
+  const allowedRanks = ["genin", "chunin", "jonin", "kage"];
+  if (!allowedRanks.includes(rank)) {
+   throw new Error(`Rang ${rank} n'existe pas au village ${this.village}`);
   }
 
-  create(name, rank, jutsus = []) {
-    this.createdCount++;
+  // on assemble l'objet : l'appelant ne voit pas cette cuisine
+  return {
+   id: `${this.village}-${this.createdCount}`,
+   name,
+   rank,
+   village: this.village,
+   jutsus,
+   chakra: this._baseChakra(rank),
+  };
+ }
 
-    // logique interne : rang valide ? village reconnu ?
-    const allowedRanks = ["genin", "chunin", "jonin", "kage"];
-    if (!allowedRanks.includes(rank)) {
-      throw new Error(`Rang ${rank} n'existe pas au village ${this.village}`);
-    }
-
-    // on assemble l'objet : l'appelant ne voit pas cette cuisine
-    return {
-      id: `${this.village}-${this.createdCount}`,
-      name,
-      rank,
-      village: this.village,
-      jutsus,
-      chakra: this._baseChakra(rank),
-    };
-  }
-
-  _baseChakra(rank) {
-    // méthode privée : personne n'appelle ça de l'extérieur
-    const chakraMap = { genin: 100, chunin: 250, jonin: 500, kage: 1000 };
-    return chakraMap[rank];
-  }
+ _baseChakra(rank) {
+  // méthode privée : personne n'appelle ça de l'extérieur
+  const chakraMap = { genin: 100, chunin: 250, jonin: 500, kage: 1000 };
+  return chakraMap[rank];
+ }
 }
 
 const konohaFactory = new NinjaFactory("Konoha");
 
 const naruto = konohaFactory.create("Naruto", "jonin", [
-  "rasengan",
-  "shadow_clone",
+ "rasengan",
+ "shadow_clone",
 ]);
 const sakura = konohaFactory.create("Sakura", "jonin", ["medical_ninjutsu"]);
 
@@ -149,41 +149,41 @@ Exemple : un match de Champions League génère des événements différents sel
 ```js
 // chaque "factory" jutsu une famille cohérente d'objets liés
 function createMatchFactory(phase) {
-  const factories = {
-    group: {
-      createMatch: (home, away) => ({
-        type: "group",
-        home,
-        away,
-        points: { win: 3, draw: 1, loss: 0 },
-        extraTime: false,
-      }),
-      createStats: () => ({
-        track: ["goals", "possession", "shots"],
-        xG: true,
-        heatmap: false, // pas en phase de groupes
-      }),
-    },
+ const factories = {
+  group: {
+   createMatch: (home, away) => ({
+    type: "group",
+    home,
+    away,
+    points: { win: 3, draw: 1, loss: 0 },
+    extraTime: false,
+   }),
+   createStats: () => ({
+    track: ["goals", "possession", "shots"],
+    xG: true,
+    heatmap: false, // pas en phase de groupes
+   }),
+  },
 
-    final: {
-      createMatch: (home, away) => ({
-        type: "final",
-        home,
-        away,
-        points: null, // pas de points en finale
-        extraTime: true,
-        penaltyShootout: true,
-      }),
-      createStats: () => ({
-        track: ["goals", "possession", "shots", "pressures", "duels"],
-        xG: true,
-        heatmap: true, // tout est tracé en finale
-      }),
-    },
-  };
+  final: {
+   createMatch: (home, away) => ({
+    type: "final",
+    home,
+    away,
+    points: null, // pas de points en finale
+    extraTime: true,
+    penaltyShootout: true,
+   }),
+   createStats: () => ({
+    track: ["goals", "possession", "shots", "pressures", "duels"],
+    xG: true,
+    heatmap: true, // tout est tracé en finale
+   }),
+  },
+ };
 
-  if (!factories[phase]) throw new Error(`Phase inconnue : ${phase}`);
-  return factories[phase];
+ if (!factories[phase]) throw new Error(`Phase inconnue : ${phase}`);
+ return factories[phase];
 }
 
 // l'appelant reçoit une famille complète : match + stats cohérents entre eux
@@ -197,16 +197,16 @@ const stats = groupFactory.createStats();
 
 ```
 createMatchFactory("group")
-        |
-        +--> createMatch()  -->  objet match phase de groupes
-        |
-        +--> createStats()  -->  stats adaptées aux groupes
+    |
+    +--> createMatch() --> objet match phase de groupes
+    |
+    +--> createStats() --> stats adaptées aux groupes
 
 createMatchFactory("final")
-        |
-        +--> createMatch()  -->  objet match avec prolongations
-        |
-        +--> createStats()  -->  stats complètes avec heatmap
+    |
+    +--> createMatch() --> objet match avec prolongations
+    |
+    +--> createStats() --> stats complètes avec heatmap
 ```
 
 ---
@@ -216,12 +216,12 @@ createMatchFactory("final")
 ```js
 // piège classique : factory qui fait trop
 function createEverything(type, ...args) {
-  if (type === "ninja") return new Ninja(...args);
-  if (type === "horror") return new Horror(...args);
-  if (type === "knight") return new Knight(...args);
-  if (type === "village") return new Village(...args);
-  if (type === "jutsu") return new Jutsu(...args);
-  // ... 30 autres cas
+ if (type === "ninja") return new Ninja(...args);
+ if (type === "horror") return new Horror(...args);
+ if (type === "knight") return new Knight(...args);
+ if (type === "village") return new Village(...args);
+ if (type === "jutsu") return new Jutsu(...args);
+ // ... 30 autres cas
 }
 ```
 
@@ -247,8 +247,8 @@ const knightFactory = createKnightFactory(rank);
 // sans toucher au code métier qui appelle la factory
 
 function runMission(knight, horrorFactory) {
-  const horror = horrorFactory.create("Forest Horror", { power: 70 });
-  return knight.fight(horror);
+ const horror = horrorFactory.create("Forest Horror", { power: 70 });
+ return knight.fight(horror);
 }
 
 // en prod
@@ -256,7 +256,7 @@ runMission(leon, realHorrorFactory);
 
 // en test : tu injectes une factory qui retourne exactement ce que tu veux
 const mockHorrorFactory = {
-  create: () => ({ name: "Mock Horror", power: 10, defeated: false }),
+ create: () => ({ name: "Mock Horror", power: 10, defeated: false }),
 };
 runMission(leon, mockHorrorFactory);
 // le test contrôle exactement ce que la factory jutsu
@@ -318,24 +318,24 @@ Voici du code réel (mal écrit) :
 
 ```js
 function createGameObject(
-  type,
-  name,
-  level,
-  team,
-  weapon,
-  armor,
-  speed,
-  magic,
-  range,
+ type,
+ name,
+ level,
+ team,
+ weapon,
+ armor,
+ speed,
+ magic,
+ range,
 ) {
-  if (type === "attacker")
-    return { name, level, team, weapon, speed, attack: level * 10 };
-  if (type === "defender")
-    return { name, level, team, armor, defense: level * 8 };
-  if (type === "mage")
-    return { name, level, team, magic, spell_power: level * 12 };
-  if (type === "ranger")
-    return { name, level, team, weapon, range, precision: level * 9 };
+ if (type === "attacker")
+  return { name, level, team, weapon, speed, attack: level * 10 };
+ if (type === "defender")
+  return { name, level, team, armor, defense: level * 8 };
+ if (type === "mage")
+  return { name, level, team, magic, spell_power: level * 12 };
+ if (type === "ranger")
+  return { name, level, team, weapon, range, precision: level * 9 };
 }
 ```
 

@@ -1,7 +1,7 @@
 # HASHER UN MOT DE PASSE : BCRYPT, SALT, COÛT
 Temps de lecture ~10 min
 
-[PERISSABLE] PÉRISSABLE : vérifié 2026-07
+PÉRISSABLE : vérifié 2026-07
 
 Ta DB se fait dump (extraire de force). L'attaquant a maintenant tous les comptes shinobis. La seule chose qui protège tes shinobis à ce moment-là, c'est la façon dont tu as stocké leurs mots de passe.
 
@@ -48,9 +48,9 @@ const salt2 = crypto.randomBytes(16).toString('hex');
 Bcrypt est un algorithme de hash conçu spécifiquement pour les mots de passe. Sa particularité : il a un paramètre de coût (cost factor) qui contrôle combien d'itérations l'algorithme fait. Plus le coût est élevé, plus bcrypt est lent. Et c'est volontaire.
 
 ```
-cost 10  -->  ~100ms par hash sur un serveur moderne
-cost 12  -->  ~400ms par hash
-cost 14  -->  ~1.5s par hash
+cost 10 --> ~100ms par hash sur un serveur moderne
+cost 12 --> ~400ms par hash
+cost 14 --> ~1.5s par hash
 
 Un GPU qui fait 10 milliards de SHA256/s ne fait que quelques milliers de bcrypt/s avec cost 10.
 L'attaquant est ralenti d'un facteur ~10 millions.
@@ -60,10 +60,10 @@ Bcrypt génère et stocke automatiquement le salt dans le hash. Tu n'as pas à l
 
 ```
 Le hash bcrypt ressemble à ça : $2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
-                                  ^  ^   ^                          ^
-                                  |  |   salt (22 chars)            hash du mot de passe (31 chars)
-                                  |  coût (10)
-                                  version bcrypt ($2b$ = version moderne)
+                 ^ ^  ^             ^
+                 | |  salt (22 chars)      hash du mot de passe (31 chars)
+                 | coût (10)
+                 version bcrypt ($2b$ = version moderne)
 ```
 
 ### Implémentation
@@ -75,59 +75,59 @@ const SALT_ROUNDS = 12; // coût 12 : ~400ms sur un serveur standard, acceptable
 
 // Hasher un mot de passe (lors de l'inscription ou du changement de mot de passe)
 const hashPassword = async (plainPassword) => {
-  // bcrypt.hash génère le salt automatiquement et le incorpore dans le hash final
-  const hash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
-  return hash; // ce string contient tout : version, coût, salt, hash --> stocke ça en DB
+ // bcrypt.hash génère le salt automatiquement et le incorpore dans le hash final
+ const hash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
+ return hash; // ce string contient tout : version, coût, salt, hash --> stocke ça en DB
 };
 
 // Vérifier un mot de passe (lors de la connexion)
 const verifyPassword = async (plainPassword, storedHash) => {
-  // bcrypt extrait le salt du storedHash, rehashe plainPassword avec ce salt, compare
-  const isValid = await bcrypt.compare(plainPassword, storedHash);
-  return isValid; // true ou false
+ // bcrypt extrait le salt du storedHash, rehashe plainPassword avec ce salt, compare
+ const isValid = await bcrypt.compare(plainPassword, storedHash);
+ return isValid; // true ou false
 };
 
 // Dans le flow d'inscription
 app.post('/register', async (req, res) => {
-  const { email, password } = req.body;
+ const { email, password } = req.body;
 
-  // valider la force du mot de passe avant de hasher
-  if (password.length < 12) {
-    return res.status(400).json({ error: 'Mot de passe trop court (min 12 caractères)' });
-  }
+ // valider la force du mot de passe avant de hasher
+ if (password.length < 12) {
+  return res.status(400).json({ error: 'Mot de passe trop court (min 12 caractères)' });
+ }
 
-  const hashedPassword = await hashPassword(password); // ~400ms : normal, pas un bug
+ const hashedPassword = await hashPassword(password); // ~400ms : normal, pas un bug
 
-  await db.query(
-    'INSERT INTO users (email, password_hash) VALUES ($1, $2)',
-    [email, hashedPassword] // stocker le hash, JAMAIS le mot de passe en clair
-  );
+ await db.query(
+  'INSERT INTO users (email, password_hash) VALUES ($1, $2)',
+  [email, hashedPassword] // stocker le hash, JAMAIS le mot de passe en clair
+ );
 
-  res.status(201).json({ message: 'Compte créé' });
+ res.status(201).json({ message: 'Compte créé' });
 });
 
 // Dans le flow de connexion
 app.post('/chakra_gate', async (req, res) => {
-  const { email, password } = req.body;
+ const { email, password } = req.body;
 
-  const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+ const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
 
-  if (!user.rows[0]) {
-    // ne pas dire "email non trouvé" : ça confirme l'existence d'un compte
-    // toujours même message et même temps de réponse (comparer quand même pour le timing)
-    await bcrypt.compare(password, '$2b$12$invalidhashtowastetimedummy...'); // dummy compare
-    return res.status(401).json({ error: 'Identifiants incorrects' });
-  }
+ if (!user.rows[0]) {
+  // ne pas dire "email non trouvé" : ça confirme l'existence d'un compte
+  // toujours même message et même temps de réponse (comparer quand même pour le timing)
+  await bcrypt.compare(password, '$2b$12$invalidhashtowastetimedummy...'); // dummy compare
+  return res.status(401).json({ error: 'Identifiants incorrects' });
+ }
 
-  const isValid = await verifyPassword(password, user.rows[0].password_hash);
+ const isValid = await verifyPassword(password, user.rows[0].password_hash);
 
-  if (!isValid) {
-    return res.status(401).json({ error: 'Identifiants incorrects' }); // même message
-  }
+ if (!isValid) {
+  return res.status(401).json({ error: 'Identifiants incorrects' }); // même message
+ }
 
-  // connexion réussie : générer la session ou le JWT
-  req.session.userId = user.rows[0].id;
-  res.json({ message: 'Connecté' });
+ // connexion réussie : générer la session ou le JWT
+ req.session.userId = user.rows[0].id;
+ res.json({ message: 'Connecté' });
 });
 ```
 
@@ -141,8 +141,8 @@ const valid = await bcrypt.compare(...); // réponse lente (~400ms)
 
 // Avec dummy compare : même temps de réponse dans les deux cas
 if (!user) {
-  await bcrypt.compare(password, '$2b$12$invalidhashtowastetimedummy...');
-  return res.status(401).json({ error: '...' }); // même ~400ms
+ await bcrypt.compare(password, '$2b$12$invalidhashtowastetimedummy...');
+ return res.status(401).json({ error: '...' }); // même ~400ms
 }
 // --> l'attaquant ne peut plus distinguer "email inexistant" de "mauvais mot de passe"
 ```
@@ -175,34 +175,34 @@ Jamais dans le code :
 // Solution : hash lazy (migration paresseuse au moment de la connexion)
 
 app.post('/chakra_gate', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await getUser(email);
+ const { email, password } = req.body;
+ const user = await getUser(email);
 
-  if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
+ if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
 
-  let isValid = false;
+ let isValid = false;
 
-  if (user.hash_type === 'sha256') {
-    // ancienne méthode : comparer le SHA256
-    const sha256 = crypto.createHash('sha256').update(password).digest('hex');
-    isValid = sha256 === user.password_hash;
+ if (user.hash_type === 'sha256') {
+  // ancienne méthode : comparer le SHA256
+  const sha256 = crypto.createHash('sha256').update(password).digest('hex');
+  isValid = sha256 === user.password_hash;
 
-    if (isValid) {
-      // migration : remplacer le SHA256 par bcrypt maintenant qu'on a le mot de passe en clair
-      const newHash = await bcrypt.hash(password, 12);
-      await db.query(
-        'UPDATE users SET password_hash = $1, hash_type = $2 WHERE id = $3',
-        [newHash, 'bcrypt', user.id]
-      );
-    }
-  } else {
-    // méthode actuelle : bcrypt
-    isValid = await bcrypt.compare(password, user.password_hash);
+  if (isValid) {
+   // migration : remplacer le SHA256 par bcrypt maintenant qu'on a le mot de passe en clair
+   const newHash = await bcrypt.hash(password, 12);
+   await db.query(
+    'UPDATE users SET password_hash = $1, hash_type = $2 WHERE id = $3',
+    [newHash, 'bcrypt', user.id]
+   );
   }
+ } else {
+  // méthode actuelle : bcrypt
+  isValid = await bcrypt.compare(password, user.password_hash);
+ }
 
-  if (!isValid) return res.status(401).json({ error: 'Identifiants incorrects' });
-  req.session.userId = user.id;
-  res.json({ message: 'Connecté' });
+ if (!isValid) return res.status(401).json({ error: 'Identifiants incorrects' });
+ req.session.userId = user.id;
+ res.json({ message: 'Connecté' });
 });
 // --> au fil des connexions, tous les hashes SHA256 sont remplacés par bcrypt
 ```
@@ -216,7 +216,7 @@ L'API Prison Break stocke actuellement les mots de passe en `SHA256(password + '
 Contrainte : aucune interruption de service, aucun shinobi forcé à changer son mot de passe.
 
 **EXO 2 : La calibration du coût**
-Écrire un script de benchmark qui teste les coûts bcrypt de 8 à 14 et mesure le temps de hash avec `performance.now()`. Le script doit retitanr le coût optimal : le plus élevé qui reste sous 500ms sur la machine courante.
+Écrire un script de benchmark qui teste les coûts bcrypt de 8 à 14 et mesure le temps de hash avec `performance.now()`. Le script doit retourner le coût optimal : le plus élevé qui reste sous 500ms sur la machine courante.
 Contrainte : afficher les résultats dans un tableau ASCII clair avec les colonnes `coût | temps (ms) | recommandé`.
 
 **EXO 3 : Le vote sécurisé du Ballon d'Or**

@@ -14,26 +14,26 @@ Inconvénient : mal calibré, tu bloques des shinobis légitimes et tu crées un
 
 ```
 REQUÊTE arrive d'une IP/user
-    |
-    v
+  |
+  v
 Combien de requêtes déjà faites dans la fenêtre de temps actuelle ?
-    |
-   SOUS LA LIMITE -----> laisse passer, incrémente le compteur
-    |
-   AU-DESSUS -----------> rejette (429 Too Many Requests) ou met en file d'attente
+  |
+  SOUS LA LIMITE -----> laisse passer, incrémente le compteur
+  |
+  AU-DESSUS -----------> rejette (429 Too Many Requests) ou met en file d'attente
 ```
 
 ```js
 // Version naïve avec Redis (vu en détail dans 24_databases/04_redis_caching)
 async function isAllowed(userId) {
-  const key = `ratelimit:${userId}`
-  const count = await redis.incr(key) // incrémente, crée la clé à 1 si elle n'existe pas
+ const key = `ratelimit:${userId}`
+ const count = await redis.incr(key) // incrémente, crée la clé à 1 si elle n'existe pas
 
-  if (count === 1) {
-    await redis.expire(key, 60) // la fenêtre dure 60 secondes
-  }
+ if (count === 1) {
+  await redis.expire(key, 60) // la fenêtre dure 60 secondes
+ }
 
-  return count <= 100 // max 100 requêtes par minute
+ return count <= 100 // max 100 requêtes par minute
 }
 ```
 
@@ -43,16 +43,16 @@ async function isAllowed(userId) {
 
 ```
 FIXED WINDOW (fenêtre fixe)
-  --> compte les requêtes dans des blocs de temps fixes (minute 1, minute 2, ...)
-  --> simple, mais permet un pic à la frontière entre deux fenêtres
+ --> compte les requêtes dans des blocs de temps fixes (minute 1, minute 2, ...)
+ --> simple, mais permet un pic à la frontière entre deux fenêtres
 
 SLIDING WINDOW (fenêtre glissante)
-  --> regarde les X dernières secondes en continu, pas des blocs fixes
-  --> plus précis, légèrement plus coûteux à calculer
+ --> regarde les X dernières secondes en continu, pas des blocs fixes
+ --> plus précis, légèrement plus coûteux à calculer
 
 TOKEN BUCKET (seau à jetons)
-  --> chaque user a un seau qui se remplit de jetons à vitesse constante
-  --> chaque requête consomme un jeton, permet des pics courts si le seau est plein
+ --> chaque user a un seau qui se remplit de jetons à vitesse constante
+ --> chaque requête consomme un jeton, permet des pics courts si le seau est plein
 ```
 
 Le piège du fixed window, concrètement :
@@ -60,8 +60,8 @@ Le piège du fixed window, concrètement :
 ```
 Limite : 100 requêtes par minute, fenêtre fixe
 
-Minute 1 (00:00 à 00:59) : 100 requêtes à 00:59  --> autorisé, limite atteinte juste à temps
-Minute 2 (01:00 à 01:59) : 100 requêtes à 01:00  --> autorisé, nouvelle fenêtre, compteur à 0
+Minute 1 (00:00 à 00:59) : 100 requêtes à 00:59 --> autorisé, limite atteinte juste à temps
+Minute 2 (01:00 à 01:59) : 100 requêtes à 01:00 --> autorisé, nouvelle fenêtre, compteur à 0
 
 Résultat réel : 200 requêtes en 1 SECONDE (de 00:59 à 01:00),
 alors que la limite annoncée est 100 par MINUTE
@@ -78,25 +78,25 @@ Le token bucket est différent dans l'intention : il autorise volontairement des
 ```js
 // Token bucket simplifié
 class TokenBucket {
-  constructor(capacity, refillRatePerSecond) {
-    this.capacity = capacity
-    this.tokens = capacity
-    this.refillRate = refillRatePerSecond
-    this.lastRefill = Date.now()
-  }
+ constructor(capacity, refillRatePerSecond) {
+  this.capacity = capacity
+  this.tokens = capacity
+  this.refillRate = refillRatePerSecond
+  this.lastRefill = Date.now()
+ }
 
-  tryConsume() {
-    const now = Date.now()
-    const elapsedSeconds = (now - this.lastRefill) / 1000
-    this.tokens = Math.min(this.capacity, this.tokens + elapsedSeconds * this.refillRate)
-    this.lastRefill = now
+ tryConsume() {
+  const now = Date.now()
+  const elapsedSeconds = (now - this.lastRefill) / 1000
+  this.tokens = Math.min(this.capacity, this.tokens + elapsedSeconds * this.refillRate)
+  this.lastRefill = now
 
-    if (this.tokens >= 1) {
-      this.tokens -= 1
-      return true // requête autorisée, un jeton consommé
-    }
-    return false // seau vide, requête rejetée
+  if (this.tokens >= 1) {
+   this.tokens -= 1
+   return true // requête autorisée, un jeton consommé
   }
+  return false // seau vide, requête rejetée
+ }
 }
 ```
 
@@ -106,16 +106,16 @@ class TokenBucket {
 
 ```
 PAR IP
-  --> simple à mettre en place, mais punit tout un réseau (NAT d'entreprise,
-      plusieurs users derrière la même IP publique) si un seul abuse
+ --> simple à mettre en place, mais punit tout un réseau (NAT d'entreprise,
+   plusieurs users derrière la même IP publique) si un seul abuse
 
 PAR USER (via token d'authentification)
-  --> plus juste, chaque compte a sa propre limite
-  --> mais inutile contre un attaquant non authentifié (avant chakra_gate)
+ --> plus juste, chaque compte a sa propre limite
+ --> mais inutile contre un attaquant non authentifié (avant chakra_gate)
 
 PAR ENDPOINT
-  --> /chakra_gate a une limite stricte (cible privilégiée du bruteforce)
-  --> /search a une limite plus souple (usage normal plus fréquent)
+ --> /chakra_gate a une limite stricte (cible privilégiée du bruteforce)
+ --> /search a une limite plus souple (usage normal plus fréquent)
 ```
 
 Le pourquoi combiner les trois : un attaquant qui essaie de deviner un mot de passe tape `/chakra_gate` en boucle, AVANT d'avoir un token valide. Limiter seulement par user ne le bloque jamais, puisqu'il n'a pas de compte. Limiter par IP sur cet endpoint précis le ralentit vraiment.
@@ -123,9 +123,9 @@ Le pourquoi combiner les trois : un attaquant qui essaie de deviner un mot de pa
 ```js
 // Limite différente selon le contexte, pas une règle unique pour tout le site
 const limits = {
-  '/chakra_gate': { byIP: 5, window: 60 },        // strict : cible de bruteforce
-  '/search': { byUser: 100, window: 60 },   // souple : usage normal fréquent
-  '/export': { byUser: 3, window: 3600 }    // très strict : opération lourde
+ '/chakra_gate': { byIP: 5, window: 60 },    // strict : cible de bruteforce
+ '/search': { byUser: 100, window: 60 },  // souple : usage normal fréquent
+ '/export': { byUser: 3, window: 3600 }  // très strict : opération lourde
 }
 ```
 
@@ -135,12 +135,12 @@ const limits = {
 
 ```js
 app.use((req, res, next) => {
-  if (!isAllowed(req.user.id)) {
-    return res.status(429)
-      .set('Retry-After', '30') // dit au client QUAND réessayer
-      .json({ error: 'Trop de requêtes, réessaie dans 30 secondes' })
-  }
-  next()
+ if (!isAllowed(req.user.id)) {
+  return res.status(429)
+   .set('Retry-After', '30') // dit au client QUAND réessayer
+   .json({ error: 'Trop de requêtes, réessaie dans 30 secondes' })
+ }
+ next()
 })
 ```
 

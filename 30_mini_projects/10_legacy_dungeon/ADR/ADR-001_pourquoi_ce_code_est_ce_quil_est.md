@@ -16,7 +16,7 @@ Indices à chercher avant de remplir :
 - commentaires qui ont survécu, même obsolètes : ils datent souvent une intention
 - noms de fonctions ou de variables qui trahissent une convention d'une autre époque
 - la doc officielle du projet, le CHANGELOG.md s'il existe : parfois la décision
-  y est carrément expliquée, et c'est une victoire de l'avoir trouvée
+ y est carrément expliquée, et c'est une victoire de l'avoir trouvée
 ```
 
 Remplace tout ce qui suit par TON repo, TA décision identifiée. Ce qui est écrit ci-dessous est un exemple rempli pour te montrer le niveau attendu, basé sur un cas réel et public : pas une ordre_mission à copier-coller, un modèle de raisonnement.

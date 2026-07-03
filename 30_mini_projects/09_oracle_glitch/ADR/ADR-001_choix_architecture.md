@@ -30,8 +30,8 @@ Architecture des validators :
 
 ```
 Validator (interface de base)
-   └── StrictValidator (règles restrictives génériques)
-          └── LLMOutputValidator (règles spécifiques aux erreurs IA connues)
+  └── StrictValidator (règles restrictives génériques)
+     └── LLMOutputValidator (règles spécifiques aux erreurs IA connues)
 ```
 
 Règles concrètes implémentées dans `LLMOutputValidator` :
