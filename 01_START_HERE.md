@@ -1,4 +1,4 @@
-> **SUPER DÉBUTANT (jamais installé Node de ta vie) ?**
+> 🆕 **SUPER DÉBUTANT (jamais installé Node de ta vie) ?**
 > Commence par [`00_getting_started/01_install.md`](00_getting_started/01_install.md) pour installer Node, Git et ton terminal. Reviens ici après.
 >
 > **Temps total estimé du curriculum** : ~250 h étalées sur 6 à 9 mois. Fractionne : 1 h/jour battra 8 h le samedi.

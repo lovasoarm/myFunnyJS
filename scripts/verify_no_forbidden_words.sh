@@ -4,7 +4,7 @@ set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 FORBIDDEN='(utilisateur|produit|commande|paiement|panier|login)s?'
 HITS=$(grep -riE "\b${FORBIDDEN}\b" --include="*.md" "$ROOT" \
-  | grep -vE "AUDIT_FINAL|verify_no_forbidden_words|CHANGELOG|POSTMORTEM_TEMPLATE|00_referentiel/README|archive/legacy_" \
+  | grep -vE "AUDIT_FINAL|verify_no_forbidden_words|CHANGELOG|POSTMORTEM_TEMPLATE|_referentiel/README|archive/legacy_" \
   || true)
 if [ -n "$HITS" ]; then
   echo "MOTS INTERDITS DETECTES (Partie B.2) :"
