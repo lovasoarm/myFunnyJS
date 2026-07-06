@@ -52,7 +52,7 @@ Tout commentaire de review appartient à un de ces trois niveaux. Si tu l'identi
 // Si le shinobi n'est pas connecté, `getUserData(null)` explose en prod.
 // À corriger avant merge.
 function getUserData(userId) {
- return db.find({ id: userId }); // `find({ id: null })` retourne tous les users -- catastrophe
+ return db.find({ id: userId }); // `find({ id: null })` retourne tous les shinobis -- catastrophe
 }
 ```
 

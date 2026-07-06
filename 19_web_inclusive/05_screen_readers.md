@@ -1,7 +1,7 @@
 # LECTEURS D'ÉCRAN : COMMENT ILS LISENT VRAIMENT TON CODE
 Temps de lecture ~7 min
 
-VoiceOver (Apple), NVDA (Windows, gratuit), TalkBack (Android) : trois lecteurs d'écran (screen readers), trois moteurs différents, mais une logique commune. Ils ne "voient" pas ta page, ils la traversent élément par élément, en lisant ce que le DOM (Document Object Model) leur raconte. Si ton HTML est du `<div>` empilé sans structure, ils n'ont littéralement rien à raconter à le shinobi.
+VoiceOver (Apple), NVDA (Windows, gratuit), TalkBack (Android) : trois lecteurs d'écran (screen readers), trois moteurs différents, mais une logique commune. Ils ne "voient" pas ta page, ils la traversent élément par élément, en lisant ce que le DOM (Document Object Model) leur raconte. Si ton HTML est du `<div>` empilé sans structure, ils n'ont littéralement rien à raconter �au shinobi.
 
 ## 1) L'ARBRE D'ACCESSIBILITÉ : LA VRAIE SOURCE DE VÉRITÉ
 

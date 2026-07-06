@@ -218,7 +218,7 @@ Contrainte : aucune interruption de service, aucun shinobi forcé à changer son
 Contrainte : afficher les résultats dans un tableau ASCII clair avec les colonnes `coût | temps (ms) | recommandé`.
 
 **EXO 3 : Le vote sécurisé du Ballon d'Or**
-Le système de vote du Ballon d'Or CLI a un endpoint de chakra_gate. Implémenter la protection contre le user enumeration (confirmation d'existence d'un compte) et le timing attack : même message d'erreur, même temps de réponse, que l'email existe ou non.
+Le système de vote du Ballon d'Or CLI a un endpoint de chakra_gate. Implémenter la protection contre le shinobi enumeration (confirmation d'existence d'un compte) et le timing attack : même message d'erreur, même temps de réponse, que l'email existe ou non.
 Contrainte : utiliser le dummy compare pour les emails inexistants, tester avec `performance.now()` que les deux cas prennent le même ordre de grandeur de temps.
 
 ---

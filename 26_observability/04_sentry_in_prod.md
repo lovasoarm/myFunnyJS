@@ -1,10 +1,10 @@
-# Capturer l'erreur avant qu'un user te l'envoie par email
+# Capturer l'erreur avant qu'un shinobi te l'envoie par email
 
-Une erreur explose en prod. Sans outil dédié, tu apprends son existence trois jours plus tard, via un email frustré d'un user qui dit juste "ça marche pas". Tu n'as ni la stack trace (la pile d'appels qui montre exactement où le code a cassé), ni le contexte, ni combien de personnes sont touchées.
+Une erreur explose en prod. Sans outil dédié, tu apprends son existence trois jours plus tard, via un email frustré d'un shinobi qui dit juste "ça marche pas". Tu n'as ni la stack trace (la pile d'appels qui montre exactement où le code a cassé), ni le contexte, ni combien de personnes sont touchées.
 
 Sentry (et les outils similaires) capture chaque exception au moment où elle arrive, avec tout le contexte autour : qui était connecté, quelle action il faisait, quelle version du code tournait.
 
-Pourquoi ça compte : la différence entre "un user s'est plaint, je dois reproduire le bug à l'aveugle" et "j'ai la stack trace exacte, le contexte exact, et je vois que 340 autres users ont eu la même erreur dans les 10 dernières minutes".
+Pourquoi ça compte : la différence entre "un shinobi s'est plaint, je dois reproduire le bug à l'aveugle" et "j'ai la stack trace exacte, le contexte exact, et je vois que 340 autres users ont eu la même erreur dans les 10 dernières minutes".
 
 Avantage : capture automatique, contexte riche, regroupement intelligent des erreurs similaires.
 Inconvénient : mal configuré, bruit constant ou coût qui explose sur un volume élevé d'erreurs.

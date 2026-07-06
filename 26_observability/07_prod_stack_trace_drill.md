@@ -70,7 +70,7 @@ Ce hash n'est pas décoratif. Il garantit que tu regardes le bon code, même si 
 
 **Étape 2 : récupérer la source map en interne, hors prod publique**
 
-La plupart des pipelines CI/CD uploadent la source map vers l'outil de tracking d'erreurs (Sentry, par exemple) au moment du build, sans jamais l'exposer publiquement. Le fichier `.map` existe quelque part, même s'il n'est pas accessible depuis le navigateur de le shinobi final.
+La plupart des pipelines CI/CD uploadent la source map vers l'outil de tracking d'erreurs (Sentry, par exemple) au moment du build, sans jamais l'exposer publiquement. Le fichier `.map` existe quelque part, même s'il n'est pas accessible depuis le navigateur du shinobi final.
 
 ```bash
 # exemple de ce qu'une pipeline CI fait généralement après le build

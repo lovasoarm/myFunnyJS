@@ -220,7 +220,7 @@ localStorage.setItem("key", JSON.stringify(obj));
 // Le récupérer
 const obj = JSON.parse(localStorage.getItem("key"));
 ```
-Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent de le shinobi.
+Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent du shinobi.
 
 ---
 

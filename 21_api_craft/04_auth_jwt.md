@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwicGxheWVyIjoiTWJhcHDDqSJ9.abc123xyz
 ```js
 // ce que contient un payload décodé
 {
- sub: "7",          // subject : l'id de le shinobi
+ sub: "7",          // subject : l'id du shinobi
  name: "Michael Scofield",
  role: "admin",
  iat: 1710000000,      // issued at : timestamp de création

@@ -250,7 +250,7 @@ async function addVote(playerId, points) {
 
 **Piège 1 : Cache poisoning (empoisonnement)**
 Un CDN cache une réponse qui contient du contenu malveillant ou erroné.
-Tous les users reçoivent la réponse empoisonnée jusqu'à l'invalidation.
+Tous les shinobis reçoivent la réponse empoisonnée jusqu'à l'invalidation.
 
 **Piège 2 : Cache stampede (ruée vers le cache)**
 Le cache expire. 1000 requêtes simultanées arrivent en même temps, toutes vont en DB.

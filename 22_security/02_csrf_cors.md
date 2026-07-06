@@ -109,7 +109,7 @@ C'est une protection, pas une attaque. Le navigateur fait ça pour toi.
 
 ### Pourquoi ça existe
 
-Sans CORS, un script sur `evil.com` pourrait faire des requêtes vers ton API en utilisant les credentials (identifiants : cookies, headers d'auth) de le shinobi et lire les réponses.
+Sans CORS, un script sur `evil.com` pourrait faire des requêtes vers ton API en utilisant les credentials (identifiants : cookies, headers d'auth) du shinobi et lire les réponses.
 
 ```
 Même origine (same-origin)  --> même protocole + même domaine + même port --> autorisé
@@ -234,4 +234,4 @@ app.post('/delete-account', (req, res) => deleteAccount(req.session.userId));
 
 ## RÉSUMÉ
 
-CSRF exploite la confiance du serveur envers le navigateur de le shinobi. La défense : tokens imprévisibles ou `SameSite` sur les cookies. CORS contrôle qui peut lire tes réponses depuis le navigateur. La configuration : liste blanche stricte, pas de wildcard avec credentials. Les deux protègent des choses différentes et les deux sont nécessaires dans une app authentifiée.
+CSRF exploite la confiance du serveur envers le navigateur du shinobi. La défense : tokens imprévisibles ou `SameSite` sur les cookies. CORS contrôle qui peut lire tes réponses depuis le navigateur. La configuration : liste blanche stricte, pas de wildcard avec credentials. Les deux protègent des choses différentes et les deux sont nécessaires dans une app authentifiée.

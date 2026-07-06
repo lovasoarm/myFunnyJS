@@ -1,7 +1,7 @@
 # GIT SURVIVAL : placé dans le noyau, pas dans l'annexe
 Temps de lecture ~5 min
 
-> (attention) Ce fichier vit toujours dans `32_annexes/toolchain/01_git_survival.md`, mais il
+> (attention) Ce fichier vit toujours dans `31_annexes/toolchain/01_git_survival.md`, mais il
 > est promu **noyau** : tu ne peux pas finir `01_fundamentals` sans savoir faire ces
 > 6 gestes. Un pair review, un legacy, un onboarding sans git = tu es un touriste.
 
@@ -16,7 +16,7 @@ Temps de lecture ~5 min
 
 ## VALIDATION
 
-Va dans `32_annexes/toolchain/01_git_survival.md` faire l'atelier complet. Sans les
+Va dans `31_annexes/toolchain/01_git_survival.md` faire l'atelier complet. Sans les
 6 gestes acquis, tu ne passes pas à `02_problem_solving`. Ce n'est pas un souhait,
 c'est un prérequis d'employabilité.
 

@@ -34,7 +34,7 @@ TypeError: Cannot read properties of undefined (reading 'currency')
 
 ### T+0 → T+5 : contexte
 
-- Quel service ? Quel scope (100% des users ? un pays ?) ?
+- Quel service ? Quel scope (100% des shinobis ? un pays ?) ?
 - Quand ça a commencé ? Corrèle avec les déploys.
 - **Hypothèse #1** : `v1.4.2` de `currency-svc` a introduit une régression.
 

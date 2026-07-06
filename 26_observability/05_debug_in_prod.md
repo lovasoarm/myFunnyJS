@@ -1,6 +1,6 @@
 # Quand tu ne peux pas juste mettre un breakpoint
 
-Un bug arrive en prod, mais seulement pour 0,3% des users, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais utilisateurs en direct.
+Un bug arrive en prod, mais seulement pour 0,3% des shinobis, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais utilisateurs en direct.
 
 Debugger en prod, c'est une discipline différente du debugging local : tu ne mets jamais de breakpoint qui bloque le process, tu utilises des outils qui observent SANS interrompre, et tu prépares le terrain AVANT que le bug arrive, pas après.
 
@@ -82,7 +82,7 @@ en arrière) entièrement :
   |
   v
 DÉSACTIVE juste cette fonctionnalité précise via un feature flag
-(interrupteur de fonctionnalité), pour TOUS les users ou un sous-groupe
+(interrupteur de fonctionnalité), pour TOUS les shinobis ou un sous-groupe
   |
   v
 Le reste de l'appli continue de tourner normalement, tu débuggues à froid
@@ -105,14 +105,14 @@ Le pourquoi c'est puissant en situation de crise : tu reprends le contrôle imm�
 
 ```
 DÉPLOIEMENT BRUTAL :
-nouvelle version --> 100% des users d'un coup --> si bug, 100% des users touchés
+nouvelle version --> 100% des shinobis d'un coup --> si bug, 100% des shinobis touchés
 
 DÉPLOIEMENT CANARY (progressif) :
-nouvelle version --> 1% des users --> si stable après surveillance --> 10% --> 50% --> 100%
+nouvelle version --> 1% des shinobis --> si stable après surveillance --> 10% --> 50% --> 100%
              |
              v
          si bug détecté à 1% : rollback immédiat,
-         99% des users n'ont jamais rien vu
+         99% des shinobis n'ont jamais rien vu
 ```
 
 Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base d'utilisateurs ait été impactée.

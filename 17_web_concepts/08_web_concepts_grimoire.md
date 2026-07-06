@@ -49,7 +49,7 @@ Tout ce qu'un ingé web doit avoir dans le crâne, pas juste dans les doigts. Ce
 
 HTTP, c'est la base de toute communication web : sans comprendre les status codes et les headers, tu débugges à l'aveugle. Le Critical Rendering Path explique pourquoi une image mal placée fait ramer toute la page : un reflow coûte cher, un repaint coûte moins. L'état (state) et sa source unique de vérité, c'est ce qui évite les bugs du genre "l'affichage dit une chose, la donnée réelle en dit une autre" : un classique qui pourrit les apps en prod.
 
-Le cache (Cache-Control, ETag, stale-while-revalidate) n'est pas juste de la perf gratuite : mal géré, il sert de vieilles données à le shinobi sans qu'il le sache. Authentication et authorization sont deux problèmes différents : confondre les deux, c'est le genre d'erreur qui finit dans le module 22_security.
+Le cache (Cache-Control, ETag, stale-while-revalidate) n'est pas juste de la perf gratuite : mal géré, il sert de vieilles données �au shinobi sans qu'il le sache. Authentication et authorization sont deux problèmes différents : confondre les deux, c'est le genre d'erreur qui finit dans le module 22_security.
 
 Sur le rendering (SSR/SSG/CSR/ISR), le vrai piège c'est de choisir par habitude plutôt que par besoin réel. Une page qui change toutes les secondes n'a rien à faire en SSG. Une doc qui change une fois par mois n'a rien à faire en SSR. Le bon choix dépend de la fréquence de changement du contenu, pas de la mode du moment.
 

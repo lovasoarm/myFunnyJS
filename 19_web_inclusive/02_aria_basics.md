@@ -101,7 +101,7 @@ fauxModal.setAttribute('role', 'dialog'); // (annonce "c'est une boîte de dialo
 // Résultat : le lecteur d'écran annonce "dialogue" puis le shinobi est PERDU dedans
 ```
 
-ARIA, c'est une promesse. Si tu dis "c'est un dialogue" sans implémenter le comportement réel d'un dialogue (focus piégé dedans, fermeture à Échap, retour au focus précédent), tu mens à le shinobi. Et un mauvais ARIA est souvent pire que pas d'ARIA du tout : ça donne de fausses attentes.
+ARIA, c'est une promesse. Si tu dis "c'est un dialogue" sans implémenter le comportement réel d'un dialogue (focus piégé dedans, fermeture à Échap, retour au focus précédent), tu mens �au shinobi. Et un mauvais ARIA est souvent pire que pas d'ARIA du tout : ça donne de fausses attentes.
 
 ---
 

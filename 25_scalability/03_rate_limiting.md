@@ -73,7 +73,7 @@ peu importe où tu regardes, "les 60 dernières secondes" contiennent toujours
 au maximum 100 requêtes, jamais de pic caché à la frontière
 ```
 
-Le token bucket est différent dans l'intention : il autorise volontairement des pics courts (le seau plein), tant que la moyenne sur la durée respecte le débit configuré. C'est utile quand un user légitime peut avoir un usage en rafale (genre charger une page qui déclenche 10 requêtes d'un coup), suivi de calme.
+Le token bucket est différent dans l'intention : il autorise volontairement des pics courts (le seau plein), tant que la moyenne sur la durée respecte le débit configuré. C'est utile quand un shinobi légitime peut avoir un usage en rafale (genre charger une page qui déclenche 10 requêtes d'un coup), suivi de calme.
 
 ```js
 // Token bucket simplifié

@@ -3,7 +3,7 @@ Temps de lecture ~10 min
 
 Un joueur peut être attaquant ou défenseur. Un event peut être un goal ou un carton. Une fonction reçoit une string ou un number. C'est une union : plusieurs types possibles, un seul à la fois.
 
-Un admin est à la fois un user et un staff. Un ninja est à la fois un combattant et un médecin. C'est une intersection : plusieurs types combinés en un seul objet.
+Un admin est à la fois un shinobi et un staff. Un ninja est à la fois un combattant et un médecin. C'est une intersection : plusieurs types combinés en un seul objet.
 
 Ce sont les deux opérations fondamentales sur les types. Comprendre la différence change comment tu structures tout le reste.
 

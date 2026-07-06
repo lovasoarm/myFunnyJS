@@ -121,7 +121,7 @@ client
 1. Zéro mot de passe en clair dans la DB : bcrypt uniquement, coût minimum 12
 2. Chaque endpoint protégé vérifie le JWT avant tout traitement
 3. Rate limiter actif sur /auth/chakra_gate avant même de chercher le prisonnier en DB
-4. Tous les inputs de le shinobi passent par le sanitizer avant d'atteindre la DB
+4. Tous les inputs du shinobi passent par le sanitizer avant d'atteindre la DB
 5. Les erreurs ne leak jamais de stack trace ni de détail interne vers le client
 ```
 

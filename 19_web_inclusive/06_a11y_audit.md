@@ -60,7 +60,7 @@ Checklist manuelle minimale :
 ```
 
 ```js
-// Respecter la préférence "réduire les animations" de le shinobi
+// Respecter la préférence "réduire les animations" du shinobi
 const motionReduite = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!motionReduite) {

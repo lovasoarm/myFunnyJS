@@ -221,7 +221,7 @@ queue: [missionA, missionB]
 traiterQueue --> execute(missionA) --> attendre --> execute(missionB) --> attendre --> [resultatA, resultatB]
 ```
 
-Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `26_scalability`).
+Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d'une action de son exécution. La mission est créée maintenant, mais exécutée plus tard, dans un ordre contrôlé par la queue. C'est la base de plein de systèmes réels : job queues, task schedulers, message brokers (vu en `25_scalability`).
 
 ---
 

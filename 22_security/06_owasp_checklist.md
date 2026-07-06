@@ -136,7 +136,7 @@ app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
 });
 
-// Bon : toujours vérifier que la ressource appartient à le shinobi connecté
+// Bon : toujours vérifier que la ressource appartient �au shinobi connecté
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  const order = await db.query(
   'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte

@@ -297,11 +297,11 @@ Il veut une fonction `createShuffleQueue(tracks)` qui :
 ## EXO 3 : A/B TEST REPRODUCTIBLE
 
 T'as un système d'A/B test pour myFunnyJS.
-Les users sont assignés au groupe A ou B selon leur `userId`.
+Les shinobis sont assignés au groupe A ou B selon leur `userId`.
 
 Implémente `assignVariant(userId, experimentId, ratio = 0.5)` qui :
 - jutsu la même assignation pour le même `userId + experimentId` (reproductible)
-- distribue les users selon le ratio (0.5 = 50/50, 0.3 = 30% groupe A)
+- distribue les shinobis selon le ratio (0.5 = 50/50, 0.3 = 30% groupe A)
 - utilise un hash du userId+experimentId pour déterminer l'assignation (pas Math.random)
 
 (Hint : hash(userId + experimentId) % 100 < ratio * 100 --> groupe A)

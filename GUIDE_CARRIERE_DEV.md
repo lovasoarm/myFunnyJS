@@ -1124,7 +1124,7 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 16h00 Optimisation : réduction du bundle, lazy loading des images
     (bundle = fichiers JS/CSS regroupés pour que la page charge vite)
 17h30 Déploiement sur la branche de staging pour validation
-    (dev -> staging -> production : les users voient la version finale)
+    (dev -> staging -> production : les shinobis voient la version finale)
 ```
 
 **Technologies typiques** :
@@ -1155,7 +1155,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 
 **Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par le shinobi), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
-Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
+Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un shinobi à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
 
 ---
 
@@ -1192,7 +1192,7 @@ Cloud      : AWS/GCP/Azure (basiques)
 ```javascript
 // Ce que le frontend pense que l'API fait
 fetch('/api/user/42')
-// -> renvoie les données de le shinobi, boom, done
+// -> renvoie les données du shinobi, boom, done
 
 // Ce que le backend dev a réellement écrit
 app.get('/api/user/:id', async (req, res) => {
@@ -1277,7 +1277,7 @@ Marché emploi      Large       En forte croissance
 // Lundi : "t'es full-stack non ? Tu peux aussi jeter un oeil au DevOps ?"
 
 // Mardi matin
-git commit -m "fix: bug critique en prod qui crashait 50% des users"
+git commit -m "fix: bug critique en prod qui crashait 50% des shinobis"
 
 // Mardi après-midi
 git commit -m "feat: nouvelle page d'accueil avec animations"
@@ -1581,7 +1581,7 @@ Vercel       Héberger le projet, déploiement     Railway, Render, VPS perso
                 |
           _____________|_____________
          |              |
-      Image uploadée       Texte du user
+      Image uploadée       Texte du shinobi
       (photo de chat)      ("moi un lundi")
          |              |
          |____________|______________|
@@ -1668,7 +1668,7 @@ Résout le bug de l'image       Anticipe que les PNG transparents
 
 Il dit **non** quand il le faut.
 
-> *"Non, on ne génère pas le meme à chaque clic du user : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le user voit un spinner. Voilà pourquoi, voilà comment."*
+> *"Non, on ne génère pas le meme à chaque clic du shinobi : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le shinobi voit un spinner. Voilà pourquoi, voilà comment."*
 
 ```
               CE QU'IL APPORTE SUR CE PROJET
@@ -1776,7 +1776,7 @@ Code encore (il a tout construit)   Code rarement
 Choisit la stack initiale       Définit la vision tech à 2 ans
  (Next.js + Supabase + Vercel)     (passer sur S3 ? ouvrir une API
 Recrute le premier dev         publique pour les créateurs ?)
-Parle aux premiers users        Surveille les coûts d'infra
+Parle aux premiers shinobis        Surveille les coûts d'infra
 ```
 
 ---
@@ -1809,7 +1809,7 @@ Software Architect Monolithe vs microservice, Supabase vs S3, scalabilité
 Eng. Manager    Équipe, recrutement, roadmap, protection des devs
 CTO        Stack initiale, vision, si nécessaire premiers commits
 Freelance     Livre la feature demandée, seul ou en mission courte
-Entrepreneur    Tout. Le produit, les users, les coûts, la survie.
+Entrepreneur    Tout. Le produit, les shinobis, les coûts, la survie.
 ```
 
 ---
@@ -2026,8 +2026,8 @@ Adapter   : brancher une interface incompatible sur une autre
 | **God Object** | Une classe / un fichier qui fait absolument tout | 3000 lignes, personne n'ose toucher, le fichier a sa propre légende urbaine |
 | **Hardcoding** | Des valeurs magiques collées directement dans le code au lieu de variables ou configs | Le client veut changer une valeur. Tu cherches dans 47 fichiers. Tu souffres |
 | **Callback Hell** | Des fonctions imbriquées les unes dans les autres à l'infini | Code illisible, debugging cauchemardesque, tes collègues te détestent |
-| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. Le user, lui, il sait. Depuis 3 semaines |
-| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 users. Le vrai goulot d'étranglement était ailleurs |
+| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. Le shinobi, lui, il sait. Depuis 3 semaines |
+| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 shinobis. Le vrai goulot d'étranglement était ailleurs |
 | **Copier-coller au lieu d'abstraire** | Le même bloc de 30 lignes existe en 6 endroits dans le codebase | Tu corriges le bug dans 3 endroits. Les 3 autres attendent leur tour patiemment |
 | **Tout mettre dans le front** | Logique métier, validation, calcul de prix : tout dans le client JS | N'importe qui ouvre DevTools, modifie les variables, achète à 0€ |
 | **Ne jamais committer** | "Je commit quand c'est fini" : spoiler : c'est jamais fini | Le laptop meurt. 3 semaines de travail partent à la poubelle |

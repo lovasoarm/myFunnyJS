@@ -58,7 +58,7 @@ let activeUsers = {} // existe UNIQUEMENT sur ce serveur précis
 
 app.post('/chakra_gate', (req, res) => {
  activeUsers[req.body.userId] = true
- // Si la prochaine requête de ce user atterrit sur un AUTRE serveur,
+ // Si la prochaine requête de ce shinobi atterrit sur un AUTRE serveur,
  // ce serveur-là ne sait RIEN de cette connexion
 })
 ```
