@@ -379,3 +379,6 @@ En JS, la forme la plus propre c'est le module pattern : un fichier exporté = u
 Les cas légitimes sont rares et précis : config, logger, connexion unique à une ressource externe.
 Les dangers sont réels : couplage global caché, tests qui s'interfèrent, parallélisme qui casse.
 Dès que le Singleton est utilisé dans du code métier testable : c'est probablement le mauvais choix. L'injection de dépendances est plus solide, plus flexible, et plus honnête sur ce que le code consomme.
+
+---
+stability: intemporel

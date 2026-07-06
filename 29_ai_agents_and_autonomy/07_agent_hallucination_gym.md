@@ -78,3 +78,6 @@ Pour chaque trace, écris 3 lignes dans `MY_ANSWERS.md` :
 3. Ce que tu proposerais à la place.
 
 Compare ensuite à `SOLUTIONS.md` (fourni séparément, à ne PAS ouvrir avant).
+
+---
+stability: perissable

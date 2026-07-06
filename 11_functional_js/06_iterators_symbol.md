@@ -228,3 +228,6 @@ Un objet itérable a une méthode `[Symbol.iterator]()` qui retourne un iterator
 `for...of`, le spread, la déstructuration : tous utilisent ce protocole.
 Un iterator est à usage unique : épuisé, il reste épuisé. `for...of` recrée un iterator frais à chaque passage.
 Implémenter `[Symbol.iterator]` sur tes propres structures : ça rend ton code utilisable avec tous les outils natifs JS qui comprennent ce protocole.
+
+---
+stability: intemporel

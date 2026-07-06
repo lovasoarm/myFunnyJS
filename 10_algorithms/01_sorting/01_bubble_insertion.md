@@ -222,3 +222,6 @@ Crée un tableau de 50 000 entiers aléatoires. Mesure le temps d'exécution de 
 # RÉSUMÉ
 
 Bubble sort et Insertion sort sont des O(n²) : chaque élément supplémentaire coûte de plus en plus cher. Bubble fait remonter le max à chaque passe. Insertion glisse chaque élément à sa place dans une sous-liste triée. Insertion sort est plus intelligent sur les données quasi-triées et reste utilisé dans Tim Sort pour les petits tableaux. Le vrai intérêt de ces deux algos : comprendre pourquoi O(n log n) change tout.
+
+---
+stability: intemporel

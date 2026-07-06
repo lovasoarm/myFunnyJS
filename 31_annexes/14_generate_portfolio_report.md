@@ -29,3 +29,6 @@ pandoc /tmp/report.md -o portfolio.pdf
 ## Livrable
 
 `portfolio.pdf` ≤ 12 pages. Lisible sans contexte.
+
+---
+stability: intemporel

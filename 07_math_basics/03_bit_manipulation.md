@@ -286,3 +286,6 @@ Un masque réseau est un entier 32 bits. Écrire `compterBitsReseau(masque)` qui
 # RÉSUMÉ
 
 Les bits permettent d'encoder plusieurs états dans un seul entier. Le pattern flags + masques (`|` pour activer, `&` pour vérifier, `^` pour toggle, `& ~flag` pour désactiver) se retrouve dans les permissions, les couleurs, les options de config. Le shift `<<` construit des flags propres. Et XOR a des propriétés uniques : `a ^ a = 0`, `a ^ 0 = a` : ce sont les bases des algos de swap et de toggle. C'est du bas niveau, mais c'est du bas niveau qui s'utilise en prod.
+
+---
+stability: intemporel

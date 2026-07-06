@@ -196,3 +196,6 @@ Ce qui risque de bouger : la syntaxe des configs, le nom des outils dominants, l
 Ce qui bougera pas : pourquoi Git existe, pourquoi isoler un environnement, pourquoi automatiser un pipeline.
 
 Le camp de Rick a pas besoin du meilleur outil. Il a besoin de comprendre pourquoi chaque outil est là. Le reste, ça s'adapte.
+
+---
+stability: intemporel

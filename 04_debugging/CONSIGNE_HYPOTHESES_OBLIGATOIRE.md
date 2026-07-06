@@ -33,3 +33,6 @@ Aucun fix commite sans `HYPOTHESES.md` a jour. Un fix sans hypothese ecrite = co
 
 ## Exemple rempli
 Voir `_EXEMPLE_HYPOTHESES.md` a cote (cas reel : fuite memoire par closure).
+
+---
+stability: intemporel

@@ -70,3 +70,6 @@ Si tu codes le pipeline en impératif avec des `let` réassignés partout : ça 
 ```
 
 Si ton profiling te dit O(n²) sur un truc qui devrait être O(n log n) : c'est pas la fin du monde, mais c'est un signal que ta structure de données du module 09 a un problème de fond, pas juste un détail d'implémentation.
+
+---
+stability: intemporel

@@ -277,3 +277,6 @@ Les breaking changes (champs renommés, types changés, structure modifiée) né
 La logique métier reste partagée entre versions : seule la couche de présentation varie.
 La dépréciation c'est un processus avec une deadline claire, pas une intention vague.
 `Deprecation` et `Sunset` sont les headers standard pour signaler la fin de vie.
+
+---
+stability: stable

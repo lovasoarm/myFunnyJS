@@ -311,3 +311,6 @@ Implémente :
 # RÉSUMÉ
 
 Le BST stocke les données de façon ordonnée et permet insert, search, delete en O(log n) : si l'arbre reste équilibré. La règle : gauche < noeud < droite, appliquée à chaque noeud. Le delete a trois cas, le troisième (deux enfants) utilise le successeur in-order. Le piège principal : des insertions triées produisent un arbre dégénéré en O(n). En prod, on utilise des variantes auto-équilibrées (AVL, Red-Black).
+
+---
+stability: intemporel

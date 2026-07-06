@@ -44,3 +44,6 @@ cmd 2> err.log   # rediriger les erreurs
 1. Crée `/tmp/mission/{a,b,c}`. 
 2. Trouve tous les `.md` dans le repo MyFunnyJS qui contiennent le mot "closure".
 3. Compte-les. Sans utiliser d'IDE.
+
+---
+stability: intemporel

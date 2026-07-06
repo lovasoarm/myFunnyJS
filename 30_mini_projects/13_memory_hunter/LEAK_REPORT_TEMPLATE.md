@@ -62,3 +62,6 @@ Delta rss(fixed, t=60s) - rss(leaky, t=60s) = ___ MB.
 ## 8) Ce que j'ai appris (ne pas sauter)
 
 3 lignes. Ce que tu ne referas plus jamais.
+
+---
+stability: intemporel

@@ -25,3 +25,6 @@ Prends un mini-projet lie a un autre module. Reviens au module bloquant apres. L
 
 ## Regle d'or
 Un plateau qui dure > 7 jours n'est pas un blocage : c'est un signal de manque de prerequis. Redescends d'un module.
+
+---
+stability: intemporel

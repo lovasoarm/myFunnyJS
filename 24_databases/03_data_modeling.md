@@ -254,3 +254,6 @@ On te donne un schéma où `missions.ninja_id` n'a pas de contrainte `REFERENCES
 ## RÉSUMÉ
 
 Modéliser des données, c'est choisir où va vivre chaque fait, et combien de fois il est dupliqué. Normaliser élimine la duplication mais multiplie les `JOIN`. Dénormaliser accélère la lecture mais demande de la discipline pour ne pas désynchroniser les copies. Les transactions garantissent qu'une opération composée ne casse jamais ton état à moitié. Le bon modèle n'est jamais "le plus pur", c'est celui qui correspond à comment tes données sont vraiment lues et écrites.
+
+---
+stability: stable

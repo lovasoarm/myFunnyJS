@@ -422,3 +422,6 @@ ExtractMax/Min : on prend la racine, on met la dernière feuille à la place, on
 Peek : accès au max/min en O(1) : c'est la raison d'être du heap.
 Heapify depuis un tableau existant : O(n), pas O(n log n).
 Le heap ne trie pas tout : il garantit juste l'accès rapide au meilleur.
+
+---
+stability: intemporel

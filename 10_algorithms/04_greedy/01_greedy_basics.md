@@ -301,3 +301,6 @@ Implémenter `greedyCoins(coins, amount)` qui utilise greedy, et `dpCoins(coins,
 # RÉSUMÉ
 
 Greedy, c'est rapide et élégant quand le problème a la propriété greedy : le choix local optimal = choix global optimal. Activity selection, fractional knapsack, jump game : greedy est parfait là-dessus. Dès qu'il y a des dépendances entre les choix (0/1 knapsack, rendu de monnaie avec pièces non standard), greedy rate silencieusement. Le signe que greedy ne suffira pas : quand un bon choix maintenant peut bloquer une meilleure combinaison plus tard.
+
+---
+stability: intemporel

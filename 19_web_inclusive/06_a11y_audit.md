@@ -111,3 +111,6 @@ Construit volontairement une modal avec un focus trap cassé (Tab qui sort de la
 ## RÉSUMÉ
 
 axe et Lighthouse détectent les violations de balisage automatiquement (alt manquant, contraste, labels), mais ratent les problèmes de comportement réel (focus trap, ordre de lecture, annonces incohérentes). Un audit complet combine toujours outil automatique et test manuel au clavier et au lecteur d'écran. Respecter `prefers-reduced-motion` n'est pas un détail cosmétique : ça évite des vrais malaises physiques à certains shinobis. Un score parfait sur un scanner ne garantit jamais une expérience réellement accessible.
+
+---
+stability: intemporel

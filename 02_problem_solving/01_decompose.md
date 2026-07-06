@@ -178,3 +178,6 @@ Identifie ce qui peut être testé seul. Identifie ce qui ne peut pas l'être sa
 # RÉSUMÉ
 
 Décomposer avant de coder : c'est la différence entre un dev qui subit son code et un dev qui le contrôle. Chaque pièce a une responsabilité claire, une entrée et une sortie définies. Les dépendances vont dans un seul sens. Un cycle de dépendances, c'est une bombe à retardement. Si tu peux pas décrire une pièce en deux lignes, elle est trop grosse : coupe-la.
+
+---
+stability: intemporel

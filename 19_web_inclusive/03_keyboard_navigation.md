@@ -130,3 +130,6 @@ Ajoute un skip link à une page avec un header de 10 liens de navigation. Vérif
 ## RÉSUMÉ
 
 Le tab order doit suivre l'ordre visuel logique, pas un `tabindex` bricolé partout. Le focus management déplace activement le focus à chaque ouverture/fermeture de modal ou changement d'état important. Le focus trap empêche Tab de sortir d'une modal ouverte, mais doit toujours avoir une sortie via Échap. Les skip links évitent de retraverser le même menu à chaque page.
+
+---
+stability: intemporel

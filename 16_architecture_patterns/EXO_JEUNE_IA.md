@@ -19,3 +19,6 @@ bash verification_pack/16_architecture_patterns/verify.sh solution.js
 
 ## Pourquoi c'est vital
 Si tu ne sais pas ecrire ces 20 lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure.
+
+---
+stability: intemporel

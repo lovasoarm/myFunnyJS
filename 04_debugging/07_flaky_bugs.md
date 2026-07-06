@@ -56,3 +56,6 @@ ou du **modèle mental**. Renommer le problème est déjà la moitié de la solu
 
 Même protocole en Python (`asyncio`), Go (goroutines + `race` detector),
 Rust (`loom` pour tester tous les entrelacements).
+
+---
+stability: intemporel

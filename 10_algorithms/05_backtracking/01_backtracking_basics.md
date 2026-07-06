@@ -384,3 +384,6 @@ Implémenter `combinationSum2(candidates, target)`. Pas de solution en doublon d
 # RÉSUMÉ
 
 Backtracking, c'est trois opérations dans un ordre fixe : choisir, explorer, défaire. L'arbre de décision est l'outil mental central : chaque noeud est un état, chaque branche est un choix. La complexité brute est exponentielle, mais le pruning peut la ramener à quelque chose de gérable en coupant les branches stériles avant d'aller au bout. Le bug le plus courant : pousser une référence dans le résultat plutôt qu'une copie. Quand les mêmes états apparaissent plusieurs fois, mémoïser transforme le backtracking en DP top-down.
+
+---
+stability: intemporel

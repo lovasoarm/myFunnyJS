@@ -29,7 +29,7 @@ Le vocabulaire de tout le module 12. Si un terme te bloque dans une leçon, il e
 | Adapter | Transformer l'interface d'un objet pour qu'elle soit compatible avec ce qu'on attend. | `const adaptApi = (oldData) => ({ name: oldData.nm, hp: oldData.health })` (on traduit l'ancien format vers le nouveau) | un traducteur entre Naruto et Garo qui ne parlent pas la même langue / un convertisseur de prise électrique US vers EU |
 | Proxy | Un objet intermédiaire qui intercepte les accès à un autre objet pour y ajouter de la logique. | `new Proxy(ninja, { get: (t, p) => { console.log(p); return t[p] } })` (chaque lecture passe par un contrôle avant d'arriver) | un garde du corps qui filtre qui peut parler au Hokage / un agent de joueur qui filtre les appels avant qu'ils arrivent au joueur |
 | Observer | Un objet (le sujet) notifie automatiquement une liste d'abonnés quand son état change. | `subject.subscribe(fn); subject.notify(data)` (tous les abonnés reçoivent l'event sans le demander) | une alerte Horror reçue par TOUS les Chevaliers en même temps / les commentateurs qui réagissent tous au même but |
-| Strategy | Un algorithme interchangeable, choisi à l'exécution, derrière une interface commune. | `const strategies = { rapide: (p) => p * 2 }; strategies[key](power)` (le contexte ne sait pas COMMENT, juste QUI appeler) | choisir sa technique de combat juste avant le coup / un attaquant qui choisit puissance, précision ou lob selon la situation |
+| Strategy | Un algorithme interchangeable, choisi à l'exécution, derrière une interface commune. | `const strategies = { rapide: (p) => p * 2 }; strategies[key]` `(power)` (le contexte ne sait pas COMMENT, juste QUI appeler) | choisir sa technique de combat juste avant le coup / un attaquant qui choisit puissance, précision ou lob selon la situation |
 | Command | Une action encapsulée dans un objet, avec `execute()` et souvent `undo()`. | `const cmd = { execute: () => {...}, undo: () => {...} }` (l'action est stockable, rejouable, annulable) | Ctrl+Z sur les décisions du camp de Rick / une mission Garo mise en file d'attente avant d'être lancée |
 | Encapsulation | Cacher les détails internes d'un objet et n'exposer que ce qui est nécessaire. | `function createCompte() { let solde = 0; return { depot: (n) => solde += n } }` (solde n'est PAS accessible directement de l'extérieur) | le coffre-fort de Walter White : personne ne voit l'intérieur, juste la porte / le vestiaire d'une équipe : l'intérieur reste privé |
 | Composition (de patterns) | Combiner plusieurs patterns ensemble pour résoudre un problème complet. | `const ninja = withArmor(createNinja("genin"))` (Factory + Decorator combinés) | une équipe qui mélange plusieurs stratégies selon l'adversaire / un perso Naruto qui combine jutsu de base + équipement + buff |
@@ -50,3 +50,6 @@ Les patterns créationnels (Factory, Singleton, Builder) répondent à "comment 
 Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
 Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
 pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
+
+---
+stability: intemporel

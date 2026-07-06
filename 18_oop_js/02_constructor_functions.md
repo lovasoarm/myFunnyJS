@@ -243,3 +243,6 @@ Les méthodes partagées vivent sur `.prototype`, jamais recréées dans le cons
 L'héritage se fait avec `Enfant.prototype = Object.create(Parent.prototype)` + `Parent.call(this, ...)` : c'est exactement ce que `extends` génère.
 `instanceof` teste la présence d'un prototype dans une chaîne, pas un type au sens strict.
 Remplacer `.prototype` entièrement après coup ne touche jamais les instances déjà créées.
+
+---
+stability: intemporel

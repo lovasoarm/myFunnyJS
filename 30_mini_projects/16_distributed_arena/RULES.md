@@ -6,3 +6,6 @@
 3. Chaque commit doit passer `verify.js` sur le scénario `race` au minimum.
 4. Tu n'as pas le droit d'ignorer un chaos qui te dépasse. Tu écris "je ne sais pas
   encore résoudre X, voici pourquoi" dans le POSTMORTEM. C'est valorisant, pas honteux.
+
+---
+stability: intemporel

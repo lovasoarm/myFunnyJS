@@ -431,3 +431,6 @@ Un compteur ou un état partagé, lu puis écrit après un point d'attente (`awa
 Ajouter un délai arbitraire pour "laisser le temps" à une race condition de se résoudre ne corrige rien : ça déplace juste le seuil de charge système où le bug redevient visible.
 
 Pour investiguer un heisenbug : rejouer en boucle (20-50 fois minimum) pour mesurer un vrai taux d'échec avant de toucher au code. Un taux d'échec mesuré dit où regarder. Une intuition non vérifiée fait perdre des heures sur la mauvaise piste.
+
+---
+stability: intemporel

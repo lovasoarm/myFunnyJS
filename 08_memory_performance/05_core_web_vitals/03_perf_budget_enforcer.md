@@ -352,3 +352,6 @@ Un budget de performance sans CI, c'est une règle que personne ne respecte.
 Le flow : tu définis les seuils dans `lighthouserc.js`, tu intègres dans GitHub Actions, le build bloque si les métriques dépassent.
 `bundlesize` surveille les fichiers statiques. Lighthouse CI surveille les métriques runtime. Les deux ensemble couvrent tout.
 Quand un budget est cassé : tu réduis la source ou tu révises le seuil en documentant pourquoi. Jamais en silence.
+
+---
+stability: intemporel

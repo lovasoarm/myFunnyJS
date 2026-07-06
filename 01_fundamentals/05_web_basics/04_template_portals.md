@@ -254,3 +254,6 @@ Template strings permettent : HTML dynamique, interpolation, multi-ligne.
 JS injecte ensuite ce HTML dans le DOM avec `innerHTML`.
 
 Et tu viens de comprendre la base technique de toutes les interfaces web modernes. Pas mal pour une syntaxe avec des backticks.
+
+---
+stability: intemporel

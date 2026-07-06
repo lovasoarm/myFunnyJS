@@ -369,3 +369,6 @@ UN des trois changements suivants (tire au sort) :
 
 Livrable : `SPEC_DRIFT.md` qui trace la surprise, ton diagnostic, ton ADR
 mis à jour, les tests ajoutés. C'est l'exercice qui compte, pas la vitesse.
+
+---
+stability: intemporel

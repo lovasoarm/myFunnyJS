@@ -340,3 +340,6 @@ lis([7, 7, 7, 7])          // 1
 # RÉSUMÉ
 
 Trois patterns DP fondamentaux. Knapsack : décision binaire sur chaque item sous contrainte de capacité, tableau 2D `items x capacité`. LCS : avancer dans deux séquences en cherchant les correspondances, tableau 2D `len1 x len2`. Coin Change : construire une cible à partir d'unités, tableau 1D `somme`. Dans les trois cas : identifier l'état, écrire la récurrence, remplir le tableau dans le bon ordre, reconstruire la solution si besoin.
+
+---
+stability: intemporel

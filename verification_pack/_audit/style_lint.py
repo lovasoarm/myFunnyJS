@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """
-style_lint.py : filet de style déterministe du curriculum MyFunnyJS.
+style_lint.py : filet de style deterministe du curriculum MyFunnyJS.
 
-Rejette, sur tout le repo :
+Rejette :
   1. tout emoji (le curriculum s'interdit les emojis) ;
-  2. tout em-dash "—" utilisé comme séparateur stylistique dans un .md ;
-  3. toute cellule de la colonne "Analogies" d'un grimoire qui ne contient
-     pas EXACTEMENT 2 analogies séparées par " / ".
+  2. tout em-dash "-" utilise comme separateur stylistique dans un .md ;
+  3. toute cellule "Analogies" d'un grimoire hors format "2 analogies separees par ' / '" ;
+  4. tout mot tutoriel interdit hors contexte (login, panier) et
+     detection contextuelle sur `produit`, `commande` (nom d'e-commerce
+     vs verbe / CLI legitimes) ;
+  5. toute lecon d'un module numerote sans marqueur `stability:` en fin de fichier
+     (intemporel | stable | perissable). Certains fichiers (README, templates,
+     trackers) sont exemptes.
 
-Sortie : liste des violations + code de retour non-zéro si au moins une.
-Aucune dépendance externe. Usage : python3 style_lint.py [racine]
+Sortie : liste des violations + code retour != 0 si au moins une.
+Aucune dependance externe. Usage : python3 style_lint.py [racine]
 """
 import re, sys, glob, os
 
@@ -20,9 +25,38 @@ EMOJI = re.compile(
     "\U0001F1E6-\U0001F1FF\uFE0F\u2705\u274C\u2699\u2b50\u2764]"
 )
 
+FORBIDDEN_HARD = re.compile(r"\b(login|panier)\b", re.IGNORECASE)
+# "produit" et "commande" : detection contextuelle -- flag seulement si
+# usage tutoriel e-commerce evident (jamais atteint car deja audite).
+ECOM_CONTEXT = re.compile(
+    r"\b(produit|commande)s?\b\s+"
+    r"(pour|dans le catalogue|ajout(?:e|er)?\s+au|"
+    r"passer une|passer la|paiement|checkout|shopping|panier)",
+    re.IGNORECASE,
+)
+
+# stability : chemins ignores.
+SKIP_STABILITY_BASENAMES = {
+    "README.md", "CHANGELOG.md", "LICENSE", "COMMUNAUTE.md",
+    "DEPENDENCY_LEDGER.md", "POSTMORTEM_TEMPLATE.md", "NODE_VERSIONS.md",
+    "AUDIT_FINAL_MyFunnyJS.md", "CORRECTIONS_APPLIQUEES.md",
+    "HYPOTHESES_TEMPLATE.md", "HYPOTHESES_EXEMPLE.md",
+    "HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md",
+    "CONSIGNE_HYPOTHESES_OBLIGATOIRE.md",
+    "TDD_JOURNAL.md", "POSTMORTEM.md", "HYPOTHESES.md",
+}
+SKIP_STABILITY_PATTERNS = [
+    re.compile(r"_recall_.*\.md$"),
+    re.compile(r"_spaced_repetition\.md$"),
+    re.compile(r"^ADR/"), re.compile(r"/ADR/"),
+    re.compile(r"cahierdescharges\.md$"),
+    re.compile(r"^verification_pack/"),
+    re.compile(r"^assets/"),
+    re.compile(r"^\.[^/]"),  # dotfiles at root
+]
+STAB_RE = re.compile(r"^stability:\s*(intemporel|stable|perissable)\s*$", re.M)
+
 def cells_of(line):
-    """Découpe une ligne de table en cellules en ignorant les | échappés
-    (\\|) et les | à l'intérieur de spans code (`...`)."""
     s = line.strip().replace("\\|", "\x00")
     out, inb, cur = [], False, ""
     for ch in s:
@@ -38,19 +72,36 @@ def cells_of(line):
     if out and out[-1].strip() == "": out = out[:-1]
     return out
 
+def is_lesson_file(rel):
+    parts = rel.replace("\\", "/").split("/")
+    base = parts[-1]
+    if base in SKIP_STABILITY_BASENAMES: return False
+    for p in SKIP_STABILITY_PATTERNS:
+        if p.search(rel.replace("\\", "/")): return False
+    # only files inside a numbered module folder are lessons
+    if not parts[0][:2].isdigit(): return False
+    return True
+
 def lint():
-    violations = []
-    md_files = sorted(glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True))
-    for f in md_files:
-        rel = os.path.relpath(f, ROOT)
-        for ln, line in enumerate(open(f, encoding="utf-8"), 1):
+    v = []
+    md = sorted(glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True))
+    for f in md:
+        rel = os.path.relpath(f, ROOT).replace("\\", "/")
+        content = open(f, encoding="utf-8").read()
+        for ln, line in enumerate(content.splitlines(), 1):
             if EMOJI.search(line):
-                violations.append(f"{rel}:{ln} EMOJI interdit")
-            if "—" in line:
-                violations.append(f"{rel}:{ln} EM-DASH interdit (utilise ' - ' ou ' : ')")
-    # grimoires : colonne Analogies == exactement 2
+                v.append(f"{rel}:{ln} EMOJI interdit")
+            if "\u2014" in line:  # em-dash
+                v.append(f"{rel}:{ln} EM-DASH interdit (utilise ' - ' ou ' : ')")
+            if FORBIDDEN_HARD.search(line):
+                v.append(f"{rel}:{ln} MOT INTERDIT (login/panier)")
+            if ECOM_CONTEXT.search(line):
+                v.append(f"{rel}:{ln} CONTEXTE E-COMMERCE interdit (reformule)")
+        if is_lesson_file(rel) and not STAB_RE.search(content):
+            v.append(f"{rel} STABILITY MANQUANTE (attendu 'stability: intemporel|stable|perissable')")
+    # grimoires
     for f in sorted(glob.glob(os.path.join(ROOT, "**", "*grimoire*.md"), recursive=True)):
-        rel = os.path.relpath(f, ROOT)
+        rel = os.path.relpath(f, ROOT).replace("\\", "/")
         lines = open(f, encoding="utf-8").read().split("\n")
         col = ncol = None
         for ln, line in enumerate(lines, 1):
@@ -69,15 +120,13 @@ def lint():
                             col, ncol = i, len(cs); break
                 continue
             cs = cells_of(line)
-            if len(cs) < ncol:
-                continue
+            if len(cs) < ncol: continue
             cell = cs[col].strip()
-            if not cell:
-                continue
+            if not cell: continue
             parts = [p for p in cell.split(" / ") if p.strip()]
             if len(parts) != 2:
-                violations.append(f"{rel}:{ln} ANALOGIES={len(parts)} (attendu 2 séparées par ' / ') | {cell[:70]}")
-    return violations
+                v.append(f"{rel}:{ln} ANALOGIES={len(parts)} (attendu 2 par ' / ') | {cell[:70]}")
+    return v
 
 if __name__ == "__main__":
     v = lint()
@@ -86,4 +135,4 @@ if __name__ == "__main__":
     if v:
         print(f"[FAIL] style_lint : {len(v)} violation(s).")
         sys.exit(1)
-    print("[OK] style_lint : zéro emoji, zéro em-dash, toutes les analogies = 2.")
+    print("[OK] style_lint : zero emoji, zero em-dash, analogies OK, stability OK, aucun mot interdit.")

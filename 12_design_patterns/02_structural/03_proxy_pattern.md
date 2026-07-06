@@ -370,3 +370,6 @@ Le piège de performance : Proxy sur un inner loop de calcul intensif, ça coût
 Différence avec Decorator : Decorator enveloppe des appels de fonctions, Proxy intercepte les accès aux propriétés d'un objet.
 
 **Note : 10/10**
+
+---
+stability: intemporel

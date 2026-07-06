@@ -274,3 +274,6 @@ Les groupes de capture transforment une regex de validateur en extracteur. Les g
 Lookahead et lookbehind permettent de conditionner un match sur le contexte sans l'inclure dans le résultat.
 
 La regex parfaite n'existe pas : elle couvre un spectre de cas réels. Connaître ses limites est aussi important que de la connaître.
+
+---
+stability: intemporel

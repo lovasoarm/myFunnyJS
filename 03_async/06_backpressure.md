@@ -37,3 +37,6 @@ La backpressure ne "ralentit" pas magiquement le producteur si tu l'ignores. Si 
 ## Mission
 
 Écris un pipeline : lecture d'un CSV de 1 GB, transformation ligne par ligne, écriture. Mesure la RAM. Sans backpressure vs avec.
+
+---
+stability: intemporel

@@ -161,3 +161,6 @@ Propose un plan de rollout progressif (pourcentages et durées à chaque étape)
 ## RÉSUMÉ
 
 Débugger en prod exige d'observer sans jamais bloquer le process, contrairement à un breakpoint local qui peut tout arrêter sans conséquence. Les logs de contexte et les heap snapshots doivent être préparés avant la crise, pas improvisés pendant. Les feature flags permettent d'isoler un bug en quelques secondes sans redéployer sous pression, et un rollout progressif (canary) limite l'impact d'une régression à un petit groupe avant qu'elle n'atteigne tout le monde. Un bug en prod qui disparaît sans explication n'est jamais résolu, juste caché.
+
+---
+stability: stable

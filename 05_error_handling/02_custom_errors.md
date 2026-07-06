@@ -366,3 +366,6 @@ La hiérarchie permet le catch par niveau : `instanceof ValidationError` vs `ins
 Les erreurs ne se sérialisent pas seules en JSON : tu construis une fonction de sérialisation explicite.
 
 Un log sans contexte, c'est un rapport de match sans les statistiques : tu sais que ça s'est passé, tu sais pas ce qui s'est passé.
+
+---
+stability: intemporel

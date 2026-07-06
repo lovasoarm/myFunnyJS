@@ -327,3 +327,6 @@ Crée l'union `OperationLog`, écris `logToString(log: OperationLog): string`, e
 # RÉSUMÉ
 
 `A | B` : la valeur est l'un ou l'autre : seules les propriétés communes sont accessibles sans narrowing. `A & B` : la valeur est les deux à la fois : toutes les propriétés sont disponibles. Le discriminant transforme une union floue en union précise que TS peut analyser sans ambiguïté. `assertNever` garantit que tous les cas d'une union sont couverts : si tu ajoutes un cas sans mettre à jour le switch, ça ne compile pas. Les intersections de primitifs incompatibles (`number & string`) donnent `never`.
+
+---
+stability: perissable

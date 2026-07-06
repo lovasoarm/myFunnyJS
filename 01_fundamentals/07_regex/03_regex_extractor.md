@@ -262,3 +262,6 @@ Teste sur au moins 3 formats d'entrée différents.
 Le backtracking catastrophique est un vrai risque en prod. Les quantificateurs imbriqués sur les mêmes caractères sont dangereux.
 
 La regex n'est pas la fin du traitement : c'est le début. Elle extrait les parties. Le code JS transforme, valide, restructure. Les deux travaillent ensemble.
+
+---
+stability: intemporel

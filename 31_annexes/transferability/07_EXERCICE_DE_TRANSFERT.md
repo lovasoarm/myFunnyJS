@@ -41,3 +41,6 @@ exactement le stock de concepts qui survivent aux migrations. Cet exercice le me
 Après les 6 transferts, tu es prêt pour `final_cross_language_challenge.md` (4h,
 Python + Rust + ADR). Sans les 6 transferts en amont, l'épreuve finale est trop dure
 et te donnera un faux négatif.
+
+---
+stability: intemporel

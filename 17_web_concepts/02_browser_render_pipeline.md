@@ -319,3 +319,6 @@ Layout (Reflow) est coûteux : il recalcule les positions. Évite de le déclenc
 Pour les animations : `transform` et `opacity` passent par le GPU. `left` et `width` non.
 Le layout thrashing : lire et écrire des propriétés géométriques alternativement en boucle. Toujours batcher.
 LCP, INP, CLS : les trois métriques de Google. Comprendre le pipeline explique pourquoi chacune dégrade.
+
+---
+stability: stable

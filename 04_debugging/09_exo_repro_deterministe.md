@@ -42,3 +42,6 @@ Zéro seed aléatoire caché, zéro `sleep(500)` qui prie.
 ## EXEMPLE DE LIVRABLE
 
 Voir [`HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md`](./HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md) : un `HYPOTHESES.md` rempli sur ce même exercice. À ouvrir APRÈS ta propre tentative, pour calibrer.
+
+---
+stability: intemporel

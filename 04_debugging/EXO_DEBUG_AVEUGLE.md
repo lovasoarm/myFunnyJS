@@ -17,3 +17,6 @@ Un mainteneur te livre un bug en une phrase, sans stack, sans repro, sans logs.
 
 ## Auto-verification
 Un pair (ou toi 24h plus tard) doit pouvoir rejouer ton `REPRO.md` et voir le bug.
+
+---
+stability: intemporel

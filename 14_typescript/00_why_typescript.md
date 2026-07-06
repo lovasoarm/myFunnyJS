@@ -79,3 +79,6 @@ JS pur ne vérifie rien avant l'exécution, et chaque erreur de type non détect
 Maintenant, ouvre `01_types_and_interfaces.md`. Et commence à dire à ton code exactement ce qu'il a le droit de manipuler.
 
 > Ce module réutilise : le typage mental des données du module 01 (`01_fundamentals`), la gestion d'erreurs du module 05 (`05_error_handling`).
+
+---
+stability: perissable

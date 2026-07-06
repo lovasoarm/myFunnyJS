@@ -18,3 +18,6 @@ Le vrai skill legacy : **lire, cartographier, formuler des hypothèses**, puis t
 ## Contrôle
 
 `git log --oneline` doit montrer `docs: MAP.md` **avant** tout `fix:` ou `refactor:`.
+
+---
+stability: intemporel

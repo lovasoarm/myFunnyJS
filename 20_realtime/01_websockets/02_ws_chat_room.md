@@ -346,3 +346,6 @@ Implémente un mécanisme simple :
 
 Contrainte : opérations fichier asynchrones uniquement (`fs.promises`).
 (Indice : `await fs.writeFile(path, JSON.stringify(data))` pour écrire, `JSON.parse(await fs.readFile(path, 'utf8'))` pour lire : wrapper le readFile dans un try/catch pour le cas où le fichier n'existe pas encore)
+
+---
+stability: stable

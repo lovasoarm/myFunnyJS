@@ -86,3 +86,6 @@ Tant qu'il existera des jutsus qui visent plus d'un marché linguistique (et ça
 L'i18n n'est pas juste de la traduction, c'est une architecture entière qui doit être pensée dès le départ. Ça casse de trois façons sans elle : textes en dur impossibles à extraire, dates et prix mal interprétés selon la région, pluralisation qui explose dès qu'une langue a des règles différentes. Ce besoin ne disparaît pas tant qu'un jutsu vise plusieurs marchés.
 
 Maintenant, ouvre `01_i18n_basics.md`. Et arrête de coder comme si tout le monde vivait dans ton fuseau horaire et parlait ta langue.
+
+---
+stability: intemporel

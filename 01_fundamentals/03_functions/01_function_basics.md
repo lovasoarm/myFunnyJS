@@ -217,3 +217,6 @@ Une fonction en JS est un objet de première classe : elle peut être assignée 
 Declaration vs expression vs arrow : trois syntaxes, trois comportements différents sur le hoisting (remontée de déclaration) et sur `this`. Les arrows n'ont pas leur propre `this`.
 
 Deux variables qui référencent la même fonction pointent vers le même objet. Copier une référence de fonction ne copie pas la fonction.
+
+---
+stability: intemporel

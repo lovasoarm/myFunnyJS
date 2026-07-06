@@ -387,3 +387,6 @@ Le système de gestion de camp a ces problèmes de configuration : pas de rate l
 ## RÉSUMÉ
 
 OWASP Top 10 n'est pas une liste théorique. Ce sont les failles qui reviennent le plus souvent en audit de sécurité prod. La bonne nouvelle : la majorité se défend avec les mêmes principes de base (valider les inputs, ne pas faire confiance au client, contrôler les accès côté serveur, logger ce qui se passe). Le module 22 couvre les principales en profondeur. La checklist de ce module est ce qu'on sort avant chaque mise en prod.
+
+---
+stability: stable

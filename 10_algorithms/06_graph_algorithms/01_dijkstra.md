@@ -158,12 +158,12 @@ Pop (0, ABQ) :
  Tucson  : 0+420=420 < Inf => dist[Tucson]=420, push (420, "Tucson")
 
 Pop (60, Santa Fe) :
- ABQ   : 60+60=120 > dist[ABQ](0) => skip
+ ABQ   : 60+60=120 > `dist[ABQ]` (0) => skip
  Denver : 60+390=450 < Inf => dist[Denver]=450, push (450, "Denver")
 
 Pop (280, El Paso) :
  ABQ  : 280+280=560 > 0 => skip
- Tucson : 280+280=560 > dist[Tucson](420) => skip
+ Tucson : 280+280=560 > `dist[Tucson]` (420) => skip
  Phoenix: 280+430=710 < Inf => dist[Phoenix]=710... (sera amélioré plus tard)
 
 Pop (420, Tucson) :
@@ -332,3 +332,6 @@ Implémenter deux versions de Dijkstra : une avec un array simple (trouver le mi
 # RÉSUMÉ
 
 Dijkstra = greedy sur graphe pondéré avec poids positifs. À chaque étape, finaliser le noeud le plus proche. La priority queue rend ça efficace : `O((V+E) log V)` au lieu de `O(V²)`. Deux pièges absolus : les poids négatifs (Dijkstra donne des résultats silencieusement incorrects : utiliser Bellman-Ford) et oublier le check `currDist > dist.get(node)` qui permet de skip les entrées obsolètes dans la queue. Reconstruire le chemin se fait avec la map `prev` en remontant depuis la destination.
+
+---
+stability: intemporel

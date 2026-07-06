@@ -236,3 +236,6 @@ Mais les configs peuvent être imbriquées sur plusieurs niveaux. Implémenter `
 ## RÉSUMÉ
 
 Prototype pollution exploite le fait que tous les objets JS partagent le même `Object.prototype`. Modifier ce prototype modifie tous les objets, y compris les vérifications de sécurité. La fix tient en quatre règles : bloquer les clés `__proto__`/`constructor`/`prototype` dans les merges, utiliser `Object.create(null)` pour les objets de config, geler `Object.prototype` au démarrage, et valider strictement tous les inputs externes. La dernière règle est la plus importante : un input qui n'est jamais mergé de façon récursive sans validation ne peut pas polluer.
+
+---
+stability: stable

@@ -238,3 +238,6 @@ Sans utiliser `split().reverse().join()`, inverse un string en utilisant uniquem
 # RÉSUMÉ
 
 La stack c'est LIFO : le dernier entré ressort en premier. Trois opérations : `push` (ajouter au sommet), `pop` (retirer du sommet), `peek` (voir sans retirer). Tout est O(1). La call stack de JS est une vraie stack : les fonctions s'empilent et se dépilent. Implémenter avec un tableau c'est simple et suffisant. Implémenter avec une linked list garantit un O(1) strict sans pic de réallocation. La valeur d'une stack vient de sa contrainte : on ne peut accéder qu'au sommet. C'est cette limite qui rend l'ordre prévisible.
+
+---
+stability: intemporel

@@ -28,3 +28,6 @@ Trade-offs, coûts, quand NE PAS l'utiliser, impact business.
 Le CTO version "je fais compliqué pour paraître profond". Non. **Simple + coût + risque**.
 
 Prochaine étape : le drill long `13_three_audiences_drill.md` (45 min) pour ancrer la compétence sous pression.
+
+---
+stability: intemporel

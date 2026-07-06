@@ -218,3 +218,6 @@ Le camp de Rick reçoit les alertes de zombies avec 3 heures de retard depuis ce
 ## RÉSUMÉ
 
 Une message queue découple ce qui doit répondre vite de ce qui peut prendre son temps, en échange d'une cohérence éventuelle plutôt qu'immédiate. La garantie at-least-once (la plus courante) exige que tes traitements soient idempotents, sinon un simple crash de worker peut doubler une facturation. Une dead letter queue évite qu'un message cassé tourne en boucle infinie de retry, et surveiller la profondeur de la file est la seule façon de savoir si tes workers suivent vraiment le rythme du producteur.
+
+---
+stability: stable

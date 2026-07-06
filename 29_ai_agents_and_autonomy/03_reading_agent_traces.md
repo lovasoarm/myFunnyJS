@@ -30,3 +30,6 @@ Un dépôt d'exemple `traces_pool/` contient 3 traces réelles :
 - `trace_C.md` : agent qui a fait exactement ce qu'on demandait : et c'était mauvais.
 
 Pour chaque trace, identifie la décision-racine et écris 2 lignes de review.
+
+---
+stability: perissable

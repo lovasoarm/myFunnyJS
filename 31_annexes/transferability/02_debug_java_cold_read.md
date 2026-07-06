@@ -15,3 +15,6 @@ Lis à froid une méthode Java de 40 lignes que tu ne connais pas. Applique la m
 - Qu'est-ce qui a été **identique** à JS ?
 - Qu'est-ce qui a été **différent** ?
 - Qu'est-ce que tu retiens pour la prochaine fois ?
+
+---
+stability: intemporel

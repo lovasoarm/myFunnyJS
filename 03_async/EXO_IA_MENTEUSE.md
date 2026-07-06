@@ -47,3 +47,6 @@ Ensuite seulement, lance le code et compare à ta prédiction.
 ## Pourquoi c'est vital
 
 `forEach` + `await` est un des pièges les plus générés par les IA de code, parce que syntaxiquement ça ressemble à du code qui attend. Si tu ne sais pas pourquoi ça ment, tu vas debugger un bug de timing en prod pendant des heures sans jamais soupçonner ces trois lignes.
+
+---
+stability: intemporel

@@ -336,3 +336,6 @@ Prépare le CLI pour publication npm :
 Commander structure les sous-ordres_mission, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les ordres_mission. Pour publier : `files` dans `package.json` et `npm publish`.
 
 > Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec commander aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".
+
+---
+stability: stable

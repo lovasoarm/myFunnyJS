@@ -21,3 +21,6 @@
 - preuve : heap snapshot montre les 1000 closures referencees par l'emitter.
 - correctif : `emitter.once` ou `off()` en fin de req.
 - non-regression : test unitaire `assert(emitter.listenerCount('req') === 0)` apres 100 req simulees.
+
+---
+stability: intemporel

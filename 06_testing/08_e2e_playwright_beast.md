@@ -224,3 +224,6 @@ Playwright lance un vrai navigateur et simule un vrai shinobi.
 Playwright attend automatiquement les éléments : utilise `expect(...).toBeVisible()` pour les assertions async.
 E2E attrape ce que les autres tests ne voient pas : timing, UI, interactions complexes.
 Ne mets pas tout en E2E : c'est lent. Réserve-les aux flux critiques.
+
+---
+stability: intemporel

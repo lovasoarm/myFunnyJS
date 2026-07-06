@@ -129,3 +129,6 @@ Affiche une même heure de rendez-vous UTC dans 3 fuseaux différents (Tokyo, Pa
 ## RÉSUMÉ
 
 Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau du shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.
+
+---
+stability: intemporel

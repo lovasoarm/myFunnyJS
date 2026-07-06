@@ -192,3 +192,6 @@ Crée une fonction `spawnMonster(name)` qui crée un élément, lui donne un tex
 `deepClone` via `structuredClone()` duplique un objet entier, structure imbriquée incluse. C'est la solution native : plus besoin de JSON.parse/stringify.
 
 Ces helpers ne sont pas des luxes. Ils font partie du kit de survie de tout dev frontend qui comprend ce qui se passe sous le capot des frameworks.
+
+---
+stability: intemporel

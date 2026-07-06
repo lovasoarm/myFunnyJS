@@ -288,3 +288,6 @@ Walter White a une fonction de calcul de profits qui plante silencieusement : el
 ## RÉSUMÉ
 
 La coercition implicite de JS est un système de règles qui fonctionne toujours, mais que la plupart des devs ne connaissent pas assez pour anticiper. Le résultat : des bugs silencieux dans les conditions, des additions qui produisent des strings au lieu de numbers, et des comparaisons qui passent quand elles ne devraient pas. La réponse n'est pas de tout éviter : c'est de comprendre les règles pour utiliser `===` quand il faut, `??` à la place de `||` quand 0 est une valeur valide, et convertir explicitement quand le type d'un input est incertain.
+
+---
+stability: intemporel

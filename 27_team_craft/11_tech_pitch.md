@@ -19,3 +19,6 @@ Enregistre-toi. Réécoute. Note **1 chose à retirer**.
 ## (attention) Piège
 
 Vendre la solution **avant** d'avoir prouvé le problème. Ton public décroche à 45s.
+
+---
+stability: intemporel

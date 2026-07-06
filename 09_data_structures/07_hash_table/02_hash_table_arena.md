@@ -299,3 +299,6 @@ Sans mémoïzation : O(2^n). Avec Map : O(n). Démontre la différence avec `per
 # RÉSUMÉ
 
 Trois patterns à reconnaître immédiatement : chercher un complément (Two Sum), comparer des distributions (anagrammes, sameFrequency), compter les occurrences (fréquences). Dans les trois cas, la hash table transforme un O(n²) en O(n). Utilise `Map` plutôt qu'un objet ordinaire dès que les clés viennent de l'extérieur. La mémoïzation avec Map est un quatrième pattern : stocker les résultats calculés pour éviter de les recalculer.
+
+---
+stability: intemporel

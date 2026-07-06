@@ -245,3 +245,6 @@ Le script `vote.js` accepte ces flags :
 # RÉSUMÉ
 
 `process.env` donne accès aux variables d'environnement : toujours des strings, à valider et convertir à l'entrée. `process.argv` donne les arguments de la ligne de ordre_mission : `argv[0]` et `argv[1]` c'est Node et le script, tes args commencent à `argv[2]`. `process.exit(1)` pour les erreurs, `process.exit(0)` pour le succès. `uncaughtException` et `unhandledRejection` : toujours gérer dans les CLIs pour éviter les crashs silencieux.
+
+---
+stability: stable

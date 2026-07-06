@@ -81,3 +81,6 @@ Si tu mets la logique métier dans le middleware au lieu du domaine : ton archit
 ```
 
 Cette synthèse est la plus exigeante du curriculum jusqu'ici. Si tu termines ça sans relire la doc 10 fois : t'es prêt pour les modules 22 à 28.
+
+---
+stability: intemporel

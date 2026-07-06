@@ -312,3 +312,6 @@ Un README répond à quatre questions dans l'ordre : quoi, comment démarrer, co
 Un commentaire utile explique le pourquoi et le non-évident : pas ce qu'on voit déjà dans le code.
 Un runbook contient les ordres_mission exactes pour les situations courantes : pas des explications profondes.
 Un post-mortem identifie les problèmes systémiques, sans blame individuel.
+
+---
+stability: intemporel

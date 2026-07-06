@@ -180,3 +180,6 @@ Crée un scénario avec 20 logs mélangeant les 4 niveaux. Configure le logger a
 ## RÉSUMÉ
 
 Un logger structuré répond toujours à quand, quoi, à quel niveau, et dans quel contexte, contrairement à un `console.log` brut qui répond à rien de tout ça de façon fiable. Le format JSON rend chaque ligne exploitable automatiquement, pas juste lisible à l'oeil. Le niveau minimum filtre le bruit selon l'environnement (tout en dev, l'essentiel en prod). Le contexte transforme un message vague en indice complet, suffisant pour comprendre un incident sans avoir à relire le code source.
+
+---
+stability: perissable

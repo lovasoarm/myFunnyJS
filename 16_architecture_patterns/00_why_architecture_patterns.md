@@ -101,3 +101,6 @@ Maintenant, ouvre `01_module_pattern.md`. Et commence à voir ton code comme un 
 ## AILLEURS QUE JS
 
 En Python (Django), le MVC devient MVT ; les couches et le découpage par domaine sont identiques. En Java (Spring), l'injection de dépendances est industrialisée. En Go, on préfère des packages découplés à des hiérarchies profondes. Les patterns d'architecture (couplage faible, cohésion forte, frontières de contexte) sont indépendants du langage : c'est de l'organisation, pas de la syntaxe.
+
+---
+stability: intemporel

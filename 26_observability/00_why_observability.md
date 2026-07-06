@@ -76,3 +76,6 @@ Sans observabilité, tu découvres tes problèmes par les plaintes des shinobis,
 Maintenant, ouvre `01_structured_logging.md`. Et commence à donner à ton système les yeux qu'il n'a jamais eus.
 
 > Ce module réutilise : le debugging du module 04 (`04_debugging`), le logging vu en gestion d'erreurs (`05_error_handling`).
+
+---
+stability: stable

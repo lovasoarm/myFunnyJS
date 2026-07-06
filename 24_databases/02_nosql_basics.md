@@ -174,3 +174,6 @@ On te donne une base MongoDB avec une collection `jutsu_records` où chaque docu
 ## RÉSUMÉ
 
 NoSQL n'est pas une alternative à SQL, c'est quatre familles d'outils différents pour quatre formes de problèmes différentes. Document quand le schéma bouge trop, clé-valeur quand la vitesse brute prime, colonne large quand le volume d'écriture distribué prime, graphe quand la relation EST la donnée. Le bon réflexe : regarder la forme de tes données et de tes requêtes avant de choisir l'outil, jamais l'inverse.
+
+---
+stability: stable

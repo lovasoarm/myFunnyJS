@@ -254,3 +254,6 @@ Jest s'installe en une ordre_mission. Il trouve les fichiers `*.test.js` automat
 `toBe` pour les primitives, `toEqual` pour les objets.
 Les fonctions async se testent avec `async/await` : sans ça, Jest peut passer un test cassé.
 Le coverage montre les branches non testées : c'est là que vivent les bugs.
+
+---
+stability: intemporel

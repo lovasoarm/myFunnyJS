@@ -55,3 +55,6 @@ Si tu as foncé coder sans parler, tu échoueras en entretien même avec le bon 
 ## APRÈS
 
 Regarde ton enregistrement. Note : où tu as paniqué, où tu as menti (dit "je pense que" en étant sûr, ou l'inverse), où tu as sauté la reproduction. Refais le drill dans 3 jours avec un autre bug de ton cru.
+
+---
+stability: intemporel

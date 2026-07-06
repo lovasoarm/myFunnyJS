@@ -17,3 +17,6 @@ Temps de lecture ~5 min
 - **2 ou moins** → retour au module précédent, ou à sa synthèse `_recall_XX.md`.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
+
+---
+stability: intemporel

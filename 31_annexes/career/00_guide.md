@@ -2980,3 +2980,6 @@ README.md        ->  la roadmap des 32 modules, dans l'ordre
 
 Ouvre `../../00_referentiel/where_you_stand.md`, puis `README.md` pour la ROADMAP, et lance-toi dans
 `01_fundamentals/00_why_fundamentals.md`.
+
+---
+stability: intemporel

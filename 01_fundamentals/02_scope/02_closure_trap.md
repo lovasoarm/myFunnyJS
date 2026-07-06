@@ -215,3 +215,6 @@ On dit "closure = fonction qui se souvient". Faux. La closure, c'est le **couple
 > - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
 > - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
 > - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.
+
+---
+stability: intemporel

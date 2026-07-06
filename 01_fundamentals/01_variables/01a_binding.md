@@ -30,3 +30,6 @@ Le chakra Naruto est fini. En JS, la valeur peut être partagée par 10 noms san
 ## Mission (5 min)
 
 Écris trois lignes qui déclarent, assignent, puis relisent un nom. Sans copier-coller. Fais-le maintenant.
+
+---
+stability: intemporel

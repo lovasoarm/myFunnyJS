@@ -254,3 +254,6 @@ Ton tech lead veut une réponse claire avec justification. Écris un programme q
 ## RÉSUMÉ
 
 `class` ne change pas le moteur : elle pose les mêmes briques que le fichier 02, avec une syntaxe imposée et plus stricte. Trois vrais changements de comportement : interdiction d'appel sans `new`, méthodes non énumérables, mode strict forcé. ES2022 a ajouté les class fields : chaque instance obtient sa propre valeur plutôt que de partager une référence sur le prototype, ce qui supprime un bug classique avec les tableaux et objets. Les champs `#privés` sont une vraie garantie runtime, contrairement au `readonly` TypeScript qui disparaît à la compilation. Comprendre `class` sans avoir compris le fichier 02 revient à utiliser un mécanisme qu'on ne maîtrise pas vraiment.
+
+---
+stability: intemporel

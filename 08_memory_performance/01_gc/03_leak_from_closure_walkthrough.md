@@ -51,3 +51,6 @@ Le moteur V8 fait des optimisations (escape analysis, scope pruning) mais **ne p
 ## Mission
 
 Reproduis, mesure avec `process.memoryUsage().heapUsed`, corrige, remesure. Note l'écart en MB.
+
+---
+stability: intemporel

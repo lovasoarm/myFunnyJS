@@ -242,3 +242,6 @@ Implémente un compteur de chakra à la fois en closure (fonction factory) et en
 ## RÉSUMÉ
 
 L'underscore `_champ` est une convention sociale entre devs, jamais une protection réelle imposée par le moteur. Les closures offrent une vraie privacy mais sans héritage naturel et avec un coût mémoire en usage massif. Les champs et méthodes `#` offrent une vraie privacy intégrée à `class`, compatible avec l'héritage, combinable avec `get`/`set`/`static`, et invisible même pour `Object.keys` ou `JSON.stringify`. Aucun des deux ne protège contre une logique interne mal écrite : l'encapsulation protège l'accès, pas la correction du code qui se trouve derrière.
+
+---
+stability: intemporel

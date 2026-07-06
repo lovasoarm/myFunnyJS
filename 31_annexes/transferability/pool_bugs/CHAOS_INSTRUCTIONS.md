@@ -23,3 +23,6 @@ d'entraînement en 15 min. Le but : t'entraîner à lire du code inconnu.
 
 Un `SABOTAGE_REPORT.md` où tu compares ton hypothèse initiale, le vrai bug, et le
 temps qu'il t'a fallu. C'est là que tu vois si ta méthode tient hors terrain connu.
+
+---
+stability: intemporel

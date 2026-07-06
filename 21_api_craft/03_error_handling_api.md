@@ -325,3 +325,6 @@ Le middleware d'erreur global attrape tout ce qui passe par `next(err)`.
 Les erreurs async doivent être catchées explicitement en Express 4.
 La validation en amont évite que des données malformées atteignent le coeur du code.
 Ne jamais exposer la stack trace en prod.
+
+---
+stability: stable

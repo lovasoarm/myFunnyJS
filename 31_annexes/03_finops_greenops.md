@@ -169,3 +169,6 @@ L'Oracle Glitch lance une régénération complète de ses tests d'IA chaque nui
 # RÉSUMÉ
 
 FinOps et GreenOps partent du même principe : chaque ligne de code a un coût mesurable, en argent et en énergie, et ce coût se décide au moment où le code est écrit, pas après la facture. Le tagging permet de savoir qui consomme quoi. Le cache et la fréquence d'exécution bien calibrée évitent le gaspillage le plus fréquent. Le carbon-aware scheduling décale ce qui peut l'être vers les fenêtres les plus propres. Et comme pour le ki : on mesure avant d'optimiser, jamais l'inverse.
+
+---
+stability: intemporel

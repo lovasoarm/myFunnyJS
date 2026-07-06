@@ -15,3 +15,6 @@ Ouvre un petit repo Rust (ex: un CLI de <20 fichiers). Cartographie l'archi en 2
 - Qu'est-ce qui a été **identique** à JS ?
 - Qu'est-ce qui a été **différent** ?
 - Qu'est-ce que tu retiens pour la prochaine fois ?
+
+---
+stability: intemporel

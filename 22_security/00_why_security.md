@@ -90,3 +90,6 @@ Ce que tu apprends ici n'est pas JS-spécifique :
   ailleurs en 2 semaines de lecture ciblée.
 - Test : explique à quelqu'un qui code Python ce que tu viens d'apprendre.
   Si tu peux, c'est acquis. Sinon, relis.
+
+---
+stability: stable

@@ -317,3 +317,6 @@ Access token court + refresh token long : le meilleur équilibre sécurité/exp�
 `HttpOnly` cookie > `localStorage` pour stocker les tokens. XSS ne peut pas lire les cookies HttpOnly.
 401 = non authentifié. 403 = non autorisé. Deux erreurs différentes, deux raisons différentes.
 RBAC pour des permissions simples par rôle. ABAC quand les droits dépendent du contexte de la ressource.
+
+---
+stability: stable

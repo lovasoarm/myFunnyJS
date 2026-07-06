@@ -205,3 +205,6 @@ Vite est le choix par défaut pour les apps modernes : démarrage quasi-instanta
 Webpack reste pertinent pour les gros projets legacy ou les besoins très spécifiques.
 Rollup est le bon choix pour créer des librairies JS publiées sur npm.
 esbuild est un moteur de compilation ultra-rapide utilisé en interne par d'autres outils (Vite notamment).
+
+---
+stability: intemporel

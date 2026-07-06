@@ -330,3 +330,6 @@ _~20 min_
 # RÉSUMÉ
 
 Une linked list c'est une chaîne de nodes, chacun pointant vers le suivant. Pas d'index, pas de blocs contigus. `head` et `tail` sont les deux seules entrées. Insérer en tête ou en queue est O(1) : on manipule juste des pointeurs. Lire par position est O(n) : on traverse depuis `head`. C'est un compromis inverse du tableau : rapide pour modifier, lent pour accéder. La vraie compétence c'est de savoir lequel choisir selon le problème.
+
+---
+stability: intemporel

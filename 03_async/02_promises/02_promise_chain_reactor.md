@@ -235,3 +235,6 @@ La chaîne continue avec `undefined`. Le bug est silencieux.
 
 Règle simple : si tu fais un appel async dans un `.then()`, tu le `return`.
 Toujours.
+
+---
+stability: intemporel

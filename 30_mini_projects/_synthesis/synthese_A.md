@@ -77,3 +77,6 @@ Si tu gères tout avec un seul `try/catch` générique : tu vas pas pouvoir dist
 ```
 
 Si une seule case manque : c'est pas que t'as raté la mission, c'est qu'un des 4 modules a encore un trou. Retourne dessus avant d'avancer dans le curriculum.
+
+---
+stability: intemporel

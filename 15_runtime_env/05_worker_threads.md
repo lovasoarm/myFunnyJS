@@ -279,3 +279,6 @@ Simule 9 matchs de Champions League en parallèle (fixtures hardcodées). Crée 
 Node est single-threaded : un calcul CPU intensif bloque l'event loop. Worker Threads créent des threads séparés pour ces calculs. Les données transitent par message (copie) ou SharedArrayBuffer (mémoire partagée). En prod : un pool de workers réutilisables plutôt que créer un worker par requête. La règle de décision : si c'est de l'I/O, `async/await` suffit. Si c'est du CPU pur, Worker Thread.
 
 > Note : 9.5/10 : le schéma ASCII event loop vs worker est efficace. Le pool est bien calibré pour le niveau. Moins 0.5 : les pièges de SharedArrayBuffer (race conditions) mériteraient un exemple cassé + Atomics côte à côte.
+
+---
+stability: stable

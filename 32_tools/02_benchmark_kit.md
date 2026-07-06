@@ -175,3 +175,6 @@ Trouve ou invente deux implémentations où l'une est mesurée "3x plus rapide" 
 ## RÉSUMÉ
 
 Un benchmark transforme une intuition ("ça a l'air rapide") en mesure vérifiable. `performance.now()` donne la précision nécessaire, mais une seule mesure reste peu fiable : il faut moyenner sur plusieurs itérations et chauffer le moteur JS avant de mesurer pour de vrai. Le facteur comparatif rend les résultats lisibles d'un coup d'oeil, mais un facteur élevé sur une différence absolue minuscule ne veut souvent rien dire en pratique. Mesurer avant d'optimiser, toujours, sinon tu optimises à l'aveugle ce qui te semble lent au lieu de ce qui l'est vraiment. Dans Breaking Bad, Walter White ne touche jamais à une formule sans en valider les paramètres. Il mesure, compare, ajuste. Toi pareil avec ton code.
+
+---
+stability: perissable

@@ -190,3 +190,6 @@ npm, Yarn, pnpm ont la même mission mais des stratégies de stockage différent
 Le lockfile est un contrat de version exacte : toujours le committer, toujours utiliser `npm ci` en CI/CD.
 Le semver définit ce qu'une mise à jour peut casser : `^` autorise les mineures, `~` seulement les patchs.
 `npm audit` révèle les vulnérabilités dans tes dépendances : à lancer régulièrement.
+
+---
+stability: intemporel

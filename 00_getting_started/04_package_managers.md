@@ -35,3 +35,6 @@ Le "logisticien" ne vérifie pas la qualité de la marchandise. Un paquet peut c
 ## Mission
 
 Crée un projet, ajoute `zod`, écris un script `check` qui valide `{name: string}`, lance-le via `npm run check`.
+
+---
+stability: intemporel

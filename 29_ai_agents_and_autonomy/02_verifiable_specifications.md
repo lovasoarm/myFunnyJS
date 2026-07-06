@@ -40,3 +40,6 @@ un PR contre le prompt vague est un audit d'1h qui rate 3 régressions.
 Reprends 3 tickets de ton backlog. Réécris-les en B.O.R.N.É. Compte les Non-goals.
 Si tu ne trouves aucun Non-goal pour une tâche, c'est que tu ne connais pas assez
 la codebase pour déléguer. Ne délègue pas : cartographie d'abord (`10_legacy_dungeon`).
+
+---
+stability: perissable

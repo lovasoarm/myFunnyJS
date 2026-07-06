@@ -75,3 +75,6 @@ C'est ça, être irremplaçable par une IA générique en 2026 comme en 2031.
 Trois candidats calibrés (ni triviaux, ni gigantesques) sont listés dans
 `pool_bugs/CANDIDATS.md`. Choisis-en un par langage. Si tu utilises un dépôt
 non-listé, note-le et justifie en 2 lignes dans le rapport.
+
+---
+stability: intemporel

@@ -20,3 +20,6 @@ Temps de lecture ~5 min
 | 30 mini_projects | 20 LTS | référence de prod |
 
 Vérifie ta version : `node -v`. Installe via `nvm install 20 && nvm use 20`.
+
+---
+stability: intemporel

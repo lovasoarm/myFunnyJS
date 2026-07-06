@@ -91,3 +91,6 @@ Si t'as pas de correlation ID tracé de bout en bout : le jour où 1 analyse sur
 ```
 
 Si tu termines cette synthèse proprement : t'as plus un curriculum dans la tête, t'as un cerveau d'ingénieur qui sait croiser des préoccupations qui semblaient pas liées au départ. C'est exactement ça, le métier.
+
+---
+stability: intemporel

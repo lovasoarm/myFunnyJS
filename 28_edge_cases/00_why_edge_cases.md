@@ -262,3 +262,6 @@ Ce n'est pas du trivia JavaScript.
 C'est la différence entre subir le langage et le maîtriser.
 
 > Ce module réutilise : le debugging du module 04 (`04_debugging`), l'asynchrone du module 03 (`03_async`).
+
+---
+stability: intemporel

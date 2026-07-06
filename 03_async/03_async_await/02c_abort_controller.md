@@ -220,3 +220,6 @@ Un `AbortController` est à usage unique : une fois `.abort()` appelé, son sign
 Toujours distinguer `AbortError` (annulation volontaire) des vraies erreurs réseau.
 `signal.aborted` permet de vérifier l'état avant de démarrer une opération longue.
 `setTimeout + controller.abort()` est plus propre que `Promise.race` pour les timeouts : la requête est vraiment annulée, pas juste ignorée.
+
+---
+stability: intemporel

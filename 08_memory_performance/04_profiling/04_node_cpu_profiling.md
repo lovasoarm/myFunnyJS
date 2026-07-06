@@ -235,3 +235,6 @@ Compare ton résultat avec ce que Chrome DevTools montrait graphiquement : tu do
 Un profil n'est valide que si le script tourne assez longtemps avec une charge représentative. Profiler 50ms de startup ne donne rien d'exploitable.
 
 Ne pas confondre hitCount élevé sur `(program)` (overhead du runtime) avec une vraie hotspot dans ton code : si `(program)` domine, le problème est probablement dans les I/O ou le GC, pas dans un algorithme.
+
+---
+stability: intemporel

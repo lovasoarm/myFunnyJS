@@ -76,3 +76,6 @@ Résultat observé sur 10/10 lancements : "fired" apparaît 1 fois. Confirmé.
 Le non-déterminisme n'était pas dans le CODE de `debounce` mais dans son
 USAGE dans la codebase appelante. Prochaine fois : quand un module utilitaire
 est incriminé, vérifier d'abord ses call-sites avant de le réécrire.
+
+---
+stability: intemporel

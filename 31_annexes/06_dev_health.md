@@ -30,3 +30,6 @@ Arrête. Fais autre chose 48h. Le curriculum t'attend. La motivation revient. Le
 ## RESSOURCE
 
 Si tu ressens une détresse : contacte un pro. Ce fichier n'est pas un substitut.
+
+---
+stability: intemporel

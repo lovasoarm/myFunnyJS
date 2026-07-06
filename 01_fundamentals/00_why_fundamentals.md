@@ -82,3 +82,6 @@ Un dev qui maîtrise les fondamentaux apprend un nouveau framework en une semain
 Sans ce module, tout code que tu écris repose sur du sable. C'est ici que les bugs silencieux prennent racine : mutation accidentelle, scope mal compris, coercition surprise. Et contrairement à la syntaxe des frameworks, ce que tu apprends ici ne se démode jamais.
 
 Maintenant, ouvre `01_intro_variables.md`. Et cette fois, regarde vraiment ce qui se passe en mémoire.
+
+---
+stability: intemporel

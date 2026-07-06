@@ -353,3 +353,6 @@ Le camp a des événements de type `"attack" | "scavenge" | "rest" | "medical" |
 # RÉSUMÉ
 
 `Partial` rend tout optionnel. `Required` rend tout obligatoire. `Pick` garde certaines clés. `Omit` en supprime. `Record` crée des dictionnaires typés. `Readonly` bloque la mutation au niveau des types. `Extract`/`Exclude` filtrent les unions. `ReturnType`/`Parameters` introspectent les fonctions. Ils se combinent : `Readonly<Pick<T, K>>`, `Partial<Omit<T, "id">>`. Le piège : `Partial` est shallow : il ne descend pas dans les objets imbriqués.
+
+---
+stability: perissable

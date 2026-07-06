@@ -236,3 +236,6 @@ Implémente `isSameValues(bst1, bst2)` : retourne `true` si les deux BST contien
 # RÉSUMÉ
 
 Quatre traversals, quatre cas d'usage : inOrder pour extraire les données triées, preOrder pour sérialiser la structure, postOrder pour traiter les feuilles avant les racines, BFS pour parcourir niveau par niveau. In-order est le plus utilisé sur un BST. Pre-order est indispensable pour serialiser et reconstruire à l'identique. Préfère la version itérative sur des arbres de grande taille pour éviter le stack overflow.
+
+---
+stability: intemporel

@@ -44,3 +44,6 @@ Ensuite seulement, lance le code et compare à ta prédiction.
 ## Pourquoi c'est vital
 
 Une IA qui génère un code qui tourne sans crash n'a pas généré un code correct. Elle a généré un code qui ne crash pas. Ce module t'apprend à distinguer les deux : c'est la compétence qui te rend difficile à remplacer.
+
+---
+stability: intemporel

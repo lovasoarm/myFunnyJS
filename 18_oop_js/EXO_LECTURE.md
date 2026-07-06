@@ -19,3 +19,6 @@ On te fournit un extrait où `this` change selon le call-site (10-30 lignes ; pr
 ## (attention) Ce que l'exo révèle
 
 Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modèle mental cloche. Un dev qui lit vite mais faux est plus dangereux qu'un dev lent mais juste.
+
+---
+stability: intemporel

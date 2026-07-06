@@ -256,3 +256,6 @@ Génère un tableau de 1 million d'entiers triés. Effectue 10 000 recherches al
 # RÉSUMÉ
 
 Linear search : O(n), fonctionne sur n'importe quoi, simple. Binary search : O(log n) sur un tableau trié, divise l'espace de recherche par deux à chaque étape. Sur 1 million d'éléments, binary search fait 20 comparaisons là où linear search en fait 1 million. La condition non négociable : le tableau doit être trié. Si tu tries pour une seule recherche, tu perds. Binary search n'a de sens qu'avec des recherches répétées sur des données triées.
+
+---
+stability: intemporel

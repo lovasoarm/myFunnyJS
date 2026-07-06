@@ -19,3 +19,6 @@ On te fournit un extrait avec une closure qui capture un gros objet (10-30 ligne
 ## (attention) Ce que l'exo révèle
 
 Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modèle mental cloche. Un dev qui lit vite mais faux est plus dangereux qu'un dev lent mais juste.
+
+---
+stability: intemporel

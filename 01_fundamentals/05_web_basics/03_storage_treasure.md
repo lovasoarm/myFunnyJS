@@ -261,3 +261,6 @@ console.log(document.cookie); // "pseudo=Prometheus"
 document.cookie = "pseudo=; max-age=0"; // max-age à 0 = suppression
 ```
 > Parfait pour : session de connexion, langue côté serveur, tracking.
+
+---
+stability: intemporel

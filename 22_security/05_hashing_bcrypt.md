@@ -226,3 +226,6 @@ Contrainte : utiliser le dummy compare pour les emails inexistants, tester avec 
 ## RÉSUMÉ
 
 MD5 et SHA256 sont trop rapides pour protéger les mots de passe. Bcrypt est lent par conception, et c'est sa principale qualité. Le coût 12 est un bon point de départ en 2026 : ~400ms, acceptable en UX, prohibitif pour un attaquant. Le salt est généré automatiquement par bcrypt et intégré dans le hash. On ne stocke que le hash bcrypt, jamais le mot de passe. Et on renvoie toujours le même message d'erreur et le même temps de réponse, que l'email existe ou non.
+
+---
+stability: stable

@@ -142,3 +142,6 @@ Construit une fonction `t()` qui retourne un message explicite (`[clé manquante
 ## RÉSUMÉ
 
 L'i18n sépare le texte du code via des clés de traduction : le code ne change jamais, seul le fichier de langue change. Les namespaces rangent les clés par contexte pour éviter le fourre-tout sur une grosse app. Le fallback évite les trous silencieux quand une traduction manque. Et surtout : ne jamais concaténer des morceaux de phrase traduits séparément, chaque langue a son propre ordre de mots.
+
+---
+stability: intemporel

@@ -202,3 +202,6 @@ Les outils que tu vas construire ici sont volontairement simples, donc ils vieil
 
 Ce qui changera : peut-être que tu utiliseras une vraie lib en prod plus tard, avec plus de features.
 Ce qui changera pas : le réflexe de structurer tes logs, mesurer avant d'optimiser, inspecter avant de corriger à l'aveugle, et automatiser la mise en place répétitive d'un projet. Ces réflexes-là, aucun framework ne les remplace.
+
+---
+stability: perissable

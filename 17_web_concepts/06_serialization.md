@@ -280,3 +280,6 @@ JSON sérialise les primitives, objets, tableaux. Il perd les fonctions, Symbol,
 `JSON.parse(json, reviver)` : le reviver reconstruit les types spéciaux (Date, Map) lors du parsing.
 Pour les systèmes à fort volume : MessagePack (40% plus compact, même structure) ou Protobuf (schéma strict, le plus compact).
 `toJSON()` sur une classe : contrôler exactement ce qui est sérialisé. La protection la plus simple contre les fuites de données.
+
+---
+stability: stable

@@ -44,3 +44,6 @@ Trois exercices oraux. Enregistre-toi. Réécoute. C'est violent, c'est le but.
 ## Piège
 
 Ne prépare pas de script mot pour mot. En vrai, on te coupe. Prépare des **beats** (idées clés) et un ordre.
+
+---
+stability: intemporel

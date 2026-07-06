@@ -316,3 +316,6 @@ Les distributions pondérées permettent de contrôler les probabilités sans bi
 La loi des grands nombres : tester son RNG sur 100k itérations révèle les biais cachés.
 `crypto.getRandomValues` pour tout ce qui touche à la sécurité : tokens, sessions, codes.
 Box-Muller transform si t'as besoin d'une distribution normale depuis `Math.random()`.
+
+---
+stability: intemporel

@@ -41,3 +41,6 @@ Avec les 6 pierres CrazyDevs solides + JS maîtrisé :
 - **SQL avancé** : 2 semaines productif, jamais "fini".
 
 Ces chiffres supposent 1-2h/jour dédiées. Divise par ton rythme réel.
+
+---
+stability: intemporel

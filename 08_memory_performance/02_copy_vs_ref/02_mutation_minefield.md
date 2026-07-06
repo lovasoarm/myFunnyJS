@@ -366,3 +366,6 @@ _(Indice : `Proxy` avec un trap `set` qui retourne `false` en strict mode lève 
 # RÉSUMÉ
 
 En JS, passer un objet à une fonction ou l'assigner à une variable ne le copie pas : ça partage la même référence. Toute modification touche tous ceux qui la pointent. Les méthodes `sort()`, `reverse()`, `push()`, `splice()` mutent en place : il faut copier avant. `Object.freeze` protège le premier niveau : `deepFreeze` protège tout. Le pattern immutable consiste à toujours retourner un nouvel objet plutôt que de modifier l'existant : c'est ce qui rend le code prévisible, testable, et debuggable.
+
+---
+stability: intemporel

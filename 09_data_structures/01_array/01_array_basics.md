@@ -218,3 +218,6 @@ console.log(rareItems.length); // qu'est-ce qui s'affiche ?
 # RÉSUMÉ
 
 Un tableau JS c'est un bloc mémoire continu : lire par index est O(1) car c'est juste un calcul d'adresse. Tout ce qui déplace des éléments (unshift, splice en milieu) coûte O(n) parce que JS doit recaler tout ce qui suit. Slice crée une copie : c'est intentionnel, utilise-le comme tel. Les tableaux épars sont un piège : JS les autorise mais les méthodes comme `forEach` les ignorent silencieusement. Connaître ces coûts c'est la différence entre un code qui scale et un code qui rame à 10k éléments.
+
+---
+stability: intemporel

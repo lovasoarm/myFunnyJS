@@ -115,3 +115,6 @@ Note dans un fichier `TDD_JOURNAL.md` :
 ---
 
 Prochaine étape : [`../00_referentiel/where_you_stand.md`](../00_referentiel/where_you_stand.md) (auto-diagnostic).
+
+---
+stability: intemporel

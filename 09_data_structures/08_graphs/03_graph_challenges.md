@@ -378,3 +378,6 @@ const production = {
 # RÉSUMÉ
 
 Trois patterns fondamentaux sur les graphes : détection de cycle (DFS + inProgress pour les dirigés, parent tracking pour les non dirigés), composants connexes (DFS depuis chaque noeud non visité), topological sort (Kahn avec in-degree ou DFS avec post-order). Ces algos s'enchaînent naturellement dans les problèmes réels : un pipeline de build vérifie les cycles, identifie les modules indépendants, puis calcule l'ordre d'exécution. En entretien, les reconnaître suffit à savoir quoi coder.
+
+---
+stability: intemporel

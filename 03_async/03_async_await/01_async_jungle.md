@@ -243,3 +243,6 @@ Deux `await` en séquence = la queue : l'un attend que l'autre finisse.
 `Promise.all` = le parallèle : tout part en même temps, tu attends le plus lent.
 `forEach` + `await` = cassé en silence : utilise `for...of` ou `Promise.all` + `map`.
 Le séquentiel est obligatoire quand une étape dépend du résultat de la précédente : sinon, fais-le en parallèle.
+
+---
+stability: intemporel

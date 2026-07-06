@@ -352,3 +352,6 @@ Modélise une hiérarchie prototype : `Titan` → `TitanColossal` → `BertHoove
 ## RÉSUMÉ
 
 La chaîne prototype est le mécanisme central de l'héritage en JS. Dans ses zones sombres : `__proto__` modifie les prototypes à runtime et détruit les optimisations moteur, `hasOwnProperty` peut être shadowed et doit être appelé via `Object.prototype` ou `Object.hasOwn` pour être fiable, et la pollution de prototype est une vraie vulnérabilité qui passe par les fonctions de merge naïves. Les fix sont simples : `Object.create(null)` pour les stores de données, `Object.hasOwn` à la place de `hasOwnProperty`, et validation des clés dans tout code qui merge des objets venant de l'extérieur.
+
+---
+stability: intemporel

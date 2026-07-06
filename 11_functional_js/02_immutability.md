@@ -325,3 +325,6 @@ Muter directement = modifier ce que tout le monde partage : source de bugs invis
 La solution : créer, pas modifier. Spread pour les objets plats, spread imbriqué ou `structuredClone` pour les structures profondes.
 `Object.freeze` bloque la mutation, mais seulement en surface.
 Les méthodes `sort`, `reverse`, `splice` mutent en place : toujours travailler sur une copie.
+
+---
+stability: intemporel

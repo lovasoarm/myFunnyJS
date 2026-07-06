@@ -345,3 +345,6 @@ Crée `StateDiff<T>` et une fonction `computeDiff<T>(before: T, after: T): State
 # RÉSUMÉ
 
 `{ [K in keyof T]: ... }` itère sur les clés de T et génère un nouveau type. `readonly`, `?`, et leurs versions avec `-` modifient les modificateurs de chaque propriété. `as` dans le mapping renomme les clés : `as never` filtre des clés. Les conditional types dans le corps du mapping décident du type de chaque valeur selon ce qu'il était. Les mapped types récursifs descendent dans les objets imbriqués. Piège : `keyof (A | B)` ne donne que les propriétés communes : si tu veux tout, mappe les types séparément.
+
+---
+stability: perissable

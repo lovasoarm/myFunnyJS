@@ -85,3 +85,6 @@ Maintenant, ouvre `01_sql_basics.md`. Et commence à lire une requête comme que
 - **Java (JPA/Hibernate)** : ORM historique, memes pieges de lazy loading.
 - **Go (sqlx, sqlc)** : plus proche du SQL brut, moins d'abstraction. La lecture de plan (EXPLAIN) reste la meme.
 - **Rust (sqlx, diesel)** : verifications a la compilation. La DB reste externe, les regles ACID sont universelles.
+
+---
+stability: stable

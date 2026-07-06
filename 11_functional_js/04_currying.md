@@ -292,3 +292,6 @@ L'avantage concret : créer des fonctions spécialisées en fixant certains argu
 `curry()` automatique généralise ça sur n'importe quelle fonction, en se basant sur `fn.length`.
 Limite : les arguments avec valeur par défaut cassent `fn.length` : évite-les dans les fonctions curryfiées.
 Curry + pipe : le duo de base du FP en JS.
+
+---
+stability: intemporel

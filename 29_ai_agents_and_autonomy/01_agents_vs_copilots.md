@@ -37,3 +37,6 @@ Prends une de tes tâches en cours. Écris :
 3. Ta décision : copilote / agent / toi seul.
 
 Si tu ne peux pas écrire (2), tu ne peux pas déléguer à un agent. Fais-le toi.
+
+---
+stability: perissable

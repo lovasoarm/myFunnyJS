@@ -216,3 +216,6 @@ Typer une fonction, c'est signer un contrat : inputs attendus, output garanti.
 Les overloads permettent d'exprimer "selon ce que tu passes, tu reçois quelque chose de précis", sans perdre la précision du retour.
 Les callbacks non typés sont la source numéro un de bugs silencieux en TypeScript : si tu passes `Function` au lieu d'une signature précise, tu as juste du JS déguisé.
 `any` dans une signature désactive toute vérification pour tout ce qui passe par là. C'est la porte par laquelle les bugs entrent.
+
+---
+stability: perissable

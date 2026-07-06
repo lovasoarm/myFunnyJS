@@ -23,3 +23,6 @@ Tu ne cherches pas un bug ouvert non résolu. Tu prends un bug **déjà corrigé
 `git checkout` sur le commit d'AVANT le fix, et tu essaies de le retrouver seul.
 Puis tu compares ton diagnostic au fix officiel. C'est la seule façon d'avoir un
 oracle honnête sur ta perf.
+
+---
+stability: intemporel

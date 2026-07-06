@@ -317,3 +317,6 @@ Linked list pour la queue : enqueue et dequeue en O(1), pas de réindexage.
 Tableau pour les cas simples : acceptable, mais `shift()` est O(n) : à surveiller.
 Ring buffer quand la taille max est connue : O(1) strict, zéro allocation dynamique.
 Le bug classique : oublier de nullifier `tail` quand la queue se vide.
+
+---
+stability: intemporel

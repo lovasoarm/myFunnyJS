@@ -304,3 +304,6 @@ Contrainte : valider le state au retour du callback, et gérer le cas où GitHub
 ## RÉSUMÉ
 
 Sessions, JWT et OAuth ne sont pas interchangeables : chacun résout un problème précis. Sessions pour la révocation immédiate sur des apps web. JWT pour les APIs distribuées et les clients mobiles. OAuth pour déléguer l'authentification à un tiers. La règle qui s'applique aux trois : les secrets (SESSION_SECRET, JWT_SECRET, CLIENT_SECRET) ne sont jamais dans le code, toujours dans les variables d'environnement. Et les tokens sensibles ne vont jamais dans localStorage.
+
+---
+stability: stable

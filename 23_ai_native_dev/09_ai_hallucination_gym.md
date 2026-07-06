@@ -64,3 +64,6 @@ Chaque item : (Q shinobi) → (R IA plausible mais fausse) → (ta démolition).
 ## Livrable
 
 `REBUTTALS.md` avec ta démolition + le lien vers la source officielle (spec / MDN / RFC).
+
+---
+stability: perissable

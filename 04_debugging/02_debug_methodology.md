@@ -292,3 +292,6 @@ Isole ensuite : le plus petit code possible qui produit encore le bug.
 Corrige une chose à la fois. Vérifie que rien d'autre ne casse.
 `console.log` pour localiser, debugger pour comprendre. Les deux ont leur moment.
 Un bug corrigé sans test : un bug qui reviendra sans prévenir.
+
+---
+stability: intemporel

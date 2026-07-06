@@ -36,3 +36,6 @@ Un `POST /pay` déclenche : débit A → crédit B → email.
 ## (attention) Ce que "microservices" cache
 
 Le distribué n'est **pas** un choix architectural, c'est une **conséquence**. Évite-le tant que possible.
+
+---
+stability: stable

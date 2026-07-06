@@ -149,3 +149,6 @@ Reproduis le cas de la section 4 avec un `get` qui logge à chaque appel. Compte
 ## RÉSUMÉ
 
 `static` pose une propriété ou méthode sur la classe elle-même, jamais héritée automatiquement par les instances, utile pour les factory methods et les constantes liées au type. `get`/`set` transforment un appel de méthode en syntaxe de propriété, ce qui permet de valider une affectation ou de calculer une valeur dérivée sans changer la façon dont on lit ou écrit depuis l'extérieur. Le vrai danger : un `get` n'est jamais un cache, il recalcule à chaque accès, et l'oublier peut multiplier des calculs coûteux en silence.
+
+---
+stability: intemporel

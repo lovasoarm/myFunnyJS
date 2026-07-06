@@ -241,3 +241,6 @@ Petits commits : chaque étape du refacto est vérifiable et réversible.
 
 
 > Complément à l'analogie Daryl Dixon : un test unitaire est aussi une **documentation de contrat exécutable**. Ce que le test décrit, c'est ce que le code PROMET. Casse le contrat → casse le test.
+
+---
+stability: intemporel

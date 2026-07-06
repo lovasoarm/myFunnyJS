@@ -52,3 +52,6 @@ Le résumé de tout ce que tu dois retenir du module. Pas un résumé scolaire :
 L'OOP en JS n'est pas un système de classes au sens classique : c'est un système d'objets liés entre eux par des prototypes, et `class` n'en est que l'habillage. `this` n'appartient jamais à une fonction : il appartient à la façon dont elle est appelée, sauf pour les arrow functions qui trichent en empruntant le `this` du scope où elles sont écrites. L'héritage `extends` ne doit jamais devenir un réflexe : il répond à une question précise ("is-a"), et la composition répond à une question différente ("has-a"). Confondre les deux est la source numéro un des hiérarchies qui finissent par piéger tout le monde, y compris celui qui les a écrites.
 
 La vraie compétence de ce module n'est pas de savoir écrire une `class`. C'est de savoir, face à un bug de `this`, un comportement de prototype inattendu, ou une hiérarchie qui devient ingérable, dire précisément ce qui se passe sous le capot et pourquoi.
+
+---
+stability: intemporel

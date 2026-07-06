@@ -24,3 +24,6 @@ Pour chacun, produis un fichier `HYPOTHESES.md` avec au minimum 3 hypothèses or
 ## (attention) Piège
 
 Coder le fix pendant qu'on formule l'hypothèse. **Interdit.** Sépare pensée et action.
+
+---
+stability: intemporel

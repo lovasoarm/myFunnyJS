@@ -88,3 +88,6 @@ Les algorithmes décrivent des stratégies logiques universelles, pas des détai
 La plupart des problèmes de code ressemblent à des problèmes déjà résolus. Reconnaître le pattern change tout : tu passes de "je cherche comment faire" à "je sais quelle famille d'algorithme s'applique ici". Sans ce bagage, tu codes en force brute. Avec, tu choisis.
 
 Maintenant, ouvre `01_bubble_insertion.md`. Et vois enfin pourquoi un algorithme lent existe encore, avant de comprendre pourquoi on ne l'utilise presque plus.
+
+---
+stability: intemporel

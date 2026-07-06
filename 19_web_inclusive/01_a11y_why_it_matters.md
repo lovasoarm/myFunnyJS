@@ -70,3 +70,6 @@ Débranche ta souris (ou désactive-la) et essaie de naviguer sur ton interface 
 ## RÉSUMÉ
 
 L'accessibilité concerne environ 1 personne sur 6 dans le monde, pas une minorité négligeable. C'est aussi une obligation légale dans plusieurs pays, avec des vrais procès derrière. Ignorer l'a11y dès le départ, c'est repousser une dette qui coûtera 10 fois plus cher à corriger après coup. Le reste du module te donne les outils concrets : ARIA, clavier, contraste, lecteurs d'écran, audit.
+
+---
+stability: intemporel

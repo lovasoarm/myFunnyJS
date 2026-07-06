@@ -70,3 +70,6 @@ Cette compétence devient plus précieuse à mesure que les outils automatisent 
 La syntaxe ne suffit pas si tu ne sais pas penser le problème avant de coder. Ça casse de trois façons sans cette méthode : mauvais départs répétés, fonctions géantes impossibles à tester, solutions qui ne survivent pas au premier changement. Cette compétence devient encore plus stratégique à l'ère de l'IA générative.
 
 Maintenant, ouvre `01_decompose.md`. Et arrête de foncer dans l'éditeur avant d'avoir compris le vrai problème.
+
+---
+stability: intemporel

@@ -206,3 +206,6 @@ Les modules ES6 ne sont pas une feature de confort. C'est la frontière entre to
 Export nommé : tu choisis ce qui est public. Export default : la signature du fichier. Namespace import : contexte visible. Re-export : un point d'entrée propre. Dynamic import : chargement à la demande pour des apps rapides.
 
 Ce que tu n'exportes pas n'existe pas pour les autres. C'est la règle la plus importante du fichier.
+
+---
+stability: intemporel

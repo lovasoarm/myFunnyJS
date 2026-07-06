@@ -268,3 +268,6 @@ Vérifie que la conversion aller-retour produit le même graphe. Teste sur le r�
 # RÉSUMÉ
 
 Un graphe c'est des noeuds et des arêtes. Directed si les arêtes ont un sens, weighted si elles ont un poids. Deux représentations : adjacency list (O(V+E), efficace sur les graphes peu denses) et adjacency matrix (O(V²), rapide pour "X et Y sont-ils connectés ?"). En pratique : adjacency list. Les graphes modélisent les réseaux, les dépendances, les plans de navigation. Dès que ton problème a des connexions entre entités, pense graphe.
+
+---
+stability: intemporel

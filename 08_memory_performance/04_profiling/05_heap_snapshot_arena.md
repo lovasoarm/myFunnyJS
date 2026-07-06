@@ -44,3 +44,6 @@ http.createServer((req, res) => {
 ## (attention) Ce que l'exercice cache
 
 Un snapshot **fige** l'état ; il ne dit pas **pourquoi** l'objet est retenu. La `retainer chain` est ta boussole, pas la taille brute.
+
+---
+stability: intemporel

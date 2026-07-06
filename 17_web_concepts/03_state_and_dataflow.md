@@ -311,3 +311,6 @@ La règle n°1 : une seule source de vérité. Pas deux variables qui représent
 Le flux unidirectionnel : Action --> Store --> Vue. Jamais dans l'autre sens.
 Ne jamais muter l'état directement : créer un nouvel objet avec les modifications. Sinon les changements sont invisibles.
 Distinguer local state, shared state, server state et URL state : ce ne sont pas les mêmes problèmes.
+
+---
+stability: stable

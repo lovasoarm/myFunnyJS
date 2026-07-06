@@ -156,3 +156,6 @@ Implémente les 4 niveaux. Chaque niveau ajoute ou surcharge quelque chose. Puis
 ## RÉSUMÉ
 
 `extends` chaîne deux prototypes de classe exactement comme `Object.create` chaîne deux objets. `super()` doit être appelé avant tout accès à `this` dans un constructeur enfant, et `super.methode()` permet d'étendre une méthode parente sans la dupliquer. Le vrai risque n'est pas la syntaxe, qui est fiable : c'est la profondeur. Plus une hiérarchie s'empile, plus un changement au sommet devient dangereux et difficile à tracer pour tous les niveaux du dessous.
+
+---
+stability: intemporel

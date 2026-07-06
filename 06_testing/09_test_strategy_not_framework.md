@@ -64,3 +64,6 @@ tant que le contrat externe ne bouge pas.**
 100% de couverture = 100% des lignes **exécutées** par les tests. Ça ne dit
 rien sur les **assertions**. Un test sans `assert` couvre sans vérifier.
 Coverage est un outil de détection, pas un objectif.
+
+---
+stability: intemporel

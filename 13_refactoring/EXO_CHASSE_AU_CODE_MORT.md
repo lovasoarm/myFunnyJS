@@ -17,3 +17,6 @@ Reprends le mini-projet `31_mini_projects/10_legacy_dungeon`. Ton objectif : lis
 bash verification_pack/13_refactoring/verify.sh solution.js
 # doit afficher : drill 2 OK (detection code mort)
 ```
+
+---
+stability: intemporel

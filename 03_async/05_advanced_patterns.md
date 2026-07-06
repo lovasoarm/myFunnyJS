@@ -50,3 +50,6 @@ for await (const chunk of readable) {
 ## (attention) Ce que l'analogie "async = parallèle" cache
 
 Async ≠ parallèle. Async = **entrelacé** sur un seul thread. Le parallèle vient des workers.
+
+---
+stability: intemporel

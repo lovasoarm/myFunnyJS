@@ -93,3 +93,6 @@ Un site qui marche "pour toi" peut être totalement inutilisable pour quelqu'un 
 Maintenant, ouvre `01_a11y_why_it_matters.md`. Et regarde enfin ton interface du point de vue de quelqu'un qui ne la voit pas comme toi.
 
 > Ce module réutilise : les concepts web du module 18 (`18_web_concepts`), la testabilité du module 06 (`06_testing`).
+
+---
+stability: intemporel

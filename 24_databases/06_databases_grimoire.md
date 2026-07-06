@@ -89,3 +89,6 @@ Le reste (quel ORM est à la mode, quelle DB cloud est tendance) change tous les
 Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
 Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
 pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
+
+---
+stability: stable

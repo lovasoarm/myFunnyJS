@@ -51,3 +51,6 @@ P6 Pensée transférable.
 
 Somme des auto-évals / 80. En dessous de 56/80 (70 %), tu n'es pas encore
 prêt à publier ce portfolio : cible d'abord les lignes à 0-2.
+
+---
+stability: intemporel

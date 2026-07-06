@@ -244,3 +244,6 @@ Un generator retourne un iterator : `for...of`, spread, déstructuration fonctio
 `yield` peut recevoir une valeur via `.next(valeur)` : communication bidirectionnelle avec le générateur.
 `async function*` combine generators et async/await : produit des résultats au fur et à mesure, pas tous d'un coup.
 Un generator a un état interne : ne le partage pas entre plusieurs consommateurs sans contrôle.
+
+---
+stability: intemporel

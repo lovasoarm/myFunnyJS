@@ -254,3 +254,6 @@ Implémente Kruskal avec Union-Find. Retourne les arêtes du MST et le coût tot
 # RÉSUMÉ
 
 Union-Find maintient des groupes dynamiques avec deux opérations : `find` (quel groupe ?) et `union` (fusionner deux groupes). Path compression + union by rank donnent O(α(n)) amorti : quasi O(1). Idéal pour les problèmes de connectivité dynamique, la détection de cycle en O(E), et Kruskal's MST. Quand BFS/DFS répondent à "sont-ils connectés ?" en O(V+E), Union-Find répond en O(α(n)).
+
+---
+stability: intemporel

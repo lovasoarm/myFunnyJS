@@ -288,3 +288,6 @@ const typeAction = (text) => ({
 # RÉSUMÉ
 
 La stack résout naturellement les problèmes où l'ordre inverse compte : le dernier ouvrant doit être fermé en premier, la dernière page visitée est la première à retrouver en arrière, la dernière action est la première annulée. Deux stacks ensemble (back + forward, undo + redo) permettent une navigation bidirectionnelle. Le pattern est toujours le même : push avant d'agir, pop pour revenir. La vraie question n'est pas comment utiliser une stack : c'est de reconnaître quand un problème en a besoin.
+
+---
+stability: intemporel

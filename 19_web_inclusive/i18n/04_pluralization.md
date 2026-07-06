@@ -127,3 +127,6 @@ Teste `Intl.PluralRules('fr-FR').select(0)` et `Intl.PluralRules('en-US').select
 ## RÉSUMÉ
 
 La pluralisation n'est jamais juste "ajouter un s" : certaines langues ont 1 forme, d'autres 2, d'autres jusqu'à 6 selon des règles de divisibilité précises. `Intl.PluralRules` donne la bonne catégorie grammaticale ("one", "few", "many", "other") pour n'importe quelle locale, et tes fichiers de traduction doivent prévoir une entrée par catégorie. Toujours prévoir un fallback `other` pour les langues qui n'ont pas toutes les catégories, sinon tu affiches `undefined` en prod.
+
+---
+stability: intemporel

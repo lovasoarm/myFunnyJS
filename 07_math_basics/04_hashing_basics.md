@@ -338,3 +338,6 @@ Les collisions sont inévitables dans les hash tables, gérées par chaining ou 
 Hash de structure = rapide, collisions tolérées. Hash cryptographique = lent intentionnellement, collisions interdites.
 Le `Map` de JS t'offre du O(1) grâce au hashing. bcrypt te protège grâce à sa lenteur.
 Les clés objet dans un `Map` se comparent par référence : sérialise-les si tu veux les comparer par valeur.
+
+---
+stability: intemporel

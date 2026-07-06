@@ -329,3 +329,6 @@ Le piège systématique : oublier de se désabonner crée des memory leaks.
 En prod : partout où un changement d'état doit déclencher plusieurs réactions indépendantes : c'est Observer.
 
 **Note : 10/10**
+
+---
+stability: intemporel

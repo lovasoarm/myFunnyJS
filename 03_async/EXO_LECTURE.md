@@ -19,3 +19,6 @@ On te fournit un extrait de code avec un `await` dans une boucle vs `Promise.all
 ## (attention) Ce que l'exo révèle
 
 Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modèle mental cloche. Un dev qui lit vite mais faux est plus dangereux qu'un dev lent mais juste.
+
+---
+stability: intemporel

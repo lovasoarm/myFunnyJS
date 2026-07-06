@@ -80,3 +80,6 @@ ne libère l'entrée QUE si plus rien ne référence l'HTMLElement. Si `cache.pu
 existe, WeakMap ne t'aide pas : c'est `cache` qu'il faut virer.
 
 Prochaine étape : `07_worker_leak_reproduction.md`.
+
+---
+stability: intemporel

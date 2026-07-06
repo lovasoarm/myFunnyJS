@@ -115,3 +115,6 @@ Affiche un taux de victoire (exemple 0.923) en pourcentage pour 3 locales diffé
 ## RÉSUMÉ
 
 Le point et la virgule échangent leurs rôles de séparateur décimal et de séparateur de milliers selon le pays : un `.replace()` à la main ne peut jamais couvrir tous les cas. `Intl.NumberFormat` connaît les règles de chaque locale pour les nombres, les devises et les pourcentages, sans librairie externe. La règle la plus sûre reste de toujours transporter les nombres en format natif (pas en string déjà formatée) et de ne formater qu'à l'affichage final.
+
+---
+stability: intemporel

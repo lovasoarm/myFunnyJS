@@ -21,3 +21,6 @@ Chaque compétence est reliée au module qui la forge. Ce référentiel sert de 
 | Défendre ses choix à l'oral | `31_annexes/interview` |
 
 Note : le debugging est traité dans `04_debugging` (et non `04_debugging`).
+
+---
+stability: intemporel

@@ -352,3 +352,6 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 - **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
+
+---
+stability: intemporel

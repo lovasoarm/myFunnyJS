@@ -65,3 +65,6 @@ Règle : dans un callback passé à `setTimeout`, `addEventListener`, `map`, etc
 Dans un callback standard (pas arrow), `this` change selon l'appelant. Dans une arrow function, `this` est capturé à la création : il garde le `this` de la fonction englobante.
 
 Ce fichier couvre l'essentiel pour démarrer. Le comportement complet de `this` avec `bind`, `call`, `apply`, les classes et le prototype est dans `18_oop_js`.
+
+---
+stability: intemporel

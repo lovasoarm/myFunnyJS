@@ -47,3 +47,6 @@ Deux échecs classiques : le dev qui se couche à la première pression (et livr
 ## APRÈS
 
 Réécoute-toi. Repère où ta voix a tremblé, où tu as concédé trop vite, où tu t'es braqué. Refais le drill avec un désaccord tiré d'un de tes propres mini-projets.
+
+---
+stability: intemporel

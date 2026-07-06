@@ -76,3 +76,6 @@ Ce module reutilise : les modeles mentaux de `03_async/00_why_async.md`.
 > - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
 > - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
 > - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.
+
+---
+stability: intemporel

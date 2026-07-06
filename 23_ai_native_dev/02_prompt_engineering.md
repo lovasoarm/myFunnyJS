@@ -269,3 +269,6 @@ Demande 3 implémentations différentes d'une fonction qui déduplique un tablea
 ## RÉSUMÉ
 
 Un prompt flou donne du code plausible. Un prompt précis donne du code utile. La différence : contexte + contraintes + format + exemples. Le few-shot est la technique la plus puissante et la moins utilisée. L'itération en dialogue est normale : tu corriges de façon ciblée, pas depuis zéro. Et à la fin, le code qui rentre dans ton codebase, c'est sous ta responsabilité : pas celle du LLM.
+
+---
+stability: perissable

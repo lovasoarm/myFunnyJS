@@ -177,3 +177,6 @@ Une trace s'arrête net après le maillon "Distributeur secondaire" dans l'outil
 ## RÉSUMÉ
 
 Le distributed tracing découpe une requête en spans organisés en arbre, pour voir précisément où le temps disparaît à travers plusieurs services, là où le simple correlation ID ne fait que relier des logs sans montrer la durée de chaque étape. La propagation du `traceId` doit voyager dans les headers HTTP entre chaque service, sinon la trace se casse et devient orpheline. Le sampling adaptatif (tout tracer sur les incidents et retards, un échantillon sur le reste) évite de payer le coût d'un traçage à 100% sans perdre les cas qui comptent vraiment.
+
+---
+stability: stable

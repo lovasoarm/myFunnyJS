@@ -228,3 +228,6 @@ un module en amont mal digéré. Remonte d'un cran avant d'insister sur celui qu
 Tu sais où te situer, tu sais comment t'organiser. Reste plus qu'à voir l'ordre exact.
 
 Ouvre `README.md` à la racine, lis la ROADMAP, et lance-toi.
+
+---
+stability: intemporel

@@ -24,3 +24,6 @@ Temps de lecture ~5 min
 ## (attention) Piège
 
 "Envoie-moi le code" = tu perds. La contrainte fait le muscle.
+
+---
+stability: intemporel

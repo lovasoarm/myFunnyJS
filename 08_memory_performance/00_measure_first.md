@@ -54,3 +54,6 @@ de 1M d'entiers. Publie les 3 chiffres.
 Une version 20% plus rapide mais 3× plus complexe à maintenir est une
 **régression** business. La lisibilité est aussi une perf : la perf du
 prochain humain qui lit le code.
+
+---
+stability: intemporel

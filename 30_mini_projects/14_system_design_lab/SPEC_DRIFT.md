@@ -26,3 +26,6 @@ Au moment où tu as terminé la première itération (design + premier code), on
 
 Les specs bougent. Les vraies. Un ingénieur qui rage-quit au premier changement de spec ne
 survit pas 6 mois en équipe. Ce drill matérialise la résilience aux specs mouvantes.
+
+---
+stability: intemporel

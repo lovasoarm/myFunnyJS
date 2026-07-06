@@ -341,3 +341,6 @@ Transforme le `SurvivorModel` de la leçon pour qu'il étende `EventTarget`. Le 
 ## RÉSUMÉ
 
 MVC ne résout pas tous les problèmes. Il résout un problème précis : qui est responsable de quoi quand le code grossit. Le Model ne voit pas l'UI. La View ne connaît pas les règles métier. Le Controller est le seul à connaître les deux : et il délègue à chacun ce qui lui appartient. Quand un dev touche MVC sans respecter cette frontière, le Controller grossit, avale tout, et un jour personne ne veut plus l'ouvrir.
+
+---
+stability: intemporel

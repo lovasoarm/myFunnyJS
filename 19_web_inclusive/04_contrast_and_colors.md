@@ -118,3 +118,6 @@ Vérifie le contraste de la bordure de focus (l'anneau bleu qui apparaît au Tab
 ## RÉSUMÉ
 
 Le contraste se mesure avec un ratio précis, pas une impression visuelle. WCAG fixe 4.5:1 minimum pour le texte normal en niveau AA, 3:1 pour le texte large. La couleur seule ne doit jamais porter une information critique : un daltonique rouge-vert ne fait pas la différence. Toujours tester avec un vrai outil de calcul, surtout sur les éléments discrets qu'on oublie (placeholders, focus, texte désactivé).
+
+---
+stability: intemporel

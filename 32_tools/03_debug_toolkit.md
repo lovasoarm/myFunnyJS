@@ -203,3 +203,6 @@ EXO 3 : La trace qui révèle le bug :
 ## RÉSUMÉ
 
 Un `console.log` isolé montre une valeur sans contexte ni vérification. Une assertion vérifie une hypothèse et plante immédiatement avec une cause claire si elle est fausse. Un inspecteur d'état fige un snapshot complet et fiable grâce à un clone profond, sans casser le flux du code. Un traceur suit un chemin d'exécution étape par étape, utile pour des bugs de logique répartis sur plusieurs calculs liés. Ces outils maison complètent le débogueur intégré de l'éditeur, ils le remplacent pas : chacun a son terrain où il excelle.
+
+---
+stability: perissable

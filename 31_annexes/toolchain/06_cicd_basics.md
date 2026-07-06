@@ -77,3 +77,6 @@ négatif silencieux.
 La CI est aussi un **contrat social** : elle rend visible ce que tu ne
 veux pas voir. Un test flaky en CI publique force l'équipe à le régler.
 En local, on l'oublie.
+
+---
+stability: intemporel

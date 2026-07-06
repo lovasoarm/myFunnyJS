@@ -23,3 +23,6 @@ QUESTION PRÉCISE : une seule interrogation, close ou ouverte.
 ## Exercice
 
 Prends la dernière question technique que tu as posée. Réécris-la au template. Diff = ta marge.
+
+---
+stability: intemporel

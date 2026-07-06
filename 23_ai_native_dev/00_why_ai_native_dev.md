@@ -95,3 +95,6 @@ Tu viens de la sécurité classique (input validation, auth, injection, MITM).
 Ici tu changes de terrain : l'attaquant n'est plus un humain qui te sonde, c'est
 une IA qui te propose du code plausible mais faux. Même posture : méfiance
 active : appliquée à un vecteur nouveau.
+
+---
+stability: perissable

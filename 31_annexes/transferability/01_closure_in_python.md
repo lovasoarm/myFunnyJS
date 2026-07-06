@@ -28,3 +28,6 @@ Python capture par référence de nom, comme JS `var`. Utilise un default arg po
 - Qu'est-ce qui a été **identique** à JS ?
 - Qu'est-ce qui a été **différent** ?
 - Qu'est-ce que tu retiens pour la prochaine fois ?
+
+---
+stability: intemporel

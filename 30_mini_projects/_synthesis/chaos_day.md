@@ -37,3 +37,6 @@ Pour chaque vague : minute par minute, note ce que tu as pensé, ce que tu as fa
 ## Piège
 
 Ne prépare pas les vagues à l'avance. La panique fait partie de l'exercice.
+
+---
+stability: intemporel

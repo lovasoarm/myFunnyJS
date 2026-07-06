@@ -80,3 +80,6 @@ Maintenant, ouvre `01_factory_pattern.md`. Et commence à reconnaître les patte
 > ENCADRÉ : NIVEAU : Ici, les recettes de conception au niveau d'une classe ou d'un petit groupe de classes.
 
 > Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
+
+---
+stability: intemporel

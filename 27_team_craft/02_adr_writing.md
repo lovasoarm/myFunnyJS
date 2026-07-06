@@ -256,3 +256,6 @@ Le contexte est la partie la plus importante : sans lui, la décision semble arb
 Les alternatives qu'on a rejetées sont aussi précieuses que le choix final.
 Le statut d'un ADR évolue : on ne le modifie pas, on le remplace avec un nouveau.
 Un dossier `ADR/` avec un index est le minimum viable pour un projet qui dure.
+
+---
+stability: intemporel

@@ -170,3 +170,6 @@ Propose une règle d'alerte complète (métrique, seuil, durée, sévérité) po
 ## RÉSUMÉ
 
 Un counter ne fait que monter, une gauge monte et descend, un histogram capture une distribution complète pour calculer des percentiles. La moyenne cache les cas extrêmes : le P99 révèle ce que vit le pire 1% des cas, et c'est souvent là que se cache le vrai problème. Les golden signals (latency, traffic, errors, saturation) couvrent l'essentiel d'un système en bonne santé, et une alerte bien calibrée (seuil + durée minimale) protège l'équipe de l'alert fatigue sans jamais laisser passer une vraie dégradation.
+
+---
+stability: stable

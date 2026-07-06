@@ -278,3 +278,6 @@ Le pipeline Oracle Glitch du mini-projet `09_oracle_glitch` est appelé 50 000 f
 ## RÉSUMÉ
 
 L'IA est un multiplicateur de productivité si tu sais déjà penser : c'est une béquille cognitive si tu ne sais pas. La différence entre les deux, c'est toi qui valides chaque ligne. Le workflow n'est pas "prompte, copie, déploie". C'est "comprends, prompte, valide, comprends encore". Et ça inclut le coût : un appel IA qui marche mais qui plombe ta facture n'est pas une solution, c'est un problème déguisé.
+
+---
+stability: perissable

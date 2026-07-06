@@ -29,3 +29,6 @@ On te donne `package-lock.json.audit` (voir dossier). Trouve :
 ## (attention) Piège
 
 `npm audit` te rassure. Il **ne détecte que ce qui est déjà signalé**. Zero-day supply chain = angle mort.
+
+---
+stability: stable

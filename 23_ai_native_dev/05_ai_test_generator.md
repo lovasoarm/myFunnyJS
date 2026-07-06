@@ -289,3 +289,6 @@ Choisis une fonction de scoring non triviale (score Ballon d'Or pondéré par ma
 ## RÉSUMÉ
 
 Un test généré depuis le code teste le code, pas le comportement attendu. Le bon ordre : spécification d'abord, tests depuis la spec, implémentation ensuite. Les 5 catégories à couvrir : nominal, limite, erreur, edge, régression. La couverture de code mesure l'exécution, pas la qualité des assertions. Mutation testing avec Stryker mesure si tes tests détectent vraiment les bugs. L'IA est efficace pour brainstormer les cas de test, pas pour les décider.
+
+---
+stability: perissable

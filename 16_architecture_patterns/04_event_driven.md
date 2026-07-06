@@ -292,3 +292,6 @@ Le coup d'oeil de Garo : personne ne sait qui combat à côté, tout le monde r�
 Le vrai gain : tu peux ajouter un service, l'enlever, le modifier : sans toucher au reste.
 Le vrai risque : la cascade d'events et les listeners qui s'accumulent en mémoire.
 La règle d'or : toujours retourner une fonction de désabonnement. Toujours.
+
+---
+stability: intemporel

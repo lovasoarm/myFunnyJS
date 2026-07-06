@@ -31,3 +31,6 @@ On dit souvent "const = valeur figée". Faux. `const` fige le **binding**, pas l
 ## Mission
 
 Retape la boucle `setTimeout` avec `var` puis avec `let`. Prédis avant de lancer.
+
+---
+stability: intemporel

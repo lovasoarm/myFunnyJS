@@ -203,3 +203,6 @@ Reprends l'exemple du cache local du point 5. Le prix d'un lot change chez Gus, 
 ## RÉSUMÉ
 
 Scale up grossit une machine, simple mais limité par un plafond physique et toujours un seul point de panne. Scale out ajoute des machines, illimité en théorie et redondant, mais exige un code stateless pour ne pas créer plusieurs vérités incohérentes. La vraie question n'est jamais "lequel des deux", c'est "est-ce que mon code peut tourner sur plusieurs machines sans se contredire", et cette question doit se poser avant la crise de charge, pas pendant.
+
+---
+stability: stable

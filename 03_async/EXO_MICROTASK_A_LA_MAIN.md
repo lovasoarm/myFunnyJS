@@ -19,3 +19,6 @@ console.log(log.join(','));
 
 ## Vulgarisation obligatoire
 Ecris dans `EXPLIQUE_A_UN_ENFANT.md` en 5 phrases ce que fait ta file, sans mot technique.
+
+---
+stability: intemporel

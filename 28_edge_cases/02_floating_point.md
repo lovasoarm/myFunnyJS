@@ -318,3 +318,6 @@ Pour comparer des flottants : utiliser une tolérance epsilon, jamais `===`.
 Pour les calculs financiers : travailler en entiers (centimes), diviser uniquement pour l'affichage.
 `toFixed()` c'est pour l'affichage, pas pour la logique : ça retourne une string, et ça a ses propres erreurs d'arrondi.
 `Number.MAX_SAFE_INTEGER` : au-delà de `2^53 - 1`, les entiers perdent leur précision. Utiliser BigInt pour les très grands entiers.
+
+---
+stability: intemporel

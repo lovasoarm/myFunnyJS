@@ -198,3 +198,6 @@ Identifie dans ton petit projet quel fichier est une "feuille" (zéro dépendanc
 ## RÉSUMÉ
 
 Une migration JS vers TS réussie avance par étapes vérifiables, jamais d'un seul bloc risqué. `allowJs` ouvre le sas sans rien casser, `checkJs` + JSDoc apporte la vérification de type avant même de renommer un fichier. La migration fichier par fichier suit l'ordre du graphe de dépendances : les feuilles d'abord, la racine en dernier, pour éviter une cascade de `any` temporaires. La strictness se renforce progressivement, `noImplicitAny` avant `strictNullChecks`, parce que les deux douleurs combinées d'un coup découragent l'équipe. Le signal de fin : plus de JS dans le projet, `strict: true` sans exception, et `allowJs` qui devient inutile.
+
+---
+stability: perissable

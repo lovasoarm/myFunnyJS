@@ -178,3 +178,6 @@ Ce qui changera : les options précises de tsconfig (certaines apparaissent, d'a
 Ce qui ne changera pas : le besoin de typer l'externe, de contrôler la rigueur du compilateur, et de faire cohabiter du code typé avec du code qui ne l'est pas encore.
 
 Michael Scofield avait un plan B pour chaque étape. Ce module, c'est ton plan B pour tout ce que TypeScript ne couvre pas tout seul, par défaut, sans configuration réfléchie.
+
+---
+stability: perissable

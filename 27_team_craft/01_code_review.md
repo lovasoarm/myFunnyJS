@@ -282,3 +282,6 @@ Classifier chaque commentaire (bloquant / suggestion / nitpick) évite 80% des f
 La structure `observation + impact + suggestion` transforme un reproche en information utile.
 Recevoir une review sans défensive : ça s'apprend, et ça fait gagner du temps à tout le monde.
 La checklist existe pour que "LGTM" veuille dire quelque chose.
+
+---
+stability: intemporel

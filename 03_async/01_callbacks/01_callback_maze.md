@@ -261,3 +261,6 @@ chargerProfil("kakashi", function(profil) {
 # RÉSUMÉ
 
 Un callback c'est une fonction passée à une autre pour être appelée plus tard. La convention error-first est non négociable en Node : le premier argument est toujours l'erreur. Le callback hell naît de l'imbrication en séquence : la solution courte est de nommer les fonctions, la vraie solution c'est les Promises. Le problème fondamental des callbacks c'est l'inversion of control : tu cèdes le contrôle à du code extérieur, sans garantie sur quand ni combien de fois ton code sera appelé.
+
+---
+stability: intemporel

@@ -165,3 +165,6 @@ Crée un `global.d.ts` qui déclare une propriété custom sur `window` (ou sur 
 ## RÉSUMÉ
 
 Un `.d.ts` décrit la forme de quelque chose qui existe déjà ailleurs, il n'implémente jamais rien et n'est jamais exécuté. `declare` dit à TypeScript de te faire confiance sur l'existence d'une chose au runtime. La précision d'un `.d.ts` est ta seule protection : un type trop optimiste te fait perdre exactement ce que TypeScript est censé t'apporter. `declare global` étend des types existants via la fusion de déclarations, utile pour les variables globales injectées de l'extérieur. Un `.d.ts` mal écrit, c'est un plan de Fox River qui ment sur l'emplacement d'un mur : tu fonces dedans en pensant qu'il y a une porte.
+
+---
+stability: intemporel

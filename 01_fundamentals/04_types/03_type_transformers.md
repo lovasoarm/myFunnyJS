@@ -254,3 +254,6 @@ Crée une fonction `parseCurrency(value)` qui :
 - Ne jamais croire un input à l'aveugle
 
 Les types sont neutres. C'est la méconnaissance des règles qui crée les bugs : et maintenant tu les connais.
+
+---
+stability: intemporel

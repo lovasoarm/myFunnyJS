@@ -38,3 +38,6 @@ Startup 4 devs, 20k shinobis, produit qui pivote tous les 2 mois. On te propose 
 ## RÈGLE D'OR
 
 Ta réponse est jugée sur l'ARGUMENT, pas sur le choix. Deux réponses opposées peuvent être 10/10.
+
+---
+stability: intemporel

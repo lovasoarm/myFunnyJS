@@ -329,3 +329,6 @@ Breakpoint conditionnel : pause seulement quand une condition est vraie, pas à 
 Step over (F10) pour avancer, step into (F11) pour entrer dans une fonction, step out (Shift+F11) pour en sortir.
 Le panneau Scope te montre local, closure, global : si une variable vaut `undefined`, cherche dans quel scope elle vit.
 `watchProperty` pour attraper une mutation au vol quand tu ne sais pas qui mute.
+
+---
+stability: intemporel

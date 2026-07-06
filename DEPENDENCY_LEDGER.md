@@ -211,3 +211,6 @@ Sur les 4 sessions, combien de fois CAS D (l'IA a coûté du temps) :
 | 13 | Memory Hunter | ... | ... | ... |
 | 14 | System Design Lab | ... | ... | ... |
 | 15 | Portage Rasengan multi-langage | ... | ... | ... |
+
+---
+stability: intemporel

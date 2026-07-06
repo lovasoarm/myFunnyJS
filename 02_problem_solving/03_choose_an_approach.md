@@ -219,3 +219,6 @@ Identifie le problème de performance. Propose une approche alternative. Documen
 # RÉSUMÉ
 
 Comparer avant de coder : c'est pas de la procrastination, c'est de la discipline. Tu regardes complexité, performance, couplage, et coût de changement. Tu utilises le "et si" pour voir comment chaque approche tient face aux évolutions probables. Tu documentes ta décision : trois lignes minimum. Pas pour toi. Pour le dev qui arrive dans 6 mois et se demande pourquoi t'as fait ce choix.
+
+---
+stability: intemporel

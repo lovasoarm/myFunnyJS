@@ -95,3 +95,6 @@ process se ferme avec des heaps orphelines. En prod, `SIGTERM` sans grace period
 mémoire perdue jusqu'au restart.
 
 Prochaine étape : `08_native_and_addons.md` (mémoire hors V8).
+
+---
+stability: intemporel

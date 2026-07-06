@@ -32,3 +32,6 @@ d'éditer.
 
 Livrable : `EXO_LECTURE.md` + diff du commit. Un pair te lit et vote :
 "tu avais compris avant de toucher, oui/non". Non = tu recommences.
+
+---
+stability: intemporel

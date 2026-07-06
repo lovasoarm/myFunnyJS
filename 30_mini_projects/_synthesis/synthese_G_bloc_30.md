@@ -29,3 +29,6 @@ Contraintes qui peuvent tomber :
 5. "La sécu impose CSP strict."
 
 Chaque changement → nouvel ADR (max 1 page).
+
+---
+stability: intemporel

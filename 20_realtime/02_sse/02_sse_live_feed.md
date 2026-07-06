@@ -359,3 +359,6 @@ Modifie le client pour qu'il :
 
 Contrainte : sans modifier le serveur : tout se passe dans le code client.
 (Indice : tracker `this.reconnectCount` et écouter les events `open` et `error` sur EventSource)
+
+---
+stability: stable

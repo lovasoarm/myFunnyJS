@@ -138,3 +138,6 @@ Organise 3 namespaces (`auth`, `radio`, `profil`) pour 2 langues (`fr`, `en`), a
 ## RÉSUMÉ
 
 Charger toutes les langues d'un coup gonfle le bundle pour rien : utilise l'import dynamique pour ne charger que la langue active. Détecte la langue du navigateur en fallback intelligent, mais laisse toujours le shinobi la changer manuellement. Découpe les traductions par namespace et par fichier pour que ça tienne à l'échelle. Et automatise la détection des clés manquantes en CI, pour qu'un trou de traduction casse le build plutôt que l'expérience shinobi en prod.
+
+---
+stability: intemporel

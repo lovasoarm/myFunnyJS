@@ -56,3 +56,6 @@ Bonus : implémente un mutex avec `Atomics.wait` / `Atomics.notify`.
 - Mémoire partagée = data races par défaut.
 - `Atomics` = opérations indivisibles, obligatoires dès qu'on partage.
 - La visibilité mémoire n'est PAS gratuite ; il faut la demander.
+
+---
+stability: intemporel

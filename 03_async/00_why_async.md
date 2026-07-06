@@ -110,3 +110,6 @@ Regle : Call Stack se vide -> on draine TOUTES les microtasks -> puis UNE task -
 ```
 
 Retiens : microtasks avant tasks, toujours. C'est pour ca qu'un `await` peut faire "avancer plus vite" qu'un `setTimeout(fn, 0)`.
+
+---
+stability: intemporel

@@ -42,3 +42,6 @@ travaille 60× plus vite.
 
 Écris `agent_capabilities.yml` pour ton propre projet : liste ce que l'agent peut
 et ne peut PAS. Chaque interdit doit être appliqué techniquement, pas déclaratif.
+
+---
+stability: perissable

@@ -14,3 +14,6 @@ Temps de lecture ~5 min
 | Mutation | Modifier le contenu d'un objet existant : toutes les références vers cet objet voient le changement | `let arr = [1,2]; let b = arr; b.push(3); // arr aussi` | Repeindre la maison : tout le monde qui a l'adresse voit le changement / Modifier un Google Doc partagé : la mise à jour est pour tout le monde |
 | Shallow Copy | Copie de la première couche seulement : les objets imbriqués restent partagés | `let copy = [...arr]; // tableau nouveau, objets internes partagés` | Photocopier la couverture d'un livre, pas les pages / Dupliquer un dossier sans copier les fichiers qu'il contient |
 | Deep Copy | Copie complète de toute la structure, tous les niveaux imbriqués inclus | `let deep = structuredClone(obj);` | Imprimer l'intégralité du livre, page par page / Cloner une clé USB avec tout son contenu |
+
+---
+stability: intemporel

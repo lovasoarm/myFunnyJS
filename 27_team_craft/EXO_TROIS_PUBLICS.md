@@ -14,3 +14,6 @@ Ecris 3 explications de 5 phrases max :
 
 ## Livrables
 `TROIS_PUBLICS_<concept>.md` avec les trois blocs et une auto-critique (laquelle t'a pris le plus de temps ? pourquoi ?).
+
+---
+stability: intemporel

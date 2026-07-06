@@ -265,3 +265,6 @@ Ce challenge n'est pas un exercice de plus : c'est la preuve que le FP est utili
 Chaque concept du module s'assemble ici : pure functions pour le nettoyage, immutabilité pour ne rien casser, curry pour les coefficients, pipe pour l'assemblage.
 Le résultat : un pipeline qui se teste bout à bout, qui se modifie sans risque, et qui s'étend sans toucher ce qui marche.
 C'est ça le FP en prod : pas un style, une architecture.
+
+---
+stability: intemporel

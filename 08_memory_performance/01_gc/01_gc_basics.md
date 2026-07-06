@@ -341,3 +341,6 @@ function registerNinja(ninja) {
 # RÉSUMÉ
 
 Le GC de V8 utilise mark-and-sweep : tout ce qui est atteignable depuis les roots survit, le reste meurt. Une fuite mémoire, c'est un objet qu'on ne veut plus mais qu'une référence maintient en vie : tableau global qui grossit, listener non retiré, closure qui capture trop. `WeakMap` et `WeakSet` résolvent le cas où tu veux associer des données à un objet sans empêcher sa destruction. Comprendre le GC, c'est comprendre pourquoi ton app ralentit sans raison apparente.
+
+---
+stability: intemporel

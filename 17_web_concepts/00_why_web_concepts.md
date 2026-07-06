@@ -76,3 +76,6 @@ Un framework cache la complexité du web, mais ne la fait pas disparaître, et t
 Maintenant, ouvre `01_http_rest_basics.md`. Et apprends enfin à lire une requête comme un vrai ingénieur, pas juste comme quelqu'un qui copie un exemple de doc.
 
 > Ce module réutilise : l'asynchrone du module 03 (`03_async`), la gestion d'erreurs du module 05 (`05_error_handling`).
+
+---
+stability: stable

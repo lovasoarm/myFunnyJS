@@ -180,3 +180,6 @@ Crée un `docker-compose.yml` qui lance ton app Node ET une base PostgreSQL (ou 
 ## RÉSUMÉ
 
 Docker isole au niveau processus, pas au niveau OS complet : c'est pour ça que c'est léger et rapide comparé à une VM. L'ordre des instructions dans un Dockerfile détermine ce qui reste en cache, donc la vitesse de chaque build. Le multi-stage build sépare la construction de l'exécution, pour une image finale minimaliste sans outils de build inutiles en prod. Docker Compose orchestre plusieurs containers ensemble de façon déclarative, avec un réseau et une résolution de noms automatiques entre services. "Ça marche chez moi" devient "ça marche partout pareil", point final.
+
+---
+stability: intemporel

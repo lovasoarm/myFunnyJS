@@ -26,3 +26,6 @@ Aucun ticket "haute cause racine" (3, 6, 9, 10) ne peut aller en pur IA. Expliqu
 
 ## Auto-verification
 Pair review : demande a un pair de faire la meme partition en aveugle. Comparez. Argumentez les ecarts.
+
+---
+stability: perissable

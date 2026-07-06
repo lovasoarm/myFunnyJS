@@ -350,3 +350,6 @@ Tu catches seulement si tu peux agir. Sinon tu relances avec `throw e` : ou tu e
 Ne jamais avaler silencieusement. Un catch vide est pire qu'un crash : tu sais même plus que ça a cassé.
 
 L'architecture en couches donne à chaque niveau un rôle clair : lever, transformer, ou répondre.
+
+---
+stability: intemporel

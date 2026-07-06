@@ -339,3 +339,6 @@ findPeak([1])         // 0
 # RÉSUMÉ
 
 Binary search s'adapte à bien plus que les tableaux triés basiques. Tableau rotaté : identifier quelle moitié est triée, chercher dans celle qui contient la plage cible. Matrice 2D totalement triée : binary search sur les indices 1D aplatis. Matrice partiellement triée : partir du coin supérieur droit, éliminer lignes ou colonnes. Stream infini : doubler les bornes exponentiellement avant de binary searcher. Dans chaque cas, la question est : est-ce que je peux éliminer la moitié de l'espace de recherche à chaque étape ?
+
+---
+stability: intemporel

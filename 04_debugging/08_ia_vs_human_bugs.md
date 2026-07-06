@@ -41,3 +41,6 @@ perdre 3 h à chercher la mauvaise piste. Cette leçon isole les signatures.
 
 Prends une PR IA récente. Classe chaque diff en `humain-likely` ou
 `ia-likely`. Justifie en 1 phrase par diff. Compare avec un pair.
+
+---
+stability: intemporel

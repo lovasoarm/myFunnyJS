@@ -300,3 +300,6 @@ List B :    [2] --> [4] ──┘
 # RÉSUMÉ
 
 Inverser une liste c'est inverser les pointeurs un par un avec trois variables : `prev`, `current`, `next`. O(n) en temps, O(1) en mémoire : pas de copie, pas de tableau intermédiaire. Détecter un cycle c'est Floyd : deux pointeurs à des vitesses différentes se retrouvent toujours dans un cycle. Trouver le milieu c'est le même principe : slow avance d'un pas, fast de deux, quand fast est à la fin slow est au milieu. Ces trois patterns utilisent tous le même outil : **deux pointeurs qui avancent à des rythmes différents**. Reconnaître ce pattern c'est ce qui fait la différence.
+
+---
+stability: intemporel

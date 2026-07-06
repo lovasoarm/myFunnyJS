@@ -162,3 +162,6 @@ Crée un petit script Node qui fonctionne, fais 8 commits dessus, et casse-le vo
 ## RÉSUMÉ
 
 Git c'est un graphe de snapshots, pas une ligne de ordres_mission à mémoriser bêtement. `merge` préserve l'histoire réelle, `rebase` la réécrit pour qu'elle soit propre, mais jamais sur une branche que d'autres ont déjà récupérée. Un conflit c'est Git qui refuse de deviner à ta place, pas un bug. `bisect` transforme une chasse à l'aveugle en recherche dichotomique. Maîtriser ça, c'est la différence entre un camp qui survit aux erreurs et un camp qui se déchire dessus.
+
+---
+stability: intemporel

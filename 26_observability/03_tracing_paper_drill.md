@@ -28,3 +28,6 @@ On te fournit ces logs bruts :
 ## (attention) Ce que l'outil cache
 
 Une trace n'explique pas **pourquoi** un span est lent. Elle te dit **où** chercher.
+
+---
+stability: stable

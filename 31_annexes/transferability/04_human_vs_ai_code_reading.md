@@ -40,3 +40,6 @@ L'IA optimise la vraisemblance, pas la vérité de ton schema.
 - Code humain : cherche l'intention derrière les raccourcis. Ne renomme pas avant d'avoir compris.
 - Code IA : vérifie chaque nom de champ contre le schéma réel. Doute des defaults inventés.
 - Dans les deux cas : `git blame` et tests > relecture seule.
+
+---
+stability: intemporel

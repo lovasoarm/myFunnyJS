@@ -143,3 +143,6 @@ Prends une fonction avec un bug logique (une boucle qui calcule mal une somme, p
 ## RÉSUMÉ
 
 VSCode est puissant grâce au LSP qui tourne en arrière-plan, pas par magie. ESLint chasse les bugs et les mauvaises pratiques, Prettier uniformise le style : deux jobs différents, pas un doublon. Un `settings.json` committé fait que toute l'équipe a le même comportement d'éditeur, sans diffs (différences) parasites dans les commits. Le débogueur intégré remplace `console.log` pour inspecter un état complet, pas une valeur isolée devinée à l'avance.
+
+---
+stability: intemporel

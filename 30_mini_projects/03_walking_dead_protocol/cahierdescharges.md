@@ -440,3 +440,6 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 [ ] POSTMORTEM.md documente au moins une différence de comportement entre v1 et v2
 [ ] TDD_JOURNAL.md trace dans quel ordre les tests ont été écrits (phase 1 vs phase 2)
 ```
+
+---
+stability: intemporel

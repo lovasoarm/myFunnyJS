@@ -3,10 +3,10 @@
 >
 > **Temps total estimé du curriculum** : ~250 h étalées sur 6 à 9 mois. Fractionne : 1 h/jour battra 8 h le samedi.
 
-> Note : le curriculum compte **34 dossiers de modules**. Deux préludes non
-> numérotés dans la séquence pédagogique (`00_getting_started/` = mise en place,
-> `00_referentiel/` = boussole) précèdent les **32 modules de fond** numérotés
-> `01 -> 32`, eux en séquence continue et sans trou.
+> Note : **32 modules de fond** numerotes `01 -> 32` (sequence continue, sans
+> trou) + **2 preludes** non numerotes (`00_getting_started/` = mise en place,
+> `00_referentiel/` = boussole) = **34 dossiers au total**. Les deux comptes
+> sont coherents : 32 modules pedagogiques + 2 preludes utilitaires.
 
 ## COMMENT NAVIGUER (conventions de noms)
 
@@ -114,3 +114,6 @@ prendre de bonnes décisions d'architecture. JavaScript est juste le terrain d'e
 ---
 
 Direction `00_getting_started/02_day_one.md`.
+
+---
+stability: intemporel

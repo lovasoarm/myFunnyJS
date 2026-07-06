@@ -161,3 +161,6 @@ Une librairie tierce génère un warning bénin 10 000 fois par jour, noyant le 
 ## RÉSUMÉ
 
 Sentry capture l'exception avec sa stack trace et tout le contexte qui l'entoure (user, requête, version), là où un simple log ne donnerait qu'une ligne anonyme. Le fingerprinting regroupe les occurrences identiques d'une même erreur pour garder un dashboard lisible, mais ça suppose des messages d'erreur structurés plutôt qu'improvisés. La priorisation par sévérité et impact réel (pas par ordre d'arrivée) permet de traiter en premier ce qui bloque vraiment des shinobis, et filtrer le bruit connu est aussi important que capturer le signal utile.
+
+---
+stability: stable

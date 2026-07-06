@@ -76,3 +76,6 @@ Maintenant, ouvre `01_clean_code_basics.md`. Et commence à voir ton propre code
 > ENCADRÉ : NIVEAU : Ici, comment transformer du code existant qui marche mal en code qui marche bien, SOLID inclus comme boussole.
 
 > Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
+
+---
+stability: intemporel

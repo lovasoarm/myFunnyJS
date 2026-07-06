@@ -237,3 +237,6 @@ Une regex est une description de pattern, pas de la magie noire.
 Les classes (`\d`, `\w`, `[a-z]`) définissent quels caractères accepter. Les quantificateurs (`+`, `*`, `{n}`) définissent combien de fois. Les ancres (`^`, `$`) définissent où dans la chaîne. Les flags (`i`, `g`) modifient le comportement global.
 
 `.test()` retourne un booléen. `.match()` retourne un tableau ou `null` : toujours vérifier avant d'utiliser.
+
+---
+stability: intemporel

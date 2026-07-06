@@ -43,3 +43,6 @@ Refuser avec argument = tu deviens la référence sur la codebase.
 Prends une PR récente (à toi ou à un pair) et rédige un refus fictif en suivant
 le template. Puis un accept. Compare la difficulté cognitive des deux exercices.
 Refuser bien est PLUS dur qu'accepter : c'est pour ça que ça se travaille.
+
+---
+stability: perissable
