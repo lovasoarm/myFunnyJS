@@ -148,7 +148,7 @@ WRITE-BEHIND (write-back)
 
 STALE-WHILE-REVALIDATE (vu aussi dans 18_web_concepts/04_caching_strategies)
  --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
- --> l'shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
+ --> le shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```
 
 Le quand : cache-aside pour la majorité des cas (simple, sûr). Write-through quand la cohérence cache/DB est critique. Write-behind quand la vitesse d'écriture prime sur tout (analytics, compteurs de vues) et qu'une perte rare est tolérable.

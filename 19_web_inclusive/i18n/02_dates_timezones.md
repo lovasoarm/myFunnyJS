@@ -1,7 +1,7 @@
 # DATES ET TIMEZONES : LE CAUCHEMAR ET COMMENT LE RÉSOUDRE
 Temps de lecture ~8 min
 
-Tu stockes une date. Tu l'affiches. Ça marche sur ton écran, à Antananarivo, à 14h. Sauf que l'shinobi à Tokyo voit une heure différente, et celui à New York encore une autre. Les fuseaux horaires (timezones) ne sont pas un détail cosmétique : c'est la source numéro un de bugs silencieux dans les apps qui touchent plusieurs pays. Walter White synchronise ses livraisons à la minute près : toi aussi, tu dois savoir exactement QUELLE heure tu manipules.
+Tu stockes une date. Tu l'affiches. Ça marche sur ton écran, à Antananarivo, à 14h. Sauf que le shinobi à Tokyo voit une heure différente, et celui à New York encore une autre. Les fuseaux horaires (timezones) ne sont pas un détail cosmétique : c'est la source numéro un de bugs silencieux dans les apps qui touchent plusieurs pays. Walter White synchronise ses livraisons à la minute près : toi aussi, tu dois savoir exactement QUELLE heure tu manipules.
 
 ## 1) UTC : LA SEULE VÉRITÉ QUI NE BOUGE JAMAIS
 
@@ -81,17 +81,17 @@ Une seule vérité stockée (UTC), des affichages multiples calculés à la dema
 ## 4) LE PIÈGE DU FUSEAU CÔTÉ CLIENT VS SERVEUR
 
 ```js
-// Ça casse (mais fun) : faire confiance à l'heure locale de la machine de l'shinobi
-const heureLocale = new Date(); // (et si l'shinobi a réglé sa machine sur le faux fuseau ?)
+// Ça casse (mais fun) : faire confiance à l'heure locale de la machine de le shinobi
+const heureLocale = new Date(); // (et si le shinobi a réglé sa machine sur le faux fuseau ?)
 if (heureLocale.getHours() >= 22) {
  bloquerAccesNocturne(); // (logique de sécurité basée sur une horloge qu'on ne contrôle pas)
 }
 ```
 
-Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) de l'shinobi.
+Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) de le shinobi.
 
 ```js
-// Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par l'shinobi
+// Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par le shinobi
 function estHeureNocturne(maintenantUTC, fuseauSpectateur) {
  const heureLocaleReelle = DateTime.fromJSDate(maintenantUTC, { zone: fuseauSpectateur });
  return heureLocaleReelle.hour >= 22;
@@ -128,4 +128,4 @@ Affiche une même heure de rendez-vous UTC dans 3 fuseaux différents (Tokyo, Pa
 
 ## RÉSUMÉ
 
-Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de l'shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.
+Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de le shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.

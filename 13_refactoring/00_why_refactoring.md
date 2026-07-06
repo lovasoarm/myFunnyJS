@@ -37,7 +37,7 @@ code dupliqué à 5 endroits différents            --> DRY violé         --> e
 ajout d'une feature impossible sans casser autre chose     --> couplage fort       --> refactoring vers DIP/SRP
 ```
 
-Un refactoring bien fait ne se voit pas de l'extérieur : l'shinobi final ne remarque rien, parce que le comportement reste identique. C'est un investissement invisible pour l'shinobi, mais payant directement pour l'équipe qui doit continuer à faire évoluer le système.
+Un refactoring bien fait ne se voit pas de l'extérieur : le shinobi final ne remarque rien, parce que le comportement reste identique. C'est un investissement invisible pour le shinobi, mais payant directement pour l'équipe qui doit continuer à faire évoluer le système.
 
 ---
 

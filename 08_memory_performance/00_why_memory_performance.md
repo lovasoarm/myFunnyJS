@@ -26,7 +26,7 @@ La vraie question que ce module te force à poser : "qu'est-ce que cette ligne d
 
 Le dev qui ignore la mémoire et la performance livre du code qui fonctionne parfaitement... en démo. Puis l'app grossit, les shinobis arrivent, le volume de données explose, et soudain le serveur consomme 4 Go de RAM pour une tâche qui devrait en utiliser 200 Mo. Personne ne comprend pourquoi, parce que personne n'a jamais profilé (mesuré précisément la consommation) le code.
 
-Sur le frontend, c'est pareil : une fuite mémoire dans une SPA (single page application) fait que l'app devient de plus en plus lente à mesure que l'shinobi navigue, sans jamais recharger la page. L'shinobi ne sait pas pourquoi son navigateur ralentit : il ferme l'onglet et n'y revient plus.
+Sur le frontend, c'est pareil : une fuite mémoire dans une SPA (single page application) fait que l'app devient de plus en plus lente à mesure que le shinobi navigue, sans jamais recharger la page. Le shinobi ne sait pas pourquoi son navigateur ralentit : il ferme l'onglet et n'y revient plus.
 
 Le piège de la copie surface/profondeur est différent mais tout aussi discret : un dev qui croit faire une copie profonde (deep copy) d'un objet alors qu'il fait une copie superficielle (shallow copy) va corrompre des données ailleurs dans l'app sans aucun message d'erreur. Pas de crash, pas de log, juste une donnée qui ne correspond plus à ce qu'elle devrait être.
 
@@ -54,7 +54,7 @@ Les principes sont intemporels : la notation Big-O (notation qui décrit comment
 
 ## 5) CE QUI A CHANGÉ AU FIL DES ANNÉES
 
-Avant, la performance se mesurait surtout en temps de chargement brut et en taille de bundle. Aujourd'hui, les Core Web Vitals (LCP, INP, CLS : métriques Google qui mesurent la vitesse perçue, la réactivité, et la stabilité visuelle) sont devenus le standard, parce qu'ils mesurent ce que l'shinobi ressent vraiment, pas juste ce qu'un chronomètre brut indique.
+Avant, la performance se mesurait surtout en temps de chargement brut et en taille de bundle. Aujourd'hui, les Core Web Vitals (LCP, INP, CLS : métriques Google qui mesurent la vitesse perçue, la réactivité, et la stabilité visuelle) sont devenus le standard, parce qu'ils mesurent ce que le shinobi ressent vraiment, pas juste ce qu'un chronomètre brut indique.
 
 Le profiling a aussi changé d'échelle : avant, on debug avec quelques `console.log` chronométrés. Maintenant, les DevTools modernes permettent de lire un flamegraph (graphique en flammes qui visualise le temps passé dans chaque fonction) et de repérer exactement quelle fonction bouffe le CPU, sans deviner.
 

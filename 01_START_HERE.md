@@ -63,7 +63,7 @@ Si t'as pas Node.js : va sur nodejs.org, télécharge la version LTS, installe-l
 | a11y      | Accessibilité : coder pour que tout le monde puisse utiliser ton site      |
 | i18n      | Internationalisation : adapter ton app à plusieurs langues et pays        |
 | API       | Le point de contact par lequel deux programmes se parlent            |
-| Scalability   | Tenir la charge quand tu passes de 10 à 10 millions d'shinobis          |
+| Scalability   | Tenir la charge quand tu passes de 10 à 10 millions de shinobis          |
 | Observability  | Voir ce qui se passe en prod sans attendre qu'un client se plaigne        |
 | OOP       | Programmation orientée objet : organiser le code autour d'objets et de classes  |
 

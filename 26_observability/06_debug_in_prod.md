@@ -18,7 +18,7 @@ Inconvénient : demande une préparation en amont (logs, feature flags) qu'on ne
 DEBUG LOCAL             DEBUG EN PROD
 breakpoint qui FIGE le process --> observation passive, le process continue
 reproduire le bug à la main   --> capturer le bug réel quand il survient
-1 shinobi (toi)       --> des milliers d'shinobis en simultané
+1 shinobi (toi)       --> des milliers de shinobis en simultané
 ```
 
 Le pourquoi cette différence est fondamentale : un breakpoint classique arrête complètement l'exécution pour que tu inspectes l'état. En prod, arrêter le process pour un seul user pendant que 10 000 autres attendent leur réponse n'est juste pas une option. Tout l'outillage de debug en prod est donc construit autour de l'idée de ne jamais bloquer, seulement observer.
@@ -116,7 +116,7 @@ nouvelle version --> 1% des users --> si stable après surveillance --> 10% --> 
          99% des users n'ont jamais rien vu
 ```
 
-Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base d'shinobis ait été impactée.
+Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base de shinobis ait été impactée.
 
 ---
 
@@ -126,7 +126,7 @@ Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_obse
 // exemple minimal : un bug reproductible facilement en local, debug classique
 
 // exemple réaliste : un bug n'apparaît qu'en prod, sur un sous-ensemble
-// d'shinobis avec une configuration réseau particulière
+// de shinobis avec une configuration réseau particulière
 
 // exemple qui casse : aucun log de contexte n'avait été prévu pour ce
 // scénario précis, aucun feature flag n'isole la fonctionnalité concernée,

@@ -142,7 +142,7 @@ async function rechercherJoueur(nom, signal) {
  } catch (e) {
   // MAUVAIS : on traite l'annulation comme une erreur réseau
   console.error('Erreur réseau:', e) // AbortError n'est pas une erreur réseau
-  afficherMessageErreur()       // l'shinobi voit un message d'erreur pour rien
+  afficherMessageErreur()       // le shinobi voit un message d'erreur pour rien
  }
 }
 

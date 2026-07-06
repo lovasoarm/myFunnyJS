@@ -23,7 +23,7 @@ Traquer, corriger et documenter 5 fuites mémoire dans un serveur Node volontair
 Avant de considérer le projet fini, tu dois traiter ces exigences OWASP contextuelles. Un projet qui marche mais qui est vulnérable n'est pas fini.
 
 - Déni de service par épuisement mémoire (OWASP A05) : les fuites elles-mêmes sont un vecteur DoS ; documenter comment un attaquant pourrait les déclencher volontairement (ex : spam d'un endpoint qui ajoute un listener).
-- Limites de ressources (OWASP A04 - Insecure Design) : imposer une taille max au cache Map (LRU) pour empêcher une croissance non bornée pilotée par l'shinobi.
+- Limites de ressources (OWASP A04 - Insecure Design) : imposer une taille max au cache Map (LRU) pour empêcher une croissance non bornée pilotée par le shinobi.
 
 Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
 

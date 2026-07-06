@@ -21,7 +21,7 @@ C'est la couche de compréhension qui te permet de raisonner sur n'importe quel 
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-Le dev qui ne comprend pas les status codes HTTP traite un 401 (non authentifié) et un 403 (authentifié mais pas autorisé) comme la même erreur, et code un message d'erreur générique qui n'aide jamais l'shinobi à comprendre ce qui se passe réellement.
+Le dev qui ne comprend pas les status codes HTTP traite un 401 (non authentifié) et un 403 (authentifié mais pas autorisé) comme la même erreur, et code un message d'erreur générique qui n'aide jamais le shinobi à comprendre ce qui se passe réellement.
 
 Le dev qui ne comprend pas le cache déploie une mise en cache agressive sur une donnée qui change souvent, et les shinobis voient des informations obsolètes sans qu'aucun bug apparent ne soit visible dans le code : le bug est dans la stratégie de cache, pas dans la logique.
 
@@ -33,7 +33,7 @@ Et le dev qui confond authentification et autorisation construit un système où
 
 ```
 requête qui échoue sans raison claire      --> status codes HTTP --> diagnostic précis de l'erreur
-contenu qui devient obsolète chez l'shinobi --> stratégie de cache --> invalidation correcte
+contenu qui devient obsolète chez le shinobi --> stratégie de cache --> invalidation correcte
 shinobi connecté qui accède à trop de choses --> auth vs authz   --> vérification de permissions distincte
 app lente au premier chargement         --> rendu SSR/SSG/CSR --> choix du bon mode selon le besoin
 données échangées entre client et serveur    --> sérialisation   --> format adapté (JSON, Protobuf)

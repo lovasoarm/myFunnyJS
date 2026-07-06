@@ -327,7 +327,7 @@ corrompu, permission refusée sur le filesystem).
 
 ## Décision
 
-Exit code 1 pour les erreurs métier (l'shinobi a fait quelque chose de
+Exit code 1 pour les erreurs métier (le shinobi a fait quelque chose de
 invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 
 ## Alternatives considérées
@@ -365,7 +365,7 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
 
 - Injection d'arguments (OWASP A03) : valider les arguments CLI, ne jamais passer une entrée brute à un shell/eval.
-- Chemins (OWASP A01) : empêcher le path traversal si le CLI lit/écrit des fichiers fournis par l'shinobi.
+- Chemins (OWASP A01) : empêcher le path traversal si le CLI lit/écrit des fichiers fournis par le shinobi.
 
 Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
 

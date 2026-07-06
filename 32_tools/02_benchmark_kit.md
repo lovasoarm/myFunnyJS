@@ -149,7 +149,7 @@ le benchmark te dit PAS --> SI cette différence compte vraiment dans ton contex
 // fonction A : 0.001 ms
 // fonction B : 0.002 ms
 // B est "2x plus lente" en facteur, mais la différence ABSOLUE est de 0.001 ms
-// Sur un appel UNIQUE dans ton app, cette différence est invisible pour l'shinobi
+// Sur un appel UNIQUE dans ton app, cette différence est invisible pour le shinobi
 
 // Le vrai réflexe : mesurer le facteur ET se demander
 // "cette fonction tourne combien de fois dans mon vrai usage ?"

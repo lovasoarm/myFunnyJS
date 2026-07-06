@@ -213,12 +213,12 @@ Ce n'est pas un protocole d'authentification (qui es-tu ?) mais d'autorisation (
 ```
 1. Shinobi clique "Se connecter avec Google"
 2. Ton app redirige vers Google avec : client_id, redirect_uri, scope, state (nonce anti-CSRF)
-3. L'shinobi s'authentifie sur Google et accepte les permissions
+3. Le shinobi s'authentifie sur Google et accepte les permissions
 4. Google redirige vers ton redirect_uri avec un "code" d'autorisation
 5. Ton SERVEUR (pas le client) échange ce code contre un access_token + id_token
   (appel serveur à serveur : le code n'est jamais exposé au client)
 6. Ton serveur vérifie l'id_token (JWT signé par Google) et extrait l'identité
-7. Ton app crée ou retrouve l'shinobi dans ta DB, génère sa session/JWT
+7. Ton app crée ou retrouve le shinobi dans ta DB, génère sa session/JWT
 ```
 
 ```
@@ -261,7 +261,7 @@ app.get('/auth/google/callback', async (req, res) => {
  const tokens = await exchangeCodeForTokens(code);
  const userInfo = verifyIdToken(tokens.id_token);
 
- // créer ou retrouver l'shinobi dans ta DB
+ // créer ou retrouver le shinobi dans ta DB
  const user = await upsertUser(userInfo);
  req.session.userId = user.id;
  res.redirect('/dashboard');

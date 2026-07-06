@@ -91,7 +91,7 @@ console.error("Erreur : joueur introuvable"); // stderr
 process.stderr.write("Erreur critique : sortie\n"); // stderr
 
 // pourquoi séparer stdout et stderr :
-// l'shinobi peut faire : node vote.js 2>errors.log
+// le shinobi peut faire : node vote.js 2>errors.log
 // les erreurs vont dans errors.log, les outputs normaux dans le terminal
 ```
 

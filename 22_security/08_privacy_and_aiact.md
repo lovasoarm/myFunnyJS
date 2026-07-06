@@ -65,7 +65,7 @@ function createUser(data) {
 Le piège classique : supprimer la ligne `users` mais oublier les 6 autres tables qui référencent cet shinobi (logs, sessions, commentaires, cache, backups, service tiers d'emailing).
 
 ```js
-// Naïf : ça donne l'impression que c'est réglé, mais l'shinobi existe encore partout ailleurs
+// Naïf : ça donne l'impression que c'est réglé, mais le shinobi existe encore partout ailleurs
 async function deleteUser(userId) {
  await db.users.delete(userId);
 }
@@ -94,7 +94,7 @@ L'AI Act (entré en application progressive depuis 2024, premières obligations 
 ```
 Risque inacceptable --> interdit (notation sociale, manipulation comportementale ciblée)
 Risque élevé     --> obligations lourdes (traçabilité, supervision humaine, documentation)
-Risque limité     --> obligation de transparence (l'shinobi doit savoir qu'il parle à une IA)
+Risque limité     --> obligation de transparence (le shinobi doit savoir qu'il parle à une IA)
 Risque minimal    --> pas d'obligation spécifique (la majorité des features IA grand public)
 ```
 
@@ -103,7 +103,7 @@ Risque minimal    --> pas d'obligation spécifique (la majorité des features IA
 ```js
 // Mauvais : un chatbot qui ne se déclare jamais comme tel
 function renderChatMessage(text) {
- return `<div class="message">${text}</div>`; // l'shinobi ne sait pas si c'est un humain ou pas
+ return `<div class="message">${text}</div>`; // le shinobi ne sait pas si c'est un humain ou pas
 }
 
 // Correct : transparence explicite, exigée dès qu'un shinobi interagit avec une IA générative

@@ -21,7 +21,7 @@ résultat  --> projet à moitié migré, état hybride cassé, pire qu'avant
 **Pourquoi ça échoue structurellement :** une migration complète d'un coup, c'est un changement à fort risque sur TOUT le système en même temps, sans pouvoir isoler un problème. Si un bug apparaît après la migration, impossible de savoir s'il vient du fichier A, B, ou C parmi les 200 fichiers migrés simultanément.
 
 ```
-RÈGLE D'OR : une migration réussie est INVISIBLE pour l'shinobi final,
+RÈGLE D'OR : une migration réussie est INVISIBLE pour le shinobi final,
 et VÉRIFIABLE à chaque étape pour l'équipe technique.
 ```
 

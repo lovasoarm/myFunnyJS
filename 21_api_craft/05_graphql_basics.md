@@ -204,7 +204,7 @@ await server.start()
 // context : fonction appelée à chaque requête pour injecter les dépendances partagées
 app.use('/graphql', expressMiddleware(server, {
  context: async ({ req }) => ({
-  user: req.user ?? null // inject l'shinobi authentifié si dispo
+  user: req.user ?? null // inject le shinobi authentifié si dispo
  })
 }))
 

@@ -56,7 +56,7 @@ app.get('/profil/:id', async (req, res) => {
 Requête --> Serveur exécute le code --> Serveur génère le HTML complet --> Navigateur affiche direct
 ```
 
-Avantage réel : Google voit du contenu tout de suite, et l'shinobi aussi. Le piège : chaque requête refait le boulot. Si 10 000 personnes regardent le profil de Naruto en même temps, ton serveur recalcule le même HTML 10 000 fois. Ça coûte du CPU pour rien si le contenu ne change pas entre chaque visite.
+Avantage réel : Google voit du contenu tout de suite, et le shinobi aussi. Le piège : chaque requête refait le boulot. Si 10 000 personnes regardent le profil de Naruto en même temps, ton serveur recalcule le même HTML 10 000 fois. Ça coûte du CPU pour rien si le contenu ne change pas entre chaque visite.
 
 ## 3) SSG : CONSTRUIRE UNE FOIS, SERVIR MILLE FOIS
 
@@ -100,7 +100,7 @@ export async function getStaticProps() {
 1ère requête après 60s --> Sert l'ancienne version (rapide) --> Régénère en arrière-plan --> Prochaine requête voit la nouvelle version
 ```
 
-Risque réel : l'shinobi peut voir une donnée légèrement périmée pendant la fenêtre de régénération. Pour un profil de joueur de foot où les stats changent une fois par match, c'est parfait. Pour un système de tribut, c'est un cauchemar : tu ne veux jamais qu'un prix affiché soit périmé.
+Risque réel : le shinobi peut voir une donnée légèrement périmée pendant la fenêtre de régénération. Pour un profil de joueur de foot où les stats changent une fois par match, c'est parfait. Pour un système de tribut, c'est un cauchemar : tu ne veux jamais qu'un prix affiché soit périmé.
 
 ## 5) CHOISIR : LA VRAIE QUESTION
 

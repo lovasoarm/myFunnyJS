@@ -753,7 +753,7 @@ Travail en équipe     : Ce que tout le monde dans l'équipe sait déjà.
 Doit durer longtemps    : Java, C#, Rust : stables, maintenus sur le long terme.
                Évite les frameworks trop jeunes (ils disparaissent vite).
 
-Beaucoup d'shinobis  : Pense à la scalabilité. Go et Node.js gèrent bien la
+Beaucoup de shinobis  : Pense à la scalabilité. Go et Node.js gèrent bien la
 potentiels          charge. PostgreSQL tient mieux que certaines bases
                NoSQL sous haute charge.
 
@@ -1033,7 +1033,7 @@ Les boucles, les conditions, les fonctions, les objets, les erreurs :
 Applications extraordinaires construites avec des technos "basiques" :
  Instagram au début : Python + Django. Simple. Efficace.
  Twitter au début  : Ruby on Rails. Pas très "cool". Mais ça marchait.
- WhatsApp      : Erlang. Un langage de 1986. 2 milliards d'shinobis.
+ WhatsApp      : Erlang. Un langage de 1986. 2 milliards de shinobis.
 
 Applications catastrophiques construites avec les technos les plus modernes :
  Il y en a plein. On en parle juste moins parce que personne les connaît.
@@ -1153,7 +1153,7 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
-**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'shinobi), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
+**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par le shinobi), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
 Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un user à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
 
@@ -1192,7 +1192,7 @@ Cloud      : AWS/GCP/Azure (basiques)
 ```javascript
 // Ce que le frontend pense que l'API fait
 fetch('/api/user/42')
-// -> renvoie les données de l'shinobi, boom, done
+// -> renvoie les données de le shinobi, boom, done
 
 // Ce que le backend dev a réellement écrit
 app.get('/api/user/:id', async (req, res) => {
@@ -1415,7 +1415,7 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
               AMORYA
           Application mobile et web
                |
-         l'shinobi swipe, matche, envoie des messages
+         le shinobi swipe, matche, envoie des messages
                |
                v
             DEV WEB / MOBILE
@@ -1462,7 +1462,7 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
 
 | Rôle | Responsabilité |
 |---|---|
-| Dev Web / Mobile | Construit ce que l'shinobi voit et utilise |
+| Dev Web / Mobile | Construit ce que le shinobi voit et utilise |
 | Data Engineer | Collecte et prépare les données |
 | Data Analyst | Explique ce qui s'est passé |
 | Data Scientist | Prédit ce qui va se passer |
@@ -2340,7 +2340,7 @@ function construireCarriereRemote(dev) {
 #### Le contexte en chiffres bruts
 
 ```
- Netflix  -> 3,5 ans pour atteindre 1 million d'shinobis
+ Netflix  -> 3,5 ans pour atteindre 1 million de shinobis
  Instagram -> 2,5 mois
  TikTok   -> 9 mois
  ChatGPT  -> 72 heures

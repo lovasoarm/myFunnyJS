@@ -163,7 +163,7 @@ async function apiFetch(url, options = {}) {
    // Tenter le refresh
    const refreshed = await refreshAccessToken();
    if (!refreshed) {
-    // Refresh échoué : déconnecter l'shinobi
+    // Refresh échoué : déconnecter le shinobi
     logout();
     throw new Error('Session expirée : reconnexion requise');
    }

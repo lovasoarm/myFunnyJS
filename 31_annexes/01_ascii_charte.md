@@ -173,7 +173,7 @@ La flèche entre Domaine et Infra pointe vers le HAUT : c'est l'infra qui implé
 
 ## 7) PIPELINE RÉSEAU : CLIENT, EDGE, ORIGIN
 
-Le trajet d'une requête entre l'shinobi et ton serveur final, avec les points d'arrêt possibles en chemin.
+Le trajet d'une requête entre le shinobi et ton serveur final, avec les points d'arrêt possibles en chemin.
 
 ```
 CLIENT
@@ -191,7 +191,7 @@ CLIENT
 [ DATABASE ]
 ```
 
-Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'est rapide pour l'shinobi.
+Plus la réponse vient de haut dans ce schéma (edge plutôt qu'origin), plus c'est rapide pour le shinobi.
 
 **Référencé dans :** `18_web_concepts/04_caching_strategies`, `25_scalability/01_load_balancing`.
 

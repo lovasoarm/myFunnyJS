@@ -13,7 +13,7 @@ L'observabilité, c'est la différence entre voir le problème arriver et le dé
 
 Un système en prod n'est pas un système en dev : tu ne peux pas mettre un breakpoint (point d'arrêt) sur le serveur d'un client pour voir ce qui se passe en direct. Sans observabilité, la seule information disponible quand quelque chose casse, c'est ce que les shinobis veulent bien signaler, ce qui est rare, vague, et tardif.
 
-Ce module construit la capacité de voir ce qui se passe en prod avant que l'shinobi ait besoin de le signaler : le structured logging (logs en JSON avec un correlation ID, un identifiant unique qui permet de suivre une requête précise à travers tout le système), le distributed tracing (suivre une requête à travers plusieurs services sans perdre le fil de ce qui s'est passé à chaque étape), les métriques et l'alerting (compteurs, gauges, histogrammes qui annoncent un problème avant qu'il ne devienne critique), Sentry pour capturer et contextualiser les erreurs en production avec tout le contexte nécessaire pour les comprendre, et le debug en prod sans pouvoir reproduire localement, grâce à des snapshots et des feature flags (drapeaux qui permettent d'activer/désactiver une fonctionnalité sans redéployer).
+Ce module construit la capacité de voir ce qui se passe en prod avant que le shinobi ait besoin de le signaler : le structured logging (logs en JSON avec un correlation ID, un identifiant unique qui permet de suivre une requête précise à travers tout le système), le distributed tracing (suivre une requête à travers plusieurs services sans perdre le fil de ce qui s'est passé à chaque étape), les métriques et l'alerting (compteurs, gauges, histogrammes qui annoncent un problème avant qu'il ne devienne critique), Sentry pour capturer et contextualiser les erreurs en production avec tout le contexte nécessaire pour les comprendre, et le debug en prod sans pouvoir reproduire localement, grâce à des snapshots et des feature flags (drapeaux qui permettent d'activer/désactiver une fonctionnalité sans redéployer).
 
 L'objectif final : qu'un incident en prod se détecte et se diagnostique en minutes, pas en heures de fouille à l'aveugle dans des logs non structurés.
 
@@ -25,7 +25,7 @@ Le dev sans observabilité découvre les problèmes par les plaintes des shinobi
 
 Sur un système distribué avec plusieurs services, l'absence de tracing rend impossible de savoir où, parmi 5 ou 10 services différents, une requête a réellement échoué ou ralenti. Le dev se retrouve à ajouter des logs manuellement service par service, en redéployant à chaque étape, ce qui peut prendre des heures pour localiser un problème qu'un trace correct aurait montré instantanément.
 
-Et sans alerting proactif, les problèmes de performance ou de taux d'erreur grandissent silencieusement jusqu'à devenir critiques, alors qu'une alerte bien configurée aurait prévenu l'équipe dès les premiers signes, bien avant que ça n'affecte une majorité d'shinobis.
+Et sans alerting proactif, les problèmes de performance ou de taux d'erreur grandissent silencieusement jusqu'à devenir critiques, alors qu'une alerte bien configurée aurait prévenu l'équipe dès les premiers signes, bien avant que ça n'affecte une majorité de shinobis.
 
 ---
 
@@ -59,7 +59,7 @@ La montée des architectures en microservices a aussi rendu le tracing distribu�
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Prérequis explicite : `26_observability`, prérequis `16_runtime_env` + `21_api_craft`. Tu ne peux pas observer correctement un système sans déjà comprendre où il s'exécute et comment ses APIs fonctionnent. Central aussi dans le mini-projet `06_ultras_dashboard`, où l'observabilité (logs structurés, tracing, alerting, Sentry) est une condition directe pour qu'un système avec des milliers d'shinobis en direct ne s'effondre jamais sans que l'équipe le voie venir.
+Prérequis explicite : `26_observability`, prérequis `16_runtime_env` + `21_api_craft`. Tu ne peux pas observer correctement un système sans déjà comprendre où il s'exécute et comment ses APIs fonctionnent. Central aussi dans le mini-projet `06_ultras_dashboard`, où l'observabilité (logs structurés, tracing, alerting, Sentry) est une condition directe pour qu'un système avec des milliers de shinobis en direct ne s'effondre jamais sans que l'équipe le voie venir.
 
 ---
 

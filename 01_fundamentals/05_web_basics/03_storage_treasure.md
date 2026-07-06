@@ -1,7 +1,7 @@
 # STORAGE TREASURE : LE TRÉSOR DU NAVIGATEUR
 Temps de lecture ~7 min
 
-Ton navigateur peut garder des données. Même si la page est rechargée. Même si l'shinobi ferme le site. Même s'il revient demain matin avec un café.
+Ton navigateur peut garder des données. Même si la page est rechargée. Même si le shinobi ferme le site. Même s'il revient demain matin avec un café.
 
 C'est comme un petit coffre-fort.
 
@@ -196,7 +196,7 @@ Crée un bouton `"Toggle Dark Mode"`. Au clic :
 1. Ajoute ou enlève la classe `"dark"` sur le body
 2. Sauvegarde l'état dans `localStorage`
 
-Quand la page recharge, le thème doit rester. _(Le mode dark ne disparaît pas juste parce que l'shinobi a appuyé F5.)_
+Quand la page recharge, le thème doit rester. _(Le mode dark ne disparaît pas juste parce que le shinobi a appuyé F5.)_
 
 _Indice : `localStorage.getItem("theme")`_
 
@@ -220,7 +220,7 @@ localStorage.setItem("key", JSON.stringify(obj));
 // Le récupérer
 const obj = JSON.parse(localStorage.getItem("key"));
 ```
-Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent de l'shinobi.
+Si tu maîtrises ça, tu peux construire des apps web intelligentes qui se souviennent de le shinobi.
 
 ---
 

@@ -124,11 +124,11 @@ La vraie fix en 2026 : ne pas parser d'XML venant d'inputs shinobis. Si ton API 
 
 ## 5) BROKEN ACCESS CONTROL (A01)
 
-La vulnérabilité #1 du classement OWASP. L'shinobi accède à des ressources auxquelles il ne devrait pas avoir accès.
+La vulnérabilité #1 du classement OWASP. Le shinobi accède à des ressources auxquelles il ne devrait pas avoir accès.
 
 ```js
 // IDOR (Insecure Direct Object Reference : référence directe à un objet non sécurisée)
-// L'shinobi accède à /api/orders/123 et peut changer le 123 pour voir les ordres_mission d'autres
+// Le shinobi accède à /api/orders/123 et peut changer le 123 pour voir les ordres_mission d'autres
 
 // Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon shinobi
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
@@ -136,7 +136,7 @@ app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
 });
 
-// Bon : toujours vérifier que la ressource appartient à l'shinobi connecté
+// Bon : toujours vérifier que la ressource appartient à le shinobi connecté
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  const order = await db.query(
   'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte
@@ -288,7 +288,7 @@ app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
 SSRF (Server-Side Request Forgery : falsification de requête côté serveur) : l'attaquant pousse ton serveur à faire des requêtes vers des services internes auxquels il ne devrait pas avoir accès.
 
 ```js
-// Mauvais : ton serveur fait une requête vers une URL fournie par l'shinobi
+// Mauvais : ton serveur fait une requête vers une URL fournie par le shinobi
 app.post('/fetch-preview', async (req, res) => {
  const { url } = req.body;
  const response = await fetch(url); // l'attaquant envoie url = "http://169.254.169.254/latest/meta-data/"

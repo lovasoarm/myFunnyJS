@@ -184,7 +184,7 @@ console.log(binarySearch(nonTrie, 9)) // -1 !!!
 
 ```js
 // chercher dans un dictionnaire de mots (millions d'entrées)
-// chercher un ID dans une liste triée d'shinobis
+// chercher un ID dans une liste triée de shinobis
 // chercher un timestamp dans un log trié par date
 
 // exemple pratique : trouver le premier élément >= threshold

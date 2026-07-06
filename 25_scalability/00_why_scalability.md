@@ -3,7 +3,7 @@
 > Ce module reutilise : memoire (08_memory_performance), architecture (17_architecture_patterns).
 Temps de lecture ~8 min
 
-10 shinobis sur ton serveur, tout va bien. 10 millions d'shinobis sur le même serveur, sans rien changer à l'architecture : c'est l'effondrement garanti. Pas parce que ton code est mauvais. Parce qu'un seul serveur, une seule base de données, une seule instance, ça a toujours une limite physique, et cette limite arrive plus vite que tu ne le crois.
+10 shinobis sur ton serveur, tout va bien. 10 millions de shinobis sur le même serveur, sans rien changer à l'architecture : c'est l'effondrement garanti. Pas parce que ton code est mauvais. Parce qu'un seul serveur, une seule base de données, une seule instance, ça a toujours une limite physique, et cette limite arrive plus vite que tu ne le crois.
 
 La scalabilité, c'est la discipline qui te dit comment grandir sans tout reconstruire au dernier moment, en panique, pendant que le système crashe sous la charge.
 
@@ -73,7 +73,7 @@ Les message queues ont aussi gagné en accessibilité : des solutions managées 
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Central dans le mini-projet `06_ultras_dashboard`, qui combine `26_observability`, `25_scalability`, et `15_typescript` pour un système qui doit gérer des milliers d'shinobis connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du jutsu, pas un bonus technique.
+Central dans le mini-projet `06_ultras_dashboard`, qui combine `26_observability`, `25_scalability`, et `15_typescript` pour un système qui doit gérer des milliers de shinobis connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du jutsu, pas un bonus technique.
 
 ---
 

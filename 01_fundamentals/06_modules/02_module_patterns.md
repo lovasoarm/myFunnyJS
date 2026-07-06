@@ -88,7 +88,7 @@ import { lancerAttaque } from "./combat.js"
 // pas besoin de savoir que chakraEngine, jutsuResolver et combatLogger existent
 ```
 
-L'shinobi de `combat.js` appelle `lancerAttaque`. Il ne sait pas et n'a pas besoin de savoir que trois modules internes sont impliqués. Si tu refactores l'un d'eux, `main.js` ne change pas.
+Le shinobi de `combat.js` appelle `lancerAttaque`. Il ne sait pas et n'a pas besoin de savoir que trois modules internes sont impliqués. Si tu refactores l'un d'eux, `main.js` ne change pas.
 
 ---
 

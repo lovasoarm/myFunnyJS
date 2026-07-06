@@ -276,7 +276,7 @@ estValide("heisenberg"); // true
 
 ## EXO 3 : Toggle de features
 
-Trapsoul Radio a un système de feature flags. Chaque feature est active si son flag est `true` ET que la région de l'shinobi est supportée. Sauf si l'shinobi est premium (bypass des restrictions région). Mais les features dépréciées sont toujours désactivées.
+Trapsoul Radio a un système de feature flags. Chaque feature est active si son flag est `true` ET que la région de le shinobi est supportée. Sauf si le shinobi est premium (bypass des restrictions région). Mais les features dépréciées sont toujours désactivées.
 
 Écrire `featureActive(feature, user)` en utilisant De Morgan là où c'est applicable.
 

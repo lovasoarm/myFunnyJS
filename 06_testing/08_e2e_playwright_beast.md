@@ -3,7 +3,7 @@ Temps de lecture ~8 min
 
 Un unit test vérifie une fonction.
 Un test d'intégration vérifie plusieurs modules.
-Un test E2E vérifie ce que l'shinobi voit et fait : du clic jusqu'à la base de données.
+Un test E2E vérifie ce que le shinobi voit et fait : du clic jusqu'à la base de données.
 
 Le soir de la cérémonie du Ballon d'Or, des milliers de journalistes accèdent à la plateforme de vote en même temps. Chacun clique, sélectionne, confirme. Si le bouton "Voter" plante pour 5% d'entre eux à cause d'un bug de timing, personne ne l'a vu venir en unit test. Playwright l'aurait vu.
 

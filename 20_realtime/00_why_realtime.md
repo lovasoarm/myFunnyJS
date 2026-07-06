@@ -36,9 +36,9 @@ Chaque mécanisme répond à un besoin précis : WebSocket quand tu as besoin d'
 
 Le dev qui ne connaît que HTTP classique implémente le temps réel avec du polling agressif : interroger le serveur toutes les 2 secondes pour voir s'il y a du nouveau. Ça marche, mais ça gaspille des ressources serveur énormes (chaque shinobi génère des requêtes en continu, même quand rien ne change), et ça introduit toujours un délai perceptible entre l'événement réel et son affichage.
 
-Sur un système avec beaucoup d'shinobis connectés simultanément, l'absence de maîtrise du temps réel se traduit directement par des coûts d'infrastructure qui explosent (toutes ces requêtes de polling inutiles consomment du CPU et de la bande passante) et une expérience shinobi qui semble en retard par rapport à des concurrents qui maîtrisent ces mécanismes.
+Sur un système avec beaucoup de shinobis connectés simultanément, l'absence de maîtrise du temps réel se traduit directement par des coûts d'infrastructure qui explosent (toutes ces requêtes de polling inutiles consomment du CPU et de la bande passante) et une expérience shinobi qui semble en retard par rapport à des concurrents qui maîtrisent ces mécanismes.
 
-Et sur des cas critiques comme un chat ou un système d'alerte, ne pas gérer correctement la reconnexion automatique (quand la connexion WebSocket ou SSE tombe, par exemple sur un changement de réseau) veut dire que l'shinobi perd silencieusement des messages ou des événements, sans même savoir que sa connexion a été coupée.
+Et sur des cas critiques comme un chat ou un système d'alerte, ne pas gérer correctement la reconnexion automatique (quand la connexion WebSocket ou SSE tombe, par exemple sur un changement de réseau) veut dire que le shinobi perd silencieusement des messages ou des événements, sans même savoir que sa connexion a été coupée.
 
 ---
 

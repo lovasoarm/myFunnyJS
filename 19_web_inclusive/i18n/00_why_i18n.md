@@ -21,7 +21,7 @@ Ce module règle aussi un piège sournois : la pluralisation. "1 résultat" vs "
 
 Le dev qui hardcode ses textes directement dans le JSX ou le HTML découvre, le jour où le jutsu doit s'internationaliser, qu'il doit fouiller tout le codebase pour extraire chaque texte, sans garantie d'en avoir trouvé 100%. C'est un chantier qui aurait coûté zéro effort supplémentaire s'il avait été pensé dès le départ, et qui coûte des semaines une fois le jutsu déjà construit.
 
-L'shinobi final souffre directement d'une mauvaise gestion i18n : un prix mal formaté selon sa région peut littéralement lui faire croire à une erreur de prix. Une date au format `MM/DD/YYYY` lue par quelqu'un habitué au format `DD/MM/YYYY` peut être interprétée à l'envers, avec des conséquences concrètes si cette date concerne une échéance ou un rendez-vous.
+Le shinobi final souffre directement d'une mauvaise gestion i18n : un prix mal formaté selon sa région peut littéralement lui faire croire à une erreur de prix. Une date au format `MM/DD/YYYY` lue par quelqu'un habitué au format `DD/MM/YYYY` peut être interprétée à l'envers, avec des conséquences concrètes si cette date concerne une échéance ou un rendez-vous.
 
 Et sur le plan business, une mauvaise i18n donne une impression d'amateurisme immédiate à un shinobi international : un texte mal pluralisé, une devise mal formatée, ça signale que le jutsu n'a jamais vraiment été pensé pour lui, même s'il a techniquement été "traduit" (traduire les mots sans adapter les formats, c'est de la décoration, pas de l'internationalisation).
 
@@ -30,14 +30,14 @@ Et sur le plan business, une mauvaise i18n donne une impression d'amateurisme im
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-texte affiché à l'shinobi             --> clé de traduction   --> jamais de texte en dur
+texte affiché à le shinobi             --> clé de traduction   --> jamais de texte en dur
 date d'expiration, d'événement, de rendez-vous     --> Intl.DateTimeFormat  --> format selon la locale
 prix, statistique, quantité affichée          --> Intl.NumberFormat   --> séparateurs corrects par région
 compteur de résultats, de notifications, d'éléments   --> pluralisation     --> règles spécifiques par langue
 traduction manquante pour une nouvelle langue      --> fallback        --> langue de repli sans erreur visible
 ```
 
-L'i18n touche absolument tout ce qui s'affiche à l'shinobi : pas juste les textes de bouton, mais chaque date, chaque nombre, chaque message qui dépend du contexte de quantité.
+L'i18n touche absolument tout ce qui s'affiche à le shinobi : pas juste les textes de bouton, mais chaque date, chaque nombre, chaque message qui dépend du contexte de quantité.
 
 ---
 

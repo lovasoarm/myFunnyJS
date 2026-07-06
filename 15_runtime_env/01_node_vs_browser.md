@@ -41,7 +41,7 @@ Le navigateur ajoute des APIs UI : DOM, rendu, interactions shinobi, stockage we
 ```js
 // le DOM : accès direct à la page HTML
 document.querySelector(".card").addEventListener("click", () => {
- // l'shinobi a cliqué : on réagit
+ // le shinobi a cliqué : on réagit
  document.title = "clicked";
 });
 

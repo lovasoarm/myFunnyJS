@@ -162,7 +162,7 @@ const chargerModule = async (mode) => {
 }
 ```
 
-Utilité réelle : code splitting dans les apps web. Tu charges le code de la page "dashboard" seulement quand l'shinobi navigue vers /dashboard. Pas avant.
+Utilité réelle : code splitting dans les apps web. Tu charges le code de la page "dashboard" seulement quand le shinobi navigue vers /dashboard. Pas avant.
 
 ---
 
@@ -193,7 +193,7 @@ Une app de scoring de matchs. Elle peut charger deux moteurs de calcul :
 - `moteurSimple.js` : stats de base (possession, tirs)
 - `moteurAvancé.js` : xG, heat maps, Expected Threat
 
-`main.js` charge le moteur avancé seulement si l'shinobi a un abonnement premium. Utilise un dynamic import. Si le module échoue à charger, affiche un message d'erreur propre.
+`main.js` charge le moteur avancé seulement si le shinobi a un abonnement premium. Utilise un dynamic import. Si le module échoue à charger, affiche un message d'erreur propre.
 
 (Indice : `import()` retourne une Promise -> gère le `.catch`)
 

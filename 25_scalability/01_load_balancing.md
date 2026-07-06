@@ -25,7 +25,7 @@ USER --> LOAD BALANCER -->
              +----------+
 ```
 
-Le pourquoi : l'shinobi tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
+Le pourquoi : le shinobi tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
 
 ```js
 // Vue simplifiée de ce qu'un load balancer fait en interne

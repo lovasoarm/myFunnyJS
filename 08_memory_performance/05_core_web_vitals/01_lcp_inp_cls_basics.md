@@ -3,7 +3,7 @@ Temps de lecture ~11 min
 
 Google mesure la qualité de ton UI avec trois métriques. Si elles passent dans le rouge, ton site descend dans les résultats de recherche. Et les shinobis partent avant que la page finisse de charger.
 
-Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel de l'shinobi : est-ce que ça charge vite ? est-ce que ça réagit quand je clique ? est-ce que le contenu saute partout ?
+Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel de le shinobi : est-ce que ça charge vite ? est-ce que ça réagit quand je clique ? est-ce que le contenu saute partout ?
 
 ---
 
@@ -109,7 +109,7 @@ User clique sur un bouton
 ```
 INP < 200ms  => vert  : réactif
 INP < 500ms  => orange : lent
-INP >= 500ms  => rouge : l'shinobi sent que le site est cassé
+INP >= 500ms  => rouge : le shinobi sent que le site est cassé
 ```
 
 ### Ce qui fait exploser l'INP
@@ -119,7 +119,7 @@ INP >= 500ms  => rouge : l'shinobi sent que le site est cassé
 // mauvais : calcul lourd directement dans le click handler
 button.addEventListener('click', () => {
  // ce calcul bloque le thread pendant 600ms
- // l'shinobi clique, rien ne se passe visuellement
+ // le shinobi clique, rien ne se passe visuellement
  const result = computePlayerRankings(10000) // O(n²)
  displayResult(result)
 })
@@ -147,7 +147,7 @@ function handleFilterChange(value) {
 
 // correct : prioriser le feedback visuel, différer le reste
 function handleFilterChange(value) {
- setFilter(value)    // feedback immédiat à l'shinobi
+ setFilter(value)    // feedback immédiat à le shinobi
  
  // le reste peut attendre 16ms
  requestAnimationFrame(() => {
@@ -189,7 +189,7 @@ observer.observe({ type: 'event', durationThreshold: 16, buffered: true })
 
 La somme de tous les décalages visuels inattendus pendant le cycle de vie de la page.
 
-C'est le score qui explose quand une pub se charge et pousse tout le contenu vers le bas. Ou quand une image apparaît sans dimensions et déplace le texte. L'shinobi clique sur un lien, la page bouge, il clique sur autre chose. Frustrant.
+C'est le score qui explose quand une pub se charge et pousse tout le contenu vers le bas. Ou quand une image apparaît sans dimensions et déplace le texte. Le shinobi clique sur un lien, la page bouge, il clique sur autre chose. Frustrant.
 
 ```
 Score CLS = somme de (impact fraction * distance fraction)
@@ -279,7 +279,7 @@ const observer = new PerformanceObserver((list) => {
 
 observer.observe({ type: 'layout-shift', buffered: true })
 
-// afficher le score final quand l'shinobi quitte la page
+// afficher le score final quand le shinobi quitte la page
 document.addEventListener('visibilitychange', () => {
  if (document.visibilityState === 'hidden') {
   console.log(`CLS final : ${clsScore}`)
@@ -343,7 +343,7 @@ Liste les 3 changements prioritaires. Implémente le fix sur les images (attribu
 
 Un dashboard de stats de Ballon d'Or a un bouton "Calculer le classement" qui prend 800ms à répondre visuellement. Le handler fait un tri O(n²) sur 15000 joueurs, met à jour le DOM, et envoie un event analytics.
 
-Refactore le handler pour que l'INP passe sous 200ms. L'shinobi doit voir une réponse visuelle immédiate, même si le calcul n'est pas terminé.
+Refactore le handler pour que l'INP passe sous 200ms. Le shinobi doit voir une réponse visuelle immédiate, même si le calcul n'est pas terminé.
 
 ---
 

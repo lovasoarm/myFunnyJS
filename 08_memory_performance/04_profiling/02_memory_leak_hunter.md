@@ -332,7 +332,7 @@ class RadioTrapSoul {
 
 const radio = new RadioTrapSoul()
 
-// l'app ajoute un listener à chaque fois que l'shinobi change de page
+// l'app ajoute un listener à chaque fois que le shinobi change de page
 function changerDePage(pageId) {
  radio.onEvent('track-ajoutee', (track) => {
   console.log(`Page ${pageId} : nouvelle track : ${track.titre}`)

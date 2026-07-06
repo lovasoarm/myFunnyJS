@@ -81,7 +81,7 @@ Code inefficace --> plus de CPU utilisé --> plus d'électricité consommée -->
 
 ### Pourquoi c'est devenu un critère, pas une option
 
-Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par l'shinobi. Mais une requête plus rapide consomme aussi, presque toujours, moins d'énergie : moins de cycles CPU, moins de temps serveur allumé, moins de transferts réseau. Le GreenOps ne demande pas un sacrifice de performance : il aligne deux objectifs qui pointaient déjà dans la même direction.
+Pendant longtemps, l'optimisation visait uniquement la vitesse perçue par le shinobi. Mais une requête plus rapide consomme aussi, presque toujours, moins d'énergie : moins de cycles CPU, moins de temps serveur allumé, moins de transferts réseau. Le GreenOps ne demande pas un sacrifice de performance : il aligne deux objectifs qui pointaient déjà dans la même direction.
 
 ```js
 // Mauvais : recalculer un classement complet à chaque requête, même si rien n'a changé

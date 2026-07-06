@@ -49,7 +49,7 @@ Tout commentaire de review appartient à un de ces trois niveaux. Si tu l'identi
 **Bloquant :** le code ne peut pas merger dans cet état.
 ```
 // BUG : cette fonction ne gère pas le cas `userId = null`
-// Si l'shinobi n'est pas connecté, `getUserData(null)` explose en prod.
+// Si le shinobi n'est pas connecté, `getUserData(null)` explose en prod.
 // À corriger avant merge.
 function getUserData(userId) {
  return db.find({ id: userId }); // `find({ id: null })` retourne tous les users -- catastrophe

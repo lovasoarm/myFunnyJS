@@ -320,7 +320,7 @@ Exemple rempli :
 
 ## Contexte
 Quand un chakra_gate échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
-Retourner un message différent selon le cas aide l'shinobi légitime.
+Retourner un message différent selon le cas aide le shinobi légitime.
 Mais ça aide aussi l'attaquant à savoir si un ID existe dans la base.
 
 ## Décision

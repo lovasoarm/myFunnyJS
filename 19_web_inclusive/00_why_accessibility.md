@@ -24,11 +24,11 @@ Ce module te donne les outils pour qu'un site fonctionne pour quelqu'un qui ne v
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-L'shinobi qui utilise un lecteur d'écran et qui tombe sur un site sans rôles ARIA corrects entend une liste de "bouton, bouton, lien" sans aucun contexte sur ce que chaque élément fait réellement. Il abandonne la page, parce qu'elle est littéralement inutilisable pour lui, alors qu'elle "marche" parfaitement pour un shinobi voyant avec une souris.
+Le shinobi qui utilise un lecteur d'écran et qui tombe sur un site sans rôles ARIA corrects entend une liste de "bouton, bouton, lien" sans aucun contexte sur ce que chaque élément fait réellement. Il abandonne la page, parce qu'elle est littéralement inutilisable pour lui, alors qu'elle "marche" parfaitement pour un shinobi voyant avec une souris.
 
-L'shinobi qui navigue uniquement au clavier (parce qu'il ne peut pas utiliser de souris, ou parce qu'il préfère ce mode) se retrouve bloqué dans un menu sans pouvoir en sortir, parce qu'aucun focus trap (piège de focus contrôlé) n'a été pensé, ou parce que l'ordre de tabulation saute des éléments importants dans un ordre incohérent.
+Le shinobi qui navigue uniquement au clavier (parce qu'il ne peut pas utiliser de souris, ou parce qu'il préfère ce mode) se retrouve bloqué dans un menu sans pouvoir en sortir, parce qu'aucun focus trap (piège de focus contrôlé) n'a été pensé, ou parce que l'ordre de tabulation saute des éléments importants dans un ordre incohérent.
 
-Ces deux shinobis payent le prix direct d'un jutsu mal pensé. Mais le coût ne s'arrête pas à eux : l'entreprise qui les exclut s'expose en plus à un risque légal dans plusieurs juridictions, et perd une part non négligeable d'shinobis potentiels qui ne peuvent simplement pas utiliser le jutsu.
+Ces deux shinobis payent le prix direct d'un jutsu mal pensé. Mais le coût ne s'arrête pas à eux : l'entreprise qui les exclut s'expose en plus à un risque légal dans plusieurs juridictions, et perd une part non négligeable de shinobis potentiels qui ne peuvent simplement pas utiliser le jutsu.
 
 ---
 

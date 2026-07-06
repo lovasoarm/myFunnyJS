@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwicGxheWVyIjoiTWJhcHDDqSJ9.abc123xyz
 ```js
 // ce que contient un payload décodé
 {
- sub: "7",          // subject : l'id de l'shinobi
+ sub: "7",          // subject : l'id de le shinobi
  name: "Michael Scofield",
  role: "admin",
  iat: 1710000000,      // issued at : timestamp de création
@@ -134,7 +134,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 
 const router = Router()
 
-// simuler une base d'shinobis (en prod : table users en DB)
+// simuler une base de shinobis (en prod : table users en DB)
 const users = [
  {
   id: 7,

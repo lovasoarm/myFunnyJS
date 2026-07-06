@@ -8,7 +8,7 @@ i18n (internationalisation : le i, 18 lettres, puis n) c'est l'art de construire
 ```js
 // Ça casse (mais fun) : le texte codé en dur, mélangé à la logique
 function afficherMessageBienvenue(nomShinobi) {
- return `Bienvenue, ${nomShinobi} !`; // (et si l'shinobi parle japonais ?)
+ return `Bienvenue, ${nomShinobi} !`; // (et si le shinobi parle japonais ?)
 }
 ```
 

@@ -46,7 +46,7 @@ Le comportement attendu. Précis. Pas "ça devrait fonctionner correctement".
 Toujours ? Parfois ? Sur certains inputs ? Sur certains navigateurs ? À partir d'un certain volume ?
 
 **4. C'est quoi l'impact réel ?**
-Bloquant ? Contournable ? Affecte combien d'shinobis ? Depuis quand ?
+Bloquant ? Contournable ? Affecte combien de shinobis ? Depuis quand ?
 
 **5. Qu'est-ce qui a changé récemment ?**
 Nouveau déploiement ? Nouvelles données ? Changement de config ? Pic de trafic ?

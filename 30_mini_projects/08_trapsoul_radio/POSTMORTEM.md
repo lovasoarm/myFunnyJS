@@ -52,7 +52,7 @@ Décision : `focusTrap.ts` implémenté manuellement avec `querySelectorAll('[ta
 ```
 - Ajouter l'arabe comme 5ème locale (6 formes de pluriel : bon test de robustesse de i18nService)
 - Mode offline : Service Worker qui cache les tracks récentes
-- Annonces vocales personnalisées : laisser l'shinobi choisir la verbosité du lecteur d'écran
+- Annonces vocales personnalisées : laisser le shinobi choisir la verbosité du lecteur d'écran
 ```
 
 

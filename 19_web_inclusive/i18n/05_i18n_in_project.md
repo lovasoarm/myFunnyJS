@@ -11,7 +11,7 @@ import fr from './locales/fr.json';
 import en from './locales/en.json';
 import ja from './locales/ja.json';
 import mg from './locales/mg.json';
-// 4 langues chargées même si l'shinobi n'en lit qu'une seule
+// 4 langues chargées même si le shinobi n'en lit qu'une seule
 ```
 
 Un shinobi français télécharge aussi les traductions japonaises et malgaches qu'il n'utilisera jamais. Sur une grosse app avec 10 langues, ça peut représenter des centaines de Ko inutiles, ce qui touche directement le LCP (Largest Contentful Paint) du module 08_memory_performance.
@@ -43,7 +43,7 @@ function detecterLangue() {
 }
 ```
 
-Risque réel : forcer une langue par défaut sans détecter celle du navigateur, c'est imposer ta langue natale à un shinobi japonais qui n'a jamais demandé ça. Détecter, puis laisser l'shinobi changer manuellement s'il veut : les deux options ensemble, jamais une seule.
+Risque réel : forcer une langue par défaut sans détecter celle du navigateur, c'est imposer ta langue natale à un shinobi japonais qui n'a jamais demandé ça. Détecter, puis laisser le shinobi changer manuellement s'il veut : les deux options ensemble, jamais une seule.
 
 ## 3) STRUCTURE DE FICHIERS QUI TIENT À L'ÉCHELLE
 
@@ -96,7 +96,7 @@ function verifierClesManquantes(traductionsBase, traductionsCible) {
 }
 ```
 
-Sans ce genre de vérification automatique, une clé oubliée passe inaperçue jusqu'à ce qu'un shinobi anglophone tombe sur un trou ou un `undefined` dans l'interface. Mieux vaut que le build casse avant la mise en prod plutôt que l'shinobi le découvre.
+Sans ce genre de vérification automatique, une clé oubliée passe inaperçue jusqu'à ce qu'un shinobi anglophone tombe sur un trou ou un `undefined` dans l'interface. Mieux vaut que le build casse avant la mise en prod plutôt que le shinobi le découvre.
 
 ## 5) LE CAS TRAPSOUL RADIO : 4 LANGUES, ZÉRO COMPROMIS
 
@@ -120,7 +120,7 @@ Page chargée --> détecte la langue du navigateur --> détecte le namespace uti
 --> fonction t() prête, avec pluralisation et fallback intégrés
 ```
 
-Risque réel à surveiller : multiplier les imports dynamiques sans cache peut recharger le même fichier plusieurs fois si l'shinobi navigue entre les mêmes pages. Mets en cache le résultat de `chargerNamespace` en mémoire pour éviter de retélécharger ce qui est déjà là.
+Risque réel à surveiller : multiplier les imports dynamiques sans cache peut recharger le même fichier plusieurs fois si le shinobi navigue entre les mêmes pages. Mets en cache le résultat de `chargerNamespace` en mémoire pour éviter de retélécharger ce qui est déjà là.
 
 ---
 
@@ -137,4 +137,4 @@ Organise 3 namespaces (`auth`, `radio`, `profil`) pour 2 langues (`fr`, `en`), a
 
 ## RÉSUMÉ
 
-Charger toutes les langues d'un coup gonfle le bundle pour rien : utilise l'import dynamique pour ne charger que la langue active. Détecte la langue du navigateur en fallback intelligent, mais laisse toujours l'shinobi la changer manuellement. Découpe les traductions par namespace et par fichier pour que ça tienne à l'échelle. Et automatise la détection des clés manquantes en CI, pour qu'un trou de traduction casse le build plutôt que l'expérience shinobi en prod.
+Charger toutes les langues d'un coup gonfle le bundle pour rien : utilise l'import dynamique pour ne charger que la langue active. Détecte la langue du navigateur en fallback intelligent, mais laisse toujours le shinobi la changer manuellement. Découpe les traductions par namespace et par fichier pour que ça tienne à l'échelle. Et automatise la détection des clés manquantes en CI, pour qu'un trou de traduction casse le build plutôt que l'expérience shinobi en prod.

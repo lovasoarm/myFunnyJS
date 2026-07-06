@@ -81,7 +81,7 @@ EXEMPLE : comprendre comment un vote Ballon d'Or est enregistré
      --> app.post('/vote', authMiddleware, voteController.create)
 
 ÉTAPE 2 : lire le middleware (ce qui s'exécute avant le handler)
-     --> authMiddleware : vérifie le JWT, attache l'shinobi à req.user
+     --> authMiddleware : vérifie le JWT, attache le shinobi à req.user
      --> voteController.create : le handler
 
 ÉTAPE 3 : lire le handler

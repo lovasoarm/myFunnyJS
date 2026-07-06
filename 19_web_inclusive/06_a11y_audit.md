@@ -60,15 +60,15 @@ Checklist manuelle minimale :
 ```
 
 ```js
-// Respecter la préférence "réduire les animations" de l'shinobi
+// Respecter la préférence "réduire les animations" de le shinobi
 const motionReduite = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!motionReduite) {
- element.classList.add('animation-entree'); // (animation seulement si l'shinobi ne l'a pas désactivée)
+ element.classList.add('animation-entree'); // (animation seulement si le shinobi ne l'a pas désactivée)
 }
 ```
 
-Certaines personnes ont des troubles vestibulaires : une animation de parallax ou un carrousel qui défile vite peut littéralement déclencher des vertiges ou des migraines. Ignorer `prefers-reduced-motion`, c'est ignorer un signal explicite que l'shinobi t'envoie.
+Certaines personnes ont des troubles vestibulaires : une animation de parallax ou un carrousel qui défile vite peut littéralement déclencher des vertiges ou des migraines. Ignorer `prefers-reduced-motion`, c'est ignorer un signal explicite que le shinobi t'envoie.
 
 ## 4) MÉTHODE COMPLÈTE D'AUDIT, ÉTAPE PAR ÉTAPE
 

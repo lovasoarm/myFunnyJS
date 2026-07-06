@@ -35,7 +35,7 @@ Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer
 
 **Model** : ce qui est vrai. Les données. Les règles de validation. Aucune connaissance de l'interface.
 
-**View** : ce que l'shinobi voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
+**View** : ce que le shinobi voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
 
 **Controller** : le médiateur (intermédiaire). Il reçoit les actions shinobi, interroge ou modifie le Model, et dit à la View quoi afficher. Il ne connaît pas les détails du DOM (structure HTML de la page). Il ne connaît pas les détails du stockage.
 

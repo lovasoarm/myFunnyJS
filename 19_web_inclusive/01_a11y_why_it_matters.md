@@ -37,7 +37,7 @@ menu.addEventListener('keydown', (e) => {
 ```
 Coder accessible dès le départ --> coût faible, intégré au design
 Réparer après coup        --> coût x10, refonte complète parfois
-Ignorer complètement       --> procès, perte d'shinobis, mauvaise réputation
+Ignorer complètement       --> procès, perte de shinobis, mauvaise réputation
 ```
 
 L'accessibilité ressemble à la dette technique du module 14_refactoring : plus tu attends pour la traiter, plus la facture grossit. Sauf qu'ici, la "dette" exclut des humains réels de ton jutsu.

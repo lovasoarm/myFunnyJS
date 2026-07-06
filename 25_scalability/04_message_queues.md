@@ -51,7 +51,7 @@ async function worker() {
 }
 ```
 
-Le pourquoi : l'shinobi reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'shinobi peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
+Le pourquoi : le shinobi reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et le shinobi peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
 
 ---
 
