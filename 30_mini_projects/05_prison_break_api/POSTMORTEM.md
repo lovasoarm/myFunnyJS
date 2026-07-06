@@ -5,7 +5,7 @@ Temps de lecture ~5 min
 
 ## CE QUI A BIEN MARCHÉ
 
-Tester le sanitizer avant de monter Express a évité de devoir écrire des tests d'intégration pour ce qui est en fait une logique de validation pure. La règle "tester le sanitizer sans serveur" semble évidente a posteriori, mais la tentation de tout tester via supertest est forte. Résister à cette tentation a jutsu des tests plus rapides et plus ciblés.
+Tester le sanitizer avant de monter Express a évité de devoir écrire des tests d'intégration pour ce qui est en fait une logique de validation pure. La règle "tester le sanitizer sans serveur" semble évidente a posteriori, mais la tentation de tout tester via supertest est forte. Résister à cette tentation a produit des tests plus rapides et plus ciblés.
 
 Le `errorHandler.js` centralisé a payé très vite : aucune route ne s'est retrouvée à gérer l'exposition des stack traces. Une seule règle à un seul endroit.
 
