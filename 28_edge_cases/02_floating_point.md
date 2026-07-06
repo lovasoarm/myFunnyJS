@@ -1,4 +1,5 @@
 # ARITHMÉTIQUE FLOTTANTE : POURQUOI 0.1 + 0.2 N'EST PAS 0.3
+Temps de lecture ~10 min
 
 ```javascript
 console.log(0.1 + 0.2); // 0.30000000000000004
@@ -42,13 +43,13 @@ console.log((0.1 + 0.2).toPrecision(20)); // "0.30000000000000004441"
 **Calculs financiers :**
 
 ```javascript
-// système de paiement : Walter White vend 0.1 kg à 100€/kg trois fois
+// système de tribut : Walter White vend 0.1 kg à 100€/kg trois fois
 const price = 0.1 * 100; // prix unitaire
 const total = price + price + price;
 console.log(total); // 30.000000000000004 -- pas 30
 console.log(total === 30); // false
 
-// si le système compare avec === 30 pour valider le paiement : ça casse
+// si le système compare avec === 30 pour valider le tribut : ça casse
 ```
 
 **Systèmes de scoring :**
@@ -201,7 +202,7 @@ if (price === 0.3) {
  console.log("transaction OK")
 }
 // Ne s'affiche jamais.
-// Si c'est un système de paiement : le bug passe en prod, personne ne comprend pourquoi les transactions "échouent"
+// Si c'est un système de tribut : le bug passe en prod, personne ne comprend pourquoi les transactions "échouent"
 
 // Le fix :
 Math.abs(price - 0.3) < Number.EPSILON // true
@@ -235,7 +236,7 @@ for (let i = 0; i < 1_000_000; i++) {
 
 ## EXERCICES
 
-**EXO 1 : le système de paiement de la prison**
+**EXO 1 : le système de tribut de la prison**
 
 Michael Scofield doit payer des gardiens. Le système calcule :
 
