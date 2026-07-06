@@ -45,7 +45,7 @@ tests/
 
 ## CONTRAINTES TECHNIQUES PRÉCISES
 
-**Du module 29 (oop js) :**
+**Du module 18 (oop js) :**
 La chaîne `Validator -> StrictValidator -> LLMOutputValidator` doit être une vraie chaîne de prototypes utilisée intentionnellement, pas juste des classes qui font semblant d'hériter. `LLMOutputValidator` doit pouvoir appeler `super()` pour réutiliser la logique de `StrictValidator`, qui elle-même réutilise celle de `Validator`.
 Utilise au moins un mixin pour composer un comportement transversal (par exemple, la capacité de logger chaque validation) sans le dupliquer dans les 3 classes.
 
