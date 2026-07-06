@@ -1,4 +1,5 @@
 # LES COERCIONS QUI FONT RIRE ET QUI FONT MAL
+Temps de lecture ~11 min
 
 JS ne plante pas quand tu mélanges des types incompatibles.
 Il décide tout seul de les convertir.

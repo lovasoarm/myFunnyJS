@@ -56,7 +56,7 @@ Composants de date (setDate +1)  --> respecte le calendrier --> correct même le
 
 Risque réel : coder l'arithmétique des dates en millisecondes brutes marche 363 jours sur 365, et plante exactement les jours de changement d'heure. Ces bugs sont les pires : rares, donc jamais détectés en test, et catastrophiques en prod le jour J. La règle simple à retenir : pour "+1 jour", "+1 mois", "+1 an", utilise toujours les méthodes `setDate`, `setMonth`, `setFullYear` du calendrier, jamais l'addition de millisecondes.
 
-## 3) AFFICHER DANS LE FUSEAU DE L'SHINOBI
+## 3) AFFICHER DANS LE FUSEAU DU SHINOBI
 
 ```js
 // L'API Intl native du navigateur fait le travail sans librairie externe
@@ -81,14 +81,14 @@ Une seule vérité stockée (UTC), des affichages multiples calculés à la dema
 ## 4) LE PIÈGE DU FUSEAU CÔTÉ CLIENT VS SERVEUR
 
 ```js
-// Ça casse (mais fun) : faire confiance à l'heure locale de la machine de le shinobi
+// Ça casse (mais fun) : faire confiance à l'heure locale de la machine du shinobi
 const heureLocale = new Date(); // (et si le shinobi a réglé sa machine sur le faux fuseau ?)
 if (heureLocale.getHours() >= 22) {
  bloquerAccesNocturne(); // (logique de sécurité basée sur une horloge qu'on ne contrôle pas)
 }
 ```
 
-Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) de le shinobi.
+Pour toute logique sensible (sécurité, planification, facturation), ne fais JAMAIS confiance à l'horloge du client. Calcule côté serveur, en UTC, et compare avec le fuseau réel déclaré (pas deviné) du shinobi.
 
 ```js
 // Correct : le serveur calcule, en connaissant le fuseau RÉEL déclaré par le shinobi
@@ -128,4 +128,4 @@ Affiche une même heure de rendez-vous UTC dans 3 fuseaux différents (Tokyo, Pa
 
 ## RÉSUMÉ
 
-Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau de le shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.
+Stocke toujours les dates en UTC, jamais dans le fuseau local du serveur ou du client. N'écris jamais l'arithmétique des dates à la main (+86400000 ms pour "un jour") : le changement d'heure casse ce calcul silencieusement. Affiche dans le fuseau du shinobi uniquement au moment final, avec `Intl.DateTimeFormat` ou une lib comme Luxon. Et pour toute logique sensible, ne fais jamais confiance à l'horloge locale du client.

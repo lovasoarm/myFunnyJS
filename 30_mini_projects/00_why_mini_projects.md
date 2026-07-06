@@ -145,7 +145,7 @@ Tu n'as pas besoin de finir tous les modules avant de commencer : chaque projet 
 | 06_ultras_dashboard    | 14 + 25 + 26      | Après module 26     |
 | 07_ballon_dor_cli     | 04 + 13 + 15 + 31    | Après module 31     |
 | 08_trapsoul_radio     | 14 + 17 + 18 + 19    | Après module 19     |
-| 09_oracle_glitch     | 23 + 27 + 28 + 29    | Après module 29     |
+| 09_oracle_glitch     | 23 + 27 + 28 + 18    | Après module 28     |
 ```
 
 Si tu hésite entre deux projets au même niveau : choisis celui dont le contexte narratif t'accroche le plus.

@@ -49,7 +49,7 @@ Pas des définitions Wikipedia. Des outils.
 ```
 1. Qu'est-ce qui se passe actuellement ?   (comportement réel, avec exemple concret)
 2. Qu'est-ce qui devrait se passer ?     (comportement attendu, précis)
-3. Dans quelles conditions ça se jutsu ?  (toujours / parfois / sur certains inputs)
+3. Dans quelles conditions ça se produit ?  (toujours / parfois / sur certains inputs)
 4. C'est quoi l'impact réel ?        (bloquant / contournable / combien d'users)
 5. Qu'est-ce qui a changé récemment ?    (déploiement / données / config / trafic)
 ```

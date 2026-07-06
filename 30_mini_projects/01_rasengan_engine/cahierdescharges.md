@@ -160,7 +160,7 @@ tests/
 **Sortie** : l'état final du combat (`{ winner, loser, turns: [...], finalChakra: {...} }`).
 
 ### `src/engine/turnResolver.js`
-**Ce que ça fait** : résout un seul tour. Détermine qui attaque, quel jutsu est utilisé, si l'esquive se jutsu, et retourne le nouvel état.
+**Ce que ça fait** : résout un seul tour. Détermine qui attaque, quel jutsu est utilisé, si l'esquive se produit, et retourne le nouvel état.
 **Entrée** : l'état actuel du combat.
 **Sortie** : le nouvel état après le tour (objet différent, pas muté).
 
@@ -170,9 +170,9 @@ tests/
 **Sortie** : un nombre de dégâts.
 
 ### `src/utils/rng.js`
-**Ce que ça fait** : tire un nombre aléatoire et décide si un événement probabiliste se jutsu (esquive, critique, raté).
+**Ce que ça fait** : tire un nombre aléatoire et décide si un événement probabiliste se produit (esquive, critique, raté).
 **Entrée** : une probabilité (entre 0 et 1).
-**Sortie** : `true` (l'événement se jutsu) ou `false`.
+**Sortie** : `true` (l'événement se produit) ou `false`.
 
 ### `src/utils/cooldownCycle.js`
 **Ce que ça fait** : gère les cooldowns des jutsus. Un jutsu avec cooldown 3 ne peut être réutilisé qu'après 3 tours.

@@ -31,7 +31,7 @@ Sans lazy loading --> toutes les langues dans le bundle initial --> poids gonfl�
 Avec lazy loading --> seule la langue active est chargée --> poids minimal, par shinobi
 ```
 
-## 2) DÉTECTER LA LANGUE DE L'SHINOBI
+## 2) DÉTECTER LA LANGUE DU SHINOBI
 
 ```js
 function detecterLangue() {

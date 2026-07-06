@@ -244,7 +244,7 @@ Les stats de joueurs dans FIFA, les temps de réponse d'une API, les scores d'un
 function normalRandom(mean = 0, stdDev = 1) {
  const u1 = Math.random()
  const u2 = Math.random()
- // transformation mathématique qui jutsu une distribution en cloche
+ // transformation mathématique qui produit une distribution en cloche
  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
  return mean + z * stdDev
 }

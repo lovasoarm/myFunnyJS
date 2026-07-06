@@ -131,7 +131,7 @@ const limits = {
 
 ---
 
-## 4) LA RÉPONSE QUAND ON BLOQUE : NE PAS LAISSER L'SHINOBI DANS LE FLOU
+## 4) LA RÉPONSE QUAND ON BLOQUE : NE PAS LAISSER LE SHINOBI DANS LE FLOU
 
 ```js
 app.use((req, res, next) => {
