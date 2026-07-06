@@ -181,16 +181,16 @@ function collisionRect(a, b) {
  )
 }
 
-const saitama = { x: 100, y: 100, width: 50, height: 80 }
+const sasuke = { x: 100, y: 100, width: 50, height: 80 }
 const monstre = { x: 130, y: 120, width: 60, height: 90 }
 
-console.log(collisionRect(saitama, monstre)) // true : collision détectée
+console.log(collisionRect(sasuke, monstre)) // true : collision détectée
 ```
 
 Diagramme :
 
 ```
-saitama:
+sasuke:
  (100,100) +--------+
       |    |
       |    |
@@ -212,10 +212,10 @@ function collisionCercle(a, b) {
  return dist < a.radius + b.radius
 }
 
-const luffy = { x: 200, y: 200, radius: 30 }
-const kaido = { x: 220, y: 210, radius: 50 }
+const goku = { x: 200, y: 200, radius: 30 }
+const vegeta = { x: 220, y: 210, radius: 50 }
 
-console.log(collisionCercle(luffy, kaido))
+console.log(collisionCercle(goku, vegeta))
 // distance ≈ 22.4, radius sum = 80 => true : ils se touchent
 ```
 

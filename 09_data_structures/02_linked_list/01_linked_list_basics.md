@@ -30,7 +30,7 @@ Visuellement :
 ```
 Node A       Node B       Node C
 ┌─────────┬──────┐ ┌─────────┬──────┐ ┌─────────┬──────┐
-│ "Luffy" │ ●───┼─>│ "Zoro" │ ●───┼─>│ "Nami" │ null │
+│ "Naruto" │ ●───┼─>│ "Sasuke" │ ●───┼─>│ "Sakura" │ null │
 └─────────┴──────┘ └─────────┴──────┘ └─────────┴──────┘
 ```
 
@@ -55,10 +55,10 @@ class LinkedList {
 ```
 head                 tail
  ↓                   ↓
-[Luffy] --> [Zoro] --> [Nami] --> [Sanji] --> null
+[Naruto] --> [Sasuke] --> [Sakura] --> [Kakashi] --> null
 ```
 
-Pour atteindre Nami, il faut partir de `head` et suivre les pointeurs. Pas de raccourci.
+Pour atteindre Sakura, il faut partir de `head` et suivre les pointeurs. Pas de raccourci.
 
 ---
 
@@ -84,13 +84,13 @@ append(value) {
 ```
 
 ```
-Avant : [Luffy] --> [Zoro] --> null
+Avant : [Naruto] --> [Sasuke] --> null
             ↑
            tail
 
-append("Nami")
+append("Sakura")
 
-Après : [Luffy] --> [Zoro] --> [Nami] --> null
+Après : [Naruto] --> [Sasuke] --> [Sakura] --> null
                  ↑
                  tail
 ```
@@ -120,13 +120,13 @@ prepend(value) {
 ```
 
 ```
-Avant : [Zoro] --> [Nami] --> null
+Avant : [Sasuke] --> [Sakura] --> null
       ↑
      head
 
-prepend("Luffy")
+prepend("Naruto")
 
-Après : [Luffy] --> [Zoro] --> [Nami] --> null
+Après : [Naruto] --> [Sasuke] --> [Sakura] --> null
       ↑
       head
 ```
@@ -169,13 +169,13 @@ delete(value) {
 ```
 
 ```
-Avant : [Luffy] --> [Zoro] --> [Nami] --> [Sanji] --> null
+Avant : [Naruto] --> [Sasuke] --> [Sakura] --> [Kakashi] --> null
 
-delete("Nami")
+delete("Sakura")
 
       ┌────────────────────────┐
-      ↓            │ (ancien pointeur de Zoro supprimé)
-[Luffy] --> [Zoro] ───────────────> [Sanji] --> null
+      ↓            │ (ancien pointeur de Sasuke supprimé)
+[Naruto] --> [Sasuke] ───────────────> [Kakashi] --> null
 ```
 
 ---
@@ -273,14 +273,14 @@ class LinkedList {
 
 // utilisation
 const crew = new LinkedList()
-crew.append("Zoro")
-crew.append("Nami")
-crew.prepend("Luffy")
-crew.append("Sanji")
+crew.append("Sasuke")
+crew.append("Sakura")
+crew.prepend("Naruto")
+crew.append("Kakashi")
 
-console.log(crew.print()) // "Luffy --> Zoro --> Nami --> Sanji"
-crew.delete("Nami")
-console.log(crew.print()) // "Luffy --> Zoro --> Sanji"
+console.log(crew.print()) // "Naruto --> Sasuke --> Sakura --> Kakashi"
+crew.delete("Sakura")
+console.log(crew.print()) // "Naruto --> Sasuke --> Kakashi"
 console.log(crew.size)   // 3
 ```
 
