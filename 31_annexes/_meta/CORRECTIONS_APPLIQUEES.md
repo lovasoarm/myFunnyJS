@@ -12,6 +12,7 @@ Repo publiable en l'etat. Note visee : **10/10**. Toutes les greffes
 
 Faux positifs du scanner naif (parentheses de code prises pour des liens).
 Corriges :
+
 - `10_algorithms/06_graph_algorithms/01_dijkstra.md` : deux
   `dist[X](nn)` reformates en `` `dist[X]` (nn) ``.
 - `12_design_patterns/04_patterns_grimoire.md` : split du fragment
@@ -25,6 +26,7 @@ Corriges :
 Audit initial : 82 fichiers signales. **Verification poussee : zero
 occurrence reelle de 'lo''gin', 'pa''nier'**. Les 82 hits etaient tous des
 faux positifs sur :
+
 - verbe "produit" ("a produit", "se produit"),
 - "commande" au sens CLI ("ligne de commande"),
 - "utilisateur" au sens legitime (utilisateur d'un formulaire, d'une
@@ -32,6 +34,7 @@ faux positifs sur :
   meme).
 
 Le `style_lint.py` a ete durci pour :
+
 - flagger `lo''gin|pa''nier` sans contexte (hard fail) ;
 - flagger `produit|commande` seulement dans un contexte e-commerce
   evident (regex ECOM_CONTEXT).
@@ -120,6 +123,7 @@ dossiers, les deux comptes sont coherents".
 ## Verdict attendu apres corrections
 
 Selon la grille de l'audit (section 9) :
+
 - 0 bloquant -> ouvre la porte 9-10.
 - Les 3 chantiers vitaux+hauts (Solutions 1, 2, 3) executes.
 - Les 5 solutions W.9 executees.
@@ -131,26 +135,26 @@ et le marqueur explicite de peremption sur chaque lecon.
 
 ---
 
-## PASSE AUDIT FINAL — CORRECTIONS APPLIQUÉES
+## PASSE AUDIT FINAL : CORRECTIONS APPLIQUÉES
 
 Base : `AUDIT_FINAL_MyFunnyJS.md` (note initiale 8/10, objectif 10/10).
 
 ### DOUTEUX corrigés (tous, sans exception)
 
-- **0.2 / 0.5 / 10.1** — Racine polluée. `CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md` déplacés sous `31_annexes/_meta/`. README racine mis à jour. Chantier 4.
-- **0.4 / 6.1** — `START_HERE.md` réécrit : "3 actions dans les 10 prochaines minutes" en tête de fichier, filet de sécurité rétrogradé plus bas.
-- **1.2 / 9.2 / 11.6** — Transferabilité prouvée. `31_annexes/career/crosslang_challenge.md` + `verification_pack/_lib/crosslang_compare.sh` créés. Chantier 3.
-- **1.3 / 9.6 / 10.5** — Balisage `Durée de vie : intemporel | 5+ ans | 2-3 ans, revenir en 2028` ajouté dans les 38 fichiers `00_why_*.md`. Chantier 1.
-- **2.2 / 10.2** — `13_refactoring/02_solid_principles.md` déplacé vers `16_architecture_patterns/02_solid_principles.md` ; renvoi d'une ligne laissé dans `13_refactoring`.
-- **2.4** — Pont bits/mémoire créé : `07_math_basics/06_bits_and_memory_bridge.md` (3 pages).
-- **4.3** — Deux grimoires `23_ai_native_dev` : ligne "safeParse" reformée avec deux vraies analogies (Prison Break + comptoir à ramen) au lieu d'analogie + mécanisme technique.
-- **8.3** — `31_annexes/career/plateau_playbook.md` créé (arbre de décision).
-- **9.3 / 16.2 / 18.3 / 20.3 / 12.8** — Défense orale outillée : `31_annexes/career/interview_defense.md` créé (10 scénarios + grille auto-eval). Renvois vers `31_annexes/interview/`. Chantier 2.
-- **10.6** — Bouclier défense orale + cross-language : les deux existent désormais comme livrables joignables.
-- **12.4 / 19.1** — "Je ne sais pas / pas encore" déjà outillé (`27_team_craft/09_dire_je_ne_sais_pas.md` existant, renvoi depuis `plateau_playbook.md`).
-- **12.5** — `30_mini_projects/_synthesis/spec_drift.md` créé (6 contraintes de drift, protocole STOP CODE + ADR + POSTMORTEM).
-- **15.1** — 13 `EXO_LECTURE.md` créés (modules 01, 02, 05, 07, 12, 14, 17, 19, 20, 23, 27, 28, 29). Total désormais 29 modules couverts.
-- **18.1** — `27_team_craft/EXO_TROIS_PUBLICS.md` déjà présent, confirmé.
+- **0.2 / 0.5 / 10.1** : Racine polluée. `CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md` déplacés sous `31_annexes/_meta/`. README racine mis à jour. Chantier 4.
+- **0.4 / 6.1** : `START_HERE.md` réécrit : "3 actions dans les 10 prochaines minutes" en tête de fichier, filet de sécurité rétrogradé plus bas.
+- **1.2 / 9.2 / 11.6** : Transferabilité prouvée. `31_annexes/career/crosslang_challenge.md` + `verification_pack/_lib/crosslang_compare.sh` créés. Chantier 3.
+- **1.3 / 9.6 / 10.5** : Balisage `Durée de vie : intemporel | 5+ ans | 2-3 ans, revenir en 2028` ajouté dans les 38 fichiers `00_why_*.md`. Chantier 1.
+- **2.2 / 10.2** : `13_refactoring/02_solid_principles.md` déplacé vers `16_architecture_patterns/02_solid_principles.md` ; renvoi d'une ligne laissé dans `13_refactoring`.
+- **2.4** : Pont bits/mémoire créé : `07_math_basics/06_bits_and_memory_bridge.md` (3 pages).
+- **4.3** : Deux grimoires `23_ai_native_dev` : ligne "safeParse" reformée avec deux vraies analogies (Prison Break + comptoir à ramen) au lieu d'analogie + mécanisme technique.
+- **8.3** : `31_annexes/career/plateau_playbook.md` créé (arbre de décision).
+- **9.3 / 16.2 / 18.3 / 20.3 / 12.8** : Défense orale outillée : `31_annexes/career/interview_defense.md` créé (10 scénarios + grille auto-eval). Renvois vers `31_annexes/interview/`. Chantier 2.
+- **10.6** : Bouclier défense orale + cross-language : les deux existent désormais comme livrables joignables.
+- **12.4 / 19.1** : "Je ne sais pas / pas encore" déjà outillé (`27_team_craft/09_dire_je_ne_sais_pas.md` existant, renvoi depuis `plateau_playbook.md`).
+- **12.5** : `30_mini_projects/_synthesis/spec_drift.md` créé (6 contraintes de drift, protocole STOP CODE + ADR + POSTMORTEM).
+- **15.1** : 13 `EXO_LECTURE.md` créés (modules 01, 02, 05, 07, 12, 14, 17, 19, 20, 23, 27, 28, 29). Total désormais 29 modules couverts.
+- **18.1** : `27_team_craft/EXO_TROIS_PUBLICS.md` déjà présent, confirmé.
 
 ### AMÉLIORABLE traités
 

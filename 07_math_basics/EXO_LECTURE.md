@@ -4,7 +4,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui manipule des flottants ou des grands entiers (bit ops, modulo, IEEE 754) — issu de `07_math_basics/` ou d'un utilitaire mathématique. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui manipule des flottants ou des grands entiers (bit ops, modulo, IEEE 754) : issu de `07_math_basics/` ou d'un utilitaire mathématique. 15-30 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 
@@ -26,4 +26,5 @@ Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modè
 - Croise avec `EXO_JEUNE_IA.md` du même module quand il existe : compare ton hypothèse humaine à celle qu'une IA produirait sur le même extrait.
 
 ---
+
 stability: intemporel

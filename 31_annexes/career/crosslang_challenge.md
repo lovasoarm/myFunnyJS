@@ -46,20 +46,20 @@ crosslang_challenge/
 
 ## GRILLE DE CONFORMITÉ (à cocher toi-même)
 
-| # | Critère | OK |
-|---|---|---|
-| 1 | Sorties identiques à la version JS sur ≥ 10 cas de test |  |
-| 2 | Complexité asymptotique documentée et respectée |  |
-| 3 | Erreurs / cas limites gérés de façon équivalente (pas de crash silencieux) |  |
-| 4 | Choix de langage justifié en 5 lignes minimum |  |
-| 5 | RAPPORT.md nomme au moins 3 choses qui ont mieux fonctionné, ou moins bien, hors JS |  |
-| 6 | `crosslang_compare.sh` renvoie 0 sur la totalité des cas de test |  |
+| #   | Critère                                                                             | OK  |
+| --- | ----------------------------------------------------------------------------------- | --- |
+| 1   | Sorties identiques à la version JS sur ≥ 10 cas de test                             |     |
+| 2   | Complexité asymptotique documentée et respectée                                     |     |
+| 3   | Erreurs / cas limites gérés de façon équivalente (pas de crash silencieux)          |     |
+| 4   | Choix de langage justifié en 5 lignes minimum                                       |     |
+| 5   | RAPPORT.md nomme au moins 3 choses qui ont mieux fonctionné, ou moins bien, hors JS |     |
+| 6   | `crosslang_compare.sh` renvoie 0 sur la totalité des cas de test                    |     |
 
 6/6 obligatoire. Pas de 5/6 "presque bon".
 
 ## POURQUOI CETTE GREFFE, ET PAS UN NOUVEAU MODULE
 
-Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une greffe unique à la fin du parcours, exigeant deux artefacts vérifiables, prouve la transferabilité **une fois pour toutes** — et ça passe au portfolio.
+Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une greffe unique à la fin du parcours, exigeant deux artefacts vérifiables, prouve la transferabilité **une fois pour toutes** : et ça passe au portfolio.
 
 ## RAPPORT.md : STRUCTURE OBLIGATOIRE
 
@@ -76,4 +76,5 @@ Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une g
 - Après : passe à `31_annexes/career/interview_defense.md` scénario 2. Tu défendras plus solidement.
 
 ---
+
 stability: 5+ ans

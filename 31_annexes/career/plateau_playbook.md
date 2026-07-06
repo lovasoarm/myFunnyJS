@@ -33,7 +33,7 @@ Si oui : c'est de la fatigue déguisée en plateau. Une semaine off. Vraiment of
 ### Question 5 : "As-tu essayé d'expliquer ton blocage à voix haute pendant 3 minutes ?"
 
 - **Non** : fais-le. Enregistre-toi. Réécoute. Le blocage se nomme souvent tout seul. Fin.
-- **Oui, ça n'a rien donné** : ouvre un `EXO_JEUNE_IA.md` du module courant. Demande à l'IA de te poser 3 questions socratiques sur ton blocage — pas de te donner la réponse. Cf `verification_pack/_jeune_ia/README.md`. Fin.
+- **Oui, ça n'a rien donné** : ouvre un `EXO_JEUNE_IA.md` du module courant. Demande à l'IA de te poser 3 questions socratiques sur ton blocage : pas de te donner la réponse. Cf `verification_pack/_jeune_ia/README.md`. Fin.
 
 ## MÉTHODE COMPLÉMENTAIRE : LE JOURNAL PLATEAU
 
@@ -56,4 +56,5 @@ Après 5 lignes, tu vois le pattern. Un plateau qui dure > 10 jours sans que la 
 Si après 3 jours de méthode, tu n'as pas progressé d'un cran (un `00_prereq_check.md` passé, une hypothèse validée, un EXO_LECTURE bouclé), il y a une raison réelle : soit un module de fond te manque (recule de 2), soit un contexte externe est en cause (sommeil, charge mentale hors curriculum). Adresse le contexte avant de reprendre.
 
 ---
+
 stability: intemporel

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# crosslang_compare.sh — compare la sortie d'une implémentation cross-language à sa référence JS.
+# crosslang_compare.sh : compare la sortie d'une implémentation cross-language à sa référence JS.
 #
 # Usage :
 #   crosslang_compare.sh <js_ref_cmd> <alt_lang_cmd> <cases_dir>

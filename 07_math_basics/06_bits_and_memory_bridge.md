@@ -39,8 +39,8 @@ Schéma en tête :
 ```
 Stack (rapide, petit)                Heap (lent, grand)
 ------------------                   ----------------
-a = 5                                
-b = 5                                
+a = 5
+b = 5
 x -----> ------------------------->  { v: 42 }
 y -------^
 ```
@@ -62,7 +62,7 @@ Tu n'as pas besoin des chiffres exacts. Tu as besoin du **réflexe** : "un objet
 
 ## 4. GARBAGE COLLECTOR : LE CONTRAT
 
-Le GC libère la mémoire des objets **inaccessibles** depuis les racines (variables globales, stack actif, closures encore référencées). Règle unique : **si rien ne pointe vers un objet, il est mort**. Si quelque chose pointe encore, il vit — même si tu penses que "c'est fini".
+Le GC libère la mémoire des objets **inaccessibles** depuis les racines (variables globales, stack actif, closures encore référencées). Règle unique : **si rien ne pointe vers un objet, il est mort**. Si quelque chose pointe encore, il vit : même si tu penses que "c'est fini".
 
 C'est pour ça qu'une closure qui capture une grosse variable est un piège : tant que la closure vit, la variable vit.
 
@@ -85,4 +85,5 @@ Si les 3 réponses coulent (8 octets ; 2 car même référence ; tant que la clo
 - N'introduit pas d'API nouvelle. Uniquement le **modèle mental** que le reste du module 08 utilisera.
 
 ---
+
 stability: intemporel
