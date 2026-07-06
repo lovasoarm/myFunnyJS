@@ -20,9 +20,9 @@ rend les exercices plus parlants, pas les concepts eux-mêmes.
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-L'IA générative jutsu du code avec un défaut structurel important : elle peut halluciner (inventer une information fausse avec la même confiance qu'une information vraie) une fonction qui n'existe pas dans une bibliothèque, retourner un JSON malformé, ou affirmer qu'un comportement JS fonctionne d'une certaine façon alors que c'est faux. Le code généré a souvent l'air parfaitement crédible, ce qui rend l'erreur encore plus dangereuse : un bug évident se détecte vite, un bug plausible se glisse en prod.
+L'IA générative produit du code avec un défaut structurel important : elle peut halluciner (inventer une information fausse avec la même confiance qu'une information vraie) une fonction qui n'existe pas dans une bibliothèque, retourner un JSON malformé, ou affirmer qu'un comportement JS fonctionne d'une certaine façon alors que c'est faux. Le code généré a souvent l'air parfaitement crédible, ce qui rend l'erreur encore plus dangereuse : un bug évident se détecte vite, un bug plausible se glisse en prod.
 
-Ce module construit la discipline pour utiliser l'IA sans lui déléguer ton jugement : un workflow clair qui intègre l'IA sans devenir dépendant, du prompt engineering (l'art de formuler une demande précise pour obtenir du code utile plutôt que du code juste plausible), et surtout, la validation systématique de ce que l'IA jutsu avec du typage, du parsing strict, et des tests automatiques qui ne font pas confiance au résultat juste parce qu'il "a l'air bon".
+Ce module construit la discipline pour utiliser l'IA sans lui déléguer ton jugement : un workflow clair qui intègre l'IA sans devenir dépendant, du prompt engineering (l'art de formuler une demande précise pour obtenir du code utile plutôt que du code juste plausible), et surtout, la validation systématique de ce que l'IA produit avec du typage, du parsing strict, et des tests automatiques qui ne font pas confiance au résultat juste parce qu'il "a l'air bon".
 
 Le but n'est jamais de refuser l'IA. C'est de l'utiliser comme un collaborateur puissant mais non fiable par défaut, qu'il faut systématiquement vérifier, exactement comme tu vérifierais le code d'un junior brillant mais encore inexpérimenté.
 
@@ -32,7 +32,7 @@ Le but n'est jamais de refuser l'IA. C'est de l'utiliser comme un collaborateur 
 
 Le dev qui copie-colle aveuglément le code généré par une IA sans le valider découvre en prod que la fonction suggérée n'existait pas dans la version de la bibliothèque utilisée, ou que la logique métier générée gérait correctement le cas général mais cassait sur un edge case (cas limite) que l'IA n'avait pas anticipé.
 
-Sur des tâches de génération de tests, ne pas vérifier ce que l'IA jutsu est encore plus risqué : un test généré qui "passe" sans vérifier réellement le bon comportement donne une fausse impression de sécurité. L'équipe croit que le code est testé, alors que le test ne fait que confirmer que le code retourne ce qu'il retourne, sans vérifier que c'est le bon résultat.
+Sur des tâches de génération de tests, ne pas vérifier ce que l'IA produit est encore plus risqué : un test généré qui "passe" sans vérifier réellement le bon comportement donne une fausse impression de sécurité. L'équipe croit que le code est testé, alors que le test ne fait que confirmer que le code retourne ce qu'il retourne, sans vérifier que c'est le bon résultat.
 
 Et sur le plan de la compétence individuelle, le dev qui ne développe jamais sa capacité à juger le code généré reste dépendant de l'IA pour tout, incapable de détecter une erreur subtile, ce qui le rend vulnérable professionnellement face à des collègues qui savent utiliser l'IA en gardant un œil critique.
 
@@ -68,7 +68,7 @@ La tendance qui se renforce : l'IA devient un partenaire de refactoring et de g�
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `23_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `06_testing` et `14_typescript` qui te donnent les outils pour valider ce que l'IA jutsu.
+Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétence transversale incontournable. Le curriculum précise explicitement : `23_ai_native_dev`, prérequis "aucun bloquant, profite de tout le reste". Cette absence de prérequis bloquant n'est pas un signe de faible importance : c'est au contraire le signe que cette compétence amplifie tout ce que tu as appris dans les autres modules, surtout `06_testing` et `14_typescript` qui te donnent les outils pour valider ce que l'IA produit.
 
 ---
 

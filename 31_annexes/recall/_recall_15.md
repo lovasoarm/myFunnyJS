@@ -4,54 +4,22 @@ Temps de lecture ~5 min
 > Rappel espacé. Réponds **sans revoir les fichiers**. Note ton score.
 > Refais ce fichier **une semaine plus tard**. C'est là que la mémoire tient.
 
-Périmètre : functional, patterns, refactoring, TS, runtime + toutes les notions plus anciennes qui remontent.
+Périmètre : functional JS, design patterns, refactoring (SOLID), TypeScript, runtime env. Plus 2 questions de rappel sur 06–10.
 
 ## 10 questions
 
-1. Dessine (sur papier) l'ordre d'exécution de : sync → microtask → macrotask.
-2. Un bug non déterministe : quelle est **la première** chose à faire ?
-3. Cite un smell de code + le refacto qui le tue.
-4. Complexité de recherche dans un BST équilibré vs un array trié ?
-5. Ton test passe. Prouve-moi qu'il teste vraiment quelque chose.
-6. Fuite mémoire vs high water mark : différence ?
-7. Écris (mentalement) une closure qui compte les appels.
-8. `throw` vs `Result<T,E>` : trade-off ?
-9. Une API idempotente : donne un exemple non trivial.
-10. Relis ton **ADR le plus ancien**. Que changerais-tu aujourd'hui ?
+1. Fonction pure : les 2 conditions strictes. Donne un contre-exemple.
+2. `map` / `filter` / `reduce` : réécris un `for` classique en pipeline en 1 ligne (mentalement).
+3. Cite 3 design patterns utiles au quotidien en JS et *quand* les sortir (pas leur définition).
+4. SOLID — le **S** : quel signal déclencheur t'indique qu'une classe le viole ?
+5. SOLID — le **D** : pourquoi la logique métier ne doit pas faire `new PostgresClient()` directement ?
+6. TypeScript : différence entre `unknown` et `any` et pourquoi `any` est un anti-pattern.
+7. `type` vs `interface` en TS : quand tu prends l'un, quand tu prends l'autre.
+8. Node.js vs navigateur : cite 3 différences runtime qui te pètent à la gueule si tu les ignores.
+9. **Rappel 06–10 :** Big-O — coût pratique de O(n²) sur 100k éléments.
+10. **Rappel 06–10 :** un test qui passe — comment prouver qu'il teste vraiment ?
 
 ## Scoring
 
 - 8+/10 → tu peux avancer.
 - 5–7 → relis les modules faibles avant de continuer.
-- <5 → refais les `_prereq_check` correspondants.
-
-## Piège à éviter
-
-"J'ai relu, ça me revient" ≠ "je sais". Écris tes réponses **avant** de vérifier.
-
-
-## Exercice de transfert (obligatoire, P6)
-
-Prends la dernière closure que tu as écrite en JS dans ce bloc. Traduis-la en **pseudo-Python** (ou Rust, Go, au choix). Décris en 3 lignes ce qui change (scoping, GC, syntaxe).
-
-Si tu ne peux pas le faire sans regarder le cours JS, ta compréhension est syntaxique, pas conceptuelle. Refais les leçons de scope avant d'avancer.
-
-## Rituel de doute
-
-Parmi les décisions prises dans les modules précédents (ou dans tes mini-projets), laquelle referais-tu **différemment** aujourd'hui ? Écris-le. Note dans quel ADR ça devrait apparaître.
-
-
----
-
-## EXERCICE DE TRANSFERT
-
-Prends UN concept clé de ce module. Réécris son fonctionnement en pseudo-code, puis dans un autre langage que JS (Python, Go, Rust au choix). But : prouver que ta compréhension n'est pas syntaxique.
-
-Livrable : un fichier `transfert_<concept>.md` dans ton dépôt.
-
-
-## REMISE EN CAUSE
-
-**Quelle croyance technique avais-tu il y a quelques modules qui a changé aujourd'hui ?**
-
-Écris-la en 3 lignes. Date-la. Relis-la dans 30 jours.

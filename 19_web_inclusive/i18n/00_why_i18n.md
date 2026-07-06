@@ -30,14 +30,14 @@ Et sur le plan business, une mauvaise i18n donne une impression d'amateurisme im
 ## 3) OÙ ÇA APPARAÎT DANS UN VRAI SYSTÈME
 
 ```
-texte affiché �au shinobi             --> clé de traduction   --> jamais de texte en dur
+texte affiché au shinobi             --> clé de traduction   --> jamais de texte en dur
 date d'expiration, d'événement, de rendez-vous     --> Intl.DateTimeFormat  --> format selon la locale
 prix, statistique, quantité affichée          --> Intl.NumberFormat   --> séparateurs corrects par région
 compteur de résultats, de notifications, d'éléments   --> pluralisation     --> règles spécifiques par langue
 traduction manquante pour une nouvelle langue      --> fallback        --> langue de repli sans erreur visible
 ```
 
-L'i18n touche absolument tout ce qui s'affiche �au shinobi : pas juste les textes de bouton, mais chaque date, chaque nombre, chaque message qui dépend du contexte de quantité.
+L'i18n touche absolument tout ce qui s'affiche au shinobi : pas juste les textes de bouton, mais chaque date, chaque nombre, chaque message qui dépend du contexte de quantité.
 
 ---
 

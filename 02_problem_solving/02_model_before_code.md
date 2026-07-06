@@ -201,4 +201,4 @@ Implémente le type discriminant qui les rend impossibles en TypeScript.
 
 # RÉSUMÉ
 
-Modéliser avant de coder : c'est décider de la forme des données et des contrats avant que le code existe. Un bon modèle rend les états impossibles... impossibles. Il se lit comme une histoire. Il change quand le domaine change, pas quand l'UI change. Un modèle sans invariants laisse entrer n'importe quoi : et n'importe quoi jutsu des bugs qu'on comprend pas.
+Modéliser avant de coder : c'est décider de la forme des données et des contrats avant que le code existe. Un bon modèle rend les états impossibles... impossibles. Il se lit comme une histoire. Il change quand le domaine change, pas quand l'UI change. Un modèle sans invariants laisse entrer n'importe quoi : et n'importe quoi produit des bugs qu'on comprend pas.

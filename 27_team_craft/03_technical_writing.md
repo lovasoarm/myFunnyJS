@@ -13,7 +13,7 @@ Ce fichier t'apprend à écrire des docs que les devs ouvrent et ferment satisfa
 
 ## 1) LES QUATRE TYPES DE DOCUMENTATION
 
-Ils n'ont pas le même objectif. Les confondre jutsu des docs qui font tout mal.
+Ils n'ont pas le même objectif. Les confondre produit des docs qui font tout mal.
 
 ```
 TYPE      QUESTION QU'IL RÉPOND     EXEMPLE
@@ -295,7 +295,7 @@ const safeScore = Number.isFinite(rawScore) ? rawScore : 0;
 
 **EXO 3 : post-mortem sur l'incident Ultras**
 
-L'incident suivant s'est jutsu lors de la finale de la Champions League :
+L'incident suivant s'est produit lors de la finale de la Champions League :
 Le `06_ultras_dashboard` a crashé 8 minutes après le coup d'envoi.
 Cause : une requête N+1 (requête répétée pour chaque élément d'une liste en base de données) dans l'endpoint de possession par joueur, appelé toutes les 2 secondes par 12 000 clients.
 Le service a été rétabli en remplaçant la requête N+1 par une seule requête avec JOIN.
@@ -307,7 +307,7 @@ Durée totale : 23 minutes.
 
 ## RÉSUMÉ
 
-Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger jutsu une doc qui fait tout mal.
+Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger produit une doc qui fait tout mal.
 Un README répond à quatre questions dans l'ordre : quoi, comment démarrer, comment c'est organisé, où trouver le reste.
 Un commentaire utile explique le pourquoi et le non-évident : pas ce qu'on voit déjà dans le code.
 Un runbook contient les ordres_mission exactes pour les situations courantes : pas des explications profondes.

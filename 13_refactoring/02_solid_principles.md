@@ -47,6 +47,10 @@ class FightHistory {
 
 `Ninja` change si les règles de combat changent. `BattleLogger` change si le format de log change. Plus de collision.
 
+**Quand s'en soucier :** dès qu'une classe ou une fonction dépasse ~50 lignes et mélange visiblement deux mots-clés différents (métier + I/O, calcul + log, transport + parsing). Signal déclencheur : deux tickets non liés touchent le même fichier dans la même semaine.
+
+**Vraie utilité en prod :** un bug de log ne casse plus le combat ; on peut mocker le storage dans les tests sans instancier tout le domaine ; deux devs peuvent modifier la sauvegarde et le rendu en parallèle sans conflit de merge.
+
 ---
 
 ## 2) O : OPEN/CLOSED PRINCIPLE
@@ -85,6 +89,10 @@ castJutsu --> lookup dans jutsus --> exécution
           ^
           ajouter ici, jamais toucher castJutsu
 ```
+
+**Quand s'en soucier :** dès que tu vois un `if/else if` ou un `switch` sur un type qui grossit à chaque nouvelle feature. Signal déclencheur : la 3e branche ajoutée en 2 semaines dans la même fonction.
+
+**Vraie utilité en prod :** ajouter un nouveau moyen de paiement, un nouveau type d'event, un nouveau format d'export ne rouvre plus une fonction critique déjà testée. Zéro régression sur l'existant, la review se limite au nouveau fichier.
 
 ---
 
@@ -132,6 +140,10 @@ function startBattle(chevalier) {
 }
 ```
 
+**Quand s'en soucier :** dès que tu utilises `extends` ou que tu passes des objets polymorphes à une fonction générique. Signal déclencheur : une sous-classe qui throw, retourne `null`, ou impose une pré-condition plus stricte que la classe mère.
+
+**Vraie utilité en prod :** le code appelant (framework, middleware, pipeline générique) ne fait plus de `if (obj instanceof X)` défensif. Les tests écrits pour la classe mère valident aussi les sous-classes, sans cas particuliers.
+
 ---
 
 ## 4) I : INTERFACE SEGREGATION PRINCIPLE
@@ -177,6 +189,10 @@ class Carl extends Fighter {
 ```
 
 Si une classe a des méthodes qui throw "pas implémenté" ou "pas mon rôle" : c'est le signal qu'elle dépend d'une interface trop large.
+
+**Quand s'en soucier :** dès qu'une interface (ou classe abstraite, ou type TS) dépasse 4-5 méthodes et qu'un implémenteur n'en utilise que la moitié. Signal déclencheur : des stubs `throw new Error('not implemented')` ou des méthodes vides `() => {}`.
+
+**Vraie utilité en prod :** un consumer ne recompile pas / ne redéploie pas quand on ajoute une méthode qui ne le concerne pas. Les mocks de test tiennent en 3 lignes au lieu de 30. Moins de couplage transitif entre modules.
 
 ---
 
@@ -232,6 +248,10 @@ PrisonBreakPlan --> Storage (abstraction)
 ```
 
 Risque évité : sans inversion de dépendance, changer une techno = réécrire toute la logique métier qui n'a rien à voir avec le stockage.
+
+**Quand s'en soucier :** dès qu'une classe de logique métier fait `new X()` sur une dépendance d'I/O (DB, HTTP client, logger, filesystem, horloge). Signal déclencheur : tu ne peux pas tester la logique sans lancer une vraie base de données.
+
+**Vraie utilité en prod :** on swap Postgres ↔ Redis, Sentry ↔ console, `Date.now()` ↔ horloge fake, sans toucher au domaine. Les tests deviennent rapides et déterministes ; la migration d'infra devient un changement de câblage, pas une réécriture.
 
 ---
 

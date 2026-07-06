@@ -147,7 +147,7 @@ function handleFilterChange(value) {
 
 // correct : prioriser le feedback visuel, différer le reste
 function handleFilterChange(value) {
- setFilter(value)    // feedback immédiat �au shinobi
+ setFilter(value)    // feedback immédiat au shinobi
  
  // le reste peut attendre 16ms
  requestAnimationFrame(() => {

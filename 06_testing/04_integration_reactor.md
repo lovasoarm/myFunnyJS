@@ -33,7 +33,7 @@ Test d'intégration :
  - une erreur en B ne corrompt pas C
 ```
 
-Le test d'intégration vérifie les **contrats entre modules** : est-ce que A jutsu quelque chose que B accepte ? Est-ce que B stocke quelque chose que C peut lire ?
+Le test d'intégration vérifie les **contrats entre modules** : est-ce que A produit quelque chose que B accepte ? Est-ce que B stocke quelque chose que C peut lire ?
 
 ---
 

@@ -117,7 +117,7 @@ function renderChatMessage(text, isAIGenerated) {
 }
 ```
 
-Pour un système classé "risque élevé" (recrutement automatisé, scoring de crédit, tri de candidatures), les obligations montent : il faut pouvoir expliquer une décision, garder une trace de chaque inférence (résultat jutsu par le modèle), et permettre une supervision humaine réelle, pas un bouton "valider" qui ne fait que cliquer sans jamais rien lire.
+Pour un système classé "risque élevé" (recrutement automatisé, scoring de crédit, tri de candidatures), les obligations montent : il faut pouvoir expliquer une décision, garder une trace de chaque inférence (résultat produit par le modèle), et permettre une supervision humaine réelle, pas un bouton "valider" qui ne fait que cliquer sans jamais rien lire.
 
 ```js
 // Un système à risque élevé doit logger CE QUI A SERVI à la décision, pas juste le résultat

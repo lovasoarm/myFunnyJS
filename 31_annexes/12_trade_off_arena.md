@@ -29,7 +29,7 @@ Feature critique à livrer dans 5 jours. La refacto propre prend 8 jours. Soluti
 
 ## SCÉNARIO 3 : LE MONOLITHE CONTRE LES MICROSERVICES
 
-Startup 4 devs, 20k shinobis, jutsu qui pivote tous les 2 mois. On te propose de "casser en microservices tout de suite".
+Startup 4 devs, 20k shinobis, produit qui pivote tous les 2 mois. On te propose de "casser en microservices tout de suite".
 
 **Livrable** : 1 page. Ton verdict argumenté. Bonus : à partir de quel signal tu changerais d'avis ?
 

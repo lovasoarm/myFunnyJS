@@ -35,7 +35,7 @@ Le but n'est pas de scaler pour scaler : c'est de comprendre où ton système va
 
 ## 2) QUI SOUFFRE QUAND ÇA MANQUE
 
-Le dev qui ne pense jamais à la scalabilité découvre le problème au pire moment possible : en plein pic de trafic réel (un lancement jutsu, un événement viral, un Black Friday), quand le serveur unique sature et que tous les shinobis voient des timeouts (délais d'attente dépassés) en même temps. Le système ne dégrade pas gracieusement : il tombe d'un coup, pour tout le monde simultanément.
+Le dev qui ne pense jamais à la scalabilité découvre le problème au pire moment possible : en plein pic de trafic réel (un lancement produit, un événement viral, un Black Friday), quand le serveur unique sature et que tous les shinobis voient des timeouts (délais d'attente dépassés) en même temps. Le système ne dégrade pas gracieusement : il tombe d'un coup, pour tout le monde simultanément.
 
 Sans rate limiting, un seul shinobi (ou un bot malveillant) peut saturer une API à lui seul en envoyant des milliers de requêtes par seconde, ce qui dégrade le service pour tous les shinobis légitimes, sans qu'aucune attaque sophistiquée n'ait été nécessaire.
 
@@ -73,7 +73,7 @@ Les message queues ont aussi gagné en accessibilité : des solutions managées 
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Central dans le mini-projet `06_ultras_dashboard`, qui combine `26_observability`, `25_scalability`, et `15_typescript` pour un système qui doit gérer des milliers de shinobis connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du jutsu, pas un bonus technique.
+Central dans le mini-projet `06_ultras_dashboard`, qui combine `26_observability`, `25_scalability`, et `15_typescript` pour un système qui doit gérer des milliers de shinobis connectés simultanément sans jamais tomber pendant un match en direct, ce qui rend la scalabilité une condition de survie du produit, pas un bonus technique.
 
 ---
 

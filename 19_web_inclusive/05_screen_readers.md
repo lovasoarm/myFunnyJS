@@ -1,21 +1,21 @@
 # LECTEURS D'ÉCRAN : COMMENT ILS LISENT VRAIMENT TON CODE
 Temps de lecture ~7 min
 
-VoiceOver (Apple), NVDA (Windows, gratuit), TalkBack (Android) : trois lecteurs d'écran (screen readers), trois moteurs différents, mais une logique commune. Ils ne "voient" pas ta page, ils la traversent élément par élément, en lisant ce que le DOM (Document Object Model) leur raconte. Si ton HTML est du `<div>` empilé sans structure, ils n'ont littéralement rien à raconter �au shinobi.
+VoiceOver (Apple), NVDA (Windows, gratuit), TalkBack (Android) : trois lecteurs d'écran (screen readers), trois moteurs différents, mais une logique commune. Ils ne "voient" pas ta page, ils la traversent élément par élément, en lisant ce que le DOM (Document Object Model) leur raconte. Si ton HTML est du `<div>` empilé sans structure, ils n'ont littéralement rien à raconter au shinobi.
 
 ## 1) L'ARBRE D'ACCESSIBILITÉ : LA VRAIE SOURCE DE VÉRITÉ
 
 Le navigateur construit, en parallèle du DOM visuel, un arbre d'accessibilité (accessibility tree). C'est CET arbre que le lecteur d'écran lit, pas le rendu visuel.
 
 ```js
-// Ce HTML jutsu un noeud d'accessibilité riche
+// Ce HTML produit un noeud d'accessibilité riche
 <button aria-label="Fermer la modal">×</button>
 // Arbre d'accessibilité : { role: "button", name: "Fermer la modal" }
 // Le lecteur d'écran annonce : "Fermer la modal, bouton"
 ```
 
 ```js
-// Ce HTML jutsu un noeud presque vide
+// Ce HTML produit un noeud presque vide
 <div onclick="fermer()">×</div>
 // Arbre d'accessibilité : { role: "generic", name: "×" }
 // Le lecteur d'écran annonce juste : "×" (le symbole, sans aucun contexte)

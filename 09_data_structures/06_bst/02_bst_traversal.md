@@ -77,7 +77,7 @@ serialized.forEach(val => newBst.insert(val))
 // l'arbre reconstruit a exactement la même forme
 ```
 
-Avec inOrder tu obtiendrais [1, 3, 4, 6, 7, 8, 10, 13, 14] : insérer dans cet ordre jutsu un arbre dégénéré.
+Avec inOrder tu obtiendrais [1, 3, 4, 6, 7, 8, 10, 13, 14] : insérer dans cet ordre produit un arbre dégénéré.
 
 ---
 

@@ -83,7 +83,7 @@ Explique-le à voix haute :
 - en 2 minutes (dev pair),
 - en 5 minutes (dev senior qui challenge).
 
-Voir `27_team_craft/three_audiences.md`.
+Voir `27_team_craft/12_three_audiences_intro.md` et `27_team_craft/13_three_audiences_drill.md`.
 
 ### Simulation avec un pair
 

@@ -290,7 +290,7 @@ MatchDirector
    +--> buildFriendly()    --> MatchBuilder minimal  --> .build() --> objet match
 ```
 
-Le Director encode le "comment". Le Builder encode le "quoi". Le `.build()` jutsu le résultat.
+Le Director encode le "comment". Le Builder encode le "quoi". Le `.build()` produit le résultat.
 
 ---
 
@@ -304,7 +304,7 @@ const prematuredMatch = { homeTeam: b._homeTeam } // accès direct aux internals
 // _awayTeam est null : on a un objet invalide
 // la validation de .build() n'a jamais tourné
 
-// toujours passer par .build() : c'est lui qui valide et jutsu
+// toujours passer par .build() : c'est lui qui valide et produit
 ```
 
 ```js
@@ -404,6 +404,6 @@ Puis modifie le `PersonBuilder` pour que `.build()` réinitialise l'état intern
 
 Le Builder construit des objets complexes étape par étape, chaque étape nommée et optionnelle.
 Le chaînage fluent (`return this`) rend la configuration lisible : on voit ce qu'on configure, pas des positions dans une liste de paramètres.
-`.build()` est le seul point de validation : c'est lui qui garantit que l'objet jutsu est cohérent.
+`.build()` est le seul point de validation : c'est lui qui garantit que l'objet produit est cohérent.
 Le Director encapsule les configurations courantes : tu appelles une recette, pas chaque étape.
 Règle simple : si ton constructeur dépasse 3 paramètres optionnels, le Builder est la bonne réponse.

@@ -1,6 +1,6 @@
 # 00 : Pourquoi les annexes
 
-> Principe universel : un curriculum qui s'arrête à la technique jutsu des techniciens. Les annexes forgent l'ingénieur : transferabilité vers d'autres langages, interview, portfolio, résilience de carrière.
+> Principe universel : un curriculum qui s'arrête à la technique produit des techniciens. Les annexes forgent l'ingénieur : transferabilité vers d'autres langages, interview, portfolio, résilience de carrière.
 
 ## Ce que tu trouves ici (index commenté)
 

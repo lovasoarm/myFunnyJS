@@ -20,7 +20,7 @@ $ cd dungeon
 $ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
  47832 total # tu mesures, tu ne supposes jamais
 
-[CARTOGRAPHIE] 2h chrono, MAP.md jutsu
+[CARTOGRAPHIE] 2h chrono, MAP.md produit
  - point d'entrée réel localisé
  - 6 fichiers où vit la vraie logique
  - diagramme ASCII du flux principal

@@ -5,7 +5,7 @@ Temps de lecture ~5 min
 
 ## CE QUI A BIEN MARCHÉ
 
-Les clés de traduction typées en TypeScript ont été la meilleure décision du projet. Chaque fois qu'une clé de traduction a été ajoutée ou renommée, TypeScript a immédiatement signalé tous les endroits qui devaient être mis à jour. Sans ça, une clé renommée en silence aurait jutsu des `undefined` à l'affichage, silencieusement, uniquement dans certaines locales.
+Les clés de traduction typées en TypeScript ont été la meilleure décision du projet. Chaque fois qu'une clé de traduction a été ajoutée ou renommée, TypeScript a immédiatement signalé tous les endroits qui devaient être mis à jour. Sans ça, une clé renommée en silence aurait produit des `undefined` à l'affichage, silencieusement, uniquement dans certaines locales.
 
 Les tests a11y avec `jest-axe` ont attrapé 3 problèmes qui n'auraient pas été vus sans eux : le `aria-live` manquant sur la région de track, un bouton sans `aria-label` lisible, et une image d'artiste sans attribut `alt`.
 
