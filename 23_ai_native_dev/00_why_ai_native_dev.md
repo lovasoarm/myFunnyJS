@@ -5,7 +5,7 @@ Temps de lecture ~8 min
 
 L'IA génère du code en quelques secondes. Du code qui compile, qui a l'air propre, qui répond exactement à ta demande. Et qui peut quand même contenir une fonction qui n'existe pas, une logique métier subtilement fausse, ou une faille de sécurité que tu copies-colles sans la vérifier parce que "ça avait l'air bon".
 
-Coder avec l'IA en 2026, ce n'est pas la laisser coder à ta place. C'est apprendre à la diriger, à valider ce qu'elle jutsu, et à la remettre à sa place quand elle se trompe avec assurance.
+Coder avec l'IA en 2026, ce n'est pas la laisser coder à ta place. C'est apprendre à la diriger, à valider ce qu'elle produit, et à la remettre à sa place quand elle se trompe avec assurance.
 
 ---
 
@@ -74,7 +74,7 @@ Pas listé dans les 6 blocs prioritaires historiques, mais devenu une compétenc
 
 ## 7) POURQUOI ÇA MÉRITE ENCORE TON TEMPS DANS 5 ANS
 
-L'IA générative ne va pas disparaître, et son rôle dans le développement logiciel va continuer de croître. Mais la nécessité de garder un jugement humain critique sur ce qu'elle jutsu ne disparaîtra pas non plus, parce qu'un modèle qui hallucine avec confiance reste un risque structurel, peu importe à quel point les modèles s'améliorent. Le dev qui maîtrise cette discipline de validation devient plus productif ET plus fiable que celui qui accepte tout sans vérifier.
+L'IA générative ne va pas disparaître, et son rôle dans le développement logiciel va continuer de croître. Mais la nécessité de garder un jugement humain critique sur ce qu'elle produit ne disparaîtra pas non plus, parce qu'un modèle qui hallucine avec confiance reste un risque structurel, peu importe à quel point les modèles s'améliorent. Le dev qui maîtrise cette discipline de validation devient plus productif ET plus fiable que celui qui accepte tout sans vérifier.
 
 ---
 
