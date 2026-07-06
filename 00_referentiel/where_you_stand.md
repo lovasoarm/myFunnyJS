@@ -5,7 +5,7 @@
 > Pas un quiz. Pas une note sur 20. Une carte.
 > Tu l'ouvres quand tu veux savoir ce que tu maîtrises et ce qui te manque encore.
 
-Tu viens de lire `01_START_HERE.md` et `GUIDE_CARRIERE_DEV.md`. Avant d'attaquer `01_fundamentals`,
+Tu viens de lire `../START_HERE.md` et `../31_annexes/career/00_guide.md`. Avant d'attaquer `01_fundamentals`,
 un dernier arrêt : ce fichier te donne les 4 axes sur lesquels tu vas progresser. Pas pour
 le lire en entier maintenant, juste pour savoir qu'il existe. Premier vrai coup d'oeil utile :
 après ton bloc 01-04, pas avant. Pour l'instant, retiens juste qu'il est là.
@@ -169,7 +169,7 @@ T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
  monde galère dessus la première fois. Le `02_scope/03_scope_escape_room.md` et compagnie
  sont là exactement pour ça. Refais l'exercice avant de passer à la suite, même si ça prend
  deux essais.
-- **`03_WHERE_YOU_STAND.md` n'est pas un quiz à remplir.** C'est
+- **`where_you_stand.md` n'est pas un quiz à remplir.** C'est
  une carte que tu consultes seul, quand tu veux savoir si tu stagnes sur un axe précis
  (Runtime, Lecture, Debug, Architecture) pendant que les autres avancent. Personne te demande
  ton score. T'es le seul à le lire. Premier coup d'oeil utile : après le bloc 01-04, pas avant,

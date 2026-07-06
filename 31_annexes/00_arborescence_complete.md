@@ -4,21 +4,17 @@
 
 ./
 .nvmrc
-01_START_HERE.md
-02_DAY_ONE_environment.md
-02_DAY_ONE_first_steps.md
-02_DAY_ONE_intro.md
-03_WHERE_YOU_STAND.md
 COMMUNAUTE.md
 DEPENDENCY_LEDGER.md
-GUIDE_CARRIERE_DEV.md
 LICENSE
 NODE_VERSIONS.md
 POSTMORTEM_TEMPLATE.md
 README.md
+START_HERE.md
 00_getting_started/
   00_why_getting_started.md
   01_install.md
+  02_day_one.md
   02_shell_survival.md
   03_git_101.md
   04_package_managers.md
@@ -29,103 +25,56 @@ README.md
   00_why_referentiel.md
   SORTIR_D_UN_PLATEAU.md
   competences.md
+  where_you_stand.md
 01_fundamentals/
   00_prereq_check.md
   00_why_fundamentals.md
-  08_git_core.md
-  EXO_IA_MENTEUSE.md
-  EXO_JEUNE_IA.md
   01_variables/
     01_intro_variables.md
     01a_binding.md
     01b_var_let_const.md
     01c_stack_heap.md
     02_reference_chaos.md
-    02_reference_chaos_solution.js
     03_mutation_madness.md
-    03_mutation_madness_solution.js
     04_const_trap.md
     05_variable_glossary.md
-    .solutions/
-      02_reference_chaos_solution.js
-      03_mutation_madness_solution.js
-      README.md
   02_scope/
     01_scope_basics.md
-    01_scope_basics_solution.js
     01b_lexical_scope_visualized.md
     02_closure_trap.md
-    02_closure_trap_solution.js
     03_scope_escape_room.md
-    03_scope_escape_room_solution.js
     04_this_context.md
     05_scope_glossary.md
-    .solutions/
-      01_scope_basics_solution.js
-      02_closure_trap_solution.js
-      03_scope_escape_room_solution.js
-      README.md
   03_functions/
     01_function_basics.md
-    01_function_basics_solution.js
     02_hof_map_filter.md
-    02_hof_map_filter_solution.js
     03_function_factory.md
-    03_function_factory_solution.js
     04_function_grimoire.md
-    .solutions/
-      01_function_basics_solution.js
-      02_hof_map_filter_solution.js
-      03_function_factory_solution.js
-      README.md
   04_types/
     01_primitives.md
-    01_primitives_solution.js
     02_type_coercion.md
-    02_type_coercion_solution.js
     03_type_transformers.md
-    03_type_transformers_solution.js
     04_type_grimoire.md
-    .solutions/
-      01_primitives_solution.js
-      02_type_coercion_solution.js
-      03_type_transformers_solution.js
-      README.md
   05_web_basics/
     01_dom_manipulation.md
-    01_dom_manipulation_solution.js
     02_fetch_adventure.md
-    02_fetch_adventure_solution.js
     03_storage_treasure.md
-    03_storage_treasure_solution.js
     04_template_portals.md
-    04_template_portals_solution.js
     05_web_helpers.md
-    05_web_helpers_solution.js
     06_module_factory.md
     07_web_grimoire.md
-    .solutions/
-      01_dom_manipulation_solution.js
-      02_fetch_adventure_solution.js
-      03_storage_treasure_solution.js
-      04_template_portals_solution.js
-      05_web_helpers_solution.js
-      README.md
   06_modules/
     01_import_export.md
-    01_import_export_solution.js
     02_module_patterns.md
-    02_module_patterns_solution.js
     03_modules_grimoire.md
-    .solutions/
-      01_import_export_solution.js
-      02_module_patterns_solution.js
-      README.md
   07_regex/
     01_regex_basics.md
     02_regex_combat.md
     03_regex_extractor.md
     04_regex_grimoire.md
+  08_git_core.md
+  EXO_IA_MENTEUSE.md
+  EXO_JEUNE_IA.md
 02_problem_solving/
   00_prereq_check.md
   00_why_problem_solving.md
@@ -140,14 +89,6 @@ README.md
   00_mental_model_js.md
   00_prereq_check.md
   00_why_async.md
-  05_advanced_patterns.md
-  06_backpressure.md
-  07_shared_memory_concurrency.md
-  08_event_loop_drill_5ans.md
-  EXO_IA_MENTEUSE.md
-  EXO_JEUNE_IA.md
-  EXO_LECTURE.md
-  EXO_MICROTASK_A_LA_MAIN.md
   01_callbacks/
     01_callback_maze.md
     02_callback_challenge.md
@@ -166,6 +107,14 @@ README.md
     01_microtask_madness.md
     02_macrotask_monsters.md
     03_event_loop_grimoire.md
+  05_advanced_patterns.md
+  06_backpressure.md
+  07_shared_memory_concurrency.md
+  08_event_loop_drill_5ans.md
+  EXO_IA_MENTEUSE.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
+  EXO_MICROTASK_A_LA_MAIN.md
 04_debugging/
   00_prereq_check.md
   00_why_debugging.md
@@ -220,11 +169,6 @@ README.md
   00_measure_first.md
   00_prereq_check.md
   00_why_memory_performance.md
-  07_memory_perf_grimoire.md
-  08_heap_snapshot_workshop.md
-  09_memory_perf_grimoire.md
-  EXO_JEUNE_IA.md
-  EXO_LECTURE.md
   01_gc/
     01_gc_basics.md
     02_gc_simulator.md
@@ -255,10 +199,14 @@ README.md
   06_jit/
     01_jit_basics.md
     02_flamegraph_heap_reading.md
+  07_memory_perf_grimoire.md
+  08_heap_snapshot_workshop.md
+  09_memory_perf_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 09_data_structures/
   00_prereq_check.md
   00_why_data_structures.md
-  10_data_structures_grimoire.md
   01_array/
     01_array_basics.md
     02_array_methods_battle.md
@@ -289,11 +237,10 @@ README.md
     02_fenwick_tree.md
     03_suffix_array.md
     README.md
+  10_data_structures_grimoire.md
 10_algorithms/
   00_prereq_check.md
   00_why_algorithms.md
-  07_algorithms_grimoire.md
-  EXO_JEUNE_IA.md
   01_sorting/
     01_bubble_insertion.md
     02_merge_sort.md
@@ -316,6 +263,8 @@ README.md
     01_dijkstra.md
     02_astar.md
     03_topological_sort.md
+  07_algorithms_grimoire.md
+  EXO_JEUNE_IA.md
 11_functional_js/
   00_prereq_check.md
   00_why_functional_js.md
@@ -333,8 +282,6 @@ README.md
 12_design_patterns/
   00_prereq_check.md
   00_why_design_patterns.md
-  04_patterns_grimoire.md
-  EXO_IA_MENTEUSE.md
   01_creational/
     01_factory_pattern.md
     02_singleton_pattern.md
@@ -347,6 +294,8 @@ README.md
     01_observer_pattern.md
     02_strategy_pattern.md
     03_command_pattern.md
+  04_patterns_grimoire.md
+  EXO_IA_MENTEUSE.md
 13_refactoring/
   00_prereq_check.md
   00_smell_detection.md
@@ -363,7 +312,6 @@ README.md
 14_typescript/
   00_prereq_check.md
   00_why_typescript.md
-  04_typescript_grimoire.md
   01_ts_basics/
     01_types_and_interfaces.md
     02_functions_typed.md
@@ -377,6 +325,7 @@ README.md
     01_conditional_types.md
     02_mapped_types.md
     03_ts_in_real_project.md
+  04_typescript_grimoire.md
   06_advanced/
     00_why_typescript_advanced.md
     01_declaration_files.md
@@ -391,12 +340,12 @@ README.md
   03_commonjs_vs_esm.md
   04_process_env_argv.md
   05_worker_threads.md
-  07_runtime_grimoire.md
   06_node_cli_scripts/
     01_cli_basics.md
     02_filesystem_ops.md
     03_automation_scripts.md
     04_cli_tool_builder.md
+  07_runtime_grimoire.md
 16_architecture_patterns/
   00_prereq_check.md
   00_why_architecture_patterns.md
@@ -455,7 +404,6 @@ README.md
 20_realtime/
   00_prereq_check.md
   00_why_realtime.md
-  04_realtime_grimoire.md
   01_websockets/
     01_ws_basics.md
     02_ws_chat_room.md
@@ -465,6 +413,7 @@ README.md
   03_webrtc/
     01_webrtc_concepts.md
     02_webrtc_demo.md
+  04_realtime_grimoire.md
 21_api_craft/
   00_prereq_check.md
   00_why_api_craft.md
@@ -569,13 +518,9 @@ README.md
   00_why_edge_cases.md
   01_nan_undefined_null.md
   02_floating_point.md
-  02_race_condition_hunter.md
-  03_floating_point.md
   03_weird_coercions.md
   04_prototype_chain_dark.md
-  04_weird_coercions.md
-  05_edge_cases_grimoire.md
-  05_prototype_chain_dark.md
+  05_race_condition_hunter.md
   06_heisenbug_arena.md
   07_edge_cases_grimoire.md
 29_ai_agents_and_autonomy/
@@ -593,123 +538,123 @@ README.md
   00_prereq_check.md
   00_why_mini_projects.md
   01_rasengan_engine/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   02_garo_no_kronika/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   03_walking_dead_protocol/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   04_breaking_cache/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   05_prison_break_api/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   06_ultras_dashboard/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   07_ballon_dor_cli/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   08_trapsoul_radio/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   09_oracle_glitch/
+    ADR/
+      ADR-001_choix_architecture.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_choix_architecture.md
     src/
       .gitkeep
     tests/
       .gitkeep
   10_legacy_dungeon/
+    ADR/
+      ADR-001_pourquoi_ce_code_est_ce_quil_est.md
     POSTMORTEM.md
     README.md
     RULES.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_pourquoi_ce_code_est_ce_quil_est.md
     src/
       .gitkeep
     tests/
       .gitkeep
   11_scheduler/
+    ADR/
+      ADR-001_decision.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_decision.md
     src/
       .gitkeep
     tests/
@@ -717,25 +662,25 @@ README.md
       loop.test.js
       pmap.test.js
   12_legacy_takeover/
+    ADR/
+      .gitkeep
+      ADR-001_decision.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      .gitkeep
-      ADR-001_decision.md
     src/
       .gitkeep
     tests/
       README.md
   13_memory_hunter/
+    ADR/
+      ADR-001_decision.md
     LEAK_REPORT_TEMPLATE.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_decision.md
     fixture/
       README.md
       leaky.js
@@ -744,36 +689,36 @@ README.md
     tests/
       .gitkeep
   14_system_design_lab/
+    ADR/
+      ADR-001_decision.md
     POSTMORTEM.md
     README.md
     SPEC_DRIFT.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_decision.md
     src/
       .gitkeep
     tests/
       .gitkeep
   15_porte_rasengan_engine_multilang/
+    ADR/
+      ADR-001_decision.md
     POSTMORTEM.md
     README.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_decision.md
     src/
       .gitkeep
     tests/
       .gitkeep
   16_distributed_arena/
+    ADR/
+      ADR-001_decision.md
     POSTMORTEM.md
     README.md
     RULES.md
     TDD_JOURNAL.md
     cahierdescharges.md
-    ADR/
-      ADR-001_decision.md
     fixtures/
     src/
       .gitkeep
@@ -781,6 +726,7 @@ README.md
   _synthesis/
     README.md
     chaos_day.md
+    portfolio.md
     synthese_A.md
     synthese_B.md
     synthese_C.md
@@ -807,6 +753,8 @@ README.md
   13_portfolio_publication.md
   14_generate_portfolio_report.md
   _spaced_repetition.md
+  career/
+    00_guide.md
   interview/
     01_desaccord_cto.md
     02_mock_interview_async.md
@@ -856,10 +804,7 @@ README.md
 assets/
   title.svg
 verification_pack/
-  README.md
-  verify_all.sh
   01_fundamentals/
-    verify.sh
     expected/
       drill_1_sum.txt
       drill_2_types.txt
@@ -872,8 +817,8 @@ verification_pack/
       drill_1_sum.js
       drill_2_types.js
       drill_3_scope.js
-  03_async/
     verify.sh
+  03_async/
     expected/
       drill_1_promise_order.txt
       drill_2_async_await.txt
@@ -886,8 +831,8 @@ verification_pack/
       drill_1_promise_order.js
       drill_2_async_await.js
       drill_3_parallel.js
-  04_debugging/
     verify.sh
+  04_debugging/
     expected/
       drill_1_first_error.txt
       drill_2_count_by_level.txt
@@ -900,8 +845,8 @@ verification_pack/
       drill_1_first_error.js
       drill_2_count_by_level.js
       drill_3_repro_deterministic.js
-  05_error_handling/
     verify.sh
+  05_error_handling/
     expected/
       drill_1_try_catch.txt
       drill_2_promise_reject.txt
@@ -914,8 +859,8 @@ verification_pack/
       drill_1_try_catch.js
       drill_2_promise_reject.js
       drill_3_finally.js
-  06_testing/
     verify.sh
+  06_testing/
     expected/
       drill_1_asserteq_pass.txt
       drill_2_asserteq_fail.txt
@@ -928,8 +873,22 @@ verification_pack/
       drill_1_asserteq_pass.js
       drill_2_asserteq_fail.js
       drill_3_test_runner_output.js
-  08_memory_performance/
     verify.sh
+  07_math_basics/
+    expected/
+      drill_1_popcount.txt
+      drill_2_safe_mod.txt
+      drill_3_djb2_hash.txt
+    inputs/
+      drill_1_popcount.txt
+      drill_2_safe_mod.txt
+      drill_3_djb2_hash.txt
+    scripts/
+      drill_1_popcount.js
+      drill_2_safe_mod.js
+      drill_3_djb2_hash.js
+    verify.sh
+  08_memory_performance/
     expected/
       drill_1_map_get.txt
       drill_2_set_dedup.txt
@@ -942,8 +901,8 @@ verification_pack/
       drill_1_map_get.js
       drill_2_set_dedup.js
       drill_3_closure_counter.js
-  09_data_structures/
     verify.sh
+  09_data_structures/
     expected/
       drill_1_stack.txt
       drill_2_queue.txt
@@ -956,8 +915,8 @@ verification_pack/
       drill_1_stack.js
       drill_2_queue.js
       drill_3_bst_insert_inorder.js
-  10_algorithms/
     verify.sh
+  10_algorithms/
     expected/
       drill_1_sort.txt
       drill_2_binary_search.txt
@@ -970,8 +929,8 @@ verification_pack/
       drill_1_sort.js
       drill_2_binary_search.js
       drill_3_fib.js
-  11_functional_js/
     verify.sh
+  11_functional_js/
     expected/
       drill_1_map.txt
       drill_2_filter_reduce.txt
@@ -984,8 +943,8 @@ verification_pack/
       drill_1_map.js
       drill_2_filter_reduce.js
       drill_3_compose.js
-  12_design_patterns/
     verify.sh
+  12_design_patterns/
     expected/
       drill_1_singleton.txt
       drill_2_observer.txt
@@ -998,8 +957,8 @@ verification_pack/
       drill_1_singleton.js
       drill_2_observer.js
       drill_3_strategy.js
-  13_refactoring/
     verify.sh
+  13_refactoring/
     expected/
       drill_1_extract.txt
       drill_2_pure.txt
@@ -1012,8 +971,8 @@ verification_pack/
       drill_1_extract.js
       drill_2_pure.js
       drill_3_guard_clause.js
-  14_typescript/
     verify.sh
+  14_typescript/
     expected/
       drill_1_narrow.txt
       drill_2_discriminated.txt
@@ -1026,8 +985,8 @@ verification_pack/
       drill_1_narrow.js
       drill_2_discriminated.js
       drill_3_readonly.js
-  15_runtime_env/
     verify.sh
+  15_runtime_env/
     expected/
       drill_1_buffer.txt
       drill_2_stream_transform.txt
@@ -1040,8 +999,8 @@ verification_pack/
       drill_1_buffer.js
       drill_2_stream_transform.js
       drill_3_env_default.js
-  18_oop_js/
     verify.sh
+  18_oop_js/
     expected/
       drill_1_class.txt
       drill_2_inheritance.txt
@@ -1054,8 +1013,22 @@ verification_pack/
       drill_1_class.js
       drill_2_inheritance.js
       drill_3_private.js
-  22_security/
     verify.sh
+  21_api_craft/
+    expected/
+      drill_1_status_codes.txt
+      drill_2_idempotency.txt
+      drill_3_pagination.txt
+    inputs/
+      drill_1_status_codes.txt
+      drill_2_idempotency.txt
+      drill_3_pagination.txt
+    scripts/
+      drill_1_status_codes.js
+      drill_2_idempotency.js
+      drill_3_pagination.js
+    verify.sh
+  22_security/
     expected/
       drill_1_html_escape.txt
       drill_2_timing_safe.txt
@@ -1068,8 +1041,24 @@ verification_pack/
       drill_1_html_escape.js
       drill_2_timing_safe.js
       drill_3_no_eval.js
-  26_observability/
     verify.sh
+  23_ai_native_dev/
+    expected/
+      drill_1_validate_schema.txt
+      drill_2_hallucinated_method.txt
+      drill_3_safeparse.txt
+    hallucination_detection/
+      README.md
+    inputs/
+      drill_1_validate_schema.txt
+      drill_2_hallucinated_method.txt
+      drill_3_safeparse.txt
+    scripts/
+      drill_1_validate_schema.js
+      drill_2_hallucinated_method.js
+      drill_3_safeparse.js
+    verify.sh
+  26_observability/
     expected/
       drill_1_json_log.txt
       drill_2_metric_counter.txt
@@ -1082,6 +1071,12 @@ verification_pack/
       drill_1_json_log.js
       drill_2_metric_counter.js
       drill_3_correlation_id.js
+    verify.sh
+  README.md
+  _audit/
+    style_lint.py
+    style_lint.sh
   _lib/
     assert.sh
     node_gate.sh
+  verify_all.sh

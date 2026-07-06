@@ -16,12 +16,12 @@ Temps de lecture ~10 min
 
 ## Réflexes à automatiser
 
-| Réflexe | Pourquoi | Signal d'alerte | Contre-analogie |
+| Réflexe | Pourquoi | Signal d'alerte | Contre-analogies |
 |---|---|---|---|
-| Rédiger B.O.R.N.É. avant de prompter | Un prompt vague = un audit d'1h. | "Fais-moi un truc qui..." sans épreuve définie. | Comme demander à un stagiaire de "s'occuper du client" sans brief. |
-| Chercher la décision-racine, pas relire les diffs | La dérive vient d'un pivot ancien, pas de l'action 39. | Tu relis pour la 3e fois les 200 dernières lignes. | Le médecin qui traite les symptômes sans diagnostic. |
-| Toujours sandboxer un agent | Un agent sans sandbox = un pistolet chargé qu'on laisse traîner. | `--network=host` ou `sudo` accordé "juste pour tester". | Laisser un apprenti seul avec la clé du coffre. |
-| Refuser bien plutôt qu'accepter poliment | Un refus argumenté préserve la trace ; un OK menteur la pollue. | L'agent renvoie "done" sans avoir touché au code. | Le prestataire qui facture un travail qu'il n'a pas fait. |
+| Rédiger B.O.R.N.É. avant de prompter | Un prompt vague = un audit d'1h. | "Fais-moi un truc qui..." sans épreuve définie. | Demander à un stagiaire de "s'occuper du client" sans brief / lâcher un genin en mission de rang S sans ordre de mission écrit. |
+| Chercher la décision-racine, pas relire les diffs | La dérive vient d'un pivot ancien, pas de l'action 39. | Tu relis pour la 3e fois les 200 dernières lignes. | Le médecin qui traite les symptômes sans diagnostic / le mécano qui change des pièces au hasard sans lire le voyant. |
+| Toujours sandboxer un agent | Un agent sans sandbox = un pistolet chargé qu'on laisse traîner. | `--network=host` ou `sudo` accordé "juste pour tester". | Laisser un apprenti seul avec la clé du coffre / donner les codes du labo à un inconnu "juste pour un test". |
+| Refuser bien plutôt qu'accepter poliment | Un refus argumenté préserve la trace ; un OK menteur la pollue. | L'agent renvoie "done" sans avoir touché au code. | Le prestataire qui facture un travail qu'il n'a pas fait / le joueur qui célèbre un but hors-jeu non signalé. |
 
 ## Ce qui périra (2026-2028)
 

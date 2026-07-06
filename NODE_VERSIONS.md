@@ -1,6 +1,10 @@
 # NODE_VERSIONS.md
 Temps de lecture ~5 min
 
+> **Source de vérité unique** : le fichier `.nvmrc` (racine) fixe la version de
+> référence (`20`). Ce tableau ne fait que détailler, module par module, le
+> minimum requis. En cas de doute, `.nvmrc` fait foi : `nvm use` lit ce fichier.
+
 > Version minimale de Node.js requise par module.
 > Règle d'or : tout ce qui n'est pas listé fonctionne sur **Node 20 LTS**.
 

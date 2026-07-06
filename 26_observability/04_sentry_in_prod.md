@@ -68,7 +68,7 @@ Sentry.setTag('feature', 'checkout') // pour filtrer plus tard par fonctionnalit
 await processOrder(req.params.orderId)
 ```
 
-Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les commandes sans `shippingAddress`, sur la fonctionnalité checkout, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
+Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les requêtes sans `authToken`, sur la fonctionnalité d'export de rapport, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
 
 ---
 
@@ -115,7 +115,7 @@ Sentry.captureException(err, {
 })
 ```
 
-Le pourquoi : Sentry calcule aussi un score d'impact basé sur la fréquence et le nombre d'users uniques touchés, pas juste l'ordre chronologique. Une erreur rare mais qui bloque totalement un parcours de paiement doit remonter avant un warning fréquent mais sans conséquence réelle.
+Le pourquoi : Sentry calcule aussi un score d'impact basé sur la fréquence et le nombre d'users uniques touchés, pas juste l'ordre chronologique. Une erreur rare mais qui bloque totalement un parcours d'authentification doit remonter avant un warning fréquent mais sans conséquence réelle.
 
 ---
 
@@ -130,7 +130,7 @@ Le pourquoi : Sentry calcule aussi un score d'impact basé sur la fréquence et 
 // exemple qui casse : ce warning bénin est capturé comme une exception
 // classique, noie le dashboard Sentry sous des dizaines de milliers
 // d'entrées sans intérêt, et la VRAIE erreur critique du jour (un bug
-// de paiement) se retrouve mélangée dans le bruit, repérée 6 heures
+// d'authentification) se retrouve mélangée dans le bruit, repérée 6 heures
 // trop tard
 ```
 

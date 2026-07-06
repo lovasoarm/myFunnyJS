@@ -10,6 +10,11 @@ for v in "$DIR"/*/verify.sh; do
     fail=$((fail+1))
   fi
 done
+
+# Filet de style (emoji / em-dash / analogies)
+if ! python3 "$DIR/_audit/style_lint.py" "$DIR/.." ; then
+  fail=$((fail+1))
+fi
 echo ""
 echo "=================================================="
 echo "  Résumé : $pass module(s) OK, $fail module(s) KO"

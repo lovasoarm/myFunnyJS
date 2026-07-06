@@ -148,7 +148,7 @@ Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant
 ## EXERCICES
 
 **EXO 1 : Prépare le terrain**
-Pour une fonctionnalité de paiement que tu vas déployer la semaine prochaine, liste les logs de contexte et le feature flag que tu mettrais en place AVANT le déploiement, pour être capable de débugger rapidement si un problème survient seulement chez une partie des utilisateurs. (15 minutes)
+Pour une fonctionnalité critique (export, authentification) que tu vas déployer la semaine prochaine, liste les logs de contexte et le feature flag que tu mettrais en place AVANT le déploiement, pour être capable de débugger rapidement si un problème survient seulement chez une partie des utilisateurs. (15 minutes)
 
 **EXO 2 : Isole sans rollback complet**
 Un bug critique apparaît juste après un déploiement qui contenait 3 nouvelles fonctionnalités indépendantes. Explique pourquoi un feature flag par fonctionnalité aurait été préférable à un seul gros déploiement, et ce que tu ferais maintenant sans feature flags en place. (15 minutes)

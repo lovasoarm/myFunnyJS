@@ -34,7 +34,7 @@ exhaustive de Node. C'est un tunnel : entrée = machine vierge, sortie =
 
 Tu tapes `node -v` sans réfléchir, tu vois `v20.x.x` ou plus, tu ouvres
 un `.js`, tu lances `node fichier.js`, tu vois la sortie. Tu peux passer
-à `01_START_HERE.md` puis au module `01_fundamentals`.
+à `../START_HERE.md` puis au module `01_fundamentals`.
 
 ## Signal que tu dois y rester encore un peu
 

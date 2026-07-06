@@ -9,7 +9,7 @@ Périmètre : testing, math basics, memory & performance, data structures, algor
 ## 10 questions
 
 1. Un test qui passe : nomme 3 façons qu'il ne teste réellement rien.
-2. Pyramide de tests : unit / integration / e2e — ratio cible et pourquoi.
+2. Pyramide de tests : unit / integration / e2e - ratio cible et pourquoi.
 3. Big-O : différence pratique entre O(n) et O(n log n) sur 10 millions d'entrées ?
 4. Complexité de recherche dans un BST équilibré vs un array trié ? Cas où l'array gagne quand même ?
 5. Fuite mémoire vs high water mark : définis les deux et donne un exemple JS de chaque.

@@ -11,13 +11,13 @@ Périmètre : architecture patterns, web concepts, OOP JS (prototype), web inclu
 1. Monolithe vs micro-services : cite 2 vrais critères de bascule, hors "c'est à la mode".
 2. Layered vs hexagonal architecture : où branches-tu la DB dans chacune ?
 3. HTTP : différence pratique entre 401, 403 et 404. Laquelle tu ne dois **jamais** confondre ?
-4. Prototype chain : `Object.create(null)` — pourquoi et quand.
+4. Prototype chain : `Object.create(null)` - pourquoi et quand.
 5. `class` en JS : sucre syntaxique sur quoi exactement ? Prouve-le en 3 lignes mentales.
 6. A11y : cite 3 attributs ARIA que tu utilises vraiment et à quoi ils servent.
-7. i18n : piège classique des dates/nombres — donne un exemple qui casse en prod.
+7. i18n : piège classique des dates/nombres - donne un exemple qui casse en prod.
 8. WebSocket vs SSE vs long-polling : quand choisir SSE plutôt que WS ?
-9. **Rappel 11–15 :** SOLID — le **O**, quel signal déclencheur ?
-10. **Rappel 11–15 :** `unknown` vs `any` — pourquoi `unknown` est plus sûr ?
+9. **Rappel 11–15 :** SOLID - le **O**, quel signal déclencheur ?
+10. **Rappel 11–15 :** `unknown` vs `any` - pourquoi `unknown` est plus sûr ?
 
 ## Scoring
 

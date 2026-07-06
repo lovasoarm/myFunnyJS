@@ -2973,10 +2973,10 @@ Ce guide t'a posé le décor : c'est quoi le métier, comment il a évolué, où
 La suite logique :
 
 ```
-03_WHERE_YOU_STAND.md  ->  les 4 axes sur lesquels tu vas progresser (juste un coup d'oeil, pas une lecture complète)
+../../00_referentiel/where_you_stand.md  ->  les 4 axes sur lesquels tu vas progresser (juste un coup d'oeil, pas une lecture complète)
 README.md        ->  la roadmap des 32 modules, dans l'ordre
 01_fundamentals/     ->  le premier module, le vrai départ
 ```
 
-Ouvre `03_WHERE_YOU_STAND.md`, puis `README.md` pour la ROADMAP, et lance-toi dans
+Ouvre `../../00_referentiel/where_you_stand.md`, puis `README.md` pour la ROADMAP, et lance-toi dans
 `01_fundamentals/00_why_fundamentals.md`.

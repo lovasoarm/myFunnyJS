@@ -1,8 +1,8 @@
 ![MyFunnyJS](./assets/title.svg)
 
-**MyFunnyJS : 32 modules + 16 mini-projets, apprenable seul.**
+**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 préludes (`00_getting_started/`, `00_referentiel/`) + 16 mini-projets, apprenable seul.**
 
-> **Nouveau ici ?** Va directement lire [`01_START_HERE.md`](./01_START_HERE.md).
+> **Nouveau ici ?** Va directement lire [`START_HERE.md`](./START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
 
 ---
@@ -29,7 +29,12 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 
 ---
 
-## ROADMAP CONDENSÉE (32 modules, séquence continue 01 → 32)
+## ROADMAP CONDENSÉE
+
+> Deux préludes non numérotés ouvrent le parcours : `00_getting_started/`
+> (installer Node/Git, premier code) et `00_referentiel/` (la boussole des six
+> pierres et l'auto-diagnostic). Viennent ensuite les **32 modules de fond**,
+> en séquence continue `01 -> 32`, sans trou :
 
 ```
 01 -> 07  Fundamentals · Problem Solving · Async · Debugging · Errors · Testing · Math
@@ -55,8 +60,11 @@ node -v   # >= 20 (voir .nvmrc)
 git --version
 ```
 
-Puis ouvre [`01_START_HERE.md`](./01_START_HERE.md).
+Puis ouvre [`START_HERE.md`](./START_HERE.md).
 
 ---
 
-Licence : voir `LICENSE`. Communauté : `COMMUNAUTE.md`.
+Licence : voir [`LICENSE`](./LICENSE) : tu peux réutiliser et adapter le matériel
+dans le cadre qui y est décrit. Communauté : `COMMUNAUTE.md`. Version de Node :
+`.nvmrc` (référence) détaillée dans `NODE_VERSIONS.md`. Suivi des dépendances :
+`DEPENDENCY_LEDGER.md` (maintenu à chaque ajout/retrait de dépendance).

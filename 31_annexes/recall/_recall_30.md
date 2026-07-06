@@ -16,7 +16,7 @@ Périmètre : observability, team craft, edge cases, AI agents & autonomy, mini-
 6. Agent IA autonome : quelle est la garde-fou minimale avant de lui donner accès à un outil qui écrit ?
 7. Relis ton **ADR le plus ancien**. Que changerais-tu aujourd'hui, avec justification ?
 8. Mini-projet livré : nomme 3 signaux que tu peux le montrer en entretien sans avoir honte.
-9. **Rappel 21–25 :** idempotence — donne un exemple non trivial.
+9. **Rappel 21–25 :** idempotence - donne un exemple non trivial.
 10. **Rappel 21–25 :** cite 3 items d'OWASP que tu vérifies systématiquement.
 
 ## Scoring

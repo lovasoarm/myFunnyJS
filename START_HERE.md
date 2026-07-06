@@ -1,9 +1,12 @@
-> 🆕 **SUPER DÉBUTANT (jamais installé Node de ta vie) ?**
+> **SUPER DÉBUTANT (jamais installé Node de ta vie) ?**
 > Commence par [`00_getting_started/01_install.md`](00_getting_started/01_install.md) pour installer Node, Git et ton terminal. Reviens ici après.
 >
 > **Temps total estimé du curriculum** : ~250 h étalées sur 6 à 9 mois. Fractionne : 1 h/jour battra 8 h le samedi.
 
-> Note : les numéros de modules vont de 01 à 32 en séquence continue. Aucun trou.
+> Note : le curriculum compte **34 dossiers de modules**. Deux préludes non
+> numérotés dans la séquence pédagogique (`00_getting_started/` = mise en place,
+> `00_referentiel/` = boussole) précèdent les **32 modules de fond** numérotés
+> `01 -> 32`, eux en séquence continue et sans trou.
 
 ## COMMENT NAVIGUER (conventions de noms)
 
@@ -75,11 +78,11 @@ curriculum. Ce tableau sert juste à ce que la roadmap ne te paraisse pas en chi
 ## DANS QUEL ORDRE LIRE
 
 ```
-1. 01_START_HERE.md     <= t'es ici
-2. 02_DAY_ONE_intro.md       <= le contexte du métier dev en 2026, avant de toucher au code
-3. 03_WHERE_YOU_STAND.md   <= les 4 axes sur lesquels tu vas progresser (coup d'oeil rapide)
-4. README.md         <= la roadmap complète des 32 modules (numérotation continue 01 → 32)
-5. 01_fundamentals/      <= le vrai départ
+1. START_HERE.md                          <= t'es ici
+2. 00_getting_started/02_day_one.md       <= contexte du métier + poste de travail + premier code
+3. 00_referentiel/where_you_stand.md      <= les 4 axes sur lesquels tu vas progresser
+4. README.md                              <= la roadmap complète des 32 modules (01 -> 32)
+5. 01_fundamentals/                       <= le vrai départ
 ```
 
 Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de question.
@@ -89,13 +92,14 @@ Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de questio
 ## FICHIERS RACINE (à quoi ils servent)
 
 - `README.md` : porte d'entrée officielle (roadmap).
-- `01_START_HERE.md` : tu es ici.
-- `02_DAY_ONE_*.md` : contexte du métier avant de coder.
-- `03_WHERE_YOU_STAND.md` : les 4 axes de progression.
-- `_recall_*.md` : trackers de revisite (paliers 05/10/15/20/25/30).
+- `START_HERE.md` : tu es ici.
+- `_recall_*.md` : trackers de revisite (paliers 05/10/15/20/25/30, dans `31_annexes/recall/`).
+- `.nvmrc` : version de Node de référence (source de vérité unique, détaillée dans `NODE_VERSIONS.md`).
 - `NODE_VERSIONS.md`, `DEPENDENCY_LEDGER.md`, `POSTMORTEM_TEMPLATE.md` :
   gouvernance technique.
-- `COMMUNAUTE.md`, `GUIDE_CARRIERE_DEV.md`, `LICENSE` : gouvernance projet.
+- `COMMUNAUTE.md`, `LICENSE` : gouvernance projet.
+- Contexte des premiers pas : `00_getting_started/02_day_one.md`.
+- Guide carrière : `31_annexes/career/00_guide.md`.
 
 Si ça t'encombre, ignore-les au début et suis juste l'ordre plus haut.
 
@@ -109,4 +113,4 @@ prendre de bonnes décisions d'architecture. JavaScript est juste le terrain d'e
 
 ---
 
-Direction `02_DAY_ONE_intro.md`.
+Direction `00_getting_started/02_day_one.md`.
