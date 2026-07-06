@@ -5,18 +5,18 @@
 Parce que 80 % des abandons se jouent dans les 30 premières minutes. Pas
 sur un concept dur, pas sur un exercice difficile : sur une version de
 Node qui coince, un `PATH` mal réglé, un terminal qui ne comprend pas la
-commande, une extension VSCode absente. Ce dossier existe pour tuer ces
+requête, une extension VSCode absente. Ce dossier existe pour tuer ces
 30 minutes.
 
 ## Le pari
 
 Un débutant "super nul" doit pouvoir :
 - installer Node >= 20 sur Windows, macOS ou Linux ;
-- vérifier son installation avec une commande unique ;
+- vérifier son installation avec une requête unique ;
 - ouvrir un premier fichier `.js`, le lancer, voir la sortie ;
 - comprendre ce qu'est un terminal, un shell, un dossier de projet.
 
-Sans jamais chercher sur Google. Sans jamais copier-coller une commande
+Sans jamais chercher sur Google. Sans jamais copier-coller une requête
 qu'il ne comprend pas.
 
 ## Ce que tu y trouveras
@@ -40,7 +40,7 @@ un `.js`, tu lances `node fichier.js`, tu vois la sortie. Tu peux passer
 
 ## Signal que tu dois y rester encore un peu
 
-Une commande te renvoie une erreur que tu ne comprends pas, un chemin ne
+Une requête te renvoie une erreur que tu ne comprends pas, un chemin ne
 fonctionne pas, ou tu ne sais pas ce qu'est un shell. C'est normal. Ne
 saute pas ce dossier "pour aller au vrai contenu" : le vrai contenu ne
 tiendra pas si les fondations d'outillage sont fissurées.

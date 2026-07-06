@@ -63,7 +63,7 @@ Ajouter un module :
 ## Ce que le pack N'EST PAS
 
 Ce n'est pas une suite de tests unitaires pour chaque exercice
-pédagogique. C'est un filet minimal qui prouve, en une commande, que
+pédagogique. C'est un filet minimal qui prouve, en une requête, que
 les fondations Node du curriculum tournent et produisent les sorties
 attendues. Les tests unitaires vivent dans `06_testing/` et dans le
 `tests/` de chaque mini-projet.

@@ -1,6 +1,6 @@
 # TRY/CATCH : CE QU'IL ATTRAPE ET CE QU'IL LAISSE FILER
 
-Le code casse. Toujours. La question c'est : est-ce que toi tu le vois avant l'utilisateur ?
+Le code casse. Toujours. La question c'est : est-ce que toi tu le vois avant l'opérateur ?
 
 `try/catch` c'est ton filet de sécurité. Mais il a des trous. Et si tu sais pas où ils sont, les bugs tombent en silence : en prod, la nuit, pendant un match décisif.
 

@@ -1,6 +1,6 @@
 # hallucination_detection : démonter le code IA plausible-mais-faux
 
-> Pierre P5 (Debugging) + résilience IA. Une IA produit du code qui **compile,
+> Pierre P5 (Debugging) + résilience IA. Une IA artefact du code qui **compile,
 > tourne, a l'air propre, et ment**. Ici tu apprends à le prouver faux avant de
 > le lancer. Règle : pour chaque exercice, écris ta réponse AVANT d'exécuter.
 

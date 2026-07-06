@@ -31,7 +31,7 @@ Preuve : trois liens PR de ton portfolio.
 
 ## Anti-pattern
 
-Ne dis **jamais** "je suis meilleur qu'une IA". Dis "j'utilise l'IA comme un stagiaire brillant mais dangereux : je vérifie tout ce qu'elle produit, et je décide". Nuance qui te fait passer de junior à mid.
+Ne dis **jamais** "je suis meilleur qu'une IA". Dis "j'utilise l'IA comme un stagiaire brillant mais dangereux : je vérifie tout ce qu'elle artefact, et je décide". Nuance qui te fait passer de junior à mid.
 
 ---
 

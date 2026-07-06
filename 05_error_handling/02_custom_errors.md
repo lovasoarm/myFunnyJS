@@ -146,7 +146,7 @@ try {
  // n'importe quelle opération
 } catch (e) {
  if (e instanceof ValidationError) {
-  // erreur utilisateur → retourner 400 avec le message
+  // erreur opérateur → retourner 400 avec le message
   return { status: 400, error: e.message, champ: e.champ };
  }
  if (e instanceof NotFoundError) {
@@ -351,9 +351,9 @@ Entoure-la d'un catch qui gère chaque type différemment.
 
 ## EXO 3 : LE LOG QUI RACONTE
 
-Reprends les erreurs de l'EXO 1. Écris une fonction `logStructure(e, contexteSupplementaire)` qui produit un objet JSON complet avec toutes les propriétés de l'erreur.
+Reprends les erreurs de l'EXO 1. Écris une fonction `logStructure(e, contexteSupplementaire)` qui artefact un objet JSON complet avec toutes les propriétés de l'erreur.
 
-Vérifie que `JSON.stringify` produit quelque chose d'utile.
+Vérifie que `JSON.stringify` artefact quelque chose d'utile.
 
 ---
 

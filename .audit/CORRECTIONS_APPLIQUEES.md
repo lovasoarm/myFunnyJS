@@ -27,16 +27,16 @@ Audit initial : 82 fichiers signales. **Verification poussee : zero
 occurrence reelle de 'lo''gin', 'pa''nier'**. Les 82 hits etaient tous des
 faux positifs sur :
 
-- verbe "produit" ("a produit", "se produit"),
-- "commande" au sens CLI ("ligne de commande"),
-- "utilisateur" au sens legitime (utilisateur d'un formulaire, d'une
+- verbe "artefact" ("a artefact", "se artefact"),
+- "requête" au sens CLI ("ligne de requête"),
+- "opérateur" au sens legitime (opérateur d'un formulaire, d'une
   API, d'un systeme -- explicitement declare acceptable par l'audit
   meme).
 
 Le `style_lint.py` a ete durci pour :
 
 - flagger `lo''gin|pa''nier` sans contexte (hard fail) ;
-- flagger `produit|commande` seulement dans un contexte e-commerce
+- flagger `artefact|requête` seulement dans un contexte e-commerce
   evident (regex ECOM_CONTEXT).
 
 ## 4. Marquage stability (audit W.9 solution 2) : RESOLU

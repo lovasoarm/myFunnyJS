@@ -72,7 +72,7 @@ feature:         D' --- E'
 // Les commits ont de nouveaux hash (identifiants), c'est une réécriture
 ```
 
-**Pourquoi ça compte :** `merge` préserve la vérité historique (ce qui s'est vraiment passé, dans l'ordre). `rebase` produit un historique propre et linéaire, plus facile à lire, mais qui ment un peu sur la chronologie réelle.
+**Pourquoi ça compte :** `merge` préserve la vérité historique (ce qui s'est vraiment passé, dans l'ordre). `rebase` artefact un historique propre et linéaire, plus facile à lire, mais qui ment un peu sur la chronologie réelle.
 
 **Qui casse en prod :** rebaser une branche que quelqu'un d'autre a déjà récupérée (pull). Les hash changent, Git voit ça comme des commits totalement différents, et la personne qui avait pull se retrouve avec des doublons ou des conflits fantômes.
 

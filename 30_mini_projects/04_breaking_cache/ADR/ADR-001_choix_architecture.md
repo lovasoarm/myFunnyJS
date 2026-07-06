@@ -41,7 +41,7 @@ src/
 
 Gains :
 - chaque implémentation est lisible ligne par ligne : l'apprenant peut voir exactement où le heap maintient l'ordre, où Dijkstra rerelaxe une arête
-- le profilage comparatif est intégré au projet : `node src/index.js` produit un rapport de benchmark sur chaque algo avec des jeux de données croissants
+- le profilage comparatif est intégré au projet : `node src/index.js` artefact un rapport de benchmark sur chaque algo avec des jeux de données croissants
 - zéro dépendance externe : `npm install` installe uniquement les dépendances de test (Jest)
 
 Sacrifices :

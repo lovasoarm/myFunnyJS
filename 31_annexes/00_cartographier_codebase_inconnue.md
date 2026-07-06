@@ -10,7 +10,7 @@ C'est la compétence Pierre 6 qui sépare le Kick-Ass du Thor.
 ### 1. `README.md` : 90 secondes
 Lis. Cherche 3 choses seulement :
 - à quoi ça sert (une phrase)
-- comment on lance ça en local (une commande)
+- comment on lance ça en local (une requête)
 - ce qui est promis (contrats externes, endpoints, formats)
 Note : si le README n'a pas ces 3 choses, c'est déjà un signal.
 

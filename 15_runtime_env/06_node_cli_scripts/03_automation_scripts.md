@@ -261,7 +261,7 @@ runPipeline()
 
 ## EXO 1 : le normaliseur de données
 
-T'as des fichiers JSON de stats de joueurs générés par différentes sources. Le problème : les champs ont des noms différents selon la source (`goals` vs `nbGoals` vs `nb_goals`). Écris un script `normalize.js` qui lit tous les fichiers JSON d'un dossier et produit un format canonique : `{ player, goals, assists, matchesPlayed }`.
+T'as des fichiers JSON de stats de joueurs générés par différentes sources. Le problème : les champs ont des noms différents selon la source (`goals` vs `nbGoals` vs `nb_goals`). Écris un script `normalize.js` qui lit tous les fichiers JSON d'un dossier et artefact un format canonique : `{ player, goals, assists, matchesPlayed }`.
 
 ---
 

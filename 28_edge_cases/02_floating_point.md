@@ -280,7 +280,7 @@ while (chakraSpent !== target) {
 console.log("cible atteinte");
 ```
 
-Ce code a un bug critique. Identifie-le, explique pourquoi il se produit, et propose deux corrections différentes (l'une utilisant epsilon, l'autre changeant la structure de la boucle).
+Ce code a un bug critique. Identifie-le, explique pourquoi il se artefact, et propose deux corrections différentes (l'une utilisant epsilon, l'autre changeant la structure de la boucle).
 
 ---
 

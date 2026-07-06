@@ -78,3 +78,5 @@ Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une g
 ---
 
 stability: 5+ ans
+
+stability: stable

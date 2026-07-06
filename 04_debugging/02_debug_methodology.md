@@ -77,7 +77,7 @@ C'est reproductible. On peut passer à l'étape 2.
 
 ## 3) ÉTAPE 2 : ISOLER
 
-Réduire, pas chercher. L'objectif est d'arriver au plus petit code possible qui produit encore le bug.
+Réduire, pas chercher. L'objectif est d'arriver au plus petit code possible qui artefact encore le bug.
 
 Règle : enlève des choses jusqu'à ce que le bug disparaisse. La dernière chose que tu as enlevée avant qu'il disparaisse : c'est là que le bug vit.
 
@@ -255,7 +255,7 @@ console.log('Stock restant:', stockNourriture) // peut afficher un négatif
 
 Étapes :
 1. Reproduis le bug de façon fiable (indice : le problème vient du moment où plusieurs Promises accèdent au même `stockNourriture`)
-2. Isole le code minimal qui produit encore le bug
+2. Isole le code minimal qui artefact encore le bug
 3. Explique pourquoi le stock peut devenir négatif malgré la vérification `if (stockNourriture >= besoin)`
 
 EXO 2 : Bisect sur un pipeline async (~15 min)
@@ -288,7 +288,7 @@ Exercice :
 
 Tu sais maintenant debugger sans jouer à la loterie.
 Reproduis d'abord : si tu ne peux pas déclencher le bug à volonté, tu ne peux pas le corriger.
-Isole ensuite : le plus petit code possible qui produit encore le bug.
+Isole ensuite : le plus petit code possible qui artefact encore le bug.
 Corrige une chose à la fois. Vérifie que rien d'autre ne casse.
 `console.log` pour localiser, debugger pour comprendre. Les deux ont leur moment.
 Un bug corrigé sans test : un bug qui reviendra sans prévenir.

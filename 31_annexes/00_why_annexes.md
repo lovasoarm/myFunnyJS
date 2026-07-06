@@ -2,7 +2,7 @@
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Principe universel : un curriculum qui s'arrête à la technique produit des techniciens. Les annexes forgent l'ingénieur : transferabilité vers d'autres langages, interview, portfolio, résilience de carrière.
+> Principe universel : un curriculum qui s'arrête à la technique artefact des techniciens. Les annexes forgent l'ingénieur : transferabilité vers d'autres langages, interview, portfolio, résilience de carrière.
 
 ## Ce que tu trouves ici (index commenté)
 

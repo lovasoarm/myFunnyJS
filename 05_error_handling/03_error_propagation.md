@@ -234,7 +234,7 @@ class MatchController {
     return res.status(404).json({ error: e.message });
    }
    if (e instanceof ServiceError) {
-    // log complet pour le monitoring, message générique pour l'utilisateur
+    // log complet pour le monitoring, message générique pour l'opérateur
     logError(e);
     return res.status(500).json({ error: "erreur interne" });
    }

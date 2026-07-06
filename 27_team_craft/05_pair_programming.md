@@ -186,7 +186,7 @@ Règles :
 - A écrit le code minimal
 - Continue pendant 6 cycles
 
-Après : les deux regardent le code produit et discutent de ce qui peut être refactoré.
+Après : les deux regardent le code artefact et discutent de ce qui peut être refactoré.
 
 ---
 

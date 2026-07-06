@@ -110,7 +110,7 @@ Ce qui ne bougera probablement pas :
 Team craft n'est pas dans le noyau dur technique du curriculum (données, algos, async, TypeScript).
 Mais c'est dans le noyau dur **professionnel**.
 
-Un dev qui maîtrise les structures de données mais qui produit des PRs illisibles, des codebases sans doc, et des décisions non tracées : il est junior à vie dans n'importe quelle équipe sérieuse.
+Un dev qui maîtrise les structures de données mais qui artefact des PRs illisibles, des codebases sans doc, et des décisions non tracées : il est junior à vie dans n'importe quelle équipe sérieuse.
 
 Ce module est **indispensable avant d'entrer dans une équipe prod**, peu importe le niveau technique.
 
@@ -167,7 +167,7 @@ Le code dit ce qu'il fait. Il ne dit jamais pourquoi. Et c'est le pourquoi qui m
 Une équipe de deux personnes peut avoir un bus factor à 1. Les ADR s'écrivent en 20 minutes. La réunion pour reconstruire le contexte perdu prend deux heures.
 
 **"LGTM, j'ai pas le temps de vraiment lire"**
-Ce "pas le temps" produit exactement le type de bug qui prend trois jours à déboguer en prod.
+Ce "pas le temps" artefact exactement le type de bug qui prend trois jours à déboguer en prod.
 
 **"Le pair programming c'est deux fois moins productif"**
 C'est deux fois moins de code écrit par heure. C'est aussi cinq fois moins de bugs critiques en prod et deux fois moins de temps de review. Le calcul n'est pas celui qu'on croit.
@@ -217,7 +217,7 @@ En 2026 : coder vite n'est plus le différenciateur.
 Ce qui différencie : travailler dans un système complexe, avec des humains, sur la durée.
 
 Team craft n'est pas un module de soft skills.
-C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code produit.
+C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code artefact.
 
 > Ce module réutilise : le refactoring du module 14 (`14_refactoring`), les tests du module 06 (`06_testing`).
 

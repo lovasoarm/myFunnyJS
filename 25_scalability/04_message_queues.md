@@ -181,7 +181,7 @@ Le risque réel : si l'ordre des opérations a un sens métier (créer avant ann
 ```js
 // exemple minimal : ça marche, 1 producteur, 1 consommateur, débit équilibré
 
-// exemple réaliste : un pic de trafic (lancement produit) fait exploser
+// exemple réaliste : un pic de trafic (lancement artefact) fait exploser
 // le nombre de messages poussés dans la file, alors que le nombre de workers
 // reste fixe
 

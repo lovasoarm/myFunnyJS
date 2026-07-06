@@ -1,10 +1,10 @@
-# _recall_30.md : modules 26–30
+# _recall_30.md : modules 26-30
 Temps de lecture ~5 min
 
 > Rappel espacé. Réponds **sans revoir les fichiers**. Note ton score.
 > Refais ce fichier **une semaine plus tard**. C'est là que la mémoire tient.
 
-Périmètre : observability, team craft, edge cases, AI agents & autonomy, mini-projects. Plus 2 questions de rappel sur 21–25.
+Périmètre : observability, team craft, edge cases, AI agents & autonomy, mini-projects. Plus 2 questions de rappel sur 21-25.
 
 ## 10 questions
 
@@ -16,10 +16,10 @@ Périmètre : observability, team craft, edge cases, AI agents & autonomy, mini-
 6. Agent IA autonome : quelle est la garde-fou minimale avant de lui donner accès à un outil qui écrit ?
 7. Relis ton **ADR le plus ancien**. Que changerais-tu aujourd'hui, avec justification ?
 8. Mini-projet livré : nomme 3 signaux que tu peux le montrer en entretien sans avoir honte.
-9. **Rappel 21–25 :** idempotence - donne un exemple non trivial.
-10. **Rappel 21–25 :** cite 3 items d'OWASP que tu vérifies systématiquement.
+9. **Rappel 21-25 :** idempotence - donne un exemple non trivial.
+10. **Rappel 21-25 :** cite 3 items d'OWASP que tu vérifies systématiquement.
 
 ## Scoring
 
 - 8+/10 → tu peux avancer.
-- 5–7 → relis les modules faibles avant de continuer.
+- 5-7 → relis les modules faibles avant de continuer.

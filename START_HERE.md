@@ -108,7 +108,7 @@ Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de questio
 - `COMMUNAUTE.md`, `LICENSE` : gouvernance projet.
 - Contexte des premiers pas : `00_getting_started/02_day_one.md`.
 - Guide carrière : `31_annexes/career/00_guide.md`.
-- Journal d'audit interne (pas pour l'apprenant) : `31_annexes/_meta/`.
+- Journal d'audit interne (pas pour l'apprenant) : `.audit/`.
 
 Si ça t'encombre, ignore-les au début et suis juste l'ordre plus haut.
 

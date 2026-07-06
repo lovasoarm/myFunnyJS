@@ -186,7 +186,7 @@ LIBRAIRIE PUBLIÉE SUR NPM :
 }
 ```
 
-**Pourquoi ça compte :** il existe pas UN bon tsconfig universel. La config reflète où en est ton projet : un projet neuf peut se permettre toute la rigueur dès le départ, un projet en migration doit avancer par étapes pour pas tout bloquer d'un coup, une lib publiée a des besoins spécifiques (générer des `.d.ts` pour ses utilisateurs).
+**Pourquoi ça compte :** il existe pas UN bon tsconfig universel. La config reflète où en est ton projet : un projet neuf peut se permettre toute la rigueur dès le départ, un projet en migration doit avancer par étapes pour pas tout bloquer d'un coup, une lib publiée a des besoins spécifiques (générer des `.d.ts` pour ses opérateurs).
 
 ---
 

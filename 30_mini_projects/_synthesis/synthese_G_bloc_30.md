@@ -1,4 +1,4 @@
-# Bloc 26–30 : observabilité, équipe, edge, OOP, projets
+# Bloc 26-30 : observabilité, équipe, edge, OOP, projets
 Temps de lecture ~5 min
 
 ## Rétrospective guidée

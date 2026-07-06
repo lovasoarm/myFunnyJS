@@ -261,7 +261,7 @@ Implémente :
 - `listToMatrix(adjacencyList, vertices)` : convertit en matrice carrée
 - `matrixToList(matrix, vertices)` : convertit en adjacency list
 
-Vérifie que la conversion aller-retour produit le même graphe. Teste sur le réseau Walter White (5 noeuds).
+Vérifie que la conversion aller-retour artefact le même graphe. Teste sur le réseau Walter White (5 noeuds).
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-Ton code va planter. Pas "peut-être". Pas "si tu codes mal". Une API qui timeout, un input utilisateur tordu, un fichier qui n'existe plus : ça arrive en prod, tous les jours, sur tous les systèmes. La vraie question n'est pas "comment éviter les erreurs", c'est "comment les voir venir, les contenir, et continuer à fonctionner".
+Ton code va planter. Pas "peut-être". Pas "si tu codes mal". Une API qui timeout, un input opérateur tordu, un fichier qui n'existe plus : ça arrive en prod, tous les jours, sur tous les systèmes. La vraie question n'est pas "comment éviter les erreurs", c'est "comment les voir venir, les contenir, et continuer à fonctionner".
 
 Un dev qui ne gère pas ses erreurs ne code pas un système : il code une bombe à retardement.
 
@@ -14,7 +14,7 @@ Sans stratégie d'erreur, ton app a deux modes : "ça marche" et "tout explose".
 
 L'error handling, c'est la discipline qui répond à trois questions précises à chaque ligne de code à risque : qu'est-ce qui peut foirer ici, qui doit le savoir, et que doit-il se passer ensuite.
 
-Bien fait, l'error handling transforme un crash potentiel en message clair, en fallback (solution de repli) propre, ou en retry (nouvelle tentative) intelligent. L'utilisateur ne voit jamais le chaos : il voit un système qui dégrade gracieusement.
+Bien fait, l'error handling transforme un crash potentiel en message clair, en fallback (solution de repli) propre, ou en retry (nouvelle tentative) intelligent. L'opérateur ne voit jamais le chaos : il voit un système qui dégrade gracieusement.
 
 ---
 
@@ -22,9 +22,9 @@ Bien fait, l'error handling transforme un crash potentiel en message clair, en f
 
 Le dev qui ne gère pas ses erreurs découvre les problèmes en prod, jamais avant. Une erreur async qu'on a oublié de catcher (capturer) tombe en silence : aucun log, aucun crash visible, juste une fonctionnalité qui s'arrête de marcher sans explication.
 
-Sans erreurs custom (`CustomError`, `ValidationError`, etc.) qui racontent une histoire précise, chaque incident en prod devient une enquête. Les logs disent juste "Error: undefined is not a function" sans contexte, sans savoir quelle requête, quel utilisateur, quelle donnée a déclenché le problème.
+Sans erreurs custom (`CustomError`, `ValidationError`, etc.) qui racontent une histoire précise, chaque incident en prod devient une enquête. Les logs disent juste "Error: undefined is not a function" sans contexte, sans savoir quelle requête, quel opérateur, quelle donnée a déclenché le problème.
 
-Le cas le plus brutal : une erreur non gérée dans un serveur Node peut crasher tout le process. Tous les utilisateurs connectés sont déconnectés à cause d'un seul utilisateur qui a envoyé une donnée inattendue.
+Le cas le plus brutal : une erreur non gérée dans un serveur Node peut crasher tout le process. Tous les opérateurs connectés sont déconnectés à cause d'un seul opérateur qui a envoyé une donnée inattendue.
 
 ---
 
@@ -32,13 +32,13 @@ Le cas le plus brutal : une erreur non gérée dans un serveur Node peut crasher
 
 ```
 appel API externe       --> timeout/erreur réseau --> retry ou fallback
-parsing de donnée utilisateur --> format invalide    --> erreur custom claire
+parsing de donnée opérateur --> format invalide    --> erreur custom claire
 opération async oubliée    --> erreur silencieuse  --> bug fantôme en prod
 chaîne de microservices    --> qui catch quoi    --> propagation contrôlée
 opération critique vs secondaire --> fail-fast vs fallback --> stratégie adaptée
 ```
 
-Chaque point d'entrée externe (API, fichier, input utilisateur, base de données) est une source potentielle d'erreur. La question n'est jamais "est-ce que ça va planter" : c'est "quand, et qu'est-ce qu'on fait à ce moment-là".
+Chaque point d'entrée externe (API, fichier, input opérateur, base de données) est une source potentielle d'erreur. La question n'est jamais "est-ce que ça va planter" : c'est "quand, et qu'est-ce qu'on fait à ce moment-là".
 
 ---
 
@@ -72,7 +72,7 @@ Les systèmes deviennent de plus en plus distribués (microservices, queues, API
 
 ## CE QUE TU DOIS RETENIR AVANT D'OUVRIR LE CHAPITRE 01
 
-Une erreur non gérée n'est pas juste un bug : c'est un système qui ment sur son propre état. Ce module te donne la discipline pour l'anticiper, la contenir, et la communiquer clairement. Sans lui, tu découvres les problèmes quand l'utilisateur te les signale. Avec lui, tu les vois venir.
+Une erreur non gérée n'est pas juste un bug : c'est un système qui ment sur son propre état. Ce module te donne la discipline pour l'anticiper, la contenir, et la communiquer clairement. Sans lui, tu découvres les problèmes quand l'opérateur te les signale. Avec lui, tu les vois venir.
 
 > Dans ce module, tu vas croiser des stack traces (la pile d'appels affichée quand une erreur remonte) dans les exemples. T'as pas besoin de savoir la lire couramment pour avancer : le module suivant (`05_debugging`) t'apprend à la décortiquer ligne par ligne. Ici, contente-toi de repérer qu'elle existe et qu'elle raconte un chemin d'exécution.
 

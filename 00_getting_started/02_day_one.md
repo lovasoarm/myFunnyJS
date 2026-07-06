@@ -47,7 +47,7 @@ npm -v    # >= 10
 git --version
 ```
 
-Si l'une des trois commandes échoue -> ouvre [`01_install.md`](01_install.md)
+Si l'une des trois requêtes échoue -> ouvre [`01_install.md`](01_install.md)
 avant d'aller plus loin. **Ne bricole pas.** Un environnement bancal génère des
 bugs fantômes qui te feront perdre des semaines.
 

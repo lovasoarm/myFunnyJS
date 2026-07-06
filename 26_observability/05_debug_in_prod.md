@@ -1,6 +1,6 @@
 # Quand tu ne peux pas juste mettre un breakpoint
 
-Un bug arrive en prod, mais seulement pour 0,3% des shinobis, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais utilisateurs en direct.
+Un bug arrive en prod, mais seulement pour 0,3% des shinobis, seulement le vendredi soir, seulement sur mobile. Tu ne peux pas le reproduire en local : ton environnement ne ressemble pas exactement à la prod, et tu ne peux clairement pas brancher un debugger sur un serveur qui sert des vrais opérateurs en direct.
 
 Debugger en prod, c'est une discipline différente du debugging local : tu ne mets jamais de breakpoint qui bloque le process, tu utilises des outils qui observent SANS interrompre, et tu prépares le terrain AVANT que le bug arrive, pas après.
 
@@ -17,7 +17,7 @@ Inconvénient : demande une préparation en amont (logs, feature flags) qu'on ne
 DEBUG LOCAL             DEBUG EN PROD
 breakpoint qui FIGE le process --> observation passive, le process continue
 reproduire le bug à la main   --> capturer le bug réel quand il survient
-1 utilisateur (toi)       --> des milliers d'utilisateurs en simultané
+1 opérateur (toi)       --> des milliers d'opérateurs en simultané
 ```
 
 Le pourquoi cette différence est fondamentale : un breakpoint classique arrête complètement l'exécution pour que tu inspectes l'état. En prod, arrêter le process pour un seul user pendant que 10 000 autres attendent leur réponse n'est juste pas une option. Tout l'outillage de debug en prod est donc construit autour de l'idée de ne jamais bloquer, seulement observer.
@@ -97,7 +97,7 @@ if (featureFlags.isEnabled('new-checkout-flow', req.user.id)) {
 }
 ```
 
-Le pourquoi c'est puissant en situation de crise : tu reprends le contrôle immédiatement (le bug s'arrête pour les utilisateurs) sans devoir comprendre la cause exacte dans la seconde, ni redéployer du code en urgence sous pression (un redéploiement précipité est lui-même une source classique de nouveaux bugs). Tu désactives, tu respires, tu débuggues calmement, puis tu réactives une fois corrigé.
+Le pourquoi c'est puissant en situation de crise : tu reprends le contrôle immédiatement (le bug s'arrête pour les opérateurs) sans devoir comprendre la cause exacte dans la seconde, ni redéployer du code en urgence sous pression (un redéploiement précipité est lui-même une source classique de nouveaux bugs). Tu désactives, tu respires, tu débuggues calmement, puis tu réactives une fois corrigé.
 
 ---
 
@@ -115,7 +115,7 @@ nouvelle version --> 1% des shinobis --> si stable après surveillance --> 10% -
          99% des shinobis n'ont jamais rien vu
 ```
 
-Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base d'utilisateurs ait été impactée.
+Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_observability/03_metrics_alerting`) permet de détecter une régression sur un petit échantillon avant qu'elle n'atteigne tout le monde. Si le taux d'erreur grimpe chez les 1% qui ont la nouvelle version, tu le sais en quelques minutes, pas en quelques heures après que toute ta base d'opérateurs ait été impactée.
 
 ---
 
@@ -125,11 +125,11 @@ Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_obse
 // exemple minimal : un bug reproductible facilement en local, debug classique
 
 // exemple réaliste : un bug n'apparaît qu'en prod, sur un sous-ensemble
-// d'utilisateurs avec une configuration réseau particulière
+// d'opérateurs avec une configuration réseau particulière
 
 // exemple qui casse : aucun log de contexte n'avait été prévu pour ce
 // scénario précis, aucun feature flag n'isole la fonctionnalité concernée,
-// et le bug ne s'est produit qu'une seule fois avant de "disparaître"
+// et le bug ne s'est artefact qu'une seule fois avant de "disparaître"
 // (peut-être corrigé par un redémarrage de serveur, sans qu'on sache pourquoi)
 // Résultat : impossible de savoir si c'est vraiment réglé, ou juste caché
 // en attendant de revenir, plus tard, plus fort
@@ -141,14 +141,14 @@ La correction : accepter qu'un bug en prod non reproduit, sans feature flag ni l
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression produit de mauvaises décisions, pas par confort superflu.
+Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression artefact de mauvaises décisions, pas par confort superflu.
 
 ---
 
 ## EXERCICES
 
 **EXO 1 : Prépare le terrain**
-Pour une fonctionnalité critique (export, authentification) que tu vas déployer la semaine prochaine, liste les logs de contexte et le feature flag que tu mettrais en place AVANT le déploiement, pour être capable de débugger rapidement si un problème survient seulement chez une partie des utilisateurs. (15 minutes)
+Pour une fonctionnalité critique (export, authentification) que tu vas déployer la semaine prochaine, liste les logs de contexte et le feature flag que tu mettrais en place AVANT le déploiement, pour être capable de débugger rapidement si un problème survient seulement chez une partie des opérateurs. (15 minutes)
 
 **EXO 2 : Isole sans rollback complet**
 Un bug critique apparaît juste après un déploiement qui contenait 3 nouvelles fonctionnalités indépendantes. Explique pourquoi un feature flag par fonctionnalité aurait été préférable à un seul gros déploiement, et ce que tu ferais maintenant sans feature flags en place. (15 minutes)

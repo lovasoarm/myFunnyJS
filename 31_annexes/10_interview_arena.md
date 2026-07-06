@@ -1,7 +1,7 @@
 # Interview Arena : 10 sujets + grilles
 Temps de lecture ~5 min
 
-> Chaque sujet = 20–45 min. Timer obligatoire. Grille de score à la fin.
+> Chaque sujet = 20-45 min. Timer obligatoire. Grille de score à la fin.
 
 ## 1. Live coding async
 
@@ -57,7 +57,7 @@ Temps de lecture ~5 min
 ## Score global
 
 - 8/10 → prêt.
-- 5–7 → cible les 3 sujets faibles.
+- 5-7 → cible les 3 sujets faibles.
 - <5 → refais un cycle de synthèses.
 
 

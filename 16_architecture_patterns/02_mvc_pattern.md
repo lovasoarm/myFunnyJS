@@ -328,7 +328,7 @@ C'est la base de ce que font React, Vue, et Angular : le Model (state) notifie, 
 ## EXERCICES
 
 **EXO 1 : Le tableau de bord de la Prison Break**
-Michael Scofield a besoin de gérer les sections de Fox River. Chaque section a un nom, un niveau de sécurité (1–5), et un nombre de gardiens. Implémente un MVC complet : `PrisonModel` (CRUD sur les sections + validation du niveau de sécurité), `PrisonView` (affiche la liste, expose les handlers de formulaire), `PrisonController` (orchestre). Le Controller ne doit jamais toucher au DOM directement.
+Michael Scofield a besoin de gérer les sections de Fox River. Chaque section a un nom, un niveau de sécurité (1-5), et un nombre de gardiens. Implémente un MVC complet : `PrisonModel` (CRUD sur les sections + validation du niveau de sécurité), `PrisonView` (affiche la liste, expose les handlers de formulaire), `PrisonController` (orchestre). Le Controller ne doit jamais toucher au DOM directement.
 
 **EXO 2 : Trouve les violations**
 Voici un code : le Controller appelle directement `document.querySelector`, fait une validation de longueur de string, et stocke les données dans `localStorage`. Liste toutes les violations de la séparation MVC. Propose une redistribution correcte des responsabilités.

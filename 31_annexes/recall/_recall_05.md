@@ -1,4 +1,4 @@
-# _recall_05.md : modules 01–05
+# _recall_05.md : modules 01-05
 Temps de lecture ~5 min
 
 > Rappel espacé. Réponds **sans revoir les fichiers**. Note ton score.
@@ -22,4 +22,4 @@ Périmètre : fundamentals, problem solving, async, error handling, debugging.
 ## Scoring
 
 - 8+/10 → tu peux avancer.
-- 5–7 → relis les modules faibles avant de continuer.
+- 5-7 → relis les modules faibles avant de continuer.

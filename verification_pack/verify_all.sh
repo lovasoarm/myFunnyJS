@@ -19,7 +19,7 @@ for v in "$DIR"/*/verify.sh; do
 done
 
 # Filet de style (emoji / em-dash / analogies / mots interdits / stability).
-if ! python3 "$DIR/_audit/style_lint.py" "$DIR/.." ; then
+if ! bash "$DIR/_audit/lint_honor_code.sh" ; then
   fail=$((fail+1))
 fi
 echo ""

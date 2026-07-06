@@ -6,7 +6,7 @@ Temps de lecture ~5 min
 
 ## Rappel : c'est quoi une RFC ?
 
-*Request For Comments*. Un document court (2–5 pages) qui propose un
+*Request For Comments*. Un document court (2-5 pages) qui propose un
 changement significatif : nouvelle dépendance, refonte d'un module, migration
 d'infra. Publié pour être **commenté avant** l'implémentation.
 

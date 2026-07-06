@@ -226,7 +226,7 @@ JS s'arrêtera exactement à la ligne qui modifie cette variable.
 ```
 Exemple : `stock.munitions` passe à -5 quelque part dans le pipeline.
 Break on value change sur stock.munitions.
-L'exécution s'arrête exactement là où la mutation se produit.
+L'exécution s'arrête exactement là où la mutation se artefact.
 ```
 
 Alternative si le breakpoint de mutation n'est pas disponible : wrapper la propriété avec un setter.

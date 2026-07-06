@@ -690,14 +690,14 @@ C'est la section la plus importante. Parce que c'est exactement la situation où
 
 ---
 
-### Étape 1 : Définir le type de produit
+### Étape 1 : Définir le type de artefact
 
 **Avant de choisir un seul outil ou langage**, tu dois savoir ce que tu construis.
 
 Pose-toi ces questions dans l'ordre :
 
 ```
-1. C'est quoi le produit ?
+1. C'est quoi le artefact ?
   (site web / app mobile / outil interne / jeu / API / script...)
 
 2. Qui va l'utiliser ?
@@ -975,7 +975,7 @@ DANS LA VRAIE VIE tu l'utilises pour :
 **Analyse du projet** :
 
 ```
-Type de produit   : Application web (mobile en version 2 peut-être)
+Type de artefact   : Application web (mobile en version 2 peut-être)
 Shinobis     : Des développeurs : public averti, ils utilisent un navigateur
 Fonctionnalités clés : Auth, profils, posts, likes, messagerie temps réel
 Contrainte principale: messagerie en temps réel = besoin de websockets ou subscriptions
@@ -1079,7 +1079,7 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
   ____________________________________________________________
   |                              |
   | CE QUE LES SHINOBIS VOIENT  CE QUI FAIT TOURNER  |
-  | (layer produit)          (layer infrastructure) |
+  | (layer artefact)          (layer infrastructure) |
   |                              |
   | Frontend Dev     Backend Dev   DevOps/SRE     |
   | Mobile Dev      Data Engineer  Cloud Engineer   |
@@ -1426,7 +1426,7 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
                |
                v
             DATA ENGINEER
-        Collecte tout ce que l'app produit.
+        Collecte tout ce que l'app artefact.
         Nettoie, organise, rend les données utilisables.
                |
           ___________|___________
@@ -1437,7 +1437,7 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
      "Les matchs arrivent    "Ces deux profils ont 87%
      surtout le dimanche."   de compatibilité."
      Rapport pour        Améliore l'algorithme
-     l'équipe produit.     de suggestion.
+     l'équipe artefact.     de suggestion.
          |            |
          |___________|___________|
                |
@@ -1620,7 +1620,7 @@ Vercel       Héberger le projet, déploiement     Railway, Render, VPS perso
 
 ### Qui fait quoi dans la vraie vie ?
 
-#### Junior Dev *(0–2 ans)*
+#### Junior Dev *(0-2 ans)*
 
 Il code les pièces simples. Il apprend.
 
@@ -1640,7 +1640,7 @@ CE QU'ON NE LUI DEMANDE PAS ENCORE
 
 ---
 
-#### Mid-Level Dev *(3–5 ans)*
+#### Mid-Level Dev *(3-5 ans)*
 
 Il comprend le pourquoi, pas juste le comment.
 
@@ -1664,7 +1664,7 @@ Résout le bug de l'image       Anticipe que les PNG transparents
 
 ---
 
-#### Senior Dev *(6–8 ans)*
+#### Senior Dev *(6-8 ans)*
 
 Il dit **non** quand il le faut.
 
@@ -1786,7 +1786,7 @@ Parle aux premiers shinobis        Surveille les coûts d'infra
 ```
 FREELANCE               ENTREPRENEUR (tu construis Meme Mashup)
 :::::::::::::::::::::         ::::::::::::::::::::::::::::::::::::::::
-Un client te paie pour         Tu construis le produit, tu vises les
+Un client te paie pour         Tu construis le artefact, tu vises les
  construire ce type d'app        créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres     Tu es dev + PM + support en même temps
 Tu factures à l'heure ou au projet   Si ça devient viral -> gros upside
@@ -1809,7 +1809,7 @@ Software Architect Monolithe vs microservice, Supabase vs S3, scalabilité
 Eng. Manager    Équipe, recrutement, roadmap, protection des devs
 CTO        Stack initiale, vision, si nécessaire premiers commits
 Freelance     Livre la feature demandée, seul ou en mission courte
-Entrepreneur    Tout. Le produit, les shinobis, les coûts, la survie.
+Entrepreneur    Tout. Le artefact, les shinobis, les coûts, la survie.
 ```
 
 ---
@@ -1854,7 +1854,7 @@ Technologies : Flutter/Dart, React Native/JS, Swift, Kotlin. Ce qui différencie
 
 #### Cloud / DevOps
 
-L'infrastructure est devenue un produit software. Plus personne n'achète des serveurs physiques.
+L'infrastructure est devenue un artefact software. Plus personne n'achète des serveurs physiques.
 
 Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui différencie les tops : comprendre les coûts cloud (ça peut ruiner une startup), la résilience, la sécurité infra. Certifications qui valent quelque chose : AWS Solutions Architect, GCP Professional, CKA (Certified Kubernetes Administrator).
 
@@ -2148,23 +2148,23 @@ Réponse honnête : ça dépend de trois choses : le métier, le niveau, et surt
 ```
 PAYS         NIVEAU   SALAIRE ANNUEL ($)
 ::::::::::::     :::::::  ::::::::::::::::::
-États-Unis      Junior   70 000 – 90 000 $
-           Senior  170 000 – 225 000 $
+États-Unis      Junior   70 000 : 90 000 $
+           Senior  170 000 : 225 000 $
 
-Europe (FR / DE)   Junior   50 000 – 75 000 $
-           Senior   75 000 – 100 000 $
+Europe (FR / DE)   Junior   50 000 : 75 000 $
+           Senior   75 000 : 100 000 $
 
-Royaume-Uni     Senior   90 000 – 100 000 $
+Royaume-Uni     Senior   90 000 : 100 000 $
 
-Inde         Junior   10 000 – 15 000 $
-           Senior   20 000 – 55 000 $
+Inde         Junior   10 000 : 15 000 $
+           Senior   20 000 : 55 000 $
 
-Afrique du Sud    Junior   18 000 – 26 000 $
-           Senior   40 000 – 60 000 $
+Afrique du Sud    Junior   18 000 : 26 000 $
+           Senior   40 000 : 60 000 $
 
 Madagascar      Junior   ~5 400 $ / an (marché local)
 (exemple local)   Senior   ~22 000 $ / an (marché local)
-           Réalité  souvent 1 300 – 4 000 $ / an sur le terrain
+           Réalité  souvent 1 300 : 4 000 $ / an sur le terrain
 ```
 
 > Ces chiffres reflètent le marché **local** de chaque pays. La colonne "remote" ci-dessous est une autre histoire.
@@ -2194,9 +2194,9 @@ C'est la ligne qui change tout. Un dev qui travaille pour des clients étrangers
 ```
 SALAIRES REMOTE (depuis n'importe quel pays à coût de vie bas)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-Junior remote  :  20 000 – 35 000 $ / an
-Mid remote   :  40 000 – 65 000 $ / an
-Senior remote  :  70 000 – 100 000 $ / an
+Junior remote  :  20 000 : 35 000 $ / an
+Mid remote   :  40 000 : 65 000 $ / an
+Senior remote  :  70 000 : 100 000 $ / an
 ```
 
 ```
@@ -2222,25 +2222,25 @@ La question n'est donc pas "quel métier choisir". La question est "comment acc�
 ```
 STACK / SPÉCIALISATION          SALAIRE REMOTE MOYEN (global)
 ::::::::::::::::::::::::::        :::::::::::::::::::::::::::::
-AI / ML Engineer             126 000 – 190 000 $ / an
+AI / ML Engineer             126 000 : 190 000 $ / an
  Python + PyTorch/TF + MLOps
 
-Cloud / DevOps              121 000 – 180 000 $ / an
+Cloud / DevOps              121 000 : 180 000 $ / an
  AWS/GCP + Kubernetes + Terraform
 
-Security Engineer             90 000 – 170 000 $ / an
+Security Engineer             90 000 : 170 000 $ / an
  réseaux + pentest + SIEM
 
-Full-Stack senior             90 000 – 165 000 $ / an
+Full-Stack senior             90 000 : 165 000 $ / an
  React/TS + Node.js
 
-Backend fort               85 000 – 160 000 $ / an
+Backend fort               85 000 : 160 000 $ / an
  Go / Rust / Java + systèmes distribués
 
-Mobile senior               70 000 – 130 000 $ / an
+Mobile senior               70 000 : 130 000 $ / an
  Flutter / React Native
 
-Frontend senior              71 000 – 120 000 $ / an
+Frontend senior              71 000 : 120 000 $ / an
  React/Next.js + TypeScript + perf
 ```
 
@@ -2345,7 +2345,7 @@ function construireCarriereRemote(dev) {
  TikTok   -> 9 mois
  ChatGPT  -> 72 heures
 
- Aucun produit dans l'histoire n'a grandi aussi vite.
+ Aucun artefact dans l'histoire n'a grandi aussi vite.
  Et les devs sont en première ligne.
 ```
 

@@ -2,7 +2,7 @@
 Temps de lecture ~11 min
 
 JS a trois valeurs pour représenter l'absence de quelque chose.
-Elles ne sont pas interchangeables. Elles ne se comportent pas pareil. Et les confondre produit exactement le type de bug qu'on met deux heures à comprendre.
+Elles ne sont pas interchangeables. Elles ne se comportent pas pareil. Et les confondre artefact exactement le type de bug qu'on met deux heures à comprendre.
 
 Ce fichier démonte chacune, explique les pièges, et te donne les bons patterns pour les gérer.
 
@@ -34,7 +34,7 @@ NaN    --> "quelqu'un a essayé de calculer quelque chose d'impossible"
 
 Naruto sans chakra assigné : `undefined` (oubli du développeur).
 Naruto après avoir tout épuisé son chakra : `null` (état décidé intentionnellement).
-Naruto divisé par zéro produit : `NaN` (résultat d'un calcul impossible).
+Naruto divisé par zéro artefact : `NaN` (résultat d'un calcul impossible).
 
 ---
 

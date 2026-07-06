@@ -140,7 +140,7 @@ La correction : filtrer activement ce qui mérite d'être capturé (`beforeSend`
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, le suivi d'erreur en prod se résumait souvent à des emails d'alerte basiques envoyés à toute l'équipe à chaque exception, sans regroupement ni contexte, ce qui noyait vite tout le monde. Maintenant, des plateformes dédiées (Sentry, Rollbar, Bugsnag) regroupent intelligemment, attachent le contexte automatiquement (release, user, breadcrumbs : le fil des actions avant le crash), et s'intègrent avec l'alerting (vu dans `26_observability/03_metrics_alerting`). Le switch existe parce qu'un email par exception ne scale juste pas passé quelques utilisateurs, pas par mode.
+Avant, le suivi d'erreur en prod se résumait souvent à des emails d'alerte basiques envoyés à toute l'équipe à chaque exception, sans regroupement ni contexte, ce qui noyait vite tout le monde. Maintenant, des plateformes dédiées (Sentry, Rollbar, Bugsnag) regroupent intelligemment, attachent le contexte automatiquement (release, user, breadcrumbs : le fil des actions avant le crash), et s'intègrent avec l'alerting (vu dans `26_observability/03_metrics_alerting`). Le switch existe parce qu'un email par exception ne scale juste pas passé quelques opérateurs, pas par mode.
 
 ---
 
@@ -159,7 +159,7 @@ Une librairie tierce génère un warning bénin 10 000 fois par jour, noyant le 
 
 ## RÉSUMÉ
 
-Sentry capture l'exception avec sa stack trace et tout le contexte qui l'entoure (user, requête, version), là où un simple log ne donnerait qu'une ligne anonyme. Le fingerprinting regroupe les occurrences identiques d'une même erreur pour garder un dashboard lisible, mais ça suppose des messages d'erreur structurés plutôt qu'improvisés. La priorisation par sévérité et impact réel (pas par ordre d'arrivée) permet de traiter en premier ce qui bloque vraiment des utilisateurs, et filtrer le bruit connu est aussi important que capturer le signal utile.
+Sentry capture l'exception avec sa stack trace et tout le contexte qui l'entoure (user, requête, version), là où un simple log ne donnerait qu'une ligne anonyme. Le fingerprinting regroupe les occurrences identiques d'une même erreur pour garder un dashboard lisible, mais ça suppose des messages d'erreur structurés plutôt qu'improvisés. La priorisation par sévérité et impact réel (pas par ordre d'arrivée) permet de traiter en premier ce qui bloque vraiment des opérateurs, et filtrer le bruit connu est aussi important que capturer le signal utile.
 
 ---
 stability: stable

@@ -207,7 +207,7 @@ mocks/
 **Sortie** : des messages `{ type: 'threat', level, perimeter }` envoyés au thread principal.
 
 ### `src/logger/structuredLogger.js`
-**Ce que ça fait** : log en JSON avec timestamp ISO, niveau (`info`, `warn`, `error`), et champs contextuels. Chaque opération du camp produit une ligne de log. Les logs sont écrits dans `logs/camp.jsonl` (JSONL = une ligne JSON par entrée).
+**Ce que ça fait** : log en JSON avec timestamp ISO, niveau (`info`, `warn`, `error`), et champs contextuels. Chaque opération du camp artefact une ligne de log. Les logs sont écrits dans `logs/camp.jsonl` (JSONL = une ligne JSON par entrée).
 **Entrée** : un niveau, un message, un objet contexte.
 **Sortie** : une ligne JSON dans `logs/camp.jsonl` et dans stdout.
 
@@ -418,7 +418,7 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
  bloc est un remplacement, pas un refactoring. On perd la traçabilité.
 
 ## Conséquences
-- La phase 1 (tests sur le legacy) prend du temps qui ne produit pas de features.
+- La phase 1 (tests sur le legacy) prend du temps qui ne artefact pas de features.
  C'est un investissement, pas du temps perdu.
 - Chaque commit de refactoring peut être vérifié en lançant npm test.
  Si un test passe au rouge, on sait exactement quelle étape a cassé quelque chose.

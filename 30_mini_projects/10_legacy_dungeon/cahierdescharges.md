@@ -25,7 +25,7 @@ C'est ton premier jour dans une vraie équipe. Le code est déjà là. Personne 
 Ce que tu dois produire à la fin :
 
 ```
-[CARTOGRAPHIE] 2h chrono, MAP.md produit
+[CARTOGRAPHIE] 2h chrono, MAP.md artefact
  - point d'entrée réel localisé
  - 6 fichiers où vit la vraie logique
  - diagramme ASCII du flux principal
@@ -75,7 +75,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
 
 ## CRITÈRE DE CHOIX DU DÉPÔT : LES 4 RÈGLES
 
-Le dépôt que tu choisis doit cocher les 4 critères. Si un seul critère manque, l'exercice perd sa valeur : trop petit, tu finis en 20 minutes sans vraie friction. Trop gros ou trop bien documenté, tu dépasses le chrono sans avoir produit un MAP.md honnête.
+Le dépôt que tu choisis doit cocher les 4 critères. Si un seul critère manque, l'exercice perd sa valeur : trop petit, tu finis en 20 minutes sans vraie friction. Trop gros ou trop bien documenté, tu dépasses le chrono sans avoir artefact un MAP.md honnête.
 
 ```
 CRITÈRE 1 : TAILLE MESURABLE, NI MICRO NI MONSTRE

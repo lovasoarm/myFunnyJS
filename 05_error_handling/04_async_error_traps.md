@@ -2,7 +2,7 @@
 
 En synchrone, une erreur non catchée crash le programme immédiatement. Tu vois le problème.
 
-En async, une erreur non catchée peut disparaître complètement. Ton code continue de tourner. Tu penses que tout va bien. En fait tu livres des données corrompues à l'utilisateur depuis 3 heures.
+En async, une erreur non catchée peut disparaître complètement. Ton code continue de tourner. Tu penses que tout va bien. En fait tu livres des données corrompues à l'opérateur depuis 3 heures.
 
 C'est ça le vrai danger de l'async.
 

@@ -1,10 +1,10 @@
-# _recall_10.md : modules 06–10
+# _recall_10.md : modules 06-10
 Temps de lecture ~5 min
 
 > Rappel espacé. Réponds **sans revoir les fichiers**. Note ton score.
 > Refais ce fichier **une semaine plus tard**. C'est là que la mémoire tient.
 
-Périmètre : testing, math basics, memory & performance, data structures, algorithms. Plus 2 questions de rappel sur 01–05.
+Périmètre : testing, math basics, memory & performance, data structures, algorithms. Plus 2 questions de rappel sur 01-05.
 
 ## 10 questions
 
@@ -16,10 +16,10 @@ Périmètre : testing, math basics, memory & performance, data structures, algor
 6. `Map` vs `Object` comme dictionnaire : 3 raisons de choisir `Map`.
 7. Tri stable vs tri instable : donne un cas métier où la stabilité compte.
 8. Hash map en O(1) *amorti* : pourquoi "amorti" et pas "toujours" ?
-9. **Rappel 01–05 :** ordre exact `sync` → microtask → macrotask.
-10. **Rappel 01–05 :** différence entre erreur attendue et erreur inattendue.
+9. **Rappel 01-05 :** ordre exact `sync` → microtask → macrotask.
+10. **Rappel 01-05 :** différence entre erreur attendue et erreur inattendue.
 
 ## Scoring
 
 - 8+/10 → tu peux avancer.
-- 5–7 → relis les modules faibles avant de continuer.
+- 5-7 → relis les modules faibles avant de continuer.

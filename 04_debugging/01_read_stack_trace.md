@@ -86,7 +86,7 @@ et on a tenté de lire `cible.defense`.
     nom de fonction fichier ligne colonne
 ```
 
-C'est là que le crash s'est produit : fichier `combat.js`, ligne 2, colonne 39.
+C'est là que le crash s'est artefact : fichier `combat.js`, ligne 2, colonne 39.
 
 ```
   at lancerJutsu  (combat.js:7:10)
@@ -211,7 +211,7 @@ TypeError: ninja.jutsus is not a function
 
 Sans voir le code : réponds à ces questions.
 - Quel est le type d'erreur ? Qu'est-ce que ça signifie ?
-- Dans quel fichier et à quelle ligne le crash s'est-il produit ?
+- Dans quel fichier et à quelle ligne le crash s'est-il artefact ?
 - Quelle propriété ou méthode est en cause ?
 - Donne une hypothèse concrète sur la cause.
 - Quelle ligne du fichier appelant vaut la peine d'être inspectée en deuxième ?

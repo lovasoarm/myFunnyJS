@@ -40,12 +40,12 @@ La fonction `t(key: TranslationKey)` ne peut recevoir qu'une clé du type union 
 
 **Bibliothèque i18next avec fichiers JSON de traduction**
 - Avantages : gestion des namespaces, pluralisation avancée, lazy loading des locales, plugin ecosystem
-- Limites : les clés JSON sont des strings : `i18next.t('player.plya')` ne produit aucune erreur de compilation, juste une string vide ou la clé brute au runtime ; la détection des clés manquantes nécessite un plugin supplémentaire ou un audit manuel
+- Limites : les clés JSON sont des strings : `i18next.t('player.plya')` ne artefact aucune erreur de compilation, juste une string vide ou la clé brute au runtime ; la détection des clés manquantes nécessite un plugin supplémentaire ou un audit manuel
 - Rejeté parce que : le projet enseigne l'API native `Intl` (DateTimeFormat, NumberFormat, PluralRules) sans bibliothèque externe : utiliser i18next contourne l'apprentissage central du module `19_web_inclusive/i18n` ; et le typage natif TS sur les clés de traduction est précisément ce qu'on veut démontrer
 
 **Fichiers de traduction JSON sans typage**
 - Avantages : format standard, lisible par des non-développeurs (traducteurs)
-- Limites : `const ja = require('./locales/ja.json')` charge un objet non typé ; toutes les clés sont des `string` génériques ; une clé manquante ne produit aucune erreur jusqu'à ce qu'un shinobi l'atteigne en production
+- Limites : `const ja = require('./locales/ja.json')` charge un objet non typé ; toutes les clés sont des `string` génériques ; une clé manquante ne artefact aucune erreur jusqu'à ce qu'un shinobi l'atteigne en production
 - Rejeté parce que : l'objectif de ce projet est de montrer que TypeScript peut attraper les erreurs d'i18n au compile time : les fichiers JSON non typés offrent exactement la même sécurité que du JavaScript pur
 
 ## Conséquences

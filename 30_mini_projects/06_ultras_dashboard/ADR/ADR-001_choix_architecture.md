@@ -5,7 +5,7 @@ Temps de lecture ~6 min
 Accepté : 2026-01
 
 ## Contexte
-L'Ultras Dashboard ingère des événements de match en temps réel (possession, xG, passes, alertes) à raison de 200 events par minute. Chaque event traverse plusieurs étapes : réception → validation → enrichissement → stockage → diffusion aux clients. La question d'architecture centrale est : comment typer ce pipeline pour que chaque étape sache exactement ce qu'elle reçoit et ce qu'elle produit, sans avoir à inspecter le contenu à runtime ?
+L'Ultras Dashboard ingère des événements de match en temps réel (possession, xG, passes, alertes) à raison de 200 events par minute. Chaque event traverse plusieurs étapes : réception → validation → enrichissement → stockage → diffusion aux clients. La question d'architecture centrale est : comment typer ce pipeline pour que chaque étape sache exactement ce qu'elle reçoit et ce qu'elle artefact, sans avoir à inspecter le contenu à runtime ?
 
 Le projet couvre `15_typescript`, `26_observability`, `25_scalability`. Le système de types est la contrainte centrale : si un event mal formé traverse le pipeline sans être intercepté, les ultras voient des données corrompues en direct pendant un match : pas acceptable.
 

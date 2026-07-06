@@ -92,7 +92,7 @@ TAUX D'ÉCHEC OBSERVÉ EN CONDITIONS RÉELLES (200 exécutions mesurées) : 100%
 (calculerScoreFinal s'exécute systématiquement deux fois : le premier affichage est
 quasiment toujours faux, sauf dans le cas extrêmement rare où les deux setTimeout
 expirent à la même milliseconde. Ce qui est "intermittent" ici, ce n'est pas SI le
-bug se produit, mais QUEL chiffre faux sort, et lequel des deux scores manquait :
+bug se artefact, mais QUEL chiffre faux sort, et lequel des deux scores manquait :
 deux runs identiques en apparence donnent un mauvais résultat différent)
 ```
 
