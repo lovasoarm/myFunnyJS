@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ASYNC & EVENT LOOP
+
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~8 min
 
 Ton code JS tourne sur un seul thread (fil d'exécution). Une seule ligne à la fois, jamais deux en même temps. Et pourtant ton serveur gère 10 000 requêtes simultanées sans bloquer. Si tu ne comprends pas comment, tu codes avec un fantôme que tu ne contrôles pas.

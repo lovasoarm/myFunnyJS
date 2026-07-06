@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
+
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~7 min
 
 Tu as déjà résolu le même problème d'architecture deux fois, en deux façons complètement différentes, dans deux projets différents. Et probablement, aucune des deux n'était la meilleure solution : c'était juste la première idée qui t'est venue. Les design patterns existent pour arrêter ça.

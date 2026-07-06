@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OOP EN JS
+
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~6 min
 
 ## CE QUE TU CROIS SAVOIR

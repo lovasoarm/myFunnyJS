@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : I18N
+
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~9 min
 
 Ton app marche super bien, jusqu'à ce qu'un shinobi japonais voit une date affichée au format américain et la lise complètement à l'envers. Jusqu'à ce qu'un shinobi allemand voie un prix avec une virgule à la place d'un point et pense que ton jutsu coûte 1000 fois moins cher qu'en réalité. Jusqu'à ce qu'un shinobi arabe découvre que ta pluralisation codée pour le français explose dès qu'il y a plus de deux résultats, parce que sa langue a six formes plurales et que ton code n'en gère qu'une.

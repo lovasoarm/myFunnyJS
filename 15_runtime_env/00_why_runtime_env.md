@@ -1,5 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : RUNTIME ENVIRONMENT
 
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 > Ce module reutilise : event loop (03_async), memoire (08_memory_performance).
 Temps de lecture ~7 min
 

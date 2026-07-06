@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : PROBLEM SOLVING
+
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~7 min
 
 Tu connais la syntaxe. Tu connais les structures de données. Tu connais les patterns. Et pourtant, face à un vrai problème flou ("le dashboard est lent", "ça marche pas pour ce client"), tu ouvres ton éditeur sans savoir par où commencer. Le problème n'est pas technique : il est dans ta façon de penser avant de coder.

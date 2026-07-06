@@ -66,5 +66,5 @@ Puis ouvre [`START_HERE.md`](./START_HERE.md).
 
 Licence : voir [`LICENSE`](./LICENSE) : tu peux réutiliser et adapter le matériel
 dans le cadre qui y est décrit. Communauté : `COMMUNAUTE.md`. Version de Node :
-`.nvmrc` (référence) détaillée dans `NODE_VERSIONS.md`. Suivi des dépendances :
-`DEPENDENCY_LEDGER.md` (maintenu à chaque ajout/retrait de dépendance).
+`.nvmrc` (référence) détaillée dans `NODE_VERSIONS.md`. Journal d'audit interne (non pédagogique) : `31_annexes/_meta/` (dont
+`CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md`). L'apprenant peut l'ignorer.

@@ -1,5 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ERROR HANDLING
 
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 Ton code va planter. Pas "peut-être". Pas "si tu codes mal". Une API qui timeout, un input utilisateur tordu, un fichier qui n'existe plus : ça arrive en prod, tous les jours, sur tous les systèmes. La vraie question n'est pas "comment éviter les erreurs", c'est "comment les voir venir, les contenir, et continuer à fonctionner".
 
 Un dev qui ne gère pas ses erreurs ne code pas un système : il code une bombe à retardement.

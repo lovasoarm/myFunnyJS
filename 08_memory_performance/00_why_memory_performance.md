@@ -6,6 +6,8 @@ Temps de lecture ~8 min
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : MEMORY & PERFORMANCE
 
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 Ton code marche en local avec 10 lignes de données. Il rame en prod avec 100 000. Entre les deux, rien n'a changé dans ta logique : c'est juste que personne n'a jamais regardé ce que ton code coûtait vraiment en mémoire et en CPU.
 
 La performance n'est pas une option qu'on ajoute à la fin. C'est une compréhension qu'on a dès le départ, ou qu'on paie cash plus tard.

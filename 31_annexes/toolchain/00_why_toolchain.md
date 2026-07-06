@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS
+
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~9 min
 
 Le camp de Rick a un problème. Pas un zombie. Pas une pénurie. Un problème plus sournois : personne ne sait sur quelle version du plan de défense ils bossent. Glenn a édité le fichier sur son poste, Daryl a une version d'il y a trois jours, et le serveur qui devait tourner le simulateur de menace plante différemment chez chacun. Le code est bon. L'outillage autour est un chaos.

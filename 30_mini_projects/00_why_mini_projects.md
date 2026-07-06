@@ -1,4 +1,6 @@
 # POURQUOI DES PROJETS : LA DIFFÉRENCE ENTRE SAVOIR ET POUVOIR
+
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~9 min
 
 Tu peux connaître `Promise.all` par coeur. Savoir ce que c'est. Savoir l'expliquer.

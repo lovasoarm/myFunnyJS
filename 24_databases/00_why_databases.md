@@ -1,5 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
 
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 > Ce module reutilise : async (03_async), scalabilite (25_scalability).
 Temps de lecture ~8 min
 

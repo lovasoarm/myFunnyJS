@@ -1,5 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS
 
+> **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 Michael Scofield passe des mois à préparer l'évasion de Fox River. Pas en improvisant. Chaque mur, chaque conduit, chaque garde a son plan documenté, tatoué sur son corps, prévu à l'avance. Le plan ne dit pas juste "on s'évade". Il dit précisément QUI fait QUOI, QUAND, et QUOI FAIRE SI ça part en vrille.
 
 TypeScript de base, tu connais déjà : types, interfaces, generics. Ce module va plus loin. Il s'attaque à la question que personne pose en premier : comment typer du code que TU n'as PAS écrit, comment configurer le compilateur pour qu'il bosse pour toi au lieu de te freiner, et comment migrer un projet JS existant sans tout casser en une nuit. C'est le plan d'évasion. Pas l'envie de s'évader.

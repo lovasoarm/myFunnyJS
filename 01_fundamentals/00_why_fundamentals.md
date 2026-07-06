@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES FONDAMENTAUX
+
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~8 min
 
 Tu peux écrire `const x = 5` sans savoir ce qui se passe en mémoire. Ça marche. Jusqu'au jour où ton state mute tout seul, où ta closure garde une variable vivante alors que la fonction est morte, où ton `===` te trahit. Là, tu ne débugges plus : tu pries.

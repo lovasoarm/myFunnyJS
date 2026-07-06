@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATA STRUCTURES
+
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~8 min
 
 Tu peux tout stocker dans un tableau et tout chercher avec une boucle. Ça marche. Jusqu'à ce que ta liste passe de 100 à 1 million d'éléments, et que ta recherche qui prenait 1ms en prenne maintenant 4 secondes. Le bug n'est pas dans ton code : il est dans ta structure de données.

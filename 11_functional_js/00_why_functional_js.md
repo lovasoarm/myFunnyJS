@@ -1,4 +1,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS
+
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~7 min
 
 Tu as déjà passé une heure à chercher pourquoi une donnée changeait toute seule, sans qu'aucune ligne de ton code ne semble la toucher directement. Le vrai coupable, presque toujours : une mutation cachée, un objet partagé entre deux fonctions qui se modifient l'une l'autre sans le savoir.

@@ -1,5 +1,7 @@
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
 
+> **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 > Ce module reutilise : math (07_math_basics), erreurs (05_error_handling).
 Temps de lecture ~12 min
 

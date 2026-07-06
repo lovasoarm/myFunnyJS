@@ -1,5 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 
+> **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
+
 > Ce module reutilise : team craft (28_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
