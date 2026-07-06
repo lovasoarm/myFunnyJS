@@ -133,7 +133,7 @@ const pq = new PriorityQueue()
 pq.enqueue("Livrer un colis à Konoha",  1)
 pq.enqueue("Escorter le Kazekage",    7)
 pq.enqueue("Détruire l'Akatsuki",     10)
-pq.enqueue("Sécuriser le pont Nami",   5)
+pq.enqueue("Sécuriser le pont du Pays des Vagues", 5)
 pq.enqueue("Capturer le voleur du village", 3)
 
 // Naruto traite toujours la plus urgente d'abord
@@ -145,7 +145,7 @@ while (!pq.isEmpty()) {
 // Sortie garantie :
 // [Priorité 10] Détruire l'Akatsuki
 // [Priorité 7] Escorter le Kazekage
-// [Priorité 5] Sécuriser le pont Nami
+// [Priorité 5] Sécuriser le pont du Pays des Vagues
 // [Priorité 3] Capturer le voleur du village
 // [Priorité 1] Livrer un colis à Konoha
 ```

@@ -69,7 +69,7 @@ console.log(bubbleSort([5, 3, 8, 1, 9, 2]))
 
 ## 2) INSERTION SORT : TRIER COMME TU TIENS UNE MAIN DE CARTES
 
-Imagine Luffy qui ramasse ses cartes une par une. À chaque nouvelle carte, il la glisse à la bonne position dans sa main. Sa main gauche est toujours triée. La droite est le reste à traiter.
+Imagine Naruto qui ramasse ses cartes une par une. À chaque nouvelle carte, il la glisse à la bonne position dans sa main. Sa main gauche est toujours triée. La droite est le reste à traiter.
 
 ```
 Main actuelle (triée) : [3, 5, 8]

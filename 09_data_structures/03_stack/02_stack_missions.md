@@ -130,24 +130,24 @@ class Browser {
 
 // simulation
 const browser = new Browser()
-browser.visit("sanji.cook")
-browser.visit("zoro.dojo")
-browser.visit("luffy.captain")
+browser.visit("sakura.cook")
+browser.visit("sasuke.dojo")
+browser.visit("naruto.captain")
 
 console.log(browser.status())
-// { current: "luffy.captain", canGoBack: true, canGoForward: false }
-
-browser.back()
-console.log(browser.status())
-// { current: "zoro.dojo", canGoBack: true, canGoForward: true }
+// { current: "naruto.captain", canGoBack: true, canGoForward: false }
 
 browser.back()
 console.log(browser.status())
-// { current: "sanji.cook", canGoBack: false, canGoForward: true }
+// { current: "sasuke.dojo", canGoBack: true, canGoForward: true }
 
-browser.visit("nami.navigator") // nouvelle visite : forward effacé
+browser.back()
 console.log(browser.status())
-// { current: "nami.navigator", canGoBack: true, canGoForward: false }
+// { current: "sakura.cook", canGoBack: false, canGoForward: true }
+
+browser.visit("kakashi.navigator") // nouvelle visite : forward effacé
+console.log(browser.status())
+// { current: "kakashi.navigator", canGoBack: true, canGoForward: false }
 ```
 
 Deux stacks pour un problème. C'est souvent comme ça que les structures se combinent.
@@ -266,7 +266,7 @@ _~15 min_
 ## EXO 2 : Historique limité
 _~20 min_
 
-Le navigateur de Sanji a une mémoire limitée : il ne peut stocker que 10 pages dans l'historique back. Si on dépasse 10 visites, la plus ancienne est effacée. Modifie la classe `Browser` pour supporter cette contrainte.
+Le navigateur de Sakura a une mémoire limitée : il ne peut stocker que 10 pages dans l'historique back. Si on dépasse 10 visites, la plus ancienne est effacée. Modifie la classe `Browser` pour supporter cette contrainte.
 
 (indice : vérifie la taille de `backStack` avant de push)
 

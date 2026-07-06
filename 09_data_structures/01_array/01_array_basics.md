@@ -16,7 +16,7 @@ Un tableau c'est une séquence d'emplacements contigus en mémoire. L'index, c'e
 ```
 index :  0    1    2    3
       ┌───────┬───────┬───────┬───────┐
-valeur :  │"Luffy"│"Zoro" │"Nami" │"Sanji"│
+valeur :  │"Naruto"│"Sasuke"│"Sakura"│"Kakashi"│
       └───────┴───────┴───────┴───────┘
 adresse : 0x100  0x108  0x110  0x118
 ```
@@ -25,11 +25,11 @@ Accéder à `arr[2]` = aller directement à `adresse_base + (2 * taille_slot)`.
 Pas de recherche. Pas de boucle. Juste un calcul.
 
 ```js
-const crew = ["Luffy", "Zoro", "Nami", "Sanji"];
+const crew = ["Naruto", "Sasuke", "Sakura", "Kakashi"];
 
 // O(1) : accès direct, peu importe la taille du tableau
-console.log(crew[0]); // "Luffy"
-console.log(crew[3]); // "Sanji"
+console.log(crew[0]); // "Naruto"
+console.log(crew[3]); // "Kakashi"
 ```
 
 ---
@@ -68,14 +68,14 @@ const recon = squad.slice(1, 4);
 Le spread `[...arr]` crée une shallow copy complète. Tout le tableau est parcouru.
 
 ```js
-const original = ["Gon", "Killua", "Kurapika"];
+const original = ["Gai", "Jiraiya", "Tsunade"];
 
 // shallow copy : O(n), recopie chaque référence
 const copy = [...original];
 
-copy.push("Leorio");
-// original n'est pas touché : ["Gon", "Killua", "Kurapika"]
-// copy : ["Gon", "Killua", "Kurapika", "Leorio"]
+copy.push("Orochimaru");
+// original n'est pas touché : ["Gai", "Jiraiya", "Tsunade"]
+// copy : ["Gai", "Jiraiya", "Tsunade", "Orochimaru"]
 ```
 
 ---

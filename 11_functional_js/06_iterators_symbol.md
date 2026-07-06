@@ -188,13 +188,13 @@ const fileDesMissions = {
   { nom: 'Alfonso', rang: 'or', hors_combat: true },
   { nom: 'Ema', rang: 'argent', hors_combat: false },
   { nom: 'Germán', rang: 'or', hors_combat: false },
-  { nom: 'Zoro', rang: 'aspirant', hors_combat: false },
+  { nom: 'Herman', rang: 'aspirant', hors_combat: false },
  ],
  // implémenter [Symbol.iterator]
 }
 ```
 
-Le parcours doit retourner : Léon, Germán (or disponibles), puis Ema (argent), puis Zoro (aspirant).
+Le parcours doit retourner : Léon, Germán (or disponibles), puis Ema (argent), puis Herman (aspirant).
 Alfonso est ignoré.
 
 Prouve que le spread `[...fileDesMissions]` donne le même résultat que `for...of`.
