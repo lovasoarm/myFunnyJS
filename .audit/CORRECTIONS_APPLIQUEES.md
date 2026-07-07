@@ -29,7 +29,7 @@ Audit initial : 82 fichiers signales. **Verification poussee : zero
 occurrence reelle de 'lo''gin', 'pa''nier'**. Les 82 hits etaient tous des
 faux positifs sur :
 
-- verbe "artefact" ("a artefact", "se artefact"),
+- verbe "artefact" ("a produit", "se produit"),
 - "requête" au sens CLI ("ligne de requête"),
 - "opérateur" au sens legitime (opérateur d'un formulaire, d'une
   API, d'un systeme -- explicitement declare acceptable par l'audit
@@ -143,7 +143,7 @@ Base : `AUDIT_FINAL_MyFunnyJS.md` (note initiale 8/10, objectif 10/10).
 
 ### DOUTEUX corrigés (tous, sans exception)
 
-- **0.2 / 0.5 / 10.1** : Racine polluée. `CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md` déplacés sous `31_annexes/_meta/`. README racine mis à jour. Chantier 4.
+- **0.2 / 0.5 / 10.1** : Racine polluée. `CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md` restent sous `.audit/` (le dossier `31_annexes/_meta/` mentionné à tort dans une version antérieure de ce journal n'existe pas ; le parseur d'audit ignorait les dossiers commençant par un point, d'où la fausse alerte). README racine mis à jour. Chantier 4.
 - **0.4 / 6.1** : `START_HERE.md` réécrit : "3 actions dans les 10 prochaines minutes" en tête de fichier, filet de sécurité rétrogradé plus bas.
 - **1.2 / 9.2 / 11.6** : Transferabilité prouvée. `31_annexes/career/crosslang_challenge.md` + `verification_pack/_lib/crosslang_compare.sh` créés. Chantier 3.
 - **1.3 / 9.6 / 10.5** : Balisage `Durée de vie : intemporel | 5+ ans | 2-3 ans, revenir en 2028` ajouté dans les 38 fichiers `00_why_*.md`. Chantier 1.

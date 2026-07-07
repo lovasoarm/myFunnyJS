@@ -187,7 +187,7 @@ Sur les 4 sessions, combien de fois CAS D (l'IA a coûté du temps) :
 
 ## Règle de calcul
 
-- **Ratio IA / moi** : temps où l'IA a artefact du code vs temps où j'ai réfléchi/écrit seul.
+- **Ratio IA / moi** : temps où l'IA a produit du code vs temps où j'ai réfléchi/écrit seul.
 - **Note** : 0 = j'ai copié sans comprendre ; 5 = je peux ré-expliquer et refaire seul demain.
 - **Trigger** : si sur 5 lignes consécutives le ratio IA > 60 %, refais un `07_solo_vs_copilot_drill.md`.
 

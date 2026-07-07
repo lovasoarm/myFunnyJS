@@ -66,7 +66,7 @@ La tendance forte : poser un budget de performance dès le départ et le faire r
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Indirectement, oui : ce module est un prérequis explicite pour `09_data_structures` ("prérequis : 01_fundamentals + 08_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `27_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
+Indirectement, oui : ce module est un prérequis explicite pour `09_data_structures` ("prérequis : 01_fundamentals + 08_memory_performance/03_complexity"). Tu ne peux pas comprendre pourquoi une hash table bat un tableau pour certaines opérations si tu ne comprends pas déjà la notion de complexité algorithmique. Ce module est le pont obligatoire entre les fondamentaux et tout ce qui touche aux structures de données et aux algorithmes. Il ouvre aussi la porte à `26_observability`, où mesurer et surveiller les performances en prod devient le quotidien.
 
 ---
 

@@ -216,18 +216,18 @@ class PubSub {
 
 const pubsub = new PubSub();
 
-// Le NotificationService s'abonne au channel 'orders'
-pubsub.subscribe('orders', (order) => {
- console.log(`Notification : commande ${order.id} reçue`);
+// Le NotificationService s'abonne au channel 'missions'
+pubsub.subscribe('missions', (mission) => {
+ console.log(`Notification : mission ${mission.id} reçue`);
 });
 
-// Le WarehouseService s'abonne aussi au même channel
-pubsub.subscribe('orders', (order) => {
- console.log(`Stock : réserver les articles pour commande ${order.id}`);
+// L'ArmurerieService s'abonne aussi au même channel
+pubsub.subscribe('missions', (mission) => {
+ console.log(`Armurerie : préparer l'équipement pour mission ${mission.id}`);
 });
 
-// L'OrderService publie sans savoir qui écoute
-pubsub.publish('orders', { id: 'ORD-001', items: ['katana', 'armure'], total: 450 });
+// Le MissionService publie sans savoir qui écoute
+pubsub.publish('missions', { id: 'MSN-001', items: ['katana', 'armure'], rank: 'A' });
 ```
 
 ---

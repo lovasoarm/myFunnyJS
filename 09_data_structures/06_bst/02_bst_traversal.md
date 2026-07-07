@@ -30,7 +30,7 @@ BFS    (niveau par niveau)      : 8, 3, 10, 1, 6, 14, 4, 7, 13
 
 ## 2) IN-ORDER : LES DONNÉES DANS L'ORDRE
 
-Gauche d'abord, puis le noeud, puis droite. Sur un BST valide, ça artefact toujours une séquence triée.
+Gauche d'abord, puis le noeud, puis droite. Sur un BST valide, ça produit toujours une séquence triée.
 
 ```js
 inOrder(node = this.root, result = []) {

@@ -55,7 +55,7 @@ Le besoin de voir ce qui se passe en prod est intemporel. Ce qui a beaucoup évo
 
 Avant, "debugger en prod" voulait souvent dire ajouter des `console.log` partout et lire un fichier de logs texte non structuré, où chercher une information précise demandait de parcourir manuellement des milliers de lignes sans structure exploitable. Le passage au logging structuré (JSON, avec des champs cohérents et un correlation ID systématique) a transformé les logs en données qu'on peut filtrer, chercher, et corréler automatiquement.
 
-La montée des architectures en microservices a aussi rendu le tracing distribué presque indispensable : quand une seule requête traverse 5 services différents, savoir où exactement le ralentissement ou l'erreur s'est artefact devient impossible sans un système de trace qui suit la requête de bout en bout.
+La montée des architectures en microservices a aussi rendu le tracing distribué presque indispensable : quand une seule requête traverse 5 services différents, savoir où exactement le ralentissement ou l'erreur s'est produit devient impossible sans un système de trace qui suit la requête de bout en bout.
 
 ---
 

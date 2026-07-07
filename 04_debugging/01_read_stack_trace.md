@@ -89,7 +89,7 @@ et on a tenté de lire `cible.defense`.
     nom de fonction fichier ligne colonne
 ```
 
-C'est là que le crash s'est artefact : fichier `combat.js`, ligne 2, colonne 39.
+C'est là que le crash s'est produit : fichier `combat.js`, ligne 2, colonne 39.
 
 ```
   at lancerJutsu  (combat.js:7:10)

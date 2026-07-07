@@ -1,6 +1,8 @@
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 # Page verrouillée
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~9 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**

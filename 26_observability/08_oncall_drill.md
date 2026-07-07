@@ -6,7 +6,7 @@ Temps de lecture ~5 min
 
 ## Scénario
 
-Ton téléphone sonne. PagerDuty : `checkout-service p99 latency > 3s, error
+Ton téléphone sonne. PagerDuty : `rasengan-service p99 latency > 3s, error
 rate 7%`. Tu ouvres ton laptop. Tu as **20 minutes** pour :
 
 1. Diagnostiquer,
@@ -21,9 +21,9 @@ Correction du bug racine : **plus tard**, jamais à 3h du matin.
 
 ```
 TypeError: Cannot read properties of undefined (reading 'currency')
-  at applyTax (/app/checkout/tax.js:42:19)
-  at processOrder (/app/checkout/order.js:88:5)
-  at async POST /checkout (/app/routes/checkout.js:12:3)
+  at applyChakraCost (/app/rasengan/chakra.js:42:19)
+  at executeJutsu (/app/rasengan/jutsu.js:88:5)
+  at async POST /rasengan (/app/routes/rasengan.js:12:3)
 ```
 
 - 3 lignes de log corrélées (`traceId=abc123`) montrant un appel au service
@@ -54,7 +54,7 @@ Choisis **la moins risquée** qui rétablit le SLA en < 5 min.
 Statuspage / Slack `#incidents` :
 
 ```
-[INVESTIGATING] checkout errors 7% since 03:12 UTC.
+[INVESTIGATING] rasengan errors 7% since 03:12 UTC.
 Suspected cause: currency-svc v1.4.2 release.
 Mitigation in progress: rollback to v1.4.1. ETA 5 min.
 Next update: 03:35 UTC.
@@ -66,7 +66,7 @@ Règle : **mise à jour toutes les 15 min**, même si "rien de nouveau".
 
 - Metrics : error rate revenu sous 1% ?
 - P99 latency < 500ms ?
-- Un shinobi test peut checkout ?
+- Un shinobi test peut lancer un rasengan ?
 
 Si OUI → tu clôtures l'urgence, tu vas te recoucher, tu écris la POSTMORTEM
 demain matin (voir `05_debug_in_prod.md`).
@@ -74,7 +74,7 @@ Si NON → tu escalades. Tu ne joues pas au héros seul à 3h.
 
 ## Livrable
 
-- `RUNBOOK_CHECKOUT.md` : rollback, feature flags, failovers documentés
+- `RUNBOOK_RASENGAN.md` : rollback, feature flags, failovers documentés
  **à l'avance**. Un runbook écrit à 3h du matin est un runbook trop tard.
 - `POSTMORTEM.md` (le lendemain) : ligne du temps, cause racine, action items.
 

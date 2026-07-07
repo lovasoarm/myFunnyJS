@@ -42,7 +42,7 @@ Pas ce qui devrait se passer. Ce qui se passe réellement. Avec des exemples con
 **2. Qu'est-ce qui devrait se passer ?**
 Le comportement attendu. Précis. Pas "ça devrait fonctionner correctement".
 
-**3. Dans quelles conditions ça se artefact ?**
+**3. Dans quelles conditions ça se produit ?**
 Toujours ? Parfois ? Sur certains inputs ? Sur certains navigateurs ? À partir d'un certain volume ?
 
 **4. C'est quoi l'impact réel ?**

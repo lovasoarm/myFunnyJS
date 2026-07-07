@@ -110,7 +110,7 @@ Ce qui ne bougera probablement pas :
 Team craft n'est pas dans le noyau dur technique du curriculum (données, algos, async, TypeScript).
 Mais c'est dans le noyau dur **professionnel**.
 
-Un dev qui maîtrise les structures de données mais qui artefact des PRs illisibles, des codebases sans doc, et des décisions non tracées : il est junior à vie dans n'importe quelle équipe sérieuse.
+Un dev qui maîtrise les structures de données mais qui produit des PRs illisibles, des codebases sans doc, et des décisions non tracées : il est junior à vie dans n'importe quelle équipe sérieuse.
 
 Ce module est **indispensable avant d'entrer dans une équipe prod**, peu importe le niveau technique.
 

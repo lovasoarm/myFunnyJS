@@ -32,7 +32,7 @@ Le pourquoi cette différence est fondamentale : un breakpoint classique arrête
 // avec des logs structurés (vus dans `26_observability/01_structured_logging`)
 // suffisamment détaillés pour reconstruire le scénario après coup
 logger.info({
- event: 'checkout_started',
+ event: 'jutsu_started',
  userId: req.user.id,
  cartSize: cart.items.length,
  device: req.headers['user-agent'], // utile pour le bug "seulement sur mobile"
@@ -91,10 +91,10 @@ Le reste de l'appli continue de tourner normalement, tu débuggues à froid
 
 ```js
 // Un feature flag minimal : une simple vérification avant d'exécuter le code suspect
-if (featureFlags.isEnabled('new-checkout-flow', req.user.id)) {
- return newCheckoutFlow(req)
+if (featureFlags.isEnabled('new-rasengan-flow', req.user.id)) {
+ return newRasenganFlow(req)
 } else {
- return legacyCheckoutFlow(req) // chemin connu et stable, en attendant le diagnostic
+ return legacyRasenganFlow(req) // chemin connu et stable, en attendant le diagnostic
 }
 ```
 
@@ -130,7 +130,7 @@ Le pourquoi : un déploiement canary combiné aux métriques (vues dans `26_obse
 
 // exemple qui casse : aucun log de contexte n'avait été prévu pour ce
 // scénario précis, aucun feature flag n'isole la fonctionnalité concernée,
-// et le bug ne s'est artefact qu'une seule fois avant de "disparaître"
+// et le bug ne s'est produit qu'une seule fois avant de "disparaître"
 // (peut-être corrigé par un redémarrage de serveur, sans qu'on sache pourquoi)
 // Résultat : impossible de savoir si c'est vraiment réglé, ou juste caché
 // en attendant de revenir, plus tard, plus fort

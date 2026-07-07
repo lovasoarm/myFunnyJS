@@ -134,12 +134,12 @@ class MessageQueue {
 const queue = new MessageQueue();
 
 // OrderService publie l'event sans attendre de réponse
-queue.publish('order.created', { orderId: 'ORD-007', userId: 'U-001', total: 299 });
+queue.publish('mission.assigned', { missionId: 'MSN-007', shinobiId: 'S-001', rank: 'B' });
 
 // NotificationService consomme indépendamment (peut être décalé dans le temps)
-const order = queue.consume('order.created');
-if (order) {
- console.log(`Notification : commande ${order.orderId} créée`);
+const mission = queue.consume('mission.assigned');
+if (mission) {
+  console.log(`Notification : mission ${mission.missionId} assignée`);
 }
 ```
 

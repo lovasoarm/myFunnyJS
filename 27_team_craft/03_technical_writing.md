@@ -295,7 +295,7 @@ const safeScore = Number.isFinite(rawScore) ? rawScore : 0;
 
 **EXO 3 : post-mortem sur l'incident Ultras**
 
-L'incident suivant s'est artefact lors de la finale de la Champions League :
+L'incident suivant s'est produit lors de la finale de la Champions League :
 Le `06_ultras_dashboard` a crashé 8 minutes après le coup d'envoi.
 Cause : une requête N+1 (requête répétée pour chaque élément d'une liste en base de données) dans l'endpoint de possession par joueur, appelé toutes les 2 secondes par 12 000 clients.
 Le service a été rétabli en remplaçant la requête N+1 par une seule requête avec JOIN.

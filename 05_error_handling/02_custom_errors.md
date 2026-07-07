@@ -354,7 +354,7 @@ Entoure-la d'un catch qui gère chaque type différemment.
 
 ## EXO 3 : LE LOG QUI RACONTE
 
-Reprends les erreurs de l'EXO 1. Écris une fonction `logStructure(e, contexteSupplementaire)` qui artefact un objet JSON complet avec toutes les propriétés de l'erreur.
+Reprends les erreurs de l'EXO 1. Écris une fonction `logStructure(e, contexteSupplementaire)` qui produit un objet JSON complet avec toutes les propriétés de l'erreur.
 
 Vérifie que `JSON.stringify` artefact quelque chose d'utile.
 

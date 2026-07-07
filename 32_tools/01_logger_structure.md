@@ -21,7 +21,7 @@ console.log(survivant);
 
 ```
 problèmes concrets :
-- aucun horodatage : QUAND chaque event s'est artefact
+- aucun horodatage : QUAND chaque event s'est produit
 - aucun niveau : c'est une info normale ou une vraie erreur ?
 - format incohérent : parfois une string, parfois un objet brut
 - impossible à filtrer : tu peux pas dire "montre-moi que les erreurs"

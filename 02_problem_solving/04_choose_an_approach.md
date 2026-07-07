@@ -107,7 +107,7 @@ Décision : Approche B. Le surcoût de complexité initiale est justifié par la
 // T'as perdu 4 heures pour gagner 0.001ms sur une opération qui tourne une fois par jour.
 ```
 
-**Le piège du "ça marche"** : garder une approche juste parce qu'elle artefact le bon résultat.
+**Le piège du "ça marche"** : garder une approche juste parce qu'elle produit le bon résultat.
 
 ```
 // L'approche A fonctionne.

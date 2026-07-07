@@ -2,7 +2,7 @@
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : IA native (23_ai_native_dev), observabilite (27_observability).
+> Ce module reutilise : IA native (23_ai_native_dev), observabilite (26_observability).
 Temps de lecture ~10 min
 
 `23_ai_native_dev` t'a appris à travailler avec un copilote qui te suggère du code
@@ -28,15 +28,96 @@ C'est le nouveau piège. Ce module l'anatomise.
 
 ---
 
+## QUI PREND CHER SI ON IGNORE CE SUJET
+
+Le dev qui n'apprend pas à diriger un agent va se retrouver dans deux positions
+également douloureuses en 2027-2028. Soit il refuse d'utiliser les agents par
+méfiance et se fait dépasser en vitesse de livraison par ceux qui savent les
+borner correctement (résultat : perçu comme "lent" en revue de perf, alors que la
+qualité de son code n'est pas en cause). Soit il les utilise sans discipline,
+merge des PRs générées qu'il n'a jamais vraiment auditées, et finit par porter la
+responsabilité d'un incident de prod dont il ne peut même pas expliquer la cause
+(l'agent a pris la décision, mais c'est son nom qui est sur le commit). Le rôle
+de "reviewer d'agent" devient une compétence senior mesurable, au même titre que
+la revue de code humain l'est aujourd'hui.
+
+Les équipes prennent cher aussi : sans convention interne sur ce qu'un agent a le
+droit de faire (créer des fichiers ? merger seul ? toucher aux migrations DB ?),
+tu te retrouves avec des codebases qui divergent en semaines. Ce module te donne
+le vocabulaire pour poser ces limites, pas juste pour toi mais pour toute une
+équipe.
+
+---
+
+## LES IDÉES REÇUES À DÉMONTER
+
+**"Un agent qui passe les tests, c'est bon."** Faux. L'agent écrit souvent les
+tests lui-même à partir de la même compréhension biaisée du besoin. Le vert des
+tests dit "le code fait ce que l'agent a cru que tu voulais", pas "le code fait
+ce que tu voulais". La distinction est brutale en prod.
+
+**"L'agent va bientôt être assez bon pour qu'on ait plus à relire."** L'histoire
+des 15 dernières années sur le sujet (auto-complétion, linters, TDD, copilotes
+LLM) montre que chaque saut de qualité déplace le curseur de la vigilance, mais
+ne le supprime jamais. La responsabilité de "est-ce que ça correspond à
+l'intention" reste chez l'humain, parce que l'intention vit dans l'humain.
+
+**"C'est juste un copilote un peu plus puissant."** Non : la différence entre
+"suggérer une ligne" et "enchaîner 40 actions sans checkpoint" est
+qualitative, pas quantitative. Elle change le mode d'erreur (cohérente-mais-fausse
+au lieu de ponctuelle-et-visible), donc elle change la discipline de review.
+
+**"Ces outils vont tous disparaître, autant attendre."** Les OUTILS oui, sans
+doute. La CATÉGORIE (agent multi-étapes autonome sur du code) va rester et se
+généraliser. Attendre = perdre 2 ans d'entraînement au bon geste.
+
+---
+
 ## LES 3 COMPÉTENCES CIBLES
 
 1. **Cahier des charges vérifiable machine.** Un prompt vague donne 40 actions
-  vagues. Un cahier des charges avec critères d'acceptation binaires (tests qui
-  passent, fichier X existe, métrique Y sous seuil Z) borne l'agent.
+   vagues. Un cahier des charges avec critères d'acceptation binaires (tests qui
+   passent, fichier X existe, métrique Y sous seuil Z) borne l'agent.
 2. **Audit d'une trace d'agent.** Lire les 40 actions comme on lit une stack trace :
-  trouver la décision qui a tout dévié.
+   trouver la décision qui a tout dévié.
 3. **Refuser une trace.** Reconnaître qu'un agent a bien fait le job DEMANDÉ mais
-  pas le job VOULU. Politesse à part, savoir revert.
+   pas le job VOULU. Politesse à part, savoir revert.
+
+---
+
+## ERREURS CLASSIQUES DE DÉBUTANT AVEC UN AGENT
+
+- **Prompt-and-pray.** Envoyer une intention floue ("améliore la perf") et espérer
+  que l'agent devine le bon axe. Il choisira l'axe le plus facile à mesurer, pas
+  forcément le bon.
+- **Merger sans lire la trace.** La PR est propre, les tests passent, le titre
+  est bien formulé. Sauf que l'agent a peut-être supprimé un test qui le gênait
+  ou introduit une dépendance discutable. Sans relire la trace complète, tu ne
+  le vois pas.
+- **Laisser l'agent écrire ses propres critères de succès.** Si tu ne fixes pas
+  toi-même ce qui compte comme "réussi", l'agent va converger vers un état qui
+  ressemble à un succès sans en être un. C'est le problème du "spec-writing
+  bias" appliqué à du code.
+- **Étendre le scope au fil de la session.** "Tant qu'on y est, refactorise
+  aussi ce truc à côté." Chaque extension multiplie les décisions non-auditées.
+- **Confondre "l'agent a fini" et "le problème est résolu".** L'agent s'arrête
+  quand il pense avoir fini, pas quand tu l'as validé. La différence peut
+  contenir un bug entier.
+
+---
+
+## CE QUI VA CHANGER VS CE QUI VA RESTER STABLE
+
+**Va changer (2-3 ans) :** les outils exacts, leur UI, leurs quotas, la
+qualité brute du modèle sous-jacent, le format des traces, l'intégration avec
+l'IDE. Ne pas investir trop de mémoire sur les commandes précises d'un outil
+donné, ça va bouger.
+
+**Va rester stable (5+ ans, voire intemporel) :** le besoin d'un cahier des
+charges bornable, la discipline de relire une trace comme on relit une stack
+trace, la responsabilité humaine sur ce qui est mergé, la sécurité du sandbox
+dans lequel l'agent tourne (pas d'accès prod, pas de secrets réels, pas de
+`rm -rf` sans confirmation humaine). Investis ta mémoire là.
 
 ---
 

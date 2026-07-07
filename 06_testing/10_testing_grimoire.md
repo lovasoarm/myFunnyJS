@@ -1,5 +1,7 @@
 # TESTING GRIMOIRE
 
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~6 min
 
 

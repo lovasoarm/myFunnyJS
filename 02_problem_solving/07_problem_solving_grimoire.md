@@ -1,4 +1,6 @@
 # Page verrouillée
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~11 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
@@ -49,7 +51,7 @@ Pas des définitions Wikipedia. Des outils.
 ```
 1. Qu'est-ce qui se passe actuellement ?   (comportement réel, avec exemple concret)
 2. Qu'est-ce qui devrait se passer ?     (comportement attendu, précis)
-3. Dans quelles conditions ça se artefact ?  (toujours / parfois / sur certains inputs)
+3. Dans quelles conditions ça se produit ?  (toujours / parfois / sur certains inputs)
 4. C'est quoi l'impact réel ?        (bloquant / contournable / combien d'users)
 5. Qu'est-ce qui a changé récemment ?    (déploiement / données / config / trafic)
 ```

@@ -23,7 +23,7 @@ Décider **quoi tester, à quel niveau, à quel coût**. Rien sur `expect()` ou
 - **Intégration** : plusieurs modules ensemble (ex: route + service + DB
  mémoire). Cible : contrats entre couches.
 - **E2E** : le système complet, comme un shinobi. Cible : *happy paths*
- critiques uniquement (checkout, chakra_gate).
+ critiques uniquement (mission_start, chakra_gate).
 
 **Nouvelle réalité** : la pyramide devient un **trapèze** : beaucoup
 d'intégration en mémoire (SQLite-in-mem, HTTP local), peu de vrai E2E.

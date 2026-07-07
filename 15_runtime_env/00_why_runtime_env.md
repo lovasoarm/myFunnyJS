@@ -61,7 +61,7 @@ Les worker threads sont aussi relativement récents dans Node : avant leur arriv
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `05_error_handling`) et `27_observability` (prérequis `15_runtime_env` + `21_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
+Ce module ouvre la porte à deux modules majeurs qui en dépendent directement : `21_api_craft` (prérequis `15_runtime_env` + `17_web_concepts` + `05_error_handling`) et `26_observability` (prérequis `15_runtime_env` + `21_api_craft`). Impossible de construire une API Node solide ou un système d'observabilité sans comprendre d'abord dans quel environnement ce code va réellement s'exécuter.
 
 ---
 

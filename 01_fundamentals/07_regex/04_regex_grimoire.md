@@ -1,4 +1,6 @@
 # Page verrouillée
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+
 Temps de lecture ~9 min
 
 > **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**

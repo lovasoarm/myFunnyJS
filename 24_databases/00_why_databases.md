@@ -35,7 +35,7 @@ Et sans cache bien pensé, chaque lecture d'une donnée consultée des milliers 
 
 ```
 recherche fréquente sur une colonne précise      --> index       --> requête rapide même à grande échelle
-données fortement relationnelles (profils, commandes) --> SQL        --> intégrité référentielle garantie
+données fortement relationnelles (personnages, missions) --> SQL        --> intégrité référentielle garantie
 données flexibles, schéma qui évolue souvent      --> NoSQL document  --> flexibilité sans migration lourde
 donnée consultée des milliers de fois par seconde    --> Redis cache    --> latence quasi nulle
 accès JS à la base de données              --> ORM/query builder --> requêtes sûres et lisibles

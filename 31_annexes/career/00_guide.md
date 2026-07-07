@@ -700,7 +700,7 @@ C'est la section la plus importante. Parce que c'est exactement la situation où
 Pose-toi ces questions dans l'ordre :
 
 ```
-1. C'est quoi le artefact ?
+1. C'est quoi l'artefact ?
   (site web / app mobile / outil interne / jeu / API / script...)
 
 2. Qui va l'utiliser ?
@@ -1789,7 +1789,7 @@ Parle aux premiers shinobis        Surveille les coûts d'infra
 ```
 FREELANCE               ENTREPRENEUR (tu construis Meme Mashup)
 :::::::::::::::::::::         ::::::::::::::::::::::::::::::::::::::::
-Un client te paie pour         Tu construis le artefact, tu vises les
+Un client te paie pour         Tu construis l'artefact, tu vises les
  construire ce type d'app        créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres     Tu es dev + PM + support en même temps
 Tu factures à l'heure ou au projet   Si ça devient viral -> gros upside

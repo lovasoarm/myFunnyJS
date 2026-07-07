@@ -86,7 +86,7 @@ N3  Tu sais isoler la cause avec un seul test ciblé, pas une fouille générale
 N4  Tu débuggue en prod sans reproduire localement (logs, snapshots, feature flags)
 ```
 
-**Modules qui construisent cet axe :** `05_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `27_observability` (debug en prod).
+**Modules qui construisent cet axe :** `05_error_handling` (propagation, stratégies), `06_testing` (TDD, isolation), `26_observability` (debug en prod).
 
 **Test rapide :**
 Prochaine fois qu'un bug apparaît, avant de toucher au code : écris en une phrase ce que tu penses qui se passe.

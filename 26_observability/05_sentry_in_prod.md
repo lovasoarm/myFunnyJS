@@ -39,7 +39,7 @@ Sentry.init({
 
 // Capture manuelle d'une erreur attrapée volontairement (vu dans `05_error_handling`)
 try {
- await chargeCreditCard(amount)
+ await chargeChakra(amount)
 } catch (err) {
  Sentry.captureException(err) // envoyé à Sentry avec toute la stack trace
  throw err // propage quand même l'erreur, Sentry ne remplace pas ta gestion d'erreur
@@ -55,21 +55,21 @@ Le pourquoi : Sentry ne remplace ni try/catch ni tes custom errors (vus dans `05
 ```
 Stack trace seule :
 TypeError: Cannot read properties of undefined (reading 'id')
- at processOrder (orders.js:42)
+ at executeJutsu (jutsu.js:42)
 --> tu sais OÙ ça casse, pas POURQUOI ni POUR QUI
 ```
 
 ```js
 // Enrichir le contexte avant que l'erreur n'arrive, pour que la capture soit utile
 Sentry.setUser({ id: req.user.id, email: req.user.email })
-Sentry.setContext('order', { orderId: req.params.orderId, amount: req.body.amount })
-Sentry.setTag('feature', 'checkout') // pour filtrer plus tard par fonctionnalité
+Sentry.setContext('jutsu', { jutsuId: req.params.jutsuId, chakra: req.body.chakra })
+Sentry.setTag('feature', 'rasengan') // pour filtrer plus tard par fonctionnalité
 
 // Si une exception arrive maintenant, TOUT ce contexte est attaché automatiquement
-await processOrder(req.params.orderId)
+await executeJutsu(req.params.jutsuId)
 ```
 
-Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les commandes sans `shippingAddress`, sur la fonctionnalité checkout, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
+Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les jutsus sans `chakraSource`, sur la fonctionnalité rasengan, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
 
 ---
 
@@ -90,20 +90,20 @@ Le pourquoi : sans regroupement, un dashboard d'erreurs en prod à fort trafic s
 // Parfois le regroupement automatique se trompe (deux erreurs différentes
 // groupées ensemble, ou l'inverse), tu peux forcer une empreinte précise
 Sentry.captureException(err, {
- fingerprint: ['payment-timeout', req.route.path]
+ fingerprint: ['chakra-timeout', req.route.path]
  // force ce type d'erreur à être groupé par route, pas juste par message d'erreur
 })
 ```
 
-Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Order 48291 not found`, `Order 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `05_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
+Le risque réel à l'inverse : si ton code génère des messages d'erreur dynamiques (genre incluant un ID unique à chaque fois, `Jutsu 48291 not found`, `Jutsu 48292 not found`...), Sentry par défaut peut créer une entrée DIFFÉRENTE pour chaque ID, alors que c'est en réalité LE MÊME bug. Il faut alors structurer le message d'erreur pour que le fingerprinting fonctionne (vu aussi dans `05_error_handling/02_custom_errors` pour des erreurs nommées plutôt que des messages improvisés).
 
 ---
 
 ## 4) PRIORISER : SEVERITY ET IMPACT, PAS JUSTE L'ORDRE D'ARRIVÉE
 
 ```
-Erreur A : crash total du checkout, 5000 users touchés en 1 heure
-Erreur B : un warning cosmétique sur une page peu visitée, 3 users touchés
+Erreur A : crash total du rasengan-service, 5000 shinobis touchés en 1 heure
+Erreur B : un warning cosmétique sur une page peu visitée, 3 shinobis touchés
 
 Sans priorisation : les deux apparaissent pêle-mêle dans la même liste
 Avec priorisation : Erreur A en haut, marquée "critical", assignée immédiatement
@@ -112,7 +112,7 @@ Avec priorisation : Erreur A en haut, marquée "critical", assignée immédiatem
 ```js
 Sentry.captureException(err, {
  level: 'fatal', // 'fatal', 'error', 'warning', 'info' : même logique que les niveaux de log
- tags: { impact: 'checkout-blocked' }
+ tags: { impact: 'rasengan-blocked' }
 })
 ```
 
@@ -148,10 +148,10 @@ Avant, le suivi d'erreur en prod se résumait souvent à des emails d'alerte bas
 ## EXERCICES
 
 **EXO 1 : Enrichis le contexte**
-Pour une erreur qui survient pendant le processus de checkout (vu aussi dans `21_api_craft/02_rest_crud_complete`), liste les 5 informations de contexte les plus utiles à attacher avant la capture, et explique pour chacune ce qu'elle permettrait de diagnostiquer plus vite. (15 minutes)
+Pour une erreur qui survient pendant l'exécution d'un jutsu (vu aussi dans `21_api_craft/02_rest_crud_complete`), liste les 5 informations de contexte les plus utiles à attacher avant la capture, et explique pour chacune ce qu'elle permettrait de diagnostiquer plus vite. (15 minutes)
 
 **EXO 2 : Corrige le fingerprinting**
-Une erreur "Order 48291 not found", "Order 48292 not found" apparaît comme des centaines d'entrées différentes dans Sentry, alors que c'est le même bug. Propose la correction technique exacte pour qu'elles soient regroupées en une seule entrée. (10 minutes)
+Une erreur "Jutsu 48291 not found", "Jutsu 48292 not found" apparaît comme des centaines d'entrées différentes dans Sentry, alors que c'est le même bug. Propose la correction technique exacte pour qu'elles soient regroupées en une seule entrée. (10 minutes)
 
 **EXO 3 : Filtre le bruit**
 Une librairie tierce génère un warning bénin 10 000 fois par jour, noyant le dashboard. Décris la stratégie (et la fonction Sentry concernée) pour l'empêcher de polluer le signal, sans perdre la capacité de capturer une vraie erreur critique. (10 minutes)
