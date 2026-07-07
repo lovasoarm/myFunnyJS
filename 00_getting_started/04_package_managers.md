@@ -9,7 +9,7 @@ Un package manager, c'est ton système de logistique. Il descend du code des aut
 - `node_modules/` : l'entrepôt (jamais commit : `.gitignore`).
 - `package-lock.json` / `pnpm-lock.yaml` : la facture exacte, versions gelées. **Commit obligatoire.**
 
-## npm : 6 ordres_mission
+## npm : 6 commandes
 
 ```
 npm init -y      # créer package.json

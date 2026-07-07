@@ -1,5 +1,8 @@
 # TRY/CATCH : CE QU'IL ATTRAPE ET CE QU'IL LAISSE FILER
 
+Temps de lecture ~6 min
+
+
 Le code casse. Toujours. La question c'est : est-ce que toi tu le vois avant l'opérateur ?
 
 `try/catch` c'est ton filet de sécurité. Mais il a des trous. Et si tu sais pas où ils sont, les bugs tombent en silence : en prod, la nuit, pendant un match décisif.
@@ -265,7 +268,7 @@ Le `throw e` à la fin : si l'erreur n'est pas de ton ressort, tu la relances. N
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : L'ANALYSTE QUI TIENT SON PIPELINE
 
@@ -309,7 +312,7 @@ Teste avec une opération qui réussit et une qui explose.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `try/catch` attrape les erreurs synchrones dans son bloc. Pas les callbacks, pas les Promises, pas les event listeners qui s'exécutent plus tard.
 

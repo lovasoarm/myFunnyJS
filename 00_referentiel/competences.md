@@ -1,5 +1,8 @@
 # Référentiel de compétences transversales
 
+Temps de lecture ~2 min
+
+
 Chaque compétence est reliée au module qui la forge. Ce référentiel sert de boussole : si une compétence te manque en entretien, tu sais où retourner.
 
 | Compétence transversale | Module associé |

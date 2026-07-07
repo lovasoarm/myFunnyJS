@@ -1,5 +1,8 @@
 # CAHIER DES CHARGES : SCHEDULER
 
+Temps de lecture ~2 min
+
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Tu construis ton propre event loop, comme Rock Lee qui apprend le taijutsu sans ninjutsu : pas de magie du moteur, juste les mains dans la mécanique brute.

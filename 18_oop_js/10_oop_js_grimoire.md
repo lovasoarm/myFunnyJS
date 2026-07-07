@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# OOP JS GRIMOIRE
+## OOP JS GRIMOIRE
 
 Le résumé de tout ce que tu dois retenir du module. Pas un résumé scolaire : tout ce qu'un dev doit savoir sur l'OOP en JS pour ne plus jamais se faire surprendre.
 

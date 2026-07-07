@@ -194,7 +194,7 @@ Fenwick Tree vs Segment Tree : le Fenwick est plus simple à implémenter et plu
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : classement live du Ballon d'Or
 _~20 min_
@@ -246,7 +246,7 @@ Implémente avec Fenwick Tree en O(n log n). Pour chaque élément, compte combi
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Fenwick Tree (BIT) résout les range sum queries dynamiques en O(log n) pour les updates et les requêtes. La clé : `lowbit(i) = i & (-i)` détermine la portée de chaque case. 1-indexé. Plus simple qu'un Segment Tree pour les sommes pures. Cas d'usage : statistiques live, classements dynamiques, inversion count. Le code est court (~20 lignes) mais le raisonnement binaire sous-jacent est non trivial : comprendre `lowbit` est suffisant pour l'utiliser correctement.
 

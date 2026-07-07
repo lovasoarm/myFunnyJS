@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : BREAKING CACHE
 Temps de lecture ~5 min
 

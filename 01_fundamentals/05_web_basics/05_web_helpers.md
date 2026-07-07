@@ -143,7 +143,7 @@ Les helpers sont une **couche d'abstraction** : une simplification d'un système
 
 ---
 
-# MISSIONS
+## MISSIONS
 
 ## MISSION 1 : LE BOUTON CHAOS
 

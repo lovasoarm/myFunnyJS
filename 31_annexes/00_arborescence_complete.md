@@ -1,5 +1,8 @@
 # Arborescence complète du projet MyFunnyJS
 
+Temps de lecture ~6 min
+
+
 > Générée automatiquement. Ne pas éditer à la main.
 
 ./

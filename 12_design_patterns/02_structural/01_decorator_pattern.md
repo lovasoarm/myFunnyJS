@@ -270,7 +270,7 @@ Règle : quand le comportement varie selon les cas (parfois on log, parfois on c
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : L'ARMURE DE GARO
 
@@ -288,13 +288,13 @@ Contrainte : les Decorators doivent être empilables dans n'importe quel ordre.
 
 ## EXO 2 : LE MIDDLEWARE DE RICK GRIMES
 
-Rick a besoin d'un système de ordres_mission pour gérer le camp. Chaque ordre_mission (`scavenge`, `fortify`, `ration`) peut être décorée avec :
-- logging (qui a lancé la ordre_mission, quand)
+Rick a besoin d'un système de commandes pour gérer le camp. Chaque commande (`scavenge`, `fortify`, `ration`) peut être décorée avec :
+- logging (qui a lancé la commande, quand)
 - validation (les ressources sont-elles suffisantes ?)
 - dry-run (simuler sans exécuter pour tester le plan)
 
 Crée un système de fonctions décorables.
-La ordre_mission `fortify(materials)` doit pouvoir être appelée comme `withDryRun(withLogging(withValidation(fortify)))`.
+La commande `fortify(materials)` doit pouvoir être appelée comme `withDryRun(withLogging(withValidation(fortify)))`.
 
 Contrainte : withDryRun ne doit jamais modifier l'état. Il doit juste logger ce qui *aurait* changé.
 
@@ -330,7 +330,7 @@ await cachedFetch("messi")  // censé hitter le cache
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Decorator wrape une fonction ou un objet pour y ajouter du comportement sans modifier l'original.
 Chaque Decorator fait une seule chose : on compose pour en faire plusieurs.

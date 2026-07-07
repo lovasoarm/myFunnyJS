@@ -301,7 +301,7 @@ Le GC ne garantit pas quand (ou si) il va collecter. Ne pas construire de logiqu
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : TROUVER LA FUITE
 
@@ -390,7 +390,7 @@ class StatsCacheUltras {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une fuite mémoire, c'est un objet que le GC ne peut pas collecter parce que quelque chose le retient encore.
 Les quatre sources classiques : listeners non supprimés, timers non clearés, caches sans limite, closures qui retiennent trop.

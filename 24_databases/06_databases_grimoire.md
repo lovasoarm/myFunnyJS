@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# Tout le vocabulaire DB en un seul endroit
+## Tout le vocabulaire DB en un seul endroit
 
 Le grimoire du module 24. Pas un résumé : la référence complète que tu rouvres quand un terme te bloque, en review de code ou en lisant une doc technique.
 

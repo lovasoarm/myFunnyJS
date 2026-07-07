@@ -153,7 +153,7 @@ Promise.any    UN seul réussit    TOUS échouent
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le tournoi des villages cachés
 
@@ -198,7 +198,7 @@ Teste avec une Promise qui met 5 secondes et un timeout de 2 secondes.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Quatre combinators, quatre situations.
 `all` : synchronisation totale, tout ou rien.

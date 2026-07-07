@@ -1,5 +1,8 @@
 # GRIMOIRE DES ERREURS : LE BESTIAIRE COMPLET
 
+Temps de lecture ~7 min
+
+
 Référence. Pas un cours. Chaque terme, sa définition, du code, deux analogies.
 
 ---

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : ORACLE GLITCH
 Temps de lecture ~6 min
 

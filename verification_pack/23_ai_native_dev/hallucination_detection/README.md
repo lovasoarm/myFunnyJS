@@ -1,3 +1,7 @@
+---
+stability: stable
+---
+
 # hallucination_detection : démonter le code IA plausible-mais-faux
 
 > Pierre P5 (Debugging) + résilience IA. Une IA artefact du code qui **compile,

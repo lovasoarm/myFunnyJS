@@ -1,5 +1,8 @@
 # EXO [IA MENTEUSE] : async (forEach + await)
 
+Temps de lecture ~2 min
+
+
 > Tag `[IA MENTEUSE]` : une IA a généré ce code. Il tourne. Il a l'air propre. Il ment.
 > Durée : 15 min chrono. Zéro exécution avant d'avoir écrit ta réponse.
 

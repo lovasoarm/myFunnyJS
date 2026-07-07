@@ -121,7 +121,7 @@ Docker      --> intemporel pour l'instant. La containerisation comme concept est
 CI/CD      --> intemporel comme pratique. GitHub Actions aujourd'hui, autre chose demain, mais l'idée d'automatiser reste.
 ```
 
-Ce qui compte : tu retiens pas "comment configurer Vite en 2026". Tu retiens "pourquoi un bundler existe et quel problème il résout". Le jour où Vite est remplacé par autre chose, tu t'adaptes en une heure parce que t'as compris le concept, pas juste la ordre_mission.
+Ce qui compte : tu retiens pas "comment configurer Vite en 2026". Tu retiens "pourquoi un bundler existe et quel problème il résout". Le jour où Vite est remplacé par autre chose, tu t'adaptes en une heure parce que t'as compris le concept, pas juste la commande.
 
 ---
 
@@ -194,7 +194,7 @@ toute collaboration future --> Git devient un réflexe, pas un obstacle
 
 Les outils précis vont changer. Vite remplacera peut-être Webpack pour de bon, un autre gestionnaire de paquets émergera, GitHub Actions aura un concurrent plus malin. Mais les problèmes que ces outils résolvent sont structurels : versionner du code en équipe, isoler un environnement d'exécution, automatiser la vérification avant mise en prod. Ces problèmes existeront tant qu'il y aura du code écrit par plusieurs personnes et déployé sur des machines qu'on contrôle pas totalement.
 
-Ce qui risque de bouger : la syntaxe des configs, le nom des outils dominants, les ordres_mission exactes.
+Ce qui risque de bouger : la syntaxe des configs, le nom des outils dominants, les commandes exactes.
 Ce qui bougera pas : pourquoi Git existe, pourquoi isoler un environnement, pourquoi automatiser un pipeline.
 
 Le camp de Rick a pas besoin du meilleur outil. Il a besoin de comprendre pourquoi chaque outil est là. Le reste, ça s'adapte.

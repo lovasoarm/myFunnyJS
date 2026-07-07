@@ -264,7 +264,7 @@ function generatePlayerStats() {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE SYSTÈME DE COMBAT DE NARUTO
 
@@ -308,7 +308,7 @@ Implémente `assignVariant(userId, experimentId, ratio = 0.5)` qui :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `Math.random()` est uniform et prévisible : bon pour les jeux, interdit pour la sécurité.
 `.sort(() => Math.random() - 0.5)` est biaisé : Fisher-Yates est l'algo correct pour mélanger.

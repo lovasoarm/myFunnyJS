@@ -67,7 +67,7 @@ Pour atteindre Sakura, il faut partir de `head` et suivre les pointeurs. Pas de 
 ```js
 append(value) {
  const node = new Node(value)
- 
+
  if (!this.head) {
   // liste vide : head et tail pointent vers le même node
   this.head = node
@@ -78,7 +78,7 @@ append(value) {
   // tail devient le nouveau node
   this.tail = node
  }
- 
+
  this.size++
 }
 ```
@@ -104,7 +104,7 @@ O(1) car on a une référence directe vers `tail`. Pas de traversal.
 ```js
 prepend(value) {
  const node = new Node(value)
- 
+
  if (!this.head) {
   this.head = node
   this.tail = node
@@ -114,7 +114,7 @@ prepend(value) {
   // head devient le nouveau node
   this.head = node
  }
- 
+
  this.size++
 }
 ```
@@ -186,13 +186,13 @@ delete("Sakura")
 print() {
  const values = []
  let current = this.head
- 
+
  // tant qu'il y a un node suivant, on avance
  while (current) {
   values.push(current.value)
   current = current.next
  }
- 
+
  return values.join(" --> ")
 }
 ```
@@ -308,7 +308,7 @@ Recherche     O(n)    O(n)      les deux traversent
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : La queue des survivants
 _~15 min_
@@ -327,7 +327,7 @@ _~20 min_
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une linked list c'est une chaîne de nodes, chacun pointant vers le suivant. Pas d'index, pas de blocs contigus. `head` et `tail` sont les deux seules entrées. Insérer en tête ou en queue est O(1) : on manipule juste des pointeurs. Lire par position est O(n) : on traverse depuis `head`. C'est un compromis inverse du tableau : rapide pour modifier, lent pour accéder. La vraie compétence c'est de savoir lequel choisir selon le problème.
 

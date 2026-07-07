@@ -1,5 +1,8 @@
 # ERROR STRATEGY : FAIL-FAST, FALLBACK, RETRY
 
+Temps de lecture ~7 min
+
+
 Catcher une erreur c'est la partie facile. Décider quoi faire ensuite : c'est là que tu montres si t'es un dev ou juste quelqu'un qui code.
 
 Trois stratégies. Trois contextes. Choisir la mauvaise : l'app plante quand elle devrait survivre, ou continue de tourner quand elle devrait s'arrêter.
@@ -308,7 +311,7 @@ Données fraîches indisponibles      fallback sur cache
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE PIPELINE DE GARO
 
@@ -339,7 +342,7 @@ Simule 5 appels qui échouent, puis attends le timeout, puis réessaie. Affiche 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Fail-fast : préférer un crash explicite à une exécution silencieusement cassée. Sur les erreurs irrécupérables et les états invalides.
 

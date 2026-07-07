@@ -28,11 +28,11 @@ L'heuristique `h(n)` doit être **admissible** : elle ne doit jamais surestimer 
 Grille 2D, mouvements dans 4 directions :
 h(n) = distance Manhattan = |x1-x2| + |y1-y2|
     => sous-estime ou est exacte (jamais plus grand que le chemin réel)
-    => admissible 
+    => admissible
 
 Grille 2D, mouvements en 8 directions :
 h(n) = distance Chebyshev = max(|x1-x2|, |y1-y2|)
-    => admissible 
+    => admissible
 
 Espace euclidien (coordonnées continues) :
 h(n) = distance euclidienne = sqrt((x1-x2)² + (y1-y2)²)
@@ -236,7 +236,7 @@ const waypointGraph = new Map([
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA CHASSE AUX HORREURS DE LEON
 _~20 min_
@@ -290,7 +290,7 @@ Implémenter `astar8dir(grid, start, goal)` et comparer les chemins obtenus avec
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 A* = Dijkstra + une heuristique qui guide vers l'objectif. La clé : l'heuristique doit être admissible (jamais surestimer) pour garantir l'optimalité. Distance Manhattan pour les 4 directions, Chebyshev pour les 8, euclidienne pour l'espace continu. Quand `h=0`, A* = Dijkstra. Quand `h` est parfaite, A* ne visite que les noeuds du chemin optimal. En pratique sur des grilles avec obstacles, A* explore 5 à 100 fois moins de noeuds que Dijkstra. En jeu vidéo et robotique, c'est l'algo de pathfinding de référence.
 

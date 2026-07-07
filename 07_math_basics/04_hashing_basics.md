@@ -259,7 +259,7 @@ const safe = timingSafeEqual(
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE POKEDEX SANS DOUBLONS
 
@@ -331,7 +331,7 @@ const logs = [
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un hash transforme n'importe quelle entrée en empreinte de taille fixe : déterministe, sens unique, effet avalanche.
 Les collisions sont inévitables dans les hash tables, gérées par chaining ou open addressing, et catastrophiques en cryptographie.

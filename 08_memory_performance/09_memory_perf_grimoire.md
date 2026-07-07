@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : MÉMOIRE ET PERFORMANCE
+## GRIMOIRE : MÉMOIRE ET PERFORMANCE
 
 Le dictionnaire des concepts qui définissent un dev performant.
 Chaque terme que tu croises en prod, en code review, ou en entretien senior.

@@ -251,7 +251,7 @@ const pointsStr = await prompt("Points (1-15) : ");
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : la persistance du vote
 
@@ -285,7 +285,7 @@ Reprends le CLI de vote de la leçon précédente. Ajoute la persistance :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `fs/promises` pour tout le async. `path.join()` pour les chemins cross-platform. `stat()` pour vérifier existence et métadonnées. `readdir({ withFileTypes: true })` pour distinguer fichiers et dossiers. `readline.createInterface` pour lire ligne par ligne sans charger tout en mémoire. Les codes d'erreur `err.code` (ENOENT, EACCES, EEXIST) pour gérer proprement les cas d'échec.
 

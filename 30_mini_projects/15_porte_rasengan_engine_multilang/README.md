@@ -1,3 +1,10 @@
+---
+stability: intemporel
+---
+
+
+Temps de lecture ~2 min
+
 [PORTFOLIO]
 
 # 15 : PORTAGE RASENGAN ENGINE (JS → Python OU Go)

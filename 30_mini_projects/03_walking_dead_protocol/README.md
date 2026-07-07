@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 [PORTFOLIO]
 
 # WALKING DEAD PROTOCOL
@@ -47,7 +51,7 @@ npm test         # tests unitaires + intégration
 npm run test:e2e     # tests E2E Playwright
 ```
 
-Pas de serveur web : le camp se gère en ligne de ordre_mission. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
+Pas de serveur web : le camp se gère en ligne de commande. Playwright teste le CLI via des processus Node enfants, pas via un navigateur.
 
 ---
 
@@ -74,7 +78,7 @@ e2e/     # Playwright
 mocks/    # fileStore.mock.js, alertService.mock.js
 ```
 
-Flux d'une ordre_mission :
+Flux d'une commande :
 
 ```
 node src/cli.js consume --resource food --amount 3

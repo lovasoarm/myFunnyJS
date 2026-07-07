@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : BALLON D'OR CLI
 Temps de lecture ~5 min
 
@@ -13,7 +17,7 @@ Le refactoring SRP (une responsabilité par fichier) a rendu les tests beaucoup 
 
 ## DÉCISION DIFFICILE N°1 : WORKER THREADS OU SIMPLE BOUCLE POUR SIMULATE ?
 
-La ordre_mission `simulate --votes 500` génère 500 votes. Sur une machine rapide, une simple boucle synchrone aurait suffi. Mais le cahier des charges demande Worker Threads.
+La commande `simulate --votes 500` génère 500 votes. Sur une machine rapide, une simple boucle synchrone aurait suffi. Mais le cahier des charges demande Worker Threads.
 
 Décision : Worker Threads avec 4 workers en parallèle, chacun générant 125 votes. Les 4 résultats sont agrégés dans le processus principal.
 
@@ -27,7 +31,7 @@ La v1 utilisait un fichier JSON. Pour la v2, SQLite aurait été plus robuste (c
 
 Décision : garder JSON pour ce projet. La raison principale est la containerisation : un fichier JSON est trivial à monter en volume Docker, alors qu'une DB SQLite dans un container nécessite de la gestion de state. Hors scope pour ce projet.
 
-**Ce que ça coûte :** si deux ordres_mission `vote` arrivent simultanément (rare en CLI, mais possible en simulation), il y a une race condition sur le fichier JSON. Documenté dans `voteStore.js` comme limite connue.
+**Ce que ça coûte :** si deux commandes `vote` arrivent simultanément (rare en CLI, mais possible en simulation), il y a une race condition sur le fichier JSON. Documenté dans `voteStore.js` comme limite connue.
 
 ---
 

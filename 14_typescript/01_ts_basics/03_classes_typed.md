@@ -224,7 +224,7 @@ Pour une vraie protection : `#` natif JavaScript, ou une closure au lieu d'une c
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le Chevalier d'Or
 _~15 min_
@@ -272,7 +272,7 @@ const vault = new SecureVault()
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 `public` / `private` / `protected` définissent qui peut toucher quoi. Pas juste une convention : TypeScript bloque à la compilation.
 `readonly` garantit qu'une propriété est fixée une fois pour toutes après la construction. Essentiel pour les identifiants et les configs.
 `abstract` force les sous-classes à implémenter ce qui manque. C'est un contrat avec le compilateur, pas avec les humains.

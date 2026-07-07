@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# ALGORITHMS GRIMOIRE : LES PATTERNS ET LEUR TERRAIN D'APPLICATION
+## ALGORITHMS GRIMOIRE : LES PATTERNS ET LEUR TERRAIN D'APPLICATION
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|

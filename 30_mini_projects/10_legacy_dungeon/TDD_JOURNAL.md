@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : LEGACY DUNGEON
 Temps de lecture ~7 min
 
@@ -73,7 +77,7 @@ test('parseOptionValue retourne la mauvaise valeur quand l\'input est la string 
  // chemins de code legacy testent la valeur APRÈS une coercition numérique
  // implicite, ce qui transforme "0" en 0, qui lui est falsy
  const result = parseOptionValue("0", "valeur-par-defaut");
- 
+
  // CE TEST DOIT ÉCHOUER avant la correction : c'est la preuve du bug
  expect(result).toBe("0"); // attendu : la string "0" telle quelle
  // obtenu avant correction : "valeur-par-defaut" (le bug)

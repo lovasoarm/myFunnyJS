@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# SECURITY GRIMOIRE
+## SECURITY GRIMOIRE
 
 Le lexique de sécurité que tout dev web doit avoir en tête. Pas une liste Wikipedia : les définitions qui servent vraiment quand tu codes, que tu reviews du code, ou que tu réponds à un incident.
 
@@ -26,7 +26,7 @@ Le lexique de sécurité que tout dev web doit avoir en tête. Pas une liste Wik
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|
 | **XSS** (Cross-Site Scripting : injection de script côté client) | L'attaquant injecte du JS malveillant dans une page web. Ce script s'exécute dans le navigateur d'une victime avec les droits de ton domaine. Peut voler des cookies, tokens, et keylogger (enregistreur de frappes). | `element.textContent = userInput` au lieu de `innerHTML` | Un graffiti dans une salle propre que les visiteurs lisent comme officiel / Un message piégé dans la boîte aux lettres d'une entreprise de confiance |
-| **SQL Injection** | L'attaquant insère du SQL dans un input. Si la requête est construite par concaténation, son code SQL est exécuté par la base de données. Peut lire, modifier, supprimer des tables entières. | `db.query('SELECT * FROM users WHERE id = $1', [id])` | Un faux formulaire de ordre_mission qui réécrit le contrat / Une clause cachée dans un document signé |
+| **SQL Injection** | L'attaquant insère du SQL dans un input. Si la requête est construite par concaténation, son code SQL est exécuté par la base de données. Peut lire, modifier, supprimer des tables entières. | `db.query('SELECT * FROM users WHERE id = $1', [id])` | Un faux formulaire de commande qui réécrit le contrat / Une clause cachée dans un document signé |
 | **CSRF** (Cross-Site Request Forgery : falsification de requête cross-site) | Une page malveillante déclenche une requête vers ton API en utilisant la session active d'un shinobi connecté. Le serveur voit le cookie valide et exécute l'action. | `res.cookie('session', id, { sameSite: 'Strict' })` | Quelqu'un qui signe à ta place avec ta signature volée / Un commis qui exécute un ordre en croyant que c'est de toi |
 | **CORS** (Cross-Origin Resource Sharing : partage de ressources cross-origine) | Mécanisme navigateur qui bloque les requêtes JS vers une autre origine par défaut. Le serveur indique via des headers quelles origines sont autorisées à lire ses réponses. | `app.use(cors({ origin: 'https://app.com' }))` | Le videur d'une boîte qui vérifie si ton badge vient du bon bâtiment / Une frontière avec contrôle douanier à sens unique |
 | **Prototype Pollution** | L'attaquant modifie `Object.prototype` via un input malicieux. Tous les objets JS héritent de ce prototype : la modification affecte l'app entière instantanément. | `if (key === '__proto__') continue;` | Un virus qui modifie l'ADN commun de toutes les cellules / Un pirate qui réécrit le dictionnaire que tout le monde utilise |

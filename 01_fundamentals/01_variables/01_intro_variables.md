@@ -1,5 +1,8 @@
 # INTRO VARIABLES : CE QUI SE PASSE VRAIMENT EN MÉMOIRE
 
+Temps de lecture ~7 min
+
+
 Tu penses que `let x = 5` c'est juste "mettre 5 dans x". En surface oui. Sous le capot non. Une variable c'est un **binding** (une liaison entre un nom et un emplacement mémoire). Ce concept est le sol de tout le reste. Si tu zappes ça, les bugs de mutation que tu verras en prod te sembleront de la magie noire.
 
 Vraie utilité : comprendre pourquoi un objet "se modifie tout seul" ailleurs dans le code, pourquoi `const` ne verrouille pas ce que tu crois, et pourquoi copier un tableau peut produire un résultat surprenant.

@@ -130,7 +130,7 @@ Si aucune de ces quatre choses n'existe, debugger une stack trace de prod devien
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA TRACE SANS SOURCE MAP
 
@@ -159,7 +159,7 @@ Frontend Gateway  [span: 1840ms, status: ERROR, message: "upstream timeout"]
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une stack trace de prod traverse bundling, minification, et transpilation avant d'arriver devant toi : c'est pour ça qu'elle ne ressemble à rien sans aide. La source map est le pont vers le code lisible, uploadée en privé au build, jamais exposée publiquement par sécurité. Sans elle, le type d'erreur, le contexte d'appel, et la position comparée entre plusieurs occurrences restent exploitables. En microservices, la vraie stack trace n'est pas toujours celle reçue en premier : le traceId mène jusqu'au service qui a réellement planté.
 

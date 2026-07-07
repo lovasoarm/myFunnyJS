@@ -162,7 +162,7 @@ Même problème, mais on ne peut pas couper les objets. On prend ou on ne prend 
 // Total greedy : 160
 
 // Optimal (DP) :
-// Meth basique + Précurseurs : 20+30=50, valeur = 100+120 = 220 
+// Meth basique + Précurseurs : 20+30=50, valeur = 100+120 = 220
 
 // Greedy : 160
 // DP : 220
@@ -230,7 +230,7 @@ La règle : si le problème a une **dépendance entre les choix** qui rend un ch
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE PLANNING DES CHEVALIERS DE GARO
 _~15 min_
@@ -298,7 +298,7 @@ Implémenter `greedyCoins(coins, amount)` qui utilise greedy, et `dpCoins(coins,
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Greedy, c'est rapide et élégant quand le problème a la propriété greedy : le choix local optimal = choix global optimal. Activity selection, fractional knapsack, jump game : greedy est parfait là-dessus. Dès qu'il y a des dépendances entre les choix (0/1 knapsack, rendu de monnaie avec pièces non standard), greedy rate silencieusement. Le signe que greedy ne suffira pas : quand un bon choix maintenant peut bloquer une meilleure combinaison plus tard.
 

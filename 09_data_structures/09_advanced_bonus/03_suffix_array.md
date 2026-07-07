@@ -239,7 +239,7 @@ LCP array       : O(n)     après suffix array
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : autocomplétion des jutsu
 _~25 min_
@@ -284,7 +284,7 @@ Teste sur `"abracadabra"` et `"aaabaaab"`.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Suffix Array trie les indices des suffixes d'une string. Une fois construit, chercher un pattern prend O(m log n) via recherche binaire : contre O(n\*m) en brute force. Construction naïve en O(n² log n), prefix doubling en O(n log² n). Le LCP array complète la structure pour les requêtes sur les préfixes communs. Idéal quand un même corpus est interrogé par de nombreux patterns différents : construire l'index une fois, chercher des milliers de fois.
 

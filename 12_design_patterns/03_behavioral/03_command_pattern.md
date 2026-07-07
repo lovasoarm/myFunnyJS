@@ -84,7 +84,7 @@ La différence clé avec Strategy : Strategy encapsule un ALGORITHME interchange
 ## 3) L'HISTORIQUE : EMPILER LES COMMANDS POUR UN VRAI UNDO/REDO
 
 ```js
-// une pile (stack) pour stocker les ordres_mission exécutées
+// une pile (stack) pour stocker les commandes exécutées
 // pourquoi une stack et pas une queue ? parce qu'on annule TOUJOURS
 // la dernière action en premier : LIFO, comme dans 03_stack
 const historique = []
@@ -137,7 +137,7 @@ annulerDernier() --> pop cmdB, undo() --> historique: [cmdA]
 annulerDernier() --> pop cmdA, undo() --> historique: []
 ```
 
-C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : même principe. Une pile de ordres_mission, chacune sachant se défaire.
+C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : même principe. Une pile de commandes, chacune sachant se défaire.
 
 ---
 
@@ -146,8 +146,8 @@ C'est littéralement Ctrl+Z. Tous les éditeurs de texte, Photoshop, VSCode : m�
 Un undo/redo correct a DEUX piles, pas une.
 
 ```js
-const historique = [] // ordres_mission faites
-const annulees = []  // ordres_mission défaites, prêtes à être refaites
+const historique = [] // commandes faites
+const annulees = []  // commandes défaites, prêtes à être refaites
 
 function executer(command) {
  command.execute()
@@ -225,7 +225,7 @@ Ici Command ne sert plus à faire un undo : il sert à DÉCOUPLER la création d
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : undo sur l'inventaire de Rick
 
@@ -285,7 +285,7 @@ Trace l'état de `historique` et `annulees` à CHAQUE étape. Que se passe-t-il 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Command transforme une action en objet autonome : elle sait s'exécuter, et souvent s'annuler. Empilée dans un historique, elle donne le undo/redo. Mise dans une queue, elle découple le moment où l'action est DÉCIDÉE du moment où elle est EXÉCUTÉE. Le piège numéro un : un `undo` qui ne reflète pas exactement l'inverse d'`execute`, ou une pile `redo` jamais vidée après une nouvelle action.
 

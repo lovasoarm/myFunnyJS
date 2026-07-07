@@ -42,7 +42,7 @@ Ce que tu dois voir à la fin :
 
 ```
 // Depuis le terminal (vérifications techniques)
-$ npx tsc --noImplicitAny 
+$ npx tsc --noImplicitAny
   0 errors
 
 $ npx axe http://localhost:3000
@@ -181,7 +181,7 @@ tests/
 
 ### `src/player/player.ts`
 **Ce que ça fait** : gère l'état du lecteur (track en cours, position, volume, état play/pause). Ne touche pas au DOM directement.
-**Entrée** : des ordres_mission (`play()`, `pause()`, `next()`, `prev()`, `seek(position)`).
+**Entrée** : des commandes (`play()`, `pause()`, `next()`, `prev()`, `seek(position)`).
 **Sortie** : un état `PlayerState` mis à jour.
 
 ### `src/components/NowPlaying.ts`
@@ -290,7 +290,7 @@ describe('FocusManager', () => {
   // Simuler Tab depuis le dernier bouton
   document.getElementById('btn2')!.focus();
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
-  
+
   expect(document.activeElement?.id).toBe('btn1'); // wrapping
  });
 });

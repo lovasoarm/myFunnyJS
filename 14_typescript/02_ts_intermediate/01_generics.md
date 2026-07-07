@@ -245,7 +245,7 @@ function sum<T extends number>(arr: T[]): number {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le cache générique de Levi
 _~15 min_
@@ -295,7 +295,7 @@ La Ligue des Champions a besoin de trier n'importe quelle collection par n'impor
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les generics paramètrent les types comme les fonctions paramètrent les valeurs. `T` se fixe à l'appel, TS suit le type d'entrée jusqu'à la sortie. `extends` contraignent ce que T peut être. `keyof T` donne les clés d'un type. Le résultat : du code réutilisable sans perdre la sécurité de typage. Le piège classique : mélanger `any` avec les generics et détruire l'intérêt de l'exercice.
 

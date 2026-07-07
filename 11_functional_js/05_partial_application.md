@@ -225,7 +225,7 @@ const décrireMessi = partial(décrireJoueur, { nom: "Messi", buts: 45 });
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le configurateur de mission
 
@@ -302,7 +302,7 @@ function formatLog(service, niveau, correlationId, message) {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 L'application partielle : fixer certains arguments d'une fonction et retourner une fonction qui attend le reste.
 `Function.prototype.bind` fait ça nativement. Une fonction `partial` maison est plus lisible.

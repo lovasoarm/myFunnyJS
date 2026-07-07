@@ -1,5 +1,8 @@
 # EXO LECTURE : 15 minutes (AI Agents & Autonomy)
 
+Temps de lecture ~2 min
+
+
 Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est 80% du métier.
 
 ## L'extrait

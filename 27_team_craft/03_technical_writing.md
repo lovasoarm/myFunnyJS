@@ -36,7 +36,7 @@ Un README c'est la première chose qu'un dev lit. Il répond à quatre questions
 
 ```
 1. C'est quoi ce truc ? (une ligne)
-2. Comment je le fais tourner en 5 minutes ? (les ordres_mission exactes)
+2. Comment je le fais tourner en 5 minutes ? (les commandes exactes)
 3. Comment c'est organisé ? (structure du projet)
 4. Où je trouve le reste ? (liens vers les autres docs)
 ```
@@ -142,8 +142,8 @@ const weight = journalist.country === 'MG' ? 1.5 : 1.0;
 
 ## 4) RUNBOOK : L'OUTIL DU 2H DU MATIN
 
-Un runbook c'est une liste d'opérations courantes avec les ordres_mission exactes.
-Pas d'explications profondes. Juste : situation → ordres_mission → résultat attendu.
+Un runbook c'est une liste d'opérations courantes avec les commandes exactes.
+Pas d'explications profondes. Juste : situation → commandes → résultat attendu.
 
 ```markdown
 # RUNBOOK : prison-break-api
@@ -195,7 +195,7 @@ cat /opt/prison-break-api/.env | grep JWT_SECRET
 ```
 
 **Ce qui fait qu'un runbook est mauvais :**
-- des ordres_mission qui supposent un contexte (quel user ? quel serveur ? quel dossier ?)
+- des commandes qui supposent un contexte (quel user ? quel serveur ? quel dossier ?)
 - des sections "Troubleshooting" vides ou trop vagues
 - une date de dernière mise à jour qui date de trois ans
 
@@ -310,7 +310,7 @@ Durée totale : 23 minutes.
 Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger artefact une doc qui fait tout mal.
 Un README répond à quatre questions dans l'ordre : quoi, comment démarrer, comment c'est organisé, où trouver le reste.
 Un commentaire utile explique le pourquoi et le non-évident : pas ce qu'on voit déjà dans le code.
-Un runbook contient les ordres_mission exactes pour les situations courantes : pas des explications profondes.
+Un runbook contient les commandes exactes pour les situations courantes : pas des explications profondes.
 Un post-mortem identifie les problèmes systémiques, sans blame individuel.
 
 ---

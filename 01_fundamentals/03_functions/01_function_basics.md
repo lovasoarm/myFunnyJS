@@ -189,7 +189,7 @@ Si tu ne comprends pas ça, tu **subis** le langage.
 
 ---
 
-# MISSION FUNCTION BASICS
+## MISSION FUNCTION BASICS
 
 ## La Team Functions
 

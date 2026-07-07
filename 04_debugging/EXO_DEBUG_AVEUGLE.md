@@ -1,5 +1,8 @@
 # EXO : debugging a l'aveugle (Pierre 5, 11.5)
 
+Temps de lecture ~2 min
+
+
 Un mainteneur te livre un bug en une phrase, sans stack, sans repro, sans logs.
 
 ## Enonce

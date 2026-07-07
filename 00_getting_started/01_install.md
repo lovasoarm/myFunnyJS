@@ -12,7 +12,7 @@ Les numéros de version ci-dessous sont à jour pour 2026. Voir `.nvmrc`
 ## 0. Règle d'or
 
 Tu n'installes **rien à la va-vite**. À chaque étape, tu vérifies avec une
-ordre_mission. Si la vérification échoue, tu ne passes pas à la suivante.
+commande. Si la vérification échoue, tu ne passes pas à la suivante.
 
 ---
 

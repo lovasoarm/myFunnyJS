@@ -290,7 +290,7 @@ function teamsByChakra(ninjas, k, minChakra) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : SÉLECTION DE L'ÉQUIPE DE CHAMPIONNAT
 
@@ -330,7 +330,7 @@ L'ordre compte (c'est un setlist, pas une playlist de soirée).
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Permutations : l'ordre compte, n éléments → n! possibilités. Ça explose vite.
 Combinaisons : l'ordre ne compte pas, choisir k parmi n → C(n,k). Beaucoup moins.

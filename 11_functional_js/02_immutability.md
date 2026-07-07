@@ -229,7 +229,7 @@ function classerParButs(joueurs) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : l'inventaire de Rick
 
@@ -318,7 +318,7 @@ const bracket = [
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 En JS, les objets et tableaux se passent par référence : deux variables peuvent pointer vers le même endroit en mémoire.
 Muter directement = modifier ce que tout le monde partage : source de bugs invisibles.

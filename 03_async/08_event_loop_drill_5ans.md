@@ -1,5 +1,8 @@
 # DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes
 
+Temps de lecture ~3 min
+
+
 Objectif : tester que tu tiens le concept a deux profondeurs opposees.
 Prerequis : avoir lu `04_event_loop/` en entier.
 

@@ -1,4 +1,11 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : SCHEDULER
+
+Temps de lecture ~2 min
+
 
 Journal de développement piloté par les tests. Une entrée par cycle RED -> GREEN -> REFACTOR. Sois honnête : ce journal prouve ta démarche, pas ta perfection.
 

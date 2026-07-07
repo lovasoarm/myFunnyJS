@@ -218,7 +218,7 @@ true ||
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : Le système d'accès de Fox River
 
@@ -282,7 +282,7 @@ Trapsoul Radio a un système de feature flags. Chaque feature est active si son 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `&&`, `||`, `!`, et `??` : c'est avec ça que chaque condition de ton code est calculée. Le short-circuit n'est pas qu'une optimisation, c'est un comportement que tu dois anticiper. Les valeurs falsy sont un piège classique, surtout `0`, `[]`, et `{}` qui se comportent différemment selon le contexte. De Morgan te donne un outil pour rendre les conditions négatives lisibles. Ajoute des parenthèses dès que tu mixes `&&` et `||`.
 

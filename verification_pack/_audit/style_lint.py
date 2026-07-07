@@ -30,7 +30,7 @@ FORBIDDEN_HARD = re.compile(r"\b(login|panier)\b", re.IGNORECASE)
 # usage tutoriel e-commerce evident (jamais atteint car deja audite).
 ECOM_CONTEXT = re.compile(
     r"\b(produit|commande)s?\b\s+"
-    r"(pour|dans le catalogue|ajout(?:e|er)?\s+au|"
+    r"(dans le catalogue|ajout(?:e|er)?\s+au|"
     r"passer une|passer la|paiement|checkout|shopping|panier)",
     re.IGNORECASE,
 )

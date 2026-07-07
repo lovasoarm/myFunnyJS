@@ -1,5 +1,8 @@
 # EXO : chasse au code mort (15.4)
 
+Temps de lecture ~2 min
+
+
 ## Contexte
 Reprends le mini-projet `31_mini_projects/10_legacy_dungeon`. Ton objectif : lister le code mort ET la duplication mesurable.
 

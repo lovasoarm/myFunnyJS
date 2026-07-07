@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 [PORTFOLIO]
 
 # GARO NO KRONIKA

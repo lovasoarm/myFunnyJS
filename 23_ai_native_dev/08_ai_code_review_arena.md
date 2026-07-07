@@ -79,7 +79,7 @@ if (!joueur) {
 function jutsuEstDisponible(jutsu, tourActuel) {
  const tourDernierUsage = jutsu.dernierUsage;
  const cooldown = jutsu.cooldown;
- 
+
  if (tourActuel - tourDernierUsage <= cooldown) {
   return false;
  }
@@ -126,7 +126,7 @@ class SessionManager {
    preferences: options.preferences || {},
    locale: options.locale || 'fr',
   };
-  
+
   const sessionId = this.generateSessionId();
   this.sessions.set(sessionId, sessionConfig);
   return sessionId;

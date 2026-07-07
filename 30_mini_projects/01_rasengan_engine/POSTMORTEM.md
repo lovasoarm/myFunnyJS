@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : RASENGAN ENGINE
 Temps de lecture ~6 min
 

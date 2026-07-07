@@ -1,5 +1,8 @@
 # SORTIR D'UN PLATEAU
 
+Temps de lecture ~2 min
+
+
 Tu stagnes depuis 3 sessions ? Applique ce protocole avant d'abandonner.
 
 ## 1. Nomme le plateau

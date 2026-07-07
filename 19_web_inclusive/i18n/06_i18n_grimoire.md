@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : I18N
+## GRIMOIRE : I18N
 
 Parler toutes les langues sans tout réécrire. Ce grimoire couvre les clés de traduction, les dates et fuseaux, les formats numériques, la pluralisation, et l'organisation en vrai projet. Si un terme te paraît flou, retourne à la leçon correspondante : ce tableau résume, il ne remplace pas.
 

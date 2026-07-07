@@ -1,5 +1,8 @@
 # SPEC DRIFT : la spec qui bouge en cours de route
 
+Temps de lecture ~4 min
+
+
 -> ~2-4 h par exécution, à jouer sur un mini-projet AU CHOIX
 
 Compétence visée : encaisser un changement de contrainte à 40% d'avancement sans jeter tout ton travail, sans perdre la trace des décisions. C'est le vrai visage de la prod, pas les cahiers des charges statiques d'un cours.

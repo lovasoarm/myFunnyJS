@@ -1,4 +1,11 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : LEGACY TAKEOVER
+
+Temps de lecture ~2 min
+
 
 Rétrospective à froid, une fois le projet livré. Pas de langue de bois : le postmortem sert au prochain toi, pas à ton ego.
 

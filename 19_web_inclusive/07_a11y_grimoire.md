@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : ACCESSIBILITY (A11Y)
+## GRIMOIRE : ACCESSIBILITY (A11Y)
 
 Coder pour tout le monde, pas juste pour ceux qui te ressemblent. Ce grimoire couvre les enjeux réels, ARIA, le clavier, le contraste, les lecteurs d'écran, et l'audit. Si un terme te paraît flou, retourne à la leçon correspondante.
 

@@ -1,5 +1,8 @@
 # EXO [JEUNE IA] : 23_ai_native_dev
 
+Temps de lecture ~2 min
+
+
 > Tag `[JEUNE IA]` : IA totalement coupee (Copilot/Claude/ChatGPT desactives).
 > Duree : 45 min chrono. Auto-verifiable par le `verification_pack` du module.
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : TRAPSOUL RADIO
 Temps de lecture ~6 min
 

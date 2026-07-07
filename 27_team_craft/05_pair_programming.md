@@ -40,7 +40,7 @@ DRIVER : focus étroit
 NAVIGATOR : focus large
       --> "est-ce qu'on est en train de résoudre le bon problème ?"
       --> "ce cas null sera jamais géré avec cette approche"
-      --> "on a fait quelque chose de similaire dans le module auth, 
+      --> "on a fait quelque chose de similaire dans le module auth,
          on pourrait réutiliser"
 ```
 
@@ -135,7 +135,7 @@ débogage d'un bug complexe     lecture de documentation
 onboarding d'un nouveau dev    recherche exploratoire solo
 décisions d'architecture      écriture de tests unitaires simples
 implémentation d'algo complexe   configuration de projet (npm init, etc.)
-code qui va faire l'objet     
+code qui va faire l'objet
 d'une revue importante
 ```
 

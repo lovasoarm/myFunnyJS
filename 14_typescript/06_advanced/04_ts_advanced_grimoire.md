@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# TYPESCRIPT ADVANCED GRIMOIRE
+## TYPESCRIPT ADVANCED GRIMOIRE
 
 Le plan détaillé de Fox River, version compilateur. Tout ce qu'un dev doit avoir en tête sur les déclarations de types externes, la config du compilateur, et la migration JS vers TS. Pas un résumé : la référence complète du module.
 

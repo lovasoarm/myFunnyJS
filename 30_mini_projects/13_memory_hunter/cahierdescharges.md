@@ -1,5 +1,8 @@
 # CAHIER DES CHARGES : MEMORY HUNTER
 
+Temps de lecture ~2 min
+
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Cinq fuites cachées dans un serveur pourri. C'est la chasse aux Horrors de Garo : chaque fuite est un monstre invisible qui grossit dans l'ombre jusqu'à faire tomber le serveur. Tu traques, tu prouves, tu tues.

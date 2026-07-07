@@ -300,7 +300,7 @@ Le Singleton convient quand la ressource est vraiment unique et globale par natu
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE CAMP DE RICK GRIMES
 
@@ -372,7 +372,7 @@ Pour chacun des cas suivants, décide si un Singleton est adapté ou si l'inject
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Singleton garantit une instance unique d'une ressource partagée dans tout le processus.
 En JS, la forme la plus propre c'est le module pattern : un fichier exporté = un singleton naturel.

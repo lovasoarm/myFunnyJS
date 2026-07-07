@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : ORACLE GLITCH
 Temps de lecture ~7 min
 

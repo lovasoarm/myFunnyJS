@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# 04_REALTIME GRIMOIRE : LE LEXIQUE DU WEB QUI RESPIRE
+## 04_REALTIME GRIMOIRE : LE LEXIQUE DU WEB QUI RESPIRE
 
 Tout ce qu'un dev doit avoir en tête sur le temps réel en JS.
 Pas un résumé du module : un référentiel complet : les termes, les décisions, les pièges, les patterns de production.

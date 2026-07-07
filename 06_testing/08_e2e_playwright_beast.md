@@ -156,9 +156,9 @@ test('un journaliste connecté peut voter', async ({ journalisteConnecté: page 
 ```
 Exemple : soir de la cérémonie Ballon d'Or
 
-Unit tests : validerVote() retourne true 
-Intégration : vote stocké en DB 
-Contract : format de réponse API respecté 
+Unit tests : validerVote() retourne true
+Intégration : vote stocké en DB
+Contract : format de réponse API respecté
 
 E2E : le bouton "Voter" est désactivé après un vote, mais
    si le journaliste clique très vite deux fois (double-click),
@@ -189,7 +189,7 @@ Pas besoin d'E2E sur chaque bouton. Les unit tests couvrent les détails.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le bug du soir de cérémonie
 
@@ -217,7 +217,7 @@ C'est ça, un test E2E qui teste autre chose que le flux normal. Et c'est exacte
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Playwright lance un vrai navigateur et simule un vrai shinobi.
 `getByRole`, `getByLabel`, `getByText` : plus stables que les sélecteurs CSS.

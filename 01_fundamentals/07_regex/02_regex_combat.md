@@ -204,7 +204,7 @@ Utile pour extraire une valeur entourée de contexte sans inclure ce contexte da
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le validateur de profil ninja
 
@@ -267,7 +267,7 @@ Retourne les lignes invalides avec leur numéro et la raison.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les groupes de capture transforment une regex de validateur en extracteur. Les groupes nommés rendent le code lisible six mois après. Les ancres `^` et `$` font la différence entre valider et juste détecter.
 

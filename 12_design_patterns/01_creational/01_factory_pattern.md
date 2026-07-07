@@ -267,7 +267,7 @@ C'est une décision d'architecture qui rend le code testable.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA FORGE DE TITANS
 
@@ -345,7 +345,7 @@ Réécris-le proprement en utilisant des factories spécialisées.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 La Factory déplace la responsabilité de création d'objets dans un endroit dédié : ton code appelant ne sait plus comment les objets sont fabriqués, juste ce qu'ils font.
 Bénéfice immédiat : couplage faible, logique de création centralisée, testabilité maximale.

@@ -1,5 +1,8 @@
 # Le Guide que ton prof aurait dû te donner le jour 1
 
+Temps de lecture ~30 min
+
+
 ---
 
 ## Sommaire

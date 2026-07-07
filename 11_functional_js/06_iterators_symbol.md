@@ -175,7 +175,7 @@ Le risque réel : stocker un iterator dans une variable et s'étonner qu'il soit
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : la liste d'attente des Chevaliers Garo
 
@@ -222,7 +222,7 @@ Sans Symbol.iterator : comment faisais-tu avant ? Avec un tableau de résultats 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un objet itérable a une méthode `[Symbol.iterator]()` qui retourne un iterator avec une méthode `next()`.
 `for...of`, le spread, la déstructuration : tous utilisent ce protocole.

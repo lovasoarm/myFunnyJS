@@ -22,6 +22,15 @@ done
 if ! bash "$DIR/_audit/lint_honor_code.sh" ; then
   fail=$((fail+1))
 fi
+if ! bash "$DIR/_audit/check_forbidden_words.sh"; then
+  fail=$((fail+1))
+fi
+if ! python3 "$DIR/_audit/check_grimoire_analogies.py" "$DIR/.."; then
+  fail=$((fail+1))
+fi
+if ! bash "$DIR/_audit/check_exo_jeune_ia_universal.sh"; then
+  fail=$((fail+1))
+fi
 echo ""
 echo "=================================================="
 echo "  Resume : $pass module(s) OK, $fail module(s) KO"

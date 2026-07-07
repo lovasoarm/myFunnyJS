@@ -158,7 +158,7 @@ Règle : un test ne doit jamais supposer qu'un autre a déjà tourné avant lui.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le sniper de Daryl
 
@@ -214,7 +214,7 @@ it('gère un survivant complet', () => {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un unit test : une fonction, isolée, avec Arrange-Act-Assert.
 Tester le cas normal c'est 20% du travail. Tester les edge cases c'est les 80% restants.

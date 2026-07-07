@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # _recall_10.md : modules 06-10
 Temps de lecture ~5 min
 

@@ -323,7 +323,7 @@ Le DOM n'est pas un jouet. C'est une structure critique.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : Liste Scalable
 
@@ -359,7 +359,7 @@ Gestion propre du flux.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le DOM est une structure arborescente en mémoire. Chaque manipulation a un coût. Les events suivent un système de propagation. La propreté du code dépend de la séparation logique / style.
 

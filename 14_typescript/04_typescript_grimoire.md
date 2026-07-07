@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# TYPESCRIPT GRIMOIRE
+## TYPESCRIPT GRIMOIRE
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|

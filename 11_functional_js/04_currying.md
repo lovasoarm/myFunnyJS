@@ -221,7 +221,7 @@ additionnerA10(5); // 15
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : curryifier à la main
 
@@ -285,7 +285,7 @@ const candidats = [
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le currying transforme `f(a, b, c)` en `f(a)(b)(c)` : une fonction, un argument à la fois.
 L'avantage concret : créer des fonctions spécialisées en fixant certains arguments, prêtes à être composées.

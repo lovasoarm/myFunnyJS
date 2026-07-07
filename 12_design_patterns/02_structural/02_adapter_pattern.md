@@ -264,7 +264,7 @@ Facade : simplifie un système complexe en cachant ses détails
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE RÉSEAU DE WALTER WHITE
 
@@ -323,7 +323,7 @@ displayPlayer(adaptPlayer(raw))
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 L'Adapter traduit une interface vers une autre. Il ne change pas le comportement : il change le vocabulaire.
 Il protège ton code des variations extérieures : quand l'API change, tu changes l'Adapter, pas ton cœur applicatif.

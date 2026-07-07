@@ -1,5 +1,8 @@
 # LEAK_REPORT : <nom du service ou fixture>
 
+Temps de lecture ~2 min
+
+
 Date : YYYY-MM-DD
 Investigateur : <toi>
 Durée totale enquête : XX min

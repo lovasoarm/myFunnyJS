@@ -326,7 +326,7 @@ console.log(parallelSchedule(pipeline));
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE GESTIONNAIRE DE MISSIONS DE L'ESCOUADE
 _~15 min_
@@ -420,7 +420,7 @@ const broken = new Map([
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Topological sort : deux approches, même résultat. Kahn (BFS) part des noeuds sans prédécesseurs, les retire un par un, met à jour les in-degrees. DFS post-order visite récursivement, ajoute après, inverse le tableau. Kahn révèle la parallélisation naturelle : tous les noeuds avec in-degree 0 au même niveau peuvent s'exécuter en même temps. Si le résultat final n'a pas tous les noeuds : il y avait un cycle, topological sort impossible. Application directe : `npm install`, pipelines CI/CD, compilation de modules, tout système de tâches avec dépendances.
 

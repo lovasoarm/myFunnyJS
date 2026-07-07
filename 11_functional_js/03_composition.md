@@ -219,7 +219,7 @@ pipe(
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : implémente pipe
 
@@ -276,7 +276,7 @@ const tirs = [
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 La composition c'est brancher des petites fonctions ensemble pour en construire de grandes.
 `pipe` applique les fonctions dans l'ordre gauche à droite : le plus lisible, le plus courant.

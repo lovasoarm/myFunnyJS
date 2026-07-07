@@ -197,7 +197,7 @@ Le contract testing est un outil d'équipe, pas un outil solo.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le contrat de Scofield tient, ou pas
 
@@ -258,7 +258,7 @@ Ton boulot :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le contract testing protège l'interface entre deux services : si le provider change sans prévenir, le test casse immédiatement.
 C'est le consumer qui définit le contrat : il sait ce dont il a besoin.

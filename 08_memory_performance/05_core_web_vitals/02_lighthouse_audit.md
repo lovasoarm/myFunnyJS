@@ -66,7 +66,7 @@ console.log(`TTFB: ${ttfb}ms`)
 
 // seuils
 // < 800ms : vert
-// < 1800ms : orange 
+// < 1800ms : orange
 // >= 1800ms : rouge
 ```
 
@@ -184,7 +184,7 @@ async function runAudit(url) {
 
  // extraire les métriques clés
  const { lcp, inp, cls, fcp, ttfb } = result.lhr.audits
- 
+
  return {
   score: result.lhr.categories.performance.score * 100,
   lcp: lcp.numericValue,
@@ -270,7 +270,7 @@ CLS à 0.12 : proche du seuil vert (0.1). Regarder si une image sans dimensions 
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : PRIORISATION DE RAPPORT
 
@@ -326,7 +326,7 @@ L'image originale fait 1200x1200px et 680KB.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le score global est un résumé, pas un objectif. LCP, INP, CLS sont les vrais indicateurs.
 

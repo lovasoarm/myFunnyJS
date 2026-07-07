@@ -1,3 +1,7 @@
+---
+stability: stable
+---
+
 # HORS SCOPE DU CURRICULUM PRINCIPAL
 
 -> ~5 min

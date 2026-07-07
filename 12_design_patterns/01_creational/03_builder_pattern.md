@@ -337,7 +337,7 @@ Si l'objet a une logique de création complexe mais peu d'options : c'est probab
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE JUTSU BUILDER
 
@@ -400,7 +400,7 @@ Puis modifie le `PersonBuilder` pour que `.build()` réinitialise l'état intern
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Builder construit des objets complexes étape par étape, chaque étape nommée et optionnelle.
 Le chaînage fluent (`return this`) rend la configuration lisible : on voit ce qu'on configure, pas des positions dans une liste de paramètres.

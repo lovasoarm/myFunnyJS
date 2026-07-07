@@ -179,7 +179,7 @@ Toujours comprendre le contexte. Toujours.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : Le Faux Prix
 
@@ -245,7 +245,7 @@ Crée une fonction `parseCurrency(value)` qui :
 
 ---
 
-# RÉSUMÉ FINAL
+## RÉSUMÉ FINAL
 
 - Transformer **avant** d'utiliser
 - Vérifier **avant** de faire confiance

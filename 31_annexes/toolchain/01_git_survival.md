@@ -19,7 +19,7 @@ Chaque lettre est un commit. Chaque commit pointe vers son parent. Une branche, 
 
 ```js
 // Glenn crée une branche pour tester un nouveau plan de fouille
-// "checkout -b" = créer la branche ET basculer dessus en une ordre_mission
+// "checkout -b" = créer la branche ET basculer dessus en une commande
 // git checkout -b feature/plan-fouille
 
 // Daryl reste sur main, le camp continue à fonctionner normalement
@@ -41,7 +41,7 @@ Daryl et Glenn ont chacun avancé sur leur branche. Il faut réunir le travail. 
 ```
 main:   A --- B --- C ------- M (merge commit)
          \       /
-feature:     D --- E --- 
+feature:     D --- E ---
 ```
 
 ```js
@@ -161,7 +161,7 @@ Crée un petit script Node qui fonctionne, fais 8 commits dessus, et casse-le vo
 
 ## RÉSUMÉ
 
-Git c'est un graphe de snapshots, pas une ligne de ordres_mission à mémoriser bêtement. `merge` préserve l'histoire réelle, `rebase` la réécrit pour qu'elle soit propre, mais jamais sur une branche que d'autres ont déjà récupérée. Un conflit c'est Git qui refuse de deviner à ta place, pas un bug. `bisect` transforme une chasse à l'aveugle en recherche dichotomique. Maîtriser ça, c'est la différence entre un camp qui survit aux erreurs et un camp qui se déchire dessus.
+Git c'est un graphe de snapshots, pas une ligne de commandes à mémoriser bêtement. `merge` préserve l'histoire réelle, `rebase` la réécrit pour qu'elle soit propre, mais jamais sur une branche que d'autres ont déjà récupérée. Un conflit c'est Git qui refuse de deviner à ta place, pas un bug. `bisect` transforme une chasse à l'aveugle en recherche dichotomique. Maîtriser ça, c'est la différence entre un camp qui survit aux erreurs et un camp qui se déchire dessus.
 
 ---
 stability: intemporel

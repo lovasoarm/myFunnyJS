@@ -295,7 +295,7 @@ err instanceof Error; // peut retourner false même si c'est bien une Error
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le validateur de stats de la CL
 _~15 min_
@@ -327,7 +327,7 @@ Le camp reçoit des events radio de type inconnu (`unknown`). Un event `AttackEv
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `typeof` pour les primitifs. `instanceof` pour les classes. `in` pour la présence d'une propriété. Les type predicates (`value is Type`) permettent des fonctions de validation custom que TS comprend : si elles retournent `true`, TS rétrécit le type. Les assertion functions (`asserts value is Type`) lancent une erreur si la valeur ne correspond pas, et TS intègre l'assertion pour le code qui suit. Le piège critique : un type predicate qui ment laisse TS croire qu'un type est valide alors qu'il ne l'est pas : les bugs arrivent à runtime, là où TS ne peut plus t'aider.
 

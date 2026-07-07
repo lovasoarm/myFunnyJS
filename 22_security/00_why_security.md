@@ -13,7 +13,7 @@ La sécurité n'est pas une feature qu'on ajoute à la fin. C'est une discipline
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Chaque point où ton code accepte une donnée externe (input shinobi, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des ordres_mission SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
+Chaque point où ton code accepte une donnée externe (input shinobi, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des commandes SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
 
 Ce module couvre les attaques les plus fréquentes et leurs défenses concrètes : XSS et injection SQL (les deux vulnérabilités qui touchent le plus d'applications en prod), CSRF et CORS (deux mécanismes liés à l'origine des requêtes, souvent confondus, mal compris), la pollution de prototype (modifier `Object.prototype` depuis un input shinobi, ce qui peut casser TOUT le comportement de l'application), les différents modèles d'authentification (OAuth, sessions, JWT), et le hachage sécurisé des mots de passe avec bcrypt.
 

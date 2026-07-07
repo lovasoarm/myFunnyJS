@@ -258,7 +258,7 @@ Pas de malloc, pas de GC, pas de surprise.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA FILE D'ENTRÉE DU STADE
 _~10 min_
@@ -280,16 +280,16 @@ une pour les VIP, une pour les normaux.
 _~15 min_
 
 
-Walter a un système de livraison. Les ordres_mission arrivent dans une queue.
-Chaque ordre_mission a un `id`, un `client`, et une `quantite`.
+Walter a un système de dispatch d'appels radio. Les requêtes arrivent dans une queue.
+Chaque requête a un `id`, un `destinataire`, et une `priorite`.
 
 Règles :
 
-- Si la queue dépasse 10 ordres_mission, les nouvelles sont rejetées avec une erreur `"OverflowError"`
-- `processNext()` retire et retourne la prochaine ordre_mission à traiter
+- Si la queue dépasse 10 requêtes, les nouvelles sont rejetées avec une erreur `"OverflowError"`
+- `processNext()` retire et retourne la prochaine requête à traiter
 - `status()` retourne `{ enAttente: N, capaciteRestante: M }`
 
-Utilise le RingBuffer vu plus haut. Adapte-le pour les ordres_mission.
+Utilise le RingBuffer vu plus haut. Adapte-le pour les requêtes.
 
 ---
 
@@ -310,7 +310,7 @@ Implémenter `EventReplay` :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une queue c'est FIFO : le premier entré est le premier sorti.
 Linked list pour la queue : enqueue et dequeue en O(1), pas de réindexage.

@@ -15,9 +15,9 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# TOOLCHAIN GRIMOIRE
+## TOOLCHAIN GRIMOIRE
 
-Le bestiaire complet de l'outillage qui entoure ton code. Chaque terme, chaque ordre_mission, chaque concept que tu dois avoir en tête sans avoir à les re-googler à chaque fois. Pas un résumé : la référence complète du module.
+Le bestiaire complet de l'outillage qui entoure ton code. Chaque terme, chaque commande, chaque concept que tu dois avoir en tête sans avoir à les re-googler à chaque fois. Pas un résumé : la référence complète du module.
 
 ---
 
@@ -29,12 +29,12 @@ Le bestiaire complet de l'outillage qui entoure ton code. Chaque terme, chaque o
 | Rebase | Réécrit l'historique en rejouant des commits sur une nouvelle base, historique linéaire | `git rebase main` | réécrire un journal de bord proprement / refaire le trajet sur une carte à jour |
 | Conflit | Git ne peut pas décider seul entre deux versions divergentes des mêmes lignes | `<<<<<<< HEAD ... =======` | deux survivants qui veulent la même ration / deux versions d'une même histoire |
 | Bisect | Recherche dichotomique automatisée pour trouver le commit qui a introduit un bug | `git bisect start` puis `good`/`bad` | chercher un mot dans un dico en coupant en deux / piste de poker dichotomique |
-| LSP | Protocole qui connecte un éditeur à un serveur d'analyse de langage (autocomplétion, erreurs) | (tourne en arrière-plan, pas de ordre_mission directe) | un interprète qui traduit en temps réel / un radio-opérateur qui transmet l'info |
+| LSP | Protocole qui connecte un éditeur à un serveur d'analyse de langage (autocomplétion, erreurs) | (tourne en arrière-plan, pas de commande directe) | un interprète qui traduit en temps réel / un radio-opérateur qui transmet l'info |
 | ESLint | Détecte les erreurs de logique et les mauvaises pratiques dans le code, avant exécution | `if (x = 5)` déclenche une alerte ESLint | un inspecteur qui repère le piège avant que tu marches dedans / un éclaireur |
 | Prettier | Formate automatiquement le code selon des règles fixes, uniquement le style visuel | format à la sauvegarde via `editor.formatOnSave` | un uniforme imposé à tout le camp / un copiste qui recopie proprement |
 | Breakpoint | Point d'arrêt qui suspend l'exécution pour inspecter l'état complet du programme | posé en cliquant à gauche d'une ligne dans VSCode | mettre le film en pause pour examiner une scène / un check-point d'arrêt obligatoire |
 | Package manager | Outil qui résout, télécharge et organise les dépendances d'un projet | `npm install`, `pnpm install` | un magasin général qui gère le stock du camp / un intendant des fournitures |
-| Lockfile | Fige les versions exactes de chaque dépendance pour garantir la reproductibilité | `package-lock.json`, `pnpm-lock.yaml` | un contrat signé qui figela ordre_mission précise / une recette avec quantités exactes, pas "un peu de" |
+| Lockfile | Fige les versions exactes de chaque dépendance pour garantir la reproductibilité | `package-lock.json`, `pnpm-lock.yaml` | un contrat signé qui figela commande précise / une recette avec quantités exactes, pas "un peu de" |
 | Semver | Convention MAJOR.MINOR.PATCH qui communique l'impact d'un changement de version | `^4.18.0` accepte 4.x.x mais pas 5.0.0 | un code couleur de danger sur un colis / un système de feux tricolores pour les versions |
 | pnpm store | Stockage centralisé unique sur la machine, partagé entre projets via liens symboliques | `~/.pnpm-store/` | un entrepôt central avec des raccourcis vers chaque camp / une bibliothèque municipale partagée |
 | Bundler | Assemble plusieurs fichiers source en un livrable optimisé pour le navigateur | Vite, Webpack, esbuild, Rollup | empaqueter le matériel épars en un seul sac de raid / un chef qui assemble les ingrédients en un plat |
@@ -84,7 +84,7 @@ RESTERA :
 - semver comme convention de communication de version
 ```
 
-Retiens les concepts, pas les ordres_mission par coeur. Les ordres_mission, tu les re-googles en 5 secondes. Comprendre POURQUOI chaque outil existe, ça, ça se re-google pas.
+Retiens les concepts, pas les commandes par coeur. Les commandes, tu les re-googles en 5 secondes. Comprendre POURQUOI chaque outil existe, ça, ça se re-google pas.
 
 ---
 

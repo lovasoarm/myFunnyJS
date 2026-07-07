@@ -119,7 +119,7 @@ résultat : 26
 
 ---
 
-# MISSION MAP / FILTER / REDUCE
+## MISSION MAP / FILTER / REDUCE
 
 ## La Team HOF
 

@@ -1,3 +1,10 @@
+---
+stability: intemporel
+---
+
+
+Temps de lecture ~2 min
+
 [PORTFOLIO]
 
 # 14 : SYSTEM DESIGN LAB
@@ -40,7 +47,7 @@ L'idempotence a l'air simple ("juste un id unique"). En vrai, tu dois choisir O�
 
 ## THÈME NEUTRE (si Naruto/DBZ ne te parle pas)
 
-Pense "ordre_mission e-commerce → email de confirmation". Même problème, même solution.
+Pense "commande e-commerce → email de confirmation". Même problème, même solution.
 
 ## AUTO-ÉVAL
 

@@ -187,7 +187,7 @@ Troisième cas : le profil qui montre `(program)` partout.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : DIAGNOSTIQUER LA SUPPLY CHAIN
 _~20 min_
@@ -224,7 +224,7 @@ Compare ton résultat avec ce que Chrome DevTools montrait graphiquement : tu do
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `--cpu-prof` génère un `.cpuprofile` lisible dans Chrome DevTools ou parsable en JSON. Utilise-le pour les hotspots évidents dans des scripts Node simples.
 

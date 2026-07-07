@@ -32,7 +32,7 @@ debug toolkit    --> savoir où ça casse sans semer des console.log partout
 Plus un quatrième, ajouté parce que les 9 mini-projets partagent tous la même structure de dossier (`cahierdescharges.md`, `README.md`, `TDD_JOURNAL.md`, `POSTMORTEM.md`, `ADR/`, `src/`, `tests/`) :
 
 ```
-cli scaffolder   --> génère cette structure en une ordre_mission, au lieu de la recréer à la main 9 fois
+cli scaffolder   --> génère cette structure en une commande, au lieu de la recréer à la main 9 fois
 ```
 
 ```

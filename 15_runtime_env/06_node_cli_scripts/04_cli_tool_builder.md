@@ -3,7 +3,7 @@ Temps de lecture ~9 min
 
 Jusqu'ici t'as écrit des scripts. Un script, c'est `node mon-script.js`. Un outil CLI distribuable, c'est `ballon-dor vote --player "Messi"` depuis n'importe où sur ta machine, ou depuis n'importe quelle machine qui l'installe via npm.
 
-La différence : un `package.json` bien configuré, un `bin` qui pointe vers le bon fichier, et une lib qui gère les ordres_mission proprement. C'est ce qu'on construit ici.
+La différence : un `package.json` bien configuré, un `bin` qui pointe vers le bon fichier, et une lib qui gère les commandes proprement. C'est ce qu'on construit ici.
 
 ---
 
@@ -17,7 +17,7 @@ La différence : un `package.json` bien configuré, un `bin` qui pointe vers le 
 // yargs : similaire, plus de config, plus verbeux
 
 // ce que tu as avec une lib :
-// - sous-ordres_mission imbriquées (git remote add, npm install --save-dev)
+// - sous-commandes imbriquées (git remote add, npm install --save-dev)
 // - validation des types automatique
 // - génération de l'aide
 // - complétion shell
@@ -40,7 +40,7 @@ program.parse();
 
 ---
 
-## 2) DÉFINIR DES SOUS-ORDRES_MISSION
+## 2) DÉFINIR DES SOUS-COMMANDES
 
 ```js
 import { Command } from "commander";
@@ -53,7 +53,7 @@ program
  .description("Système de vote du Ballon d'Or 2026")
  .version("1.0.0");
 
-// ordre_mission vote
+// commande vote
 program
  .command("vote")
  .description("Enregistrer un vote de journaliste")
@@ -80,7 +80,7 @@ program
   }
  });
 
-// ordre_mission rank
+// commande rank
 program
  .command("rank")
  .description("Afficher le classement actuel")
@@ -99,7 +99,7 @@ program
   }
  });
 
-// ordre_mission reset
+// commande reset
 program
  .command("reset")
  .description("Remettre tous les votes à zéro")
@@ -167,11 +167,11 @@ ballon-dor --help
 ballon-dor-cli/
 ├── package.json     # bin, version, dependencies
 ├── src/
-│  ├── index.js     # point d'entrée : parse, route vers les ordres_mission
+│  ├── index.js     # point d'entrée : parse, route vers les commandes
 │  ├── commands/
-│  │  ├── vote.js    # logique de la ordre_mission vote
-│  │  ├── rank.js    # logique de la ordre_mission rank
-│  │  └── reset.js   # logique de la ordre_mission reset
+│  │  ├── vote.js    # logique de la commande vote
+│  │  ├── rank.js    # logique de la commande rank
+│  │  └── reset.js   # logique de la commande reset
 │  ├── lib/
 │  │  ├── storage.js  # lecture/écriture des données
 │  │  ├── display.js  # fonctions d'affichage (couleurs, tableaux)
@@ -261,8 +261,8 @@ ballon-dor --help
 ## 6) TESTER UN CLI
 
 ```js
-// les CLIs sont testables : on teste les fonctions, pas les ordres_mission
-// les ordres_mission sont juste du câblage
+// les CLIs sont testables : on teste les fonctions, pas les commandes
+// les commandes sont juste du câblage
 
 // src/lib/ranking.js
 export function computeRanking(votes) {
@@ -301,17 +301,17 @@ describe("computeRanking", () => {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le CLI complet avec commander
 
-Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers commander. Ajoute une ordre_mission `export --format json|csv --output <filepath>` qui exporte le classement.
+Reprends tout le CLI du Ballon d'Or des leçons précédentes. Migre-le vers commander. Ajoute une commande `export --format json|csv --output <filepath>` qui exporte le classement.
 
 ---
 
-## EXO 2 : les sous-ordres_mission imbriquées
+## EXO 2 : les sous-commandes imbriquées
 
-Ajoute une ordre_mission `player` avec deux sous-ordres_mission :
+Ajoute une commande `player` avec deux sous-commandes :
 
 - `player add --name <nom> --country <pays>` : ajouter un joueur à la liste
 - `player list` : afficher tous les joueurs enregistrés
@@ -331,9 +331,9 @@ Prépare le CLI pour publication npm :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
-Commander structure les sous-ordres_mission, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les ordres_mission. Pour publier : `files` dans `package.json` et `npm publish`.
+Commander structure les sous-commandes, génère l'aide, et valide les types automatiquement. Le shebang `#!/usr/bin/env node` rend le script exécutable. `npm link` installe le CLI globalement pendant le développement. La structure `commands/` + `lib/` sépare le câblage CLI de la logique métier. On teste la logique, pas les commandes. Pour publier : `files` dans `package.json` et `npm publish`.
 
 > Note : 9.5/10 : la séparation commands/lib est un pattern solide que beaucoup de CLIs ratent. Le shebang et `npm link` sont bien expliqués. Moins 0.5 : la complétion shell (tab completion) avec commander aurait fait passer l'outil du niveau "utilitaire" au niveau "outil pro".
 

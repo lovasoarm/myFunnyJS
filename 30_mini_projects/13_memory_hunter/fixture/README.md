@@ -1,4 +1,11 @@
+---
+stability: stable
+---
+
 # FIXTURE : MEMORY HUNTER
+
+Temps de lecture ~2 min
+
 
 Deux scripts pour t'entraîner à trouver une fuite mémoire réelle, pas théorique.
 

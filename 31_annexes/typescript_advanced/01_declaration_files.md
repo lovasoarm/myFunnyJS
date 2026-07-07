@@ -1,5 +1,8 @@
 # DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES
 
+Temps de lecture ~6 min
+
+
 Michael a accès au plan de Fox River, mais c'est un vieux plan, dessiné à la main, sans légende. Il sait que chaque salle existe, mais pas ce qu'elle contient exactement. Un fichier `.d.ts` c'est cette légende qu'on rajoute par-dessus : ça décrit la FORME de quelque chose qui existe déjà, sans le réécrire.
 
 ---

@@ -1,6 +1,15 @@
+---
+stability: stable
+---
+
+
 ![MyFunnyJS](./assets/title.svg)
 
-**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 préludes (`00_getting_started/`, `00_referentiel/`) + 16 mini-projets, apprenable seul.**
+# MyFunnyJS
+
+Temps de lecture ~2 min
+
+**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 préludes (`00_getting_started/`, `00_referentiel/`) + 17 mini-projets, apprenable seul.**
 
 > **Nouveau ici ?** Va directement lire [`START_HERE.md`](./START_HERE.md).
 > Ce README tient en 60 lignes exprès. Le reste est en annexe.
@@ -44,8 +53,10 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 23        AI-Native Dev
 24 -> 28  Databases · Scalability · Observability · Team · Edge Cases
 29        AI Agents & Autonomy
-30        16 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
+30        17 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
 31        Annexes : transférabilité, interview, portfolio, career, éthique
+          Carte détaillée : 31_annexes/00_arborescence_complete.md
+Templates réutilisables : 31_annexes/templates/  (POSTMORTEM, HYPOTHESES, PUBLICATION)
 32        Tools
 ```
 
@@ -66,5 +77,5 @@ Puis ouvre [`START_HERE.md`](./START_HERE.md).
 
 Licence : voir [`LICENSE`](./LICENSE) : tu peux réutiliser et adapter le matériel
 dans le cadre qui y est décrit. Communauté : `COMMUNAUTE.md`. Version de Node :
-`.nvmrc` (référence) détaillée dans `NODE_VERSIONS.md`. Journal d'audit interne (non pédagogique) : `.audit/` (dont
+`.nvmrc` (référence) détaillée dans `31_annexes/toolchain/NODE_VERSIONS.md`. Journal d'audit interne (non pédagogique) : `.audit/` (dont
 `CORRECTIONS_APPLIQUEES.md` et `DEPENDENCY_LEDGER.md`). L'apprenant peut l'ignorer.

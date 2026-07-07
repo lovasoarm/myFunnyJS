@@ -1,5 +1,8 @@
 # CUSTOM ERRORS : LES ERREURS QUI RACONTENT UNE HISTOIRE
 
+Temps de lecture ~6 min
+
+
 Une `Error` générique c'est comme un carton rouge sans explication : tu sais que c'est mauvais, tu sais pas pourquoi.
 
 Une custom error, c'est le rapport de l'arbitre : qui, quoi, pourquoi, avec les données contextuelles attachées.
@@ -317,7 +320,7 @@ try {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE SYSTÈME DE TRANSFERT
 
@@ -357,7 +360,7 @@ Vérifie que `JSON.stringify` artefact quelque chose d'utile.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une custom error = `extends Error` + `super(message)` + `this.name` + propriétés contextuelles.
 

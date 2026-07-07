@@ -65,7 +65,7 @@ const content = await readFile("./data.json", "utf-8");
 
 // process : infos sur le processus en cours
 console.log(process.env.NODE_ENV); // 'development' ou 'production'
-console.log(process.argv); // les arguments passés en ligne de ordre_mission
+console.log(process.argv); // les arguments passés en ligne de commande
 
 // os : infos sur la machine
 import os from "node:os";
@@ -171,7 +171,7 @@ globalThis         oui    oui   l'objet global universel
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le détective de runtime
 
@@ -222,7 +222,7 @@ Identifie les problèmes et propose une version qui tourne dans Node uniquement.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Node et navigateur partagent V8 et l'event loop. Tout le reste est différent. Le navigateur donne accès au DOM, à localStorage, aux APIs web. Node donne accès au filesystem, au processus, aux APIs système. `fetch` est universel depuis Node 18. `globalThis` est le seul objet global qui fonctionne partout. Pour détecter l'environnement : `typeof window` et `process.versions?.node`.
 

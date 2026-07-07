@@ -148,7 +148,7 @@ function handleFilterChange(value) {
 // correct : prioriser le feedback visuel, différer le reste
 function handleFilterChange(value) {
  setFilter(value)    // feedback immédiat au shinobi
- 
+
  // le reste peut attendre 16ms
  requestAnimationFrame(() => {
   updateURL(value)
@@ -329,7 +329,7 @@ onCLS(({ name, value, rating }) => {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : DIAGNOSTIC LCP
 
@@ -371,7 +371,7 @@ Identifie les 4 sources de CLS. Corrige-les une par une. Mesure le CLS avant et 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 LCP : le temps jusqu'au plus grand élément visible. Le réseau, les images lourdes, et le CSS bloquant le font sauter.
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : TRAPSOUL RADIO
 Temps de lecture ~5 min
 

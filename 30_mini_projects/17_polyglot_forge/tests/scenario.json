@@ -1,0 +1,14 @@
+{
+  "initial": [
+    {"kind": "macro", "name": "A", "enqueue": [
+      {"kind": "micro", "name": "a1"},
+      {"kind": "micro", "name": "a2"}
+    ]},
+    {"kind": "macro", "name": "B", "enqueue": [
+      {"kind": "micro", "name": "b1", "enqueue": [
+        {"kind": "micro", "name": "b1-nested"}
+      ]}
+    ]},
+    {"kind": "macro", "name": "C"}
+  ]
+}

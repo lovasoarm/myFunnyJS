@@ -92,7 +92,7 @@ Lancer l'audit :
 npx lhci autorun
 ```
 
-Si une assertion échoue, la ordre_mission sort avec un code non-zéro : le CI le détecte et bloque.
+Si une assertion échoue, la commande sort avec un code non-zéro : le CI le détecte et bloque.
 
 ---
 
@@ -296,7 +296,7 @@ Si tu montes le seuil LCP à 3s, tu l'écris dans le commit. Et tu sais pourquoi
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le contrat de Scofield
 
@@ -346,7 +346,7 @@ import AnalyticsSuite from "analytics-suite"; // 89kb gzipped
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un budget de performance sans CI, c'est une règle que personne ne respecte.
 Le flow : tu définis les seuils dans `lighthouserc.js`, tu intègres dans GitHub Actions, le build bloque si les métriques dépassent.

@@ -69,7 +69,7 @@ Sentry.setTag('feature', 'checkout') // pour filtrer plus tard par fonctionnalit
 await processOrder(req.params.orderId)
 ```
 
-Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les ordres_mission sans `shippingAddress`, sur la fonctionnalité checkout, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
+Le pourquoi c'est puissant : la même `TypeError` capturée avec contexte devient "cette erreur arrive systématiquement pour les commandes sans `shippingAddress`, sur la fonctionnalité checkout, depuis le déploiement de 14h32". Sans contexte, c'est juste une ligne de stack trace anonyme parmi des centaines d'autres.
 
 ---
 

@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# SYSTEM CONCEPTS GRIMOIRE
+## SYSTEM CONCEPTS GRIMOIRE
 
 > Tu lis ce fichier et tu peux pas expliquer 10 de ces termes ? Slap yourself. Twice. Then come back.
 

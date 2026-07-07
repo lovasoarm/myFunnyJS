@@ -214,7 +214,7 @@ Règles pour l'éviter :
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le parser de logs d'attaque de titans
 Des logs de mission du Survey Corps arrivent en texte brut :
@@ -255,7 +255,7 @@ Teste sur au moins 3 formats d'entrée différents.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `.matchAll()` pour extraire plusieurs groupes sur plusieurs matches. `.replace()` avec une fonction pour des transformations complexes. `.split()` avec des regex pour des séparateurs non-triviaux.
 

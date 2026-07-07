@@ -13,7 +13,7 @@ Outils externes: Docker (en dernier, une fois que tout tourne en local)
 # Installation
 $ npm install
 
-# Lancer une ordre_mission CLI
+# Lancer une commande CLI
 $ node src/cli.js rank
 
 # Lancer les tests
@@ -24,13 +24,13 @@ $ docker build -t ballon-dor-cli .
 $ docker run ballon-dor-cli rank
 ```
 
-Conseil de démarrage : ignore Docker jusqu'à ce que toutes les ordres_mission CLI fonctionnent en local et que tous les tests passent. La containerisation est la dernière étape, pas la première.
+Conseil de démarrage : ignore Docker jusqu'à ce que toutes les commandes CLI fonctionnent en local et que tous les tests passent. La containerisation est la dernière étape, pas la première.
 
 ---
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des ordres_mission disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le code v1 a été torché en une nuit par un stagiaire. Il fonctionne. Il est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
+Les journalistes du monde entier votent. Chaque vote est soumis depuis le terminal. Les points s'agrègent. Le classement se met à jour. Des commandes disponibles : `vote`, `rank`, `simulate`, `reset`, `export`. Le code v1 a été torché en une nuit par un stagiaire. Il fonctionne. Il est illisible. La v2, c'est toi qui l'écris. Et cette fois, elle est SOLID, testée, containerisée, et déployée proprement.
 
 Ce que tu dois voir tourner à la fin :
 
@@ -124,11 +124,11 @@ legacy/
 └── ballonDorV1.js       # le code original, jamais modifié
 
 src/
-├── cli.js           # point d'entrée, branche les ordres_mission
+├── cli.js           # point d'entrée, branche les commandes
 ├── parser/
 │  └── argsParser.js      # parse process.argv en objet structuré
 ├── router/
-│  └── commandRouter.js    # route vers le bon handler selon la ordre_mission
+│  └── commandRouter.js    # route vers le bon handler selon la commande
 ├── handlers/
 │  ├── voteHandler.js
 │  ├── rankHandler.js
@@ -296,7 +296,7 @@ test("exit code 1 pour un vote invalide", () => {
 ## LES RÈGLES QUE TU NE DOIS JAMAIS CASSER
 
 1. **Les erreurs vont sur stderr, les résultats sur stdout.** Jamais un mélange. Un script qui parse la sortie du CLI doit pouvoir les distinguer.
-2. **Chaque ordre_mission a un exit code explicite.** Succès = 0. Erreur métier = 1. Erreur système = 2. Pas de `process.exit()` sans argument.
+2. **Chaque commande a un exit code explicite.** Succès = 0. Erreur métier = 1. Erreur système = 2. Pas de `process.exit()` sans argument.
 3. **`legacy/ballonDorV1.js` reste intact.** C'est la référence comportementale. Si un comportement de la v2 diffère du v1, c'est documenté dans `POSTMORTEM.md`.
 
 ## CE QUE TU NE FAIS PAS DANS CE PROJET
@@ -347,7 +347,7 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
 ```
-[ ] les 5 ordres_mission (vote, rank, simulate, reset, export) fonctionnent en console
+[ ] les 5 commandes (vote, rank, simulate, reset, export) fonctionnent en console
 [ ] legacy/ballonDorV1.js existe, intact, jamais modifié
 [ ] les 5 cas limites ont chacun un test qui passe
 [ ] les exit codes sont corrects (testé dans cli.test.js)

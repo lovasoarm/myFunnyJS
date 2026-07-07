@@ -353,7 +353,7 @@ Le moteur appelle la fonction sans savoir ce qu'elle fait.
 
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
 
-- Validation d'entrée (OWASP A03 - Injection) : le moteur doit rejeter proprement une ordre_mission/config malformée sans exposer sa stack interne.
+- Validation d'entrée (OWASP A03 - Injection) : le moteur doit rejeter proprement une commande/config malformée sans exposer sa stack interne.
 - Déni de service (OWASP A05) : borner toute boucle/récursion pilotée par l'entrée pour éviter un blocage du process.
 
 Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.

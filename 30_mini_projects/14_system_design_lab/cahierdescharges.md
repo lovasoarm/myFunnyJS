@@ -1,5 +1,8 @@
 # CAHIER DES CHARGES : SYSTEM DESIGN LAB
 
+Temps de lecture ~2 min
+
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Deux services qui se parlent via une queue et survivent au chaos. C'est le mur d'AOT : tant qu'il tient, la ville vit ; tu testes chaque brèche avant que le Titan colossal ne la trouve pour toi.

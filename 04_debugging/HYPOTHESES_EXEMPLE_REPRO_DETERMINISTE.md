@@ -1,4 +1,7 @@
 # HYPOTHESES.md : exemple rempli
+
+Temps de lecture ~3 min
+
 ## Contexte : exercice `09_exo_repro_deterministe.md`, bug `flaky.js`
 
 > Livrable de référence. À ouvrir APRÈS avoir tenté l'exercice tout seul.

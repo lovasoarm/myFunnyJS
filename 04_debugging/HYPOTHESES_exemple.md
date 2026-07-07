@@ -1,5 +1,8 @@
 # _EXEMPLE_HYPOTHESES.md (cas reel)
 
+Temps de lecture ~2 min
+
+
 ## Contexte
 - symptome : la RAM du process node passe de 80 Mo a 900 Mo en 20 min sous charge.
 - environnement : Node 20.11, prod-like, 100 req/s.

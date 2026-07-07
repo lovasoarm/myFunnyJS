@@ -1,5 +1,8 @@
 # CAHIER DES CHARGES : DISTRIBUTED ARENA
 
+Temps de lecture ~2 min
+
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 N processus Node qui se parlent en local et survivent au chaos. C'est l'arène du Ballon d'Or : onze joueurs coordonnés, un blessé (kill -9), et le score final doit rester juste malgré tout.

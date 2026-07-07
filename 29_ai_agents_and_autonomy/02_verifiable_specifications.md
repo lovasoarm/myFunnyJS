@@ -9,7 +9,7 @@ et "cahier des charges d'un contrat" : mêmes rigueurs.
 
 ```
 B  Behavior      que fait le système APRÈS la tâche ? (verbe d'action)
-O  Observability    quelle ordre_mission/log prouve le succès sans ambiguïté ?
+O  Observability    quelle commande/log prouve le succès sans ambiguïté ?
 R  Regression tests  quels tests existants doivent continuer à passer ?
 N  Non-goals      qu'est-ce que l'agent n'a PAS le droit de toucher ?
 É  Escape hatch    signal explicite d'échec : "si tu ne peux pas, dis-le"

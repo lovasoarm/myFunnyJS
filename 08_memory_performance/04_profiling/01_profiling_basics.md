@@ -187,7 +187,7 @@ C'est comme laisser des repères sur la carte avant de partir en mission.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA SUPPLY CHAIN DE WALTER
 
@@ -275,7 +275,7 @@ Note la différence. Est-ce significative ? Pourquoi ?
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `performance.now()` donne la précision sub-milliseconde que `Date.now()` n'a pas.
 Un seul run ne veut rien dire : mesure 10 fois minimum, prends la médiane.

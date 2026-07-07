@@ -1,5 +1,8 @@
 # RULES : Distributed Arena
 
+Temps de lecture ~2 min
+
+
 1. Pas de framework distribué (pas de RabbitMQ, pas de Redis, pas de Kafka). TCP ou
   IPC uniquement. Tu dois SENTIR ce qu'un broker te cache.
 2. Pas d'IA pour l'ADR. Tu peux l'utiliser pour boilerplate. Décision = toi.

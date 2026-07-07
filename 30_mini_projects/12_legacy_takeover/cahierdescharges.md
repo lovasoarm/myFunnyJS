@@ -1,5 +1,8 @@
 # CAHIER DES CHARGES : LEGACY TAKEOVER
 
+Temps de lecture ~2 min
+
+
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 Reprendre un repo abandonné, c'est arriver à Fox River après l'évasion : le plan est sur les murs, mais la moitié des couloirs sont effondrés. Tu ne réécris pas la prison, tu la comprends d'abord.

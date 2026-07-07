@@ -1,5 +1,8 @@
 # EXO : partitionne ce backlog entre toi et l'IA (9.5 / 17.5)
 
+Temps de lecture ~2 min
+
+
 ## Contexte
 On te livre 10 tickets a implementer en 1 semaine. Tu dois decider ce que tu delegues a l'IA et ce que tu gardes.
 

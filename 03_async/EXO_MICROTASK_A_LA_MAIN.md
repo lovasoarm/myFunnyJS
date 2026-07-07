@@ -1,5 +1,8 @@
 # EXO : reimplemente une file de microtasks a la main (12.6)
 
+Temps de lecture ~2 min
+
+
 ## Consigne
 Sans utiliser `Promise`, `queueMicrotask`, `setTimeout(0)` ni aucune API native de scheduling, ecris `myMicrotaskQueue.js` qui expose :
 - `enqueue(fn)` : ajoute une microtache.

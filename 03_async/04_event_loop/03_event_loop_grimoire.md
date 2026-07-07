@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# EVENT LOOP GRIMOIRE
+## EVENT LOOP GRIMOIRE
 
 Le moteur JS expliqué terme par terme.
 Chaque concept avec son code, son comportement runtime, et son équivalent dans la vraie vie.

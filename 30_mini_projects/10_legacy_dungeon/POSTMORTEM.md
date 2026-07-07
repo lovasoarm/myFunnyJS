@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : LEGACY DUNGEON
 Temps de lecture ~6 min
 

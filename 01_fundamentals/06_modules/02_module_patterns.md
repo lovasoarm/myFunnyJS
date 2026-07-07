@@ -210,7 +210,7 @@ L'état interne change : personne ne peut l'écraser directement. Tout passe par
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le module de camp
 Walking Dead. Tu construis `camp.js` : le module de gestion du camp de Rick.
@@ -254,7 +254,7 @@ Trois plugins à créer :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un module = une responsabilité. Une interface publique réduite. Un état interne protégé.
 

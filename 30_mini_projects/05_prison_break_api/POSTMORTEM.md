@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POSTMORTEM : PRISON BREAK API
 Temps de lecture ~5 min
 

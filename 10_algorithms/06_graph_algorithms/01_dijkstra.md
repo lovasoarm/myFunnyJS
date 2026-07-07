@@ -174,9 +174,9 @@ Pop (450, Denver) :
 
 Pop (535, Phoenix) :
  Las Vegas : 535+290=825 < 1200 => dist[Las Vegas]=825...
- 
-... Mais El Paso → Tucson → Phoenix → Las Vegas = 280+280+115+290 = 965 ? 
- Non : ABQ → El Paso → Tucson = 280+280=560 > ABQ → Santa Fe → ... 
+
+... Mais El Paso → Tucson → Phoenix → Las Vegas = 280+280+115+290 = 965 ?
+ Non : ABQ → El Paso → Tucson = 280+280=560 > ABQ → Santa Fe → ...
  Chemin optimal : ABQ(0) → El Paso(280) → Tucson(280+280=560)?
  Non car dist[Tucson] = 420 via direct ABQ→Tucson, pas via El Paso.
  Phoenix depuis Tucson : 420+115 = 535
@@ -268,7 +268,7 @@ function dijkstraKShortest(graph, start, target, k) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE GPS DE LEON LUIS
 _~20 min_
@@ -329,7 +329,7 @@ Implémenter deux versions de Dijkstra : une avec un array simple (trouver le mi
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Dijkstra = greedy sur graphe pondéré avec poids positifs. À chaque étape, finaliser le noeud le plus proche. La priority queue rend ça efficace : `O((V+E) log V)` au lieu de `O(V²)`. Deux pièges absolus : les poids négatifs (Dijkstra donne des résultats silencieusement incorrects : utiliser Bellman-Ford) et oublier le check `currDist > dist.get(node)` qui permet de skip les entrées obsolètes dans la queue. Reconstruire le chemin se fait avec la map `prev` en remontant depuis la destination.
 

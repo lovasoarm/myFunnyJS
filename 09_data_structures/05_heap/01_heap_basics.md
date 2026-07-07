@@ -66,9 +66,9 @@ enfantDroit(i) = 2 * i + 2
 
 Vérification sur l'exemple :
 ```
-enfantGauche(0) = 1 => tableau[1] = 31 (Haaland) 
-enfantDroit(0) = 2 => tableau[2] = 28 (Salah) 
-parent(3)    = 1 => tableau[1] = 31 (Haaland, parent de Kane) 
+enfantGauche(0) = 1 => tableau[1] = 31 (Haaland)
+enfantDroit(0) = 2 => tableau[2] = 28 (Salah)
+parent(3)    = 1 => tableau[1] = 31 (Haaland, parent de Kane)
 ```
 
 Pourquoi c'est brillant : pas d'allocation de noeuds, pas de pointeurs, cache-friendly.
@@ -363,7 +363,7 @@ Le heap, c'est pour accéder au max/min **sans avoir besoin du reste trié**.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE CLASSEMENT DE L'ÉQUIPE
 _~15 min_
@@ -413,7 +413,7 @@ Complexité cible : O(n log n) temps, O(1) espace supplémentaire.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le heap est un arbre binaire dans un tableau : parent(i) = floor((i-1)/2), enfants = 2i+1 et 2i+2.
 Max-heap : parent >= enfants. Min-heap : parent <= enfants.

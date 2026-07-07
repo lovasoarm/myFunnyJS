@@ -189,7 +189,7 @@ L'objectif n'est pas de faire 100% TDD. L'objectif est de penser "quel comportem
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : TDD sur le calcul de classement
 
@@ -223,7 +223,7 @@ function calculePourcentageVotes(votesJoueur, totalVotes) {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 TDD c'est : RED (test qui échoue) → GREEN (code minimal) → REFACTOR (nettoyer sans casser).
 Le test en premier force à penser l'interface avant le code.

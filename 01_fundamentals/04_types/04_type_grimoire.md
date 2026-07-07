@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# TYPE GRIMOIRE : LES MOTS QUE TU DOIS MAÎTRISER
+## TYPE GRIMOIRE : LES MOTS QUE TU DOIS MAÎTRISER
 
 Les types en JS c'est pas juste "string ou number".
 C'est un système de règles silencieuses qui tourne sous ton code.
@@ -37,7 +37,7 @@ Si tu ne connais pas ces règles, tu codes à l'aveugle.
 | NaN | Not a Number : résultat d'une conversion ou opération numérique invalide : refuse même d'être égal à lui-même | `Number("hello"); // NaN` <br> `NaN === NaN;   // false` <br> `Number.isNaN(NaN);// true` | Le fantôme du monde numérique : il existe, mais il ne reconnaît pas son propre reflet / Un employé qui répond "je sais pas" à toutes les questions, y compris "t'es qui ?" |
 | `typeof` | Opérateur qui retourne le type d'une valeur sous forme de string : avec quelques bugs historiques | `typeof 10;   // "number"` <br> `typeof "yo";  // "string"` <br> `typeof null;  // "object" ← bug` <br> `typeof NaN;  // "number" ← scandaleux` | Un détective qui se trompe sur les suspects évidents / Une carte d'identité falsifiable : fiable en général, mais il faut savoir où elle ment |
 | `Number()` | Conversion stricte en number : retourne `NaN` dès qu'un caractère invalide est présent | `Number("42");  // 42` <br> `Number("42px"); // NaN` <br> `Number(true);  // 1` <br> `Number(null);  // 0` | Un vigile strict : soit t'as le bon badge, soit tu passes pas / Un formulaire qui rejette toute entrée imparfaite |
-| `parseInt()` / `parseFloat()` | Conversion tolérante : lit jusqu'au premier caractère invalide et s'arrête là | `parseInt("42px");  // 42` <br> `parseFloat("3.14abc"); // 3.14` <br> `parseInt("abc");   // NaN` | Un lecteur qui s'arrête au premier mot incompréhensible / Un caissier qui rend la monnaie sur ce qu'il a compris de ta ordre_mission |
+| `parseInt()` / `parseFloat()` | Conversion tolérante : lit jusqu'au premier caractère invalide et s'arrête là | `parseInt("42px");  // 42` <br> `parseFloat("3.14abc"); // 3.14` <br> `parseInt("abc");   // NaN` | Un lecteur qui s'arrête au premier mot incompréhensible / Un caissier qui rend la monnaie sur ce qu'il a compris de ta demande |
 | Type guard | Vérification explicite du type avant d'utiliser une valeur : pattern défensif essentiel | `function isValidNumber(v) {` <br> ` return typeof v === "number"` <br> ` && !Number.isNaN(v);` <br> `}` | Un agent de sécurité qui vérifie le badge avant de laisser entrer / Un médecin qui lit l'étiquette avant d'injecter |
 | `Array.isArray()` | La seule façon fiable de vérifier si une valeur est un tableau : `typeof` retourne `"object"` pour les arrays | `Array.isArray([]); // true` <br> `Array.isArray({}); // false` <br> `typeof [];     // "object" ← inutile` | Le seul test ADN fiable dans un tribunal JS / Regarder si y'a des rails dedans plutôt que de croire l'étiquette |
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : BREAKING CACHE
 Temps de lecture ~7 min
 

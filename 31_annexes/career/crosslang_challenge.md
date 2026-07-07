@@ -1,5 +1,8 @@
 # CHALLENGE CROSS-LANGUAGE : preuve de transferabilité
 
+Temps de lecture ~3 min
+
+
 -> ~6-10 h de travail effectif, à répartir sur 1-2 semaines
 
 Compétence visée : prouver, par artefact, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
@@ -77,6 +80,5 @@ Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une g
 
 ---
 
-stability: 5+ ans
-
 stability: stable
+

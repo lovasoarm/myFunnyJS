@@ -176,7 +176,7 @@ window.myCustomThing(); // TypeScript : ok. Runtime : crash
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le vestiaire de l'équipe
 _~10 min_
@@ -216,7 +216,7 @@ Réponds sans lancer le code. Vérifie ensuite dans ton éditeur.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `interface` décrit la forme d'un objet et peut se fusionner. `type` fait tout ça plus les unions, intersections, tuples, et types complexes.
 Pour les APIs publiques et les objets extensibles : `interface`. Pour tout ce qui dépasse la forme d'un objet : `type`.

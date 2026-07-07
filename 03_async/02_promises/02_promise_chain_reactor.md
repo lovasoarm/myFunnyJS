@@ -181,7 +181,7 @@ L'erreur HTTP est convertie manuellement en rejection parce que `fetch` ne rejet
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le pipeline de vote du Ballon d'Or
 
@@ -224,7 +224,7 @@ Construis la chaîne complète avec la récupération partielle sur le troisièm
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Chaque `.then()` transforme et passe.
 Chaque `.catch()` intercepte et peut relancer ou récupérer.

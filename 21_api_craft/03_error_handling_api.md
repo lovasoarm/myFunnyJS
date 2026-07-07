@@ -304,7 +304,7 @@ Monte un errorHandler global qui les formate uniformément.
 Teste que les erreurs inconnues (bug JS classique) renvoient un 500 générique.
 
 **EXO 2 : La validation du formulaire de Walter White**
-Tu reçois des ordres_mission de livraison : `{ product, quantity, destination, priority }`.
+Tu reçois des requêtes d'inscription : `{ email, plan, region, priority }`.
 `product` et `destination` sont obligatoires (strings).
 `quantity` est un entier entre 1 et 1000.
 `priority` est optionnel mais si présent doit être `"low"`, `"medium"` ou `"high"`.

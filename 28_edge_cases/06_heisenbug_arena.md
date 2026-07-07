@@ -10,7 +10,7 @@ test('le tribut se valide', () => {
 ```
 
 Un bug normal, tu le reproduis, tu le corriges, tu vérifies, c'est fini.
-Un heisenbug (du physicien Heisenberg, et son principe d'incertitude : observer change le résultat), c'est différent. Il échoue 1 fois sur 10. Ou 1 fois sur 100. En local il ne se montre jamais. En CI (intégration continue : pipeline automatisé qui build et teste à chaque push) il plante une fois par semaine, jamais le même test. Tu rejoues exactement la même ordre_mission, et cette fois ça passe.
+Un heisenbug (du physicien Heisenberg, et son principe d'incertitude : observer change le résultat), c'est différent. Il échoue 1 fois sur 10. Ou 1 fois sur 100. En local il ne se montre jamais. En CI (intégration continue : pipeline automatisé qui build et teste à chaque push) il plante une fois par semaine, jamais le même test. Tu rejoues exactement la même commande, et cette fois ça passe.
 
 Ce n'est pas un bug aléatoire au sens où JS lance des dés. C'est un bug **déterministe dans sa cause, non-déterministe dans son timing**. Quelque part, l'ordre d'exécution de deux opérations asynchrones n'est pas garanti, et ton code suppose silencieusement un ordre précis. Le jour où l'ordre change : boom. Le jour où tu regardes de près (en mettant un `console.log`, en ralentissant l'exécution dans un debugger) : le timing change, et le bug se planque.
 
@@ -106,7 +106,7 @@ let totalVotes = 0;
 async function enregistrerVote(votant) {
  // simule une vérification anti-fraude qui prend un temps variable
  await new Promise(resolve => setTimeout(resolve, Math.random() * 20));
- 
+
  const ancienTotal = totalVotes; // lecture
  await new Promise(resolve => setTimeout(resolve, Math.random() * 20)); // autre opération entre les deux
  totalVotes = ancienTotal + 1; // écriture, basée sur une lecture potentiellement périmée
@@ -310,7 +310,7 @@ distribution globale)
 2. REJOUER EN BOUCLE, MESURER LE TAUX D'ÉCHEC
   Une exécution isolée ne dit rien. 20 à 50 exécutions donnent un taux
   d'échec exploitable (10% ? 50% ? 90% ?).
-  
+
   for (let i = 0; i < 50; i++) { /* lance le test */ }
 
 3. IDENTIFIER LES SOURCES D'ASYNCHRONE EN COMPÉTITION

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 [PORTFOLIO]
 
 [ATELIER]
@@ -57,12 +61,12 @@ docker run ballon-dor rank
 
 ```
 src/
-├── cli.js       # point d'entrée : parse process.argv, dispatche les ordres_mission
+├── cli.js       # point d'entrée : parse process.argv, dispatche les commandes
 │
 ├── commands/
-│  ├── voteCommand.js # logique de la ordre_mission vote
-│  ├── rankCommand.js # logique de la ordre_mission rank
-│  ├── simCommand.js  # logique de la ordre_mission simulate (Worker Threads)
+│  ├── voteCommand.js # logique de la commande vote
+│  ├── rankCommand.js # logique de la commande rank
+│  ├── simCommand.js  # logique de la commande simulate (Worker Threads)
 │  ├── resetCommand.js # remet les votes à zéro
 │  └── exportCommand.js # exporte en CSV ou JSON
 │
@@ -91,7 +95,7 @@ tests/
 └── errors.test.js
 ```
 
-Flux d'une ordre_mission `vote` :
+Flux d'une commande `vote` :
 
 ```
 cli.js --> parseArgs()
@@ -114,7 +118,7 @@ cli.js --> parseArgs()
 | Module       | Où ça se voit                          |
 | ------------------- | --------------------------------------------------------------- |
 | `16_runtime_env`  | `process.argv`, `fs`, Worker Threads pour la simulation     |
-| `14_refactoring`  | v1 spaghetti → v2 modulaire : SRP sur chaque ordre_mission   |
+| `14_refactoring`  | v1 spaghetti → v2 modulaire : SRP sur chaque commande   |
 | `05_error_handling` | `InvalidVoteError`, `PlayerNotFoundError`, `QuotaExceededError` |
 | `31_annexes`    | Git workflow, Docker, CI/CD sur chaque push           |
 
@@ -123,9 +127,9 @@ cli.js --> parseArgs()
 ## RÈGLES NON-NÉGOCIABLES DE CE PROJET
 
 ```
-1. Chaque ordre_mission est dans son propre fichier : un fichier = une responsabilité
+1. Chaque commande est dans son propre fichier : un fichier = une responsabilité
 2. Les erreurs ont des classes custom avec des messages précis
-3. La ordre_mission simulate utilise Worker Threads : jamais bloquer l'event loop principal
+3. La commande simulate utilise Worker Threads : jamais bloquer l'event loop principal
 4. voteStore.js ne fait que lire et écrire, jamais de logique métier
 5. Le Dockerfile est multi-stage : image de prod aussi légère que possible
 ```

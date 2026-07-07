@@ -35,7 +35,7 @@ Commence par [`00_getting_started/01_install.md`](00_getting_started/01_install.
 
 ---
 
-# BIENVENUE
+## BIENVENUE
 
 Ce fichier fait moins de 120 lignes. C'est fait exprès. Lis-le en entier, ça prend 3 minutes, et tu sais exactement où aller ensuite.
 
@@ -103,8 +103,8 @@ Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de questio
 
 - `README.md` : porte d'entrée officielle (roadmap).
 - `START_HERE.md` : tu es ici.
-- `.nvmrc` : version de Node de référence (source de vérité unique, détaillée dans `NODE_VERSIONS.md`).
-- `NODE_VERSIONS.md`, `POSTMORTEM_TEMPLATE.md` : gouvernance technique légère utile au parcours.
+- `.nvmrc` : version de Node de référence (source de vérité unique, détaillée dans `31_annexes/toolchain/NODE_VERSIONS.md`).
+- `31_annexes/toolchain/NODE_VERSIONS.md`, `31_annexes/templates/POSTMORTEM.md` : gouvernance technique légère utile au parcours.
 - `COMMUNAUTE.md`, `LICENSE` : gouvernance projet.
 - Contexte des premiers pas : `00_getting_started/02_day_one.md`.
 - Guide carrière : `31_annexes/career/00_guide.md`.

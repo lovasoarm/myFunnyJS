@@ -1,5 +1,8 @@
 # SPEC DRIFT : 14_system_design_lab
 
+Temps de lecture ~2 min
+
+
 ## Règle du jeu
 
 À mi-parcours de ce mini-projet, la spec CHANGE. Volontairement. C'est le geste central.

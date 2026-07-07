@@ -1,5 +1,8 @@
 # PROPAGATION D'ERREURS : QUI CATCH QUOI ET À QUEL NIVEAU
 
+Temps de lecture ~7 min
+
+
 Une erreur levée quelque part dans ton code ne disparaît pas. Elle remonte la call stack jusqu'à ce que quelqu'un la catch. Si personne ne la catch : le programme crash.
 
 Le vrai problème c'est pas "est-ce que je catch" : c'est "est-ce que je catch au bon niveau, avec la bonne réaction".
@@ -311,7 +314,7 @@ try {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA CHAÎNE GARO
 
@@ -341,7 +344,7 @@ Teste avec un id valide et un id inexistant.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une erreur remonte jusqu'à ce que quelqu'un la catch. Si personne ne la catch, le programme crash.
 

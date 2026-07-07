@@ -1,3 +1,5 @@
+> HORS CURRICULUM - artefact d'audit, ne pas lire pour apprendre JS.
+
 # DEPENDENCY LEDGER : LE JOURNAL DE TA DÉPENDANCE À L'IA
 Temps de lecture ~7 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ADR-001 : EventEmitter natif Node.js pour simuler le streaming SSE sans serveur HTTP
 Temps de lecture ~5 min
 

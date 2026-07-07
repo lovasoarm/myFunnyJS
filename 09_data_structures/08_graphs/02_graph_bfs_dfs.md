@@ -269,7 +269,7 @@ BFS n'aurait retourné qu'un seul chemin. DFS les trouve tous.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : la propagation du virus dans le camp de Rick
 _~20 min_
@@ -323,7 +323,7 @@ group.addEdge("Barcelona",  "Juventus",  { goals: "1-1" })
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 BFS explore niveau par niveau via une queue : garantit le plus court chemin en arêtes. DFS plonge en profondeur via une stack ou la récursion : trouve tous les chemins, détecte les cycles, permet le topological sort. En pratique : BFS = "combien d'étapes entre A et B ?", DFS = "est-ce que A et B sont connectés, et par quels chemins ?". Les deux utilisent un Set `visited` pour éviter les boucles infinies sur les graphes avec cycles.
 

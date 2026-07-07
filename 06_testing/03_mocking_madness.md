@@ -201,7 +201,7 @@ Piège 3 : ne pas vérifier les arguments
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le mock du virement FIFA
 
@@ -244,7 +244,7 @@ Teste :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Mock = remplacer une dépendance externe par une version contrôlée.
 `jest.fn()` pour les fonctions, `jest.mock('./module')` pour les modules entiers.

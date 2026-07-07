@@ -1,5 +1,8 @@
 # portfolio.md : la sortie unique du curriculum
 
+Temps de lecture ~2 min
+
+
 > Le CV technique de l'apprenant. Une seule page qui agrège les preuves
 > éparpillées dans les 16 mini-projets : pierres travaillées, ADR clés,
 > postmortems marquants, auto-évaluation. C'est ce que tu montres à un

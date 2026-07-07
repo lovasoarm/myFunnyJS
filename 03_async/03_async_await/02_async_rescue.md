@@ -242,7 +242,7 @@ Si Rei est tombé en mission, ça ne bloque pas les rapports de Leon et Kouga.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE PIPELINE BLINDÉ
 
@@ -302,7 +302,7 @@ const knights = ['Leon', 'Rei', 'Kouga', 'Leo', 'Bado']
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `try/catch` autour d'un `await` : attrape la rejection de la Promise.
 Un `await` manquant = l'erreur passe à travers sans être catchée.

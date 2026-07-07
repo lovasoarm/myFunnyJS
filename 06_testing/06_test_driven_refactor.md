@@ -174,7 +174,7 @@ Dans le second, les tests sont une documentation qui s'adapte.
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le camp tombe, le code pas
 
@@ -232,7 +232,7 @@ Le classement final doit être identique avant et après le refacto.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Refactoriser sans tests : espoir. Avec tests : certitude.
 Avant de refactoriser du code sans tests : écrire les tests d'abord, tout vert, puis refactoriser.

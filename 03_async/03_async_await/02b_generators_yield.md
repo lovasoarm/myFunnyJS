@@ -190,7 +190,7 @@ Un generator a un état interne. Le partager entre plusieurs consommateurs sans 
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le générateur de missions Garo
 
@@ -237,7 +237,7 @@ Compare avec une version `Promise.all` : quelle différence d'expérience pour l
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `function*` crée une fonction qui peut s'arrêter et reprendre : chaque `yield` est une pause.
 Un generator retourne un iterator : `for...of`, spread, déstructuration fonctionnent dessus nativement.

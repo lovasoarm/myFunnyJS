@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ADR-001 : clés de traduction typées en TypeScript avec erreur de compilation sur clé manquante
 Temps de lecture ~6 min
 

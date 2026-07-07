@@ -134,7 +134,7 @@ C'est un mini disque dur du navigateur. Discret, rapide, et il ne se plaint jama
 
 ---
 
-# MISSIONS
+## MISSIONS
 
 ## MISSION 1 : LE TRÉSOR DU JOUEUR
 
@@ -202,7 +202,7 @@ _Indice : `localStorage.getItem("theme")`_
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 ```
 setItem  → sauvegarder

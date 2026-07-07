@@ -1,5 +1,8 @@
 # PRÉREQUIS : 23bis AI Agents & Autonomy
 
+Temps de lecture ~2 min
+
+
 Avant d'ouvrir ce module, coche honnêtement :
 
 - [ ] J'ai terminé `23_ai_native_dev` (les 10 fichiers).

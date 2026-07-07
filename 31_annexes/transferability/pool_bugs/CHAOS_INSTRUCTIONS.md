@@ -1,5 +1,8 @@
 # CHAOS INSTRUCTIONS : casser un projet volontairement pour s'entraîner
 
+Temps de lecture ~2 min
+
+
 Si tu n'as pas de "vrai" bug historique, tu peux fabriquer ton propre terrain
 d'entraînement en 15 min. Le but : t'entraîner à lire du code inconnu.
 

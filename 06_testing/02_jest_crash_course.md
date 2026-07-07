@@ -199,7 +199,7 @@ Ne pas chasser le 100% : certaines lignes sont du glue code qui ne mérite pas d
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : détecter la fraude avant la cérémonie
 
@@ -247,9 +247,9 @@ Sans toucher à la fonction, écris une suite de tests pour atteindre 100% de br
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
-Jest s'installe en une ordre_mission. Il trouve les fichiers `*.test.js` automatiquement.
+Jest s'installe avec `npm i -D jest` : rien de plus. Il trouve les fichiers `*.test.js` automatiquement.
 `describe` groupe, `it` décrit, `expect` vérifie.
 `toBe` pour les primitives, `toEqual` pour les objets.
 Les fonctions async se testent avec `async/await` : sans ça, Jest peut passer un test cassé.

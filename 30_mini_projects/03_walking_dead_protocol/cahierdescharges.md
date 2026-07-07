@@ -23,7 +23,7 @@ $ npm test
 $ npm run test:e2e
 ```
 
-Pas de serveur web. Le camp se gère depuis la ligne de ordre_mission. Playwright teste le comportement du CLI via des processus Node enfants.
+Pas de serveur web. Le camp se gère depuis la ligne de commande. Playwright teste le comportement du CLI via des processus Node enfants.
 
 ---
 
@@ -78,7 +78,7 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 
 ### `06_testing` : unit, intégration, mocking, E2E Playwright
 **Où ça se voit** : tout le dossier `tests/` et `e2e/`.
-**Pourquoi c'est nécessaire ici** : couvrir un legacy sans tests, puis passer au TDD pour les nouvelles features. Les deux exercices en un. Playwright simule un opérateur qui tape des ordres_mission dans le terminal.
+**Pourquoi c'est nécessaire ici** : couvrir un legacy sans tests, puis passer au TDD pour les nouvelles features. Les deux exercices en un. Playwright simule un opérateur qui tape des commandes dans le terminal.
 
 ### `14_refactoring` : SOLID sur du code procédural, code smells
 **Où ça se voit** : le passage de `legacy/campV1.js` vers `src/`. Chaque module de `src/` correspond à une responsabilité extraite du monolithe original.
@@ -86,7 +86,7 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 
 ### `16_runtime_env` : CLI Node.js, fs, Worker Threads
 **Où ça se voit** : `src/cli.js`, `src/store/fileStore.js`, `src/workers/threatSimulator.js`.
-**Pourquoi c'est nécessaire ici** : `process.argv` pour les ordres_mission CLI, `fs.promises` pour la persistance JSON, Worker Threads pour simuler des vagues de menaces en parallèle sans bloquer le CLI.
+**Pourquoi c'est nécessaire ici** : `process.argv` pour les commandes CLI, `fs.promises` pour la persistance JSON, Worker Threads pour simuler des vagues de menaces en parallèle sans bloquer le CLI.
 
 ### `32_tools` : logger structuré, benchmark, debug toolkit
 **Où ça se voit** : `src/logger/`, `src/debug/`.
@@ -132,7 +132,7 @@ legacy/
 └── campV1.js            # le spaghetti original : jamais modifié
 
 src/
-├── cli.js             # point d'entrée, branche les ordres_mission
+├── cli.js             # point d'entrée, branche les commandes
 ├── parser/
 │  └── argsParser.js        # parse process.argv
 ├── router/
@@ -183,7 +183,7 @@ mocks/
 
 ### `src/services/guardService.js`
 **Ce que ça fait** : gestion des rotations de garde. Calculer la prochaine rotation, enregistrer un poste occupé, détecter un poste vacant.
-**Entrée** : l'état des gardes et une ordre_mission (`rotate`, `assign`, `status`).
+**Entrée** : l'état des gardes et une commande (`rotate`, `assign`, `status`).
 **Sortie** : un nouvel état des gardes.
 
 ### `src/services/securityService.js`
@@ -239,7 +239,7 @@ PHASE 2 : construire la v2 module par module, test vert à chaque étape
 12. src/handlers/          --> dépendent des services
 13. src/router/commandRouter.js   --> dépend des handlers
 14. src/cli.js            --> branche tout
-15. tests/cli.test.js        --> teste les ordres_mission via execSync
+15. tests/cli.test.js        --> teste les commandes via execSync
 16. src/workers/threatSimulator.js  --> en dernier (Worker Thread)
 17. src/debug/scenarioReplayer.js  --> en dernier
 18. e2e/campWorkflow.spec.js     --> une fois que tout tourne
@@ -429,7 +429,7 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 ```
 [ ] legacy/campV1.js est couvert par des tests avant que la v2 soit commencée
   (vérifiable par git : les tests sur le legacy sont dans un commit séparé)
-[ ] les 5 ordres_mission (status, consume, rotate-guards, add-threat, reset) fonctionnent
+[ ] les 5 commandes (status, consume, rotate-guards, add-threat, reset) fonctionnent
 [ ] les services ne lisent ni n'écrivent jamais le filesystem directement
 [ ] les 5 cas limites ont chacun un test qui passe
 [ ] le Worker Thread envoie des events au thread principal sans crasher le CLI

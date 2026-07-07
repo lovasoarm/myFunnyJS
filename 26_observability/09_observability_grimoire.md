@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# Le vocabulaire de ceux qui voient avant que ça pète
+## Le vocabulaire de ceux qui voient avant que ça pète
 
 Ce grimoire couvre tout le module 26. Pas un résumé, le bagage complet : si t'arrives pas à expliquer un terme ici à quelqu'un d'autre, retourne à la leçon avant d'avancer.
 

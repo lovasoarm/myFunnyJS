@@ -185,7 +185,7 @@ const data = await fetch("/api/data"); // ok en ESM top-level
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE CONSEIL DE SURVEILLANCE
 
@@ -236,7 +236,7 @@ Michael Scofield prépare son évasion. Chaque étape dépend de la précédente
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `await` suspend la fonction, pas le thread : le reste de JS continue de tourner.
 Deux `await` en séquence = la queue : l'un attend que l'autre finisse.

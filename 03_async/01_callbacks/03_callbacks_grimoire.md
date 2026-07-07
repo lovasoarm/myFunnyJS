@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# CALLBACKS GRIMOIRE
+## CALLBACKS GRIMOIRE
 
 Les termes qui reviennent dans toute discussion sur l'async JS pré-Promises.
 Savoir les nommer, c'est pouvoir en parler avec précision et lire du code legacy sans deviner.

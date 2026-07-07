@@ -204,7 +204,7 @@ Pour que ce challenge soit réussi à 10/10 :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Ce challenge n'est pas un exercice de plus : c'est la preuve que le FP est utilisable sur de vraies données sales.
 Chaque concept du module s'assemble ici : pure functions pour le nettoyage, immutabilité pour ne rien casser, curry pour les coefficients, pipe pour l'assemblage.

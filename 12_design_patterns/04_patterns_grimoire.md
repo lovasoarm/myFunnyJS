@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : DESIGN PATTERNS
+## GRIMOIRE : DESIGN PATTERNS
 
 Le vocabulaire de tout le module 12. Si un terme te bloque dans une leçon, il est ici.
 
@@ -39,7 +39,7 @@ Le vocabulaire de tout le module 12. Si un terme te bloque dans une leçon, il e
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les patterns créationnels (Factory, Singleton, Builder) répondent à "comment je fabrique mes objets sans bordel". Les structurels (Decorator, Adapter, Proxy) répondent à "comment je connecte ou j'enrichis des objets sans tout réécrire". Les comportementaux (Observer, Strategy, Command) répondent à "comment les objets communiquent et réagissent sans être collés les uns aux autres". Un pattern n'est pas un objectif : si ton code est clair sans pattern, n'en rajoute pas pour faire joli.
 

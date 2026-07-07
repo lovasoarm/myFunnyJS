@@ -1,0 +1,32 @@
+---
+stability: intemporel
+---
+
+# EXO LECTURE : 15 minutes (31_annexes)
+
+Temps de lecture ~2 min
+
+Compétence : parcourir un dossier d'annexes hétérogène et savoir en
+extraire uniquement ce dont tu as besoin, sans te noyer.
+
+## L'extrait
+
+Ouvre `31_annexes/00_arborescence_complete.md`. Ne lis PAS l'intégralité.
+
+## Questions (10 min, chronomètre)
+
+1. Cite **3 annexes** qui te serviraient pour préparer un entretien
+   technique dans 2 semaines.
+2. Cite **2 annexes** qui n'ont d'utilité que si tu prévois de publier un
+   projet public.
+3. Quelle annexe traite explicitement de la santé mentale du dev ?
+4. Quelle annexe factorise la mise en garde commune à tous les grimoires ?
+5. Si tu ne devais lire qu'une seule annexe cette semaine, laquelle et
+   pourquoi ?
+
+## Auto-évaluation
+
+- 5/5 juste : tu as compris que 31_annexes est une **boîte à outils**,
+  pas un manuel à lire en séquence.
+- ≤ 3/5 juste : refais l'exercice dans 3 jours. La compétence « scanner
+  au lieu de lire » se travaille.

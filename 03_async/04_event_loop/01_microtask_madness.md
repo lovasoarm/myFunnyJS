@@ -162,10 +162,10 @@ Si une microtask en planifie une autre : cette nouvelle s'exécute dans le même
 ```js
 async function naruto() {
  console.log("Naruto commence")
- 
+
  await Promise.resolve()
  // tout ce qui suit le await est une microtask
- 
+
  console.log("Naruto finit son rasengan")
 }
 
@@ -214,7 +214,7 @@ C'est le Titan Colossal de l'event loop : il absorbe tout et ne laisse rien pass
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE CLASSEMENT PROPHÉTIQUE
 
@@ -252,9 +252,9 @@ Si tu t'es trompé : identifie exactement quelle règle tu as ratée.
 ```js
 async function sasuke(jutsu) {
  console.log(`${jutsu} - début`)
- 
+
  const resultat = await fetch_simulé(jutsu)
- 
+
  console.log(`${jutsu} - résultat reçu : ${resultat}`)
  return resultat
 }
@@ -282,12 +282,12 @@ Il ne le fait pas. Trouve pourquoi et corrige sans changer la logique métier.
 ```js
 async function pipeline() {
  setTimeout(() => console.log("étape 4 : archivage"), 0)
- 
+
  console.log("étape 1 : lancement")
- 
+
  await Promise.resolve()
  console.log("étape 3 : traitement")
- 
+
  Promise.resolve().then(() => console.log("étape 2 : validation"))
 }
 
@@ -298,7 +298,7 @@ pipeline()
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 JS est mono-thread mais il a une file d'attente prioritaire pour les microtasks.
 Quand la call stack est vide : toutes les microtasks tournent d'abord, puis une macrotask, puis retour aux microtasks.

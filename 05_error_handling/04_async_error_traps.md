@@ -1,5 +1,8 @@
 # ASYNC ERROR TRAPS : LES ERREURS QUI TOMBENT EN SILENCE
 
+Temps de lecture ~6 min
+
+
 En synchrone, une erreur non catchée crash le programme immédiatement. Tu vois le problème.
 
 En async, une erreur non catchée peut disparaître complètement. Ton code continue de tourner. Tu penses que tout va bien. En fait tu livres des données corrompues à l'opérateur depuis 3 heures.
@@ -260,7 +263,7 @@ setTimeout callback  --> hors du try/catch externe --> try/catch dans le callbac
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE FOREACH QUI TRAHIT
 
@@ -301,7 +304,7 @@ Utilise-la pour wrapper `chargerStats` et teste avec un match existant et un ine
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 En async, les erreurs ne crashent pas forcément : elles disparaissent. C'est pire.
 

@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : DATA STRUCTURES
+## GRIMOIRE : DATA STRUCTURES
 
 ---
 

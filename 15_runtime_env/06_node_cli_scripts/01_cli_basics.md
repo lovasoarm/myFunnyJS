@@ -1,7 +1,7 @@
 # CLI BASICS : PARLER AU TERMINAL SANS BÉGAYER
 Temps de lecture ~8 min
 
-Un CLI (Command Line Interface), c'est un programme que t'invoques depuis le terminal. `git commit -m "fix"`, `npm install`, `node script.js --env prod` : tous des CLIs. Derrière chaque ordre_mission : un script Node qui lit des arguments, écrit dans le terminal, et sort avec un code.
+Un CLI (Command Line Interface), c'est un programme que t'invoques depuis le terminal. `git commit -m "fix"`, `npm install`, `node script.js --env prod` : tous des CLIs. Derrière chaque commande : un script Node qui lit des arguments, écrit dans le terminal, et sort avec un code.
 
 C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal fait : args parsés à la main avec des bugs, output illisible, zéro gestion des erreurs. Ce module couvre la version propre.
 
@@ -15,7 +15,7 @@ C'est le premier outil que tout dev Node finit par écrire. Et c'est souvent mal
 // process.argv :
 // [0] = '/usr/local/bin/node'  -- toujours là
 // [1] = '/app/ballon-dor.js'   -- toujours là
-// [2] = 'vote'          -- ordre_mission principale
+// [2] = 'vote'          -- commande principale
 // [3] = '--player'        -- flag
 // [4] = 'Lamine Yamal'      -- valeur du flag
 // [5] = '--points'
@@ -163,8 +163,8 @@ function validateArgs(command, flags) {
  const errors = [];
 
  if (command === "vote") {
-  if (!flags.player) errors.push("--player est requis pour la ordre_mission vote");
-  if (!flags.points) errors.push("--points est requis pour la ordre_mission vote");
+  if (!flags.player) errors.push("--player est requis pour la commande vote");
+  if (!flags.points) errors.push("--points est requis pour la commande vote");
 
   const points = parseInt(flags.points, 10);
   if (isNaN(points) || points < 1 || points > 15) {
@@ -200,8 +200,8 @@ if (errors.length > 0) {
 // 0 = succès
 // 1 = erreur générique
 // 2 = mauvaise utilisation (mauvais arguments)
-// 126 = ordre_mission trouvée mais non exécutable
-// 127 = ordre_mission introuvable
+// 126 = commande trouvée mais non exécutable
+// 127 = commande introuvable
 
 // dans un pipeline bash :
 // node vote.js && echo "succès" -- "succès" s'affiche uniquement si exit(0)
@@ -221,7 +221,7 @@ try {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le parser complet
 
@@ -238,7 +238,7 @@ Retourne `{ command, flags, positionals }`.
 
 ## EXO 2 : le CLI de vote minimal
 
-Crée un script `vote.js` avec ces ordres_mission :
+Crée un script `vote.js` avec ces commandes :
 
 - `vote --player <nom> --points <n>` : enregistre un vote en mémoire
 - `rank` : affiche le top 5 des joueurs triés par points
@@ -260,7 +260,7 @@ Utilise `\r` pour réécrire la même ligne. Teste avec un `setInterval` qui inc
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un CLI Node lit ses arguments depuis `process.argv.slice(2)`. Les flags `--key value` se parsent manuellement ou avec une lib. `stdout` pour les outputs normaux, `stderr` pour les erreurs : toujours les deux séparément. Les codes de sortie (`process.exit(0)` / `process.exit(1)`) sont la convention que les pipelines bash et les CI/CD attendent. Les codes ANSI donnent les couleurs, mais toujours avec un check `isTTY` pour ne pas polluer les pipes.
 

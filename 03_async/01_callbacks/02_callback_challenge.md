@@ -215,7 +215,7 @@ chargerEnQueue(ids, 2, function(err, stats) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE PIPELINE DE TRANSFERT
 
@@ -261,7 +261,7 @@ Construis un wrapper `obtenirRapportFiable(joueurId, callback)` qui :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Quatre patterns, quatre problèmes. Séquence : nommer les étapes et les chaîner proprement. Parallèle : lancer tout, compter avec un compteur, agir quand il atteint zéro. Timeout : un booléen `estTermine` qui garantit une seule exécution du callback. Retry : une fonction récursive avec un compteur de tentatives et un délai croissant. Dans les quatre cas : error-first, `return` après chaque erreur, jamais de code qui continue après un `if (err)` sans return.
 

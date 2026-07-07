@@ -185,7 +185,7 @@ La différence entre O(n²) et O(n log n) n'est pas abstraite. Sur 100k élémen
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : La race complète
 _~20 min_
@@ -217,7 +217,7 @@ const stats = Array.from({ length: 100_000 }, () => ({
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Sur des données aléatoires de taille moyenne : Quick sort gagne sur Merge sort à cause du cache. Sur des données avec structure (runs, quasi-triés) : Tim Sort (Array.sort) les écrase tous les deux en exploitant la structure existante. Insertion sort reste utile sous 64 éléments et sur des données quasi-triées. Le vrai enseignement : O(n log n) n'est pas un monolithe. Les constantes cachées et la structure des données font la différence en pratique.
 

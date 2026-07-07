@@ -311,7 +311,7 @@ proxy.chakra // TypeError: Cannot perform 'get' on a proxy that has been revoked
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : L'ARMURE PROXY DE GARO
 
@@ -361,7 +361,7 @@ proxy.players.push("CR7") // censé logger
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le Proxy JS intercepte les opérations fondamentales sur un objet : lecture, écriture, suppression, vérification d'existence.
 Il ne modifie pas l'objet cible : il contrôle l'accès à cet objet.

@@ -53,7 +53,7 @@ Ces deux fonctions **ne se connaissent pas**. Modifier l'une ne touche pas l'aut
 
 ---
 
-# MISSION FACTORY
+## MISSION FACTORY
 
 ## La Team Factory
 

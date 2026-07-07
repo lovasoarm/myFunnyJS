@@ -1,0 +1,23 @@
+# Tokens verrouillés en lecture seule.
+#
+# Origine : bug de migration `ordres_mission` (audit W). Un search-replace
+# industriel avait muté "commande(s)" en "ordres_mission", cassant le sens
+# dans les lecons CLI, le pattern Command (GoF, module 12), OWASP et les
+# grimoires. Ce fichier est le garde-fou permanent : chaque token doit
+# rester présent (au moins une occurrence) dans le repo. Le lint échoue si
+# un de ces tokens disparait.
+#
+# Format : un token par ligne. Lignes vides et # ignorées. Casse strict.
+# Pour ajouter un token : verifier d'abord sa presence avec
+#   grep -rl --include='*.md' 'TOKEN' .
+#
+# --- Pattern Command (GoF, module 12) ---
+COMMAND PATTERN
+03_command_pattern.md
+
+# --- CLI (sous-commandes legitimes) ---
+sous-commandes
+commande CLI
+
+# --- Toponymie generale du mot "commande" (usage legitime hors e-commerce) ---
+Command

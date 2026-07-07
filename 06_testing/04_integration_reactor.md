@@ -163,7 +163,7 @@ Ce qu'ils ne testent pas :
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le pipeline de candidature Ballon d'Or
 
@@ -208,7 +208,7 @@ function loguerVote(vote) {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les unit tests vérifient que chaque pièce marche. Les tests d'intégration vérifient que les pièces marchent ensemble.
 Le mismatch d'interface : A retourne un champ que B n'attend pas : n'est visible qu'en intégration.

@@ -1,5 +1,8 @@
 # EXO : explique le meme concept a 3 publics (18.1)
 
+Temps de lecture ~2 min
+
+
 ## Consigne
 Choisis un concept : `closure`, `event loop` ou `idempotence`.
 Ecris 3 explications de 5 phrases max :

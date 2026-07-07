@@ -50,7 +50,7 @@ Base de données (query cache)
 
 ---
 
-## 2) CACHE-CONTROL : LE HEADER QUI ORDRE_MISSION TOUT
+## 2) CACHE-CONTROL : LE HEADER QUI COMMANDE TOUT
 
 `Cache-Control` est le header HTTP qui dit au navigateur et aux proxys quoi faire avec la réponse.
 
@@ -315,7 +315,7 @@ Implémente les deux versions et mesure le nombre d'appels à `fetchLeaderboard`
 ## RÉSUMÉ
 
 Le cache existe pour éviter de recalculer ce qui n'a pas changé. Chaque niveau de la stack peut en avoir un.
-`Cache-Control` ordre_mission tout : `max-age` pour la durée, `no-store` pour les données sensibles, `private` pour les données personnelles.
+`Cache-Control` commande tout : `max-age` pour la durée, `no-store` pour les données sensibles, `private` pour les données personnelles.
 Les assets statiques avec hash dans le nom : `immutable` et `max-age=31536000`. Le nom change quand le contenu change.
 ETag : le serveur donne une empreinte, le client la renvoie, le serveur dit si ça a changé. 304 = pas de re-téléchargement.
 `stale-while-revalidate` : servir le cache périmé immédiatement ET rafraîchir en arrière-plan. Le meilleur des deux mondes.

@@ -1,5 +1,8 @@
 # DEVTOOLS DEBUGGER : LIRE LE CODE EN TRAIN DE S'EXÉCUTER
 
+Temps de lecture ~8 min
+
+
 `console.log` te dit ce qui s'est passé.
 Le debugger te montre ce qui se passe, maintenant, instruction par instruction.
 

@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE DES MODULES ES6
+## GRIMOIRE DES MODULES ES6
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|

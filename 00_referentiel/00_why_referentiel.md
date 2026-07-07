@@ -1,5 +1,8 @@
 # Pourquoi ce référentiel ?
 
+Temps de lecture ~2 min
+
+
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
 Un curriculum sans référentiel, c'est une carte sans légende. Tu lis des

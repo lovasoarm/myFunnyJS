@@ -90,7 +90,7 @@ Ce projet teste une compétence que les juniors n'ont pas : savoir ce que fait s
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
 
 ```
-MatchSimulator (génère des events) 
+MatchSimulator (génère des events)
  --> IngestEndpoint POST /api/events
     --> rateLimiter.check(req)
     --> tracer.startSpan('ingest', reqId)

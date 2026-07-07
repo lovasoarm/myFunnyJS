@@ -1,5 +1,8 @@
 # Pourquoi ce dossier "getting started" ?
 
+Temps de lecture ~2 min
+
+
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
 Parce que 80 % des abandons se jouent dans les 30 premières minutes. Pas

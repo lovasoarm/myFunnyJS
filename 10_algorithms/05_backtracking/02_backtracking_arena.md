@@ -381,7 +381,7 @@ function wordSearchBuggy(board, word) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE BINGO DE REINER
 _~20 min_
@@ -443,7 +443,7 @@ const grid = [
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Sudoku, word search, combination sum : trois arènes, trois prunings différents, même mécanique. Sudoku prune sur les contraintes de ligne/colonne/bloc avant de placer. Word search prune sur la lettre courante et la cellule déjà visitée. Letter combinations n'a pas besoin de prune : l'arbre est déjà borné par les longueurs. La vraie compétence, c'est pas d'appliquer le template : c'est de trouver la condition de pruning la plus tôt possible pour couper le maximum de branches. Chaque branche coupée tôt économise une sous-arborescence entière.
 

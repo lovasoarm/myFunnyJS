@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ADR-001 : pourquoi ce code est ce qu'il est
 Temps de lecture ~7 min
 
@@ -19,13 +23,13 @@ Indices à chercher avant de remplir :
  y est carrément expliquée, et c'est une victoire de l'avoir trouvée
 ```
 
-Remplace tout ce qui suit par TON repo, TA décision identifiée. Ce qui est écrit ci-dessous est un exemple rempli pour te montrer le niveau attendu, basé sur un cas réel et public : pas une ordre_mission à copier-coller, un modèle de raisonnement.
+Remplace tout ce qui suit par TON repo, TA décision identifiée. Ce qui est écrit ci-dessous est un exemple rempli pour te montrer le niveau attendu, basé sur un cas réel et public : pas une commande à copier-coller, un modèle de raisonnement.
 
 ---
 
 ## EXEMPLE REMPLI (à titre d'illustration : remplace tout par ton propre repo)
 
-# ADR-001 : pourquoi Express gère encore les erreurs avec un callback `next(err)` plutôt qu'avec des exceptions natives async/await
+## ADR-001 : pourquoi Express gère encore les erreurs avec un callback `next(err)` plutôt qu'avec des exceptions natives async/await
 
 ## Statut
 

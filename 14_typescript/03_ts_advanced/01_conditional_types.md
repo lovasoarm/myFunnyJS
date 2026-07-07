@@ -230,7 +230,7 @@ type T = Flatten<string | number[]>;
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le type de retour conditionnel
 _~15 min_
@@ -262,7 +262,7 @@ Crée `ItemData<T extends ItemType>` qui retourne le bon type de données selon 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `T extends U ? X : Y` : le ternaire des types. Les conditional types se distribuent automatiquement sur les unions (chaque membre est évalué séparément). `infer R` extrait un type depuis la structure de `T` pour l'utiliser dans la branche then. `ReturnType`, `Awaited`, `Extract`, `Exclude`, `NonNullable` sont tous des conditional types sous le capot. Les types récursifs (`DeepReadonly`) combinent mapped types et conditional types. Piège principal : la distributivité non voulue sur les unions : `[T] extends [U]` la désactive si besoin.
 

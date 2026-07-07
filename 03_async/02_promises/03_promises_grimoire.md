@@ -15,14 +15,14 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE DES PROMISES
+## GRIMOIRE DES PROMISES
 
 ---
 
 | Terme | Définition | Code | Analogies |
 |-------|-----------|------|-----------|
 | Promise | Objet qui représente une valeur qui n'est pas encore disponible. Trois états : pending, fulfilled, rejected. | `const p = new Promise((resolve, reject) => { ... })` | Un ticket de livraison Amazon / une promesse de paie en fin de mois |
-| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {}) // reste pending pour toujours` | Une ordre_mission en cours de préparation / un match pas encore sifflé |
+| pending | État initial d'une Promise. L'opération async tourne encore. Ni resolve ni reject n'a été appelé. | `const p = new Promise(() => {}) // reste pending pour toujours` | Une requête en cours de traitement / un match pas encore sifflé |
 | fulfilled | La Promise a résolu avec succès. `resolve(valeur)` a été appelé. Le `.then()` reçoit la valeur. | `resolve("Naruto a gagné")` | Le colis livré / le but marqué |
 | rejected | La Promise a échoué. `reject(erreur)` a été appelé ou une exception a été throwée. Le `.catch()` reçoit l'erreur. | `reject(new Error("mission échouée"))` | Le colis perdu / le carton rouge |
 | resolve | Fonction qui termine une Promise avec succès. Appelée une seule fois. Si appelée plusieurs fois, les appels suivants sont ignorés. | `new Promise((resolve) => resolve(42))` | Valider une mission / signer le bon de livraison |

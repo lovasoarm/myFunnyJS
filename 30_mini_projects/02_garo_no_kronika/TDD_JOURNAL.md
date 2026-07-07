@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD JOURNAL : GARO NO KRONIKA
 Temps de lecture ~8 min
 

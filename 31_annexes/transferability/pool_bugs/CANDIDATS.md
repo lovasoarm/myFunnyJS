@@ -1,5 +1,8 @@
 # POOL DE BUGS : CANDIDATS CALIBRÉS
 
+Temps de lecture ~2 min
+
+
 Trois dépôts par langage, sélectionnés pour être :
 - ni triviaux (pas un TODO à 3 fichiers),
 - ni gigantesques (< 20k lignes de code utile),

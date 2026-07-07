@@ -1,5 +1,8 @@
 # LIRE DU CODE HUMAIN vs LIRE DU CODE IA
 
+Temps de lecture ~2 min
+
+
 Deux styles, deux pièges, deux stratégies de lecture.
 
 ## Le code humain legacy

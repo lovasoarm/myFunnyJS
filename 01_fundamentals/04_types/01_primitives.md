@@ -151,7 +151,7 @@ console.log(obj1.hp); // 50 ← même objet en mémoire
 
 ---
 
-# MISSION PRIMITIVES
+## MISSION PRIMITIVES
 
 1. Crée une variable `score = 50`
 2. Copie-la dans `bestScore`

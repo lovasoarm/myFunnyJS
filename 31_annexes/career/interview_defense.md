@@ -101,6 +101,5 @@ Un fichier `INTERVIEW_DEFENSE_JOURNAL.md` à côté de tes mini-projets (ou dans
 
 ---
 
-stability: 5+ ans
-
 stability: stable
+

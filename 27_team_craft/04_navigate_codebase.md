@@ -237,7 +237,7 @@ Dans le projet `04_breaking_cache`, tu remarques ce code :
 const graph = buildGraph(rawData, { legacyMode: true });
 ```
 
-Utilise les ordres_mission `git log`, `git blame`, et `git show` pour :
+Utilise les commandes `git log`, `git blame`, et `git show` pour :
 1. Savoir quand ce workaround a été ajouté
 2. Trouver le commit qui l'explique
 3. Déterminer si la migration mentionnée a eu lieu

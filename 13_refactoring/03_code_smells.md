@@ -210,7 +210,7 @@ if (fightDuration > ARMOR_COLLAPSE_THRESHOLD_SECONDS) collapseArmor()
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : nomme le smell
 Pour chaque extrait, identifie le smell (god class / feature envy / long method / duplication / magic number) :
@@ -241,7 +241,7 @@ Mission : liste les 3-4 sous-fonctions que tu créerais, avec un nom clair pour 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 Un code smell ne casse rien aujourd'hui, c'est pour ça qu'on l'ignore. Mais god class, feature envy, long method, duplication et magic numbers sont des signaux d'alarme silencieux. Plus tu les laisses traîner, plus le refacto coûte cher. Apprendre à les sentir, c'est apprendre à payer la dette en petite monnaie au lieu d'un crash boursier.
 
 ---

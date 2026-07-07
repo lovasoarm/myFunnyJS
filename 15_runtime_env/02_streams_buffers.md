@@ -185,7 +185,7 @@ matchEventStream.pipe(counter).pipe(destinationStream);
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le compteur de lignes
 
@@ -215,7 +215,7 @@ async function processLog(input, output) {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Un Buffer, c'est de la mémoire brute pour les données binaires. Un Stream, c'est un canal qui envoie ces données par morceaux. `pipe()` branche deux streams et gère la backpressure automatiquement. Les Transform streams permettent de transformer les données à la volée. La règle d'or : si les données peuvent être grandes, utilise un stream : jamais `readFile` suivi d'un traitement complet en mémoire.
 

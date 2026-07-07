@@ -136,10 +136,10 @@ C'est ça l'injection de dépendance en version FP : repousser l'impureté vers 
 Checklist rapide. Si ta fonction fait au moins un de ces trucs : elle est impure.
 
 ```
-lit ou modifie une variable hors de son scope   
-appelle Math.random() ou Date.now() directement  
-fait un console.log, une écriture fichier, un fetch 
-modifie un paramètre objet ou tableau        
+lit ou modifie une variable hors de son scope
+appelle Math.random() ou Date.now() directement
+fait un console.log, une écriture fichier, un fetch
+modifie un paramètre objet ou tableau
 dépend de this                    (souvent)
 ```
 
@@ -157,7 +157,7 @@ dépend de this                    (souvent)
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le rapport du Ballon d'Or
 
@@ -240,7 +240,7 @@ Transforme-la pour qu'elle soit pure. `facteur` et `timestamp` arrivent en param
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une fonction pure : même input = même output, zéro effet de bord.
 C'est pas une contrainte stylistique : c'est ce qui rend le code testable, prévisible, et composable.

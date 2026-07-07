@@ -22,7 +22,7 @@ console.log(process.env.API_KEY); // undefined si non définie
 Comment les définir :
 
 ```bash
-# en ligne de ordre_mission (temporaire, pour ce processus uniquement)
+# en ligne de commande (temporaire, pour ce processus uniquement)
 PORT=8080 NODE_ENV=production node server.js
 
 # dans un fichier .env (avec dotenv)
@@ -79,7 +79,7 @@ const config = getConfig();
 
 ---
 
-## 3) PROCESS.ARGV : LES ARGUMENTS EN LIGNE DE ORDRE_MISSION
+## 3) PROCESS.ARGV : LES ARGUMENTS EN LIGNE DE COMMANDE
 
 ```js
 // process.argv = tableau des arguments passés à Node
@@ -87,7 +87,7 @@ const config = getConfig();
 // argv[1] = chemin du script
 // argv[2+] = tes arguments
 
-// ordre_mission : node ballon-dor.js --player "Messi" --year 2026
+// commande : node ballon-dor.js --player "Messi" --year 2026
 console.log(process.argv);
 // [
 //  '/usr/bin/node',   -- argv[0] : l'exécutable node
@@ -162,7 +162,7 @@ process.stdin.on("data", (input) => {
  console.log(`Vote enregistré : ${vote}`);
 });
 
-// lire stdin en mode pipe (données provenant d'une autre ordre_mission)
+// lire stdin en mode pipe (données provenant d'une autre commande)
 // cat players.txt | node process-votes.js
 if (!process.stdin.isTTY) {
  // les données arrivent depuis un pipe, pas depuis un clavier
@@ -202,7 +202,7 @@ console.log(process.memoryUsage().heapUsed); // mémoire consommée par V8
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le loader de config sécurisé
 
@@ -242,9 +242,9 @@ Le script `vote.js` accepte ces flags :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
-`process.env` donne accès aux variables d'environnement : toujours des strings, à valider et convertir à l'entrée. `process.argv` donne les arguments de la ligne de ordre_mission : `argv[0]` et `argv[1]` c'est Node et le script, tes args commencent à `argv[2]`. `process.exit(1)` pour les erreurs, `process.exit(0)` pour le succès. `uncaughtException` et `unhandledRejection` : toujours gérer dans les CLIs pour éviter les crashs silencieux.
+`process.env` donne accès aux variables d'environnement : toujours des strings, à valider et convertir à l'entrée. `process.argv` donne les arguments de la ligne de commande : `argv[0]` et `argv[1]` c'est Node et le script, tes args commencent à `argv[2]`. `process.exit(1)` pour les erreurs, `process.exit(0)` pour le succès. `uncaughtException` et `unhandledRejection` : toujours gérer dans les CLIs pour éviter les crashs silencieux.
 
 ---
 stability: stable

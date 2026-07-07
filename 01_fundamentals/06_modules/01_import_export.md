@@ -166,7 +166,7 @@ Utilité réelle : code splitting dans les apps web. Tu charges le code de la pa
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le village de Konoha
 Tu as trois fichiers à créer :
@@ -199,7 +199,7 @@ Une app de scoring de matchs. Elle peut charger deux moteurs de calcul :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les modules ES6 ne sont pas une feature de confort. C'est la frontière entre ton code et le chaos global.
 

@@ -185,7 +185,7 @@ Un `AbortController` est à usage unique. Une fois `.abort()` appelé, son signa
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : la recherche live sans spam
 
@@ -213,7 +213,7 @@ Implémente `fetchAvecDeadline(url, secondes)` :
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 `AbortController` permet d'annuler des opérations asynchrones : fetch, mais aussi n'importe quoi qui accepte un `AbortSignal`.
 Un `AbortController` est à usage unique : une fois `.abort()` appelé, son signal reste aborted. Créer un nouveau controller par requête.

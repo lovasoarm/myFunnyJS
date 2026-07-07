@@ -1,5 +1,8 @@
 # EXERCICE DE TRANSFERT : mode d'emploi
 
+Temps de lecture ~2 min
+
+
 À la fin de chaque module NOYAU (01, 03, 08, 09, 13, 17), tu ne passes pas au module
 suivant tant que tu n'as pas fait un exercice de transfert de 30 min. Le principe est
 toujours le même :

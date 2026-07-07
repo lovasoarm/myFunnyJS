@@ -165,7 +165,7 @@ Si tu comprends ça, tu comprends le moteur du frontend. Le reste, c'est du conf
 
 ---
 
-# MISSIONS
+## MISSIONS
 
 ## MISSION 1 : LE PORTAIL DES HÉROS
 
@@ -243,7 +243,7 @@ C'est exactement le moteur des frameworks. Tu viens de le réinventer.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 ```javascript
 `Hello ${name}`; // interpolation : variable dans du texte

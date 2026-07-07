@@ -1,0 +1,7 @@
+t=0 macro A
+t=1 micro a1
+t=1 micro a2
+t=1 macro B
+t=2 micro b1
+t=2 micro b1-nested
+t=2 macro C

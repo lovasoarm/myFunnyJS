@@ -1,5 +1,8 @@
 # CONSIGNE : HYPOTHESES.md OBLIGATOIRE
 
+Temps de lecture ~2 min
+
+
 > Application generale de la Partie O du referentiel.
 > Tout EXO du module `04_debugging` (et tout EXO tagge `[HYP]` ailleurs) livre un `HYPOTHESES.md`.
 

@@ -1,3 +1,9 @@
+---
+stability: perissable
+---
+
+> HORS CURRICULUM - artefact d'audit, ne pas lire pour apprendre JS.
+
 # CORRECTIONS APPLIQUÉES : PASSAGE 7,5 -> 10 (audit W)
 
 Ce document liste les corrections apportées au bundle en réponse à l'audit final `AUDIT_FINAL_MyFunnyJS.md`. Non pédagogique.
@@ -16,7 +22,7 @@ Substitution automatisée avec préservation de la casse et du pluriel. Vérific
 
 ## 2. VITAL : purge em-dash et en-dash (60 remplacements)
 
-Tous les `—` (U+2014) et `–` (U+2013) ont été convertis en `:` (dans un contexte séparateur) ou `-` (sinon). Le filet `verification_pack/_audit/lint_honor_code.sh` bloque désormais toute réapparition.
+Tous les ` - ` (U+2014) et `-` (U+2013) ont été convertis en `:` (dans un contexte séparateur) ou `-` (sinon). Le filet `verification_pack/_audit/lint_honor_code.sh` bloque désormais toute réapparition.
 
 ## 3. VITAL : linter du code d'honneur wiré dans le CI local
 

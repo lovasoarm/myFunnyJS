@@ -128,7 +128,7 @@ Si tu ne maîtrises pas la coercion, tu **subis** JavaScript.
 
 ---
 
-# MISSION TYPE CHAOS
+## MISSION TYPE CHAOS
 
 **Étape 1 : observe et comprends chaque résultat :**
 

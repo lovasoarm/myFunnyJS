@@ -35,7 +35,7 @@ Trois jobs, pas un seul :
 
 ## 2) NPM, YARN, PNPM : MÊME JOB, STRATÉGIE DE STOCKAGE DIFFÉRENTE
 
-La vraie différence entre les trois en 2026 c'est pas la syntaxe des ordres_mission (qui se ressemblent beaucoup). C'est **comment ils stockent les fichiers sur le disque**.
+La vraie différence entre les trois en 2026 c'est pas la syntaxe des commandes (qui se ressemblent beaucoup). C'est **comment ils stockent les fichiers sur le disque**.
 
 ### npm et yarn classique : duplication
 
@@ -123,7 +123,7 @@ RÈGLE : toujours committer le lockfile dans Git
 
 ---
 
-## 5) ORDRES_MISSION ESSENTIELLES
+## 5) COMMANDES ESSENTIELLES
 
 ```bash
 # installer toutes les dépendances du projet (depuis package.json)
@@ -150,7 +150,7 @@ npm audit
 npm audit fix  # corrige automatiquement ce qui peut l'être
 ```
 
-Les ordres_mission Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).
+Les commandes Yarn et pnpm suivent la même logique avec des noms similaires (`yarn add`, `pnpm add`, etc.).
 
 ---
 

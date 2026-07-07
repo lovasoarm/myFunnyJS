@@ -67,7 +67,7 @@ let secondes = 0
 const ticker = setInterval(() => {
  secondes++
  console.log(`${secondes}ème minute - en cours`)
- 
+
  if (secondes >= 90) {
   clearInterval(ticker)
   console.log("Fin du match")
@@ -84,17 +84,17 @@ Pour un interval précis avec des opérations async : pattern `setTimeout` récu
 // Pattern correct pour interval précis avec async
 async function tickerFiable(duree) {
  let secondes = 0
- 
+
  const tick = async () => {
   secondes++
   await recupererStatsLive() // opération async variable
   console.log(`minute ${secondes}`)
-  
+
   if (secondes < 90) {
    setTimeout(tick, duree) // planifie le prochain tick après avoir fini
   }
  }
- 
+
  setTimeout(tick, duree) // premier tick
 }
 ```
@@ -110,10 +110,10 @@ C'est une macrotask spéciale : synchronisée avec le refresh screen (60fps = to
 // Animation fluide du pourcentage de possession
 function animerPossession(cible, actuel = 0) {
  if (actuel >= cible) return
- 
+
  const prochain = Math.min(actuel + 1, cible)
  document.getElementById("possession").textContent = `${prochain}%`
- 
+
  // planifie la prochaine frame : pas de setTimeout, pas de setInterval
  requestAnimationFrame(() => animerPossession(cible, prochain))
 }
@@ -154,17 +154,17 @@ La solution : couper le travail en chunks avec setTimeout.
 // BIEN : céder l'event loop régulièrement
 async function analyserMenacesAsync(zombies) {
  let score = 0
- 
+
  for (let i = 0; i < zombies.length; i++) {
   score += calculerMenace(zombies[i])
-  
+
   // toutes les 100 unités, on cède l'event loop
   if (i % 100 === 0) {
    await new Promise(resolve => setTimeout(resolve, 0))
    // l'event loop peut traiter d'autres macrotasks/microtasks ici
   }
  }
- 
+
  return score
 }
 ```
@@ -200,7 +200,7 @@ RÉSULTAT : B --> D --> A --> C
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LA SIMULATION DE MATCH
 
@@ -211,13 +211,13 @@ Explique pourquoi et corrige sans utiliser `async/await`.
 ```js
 function simulerMatch() {
  setTimeout(() => console.log("But de Messi ! (35e minute)"), 100)
- 
+
  Promise.resolve().then(() => console.log("Carton jaune (30e minute)"))
- 
+
  setTimeout(() => console.log("Coup d'envoi (0e minute)"), 0)
- 
+
  console.log("Les équipes entrent sur le terrain")
- 
+
  Promise.resolve().then(() => console.log("Coin droit (25e minute)"))
 }
 
@@ -275,7 +275,7 @@ async function compterZombiesAsync(liste) {
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Les macrotasks (setTimeout, setInterval, rAF, I/O) ont la basse priorité : elles passent après les microtasks.
 L'event loop prend UNE macrotask par tour, puis vide toute la microtask queue, puis revient.

@@ -1,3 +1,7 @@
+---
+stability: stable
+---
+
 # verification_pack : le filet déterministe
 
 ## Objectif

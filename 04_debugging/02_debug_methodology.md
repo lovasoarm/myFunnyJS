@@ -1,5 +1,8 @@
 # DEBUG METHODOLOGY : QUATRE ÉTAPES, ZÉRO HASARD
 
+Temps de lecture ~8 min
+
+
 Tu as un bug. Tu ne sais pas où. Tu ne sais pas pourquoi.
 Premier réflexe : changer des trucs au hasard et voir si ça passe.
 Mauvais réflexe. Tu vas en créer trois autres.

@@ -228,7 +228,7 @@ function mettreAJourCarteJoueurs(joueurs) {
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LIRE UN FLAMEGRAPH TEXTUEL
 
@@ -309,7 +309,7 @@ Compare les résultats. Sur 5000 events, la différence doit être nette.
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Le flamegraph se lit de bas en haut : la barre la plus large en haut est le coupable.
 Les couleurs révèlent le type de travail : jaune (JS), violet (layout), vert (paint).

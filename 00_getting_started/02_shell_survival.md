@@ -1,7 +1,7 @@
 # 02 : Shell : survie en territoire hostile
 Temps de lecture ~5 min
 
-Ton terminal, c'est ton katana. Pas d'IDE qui te tient la main. Dix ordres_mission, tu survis à 90% des situations.
+Ton terminal, c'est ton katana. Pas d'IDE qui te tient la main. Dix commandes, tu survis à 90% des situations.
 
 ## Le kit minimum
 
@@ -41,7 +41,7 @@ cmd 2> err.log   # rediriger les erreurs
 
 ## Mission
 
-1. Crée `/tmp/mission/{a,b,c}`. 
+1. Crée `/tmp/mission/{a,b,c}`.
 2. Trouve tous les `.md` dans le repo MyFunnyJS qui contiennent le mot "closure".
 3. Compte-les. Sans utiliser d'IDE.
 

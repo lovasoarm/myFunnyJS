@@ -192,7 +192,7 @@ Si tu oublies ce check une fois en prod, t'as un crash silencieux sur un cas lim
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le validateur de codes ninja
 Un code ninja est valide si :
@@ -230,7 +230,7 @@ Tu reçois une chaîne qui représente une setlist de concert (trapsoul). Format
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Une regex est une description de pattern, pas de la magie noire.
 

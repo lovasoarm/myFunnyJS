@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE : WEB CONCEPTS
+## GRIMOIRE : WEB CONCEPTS
 
 Tout ce qu'un ingé web doit avoir dans le crâne, pas juste dans les doigts. Ce grimoire couvre HTTP, le pipeline de rendu, l'état, le cache, l'auth, la sérialisation, et le rendering (SSR/SSG/CSR/ISR). Si un terme te paraît flou ici, retourne à la leçon correspondante : ce tableau résume, il ne remplace pas.
 
@@ -38,7 +38,7 @@ Tout ce qu'un ingé web doit avoir dans le crâne, pas juste dans les doigts. Ce
 | Sérialisation | Transformer une structure en mémoire en format transportable (texte ou binaire) | `JSON.stringify({ ninja: 'Sasuke' })` | empaqueter un jutsu en parchemin transportable pour l'envoyer à un autre village / coucher la recette de Walter sur papier pour qu'elle survive au transport |
 | Désérialisation | L'opération inverse : reconstruire la structure depuis le format transporté | `JSON.parse('{"ninja":"Sasuke"}')` | déplier le parchemin reçu et reconstituer le jutsu prêt à l'emploi / relire la recette de Walter et refaire exactement le même jutsu |
 | Protobuf | Format binaire compact pour sérialiser, plus rapide et plus léger que JSON | `Message.encode(data).finish()` | un message codé compressé entre Chevaliers de Garo, plus rapide qu'un long rapport écrit en clair / une passe courte et précise au foot plutôt qu'un long centre lent |
-| SSR (rendu côté serveur) | Le serveur génère le HTML complet à chaque requête | `res.send(renderToString(<App />))` | le QG qui prépare un rapport de mission complet avant de l'envoyer au ninja, à chaque demande / la cuisine de Walter qui refait un plat frais à chaque ordre_mission |
+| SSR (rendu côté serveur) | Le serveur génère le HTML complet à chaque requête | `res.send(renderToString(<App />))` | le QG qui prépare un rapport de mission complet avant de l'envoyer au ninja, à chaque demande / la cuisine de Walter qui refait un plat frais à chaque service |
 | SSG (génération statique) | Le HTML est généré une fois au build, servi tel quel ensuite | `fs.writeFileSync('page.html', html)` (au build) | un parchemin de jutsu déjà gravé une fois pour toutes, distribué tel quel à tous les ninjas / les CD de Trapsoul Radio déjà pressés, prêts à être vendus sans repasser en studio |
 | CSR (rendu côté client) | Le navigateur reçoit un squelette vide et construit la page via JS | `root.innerHTML = renderApp()` | un kit de jutsu à assembler soi-même une fois reçu, rien n'est prêt à l'arrivée / un meuble en kit livré à plat, à monter chez soi avant de pouvoir s'en servir |
 | ISR (régénération incrémentale) | Statique qui se régénère automatiquement après un délai défini | `revalidate: 60` | le tableau des stats d'un joueur mis à jour automatiquement après chaque match, pas en continu seconde par seconde / le rapport de patrouille de Garo refait toutes les heures, pas à chaque pas |

@@ -1,3 +1,7 @@
+---
+stability: stable
+---
+
 # Drill jeune d'IA : proof-of-work objectif
 
 Ce dossier transforme la discipline "je code sans IA pendant N minutes"

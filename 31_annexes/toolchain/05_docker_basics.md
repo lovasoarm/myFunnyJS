@@ -24,7 +24,7 @@ isolation totale           isolation au niveau processus
   +-- [Container 1] -- ton app Node, isolée
   +-- [Container 2] -- une base de données, isolée
   +-- [Container 3] -- un cache Redis, isolé
-  
+
   (tous partagent le même kernel, mais chacun voit son propre filesystem,
    ses propres processus, son propre réseau)
 ```
@@ -56,7 +56,7 @@ COPY . .
 # Le port que l'app écoute à l'intérieur du container
 EXPOSE 3000
 
-# La ordre_mission qui démarre l'app quand le container se lance
+# La commande qui démarre l'app quand le container se lance
 CMD ["node", "src/index.js"]
 ```
 
@@ -150,7 +150,7 @@ volumes:
 ```
 
 ```js
-// Une seule ordre_mission lance TOUT le camp en même temps :
+// Une seule commande lance TOUT le camp en même temps :
 // docker compose up
 //
 // app et db démarrent, dans le même réseau virtuel Docker,

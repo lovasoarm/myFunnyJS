@@ -147,7 +147,7 @@ Si c'est juste "une fonction qu'on passe une fois" : une callback suffit, pas be
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : le sélecteur de jutsu de Naruto
 
@@ -169,7 +169,7 @@ Un attaquant de foot a 3 styles de tir : `puissance`, `precision`, `lob`.
 
 Crée un objet `tireurs` avec ces 3 stratégies, chacune retournant une probabilité de but entre 0 et 1 selon la distance du but (`distance` en mètres, passé en paramètre).
 
-Règle métier : 
+Règle métier :
 - `puissance` est meilleure de près (moins de 10m)
 - `precision` est stable peu importe la distance
 - `lob` est meilleure de loin (plus de 20m), nulle de près
@@ -189,7 +189,7 @@ const strategies = {
 }
 
 function attack(power, key) {
- return strategies[key](power)
+ return strategies**key**
 }
 
 console.log(attack(100, "rapide")) // ok
@@ -202,7 +202,7 @@ Ensuite, corrige `strategies.lente` pour qu'elle respecte le même contrat que l
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Strategy, c'est déléguer le "comment" à une fonction interchangeable, et garder le "qui appelle" complètement ignorant des détails. Le vrai gain c'est l'ajout sans modification : une nouvelle technique, un nouveau tri, un nouveau calcul, ça rentre sans toucher au code qui orchestre. Le vrai danger c'est le contrat silencieux : si une stratégie ne respecte pas la même signature que les autres, tout pète en douceur, sans erreur visible.
 

@@ -128,12 +128,12 @@ La vulnérabilité #1 du classement OWASP. Le shinobi accède à des ressources 
 
 ```js
 // IDOR (Insecure Direct Object Reference : référence directe à un objet non sécurisée)
-// Le shinobi accède à /api/orders/123 et peut changer le 123 pour voir les ordres_mission d'autres
+// Le shinobi accède à /api/orders/123 et peut changer le 123 pour voir les commandes d'autres
 
 // Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon shinobi
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  const order = await db.query('SELECT * FROM orders WHERE id = $1', [req.params.orderId]);
- res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle ordre_mission
+ res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle commande
 });
 
 // Bon : toujours vérifier que la ressource appartient au shinobi connecté
@@ -337,7 +337,7 @@ INPUTS :
 [ ] DOMPurify ou textContent pour tout affichage de données shinobi
 [ ] Validation stricte de tous les inputs (Zod, Joi, ou équivalent)
 [ ] Blocage de __proto__ / constructor dans les merges
-[ ] Pas de ordres_mission shell avec des inputs shinobis
+[ ] Pas de commandes shell avec des inputs shinobis
 
 AUTH :
 [ ] Bcrypt avec cost >= 12 pour les mots de passe

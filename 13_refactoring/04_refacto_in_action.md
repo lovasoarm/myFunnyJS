@@ -169,7 +169,7 @@ Sans tests, ce genre de faute de frappe passe en prod. Avec un test `canEnterArm
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : fige le comportement
 Voici une fonction du Ballon d'Or :
@@ -209,7 +209,7 @@ Mission : identifie les 2 différences de comportement entre les deux versions, 
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 Refactorer sans tests, c'est marcher sur une corde raide sans filet : ça peut marcher, mais le jour où ça tombe, ça fait mal. La méthode : figer le comportement avec des tests, avancer par petites transformations, vérifier les tests à chaque étape. Le code change de forme, jamais de sens. Si le sens change sans que tu l'aies décidé : c'est un bug, pas un refacto.
 
 ---

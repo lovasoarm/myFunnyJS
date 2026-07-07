@@ -1,5 +1,8 @@
 # EXO LECTURE : 15 minutes
 
+Temps de lecture ~2 min
+
+
 Competence : lire du code reel que tu n'as pas ecrit et le comprendre AVANT de
 le modifier. C'est 80% du metier. Applique le protocole
 `31_annexes/00_cartographier_codebase_inconnue.md` en version zoom.

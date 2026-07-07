@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 [PORTFOLIO]
 
 # 11 : SCHEDULER (obligatoire, pas optionnel)

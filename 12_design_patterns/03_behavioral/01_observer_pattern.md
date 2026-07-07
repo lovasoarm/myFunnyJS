@@ -254,7 +254,7 @@ emitter.emit("event")
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE CONSEIL DE SURVEILLANCE DE GARO
 
@@ -320,7 +320,7 @@ bus.emit("goal", { scorer: "Messi" })
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 Observer découple le Publisher de ses Subscribers : la source n'a pas besoin de connaître les réactions.
 L'implémentation JS de base : `Map<event, callback[]>` + méthodes `on/off/emit`.

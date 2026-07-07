@@ -19,7 +19,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.
 
-# TOOLS GRIMOIRE
+## TOOLS GRIMOIRE
 
 L'établi complet. Les 4 gadgets maison construits dans ce module, leur rôle exact, et quand piocher lequel. Pas un résumé : la référence complète que tu rouvres à chaque mini-projet.
 
@@ -38,8 +38,8 @@ L'établi complet. Les 4 gadgets maison construits dans ce module, leur rôle ex
 | Inspecteur d'état | Affiche un snapshot figé et complet d'une donnée à un instant précis, sans casser le flux du code | `inspecter("avant rotation", etat)` | l'arrêt sur image dans Walking Dead avant une décision critique / le screenshot de l'état du camp à T=0, pas une description de mémoire 3 heures plus tard |
 | structuredClone | Fonction native qui fait une copie profonde d'un objet, indépendante de l'original | `const snapshot = structuredClone(donnees)` | le clone de Naruto qui garde une copie exacte du moment où il a été créé / le plan tatoué sur Michael, figé à l'instant de l'impression |
 | Traceur | Enregistre une suite d'étapes d'exécution avec timestamp et données, pour reconstituer un chemin complet | `creerTraceur()` puis `tracer(nom, donnees)` | le replay que Kakashi fait mentalement après un combat pour comprendre ce qui s'est passé / le journal de vol de l'armure Garo : chaque étape du combat, dans l'ordre |
-| Scaffolder | Génère automatiquement une structure de fichiers et dossiers répétitive, pour éliminer l'erreur manuelle | `genererMiniProjet("10_nouveau_projet")` | l'armure Garo qui se forge toujours identique selon le même protocole / le plan de Michael tatoué une fois, reproductible à la ordre_mission |
-| process.argv | Tableau contenant les arguments passés en ligne de ordre_mission à un script Node | `process.argv[2]` = premier argument réel | la liste des instructions données à l'entrée d'un guichet / les ingrédients passés à une recette via la ordre_mission |
+| Scaffolder | Génère automatiquement une structure de fichiers et dossiers répétitive, pour éliminer l'erreur manuelle | `genererMiniProjet("10_nouveau_projet")` | l'armure Garo qui se forge toujours identique selon le même protocole / le plan de Michael tatoué une fois, reproductible à la commande |
+| process.argv | Tableau contenant les arguments passés en ligne de commande à un script Node | `process.argv[2]` = premier argument réel | la liste des instructions données à l'entrée d'un guichet / les ingrédients passés à une recette via la commande |
 | Code de sortie (exit code) | Valeur numérique qu'un script renvoie au shell pour signaler succès (0) ou échec (autre) | `process.exit(1)` | un pouce levé ou baissé à la fin d'une mission / un voyant vert ou rouge sur un tableau de bord |
 
 ---

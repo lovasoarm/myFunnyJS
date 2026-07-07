@@ -1,5 +1,8 @@
 # LIRE UNE STACK TRACE : LA CARTE QUI TE DIT OÙ LE CODE A EXPLOSÉ
 
+Temps de lecture ~6 min
+
+
 Tu vois du rouge dans ta console. Dix lignes. Peut-être vingt.
 Premier réflexe de 90% des devs : copier-coller sur Google sans lire.
 

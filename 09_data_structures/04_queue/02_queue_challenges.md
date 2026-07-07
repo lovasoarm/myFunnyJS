@@ -366,7 +366,7 @@ C'est le coeur de `p-limit`, `bottleneck`, `async-pool` : une queue + un compteu
 
 ---
 
-# EXERCICES
+## EXERCICES
 
 ## EXO 1 : LE SYSTÈME DE MISSIONS DE L'ESCOUADE
 _~15 min_
@@ -421,7 +421,7 @@ Structure d'un event : `{ minute: 45, type: "but", joueur: "Mbappé", equipe: "P
 
 ---
 
-# RÉSUMÉ
+## RÉSUMÉ
 
 La queue n'est pas juste une structure : c'est un mécanisme d'ordonnancement.
 BFS utilise une queue pour garantir l'ordre par niveau : c'est pour ça qu'il trouve le chemin le plus court.

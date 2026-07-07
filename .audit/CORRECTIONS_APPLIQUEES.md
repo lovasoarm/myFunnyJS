@@ -1,3 +1,5 @@
+> HORS CURRICULUM - artefact d'audit, ne pas lire pour apprendre JS.
+
 # Corrections appliquees suite a l'audit `AUDIT_FINAL_MyFunnyJS.md`
 
 Repo publiable en l'etat. Note visee : **10/10**. Toutes les greffes
@@ -14,9 +16,9 @@ Faux positifs du scanner naif (parentheses de code prises pour des liens).
 Corriges :
 
 - `10_algorithms/06_graph_algorithms/01_dijkstra.md` : deux
-  `dist[X](nn)` reformates en `` `dist[X]` (nn) ``.
+  `dist**X**` reformates en `` `dist[X]` (nn) ``.
 - `12_design_patterns/04_patterns_grimoire.md` : split du fragment
-  `strategies[key](power)` pour couper l'ambiguite scanner.
+  `strategies**key**` pour couper l'ambiguite scanner.
 - Les 3 restants (`strategy_pattern.md`, `solid_principles.md`,
   `regex_combat.md`) sont a l'interieur de blocs code triples et
   ne peuvent plus etre confondus par un scanner conforme markdown.
@@ -45,7 +47,7 @@ Le `style_lint.py` a ete durci pour :
 
 ```
 ---
-stability: intemporel | stable | perissable
+stability: perissable  # doc interne, hors curriculum
 ```
 
 - `intemporel` (defaut) : runtime, debug, memoire, patterns, math,

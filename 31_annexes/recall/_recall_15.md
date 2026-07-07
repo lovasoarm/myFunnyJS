@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # _recall_15.md : modules 11-15
 Temps de lecture ~5 min
 

@@ -15,7 +15,7 @@ Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
 
 ---
 
-# GRIMOIRE DES EDGE CASES : JS QUI SE REBELLE
+## GRIMOIRE DES EDGE CASES : JS QUI SE REBELLE
 
 Le manuel de survie des comportements que JS ne documente pas assez clairement.
 Chaque terme ici correspond à un piège réel, un bug possible, ou une décision de conception du moteur.
