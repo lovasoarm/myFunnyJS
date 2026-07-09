@@ -76,6 +76,16 @@ La tendance microservices, elle, a suivi un cycle complet : adoption massive por
 
 ---
 
+## FRONTIÈRE AVEC LES MODULES VOISINS
+
+Ce module N'EST PAS `12_design_patterns` : ici on organise un système entier (modules, couches, communication entre composants, frontières de contexte). Là-bas, on résout un problème récurrent à l'échelle d'une classe ou d'un petit groupe de classes.
+Exemple : décider MVC vs Clean Architecture pour tout le back = architecture pattern. Choisir un Adapter pour brancher une librairie externe sur ton interface = design pattern.
+
+Ce module N'EST PAS `13_refactoring` : ici on prend des décisions structurantes qui engagent tout le code à venir, pas seulement du code déjà écrit. Là-bas, on améliore un code existant sans changer son comportement.
+Exemple : découper un monolithe en 3 services autour de bounded contexts = décision d'architecture. Extraire la validation d'un contrôleur dans une couche à part sans casser les tests = refactoring.
+
+---
+
 ## 6) NOYAU DUR DU MÉTIER ?
 
 Oui, explicitement : "15 + 20, Architecture + API Craft : sans ça, t'es junior à vie". Le module a un prérequis combiné fort : `12_design_patterns` + `13_refactoring`. Tu ne peux pas construire une architecture solide sans déjà savoir reconnaître les patterns de structure et sans savoir nettoyer du code qui dérive.

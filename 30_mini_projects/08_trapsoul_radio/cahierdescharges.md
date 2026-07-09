@@ -374,7 +374,7 @@ servant de référence). Toute nouvelle locale doit satisfaire ce type.
 
 Ce cahier des charges est **volontairement incomplet sur 3 points** (format de sortie exact d'un
 détail d'interface, un critère d'acceptation mesurable, un choix technique laissé implicite).
-Contrairement au *spec drift* (voir `30_mini_projects/_synthesis/spec_drift.md`) qui simule une
+Contrairement au *spec drift* (voir `30_mini_projects/synthese/spec_drift.md`) qui simule une
 spec qui **change** en cours de route, ici la spec est **floue dès le départ**, comme un vrai
 ticket de jour 1 en entreprise.
 

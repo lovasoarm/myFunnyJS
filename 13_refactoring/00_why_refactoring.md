@@ -57,6 +57,16 @@ Les outils ont aussi évolué : les IDE modernes proposent des refactorings auto
 
 ---
 
+## FRONTIÈRE AVEC LES MODULES VOISINS
+
+Ce module N'EST PAS `12_design_patterns` : ici on améliore du code qui existe déjà et qui a dérivé, sans changer son comportement extérieur. Là-bas, on choisit une structure au moment de concevoir un nouveau bout de code.
+Exemple : renommer 15 variables mal nommées pour rendre une fonction lisible = refactoring. Décider d'utiliser un Strategy dès la première écriture pour rendre l'algo interchangeable = design pattern.
+
+Ce module N'EST PAS `16_architecture_patterns` : ici on améliore du code à l'échelle d'une classe, d'une fonction, d'un fichier. Là-bas, on redessine l'organisation d'un système entier.
+Exemple : casser un god object en 4 classes plus petites via SOLID = refactoring. Déplacer la logique métier d'un contrôleur vers une couche domain isolée du framework = décision d'architecture.
+
+---
+
 ## 6) NOYAU DUR DU MÉTIER ?
 
 Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". `16_architecture_patterns` dépend directement de `12_design_patterns` ET de `13_refactoring` combinés. Tu ne peux pas construire une architecture clean sans savoir identifier et corriger les smells qui s'accumulent dans un système qui grandit.

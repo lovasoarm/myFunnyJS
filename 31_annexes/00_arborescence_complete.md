@@ -726,7 +726,7 @@ START_HERE.md
     src/
       .gitkeep
     tests/
-  _synthesis/
+  synthese/
     README.md
     chaos_day.md
     portfolio.md
@@ -790,12 +790,6 @@ START_HERE.md
     pool_bugs/
       CANDIDATS.md
       CHAOS_INSTRUCTIONS.md
-  typescript_advanced/
-    00_why_typescript_advanced.md
-    01_declaration_files.md
-    02_ts_compiler_config.md
-    03_ts_migration_guide.md
-    04_ts_advanced_grimoire.md
 32_tools/
   00_prereq_check.md
   00_why_tools.md

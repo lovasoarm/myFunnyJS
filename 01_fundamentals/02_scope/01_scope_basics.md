@@ -10,14 +10,14 @@ Temps de lecture ~7 min
 Elle est déclarée dehors, elle vit partout. Toutes les fonctions peuvent la voir.
 
 ```js
-let hero = "Link";
+let hero = "Naruto";
 
 function adventure() {
- console.log(hero); // "Link" : accessible depuis la fonction
+ console.log(hero); // "Naruto" : accessible depuis la fonction
 }
 
 adventure();
-console.log(hero); // "Link" : accessible dehors aussi
+console.log(hero); // "Naruto" : accessible dehors aussi
 ```
 
 > Trop de globales = n'importe qui peut modifier n'importe quoi. C'est le chaos de la colocation où tout le monde touche à tout.
@@ -102,7 +102,7 @@ Avec scope control : chaque variable vit exactement là où elle doit vivre. Pas
 
 ### Instructions
 
-1. Déclare une variable globale `hero = "Link"`
+1. Déclare une variable globale `hero = "Naruto"`
 2. Crée une fonction `adventure()` avec une variable locale `weapon = "Sword"`
 3. Dans la fonction : affiche `hero` et `weapon`
 4. Hors de la fonction : essaie d'afficher `weapon` → observe l'erreur
@@ -112,7 +112,7 @@ Avec scope control : chaque variable vit exactement là où elle doit vivre. Pas
 ### Code de départ
 
 ```js
-let hero = "Link";
+let hero = "Naruto";
 
 function adventure() {
  let weapon = "Sword";
@@ -126,7 +126,7 @@ adventure();
 ### Résultat attendu
 
 ```
-Dans la fonction : Link Sword
+Dans la fonction : Naruto Sword
 ReferenceError: weapon is not defined  <-- hors fonction
 ReferenceError: potion is not defined  <-- hors bloc
 ```

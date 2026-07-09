@@ -148,15 +148,15 @@ const betaTeam = makeTeam();
 
 ```
 // alphaTeam
-Équipe : ["Link"]
-Équipe : ["Link", "Zelda"]
+Équipe : ["Naruto"]
+Équipe : ["Naruto", "Sakura"]
 
 // betaTeam
-Équipe : ["Mario"]
-Équipe : ["Mario", "Luigi"]
+Équipe : ["Sasuke"]
+Équipe : ["Sasuke", "Kakashi"]
 
 // alphaTeam non contaminée
-alphaTeam toujours : ["Link", "Zelda"]
+alphaTeam toujours : ["Naruto", "Sakura"]
 
 // boucle var
 i vaut : 4

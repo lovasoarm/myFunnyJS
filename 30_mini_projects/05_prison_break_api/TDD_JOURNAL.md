@@ -9,7 +9,7 @@ Ce journal trace l'ordre réel dans lequel les tests ont été écrits. Le cahie
 
 ---
 
-## ÉTAPE 1 : `authService.js` : JWT sign et verify
+## ÉTAPE 1 : `evasionService.js` : JWT sign et verify
 
 Avant de toucher Express, le service d'auth est testé isolément.
 
@@ -85,18 +85,18 @@ test('reset automatique après 15 minutes', () => {
 ## ÉTAPE 4 : Routes auth avec supertest
 
 ```js
-test('POST /auth/login retourne un JWT valide avec les bons credentials', async () => {
+test('POST /evasion/badge retourne un JWT valide avec les bons credentials', async () => {
  const res = await request(app)
-  .post('/auth/login')
+  .post('/evasion/badge')
   .send({ code: 'scofield-83712', pin: 'S0a0r0i3' });
 
  expect(res.status).toBe(200);
  expect(res.body.token).toBeDefined();
 });
 
-test('POST /auth/login retourne 401 avec des credentials incorrects', async () => {
+test('POST /evasion/badge retourne 401 avec des credentials incorrects', async () => {
  const res = await request(app)
-  .post('/auth/login')
+  .post('/evasion/badge')
   .send({ code: 'tbag', pin: 'mauvais' });
 
  expect(res.status).toBe(401);
@@ -133,7 +133,7 @@ test('GET /plan/phase/2 retourne 403 si role inmate mais phase admin-only', asyn
 
 ```
 1. AuthError + NotFoundError (erreurs custom d'abord)
-2. authService.js (JWT sign/verify sans Express)
+2. evasionService.js (JWT sign/verify sans Express)
 3. sanitizer.js (isolation totale)
 4. rateLimiter.js (avec jest fake timers)
 5. Routes auth (supertest)

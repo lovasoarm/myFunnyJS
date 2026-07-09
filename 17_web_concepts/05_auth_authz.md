@@ -31,24 +31,24 @@ En web, les deux patterns les plus courants :
 **Session-based (sessions) :** le serveur crée une session et donne un identifiant (cookie) au client.
 
 ```
-Client --POST /login {email, password}--> Serveur
-Serveur vérifie les credentials (identifiants)
-Serveur crée une session en base : { sessionId: "xyz", userId: 42, expiresAt: ... }
+Client --POST /fox-river/entree {matricule, code_acces}--> Serveur
+Serveur vérifie les credentials (matricule + code d'accès)
+Serveur crée une session en base : { sessionId: "xyz", matricule: 94941, expiresAt: ... }
 Serveur --Set-Cookie: sessionId=xyz; HttpOnly; Secure--> Client
 
-Client --GET /profile + Cookie: sessionId=xyz--> Serveur
-Serveur vérifie la session en base, retourne les données du user
+Client --GET /dossier + Cookie: sessionId=xyz--> Serveur
+Serveur vérifie la session en base, retourne les données du prisonnier
 ```
 
 **JWT-based (JSON Web Token) :** le serveur génère un token signé, le client le stocke et l'envoie.
 
 ```
-Client --POST /login {email, password}--> Serveur
-Serveur vérifie les credentials
+Client --POST /fox-river/entree {matricule, code_acces}--> Serveur
+Serveur vérifie le couple matricule + code_acces
 Serveur génère un JWT signé avec sa clé secrète
 Serveur --200 OK {token: "eyJ..."}--> Client
 
-Client --GET /profile + Authorization: Bearer eyJ...--> Serveur
+Client --GET /dossier + Authorization: Bearer eyJ...--> Serveur
 Serveur vérifie la signature du JWT (pas besoin de DB)
 Serveur retourne les données si la signature est valide
 ```
@@ -136,11 +136,11 @@ Un access token court (15min) + refresh token long (7j) : le meilleur compromis 
 Client se connecte --> reçoit { accessToken (15min), refreshToken (7j) }
 
 Requête normale :
-Client --> GET /api/data + Authorization: Bearer accessToken --> Serveur --> 200 OK
+Client --> GET /api/dossier + Authorization: Bearer accessToken --> Serveur --> 200 OK
 
 Access token expiré :
-Client --> GET /api/data + Authorization: Bearer accessToken --> Serveur --> 401 TOKEN_EXPIRED
-Client --> POST /auth/refresh + { refreshToken } --> Serveur
+Client --> GET /api/dossier + Authorization: Bearer accessToken --> Serveur --> 401 TOKEN_EXPIRED
+Client --> POST /fox-river/renouveler-badge + { refreshToken } --> Serveur
 Serveur vérifie le refresh token en DB (les refresh tokens sont stockés en DB)
 Serveur --> { new accessToken, new refreshToken } --> Client
 Client re-tente la requête originale avec le nouvel access token

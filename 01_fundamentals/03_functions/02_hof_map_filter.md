@@ -20,7 +20,7 @@ function processUser(user, fn) {
  console.log(fn(user));
 }
 
-processUser("Link", greet); // Hello Link
+processUser("Naruto", greet); // Hello Naruto
 ```
 
 Ici :

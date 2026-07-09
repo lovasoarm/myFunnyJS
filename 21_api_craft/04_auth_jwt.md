@@ -12,7 +12,7 @@ Ce fichier couvre tout le cycle. Pas juste le happy path, aussi ce qui foire.
 JWT (JSON Web Token) = trois parties encodées en base64, séparées par des points.
 
 ```
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwicGxheWVyIjoiTWJhcHDDqSJ9.abc123xyz
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwibmluamph.aXpfaWQiOiJuYXJ1dG8ifQ.abc123xyz
    ^             ^                   ^
  HEADER           PAYLOAD               SIGNATURE
 ```
@@ -25,8 +25,8 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwicGxheWVyIjoiTWJhcHDDqSJ9.abc123xyz
 // ce que contient un payload décodé
 {
  sub: "7",          // subject : l'id du utilisateur
- name: "Michael Scofield",
- role: "admin",
+ ninja_id: "naruto-konoha",
+ role: "hokage",
  iat: 1710000000,      // issued at : timestamp de création
  exp: 1710003600       // expiration : iat + 1h
 }
@@ -72,19 +72,19 @@ compare avec la signature reçue
 ```
 CLIENT                  SERVER
  |                     |
- | POST /auth/login { email, password }  |
+ | POST /clan/entree { ninja_id, sceau_secret }  |
  |----------------------------------------> |
  |                     | vérifie email + bcrypt(password)
  | { accessToken, refreshToken }      | génère les deux tokens
  |<---------------------------------------- |
  |                     |
- | GET /players (Authorization: Bearer accessToken)
+ | GET /ninjas (Authorization: Bearer accessToken)
  |----------------------------------------> |
  |                     | vérifie signature + expiration
- | { players: [...] }           |
+ | { ninjas: [...] }           |
  |<---------------------------------------- |
  |                     |
- | POST /auth/refresh { refreshToken }   | accessToken expiré
+ | POST /clan/renouveler-sceau { refreshToken } | accessToken expiré
  |----------------------------------------> |
  |                     | vérifie refreshToken
  | { accessToken (nouveau) }        | génère un nouveau accessToken
@@ -135,33 +135,33 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 const router = Router()
 
 // simuler une base d'utilisateurs (en prod : table users en DB)
-const users = [
+const ninjas = [
  {
   id: 7,
-  email: 'scofield@foxriver.com',
-  // hash bcrypt de "breakout" : jamais le mot de passe en clair
+  ninja_id: 'naruto-konoha',
+  // hash bcrypt du sceau_secret "rasengan" : jamais le sceau en clair
   passwordHash: '$2b$10$...'
  }
 ]
 
-// POST /auth/login
-router.post('/login', asyncHandler(async (req, res) => {
- const { email, password } = req.body
+// POST /clan/entree
+router.post('/entree', asyncHandler(async (req, res) => {
+ const { ninja_id, sceau_secret } = req.body
 
- const user = users.find(u => u.email === email)
+ const user = ninjas.find(u => u.ninja_id === ninja_id)
 
  // toujours utiliser bcrypt.compare, jamais comparer les hashs directement
  // timing-safe : même durée si l'user existe ou non (anti-timing attack)
- const valid = user && await bcrypt.compare(password, user.passwordHash)
+ const valid = user && await bcrypt.compare(sceau_secret, user.passwordHash)
 
  if (!valid) {
   // 401 et pas 404 : on ne révèle pas si l'email existe
   return res.status(401).json({
-   error: { code: 'INVALID_CREDENTIALS', message: 'email ou mot de passe incorrect' }
+   error: { code: 'INVALID_CREDENTIALS', message: 'ninja_id ou sceau_secret incorrect' }
   })
  }
 
- const payload = { sub: String(user.id), email: user.email }
+ const payload = { sub: String(user.id), ninja_id: user.ninja_id }
 
  const accessToken = signAccessToken(payload)
  const refreshToken = signRefreshToken(payload)
@@ -179,8 +179,8 @@ router.post('/login', asyncHandler(async (req, res) => {
  res.json({ accessToken })
 }))
 
-// POST /auth/refresh
-router.post('/refresh', asyncHandler(async (req, res) => {
+// POST /clan/renouveler-sceau
+router.post('/renouveler-sceau', asyncHandler(async (req, res) => {
  const refreshToken = req.cookies.refreshToken
 
  if (!refreshToken) {
@@ -189,7 +189,7 @@ router.post('/refresh', asyncHandler(async (req, res) => {
 
  try {
   const payload = verifyRefreshToken(refreshToken)
-  const newAccessToken = signAccessToken({ sub: payload.sub, email: payload.email })
+  const newAccessToken = signAccessToken({ sub: payload.sub, ninja_id: payload.ninja_id })
   res.json({ accessToken: newAccessToken })
  } catch (err) {
   // refresh token expiré ou invalide : l'user doit se reconnecter
@@ -197,8 +197,8 @@ router.post('/refresh', asyncHandler(async (req, res) => {
  }
 }))
 
-// POST /auth/logout
-router.post('/logout', (req, res) => {
+// POST /clan/sortie
+router.post('/sortie', (req, res) => {
  // clear le cookie : le refresh token n'est plus accessible
  res.clearCookie('refreshToken')
  res.status(204).send()
@@ -226,7 +226,7 @@ export function authenticate(req, res, next) {
 
  try {
   const payload = verifyAccessToken(token)
-  req.user = payload // attache le payload au req pour les handlers suivants
+  req.ninja = payload // attache le payload au req pour les handlers suivants
   next()
  } catch (err) {
   // TokenExpiredError : le token est valide mais expiré
@@ -242,12 +242,12 @@ Usage sur les routes protégées :
 import { authenticate } from './middleware/authenticate.js'
 
 // toutes les routes /players nécessitent un token valide
-app.use('/players', authenticate, playersRouter)
+app.use('/ninjas', authenticate, ninjasRouter)
 
 // ou sur une route spécifique
 router.delete('/:id', authenticate, (req, res) => {
- // req.user est disponible ici : { sub: '7', email: '...' }
- if (req.user.role !== 'admin') {
+ // req.ninja est disponible ici : { sub: '7', ninja_id: '...' }
+ if (req.ninja.role !== 'hokage') {
   return res.status(403).json({ error: { code: 'FORBIDDEN' } })
  }
  // ...
@@ -315,6 +315,18 @@ router.get('/protected', (req, res) => {
  res.json(payload)
 })
 ```
+
+---
+
+## 5) CE QUE CE FICHIER NE COUVRE PAS (volontairement)
+
+Le flow JWT ci-dessus marche : login, access, refresh, middleware. Ça ne veut pas dire que ton API est prête pour la prod. Trois angles morts sont couverts ailleurs dans le curriculum, et tu dois les traiter avant de considérer l'auth comme finie.
+
+- **CSRF (Cross-Site Request Forgery)** : ton cookie httpOnly est envoyé automatiquement par le navigateur, y compris depuis un site attaquant. Sans protection dédiée, un formulaire malveillant peut déclencher des actions au nom de l'utilisateur connecté. --> `22_security/02_csrf_cors.md`
+- **Vol de session / token hijacking** : un access token en mémoire reste volable via XSS avancé, un refresh token peut fuiter via un backup ou un log mal filtré. Détection, rotation forcée, révocation immédiate --> `22_security/04_auth_flows.md`
+- **Rotation des secrets (`ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET`)** : un secret ne se renouvelle pas tout seul. Sans plan de rotation, un leak d'aujourd'hui compromet les tokens émis dans 6 mois. --> `22_security/04_auth_flows.md` + procédures de secrets management.
+
+Un JWT qui marche n'est pas une API sécurisée. Le "reste" est le sujet des trois pointeurs ci-dessus.
 
 ---
 

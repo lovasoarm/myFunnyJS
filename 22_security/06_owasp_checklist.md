@@ -380,7 +380,7 @@ Le code de `05_prison_break_api` a les failles suivantes à trouver et corriger 
 L'Ultras Dashboard reçoit des données de match en JSON depuis des sources tierces. Implémenter la validation complète avec Zod : typage strict, valeurs numériques dans les ranges attendus (xG entre 0 et 5, possession entre 0 et 100), blocage des propriétés inattendues. La validation doit échouer de façon explicite avec un log de sécurité.
 
 **EXO 3 : Le hardening du camp Walking Dead**
-Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur le login CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
+Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur l'entrée CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
 
 ---
 

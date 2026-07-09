@@ -33,7 +33,7 @@ Ce que tu dois voir tourner à la fin :
 $ node src/server.js
 [SERVER] Fox River API en écoute sur le port 3000
 
-$ curl -X POST http://localhost:3000/api/auth/login \
+$ curl -X POST http://localhost:3000/api/evasion/badge \
  -d '{"id": "michael_scofield", "password": "linc_is_innocent"}'
 { "token": "eyJhbGci..." }
 
@@ -61,7 +61,7 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 
 - **concevoir une API qui ne révèle pas d'information sensible dans ses erreurs** : "utilisateur non trouvé" vs "mot de passe incorrect" sont deux messages différents qui donnent des infos à un attaquant. Fox River répond toujours "identifiants invalides", jamais plus précis.
 - **protéger chaque endpoint avec le bon niveau d'authentification** : il y a des endpoints publics (la liste des sections), des endpoints authentifiés (les profils), et des endpoints avec rôle (les phases du plan d'évasion). Pas de route qui accepte n'importe qui par oubli.
-- **résister aux attaques d'injection et de force brute** : T-Bag envoie des payloads malformés, des apostrophes dans les IDs, des tokens expirés, 500 requêtes de login en une minute. Le serveur doit tenir.
+- **résister aux attaques d'injection et de force brute** : T-Bag envoie des payloads malformés, des apostrophes dans les IDs, des tokens expirés, 500 requêtes de badge en une minute. Le serveur doit tenir.
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
@@ -97,7 +97,7 @@ HTTP Request
  --> express router (src/routes/index.js)
  --> middleware: rateLimiter.js  // bloque si trop de requêtes depuis cette IP
  --> middleware: sanitizer.js   // nettoie les inputs, bloque les injections
- --> middleware: authGuard.js   // vérifie le JWT si la route est protégée
+ --> middleware: evasionGuard.js   // vérifie le JWT si la route est protégée
  --> route handler (ex: prisonersRouter.js)
     --> prisonerService.js   // logique métier
        --> db.query(...)   // requête SQLite
@@ -114,13 +114,13 @@ Chaque requête passe par les middlewares dans l'ordre. Si un middleware rejette
 src/
 ├── routes/
 │  ├── index.js
-│  ├── authRouter.js
+│  ├── evasionRouter.js
 │  ├── prisonersRouter.js
 │  ├── sectionsRouter.js
 │  └── escapePlanRouter.js
 │
 ├── middleware/
-│  ├── authGuard.js
+│  ├── evasionGuard.js
 │  ├── rateLimiter.js
 │  ├── sanitizer.js
 │  └── errorHandler.js
@@ -158,18 +158,18 @@ tests/
 **Entrée** : rien (lit `process.env.PORT`).
 **Sortie** : un serveur HTTP qui écoute.
 
-### `src/routes/authRouter.js`
-**Ce que ça fait** : `POST /api/auth/login` et `POST /api/auth/refresh`. Aucune autre route.
+### `src/routes/evasionRouter.js`
+**Ce que ça fait** : `POST /api/evasion/badge` et `POST /api/evasion/renouveler-badge`. Aucune autre route.
 **Entrée** : `{ id, password }` en body.
 **Sortie** : `{ token }` ou une erreur 401.
 
-### `src/middleware/authGuard.js`
+### `src/middleware/evasionGuard.js`
 **Ce que ça fait** : extrait et vérifie le JWT depuis le header `Authorization: Bearer ...`. Injecte le payload décodé dans `req.user`.
 **Entrée** : `req, res, next`.
 **Sortie** : appelle `next()` si valide, répond 401 sinon.
 
 ### `src/middleware/rateLimiter.js`
-**Ce que ça fait** : bloque une IP qui fait plus de N requêtes en X secondes sur un endpoint donné (ex : max 5 tentatives de login par minute par IP).
+**Ce que ça fait** : bloque une IP qui fait plus de N requêtes en X secondes sur un endpoint donné (ex : max 5 tentatives d'évasion par minute par IP).
 **Entrée** : `req, res, next`.
 **Sortie** : appelle `next()` ou répond 429 (Too Many Requests).
 
@@ -241,10 +241,10 @@ Le rateLimiter est sous-estimé systématiquement. Gérer le compteur par IP ave
 import request from 'supertest';
 import app from '../src/server.js';
 
-describe('POST /api/auth/login', () => {
+describe('POST /api/evasion/badge', () => {
  test('retourne un token valide avec les bons identifiants', async () => {
   const res = await request(app)
-   .post('/api/auth/login')
+   .post('/api/evasion/badge')
    .send({ id: 'michael_scofield', password: 'linc_is_innocent' });
 
   expect(res.status).toBe(200);
@@ -254,7 +254,7 @@ describe('POST /api/auth/login', () => {
 
  test('retourne 401 avec un message générique (pas de fuite d\'info)', async () => {
   const res = await request(app)
-   .post('/api/auth/login')
+   .post('/api/evasion/badge')
    .send({ id: 'michael_scofield', password: 'mauvais_mdp' });
 
   expect(res.status).toBe(401);
@@ -265,16 +265,16 @@ describe('POST /api/auth/login', () => {
 });
 
 // tests/security.test.js
-describe('rate limiting sur /api/auth/login', () => {
+describe('rate limiting sur /api/evasion/badge', () => {
  test('bloque après 5 tentatives échouées en moins d\'une minute', async () => {
   for (let i = 0; i < 5; i++) {
    await request(app)
-    .post('/api/auth/login')
+    .post('/api/evasion/badge')
     .send({ id: 'tbag', password: 'wrong' });
   }
 
   const blocked = await request(app)
-   .post('/api/auth/login')
+   .post('/api/evasion/badge')
    .send({ id: 'tbag', password: 'wrong' });
 
   expect(blocked.status).toBe(429);
@@ -286,7 +286,7 @@ describe('rate limiting sur /api/auth/login', () => {
 
 1. **Token expiré** : une requête avec un token expiré doit recevoir 401, pas 500.
 2. **Injection SQL dans un paramètre** : `GET /api/prisoners/1' OR '1'='1` doit retourner 400 ou une réponse vide, pas une fuite de données.
-3. **Body malformé (JSON invalide)** : `POST /api/auth/login` avec un body `"notjson"` doit retourner 400, pas planter le serveur.
+3. **Body malformé (JSON invalide)** : `POST /api/evasion/badge` avec un body `"notjson"` doit retourner 400, pas planter le serveur.
 4. **Accès à un endpoint protégé sans token** : 401, pas 403, pas 200, pas 500.
 5. **Rate limit doit se réinitialiser après la fenêtre de temps** : après 1 minute, les tentatives doivent être à nouveau acceptées.
 
@@ -319,7 +319,7 @@ Exemple rempli :
 # ADR 003 : Message d'erreur générique pour l'authentification
 
 ## Contexte
-Quand un login échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
+Quand une tentative d'évasion échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
 Retourner un message différent selon le cas aidu utilisateur légitime.
 Mais ça aide aussi l'attaquant à savoir si un ID existe dans la base.
 
@@ -336,14 +336,14 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 ## Conséquences
 - Expérience utilisateur légèrement dégradée (le formulaire de récupération de
  compte devient le seul recours).
-- Surface d'attaque réduite sur l'endpoint de login.
+- Surface d'attaque réduite sur l'endpoint d'évasion.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
 ```
 [ ] le serveur démarre sans erreur et les endpoints répondent
-[ ] login retourne un token valide et un 401 générique en cas d'échec
+[ ] /evasion/badge retourne un token valide et un 401 générique en cas d'échec
 [ ] les 5 cas limites de sécurité ont chacun un test qui passe
 [ ] aucune requête SQL n'est construite par concaténation
 [ ] le rate limiter bloque après 5 tentatives (test vérifié)
@@ -357,7 +357,7 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-Spec drift obligatoire, voir `30_mini_projects/_synthesis/spec_drift.md`
+Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 (protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 ---

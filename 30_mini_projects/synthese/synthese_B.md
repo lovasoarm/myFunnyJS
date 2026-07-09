@@ -74,3 +74,6 @@ Si ton profiling te dit O(n²) sur un truc qui devrait être O(n log n) : c'est 
 ---
 
 > **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.
+
+---
+stability: intemporel

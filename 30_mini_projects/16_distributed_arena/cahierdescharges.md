@@ -49,7 +49,7 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-Spec drift obligatoire, voir `30_mini_projects/_synthesis/spec_drift.md`
+Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 (protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 Note pour ce projet : la nature distribuée fait que le drift #4 (ordre par

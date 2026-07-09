@@ -53,7 +53,7 @@ l'ordre où tu dois les faire strictement. Recommandation :
 - `TDD_JOURNAL.md` : le journal des cycles rouge → vert → refactor.
 - `ADR/ADR-001_*.md` : au moins un ADR par projet, souvent plusieurs.
 
-Les synthèses transverses sont dans `_synthesis/` (à lire après un bloc
+Les synthèses transverses sont dans `synthese/` (à lire après un bloc
 complet de projets).
 
 ## Changement de niveau de guidage a partir du projet 11

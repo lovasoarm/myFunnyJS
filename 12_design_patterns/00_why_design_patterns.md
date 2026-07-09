@@ -61,6 +61,16 @@ La tendance actuelle privilégie aussi la composition plutôt que l'héritage po
 
 ---
 
+## FRONTIÈRE AVEC LES MODULES VOISINS
+
+Ce module N'EST PAS `13_refactoring` : ici on choisit une structure de code au moment de la concevoir (recette réutilisable pour un problème récurrent). Là-bas, on transforme du code existant qui marche déjà mais qui a mal vieilli.
+Exemple : décider d'implémenter un Observer pour découpler UI et logique = design pattern. Extraire une fonction de 200 lignes en 3 fonctions plus courtes sans changer son comportement = refactoring.
+
+Ce module N'EST PAS `16_architecture_patterns` : ici on parle de l'échelle d'une classe ou d'un petit groupe de classes. Là-bas, on parle de l'organisation macro d'un système entier (modules, couches, frontières de contexte).
+Exemple : un Factory pour créer les instances d'un objet = design pattern. Décider MVC vs Clean Architecture pour tout le back = architecture pattern.
+
+---
+
 ## 6) NOYAU DUR DU MÉTIER ?
 
 Oui, explicitement : "10 + 11, Design Patterns + Refacto : sans ça, t'es un risque pour ton équipe". Ce module dépend directement de `11_functional_js` (beaucoup de patterns s'appuient sur le traitement des fonctions comme valeurs), et il devient à son tour un prérequis de `16_architecture_patterns`.

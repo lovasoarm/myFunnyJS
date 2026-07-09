@@ -95,3 +95,6 @@ Si tu termines cette synthèse proprement : t'as plus un curriculum dans la têt
 ---
 
 > **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.
+
+---
+stability: intemporel
