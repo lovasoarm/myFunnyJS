@@ -1,1 +1,0 @@
-try{throw new Error("boom")}catch(e){process.stdout.write("caught:"+e.message);}

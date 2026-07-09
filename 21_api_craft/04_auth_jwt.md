@@ -286,12 +286,22 @@ Pour les refresh tokens (longue durée), une blacklist en Redis ou DB est souven
 
 ## EXERCICES
 
-**EXO 1 : Le pass d'accès de Fox River**
-Implémente le flow complet login/logout/refresh pour l'API Prison Break.
-Les guards ont des rôles : `"warden"`, `"guard"`, `"prisoner"`.
-Seuls les `"warden"` peuvent appeler `DELETE /prisoners/:id`.
-Les `"guard"` peuvent `GET /prisoners`.
-Les `"prisoner"` n'ont accès à rien (403 sur tout).
+**EXO 1 : Rotation d'identités à Fox River**
+
+Michael Scofield a 47 minutes pour faire passer 6 identités falsifiées à travers
+un checkpoint qui invalide tout token vu deux fois en moins de 30 s.
+Conçois la stratégie de rotation qui garantit que chaque identité passe une fois
+exactement, sans jamais réutiliser un secret dans la fenêtre d'invalidation.
+
+**Livrable : `STRATEGIE.md`** justifiant le choix de rotation :
+JWT court + refresh, PASETO, tokens à usage unique, ou hybride. Pas
+d'implémentation demandée avant que la stratégie tienne à l'écrit sous 3
+objections d'un pair.
+
+Contraintes à trancher explicitement : granularité du secret (par identité vs
+partagé), fenêtre d'invalidation côté serveur (mémoire vs Redis), et gestion
+de la perte réseau au milieu du checkpoint.
+
 
 **EXO 2 : L'armure de Léo (Garo)**
 Les chevaliers d'or ont un accès limité à 99.9 secondes.

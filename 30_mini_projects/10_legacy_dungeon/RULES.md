@@ -1,28 +1,41 @@
-# RÈGLE ABSOLUE : Legacy Dungeon
-Temps de lecture ~5 min
-
-> **Il est interdit de modifier le code avant d'avoir expliqué son fonctionnement dans `MAP.md`.**
-
-## Pourquoi
-
-Modifier avant de comprendre = tu casses ce que tu n'as pas mesuré.
-Le vrai skill legacy : **lire, cartographier, formuler des hypothèses**, puis toucher.
-
-## Livrable obligatoire avant tout commit : `MAP.md`
-
-- Point d'entrée réel du repo (fichier + ligne d'appel initial).
-- Arborescence commentée : rôle **supposé** de chaque fichier.
-- Les 6 fichiers où vit la vraie logique métier.
-- Un diagramme ASCII du flux principal (de l'entrée à la sortie).
-- 3 hypothèses sur ce qui va casser si on touche à `X`.
-- Liste honnête de ce qui reste flou.
-- 1 zone que tu **n'oses pas** encore approcher, et pourquoi.
-
-Aucun autre nom de livrable n'est valide pour ce projet : c'est `MAP.md`, un seul fichier, ce format exact.
-
-## Contrôle
-
-`git log --oneline` doit montrer `docs: MAP.md` **avant** tout `fix:` ou `refactor:`.
-
 ---
 stability: intemporel
+---
+
+# RULES : 10_legacy_dungeon
+
+Règles minimales de release. Un projet qui échoue une de ces règles est marqué
+INCOMPLET par `.tools/verification_pack/`.
+
+## ADR_MINIMUM
+
+Nombre minimum d'ADR à livrer dans `ADR/` : **3**
+Sanction : `python3 scripts/lint_adr.py` échoue et bloque `pack_release.sh`.
+
+Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
+données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
+Template canonique : `30_mini_projects/_templates/ADR_TEMPLATE.md`.
+
+## SPEC_DRIFT_MODE
+
+default: off
+activation: `SPEC_DRIFT_MODE=on`
+triggers: voir `SPEC_DRIFT_TRIGGERS.md` (obligatoire, 3 déclencheurs J+1/J+3/J+5)
+
+Si activé, `POSTMORTEM.md` doit contenir la section `## Comment j'ai encaissé le drift`.
+
+## Security Gate
+
+Bloc obligatoire (drill `.tools/verification_pack/30_mini_projects/security_gate.sh`) :
+
+- **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
+- **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.
+- **Dépendances scannées** : `npm audit` (ou équivalent), snapshot copié dans `SECURITY.md`.
+- **Surface d'exposition** : listée dans `SECURITY.md` (ports, endpoints, fichiers lus/écrits).
+
+Absence de `SECURITY.md` = release refusée.
+
+## TDD JOURNAL
+
+Section obligatoire : `## Ce qui aurait été impossible à tester si j'avais gardé la version précédente`.
+Force l'introspection sur le lien code testable / refactoring.

@@ -1,1 +1,0 @@
-const fs=require("fs");const[a,t]=fs.readFileSync(0,"utf8").trim().split("\n");const arr=a.split(",").map(Number);const target=Number(t);let lo=0,hi=arr.length-1;while(lo<=hi){const m=(lo+hi)>>1;if(arr[m]===target){process.stdout.write(String(m));process.exit(0);}if(arr[m]<target)lo=m+1;else hi=m-1;}process.stdout.write("-1");

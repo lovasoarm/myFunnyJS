@@ -164,3 +164,13 @@ test('un event invalide arrête le pipeline au premier stage', async () => {
 ```
 
 Total : 41 tests à la fin, répartis sur 4 fichiers de test TypeScript.
+
+## Ce qui aurait été impossible à tester si j'avais gardé la version précédente
+
+Section obligatoire (chantier v14 #15.5). À remplir avec au moins un exemple
+concret par refactoring notable du projet :
+
+- Version pré-refacto : ...
+- Ce qui bloquait : ...
+- Refacto appliqué : ...
+- Test devenu possible : ...

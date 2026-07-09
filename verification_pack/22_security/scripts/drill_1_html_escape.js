@@ -1,1 +1,0 @@
-const fs=require("fs");const m={"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;","'":"&#39;"};process.stdout.write(fs.readFileSync(0,"utf8").replace(/[<>&"']/g,c=>m[c]));

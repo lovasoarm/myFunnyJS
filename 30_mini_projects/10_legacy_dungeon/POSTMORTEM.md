@@ -96,3 +96,8 @@ Si tu mentionnes des données réelles (users, clients, endpoints internes), ano
 - Lien du billet de blog (si rédigé) : ...
 - Date de publication : ...
 - Peer-review reçue de : `@pseudo`
+
+## Comment j'ai encaissé le drift
+
+Section obligatoire si `SPEC_DRIFT_MODE=on` (voir `SPEC_DRIFT_TRIGGERS.md`).
+Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.

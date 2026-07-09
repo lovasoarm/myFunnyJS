@@ -1,1 +1,0 @@
-const fs=require("fs");const lines=fs.readFileSync(0,"utf8").split("\n");const i=lines.findIndex(l=>l.startsWith("ERROR"));process.stdout.write(String(i+1));

@@ -1,1 +1,0 @@
-function sign(n){if(n<0)return "neg";if(n===0)return "zero";return "pos";}process.stdout.write([sign(-1),sign(0),sign(3)].join("|"));

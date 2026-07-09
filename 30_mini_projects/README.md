@@ -59,3 +59,6 @@ complet de projets).
 ## Changement de niveau de guidage a partir du projet 11
 
 Les mini-projets 1 a 10 te donnent l'architecture attendue (fichiers dans `src/`, flux d'appel, ordre de construction). A partir du projet 11, le cahier des charges te donne l'objectif verrouille et la grille de score, mais pas l'architecture : tu la deduis toi-meme. Ce n'est pas un cahier bacle, c'est le but pedagogique de cette seconde moitie, plus d'autonomie exigee a mesure que tu progresses.
+
+
+> Note v14 : `synthese/` déplacé vers `31_annexes/synthese_mini_projects/` (méta-doc, pas un projet).

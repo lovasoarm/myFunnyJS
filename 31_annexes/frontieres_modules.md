@@ -67,3 +67,24 @@ Regle : **18 = COMMENT ca marche en JS. 12 = QUELLE intention j'exprime. 13 = CO
 
 ---
 stability: intemporel
+
+
+## MATRICE : PATTERN vs REFACTORING vs ARCHITECTURE
+
+| Geste concret                                | Module qui l'accueille          |
+| -------------------------------------------- | -------------------------------- |
+| Extraire une Strategy d'un `switch` géant    | 13_refactoring                   |
+| Reconnaître qu'un pattern Strategy existe    | 12_design_patterns               |
+| Décider d'un cœur pur + adaptateurs (hexa)   | 16_architecture_patterns         |
+| Renommer une variable pour clarifier         | 13_refactoring                   |
+| Introduire un Repository pour cacher l'ORM   | 12_design_patterns               |
+| Décider "on met un cache devant la DB"       | 16_architecture_patterns         |
+| Passer d'un callback à une promise          | 13_refactoring                   |
+| Choisir Observer vs polling                  | 12_design_patterns               |
+| Séparer read model et write model (CQRS)     | 16_architecture_patterns         |
+| Extraire une fonction pure d'un gros bloc    | 13_refactoring                   |
+
+Règle mnémonique :
+- **Pattern** = outil tactique nommé.
+- **Refactoring** = transformation locale à comportement identique.
+- **Architecture** = décision structurelle qui engage plusieurs modules.

@@ -1,1 +1,0 @@
-const fs=require("fs");const c={};for(const k of fs.readFileSync(0,"utf8").trim().split(","))c[k]=(c[k]||0)+1;const keys=Object.keys(c).sort();process.stdout.write(keys.map(k=>`${k}=${c[k]}`).join(" "));

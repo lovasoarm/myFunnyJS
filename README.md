@@ -17,7 +17,7 @@ Temps de lecture ~2 min
 
 > **AVANT TOUT** : si tu n'as jamais installé Node de ta vie, va faire [`00_getting_started/01_install.md`](00_getting_started/01_install.md) d'abord. Reviens ici après.
 
-> **`verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Considère-le comme une boîte noire fiable.
+> **`.tools/.tools/.tools/verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Considère-le comme une boîte noire fiable.
 
 ## CE QUE C'EST
 

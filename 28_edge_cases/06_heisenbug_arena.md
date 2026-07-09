@@ -434,3 +434,20 @@ Pour investiguer un heisenbug : rejouer en boucle (20-50 fois minimum) pour mesu
 
 ---
 stability: intemporel
+
+
+---
+
+**EXO 5 : LE COMPTEUR PARTAGÉ SANS VERROU (déterministe 1/1000)**
+
+Écris un compteur `incrementer(N)` qui lance N opérations `read -> +1 -> write`
+en parallèle sur un même objet `{ total: 0 }`, chacune avec un `await` de délai
+variable entre le read et le write. Objectif attendu : `total = N`.
+
+Contrainte : sans verrou, tu dois pouvoir **prouver que ça casse au moins 1 fois
+sur 1000** exécutions (drill : boucle 1000 runs, compte les runs où `total < N`,
+fail si le taux est zéro — ça voudrait dire que ton race est *masqué*, pas absent).
+
+Livrable : deux versions, `unsafe.js` (casse déterministe 1/1000) et `safe.js`
+(mutex minimal, 0 casse sur 10 000 runs). Ajoute `RACE_LAB.md` qui explique
+pourquoi le vrai bug est la *lecture périmée*, pas le délai.

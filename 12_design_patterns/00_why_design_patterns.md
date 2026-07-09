@@ -100,3 +100,12 @@ Maintenant, ouvre `01_factory_pattern.md`. Et commence à reconnaître les patte
 ---
 
 stability: intemporel
+
+
+## Frontière de ce module
+
+Ce module s'arrête aux **outils tactiques nommés (Strategy, Observer, etc.)**. Si tu vises :
+- une transformation locale à comportement identique -> `13_refactoring`
+- une décision structurelle multi-module -> `16_architecture_patterns`
+- l'usage d'un pattern nommé bien connu -> `12_design_patterns`
+- au-delà, réfléchis avant d'y aller.

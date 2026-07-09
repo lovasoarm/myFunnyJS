@@ -1,1 +1,0 @@
-const fs=require("fs");process.stdout.write(String(fs.readFileSync(0,"utf8").trim().split(",").map(Number).filter(x=>x%2===0).reduce((a,b)=>a+b,0)));

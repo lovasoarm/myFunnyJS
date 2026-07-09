@@ -1,1 +1,0 @@
-const fs=require("fs");const n=Number(fs.readFileSync(0,"utf8").trim());const compose=(...fns)=>x=>fns.reduceRight((acc,f)=>f(acc),x);const f=compose(x=>x+1,x=>x*x,x=>x*2);process.stdout.write(String(f(n)));

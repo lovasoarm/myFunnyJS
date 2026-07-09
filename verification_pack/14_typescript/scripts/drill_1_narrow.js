@@ -1,1 +1,0 @@
-const fs=require("fs");const raw=fs.readFileSync(0,"utf8").trim();const n=Number(raw);if(!Number.isFinite(n))throw new Error("nan");process.stdout.write("num:"+n);

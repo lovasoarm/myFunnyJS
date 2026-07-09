@@ -121,3 +121,12 @@ En Python (Django), le MVC devient MVT ; les couches et le découpage par domain
 ---
 
 stability: intemporel
+
+
+## Frontière de ce module
+
+Ce module s'arrête aux **décisions structurelles engageant plusieurs modules**. Si tu vises :
+- une transformation locale à comportement identique -> `13_refactoring`
+- une décision structurelle multi-module -> `16_architecture_patterns`
+- l'usage d'un pattern nommé bien connu -> `12_design_patterns`
+- au-delà, réfléchis avant d'y aller.

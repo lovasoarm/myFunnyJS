@@ -20,3 +20,8 @@ En < 20 lignes : pourquoi ce langage, quel angle mort il t'a exposé sur ta comp
 
 ---
 stability: stable
+
+## Comment j'ai encaissé le drift
+
+Section obligatoire si `SPEC_DRIFT_MODE=on` (voir `SPEC_DRIFT_TRIGGERS.md`).
+Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.

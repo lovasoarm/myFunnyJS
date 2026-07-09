@@ -1,1 +1,0 @@
-function debounce(fn,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);};}let n=0;const d=debounce(()=>{n++;},20);for(let i=0;i<10;i++)d();setTimeout(()=>{process.stdout.write(String(n));},80);

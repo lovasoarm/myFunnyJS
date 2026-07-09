@@ -31,7 +31,7 @@ Commence par [`00_getting_started/01_install.md`](00_getting_started/01_install.
 
 ## FILET DE SÉCURITÉ (pour plus tard, pas maintenant)
 
-`verification_pack/<module>/verify.sh` exécute 3 drills à sortie déterministe par module. Tu l'utiliseras quand tu douteras d'un chapitre. Pas au début.
+`.tools/.tools/.tools/verification_pack/<module>/verify.sh` exécute 3 drills à sortie déterministe par module. Tu l'utiliseras quand tu douteras d'un chapitre. Pas au début.
 
 ---
 

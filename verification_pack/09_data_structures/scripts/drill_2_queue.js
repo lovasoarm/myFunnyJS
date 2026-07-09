@@ -1,1 +1,0 @@
-const fs=require("fs");const arr=fs.readFileSync(0,"utf8").trim().split(",");const q=[];for(const x of arr)q.push(x);const out=[];while(q.length)out.push(q.shift());process.stdout.write(out.join("|"));

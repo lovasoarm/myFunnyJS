@@ -143,3 +143,13 @@ test('GET /plan/phase/2 retourne 403 si role inmate mais phase admin-only', asyn
 ```
 
 Total : 63 tests à la fin, répartis sur 4 fichiers de test.
+
+## Ce qui aurait été impossible à tester si j'avais gardé la version précédente
+
+Section obligatoire (chantier v14 #15.5). À remplir avec au moins un exemple
+concret par refactoring notable du projet :
+
+- Version pré-refacto : ...
+- Ce qui bloquait : ...
+- Refacto appliqué : ...
+- Test devenu possible : ...

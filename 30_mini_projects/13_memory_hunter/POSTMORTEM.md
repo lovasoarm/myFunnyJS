@@ -32,3 +32,8 @@ Rétrospective à froid, une fois le projet livré. Pas de langue de bois : le p
 ## (attention) CE QUE LE PROJET M'A APPRIS SUR MOI
 
 (à remplir) : où j'ai voulu tricher, sauter une étape, demander à l'IA trop tôt.
+
+## Comment j'ai encaissé le drift
+
+Section obligatoire si `SPEC_DRIFT_MODE=on` (voir `SPEC_DRIFT_TRIGGERS.md`).
+Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.

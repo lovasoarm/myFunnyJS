@@ -1,1 +1,0 @@
-const fs=require("fs");const lines=fs.readFileSync(0,"utf8").split("\n").filter(l=>l.length>0);const t=lines.map(l=>{const n=Number(l);return Number.isFinite(n)?"number":"string"});process.stdout.write(t.join("|"));

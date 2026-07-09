@@ -1,1 +1,0 @@
-const fs=require("fs");const[op,a,b]=fs.readFileSync(0,"utf8").trim().split(",");const s={add:(x,y)=>x+y,mul:(x,y)=>x*y};process.stdout.write(String(s[op](Number(a),Number(b))));

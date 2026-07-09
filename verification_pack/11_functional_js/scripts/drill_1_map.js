@@ -1,1 +1,0 @@
-const fs=require("fs");process.stdout.write(fs.readFileSync(0,"utf8").trim().split(",").map(Number).map(x=>x*x).join("|"));

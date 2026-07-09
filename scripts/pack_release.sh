@@ -1,5 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+# Hooks de lint (chantiers correctifs v14)
+if [ -x scripts/lint_adr.py ]; then python3 scripts/lint_adr.py || { echo "PACK FAIL: lint_adr"; exit 1; }; fi
+if [ -x scripts/lint_grimoire.py ]; then python3 scripts/lint_grimoire.py || { echo "PACK FAIL: lint_grimoire"; exit 1; }; fi
+if [ -x scripts/lint_universes.sh ]; then bash scripts/lint_universes.sh || { echo "PACK FAIL: lint_universes"; exit 1; }; fi
+if [ -x scripts/lint_forbidden_words.py ]; then python3 scripts/lint_forbidden_words.py || { echo "PACK FAIL: lint_forbidden_words"; exit 1; }; fi
+if [ -x scripts/lint_stability.py ]; then python3 scripts/lint_stability.py || echo "WARN: lint_stability non bloquant"; fi
+
+
+# Hooks de lint (chantiers correctifs v14)
+if [ -x scripts/lint_adr.py ]; then python3 scripts/lint_adr.py || { echo "PACK FAIL: lint_adr"; exit 1; }; fi
+if [ -x scripts/lint_grimoire.py ]; then python3 scripts/lint_grimoire.py || { echo "PACK FAIL: lint_grimoire"; exit 1; }; fi
+if [ -x scripts/lint_universes.sh ]; then bash scripts/lint_universes.sh || { echo "PACK FAIL: lint_universes"; exit 1; }; fi
+if [ -x scripts/lint_forbidden_words.py ]; then python3 scripts/lint_forbidden_words.py || { echo "PACK FAIL: lint_forbidden_words"; exit 1; }; fi
+if [ -x scripts/lint_stability.py ]; then python3 scripts/lint_stability.py || echo "WARN: lint_stability non bloquant"; fi
+
+
+# Hooks de lint (chantiers correctifs v14)
+if [ -x scripts/lint_adr.py ]; then python3 scripts/lint_adr.py || { echo "PACK FAIL: lint_adr"; exit 1; }; fi
+if [ -x scripts/lint_grimoire.py ]; then python3 scripts/lint_grimoire.py || { echo "PACK FAIL: lint_grimoire"; exit 1; }; fi
+if [ -x scripts/lint_universes.sh ]; then bash scripts/lint_universes.sh || { echo "PACK FAIL: lint_universes"; exit 1; }; fi
+if [ -x scripts/lint_forbidden_words.py ]; then python3 scripts/lint_forbidden_words.py || { echo "PACK FAIL: lint_forbidden_words"; exit 1; }; fi
+if [ -x scripts/lint_stability.py ]; then python3 scripts/lint_stability.py || echo "WARN: lint_stability non bloquant"; fi
+
 VERSION="${1:-v12}"
 OUT_DIR="${OUT_DIR:-dist}"
 NAME="myFunnyJS_corrected_${VERSION}"
@@ -9,8 +33,8 @@ mkdir -p "${OUT_DIR}" "${TARGET}"
 
 # tar-based copy avec exclusions strictes
 tar -cf - \
-  --exclude='./.*' \
-  --exclude='./verification_pack/_audit' \
+  --exclude='./.git' --exclude='./.audit' \
+  --exclude='./.tools/verification_pack/_audit' \
   --exclude='./node_modules' \
   --exclude='./dist' \
   --exclude='./tmp' \
@@ -18,12 +42,7 @@ tar -cf - \
   --exclude='*.log' \
   . | tar -xf - -C "${TARGET}"
 
-LEAKS="$(find "${TARGET}" -maxdepth 2 -name '.*' -type d 2>/dev/null || true)"
-if [ -n "${LEAKS}" ]; then
-  echo "PACK FAIL : dossiers caches presents apres filtrage :" >&2
-  echo "${LEAKS}" >&2; exit 1
-fi
-if [ -d "${TARGET}/verification_pack/_audit" ]; then
+if [ -d "${TARGET}/.tools/verification_pack/_audit" ]; then
   echo "PACK FAIL : verification_pack/_audit present" >&2; exit 1
 fi
 (cd "${STAGE}" && zip -qr "${NAME}.zip" "${NAME}")

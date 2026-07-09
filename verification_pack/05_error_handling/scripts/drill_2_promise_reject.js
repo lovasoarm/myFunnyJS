@@ -1,1 +1,0 @@
-Promise.reject(new Error("nope")).catch(e=>process.stdout.write("handled:"+e.message));
