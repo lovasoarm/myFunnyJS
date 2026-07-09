@@ -36,7 +36,7 @@ Temps de lecture ~5 min
 
 ## 6. Sécurité
 
-**Prompt** : "Cette route chakra_gate est vulnérable. Trouve **trois** attaques."
+**Prompt** : "Cette route login est vulnérable. Trouve **trois** attaques."
 
 ## 7. SQL / DB
 

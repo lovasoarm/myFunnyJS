@@ -1,4 +1,4 @@
-# PROMPTER COMME UN DEV, PAS COMME UN SHINOBI
+# PROMPTER COMME UN DEV, PAS COMME UN UTILISATEUR
 Temps de lecture ~11 min
 
 L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle répond quelque chose de plausible. Plausible n'est pas correct. Plausible c'est ce qui ressemble à correct sans l'être.

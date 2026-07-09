@@ -18,7 +18,7 @@ d'éditer.
    ouvrir ton clavier de code.
 2. **Explication au canard** : verbalise, en français, ce que ce fichier
    fait, pourquoi il existe, et **où il peut casser**.
-3. **Écris un `EXO_LECTURE.md`** de 10 lignes qui résume ta compréhension.
+3. **Écris un `RESUME_AVANT_EDIT.md`** de 10 lignes qui résume ta compréhension.
 4. **Seulement ensuite**, tu peux éditer : et ton premier commit doit
    correspondre exactement à ce que ton résumé disait vouloir faire.
 
@@ -30,7 +30,7 @@ d'éditer.
 
 ## VÉRIFIABLE
 
-Livrable : `EXO_LECTURE.md` + diff du commit. Un pair te lit et vote :
+Livrable : `RESUME_AVANT_EDIT.md` + diff du commit. Un pair te lit et vote :
 "tu avais compris avant de toucher, oui/non". Non = tu recommences.
 
 ---

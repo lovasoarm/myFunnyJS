@@ -5,7 +5,7 @@ C'est le ticket le plus fréquent que tu vas recevoir dans ta carrière :
 
 > *"ça marche pas"*
 > *"c'est lent"*
-> *"les shinobis se plaignent"*
+> *"les utilisateurs se plaignent"*
 > *"le truc fait pas ce qu'il devrait faire"*
 
 Ces phrases ne sont pas des specs. Ce sont des symptômes.
@@ -46,7 +46,7 @@ Le comportement attendu. Précis. Pas "ça devrait fonctionner correctement".
 Toujours ? Parfois ? Sur certains inputs ? Sur certains navigateurs ? À partir d'un certain volume ?
 
 **4. C'est quoi l'impact réel ?**
-Bloquant ? Contournable ? Affecte combien de shinobis ? Depuis quand ?
+Bloquant ? Contournable ? Affecte combien d'utilisateurs ? Depuis quand ?
 
 **5. Qu'est-ce qui a changé récemment ?**
 Nouveau déploiement ? Nouvelles données ? Changement de config ? Pic de trafic ?
@@ -148,7 +148,7 @@ Problème réel (après questions) : "la liste des matchs n'est pas à jour en t
 // Répondre à la demande Y sans comprendre le problème X :
 // --> un bouton qui rafraîchit toutes les 5 secondes et qui surcharge l'API
 // --> 5 secondes de retard sur des stats de match en direct
-// --> des shinobis qui voient un score qui date
+// --> des utilisateurs qui voient un score qui date
 ```
 
 Le test : *"si j'implémente exactement ce qui est demandé, est-ce que ça résout le vrai problème ?"*

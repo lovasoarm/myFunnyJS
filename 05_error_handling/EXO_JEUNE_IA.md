@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Choisir entre throw, return, Result, ou boundary, c'est une decision de contrat, pas un reflexe. Sans IA, tu es oblige d'assumer chaque cas d'erreur - c'est la seule facon d'apprendre a ne plus les avaler silencieusement.
 ---
 stability: intemporel

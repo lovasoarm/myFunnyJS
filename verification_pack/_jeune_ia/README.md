@@ -20,5 +20,5 @@ Usage :
 bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "implementer LRU cache"
 ```
 
-Reference pedagogique : `23_ai_native_dev/07_solo_vs_copilot_drill.md`
-et `23_ai_native_dev/08_partition_drill.md`.
+Reference pedagogique : `23_ai_native_dev/06_partition_drill.md`
+et `23_ai_native_dev/07_solo_vs_copilot_drill.md`.

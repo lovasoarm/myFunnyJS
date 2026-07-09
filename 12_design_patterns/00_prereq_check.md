@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Un pattern résout un problème de… ?
 2. Différence Strategy / State ?
 3. Pourquoi éviter Singleton ?
+4. Différence Factory / Builder ?
 
 ## Verdict
 

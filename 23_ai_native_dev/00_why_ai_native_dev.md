@@ -2,7 +2,7 @@
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : team craft (28_team_craft), tests (06_testing).
+> Ce module reutilise : team craft (27_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
 L'IA génère du code en quelques secondes. Du code qui compile, qui a l'air propre, qui répond exactement à ta demande. Et qui peut quand même contenir une fonction qui n'existe pas, une logique métier subtilement fausse, ou une faille de sécurité que tu copies-colles sans la vérifier parce que "ça avait l'air bon".

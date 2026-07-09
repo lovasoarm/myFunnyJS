@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-002 : gestion des erreurs partielles dans `pMap`
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

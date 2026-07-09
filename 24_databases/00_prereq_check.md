@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. ACID ?
 2. Index : coût caché ?
 3. SQL vs NoSQL : quand ?
+4. Transaction : c'est quoi concrètement ?
 
 ## Verdict
 

@@ -2,7 +2,7 @@
 Temps de lecture ~10 min
 
 JWT c'est pas de l'auth. JWT c'est un format de token.
-L'auth, c'est le mécanisme autour : chakra_gate, sign, vérification, refresh, révocation.
+L'auth, c'est le mécanisme autour : login, sign, vérification, refresh, révocation.
 Ce fichier couvre tout le cycle. Pas juste le happy path, aussi ce qui foire.
 
 ---
@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwicGxheWVyIjoiTWJhcHDDqSJ9.abc123xyz
 ```js
 // ce que contient un payload décodé
 {
- sub: "7",          // subject : l'id du shinobi
+ sub: "7",          // subject : l'id du utilisateur
  name: "Michael Scofield",
  role: "admin",
  iat: 1710000000,      // issued at : timestamp de création
@@ -72,7 +72,7 @@ compare avec la signature reçue
 ```
 CLIENT                  SERVER
  |                     |
- | POST /auth/chakra_gate { email, password }  |
+ | POST /auth/login { email, password }  |
  |----------------------------------------> |
  |                     | vérifie email + bcrypt(password)
  | { accessToken, refreshToken }      | génère les deux tokens
@@ -134,7 +134,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 
 const router = Router()
 
-// simuler une base de shinobis (en prod : table users en DB)
+// simuler une base d'utilisateurs (en prod : table users en DB)
 const users = [
  {
   id: 7,
@@ -144,8 +144,8 @@ const users = [
  }
 ]
 
-// POST /auth/chakra_gate
-router.post('/chakra_gate', asyncHandler(async (req, res) => {
+// POST /auth/login
+router.post('/login', asyncHandler(async (req, res) => {
  const { email, password } = req.body
 
  const user = users.find(u => u.email === email)
@@ -287,7 +287,7 @@ Pour les refresh tokens (longue durée), une blacklist en Redis ou DB est souven
 ## EXERCICES
 
 **EXO 1 : Le pass d'accès de Fox River**
-Implémente le flow complet chakra_gate/logout/refresh pour l'API Prison Break.
+Implémente le flow complet login/logout/refresh pour l'API Prison Break.
 Les guards ont des rôles : `"warden"`, `"guard"`, `"prisoner"`.
 Seuls les `"warden"` peuvent appeler `DELETE /prisoners/:id`.
 Les `"guard"` peuvent `GET /prisoners`.
@@ -303,7 +303,7 @@ Implémente le refresh qui génère un nouveau token : "l'armure se reconstruit"
 Voici un code JWT à auditer. Trouve les 4 problèmes :
 ```js
 const secret = 'naruto123'
-router.post('/chakra_gate', (req, res) => {
+router.post('/login', (req, res) => {
  const user = users.find(u => u.password === req.body.password)
  if (!user) return res.status(404).json({ error: 'not found' })
  const token = jwt.sign({ userId: user.id }, secret)

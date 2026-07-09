@@ -17,7 +17,7 @@ Connexion  --> serveur crée une session { userId: 42, role: 'user' }
       --> envoie le cookie : sessionId=abc123
 Requête   --> navigateur envoie cookie sessionId=abc123
       --> serveur cherche "sess:abc123" dans Redis
-      --> trouve { userId: 42 } --> shinobi authentifié
+      --> trouve { userId: 42 } --> utilisateur authentifié
 Déconnexion --> serveur supprime "sess:abc123" de Redis
       --> session invalide immédiatement
 ```
@@ -58,7 +58,7 @@ app.use(session({
  }
 }));
 
-app.post('/chakra_gate', async (req, res) => {
+app.post('/login', async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
 
@@ -117,8 +117,8 @@ const JWT_SECRET = process.env.JWT_SECRET; // jamais en dur, jamais dans git
 const ACCESS_TOKEN_EXPIRY = '15m'; // court : si volé, valide 15 minutes max
 const REFRESH_TOKEN_EXPIRY = '7d'; // long : pour regénérer l'access token
 
-// Génération au chakra_gate
-app.post('/chakra_gate', async (req, res) => {
+// Génération au login
+app.post('/login', async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
 
@@ -204,21 +204,21 @@ La stratégie recommandée : access token en mémoire (short-lived), refresh tok
 
 ### Le quoi
 
-OAuth 2.0 (Open Authorization : autorisation ouverte) : protocole qui permet à un shinobi d'autoriser ton app à accéder à ses ressources chez un autre service (Google, GitHub, Twitter), sans partager son mot de passe avec toi.
+OAuth 2.0 (Open Authorization : autorisation ouverte) : protocole qui permet à un utilisateur d'autoriser ton app à accéder à ses ressources chez un autre service (Google, GitHub, Twitter), sans partager son mot de passe avec toi.
 
 Ce n'est pas un protocole d'authentification (qui es-tu ?) mais d'autorisation (à quoi autorises-tu l'accès ?). OpenID Connect (OIDC) est la couche qui ajoute l'identité au-dessus d'OAuth 2.0.
 
 ### Le flow Authorization Code (le plus sécurisé)
 
 ```
-1. Shinobi clique "Se connecter avec Google"
+1. Utilisateur clique "Se connecter avec Google"
 2. Ton app redirige vers Google avec : client_id, redirect_uri, scope, state (nonce anti-CSRF)
-3. Le shinobi s'authentifie sur Google et accepte les permissions
+3. L'utilisateur s'authentifie sur Google et accepte les permissions
 4. Google redirige vers ton redirect_uri avec un "code" d'autorisation
 5. Ton SERVEUR (pas le client) échange ce code contre un access_token + id_token
   (appel serveur à serveur : le code n'est jamais exposé au client)
 6. Ton serveur vérifie l'id_token (JWT signé par Google) et extrait l'identité
-7. Ton app crée ou retrouve le shinobi dans ta DB, génère sa session/JWT
+7. Ton app crée ou retrouve l'utilisateur dans ta DB, génère sa session/JWT
 ```
 
 ```
@@ -226,7 +226,7 @@ Client --> [1] Redirige vers Google
 Google --> [2] Authentification + consentement
 Google --> [3] Redirige vers ton app avec un code
 Serveur --> [4] Échange le code contre les tokens (appel privé)
-Serveur --> [5] Vérifie l'id_token, crée la session shinobi
+Serveur --> [5] Vérifie l'id_token, crée la session utilisateur
 Client --> [6] Connecté
 ```
 
@@ -261,7 +261,7 @@ app.get('/auth/google/callback', async (req, res) => {
  const tokens = await exchangeCodeForTokens(code);
  const userInfo = verifyIdToken(tokens.id_token);
 
- // créer ou retrouver le shinobi dans ta DB
+ // créer ou retrouver l'utilisateur dans ta DB
  const user = await upsertUser(userInfo);
  req.session.userId = user.id;
  res.redirect('/dashboard');
@@ -288,11 +288,11 @@ Ne pas utiliser JWT comme remplacement des sessions si :
 ## EXERCICES
 
 **EXO 1 : Prison Break Auth**
-L'API Prison Break a besoin de deux types d'auth : sessions pour l'interface web des gardiens (déconnexion immédiate requise si un gardien est compromis), JWT pour l'API mobile des autorités externes. Implémenter les deux middlewares d'auth et la logique de chakra_gate/logout pour chaque cas.
+L'API Prison Break a besoin de deux types d'auth : sessions pour l'interface web des gardiens (déconnexion immédiate requise si un gardien est compromis), JWT pour l'API mobile des autorités externes. Implémenter les deux middlewares d'auth et la logique de login/logout pour chaque cas.
 Contrainte : le middleware JWT doit gérer `TokenExpiredError` et renvoyer un code d'erreur distinct (`TOKEN_EXPIRED`) que le client peut utiliser pour déclencher un refresh automatique.
 
 **EXO 2 : La rotation des tokens**
-TrapSoul Radio a des tokens d'accès de 15 minutes. Un shinobi écoute de la musique pendant 3 heures. Implémenter le mécanisme de refresh automatique côté client (sans framework, vanilla JS) : intercepter les 401 avec `TOKEN_EXPIRED`, appeler `/refresh`, retenter la requête originale avec le nouveau token.
+TrapSoul Radio a des tokens d'accès de 15 minutes. Un utilisateur écoute de la musique pendant 3 heures. Implémenter le mécanisme de refresh automatique côté client (sans framework, vanilla JS) : intercepter les 401 avec `TOKEN_EXPIRED`, appeler `/refresh`, retenter la requête originale avec le nouveau token.
 Contrainte : si plusieurs requêtes échouent simultanément, n'appeler `/refresh` qu'une seule fois (pas de race condition).
 
 **EXO 3 : OAuth sans bibliothèque**

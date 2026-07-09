@@ -1,11 +1,11 @@
-# 10 : AI Hallucination Gym
+# 09 : AI Hallucination Gym
 Temps de lecture ~5 min
 
 > 10 réponses IA volontairement fausses. Ta mission : les **démonter point par point**.
 
 ## Format
 
-Chaque item : (Q shinobi) → (R IA plausible mais fausse) → (ta démolition).
+Chaque item : (Q utilisateur) → (R IA plausible mais fausse) → (ta démolition).
 
 ---
 

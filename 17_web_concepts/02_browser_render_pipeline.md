@@ -249,7 +249,7 @@ Objectif : < 2.5s.
 <!-- ne pas lazy-loader le LCP -->
 ```
 
-**INP (Interaction to Next Paint) :** délai entre l'action du shinobi et la mise à jour visuelle.
+**INP (Interaction to Next Paint) :** délai entre l'action du utilisateur et la mise à jour visuelle.
 Objectif : < 200ms.
 
 ```js

@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Une connexion realtime (WebSocket, SSE) sans backpressure ni reconnexion, c'est un bug qui n'apparait qu'en prod sous charge. Ecrire ces controles sans IA prouve que tu les as compris, pas juste vus.
 ---
 stability: intemporel

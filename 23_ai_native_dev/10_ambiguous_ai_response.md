@@ -1,4 +1,4 @@
-# 11 : Juger une réponse d'IA avant de la tester
+# 10 : Juger une réponse d'IA avant de la tester
 
 Temps de lecture ~2 min
 

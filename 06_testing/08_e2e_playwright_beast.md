@@ -1,9 +1,9 @@
-# E2E PLAYWRIGHT BEAST : SIMULER UN VRAI SHINOBI
+# E2E PLAYWRIGHT BEAST : SIMULER UN VRAI UTILISATEUR
 Temps de lecture ~8 min
 
 Un unit test vérifie une fonction.
 Un test d'intégration vérifie plusieurs modules.
-Un test E2E vérifie ce que le shinobi voit et fait : du clic jusqu'à la base de données.
+Un test E2E vérifie ce que l'utilisateur voit et fait : du clic jusqu'à la base de données.
 
 Le soir de la cérémonie du Ballon d'Or, des milliers de journalistes accèdent à la plateforme de vote en même temps. Chacun clique, sélectionne, confirme. Si le bouton "Voter" plante pour 5% d'entre eux à cause d'un bug de timing, personne ne l'a vu venir en unit test. Playwright l'aurait vu.
 
@@ -125,7 +125,7 @@ const test = baseTest.extend({
   await page.goto('/enter_dojo')
   await page.fill('[data-testid="email"]', 'jean@lequipe.fr')
   await page.fill('[data-testid="password"]', 'pass1234')
-  await page.click('[data-testid="btn-chakra_gate"]')
+  await page.click('[data-testid="btn-login"]')
   await page.waitForURL('/dashboard')
   // maintenant le contexte est authentifié pour tout le test
   await use(page)
@@ -167,7 +167,7 @@ E2E : le bouton "Voter" est désactivé après un vote, mais
    Playwright le voit en 30 secondes.
 ```
 
-L'E2E teste le technique comme un shinobi l'utilise. Les comportements liés au timing, aux animations, aux interactions UI : invisibles ailleurs.
+L'E2E teste le technique comme un utilisateur l'utilise. Les comportements liés au timing, aux animations, aux interactions UI : invisibles ailleurs.
 
 ---
 
@@ -205,7 +205,7 @@ Contrainte : utilise `getByRole` et `getByLabel` pour tous les sélecteurs. Aucu
 
 ## EXO 2 : simuler la pression du jour J
 
-Le soir de la cérémonie, des milliers de journalistes votent en même temps. Playwright peut pas simuler 1000 shinobis, mais il peut simuler un cas de concurrence : deux votes du même compte depuis deux onglets différents.
+Le soir de la cérémonie, des milliers de journalistes votent en même temps. Playwright peut pas simuler 1000 utilisateurs, mais il peut simuler un cas de concurrence : deux votes du même compte depuis deux onglets différents.
 
 Écris un test qui :
 1. ouvre deux contextes de navigateur distincts (`browser.newContext()`)
@@ -219,7 +219,7 @@ C'est ça, un test E2E qui teste autre chose que le flux normal. Et c'est exacte
 
 ## RÉSUMÉ
 
-Playwright lance un vrai navigateur et simule un vrai shinobi.
+Playwright lance un vrai navigateur et simule un vrai utilisateur.
 `getByRole`, `getByLabel`, `getByText` : plus stables que les sélecteurs CSS.
 Playwright attend automatiquement les éléments : utilise `expect(...).toBeVisible()` pour les assertions async.
 E2E attrape ce que les autres tests ne voient pas : timing, UI, interactions complexes.

@@ -1,4 +1,4 @@
-# 00 : Les 8 sophismes du distribué (fallacies)
+# Les 8 sophismes du distribué (fallacies)
 Temps de lecture ~5 min
 
 > **INTEMPOREL** : formulés par Peter Deutsch chez Sun en 1994. Toujours vrais
@@ -55,15 +55,15 @@ fonctionnel. C'est tout ce que tu auras jamais.
 
 ## Exercice de modélisation
 
-Un client appelle `POST /order`. Le serveur :
-1. écrit en DB,
-2. appelle un service tribut,
-3. envoie un email.
+Un tir au but est validé pendant un match. Le serveur :
+1. écrit le but en DB,
+2. appelle le service de stats externes,
+3. envoie une notification au coach.
 
 Dessine sur papier :
-- Que se passe-t-il si (2) répond après le timeout du client ?
-- Que se passe-t-il si (3) réussit mais (1) est rollback ?
-- Quelle propriété manque pour rendre le retour client "sûr" ?
+- Que se passe-t-il si (2) répond après le timeout de l'arbitre vidéo ?
+- Que se passe-t-il si (3) réussit mais (1) est rollback (le but n'est plus en DB) ?
+- Quelle propriété manque pour rendre le retour au tableau d'affichage "sûr" ?
 
 Réponse : la **transaction sortante** (outbox pattern). Cherche pourquoi,
 puis écris ta réponse dans `MODELE.md`.

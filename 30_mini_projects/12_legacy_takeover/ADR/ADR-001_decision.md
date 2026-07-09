@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-001 : reprise vs réécriture du repo hérité
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

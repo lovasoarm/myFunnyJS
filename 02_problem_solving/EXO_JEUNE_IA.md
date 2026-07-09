@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Decouper un probleme, poser les invariants et attaquer par le plus petit cas : c'est ce qui reste quand l'IA n'a plus le contexte. Le jeune IA verifie que tu sais entrer dans un probleme neuf sans qu'on te tienne la main.
 ---
 stability: intemporel

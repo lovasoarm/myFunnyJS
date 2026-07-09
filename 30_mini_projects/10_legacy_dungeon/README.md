@@ -90,7 +90,7 @@ Pas de `src/`, pas de `tests/` ici comme dans les autres mini-projets. Le "src" 
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `27_team_craft` | navigation de codebase (`04_navigate_codebase.md`) appliquée pour de vrai, ADR rétrospective, technical writing dans MAP.md/POSTMORTEM.md |
 
-Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `05_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `14_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
+Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack traces inconnues), `05_error_handling` (comprendre une stratégie qu'on n'a pas choisie), `13_refactoring/03_code_smells` (reconnaître sans corriger), `06_testing` (lire des tests existants comme documentation).
 
 ---
 
@@ -147,31 +147,8 @@ Estime l'empreinte carbone approximative de ton déploiement ou de ton algo. Jus
 
 ## RÈGLE ZÉRO : LA LOI DU DONJON
 
-**Interdit de modifier UNE ligne de code avant d'avoir écrit un `EXPLICATION.md`** qui décrit le fonctionnement actuel (avant tout changement).
-
-Format `EXPLICATION.md` :
-
-1. À quoi sert CE fichier (3 lignes).
-2. Les 3 dépendances externes qu'il utilise (et pourquoi).
-3. Le cas d'usage principal + 1 edge case.
-4. Ce que tu SUPPOSES sans être sûr (à valider avant de refactor).
-
-Ta refacto commence quand ce fichier existe. Pas avant. Zéro exception.
+Voir `RULES.md` pour la règle complète et le format exact du livrable `MAP.md` (unique livrable de cartographie de ce projet).
 
 ## THÈME NEUTRE (optionnel)
 
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
-
-## Structure attendue
-
-Chaque mini-projet doit contenir a minima :
-
-- `src/` : code source (obligatoire).
-- `tests/` : tests unitaires et/ou d'intégration (obligatoire).
-- `README.md` : présentation, objectifs, comment lancer.
-- `TDD_JOURNAL.md` : trace de la démarche TDD.
-- `POSTMORTEM.md` : ce qui a marché, ce qui a cassé, ce que tu retiens.
-- `ADR/` : décisions architecturales (Architecture Decision Records).
-- `cahierdescharges.md` : contraintes et périmètre.
-
-Un CI check impose la présence de `src/` et `tests/` avant validation.

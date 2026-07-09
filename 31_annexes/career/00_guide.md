@@ -728,7 +728,7 @@ Réponses :
  1. App mobile + site web
  2. Grand public
  3. Téléphone principalement
- 4. Oui : restaurants, avis, shinobis, notes
+ 4. Oui : restaurants, avis, utilisateurs, notes
  5. Oui : GPS (maps), photos, notifications
  6. Données personnelles : respecter le RGPD
 
@@ -756,7 +756,7 @@ Travail en équipe     : Ce que tout le monde dans l'équipe sait déjà.
 Doit durer longtemps    : Java, C#, Rust : stables, maintenus sur le long terme.
                Évite les frameworks trop jeunes (ils disparaissent vite).
 
-Beaucoup de shinobis  : Pense à la scalabilité. Go et Node.js gèrent bien la
+Beaucoup d'utilisateurs  : Pense à la scalabilité. Go et Node.js gèrent bien la
 potentiels          charge. PostgreSQL tient mieux que certaines bases
                NoSQL sous haute charge.
 
@@ -857,7 +857,7 @@ LA BONNE APPROCHE :
  Semaine 2 : on peut modifier et supprimer une note.
  Semaine 3 : authentification.
  Semaine 4 : déploiement simple sur Vercel.
- Plus tard : si ya 10 000 shinobis, là on réfléchit à Docker et Kubernetes.
+ Plus tard : si ya 10 000 utilisateurs, là on réfléchit à Docker et Kubernetes.
 ```
 
 > **Docker** = une boîte magique qui emballe ton app pour qu'elle tourne partout pareil. **Compose** = plusieurs boîtes qui se parlent. **Kubernetes** = un chef d'orchestre qui gère des milliers de boîtes Docker en même temps. Utilisé par Google, Netflix. **Microservices** = au lieu d'une seule app, tu découpes en mini-apps qui communiquent. Amazon a des centaines de microservices. **CI/CD** = un robot qui teste et déploie ton code automatiquement à chaque push.
@@ -973,13 +973,13 @@ DANS LA VRAIE VIE tu l'utilises pour :
 
 ### Exemple concret complet : de l'idée à la stack
 
-**Situation** : tu veux créer une plateforme communautaire pour développeurs. Des profils shinobis, des posts, des likes, une messagerie en temps réel.
+**Situation** : tu veux créer une plateforme communautaire pour développeurs. Des profils utilisateurs, des posts, des likes, une messagerie en temps réel.
 
 **Analyse du projet** :
 
 ```
 Type de artefact   : Application web (mobile en version 2 peut-être)
-Shinobis     : Des développeurs : public averti, ils utilisent un navigateur
+Utilisateurs     : Des développeurs : public averti, ils utilisent un navigateur
 Fonctionnalités clés : Auth, profils, posts, likes, messagerie temps réel
 Contrainte principale: messagerie en temps réel = besoin de websockets ou subscriptions
 Budget        : Zéro (projet perso / scolaire)
@@ -1036,7 +1036,7 @@ Les boucles, les conditions, les fonctions, les objets, les erreurs :
 Applications extraordinaires construites avec des technos "basiques" :
  Instagram au début : Python + Django. Simple. Efficace.
  Twitter au début  : Ruby on Rails. Pas très "cool". Mais ça marchait.
- WhatsApp      : Erlang. Un langage de 1986. 2 milliards de shinobis.
+ WhatsApp      : Erlang. Un langage de 1986. 2 milliards d'utilisateurs.
 
 Applications catastrophiques construites avec les technos les plus modernes :
  Il y en a plein. On en parle juste moins parce que personne les connaît.
@@ -1123,11 +1123,11 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
 09h30 Implémentation d'un nouveau composant React (formulaire de connexion)
 11h00 Bug : le layout explose sur mobile Samsung Galaxy S22 -> débogage CSS
 12h00 Code review : il relit le code d'un collègue, laisse des commentaires
-14h00 Intégration d'une API backend : fetch des données shinobi
+14h00 Intégration d'une API backend : fetch des données utilisateur
 16h00 Optimisation : réduction du bundle, lazy loading des images
     (bundle = fichiers JS/CSS regroupés pour que la page charge vite)
 17h30 Déploiement sur la branche de staging pour validation
-    (dev -> staging -> production : les shinobis voient la version finale)
+    (dev -> staging -> production : les utilisateurs voient la version finale)
 ```
 
 **Technologies typiques** :
@@ -1156,9 +1156,9 @@ const Button = ({ label, onClick, isLoading, isDisabled, variant, size, icon }) 
 // Le client voit le résultat : "ouais mais il est pas assez rond"
 ```
 
-**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par le shinobi), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
+**Compétences clés** : maîtrise du DOM et des événements browser, responsive design et accessibilité (WCAG : règles pour rendre ton site utilisable par tout le monde, y compris les personnes handicapées), optimisation des performances (Core Web Vitals : métriques Google pour mesurer la performance ressentie par l'utilisateur), compréhension des API REST et GraphQL, collaboration avec les designers via Figma.
 
-Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un shinobi à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
+Un bon frontend dev en 2026 comprend le réseau : pourquoi une page charge lentement, ce qu'est un cache HTTP, comment un CDN (réseau de serveurs répartis dans le monde qui stockent des copies de tes fichiers statiques) fonctionne. Sans CDN, un utilisateur à Tokyo télécharge tes images depuis Paris : lent. Avec CDN : depuis Tokyo : rapide. Pas juste "faire joli".
 
 ---
 
@@ -1195,12 +1195,12 @@ Cloud      : AWS/GCP/Azure (basiques)
 ```javascript
 // Ce que le frontend pense que l'API fait
 fetch('/api/user/42')
-// -> renvoie les données du shinobi, boom, done
+// -> renvoie les données du utilisateur, boom, done
 
 // Ce que le backend dev a réellement écrit
 app.get('/api/user/:id', async (req, res) => {
  // vérifie que t'es authentifié
- // vérifie que t'as le droit de voir CET shinobi (pas juste n'importe lequel)
+ // vérifie que t'as le droit de voir CET utilisateur (pas juste n'importe lequel)
  // sanitize l'id (quelqu'un a déjà envoyé "42; DROP TABLE users;")
  // requête DB avec retry si connexion timeout
  // cache le résultat 60s pour pas brûler la base
@@ -1280,7 +1280,7 @@ Marché emploi      Large       En forte croissance
 // Lundi : "t'es full-stack non ? Tu peux aussi jeter un oeil au DevOps ?"
 
 // Mardi matin
-git commit -m "fix: bug critique en prod qui crashait 50% des shinobis"
+git commit -m "fix: bug critique en prod qui crashait 50% des utilisateurs"
 
 // Mardi après-midi
 git commit -m "feat: nouvelle page d'accueil avec animations"
@@ -1410,7 +1410,7 @@ Les security engineers sont parmi les mieux payés de l'industrie. La demande ex
 
 ### Exemple avec une application : Amorya
 
-Une app de rencontre où les shinobis créent un profil, matchent, et discutent. Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
+Une app de rencontre où les utilisateurs créent un profil, matchent, et discutent. Chaque swipe, chaque message génère des données. Ces données, quelqu'un doit les collecter, les lire, les protéger, et les déployer.
 
 #### Le workflow
 
@@ -1418,7 +1418,7 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
               AMORYA
           Application mobile et web
                |
-         le shinobi swipe, matche, envoie des messages
+         l'utilisateur swipe, matche, envoie des messages
                |
                v
             DEV WEB / MOBILE
@@ -1458,19 +1458,19 @@ Une app de rencontre où les shinobis créent un profil, matchent, et discutent.
            SECURITY ENGINEER
           Surveille en permanence.
          Bloque les faux profils, protège
-        les données personnelles des shinobis.
+        les données personnelles des utilisateurs.
 ```
 
 #### Résumé
 
 | Rôle | Responsabilité |
 |---|---|
-| Dev Web / Mobile | Construit ce que le shinobi voit et utilise |
+| Dev Web / Mobile | Construit ce que l'utilisateur voit et utilise |
 | Data Engineer | Collecte et prépare les données |
 | Data Analyst | Explique ce qui s'est passé |
 | Data Scientist | Prédit ce qui va se passer |
 | DevOps | Déploie et maintient l'app en ligne |
-| Security Engineer | Protège l'app et ses shinobis |
+| Security Engineer | Protège l'app et ses utilisateurs |
 
 ---
 
@@ -1584,7 +1584,7 @@ Vercel       Héberger le projet, déploiement     Railway, Render, VPS perso
                 |
           _____________|_____________
          |              |
-      Image uploadée       Texte du shinobi
+      Image uploadée       Texte du utilisateur
       (photo de chat)      ("moi un lundi")
          |              |
          |____________|______________|
@@ -1671,7 +1671,7 @@ Résout le bug de l'image       Anticipe que les PNG transparents
 
 Il dit **non** quand il le faut.
 
-> *"Non, on ne génère pas le meme à chaque clic du shinobi : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, le shinobi voit un spinner. Voilà pourquoi, voilà comment."*
+> *"Non, on ne génère pas le meme à chaque clic du utilisateur : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, l'utilisateur voit un spinner. Voilà pourquoi, voilà comment."*
 
 ```
               CE QU'IL APPORTE SUR CE PROJET
@@ -1779,7 +1779,7 @@ Code encore (il a tout construit)   Code rarement
 Choisit la stack initiale       Définit la vision tech à 2 ans
  (Next.js + Supabase + Vercel)     (passer sur S3 ? ouvrir une API
 Recrute le premier dev         publique pour les créateurs ?)
-Parle aux premiers shinobis        Surveille les coûts d'infra
+Parle aux premiers utilisateurs        Surveille les coûts d'infra
 ```
 
 ---
@@ -1812,7 +1812,7 @@ Software Architect Monolithe vs microservice, Supabase vs S3, scalabilité
 Eng. Manager    Équipe, recrutement, roadmap, protection des devs
 CTO        Stack initiale, vision, si nécessaire premiers commits
 Freelance     Livre la feature demandée, seul ou en mission courte
-Entrepreneur    Tout. Le artefact, les shinobis, les coûts, la survie.
+Entrepreneur    Tout. Le artefact, les utilisateurs, les coûts, la survie.
 ```
 
 ---
@@ -2029,8 +2029,8 @@ Adapter   : brancher une interface incompatible sur une autre
 | **God Object** | Une classe / un fichier qui fait absolument tout | 3000 lignes, personne n'ose toucher, le fichier a sa propre légende urbaine |
 | **Hardcoding** | Des valeurs magiques collées directement dans le code au lieu de variables ou configs | Le client veut changer une valeur. Tu cherches dans 47 fichiers. Tu souffres |
 | **Callback Hell** | Des fonctions imbriquées les unes dans les autres à l'infini | Code illisible, debugging cauchemardesque, tes collègues te détestent |
-| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. Le shinobi, lui, il sait. Depuis 3 semaines |
-| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 shinobis. Le vrai goulot d'étranglement était ailleurs |
+| **Avaler les erreurs** | `catch (e) {}` : l'erreur est capturée et immédiatement ignorée | Le bug existe. T'en sais rien. L'utilisateur, lui, il sait. Depuis 3 semaines |
+| **Optimisation prématurée** | T'optimises pour des problèmes que t'as pas encore | 3 semaines de boulot pour 12 utilisateurs. Le vrai goulot d'étranglement était ailleurs |
 | **Copier-coller au lieu d'abstraire** | Le même bloc de 30 lignes existe en 6 endroits dans le codebase | Tu corriges le bug dans 3 endroits. Les 3 autres attendent leur tour patiemment |
 | **Tout mettre dans le front** | Logique métier, validation, calcul de prix : tout dans le client JS | N'importe qui ouvre DevTools, modifie les variables, achète à 0€ |
 | **Ne jamais committer** | "Je commit quand c'est fini" : spoiler : c'est jamais fini | Le laptop meurt. 3 semaines de travail partent à la poubelle |
@@ -2343,7 +2343,7 @@ function construireCarriereRemote(dev) {
 #### Le contexte en chiffres bruts
 
 ```
- Netflix  -> 3,5 ans pour atteindre 1 million de shinobis
+ Netflix  -> 3,5 ans pour atteindre 1 million d'utilisateurs
  Instagram -> 2,5 mois
  TikTok   -> 9 mois
  ChatGPT  -> 72 heures
@@ -2744,7 +2744,7 @@ Copier-coller sans comprendre  -> Tu copies aussi les bugs. Et t'as aucune idée
                   comment les corriger.
 
 Surarchitecturer trop tôt    -> Microservices + Kubernetes pour une app de 50
-                  shinobis. 3 mois perdus. Aucune feature livrée.
+                  utilisateurs. 3 mois perdus. Aucune feature livrée.
 ```
 
 #### Erreurs de carrière

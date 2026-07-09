@@ -454,7 +454,7 @@ this.pc.oniceconnectionstatechange = () => {
 Un appel WebRTC c'est deux parties : le signaling (ton serveur WebSocket qui transporte SDP et ICE candidates) et la connexion P2P (le navigateur qui gère tout après).
 Le code se décompose en quatre responsabilités : `SignalingClient` (transport des messages), `Caller`/`Callee` (logique de connexion), `RTCDataChannel` (données texte P2P), et la page HTML (media et UI).
 Deux règles qui sauvent tout : créer le DataChannel avant `createOffer()`, et ne jamais ignorer les erreurs `addIceCandidate()` : elles cassent la connexion silencieusement.
-Ce qui rate le plus souvent en prod : le TURN manquant pour les NATs symétriques (20% des shinobis qui voient `failed` sans comprendre pourquoi).
+Ce qui rate le plus souvent en prod : le TURN manquant pour les NATs symétriques (20% des utilisateurs qui voient `failed` sans comprendre pourquoi).
 
 ---
 

@@ -66,7 +66,7 @@ N3  Tu repères la zone à risque dans un module avant de le toucher
 N4  Tu rentres dans un dépôt inconnu de 50k lignes et tu trouves le point d'entrée en moins de 10 minutes
 ```
 
-**Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `28_team_craft` (navigation de codebase).
+**Modules qui construisent cet axe :** `02_problem_solving` (décomposition, modélisation), `27_team_craft` (navigation de codebase).
 
 **Test rapide :**
 Ouvre un dépôt open-source que tu connais pas. Donne-toi 10 minutes pour répondre à : "ce projet fait quoi, et par où ça commence ?" sans lire le README.
@@ -162,7 +162,7 @@ T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
 - **Le grimoire en fin de module, c'est ton check de compréhension.** Si tu le lis et que
  des termes te paraissent flous, retourne dans le module. Pas grave de revenir en arrière.
  Grave de continuer en faisant semblant d'avoir compris.
-- **Les mini-projets (`31_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
+- **Les mini-projets (`30_mini_projects`) ne sont pas un bonus.** C'est là que les concepts
  isolés deviennent un seul geste. Si tu sautes les mini-projets, tu sors avec des bouts de
  savoir qui ne se connectent pas entre eux.
 - **Stagner sur un concept, c'est normal.** Closures, event loop, prototype chain : tout le

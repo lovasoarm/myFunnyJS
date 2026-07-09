@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Où tourne ton code : navigateur, Node, edge ?
 2. Différence event loop navigateur vs Node ?
 3. Que fait le require cache ?
+4. Différence entre une variable d'environnement runtime et une variable de build ?
 
 ## Verdict
 

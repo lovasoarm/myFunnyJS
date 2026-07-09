@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. As-tu fini 6, 14, 22, 29 ?
 2. As-tu un ADR par projet ?
 3. As-tu tenu ton DEPENDENCY_LEDGER ?
+4. Comment tu choisis ton prochain mini-projet ?
 
 ## Verdict
 

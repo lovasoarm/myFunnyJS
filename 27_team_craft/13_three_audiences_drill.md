@@ -7,7 +7,7 @@ Explique-le à :
 
 1. **Un enfant de 10 ans.** Analogies concrètes autorisées. 5 phrases max. Zéro jargon.
 2. **Un dev junior qui vient d'apprendre le langage.** Vocabulaire technique OK. Insiste sur QUAND l'utiliser et QUAND ne pas.
-3. **Un CFO.** Le coût, le risque, l'impact business. Pas UN mot de syntaxe.
+3. **Un CTO.** Le coût, le risque, l'impact business. Pas UN mot de syntaxe.
 
 ## LIVRABLE
 

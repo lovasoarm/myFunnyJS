@@ -112,7 +112,7 @@ résultat : 26
 ## 5) POURQUOI C'EST CRUCIAL
 
 - Code **plus court, plus lisible**, moins de boucles `for` manuelles
-- Parfait pour manipuler des collections : joueurs, scores, jutsus, shinobis...
+- Parfait pour manipuler des collections : joueurs, scores, jutsus, utilisateurs...
 - C'est la base du style **fonctionnel** en JS : et de tout ce que tu feras en React
 
 > Maîtriser ces trois HOF, c'est passer de "je subis les tableaux" à "je les plie à ma volonté".

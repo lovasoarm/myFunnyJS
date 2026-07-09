@@ -61,7 +61,7 @@ Le retour de balancier actuel est plus nuancé : la tendance privilégie de choi
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `21_api_craft`, `22_security`, `24_databases`, et `18_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
+Pas dans les 6 blocs prioritaires explicitement listés, mais central dans le mini-projet `05_prison_break_api`, qui combine `21_api_craft`, `22_security`, `24_databases`, et `17_web_concepts` pour une infrastructure complète où la modélisation de données et le cache Redis sont des conditions directes de tenue sous pression du système.
 
 ---
 

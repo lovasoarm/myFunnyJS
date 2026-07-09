@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Vertical vs horizontal scaling ?
 2. Idempotence côté réseau : pourquoi ?
 3. Exactly-once delivery : mythe ou réalité ?
+4. Différence entre scale horizontal et vertical ?
 
 ## Verdict
 

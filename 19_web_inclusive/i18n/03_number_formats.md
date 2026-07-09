@@ -79,7 +79,7 @@ const formatteurPourcentageUs = new Intl.NumberFormat('en-US', { style: 'percent
 console.log(formatteurPourcentageUs.format(tauxVictoire)); // "85%" (pas d'espace)
 ```
 
-Même détail apparemment minuscule (l'espace avant le `%`) qui change selon la locale, et qui passe inaperçu jusqu'à ce qu'un shinobi français pointilleux te le signale.
+Même détail apparemment minuscule (l'espace avant le `%`) qui change selon la locale, et qui passe inaperçu jusqu'à ce qu'un utilisateur français pointilleux te le signale.
 
 ## 5) LE CAS BALLON D'OR : CLASSER DES SCORES DE PLUSIEURS PAYS
 

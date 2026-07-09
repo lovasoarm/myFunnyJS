@@ -144,7 +144,7 @@ source.addEventListener("error", (event) => {
  }
 });
 
-// fermer manuellement si besoin (exemple : shinobi quitte la page)
+// fermer manuellement si besoin (exemple : utilisateur quitte la page)
 // source.close();
 ```
 

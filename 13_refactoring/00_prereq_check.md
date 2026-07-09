@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Un smell : cite-en 3.
 2. Refacto sans tests = ?
 3. Boy scout rule ?
+4. Cite deux code smells classiques.
 
 ## Verdict
 

@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Différence unit / intégration / e2e ?
 2. Un test qui passe toujours prouve quoi ?
 3. AAA c'est quoi ?
+4. Différence entre test unitaire et test d'intégration ?
 
 ## Verdict
 

@@ -69,12 +69,12 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
-### `16_runtime_env` : CLI Node.js, process.argv, filesystem
+### `15_runtime_env` : CLI Node.js, process.argv, filesystem
 
 **Où ça se voit** : `src/cli.js`, `src/parser/argsParser.js`, `src/export/csvExporter.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour lire les flags (`--player`, `--points`). `process.exit(code)` pour le code de sortie. `fs.writeFileSync` pour l'export CSV. C'est le kit de base du CLI Node.
 
-### `14_refactoring` : SOLID sur du code CLI procédural
+### `13_refactoring` : SOLID sur du code CLI procédural
 
 **Où ça se voit** : tout le passage de `legacy/ballonDorV1.js` vers `src/`.
 **Pourquoi c'est nécessaire ici** : le v1 viole SRP (Single Responsibility Principle : une classe/fonction = une responsabilité) à chaque fonction. La v2 sépare le parsing des args, la validation des votes, l'agrégation des scores, et l'affichage. Chaque module peut changer sans toucher les autres.
@@ -92,8 +92,8 @@ Ce projet teste la capacité à comprendre un codebase existant, à le corriger 
 ### Résumé visuel
 
 ```
-16_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
-14_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
+15_runtime_env --> src/cli.js (argv), src/export/csvExporter.js (fs), src/store/jsonStore.js
+13_refactoring --> legacy/ -> src/ (SOLID, séparation des couches)
 05_error_handling --> src/errors/ (custom errors), exit codes dans cli.js
 31_annexes   --> Dockerfile, .github/workflows/ci.yml
 ```
@@ -327,7 +327,7 @@ corrompu, permission refusée sur le filesystem).
 
 ## Décision
 
-Exit code 1 pour les erreurs métier (le shinobi a fait quelque chose de
+Exit code 1 pour les erreurs métier (l'utilisateur a fait quelque chose de
 invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 
 ## Alternatives considérées
@@ -365,7 +365,7 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
 
 - Injection d'arguments (OWASP A03) : valider les arguments CLI, ne jamais passer une entrée brute à un shell/eval.
-- Chemins (OWASP A01) : empêcher le path traversal si le CLI lit/écrit des fichiers fournis par le shinobi.
+- Chemins (OWASP A01) : empêcher le path traversal si le CLI lit/écrit des fichiers fournis par l'utilisateur.
 
 Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
 

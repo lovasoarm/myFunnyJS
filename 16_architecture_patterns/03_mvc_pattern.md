@@ -12,7 +12,7 @@ Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer
 ## 1) LES TROIS RÔLES
 
 ```
-          shinobi clique
+          survivant clique
              |
              v
        +---------------------+
@@ -35,9 +35,9 @@ Prérequis : `01_fundamentals` complet, `12_design_patterns` (notamment observer
 
 **Model** : ce qui est vrai. Les données. Les règles de validation. Aucune connaissance de l'interface.
 
-**View** : ce que le shinobi voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
+**View** : ce que le survivant voit. Aucune logique métier. Elle reçoit des données et les affiche, point.
 
-**Controller** : le médiateur (intermédiaire). Il reçoit les actions shinobi, interroge ou modifie le Model, et dit à la View quoi afficher. Il ne connaît pas les détails du DOM (structure HTML de la page). Il ne connaît pas les détails du stockage.
+**Controller** : le médiateur (intermédiaire). Il reçoit les actions du survivant, interroge ou modifie le Model, et dit à la View quoi afficher. Il ne connaît pas les détails du DOM (structure HTML de la page). Il ne connaît pas les détails du stockage.
 
 ---
 
@@ -236,7 +236,7 @@ model.add("Daryl Dixon", "Scout");
 ## 3) FLUX D'UNE ACTION
 
 ```
-Shinobi clique "Éliminer" sur Daryl
+Rick clique "Éliminer" sur Daryl
     |
     v
 View.bindRemoveSurvivor détecte le click

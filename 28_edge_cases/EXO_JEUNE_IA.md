@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Les cas limites (null, 0, dates aux bornes, encodings) sont ce que l'IA generalise mal. Ce drill te force a lister les entrees maudites avant de coder, pas apres l'incident.
 ---
 stability: intemporel

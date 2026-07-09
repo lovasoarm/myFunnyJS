@@ -98,7 +98,7 @@ OPTIONS => demander ce que le serveur accepte (utilisé par CORS)
 
 Idempotent (idempotent) : appeler la méthode 1 fois ou 10 fois donne le même résultat côté serveur.
 GET sur `/users/1` 10 fois = même résultat. Sûr.
-POST sur `/users` 10 fois = 10 shinobis créés. Pas idempotent.
+POST sur `/users` 10 fois = 10 utilisateurs créés. Pas idempotent.
 
 ```js
 // GET : lire sans toucher
@@ -170,7 +170,7 @@ async function fetchPrisoner(id) {
  }
 
  if (response.status === 401) {
-  throw new Error('Session expirée : reconnecte-toi'); // rediriger vers chakra_gate
+  throw new Error('Session expirée : reconnecte-toi'); // rediriger vers login
  }
 
  if (response.status === 429) {

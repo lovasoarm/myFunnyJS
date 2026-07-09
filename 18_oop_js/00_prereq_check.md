@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. `prototype` vs `__proto__` ?
 2. Class en JS = sucre pour ?
 3. Composition vs héritage ?
+4. Différence entre héritage classique et héritage prototypal ?
 
 ## Verdict
 

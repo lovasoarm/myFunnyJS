@@ -99,8 +99,8 @@ tests/
 
 | Module | Où ça se voit |
 | ----------------------- | ----------------------------------------------------------------------- |
-| `15_typescript` | Clés de traduction typées, `Track<T>`, types stricts sur tout le player |
-| `18_web_concepts` | Browser render pipeline, LCP/CLS optimisés, métadonnées SEO |
+| `14_typescript` | Clés de traduction typées, `Track<T>`, types stricts sur tout le player |
+| `17_web_concepts` | Browser render pipeline, LCP/CLS optimisés, métadonnées SEO |
 | `19_web_inclusive` | ARIA complet, navigation clavier, contraste WCAG AA vérifié |
 | `19_web_inclusive/i18n` | 4 locales, `Intl.DateTimeFormat`, pluralisation, fallback |
 

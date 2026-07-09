@@ -173,7 +173,7 @@ Number(ageInput);  // NaN ← refuse car ce n'est pas propre
 
 Selon le contexte :
 - **Donnée propre attendue** → `Number()`
-- **Donnée sale shinobi** → `parseInt()` + validation
+- **Donnée sale utilisateur** → `parseInt()` + validation
 
 Toujours comprendre le contexte. Toujours.
 

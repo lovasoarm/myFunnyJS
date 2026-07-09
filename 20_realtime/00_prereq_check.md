@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. WebSocket vs SSE : quand choisir ?
 2. Backpressure : c'est quoi ?
 3. WebRTC en une phrase.
+4. Différence entre WebSocket et Server-Sent Events ?
 
 ## Verdict
 

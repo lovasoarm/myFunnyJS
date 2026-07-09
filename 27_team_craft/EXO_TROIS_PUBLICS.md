@@ -1,22 +1,15 @@
-# EXO : explique le meme concept a 3 publics (18.1)
+# EXO : explique le meme concept a 3 publics
 
-Temps de lecture ~2 min
+Temps de lecture ~1 min
 
+> **Fichier déplacé.** Cet exercice a été fusionné avec la paire canonique du module 27.
 
-## Consigne
-Choisis un concept : `closure`, `event loop` ou `idempotence`.
-Ecris 3 explications de 5 phrases max :
+Va directement :
 
-- **a un enfant de 10 ans** : zero jargon, une analogie concrete bornee.
-- **a un junior dev** : vocabulaire technique correct, un contre-exemple.
-- **a un CTO sceptique** : consequence business, trade-off, cout de la mauvaise comprehension.
+- `27_team_craft/12_three_audiences_intro.md` — intro courte (5 min) : enfant / junior / **CTO**.
+- `27_team_craft/13_three_audiences_drill.md` — drill long (45 min) avec livrable `three_audiences_<concept>.md`.
 
-## Regle
-- Chaque explication doit contenir une phrase "ou l'analogie casse".
-- Pas de copier-coller entre les trois.
-
-## Livrables
-`TROIS_PUBLICS_<concept>.md` avec les trois blocs et une auto-critique (laquelle t'a pris le plus de temps ? pourquoi ?).
+Les 3 publics de référence sont : **enfant de 10 ans**, **dev junior**, **CTO**. Pas "CFO", pas "CTO sceptique".
 
 ---
 stability: intemporel

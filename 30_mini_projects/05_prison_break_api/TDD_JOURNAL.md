@@ -85,18 +85,18 @@ test('reset automatique après 15 minutes', () => {
 ## ÉTAPE 4 : Routes auth avec supertest
 
 ```js
-test('POST /auth/chakra_gate retourne un JWT valide avec les bons credentials', async () => {
+test('POST /auth/login retourne un JWT valide avec les bons credentials', async () => {
  const res = await request(app)
-  .post('/auth/chakra_gate')
+  .post('/auth/login')
   .send({ code: 'scofield-83712', pin: 'S0a0r0i3' });
 
  expect(res.status).toBe(200);
  expect(res.body.token).toBeDefined();
 });
 
-test('POST /auth/chakra_gate retourne 401 avec des credentials incorrects', async () => {
+test('POST /auth/login retourne 401 avec des credentials incorrects', async () => {
  const res = await request(app)
-  .post('/auth/chakra_gate')
+  .post('/auth/login')
   .send({ code: 'tbag', pin: 'mauvais' });
 
  expect(res.status).toBe(401);

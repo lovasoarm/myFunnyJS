@@ -27,7 +27,7 @@ function computeRanking(votes) {
 // pendant 3 secondes, ton serveur Express ne répond plus à rien
 // toutes les requêtes HTTP attendent dans la queue
 // les timeouts se déclenchent
-// les shinobis voient un spinner qui tourne
+// les utilisateurs voient un spinner qui tourne
 app.get('/ranking', (req, res) => {
  const ranking = computeRanking(votes) // l'event loop est bloqué ici
  res.json(ranking)

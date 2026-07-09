@@ -77,7 +77,7 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 **Où ça se voit** : `src/council/streamReceiver.js`, `src/knight/streamEmitter.js`.
 **Pourquoi c'est nécessaire ici** : le Conseil reçoit les événements de combat en temps réel, pas à la fin du combat. Chaque coup, chaque changement de statut, chaque seconde critique : streamé. C'est le pattern SSE (Server-Sent Events : flux d'événements envoyés du serveur vers le client, unidirectionnel) simulé en JS pur ici.
 
-### `17_architecture_patterns` : event-driven, module pattern
+### `16_architecture_patterns` : event-driven, module pattern
 **Où ça se voit** : toute la séparation entre `src/council/` et `src/knight/`. Le Conseil ne connaît pas l'implémentation des Chevaliers.
 **Pourquoi c'est nécessaire ici** : si le Conseil appelle directement les méthodes du Chevalier, tout est couplé. Si le Chevalier émet des événements et que le Conseil s'abonne, on peut changer l'implémentation d'un Chevalier sans toucher au Conseil. C'est le cœur de l'architecture event-driven.
 

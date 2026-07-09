@@ -67,7 +67,7 @@ Trois livrables, zéro ligne de feature à construire toi-même.
                   d'un code que tu as toi-même écrit
 05_error_handling       --> comprendre une stratégie de gestion d'erreur que tu n'as pas
                   choisie, parfois incohérente avec ce que t'as appris ici
-14_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
+13_refactoring/03_code_smells --> reconnaître un smell sans le corriger : la contrainte du
                   projet t'interdit explicitement le refactoring "pendant que t'y es"
 06_testing          --> lire des tests existants comme documentation du comportement
                   attendu, surtout quand le code source seul ne suffit pas

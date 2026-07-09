@@ -1,4 +1,4 @@
-# 00 : Distributed thinking (sans K8s, sans buzz)
+# Distributed thinking (sans K8s, sans buzz)
 Temps de lecture ~5 min
 
 > **Principe universel** : dès que 2 processus se parlent en réseau, tu es en distribué. Tous les problèmes d'après en découlent.

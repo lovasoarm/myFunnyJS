@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Logs / metrics / traces : différence ?
 2. Que fait un correlation ID ?
 3. SLI vs SLO ?
+4. Différence entre logs, métriques et traces ?
 
 ## Verdict
 

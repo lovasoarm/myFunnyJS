@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# assets/ — charte visuelle
+# assets/ : charte visuelle
 
 Temps de lecture ~2 min
 

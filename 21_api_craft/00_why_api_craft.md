@@ -52,7 +52,7 @@ Sans versioning, modifier la forme d'une réponse pour "l'améliorer" casse sile
 ```
 ressource à créer/lire/modifier/supprimer    --> CRUD REST     --> verbes HTTP cohérents (GET, POST, PUT, PATCH, DELETE)
 erreur d'API mal formée             --> error handling API --> format uniforme et status codes corrects
-shinobi qui doit prouver son identité    --> JWT        --> sign/verify/refresh sécurisé
+utilisateur qui doit prouver son identité    --> JWT        --> sign/verify/refresh sécurisé
 nouvelle version de l'API qui change la réponse --> API versioning   --> anciens clients non cassés
 intégration par une équipe externe        --> OpenAPI/Swagger  --> contrat documenté et exploitable
 ```

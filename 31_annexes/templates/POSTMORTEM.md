@@ -16,7 +16,7 @@ Quoi, quand, où. Qui a été impacté.
 Pas la cause proximale. La vraie.
 
 ## Impact
-Shinobis, revenu, réputation. Chiffré si possible.
+Utilisateurs, revenu, réputation. Chiffré si possible.
 
 ## Ce qui a bien marché
 Vraiment. Nomme.

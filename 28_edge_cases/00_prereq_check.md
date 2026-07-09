@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Race condition en une phrase.
 2. Cite 3 cas limites d'un formulaire d'email.
 3. Off-by-one : exemple.
+4. Cite un piège classique avec les dates/fuseaux horaires.
 
 ## Verdict
 

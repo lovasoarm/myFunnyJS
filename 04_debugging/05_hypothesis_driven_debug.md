@@ -1,4 +1,4 @@
-# 04 : Debug hypothèse-dirigé
+# 05 : Debug hypothèse-dirigé
 Temps de lecture ~5 min
 
 > **Principe universel** : méthode scientifique appliquée au code. Hypothèse → expérience → réfutation. Sherlock, pas devin.

@@ -56,7 +56,7 @@ HTMLElement (det.)  47    0      +47    14 KB    <-- SUSPECT (DOM détaché)
 
 ## 4) MISSION (livrable)
 
-Prends la fixture `31_mini_projects/13_memory_hunter/fixture/`.
+Prends la fixture `30_mini_projects/13_memory_hunter/fixture/`.
 Exécute le protocole ci-dessus. Produis `LEAK_REPORT.md` (template dans le mini-projet)
 avec :
 

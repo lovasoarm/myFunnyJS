@@ -1,4 +1,4 @@
-# 00 : Primitives distribuées : les bases qu'on te demandera en entretien
+# Primitives distribuées : les bases qu'on te demandera en entretien
 Temps de lecture ~5 min
 
 Un système distribué, c'est deux machines qui essaient de se mettre d'accord alors que le réseau leur ment. Six concepts te sauvent 90 % du temps.

@@ -25,7 +25,7 @@ USER --> LOAD BALANCER -->
              +----------+
 ```
 
-Le pourquoi : le shinobi tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
+Le pourquoi : l'utilisateur tape une seule adresse (genre `api.crazydevs.com`), il ne sait même pas qu'il y a 3, 10, ou 50 serveurs derrière. Le load balancer reçoit tout, et décide à chaque requête vers quel serveur elle part.
 
 ```js
 // Vue simplifiée de ce qu'un load balancer fait en interne
@@ -91,15 +91,15 @@ Le quand : utile dès que tes requêtes ont des durées très variables (certain
 
 ---
 
-## 4) STICKY SESSIONS : QUAND LE SHINOBI DOIT RESTER SUR LE MÊME SERVEUR
+## 4) STICKY SESSIONS : QUAND LE UTILISATEUR DOIT RESTER SUR LE MÊME SERVEUR
 
 ```
 SANS sticky session :
-requête 1 (chakra_gate) --> Server A --> session stockée EN MÉMOIRE sur A
+requête 1 (login) --> Server A --> session stockée EN MÉMOIRE sur A
 requête 2 (profil) --> Server B --> Server B ne connaît pas cette session --> 401, déconnecté
 ```
 
-Le pourquoi du problème : si chaque serveur garde les sessions en mémoire locale (vu le piège similaire pour le cache dans `24_databases/04_redis_caching`), et qu'un shinobi atterrit sur un serveur différent à chaque requête, il perd sa session à chaque fois.
+Le pourquoi du problème : si chaque serveur garde les sessions en mémoire locale (vu le piège similaire pour le cache dans `24_databases/04_redis_caching`), et qu'un utilisateur atterrit sur un serveur différent à chaque requête, il perd sa session à chaque fois.
 
 ```js
 // Sticky session : le load balancer force le MÊME user vers le MÊME serveur
@@ -109,11 +109,11 @@ Le pourquoi du problème : si chaque serveur garde les sessions en mémoire loca
 
 ```
 AVEC sticky session :
-requête 1 (chakra_gate) --> Server A --> cookie SERVERID=A posé
+requête 1 (login) --> Server A --> cookie SERVERID=A posé
 requête 2 (profil) --> cookie lu --> forcé vers Server A --> session retrouvée, ça marche
 ```
 
-Le risque réel : sticky session résout le symptôme, pas la cause. Si Server A tombe, tous les shinobis "collés" à lui perdent leur session d'un coup, et le load balancer doit les réattribuer à un autre serveur qui ne connaît rien d'eux. La vraie solution durable (vue dans `24_databases/04_redis_caching`) : sortir la session de la mémoire locale du serveur et la mettre dans un store partagé (Redis), accessible par TOUS les serveurs. Là, sticky session devient optionnel, pas vital.
+Le risque réel : sticky session résout le symptôme, pas la cause. Si Server A tombe, tous les utilisateurs "collés" à lui perdent leur session d'un coup, et le load balancer doit les réattribuer à un autre serveur qui ne connaît rien d'eux. La vraie solution durable (vue dans `24_databases/04_redis_caching`) : sortir la session de la mémoire locale du serveur et la mettre dans un store partagé (Redis), accessible par TOUS les serveurs. Là, sticky session devient optionnel, pas vital.
 
 ```
 Architecture stateless (sans état local) recommandée :
@@ -195,7 +195,7 @@ L'appli du Conseil stocke l'état de chaque Chevalier (armure active, position, 
 
 ## RÉSUMÉ
 
-Un load balancer distribue le trafic pour qu'aucun serveur seul ne porte tout le poids. Round-robin est simple mais aveugle à la charge réelle, least connections s'adapte mieux quand les requêtes sont inégales. Les sessions en mémoire locale créent un piège classique en multi-serveurs : la vraie solution est de sortir l'état du serveur, pas de forcer le shinobi à y rester collé. Et un health check qui ne teste pas la vraie santé du serveur donne une fausse sécurité qui peut amplifier une panne au lieu de la contenir.
+Un load balancer distribue le trafic pour qu'aucun serveur seul ne porte tout le poids. Round-robin est simple mais aveugle à la charge réelle, least connections s'adapte mieux quand les requêtes sont inégales. Les sessions en mémoire locale créent un piège classique en multi-serveurs : la vraie solution est de sortir l'état du serveur, pas de forcer l'utilisateur à y rester collé. Et un health check qui ne teste pas la vraie santé du serveur donne une fausse sécurité qui peut amplifier une panne au lieu de la contenir.
 
 ---
 stability: stable

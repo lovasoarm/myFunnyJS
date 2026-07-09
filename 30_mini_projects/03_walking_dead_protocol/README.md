@@ -99,8 +99,8 @@ node src/cli.js consume --resource food --amount 3
 | Module      | Où ça se voit                                    |
 | ---------------- | ------------------------------------------------------------------------------------ |
 | `06_testing`   | `tests/` (unit + intégration), `e2e/` (Playwright), `mocks/`             |
-| `14_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés                 |
-| `16_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
+| `13_refactoring` | legacy → src/, SOLID appliqué, code smells éliminés                 |
+| `15_runtime_env` | `cli.js` (argv), `fileStore.js` (fs.promises), `threatSimulator.js` (Worker Threads) |
 | `32_tools`    | `structuredLogger.js` (JSON), `scenarioReplayer.js` (replay de logs)         |
 
 ---

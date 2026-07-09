@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-001 : politique d'éviction du cache
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

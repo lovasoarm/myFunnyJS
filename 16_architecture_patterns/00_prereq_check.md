@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Le seul vrai but de l'architecture ?
 2. Couplage vs cohésion ?
 3. MVC en une phrase.
+4. Différence monolithe / microservices, en une phrase ?
 
 ## Verdict
 

@@ -325,7 +325,7 @@ function broadcastEventBuffered(eventType, data) {
 ```
 
 Pour des volumes très élevés (100k+ clients) : Redis Pub/Sub + plusieurs instances Node.js.
-C'est exactement ce que couvre `25_scalability/04_message_queues.md`.
+C'est exactement ce que couvre `25_scalability/07_message_queues.md`.
 
 ---
 

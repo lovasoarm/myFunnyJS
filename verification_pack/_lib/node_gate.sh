@@ -9,7 +9,7 @@ fi
 V=$(node -v | sed 's/^v//' | cut -d. -f1)
 if [ "${V:-0}" -lt 20 ]; then
   echo "[NODE_GATE] Node $(node -v) detecte, MyFunnyJS exige >= 20."
-  echo "  Voir NODE_VERSIONS.md a la racine + .nvmrc."
+  echo "  Voir 31_annexes/toolchain/NODE_VERSIONS.md + .nvmrc."
   echo "  Fix rapide (nvm) : nvm install 20 && nvm use 20"
   exit 1
 fi

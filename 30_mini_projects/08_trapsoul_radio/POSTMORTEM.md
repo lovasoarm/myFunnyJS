@@ -37,7 +37,7 @@ return translations[`track.count.${form}`];
 
 ## DÉCISION DIFFICILE N°2 : FOCUS TRAP DANS LES MODALS
 
-Quand un modal s'ouvre (par exemple la fiche d'un artiste), le focus doit rester dans le modal. Sinon, un shinobi clavier peut "s'échapper" dans la page derrière, ce qui casse complètement l'expérience lecteur d'écran.
+Quand un modal s'ouvre (par exemple la fiche d'un artiste), le focus doit rester dans le modal. Sinon, un utilisateur clavier peut "s'échapper" dans la page derrière, ce qui casse complètement l'expérience lecteur d'écran.
 
 Décision : `focusTrap.ts` implémenté manuellement avec `querySelectorAll('[tabindex]:not([tabindex="-1"]), button:not([disabled]), ...')` et gestion du `Tab` / `Shift+Tab` via `addEventListener('keydown', ...)`.
 
@@ -56,7 +56,7 @@ Décision : `focusTrap.ts` implémenté manuellement avec `querySelectorAll('[ta
 ```
 - Ajouter l'arabe comme 5ème locale (6 formes de pluriel : bon test de robustesse de i18nService)
 - Mode offline : Service Worker qui cache les tracks récentes
-- Annonces vocales personnalisées : laisser le shinobi choisir la verbosité du lecteur d'écran
+- Annonces vocales personnalisées : laisser l'utilisateur choisir la verbosité du lecteur d'écran
 ```
 
 

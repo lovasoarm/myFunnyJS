@@ -250,7 +250,7 @@ async function addVote(playerId, points) {
 
 **Piège 1 : Cache poisoning (empoisonnement)**
 Un CDN cache une réponse qui contient du contenu malveillant ou erroné.
-Tous les shinobis reçoivent la réponse empoisonnée jusqu'à l'invalidation.
+Tous les utilisateurs reçoivent la réponse empoisonnée jusqu'à l'invalidation.
 
 **Piège 2 : Cache stampede (ruée vers le cache)**
 Le cache expire. 1000 requêtes simultanées arrivent en même temps, toutes vont en DB.
@@ -295,7 +295,7 @@ Toujours avoir un mécanisme d'invalidation explicite en plus du TTL.
 ## EXERCICES
 
 **EXO 1 : La stratégie de Walter White**
-Tu as quatre types de ressources : logo du site, page d'accueil HTML, API de prix (change toutes les heures), données de compte shinobi.
+Tu as quatre types de ressources : logo du site, page d'accueil HTML, API de prix (change toutes les heures), données de compte utilisateur.
 Définis le header `Cache-Control` exact pour chacune. Justifie chaque choix avec un argument de sécurité ou performance.
 
 **EXO 2 : Implémenter un cache avec ETag**

@@ -8,8 +8,8 @@ Ce fichier est le **hub unique** de la défense orale. Il complète et référen
 
 - `31_annexes/interview/01_desaccord_cto.md` (mise en scène complète autour de `05_prison_break_api`).
 - `31_annexes/interview/02_mock_interview_async.md` (défense sur le raisonnement asynchrone).
-- `27_team_craft/13_argumentaire_technique.md` (structure de l'argument).
-- `POSTMORTEM_TEMPLATE.md` (renvoi : chaque décision de POSTMORTEM doit pouvoir être défendue oralement).
+- `27_team_craft/14_argumentaire_technique.md` (structure de l'argument).
+- `31_annexes/templates/POSTMORTEM.md` (renvoi : chaque décision de POSTMORTEM doit pouvoir être défendue oralement).
 
 ## RÈGLE DU JEU
 

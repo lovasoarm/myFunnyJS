@@ -80,11 +80,11 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 **Où ça se voit** : tout le dossier `tests/` et `e2e/`.
 **Pourquoi c'est nécessaire ici** : couvrir un legacy sans tests, puis passer au TDD pour les nouvelles features. Les deux exercices en un. Playwright simule un opérateur qui tape des commandes dans le terminal.
 
-### `14_refactoring` : SOLID sur du code procédural, code smells
+### `13_refactoring` : SOLID sur du code procédural, code smells
 **Où ça se voit** : le passage de `legacy/campV1.js` vers `src/`. Chaque module de `src/` correspond à une responsabilité extraite du monolithe original.
 **Pourquoi c'est nécessaire ici** : `campV1.js` viole SRP (une seule fonction fait tout), OCP (ajouter une feature = modifier la fonction existante), DIP (la logique métier dépend directement du filesystem). La v2 corrige les trois.
 
-### `16_runtime_env` : CLI Node.js, fs, Worker Threads
+### `15_runtime_env` : CLI Node.js, fs, Worker Threads
 **Où ça se voit** : `src/cli.js`, `src/store/fileStore.js`, `src/workers/threatSimulator.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour les commandes CLI, `fs.promises` pour la persistance JSON, Worker Threads pour simuler des vagues de menaces en parallèle sans bloquer le CLI.
 
@@ -96,8 +96,8 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 
 ```
 06_testing  --> tests/ (unit + integration), e2e/ (Playwright), mocks/
-14_refactoring --> legacy/ -> src/ (SOLID, code smells éliminés)
-16_runtime_env --> src/cli.js (argv), src/store/fileStore.js (fs), src/workers/
+13_refactoring --> legacy/ -> src/ (SOLID, code smells éliminés)
+15_runtime_env --> src/cli.js (argv), src/store/fileStore.js (fs), src/workers/
 32_tools    --> src/logger/ (JSON structuré), src/debug/ (replay de scénarios)
 ```
 

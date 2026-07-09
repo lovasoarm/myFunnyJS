@@ -17,7 +17,7 @@ On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercio
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `13_refactoring/06_do_not_touch_before_explain.md`.
+`LECTURE_<nom>.md` avec tes 3 sections remplies. Interdiction absolue de modifier l'extrait avant que les 3 sections soient écrites au propre. Cf `13_refactoring/07_do_not_touch_before_explain.md`.
 
 ## (attention) Ce que l'exo révèle
 

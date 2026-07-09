@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Sharding, backpressure, files d'attente : ces mots n'ont de sens que si tu as ecrit au moins une fois le mecanisme a la main. Ce drill verifie que tu sais dessiner la bonne courbe de charge, pas juste la nommer.
 ---
 stability: intemporel

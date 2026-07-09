@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Fonction pure : définition.
 2. Effet de bord : cite-en trois.
 3. Curry en une phrase.
+4. Qu'est-ce qu'une fonction pure ?
 
 ## Verdict
 

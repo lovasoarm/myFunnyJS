@@ -9,7 +9,7 @@ Compétence visée : encaisser un changement de contrainte à 40% d'avancement s
 
 ## POURQUOI CE FICHIER EXISTE
 
-Les 16 cahiers des charges de `30_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
+Les 17 cahiers des charges de `30_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
 
 ## PROJETS ÉLIGIBLES
 
@@ -20,6 +20,10 @@ Choisis UN projet parmi :
 - `30_mini_projects/16_distributed_arena/` (drift sur la cohérence).
 
 Refait le drift 3 fois total, projets différents, pour couvrir 3 natures de changement.
+
+> Note : `03_walking_dead_protocol/SPEC_DRIFT.md` et `14_system_design_lab/SPEC_DRIFT.md`
+> ont déjà **leur drift pré-écrit** (pas de tirage), ce sont des exécutions dédiées,
+> pas des projets éligibles au tirage aléatoire ci-dessous.
 
 ## DÉCLENCHEMENT
 
@@ -35,6 +39,8 @@ Tu déclares "40%" toi-même : à peu près quand la structure squelette est en 
 | 4 | Le flux de messages doit garantir l'ordre par source (pas globalement). | Cohérence | File par shard, ou clé de partition explicite. |
 | 5 | Un test de charge existant révèle une race à > 200 requêtes/s. | Concurrence | Renforcer la synchronisation, potentiellement une queue. |
 | 6 | La contrainte "pas de dépendance externe" est levée : tu PEUX ajouter Redis OU un broker, mais tu dois justifier. | Trade-off | ADR obligatoire, alternative sans dépendance étudiée. |
+| 7 | Une dépendance existante n'est plus autorisée en prod (lib X bannie). | Contrainte négative | Remplacer ou réécrire, sans casser les tests existants. |
+| 8 | Le contrat de sortie d'un endpoint devient `{data, meta}` au lieu de `[]`. | Contrat d'API | Adapter clients internes + tests, garder la rétro-compat si possible. |
 
 ## PROTOCOLE OBLIGATOIRE
 

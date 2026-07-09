@@ -2,8 +2,8 @@
 Temps de lecture ~17 min
 
 ```javascript
-test('le tribut se valide', () => {
- expect(processPayment(order)).toBe(true);
+test("le plan d'évasion se valide", () => {
+ expect(validateEscapePlan(plan)).toBe(true);
 });
 // PASS la plupart du temps.
 // Échoue parfois. Sans rien changer dans le code. Sans rien changer dans le test.

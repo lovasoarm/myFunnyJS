@@ -1,7 +1,7 @@
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
 Temps de lecture ~13 min
 
-`28_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
+`27_team_craft/01_code_review.md` t'a donné la posture : comment commenter, comment recevoir une review, la checklist d'un reviewer sérieux. Ce qui manquait : la pratique. Voilà 5 snippets, chacun avec un problème réel caché dedans. Ton boulot : le trouver avant de lire le corrigé.
 
 ---
 

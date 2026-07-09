@@ -4,7 +4,7 @@ Temps de lecture ~2 min
 
 
 > Le CV technique de l'apprenant. Une seule page qui agrège les preuves
-> éparpillées dans les 16 mini-projets : pierres travaillées, ADR clés,
+> éparpillées dans les 17 mini-projets : pierres travaillées, ADR clés,
 > postmortems marquants, auto-évaluation. C'est ce que tu montres à un
 > recruteur pressé en 3 minutes.
 
@@ -40,6 +40,7 @@ P6 Pensée transférable.
 | 14 | system_design_lab | P4 P3 | `14_system_design_lab/ADR/` | `14_system_design_lab/POSTMORTEM.md` | _ |
 | 15 | porte_rasengan_engine_multilang | P6 P4 | `15_porte_rasengan_engine_multilang/ADR/` | `15_porte_rasengan_engine_multilang/POSTMORTEM.md` | _ |
 | 16 | distributed_arena | P3 P4 | `16_distributed_arena/ADR/` | `16_distributed_arena/POSTMORTEM.md` | _ |
+| 17 | polyglot_forge | P6 P4 | `17_polyglot_forge/ADR/` | `17_polyglot_forge/POSTMORTEM.md` | _ |
 
 ## Les trois preuves non-remplaçables (à savoir raconter par cœur)
 
@@ -52,7 +53,7 @@ P6 Pensée transférable.
 
 ## Score global
 
-Somme des auto-évals / 80. En dessous de 56/80 (70 %), tu n'es pas encore
+Somme des auto-évals / 85. En dessous de 60/85 (70 %), tu n'es pas encore
 prêt à publier ce portfolio : cible d'abord les lignes à 0-2.
 
 ---

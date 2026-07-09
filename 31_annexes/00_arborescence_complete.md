@@ -308,9 +308,9 @@ START_HERE.md
   03_code_smells.md
   04_refacto_in_action.md
   05_refacto_challenge.md
-  06_do_not_touch_before_explain.md
-  06_refacto_grimoire.md
-  07_smell_hunter.md
+  07_do_not_touch_before_explain.md
+  08_smell_hunter.md
+  09_refacto_grimoire.md
   EXO_CHASSE_AU_CODE_MORT.md
 14_typescript/
   00_prereq_check.md

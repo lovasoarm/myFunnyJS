@@ -11,11 +11,11 @@ Temps de lecture ~4 min
 
 - `transferability/` : prouve que tes concepts tiennent hors JS. Un closure reste un closure en Python, un mutex reste un mutex en Go. La compétence n'est pas la syntaxe, c'est la pensée.
 - `interview/` : les arènes de défense orale : mock interview async, désaccord avec un CTO. Tu t'entraînes seul, tu t'enregistres, tu te corriges.
-- `interview_arena.md` : 10 sujets d'entretien avec grilles d'auto-évaluation.
-- `portfolio_publication.md` : publier proprement sur GitHub : README, licence, historique lisible.
-- `career_pivot.md` : plan 30 jours pour pivoter vers Rust / Python / cloud.
-- `03_when_not_to_code.md` : les cas où la meilleure ligne de code est celle qu'on n'écrit pas.
-- `generate_portfolio_report.md` : compiler ADR + POSTMORTEM + Ledger en un dossier défendable.
+- `10_interview_arena.md` : 10 sujets d'entretien avec grilles d'auto-évaluation.
+- `13_portfolio_publication.md` : publier proprement sur GitHub : README, licence, historique lisible.
+- `05_career_pivot.md` : plan 30 jours pour pivoter vers Rust / Python / cloud.
+- `04_when_not_to_code.md` : les cas où la meilleure ligne de code est celle qu'on n'écrit pas.
+- `14_generate_portfolio_report.md` : compiler ADR + POSTMORTEM + Ledger en un dossier défendable.
 - `03_finops_greenops.md` : le coût réel de ton code : euros et carbone.
 
 ## Pourquoi ces annexes sont indispensables
@@ -47,10 +47,10 @@ survivre autour du code : entretien, portfolio, éthique, finops, santé, transf
 - `interview/` : arènes de préparation d'entretien.
 - `toolchain/` : ce qui gravite autour du langage (git avancé, CI/CD).
 - `transferability/` : lire du code humain vs code IA, transférer vers d'autres langages.
-- `03_when_not_to_code.md` : la meilleure ligne de code est celle qu'on n'écrit pas.
-- `pitch_vs_ai.md` : comment défendre ton travail face à "l'IA fait pareil".
-- `trade_off_arena.md` : décider en public, assumer.
-- `career_pivot.md`, `legal_employability.md`, `dev_health.md` : le hors-code qui casse ou fait durer une carrière.
+- `04_when_not_to_code.md` : la meilleure ligne de code est celle qu'on n'écrit pas.
+- `09_pitch_vs_ai.md` : comment défendre ton travail face à "l'IA fait pareil".
+- `12_trade_off_arena.md` : décider en public, assumer.
+- `05_career_pivot.md`, `08_legal_employability.md`, `06_dev_health.md` : le hors-code qui casse ou fait durer une carrière.
 
 ## Comment naviguer dans les annexes
 
@@ -73,8 +73,8 @@ entier pour un détail.
 ## Signal qu'une annexe est à améliorer
 
 Tu la lis et tu te dis "il me manque un exemple concret". Note-le
-dans un `TODO_ANNEXE.md`. Une annexe qui n'a pas d'exemple est une
-annexe qui n'a pas encore prouvé son utilité.
+dans ton propre carnet de notes du curriculum. Une annexe qui n'a
+pas d'exemple est une annexe qui n'a pas encore prouvé son utilité.
 
 ---
 stability: intemporel

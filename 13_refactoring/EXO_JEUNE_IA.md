@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Refactorer, c'est nommer un code smell avant de le corriger. L'IA sait reecrire ; elle ne sait pas dire pourquoi le code de depart etait mauvais. Ce jeune IA te force a faire l'audit avant l'action.
 ---
 stability: intemporel

@@ -102,7 +102,7 @@ Si tu bloques sur une question, relis la section correspondante avant de passer 
 ## EXERCICES
 
 **EXO 1 : CP ou AP ?**
-Pour chaque système, dis CP ou AP et pourquoi (2 lignes chacun) : (a) service de paiement bancaire, (b) fil d'actualités d'un réseau social, (c) verrou distribué pour un lock exclusif, (d) compteur de likes. (10 min)
+Pour chaque système, dis CP ou AP et pourquoi (2 lignes chacun) : (a) système de vote pour le Ballon d'Or en direct, (b) fil d'actualités d'un réseau social, (c) verrou distribué pour un lock exclusif, (d) compteur de likes. (10 min)
 
 **EXO 2 : quorum**
 Tu as `N=5` répliques. Calcule tous les couples `(W, R)` valides pour `W + R > N`. Lequel privilégie la lecture rapide, lequel privilégie l'écriture rapide ? (10 min)

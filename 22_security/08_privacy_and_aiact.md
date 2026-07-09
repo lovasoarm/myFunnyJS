@@ -28,8 +28,8 @@ Avant le RGPD (applicable depuis 2018), une boîte pouvait collecter ce qu'elle 
 ```
 Minimisation    --> tu ne collectes que ce qui sert vraiment, pas "on sait jamais"
 Limitation de but  --> une donnée collectée pour X ne sert pas à Y sans nouveau consentement
-Droit à l'oubli   --> un shinobi peut demander la suppression complète de ses données
-Droit d'accès    --> un shinobi peut demander un export de tout ce que tu as sur lui
+Droit à l'oubli   --> un supporter peut demander la suppression complète de ses données
+Droit d'accès    --> un supporter peut demander un export de tout ce que tu as sur lui
 Portabilité     --> cet export doit être dans un format réutilisable (JSON, pas un PDF scanné)
 Privacy by design  --> la protection des données se pense AVANT d'écrire le endpoint, pas après un audit
 ```
@@ -54,7 +54,7 @@ function createUser(data) {
   password: hash(data.password),
   fullName: data.fullName,
   createdAt: new Date(),
-  // lastKnownIP volontairement absent : utile pour le rate limiting, pas pour le profil shinobi
+  // lastKnownIP volontairement absent : utile pour le rate limiting, pas pour le profil supporter
   // si besoin de l'IP, elle vit dans les logs applicatifs avec sa propre rétention (cf. section 3)
  });
 }
@@ -62,10 +62,10 @@ function createUser(data) {
 
 ### Le droit à l'oubli en pratique
 
-Le piège classique : supprimer la ligne `users` mais oublier les 6 autres tables qui référencent cet shinobi (logs, sessions, commentaires, cache, backups, service tiers d'emailing).
+Le piège classique : supprimer la ligne `users` mais oublier les 6 autres tables qui référencent ce supporter (logs, sessions, commentaires, cache, backups, service tiers d'emailing).
 
 ```js
-// Naïf : ça donne l'impression que c'est réglé, mais le shinobi existe encore partout ailleurs
+// Naïf : ça donne l'impression que c'est réglé, mais le supporter existe encore partout ailleurs
 async function deleteUser(userId) {
  await db.users.delete(userId);
 }
@@ -94,7 +94,7 @@ L'AI Act (entré en application progressive depuis 2024, premières obligations 
 ```
 Risque inacceptable --> interdit (notation sociale, manipulation comportementale ciblée)
 Risque élevé     --> obligations lourdes (traçabilité, supervision humaine, documentation)
-Risque limité     --> obligation de transparence (le shinobi doit savoir qu'il parle à une IA)
+Risque limité     --> obligation de transparence (le supporter doit savoir qu'il parle à une IA)
 Risque minimal    --> pas d'obligation spécifique (la majorité des features IA grand public)
 ```
 
@@ -103,10 +103,10 @@ Risque minimal    --> pas d'obligation spécifique (la majorité des features IA
 ```js
 // Mauvais : un chatbot qui ne se déclare jamais comme tel
 function renderChatMessage(text) {
- return `<div class="message">${text}</div>`; // le shinobi ne sait pas si c'est un humain ou pas
+ return `<div class="message">${text}</div>`; // le supporter ne sait pas si c'est un humain ou pas
 }
 
-// Correct : transparence explicite, exigée dès qu'un shinobi interagit avec une IA générative
+// Correct : transparence explicite, exigée dès qu'un supporter interagit avec une IA générative
 function renderChatMessage(text, isAIGenerated) {
  return `
   <div class="message">
@@ -146,7 +146,7 @@ C'est la question concrète que tout dev se pose un jour devant un `console.log(
 ```
 JAMAIS en clair dans un log   --> mot de passe, token de session, numéro de carte, code 2FA
 À éviter sauf besoin justifié  --> email complet, nom complet, adresse IP sans rotation
-OK avec rétention limitée    --> ID shinobi technique (UUID), action effectuée, timestamp
+OK avec rétention limitée    --> ID supporter technique (UUID), action effectuée, timestamp
 Toujours OK           --> métriques agrégées (nombre de requêtes, latence, taux d'erreur)
 ```
 
@@ -155,7 +155,7 @@ Toujours OK           --> métriques agrégées (nombre de requêtes, latence, t
 logger.info('Chakra_gate attempt', {
  email: user.email,
  password: req.body.password, // catastrophe : un mot de passe en clair dans des logs
- creditCard: user.paymentMethod.last4, // pas nécessaire pour débugger un chakra_gate
+ creditCard: user.paymentMethod.last4, // pas nécessaire pour débugger un login
 });
 
 // Correct : on garde ce qui sert à débugger, on retire ce qui identifie ou compromet
@@ -197,7 +197,7 @@ function pseudonymize(comment) {
 
 // Anonymisation réelle : aucune table, aucune clé ne permet de revenir à la personne
 function anonymize(comment) {
- return { ...comment, authorId: null, authorName: 'Shinobi supprimé' };
+ return { ...comment, authorId: null, authorName: 'Supporter supprimé' };
 }
 ```
 
@@ -215,7 +215,7 @@ Risque individuel   --> le dev qui a posé le `console.log(req.body)` n'est pas 
               mais c'est souvent son code qui devient la pièce à conviction de l'audit
 ```
 
-Ce n'est pas une checklist à cocher une fois en fin de projet. C'est une question à se poser à chaque endpoint qui touche une donnée personnelle, à chaque ligne de log ajoutée pour débugger, à chaque fois qu'un modèle d'IA reçoit un input qui vient d'un vrai shinobi.
+Ce n'est pas une checklist à cocher une fois en fin de projet. C'est une question à se poser à chaque endpoint qui touche une donnée personnelle, à chaque ligne de log ajoutée pour débugger, à chaque fois qu'un modèle d'IA reçoit un input qui vient d'un vrai supporter.
 
 ---
 
@@ -227,7 +227,7 @@ Le système de gestion des profils de `05_prison_break_api` log actuellement `re
 
 ## EXO 2 : LE DROIT À L'OUBLI COMPLET
 
-Un shinobi de l'Ultras Dashboard demande la suppression totale de son compte. Lister toutes les tables et services qui contiennent une trace de lui (profil, commentaires sur les matchs, sessions, logs d'erreur, service d'emailing externe), puis écrire la fonction `deleteUserCompletely(userId)` qui couvre chaque source, avec anonymisation là où la suppression casserait l'intégrité des données d'autres shinobis (commentaires liés, historique de match).
+Un supporter de l'Ultras Dashboard demande la suppression totale de son compte. Lister toutes les tables et services qui contiennent une trace de lui (profil, commentaires sur les matchs, sessions, logs d'erreur, service d'emailing externe), puis écrire la fonction `deleteUserCompletely(userId)` qui couvre chaque source, avec anonymisation là où la suppression casserait l'intégrité des données d'autres supporters (commentaires liés, historique de match).
 
 ## EXO 3 : LE BADGE DE TRANSPARENCE IA
 
@@ -237,7 +237,7 @@ L'Oracle Glitch (`09_oracle_glitch`) génère des suggestions de fix de code et 
 
 ## RÉSUMÉ
 
-RGPD et AI Act ne sont pas des sujets que tu ignores en te disant "c'est le boulot des juristes". Le RGPD impose minimisation, droit à l'oubli réel (toutes les tables, pas une seule), et une distinction stricte entre pseudonymisation (réversible) et anonymisation (définitive). L'AI Act impose transparence dès qu'un shinobi parle à une IA, et traçabilité renforcée pour les systèmes à risque élevé. Le réflexe à garder : avant chaque `console.log`, chaque colonne de DB, chaque payload envoyé à un modèle, se demander si cette donnée sert vraiment un but déclaré, et combien de temps elle doit survivre.
+RGPD et AI Act ne sont pas des sujets que tu ignores en te disant "c'est le boulot des juristes". Le RGPD impose minimisation, droit à l'oubli réel (toutes les tables, pas une seule), et une distinction stricte entre pseudonymisation (réversible) et anonymisation (définitive). L'AI Act impose transparence dès qu'un supporter parle à une IA, et traçabilité renforcée pour les systèmes à risque élevé. Le réflexe à garder : avant chaque `console.log`, chaque colonne de DB, chaque payload envoyé à un modèle, se demander si cette donnée sert vraiment un but déclaré, et combien de temps elle doit survivre.
 
 ---
 stability: stable

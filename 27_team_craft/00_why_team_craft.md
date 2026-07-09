@@ -2,7 +2,7 @@
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : communication (implicite), refactoring (14_refactoring).
+> Ce module reutilise : communication (implicite), refactoring (13_refactoring).
 Temps de lecture ~11 min
 
 Le code solo c'est rare.
@@ -123,10 +123,10 @@ Ce module se place en fin de curriculum pour une raison : il présuppose que tu 
 ```
 modules précédents qui rendent ce module concret
 -------------------------------------------------
-14_refactoring    --> tu sais ce qui mérite une review sérieuse
+13_refactoring    --> tu sais ce qui mérite une review sérieuse
 02_problem_solving  --> tu sais pourquoi les décisions d'archi comptent
-15_typescript     --> tu as des types à documenter et des ADR à écrire
-16_runtime_env    --> tu as un environnement à configurer et à documenter
+14_typescript     --> tu as des types à documenter et des ADR à écrire
+15_runtime_env    --> tu as un environnement à configurer et à documenter
 21_api_craft     --> tu as des endpoints à documenter dans un README
 ```
 
@@ -219,7 +219,7 @@ Ce qui différencie : travailler dans un système complexe, avec des humains, su
 Team craft n'est pas un module de soft skills.
 C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code artefact.
 
-> Ce module réutilise : le refactoring du module 14 (`14_refactoring`), les tests du module 06 (`06_testing`).
+> Ce module réutilise : le refactoring du module 13 (`13_refactoring`), les tests du module 06 (`06_testing`).
 
 ---
 stability: intemporel

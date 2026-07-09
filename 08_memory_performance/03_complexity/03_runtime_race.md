@@ -253,7 +253,7 @@ Le point de douleur de O(n²) se situe entre 10 000 et 100 000 éléments. En de
 Opération           Taille typique  Complexité à viser
 ──────────────────────────  ───────────────  ──────────────────
 Trier une liste de résultats 10-10 000     O(n log n) ou moins
-Chercher un shinobi    1M+        O(log n) ou O(1)
+Chercher un utilisateur    1M+        O(log n) ou O(1)
 Détecter des doublons     10k-1M      O(n)
 Construire un index      1M+        O(n)
 Matcher deux ensembles    100k+       O(n) avec Set/Map

@@ -30,7 +30,7 @@ JS ne s'exécute pas seul. Il faut un moteur. Les deux utilisent V8 (le moteur d
 ```
 
 Node ajoute des APIs système : fichiers, réseau, processus, threads.
-Le navigateur ajoute des APIs UI : DOM, rendu, interactions shinobi, stockage web.
+Le navigateur ajoute des APIs UI : DOM, rendu, interactions utilisateur, stockage web.
 
 ---
 
@@ -41,7 +41,7 @@ Le navigateur ajoute des APIs UI : DOM, rendu, interactions shinobi, stockage we
 ```js
 // le DOM : accès direct à la page HTML
 document.querySelector(".card").addEventListener("click", () => {
- // le shinobi a cliqué : on réagit
+ // l'utilisateur a cliqué : on réagit
  document.title = "clicked";
 });
 

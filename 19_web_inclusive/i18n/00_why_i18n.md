@@ -59,7 +59,7 @@ La gestion des clés de traduction a aussi évolué : avec TypeScript, il devien
 
 ## 6) NOYAU DUR DU MÉTIER ?
 
-Pas dans les 6 blocs prioritaires explicitement listés, mais directement intégré dans le mini-projet `08_trapsoul_radio`, qui combine `15_typescript`, `18_web_concepts`, `19_web_inclusive`, et `19_web_inclusive/i18n` pour une plateforme qui doit gérer plusieurs langues avec pluralisation et formats corrects par locale, en plus d'être accessible.
+Pas dans les 6 blocs prioritaires explicitement listés, mais directement intégré dans le mini-projet `08_trapsoul_radio`, qui combine `14_typescript`, `17_web_concepts`, `19_web_inclusive`, et `19_web_inclusive/i18n` pour une plateforme qui doit gérer plusieurs langues avec pluralisation et formats corrects par locale, en plus d'être accessible.
 
 ---
 
@@ -73,13 +73,13 @@ Tant qu'il existera des jutsus qui visent plus d'un marché linguistique (et ça
 
 ## CE MODULE DANS LE CURRICULUM
 
-**Prérequis directs :** `01_fundamentals/04_types` (Intl.DateTimeFormat et Intl.NumberFormat manipulent des types JS natifs), `18_web_concepts/06_serialization.md` (les clés de traduction sont souvent en JSON : tu dois savoir les parser proprement).
+**Prérequis directs :** `01_fundamentals/04_types` (Intl.DateTimeFormat et Intl.NumberFormat manipulent des types JS natifs), `17_web_concepts/06_serialization.md` (les clés de traduction sont souvent en JSON : tu dois savoir les parser proprement).
 
 **Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache : pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
 
-**Position dans la roadmap :** Module 18 sur 31. Après l'accessibilité (17) parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (19) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
+**Position dans la roadmap :** Sous-dossier du module 19_web_inclusive (sur 32 modules au total) — l'i18n n'est pas un module séparé, c'est le prolongement immédiat du chapitre accessibilité de ce même module 19. Placé juste après l'accessibilité parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (module 20) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
 
-**Lien avec les autres modules :** `15_typescript` : les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `24_databases` : les préférences de langue des shinobis sont souvent persistées en base.
+**Lien avec les autres modules :** `14_typescript` : les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `24_databases` : les préférences de langue des shinobis sont souvent persistées en base.
 
 ---
 

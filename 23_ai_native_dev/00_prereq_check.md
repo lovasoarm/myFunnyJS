@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Hallucination : c'est quoi ?
 2. Prompt engineering en une phrase.
 3. Solo-vs-copilot drill : pourquoi ?
+4. Cite un risque concret d'accepter aveuglément une suggestion IA.
 
 ## Verdict
 

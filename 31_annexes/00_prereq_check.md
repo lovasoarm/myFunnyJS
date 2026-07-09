@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Peux-tu écrire une closure en Python ?
 2. Peux-tu défendre une décision d'archi en 3 min ?
 3. As-tu un portfolio publiable ?
+4. À quoi sert une annexe dans ce curriculum ?
 
 ## Verdict
 

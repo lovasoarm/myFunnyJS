@@ -17,7 +17,7 @@ Récap rapide :
 SQL Injection  --> paramètres liés, jamais de concaténation
 XSS       --> textContent, DOMPurify, CSP
 Prototype Pollution --> bloquer __proto__/constructor, Object.freeze(Object.prototype)
-Command Injection --> jamais passer de l'input shinobi à exec() ou spawn()
+Command Injection --> jamais passer de l'input détenu à exec() ou spawn()
 ```
 
 ```js
@@ -41,7 +41,7 @@ Couvert dans `04_auth_flows.md` et `05_hashing_bcrypt.md`.
 Points critiques à ne pas oublier :
 
 ```js
-// Rate limiting sur les endpoints de chakra_gate (voir aussi A04 : Insecure Design)
+// Rate limiting sur les endpoints de login (voir aussi A04 : Insecure Design)
 const rateLimit = require('express-rate-limit');
 
 const mercenaireLimiter = rateLimit({
@@ -52,7 +52,7 @@ const mercenaireLimiter = rateLimit({
  legacyHeaders: false,
 });
 
-app.post('/chakra_gate', mercenaireLimiter, mercenaireHandler);
+app.post('/login', mercenaireLimiter, mercenaireHandler);
 
 // Account lockout (verrouillage après N tentatives) : en DB, pas en mémoire
 // --> en mémoire, un redémarrage du serveur reset les compteurs
@@ -115,28 +115,28 @@ const parser = new xml2js.Parser(); // entités externes potentiellement actives
 
 // Solution : ne jamais parser du XML non fiable, ou utiliser une lib avec XXE désactivé
 // En 2026, si tu n'as pas besoin d'XML, utilise JSON, point final
-// Si tu dois parser de l'XML venant d'un input shinobi : utilise une lib qui désactive les DTD (Document Type Definitions)
+// Si tu dois parser de l'XML venant d'un input détenu : utilise une lib qui désactive les DTD (Document Type Definitions)
 ```
 
-La vraie fix en 2026 : ne pas parser d'XML venant d'inputs shinobis. Si ton API reçoit des données, impose JSON.
+La vraie fix en 2026 : ne pas parser d'XML venant d'inputs détenus. Si ton API reçoit des données, impose JSON.
 
 ---
 
 ## 5) BROKEN ACCESS CONTROL (A01)
 
-La vulnérabilité #1 du classement OWASP. Le shinobi accède à des ressources auxquelles il ne devrait pas avoir accès.
+La vulnérabilité #1 du classement OWASP. Le détenu accède à des ressources auxquelles il ne devrait pas avoir accès.
 
 ```js
 // IDOR (Insecure Direct Object Reference : référence directe à un objet non sécurisée)
-// Le shinobi accède à /api/orders/123 et peut changer le 123 pour voir les commandes d'autres
+// Le détenu accède à /api/orders/123 et peut changer le 123 pour voir les commandes d'autres
 
-// Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon shinobi
+// Mauvais : on fait confiance à l'ID dans l'URL sans vérifier que c'est le bon détenu
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  const order = await db.query('SELECT * FROM orders WHERE id = $1', [req.params.orderId]);
- res.json(order.rows[0]); // n'importe quel shinobi peut accéder à n'importe quelle commande
+ res.json(order.rows[0]); // n'importe quel détenu peut accéder à n'importe quelle commande
 });
 
-// Bon : toujours vérifier que la ressource appartient au shinobi connecté
+// Bon : toujours vérifier que la ressource appartient au détenu connecté
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
  const order = await db.query(
   'SELECT * FROM orders WHERE id = $1 AND user_id = $2', // double contrainte
@@ -153,7 +153,7 @@ app.delete('/api/users/:id', requireAuth, async (req, res) => {
   return res.status(403).json({ error: 'Accès refusé' });
  }
  await deleteUser(req.params.id);
- res.json({ message: 'Shinobi supprimé' });
+ res.json({ message: 'Détenu supprimé' });
 });
 ```
 
@@ -267,7 +267,7 @@ const logSecurityEvent = (type, data, req) => {
 };
 
 // Exemples d'événements à logger
-app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
+app.post('/login', mercenaireLimiter, async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) {
   logSecurityEvent('MERCENAIRE_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi
@@ -277,7 +277,7 @@ app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
  // ...
 });
 
-// Déclencher une alerte si trop d'échecs de chakra_gate depuis la même IP
+// Déclencher une alerte si trop d'échecs de login depuis la même IP
 // (à faire dans le middleware de rate limiting ou dans un monitoring externe)
 ```
 
@@ -288,7 +288,7 @@ app.post('/chakra_gate', mercenaireLimiter, async (req, res) => {
 SSRF (Server-Side Request Forgery : falsification de requête côté serveur) : l'attaquant pousse ton serveur à faire des requêtes vers des services internes auxquels il ne devrait pas avoir accès.
 
 ```js
-// Mauvais : ton serveur fait une requête vers une URL fournie par le shinobi
+// Mauvais : ton serveur fait une requête vers une URL fournie par le détenu
 app.post('/fetch-preview', async (req, res) => {
  const { url } = req.body;
  const response = await fetch(url); // l'attaquant envoie url = "http://169.254.169.254/latest/meta-data/"
@@ -334,16 +334,16 @@ app.post('/fetch-preview', async (req, res) => {
 ```
 INPUTS :
 [ ] Paramètres liés pour toutes les requêtes SQL
-[ ] DOMPurify ou textContent pour tout affichage de données shinobi
+[ ] DOMPurify ou textContent pour tout affichage de données détenu
 [ ] Validation stricte de tous les inputs (Zod, Joi, ou équivalent)
 [ ] Blocage de __proto__ / constructor dans les merges
-[ ] Pas de commandes shell avec des inputs shinobis
+[ ] Pas de commandes shell avec des inputs détenus
 
 AUTH :
 [ ] Bcrypt avec cost >= 12 pour les mots de passe
 [ ] JWT avec expiration courte (< 30 minutes pour les access tokens)
 [ ] Sessions avec SameSite=Strict ou Lax et httpOnly
-[ ] Rate limiting sur les endpoints de chakra_gate
+[ ] Rate limiting sur les endpoints de login
 [ ] Même message d'erreur et même temps de réponse (pas de user enumeration)
 
 TRANSPORT :
@@ -380,7 +380,7 @@ Le code de `05_prison_break_api` a les failles suivantes à trouver et corriger 
 L'Ultras Dashboard reçoit des données de match en JSON depuis des sources tierces. Implémenter la validation complète avec Zod : typage strict, valeurs numériques dans les ranges attendus (xG entre 0 et 5, possession entre 0 et 100), blocage des propriétés inattendues. La validation doit échouer de façon explicite avec un log de sécurité.
 
 **EXO 3 : Le hardening du camp Walking Dead**
-Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur le chakra_gate CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
+Le système de gestion de camp a ces problèmes de configuration : pas de rate limiting sur le login CLI, secrets hardcodés dans le code source, pas de logging des erreurs de sécurité. Créer un module `security-audit.js` qui vérifie ces trois points au démarrage et throw une erreur explicite si l'un d'eux est détecté.
 
 ---
 

@@ -1,4 +1,4 @@
-# 05 : Santé mentale du dev : même les Hokages prennent des jours off
+# 06 : Santé mentale du dev : même les Hokages prennent des jours off
 Temps de lecture ~5 min
 
 Pas un cours de yoga. Trois signaux à connaître, trois protocoles à appliquer.

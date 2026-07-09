@@ -11,7 +11,7 @@ Accepté : 2026-01
 ## Contexte
 Trapsoul Radio doit fonctionner en 4 locales : français, anglais, japonais, malgache. Chaque string de l'interface (titre d'une piste, label d'un bouton, message d'erreur) a une traduction par locale. La question centrale : comment garantir qu'une clé de traduction manquante dans une locale est détectée avant la mise en prod, pas après qu'un auditeur japonais voit `[missing: ja.player.play]` s'afficher sur son écran ?
 
-Le projet couvre `15_typescript`, `19_web_inclusive/i18n`, `19_web_inclusive`. Le système de traduction est la colonne vertébrale de l'interface : une clé manquante brise silencieusement l'expérience de tous les auditeurs de cette locale.
+Le projet couvre `14_typescript`, `19_web_inclusive/i18n`, `19_web_inclusive`. Le système de traduction est la colonne vertébrale de l'interface : une clé manquante brise silencieusement l'expérience de tous les auditeurs de cette locale.
 
 ## Décision
 On type les clés de traduction en TypeScript : le dictionnaire de traductions est un objet dont les clés sont un type union exhaustif, et chaque locale doit implémenter toutes les clés : faute de quoi `tsc` refuse de compiler.
@@ -49,7 +49,7 @@ La fonction `t(key: TranslationKey)` ne peut recevoir qu'une clé du type union 
 
 **Fichiers de traduction JSON sans typage**
 - Avantages : format standard, lisible par des non-développeurs (traducteurs)
-- Limites : `const ja = require('./locales/ja.json')` charge un objet non typé ; toutes les clés sont des `string` génériques ; une clé manquante ne artefact aucune erreur jusqu'à ce qu'un shinobi l'atteigne en production
+- Limites : `const ja = require('./locales/ja.json')` charge un objet non typé ; toutes les clés sont des `string` génériques ; une clé manquante ne artefact aucune erreur jusqu'à ce qu'un utilisateur l'atteigne en production
 - Rejeté parce que : l'objectif de ce projet est de montrer que TypeScript peut attraper les erreurs d'i18n au compile time : les fichiers JSON non typés offrent exactement la même sécurité que du JavaScript pur
 
 ## Conséquences

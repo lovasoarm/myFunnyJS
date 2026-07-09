@@ -108,7 +108,7 @@ Si `nvm use` renvoie "version not installed" → `nvm install`.
 - **macOS/Linux** : ne fais **jamais** `sudo npm install -g …`. C'est le signe
  que ton install Node est mal placée. Réinstalle via `nvm`.
 - **Windows** : si un `npm install` échoue avec `EPERM`, ferme les processus
- Node/VSCode ouverts et relance en tant qu'shinobi (pas admin).
+ Node/VSCode ouverts et relance en tant qu'utilisateur (pas admin).
 
 ---
 

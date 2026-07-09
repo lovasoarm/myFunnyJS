@@ -89,7 +89,7 @@ Si un seul maillon est faible, toute la chaîne en souffre. Un bundler mal confi
 solo, petit script    --> Git suffit, le reste est optionnel
 projet perso sérieux    --> Git + package manager + bundler deviennent importants
 travail en équipe     --> Git devient non négociable, CI commence à valoir le coup
-prod avec shinobis réels --> Docker + CI/CD deviennent indispensables
+prod avec utilisateurs réels --> Docker + CI/CD deviennent indispensables
 ```
 
 Comment tu sais que t'en as besoin : le jour où "ça marchait avant" devient une phrase que tu prononces plus d'une fois par semaine, t'as un problème de toolchain, pas un problème de code.
@@ -144,7 +144,7 @@ Git      --> dès le jour 1, en parallèle de tout le reste
 VSCode setup --> dès le jour 1, c'est ton terrain de jeu quotidien
 package manager --> dès que tu installes ta première dépendance
 bundlers   --> après avoir compris modules ESM/CJS (module 06_modules)
-Docker    --> après avoir compris runtime Node (module 16_runtime_env)
+Docker    --> après avoir compris runtime Node (module 15_runtime_env)
 CI/CD     --> après avoir des tests à automatiser (module 06_testing)
 ```
 
@@ -152,7 +152,7 @@ Prérequis avant d'attaquer ce module :
 ```
 01_fundamentals    --> tu dois savoir lire du JS sans effort
 06_modules      --> import/export, ESM vs CJS : indispensable pour comprendre les bundlers
-16_runtime_env    --> Node, process, filesystem : indispensable pour Docker et les scripts CI
+15_runtime_env    --> Node, process, filesystem : indispensable pour Docker et les scripts CI
 06_testing      --> sans tests, CI/CD c'est juste un déploiement automatisé aveugle
 ```
 

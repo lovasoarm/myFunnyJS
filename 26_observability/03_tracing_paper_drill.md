@@ -14,10 +14,10 @@ Temps de lecture ~5 min
 On te fournit ces logs bruts :
 
 ```
-[svc-A] 12:00:00.100 req=abc GET /order/42 -> 12:00:00.230 200
-[svc-B] 12:00:00.130 req=abc SELECT orders -> 12:00:00.180
-[svc-B] 12:00:00.185 req=abc SELECT items -> 12:00:00.220
-[svc-C] 12:00:00.140 req=abc payment.check -> 12:00:00.215
+[svc-A] 12:00:00.100 req=abc GET /patrol/42 -> 12:00:00.230 200
+[svc-B] 12:00:00.130 req=abc SELECT patrols -> 12:00:00.180
+[svc-B] 12:00:00.185 req=abc SELECT scouts -> 12:00:00.220
+[svc-C] 12:00:00.140 req=abc radio.check -> 12:00:00.215
 ```
 
 1. Dessine la trace en cascade (Gantt).

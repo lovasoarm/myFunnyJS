@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# _synthesis — synthèses transverses des mini-projets
+# _synthesis : synthèses transverses des mini-projets
 
 Temps de lecture ~4 min
 

@@ -81,7 +81,7 @@ EXEMPLE : comprendre comment un vote Ballon d'Or est enregistré
      --> app.post('/vote', authMiddleware, voteController.create)
 
 ÉTAPE 2 : lire le middleware (ce qui s'exécute avant le handler)
-     --> authMiddleware : vérifie le JWT, attache le shinobi à req.user
+     --> authMiddleware : vérifie le JWT, attache l'utilisateur à req.user
      --> voteController.create : le handler
 
 ÉTAPE 3 : lire le handler
@@ -195,7 +195,7 @@ pas cherché)            ADR-003 sur Drizzle : est-ce qu'on
                   a des cas où on utilise des requêtes
                   brutes directement ?"
 
-"où est le code de l'auth ?"    "j'ai tracé la requête POST /chakra_gate
+"où est le code de l'auth ?"    "j'ai tracé la requête POST /login
 (cherchable en 2 minutes)     jusqu'à authService, mais je vois
                   pas où les refresh tokens sont
                   invalidés -- c'est dans le service

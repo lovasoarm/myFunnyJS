@@ -92,7 +92,7 @@ JSON sur le filesystem.
 
 ## Conséquences
 Risque : lecture/écriture concurrente si plusieurs processus tournent en même temps.
-Acceptable pour ce cas d'usage (CLI mono-shinobi).
+Acceptable pour ce cas d'usage (CLI mono-utilisateur).
 ```
 
 ---
@@ -148,6 +148,14 @@ Tu n'as pas besoin de finir tous les modules avant de commencer : chaque projet 
 | 07_ballon_dor_cli     | 04 + 13 + 15 + 31    | Après module 31     |
 | 08_trapsoul_radio     | 14 + 17 + 18 + 19    | Après module 19     |
 | 09_oracle_glitch     | 23 + 27 + 28 + 18    | Après module 28     |
+| 10_legacy_dungeon     | 04 + 05 + 06 + 13 + 27  | Après module 27     |
+| 11_scheduler       | 03           | Après module 03     |
+| 12_legacy_takeover    | 04 + 06 + 13 + 27    | Après module 27     |
+| 13_memory_hunter     | 08 + 26         | Après module 26     |
+| 14_system_design_lab   | 20 + 21 + 24 + 25 + 26  | Après module 26     |
+| 15_porte_rasengan_engine_multilang | 01 + 12 + 14 (portage de 01_rasengan_engine) | Après module 32 |
+| 16_distributed_arena   | 03 + 25 + 26      | Après module 26     |
+| 17_polyglot_forge     | 03 (event loop) + 15 (mini-projet cross-lang) | Après module 32 |
 ```
 
 Si tu hésite entre deux projets au même niveau : choisis celui dont le contexte narratif t'accroche le plus.

@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Log base 2 de 1024 ?
 2. Modulo, à quoi ça sert en programmation ?
 3. Complexité : O(n) vs O(log n) sur un million d'éléments ?
+4. Pourquoi `0.1 + 0.2 !== 0.3` en JS ?
 
 ## Verdict
 

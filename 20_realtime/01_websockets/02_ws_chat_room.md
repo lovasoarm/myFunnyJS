@@ -2,7 +2,7 @@
 Temps de lecture ~9 min
 
 Un chat room WebSocket c'est le test de feu de tout ce qu'on a vu.
-Multi-shinobis. Rooms séparées. Broadcast (diffusion à tous). Historique qui persiste.
+Multi-utilisateurs. Rooms séparées. Broadcast (diffusion à tous). Historique qui persiste.
 Si t'arrives à construire ça proprement, t'as compris WebSocket.
 
 Ce qu'on construit : un système de chat inspiré du Conseil des Chevaliers de Garo.

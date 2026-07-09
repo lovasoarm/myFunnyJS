@@ -69,7 +69,7 @@ Règle : **mise à jour toutes les 15 min**, même si "rien de nouveau".
 - Un shinobi test peut lancer un rasengan ?
 
 Si OUI → tu clôtures l'urgence, tu vas te recoucher, tu écris la POSTMORTEM
-demain matin (voir `05_debug_in_prod.md`).
+demain matin (voir `06_debug_in_prod.md`).
 Si NON → tu escalades. Tu ne joues pas au héros seul à 3h.
 
 ## Livrable

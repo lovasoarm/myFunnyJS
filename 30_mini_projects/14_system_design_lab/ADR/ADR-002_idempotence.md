@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-002 : idempotence applicative des handlers
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

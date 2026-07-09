@@ -20,7 +20,7 @@ Oracle Glitch est le seul projet du portfolio qui appelle réellement l'Anthropi
 
 Trois approches étaient envisageables pour gérer ces cas :
 
-1. **Confiance aveugle** : parser le JSON et utiliser la sortie telle quelle, en laissant le shinobi juger
+1. **Confiance aveugle** : parser le JSON et utiliser la sortie telle quelle, en laissant l'utilisateur juger
 2. **Validation de shape uniquement** : valider la structure avec Zod et accepter tout ce qui passe le schéma
 3. **Pipeline de validation en couches** : schéma Zod + règles métier spécifiques aux erreurs connues des LLM, avec rejet explicite des fixes "non-vérifiables"
 
@@ -66,5 +66,5 @@ Négatives :
 - Le mock Jest de `streamingClient` ne couvre pas les bugs réseau réels : les vrais incidents de stream coupé n'apparaissent qu'en exécution réelle avec la clé API
 
 Décisions liées :
-- ADR-002 portera sur la stratégie de retry : faut-il relancer automatiquement un appel API quand le JSON est malformé, ou laisser le shinobi relancer manuellement (coût vs UX)
+- ADR-002 portera sur la stratégie de retry : faut-il relancer automatiquement un appel API quand le JSON est malformé, ou laisser l'utilisateur relancer manuellement (coût vs UX)
 - ADR-003 portera sur le logging des sorties IA rejetées : faut-il les archiver pour entraîner un classifieur local de qualité, ou les jeter par souci de confidentialité du code analysé

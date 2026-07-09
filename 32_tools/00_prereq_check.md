@@ -13,6 +13,7 @@ Temps de lecture ~5 min
 1. Peux-tu bootstrap un projet sans template ?
 2. Pourquoi verrouiller les versions ?
 3. Un linter : ami ou tyran ?
+4. Différence entre un linter et un formateur ?
 
 ## Verdict
 

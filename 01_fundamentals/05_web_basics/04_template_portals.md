@@ -3,7 +3,7 @@ Temps de lecture ~7 min
 
 Aujourd'hui, on attaque un truc **fondamental du web moderne** : générer du HTML avec JavaScript.
 
-Pourquoi ? Parce que dans une vraie application, les données viennent d'une API, le shinobi interagit, l'interface doit changer. Le navigateur doit **créer du HTML dynamiquement**.
+Pourquoi ? Parce que dans une vraie application, les données viennent d'une API, le utilisateur interagit, l'interface doit changer. Le navigateur doit **créer du HTML dynamiquement**.
 
 C'est exactement ce que font React, Vue, Angular, Next. Mais derrière tout ça, il y a simplement :
 
@@ -221,7 +221,7 @@ Génère une liste HTML :
 
 ## MISSION 4 : LE PORTAIL MAGIQUE
 
-Crée un `<input>`. Quand le shinobi tape un nom, JS crée dynamiquement une carte joueur :
+Crée un `<input>`. Quand le utilisateur tape un nom, JS crée dynamiquement une carte joueur :
 
 ```
 Input : "Blob"

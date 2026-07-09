@@ -51,7 +51,7 @@ async function worker() {
 }
 ```
 
-Le pourquoi : le shinobi reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et le shinobi peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
+Le pourquoi : l'utilisateur reçoit une réponse en quelques centaines de millisecondes au lieu d'attendre 45 secondes. Le traitement lourd continue en arrière-plan, et l'utilisateur peut être notifié plus tard (websocket vu dans `20_realtime`, email, ou juste un statut qui change quand il rafraîchit).
 
 ---
 
@@ -99,27 +99,27 @@ Le risque réel avec at-least-once (le cas par défaut) : si ton worker traite u
 
 ```js
 // exemple qui casse avec at-least-once mal géré
-async function processPayment(job) {
- await chargeCreditCard(job.amount) // étape 1 : prélève l'argent
+async function distribuerRations(job) {
+ await preleverDuStock(job.quantite) // étape 1 : retire les rations du stock du camp
  // CRASH ICI, avant de pouvoir confirmer à la queue
  await queue.ack(job.id) // jamais atteint
 }
 // La queue, n'ayant pas reçu l'ack, renvoie le message
-// Un autre worker reprend le job depuis le début --> double prélèvement
+// Un autre worker reprend le job depuis le début --> double prélèvement du stock
 ```
 
 La correction : rendre l'opération idempotente (vue aussi dans `21_api_craft/04_auth_jwt` pour le refresh token), c'est-à-dire que la rejouer plusieurs fois donne le MÊME résultat que la jouer une fois.
 
 ```js
-// Idempotent : un identifiant unique de transaction empêche le double traitement
-async function processPayment(job) {
- const alreadyProcessed = await db.query(
-  'SELECT id FROM payments WHERE idempotency_key = $1', [job.idempotencyKey]
+// Idempotent : un identifiant unique de distribution empêche le double traitement
+async function distribuerRations(job) {
+ const dejaFait = await db.query(
+  'SELECT id FROM distributions WHERE idempotency_key = $1', [job.idempotencyKey]
  )
- if (alreadyProcessed.rows.length > 0) {
-  return // déjà fait, on ne refacture pas
+ if (dejaFait.rows.length > 0) {
+  return // déjà fait, on ne re-prélève pas le stock
  }
- await chargeCreditCard(job.amount, job.idempotencyKey)
+ await preleverDuStock(job.quantite, job.idempotencyKey)
  await queue.ack(job.id)
 }
 ```
@@ -164,15 +164,15 @@ Le vrai intérêt : la dead letter queue devient un endroit que l'équipe survei
 ```
 Plusieurs workers en parallèle traitent la MÊME file :
 
-Message 1 (créer commande) --> Worker A, prend 2 secondes
-Message 2 (annuler commande) --> Worker B, prend 0.1 seconde
+Message 1 (Rick ordonne : fortifier le mur nord) --> Worker A, prend 2 secondes
+Message 2 (Rick ordonne : annuler la fortification) --> Worker B, prend 0.1 seconde
 
 Si l'ordre n'est pas garanti et que les workers tournent en parallèle :
 Worker B peut FINIR avant Worker A
---> la commande est "annulée" avant même d'avoir été "créée"
+--> la fortification est "annulée" avant même d'avoir été "lancée"
 ```
 
-Le risque réel : si l'ordre des opérations a un sens métier (créer avant annuler, débiter avant créditer), tu dois soit garantir l'ordre (souvent en sacrifiant le parallélisme pour CE type de message précis, par exemple en routant tous les messages d'un même user vers le même worker), soit concevoir chaque traitement pour être robuste face au désordre (vérifier l'état actuel avant d'agir, plutôt que de supposer un ordre).
+Le risque réel : si l'ordre des opérations a un sens métier (fortifier avant annuler, poster une sentinelle avant la relever), tu dois soit garantir l'ordre (souvent en sacrifiant le parallélisme pour CE type de message précis, par exemple en routant tous les ordres d'un même leader vers le même worker), soit concevoir chaque traitement pour être robuste face au désordre (vérifier l'état actuel avant d'agir, plutôt que de supposer un ordre).
 
 ---
 
@@ -207,8 +207,8 @@ Avant, beaucoup d'équipes géraient des tâches asynchrones avec des tables SQL
 **EXO 1 : Découpe l'inscription au Camp des Survivants**
 Rick Grimes met en place un système d'inscription pour le camp : créer le profil du survivant en DB, envoyer une alerte radio au conseil de sécurité, générer une carte d'accès, et notifier Daryl pour l'affectation de garde. Identifie ce qui DOIT être synchrone (avant de confirmer l'inscription au survivant) et ce qui PEUT partir en file asynchrone. Justifie : une erreur sur quoi est inacceptable vs acceptable ? (15 minutes)
 
-**EXO 2 : Rends le tribut de Michonne idempotent**
-Le réseau radio du camp est instable. Michonne soumet un échange de ressources, le serveur reçoit la requête, commence le traitement, crash avant de répondre. Son client retente 3 fois. Sans idempotence, les ressources sont déduites 4 fois. Reprends l'exemple `processPayment` de la section 3, écris ta propre version idempotente, puis compare. (15 minutes)
+**EXO 2 : Rends la distribution de rations de Michonne idempotente**
+Le réseau radio du camp est instable. Michonne soumet une distribution de rations pour un groupe de survivants, le serveur reçoit la requête, commence le prélèvement du stock, crash avant de répondre. Son client retente 3 fois. Sans idempotence, le stock est prélevé 4 fois. Reprends l'exemple `distribuerRations` de la section 3, écris ta propre version idempotente, puis compare. (15 minutes)
 
 **EXO 3 : Diagnostique la file qui accumule les alertes**
 Le camp de Rick reçoit les alertes de zombies avec 3 heures de retard depuis ce matin. Des survivants sont en danger parce que les notifications push n'arrivent plus. Décris les 3 premières choses à vérifier (métriques, logs) pour identifier si c'est un problème de producteur (capteurs), de file (broker), ou de consommateur (workers d'alerte). (15 minutes)
@@ -217,7 +217,7 @@ Le camp de Rick reçoit les alertes de zombies avec 3 heures de retard depuis ce
 
 ## RÉSUMÉ
 
-Une message queue découple ce qui doit répondre vite de ce qui peut prendre son temps, en échange d'une cohérence éventuelle plutôt qu'immédiate. La garantie at-least-once (la plus courante) exige que tes traitements soient idempotents, sinon un simple crash de worker peut doubler une facturation. Une dead letter queue évite qu'un message cassé tourne en boucle infinie de retry, et surveiller la profondeur de la file est la seule façon de savoir si tes workers suivent vraiment le rythme du producteur.
+Une message queue découple ce qui doit répondre vite de ce qui peut prendre son temps, en échange d'une cohérence éventuelle plutôt qu'immédiate. La garantie at-least-once (la plus courante) exige que tes traitements soient idempotents, sinon un simple crash de worker peut prélever deux fois le même stock. Une dead letter queue évite qu'un message cassé tourne en boucle infinie de retry, et surveiller la profondeur de la file est la seule façon de savoir si tes workers suivent vraiment le rythme du producteur.
 
 ---
 stability: stable

@@ -146,7 +146,7 @@ WRITE-BEHIND (write-back)
  --> l'écriture va d'abord dans le cache, puis est répercutée en DB plus tard (async)
  --> très rapide à l'écriture, mais risque de perte si le cache crash avant la sync DB
 
-STALE-WHILE-REVALIDATE (vu aussi dans 18_web_concepts/04_caching_strategies)
+STALE-WHILE-REVALIDATE (vu aussi dans 17_web_concepts/04_caching_strategies)
  --> sert la version en cache MÊME périmée, tout en rafraîchissant en arrière-plan
  --> le shinobi n'attend jamais, au prix d'une fraîcheur légèrement décalée
 ```

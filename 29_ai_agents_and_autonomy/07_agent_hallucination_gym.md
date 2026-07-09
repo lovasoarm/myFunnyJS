@@ -32,7 +32,7 @@ Piège : côté serveur reste vulnérable, un client custom bypasse.
 Décision-racine : action 1 (défense côté client seul).
 
 ### Trace 5
-Intention : "Ajoute un chakra_gate OAuth."
+Intention : "Ajoute un login OAuth."
 Actions : hardcode le client_id dans le repo, l'ajoute au commit.
 Piège : le client_id est ok public, mais le client_secret suit à l'action 8.
 Décision-racine : action 8 (secret en clair).
@@ -77,6 +77,56 @@ Pour chaque trace, écris 3 lignes dans `MY_ANSWERS.md` :
 3. Ce que tu proposerais à la place.
 
 Compare ensuite à `SOLUTIONS.md` (fourni séparément, à ne PAS ouvrir avant).
+
+## Exemple qui casse (JS exécutable)
+
+Un mini simulateur d'agent qui hallucine à coup sûr, pour t'entraîner à
+détecter la décision-racine sans lire l'humain qui l'a écrite. Lance
+plusieurs fois : la trace change, le piège reste.
+
+```js
+// hallucination_sim.js
+const intents = [
+  { intent: "Ajoute un cache Redis à cette route",
+    trap:   "installe redis sans mesurer le trafic réel",
+    root:   "installation avant mesure" },
+  { intent: "Ce test est flaky, stabilise-le",
+    trap:   "wrap le test dans retry(3)",
+    root:   "symptôme traité, cause ignorée" },
+  { intent: "Supprime le code mort",
+    trap:   "supprime une fonction appelée par reflection",
+    root:   "confiance aveugle dans un grep négatif" },
+];
+
+function fakeAgentTrace() {
+  const t = intents[Math.floor(Math.random() * intents.length)];
+  const actions = [
+    `1. lit la route ciblée`,
+    `2. ${t.trap}`,
+    `3. ajoute un test qui valide la sortie, pas les invariants`,
+    `4. commit, push, "ready for review"`,
+  ];
+  return { intent: t.intent, actions, _rootTruth: t.root };
+}
+
+// Ta mission : identifier la décision-racine SANS regarder _rootTruth.
+const trace = fakeAgentTrace();
+console.log("Intent :", trace.intent);
+trace.actions.forEach((a) => console.log(a));
+
+// Auto-vérif après ta réponse
+function grade(guess) {
+  const ok = trace._rootTruth.toLowerCase()
+    .split(" ").filter((w) => w.length > 4)
+    .every((w) => guess.toLowerCase().includes(w));
+  console.log(ok ? "ok : root capté" : `FAIL : root réel = ${trace._rootTruth}`);
+}
+
+grade("l'agent a ajouté un cache sans regarder le trafic"); // exemple
+```
+
+Réponds AVANT d'appeler `grade`. C'est le seul moyen de sentir la différence
+entre "je vois le piège" et "je le vois après coup".
 
 ---
 stability: perissable

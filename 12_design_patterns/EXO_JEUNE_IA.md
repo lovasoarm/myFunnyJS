@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Un pattern injecte sans besoin reel est un code smell de plus, pas une amelioration. Sans IA, tu ne peux plus poser un Strategy ou un Factory par reflexe : tu dois montrer le probleme concret qu'il resout dans ce contexte precis.
 ---
 stability: intemporel

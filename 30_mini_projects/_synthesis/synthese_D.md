@@ -1,7 +1,7 @@
 # SYNTHÈSE D : SÉCURISER LE RÉSEAU RADIO DE FOX RIVER
 Temps de lecture ~7 min
 
-> Couvre : `16_runtime_env` + `17_architecture_patterns` + `18_web_concepts` + `21_api_craft` + `22_security`
+> Couvre : `15_runtime_env` + `16_architecture_patterns` + `17_web_concepts` + `21_api_craft` + `22_security`
 > Durée cible : 150 à 220 minutes
 > La plus grosse synthèse du curriculum. C'est voulu : c'est le bloc système web complet.
 
@@ -43,7 +43,7 @@ tests/
 Le script CLI (`envoyerMessage.js`) doit lire ses paramètres via `process.argv`, pas en dur dans le code. Il doit pouvoir tourner en argument minimal (`node envoyerMessage.js --to=westmoreland --msg="le plan tient"`) et gérer le cas où un argument obligatoire manque sans crasher silencieusement.
 
 **Du module 17 (web concepts) :**
-Le cycle de vie HTTP de chaque requête doit suivre le schéma canonique de la charte ASCII (`31_annexes/ascii_charte.md`, schéma 5) : auth, validation, handler, error handler, dans cet ordre, sans exception.
+Le cycle de vie HTTP de chaque requête doit suivre le schéma canonique de la charte ASCII (`31_annexes/01_ascii_charte.md`, schéma 5) : auth, validation, handler, error handler, dans cet ordre, sans exception.
 Choisis et justifie une stratégie de cache pour l'endpoint de lecture des messages (qui sera consulté en boucle par les terminaux des détenus) : pas de cache du tout serait une erreur de perf, un cache trop long serait un risque de sécurité (messages obsolètes affichés comme actuels).
 
 **Du module 21 (api craft) :**

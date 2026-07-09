@@ -80,7 +80,7 @@ function afficherStatutMission(statut) {
 // Ça casse : un formulaire qui signale l'erreur UNIQUEMENT en rouge
 champEmail.style.borderColor = 'red'; // (et rien d'autre, aucun texte, aucune icône)
 
-// Un shinobi daltonique regarde le champ : bordure grise normale à ses yeux
+// Un utilisateur daltonique regarde le champ : bordure grise normale à ses yeux
 // Il soumet le formulaire en boucle sans jamais comprendre ce qui ne va pas
 ```
 

@@ -1,4 +1,4 @@
-# 07 : Smell hunter : chasser le code mort et puant
+# 08 : Smell hunter : chasser le code mort et puant
 Temps de lecture ~5 min
 
 Dix odeurs. Dix corrections. Un exercice terrain.
@@ -24,7 +24,7 @@ Un smell n'est pas un bug. Certains sont légitimes (ex: duplication contrôlée
 
 ## Mission
 
-Prends `31_mini_projects/10_legacy_dungeon` (ou n'importe quel repo public). Chasse **7 smells** de la liste. Pour chacun : ligne, verdict (corrigé / laissé volontairement), justification en 2 lignes.
+Prends `30_mini_projects/10_legacy_dungeon` (ou n'importe quel repo public). Chasse **7 smells** de la liste. Pour chacun : ligne, verdict (corrigé / laissé volontairement), justification en 2 lignes.
 
 Livre `SMELL_HUNT.md`.
 

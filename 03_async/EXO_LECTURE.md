@@ -1,9 +1,8 @@
-# EXO LECTURE : 15 minutes
-
+# EXO LECTURE : 15 minutes (Asynchrone)
 Temps de lecture ~2 min
 
 
-Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est 80% du métier.
+Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT de le modifier. C'est 80% du métier. Applique le protocole `31_annexes/00_cartographier_codebase_inconnue.md` en version zoom.
 
 ## L'extrait
 
@@ -17,7 +16,7 @@ On te fournit un extrait de code avec un `await` dans une boucle vs `Promise.all
 
 ## Livrable
 
-`LECTURE_<nom>.md` avec tes 3 sections remplies.
+`LECTURE_<nom>.md` avec tes 3 sections remplies + un dessin ASCII du flux.
 
 ## (attention) Ce que l'exo révèle
 

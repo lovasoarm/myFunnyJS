@@ -67,7 +67,7 @@ Si tu vois beaucoup de vert : tu peins trop souvent.
 ## 4) LIRE UNE TÂCHE LONGUE
 
 Une tâche de plus de 50ms est marquée en rouge dans DevTools. C'est un "Long Task".
-Au-delà de 50ms, le navigateur ne peut plus répondre aux inputs shinobi.
+Au-delà de 50ms, le navigateur ne peut plus répondre aux inputs utilisateur.
 Résultat : l'interface semble figée. Mauvais INP. Mauvais Ballon d'Or de l'UX.
 
 ```

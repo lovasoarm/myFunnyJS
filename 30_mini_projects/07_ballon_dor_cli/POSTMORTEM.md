@@ -9,7 +9,7 @@ Temps de lecture ~5 min
 
 ## CE QUI A BIEN MARCHÉ
 
-Les tests de caractérisation sur la v1 ont été la meilleure décision du projet. Ils ont permis de refactorer sans peur : tant que les tests de caractérisation passent, le comportement observable n'a pas changé. La v2 peut restructurer tout l'intérieur sans que le shinobi voit la différence.
+Les tests de caractérisation sur la v1 ont été la meilleure décision du projet. Ils ont permis de refactorer sans peur : tant que les tests de caractérisation passent, le comportement observable n'a pas changé. La v2 peut restructurer tout l'intérieur sans que l'utilisateur voit la différence.
 
 Le refactoring SRP (une responsabilité par fichier) a rendu les tests beaucoup plus simples à écrire. Tester `voteStore.js` séparément de `voteCommand.js` est trivial. Dans la v1, tout était dans un seul fichier `index.js` de 340 lignes.
 

@@ -1,4 +1,4 @@
-# Bloc 26-30 : observabilité, équipe, edge, OOP, projets
+# Bloc 26-30 : observabilité, équipe, edge cases, agents IA, mini-projets
 Temps de lecture ~5 min
 
 ## Rétrospective guidée
@@ -6,6 +6,7 @@ Temps de lecture ~5 min
 - Qu'est-ce qui, dans le bloc, a été **le plus dur à intégrer** ?
 - Cite **1 décision** que tu regrettes.
 - Cite **1 décision** que tu re-prendrais.
+- Sur `29_ai_agents_and_autonomy` : quel contrat (droits, refus, escalade) as-tu donné à ton agent ? Qu'est-ce qu'il a fait que tu n'avais pas prévu ?
 
 ## Mini-défi de re-contextualisation
 
@@ -13,7 +14,7 @@ Prends un exercice d'un module **antérieur au bloc** et refais-le avec les outi
 
 ## Rétro-ADR
 
-Compile un rapport portfolio (voir 31_annexes/generate_portfolio_report.md).
+Compile un rapport portfolio (voir 31_annexes/14_generate_portfolio_report.md).
 
 ## Question rituelle
 

@@ -49,10 +49,10 @@ Tout commentaire de review appartient à un de ces trois niveaux. Si tu l'identi
 **Bloquant :** le code ne peut pas merger dans cet état.
 ```
 // BUG : cette fonction ne gère pas le cas `userId = null`
-// Si le shinobi n'est pas connecté, `getUserData(null)` explose en prod.
+// Si l'utilisateur n'est pas connecté, `getUserData(null)` explose en prod.
 // À corriger avant merge.
 function getUserData(userId) {
- return db.find({ id: userId }); // `find({ id: null })` retourne tous les shinobis -- catastrophe
+ return db.find({ id: userId }); // `find({ id: null })` retourne tous les utilisateurs -- catastrophe
 }
 ```
 
@@ -101,7 +101,7 @@ Ordre de lecture : pas ligne par ligne. D'abord le contexte, ensuite le code.
 ÉTAPE 4 : chercher les cas aux limites (edge cases)
      --> null / undefined
      --> tableau vide
-     --> shinobi non connecté
+     --> utilisateur non connecté
      --> timeout réseau
      --> state concurrent (deux requêtes en même temps)
 
@@ -209,7 +209,7 @@ ARCHITECTURE
 [ ] si une nouvelle abstraction est créée : elle est nécessaire
 
 SÉCURITÉ (pour les features exposées)
-[ ] les inputs shinobis sont validés
+[ ] les inputs utilisateurs sont validés
 [ ] les données sensibles ne sont pas loguées
 [ ] les permissions sont vérifiées
 

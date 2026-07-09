@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Bon commit : critères ?
 2. Dire 'je ne sais pas' : pourquoi c'est fort ?
 3. PR review : 1 règle non négociable.
+4. À quoi sert une revue de code, au-delà de trouver des bugs ?
 
 ## Verdict
 

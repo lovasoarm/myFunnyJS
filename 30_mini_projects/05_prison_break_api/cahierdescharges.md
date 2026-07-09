@@ -33,7 +33,7 @@ Ce que tu dois voir tourner à la fin :
 $ node src/server.js
 [SERVER] Fox River API en écoute sur le port 3000
 
-$ curl -X POST http://localhost:3000/api/auth/chakra_gate \
+$ curl -X POST http://localhost:3000/api/auth/login \
  -d '{"id": "michael_scofield", "password": "linc_is_innocent"}'
 { "token": "eyJhbGci..." }
 
@@ -59,9 +59,9 @@ C'est le premier projet avec un vrai serveur. Tout ce qui précède tournait en 
 
 Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 
-- **concevoir une API qui ne révèle pas d'information sensible dans ses erreurs** : "shinobi non trouvé" vs "mot de passe incorrect" sont deux messages différents qui donnent des infos à un attaquant. Fox River répond toujours "identifiants invalides", jamais plus précis.
+- **concevoir une API qui ne révèle pas d'information sensible dans ses erreurs** : "utilisateur non trouvé" vs "mot de passe incorrect" sont deux messages différents qui donnent des infos à un attaquant. Fox River répond toujours "identifiants invalides", jamais plus précis.
 - **protéger chaque endpoint avec le bon niveau d'authentification** : il y a des endpoints publics (la liste des sections), des endpoints authentifiés (les profils), et des endpoints avec rôle (les phases du plan d'évasion). Pas de route qui accepte n'importe qui par oubli.
-- **résister aux attaques d'injection et de force brute** : T-Bag envoie des payloads malformés, des apostrophes dans les IDs, des tokens expirés, 500 requêtes de chakra_gate en une minute. Le serveur doit tenir.
+- **résister aux attaques d'injection et de force brute** : T-Bag envoie des payloads malformés, des apostrophes dans les IDs, des tokens expirés, 500 requêtes de login en une minute. Le serveur doit tenir.
 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
@@ -77,7 +77,7 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 **Où ça se voit** : `src/db/`, `src/cache/`.
 **Pourquoi c'est nécessaire ici** : les profils et le plan d'évasion sont persistés en SQLite. Les plans souvent consultés sont cachés en Redis (simulé avec une Map en mémoire si Redis n'est pas disponible).
 
-### `18_web_concepts` : HTTP, status codes, headers, caching
+### `17_web_concepts` : HTTP, status codes, headers, caching
 **Où ça se voit** : partout. Chaque réponse a le bon status code, les bons headers, le bon format d'erreur.
 **Pourquoi c'est nécessaire ici** : un 200 quand la ressource n'existe pas, un 500 quand c'est une erreur métier : c'est du code qui ment. Fox River répond avec précision.
 
@@ -87,7 +87,7 @@ Ce projet force à penser sécurité et robustesse ensemble, pas séparément :
 21_api_craft  --> src/routes/, src/middleware/errorHandler.js, src/server.js
 22_security   --> src/auth/ (JWT + bcrypt), src/middleware/rateLimiter.js + sanitizer.js
 24_databases  --> src/db/ (SQLite), src/cache/ (Redis simulé)
-18_web_concepts --> status codes, headers, format d'erreur uniforme
+17_web_concepts --> status codes, headers, format d'erreur uniforme
 ```
 
 ## FLUX D'APPEL : QUI APPELLE QUI, DANS QUEL ORDRE
@@ -159,7 +159,7 @@ tests/
 **Sortie** : un serveur HTTP qui écoute.
 
 ### `src/routes/authRouter.js`
-**Ce que ça fait** : `POST /api/auth/chakra_gate` et `POST /api/auth/refresh`. Aucune autre route.
+**Ce que ça fait** : `POST /api/auth/login` et `POST /api/auth/refresh`. Aucune autre route.
 **Entrée** : `{ id, password }` en body.
 **Sortie** : `{ token }` ou une erreur 401.
 
@@ -169,7 +169,7 @@ tests/
 **Sortie** : appelle `next()` si valide, répond 401 sinon.
 
 ### `src/middleware/rateLimiter.js`
-**Ce que ça fait** : bloque une IP qui fait plus de N requêtes en X secondes sur un endpoint donné (ex : max 5 tentatives de chakra_gate par minute par IP).
+**Ce que ça fait** : bloque une IP qui fait plus de N requêtes en X secondes sur un endpoint donné (ex : max 5 tentatives de login par minute par IP).
 **Entrée** : `req, res, next`.
 **Sortie** : appelle `next()` ou répond 429 (Too Many Requests).
 
@@ -241,10 +241,10 @@ Le rateLimiter est sous-estimé systématiquement. Gérer le compteur par IP ave
 import request from 'supertest';
 import app from '../src/server.js';
 
-describe('POST /api/auth/chakra_gate', () => {
+describe('POST /api/auth/login', () => {
  test('retourne un token valide avec les bons identifiants', async () => {
   const res = await request(app)
-   .post('/api/auth/chakra_gate')
+   .post('/api/auth/login')
    .send({ id: 'michael_scofield', password: 'linc_is_innocent' });
 
   expect(res.status).toBe(200);
@@ -254,27 +254,27 @@ describe('POST /api/auth/chakra_gate', () => {
 
  test('retourne 401 avec un message générique (pas de fuite d\'info)', async () => {
   const res = await request(app)
-   .post('/api/auth/chakra_gate')
+   .post('/api/auth/login')
    .send({ id: 'michael_scofield', password: 'mauvais_mdp' });
 
   expect(res.status).toBe(401);
   expect(res.body.message).toBe('identifiants invalides'); // message générique
   expect(res.body.message).not.toContain('mot de passe'); // pas de détail
-  expect(res.body.message).not.toContain('shinobi'); // pas de détail
+  expect(res.body.message).not.toContain('utilisateur'); // pas de détail
  });
 });
 
 // tests/security.test.js
-describe('rate limiting sur /api/auth/chakra_gate', () => {
+describe('rate limiting sur /api/auth/login', () => {
  test('bloque après 5 tentatives échouées en moins d\'une minute', async () => {
   for (let i = 0; i < 5; i++) {
    await request(app)
-    .post('/api/auth/chakra_gate')
+    .post('/api/auth/login')
     .send({ id: 'tbag', password: 'wrong' });
   }
 
   const blocked = await request(app)
-   .post('/api/auth/chakra_gate')
+   .post('/api/auth/login')
    .send({ id: 'tbag', password: 'wrong' });
 
   expect(blocked.status).toBe(429);
@@ -286,7 +286,7 @@ describe('rate limiting sur /api/auth/chakra_gate', () => {
 
 1. **Token expiré** : une requête avec un token expiré doit recevoir 401, pas 500.
 2. **Injection SQL dans un paramètre** : `GET /api/prisoners/1' OR '1'='1` doit retourner 400 ou une réponse vide, pas une fuite de données.
-3. **Body malformé (JSON invalide)** : `POST /api/auth/chakra_gate` avec un body `"notjson"` doit retourner 400, pas planter le serveur.
+3. **Body malformé (JSON invalide)** : `POST /api/auth/login` avec un body `"notjson"` doit retourner 400, pas planter le serveur.
 4. **Accès à un endpoint protégé sans token** : 401, pas 403, pas 200, pas 500.
 5. **Rate limit doit se réinitialiser après la fenêtre de temps** : après 1 minute, les tentatives doivent être à nouveau acceptées.
 
@@ -319,8 +319,8 @@ Exemple rempli :
 # ADR 003 : Message d'erreur générique pour l'authentification
 
 ## Contexte
-Quand un chakra_gate échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
-Retourner un message différent selon le cas aidu shinobi légitime.
+Quand un login échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
+Retourner un message différent selon le cas aidu utilisateur légitime.
 Mais ça aide aussi l'attaquant à savoir si un ID existe dans la base.
 
 ## Décision
@@ -334,16 +334,16 @@ et si le mot de passe est faux) pour résister aux timing attacks.
  (un attaquant mesure le délai et en déduit si l'ID existe).
 
 ## Conséquences
-- Expérience shinobi légèrement dégradée (le formulaire de récupération de
+- Expérience utilisateur légèrement dégradée (le formulaire de récupération de
  compte devient le seul recours).
-- Surface d'attaque réduite sur l'endpoint de chakra_gate.
+- Surface d'attaque réduite sur l'endpoint de login.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
 
 ```
 [ ] le serveur démarre sans erreur et les endpoints répondent
-[ ] chakra_gate retourne un token valide et un 401 générique en cas d'échec
+[ ] login retourne un token valide et un 401 générique en cas d'échec
 [ ] les 5 cas limites de sécurité ont chacun un test qui passe
 [ ] aucune requête SQL n'est construite par concaténation
 [ ] le rate limiter bloque après 5 tentatives (test vérifié)
@@ -357,18 +357,8 @@ et si le mot de passe est faux) pour résister aux timing attacks.
 
 ## SURPRISE MI-PARCOURS (spec drift, obligatoire)
 
-À 50 % de l'implémentation, ouvre `SPEC_DRIFT.md` (créé par toi) et applique
-UN des trois changements suivants (tire au sort) :
-
-1. **Changement de contrat** : le format de sortie devient `{data, meta}` au
-   lieu de `[]`. Adapte sans casser les tests existants.
-2. **Nouvelle contrainte non-fonctionnelle** : p99 latence < 200 ms sur
-   l'endpoint principal. Mesure, justifie, ajuste.
-3. **Retrait d'une dépendance** : la lib X n'est plus autorisée en prod.
-   Remplace ou réécris.
-
-Livrable : `SPEC_DRIFT.md` qui trace la surprise, ton diagnostic, ton ADR
-mis à jour, les tests ajoutés. C'est l'exercice qui compte, pas la vitesse.
+Spec drift obligatoire, voir `30_mini_projects/_synthesis/spec_drift.md`
+(protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
 
 ---
 stability: intemporel

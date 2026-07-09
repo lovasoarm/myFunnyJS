@@ -87,7 +87,7 @@ app.post('/admin/action', (req, res) => {
 
 // Exemple avec Express : bypasser la vérification d'authentification
 function isAuthenticated(user) {
- return user.authenticated; // true si pollué, même pour un shinobi non connecté
+ return user.authenticated; // true si pollué, même pour un utilisateur non connecté
 }
 ```
 
@@ -216,7 +216,7 @@ if (Object.prototype.hasOwnProperty.call(user, 'isAdmin') && user.isAdmin) {
 ## EXERCICES
 
 **EXO 1 : L'Oracle pollué**
-Le projet Oracle Glitch merge les outputs LLM dans un objet de configuration global avec `deepMerge`. Un shinobi malveillant a crafté (fabriqué) une réponse LLM contenant `{"__proto__": {"canExecuteCode": true}}`.
+Le projet Oracle Glitch merge les outputs LLM dans un objet de configuration global avec `deepMerge`. Un utilisateur malveillant a crafté (fabriqué) une réponse LLM contenant `{"__proto__": {"canExecuteCode": true}}`.
 Écrire la version sécurisée de `deepMerge` qui bloque la pollution. Ensuite, écrire un test qui vérifie que `Object.prototype.canExecuteCode` reste `undefined` après le merge.
 Contrainte : ne pas utiliser de bibliothèque externe, uniquement du JS natif.
 

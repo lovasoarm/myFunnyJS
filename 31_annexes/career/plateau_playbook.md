@@ -2,7 +2,9 @@
 
 -> ~5 min pour lire, 1 h à jouer quand tu es coincé
 
-Compétence visée : diagnostiquer un plateau (2 semaines sans progrès ressenti) et redémarrer, au lieu d'abandonner. La stagnation est un signal, pas une sentence.
+Compétence visée : diagnostiquer un plateau et redémarrer, au lieu d'abandonner. La stagnation est un signal, pas une sentence.
+
+**Seuil unique (identique dans `START_HERE.md`)** : 2 jours sans progrès = tu commences à surveiller ; 7 jours = tu déclenches ce playbook. Ne joue pas avec ces deux chiffres, ils sont calibrés.
 
 ## LE PROBLÈME QU'ON RÈGLE
 
@@ -34,6 +36,10 @@ Si oui : c'est de la fatigue déguisée en plateau. Une semaine off. Vraiment of
 
 - **Non** : fais-le. Enregistre-toi. Réécoute. Le blocage se nomme souvent tout seul. Fin.
 - **Oui, ça n'a rien donné** : ouvre un `EXO_JEUNE_IA.md` du module courant. Demande à l'IA de te poser 3 questions socratiques sur ton blocage : pas de te donner la réponse. Cf `verification_pack/_jeune_ia/README.md`. Fin.
+
+### Question 6 : "Coupe l'IA 48 h"
+
+Tag `[JEUNE IA]` sur ta session : plus de copilote, plus d'auto-complétion agressive, plus de "explique-moi ça". Reforme le raisonnement à la main pendant 48 h. Un plateau vient très souvent d'une IA qui souffle les réponses et émousse le réflexe. Si au bout de 48 h le blocage a bougé (même partiellement), la cause était là. Fin.
 
 ## MÉTHODE COMPLÉMENTAIRE : LE JOURNAL PLATEAU
 

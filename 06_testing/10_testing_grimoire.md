@@ -1,9 +1,23 @@
-# TESTING GRIMOIRE
-
+# Page verrouillée
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
 
 Temps de lecture ~6 min
 
+> **Interdit de lire cette page avant d'avoir coché la checklist ci-dessous.**
+> Un grimoire lu trop tôt donne l'illusion de savoir. C'est le pire piège pédagogique.
+
+## Checklist prérequis
+
+- [ ] J'ai fini **tous** les exercices du module courant.
+- [ ] J'ai réussi le `00_prereq_check.md` du module suivant.
+- [ ] J'ai écrit **au moins un** de mes propres exemples (pas copié).
+- [ ] Je peux réexpliquer les 3 concepts phares du module **sans regarder**.
+
+Si une seule case n'est pas cochée : ferme ce fichier. Reviens plus tard.
+
+---
+
+## TESTING GRIMOIRE
 
 Le vocabulaire du testing. Chaque terme à sa place. Pas de confusion possible.
 

@@ -22,8 +22,8 @@ Décider **quoi tester, à quel niveau, à quel coût**. Rien sur `expect()` ou
  métier, invariants.
 - **Intégration** : plusieurs modules ensemble (ex: route + service + DB
  mémoire). Cible : contrats entre couches.
-- **E2E** : le système complet, comme un shinobi. Cible : *happy paths*
- critiques uniquement (mission_start, chakra_gate).
+- **E2E** : le système complet, comme un utilisateur. Cible : *happy paths*
+ critiques uniquement (mission_start, login).
 
 **Nouvelle réalité** : la pyramide devient un **trapèze** : beaucoup
 d'intégration en mémoire (SQLite-in-mem, HTTP local), peu de vrai E2E.
@@ -48,7 +48,7 @@ tant que le contrat externe ne bouge pas.**
 
 ## Quoi tester en priorité
 
-1. Les invariants métier (le shinobi ne peut jamais avoir un solde négatif).
+1. Les invariants métier (l'utilisateur ne peut jamais avoir un solde négatif).
 2. Les frontières (0, 1, max, null, unicode).
 3. Les erreurs (que se passe-t-il si la DB est down ?).
 4. Ce qui a déjà cassé une fois (test de régression = mémoire d'équipe).

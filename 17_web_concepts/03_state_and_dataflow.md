@@ -121,7 +121,7 @@ store.actions.consumeFood(1);
 Le pattern le plus robuste : les données ne circulent que dans une direction.
 
 ```
-Action shinobi
+Action utilisateur
     |
     v
   [Action]
@@ -133,7 +133,7 @@ Action shinobi
   [Vue]  (re-rendu basé sur le nouvel état)
     |
     v
-Action shinobi (recommence)
+Action utilisateur (recommence)
 ```
 
 Jamais dans l'autre sens. La Vue n'écrit jamais directement dans le Store.

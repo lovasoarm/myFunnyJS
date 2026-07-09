@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# Tests — 11_scheduler
+# Tests : 11_scheduler
 
 Temps de lecture ~3 min
 
@@ -16,9 +16,9 @@ Aucune dépendance externe. Node ≥ 20 (utilise `node:test`).
 
 ## Structure attendue
 
-- `pmap.test.js` : couvre `pMap` — concurrence, ordre de sortie,
+- `pmap.test.js` : couvre `pMap`, concurrence, ordre de sortie,
   propagation d'erreurs, `stopOnError`, cas `items` vide.
-- `loop.test.js` : couvre la boucle d'ordonnancement — pas de tâche
+- `loop.test.js` : couvre la boucle d'ordonnancement, pas de tâche
   perdue, pas de starvation quand la concurrence est saturée.
 
 ## Critère de succès

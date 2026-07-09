@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Différence `interface` / `type` ?
 2. Que fait `unknown` que `any` ne fait pas ?
 3. Generics : à quoi ça sert ?
+4. Différence entre `type` et `interface` ?
 
 ## Verdict
 

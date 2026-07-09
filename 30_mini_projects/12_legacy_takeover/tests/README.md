@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# Tests — 12_legacy_takeover
+# Tests : 12_legacy_takeover
 
 Temps de lecture ~3 min
 

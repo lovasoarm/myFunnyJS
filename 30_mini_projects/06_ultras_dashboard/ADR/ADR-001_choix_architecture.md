@@ -11,7 +11,7 @@ Accepté : 2026-01
 ## Contexte
 L'Ultras Dashboard ingère des événements de match en temps réel (possession, xG, passes, alertes) à raison de 200 events par minute. Chaque event traverse plusieurs étapes : réception → validation → enrichissement → stockage → diffusion aux clients. La question d'architecture centrale est : comment typer ce pipeline pour que chaque étape sache exactement ce qu'elle reçoit et ce qu'elle produit, sans avoir à inspecter le contenu à runtime ?
 
-Le projet couvre `15_typescript`, `26_observability`, `25_scalability`. Le système de types est la contrainte centrale : si un event mal formé traverse le pipeline sans être intercepté, les ultras voient des données corrompues en direct pendant un match : pas acceptable.
+Le projet couvre `14_typescript`, `26_observability`, `25_scalability`. Le système de types est la contrainte centrale : si un event mal formé traverse le pipeline sans être intercepté, les ultras voient des données corrompues en direct pendant un match : pas acceptable.
 
 ## Décision
 On utilise des génériques TypeScript sur tout le pipeline : `Event<T>`, `Pipeline<Input, Output>`, `Validator<T>`. Chaque étape est une fonction typée qui reçoit un type précis et retourne un type précis. Le compilateur TS (`tsc --noImplicitAny --noEmit`) valide le typage complet avant tout lancement.

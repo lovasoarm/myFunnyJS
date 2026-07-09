@@ -13,9 +13,9 @@ La sécurité n'est pas une feature qu'on ajoute à la fin. C'est une discipline
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Chaque point où ton code accepte une donnée externe (input shinobi, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des commandes SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
+Chaque point où ton code accepte une donnée externe (input utilisateur, paramètre d'URL, header de requête, fichier uploadé) est une porte d'entrée potentielle pour une attaque. Sans discipline de sécurité, ces portes restent ouvertes : un input non échappé permet d'injecter du JavaScript malveillant dans ta page (XSS : Cross-Site Scripting), une requête SQL construite par concaténation de strings permet d'injecter des commandes SQL arbitraires, un mot de passe stocké en clair devient un cadeau immédiat pour quiconque accède à ta base de données.
 
-Ce module couvre les attaques les plus fréquentes et leurs défenses concrètes : XSS et injection SQL (les deux vulnérabilités qui touchent le plus d'applications en prod), CSRF et CORS (deux mécanismes liés à l'origine des requêtes, souvent confondus, mal compris), la pollution de prototype (modifier `Object.prototype` depuis un input shinobi, ce qui peut casser TOUT le comportement de l'application), les différents modèles d'authentification (OAuth, sessions, JWT), et le hachage sécurisé des mots de passe avec bcrypt.
+Ce module couvre les attaques les plus fréquentes et leurs défenses concrètes : XSS et injection SQL (les deux vulnérabilités qui touchent le plus d'applications en prod), CSRF et CORS (deux mécanismes liés à l'origine des requêtes, souvent confondus, mal compris), la pollution de prototype (modifier `Object.prototype` depuis un input utilisateur, ce qui peut casser TOUT le comportement de l'application), les différents modèles d'authentification (OAuth, sessions, JWT), et le hachage sécurisé des mots de passe avec bcrypt.
 
 La checklist OWASP (Open Web Application Security Project : organisation de référence en sécurité web) résume les 10 vulnérabilités les plus fréquentes, et ce module les couvre directement parce que ce sont, statistiquement, les failles qui causent la majorité des incidents de sécurité réels.
 
@@ -27,7 +27,7 @@ Le dev qui construit ses requêtes SQL par concaténation de strings (au lieu d'
 
 Le dev qui ne sécurise pas ses inputs ouvre la porte à des attaques XSS où un attaquant injecte un script qui s'exécute dans le navigateur d'une autre victime, volant potentiellement des cookies de session ou des données sensibles, sans même que la victime ne s'en rende compte.
 
-L'entreprise entière souffre quand une fuite de données survient : au-delà des dommages techniques, c'est la confiance des shinobis, la réputation de la marque, et potentiellement des conséquences légales et financières lourdes, surtout si des données sensibles (mots de passe, informations personnelles) étaient stockées sans protection adéquate.
+L'entreprise entière souffre quand une fuite de données survient : au-delà des dommages techniques, c'est la confiance des utilisateurs, la réputation de la marque, et potentiellement des conséquences légales et financières lourdes, surtout si des données sensibles (mots de passe, informations personnelles) étaient stockées sans protection adéquate.
 
 ---
 
@@ -38,10 +38,10 @@ champ de texte affiché sans échappement         --> XSS        --> script malv
 requête SQL construite par concaténation         --> injection SQL   --> accès non autorisé à la DB
 mot de passe stocké directement              --> pas de hashing   --> fuite catastrophique en cas de breach
 requête cross-origin mal configurée             --> CORS       --> accès non désiré ou bloqué à tort
-objet construit depuis un input JSON shinobi        --> prototype pollution --> comportement global corrompu
+objet construit depuis un input JSON utilisateur        --> prototype pollution --> comportement global corrompu
 ```
 
-La sécurité n'est jamais isolée dans un coin du système : elle traverse chaque frontière où une donnée externe entre dans ton application, ce qui veut dire qu'elle concerne potentiellement chaque fichier qui traite une requête shinobi.
+La sécurité n'est jamais isolée dans un coin du système : elle traverse chaque frontière où une donnée externe entre dans ton application, ce qui veut dire qu'elle concerne potentiellement chaque fichier qui traite une requête utilisateur.
 
 ---
 

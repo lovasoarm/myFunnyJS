@@ -96,7 +96,7 @@ Pourquoi ? Parce que les unit tests sont instantanés. Les E2E prennent des minu
 ```
 fonction de calcul métier    --> unit test   --> vérifie le résultat isolé
 plusieurs modules combinés   --> integration test --> vérifie l'interaction
-parcours shinobi complet  --> E2E test    --> simule un vrai usage
+parcours utilisateur complet  --> E2E test    --> simule un vrai usage
 appel à une API externe     --> mock      --> teste sans dépendre du réseau
 contrat entre deux services   --> contract test --> garantit la compatibilité
 ```

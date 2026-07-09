@@ -6,21 +6,21 @@ Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce
 
 # ABORTCONTROLLER : ANNULER CE QUI NE DOIT PLUS SE TERMINER
 
-Tu lances un fetch. Le shinobi navigue ailleurs. Le fetch continue quand même, consomme de la bande passante, et si la réponse arrive, ton callback s'exécute sur un composant qui n'existe plus. C'est un memory leak classique, et c'est évitable depuis ES2020 avec `AbortController`.
+Tu lances un fetch. L'utilisateur navigue ailleurs. Le fetch continue quand même, consomme de la bande passante, et si la réponse arrive, ton callback s'exécute sur un composant qui n'existe plus. C'est un memory leak classique, et c'est évitable depuis ES2020 avec `AbortController`.
 
 ---
 
 ## 1) LE PROBLÈME : LE FETCH QUI NE S'ARRÊTE JAMAIS
 
 ```js
-// le scénario classique : le shinobi cherche un joueur
+// le scénario classique : l'utilisateur cherche un joueur
 async function rechercherJoueur(nom) {
  const résultat = await fetch(`/api/joueurs?q=${nom}`)
  const data = await résultat.json()
  afficherRésultats(data)  // si le composant est démonté : crash silencieux
 }
 
-// le shinobi tape vite
+// l'utilisateur tape vite
 rechercherJoueur('Na')   // fetch 1 : en cours
 rechercherJoueur('Nar')   // fetch 2 : en cours
 rechercherJoueur('Naru')  // fetch 3 : en cours
@@ -87,7 +87,7 @@ async function rechercherJoueur(nom) {
  }
 }
 
-// maintenant si le shinobi tape vite :
+// maintenant si l'utilisateur tape vite :
 rechercherJoueur('Na')  // fetch lancé
 rechercherJoueur('Nar')  // fetch précédent annulé, nouveau lancé
 rechercherJoueur('Naru') // fetch précédent annulé, nouveau lancé
@@ -154,8 +154,8 @@ console.log(controller.signal.aborted) // true
 controller.signal.addEventListener('abort', () => {
  console.log('annulé, raison :', controller.signal.reason)
 })
-controller.abort('shinobi a navigué ailleurs')
-// affiche : "annulé, raison : shinobi a navigué ailleurs"
+controller.abort('utilisateur a navigué ailleurs')
+// affiche : "annulé, raison : utilisateur a navigué ailleurs"
 
 // abort() avec raison (ES2022)
 controller.abort(new Error('timeout dépassé')) // la raison peut être une Error
@@ -189,7 +189,7 @@ Un `AbortController` est à usage unique. Une fois `.abort()` appelé, son signa
 
 ## EXO 1 : la recherche live sans spam
 
-Le moteur de recherche du dashboard Champions League envoie une requête à chaque frappe de clavier. Sans AbortController : si le shinobi tape "Mbappé" en 300ms, 6 requêtes partent, arrivent dans un ordre aléatoire, et le résultat final peut être celui de "M" plutôt que "Mbappé".
+Le moteur de recherche du dashboard Champions League envoie une requête à chaque frappe de clavier. Sans AbortController : si l'utilisateur tape "Mbappé" en 300ms, 6 requêtes partent, arrivent dans un ordre aléatoire, et le résultat final peut être celui de "M" plutôt que "Mbappé".
 
 Implémente une fonction `rechercheJoueur(nom)` qui :
 - Annule automatiquement la requête précédente avant d'en lancer une nouvelle.

@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Différence CORS / CSP ?
 2. Qu'est-ce qui bloque le rendu ?
 3. Cache-Control : cite 2 directives.
+4. Que fait le navigateur entre l'URL tapée et le premier pixel affiché ?
 
 ## Verdict
 

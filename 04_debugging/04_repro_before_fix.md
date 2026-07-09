@@ -1,4 +1,4 @@
-# 03 : Reproduis avant de corriger
+# 04 : Reproduis avant de corriger
 Temps de lecture ~5 min
 
 > **Principe universel** : un bug qu'on ne sait pas reproduire n'est pas un bug : c'est une croyance. Vrai partout, du JS au distribué.
@@ -18,7 +18,7 @@ Temps de lecture ~5 min
 
 ## Exercice
 
-On te fournit `flaky.js` (spec ci-dessous). Bug : environ 1 fois sur 100, `computeTotal([1,2,3])` renvoie `NaN`.
+On te fournit [`flaky.js`](./flaky.js) (15 lignes, autonome). Bug : environ 1 fois sur 100, `computeTotal([1,2,3])` renvoie `NaN`.
 - Reproduis **déterministe** (indice : seed le random, force la branche).
 - Écris le test qui casse à coup sûr.
 - Fix. Commit.

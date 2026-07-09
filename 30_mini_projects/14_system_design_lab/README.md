@@ -47,7 +47,7 @@ L'idempotence a l'air simple ("juste un id unique"). En vrai, tu dois choisir O�
 
 ## THÈME NEUTRE (si Naruto/DBZ ne te parle pas)
 
-Pense "mission assignée → notification au shinobi". Même problème, même solution.
+Pense "mission assignée → notification au utilisateur". Même problème, même solution.
 
 ## AUTO-ÉVAL
 

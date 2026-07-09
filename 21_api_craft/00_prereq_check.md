@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. REST vs RPC : différence culturelle ?
 2. Idempotence : cite un verbe HTTP idempotent.
 3. Versionner une API : 2 stratégies.
+4. Différence entre 401 et 403 ?
 
 ## Verdict
 

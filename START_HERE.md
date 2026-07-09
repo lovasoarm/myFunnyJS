@@ -6,7 +6,7 @@
 
 1. **Vérifie Node** dans un terminal : `node -v`. Si tu vois `v20.x` ou plus, va au 2. Sinon, ouvre `00_getting_started/01_install.md` et reviens ici après installation.
 2. **Ouvre** `00_getting_started/02_day_one.md`. C'est ton premier fichier de lecture réelle : ~10 min. Il te fait écrire tes 3 premières lignes de JS et te dit où aller ensuite.
-3. **Crée** un fichier vide `PLATEAU_JOURNAL.md` à côté de ce `START_HERE.md`. Tu ne l'ouvriras pas aujourd'hui. Tu l'utiliseras la première fois que tu bloques 2 jours de suite. Cf `31_annexes/career/plateau_playbook.md`.
+3. **Crée** un fichier vide `PLATEAU_JOURNAL.md` à côté de ce `START_HERE.md`. Tu ne l'ouvriras pas aujourd'hui. Seuil unique : **2 jours sans progrès → tu commences à surveiller ; 7 jours → tu déclenches** `31_annexes/career/plateau_playbook.md`.
 
 C'est tout pour les 10 prochaines minutes. Le reste de ce fichier est le contexte.
 
@@ -77,7 +77,7 @@ Si t'as pas Node.js : va sur nodejs.org, télécharge la version LTS, installe-l
 | a11y            | Accessibilité : coder pour que tout le monde puisse utiliser ton site            |
 | i18n            | Internationalisation : adapter ton app à plusieurs langues et pays               |
 | API             | Le point de contact par lequel deux programmes se parlent                        |
-| Scalability     | Tenir la charge quand tu passes de 10 à 10 millions de shinobis                  |
+| Scalability     | Tenir la charge quand tu passes de 10 à 10 millions d'utilisateurs                  |
 | Observability   | Voir ce qui se passe en prod sans attendre qu'un client se plaigne               |
 | OOP             | Programmation orientée objet : organiser le code autour d'objets et de classes   |
 

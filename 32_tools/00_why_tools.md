@@ -160,7 +160,7 @@ prérequis avant ce module :
 01_fundamentals       --> fonctions, closures : la base pour construire des outils réutilisables
 08_memory_performance/04_profiling --> comprendre performance.now() AVANT de l'emballer dans un outil
 05_error_handling      --> comprendre try/catch et les erreurs custom, utile pour le debug toolkit
-16_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
+15_runtime_env/06_node_cli_scripts --> comprendre fs et process.argv, utile pour le scaffolder
 ```
 
 Ce qui devient plus simple après ce module :

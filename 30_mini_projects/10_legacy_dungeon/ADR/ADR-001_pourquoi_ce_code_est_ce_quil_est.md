@@ -52,7 +52,7 @@ Express a fait le choix de garder un système de gestion d'erreur basé sur un c
 ## Alternatives qu'ils auraient pu prendre (déduites du contexte, pas confirmées par les auteurs)
 
 1. **Réécrire le système de gestion d'erreur pour wrapper automatiquement chaque handler async** : viable techniquement, mais casserait la compatibilité avec l'écosystème de middlewares existants qui dépendent du pattern `next(err)` actuel.
-2. **Sortir une version majeure avec breaking change assumé** : Express a une base de shinobis en production sur des millions de projets. Une v5 qui change ce mécanisme fondamental obligerait une migration manuelle massive.
+2. **Sortir une version majeure avec breaking change assumé** : Express a une base d'utilisateurs en production sur des millions de projets. Une v5 qui change ce mécanisme fondamental obligerait une migration manuelle massive.
 3. **Documenter le piège plutôt que le corriger** (ce qui semble être l'approche réelle) : la documentation officielle d'Express explique explicitement qu'il faut wrapper ses handlers async ou utiliser un middleware tiers pour capturer les erreurs automatiquement.
 
 ## Conséquences

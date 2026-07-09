@@ -25,7 +25,7 @@ Le brief doit contenir, dans cet ordre :
 
 1. **But mesurable** en une phrase.
 2. **Périmètre exclu** (ce que l'IA ne doit surtout PAS coder toute seule
-   sans validation humaine — typiquement : les décisions d'architecture,
+   sans validation humaine, typiquement : les décisions d'architecture,
    la politique d'éviction, le choix de broker).
 3. **3 checkpoints** où l'IA doit s'arrêter et te montrer son travail.
 4. **1 test d'acceptation** rédigé en langage naturel.

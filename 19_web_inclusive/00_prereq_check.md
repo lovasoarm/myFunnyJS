@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Que fait un lecteur d'écran ?
 2. Contraste minimum WCAG AA ?
 3. Piège : `div` cliquable : pourquoi ?
+4. Cite un attribut ARIA et à quoi il sert.
 
 ## Verdict
 

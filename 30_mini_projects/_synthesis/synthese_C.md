@@ -1,7 +1,7 @@
 # SYNTHÈSE C : LA V2 DU SYSTÈME DE VOTE BALLON D'OR
 Temps de lecture ~7 min
 
-> Couvre : `13_design_patterns` + `14_refactoring` + `02_problem_solving` + `15_typescript`
+> Couvre : `12_design_patterns` + `13_refactoring` + `02_problem_solving` + `14_typescript`
 > Durée cible : 120 à 180 minutes
 > Cette synthèse part d'un code existant pourri. Pas d'un fichier vide.
 

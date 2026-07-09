@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Pluralisation : pourquoi c'est dur ?
 2. RTL : cite un piège CSS.
 3. Fuseau horaire vs offset ?
+4. Pourquoi ne jamais concaténer des morceaux de phrase pour traduire ?
 
 ## Verdict
 

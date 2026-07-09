@@ -28,7 +28,6 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 - [ ] Je peux expliquer le concept a un debutant en 3 minutes, sans notes.
 
 ## Pourquoi c'est vital
-Si tu ne sais pas ecrire ces lignes sans IA, tu ne les comprends pas : tu les as recopiees. Le jeune IA n'est pas un rite, c'est une mesure. Un module MyFunnyJS qui ne survit pas au jeune IA n'a pas ete appris, il a ete parcouru.
-
+Choisir entre Array, Map, Set, ou une structure ad hoc, c'est un choix de complexite algorithmique, pas de syntaxe. Sans IA, tu es oblige de justifier la structure au lieu de recopier celle du premier exemple trouve.
 ---
 stability: intemporel

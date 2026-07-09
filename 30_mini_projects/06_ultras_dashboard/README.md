@@ -110,7 +110,7 @@ eventIngester.receive(rawEvent)
 | ------------------ | ---------------------------------------------------------------------------- |
 | `26_observability` | `logger.ts` (JSON structuré, correlation ID), `tracer.ts`, `sentryClient.ts` |
 | `25_scalability`  | rate limiting sur l'endpoint live, simulation de load horizontal       |
-| `15_typescript`  | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events     |
+| `14_typescript`  | `Event<T>`, `Pipeline<I,O>`, utility types sur les structs d'events     |
 
 ---
 

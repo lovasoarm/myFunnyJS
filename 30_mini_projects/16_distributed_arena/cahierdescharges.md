@@ -47,5 +47,17 @@ Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
+## SURPRISE MI-PARCOURS (spec drift, obligatoire)
+
+Spec drift obligatoire, voir `30_mini_projects/_synthesis/spec_drift.md`
+(protocole unique, tirage aléatoire, déclenchement à 40 % d'avancement).
+
+Note pour ce projet : la nature distribuée fait que le drift #4 (ordre par
+source), #5 (race > 200 req/s) et #8 (contrat `{data, meta}` renvoyé par
+le coordinateur) sont particulièrement révélateurs. Si tu tires un autre
+drift, ne le remplace PAS, c'est le hasard qui enseigne, pas ton confort.
+
+---
+
 ---
 stability: intemporel

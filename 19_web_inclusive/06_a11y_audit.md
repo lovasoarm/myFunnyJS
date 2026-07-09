@@ -60,15 +60,15 @@ Checklist manuelle minimale :
 ```
 
 ```js
-// Respecter la préférence "réduire les animations" du shinobi
+// Respecter la préférence "réduire les animations" du utilisateur
 const motionReduite = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!motionReduite) {
- element.classList.add('animation-entree'); // (animation seulement si le shinobi ne l'a pas désactivée)
+ element.classList.add('animation-entree'); // (animation seulement si le utilisateur ne l'a pas désactivée)
 }
 ```
 
-Certaines personnes ont des troubles vestibulaires : une animation de parallax ou un carrousel qui défile vite peut littéralement déclencher des vertiges ou des migraines. Ignorer `prefers-reduced-motion`, c'est ignorer un signal explicite que le shinobi t'envoie.
+Certaines personnes ont des troubles vestibulaires : une animation de parallax ou un carrousel qui défile vite peut littéralement déclencher des vertiges ou des migraines. Ignorer `prefers-reduced-motion`, c'est ignorer un signal explicite que le utilisateur t'envoie.
 
 ## 4) MÉTHODE COMPLÈTE D'AUDIT, ÉTAPE PAR ÉTAPE
 
@@ -110,7 +110,7 @@ Construit volontairement une modal avec un focus trap cassé (Tab qui sort de la
 
 ## RÉSUMÉ
 
-axe et Lighthouse détectent les violations de balisage automatiquement (alt manquant, contraste, labels), mais ratent les problèmes de comportement réel (focus trap, ordre de lecture, annonces incohérentes). Un audit complet combine toujours outil automatique et test manuel au clavier et au lecteur d'écran. Respecter `prefers-reduced-motion` n'est pas un détail cosmétique : ça évite des vrais malaises physiques à certains shinobis. Un score parfait sur un scanner ne garantit jamais une expérience réellement accessible.
+axe et Lighthouse détectent les violations de balisage automatiquement (alt manquant, contraste, labels), mais ratent les problèmes de comportement réel (focus trap, ordre de lecture, annonces incohérentes). Un audit complet combine toujours outil automatique et test manuel au clavier et au lecteur d'écran. Respecter `prefers-reduced-motion` n'est pas un détail cosmétique : ça évite des vrais malaises physiques à certains utilisateurs. Un score parfait sur un scanner ne garantit jamais une expérience réellement accessible.
 
 ---
 stability: intemporel

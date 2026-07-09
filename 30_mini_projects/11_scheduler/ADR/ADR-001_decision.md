@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-001 : concurrence par défaut de `pMap`
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 Auteur : équipe curriculum
 
 ## Contexte

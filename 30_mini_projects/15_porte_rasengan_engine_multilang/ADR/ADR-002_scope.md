@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-002 : périmètre du portage (ce qu'on porte, ce qu'on laisse)
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

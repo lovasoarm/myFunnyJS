@@ -15,7 +15,7 @@ Fox River State Penitentiary. Michael Scofield a tatoué le plan sur son corps. 
 ## CE QUE ÇA FAIT
 
 ```
-$ curl -X POST http://localhost:3000/auth/chakra_gate \
+$ curl -X POST http://localhost:3000/auth/login \
  -H "Content-Type: application/json" \
  -d '{"code": "scofield-83712", "pin": "S0a0r0i3"}'
 
@@ -26,7 +26,7 @@ $ curl http://localhost:3000/plan/phase/2 \
 
 { "phase": 2, "objectif": "Infirmerie", "acces": ["couloir-C", "ventilation-3"] }
 
-$ curl -X POST http://localhost:3000/auth/chakra_gate \
+$ curl -X POST http://localhost:3000/auth/login \
  -d '{"code": "tbag"; DROP TABLE prisonniers; --", "pin": "x"}'
 
 { "error": "InvalidCredentialsError", "code": 401 }
@@ -59,14 +59,14 @@ src/
 ├── server.js        # point d'entrée Express
 │
 ├── routes/
-│  ├── authRoutes.js    # POST /auth/chakra_gate, POST /auth/refresh
+│  ├── authRoutes.js    # POST /auth/login, POST /auth/refresh
 │  ├── prisonnierRoutes.js # CRUD sur les profils
 │  ├── planRoutes.js    # GET /plan/phase/:n (auth requise)
 │  └── sectionRoutes.js  # GET /sections/:id/logs (accès restreint)
 │
 ├── middleware/
 │  ├── authMiddleware.js  # vérifie et décode le JWT
-│  ├── rateLimiter.js   # 5 tentatives max / 15min par IP sur /chakra_gate
+│  ├── rateLimiter.js   # 5 tentatives max / 15min par IP sur /login
 │  ├── sanitizer.js    # nettoyage des inputs contre XSS et injection SQL
 │  └── errorHandler.js   # handler global : format d'erreur uniforme
 │
@@ -115,7 +115,7 @@ client
 | `21_api_craft`  | Express complet, CRUD, error middleware, OpenAPI     |
 | `22_security`   | JWT, bcrypt, rate limiting, sanitization XSS/SQL     |
 | `24_databases`  | SQLite, modélisation, indexes, Redis cache sur les plans |
-| `18_web_concepts` | HTTP verbes, status codes, browser render pipeline    |
+| `17_web_concepts` | HTTP verbes, status codes, browser render pipeline    |
 
 ---
 
@@ -124,8 +124,8 @@ client
 ```
 1. Zéro mot de passe en clair dans la DB : bcrypt uniquement, coût minimum 12
 2. Chaque endpoint protégé vérifie le JWT avant tout traitement
-3. Rate limiter actif sur /auth/chakra_gate avant même de chercher le prisonnier en DB
-4. Tous les inputs du shinobi passent par le sanitizer avant d'atteindre la DB
+3. Rate limiter actif sur /auth/login avant même de chercher le prisonnier en DB
+4. Tous les inputs du utilisateur passent par le sanitizer avant d'atteindre la DB
 5. Les erreurs ne leak jamais de stack trace ni de détail interne vers le client
 ```
 

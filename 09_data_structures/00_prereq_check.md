@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Quand une hash table bat un array ?
 2. Différence stack / queue ?
 3. Un BST équilibré : coût d'insertion ?
+4. Complexité d'un accès dans une `Map` vs un tableau ?
 
 ## Verdict
 

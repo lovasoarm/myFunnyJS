@@ -11,7 +11,7 @@ Avant de plonger dans l'event loop, tu dois avoir UNE image en tête. Si tu ne l
 
 Ta pile ("call stack") empile les appels de fonctions. Elle fait UNE chose à la fois. Point.
 
-Tout ce qui n'est pas "en train de s'exécuter maintenant" attend dans une file : les timers, les I/O, les promises, les clics shinobi. Un chef d'orchestre (l'event loop) pioche dans les files et pose le prochain morceau sur la pile QUAND ELLE EST VIDE.
+Tout ce qui n'est pas "en train de s'exécuter maintenant" attend dans une file : les timers, les I/O, les promises, les clics utilisateur. Un chef d'orchestre (l'event loop) pioche dans les files et pose le prochain morceau sur la pile QUAND ELLE EST VIDE.
 
 ---
 

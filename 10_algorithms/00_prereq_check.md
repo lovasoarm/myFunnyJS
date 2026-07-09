@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Big-O de merge sort ?
 2. DP en une phrase.
 3. Greedy vs backtracking : quand choisir ?
+4. Différence entre O(n) et O(log n), en une phrase ?
 
 ## Verdict
 

@@ -27,7 +27,7 @@ Le dev qui ne distingue pas les runtimes écrit du code qui fonctionne par accid
 
 Sur des tâches de traitement de données volumineuses, ne pas connaître les streams force le dev à charger des fichiers entiers en mémoire avant de les traiter, ce qui marche sur un fichier de 10 Mo et fait crasher le process sur un fichier de 2 Go, alors qu'un traitement en streaming aurait géré le fichier morceau par morceau sans jamais saturer la mémoire.
 
-Et sur des tâches CPU-intensives (calcul lourd, traitement d'image, parsing massif), ignorer les worker threads veut dire bloquer l'event loop principal pendant le calcul, ce qui gèle TOUT le serveur Node pour TOUS les shinobis connectés pendant que le calcul tourne, juste pour une seule requête.
+Et sur des tâches CPU-intensives (calcul lourd, traitement d'image, parsing massif), ignorer les worker threads veut dire bloquer l'event loop principal pendant le calcul, ce qui gèle TOUT le serveur Node pour TOUS les utilisateurs connectés pendant que le calcul tourne, juste pour une seule requête.
 
 ---
 

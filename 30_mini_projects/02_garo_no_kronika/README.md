@@ -113,7 +113,7 @@ Le Conseil écoute pendant que les missions tournent. Ce n'est pas séquentiel :
 | `03_async`         | `dispatcher.js` (allSettled), `missionRunner.js` (race + timeout)    |
 | `05_error_handling`    | `errors/` (erreurs custom typées), propagation dans `missionRunner.js` |
 | `20_realtime`       | `streamEmitter.js` / `streamReceiver.js` : pattern SSE simulé en JS pur |
-| `17_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven)    |
+| `16_architecture_patterns` | découplage total Conseil/Chevalier via événements (event-driven)    |
 
 ---
 

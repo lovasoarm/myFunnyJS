@@ -4,8 +4,8 @@ stability: intemporel
 
 # ADR-001 : Redis Streams vs RabbitMQ comme broker
 
-Statut : accepté
-Date : 2026-05
+## Statut
+Accepté : 2026-05
 
 ## Contexte
 

@@ -9,6 +9,7 @@ Temps de lecture ~5 min
 1. Cite les 4 étapes de Polya.
 2. Pourquoi découper avant de coder ?
 3. Un cas où NE PAS coder est la bonne réponse ?
+4. Qu'est-ce qu'un cas limite (edge case) et pourquoi le traiter tôt ?
 
 ## Verdict
 

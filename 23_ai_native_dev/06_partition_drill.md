@@ -1,4 +1,4 @@
-# 08 : Partition drill : ce que tu delegue a l'IA, ce que tu gardes
+# 06 : Partition drill : ce que tu delegue a l'IA, ce que tu gardes
 -> ~30 min drill
 
 Compétence Pierre 5 : savoir **decouper une tache** entre toi et l'IA, avec

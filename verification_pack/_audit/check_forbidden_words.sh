@@ -16,7 +16,19 @@ import os, re, sys
 root = sys.argv[1]
 
 # HARD BANS : login / panier hors bloc code, toujours refuses.
-HARD = re.compile(r"\b(login|panier)s?\b", re.IGNORECASE)
+# HARD BAN pur pour "panier" (aucun contexte technique legitime).
+HARD_PANIER = re.compile(r"\bpaniers?\b", re.IGNORECASE)
+# "login" : HARD ban uniquement dans les tournures tuto e-commerce ; toleree
+# quand un marqueur d'auth technique est present dans la meme ligne.
+HARD_LOGIN_TUTO = re.compile(
+    r"formulaire\s+de\s+login|page\s+de\s+login|(?:cr[eé]e|fais|impl[eé]mente)\s+(?:un|le)\s+login\s+simple",
+    re.IGNORECASE,
+)
+AUTH_CONTEXT = re.compile(
+    r"\b(route|endpoint|POST|middleware|JWT|OAuth|OIDC|session|token|cookie|API|flow|cycle|SSO|MFA|Auth|handler)\b",
+    re.IGNORECASE,
+)
+LOGIN_RE = re.compile(r"\blogins?\b", re.IGNORECASE)
 
 # Contextes e-commerce / tuto 2018 pour "commande" (blackliste explicite).
 # Toute occurrence en dehors de ces patterns est acceptee (CLI, verbe, generique).
@@ -51,8 +63,14 @@ for r, ds, fs in os.walk(root):
                 in_code = not in_code; continue
             if in_code: continue
             stripped = re.sub(r"`[^`]*`", "", line)
-            if HARD.search(stripped):
-                hits.append(f"{rel}:{ln} HARD-BAN (login/panier)")
+            if HARD_PANIER.search(stripped):
+                hits.append(f"{rel}:{ln} HARD-BAN (panier)")
+            if LOGIN_RE.search(stripped):
+                if HARD_LOGIN_TUTO.search(stripped):
+                    hits.append(f"{rel}:{ln} LOGIN-TUTO (reformule)")
+                elif not AUTH_CONTEXT.search(stripped):
+                    hits.append(f"{rel}:{ln} LOGIN-SUSPECT (verifie le contexte)")
+                # sinon : usage technique legitime (RFC/OAuth), tolere.
             if ECOM.search(stripped):
                 hits.append(f"{rel}:{ln} E-COMMERCE (reformule) | {stripped.strip()[:90]}")
 

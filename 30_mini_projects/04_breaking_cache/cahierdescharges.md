@@ -339,8 +339,8 @@ Liste d'adjacence. Le réseau a 8 villes mais seulement 14 routes sur 56 possibl
 
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
 
-- Cache poisoning (OWASP A08 - Data Integrity) : valider les clés de cache pour qu'un shinobi ne puisse pas empoisonner une entrée partagée.
-- Fuite d'info (OWASP A01) : ne jamais servir une entrée de cache appartenant à un autre shinobi/scope.
+- Cache poisoning (OWASP A08 - Data Integrity) : valider les clés de cache pour qu'un utilisateur ne puisse pas empoisonner une entrée partagée.
+- Fuite d'info (OWASP A01) : ne jamais servir une entrée de cache appartenant à un autre utilisateur/scope.
 
 Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure et le test qui la prouve. Le `verification_pack` de ce projet contient un test de sécurité qui doit passer.
 

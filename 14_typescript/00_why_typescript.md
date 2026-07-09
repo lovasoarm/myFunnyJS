@@ -7,7 +7,7 @@ Temps de lecture ~8 min
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.
 
-JS te laisse faire n'importe quoi. TypeScript te tape sur les doigts avant que ton shinobi le découvre à ta place.
+JS te laisse faire n'importe quoi. TypeScript te tape sur les doigts avant que ton utilisateur le découvre à ta place.
 
 ---
 
@@ -41,7 +41,7 @@ fonction générique réutilisable (liste, cache, etc.)  --> generics          -
 données venant d'un formulaire ou d'une requête     --> type guards        --> validation à l'exécution
 ```
 
-TypeScript apparaît partout où une donnée traverse une frontière : appel API, formulaire shinobi, fonction partagée entre modules. Chaque frontière est un endroit où une donnée peut arriver dans une forme différente de celle attendue, et c'est exactement là que TypeScript intervient.
+TypeScript apparaît partout où une donnée traverse une frontière : appel API, formulaire utilisateur, fonction partagée entre modules. Chaque frontière est un endroit où une donnée peut arriver dans une forme différente de celle attendue, et c'est exactement là que TypeScript intervient.
 
 ---
 

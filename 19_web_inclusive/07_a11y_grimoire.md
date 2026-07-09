@@ -43,7 +43,7 @@ Coder pour tout le monde, pas juste pour ceux qui te ressemblent. Ce grimoire co
 
 ## CE QU'IL FAUT RETENIR AU-DELÀ DU TABLEAU
 
-L'accessibilité n'est pas un module "bonus" qu'on traite après coup : environ 1 personne sur 6 dans le monde vit avec une forme de handicap, et plusieurs pays (US, UE) en font une obligation légale réelle avec des vrais procès derrière. La traiter dès le départ coûte peu, la rattraper après coup coûte cher, exactement comme la dette technique du module 14_refactoring.
+L'accessibilité n'est pas un module "bonus" qu'on traite après coup : environ 1 personne sur 6 dans le monde vit avec une forme de handicap, et plusieurs pays (US, UE) en font une obligation légale réelle avec des vrais procès derrière. La traiter dès le départ coûte peu, la rattraper après coup coûte cher, exactement comme la dette technique du module 13_refactoring.
 
 ARIA ne remplace jamais le HTML natif : `<button>` gère déjà focus, rôle et clavier gratuitement. ARIA sert seulement quand le HTML natif ne suffit pas, et un ARIA qui ment sur le comportement réel (un `role="dialog"` sans focus trap fonctionnel) est souvent pire que pas d'ARIA du tout.
 

@@ -9,7 +9,7 @@ Temps de lecture ~5 min
 Accepté : 2026-01
 
 ## Contexte
-La Chronique des Chevaliers nécessite un mécanisme de streaming : quand Leon combat un Horror, le Conseil de Surveillance doit recevoir les événements du combat en temps réel (armure engagée, dégâts infligés, Horror éliminé ou armure effondrée). En production, ce canal serait un flux SSE (Server-Sent Events) sur HTTP. Mais le périmètre de ce projet est pédagogique : les modules couverts sont `03_async`, `05_error_handling`, `20_realtime`, `17_architecture_patterns`. L'objectif est de comprendre le pattern event-driven et les Promises, pas de configurer un serveur HTTP.
+La Chronique des Chevaliers nécessite un mécanisme de streaming : quand Leon combat un Horror, le Conseil de Surveillance doit recevoir les événements du combat en temps réel (armure engagée, dégâts infligés, Horror éliminé ou armure effondrée). En production, ce canal serait un flux SSE (Server-Sent Events) sur HTTP. Mais le périmètre de ce projet est pédagogique : les modules couverts sont `03_async`, `05_error_handling`, `20_realtime`, `16_architecture_patterns`. L'objectif est de comprendre le pattern event-driven et les Promises, pas de configurer un serveur HTTP.
 
 Deux options se présentent : ouvrir un vrai serveur Express avec des endpoints SSE, ou simuler ce comportement avec `EventEmitter` natif de Node.js.
 

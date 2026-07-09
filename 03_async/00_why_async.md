@@ -11,7 +11,7 @@ L'event loop (boucle d'événements), c'est le moteur caché derrière chaque `f
 
 ## 1) LE PROBLÈME QUE ÇA RÉSOUT
 
-Un serveur qui lit un fichier, interroge une base de données, ou attend une réponse réseau ne peut pas juste freezer pendant l'attente. Si JS bloquait sur chaque opération lente, ton serveur planterait dès 2 shinobis simultanés : le premier bloquerait tout le monde pendant qu'il attend sa réponse.
+Un serveur qui lit un fichier, interroge une base de données, ou attend une réponse réseau ne peut pas juste freezer pendant l'attente. Si JS bloquait sur chaque opération lente, ton serveur planterait dès 2 utilisateurs simultanés : le premier bloquerait tout le monde pendant qu'il attend sa réponse.
 
 L'event loop résout exactement ça : il permet à JS de lancer une opération longue, de continuer à faire autre chose en attendant, puis de revenir traiter le résultat quand il est prêt. Pas de thread supplémentaire. Pas de magie. Juste une file d'attente bien organisée et un ordre d'exécution précis entre microtasks (tâches micro : promises) et macrotasks (tâches macro : setTimeout, I/O).
 

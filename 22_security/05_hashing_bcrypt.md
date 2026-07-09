@@ -1,7 +1,7 @@
 # HASHER UN MOT DE PASSE : BCRYPT, SALT, COÛT
 Temps de lecture ~10 min
 
-Ta DB se fait dump (extraire de force). L'attaquant a maintenant tous les comptes shinobis. La seule chose qui protège tes shinobis à ce moment-là, c'est la façon dont tu as stocké leurs mots de passe.
+Ta DB se fait dump (extraire de force). L'attaquant a maintenant tous les comptes détenus. La seule chose qui protège tes détenus à ce moment-là, c'est la façon dont tu as stocké leurs mots de passe.
 
 Si tu as stocké les mots de passe en clair : catastrophe totale. Si tu as utilisé MD5 ou SHA1 : catastrophe quasi-totale (rainbow tables et GPU en 2026 cassent ça en heures). Si tu as utilisé bcrypt avec un coût approprié : l'attaquant a un problème difficile devant lui.
 
@@ -23,7 +23,7 @@ Même si le mot de passe est "complexe", les listes de mots de passe courants (d
 
 ### Le problème sans salt
 
-Un salt (sel : valeur aléatoire ajoutée au mot de passe avant le hash) est essentiel. Sans salt, deux shinobis avec le même mot de passe ont le même hash. Un attaquant avec une rainbow table (table précalculée de hash --> mot de passe) peut retrouver tous les mots de passe identiques en une seule lookup.
+Un salt (sel : valeur aléatoire ajoutée au mot de passe avant le hash) est essentiel. Sans salt, deux détenus avec le même mot de passe ont le même hash. Un attaquant avec une rainbow table (table précalculée de hash --> mot de passe) peut retrouver tous les mots de passe identiques en une seule lookup.
 
 ```js
 // Sans salt : problème
@@ -105,7 +105,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Dans le flow de connexion
-app.post('/chakra_gate', async (req, res) => {
+app.post('/login', async (req, res) => {
  const { email, password } = req.body;
 
  const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -160,7 +160,7 @@ Jamais dans les logs :
 - le hash du mot de passe (ça permet des attaques offline)
 
 Jamais dans le code :
-- salt fixe (le salt doit être différent pour chaque shinobi)
+- salt fixe (le salt doit être différent pour chaque détenu)
 - valeur de coût trop basse (< 10 en 2026 est trop faible)
 ```
 
@@ -172,7 +172,7 @@ Jamais dans le code :
 // Scénario : ta DB a des SHA256 (honte), tu veux migrer vers bcrypt sans forcer un reset
 // Solution : hash lazy (migration paresseuse au moment de la connexion)
 
-app.post('/chakra_gate', async (req, res) => {
+app.post('/login', async (req, res) => {
  const { email, password } = req.body;
  const user = await getUser(email);
 
@@ -210,15 +210,15 @@ app.post('/chakra_gate', async (req, res) => {
 ## EXERCICES
 
 **EXO 1 : Le registre des prisonniers**
-L'API Prison Break stocke actuellement les mots de passe en `SHA256(password + 'foxriver')` (salt fixe). Implémenter la migration lazy vers bcrypt : les shinobis qui se connectent avec l'ancien système sont automatiquement migrés. Les nouveaux comptes utilisent bcrypt directement.
-Contrainte : aucune interruption de service, aucun shinobi forcé à changer son mot de passe.
+L'API Prison Break stocke actuellement les mots de passe en `SHA256(password + 'foxriver')` (salt fixe). Implémenter la migration lazy vers bcrypt : les détenus qui se connectent avec l'ancien système sont automatiquement migrés. Les nouveaux comptes utilisent bcrypt directement.
+Contrainte : aucune interruption de service, aucun détenu forcé à changer son mot de passe.
 
 **EXO 2 : La calibration du coût**
 Écrire un script de benchmark qui teste les coûts bcrypt de 8 à 14 et mesure le temps de hash avec `performance.now()`. Le script doit retourner le coût optimal : le plus élevé qui reste sous 500ms sur la machine courante.
 Contrainte : afficher les résultats dans un tableau ASCII clair avec les colonnes `coût | temps (ms) | recommandé`.
 
 **EXO 3 : Le vote sécurisé du Ballon d'Or**
-Le système de vote du Ballon d'Or CLI a un endpoint de chakra_gate. Implémenter la protection contre le shinobi enumeration (confirmation d'existence d'un compte) et le timing attack : même message d'erreur, même temps de réponse, que l'email existe ou non.
+Le système de vote du Ballon d'Or CLI a un endpoint de login. Implémenter la protection contre le détenu enumeration (confirmation d'existence d'un compte) et le timing attack : même message d'erreur, même temps de réponse, que l'email existe ou non.
 Contrainte : utiliser le dummy compare pour les emails inexistants, tester avec `performance.now()` que les deux cas prennent le même ordre de grandeur de temps.
 
 ---

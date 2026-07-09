@@ -36,7 +36,7 @@ src/
 
 **PostgreSQL**
 - Avantages : base de prod réelle, ACID complet, extensions (UUID, JSON, full-text search), connexions concurrentes natives
-- Limites : nécessite un serveur PostgreSQL séparé (Docker ou install locale), une URL de connexion, un shinobi, un mot de passe : le projet devient `npm install && docker-compose up && node src/server.js` avec un docker-compose qui peut échouer pour dix raisons différentes selon la machine
+- Limites : nécessite un serveur PostgreSQL séparé (Docker ou install locale), une URL de connexion, un utilisateur, un mot de passe : le projet devient `npm install && docker-compose up && node src/server.js` avec un docker-compose qui peut échouer pour dix raisons différentes selon la machine
 - Rejeté parce que : la complexité d'installation masque la complexité pédagogique : le projet enseigne l'API REST, la sécurité, et la modélisation de données, pas la gestion d'une infra Postgres
 
 **Persistance JSON (fichier ou mémoire)**

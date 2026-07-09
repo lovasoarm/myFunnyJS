@@ -51,7 +51,7 @@ Questions à se poser pour reproduire :
 - Avec quelles données d'entrée ?
 - Dans quel ordre ?
 - En prod mais pas en dev ? Suspect : variable d'environnement, données réelles, timing.
-- Seulement chez certains shinobis ? Suspect : état persistant, rôle, locale, navigateur.
+- Seulement chez certains utilisateurs ? Suspect : état persistant, rôle, locale, navigateur.
 ```
 
 Exemple : le camp de Rick Grimes a un système d'inventaire. Le stock de munitions affiche un nombre négatif. Mais seulement le matin.
