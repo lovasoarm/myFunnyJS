@@ -133,12 +133,12 @@ Pourquoi rAF plutôt que `setInterval(fn, 16)` ?
 Du code synchrone long bloque tout : setTimeout, rendu, interactions shinobi.
 
 ```js
-// Walking Dead version : Rick doit analyser les menaces PENDANT que les zombies attaquent
-function analyserMenaces(zombies) {
+// version shinobi : un shinobi doit repérer les ennemis PENDANT que le combat se déclenche
+function analyserMenaces(ennemis) {
  // MAUVAIS : bloque l'UI pendant l'analyse
  let score = 0
- for (let z of zombies) {
-  score += calculerMenace(z) // calcul lourd
+ for (let e of ennemis) {
+  score += calculerMenace(e) // calcul lourd
  }
  return score
 }

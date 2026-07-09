@@ -219,13 +219,13 @@ logger.getHistory(); // contient les deux entrées précédentes
 
 ```js
 // n'importe quelle fonction peut accéder et modifier le state global
-import userState from "./userState.js"; // singleton
+import missionState from "./missionState.js"; // singleton
 
-function processPayment(amount) {
+function terminerMission(id) {
  // cette fonction modifie le state global sans que l'appelant le sache
- userState.set("lastPayment", amount);
- userState.set("sessionDirty", true);
- // et si une autre fonction lit userState.sessionDirty au mauvais moment ?
+ missionState.set("derniereMission", id);
+ missionState.set("rapportEnAttente", true);
+ // et si une autre fonction lit missionState.rapportEnAttente au mauvais moment ?
 }
 ```
 

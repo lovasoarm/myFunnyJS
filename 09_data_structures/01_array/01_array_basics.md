@@ -53,11 +53,11 @@ scores[2] = 80; // on écrase directement la case mémoire
 `slice` ne modifie pas le tableau original : il crée une **copie** de la portion.
 
 ```js
-const squad = ["Eren", "Mikasa", "Armin", "Levi", "Hange", "Erwin"];
+const squad = ["Naruto", "Sakura", "Sasuke", "Kakashi", "Tsunade", "Hokage"];
 
 // copie des éléments 1 à 3 (sans inclure 4)
 const recon = squad.slice(1, 4);
-// recon = ["Mikasa", "Armin", "Levi"]
+// recon = ["Sakura", "Sasuke", "Kakashi"]
 // squad est intact
 
 // O(k) : proportionnel au nombre d'éléments copiés

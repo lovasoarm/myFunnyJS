@@ -411,14 +411,14 @@ const heatmap = genererHeatmap(clicsSpectateurs, 500, 400, 100)
 
 ## EXERCICES
 
-## EXO 1 : LE RADAR DE EREN JÄGER
+## EXO 1 : LE RADAR DE RECONNAISSANCE NINJA
 
-Eren est dans le district de Shiganshina. Les Titans approchent de plusieurs directions. Tu as les positions de 5 Titans et la position d'Eren.
+Naruto est en mission de reconnaissance près de Konoha. Des ennemis approchent de plusieurs directions. Tu as les positions de 5 ennemis et la position du shinobi.
 
 **Mission :**
-- Trouver le Titan le plus proche d'Eren
-- Lister tous les Titans qui sont à moins de 200 unités (portée du Scout)
-- Calculer la direction normalisée vers chaque Titan (pour orienter les ODM)
+- Trouver l'ennemi le plus proche du shinobi
+- Lister tous les ennemis qui sont à moins de 200 unités (portée d'un kunaï lancé)
+- Calculer la direction normalisée vers chaque ennemi (pour orienter les kunaï)
 
 **Contrainte :** pas de `Math.sqrt` dans la comparaison pour trouver le plus proche (utilise la distance au carré).
 

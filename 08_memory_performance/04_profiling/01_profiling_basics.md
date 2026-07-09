@@ -37,11 +37,11 @@ Si t'utilises `Date.now()`, tout ce qui prend moins d'1ms est invisible.
 Même principe, syntaxe plus simple. Utile pour des mesures rapides pendant le dev.
 
 ```js
-// Eren veut savoir combien de temps ça prend de transformer en titan
+// Naruto veut savoir combien de temps ça prend de passer en mode Sage
 console.time("transformation");
 
 for (let i = 0; i < 100_000; i++) {
- transformEnTitan(i);
+ transformerEnMode(i);
 }
 
 console.timeEnd("transformation");

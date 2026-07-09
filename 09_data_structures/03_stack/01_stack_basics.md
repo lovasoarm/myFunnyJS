@@ -14,19 +14,19 @@ Cette contrainte est sa force : elle garantit un ordre d'accès prévisible.
 LIFO : Last In, First Out. Le dernier élément ajouté est le premier retiré.
 
 ```
-push("Eren")   push("Mikasa")  push("Armin")
+push("Naruto")   push("Sakura")  push("Sasuke")
    ↓         ↓        ↓
  ┌────────┐    ┌────────┐    ┌────────┐
- │ Eren  │    │Mikasa │    │ Armin │ <-- sommet (top)
+ │ Naruto  │    │Sakura │    │ Sasuke │ <-- sommet (top)
  └────────┘    ├────────┤    ├────────┤
-          │ Eren  │    │Mikasa │
+          │ Naruto  │    │Sakura │
           └────────┘    ├────────┤
-                  │ Eren  │
+                  │ Naruto  │
                   └────────┘
 
-pop() retourne "Armin"
-pop() retourne "Mikasa"
-pop() retourne "Eren"
+pop() retourne "Sasuke"
+pop() retourne "Sakura"
+pop() retourne "Naruto"
 ```
 
 L'ordre de sortie est exactement l'inverse de l'ordre d'entrée.

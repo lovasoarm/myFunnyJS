@@ -185,7 +185,7 @@ Mauvais pattern :
 // player.js : expose trop
 export let score = 0
 export let vie = 100
-export const nom = "Eren"
+export const nom = "Naruto"
 
 // n'importe qui peut faire :
 // import { score } de "./player.js"
@@ -199,7 +199,7 @@ Meilleur pattern :
 // player.js : interface contrôlée
 let score = 0
 let vie = 100
-const nom = "Eren"
+const nom = "Naruto"
 
 export const getEtat = () => ({ score, vie, nom })
 export const ajouterScore = (points) => { score += points }
@@ -227,16 +227,16 @@ Contrainte : les tableaux et valeurs internes ne sont jamais exposés directemen
 
 ---
 
-## EXO 2 : la façade du Survey Corps
+## EXO 2 : la façade de Konoha
 Trois modules internes :
-- `titans.js` : génère des titans (nom, taille, puissance)
-- `soldats.js` : liste des soldats disponibles (nom, rang, ODM: boolean)
-- `calcul.js` : `tauxSurvie(titan, soldat)` retourne un pourcentage
+- `ennemis.js` : génère des ennemis (nom, taille, puissance)
+- `shinobis.js` : liste des shinobis disponibles (nom, rang, kunaï: boolean)
+- `calcul.js` : `tauxSurvie(ennemi, shinobi)` retourne un pourcentage
 
-Crée `surveyCorps.js` : une façade qui expose une seule fonction :
-`lancerMission(nomTitan, nomSoldat)` qui retourne un rapport de mission complet.
+Crée `konoha.js` : une façade qui expose une seule fonction :
+`lancerMission(nomCible, nomShinobi)` qui retourne un rapport de mission complet.
 
-`main.js` n'importe que `surveyCorps.js`. Il ne sait pas que les trois modules internes existent.
+`main.js` n'importe que `konoha.js`. Il ne sait pas que les trois modules internes existent.
 
 ---
 

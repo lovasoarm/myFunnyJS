@@ -1,10 +1,9 @@
 # 01 : AGENTS vs COPILOTES : la ligne de fracture
-
 Temps de lecture ~15 min
 
 Un copilote propose. Un agent exécute. Cette phrase est simple, elle cache la
 ligne de fracture la plus violente de ta pratique 2026-2028. Le copilote reste
-au niveau du geste : une complétion, une suggestion, une refonte de trois
+au niveau du geste — une complétion, une suggestion, une refonte de trois
 lignes que tu acceptes ou refuses. L'agent, lui, prend une intention haute
 ("migre ce module de fetch vers ky", "ajoute l'auth JWT sur ces 8 routes")
 et enchaîne 40 actions cohérentes entre elles. La cohérence de la chaîne
@@ -44,17 +43,17 @@ minimum pour partir en agent. Sinon copilote, ou toi seul.
 
 ## Quand utiliser lequel
 
-| Situation                                   | Choix                           |
-| ------------------------------------------- | ------------------------------- |
-| Écrire un test unitaire connu               | Copilote                        |
-| Refactor à 12 fichiers, spec claire         | Agent                           |
-| Debug production critique                   | NI L'UN NI L'AUTRE seul         |
-| Générer boilerplate                         | Copilote OU agent, indifférent  |
-| Décision d'architecture                     | Toi. Point.                     |
-| Migration de version majeure (React 18→19)  | Agent + audit systématique      |
-| Prompt d'engineering sur ton propre système | Toi seul                        |
-| Génération de fixtures pour 200 cas de test | Agent                           |
-| Diagnostic d'un flaky test                  | Toi seul (l'agent va camoufler) |
+| Situation                                     | Choix                          |
+|-----------------------------------------------|--------------------------------|
+| Écrire un test unitaire connu                 | Copilote                       |
+| Refactor à 12 fichiers, spec claire           | Agent                          |
+| Debug production critique                     | NI L'UN NI L'AUTRE seul        |
+| Générer boilerplate                           | Copilote OU agent, indifférent |
+| Décision d'architecture                       | Toi. Point.                    |
+| Migration de version majeure (React 18→19)    | Agent + audit systématique     |
+| Prompt d'engineering sur ton propre système   | Toi seul                       |
+| Génération de fixtures pour 200 cas de test   | Agent                          |
+| Diagnostic d'un flaky test                    | Toi seul (l'agent va camoufler) |
 
 ## La règle d'or 2026-2028
 
@@ -80,7 +79,6 @@ humaines de plus de 30 %, tu délègues trop.
 ## Exercice (20 min)
 
 Prends une de tes tâches en cours. Écris :
-
 1. La spec en 3 lignes.
 2. Le test binaire qui prouvera le succès (commande shell qui renvoie 0/1).
 3. Les 3 Non-goals (fichiers, modules, dépendances à ne pas toucher).
@@ -93,17 +91,15 @@ toi ET note dans ton `POSTMORTEM.md` personnel pourquoi tu ne connaissais pas.
 ## Ce que ce chapitre installe pour la suite
 
 Les 6 chapitres suivants dérivent tous de cette ligne de fracture :
-
 - ch. 02 : comment écrire une spec qu'un agent ne peut PAS mal interpréter.
 - ch. 03 : comment lire ce qu'il a fait sans se faire embarquer par sa logique.
 - ch. 04 : comment refuser proprement une trace conforme mais mauvaise.
 - ch. 05 : comment l'empêcher techniquement de faire ce qu'il ne doit pas.
-- ch. 06 : le grimoire : tous les motifs vus en prod, indexés par nature d'échec.
-- ch. 07 : le gym : s'entraîner sur des traces hallucinées avant la vraie prod.
+- ch. 06 : le grimoire — tous les motifs vus en prod, indexés par nature d'échec.
+- ch. 07 : le gym — s'entraîner sur des traces hallucinées avant la vraie prod.
 
 Copilote et agent ne sont pas deux outils ; ce sont deux niveaux de délégation.
 Confondre les deux, c'est déléguer un scalpel comme si c'était un stylo.
 
 ---
-
 stability: perissable

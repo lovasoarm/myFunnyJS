@@ -6,7 +6,7 @@ Temps de lecture ~2 min
 Deuxième mini-projet cross-language de MyFunnyJS. Prouve que ta modélisation de l'event loop **transfère** d'un langage à l'autre en produisant strictement la même trace pour la même entrée.
 
 - Lis `cahierdescharges.md` pour l'objectif verrouillé et la grille scorée.
-- Lis `ADR/001_choix_langage_secondaire.md` avant de coder.
+- Lis `ADR/ADR-001_choix_langage_secondaire.md` avant de coder.
 - Remplis `TDD_JOURNAL.md` au fil de l'eau.
 - Rédige `POSTMORTEM.md` à la fin, même si tu as réussi.
 

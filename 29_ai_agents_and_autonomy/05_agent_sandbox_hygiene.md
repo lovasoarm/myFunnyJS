@@ -1,5 +1,4 @@
 # 05 : SANDBOX HYGIENE : CE QU'ON NE LAISSE JAMAIS FAIRE À UN AGENT
-
 Temps de lecture ~15 min
 
 Un agent qui a accès à `git push --force`, à ta clé AWS et à `rm -rf /` peut faire
@@ -42,7 +41,6 @@ sa production 2 semaines plus tard. Le second qui a mis le cron dans un
 container en lecture seule avec un token de 4 heures dort mieux.
 
 En pratique, une bonne sandbox pour un agent :
-
 - container avec FS en lecture seule sauf répertoire de travail,
 - réseau sortant whitelisté (registry npm + ton dépôt git, rien d'autre),
 - token git à droits ÉCRITURE sur une branche `agent/*` uniquement,
@@ -94,7 +92,6 @@ dont l'agent a besoin pour la tâche, et tu refermes après.
 ## Le principe du "moindre privilège éphémère"
 
 Les capabilities doivent être scopées à la tâche ET dans le temps :
-
 - Scope : un agent qui refactore `src/auth/` n'a besoin d'écrire QUE
   dans `src/auth/` + `tests/auth/`. Rien d'autre.
 - Temps : les tokens expirent en 30-60 min. Un agent qui n'a pas fini
@@ -164,9 +161,8 @@ maintenant 2 jours, ou plus tard 6 jours + réputation. Choix simple.
 
 Une fois la sandbox propre, tu peux vraiment jouer avec les agents. Le
 grimoire (chapitre 06) est ta bibliothèque de motifs, indexée par
-nature d'échec : utile UNIQUEMENT si tu as la sandbox en place. Sinon
+nature d'échec — utile UNIQUEMENT si tu as la sandbox en place. Sinon
 tu apprends à reconnaître les motifs pendant que ton système brûle.
 
 ---
-
 stability: perissable

@@ -1,7 +1,7 @@
 # CE QUE L'IA GÉNÈRE, TU NE LE CROIS PAS : TU LE VALIDES
 Temps de lecture ~10 min
 
-L'IA peut générer du code qui compile, qui passe les tests qu'elle a elle-même écrits, et qui explose quand un vrai shinobi l'utilise. Ce n'est pas de la malveillance : c'est de l'optimisme statistique. Elle génère ce qui ressemble à la bonne réponse. Ton boulot : vérifier si c'est la vraie réponse.
+L'IA peut générer du code qui compile, qui passe les tests qu'elle a elle-même écrits, et qui explose quand un vrai utilisateur l'utilise. Ce n'est pas de la malveillance : c'est de l'optimisme statistique. Elle génère ce qui ressemble à la bonne réponse. Ton boulot : vérifier si c'est la vraie réponse.
 
 Dans `09_oracle_glitch`, l'Oracle est le nom du pipeline LLM qu'on surveille. Pas parce qu'on lui fait confiance. Parce qu'on ne lui fait pas confiance, et qu'on a construit les outils pour le contrôler. Cette leçon, c'est la mécanique de ce contrôle.
 
@@ -113,7 +113,7 @@ function tenterAnalyse(rawData: unknown): { ok: true; analyse: AnalyseCode } | {
 }
 ```
 
-La règle : **tout ce qui vient de l'extérieur (API, LLM, shinobi, DB) passe par un schema Zod**. Tout. Sans exception.
+La règle : **tout ce qui vient de l'extérieur (API, LLM, utilisateur, DB) passe par un schema Zod**. Tout. Sans exception.
 
 ---
 

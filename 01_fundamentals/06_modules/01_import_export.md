@@ -69,23 +69,23 @@ import n from "./ninja.js"      // aussi valide
 Un fichier peut avoir les deux. C'est courant dans les bibliothèques.
 
 ```js
-// titanscan.js
-export const TITAN_TYPES = ["Colossal", "Cuirassé", "Féminin", "Bestial"]
+// ninjascan.js
+export const NINJA_TYPES = ["Colossal", "Cuirassé", "Féminin", "Bestial"]
 
-export const estDangereux = (titan) => titan.taille > 15
+export const estDangereux = (ennemi) => ennemi.taille > 15
 
-const analyserTitan = (titan) => ({
- type: titan.type,
- menace: estDangereux(titan) ? "CRITIQUE" : "CONTROLÉE",
- taille: titan.taille
+const analyserNinja = (ennemi) => ({
+ type: ennemi.type,
+ menace: estDangereux(ennemi) ? "CRITIQUE" : "CONTROLÉE",
+ taille: ennemi.taille
 })
 
-export default analyserTitan
+export default analyserNinja
 ```
 
 ```js
 // main.js
-import analyserTitan, { TITAN_TYPES, estDangereux } from "./titanscan.js"
+import analyserNinja, { NINJA_TYPES, estDangereux } from "./ninjascan.js"
 // ^-- default      ^-- nommés dans les accolades
 ```
 
@@ -178,13 +178,13 @@ Contrainte : `main.js` ne contient aucune logique de filtrage. Tout ça vit dans
 
 ---
 
-## EXO 2 : le barrel file du Survey Corps
-Attack on Titan. Le Survey Corps a des modules éparpillés :
-- `formation.js` : exporte `formationDiamond`, `formationV`
-- `equipement.js` : exporte `OMD`, `lamesThunderspear`
+## EXO 2 : la façade de la mission d'infiltration
+Le village a des modules éparpillés :
+- `formation.js` : exporte `formationDiamant`, `formationV`
+- `equipement.js` : exporte `kunai`, `parcheminsScellés`
 - `strategie.js` : exporte `default` `plannerAttaque`
 
-Crée un `surveyCorps/index.js` qui re-exporte tout. `main.js` n'importe qu'à partir de cet index.
+Crée un `missionCorps/index.js` qui re-exporte tout. `main.js` n'importe qu'à partir de cet index.
 
 ---
 

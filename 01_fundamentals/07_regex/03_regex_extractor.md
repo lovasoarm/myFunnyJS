@@ -216,16 +216,16 @@ Règles pour l'éviter :
 
 ## EXERCICES
 
-## EXO 1 : le parser de logs d'attaque de titans
-Des logs de mission du Survey Corps arrivent en texte brut :
+## EXO 1 : le parser de logs de mission ninja
+Des logs de mission d'un escadron de Konoha arrivent en texte brut :
 
 ```
-[ALERTE] 14:23:07 | Titan Colossal détecté | District: Trost | Taille: 60m
-[NEUTRE] 14:25:11 | Mouvement inhabituel | District: Shiganshina | Taille: N/A
-[ALERTE] 15:01:33 | Titan Cuirassé détecté | District: Wall Rose | Taille: 15m
+[ALERTE] 14:23:07 | ennemi géant détecté | Zone: Nord | Menace: 60
+[NEUTRE] 14:25:11 | Mouvement inhabituel | Zone: Est | Menace: N/A
+[ALERTE] 15:01:33 | ennemi cuirassé détecté | Zone: Ouest | Menace: 15
 ```
 
-Parse chaque ligne alerte en un objet `{ heure, type, district, taille }`. Ignore les lignes NEUTRE. Utilise des groupes nommés.
+Parse chaque ligne alerte en un objet `{ heure, type, zone, menace }`. Ignore les lignes NEUTRE. Utilise des groupes nommés.
 
 ---
 

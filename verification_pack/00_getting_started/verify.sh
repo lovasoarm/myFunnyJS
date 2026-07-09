@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# verify.sh : sanity check environnement pour 00_getting_started/
+# verify.sh — sanity check environnement pour 00_getting_started/
 # Vérifie ce qui est nécessaire pour commencer le curriculum.
 set -u
 

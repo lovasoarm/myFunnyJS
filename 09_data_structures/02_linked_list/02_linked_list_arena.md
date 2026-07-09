@@ -241,27 +241,27 @@ class LinkedList {
 
 // test
 const arc = new LinkedList()
-arc.append("Eren")
-arc.append("Mikasa")
-arc.append("Armin")
-arc.append("Levi")
-arc.append("Hange")
+arc.append("Naruto")
+arc.append("Sakura")
+arc.append("Sasuke")
+arc.append("Kakashi")
+arc.append("Tsunade")
 
 console.log(arc.print())
-// "Eren --> Mikasa --> Armin --> Levi --> Hange"
+// "Naruto --> Sakura --> Sasuke --> Kakashi --> Tsunade"
 
 console.log(arc.findMiddle().value)
-// "Armin"
+// "Sasuke"
 
 arc.reverse()
 console.log(arc.print())
-// "Hange --> Levi --> Armin --> Mikasa --> Eren"
+// "Tsunade --> Kakashi --> Sasuke --> Sakura --> Naruto"
 
 console.log(arc.hasCycle())
 // false
 
 // créer un cycle manuellement pour tester
-arc.tail.next = arc.head.next // Eren pointe vers Levi : cycle
+arc.tail.next = arc.head.next // Naruto pointe vers Kakashi : cycle
 console.log(arc.hasCycle())
 // true
 ```

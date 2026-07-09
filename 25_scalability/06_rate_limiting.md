@@ -6,7 +6,7 @@ T-Bag essaie de bruteforcer l'API de Fox River : 5000 tentatives par seconde sur
 Pourquoi ça compte : sans rate limiting, un seul client (malveillant ou juste buggé, genre une boucle infinie côté front) peut saturer ton serveur à lui seul, et empêcher TOUS les autres users d'accéder au service. C'est littéralement une porte ouverte au déni de service (DoS : denial of service).
 
 Avantage : protection contre l'abus, contrôle des coûts (vu aussi dans `23_ai_native_dev/01_ai_workflow` pour les appels LLM qui coûtent cher).
-Inconvénient : mal calibré, tu bloques des shinobis légitimes et tu crées une mauvaise expérience.
+Inconvénient : mal calibré, tu bloques des détenus légitimes du système et tu crées une mauvaise expérience.
 
 ---
 
@@ -73,7 +73,7 @@ peu importe où tu regardes, "les 60 dernières secondes" contiennent toujours
 au maximum 100 requêtes, jamais de pic caché à la frontière
 ```
 
-Le token bucket est différent dans l'intention : il autorise volontairement des pics courts (le seau plein), tant que la moyenne sur la durée respecte le débit configuré. C'est utile quand un shinobi légitime peut avoir un usage en rafale (genre charger une page qui déclenche 10 requêtes d'un coup), suivi de calme.
+Le token bucket est différent dans l'intention : il autorise volontairement des pics courts (le seau plein), tant que la moyenne sur la durée respecte le débit configuré. C'est utile quand un utilisateur légitime peut avoir un usage en rafale (genre charger une page qui déclenche 10 requêtes d'un coup), suivi de calme.
 
 ```js
 // Token bucket simplifié

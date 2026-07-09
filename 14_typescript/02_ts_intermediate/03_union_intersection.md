@@ -147,7 +147,7 @@ function handlePlayerState(state: AsyncState<Player>): string {
 }
 ```
 
-C'est le pattern le plus puissant de TS pour les états, les events, et les résultats de fetch. Michael Scofield a un plan pour chaque cas : `loading`, `success`, `error`. Aucun cas ignoré.
+C'est le pattern le plus puissant de TS pour les états, les events, et les résultats de fetch. Kakashi doit avoir un plan pour chaque type de jutsu adverse : `loading`, `success`, `error`. Aucun cas ignoré.
 
 ---
 
@@ -318,7 +318,7 @@ Crée les types `Warrior`, `Sorcerer`, et `GoldenKnight = Warrior & Sorcerer`. �
 ## EXO 4 : le système de log de Breaking Bad
 _~20 min_
 
-Le réseau de Walter a 3 types de logs : `SupplyLog` (jutsu, quantité, warehouse), `DeliveryLog` (destination, courrier, heure), `AlertLog` (niveau de menace, raison, action prise).
+Le réseau de Walter a 3 types de logs : `SupplyLog` (cargaison, quantité, warehouse), `DeliveryLog` (destination, courrier, heure), `AlertLog` (niveau de menace, raison, action prise).
 
 Crée l'union `OperationLog`, écris `logToString(log: OperationLog): string`, et assure-toi que si un 4ème type de log est ajouté sans que `logToString` soit mis à jour, TS génère une erreur de compilation.
 

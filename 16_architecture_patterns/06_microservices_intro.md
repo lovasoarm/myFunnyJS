@@ -223,7 +223,7 @@ Microservices c'est pareil :
 ```
 NE PAS FAIRE DE MICROSERVICES SI :
 - ton équipe fait moins de 5 devs
-- tu n'as pas encore de jutsu en prod
+- tu n'as pas encore de survivants en prod
 - ton monolithe n'a pas de vrais problèmes de scale
 - tu n'as pas d'équipes autonomes par domaine
 - tu ne maîtrises pas le monitoring distribué

@@ -79,7 +79,7 @@ Le diagramme :
 {} converti en string --> "[object Object]"
 ```
 
-> C'est comme Eren Yaeger : selon le contexte où tu le places, c'est pas la même entité du tout.
+> C'est comme Piccolo : selon le contexte où tu le places, c'est pas la même entité du tout.
 
 ---
 

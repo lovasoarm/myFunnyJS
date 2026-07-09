@@ -100,19 +100,19 @@ Trace d'exécution mentale, étape par étape :
 ```
 new Queue()       => head: null, tail: null, size: 0
 
-enqueue("Eren")     => head: [Eren] <-- tail: [Eren]  size: 1
-enqueue("Mikasa")    => head: [Eren] --> [Mikasa] <-- tail  size: 2
-enqueue("Armin")    => head: [Eren] --> [Mikasa] --> [Armin] <-- tail  size: 3
+enqueue("Naruto")     => head: [Naruto] <-- tail: [Naruto]  size: 1
+enqueue("Sakura")    => head: [Naruto] --> [Sakura] <-- tail  size: 2
+enqueue("Sasuke")    => head: [Naruto] --> [Sakura] --> [Sasuke] <-- tail  size: 3
 
-peek()         => "Eren"  (head reste intact)
+peek()         => "Naruto"  (head reste intact)
 
-dequeue()        => retourne "Eren"
-              head: [Mikasa] --> [Armin] <-- tail  size: 2
+dequeue()        => retourne "Naruto"
+              head: [Sakura] --> [Sasuke] <-- tail  size: 2
 
-dequeue()        => retourne "Mikasa"
-              head: [Armin] <-- tail  size: 1
+dequeue()        => retourne "Sakura"
+              head: [Sasuke] <-- tail  size: 1
 
-dequeue()        => retourne "Armin"
+dequeue()        => retourne "Sasuke"
               head: null, tail: null  size: 0
 ```
 

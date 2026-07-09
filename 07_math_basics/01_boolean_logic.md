@@ -12,7 +12,7 @@ Comprendre la logique booléenne, c'est comprendre pourquoi certaines conditions
 ### AND (`&&`) : les deux doivent être vrais
 
 ```js
-// Eren peut attaquer seulement s'il a de l'énergie ET qu'il est transformé
+// Naruto peut attaquer seulement s'il a de l'énergie ET qu'il est transformé
 const peutAttaquer = aDeEnergie && estTransforme;
 
 // si le premier est false : JS ne regarde même pas le second

@@ -32,7 +32,7 @@ Le script compare `output_js.txt` et `output_pyOrRust.txt` avec `diff`. Zéro di
 - `tests/scenario.json`
 - `tests/expected.txt`
 - `tests/run_all.sh`
-- `ADR/001_choix_langage_secondaire.md`
+- `ADR/ADR-001_choix_langage_secondaire.md`
 - `TDD_JOURNAL.md`
 - `POSTMORTEM.md`
 

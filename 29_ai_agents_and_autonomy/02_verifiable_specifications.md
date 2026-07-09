@@ -1,11 +1,10 @@
 # 02 : SPÉCIFICATIONS VÉRIFIABLES MACHINE
-
 Temps de lecture ~20 min
 
 Un agent exécute ce qu'il comprend. Ce qu'il comprend d'une phrase vague est vague.
 Ce qu'il comprend d'un critère binaire est binaire. Tu réduis l'écart entre "prompt"
 et "cahier des charges d'un contrat" : mêmes rigueurs. Une spec vérifiable
-machine n'est pas plus longue qu'un prompt bien pensé : elle est plus DURE.
+machine n'est pas plus longue qu'un prompt bien pensé — elle est plus DURE.
 Chaque mot flou est une décision que l'agent prendra à ta place, et il la
 prendra dans la direction la plus plausible, pas la plus juste.
 
@@ -25,40 +24,40 @@ te fait économiser 10 minutes d'audit et 3 mois de dette invisible.
 
 ## Décortiquer chaque lettre
 
-### B : Behavior : verbes d'action, pas d'états d'âme
+### B — Behavior : verbes d'action, pas d'états d'âme
 
 "Améliorer l'auth" est un état d'âme. "POST /login renvoie 200 + un cookie
 httpOnly `session` valide 24h" est un behavior. Le test que tu poses : si
 tu remplaces l'agent par un ingénieur senior au téléphone, peut-il te
 dire "c'est fait" par oui/non ? Si oui, ton B est bon.
 
-### O : Observability : la preuve, pas la promesse
+### O — Observability : la preuve, pas la promesse
 
 `npm test -- auth`, `curl -X GET /users → 401 sans header`, `grep "SESSION_SET"
 logs/app.log | wc -l ≥ 1`. L'observabilité est la partie que 90 % des prompts
 ratent. Un agent qui livre sans preuve est un stagiaire qui te dit "j'ai
 fini" sans montrer l'écran.
 
-### R : Regression tests : ce qui doit rester vert
+### R — Regression tests : ce qui doit rester vert
 
 L'agent va toucher 4 fichiers. Les autres tests DOIVENT rester verts. Cite
 `npm test` global, ou une suite précise si le projet est gros. Si tu n'as
-pas de tests, ta première tâche pour l'agent est d'en écrire : pas de
+pas de tests, ta première tâche pour l'agent est d'en écrire — pas de
 livrer une feature.
 
-### N : Non-goals : la liste noire explicite
+### N — Non-goals : la liste noire explicite
 
 Les Non-goals sont plus importants que les goals. Ils empêchent l'agent
 d'améliorer proactivement des zones qu'il ne comprend pas. Typiques : "ne
 pas toucher au schéma DB", "ne pas ajouter de dépendance > 100 KB", "ne
 pas modifier `src/legacy/*`", "ne pas renommer de fichiers".
 
-### É : Escape hatch : la sortie honorable
+### É — Escape hatch : la sortie honorable
 
 "Si tu ne peux pas, dis-le" transforme un agent bavard en agent lucide.
 Sans escape hatch, l'agent invente une solution partielle et la présente
 comme complète. Avec, il te rend `BLOCKED: JWT_SECRET absent, je ne peux
-pas générer de tokens de test` : ce qui est infiniment plus utile.
+pas générer de tokens de test` — ce qui est infiniment plus utile.
 
 ## Exemple avant / après
 
@@ -126,37 +125,26 @@ const spec = {
 const agentClaim = {
   summary: "POST /login renvoie 200 + {token}. npm test -- auth passe.",
   touchedFiles: ["src/auth.js", "src/db/schema.sql"], // <- touche la DB
-  bundleDelta: "+180KB", // <- dépasse 100 KB
+  bundleDelta: "+180KB",                              // <- dépasse 100 KB
   escapeHatchLog: "JWT_SECRET manquant, je continue en dev-mode",
 };
 
 function assert(cond, msg) {
-  if (!cond) {
-    console.error("FAIL:", msg);
-    process.exitCode = 1;
-  } else {
-    console.log("ok:  ", msg);
-  }
+  if (!cond) { console.error("FAIL:", msg); process.exitCode = 1; }
+  else       { console.log("ok:  ", msg); }
 }
 
-assert(spec.behavior.test(agentClaim.summary), "B : behavior décrit");
-assert(
-  spec.observability.test(agentClaim.summary),
-  "O : commande de preuve citée",
-);
-assert(
-  !agentClaim.touchedFiles.some((f) => /db\//.test(f)),
-  "N : couche DB non touchée",
-);
-assert(parseInt(agentClaim.bundleDelta, 10) < 100, "N : bundle < 100 KB");
-assert(
-  !/continue en dev-mode/.test(agentClaim.escapeHatchLog),
-  "É : escape hatch respecté",
-);
+assert(spec.behavior.test(agentClaim.summary),        "B : behavior décrit");
+assert(spec.observability.test(agentClaim.summary),   "O : commande de preuve citée");
+assert(!agentClaim.touchedFiles.some((f) => /db\//.test(f)),
+                                                       "N : couche DB non touchée");
+assert(parseInt(agentClaim.bundleDelta, 10) < 100,     "N : bundle < 100 KB");
+assert(!/continue en dev-mode/.test(agentClaim.escapeHatchLog),
+                                                       "É : escape hatch respecté");
 ```
 
 Sortie attendue : 3 lignes `FAIL`, pas 0. Un agent qui rend ce PR est refusé
-automatiquement : sans humain fatigué à 18 h qui laisse passer par lassitude.
+automatiquement — sans humain fatigué à 18 h qui laisse passer par lassitude.
 
 ## Aller plus loin : la spec exécutable
 
@@ -174,5 +162,4 @@ spec prend 45-90 min. La B.O.R.N.É. est ton meilleur ROI de la décennie
 sur le travail avec agents. Ne délègue jamais sans elle.
 
 ---
-
 stability: perissable

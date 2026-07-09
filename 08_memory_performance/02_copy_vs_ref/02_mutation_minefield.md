@@ -14,18 +14,18 @@ Ce fichier, c'est la carte du champ. On repère les mines. On apprend à travers
 Une mutation, c'est modifier un objet existant en place. Le problème : si plusieurs variables ou fonctions pointent vers cet objet, elles voient toutes la modification : même celles qui ne devaient pas.
 
 ```js
-// Le squad de l'Attaque des Titans
-const squad = { name: "Survey Corps", members: 104, leader: "Erwin" };
+// Le squad de Naruto
+const squad = { name: "Konoha", members: 104, leader: "Hokage" };
 
 function promote(s) {
- s.leader = "Hange"; // mutation directe du paramètre
+ s.leader = "Tsunade"; // mutation directe du paramètre
  return s;
 }
 
 const promoted = promote(squad);
 
-console.log(promoted.leader); // → "Hange":attendu
-console.log(squad.leader); // → "Hange":PAS attendu
+console.log(promoted.leader); // → "Tsunade":attendu
+console.log(squad.leader); // → "Tsunade":PAS attendu
 // squad et promoted sont le même objet
 ```
 
@@ -37,11 +37,11 @@ AVANT promote
 ─────────────
 squad ──────────┐
         ▼
-promoted ──────►{ leader: "Erwin" }
+promoted ──────►{ leader: "Hokage" }
 
 PENDANT promote (s = squad)
 ───────────────────────────
-s ──────────────► { leader: "Hange" }
+s ──────────────► { leader: "Tsunade" }
              ▲
 squad ─────────────────►─┘
 promoted ──────────────►─┘
