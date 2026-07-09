@@ -1,8 +1,8 @@
-# PONT — de la pensée fonctionnelle aux design patterns
+# PONT : de la pensée fonctionnelle aux design patterns
 
 -> ~10 min
 
-> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `11_functional_js` et `12_design_patterns`. Ne l'ouvre pas comme "encore un chapitre" — c'est un palier de respiration avant un saut de complexité réel.
+> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `11_functional_js` et `12_design_patterns`. Ne l'ouvre pas comme "encore un chapitre" : c'est un palier de respiration avant un saut de complexité réel.
 
 ## POURQUOI CE PONT EXISTE
 
@@ -21,4 +21,5 @@ Si les 3 réponses te semblent triviales, tant mieux : tu abordes le module 12 a
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
 
 ---
+
 stability: intemporel

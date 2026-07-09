@@ -11,11 +11,11 @@ Avant de continuer, réponds honnêtement à ces 5 questions :
 - [ ] Je sais créer un fichier `.js` avec mon éditeur et le sauvegarder.
 
 **Score** :
+
 - **3+ oui** : fonce, tu es prêt pour la suite de ce fichier.
-- **< 3 oui** : ouvre d'abord `02_shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte — MyFunnyJS n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
+- **< 3 oui** : ouvre d'abord `02_shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte : MyFunnyJS n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
 
 Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 5/5.
-
 
 -> ~15 min
 
@@ -137,4 +137,5 @@ Note dans un fichier `TDD_JOURNAL.md` :
 Prochaine étape : [`../00_referentiel/where_you_stand.md`](../00_referentiel/where_you_stand.md) (auto-diagnostic).
 
 ---
+
 stability: intemporel

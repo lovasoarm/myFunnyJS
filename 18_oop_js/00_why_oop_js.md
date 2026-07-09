@@ -1,11 +1,11 @@
 > **CE MODULE RÉUTILISE** : fonctions (01), closures (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) — table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OOP EN JS
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
-Temps de lecture ~6 min
+> Temps de lecture ~6 min
 
 ## CE QUE TU CROIS SAVOIR
 
@@ -83,4 +83,5 @@ Dix fichiers techniques. Zéro raccourci. À la fin, tu ne récites plus du JS o
 En Python, l'objet est un dictionnaire d'attributs et l'héritage suit un MRO (Method Resolution Order), pas une chaîne de prototypes. En Java, les classes sont réelles, pas du sucre. En Rust, pas d'héritage : composition via traits. Le concept (lier comportement et données) est universel ; JS le fait par prototypes là où d'autres le font par classes.
 
 ---
+
 stability: intemporel

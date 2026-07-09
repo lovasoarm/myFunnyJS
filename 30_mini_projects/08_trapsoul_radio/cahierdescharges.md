@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : TRAPSOUL RADIO
+
 Temps de lecture ~14 min
 
 ## PRÉREQUIS
@@ -72,18 +73,22 @@ Ce projet teste un réflexe que les devs n'ont pas naturellement : penser l'inte
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `14_typescript` : types stricts, generics, utility types
+
 **Où ça se voit** : tous les fichiers `.ts`. Les clés de traduction typées dans `i18n/types.ts`. Les generics sur les playlists `Playlist<Track>`.
 **Pourquoi c'est nécessaire ici** : `TranslationKey` est un type union de toutes les clés valides. Si tu écris `t('player.now_playing_typo')` et que la clé n'existe pas : erreur à la compilation.
 
 ### `17_web_concepts` : browser render pipeline, LCP, INP, CLS
+
 **Où ça se voit** : les optimisations de performance dans `src/player/`, les metadata dynamiques dans `src/pages/`.
 **Pourquoi c'est nécessaire ici** : un changement de track déclenche un re-render. Si ce re-render fait sauter le CLS (Cumulative Layout Shift : décalage cumulatif de la mise en page), les scores Lighthouse s'effondrent.
 
 ### `19_web_inclusive` : ARIA, navigation clavier, contraste WCAG
+
 **Où ça se voit** : chaque composant HTML dans `src/components/`. Les ARIA roles, les skip links, le focus management dans les modals.
 **Pourquoi c'est nécessaire ici** : les composants audio custom (bouton play, slider de progression, sélecteur de track) n'ont pas de comportement clavier natif. Il faut le construire explicitement.
 
 ### `19_web_inclusive/i18n` : Intl, pluralisation, namespaces, locale detection
+
 **Où ça se voit** : `src/i18n/` entier.
 **Pourquoi c'est nécessaire ici** : 4 locales, pluralisation différente par langue, dates et durées formatées selon la locale, sans bibliothèque externe.
 
@@ -167,39 +172,47 @@ tests/
 ```
 
 ### `src/i18n/types.ts`
+
 **Ce que ça fait** : définit `TranslationKey` (union de toutes les clés de traduction valides) et `LocaleCode` (`'fr' | 'en' | 'ja' | 'mg'`).
 **Entrée** : rien (définitions de types).
 **Sortie** : types TypeScript exportés qui garantissent qu'une clé inexistante est une erreur de compilation.
 
 ### `src/i18n/translator.ts`
+
 **Ce que ça fait** : la fonction `t(key, params?)` qui retourne la traduction pour la locale active. Gère la pluralisation.
 **Entrée** : une `TranslationKey` et des paramètres optionnels `{ count?, artist?, track? }`.
 **Sortie** : une chaîne traduite.
 
 ### `src/i18n/locales/fr.ts` (et en, ja, mg)
+
 **Ce que ça fait** : l'objet de traductions pour une locale. Typé en `Record<TranslationKey, string | ((params) => string)>` pour la pluralisation.
 
 ### `src/player/player.ts`
+
 **Ce que ça fait** : gère l'état du lecteur (track en cours, position, volume, état play/pause). Ne touche pas au DOM directement.
 **Entrée** : des commandes (`play()`, `pause()`, `next()`, `prev()`, `seek(position)`).
 **Sortie** : un état `PlayerState` mis à jour.
 
 ### `src/components/NowPlaying.ts`
+
 **Ce que ça fait** : le composant "maintenant en lecture". Affiche le titre, l'artiste, la progression. A le rôle ARIA `region` avec `aria-label` traduit.
 **Entrée** : l'état du player et la fonction `t`.
 **Sortie** : du HTML avec les bons rôles ARIA.
 
 ### `src/a11y/focusManager.ts`
+
 **Ce que ça fait** : gère le focus programmatique. Quand une modal s'ouvre, le focus va dedans et y reste (focus trap). Quand elle se ferme, le focus retourne à l'élément déclencheur.
 **Entrée** : l'élément conteneur d'une modal.
 **Sortie** : des event listeners installés et désinstallés proprement.
 
 ### `src/a11y/ariaAnnouncer.ts`
+
 **Ce que ça fait** : un `div[aria-live="polite"]` invisible qui annonce les changements dynamiques aux lecteurs d'écran (changement de track, changement de langue).
 **Entrée** : un message à annoncer.
 **Sortie** : l'annonce est injectée dans le DOM live region.
 
 ### `src/utils/dateFormatter.ts` et `numberFormatter.ts`
+
 **Ce que ça fait** : wrape `Intl.DateTimeFormat` et `Intl.NumberFormat` avec la locale active.
 **Entrée** : une valeur à formater, la locale courante.
 **Sortie** : une chaîne formatée selon la locale.
@@ -227,18 +240,18 @@ tests/
 
 C'est le projet le plus exigeant en termes d'itération. TypeScript strict + accessibilité WCAG AA + i18n 4 locales : les trois contraintes s'additionnent et se frottent l'une contre l'autre. L'accessibilité ne se fait pas en une passe. Plan pour minimum 25h. Si c'est la première fois que tu fais de l'a11y sérieuse, plan pour 35-40h.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| Types + i18n | 3h | Moyenne : bien typer TranslationKey sans tout rigidifier |
-| player.ts | 2h | Faible |
-| Intl wrappers | 1h30 | Faible |
-| ariaAnnouncer | 1h | Faible |
-| focusManager | 3-4h | **Haute** : le focus trap dans une modal est subtil, surtout avec des éléments disabled |
-| keyboardNav | 2-3h | **Haute** : gérer tab, shift+tab, escape, espace, et les edge cases (éléments hidden) |
-| Composants HTML | 3-4h | Moyenne : ARIA correctement sur des contrôles custom audio |
-| i18n locales (4) | 2h | Faible mais répétitif |
-| Vérifications a11y | 4-6h | **Très haute** : faire passer axe à 0 violations sur un player audio custom est une vraie bataille |
-| Optimisation perf (LCP/CLS/INP) | 2-3h | Moyenne |
+| Étape                           | Durée estimée | Zone de résistance                                                                                 |
+| ------------------------------- | ------------- | -------------------------------------------------------------------------------------------------- |
+| Types + i18n                    | 3h            | Moyenne : bien typer TranslationKey sans tout rigidifier                                           |
+| player.ts                       | 2h            | Faible                                                                                             |
+| Intl wrappers                   | 1h30          | Faible                                                                                             |
+| ariaAnnouncer                   | 1h            | Faible                                                                                             |
+| focusManager                    | 3-4h          | **Haute** : le focus trap dans une modal est subtil, surtout avec des éléments disabled            |
+| keyboardNav                     | 2-3h          | **Haute** : gérer tab, shift+tab, escape, espace, et les edge cases (éléments hidden)              |
+| Composants HTML                 | 3-4h          | Moyenne : ARIA correctement sur des contrôles custom audio                                         |
+| i18n locales (4)                | 2h            | Faible mais répétitif                                                                              |
+| Vérifications a11y              | 4-6h          | **Très haute** : faire passer axe à 0 violations sur un player audio custom est une vraie bataille |
+| Optimisation perf (LCP/CLS/INP) | 2-3h          | Moyenne                                                                                            |
 
 Le focus trap et les vérifications axe sont les deux points où la plupart des gens bloquent plus longtemps que prévu. La raison : les erreurs d'accessibilité se détectent seulement au runtime (axe, lecteur d'écran), pas à la compilation. Chaque correction peut en révéler une autre. C'est de l'itération, pas de la construction linéaire.
 
@@ -246,53 +259,53 @@ Le focus trap et les vérifications axe sont les deux points où la plupart des 
 
 ```ts
 // tests/i18n.test.ts
-import { t, setLocale } from '../src/i18n/translator';
+import { t, setLocale } from "../src/i18n/translator";
 
-describe('translator', () => {
- test('retourne la traduction française par défaut', () => {
-  setLocale('fr');
-  expect(t('player.now_playing')).toBe('En lecture');
- });
+describe("translator", () => {
+  test("retourne la traduction française par défaut", () => {
+    setLocale("fr");
+    expect(t("player.now_playing")).toBe("En lecture");
+  });
 
- test('bascule vers le japonais', () => {
-  setLocale('ja');
-  expect(t('player.now_playing')).toBe('再生中');
- });
+  test("bascule vers le japonais", () => {
+    setLocale("ja");
+    expect(t("player.now_playing")).toBe("再生中");
+  });
 
- test('pluralisation en français : 1 titre / N titres', () => {
-  setLocale('fr');
-  expect(t('playlist.track_count', { count: 1 })).toBe('1 titre');
-  expect(t('playlist.track_count', { count: 5 })).toBe('5 titres');
- });
+  test("pluralisation en français : 1 titre / N titres", () => {
+    setLocale("fr");
+    expect(t("playlist.track_count", { count: 1 })).toBe("1 titre");
+    expect(t("playlist.track_count", { count: 5 })).toBe("5 titres");
+  });
 
- test('pluralisation en malgache', () => {
-  setLocale('mg');
-  expect(t('playlist.track_count', { count: 1 })).toBe('1 hira');
-  expect(t('playlist.track_count', { count: 5 })).toBe('5 hira');
- });
+  test("pluralisation en malgache", () => {
+    setLocale("mg");
+    expect(t("playlist.track_count", { count: 1 })).toBe("1 hira");
+    expect(t("playlist.track_count", { count: 5 })).toBe("5 hira");
+  });
 });
 
 // tests/a11y.test.ts
-import { FocusManager } from '../src/a11y/focusManager';
+import { FocusManager } from "../src/a11y/focusManager";
 
-describe('FocusManager', () => {
- test('le focus reste dans la modal quand on tabule depuis le dernier élément', () => {
-  document.body.innerHTML = `
+describe("FocusManager", () => {
+  test("le focus reste dans la modal quand on tabule depuis le dernier élément", () => {
+    document.body.innerHTML = `
    <div id="modal">
     <button id="btn1">Fermer</button>
     <button id="btn2">Confirmer</button>
    </div>
   `;
-  const modal = document.getElementById('modal')!;
-  const fm = new FocusManager(modal);
-  fm.trapFocus();
+    const modal = document.getElementById("modal")!;
+    const fm = new FocusManager(modal);
+    fm.trapFocus();
 
-  // Simuler Tab depuis le dernier bouton
-  document.getElementById('btn2')!.focus();
-  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+    // Simuler Tab depuis le dernier bouton
+    document.getElementById("btn2")!.focus();
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
 
-  expect(document.activeElement?.id).toBe('btn1'); // wrapping
- });
+    expect(document.activeElement?.id).toBe("btn1"); // wrapping
+  });
 });
 ```
 
@@ -331,23 +344,27 @@ Exemple rempli :
 # ADR 001 : TranslationKey comme type union plutôt que string
 
 ## Contexte
+
 La fonction `t()` accepte une clé de traduction. Si on type le paramètre comme
 `string`, n'importe quelle chaîne est acceptée, y compris des clés qui n'existent
 pas dans les fichiers de locale. L'erreur n'apparaît qu'à runtime.
 
 ## Décision
+
 `TranslationKey` est un type union généré à partir des clés réelles :
 `type TranslationKey = keyof typeof fr` (les clés du fichier de locale français
 servant de référence). Toute nouvelle locale doit satisfaire ce type.
 
 ## Alternatives considérées
+
 - `string` : rejeté, erreurs à runtime non détectables.
 - Générer les types depuis un JSON : trop complexe pour ce projet, nécessite
- un step de build supplémentaire.
+  un step de build supplémentaire.
 
 ## Conséquences
+
 - Ajouter une clé = l'ajouter dans `fr.ts` (la référence), puis TypeScript
- indique quelles autres locales doivent être mises à jour.
+  indique quelles autres locales doivent être mises à jour.
 - Les composants qui utilisent `t()` ont l'autocomplétion sur les clés valides.
 ```
 
@@ -367,14 +384,11 @@ servant de référence). Toute nouvelle locale doit satisfaire ce type.
 [ ] POSTMORTEM.md documente la violation a11y la plus difficile à corriger
 ```
 
-
-
-
 ## SPEC VOLONTAIREMENT INCOMPLÈTE (obligatoire, à traiter en premier)
 
 Ce cahier des charges est **volontairement incomplet sur 3 points** (format de sortie exact d'un
 détail d'interface, un critère d'acceptation mesurable, un choix technique laissé implicite).
-Contrairement au *spec drift* (voir `30_mini_projects/synthese/spec_drift.md`) qui simule une
+Contrairement au _spec drift_ (voir `30_mini_projects/synthese/spec_drift.md`) qui simule une
 spec qui **change** en cours de route, ici la spec est **floue dès le départ**, comme un vrai
 ticket de jour 1 en entreprise.
 
@@ -410,11 +424,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -422,4 +435,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

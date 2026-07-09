@@ -1,11 +1,11 @@
 > **CE MODULE RÉUTILISE** : OOP JS (18), FP (11), fonctions (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) — table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
-Temps de lecture ~7 min
+> Temps de lecture ~7 min
 
 Tu as déjà résolu le même problème d'architecture deux fois, en deux façons complètement différentes, dans deux projets différents. Et probablement, aucune des deux n'était la meilleure solution : c'était juste la première idée qui t'est venue. Les design patterns existent pour arrêter ça.
 
@@ -98,4 +98,5 @@ Maintenant, ouvre `01_factory_pattern.md`. Et commence à reconnaître les patte
 > Distinction à ne jamais confondre : design patterns = échelle classe ; refactoring = transformer du code existant (SOLID) ; architecture = échelle système entier.
 
 ---
+
 stability: intemporel

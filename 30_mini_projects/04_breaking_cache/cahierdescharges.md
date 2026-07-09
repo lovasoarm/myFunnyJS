@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : BREAKING CACHE
+
 Temps de lecture ~13 min
 
 ## PRÉREQUIS
@@ -63,14 +64,17 @@ Ce projet force à travailler avec des structures de données non triviales dans
 ## LES 3 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `09_data_structures` : graphe et min-heap
+
 **Où ça se voit** : `src/graph/`, `src/heap/`.
 **Pourquoi c'est nécessaire ici** : le réseau de distribution est un graphe. Les urgences sont une priority queue (file de priorité) basée sur un min-heap. Ces deux structures ne peuvent pas être remplacées par des tableaux sans exploser la complexité.
 
 ### `10_algorithms` : Dijkstra, BFS/DFS, tri comparatif, DP
+
 **Où ça se voit** : `src/algorithms/`.
 **Pourquoi c'est nécessaire ici** : trouver la route optimale = Dijkstra. Détecter une route compromise = BFS. Trier les lots = Merge Sort vs Quick Sort avec mesure. Optimiser le stock sous budget = knapsack (problème du sac à dos, algorithme de programmation dynamique).
 
 ### `08_memory_performance` : profilage réel sur chaque algo
+
 **Où ça se voit** : `src/profiler/benchmarks.js`, `logs/benchmarks.json`.
 **Pourquoi c'est nécessaire ici** : un algorithme sans mesure est une hypothèse. Chaque algo dans ce projet est wrappé dans un benchmark. Les résultats sont loggés. Walter ne valide aucune décision sans chiffres.
 
@@ -136,21 +140,32 @@ tests/
 ```
 
 ### `src/graph/graph.js`
+
 **Ce que ça fait** : implémente un graphe orienté pondéré avec liste d'adjacence (une structure où chaque noeud stocke la liste de ses voisins et le coût de chaque arête).
 **Entrée** : des appels à `addNode(id)` et `addEdge(from, to, weight)`.
 **Sortie** : `getNeighbors(node)` retourne `[{ node, weight }]`.
 
 ### `src/graph/graphLoader.js`
+
 **Ce que ça fait** : lit `data/network.json` et construit un objet graphe. Le fichier JSON a le format suivant :
 
 ```json
 {
- "nodes": ["Labo", "Socorro", "Rio Rancho", "Albuquerque", "Santa Fe", "Las Cruces", "Roswell", "El Paso"],
- "edges": [
-  { "from": "Labo",  "to": "Socorro",   "weight": 12, "risk": "faible" },
-  { "from": "Socorro", "to": "Rio Rancho", "weight": 18, "risk": "faible" },
-  { "from": "Labo",  "to": "Albuquerque", "weight": 47, "risk": "élevé" }
- ]
+  "nodes": [
+    "Labo",
+    "Socorro",
+    "Rio Rancho",
+    "Albuquerque",
+    "Santa Fe",
+    "Las Cruces",
+    "Roswell",
+    "El Paso"
+  ],
+  "edges": [
+    { "from": "Labo", "to": "Socorro", "weight": 12, "risk": "faible" },
+    { "from": "Socorro", "to": "Rio Rancho", "weight": 18, "risk": "faible" },
+    { "from": "Labo", "to": "Albuquerque", "weight": 47, "risk": "élevé" }
+  ]
 }
 ```
 
@@ -159,31 +174,37 @@ tests/
 **Sortie** : une instance de `graph.js` avec tous les noeuds et arêtes chargés.
 
 ### `src/heap/minHeap.js`
+
 **Ce que ça fait** : implémente un min-heap (tas où le plus petit élément est toujours en haut). Opérations : `insert(item, priority)`, `extractMin()`, `peek()`.
 **Entrée** : un élément et sa priorité (numérique).
 **Sortie** : l'élément de priorité minimale à chaque `extractMin()`.
 
 ### `src/algorithms/dijkstra.js`
+
 **Ce que ça fait** : trouve le chemin de coût minimal entre deux noeuds dans un graphe pondéré. Utilise le min-heap comme queue de priorité.
 **Entrée** : un graphe, un noeud de départ, un noeud d'arrivée.
 **Sortie** : `{ path: ['Labo', 'Socorro', ...], cost: 47 }`.
 
 ### `src/algorithms/bfs.js`
+
 **Ce que ça fait** : parcours en largeur (BFS = Breadth-First Search). Utilisé pour détecter les routes compromises (noeuds marqués "risque élevé") accessibles depuis le laboratoire.
 **Entrée** : un graphe, un noeud de départ.
 **Sortie** : la liste des noeuds compromis trouvés.
 
 ### `src/algorithms/mergeSort.js` et `quickSort.js`
+
 **Ce que ça fait** : implémente les deux algorithmes de tri. Les deux acceptent un tableau de lots et un comparateur (fonction qui définit l'ordre de tri).
 **Entrée** : un tableau, une fonction de comparaison.
 **Sortie** : un nouveau tableau trié (pas de mutation en place).
 
 ### `src/algorithms/knapsack.js`
+
 **Ce que ça fait** : résout le problème du sac à dos en programmation dynamique. Maximise la valeur du stock réapprovisionné sous contrainte de budget.
 **Entrée** : une liste d'items `{ name, value, cost }`, un budget max.
 **Sortie** : `{ selectedItems: [...], totalValue: number, totalCost: number }`.
 
 ### `src/profiler/benchmarks.js`
+
 **Ce que ça fait** : wrape une fonction dans un timer, exécute la fonction, retourne le résultat et le temps d'exécution. Sauvegarde les résultats dans `logs/benchmarks.json`.
 **Entrée** : un nom, une fonction, ses arguments.
 **Sortie** : `{ name, result, durationMs }`.
@@ -206,16 +227,16 @@ tests/
 
 **Durée totale estimée** : 15 à 22 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| graph.js | 2h | Moyenne : bien choisir la structure interne (liste d'adjacence) |
-| minHeap.js | 3-4h | **Haute** : l'opération `heapifyDown` après extractMin est le vrai test |
-| mergeSort + quickSort | 2h | Faible si le module 10 est bien maîtrisé |
-| knapsack.js | 3h | Moyenne : construire la table DP étape par étape sans se perdre |
-| dijkstra.js | 3-4h | **Haute** : l'intégration avec le heap comme priority queue |
-| bfs.js | 1h | Faible |
-| profiler + index | 1h30 | Faible |
-| Tests | 2-3h | Moyenne : tester des algos sur des graphes construits à la main |
+| Étape                 | Durée estimée | Zone de résistance                                                      |
+| --------------------- | ------------- | ----------------------------------------------------------------------- |
+| graph.js              | 2h            | Moyenne : bien choisir la structure interne (liste d'adjacence)         |
+| minHeap.js            | 3-4h          | **Haute** : l'opération `heapifyDown` après extractMin est le vrai test |
+| mergeSort + quickSort | 2h            | Faible si le module 10 est bien maîtrisé                                |
+| knapsack.js           | 3h            | Moyenne : construire la table DP étape par étape sans se perdre         |
+| dijkstra.js           | 3-4h          | **Haute** : l'intégration avec le heap comme priority queue             |
+| bfs.js                | 1h            | Faible                                                                  |
+| profiler + index      | 1h30          | Faible                                                                  |
+| Tests                 | 2-3h          | Moyenne : tester des algos sur des graphes construits à la main         |
 
 Le min-heap est le point de résistance le plus sous-estimé. L'insertion est simple. C'est `heapifyDown` (remettre l'arbre en ordre après avoir extrait la racine) qui résiste. Si tu bloques là, dessine l'arbre sur papier avant de coder.
 
@@ -223,46 +244,48 @@ Le min-heap est le point de résistance le plus sous-estimé. L'insertion est si
 
 ```js
 // tests/heap.test.js
-import { MinHeap } from '../src/heap/minHeap.js';
+import { MinHeap } from "../src/heap/minHeap.js";
 
-describe('MinHeap', () => {
- test('extractMin retourne toujours le plus petit élément', () => {
-  const heap = new MinHeap();
-  heap.insert('Las Cruces', 8);  // stock: 8
-  heap.insert('Santa Fe', 2);   // stock: 2 --> priorité max
-  heap.insert('Albuquerque', 15);
+describe("MinHeap", () => {
+  test("extractMin retourne toujours le plus petit élément", () => {
+    const heap = new MinHeap();
+    heap.insert("Las Cruces", 8); // stock: 8
+    heap.insert("Santa Fe", 2); // stock: 2 --> priorité max
+    heap.insert("Albuquerque", 15);
 
-  expect(heap.extractMin().item).toBe('Santa Fe'); // urgence n°1
-  expect(heap.extractMin().item).toBe('Las Cruces'); // urgence n°2
- });
+    expect(heap.extractMin().item).toBe("Santa Fe"); // urgence n°1
+    expect(heap.extractMin().item).toBe("Las Cruces"); // urgence n°2
+  });
 
- test("l'ordre est correct après plusieurs insertions et extractions", () => {
-  const heap = new MinHeap();
-  [7, 3, 1, 9, 2].forEach(p => heap.insert(`city-${p}`, p));
+  test("l'ordre est correct après plusieurs insertions et extractions", () => {
+    const heap = new MinHeap();
+    [7, 3, 1, 9, 2].forEach((p) => heap.insert(`city-${p}`, p));
 
-  const extracted = [];
-  while (!heap.isEmpty()) extracted.push(heap.extractMin().priority);
+    const extracted = [];
+    while (!heap.isEmpty()) extracted.push(heap.extractMin().priority);
 
-  expect(extracted).toEqual([1, 2, 3, 7, 9]); // ordre croissant garanti
- });
+    expect(extracted).toEqual([1, 2, 3, 7, 9]); // ordre croissant garanti
+  });
 });
 
 // tests/dijkstra.test.js
-import { Graph } from '../src/graph/graph.js';
-import { findPath } from '../src/algorithms/dijkstra.js';
+import { Graph } from "../src/graph/graph.js";
+import { findPath } from "../src/algorithms/dijkstra.js";
 
-describe('dijkstra', () => {
- test('trouve le chemin de coût minimal dans un graphe simple', () => {
-  const g = new Graph();
-  g.addNode('A'); g.addNode('B'); g.addNode('C');
-  g.addEdge('A', 'B', 10);
-  g.addEdge('A', 'C', 3);
-  g.addEdge('C', 'B', 4); // A->C->B coûte 7, moins que A->B (10)
+describe("dijkstra", () => {
+  test("trouve le chemin de coût minimal dans un graphe simple", () => {
+    const g = new Graph();
+    g.addNode("A");
+    g.addNode("B");
+    g.addNode("C");
+    g.addEdge("A", "B", 10);
+    g.addEdge("A", "C", 3);
+    g.addEdge("C", "B", 4); // A->C->B coûte 7, moins que A->B (10)
 
-  const result = findPath(g, 'A', 'B');
-  expect(result.path).toEqual(['A', 'C', 'B']);
-  expect(result.cost).toBe(7);
- });
+    const result = findPath(g, "A", "B");
+    expect(result.path).toEqual(["A", "C", "B"]);
+    expect(result.cost).toBe(7);
+  });
 });
 ```
 
@@ -301,21 +324,25 @@ Exemple rempli :
 # ADR 001 : Liste d'adjacence plutôt que matrice d'adjacence
 
 ## Contexte
+
 Un graphe peut être représenté de deux façons en mémoire : une matrice carrée
 (un tableau 2D de taille noeuds x noeuds) ou une liste d'adjacence (chaque noeud
 stocke la liste de ses voisins directs).
 
 ## Décision
+
 Liste d'adjacence. Le réseau a 8 villes mais seulement 14 routes sur 56 possibles
 (graphe sparse = peu dense). La matrice allouerait 56 cases pour stocker 14 arêtes.
 
 ## Alternatives considérées
+
 - Matrice d'adjacence : rejetée car inefficace en espace O(V²) pour un graphe sparse.
- Avantage de la matrice : vérifier si une arête existe entre A et B est O(1). Pas utile ici.
+  Avantage de la matrice : vérifier si une arête existe entre A et B est O(1). Pas utile ici.
 
 ## Conséquences
+
 - Vérifier l'existence d'une arête entre deux noeuds est O(degree) au lieu de O(1).
- Acceptable ici car le degré moyen est faible (14 arêtes / 8 noeuds ≈ 1.75).
+  Acceptable ici car le degré moyen est faible (14 arêtes / 8 noeuds ≈ 1.75).
 - L'itération sur les voisins (ce que Dijkstra fait) est plus rapide sur une liste.
 ```
 
@@ -333,7 +360,6 @@ Liste d'adjacence. Le réseau a 8 villes mais seulement 14 routes sur 56 possibl
 [ ] POSTMORTEM.md documente le bug le plus difficile à localiser
 [ ] TDD_JOURNAL.md trace l'ordre dans lequel les tests ont été écrits
 ```
-
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -353,11 +379,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -365,4 +390,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

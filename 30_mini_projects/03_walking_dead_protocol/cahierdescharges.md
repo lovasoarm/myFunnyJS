@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : WALKING DEAD PROTOCOL
+
 Temps de lecture ~17 min
 
 ## PRÉREQUIS
@@ -77,18 +78,22 @@ Ce projet teste une compétence que les juniors évitent systématiquement : tra
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `06_testing` : unit, intégration, mocking, E2E Playwright
+
 **Où ça se voit** : tout le dossier `tests/` et `e2e/`.
 **Pourquoi c'est nécessaire ici** : couvrir un legacy sans tests, puis passer au TDD pour les nouvelles features. Les deux exercices en un. Playwright simule un opérateur qui tape des commandes dans le terminal.
 
 ### `13_refactoring` : SOLID sur du code procédural, code smells
+
 **Où ça se voit** : le passage de `legacy/campV1.js` vers `src/`. Chaque module de `src/` correspond à une responsabilité extraite du monolithe original.
 **Pourquoi c'est nécessaire ici** : `campV1.js` viole SRP (une seule fonction fait tout), OCP (ajouter une feature = modifier la fonction existante), DIP (la logique métier dépend directement du filesystem). La v2 corrige les trois.
 
 ### `15_runtime_env` : CLI Node.js, fs, Worker Threads
+
 **Où ça se voit** : `src/cli.js`, `src/store/fileStore.js`, `src/workers/threatSimulator.js`.
 **Pourquoi c'est nécessaire ici** : `process.argv` pour les commandes CLI, `fs.promises` pour la persistance JSON, Worker Threads pour simuler des vagues de menaces en parallèle sans bloquer le CLI.
 
 ### `32_tools` : logger structuré, benchmark, debug toolkit
+
 **Où ça se voit** : `src/logger/`, `src/debug/`.
 **Pourquoi c'est nécessaire ici** : les opérations du camp sont loggées en JSON structuré avec timestamp et niveau. Le debug toolkit permet de rejouer un scénario passé depuis les logs. Ce sont des outils réutilisables dans n'importe quel autre projet du curriculum.
 
@@ -173,45 +178,54 @@ mocks/
 ```
 
 ### `legacy/campV1.js`
+
 **Ce que ça fait** : le code original du stagiaire. Une seule fonction `runCamp()` de ~300 lignes avec des `if` imbriqués, des variables globales, et des appels `fs.readFileSync` directs au milieu de la logique métier. Jamais touché.
 **Rôle** : référence comportementale. Si la v2 se comporte différemment du v1 sur un cas, c'est documenté dans `POSTMORTEM.md`.
 
 ### `src/services/inventoryService.js`
+
 **Ce que ça fait** : toute la logique métier de l'inventaire. Consommer une ressource, ajouter un approvisionnement, calculer les jours restants, vérifier les seuils critiques.
 **Entrée** : un état d'inventaire (objet) et une opération.
 **Sortie** : un nouvel état d'inventaire (jamais de mutation directe).
 
 ### `src/services/guardService.js`
+
 **Ce que ça fait** : gestion des rotations de garde. Calculer la prochaine rotation, enregistrer un poste occupé, détecter un poste vacant.
 **Entrée** : l'état des gardes et une commande (`rotate`, `assign`, `status`).
 **Sortie** : un nouvel état des gardes.
 
 ### `src/services/securityService.js`
+
 **Ce que ça fait** : gestion des niveaux de menace par périmètre. Enregistrer une menace, calculer le niveau global du camp, déclencher l'alerte d'évacuation.
 **Entrée** : une menace `{ level, perimeter }`.
 **Sortie** : l'état de sécurité mis à jour.
 
 ### `src/store/fileStore.js`
+
 **Ce que ça fait** : interface de persistance. `read(filename)` lit depuis `data/`, `write(filename, data)` écrit. Utilise `fs.promises` pour rester async. Jamais appelé directement depuis les services (les services reçoivent l'état en paramètre, c'est le handler qui lit/écrit).
 **Entrée** : un nom de fichier et des données.
 **Sortie** : les données lues, ou un accusé d'écriture.
 
 ### `src/alerts/alertService.js`
+
 **Ce que ça fait** : vérifie les seuils sur l'état global du camp. Si la nourriture passe sous 7 jours : alerte. Si les médicaments tombent à 0 : alerte critique. Si une menace dépasse le niveau 4 : alerte évacuation.
 **Entrée** : l'état courant du camp.
 **Sortie** : un tableau d'alertes actives (vide si tout va bien).
 
 ### `src/workers/threatSimulator.js`
+
 **Ce que ça fait** : Worker Thread qui simule des vagues de zombies à intervalle régulier. Envoie des événements au thread principal via `parentPort.postMessage`. Utilisé pour les démos et les tests de charge.
 **Entrée** : une config `{ intensity, duration, perimeters }`.
 **Sortie** : des messages `{ type: 'threat', level, perimeter }` envoyés au thread principal.
 
 ### `src/logger/structuredLogger.js`
+
 **Ce que ça fait** : log en JSON avec timestamp ISO, niveau (`info`, `warn`, `error`), et champs contextuels. Chaque opération du camp artefact une ligne de log. Les logs sont écrits dans `logs/camp.jsonl` (JSONL = une ligne JSON par entrée).
 **Entrée** : un niveau, un message, un objet contexte.
 **Sortie** : une ligne JSON dans `logs/camp.jsonl` et dans stdout.
 
 ### `src/debug/scenarioReplayer.js`
+
 **Ce que ça fait** : lit `logs/camp.jsonl` et rejoue les opérations dans l'ordre. Utile pour reproduire un état passé du camp ou débugger une séquence d'actions qui a mené à un crash.
 **Entrée** : un chemin vers un fichier de logs et un filtre optionnel (depuis quelle entrée rejouer).
 **Sortie** : l'état reconstruit du camp après replay.
@@ -251,17 +265,17 @@ La règle de la phase 1 est non-négociable : si tu n'as pas de tests sur le v1 
 
 **Durée totale estimée** : 16 à 24 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| Lire et comprendre campV1.js | 1-2h | **Haute psychologiquement** : du spaghetti intentionnel, c'est déstabilisant |
-| Tests sur le legacy (phase 1) | 3-4h | **Haute** : tester du code sans interface claire demande de l'ingéniosité |
-| fileStore + logger + alerts | 2h | Faible |
-| services (3) | 3h | Moyenne |
-| handlers + router + cli | 2h | Faible |
-| tests/cli.test.js | 1h30 | Faible |
-| Worker Thread | 2-3h | Moyenne : les Worker Threads ont une API distincte, postMessage prend du temps à maîtriser |
-| E2E Playwright | 2-3h | Moyenne : premier contact avec Playwright via CLI |
-| scenarioReplayer | 1h30 | Faible |
+| Étape                         | Durée estimée | Zone de résistance                                                                         |
+| ----------------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| Lire et comprendre campV1.js  | 1-2h          | **Haute psychologiquement** : du spaghetti intentionnel, c'est déstabilisant               |
+| Tests sur le legacy (phase 1) | 3-4h          | **Haute** : tester du code sans interface claire demande de l'ingéniosité                  |
+| fileStore + logger + alerts   | 2h            | Faible                                                                                     |
+| services (3)                  | 3h            | Moyenne                                                                                    |
+| handlers + router + cli       | 2h            | Faible                                                                                     |
+| tests/cli.test.js             | 1h30          | Faible                                                                                     |
+| Worker Thread                 | 2-3h          | Moyenne : les Worker Threads ont une API distincte, postMessage prend du temps à maîtriser |
+| E2E Playwright                | 2-3h          | Moyenne : premier contact avec Playwright via CLI                                          |
+| scenarioReplayer              | 1h30          | Faible                                                                                     |
 
 La zone de résistance inattendue est la phase 1 : écrire des tests sur du code procédural sans interface claire. Il n'y a pas de fonctions exportées proprement dans `campV1.js`. La solution : extraire les comportements observables en lançant le programme, pas en lisant le code. Tester les sorties stdout plutôt que les fonctions internes.
 
@@ -269,100 +283,107 @@ La zone de résistance inattendue est la phase 1 : écrire des tests sur du code
 
 ```js
 // tests/inventory.test.js
-import { consume, addSupply, getDaysRemaining, isLow } from '../src/services/inventoryService.js';
+import {
+  consume,
+  addSupply,
+  getDaysRemaining,
+  isLow,
+} from "../src/services/inventoryService.js";
 
-describe('inventoryService', () => {
- const baseInventory = {
-  food: { units: 42, dailyConsumption: 3 }, // 14 jours
-  ammo: { units: 847 },
-  medicine: { units: 3, lowThreshold: 10 }
- };
+describe("inventoryService", () => {
+  const baseInventory = {
+    food: { units: 42, dailyConsumption: 3 }, // 14 jours
+    ammo: { units: 847 },
+    medicine: { units: 3, lowThreshold: 10 },
+  };
 
- test('consume réduit les unités correctement', () => {
-  const updated = consume(baseInventory, 'food', 9);
-  expect(updated.food.units).toBe(33);
- });
+  test("consume réduit les unités correctement", () => {
+    const updated = consume(baseInventory, "food", 9);
+    expect(updated.food.units).toBe(33);
+  });
 
- test('consume ne mute pas l\'inventaire original', () => {
-  consume(baseInventory, 'food', 9);
-  expect(baseInventory.food.units).toBe(42); // original intact
- });
+  test("consume ne mute pas l'inventaire original", () => {
+    consume(baseInventory, "food", 9);
+    expect(baseInventory.food.units).toBe(42); // original intact
+  });
 
- test('getDaysRemaining calcule correctement', () => {
-  expect(getDaysRemaining(baseInventory, 'food')).toBe(14);
- });
+  test("getDaysRemaining calcule correctement", () => {
+    expect(getDaysRemaining(baseInventory, "food")).toBe(14);
+  });
 
- test('isLow détecte quand une ressource est sous le seuil', () => {
-  expect(isLow(baseInventory, 'medicine')).toBe(true); // 3 < 10
-  expect(isLow(baseInventory, 'food')).toBe(false);
- });
+  test("isLow détecte quand une ressource est sous le seuil", () => {
+    expect(isLow(baseInventory, "medicine")).toBe(true); // 3 < 10
+    expect(isLow(baseInventory, "food")).toBe(false);
+  });
 
- test('consume throw si quantité insuffisante', () => {
-  expect(() => consume(baseInventory, 'food', 100)).toThrow('InsufficientResourceError');
- });
+  test("consume throw si quantité insuffisante", () => {
+    expect(() => consume(baseInventory, "food", 100)).toThrow(
+      "InsufficientResourceError",
+    );
+  });
 });
 
 // tests/cli.test.js
-import { execSync } from 'child_process';
+import { execSync } from "child_process";
 
 beforeEach(() => {
- // Réinitialise l'état du camp avant chaque test CLI
- execSync('node src/cli.js reset --confirm', { encoding: 'utf-8' });
+  // Réinitialise l'état du camp avant chaque test CLI
+  execSync("node src/cli.js reset --confirm", { encoding: "utf-8" });
 });
 
-test('status affiche les ressources du camp', () => {
- const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
- expect(output).toContain('CAMP');
- expect(output).toContain('INVENTAIRE');
- expect(output).toContain('SECURITE');
+test("status affiche les ressources du camp", () => {
+  const output = execSync("node src/cli.js status", { encoding: "utf-8" });
+  expect(output).toContain("CAMP");
+  expect(output).toContain("INVENTAIRE");
+  expect(output).toContain("SECURITE");
 });
 
-test('consume réduit les ressources et l\'affiche', () => {
- const output = execSync(
-  'node src/cli.js consume --resource food --amount 3',
-  { encoding: 'utf-8' }
- );
- expect(output).toContain('11 jours');
+test("consume réduit les ressources et l'affiche", () => {
+  const output = execSync(
+    "node src/cli.js consume --resource food --amount 3",
+    { encoding: "utf-8" },
+  );
+  expect(output).toContain("11 jours");
 });
 
-test('exit 1 si ressource inconnue', () => {
- expect(() => execSync(
-  'node src/cli.js consume --resource dragon --amount 1'
- )).toThrow(); // execSync throw si exit code != 0
+test("exit 1 si ressource inconnue", () => {
+  expect(() =>
+    execSync("node src/cli.js consume --resource dragon --amount 1"),
+  ).toThrow(); // execSync throw si exit code != 0
 });
 ```
 
 ```js
 // e2e/campWorkflow.spec.js
-import { test, expect } from '@playwright/test';
-import { execSync } from 'child_process';
+import { test, expect } from "@playwright/test";
+import { execSync } from "child_process";
 
 // Playwright teste le CLI via des processus Node
 // On teste les workflows complets, pas les fonctions isolées
 
-test('workflow complet : consommation + alerte de seuil', () => {
- execSync('node src/cli.js reset --confirm');
+test("workflow complet : consommation + alerte de seuil", () => {
+  execSync("node src/cli.js reset --confirm");
 
- // Consommer jusqu'au seuil critique
- execSync('node src/cli.js consume --resource medicine --amount 2');
- const output = execSync('node src/cli.js status', { encoding: 'utf-8' });
+  // Consommer jusqu'au seuil critique
+  execSync("node src/cli.js consume --resource medicine --amount 2");
+  const output = execSync("node src/cli.js status", { encoding: "utf-8" });
 
- expect(output).toContain('CRITIQUE');
- expect(output).toContain('medicine');
+  expect(output).toContain("CRITIQUE");
+  expect(output).toContain("medicine");
 });
 
-test('workflow rotation de garde : assign, rotate, verify', () => {
- execSync('node src/cli.js reset --confirm');
- execSync('node src/cli.js assign-guard --post A --guard Daryl');
- execSync('node src/cli.js assign-guard --post B --guard Michonne');
+test("workflow rotation de garde : assign, rotate, verify", () => {
+  execSync("node src/cli.js reset --confirm");
+  execSync("node src/cli.js assign-guard --post A --guard Daryl");
+  execSync("node src/cli.js assign-guard --post B --guard Michonne");
 
- const before = execSync('node src/cli.js status', { encoding: 'utf-8' });
- expect(before).toContain('Daryl');
+  const before = execSync("node src/cli.js status", { encoding: "utf-8" });
+  expect(before).toContain("Daryl");
 
- execSync('node src/cli.js rotate-guards');
+  execSync("node src/cli.js rotate-guards");
 
- const after = execSync('node src/cli.js status', { encoding: 'utf-8' });
- expect(after).not.toContain('Daryl'); // Daryl a changé de poste
+  const after = execSync("node src/cli.js status", { encoding: "utf-8" });
+  expect(after).not.toContain("Daryl"); // Daryl a changé de poste
 });
 ```
 
@@ -402,26 +423,30 @@ Exemple rempli :
 # ADR 002 : TDD avant refactoring, pas après
 
 ## Contexte
+
 Le code legacy (campV1.js) fonctionne. On pourrait le réécrire directement,
 vérifier que ça marche encore en lançant le programme, et écrire les tests après.
 
 ## Décision
+
 Les tests sur le legacy sont écrits AVANT de toucher une seule ligne de v2.
 La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 étape de refactoring.
 
 ## Alternatives considérées
+
 - Réécrire d'abord, tester après : rejeté. Si la v2 a un bug, on ne sait pas
- si c'est un bug introduit ou un comportement qui existait déjà dans le v1.
- Sans tests, on ne peut pas distinguer les deux.
+  si c'est un bug introduit ou un comportement qui existait déjà dans le v1.
+  Sans tests, on ne peut pas distinguer les deux.
 - Réécrire d'un bloc et tester le résultat final : rejeté. Un refactoring d'un
- bloc est un remplacement, pas un refactoring. On perd la traçabilité.
+  bloc est un remplacement, pas un refactoring. On perd la traçabilité.
 
 ## Conséquences
+
 - La phase 1 (tests sur le legacy) prend du temps qui ne artefact pas de features.
- C'est un investissement, pas du temps perdu.
+  C'est un investissement, pas du temps perdu.
 - Chaque commit de refactoring peut être vérifié en lançant npm test.
- Si un test passe au rouge, on sait exactement quelle étape a cassé quelque chose.
+  Si un test passe au rouge, on sait exactement quelle étape a cassé quelque chose.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
@@ -441,11 +466,10 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 [ ] TDD_JOURNAL.md trace dans quel ordre les tests ont été écrits (phase 1 vs phase 2)
 ```
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -453,4 +477,5 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : RASENGAN ENGINE
+
 Temps de lecture ~14 min
 
 ## PRÉREQUIS
@@ -58,18 +59,22 @@ Ce projet force à utiliser la programmation fonctionnelle comme outil réel, pa
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `01_fundamentals` : les bases qui tiennent
+
 **Où ça se voit** : partout. Les données de chaque ninja sont des objets JS. Les jutsus sont des fonctions. Les HOF (`map`, `filter`, `reduce`) remplacent toutes les boucles manuelles.
 **Pourquoi c'est nécessaire ici** : sans une vraie maîtrise des objets, des fonctions et des closures (une fonction qui mémorise une variable de son contexte parent, même après que ce contexte a disparu), le moteur devient un nid de bugs d'état.
 
 ### `07_math_basics` : les maths qui servent vraiment
+
 **Où ça se voit** : `src/utils/rng.js` (RNG = Random Number Generator, générateur de nombres aléatoires), `src/utils/cooldownCycle.js`.
 **Pourquoi c'est nécessaire ici** : les critiques, les esquives, les ratés sont pilotés par des probabilités. Les cooldowns des jutsus utilisent l'arithmétique modulaire (le modulo : reste de la division entière, utile pour créer des cycles). Sans ça, le combat est soit déterministe (ennuyeux), soit aléatoire sans logique (injuste).
 
 ### `11_functional_js` : coder sans effets de bord
+
 **Où ça se voit** : `src/engine/combat.js`, `src/engine/turnResolver.js`. Chaque tour retourne un nouvel état de combat. Jamais de mutation directe sur les stats.
 **Pourquoi c'est nécessaire ici** : si un ninja est muté directement à chaque tour, rejouer le combat depuis le tour 2 devient impossible. La testabilité exige l'immutabilité (le fait de ne jamais modifier un objet existant, de toujours en créer un nouveau).
 
 ### `13_design_patterns` : les recettes qui structurent
+
 **Où ça se voit** : `src/fighters/fighterFactory.js` (Factory pattern), `src/jutsus/` (Strategy pattern).
 **Pourquoi c'est nécessaire ici** : le Factory pattern (une fonction qui crée des objets sans exposer comment ils sont construits) permet de créer Naruto, Sasuke ou Gaara avec la même interface. Le Strategy pattern (échanger un algorithme à la volée) permet de brancher n'importe quel jutsu sur n'importe quel ninja sans modifier le moteur.
 
@@ -135,56 +140,67 @@ tests/
 ```
 
 ### `src/fighters/fighterFactory.js`
+
 **Ce que ça fait** : crée un objet ninja valide à partir d'un nom ou d'une config.
 **Entrée** : un identifiant (`"naruto"`, `"sasuke"`) ou un objet de config brut.
 **Sortie** : un objet fighter complet avec stats initiales, liste de jutsus, et style de combat.
 
 ### `src/fighters/fighterStats.js`
+
 **Ce que ça fait** : définit les stats de base de chaque ninja connu (chakra max, vitesse, force, seuils de critique).
 **Entrée** : rien (données statiques).
 **Sortie** : un objet de stats par ninja.
 
 ### `src/jutsus/jutsuRegistry.js`
+
 **Ce que ça fait** : stocke tous les jutsus disponibles, indexés par nom. Chaque jutsu est une fonction (Strategy pattern).
 **Entrée** : un nom de jutsu.
 **Sortie** : la fonction correspondante, prête à être appelée.
 
 ### `src/jutsus/narutoJutsus.js` et `sasukeJutsus.js`
+
 **Ce que ça fait** : définit les jutsus spécifiques à chaque ninja. Chaque jutsu est une fonction pure : elle reçoit l'état du combat, retourne les dégâts calculés et les effets secondaires (stun, buff, cooldown).
 **Entrée** : l'état du combat au moment du tour.
 **Sortie** : `{ damages: number, effects: [], cooldown: number }`.
 
 ### `src/engine/combat.js`
+
 **Ce que ça fait** : orchestre la boucle de combat. Appelle `turnResolver` en boucle jusqu'à ce qu'un fighter soit KO. Ne calcule rien lui-même.
 **Entrée** : deux fighters, les options de combat (nombre de tours max, etc.).
 **Sortie** : l'état final du combat (`{ winner, loser, turns: [...], finalChakra: {...} }`).
 
 ### `src/engine/turnResolver.js`
+
 **Ce que ça fait** : résout un seul tour. Détermine qui attaque, quel jutsu est utilisé, si l'esquive se produit, et retourne le nouvel état.
 **Entrée** : l'état actuel du combat.
 **Sortie** : le nouvel état après le tour (objet différent, pas muté).
 
 ### `src/engine/damageCalc.js`
+
 **Ce que ça fait** : calcule les dégâts finaux d'une attaque selon la force de l'attaquant, la vitesse du défenseur, et si c'est un coup critique.
 **Entrée** : stats de l'attaquant, stats du défenseur, résultat du jet de dé.
 **Sortie** : un nombre de dégâts.
 
 ### `src/utils/rng.js`
+
 **Ce que ça fait** : tire un nombre aléatoire et décide si un événement probabiliste se produit (esquive, critique, raté).
 **Entrée** : une probabilité (entre 0 et 1).
 **Sortie** : `true` (l'événement se produit) ou `false`.
 
 ### `src/utils/cooldownCycle.js`
+
 **Ce que ça fait** : gère les cooldowns des jutsus. Un jutsu avec cooldown 3 ne peut être réutilisé qu'après 3 tours.
 **Entrée** : l'état des cooldowns actuels, le numéro du tour.
 **Sortie** : l'état des cooldowns mis à jour.
 
 ### `src/logger/combatLogger.js`
+
 **Ce que ça fait** : formate et affiche les événements du combat (chaque tour, l'issue, les dégâts) dans un format lisible.
 **Entrée** : l'état final du combat ou un événement de tour.
 **Sortie** : rien de retourné, affichage dans le terminal.
 
 ### `src/index.js`
+
 **Ce que ça fait** : point d'entrée. Crée deux fighters, lance le combat, affiche le résultat.
 
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
@@ -209,16 +225,16 @@ Règle : chaque fichier est testé avant de passer au suivant. Tu ne construis p
 
 **Durée totale estimée** : 12 à 18 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| rng.js + cooldownCycle.js | 1h | Faible |
-| fighterStats + jutsus | 2h | Faible |
-| fighterFactory.js | 1h30 | Moyenne : penser l'interface sans la sur-compliquer |
-| damageCalc.js | 1h | Faible |
-| turnResolver.js | 3-4h | **Haute** : garder l'immutabilité sous pression |
-| combat.js | 2h | Moyenne : la boucle de jeu et sa condition d'arrêt |
-| logger + index | 1h | Faible |
-| Tests complets | 2-3h | Moyenne : tester le RNG sans le rendre déterministe |
+| Étape                     | Durée estimée | Zone de résistance                                  |
+| ------------------------- | ------------- | --------------------------------------------------- |
+| rng.js + cooldownCycle.js | 1h            | Faible                                              |
+| fighterStats + jutsus     | 2h            | Faible                                              |
+| fighterFactory.js         | 1h30          | Moyenne : penser l'interface sans la sur-compliquer |
+| damageCalc.js             | 1h            | Faible                                              |
+| turnResolver.js           | 3-4h          | **Haute** : garder l'immutabilité sous pression     |
+| combat.js                 | 2h            | Moyenne : la boucle de jeu et sa condition d'arrêt  |
+| logger + index            | 1h            | Faible                                              |
+| Tests complets            | 2-3h          | Moyenne : tester le RNG sans le rendre déterministe |
 
 Le point de résistance majeur est `turnResolver.js`. C'est là que la tentation de muter l'état directement est la plus forte. Si tu sens que tu écris `fighter.chakra -= damages`, arrête-toi et relis le module `11_functional_js`.
 
@@ -226,53 +242,53 @@ Le point de résistance majeur est `turnResolver.js`. C'est là que la tentation
 
 ```js
 // tests/fighter.test.js
-import { createFighter } from '../src/fighters/fighterFactory.js';
+import { createFighter } from "../src/fighters/fighterFactory.js";
 
-describe('fighterFactory', () => {
- test('crée un fighter Naruto avec les bonnes stats de base', () => {
-  const naruto = createFighter('naruto');
+describe("fighterFactory", () => {
+  test("crée un fighter Naruto avec les bonnes stats de base", () => {
+    const naruto = createFighter("naruto");
 
-  expect(naruto.name).toBe('Naruto Uzumaki');
-  expect(naruto.chakra).toBe(200);     // chakra initial = chakra max
-  expect(naruto.chakraMax).toBe(200);
-  expect(naruto.speed).toBeGreaterThan(0);
-  expect(Array.isArray(naruto.jutsus)).toBe(true);
-  expect(naruto.jutsus.length).toBeGreaterThan(0);
- });
+    expect(naruto.name).toBe("Naruto Uzumaki");
+    expect(naruto.chakra).toBe(200); // chakra initial = chakra max
+    expect(naruto.chakraMax).toBe(200);
+    expect(naruto.speed).toBeGreaterThan(0);
+    expect(Array.isArray(naruto.jutsus)).toBe(true);
+    expect(naruto.jutsus.length).toBeGreaterThan(0);
+  });
 
- test('retourne un nouvel objet à chaque appel (pas de référence partagée)', () => {
-  const n1 = createFighter('naruto');
-  const n2 = createFighter('naruto');
+  test("retourne un nouvel objet à chaque appel (pas de référence partagée)", () => {
+    const n1 = createFighter("naruto");
+    const n2 = createFighter("naruto");
 
-  n1.chakra = 0; // on mute n1 directement
-  expect(n2.chakra).toBe(200); // n2 ne doit pas être affecté
- });
+    n1.chakra = 0; // on mute n1 directement
+    expect(n2.chakra).toBe(200); // n2 ne doit pas être affecté
+  });
 });
 
 // tests/combat.test.js
-import { startCombat } from '../src/engine/combat.js';
-import { createFighter } from '../src/fighters/fighterFactory.js';
+import { startCombat } from "../src/engine/combat.js";
+import { createFighter } from "../src/fighters/fighterFactory.js";
 
-describe('combat', () => {
- test('retourne toujours un gagnant et un perdant', () => {
-  const naruto = createFighter('naruto');
-  const sasuke = createFighter('sasuke');
-  const result = startCombat(naruto, sasuke);
+describe("combat", () => {
+  test("retourne toujours un gagnant et un perdant", () => {
+    const naruto = createFighter("naruto");
+    const sasuke = createFighter("sasuke");
+    const result = startCombat(naruto, sasuke);
 
-  expect(result.winner).toBeDefined();
-  expect(result.loser).toBeDefined();
-  expect(result.winner).not.toEqual(result.loser);
- });
+    expect(result.winner).toBeDefined();
+    expect(result.loser).toBeDefined();
+    expect(result.winner).not.toEqual(result.loser);
+  });
 
- test("ne modifie pas les fighters passés en entrée (immutabilité)", () => {
-  const naruto = createFighter('naruto');
-  const sasuke = createFighter('sasuke');
-  const chakraAvant = naruto.chakra;
+  test("ne modifie pas les fighters passés en entrée (immutabilité)", () => {
+    const naruto = createFighter("naruto");
+    const sasuke = createFighter("sasuke");
+    const chakraAvant = naruto.chakra;
 
-  startCombat(naruto, sasuke);
+    startCombat(naruto, sasuke);
 
-  expect(naruto.chakra).toBe(chakraAvant); // l'original n'est pas touché
- });
+    expect(naruto.chakra).toBe(chakraAvant); // l'original n'est pas touché
+  });
 });
 ```
 
@@ -313,23 +329,27 @@ Exemple rempli :
 # ADR 001 : Strategy pattern pour les jutsus
 
 ## Contexte
+
 Chaque ninja a des jutsus différents. Une approche naïve mettrait un `switch`
 ou une série de `if` dans le moteur pour traiter chaque jutsu spécifiquement.
 
 ## Décision
+
 Chaque jutsu est une fonction avec la même signature :
 `(combatState) => { damages, effects, cooldown }`.
 Le moteur appelle la fonction sans savoir ce qu'elle fait.
 
 ## Alternatives considérées
+
 - Un `switch` centralisé dans turnResolver.js : rejeté, parce qu'ajouter un nouveau
- jutsu obligerait à modifier le moteur. Violation de l'OCP (Open/Closed Principle).
+  jutsu obligerait à modifier le moteur. Violation de l'OCP (Open/Closed Principle).
 - Une classe Jutsu avec héritage : rejeté, sur-ingénierie pour ce cas. Une fonction
- suffit.
+  suffit.
 
 ## Conséquences
+
 - Ajouter un nouveau jutsu = créer une fonction dans le bon fichier + l'enregistrer
- dans jutsuRegistry.js. Le moteur n'est jamais touché.
+  dans jutsuRegistry.js. Le moteur n'est jamais touché.
 - Les jutsus sont testables individuellement, sans lancer le moteur entier.
 ```
 
@@ -347,7 +367,6 @@ Le moteur appelle la fonction sans savoir ce qu'elle fait.
 [ ] POSTMORTEM.md documente au moins une décision difficile prise pendant le dev
 [ ] TDD_JOURNAL.md trace l'ordre dans lequel les tests ont été écrits
 ```
-
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -367,11 +386,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -379,4 +397,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

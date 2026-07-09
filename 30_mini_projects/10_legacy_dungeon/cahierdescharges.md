@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : LEGACY DUNGEON
+
 Temps de lecture ~15 min
 
 ## PRÉREQUIS
@@ -172,6 +173,7 @@ Le chrono démarre quand tu ouvres le premier fichier. Applique la méthode de `
 À 2h pile, tu t'arrêtes. Même si tu n'as pas fini. Le but n'est pas la complétude, c'est la simulation réaliste d'un vrai premier jour sous pression.
 
 **Livrable** : `MAP.md`, à créer toi-même, contenant :
+
 - le point d'entrée réel du projet
 - les 6 fichiers où vit la vraie logique (pas 6 fichiers au hasard : les 6 qui comptent)
 - un diagramme ASCII du flux principal
@@ -202,13 +204,13 @@ Choisis une décision d'architecture visible dans le code (pourquoi telle gestio
 
 **Durée totale estimée** : 5 à 8 heures de travail réel, réparties sur plusieurs sessions si besoin (sauf l'Étape 1, qui doit rester un bloc de 2h continu pour garder sa valeur de simulation).
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| Étape 0 : choisir le repo | 30-45 min | Moyenne : la tentation de prendre un repo trop confortable |
-| Étape 1 : cartographie | 2h pile | **Haute** : accepter de s'arrêter même incomplet |
-| Étape 2 : bugfix | 1h30-3h | Haute : trouver un bug calibré, ni trivial ni ingérable |
-| Étape 3 : ADR rétrospective | 1h-1h30 | Moyenne : résister à l'envie d'inventer un contexte plausible plutôt que de le déduire d'indices réels |
-| POSTMORTEM.md | 30-45 min | Faible, mais demande de l'honnêteté, pas de la performance |
+| Étape                       | Durée estimée | Zone de résistance                                                                                     |
+| --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
+| Étape 0 : choisir le repo   | 30-45 min     | Moyenne : la tentation de prendre un repo trop confortable                                             |
+| Étape 1 : cartographie      | 2h pile       | **Haute** : accepter de s'arrêter même incomplet                                                       |
+| Étape 2 : bugfix            | 1h30-3h       | Haute : trouver un bug calibré, ni trivial ni ingérable                                                |
+| Étape 3 : ADR rétrospective | 1h-1h30       | Moyenne : résister à l'envie d'inventer un contexte plausible plutôt que de le déduire d'indices réels |
+| POSTMORTEM.md               | 30-45 min     | Faible, mais demande de l'honnêteté, pas de la performance                                             |
 
 Le point de résistance majeur est l'Étape 1. La tentation la plus forte : continuer "encore 10 minutes" pour finir de comprendre un point précis. Résiste. Le respect du chrono fait partie de l'exercice autant que le contenu du MAP.md.
 
@@ -262,7 +264,6 @@ BUGFIX.md        --> À CRÉER TOI-MÊME (Étape 2)
 [ ] POSTMORTEM.md liste honnêtement ce qui reste flou même après le projet
 ```
 
-
 ## SÉCURITÉ (gate obligatoire)
 
 Un projet qui marche mais qui est vulnérable n'est pas fini. Traite ces exigences OWASP contextuelles avant de livrer.
@@ -281,11 +282,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -293,4 +293,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

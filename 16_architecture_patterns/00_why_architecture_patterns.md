@@ -1,6 +1,6 @@
 > **CE MODULE RÉUTILISE** : patterns (12), async & I/O (03), DB (24 anticipé). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) — table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 > **L'architecture a un seul but : rendre le changement moins coûteux.**
 
@@ -9,7 +9,6 @@
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
 > Ce module reutilise : SOLID (18_oop_js), refactoring (13_refactoring).
-
 
 > **L'architecture n'est pas là pour être « belle ». Elle est là pour rendre le CHANGEMENT bon marché. Si ton archi rend le prochain changement coûteux, elle a échoué, peu importe combien elle est élégante.**
 
@@ -24,6 +23,7 @@ L'architecture, c'est la décision qui se prend une fois, mais qui détermine le
 ## PRÉREQUIS
 
 Ce module suppose que tu maîtrises :
+
 - design patterns créationnels et structuraux : voir `12_design_patterns/`
 - principes SOLID (SRP, OCP, DIP) : voir `13_refactoring/02_solid_principles.md`
 - comment Node charge un module : voir `15_runtime_env/01_node_vs_browser.md` et `15_runtime_env/03_commonjs_vs_esm.md`
@@ -119,4 +119,5 @@ Maintenant, ouvre `01_module_pattern.md`. Et commence à voir ton code comme un 
 En Python (Django), le MVC devient MVT ; les couches et le découpage par domaine sont identiques. En Java (Spring), l'injection de dépendances est industrialisée. En Go, on préfère des packages découplés à des hiérarchies profondes. Les patterns d'architecture (couplage faible, cohésion forte, frontières de contexte) sont indépendants du langage : c'est de l'organisation, pas de la syntaxe.
 
 ---
+
 stability: intemporel

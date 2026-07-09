@@ -11,7 +11,7 @@ async function save(payload) {
   });
 }
 
-// BUG : le listener est attaché DEUX fois — une par le code page,
+// BUG : le listener est attaché DEUX fois : une par le code page,
 // une par un ancien code de bootstrap oublié dans un autre fichier.
 btn.addEventListener("click", () => save({ name: "x" }));
 btn.addEventListener("click", () => save({ name: "x" }));

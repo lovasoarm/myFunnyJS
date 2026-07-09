@@ -1,8 +1,8 @@
-# PONT — des fondamentaux à l'async
+# PONT : des fondamentaux à l'async
 
 -> ~10 min
 
-> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `01_fundamentals` et `03_async`. Ne l'ouvre pas comme "encore un chapitre" — c'est un palier de respiration avant un saut de complexité réel.
+> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `01_fundamentals` et `03_async`. Ne l'ouvre pas comme "encore un chapitre" : c'est un palier de respiration avant un saut de complexité réel.
 
 ## POURQUOI CE PONT EXISTE
 
@@ -11,7 +11,7 @@ Tu viens d'apprendre à déclarer des variables, écrire des fonctions, boucler.
 ## DRILL DE VÉRIFICATION (3 questions)
 
 1. Dans quel ordre s'affichent `A`, `B`, `C` dans l'exemple ci-dessus, et pourquoi ?
-2. Une fonction qui retourne une `Promise` : quand exécute-t-elle son `.then()` — avant ou après la fin du script courant ?
+2. Une fonction qui retourne une `Promise` : quand exécute-t-elle son `.then()` : avant ou après la fin du script courant ?
 3. Peux-tu expliquer, sans le mot "asynchrone", ce que fait `setTimeout(fn, 0)` ?
 
 Si tu ne peux pas répondre aux 3 sans hésiter : relis `01_fundamentals/` avant d'ouvrir `03_async/`.
@@ -21,4 +21,5 @@ Si tu ne peux pas répondre aux 3 sans hésiter : relis `01_fundamentals/` avant
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
 
 ---
+
 stability: intemporel

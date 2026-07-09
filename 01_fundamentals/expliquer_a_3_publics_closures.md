@@ -1,4 +1,4 @@
-# Closures — expliqué à 3 publics
+# Closures : expliqué à 3 publics
 
 -> ~10 min
 
@@ -20,4 +20,5 @@ Une closure = une fonction + son environnement lexical capturé. Techniquement, 
 Les closures sont la base de la modularité JS avant les modules ES6, et restent la source n°1 de fuites mémoire subtiles (heap qui grimpe sans OOM immédiat, dégradation lente sur 48h). Coût : un dev qui ne maîtrise pas les closures produit du code qui **tourne en dev** et **fuit en prod**. Signal d'embauche : "explique-moi une fuite mémoire causée par une closure que tu as debug" → si la réponse est floue, red flag junior.
 
 ---
+
 stability: intemporel

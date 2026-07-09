@@ -1,4 +1,4 @@
-# PÉRISSABILITÉ — vue consolidée
+# PÉRISSABILITÉ : vue consolidée
 
 -> ~5 min
 
@@ -6,19 +6,19 @@ Chaque fichier `.md` du repo porte un tag `stability:` en front-matter. Ce fichi
 
 ## SYNTHÈSE
 
-- **intemporel** : 533 fichiers (concepts qui ne bougent pas — event loop, big-O, closures, SOLID)
-- **stable** : 109 fichiers (API/pratiques stables sur 5+ ans — Node LTS, HTTP, SQL)
+- **intemporel** : 533 fichiers (concepts qui ne bougent pas : event loop, big-O, closures, SOLID)
+- **stable** : 109 fichiers (API/pratiques stables sur 5+ ans : Node LTS, HTTP, SQL)
 - **périssable** : 49 fichiers (tooling, IA, écosystème en mouvement rapide)
 
 ## MODULES À RISQUE (contenu périssable)
 
-| Module | # fichiers périssables | Cause principale |
-|---|---|---|
-| `14_typescript` | 18 | évolutions TS, strictness options |
-| `23_ai_native_dev` | 13 | outils IA, prompts, modèles |
-| `29_ai_agents_and_autonomy` | 10 | agents IA, frameworks |
-| `32_tools` | 7 | chaîne d'outils dev (bundlers, LSPs) |
-| `31_annexes` | 1 | écosystème mouvant |
+| Module                      | # fichiers périssables | Cause principale                     |
+| --------------------------- | ---------------------- | ------------------------------------ |
+| `14_typescript`             | 18                     | évolutions TS, strictness options    |
+| `23_ai_native_dev`          | 13                     | outils IA, prompts, modèles          |
+| `29_ai_agents_and_autonomy` | 10                     | agents IA, frameworks                |
+| `32_tools`                  | 7                      | chaîne d'outils dev (bundlers, LSPs) |
+| `31_annexes`                | 1                      | écosystème mouvant                   |
 
 ## MODULES 100% INTEMPORELS (aucune ligne périssable détectée)
 
@@ -65,4 +65,5 @@ Cette vue est générée depuis les tags `stability:` déjà présents dans chaq
 - Un fichier `intemporel` n'a besoin d'être touché que si le mécanisme sous-jacent change (rare).
 
 ---
+
 stability: intemporel

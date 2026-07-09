@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : BALLON D'OR CLI
+
 Temps de lecture ~13 min
 
 ## PRÉREQUIS
@@ -218,16 +219,16 @@ tests/
 
 **Durée totale estimée** : 14 à 20 heures de travail réel.
 
-| Étape            | Durée estimée | Zone de résistance                    |
+| Étape                        | Durée estimée | Zone de résistance                                       |
 | ---------------------------- | ------------- | -------------------------------------------------------- |
-| errors + parser       | 1h30     | Faible                          |
-| store + validators      | 2h      | Faible                          |
-| voteService + rankingService | 3h      | Moyenne : les edge cases de vote (quota, ex-aequo)    |
-| handlers + router      | 2h      | Faible                          |
-| cli.js + renderer      | 1h30     | Faible                          |
-| csvExporter         | 1h      | Faible                          |
-| Dockerfile + CI       | 2-3h     | **Haute** si c'est la première fois qu'on containerise  |
-| Tests            | 2-3h     | Moyenne : tester un CLI avec process.argv est inhabituel |
+| errors + parser              | 1h30          | Faible                                                   |
+| store + validators           | 2h            | Faible                                                   |
+| voteService + rankingService | 3h            | Moyenne : les edge cases de vote (quota, ex-aequo)       |
+| handlers + router            | 2h            | Faible                                                   |
+| cli.js + renderer            | 1h30          | Faible                                                   |
+| csvExporter                  | 1h            | Faible                                                   |
+| Dockerfile + CI              | 2-3h          | **Haute** si c'est la première fois qu'on containerise   |
+| Tests                        | 2-3h          | Moyenne : tester un CLI avec process.argv est inhabituel |
 
 Le Dockerfile et la CI sont le point de résistance pour quelqu'un qui ne l'a jamais fait. Commence par faire tourner le CLI sans Docker. Une fois que tout est vert en local, containerise.
 
@@ -241,47 +242,47 @@ import { resetStore } from "../src/store/jsonStore.js";
 beforeEach(() => resetStore()); // repart d'un état propre avant chaque test
 
 describe("voteService.submitVote", () => {
- test("enregistre un vote valide", () => {
-  const result = submitVote({
-   player: "Rodri",
-   journalist: "FF",
-   points: 15,
+  test("enregistre un vote valide", () => {
+    const result = submitVote({
+      player: "Rodri",
+      journalist: "FF",
+      points: 15,
+    });
+    expect(result.recorded).toBe(true);
+    expect(result.player).toBe("Rodri");
   });
-  expect(result.recorded).toBe(true);
-  expect(result.player).toBe("Rodri");
- });
 
- test("throw QuotaExceededError si le même journaliste vote deux fois", () => {
-  submitVote({ player: "Rodri", journalist: "FF", points: 15 });
-  expect(() =>
-   submitVote({ player: "Vinicius", journalist: "FF", points: 12 }),
-  ).toThrow("QuotaExceededError");
- });
+  test("throw QuotaExceededError si le même journaliste vote deux fois", () => {
+    submitVote({ player: "Rodri", journalist: "FF", points: 15 });
+    expect(() =>
+      submitVote({ player: "Vinicius", journalist: "FF", points: 12 }),
+    ).toThrow("QuotaExceededError");
+  });
 
- test("throw InvalidVoteError si les points sont hors de 1-15", () => {
-  expect(() =>
-   submitVote({ player: "Rodri", journalist: "FF", points: 20 }),
-  ).toThrow("InvalidVoteError");
- });
+  test("throw InvalidVoteError si les points sont hors de 1-15", () => {
+    expect(() =>
+      submitVote({ player: "Rodri", journalist: "FF", points: 20 }),
+    ).toThrow("InvalidVoteError");
+  });
 });
 
 // tests/cli.test.js:tester le CLI lui-même
 import { execSync } from "child_process";
 
 test("exit code 0 pour un vote valide", () => {
- const result = execSync(
-  'node src/cli.js vote --player "Rodri" --journalist "Test" --points 10',
-  { encoding: "utf-8" },
- );
- expect(result).toContain("Rodri");
+  const result = execSync(
+    'node src/cli.js vote --player "Rodri" --journalist "Test" --points 10',
+    { encoding: "utf-8" },
+  );
+  expect(result).toContain("Rodri");
 });
 
 test("exit code 1 pour un vote invalide", () => {
- expect(() =>
-  execSync(
-   'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99',
-  ),
- ).toThrow(); // execSync throw si exit code != 0
+  expect(() =>
+    execSync(
+      'node src/cli.js vote --player "Rodri" --journalist "Test" --points 99',
+    ),
+  ).toThrow(); // execSync throw si exit code != 0
 });
 ```
 
@@ -333,14 +334,14 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 ## Alternatives considérées
 
 - Un seul code exit 1 pour tout : rejeté car dans un script qui appelle le CLI,
- on ne peut pas distinguer "le vote était invalide" de "le filesystem est cassé".
+  on ne peut pas distinguer "le vote était invalide" de "le filesystem est cassé".
 - Des codes spécifiques par type d'erreur (10, 11, 12...) : rejeté, sur-ingénierie.
- La convention Unix établit 0/1/2, pas plus.
+  La convention Unix établit 0/1/2, pas plus.
 
 ## Conséquences
 
 - La CI peut détecter les erreurs système (exit 2) et alerter séparément des
- erreurs de validation (exit 1).
+  erreurs de validation (exit 1).
 - Les scripts qui wrappent ce CLI peuvent brancher leur logique sur ces codes.
 ```
 
@@ -358,7 +359,6 @@ invalide). Exit code 2 pour les erreurs système (l'infra a un problème).
 [ ] POSTMORTEM.md documente les différences comportementales trouvées entre v1 et v2
 [ ] TDD_JOURNAL.md trace dans quel ordre les tests ont été écrits
 ```
-
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -378,11 +378,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -390,4 +389,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

@@ -1,4 +1,4 @@
-# Event loop — expliqué à 3 publics
+# Event loop : expliqué à 3 publics
 
 -> ~10 min
 
@@ -6,11 +6,12 @@ Compléte `expliquer_a_5_ans.md`. Généralise le pattern : **un concept, trois 
 
 ## À UN ENFANT (7 ans)
 
-Imagine un serveur dans un restaurant. Il ne peut porter qu'un plateau à la fois. Quand tu commandes un plat, le cuisinier met du temps à le faire. Est-ce que le serveur reste planté devant la cuisine à attendre ? Non — il va s'occuper d'autres clients. Quand ton plat est prêt, le cuisinier sonne, et le serveur revient te le porter. **JavaScript, c'est ce serveur : un seul, mais il ne perd jamais son temps à attendre.**
+Imagine un serveur dans un restaurant. Il ne peut porter qu'un plateau à la fois. Quand tu commandes un plat, le cuisinier met du temps à le faire. Est-ce que le serveur reste planté devant la cuisine à attendre ? Non : il va s'occuper d'autres clients. Quand ton plat est prêt, le cuisinier sonne, et le serveur revient te le porter. **JavaScript, c'est ce serveur : un seul, mais il ne perd jamais son temps à attendre.**
 
 ## À UN PAIR DEV
 
 L'event loop est une boucle infinie qui, à chaque tick :
+
 1. Exécute la tâche synchrone courante jusqu'à `return`.
 2. Vide **toute** la microtask queue (`.then`, `queueMicrotask`, `await` resume).
 3. Prend UNE macrotask (`setTimeout`, I/O, `setImmediate` en Node).
@@ -18,9 +19,10 @@ L'event loop est une boucle infinie qui, à chaque tick :
 5. Recommence.
 
 Corollaires concrets :
+
 - `Promise.resolve().then(f)` s'exécute **avant** un `setTimeout(f, 0)` du même tick.
 - Un `await` qui ne se résout jamais gèle sa fonction mais **pas** le thread.
-- Un `while(true)` bloque tout — pas un thread, LE thread.
+- Un `while(true)` bloque tout : pas un thread, LE thread.
 
 ## À UN CTO
 
@@ -29,6 +31,7 @@ L'event loop est le mécanisme qui permet à Node/JS d'atteindre 10-100k connexi
 ## POURQUOI CE FORMAT
 
 Un ingénieur employable en 2028 doit pouvoir défendre une décision technique devant :
+
 - **un enfant / débutant total** (test ultime de la compréhension : si tu n'arrives pas à expliquer sans jargon, tu n'as pas compris) ;
 - **un pair** (langage précis, mécanismes exacts, corollaires exploitables) ;
 - **un CTO** (langage de risque, coût, trade-off business, timeline).
@@ -38,6 +41,7 @@ Ce format t'entraîne aux trois registres avec un seul exercice.
 ## À RÉPLIQUER
 
 Crée le même fichier pour :
+
 - `closures` (dans `01_fundamentals/`)
 - `prototypes` (dans `18_oop_js/`)
 - `garbage collection` (dans `08_memory_performance/`)
@@ -45,4 +49,5 @@ Crée le même fichier pour :
 Un fichier par concept, trois publics par fichier. C'est le format canon.
 
 ---
+
 stability: intemporel

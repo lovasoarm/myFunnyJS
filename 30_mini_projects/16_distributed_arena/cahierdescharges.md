@@ -2,7 +2,6 @@
 
 Temps de lecture ~2 min
 
-
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
 N processus Node qui se parlent en local et survivent au chaos. C'est l'arène du Ballon d'Or : onze joueurs coordonnés, un blessé (kill -9), et le score final doit rester juste malgré tout.
@@ -59,11 +58,10 @@ drift, ne le remplace PAS, c'est le hasard qui enseigne, pas ton confort.
 
 ---
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -71,8 +69,8 @@ drift, ne le remplace PAS, c'est le hasard qui enseigne, pas ton confort.
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
-stability: intemporel
 
+stability: intemporel
 
 ## ARBORESCENCE ATTENDUE
 
@@ -106,7 +104,7 @@ stability: intemporel
 
 1. **`node.js` seul** : un nœud reçoit un message, le stocke, renvoie ACK. Test unitaire vert avant de continuer.
 2. **`cluster.js` sans consensus** : lance 3 nœuds, envoie un message à chacun, vérifie qu'ils l'ont tous. Pas de leader encore.
-3. **`consensus.js` — leader election SEULE** : les 3 nœuds élisent un leader, un seul, stable. Ignore la réplication.
+3. **`consensus.js` : leader election SEULE** : les 3 nœuds élisent un leader, un seul, stable. Ignore la réplication.
 4. **`replication.js`** : le leader propage un `append`, les followers l'acceptent, ordre total.
 5. **`failure.js`** : injecte drop 20% des messages, vérifie que le cluster converge quand même.
 6. **Partition test** : coupe le réseau en 2×1 nœud + 2 nœuds. La minorité doit refuser les writes.
@@ -119,7 +117,7 @@ Ne saute AUCUNE étape. Un bug de consensus détecté à l'étape 5 alors que tu
 - **Nœud lent** (pas mort) : timeout de heartbeat plus grand que RTT normal, sinon fausses élections.
 - **Message dupliqué** : idempotence des `append`, indexer par `(term, index)`.
 - **Nœud qui revient après 10 min offline** : rattrapage du log via snapshot + tail.
-- **Clock skew** entre nœuds : ne JAMAIS te reposer sur `Date.now()` pour ordonner — utilise un logical clock (index de log).
+- **Clock skew** entre nœuds : ne JAMAIS te reposer sur `Date.now()` pour ordonner : utilise un logical clock (index de log).
 - **Charge asymétrique** : leader saturé → back-pressure ou re-élection.
 
 ## EXEMPLE DE TEST REMPLI (leader_election.test.js)
@@ -129,17 +127,25 @@ import { Cluster } from "../src/cluster.js";
 
 describe("Leader election", () => {
   it("élit exactement un leader parmi 3 nœuds sains", async () => {
-    const cluster = new Cluster({ nodes: 3, heartbeat: 50, electionTimeout: [150, 300] });
+    const cluster = new Cluster({
+      nodes: 3,
+      heartbeat: 50,
+      electionTimeout: [150, 300],
+    });
     await cluster.start();
     await cluster.waitStable(1000);
 
-    const leaders = cluster.nodes.filter(n => n.state === "leader");
+    const leaders = cluster.nodes.filter((n) => n.state === "leader");
     expect(leaders).toHaveLength(1);
     await cluster.stop();
   });
 
   it("réélit un nouveau leader si l'ancien crash", async () => {
-    const cluster = new Cluster({ nodes: 3, heartbeat: 50, electionTimeout: [150, 300] });
+    const cluster = new Cluster({
+      nodes: 3,
+      heartbeat: 50,
+      electionTimeout: [150, 300],
+    });
     await cluster.start();
     await cluster.waitStable(1000);
     const oldLeader = cluster.leader();
@@ -165,11 +171,10 @@ describe("Leader election", () => {
   3. **Gossip pur (SWIM-like)** : pas d'ordre total, incompatible avec le besoin.
 - **Décision** : Raft-like simplifié (pas de log compaction, pas de membership change dynamique).
 - **Conséquences** :
-  - + implémentation testable en 500-800 lignes.
-  - + comportement prévisible sous partition.
+  - - implémentation testable en 500-800 lignes.
+  - - comportement prévisible sous partition.
   - - pas de membership dynamique : ajouter un nœud impose un restart cluster.
 
 ## POURQUOI CE PROJET EST LE POINT DE CONVERGENCE
 
 Ce mini-projet est **la** pratique construite qui connecte les théories distribuées éparpillées dans le cursus (`24_databases/99_du_single_node_au_cluster.md`, patterns d'archi de 16, back-pressure de 25). Sans ce projet, la théorie reste théorie. Prends-le au sérieux : c'est le mini-projet le plus signal-fort de ton portfolio pour un poste senior/staff.
-

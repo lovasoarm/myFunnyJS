@@ -1,8 +1,8 @@
-# PONT — de l'async à la mémoire
+# PONT : de l'async à la mémoire
 
 -> ~10 min
 
-> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `03_async` et `08_memory_performance`. Ne l'ouvre pas comme "encore un chapitre" — c'est un palier de respiration avant un saut de complexité réel.
+> **ARRÊTE-TOI ICI.** Ce fichier est un point de passage obligé entre `03_async` et `08_memory_performance`. Ne l'ouvre pas comme "encore un chapitre" : c'est un palier de respiration avant un saut de complexité réel.
 
 ## POURQUOI CE PONT EXISTE
 
@@ -21,4 +21,5 @@ Si tu bloques : relis `03_async/` + `07_math_basics/99_PONT_avant_module_08_memo
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
 
 ---
+
 stability: intemporel

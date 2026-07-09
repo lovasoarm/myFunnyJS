@@ -1,4 +1,4 @@
-# SIMULATION SOLO — défense orale sous pression
+# SIMULATION SOLO : défense orale sous pression
 
 -> ~30 min par run, à répéter
 
@@ -39,7 +39,7 @@ Commence par ta première objection. Ne pose qu'une objection à la fois.
 - "En prod, ce que tu proposes coûte 3× plus cher en infra. Justifie."
 - "Ton benchmark est fait sur 100 requêtes. Sur 100 000 tu tiens ?"
 - "Tu as choisi Redis. Pourquoi pas Postgres avec un LISTEN/NOTIFY ?"
-- "Ce pattern est cargo-culted depuis un blog. Tu peux citer une source *primaire* ?"
+- "Ce pattern est cargo-culted depuis un blog. Tu peux citer une source _primaire_ ?"
 - "Un dev junior lit ton code demain. Il comprend en combien de temps ?"
 - "Cette décision t'engage sur 3 ans. Tu es prêt à la porter sans backup ?"
 
@@ -59,11 +59,12 @@ Après chaque simulation, note-toi de 1 à 3 sur :
 
 - **1 run par mini-projet terminé** (17 mini-projets = 17 simulations sur la durée du cursus).
 - **1 run par mois** en phase de recherche d'emploi active, sur un projet fort.
-- **Enregistre-toi audio** au moins 3 fois — c'est brutal, c'est formateur.
+- **Enregistre-toi audio** au moins 3 fois : c'est brutal, c'est formateur.
 
 ## POURQUOI C'EST VITAL
 
 En entretien, la question la plus dure n'est jamais "quelle est la différence entre `let` et `var`". C'est "**pourquoi as-tu fait ce choix ?**", posée 5 fois de suite avec des objections croissantes. Ton portfolio prouve que tu sais **construire**. Cette simulation prouve que tu sais **défendre**. Les deux sont indissociables.
 
 ---
+
 stability: intemporel

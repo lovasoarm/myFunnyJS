@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : GARO NO KRONIKA
+
 Temps de lecture ~14 min
 
 ## PRÉREQUIS
@@ -66,18 +67,22 @@ Ce projet teste la maîtrise de l'asynchrone non pas en isolation mais sous cont
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `03_async` : Promises, async/await, race, allSettled
+
 **Où ça se voit** : `src/engine/dispatcher.js`, `src/engine/missionRunner.js`.
 **Pourquoi c'est nécessaire ici** : chaque mission est une Promise. Deux missions en parallèle = `Promise.allSettled`. Le timeout de 99,9 secondes = `Promise.race` entre le combat et un timer. Sans maîtrise de ces primitives async, le dispatcher bloque ou perd des missions.
 
 ### `05_error_handling` : propagation et stratégies d'erreur
+
 **Où ça se voit** : `src/errors/`, les `try/catch` dans `missionRunner.js`.
 **Pourquoi c'est nécessaire ici** : `ArmorCollapseError`, `HorrorEscapeError`, `KnightDownError` sont des erreurs distinctes qui demandent des traitements distincts. Les absorber toutes dans un `catch (e) { console.log(e) }` est un crime. Le Conseil doit savoir exactement ce qui s'est passé.
 
 ### `20_realtime` : SSE (Server-Sent Events) : flux d'événements unidirectionnels
+
 **Où ça se voit** : `src/council/streamReceiver.js`, `src/knight/streamEmitter.js`.
 **Pourquoi c'est nécessaire ici** : le Conseil reçoit les événements de combat en temps réel, pas à la fin du combat. Chaque coup, chaque changement de statut, chaque seconde critique : streamé. C'est le pattern SSE (Server-Sent Events : flux d'événements envoyés du serveur vers le client, unidirectionnel) simulé en JS pur ici.
 
 ### `16_architecture_patterns` : event-driven, module pattern
+
 **Où ça se voit** : toute la séparation entre `src/council/` et `src/knight/`. Le Conseil ne connaît pas l'implémentation des Chevaliers.
 **Pourquoi c'est nécessaire ici** : si le Conseil appelle directement les méthodes du Chevalier, tout est couplé. Si le Chevalier émet des événements et que le Conseil s'abonne, on peut changer l'implémentation d'un Chevalier sans toucher au Conseil. C'est le cœur de l'architecture event-driven.
 
@@ -146,51 +151,61 @@ tests/
 ```
 
 ### `src/council/council.js`
+
 **Ce que ça fait** : représente le Conseil de Surveillance. Reçoit les détections de Horrors, déclenche le dispatch, construit le rapport final.
 **Entrée** : événements de détection (`{ location, level }`).
 **Sortie** : rapport de mission (`{ success, failed, armorLost }`).
 
 ### `src/council/dispatcher.js`
+
 **Ce que ça fait** : choisit quel Chevalier envoyer sur quelle mission. Si plusieurs Horrors apparaissent simultanément, dispatche plusieurs Chevaliers en parallèle.
 **Entrée** : liste de Horrors détectés, liste de Chevaliers disponibles.
 **Sortie** : un tableau de Promises de missions (une par mission lancée).
 
 ### `src/council/streamReceiver.js`
+
 **Ce que ça fait** : reçoit les événements streamés par les Chevaliers pendant les combats. Écoute, ne fait pas d'appels sortants.
 **Entrée** : un type d'événement et un handler.
 **Sortie** : rien (side-effect : appelle le handler quand l'événement arrive).
 
 ### `src/knight/knight.js`
+
 **Ce que ça fait** : représente un Chevalier d'Or. Contient son nom, son niveau, son état (disponible / en mission / KO).
 **Entrée** : un identifiant de Chevalier.
 **Sortie** : un objet Chevalier avec ses méthodes.
 
 ### `src/knight/streamEmitter.js`
+
 **Ce que ça fait** : étend `EventEmitter` (module natif Node.js). Chaque action notable du combat (touche reçue, esquive, chakra critique, statut d'armure) déclenche un `this.emit('combat:event', payload)`. C'est la simulation du flux SSE : même logique d'événements unidirectionnels, sans serveur HTTP.
 **Entrée** : un type d'événement (`'combat:hit'`, `'armor:warning'`, `'mission:end'`) et un payload.
 **Sortie** : rien (side-effect : tous les handlers abonnés via `streamReceiver.on()` sont appelés).
 
 ### `src/council/streamReceiver.js`
+
 **Ce que ça fait** : reçoit une référence au `streamEmitter` du Chevalier et s'y abonne avec `emitter.on(type, handler)`. Le Conseil écoute sans jamais appeler le Chevalier directement.
 **Entrée** : une instance de `streamEmitter` et des handlers par type d'événement.
 **Sortie** : rien (side-effect : appelle les handlers quand les événements arrivent).
 
 ### `src/armor/armor.js`
+
 **Ce que ça fait** : gère l'état de l'armure dorée. La préparation prend un délai aléatoire (simulé). Après équipement, un timer de 99 900 ms (99,9 secondes) démarre.
 **Entrée** : un Chevalier.
 **Sortie** : une Promise qui resolve quand l'armure est prête, et expose un `timeout` qui reject si le timer expire.
 
 ### `src/engine/missionRunner.js`
+
 **Ce que ça fait** : orchestre une mission complète. Lance `armor.equip()`, puis `Promise.race([combat.fight(), armor.timeout])`. Catch les erreurs et les classe (`ArmorCollapseError`, `HorrorEscapeError`).
 **Entrée** : un Chevalier et un Horror.
 **Sortie** : une Promise qui resolve avec le résultat de la mission ou reject avec une erreur typée.
 
 ### `src/engine/combat.js`
+
 **Ce que ça fait** : simule le combat entre un Chevalier et un Horror. Durée aléatoire, résultat aléatoire selon les niveaux respectifs.
 **Entrée** : un Chevalier, un Horror.
 **Sortie** : une Promise qui resolve avec `{ duration, outcome }`.
 
 ### `src/errors/ArmorCollapseError.js` / `HorrorEscapeError.js` / `KnightDownError.js`
+
 **Ce que ça fait** : des classes d'erreur custom (étendant `Error`) avec un nom, un message, et des métadonnées contextuelles (quel Chevalier, quel Horror, à quel moment).
 
 ## L'ORDRE DE CONSTRUCTION (PAR OÙ COMMENCER)
@@ -211,16 +226,16 @@ tests/
 
 **Durée totale estimée** : 14 à 20 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| errors/ | 30min | Faible |
-| armor.js | 2h | Moyenne : gérer le timer correctement sans memory leak |
-| knight + stream | 2h | Moyenne : le pattern emitter/receiver |
-| combat.js | 1h30 | Faible |
-| missionRunner.js | 4-5h | **Haute** : Promise.race + gestion des erreurs imbriquées |
-| dispatcher.js | 2h | Moyenne : allSettled et lecture des résultats partiels |
-| council.js + index | 1h30 | Faible |
-| Tests complets | 2-3h | Moyenne : mocker des Promises qui résolvent ou reject |
+| Étape              | Durée estimée | Zone de résistance                                        |
+| ------------------ | ------------- | --------------------------------------------------------- |
+| errors/            | 30min         | Faible                                                    |
+| armor.js           | 2h            | Moyenne : gérer le timer correctement sans memory leak    |
+| knight + stream    | 2h            | Moyenne : le pattern emitter/receiver                     |
+| combat.js          | 1h30          | Faible                                                    |
+| missionRunner.js   | 4-5h          | **Haute** : Promise.race + gestion des erreurs imbriquées |
+| dispatcher.js      | 2h            | Moyenne : allSettled et lecture des résultats partiels    |
+| council.js + index | 1h30          | Faible                                                    |
+| Tests complets     | 2-3h          | Moyenne : mocker des Promises qui résolvent ou reject     |
 
 Le point de résistance majeur est `missionRunner.js`. La combinaison de `Promise.race`, d'un timeout, et de la propagation d'erreurs typées dans un même bloc async est précisément ce que le module `03_async` + `05_error_handling` préparent. Si tu bloques ici, relis `05_error_handling/03_error_propagation.md`.
 
@@ -228,48 +243,48 @@ Le point de résistance majeur est `missionRunner.js`. La combinaison de `Promis
 
 ```js
 // tests/armor.test.js
-import { equipArmor } from '../src/armor/armor.js';
-import { createKnight } from '../src/knight/knight.js';
+import { equipArmor } from "../src/armor/armor.js";
+import { createKnight } from "../src/knight/knight.js";
 
-describe('armor', () => {
- test('equip() résout quand le délai de préparation est écoulé', async () => {
-  const leon = createKnight('leon');
-  const armor = await equipArmor(leon);
-  expect(armor.equipped).toBe(true);
-  expect(armor.knight).toBe('leon');
- });
+describe("armor", () => {
+  test("equip() résout quand le délai de préparation est écoulé", async () => {
+    const leon = createKnight("leon");
+    const armor = await equipArmor(leon);
+    expect(armor.equipped).toBe(true);
+    expect(armor.knight).toBe("leon");
+  });
 
- test('timeout reject avec ArmorCollapseError après 99.9s simulées', async () => {
-  // On passe un timeout court (50ms) pour le test
-  const leon = createKnight('leon');
-  const { timeout } = await equipArmor(leon);
+  test("timeout reject avec ArmorCollapseError après 99.9s simulées", async () => {
+    // On passe un timeout court (50ms) pour le test
+    const leon = createKnight("leon");
+    const { timeout } = await equipArmor(leon);
 
-  await expect(timeout(50)).rejects.toThrow('ArmorCollapseError');
- });
+    await expect(timeout(50)).rejects.toThrow("ArmorCollapseError");
+  });
 });
 
 // tests/dispatcher.test.js
-import { dispatch } from '../src/council/dispatcher.js';
+import { dispatch } from "../src/council/dispatcher.js";
 
-describe('dispatcher', () => {
- test('allSettled retourne les deux résultats même si une mission échoue', async () => {
-  const horrors = [
-   { location: 'Est', level: 'CRITIQUE' },
-   { location: 'Ouest', level: 'MODÉRÉ' }
-  ];
-  const knights = [
-   { id: 'leon', available: true },
-   { id: 'alfonso', available: true }
-  ];
+describe("dispatcher", () => {
+  test("allSettled retourne les deux résultats même si une mission échoue", async () => {
+    const horrors = [
+      { location: "Est", level: "CRITIQUE" },
+      { location: "Ouest", level: "MODÉRÉ" },
+    ];
+    const knights = [
+      { id: "leon", available: true },
+      { id: "alfonso", available: true },
+    ];
 
-  const results = await dispatch(horrors, knights);
+    const results = await dispatch(horrors, knights);
 
-  // allSettled ne throw jamais : on lit le statut
-  expect(results).toHaveLength(2);
-  results.forEach(r => {
-   expect(['fulfilled', 'rejected']).toContain(r.status);
+    // allSettled ne throw jamais : on lit le statut
+    expect(results).toHaveLength(2);
+    results.forEach((r) => {
+      expect(["fulfilled", "rejected"]).toContain(r.status);
+    });
   });
- });
 });
 ```
 
@@ -307,24 +322,28 @@ Exemple rempli :
 # ADR 002 : Architecture event-driven entre Chevalier et Conseil
 
 ## Contexte
+
 Le Conseil a besoin de savoir ce qui se passe pendant les combats en temps réel.
 Deux approches possibles : le Conseil appelle le Chevalier pour avoir des nouvelles
 (polling), ou le Chevalier envoie des événements au Conseil (push).
 
 ## Décision
+
 Le Chevalier émet des événements via streamEmitter. Le Conseil s'abonne via
 streamReceiver. Ils ne se connaissent pas directement.
 
 ## Alternatives considérées
+
 - Polling depuis le Conseil toutes les Xms : rejeté, parce que ça crée un couplage
- temporel (le Conseil dépend du fait que le Chevalier réponde à la bonne fréquence)
- et génère des appels inutiles.
+  temporel (le Conseil dépend du fait que le Chevalier réponde à la bonne fréquence)
+  et génère des appels inutiles.
 - Callback direct passé au Chevalier : rejeté, parce que ça couple le Chevalier au
- Conseil. Si le Conseil change, le Chevalier doit changer aussi.
+  Conseil. Si le Conseil change, le Chevalier doit changer aussi.
 
 ## Conséquences
+
 - Ajouter un nouveau type d'observateur (un journaliste, un historien) = s'abonner
- au même streamEmitter. Zéro modification du Chevalier.
+  au même streamEmitter. Zéro modification du Chevalier.
 - Les tests du Chevalier n'ont pas besoin de mocker le Conseil.
 ```
 
@@ -341,7 +360,6 @@ streamReceiver. Ils ne se connaissent pas directement.
 [ ] POSTMORTEM.md documente au moins un bug async rencontré pendant le dev
 [ ] TDD_JOURNAL.md trace quels tests ont été écrits en premier
 ```
-
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -361,11 +379,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -373,4 +390,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel

@@ -1,4 +1,5 @@
 # CAHIER DES CHARGES : ORACLE GLITCH
+
 Temps de lecture ~15 min
 
 ## PRÉREQUIS
@@ -73,18 +74,22 @@ Ce projet teste une compétence qui n'existait pas dans le métier il y a 5 ans 
 ## LES 4 MODULES QUE CE PROJET COUVRE, ET OÙ ILS SE VOIENT DANS LE CODE
 
 ### `23_ai_native_dev` : workflow IA, prompt engineering, validation
+
 **Où ça se voit** : `src/prompt/`, `src/validator/`, `src/streaming/`.
 **Pourquoi c'est nécessaire ici** : le prompt n'est pas une chaîne hardcodée. Il est construit dynamiquement selon le code analysé. La sortie est validée selon un schéma attendu. Sans ces deux éléments, le pipeline est un casino.
 
 ### `18_oop_js` : classes, prototype chain, mixins
+
 **Où ça se voit** : `src/analyzer/CodeAnalyzer.js`, `src/validator/OutputValidator.js`, `src/validator/StrictValidator.js`.
 **Pourquoi c'est nécessaire ici** : `Validator` → `StrictValidator` → `LLMOutputValidator` est une chaîne d'héritage réelle avec un usage intentionnel du prototype. Les mixins composent des comportements (loggable, retryable) sans hériter de tout.
 
 ### `27_team_craft` : code review outillée, ADR
+
 **Où ça se voit** : `src/review/`, `ADR/`.
 **Pourquoi c'est nécessaire ici** : l'IA propose des fixes. Un humain ne peut pas relire 200 suggestions à la main. Le pipeline de review automatise une première passe : les suggestions qui violent des règles connues (nommage, mutation, dépendances circulaires) sont rejetées avant qu'un humain les lise.
 
 ### `28_edge_cases` : NaN, floating point, undefined dans des tableaux
+
 **Où ça se voit** : `src/edgeCases/edgeCaseInjector.js`, `tests/edgeCases.test.js`.
 **Pourquoi c'est nécessaire ici** : l'IA ne voit pas que `0.1 + 0.2 !== 0.3`. Elle ne sait pas que `NaN === NaN` est `false`. Ces cas sont injectés délibérément dans les scénarios de test pour vérifier que le pipeline les détecte, même quand l'IA les rate.
 
@@ -162,51 +167,61 @@ tests/
 ```
 
 ### `src/analyzer/CodeAnalyzer.js`
+
 **Ce que ça fait** : la classe principale. Orchestre prompt → streaming → validation → review. Ne fait rien elle-même, délègue à chaque spécialiste.
 **Entrée** : le code source à analyser (chaîne de texte).
 **Sortie** : `{ bugs: [...], tests: [...], confidence: number, reviewPassed: boolean }`.
 
 ### `src/prompt/PromptBuilder.js`
+
 **Ce que ça fait** : construit le prompt envoyé à l'API à partir du code source. Inclut les instructions sur le format de sortie attendu (JSON avec schéma précis), les limites (pas d'hallucination de fonctions inexistantes), et des exemples du format souhaité.
 **Entrée** : le code source.
 **Sortie** : une chaîne (le prompt complet).
 
 ### `src/streaming/streamingClient.js`
+
 **Ce que ça fait** : appelle l'API Anthropic avec le streaming activé. Retourne les tokens au fur et à mesure via un callback ou un itérateur.
 **Entrée** : un prompt et un callback appelé à chaque token.
 **Sortie** : rien de retourné directement (les tokens arrivent via callback).
 
 ### `src/streaming/streamAssembler.js`
+
 **Ce que ça fait** : accumule les tokens jusqu'à avoir la réponse complète. Expose `append(token)` et `finalize()`.
 **Entrée** : des tokens individuels.
 **Sortie** : la chaîne complète assemblée après `finalize()`.
 
 ### `src/validator/Validator.js`
+
 **Ce que ça fait** : classe de base. Expose `validate(data)` qui lance `_check(data)`. Contient la logique commune à tous les validateurs.
 **Entrée** : des données brutes.
 **Sortie** : les données validées ou une exception `ValidationError`.
 
 ### `src/validator/StrictValidator.js`
+
 **Ce que ça fait** : étend `Validator`. Ajoute des vérifications strictes sur les types (rejette les `string` là où un `number` est attendu, même si JS ferait la coercition).
 **Entrée** : données à valider.
 **Sortie** : données validées avec types garantis.
 
 ### `src/validator/LLMOutputValidator.js`
+
 **Ce que ça fait** : étend `StrictValidator`. Ajoute les règles spécifiques à la sortie de l'IA : le champ `confidence` doit être entre 0 et 1, le tableau `bugs` doit être un tableau (même vide), chaque bug doit avoir `line` (number) et `description` (string).
 **Entrée** : la sortie JSON brute de l'IA après parse.
 **Sortie** : un objet validé avec les bons types.
 
 ### `src/review/reviewPipeline.js`
+
 **Ce que ça fait** : passe les suggestions de l'IA en revue selon des règles codées. Rejette les suggestions qui violent des règles connues : mutation directe d'état, `eval()`, `innerHTML` sans sanitization.
 **Entrée** : les bugs et fixes suggérés par l'IA.
 **Sortie** : `{ approved: [...], rejected: [...], reasons: [...] }`.
 
 ### `src/edgeCases/edgeCaseInjector.js`
+
 **Ce que ça fait** : génère des scénarios de test contenant des edge cases JS connus (`NaN`, `0.1 + 0.2`, `undefined` dans un tableau, `null` là où un objet est attendu). Utilisé dans les tests pour vérifier que le validator les attrape.
 **Entrée** : un type d'edge case.
 **Sortie** : un scénario de test injecté dans le code à analyser.
 
 ### `src/mixins/loggable.js` et `retryable.js`
+
 **Ce que ça fait** : des mixins (fonctions qui ajoutent des comportements à une classe sans héritage) qui ajoutent respectivement le logging automatique des appels et la logique de retry en cas d'erreur réseau.
 **Entrée** : une classe à augmenter.
 **Sortie** : la même classe avec le comportement supplémentaire greffé.
@@ -231,16 +246,16 @@ tests/
 
 **Durée totale estimée** : 16 à 22 heures de travail réel.
 
-| Étape | Durée estimée | Zone de résistance |
-|---|---|---|
-| Validator (3 niveaux) | 3h | Moyenne : bien utiliser le prototype sans sur-compliquer |
-| PromptBuilder | 2h | Moyenne : construire un prompt qui donne du JSON fiable |
-| streamAssembler | 1h | Faible |
-| streamingClient | 2-3h | **Haute** : l'API Anthropic streaming est différente d'un fetch classique |
-| reviewPipeline | 2h | Moyenne |
-| mixins | 1h30 | Moyenne : comprendre comment greffer sans héritage |
-| CodeAnalyzer | 2h | Faible (orchestre les briques déjà construites) |
-| edgeCases + tests | 3h | Moyenne : inventer des cas où l'IA se plante est créatif |
+| Étape                 | Durée estimée | Zone de résistance                                                        |
+| --------------------- | ------------- | ------------------------------------------------------------------------- |
+| Validator (3 niveaux) | 3h            | Moyenne : bien utiliser le prototype sans sur-compliquer                  |
+| PromptBuilder         | 2h            | Moyenne : construire un prompt qui donne du JSON fiable                   |
+| streamAssembler       | 1h            | Faible                                                                    |
+| streamingClient       | 2-3h          | **Haute** : l'API Anthropic streaming est différente d'un fetch classique |
+| reviewPipeline        | 2h            | Moyenne                                                                   |
+| mixins                | 1h30          | Moyenne : comprendre comment greffer sans héritage                        |
+| CodeAnalyzer          | 2h            | Faible (orchestre les briques déjà construites)                           |
+| edgeCases + tests     | 3h            | Moyenne : inventer des cas où l'IA se plante est créatif                  |
 
 Le streaming client est le plus risqué si c'est la première fois qu'on appelle une API streaming. La différence avec un `fetch` classique : les données arrivent par morceaux, pas d'un coup. Chaque morceau est un event qu'il faut gérer.
 
@@ -248,59 +263,59 @@ Le streaming client est le plus risqué si c'est la première fois qu'on appelle
 
 ```js
 // tests/outputValidator.test.js
-import { LLMOutputValidator } from '../src/validator/LLMOutputValidator.js';
+import { LLMOutputValidator } from "../src/validator/LLMOutputValidator.js";
 
-describe('LLMOutputValidator', () => {
- const validator = new LLMOutputValidator();
+describe("LLMOutputValidator", () => {
+  const validator = new LLMOutputValidator();
 
- test('accepte une sortie valide', () => {
-  const raw = {
-   bugs: [{ line: 14, description: "Reference error potentiel" }],
-   tests: ["test('...', () => {})"],
-   confidence: 0.87
-  };
-  expect(() => validator.validate(raw)).not.toThrow();
- });
+  test("accepte une sortie valide", () => {
+    const raw = {
+      bugs: [{ line: 14, description: "Reference error potentiel" }],
+      tests: ["test('...', () => {})"],
+      confidence: 0.87,
+    };
+    expect(() => validator.validate(raw)).not.toThrow();
+  });
 
- test('rejette si confidence > 1', () => {
-  const raw = { bugs: [], tests: [], confidence: 1.5 };
-  expect(() => validator.validate(raw)).toThrow('ValidationError');
- });
+  test("rejette si confidence > 1", () => {
+    const raw = { bugs: [], tests: [], confidence: 1.5 };
+    expect(() => validator.validate(raw)).toThrow("ValidationError");
+  });
 
- test('rejette si bugs est absent', () => {
-  const raw = { tests: [], confidence: 0.8 };
-  expect(() => validator.validate(raw)).toThrow('ValidationError');
- });
+  test("rejette si bugs est absent", () => {
+    const raw = { tests: [], confidence: 0.8 };
+    expect(() => validator.validate(raw)).toThrow("ValidationError");
+  });
 
- test('rejette si un bug a line en string au lieu de number', () => {
-  const raw = {
-   bugs: [{ line: "14", description: "..." }], // string au lieu de number
-   tests: [],
-   confidence: 0.7
-  };
-  expect(() => validator.validate(raw)).toThrow('StrictValidationError');
- });
+  test("rejette si un bug a line en string au lieu de number", () => {
+    const raw = {
+      bugs: [{ line: "14", description: "..." }], // string au lieu de number
+      tests: [],
+      confidence: 0.7,
+    };
+    expect(() => validator.validate(raw)).toThrow("StrictValidationError");
+  });
 });
 
 // tests/edgeCases.test.js
-import { edgeCaseInjector } from '../src/edgeCases/edgeCaseInjector.js';
-import { LLMOutputValidator } from '../src/validator/LLMOutputValidator.js';
+import { edgeCaseInjector } from "../src/edgeCases/edgeCaseInjector.js";
+import { LLMOutputValidator } from "../src/validator/LLMOutputValidator.js";
 
-describe('edge cases que l\'IA ne voit pas', () => {
- test('NaN dans confidence est rejeté', () => {
-  const v = new LLMOutputValidator();
-  const withNaN = { bugs: [], tests: [], confidence: NaN };
-  expect(() => v.validate(withNaN)).toThrow();
- });
+describe("edge cases que l'IA ne voit pas", () => {
+  test("NaN dans confidence est rejeté", () => {
+    const v = new LLMOutputValidator();
+    const withNaN = { bugs: [], tests: [], confidence: NaN };
+    expect(() => v.validate(withNaN)).toThrow();
+  });
 
- test('0.1 + 0.2 dans un score de confidence ne passe pas 0.3', () => {
-  // C'est un test de documentation : 0.1 + 0.2 = 0.30000000000000004 en JS
-  expect(0.1 + 0.2).not.toBe(0.3);
-  // Le validator arrondit les floats pour les comparaisons de seuil
-  const v = new LLMOutputValidator({ confidenceThreshold: 0.3 });
-  const almostThree = { bugs: [], tests: [], confidence: 0.1 + 0.2 };
-  expect(() => v.validate(almostThree)).not.toThrow(); // 0.3000... > 0.3 : passe
- });
+  test("0.1 + 0.2 dans un score de confidence ne passe pas 0.3", () => {
+    // C'est un test de documentation : 0.1 + 0.2 = 0.30000000000000004 en JS
+    expect(0.1 + 0.2).not.toBe(0.3);
+    // Le validator arrondit les floats pour les comparaisons de seuil
+    const v = new LLMOutputValidator({ confidenceThreshold: 0.3 });
+    const almostThree = { bugs: [], tests: [], confidence: 0.1 + 0.2 };
+    expect(() => v.validate(almostThree)).not.toThrow(); // 0.3000... > 0.3 : passe
+  });
 });
 ```
 
@@ -340,29 +355,33 @@ Exemple rempli :
 # ADR 001 : Chaîne d'héritage Validator -> StrictValidator -> LLMOutputValidator
 
 ## Contexte
+
 La validation de la sortie LLM nécessite plusieurs couches : validation de base
 (le champ existe), validation stricte (le type est exact), validation métier
 (les valeurs ont du sens). On peut tout mettre dans une seule classe ou créer une
 hiérarchie.
 
 ## Décision
+
 Hiérarchie à 3 niveaux via prototype chain. `Validator` pose le contrat de base.
 `StrictValidator` ajoute la rigueur sur les types. `LLMOutputValidator` ajoute
 les règles métier spécifiques à l'IA.
 
 ## Alternatives considérées
+
 - Une seule grosse classe : rejeté car impossible de tester les couches
- indépendamment. Si la validation stricte plante, on ne sait pas si c'est le
- check de type ou le check métier.
+  indépendamment. Si la validation stricte plante, on ne sait pas si c'est le
+  check de type ou le check métier.
 - Composition (passer des validators en paramètre) : valide aussi. Choix de la
- hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
- l'objectif pédagogique du module 18_oop_js).
+  hiérarchie ici pour pratiquer le prototype chain de façon intentionnelle (c'est
+  l'objectif pédagogique du module 18_oop_js).
 
 ## Conséquences
+
 - Ajouter un nouveau type de validator = créer une sous-classe. Le contrat de base
- est garanti par héritage.
+  est garanti par héritage.
 - Les tests peuvent instancier `Validator`, `StrictValidator`, ou `LLMOutputValidator`
- séparément pour isoler ce qui plante.
+  séparément pour isoler ce qui plante.
 ```
 
 ## QUAND EST-CE QUE LE PROJET EST VRAIMENT FINI
@@ -378,7 +397,6 @@ les règles métier spécifiques à l'IA.
 [ ] TDD_JOURNAL.md trace quels tests ont été écrits avant le code du validator
 [ ] zéro appel à la sortie LLM sans passer par validate() dans le code de production
 ```
-
 
 ## SÉCURITÉ (gate obligatoire)
 
@@ -398,11 +416,10 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 
 Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
-
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
-- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
-- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès : c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict : tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
 - `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
 - `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
@@ -410,4 +427,5 @@ Un test dans `verification_pack/<projet>/verify.sh` doit prouver ces deux points
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
 
 ---
+
 stability: intemporel
