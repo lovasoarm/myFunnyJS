@@ -3,6 +3,7 @@ stability: intemporel
 ---
 
 # ADR-003 : Frontières internes du projet
+
 Temps de lecture ~4 min
 
 ## Statut
@@ -18,7 +19,7 @@ ce qu'un futur mainteneur peut échanger sans casser le reste.
 
 - **Un seul fichier plat (rapide au début, ingérable à 500 lignes)**
 - **Architecture hexagonale complète (over-engineering pour ce périmètre)**
-- **Cœur pur + 2 adaptateurs (I/O, présentation) — pragmatique**
+- **Cœur pur + 2 adaptateurs (I/O, présentation) : pragmatique**
 
 ## Décision
 
@@ -30,7 +31,7 @@ Tests unitaires sur le cœur sans mock. Adaptateurs testés en intégration lég
 
 ## Ce qu'on abandonne
 
-L'appel direct de l'I/O depuis le cœur — coût = tests deviennent des tests d'intégration lents.
+L'appel direct de l'I/O depuis le cœur : coût = tests deviennent des tests d'intégration lents.
 
 ## Signal de révision
 

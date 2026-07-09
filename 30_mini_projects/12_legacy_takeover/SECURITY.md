@@ -32,8 +32,7 @@ Snapshot :
 
 Ports / endpoints / fichiers I/O documentés : périmètre local uniquement (voir README)
 
-
-## STRIDE — modélisation de menace
+## STRIDE : modélisation de menace
 
 - **Spoofing** : usurpation d'identité côté client (token volé, header rejoué)
 - **Tampering** : modification des payloads en transit ou en base

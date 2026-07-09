@@ -4,7 +4,7 @@ last_reviewed: 2026-07
 depends_on_vendor: false
 ---
 
-# 09 — Instrumenter TON projet (OpenTelemetry local, zéro compte externe)
+# 09 : Instrumenter TON projet (OpenTelemetry local, zéro compte externe)
 
 Temps ~4 h (une fois) + 30 min par projet supplémentaire
 
@@ -15,10 +15,10 @@ reste une leçon. Ce fichier impose le geste concret sur trois mini-projets déj
 
 ## STACK IMPOSÉ (léger, local, durable)
 
-- **OpenTelemetry SDK JS** — instrumentation applicative
-- **OTLP Collector** — reçoit les données
-- **Jaeger** — traces distribuées
-- **Prometheus + Grafana** — métriques et dashboards
+- **OpenTelemetry SDK JS** : instrumentation applicative
+- **OTLP Collector** : reçoit les données
+- **Jaeger** : traces distribuées
+- **Prometheus + Grafana** : métriques et dashboards
 
 Tout tourne en `docker-compose` local. Aucun compte SaaS. Aucun secret externe.
 
@@ -61,7 +61,9 @@ services:
 import { NodeSDK } from "@opentelemetry/sdk-node";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 const sdk = new NodeSDK({
-  traceExporter: new OTLPTraceExporter({ url: "http://localhost:4318/v1/traces" }),
+  traceExporter: new OTLPTraceExporter({
+    url: "http://localhost:4318/v1/traces",
+  }),
 });
 sdk.start();
 ```

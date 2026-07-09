@@ -3,6 +3,7 @@ stability: intemporel
 ---
 
 # ADR-002 : Choix de la forme des données
+
 Temps de lecture ~4 min
 
 ## Statut
@@ -30,7 +31,7 @@ Diff/test triviaux. Coût mémoire visible sous fort volume : accepté, tracé d
 
 ## Ce qu'on abandonne
 
-La mutation locale (Immer, structures partagées) — coût = plus de code de spread manuel.
+La mutation locale (Immer, structures partagées) : coût = plus de code de spread manuel.
 
 ## Signal de révision
 

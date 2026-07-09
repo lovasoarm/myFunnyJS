@@ -35,7 +35,7 @@ Bloc obligatoire (drill `.tools/verification_pack/30_mini_projects/security_gate
 
 Absence de `SECURITY.md` = release refusée.
 
-## Security Gate — modélisation menace STRIDE
+## Security Gate : modélisation menace STRIDE
 
 Ce projet ayant une surface d'exposition structurelle, `SECURITY.md` doit inclure
 une modélisation STRIDE (Spoofing, Tampering, Repudiation, Information disclosure,

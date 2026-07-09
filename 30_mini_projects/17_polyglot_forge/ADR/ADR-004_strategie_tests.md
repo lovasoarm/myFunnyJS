@@ -3,6 +3,7 @@ stability: intemporel
 ---
 
 # ADR-004 : Stratégie de tests
+
 Temps de lecture ~4 min
 
 ## Statut
@@ -30,7 +31,7 @@ Feedback rapide (unit < 1s), régressions e2e attrapées. Fragilité minimale.
 
 ## Ce qu'on abandonne
 
-Le tout-e2e — coût = temps de CI × 20 et debugging opaque.
+Le tout-e2e : coût = temps de CI × 20 et debugging opaque.
 
 ## Signal de révision
 

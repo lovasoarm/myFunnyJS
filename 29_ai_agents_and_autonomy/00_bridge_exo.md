@@ -4,7 +4,7 @@ last_reviewed: 2026-07
 depends_on_vendor: false
 ---
 
-# 00 — Bridge exo : reprends un edge case et laisse un agent le gérer
+# 00 : Bridge exo : reprends un edge case et laisse un agent le gérer
 
 Temps ~1 h
 

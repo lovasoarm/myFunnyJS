@@ -1,9 +1,10 @@
 # HEISENBUG ARENA : LE BUG QUI DISPARAÎT QUAND TU LE REGARDES
+
 Temps de lecture ~17 min
 
 ```javascript
 test("le plan d'évasion se valide", () => {
- expect(validateEscapePlan(plan)).toBe(true);
+  expect(validateEscapePlan(plan)).toBe(true);
 });
 // PASS la plupart du temps.
 // Échoue parfois. Sans rien changer dans le code. Sans rien changer dans le test.
@@ -53,29 +54,29 @@ let scoreFans = null;
 let scoreFinal = null;
 
 function chargerScoreJournalistes() {
- // simule un appel réseau à délai variable
- const delai = Math.random() * 100; // entre 0 et 100ms
- setTimeout(() => {
-  scoreJournalistes = 85;
-  calculerScoreFinal();
- }, delai);
+  // simule un appel réseau à délai variable
+  const delai = Math.random() * 100; // entre 0 et 100ms
+  setTimeout(() => {
+    scoreJournalistes = 85;
+    calculerScoreFinal();
+  }, delai);
 }
 
 function chargerScoreFans() {
- const delai = Math.random() * 100;
- setTimeout(() => {
-  scoreFans = 72;
-  calculerScoreFinal();
- }, delai);
+  const delai = Math.random() * 100;
+  setTimeout(() => {
+    scoreFans = 72;
+    calculerScoreFinal();
+  }, delai);
 }
 
 function calculerScoreFinal() {
- // BUG : cette fonction est appelée par CHAQUE chargement
- // si elle s'exécute avant que les deux scores soient là, elle calcule sur une donnée manquante
- // PIÈGE SUPPLÉMENTAIRE : null + 85 ne lance PAS d'erreur et ne donne PAS NaN en JS
- // null se coerce en 0 dans une addition : le résultat est juste FAUX, pas visiblement cassé
- scoreFinal = (scoreJournalistes + scoreFans) / 2;
- console.log('Score final :', scoreFinal);
+  // BUG : cette fonction est appelée par CHAQUE chargement
+  // si elle s'exécute avant que les deux scores soient là, elle calcule sur une donnée manquante
+  // PIÈGE SUPPLÉMENTAIRE : null + 85 ne lance PAS d'erreur et ne donne PAS NaN en JS
+  // null se coerce en 0 dans une addition : le résultat est juste FAUX, pas visiblement cassé
+  scoreFinal = (scoreJournalistes + scoreFans) / 2;
+  console.log("Score final :", scoreFinal);
 }
 
 chargerScoreJournalistes();
@@ -104,18 +105,27 @@ deux runs identiques en apparence donnent un mauvais résultat différent)
 let totalVotes = 0;
 
 async function enregistrerVote(votant) {
- // simule une vérification anti-fraude qui prend un temps variable
- await new Promise(resolve => setTimeout(resolve, Math.random() * 20));
+  // simule une vérification anti-fraude qui prend un temps variable
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 20));
 
- const ancienTotal = totalVotes; // lecture
- await new Promise(resolve => setTimeout(resolve, Math.random() * 20)); // autre opération entre les deux
- totalVotes = ancienTotal + 1; // écriture, basée sur une lecture potentiellement périmée
+  const ancienTotal = totalVotes; // lecture
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 20)); // autre opération entre les deux
+  totalVotes = ancienTotal + 1; // écriture, basée sur une lecture potentiellement périmée
 }
 
 async function simulerVotesSimultanes() {
- const votants = ['Marco', 'Julie', 'Karim', 'Fatou', 'Lucas', 'Nadia', 'Theo', 'Amina'];
- await Promise.all(votants.map(v => enregistrerVote(v)));
- console.log('Total attendu : 8, total réel :', totalVotes);
+  const votants = [
+    "Marco",
+    "Julie",
+    "Karim",
+    "Fatou",
+    "Lucas",
+    "Nadia",
+    "Theo",
+    "Amina",
+  ];
+  await Promise.all(votants.map((v) => enregistrerVote(v)));
+  console.log("Total attendu : 8, total réel :", totalVotes);
 }
 
 simulerVotesSimultanes();
@@ -136,26 +146,26 @@ TAUX D'ÉCHEC OBSERVÉ : quasi systématique, mais le RÉSULTAT EXACT change à 
 // (référence directe à 02_garo_no_kronika)
 
 function combattreHorror(dureeRéelleCombat) {
- return new Promise((resolve, reject) => {
-  const armureTimeout = setTimeout(() => {
-   reject(new Error('Armure désintégrée : combat trop long'));
-  }, 100); // 100ms dans cette simulation (équivalent aux 99.9s du lore)
+  return new Promise((resolve, reject) => {
+    const armureTimeout = setTimeout(() => {
+      reject(new Error("Armure désintégrée : combat trop long"));
+    }, 100); // 100ms dans cette simulation (équivalent aux 99.9s du lore)
 
-  setTimeout(() => {
-   clearTimeout(armureTimeout);
-   resolve('Horror vaincu');
-  }, dureeRéelleCombat);
- });
+    setTimeout(() => {
+      clearTimeout(armureTimeout);
+      resolve("Horror vaincu");
+    }, dureeRéelleCombat);
+  });
 }
 
 async function lancerCombat() {
- try {
-  // le combat est censé durer 99ms, juste sous la limite de 100ms
-  const résultat = await combattreHorror(99);
-  console.log(résultat);
- } catch (e) {
-  console.log('ÉCHEC :', e.message);
- }
+  try {
+    // le combat est censé durer 99ms, juste sous la limite de 100ms
+    const résultat = await combattreHorror(99);
+    console.log(résultat);
+  } catch (e) {
+    console.log("ÉCHEC :", e.message);
+  }
 }
 
 lancerCombat();
@@ -182,25 +192,25 @@ finissent presque égales après un calcul)
 // scénario : nettoyage des sessions expirées d'auditeurs sur trapsoul_radio
 
 const sessionsActives = new Map([
- ['user1', { expire: Date.now() - 1000 }], // déjà expirée
- ['user2', { expire: Date.now() + 50000 }], // valide
- ['user3', { expire: Date.now() - 1000 }], // déjà expirée
- ['user4', { expire: Date.now() + 50000 }], // valide
+  ["user1", { expire: Date.now() - 1000 }], // déjà expirée
+  ["user2", { expire: Date.now() + 50000 }], // valide
+  ["user3", { expire: Date.now() - 1000 }], // déjà expirée
+  ["user4", { expire: Date.now() + 50000 }], // valide
 ]);
 
 function nettoyerSessionsExpirées() {
- let compteurSupprimé = 0;
- for (const [id, session] of sessionsActives) {
-  if (session.expire < Date.now()) {
-   sessionsActives.delete(id); // BUG : suppression PENDANT l'itération de la même Map
-   compteurSupprimé++;
+  let compteurSupprimé = 0;
+  for (const [id, session] of sessionsActives) {
+    if (session.expire < Date.now()) {
+      sessionsActives.delete(id); // BUG : suppression PENDANT l'itération de la même Map
+      compteurSupprimé++;
+    }
   }
- }
- return compteurSupprimé;
+  return compteurSupprimé;
 }
 
-console.log('Sessions supprimées :', nettoyerSessionsExpirées());
-console.log('Sessions restantes :', sessionsActives.size);
+console.log("Sessions supprimées :", nettoyerSessionsExpirées());
+console.log("Sessions restantes :", sessionsActives.size);
 
 // ce cas précis est SOUVENT stable en JS moderne (Map.prototype garantit un
 // comportement défini pour delete pendant une itération), MAIS le comportement
@@ -212,22 +222,20 @@ console.log('Sessions restantes :', sessionsActives.size);
 // LA VRAIE VERSION HEISENBUG : deux écritures concurrentes sur LA MÊME session
 
 async function prolongerSession(sessionsMap, id, dureeAjout) {
- const session = sessionsMap.get(id); // LECTURE
- await new Promise(r => setTimeout(r, Math.random() * 10)); // vérif async (anti-fraude, par ex.)
- sessionsMap.set(id, { expire: session.expire + dureeAjout }); // ÉCRITURE basée sur la lecture d'avant
+  const session = sessionsMap.get(id); // LECTURE
+  await new Promise((r) => setTimeout(r, Math.random() * 10)); // vérif async (anti-fraude, par ex.)
+  sessionsMap.set(id, { expire: session.expire + dureeAjout }); // ÉCRITURE basée sur la lecture d'avant
 }
 
 async function lancer() {
- const sessions = new Map([
-  ['user1', { expire: 1000 }],
- ]);
- // deux prolongations concurrentes de la MÊME session : +500 et +300
- // résultat correct attendu si les deux s'appliquent : 1000 + 500 + 300 = 1800
- await Promise.all([
-  prolongerSession(sessions, 'user1', 500),
-  prolongerSession(sessions, 'user1', 300),
- ]);
- console.log('Expiration finale :', sessions.get('user1').expire);
+  const sessions = new Map([["user1", { expire: 1000 }]]);
+  // deux prolongations concurrentes de la MÊME session : +500 et +300
+  // résultat correct attendu si les deux s'appliquent : 1000 + 500 + 300 = 1800
+  await Promise.all([
+    prolongerSession(sessions, "user1", 500),
+    prolongerSession(sessions, "user1", 300),
+  ]);
+  console.log("Expiration finale :", sessions.get("user1").expire);
 }
 
 lancer();
@@ -255,23 +263,23 @@ peuvent être exactement le même bug)
 // le système doit assigner la mission au premier qui répond
 
 function chevalierRépond(nom, tempsRéaction) {
- return new Promise(resolve => {
-  setTimeout(() => resolve(nom), tempsRéaction);
- });
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(nom), tempsRéaction);
+  });
 }
 
 async function assignerMission() {
- // les deux chevaliers ont un temps de réaction QUASI identique
- // la variation vient de Math.random(), volontairement proche
- const tempsA = 50 + Math.random() * 2; // entre 50 et 52ms
- const tempsB = 50 + Math.random() * 2; // entre 50 et 52ms
+  // les deux chevaliers ont un temps de réaction QUASI identique
+  // la variation vient de Math.random(), volontairement proche
+  const tempsA = 50 + Math.random() * 2; // entre 50 et 52ms
+  const tempsB = 50 + Math.random() * 2; // entre 50 et 52ms
 
- const gagnant = await Promise.race([
-  chevalierRépond('Kouga', tempsA),
-  chevalierRépond('Rian', tempsB),
- ]);
+  const gagnant = await Promise.race([
+    chevalierRépond("Kouga", tempsA),
+    chevalierRépond("Rian", tempsB),
+  ]);
 
- console.log('Mission assignée à :', gagnant);
+  console.log("Mission assignée à :", gagnant);
 }
 
 assignerMission();
@@ -339,10 +347,10 @@ distribution globale)
 
 // AVANT (Heisenbug 1, version "corrigée" par un dev pressé)
 function calculerScoreFinal() {
- setTimeout(() => {
-  scoreFinal = (scoreJournalistes + scoreFans) / 2;
-  // "j'ai ajouté un délai, maintenant ça marche tout le temps chez moi"
- }, 200); // 200ms de délai arbitraire ajouté en espérant que ça suffise
+  setTimeout(() => {
+    scoreFinal = (scoreJournalistes + scoreFans) / 2;
+    // "j'ai ajouté un délai, maintenant ça marche tout le temps chez moi"
+  }, 200); // 200ms de délai arbitraire ajouté en espérant que ça suffise
 }
 
 // En CI, sur un serveur chargé : 200ms ne suffit plus.
@@ -354,27 +362,27 @@ let sourcesReçues = 0;
 const TOTAL_SOURCES = 2;
 
 function chargerScoreJournalistes() {
- const delai = Math.random() * 100;
- setTimeout(() => {
-  scoreJournalistes = 85;
-  sourcesReçues++;
-  tenterCalculFinal();
- }, delai);
+  const delai = Math.random() * 100;
+  setTimeout(() => {
+    scoreJournalistes = 85;
+    sourcesReçues++;
+    tenterCalculFinal();
+  }, delai);
 }
 
 function chargerScoreFans() {
- const delai = Math.random() * 100;
- setTimeout(() => {
-  scoreFans = 72;
-  sourcesReçues++;
-  tenterCalculFinal();
- }, delai);
+  const delai = Math.random() * 100;
+  setTimeout(() => {
+    scoreFans = 72;
+    sourcesReçues++;
+    tenterCalculFinal();
+  }, delai);
 }
 
 function tenterCalculFinal() {
- if (sourcesReçues < TOTAL_SOURCES) return; // attend explicitement, pas un délai à l'aveugle
- scoreFinal = (scoreJournalistes + scoreFans) / 2;
- console.log('Score final :', scoreFinal);
+  if (sourcesReçues < TOTAL_SOURCES) return; // attend explicitement, pas un délai à l'aveugle
+  scoreFinal = (scoreJournalistes + scoreFans) / 2;
+  console.log("Score final :", scoreFinal);
 }
 ```
 
@@ -433,8 +441,8 @@ Ajouter un délai arbitraire pour "laisser le temps" à une race condition de se
 Pour investiguer un heisenbug : rejouer en boucle (20-50 fois minimum) pour mesurer un vrai taux d'échec avant de toucher au code. Un taux d'échec mesuré dit où regarder. Une intuition non vérifiée fait perdre des heures sur la mauvaise piste.
 
 ---
-stability: intemporel
 
+stability: intemporel
 
 ---
 
@@ -446,8 +454,8 @@ variable entre le read et le write. Objectif attendu : `total = N`.
 
 Contrainte : sans verrou, tu dois pouvoir **prouver que ça casse au moins 1 fois
 sur 1000** exécutions (drill : boucle 1000 runs, compte les runs où `total < N`,
-fail si le taux est zéro — ça voudrait dire que ton race est *masqué*, pas absent).
+fail si le taux est zéro : ça voudrait dire que ton race est _masqué_, pas absent).
 
 Livrable : deux versions, `unsafe.js` (casse déterministe 1/1000) et `safe.js`
 (mutex minimal, 0 casse sur 10 000 runs). Ajoute `RACE_LAB.md` qui explique
-pourquoi le vrai bug est la *lecture périmée*, pas le délai.
+pourquoi le vrai bug est la _lecture périmée_, pas le délai.

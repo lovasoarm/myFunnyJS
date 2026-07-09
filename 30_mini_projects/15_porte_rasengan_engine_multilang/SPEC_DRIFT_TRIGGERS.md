@@ -5,7 +5,7 @@ stability: intemporel
 # SPEC DRIFT TRIGGERS : 15_porte_rasengan_engine_multilang
 
 Trois déclencheurs à activer si `SPEC_DRIFT_MODE=on`. Chacun simule un changement
-de spec en cours de projet — pas au démarrage. Objectif : entraîner à renégocier
+de spec en cours de projet : pas au démarrage. Objectif : entraîner à renégocier
 sans bricoler.
 
 ## J+1 : nouveau champ obligatoire

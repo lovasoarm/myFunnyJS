@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# 03 OBJECTION STORM — défense orale sous objection dynamique
+# 03 OBJECTION STORM : défense orale sous objection dynamique
 
 Temps ~35 min chrono + 15 min debrief
 
@@ -12,7 +12,7 @@ Temps ~35 min chrono + 15 min debrief
 au calme, sans coupure. En vrai, l'objection coupe la parole, tourne, mute en attaque
 personnelle. Ce drill simule ça.
 
-## PROTOCOLE — 5 SALVES × 5 OBJECTIONS
+## PROTOCOLE : 5 SALVES × 5 OBJECTIONS
 
 Chronomètre visible, non négociable.
 
@@ -23,11 +23,11 @@ Chronomètre visible, non négociable.
 
 ### Escalade obligatoire (une salve = un ton)
 
-1. **Salve 1 — Poli** : "j'entends, mais est-ce que…"
-2. **Salve 2 — Dubitatif** : "tu es sûr ? Ça me paraît fragile."
-3. **Salve 3 — Hostile** : "non, ça ne marche pas, tu bricoles."
-4. **Salve 4 — Ad hominem technique** : "tu confonds X et Y, c'est un niveau junior."
-5. **Salve 5 — Coupure** : "on n'a plus le temps, résume en 20 s ou passe."
+1. **Salve 1 : Poli** : "j'entends, mais est-ce que…"
+2. **Salve 2 : Dubitatif** : "tu es sûr ? Ça me paraît fragile."
+3. **Salve 3 : Hostile** : "non, ça ne marche pas, tu bricoles."
+4. **Salve 4 : Ad hominem technique** : "tu confonds X et Y, c'est un niveau junior."
+5. **Salve 5 : Coupure** : "on n'a plus le temps, résume en 20 s ou passe."
 
 Objectif : **ne pas escalader émotionnellement**. Rester factuel salve 5 = drill réussi.
 
