@@ -1,10 +1,11 @@
 # 04 : L'ART DU REVERT ARGUMENTÉ
+
 Temps de lecture ~15 min
 
 Un agent a rendu un travail conforme à ta spec. Le résultat marche. Et pourtant, tu
 refuses. Parce que la solution est plus complexe que le problème, ou parce qu'elle
 crée une dette invisible. Refuser un résultat qui "marche" est l'acte le plus
-adulte de ta carrière ingénieure — et le plus contesté par une équipe qui
+adulte de ta carrière ingénieure : et le plus contesté par une équipe qui
 mesure la vélocité en PR mergées.
 
 Refuser sans argument = tu perds la confiance de l'équipe qui a validé l'agent.
@@ -37,6 +38,7 @@ apprentissage ("voici ce qu'on garde"), la solitude devient leadership
 **Ce qui est fait correctement** : (3 lignes, honnête)
 
 **Ce qui pose problème** : (le vrai motif, pas "je préfère autrement")
+
 - Complexité ajoutée disproportionnée au bénéfice ?
 - Couplage nouveau non nécessaire ?
 - Décision d'architecture non discutée ?
@@ -56,7 +58,7 @@ paresse. Sans cette section, ton refus est perçu comme un ego trip.
 1. **Surdimensionné** : l'agent a introduit une abstraction pour 1 seul usage.
    Test rapide : compte les call sites. 1 seul = inline. 2 = tolérable si
    utile. 3+ = OK. L'abstraction préventive est un anti-pattern classique
-   d'agent — il "prépare le futur" que personne n'a demandé.
+   d'agent : il "prépare le futur" que personne n'a demandé.
 2. **Sous-testé** : les tests ajoutés valident la sortie, pas les invariants.
    Un test qui vérifie que `add(2,2) === 4` est faible. Un test qui vérifie
    que `add(a,b) === add(b,a)` pour 100 tirages est fort. L'agent penche
@@ -87,6 +89,7 @@ Cette ligne est celle que 95 % des refus ratent. Un revert coûte du temps
 immédiat (30 min à 3 h). Un merge coûte du temps futur (probabilité × impact).
 
 Formule honnête :
+
 ```
 Coût du merge = P(bug futur) × (temps de correction + temps d'enquête + coût réputationnel)
 ```
@@ -102,7 +105,7 @@ le template. Puis un accept. Compare la difficulté cognitive des deux exercices
 Refuser bien est PLUS dur qu'accepter : c'est pour ça que ça se travaille.
 
 Fais-le 5 fois sur 5 PR différentes. Sur la 5e, tu remarqueras que ta
-gate a des "trous" — des motifs de refus que tu ressens mais que le
+gate a des "trous" : des motifs de refus que tu ressens mais que le
 template ne capture pas. Ajoute-les au template. C'est ainsi que tu
 personnalises ton propre refus argumenté.
 
@@ -110,6 +113,7 @@ personnalises ton propre refus argumenté.
 
 Si ton équipe mesure `PR mergées / semaine`, tu vas perdre chaque refus
 sur le tableau de bord. Il faut basculer les indicateurs vers :
+
 - `PR mergées sans revert à 30 jours / semaine` (qualité, pas quantité),
 - `Temps moyen d'audit d'une PR agent` (efficacité de la spec en amont),
 - `Coût d'incident post-merge` (dette matérialisée).
@@ -131,8 +135,9 @@ function screenRefusal(text) {
   const lower = text.toLowerCase();
   const motif = LEGIT.find((m) => lower.includes(m));
   const hasAlt = /alternative proposée[\s\S]{0,300}[a-z]/i.test(text);
-  const hasCost = /coût du revert vs coût du merge/i.test(text)
-                  && /(heures?|jours?|min)/i.test(text);
+  const hasCost =
+    /coût du revert vs coût du merge/i.test(text) &&
+    /(heures?|jours?|min)/i.test(text);
   return { motif, hasAlt, hasCost, verdict: motif && hasAlt && hasCost };
 }
 
@@ -150,8 +155,8 @@ d'invariant sur le TTL.
 Coût du revert vs coût du merge : revert = 30 min, merge = 3 jours de dette
 future (personne ne saura pourquoi cette abstraction existe).`;
 
-console.log("bad :", screenRefusal(bad));   // verdict: false
-console.log("good:", screenRefusal(good));  // verdict: true
+console.log("bad :", screenRefusal(bad)); // verdict: false
+console.log("good:", screenRefusal(good)); // verdict: true
 ```
 
 Si ton refus ne passe pas cette gate, il ne tient pas en réunion non plus.
@@ -164,4 +169,5 @@ le cite. À terme, ta gate de refus devient la gate de l'équipe. C'est
 comme ça qu'un ingénieur seul finit par déplacer une organisation.
 
 ---
+
 stability: perissable

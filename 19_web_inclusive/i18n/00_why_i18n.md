@@ -1,7 +1,7 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : I18N
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
-Temps de lecture ~9 min
+> Temps de lecture ~9 min
 
 Ton app marche super bien, jusqu'à ce qu'un shinobi japonais voit une date affichée au format américain et la lise complètement à l'envers. Jusqu'à ce qu'un shinobi allemand voie un prix avec une virgule à la place d'un point et pense que ton jutsu coûte 1000 fois moins cher qu'en réalité. Jusqu'à ce qu'un shinobi arabe découvre que ta pluralisation codée pour le français explose dès qu'il y a plus de deux résultats, parce que sa langue a six formes plurales et que ton code n'en gère qu'une.
 
@@ -77,7 +77,7 @@ Tant qu'il existera des jutsus qui visent plus d'un marché linguistique (et ça
 
 **Ce qui en dépend :** `30_mini_projects/08_trapsoul_radio` (4 locales à gérer : français, anglais, japonais, malgache : pluralisation, dates, formats numériques). Sans ce module, le mini-projet se limite à une seule langue.
 
-**Position dans la roadmap :** Sous-dossier du module 19_web_inclusive (sur 32 modules au total) — l'i18n n'est pas un module séparé, c'est le prolongement immédiat du chapitre accessibilité de ce même module 19. Placé juste après l'accessibilité parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (module 20) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
+**Position dans la roadmap :** Sous-dossier du module 19_web_inclusive (sur 32 modules au total) : l'i18n n'est pas un module séparé, c'est le prolongement immédiat du chapitre accessibilité de ce même module 19. Placé juste après l'accessibilité parce que les deux répondent à la même question : "est-ce que ce jutsu fonctionne pour tous les shinobis ?". Avant le realtime (module 20) parce que les deux nécessitent une architecture définie tôt dans le projet : ajouter l'i18n après coup sur une app en prod, c'est refactorer entièrement les couches d'affichage.
 
 **Lien avec les autres modules :** `14_typescript` : les clés de traduction typées en TypeScript (si une clé n'existe pas en traduction, erreur de compilation). `24_databases` : les préférences de langue des shinobis sont souvent persistées en base.
 
@@ -90,4 +90,5 @@ L'i18n n'est pas juste de la traduction, c'est une architecture entière qui doi
 Maintenant, ouvre `01_i18n_basics.md`. Et arrête de coder comme si tout le monde vivait dans ton fuseau horaire et parlait ta langue.
 
 ---
+
 stability: intemporel

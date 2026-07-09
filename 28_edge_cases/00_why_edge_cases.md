@@ -3,7 +3,7 @@
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
 > Ce module reutilise : math (07_math_basics), erreurs (05_error_handling).
-Temps de lecture ~12 min
+> Temps de lecture ~12 min
 
 JS est un langage construit en 10 jours.
 Brendan Eich l'a créé en mai 1995 avec des décisions rapides, des compatibilités forcées, et des comportements qu'on ne pouvait plus changer après sans casser la moitié d'internet.
@@ -61,6 +61,7 @@ Ces trois bugs sont réels. Ils arrivent en production dans des apps écrites pa
 ## LE PROBLÈME RÉEL QUE CE MODULE RÉSOUT
 
 Il y a deux types de devs JS :
+
 - ceux qui savent que `NaN !== NaN` et qui comprennent pourquoi
 - ceux qui tombent dessus à 2h du matin et qui ne comprennent pas ce qui se passe
 
@@ -110,6 +111,7 @@ Le modèle objet de JS est prototypal, pas classique. `__proto__` expose la cha�
 Alternative : ignorer ces comportements et s'appuyer sur TypeScript pour tout attraper.
 
 Limites de cette approche :
+
 - TypeScript type-check à la compilation, pas à l'exécution (runtime). Les données qui arrivent d'une API externe ne sont pas typées à l'exécution.
 - `NaN` est de type `number` en TypeScript. `NaN + 1 = NaN` passe les types sans erreur.
 - La pollution de prototype est un comportement runtime : TypeScript ne la voit pas.
@@ -119,12 +121,14 @@ TypeScript réduit la surface des edge cases. Il ne l'élimine pas.
 Comprendre les mécanismes sous-jacents reste nécessaire même avec TypeScript.
 
 Ce qu'on gagne en apprenant ces mécanismes :
+
 - capacité à déboguer des comportements inattendus sans chercher au hasard
 - écriture de guards et de validations corrects
 - compréhension des vulnérabilités de sécurité liées au prototype
 - code plus défensif par réflexe
 
 Ce qu'on sacrifie :
+
 - rien. Ce sont des connaissances pures, pas des tradeoffs.
 
 ---
@@ -140,11 +144,13 @@ Ce qu'on sacrifie :
 **Prototype chain :** le modèle prototypal est permanent. ES6 a ajouté la syntaxe `class` mais elle compile vers du prototype en dessous. La pollution de prototype reste une vulnérabilité active en 2026.
 
 Ce qui a changé avec le temps :
+
 - la montée de TypeScript a réduit les erreurs de coercition à la compilation
 - `Object.hasOwn()` (ES2022) remplace `hasOwnProperty` avec une syntaxe plus sûre
 - les JSON parsers modernes ont des options pour bloquer `__proto__` dans les payloads
 
 Ce qui ne bougera pas :
+
 - les règles fondamentales de coercition
 - IEEE 754
 - le modèle prototypal de JS
@@ -237,11 +243,13 @@ Non. Ces comportements sont figés par la rétrocompatibilité du web. Changer `
 ## CE QUI VA ÉVOLUER, CE QUI VA RESTER
 
 **Ce qui va évoluer :**
+
 - les outils de détection (linters plus intelligents, TypeScript plus strict sur les cas edge)
 - les API de protection contre la pollution de prototype (`structuredClone`, JSON parsers sécurisés)
 - la syntaxe pour certains cas (`Object.hasOwn` remplace `hasOwnProperty`)
 
 **Ce qui ne bougera pas :**
+
 - `NaN !== NaN`
 - `typeof null === 'object'`
 - `0.1 + 0.2 !== 0.3`
@@ -265,7 +273,8 @@ C'est la différence entre subir le langage et le maîtriser.
 
 > Ce module réutilise : le debugging du module 04 (`04_debugging`) et l'asynchrone du module 03 (`03_async`).
 >
-> **Référence heisenbug** : le fichier `06_heisenbug_arena.md` de ce module est LE point de référence complet sur les heisenbugs (5 scénarios, méthode, cas qui casse). Le stub `04_debugging/heisenbug_arena.md` renvoie ici — ne le duplique pas, approfondis-le.
+> **Référence heisenbug** : le fichier `06_heisenbug_arena.md` de ce module est LE point de référence complet sur les heisenbugs (5 scénarios, méthode, cas qui casse). Le stub `04_debugging/heisenbug_arena.md` renvoie ici : ne le duplique pas, approfondis-le.
 
 ---
+
 stability: intemporel

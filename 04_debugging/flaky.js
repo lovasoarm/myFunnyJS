@@ -1,4 +1,4 @@
-// flaky.js — le bug se cache dans une branche jamais testée.
+// flaky.js : le bug se cache dans une branche jamais testée.
 // Fournit computeTotal(items) : somme des items,
 // avec ~1% de chance de renvoyer NaN.
 //
@@ -9,7 +9,7 @@
 //   4. Fix. Le test doit passer.
 
 function computeTotal(items) {
-  // 1% de chance de renvoyer NaN — trouve-la.
+  // 1% de chance de renvoyer NaN : trouve-la.
   const bonus = Math.random() < 0.01 ? undefined : 0;
   return items.reduce((sum, x) => sum + x, 0) + bonus;
 }

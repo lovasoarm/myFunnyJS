@@ -2,17 +2,17 @@
 stability: intemporel
 ---
 
-# Fixtures — GC et fuites mémoire
+# Fixtures : GC et fuites mémoire
 
 Temps de lecture ~4 min
 
 Support reproductible pour `05_heap_snapshot_hands_on.md`. Deux scripts
 volontairement instrumentés :
 
-| Script | Rôle |
-|---|---|
-| `leak_case.js` | Reproduit deux fuites classiques (cache non borné + listeners orphelins). RSS croît linéairement. |
-| `fixed_case.js` | Version corrigée avec cache LRU borné et listener attaché une seule fois. RSS stable. |
+| Script          | Rôle                                                                                              |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| `leak_case.js`  | Reproduit deux fuites classiques (cache non borné + listeners orphelins). RSS croît linéairement. |
+| `fixed_case.js` | Version corrigée avec cache LRU borné et listener attaché une seule fois. RSS stable.             |
 
 ## Procédure minimale (5 min)
 

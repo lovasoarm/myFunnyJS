@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# verify.sh — auto-quiz des Six Pierres pour 00_referentiel/
+# verify.sh : auto-quiz des Six Pierres pour 00_referentiel/
 # Non interactif : liste les questions attendues, exit 0 (pédagogique).
 set -u
 
