@@ -5,7 +5,7 @@ Temps de lecture ~2 min
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Deux services qui se parlent via une queue et survivent au chaos. C'est le mur d'AOT : tant qu'il tient, la ville vit ; tu testes chaque brèche avant que le Titan colossal ne la trouve pour toi.
+Deux services qui se parlent via une queue et survivent au chaos. C'est le mur de Konoha pendant l'invasion de Pain : tant qu'il tient, la ville vit ; tu testes chaque brèche avant que l'ennemi ne la trouve pour toi.
 
 ## OBJECTIF
 

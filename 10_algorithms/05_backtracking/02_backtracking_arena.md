@@ -383,11 +383,11 @@ function wordSearchBuggy(board, word) {
 
 ## EXERCICES
 
-## EXO 1 : LE BINGO DE REINER
+## EXO 1 : LE BINGO DE SHIKAMARU
 _~20 min_
 
 
-Reiner doit résoudre un Sudoku pour décoder le message du Roi Karl. Implémenter `solveSudoku(board)` complet avec la vérification ligne + colonne + bloc 3×3. La grille est modifiée in-place.
+Shikamaru doit résoudre un Sudoku pour décoder un message codé de l'ANBU. Implémenter `solveSudoku(board)` complet avec la vérification ligne + colonne + bloc 3×3. La grille est modifiée in-place.
 
 Ajouter un compteur d'appels récursifs. Puis ajouter l'optimisation MRV (minimum remaining values) et comparer les deux compteurs.
 

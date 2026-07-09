@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# EXO LECTURE : 15 minutes (31_annexes)
+# EXO LECTURE : 15-25 minutes (31_annexes)
 
 Temps de lecture ~2 min
 

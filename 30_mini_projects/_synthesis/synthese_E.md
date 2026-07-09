@@ -93,4 +93,5 @@ Si t'as pas de correlation ID tracé de bout en bout : le jour où 1 analyse sur
 Si tu termines cette synthèse proprement : t'as plus un curriculum dans la tête, t'as un cerveau d'ingénieur qui sait croiser des préoccupations qui semblaient pas liées au départ. C'est exactement ça, le métier.
 
 ---
-stability: intemporel
+
+> **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.

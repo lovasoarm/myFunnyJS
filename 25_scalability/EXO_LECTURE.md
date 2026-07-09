@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Scalabilite)
+# EXO LECTURE : 15-25 minutes (Scalabilite)
 Temps de lecture ~2 min
 
 

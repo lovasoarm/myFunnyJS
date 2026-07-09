@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Debugging)
+# EXO LECTURE : 15-25 minutes (Debugging)
 Temps de lecture ~2 min
 
 

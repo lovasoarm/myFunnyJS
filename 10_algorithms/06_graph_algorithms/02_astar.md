@@ -248,7 +248,7 @@ Afficher : le chemin complet, le nombre de noeuds explorés, la longueur du chem
 
 ---
 
-## EXO 2 : TERRAINS VARIÉS : LA ROUTE DE L'ATTAQUE DES TITANS
+## EXO 2 : TERRAINS VARIÉS : LA ROUTE DU TOURNOI CHUNIN
 _~20 min_
 
 

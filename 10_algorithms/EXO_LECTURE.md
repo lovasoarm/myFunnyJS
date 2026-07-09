@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Algorithmes)
+# EXO LECTURE : 15-25 minutes (Algorithmes)
 Temps de lecture ~2 min
 
 

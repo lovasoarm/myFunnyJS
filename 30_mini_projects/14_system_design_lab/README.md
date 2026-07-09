@@ -64,4 +64,4 @@ Après 30 minutes de conception, tu reçois deux contraintes contradictoires imp
 - "Le système doit maintenant supporter le mode offline côté front."
 - "Le budget infra est divisé par deux : un service de moins."
 
-Tu dois adapter ton architecture pour absorber les deux, ou arbitrer explicitement laquelle tu sacrifies partiellement et pourquoi. Documente la bascule dans un ADR supplémentaire `ADR-003_chaos_contraintes.md` : ce que tu changes, ce que tu abandonnes, le trade-off assumé. C'est le mur d'AOT : la brèche arrive quand tu ne l'attends pas, et l'ingénieur se juge à sa réaction, pas à son plan initial.
+Tu dois adapter ton architecture pour absorber les deux, ou arbitrer explicitement laquelle tu sacrifies partiellement et pourquoi. Documente la bascule dans un ADR supplémentaire `ADR-003_chaos_contraintes.md` : ce que tu changes, ce que tu abandonnes, le trade-off assumé. C'est le mur de Konoha pendant l'invasion de Pain : la brèche arrive quand tu ne l'attends pas, et l'ingénieur se juge à sa réaction, pas à son plan initial.

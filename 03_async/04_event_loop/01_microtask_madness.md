@@ -210,7 +210,7 @@ blackHole()
 // le navigateur gèle
 ```
 
-C'est le Titan Colossal de l'event loop : il absorbe tout et ne laisse rien passer.
+C'est le Susanoo de Sasuke sur l'event loop : il absorbe tout et ne laisse rien passer.
 
 ---
 

@@ -94,9 +94,9 @@ Sur `04_debugging/humain_vs_ia_diff/`, tu trouveras (à créer par toi si absent
 
 ## EXERCICES
 
-**EXO 1** : Reprends le bug ci-dessus. Réécris **toi-même** Patch X et Patch Y les yeux fermés (IA off), en essayant de reproduire le style IA sur l'un et le style humain sur l'autre. Compare avec les originaux. (25 min)
+**EXO 1** : Reprends le bug ci-dessus. Réécris **toi-même** Patch X et Patch Y les yeux fermés (IA off), en essayant de reproduire le style IA sur l'un et le style humain sur l'autre. Compare avec les originaux, puis avec la version main d'un pair si tu peux. (25 min)
 
-**EXO 2** : Choisis un bug de `04_debugging/HYPOTHESES_EXEMPLE.md`. Demande à une IA générative un patch (session enregistrée). Écris un patch à la main. Compare : quels tells ressortent ? (30 min)
+**EXO 2** : Choisis un bug de `04_debugging/HYPOTHESES_EXEMPLE.md`. Demande à une IA générative un patch (session enregistrée). Note les 3 tells qui te sautent aux yeux, sans réécrire toi-même. (15 min)
 
 **EXO 3** : Rédige une checklist "review de PR humain vs IA" en 10 puces max, à afficher dans `31_annexes/`. (15 min)
 

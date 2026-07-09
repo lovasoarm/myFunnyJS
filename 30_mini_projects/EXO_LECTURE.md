@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# EXO LECTURE : 15 minutes (30_mini_projects)
+# EXO LECTURE : 15-25 minutes (30_mini_projects)
 
 Temps de lecture ~2 min
 

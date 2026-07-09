@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (AI Native Dev)
+# EXO LECTURE : 15-25 minutes (AI Native Dev)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui appelle un LLM (streaming, RAG, retries, guardrails) : issu de `23_ai_native_dev/` ou d'un module d'orchestration. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui appelle un LLM (streaming, RAG, retries, guardrails) : issu de `23_ai_native_dev/` ou d'un module d'orchestration. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

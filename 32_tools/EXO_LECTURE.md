@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# EXO LECTURE : 15 minutes (32_tools)
+# EXO LECTURE : 15-25 minutes (32_tools)
 
 Temps de lecture ~2 min
 

@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Runtime & Env)
+# EXO LECTURE : 15-25 minutes (Runtime & Env)
 Temps de lecture ~2 min
 
 

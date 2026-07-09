@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Team Craft)
+# EXO LECTURE : 15-25 minutes (Team Craft)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui met en scène un code review / ADR / commit chirurgical : issu de `27_team_craft/01_code_review.md` ou `10_rfc_simulation.md`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui met en scène un code review / ADR / commit chirurgical : issu de `27_team_craft/01_code_review.md` ou `10_rfc_simulation.md`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

@@ -1,4 +1,5 @@
 # COMPOSITION VS INHERITANCE : LA VRAIE DÉCISION SENIOR
+
 Temps de lecture ~8 min
 
 Le fichier 06 a montré le piège des hiérarchies profondes. Ce fichier répond à la question qui suit logiquement : qu'est-ce qu'on fait à la place ? La réponse n'est pas "l'héritage est mauvais". La réponse est : `extends` répond à une question précise ("is-a", est un), la composition en répond à une autre ("has-a", possède un), et confondre les deux questions, c'est là que naissent les hiérarchies qui piègent.
@@ -7,19 +8,19 @@ Le fichier 06 a montré le piège des hiérarchies profondes. Ce fichier répond
 
 ```js
 class Horror {
- constructor(nom) {
-  this.nom = nom;
- }
+  constructor(nom) {
+    this.nom = nom;
+  }
 
- apparaitre() {
-  return `${this.nom} surgit de l'ombre`;
- }
+  apparaitre() {
+    return `${this.nom} surgit de l'ombre`;
+  }
 }
 
 class HorrorAlpha extends Horror {
- devorer() {
-  return `${this.nom} devore sa cible`;
- }
+  devorer() {
+    return `${this.nom} devore sa cible`;
+  }
 }
 ```
 
@@ -29,22 +30,22 @@ class HorrorAlpha extends Horror {
 
 ```js
 const peutVoler = {
- voler() {
-  return `${this.nom} s'envole`;
- }
+  voler() {
+    return `${this.nom} s'envole`;
+  },
 };
 
 const peutNager = {
- nager() {
-  return `${this.nom} plonge sous l'eau`;
- }
+  nager() {
+    return `${this.nom} plonge sous l'eau`;
+  },
 };
 
 class HorrorAmphibie {
- constructor(nom) {
-  this.nom = nom;
-  Object.assign(this, peutVoler, peutNager); // composition : possède ces capacités
- }
+  constructor(nom) {
+    this.nom = nom;
+    Object.assign(this, peutVoler, peutNager); // composition : possède ces capacités
+  }
 }
 
 const titan = new HorrorAmphibie("Titan des Abysses");
@@ -71,22 +72,24 @@ Si tu hésites entre les deux mots en français pour décrire la relation, c'est
 ## 4) LES MIXINS : LA COMPOSITION QUI RESSEMBLE À DE L'HÉRITAGE
 
 ```js
-const Combattant = (Base) => class extends Base {
- attaquer() {
-  return `${this.nom} attaque`;
- }
-};
+const Combattant = (Base) =>
+  class extends Base {
+    attaquer() {
+      return `${this.nom} attaque`;
+    }
+  };
 
-const Soigneur = (Base) => class extends Base {
- soigner(cible) {
-  return `${this.nom} soigne ${cible}`;
- }
-};
+const Soigneur = (Base) =>
+  class extends Base {
+    soigner(cible) {
+      return `${this.nom} soigne ${cible}`;
+    }
+  };
 
 class Entite {
- constructor(nom) {
-  this.nom = nom;
- }
+  constructor(nom) {
+    this.nom = nom;
+  }
 }
 
 class Paladin extends Combattant(Soigneur(Entite)) {}
@@ -102,13 +105,13 @@ Un mixin (fonction qui prend une classe et retourne une classe étendue) permet 
 
 ```js
 class Oiseau {
- voler() {
-  return `${this.nom} s'envole`;
- }
+  voler() {
+    return `${this.nom} s'envole`;
+  }
 }
 
 class Pingouin extends Oiseau {
- // un pingouin EST un oiseau... mais ne vole pas
+  // un pingouin EST un oiseau... mais ne vole pas
 }
 
 const pingu = new Pingouin();
@@ -144,11 +147,12 @@ EXO 2 : composition de capacités :
 Construis un système de capacités indépendantes (`peutCourir`, `peutMordre`, `peutInfecter`) sous forme d'objets ou de mixins, et assemble-les sur 2 types de zombies différents qui n'ont pas exactement les mêmes capacités. Démontre que la composition évite de forcer une hiérarchie unique.
 
 EXO 3 : démasquer le faux "is-a" :
-Reprends l'exemple `Oiseau`/`Pingouin` de la section 5, mais sur le thème Attack on Titan (`Titan` qui "vole" alors que certains titans ne le font pas). Identifie le faux "is-a", puis propose une refonte avec composition qui corrige le problème sans dupliquer de code.
+Reprends l'exemple `Oiseau`/`Pingouin` de la section 5, mais sur le thème Naruto (`Jutsu` qui "vole()" alors que certains jutsus : invocation, terre : ne volent pas). Identifie le faux "is-a", puis propose une refonte avec composition qui corrige le problème sans dupliquer de code.
 
 ## RÉSUMÉ
 
 `extends` répond à la question "est-ce que cet objet EST l'autre, sans exception, pour toujours ?". La composition répond à "est-ce que cet objet POSSÈDE cette capacité, indépendamment des autres ?". Confondre les deux pousse à forcer des hiérarchies qui semblent logiques au départ, mais qui explosent dès qu'un cas réel ne respecte pas l'hypothèse de base. La position par défaut chez un dev senior : privilégier la composition, et réserver `extends` aux relations vraiment stables et universelles.
 
 ---
+
 stability: intemporel

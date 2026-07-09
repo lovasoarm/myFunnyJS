@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Edge Cases)
+# EXO LECTURE : 15-25 minutes (Edge Cases)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui gère prototype pollution, coercion perverse, unicode, floats extrêmes : issu de `28_edge_cases/07_edge_cases_grimoire.md`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui gère prototype pollution, coercion perverse, unicode, floats extrêmes : issu de `28_edge_cases/07_edge_cases_grimoire.md`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

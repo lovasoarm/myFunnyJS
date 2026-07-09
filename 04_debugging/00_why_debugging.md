@@ -39,7 +39,7 @@ Le debugging n'est pas une étape après le code : c'est un mode de pensée pré
 
 ## Bugs célèbres : ce que l'histoire enseigne
 
-- Ariane 5 (1996) : une conversion de nombre 64 bits vers 16 bits qui déborde, et une fusée à 370 millions de dollars explose. Leçon : un edge case non testé n'est pas "improbable", il est "pas encore arrivé". Comme le mur d'AOT : il tient jusqu'au jour où le Titan colossal trouve la brèche.
+- Ariane 5 (1996) : une conversion de nombre 64 bits vers 16 bits qui déborde, et une fusée à 370 millions de dollars explose. Leçon : un edge case non testé n'est pas "improbable", il est "pas encore arrivé". Comme une technique interdite : elle tient jusqu'au jour où quelqu'un trouve la faille.
 - Knight Capital (2012) : un vieux flag de code mort réactivé par erreur, 440 millions de dollars perdus en 45 minutes. Leçon : le code que tu ne comprends plus est une bombe à retardement. Comme un jutsu interdit oublié dans un parchemin : personne ne sait ce qu'il déclenche.
 
 ## Modern / legacy / intemporel

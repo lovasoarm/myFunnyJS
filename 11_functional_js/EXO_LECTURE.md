@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Programmation fonctionnelle)
+# EXO LECTURE : 15-25 minutes (Programmation fonctionnelle)
 Temps de lecture ~2 min
 
 

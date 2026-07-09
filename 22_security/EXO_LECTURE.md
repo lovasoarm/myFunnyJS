@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Securite)
+# EXO LECTURE : 15-25 minutes (Securite)
 Temps de lecture ~2 min
 
 

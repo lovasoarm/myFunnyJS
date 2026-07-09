@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Refactoring)
+# EXO LECTURE : 15-25 minutes (Refactoring)
 Temps de lecture ~2 min
 
 

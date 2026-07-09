@@ -135,7 +135,7 @@ async function signalerMenace(data) {
  console.log("Enregistré :", resultat)
 }
 
-signalerMenace({ menace: "Titan Colossal", niveau: "CRITIQUE", secteur: "Mur Maria" })
+signalerMenace({ menace: "Akatsuki", niveau: "CRITIQUE", secteur: "Frontière Sud" })
 ```
 
 `JSON.stringify` = transformer un objet JS en texte JSON. L'inverse de `response.json()`.
@@ -193,7 +193,7 @@ Affiche le tableau transformé.
 Envoie un POST avec ce payload :
 
 ```js
-{ incident: "Percée du Mur Maria", niveau: 9000, secteur: "Nord" }
+{ incident: "Infiltration Akatsuki à Konoha", niveau: 9000, secteur: "Nord" }
 ```
 
 Affiche la réponse du serveur.

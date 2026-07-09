@@ -269,14 +269,14 @@ C'est une décision d'architecture qui rend le code testable.
 
 ## EXERCICES
 
-## EXO 1 : LA FORGE DE TITANS
+## EXO 1 : LA FORGE DE JUTSU
 
-Dans Attack on Titan, chaque type de Titan a des capacités différentes.
-Le Titan Colossal fait 60m, le Titan Blindé résiste aux lames, le Titan Dansant peut transformer les humains.
+Dans Naruto, chaque type de jutsu (technique) a des mécaniques différentes.
+Le Rasengan demande du contrôle de chakra pur, le Chidori demande de la vitesse, le Henge transforme l'apparence.
 
-Crée une `titanFactory` qui accepte un type parmi `"colossal"`, `"armored"`, `"dancing"`, `"founding"` et retourne un objet Titan avec :
+Crée une `jutsuFactory` qui accepte un type parmi `"rasengan"`, `"chidori"`, `"henge"`, `"kage_bunshin"` et retourne un objet Jutsu avec :
 
-- `name`, `type`, `heightMeters`, `ability`, et une méthode `roar()` qui log une phrase en fonction du type
+- `name`, `type`, `chakraCost`, `effect`, et une méthode `cast()` qui log une phrase en fonction du type
 
 Si le type est inconnu : throw une erreur avec un message fun.
 

@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Databases)
+# EXO LECTURE : 15-25 minutes (Databases)
 Temps de lecture ~2 min
 
 

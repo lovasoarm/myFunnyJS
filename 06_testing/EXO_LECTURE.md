@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Testing)
+# EXO LECTURE : 15-25 minutes (Testing)
 Temps de lecture ~2 min
 
 

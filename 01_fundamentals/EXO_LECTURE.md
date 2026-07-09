@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (les Fondamentaux JS)
+# EXO LECTURE : 15-25 minutes (les Fondamentaux JS)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercion : issu de tes exercices ou d'un fichier de `01_fundamentals/`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait 20-40 lignes mêlant closure, `this`, hoisting, coercion : issu de tes exercices ou d'un fichier de `01_fundamentals/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

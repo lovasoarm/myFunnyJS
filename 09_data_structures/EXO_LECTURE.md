@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Structures de donnees)
+# EXO LECTURE : 15-25 minutes (Structures de donnees)
 Temps de lecture ~2 min
 
 

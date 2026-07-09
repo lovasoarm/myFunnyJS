@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Memoire & Perf)
+# EXO LECTURE : 15-25 minutes (Memoire & Perf)
 Temps de lecture ~2 min
 
 

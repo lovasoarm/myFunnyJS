@@ -261,23 +261,23 @@ const safe = timingSafeEqual(
 
 ## EXERCICES
 
-## EXO 1 : LE POKEDEX SANS DOUBLONS
+## EXO 1 : LE JOURNAL DE MISSIONS SANS DOUBLONS
 
-T'as un pipeline qui reçoit des events de capture de Pokémon. Parfois le même Pokémon arrive deux fois (latence réseau, retry). Tu dois dédupliquer sans stocker tous les events en mémoire.
+T'as un pipeline qui reçoit des events de complétion de mission ninja. Parfois la même mission arrive deux fois (latence réseau, retry). Tu dois dédupliquer sans stocker tous les events en mémoire.
 
 Implémente une fonction `dedupeCaptures(events)` qui :
-- utilise un hash djb2 sur `event.pokemonId + event.timestamp`
+- utilise un hash djb2 sur `event.missionId + event.timestamp`
 - retourne uniquement les events uniques
 - tourne en O(n)
 
 ```js
 const events = [
- { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" },
- { pokemonId: "charizard", timestamp: 1700000001, trainer: "Ash" },
- { pokemonId: "pikachu", timestamp: 1700000000, trainer: "Ash" }, // doublon
- { pokemonId: "mewtwo", timestamp: 1700000002, trainer: "Ash" },
+ { missionId: "rescue-gaara", timestamp: 1700000000, ninja: "Kakashi" },
+ { missionId: "escort-tazuna", timestamp: 1700000001, ninja: "Kakashi" },
+ { missionId: "rescue-gaara", timestamp: 1700000000, ninja: "Kakashi" }, // doublon
+ { missionId: "hunt-orochimaru", timestamp: 1700000002, ninja: "Kakashi" },
 ]
-// résultat attendu : 3 events (le doublon pikachu éliminé)
+// résultat attendu : 3 events (le doublon rescue-gaara éliminé)
 ```
 
 ---

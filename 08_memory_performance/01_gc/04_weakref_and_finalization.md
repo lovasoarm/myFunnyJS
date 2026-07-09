@@ -42,7 +42,7 @@ Callback quand un objet est GC'd :
 const reg = new FinalizationRegistry((token) => {
  console.log("collected", token)
 })
-reg.register(user, "user-1")
+reg.register(shinobi, "shinobi-1")
 ```
 
 Utilité rare : libérer une ressource externe (handle fichier, socket) liée à un objet JS.

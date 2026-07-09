@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Design Patterns)
+# EXO LECTURE : 15-25 minutes (Design Patterns)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait 30-60 lignes qui implémente un pattern (Strategy, Observer, Builder) sans le nommer : issu de `12_design_patterns/` ou de `30_mini_projects/01_rasengan_engine/`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait 30-60 lignes qui implémente un pattern (Strategy, Observer, Builder) sans le nommer : issu de `12_design_patterns/` ou de `30_mini_projects/01_rasengan_engine/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

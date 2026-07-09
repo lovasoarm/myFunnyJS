@@ -227,7 +227,7 @@ Ajoute un endpoint `GET /products` qui accepte les query params `category` et `m
 Si `minPrice` n'est pas un nombre : renvoie un 400 avec un message d'erreur clair.
 Sinon : renvoie les jutsus filtrés (simulés en mémoire).
 
-**EXO 3 : La chaîne de middleware de l'attaque des titans**
+**EXO 3 : La chaîne de middleware du bureau Hokage**
 Implémente un middleware `requireApiKey` : chaque requête doit avoir le header `x-api-key` avec la valeur `"survey-corps"`.
 Si absent ou mauvais : 403.
 Si correct : attache `req.authenticated = true` et passe.

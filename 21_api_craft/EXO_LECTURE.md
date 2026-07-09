@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (API Craft)
+# EXO LECTURE : 15-25 minutes (API Craft)
 Temps de lecture ~2 min
 
 

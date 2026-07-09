@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (OOP en JS)
+# EXO LECTURE : 15-25 minutes (OOP en JS)
 Temps de lecture ~2 min
 
 

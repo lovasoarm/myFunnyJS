@@ -72,4 +72,5 @@ Si tu codes le pipeline en impératif avec des `let` réassignés partout : ça 
 Si ton profiling te dit O(n²) sur un truc qui devrait être O(n log n) : c'est pas la fin du monde, mais c'est un signal que ta structure de données du module 09 a un problème de fond, pas juste un détail d'implémentation.
 
 ---
-stability: intemporel
+
+> **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.

@@ -247,7 +247,7 @@ Une liste vide c'est une liste vide, pas une erreur. `GET /players?team=juventus
 
 ## EXERCICES
 
-**EXO 1 : Le roster de l'attaque des titans**
+**EXO 1 : Le roster de l'académie ninja**
 L'Armée d'Exploration a besoin d'un CRUD complet sur ses membres.
 Chaque membre a `id`, `name`, `rank`, et `kills` (titans éliminés).
 Implémente les 5 opérations. Contraintes :

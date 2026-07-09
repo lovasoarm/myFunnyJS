@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Realtime)
+# EXO LECTURE : 15-25 minutes (Realtime)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait WebSocket / SSE / backpressure ou un scheduler qui coordonne des flux : issu de `20_realtime/` ou `30_mini_projects/11_scheduler/`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait WebSocket / SSE / backpressure ou un scheduler qui coordonne des flux : issu de `20_realtime/` ou `30_mini_projects/11_scheduler/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

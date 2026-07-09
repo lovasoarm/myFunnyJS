@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Web Inclusive (a11y + i18n))
+# EXO LECTURE : 15-25 minutes (Web Inclusive (a11y + i18n))
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui gère un composant accessible (roles ARIA, focus trap) OU un pluriel i18n : issu de `19_web_inclusive/` ou `i18n/`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui gère un composant accessible (roles ARIA, focus trap) OU un pluriel i18n : issu de `19_web_inclusive/` ou `i18n/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

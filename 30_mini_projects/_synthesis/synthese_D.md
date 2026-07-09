@@ -83,4 +83,5 @@ Si tu mets la logique métier dans le middleware au lieu du domaine : ton archit
 Cette synthèse est la plus exigeante du curriculum jusqu'ici. Si tu termines ça sans relire la doc 10 fois : t'es prêt pour les modules 22 à 28.
 
 ---
-stability: intemporel
+
+> **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.

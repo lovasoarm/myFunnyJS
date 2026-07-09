@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Architecture Patterns)
+# EXO LECTURE : 15-25 minutes (Architecture Patterns)
 Temps de lecture ~2 min
 
 

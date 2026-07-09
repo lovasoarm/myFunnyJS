@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Observabilite)
+# EXO LECTURE : 15-25 minutes (Observabilite)
 Temps de lecture ~2 min
 
 

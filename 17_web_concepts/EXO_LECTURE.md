@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Web Concepts)
+# EXO LECTURE : 15-25 minutes (Web Concepts)
 
 Temps de lecture ~2 min
 
@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui manipule DOM/CORS/fetch/CSP ou stream le rendu : issu de `17_web_concepts/`. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui manipule DOM/CORS/fetch/CSP ou stream le rendu : issu de `17_web_concepts/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

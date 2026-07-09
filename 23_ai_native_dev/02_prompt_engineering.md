@@ -5,7 +5,7 @@ L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle rép
 
 La différence entre un bon prompt et un mauvais prompt, c'est pas la magie : c'est la précision. Un bon prompt te donne du code utile. Un mauvais prompt te donne du code qui compile.
 
-C'est exactement le problème de Reiner dans Attack on Titan quand il planifie une attaque. Un briefing flou donne une exécution approximative. Un briefing précis donne le résultat voulu. Sauf qu'avec l'IA, personne ne meurt si tu te rates : t'as juste du code bugué en prod.
+C'est exactement le problème de Shikamaru quand il doit briefer son équipe avant une mission complexe. Un briefing flou donne une exécution approximative. Un briefing précis donne le résultat voulu. Sauf qu'avec l'IA, personne ne meurt si tu te rates : t'as juste du code bugué en prod.
 
 ---
 

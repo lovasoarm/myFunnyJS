@@ -90,4 +90,5 @@ Si tu types avec des champs optionnels au lieu d'un discriminated union : TypeSc
 Si t'as ajouté un pattern juste parce que "ça fait plus pro" : enlève-le. Un code avec 2 patterns justifiés bat toujours un code avec 5 patterns décoratifs.
 
 ---
-stability: intemporel
+
+> **Rappel `DEPENDENCY_LEDGER`** : avant de clore ce bloc, ouvre `DEPENDENCY_LEDGER.md` à la racine et ajoute une ligne par outil IA utilisé (quoi, quand, pourquoi, combien de temps gagné/perdu). Silence = drift.

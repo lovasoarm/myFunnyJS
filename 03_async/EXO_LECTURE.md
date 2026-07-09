@@ -1,4 +1,4 @@
-# EXO LECTURE : 15 minutes (Asynchrone)
+# EXO LECTURE : 15-25 minutes (Asynchrone)
 Temps de lecture ~2 min
 
 

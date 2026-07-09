@@ -81,7 +81,7 @@ Voilà où les gens se font avoir.
 ```js
 try {
  setTimeout(() => {
-  throw new Error("Titan Colossal en approche");
+  throw new Error("Alerte Akatsuki");
   // cette erreur est levée APRÈS que le try/catch a fini de tourner
   // le catch ne la voit jamais
  }, 1000);

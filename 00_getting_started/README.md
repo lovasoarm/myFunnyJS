@@ -18,10 +18,11 @@ Raisons :
 ## Ordre de lecture
 
 1. `01_install.md` : Node 20+, Git, éditeur.
-2. `02_shell_survival.md` : 12 commandes pour survivre.
-3. `03_git_101.md` : clone, add, commit, push, revert.
-4. `04_package_managers.md` : npm vs pnpm vs bun, en 15 min.
-5. `05_devsec_perso.md` : ne pas fuiter tes secrets dès le jour 1.
+2. `02_day_one.md` : contexte du métier, poste de travail, premières lignes de JS.
+3. `02_shell_survival.md` : 12 commandes pour survivre.
+4. `03_git_101.md` : clone, add, commit, push, revert.
+5. `04_package_managers.md` : npm vs pnpm vs bun, en 15 min.
+6. `05_devsec_perso.md` : ne pas fuiter tes secrets dès le jour 1.
 
 ## Sortie du module
 
