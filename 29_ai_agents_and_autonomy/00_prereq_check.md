@@ -1,4 +1,4 @@
-# PRÉREQUIS : 23bis AI Agents & Autonomy
+# PRÉREQUIS : AI Agents & Autonomy
 
 Temps de lecture ~2 min
 

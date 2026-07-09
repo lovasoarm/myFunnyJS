@@ -151,7 +151,7 @@ Oui, explicitement dans le noyau dur : "04 + 06, Error Handling + Testing : sans
 
 Sans tests, chaque modification de code est un pari et chaque déploiement un acte de foi. Ce module te donne les outils pour transformer ça en certitude vérifiable. Le principe ne se démode pas, même si les outils changent.
 
-Maintenant, ouvre `02_unit_sniper.md`. Et arrête d'espérer que ton code marche : commence à le prouver.
+Maintenant, ouvre `01_unit_sniper.md`. Et arrête d'espérer que ton code marche : commence à le prouver.
 
 ---
 stability: intemporel

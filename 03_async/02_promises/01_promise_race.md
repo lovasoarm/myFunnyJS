@@ -44,17 +44,17 @@ Risque : une seule rejection coupe tout. Même si les deux autres ont réussi.
 
 ## 2) PROMISE.RACE : LE PREMIER ARRIVÉ GAGNE
 
-Gojo contre Sukuna. Peu importe qui frappe en premier, c'est lui qui détermine la suite.
+Kakashi contre Obito. Peu importe qui frappe en premier, c'est lui qui détermine la suite.
 
 ```js
 const combat = Promise.race([
- gojoAttaque(),  // 200ms
- sukunaCounter()  // 150ms
+ kakashiAttaque(),  // 200ms
+ obitoContre()  // 150ms
 ])
 
-// Sukuna est plus rapide => c'est lui qui remporte la race
+// Obito est plus rapide => c'est lui qui remporte la race
 combat.then(resultat => {
- console.log("premier coup :", resultat) // résultat de sukunaCounter
+ console.log("premier coup :", resultat) // résultat de obitoContre
 })
 ```
 
@@ -85,14 +85,14 @@ mais on a déjà traité le timeout.
 
 ## 3) PROMISE.ALLSETTLED : TOUT LE MONDE FINIT, VICTOIRE OU PAS
 
-Le recensement après une guerre des Titans. Certains survivants, certains tombés.
+Le recensement après l'attaque de Konoha par Pain. Certains shinobis ont survécu, certains sont tombés.
 On veut le rapport complet, pas juste les vivants.
 
 ```js
 const missions = Promise.allSettled([
- evacuerVillage1(), // résout
- evacuerVillage2(), // rejette : attaque surprise
- evacuerVillage3()  // résout
+ evacuerQuartier1(), // résout
+ evacuerQuartier2(), // rejette : effondrement
+ evacuerQuartier3()  // résout
 ])
 
 missions.then(resultats => {
@@ -115,14 +115,14 @@ Si `fulfilled` : `res.value`. Si `rejected` : `res.reason`.
 
 ## 4) PROMISE.ANY : LE PREMIER QUI RÉUSSIT
 
-Trois équipes cherchent un fragment du Crystal de la Flamme.
+Trois équipes shinobi cherchent le même parchemin interdit dans des zones différentes.
 Une seule suffit à le trouver. On se fout de savoir qui échoue.
 
 ```js
 const recherche = Promise.any([
- equipeA.chercher(), // rejette
- equipeB.chercher(), // résout en premier => gagne
- equipeC.chercher()  // résout mais trop tard
+ equipeKakashi.chercher(), // rejette
+ equipeGai.chercher(), // résout en premier => gagne
+ equipeAsuma.chercher()  // résout mais trop tard
 ])
 
 recherche.then(fragment => {
@@ -170,10 +170,10 @@ Utilise le bon combinator pour récupérer le premier parchemin trouvé, peu imp
 
 ---
 
-## EXO 2 : rapport de mission post-attaque
+## EXO 2 : rapport de mission post-invasion
 
-Après l'attaque de Paradis, Hange doit établir un rapport complet sur 4 opérations simultanées.
-Certaines ont réussi, d'autres pas. Elle a besoin de **toutes** les réponses, même les échecs.
+Après l'invasion de Konoha, l'Hokage doit établir un rapport complet sur 4 opérations simultanées.
+Certaines ont réussi, d'autres pas. Il a besoin de **toutes** les réponses, même les échecs.
 
 Implémente `genererRapport(operations)` qui prend un tableau de Promises et retourne un objet :
 

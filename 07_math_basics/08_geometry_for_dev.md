@@ -350,7 +350,7 @@ function distanceManhattan(a, b) {
  return Math.abs(b.x - a.x) + Math.abs(b.y - a.y)
 }
 
-// dans un jeu de plateau type Shingeki no Kyojin :
+// dans un jeu de plateau type village ninja :
 // combien de déplacements pour aller de (1,1) à (4,5) ?
 const depart = { x: 1, y: 1 }
 const arrivee = { x: 4, y: 5 }

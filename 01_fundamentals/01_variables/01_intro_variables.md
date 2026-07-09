@@ -91,7 +91,7 @@ Chaque variable primitive est autonome. Modifier `b` ne touche pas à `a`.
 ### Objets sur le Heap
 
 ```js
-let hero = { name: "Gojo", power: "Infinity" };
+let hero = { name: "Kakashi", power: "Sharingan" };
 // hero ne contient pas l'objet : il contient une ADRESSE vers l'objet
 // l'objet lui-même vit sur le Heap
 
@@ -109,7 +109,7 @@ Schéma mémoire :
 ```
 Stack         Heap
 -----------      -----------------------------------------
-hero --> [ 0x001 ]  --> { name: "Gojo", power: "Infinity" }
+hero --> [ 0x001 ]  --> { name: "Kakashi", power: "Sharingan" }
 alias --> [ 0x001 ] -/
 ```
 

@@ -19,7 +19,7 @@ Ce qu'il ne fait **pas** :
 - toucher le filesystem
 - dépendre du résultat d'une autre fonction non testée
 
-Si ton test fait ça, c'est un test d'intégration (voir `05_integration_reactor.md`).
+Si ton test fait ça, c'est un test d'intégration (voir `04_integration_reactor.md`).
 
 ```js
 // PAS un unit test : dépend d'une API externe

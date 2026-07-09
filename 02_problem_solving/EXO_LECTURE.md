@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui décompose un problème (fichier `01_decompose.md` ou `03_choose_an_approach.md`) : repère les 5 sous-problèmes. 15-30 minutes de lecture, pas plus.
+On te fournit un extrait qui décompose un problème (fichier `02_decompose.md` ou `04_choose_an_approach.md`) : repère les 5 sous-problèmes. 15-30 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

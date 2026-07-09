@@ -26,7 +26,7 @@ Tu es sur MyFunnyJS depuis 3 mois. Depuis 15 jours, tu as l'impression de pataug
 ### Question 3 : "Est-ce un plateau de DEBUG ou de CONCEPTION ?"
 
 - **Debug** (mon code plante et je tourne en rond) : ouvre `04_debugging/HYPOTHESES_TEMPLATE.md` et remplis-le au propre. Interdiction absolue de coder tant que le template n'est pas rempli sur 3 hypothèses. 90% du temps, la 2e hypothèse t'a débloqué avant même de coder. Fin.
-- **Conception** (je ne sais pas par où commencer) : ouvre `02_problem_solving/03_choose_an_approach.md`, applique Polya, découpe en 5 sous-problèmes. Attaque le plus petit. Fin.
+- **Conception** (je ne sais pas par où commencer) : ouvre `02_problem_solving/04_choose_an_approach.md`, applique Polya, découpe en 5 sous-problèmes. Attaque le plus petit. Fin.
 
 ### Question 4 : "As-tu réduit tes sessions à < 30 min sur 3 jours de suite ?"
 

@@ -9,7 +9,7 @@ Temps de lecture ~5 min
 
 ## Protocole
 
-1. Reproduis (voir `04_debugging/03_repro_before_fix.md`). Boucle : `for i in $(seq 10000); do ...`.
+1. Reproduis (voir `04_debugging/04_repro_before_fix.md`). Boucle : `for i in $(seq 10000); do ...`.
 2. Instrumente : logs avec `performance.now()` haute résolution + correlation ID par requête.
 3. Identifie la **section critique** (les 2 lignes qui doivent être atomiques).
 4. Choisis un remède : mutex applicatif, opération atomique DB (`UPDATE ... SET n = n + 1`), file d'attente, versionning optimiste.

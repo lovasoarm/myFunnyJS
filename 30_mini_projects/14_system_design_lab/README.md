@@ -35,7 +35,7 @@ Contraintes non négociables :
 ## LIVRABLES
 
 1. `ARCHITECTURE.md` : diagramme ASCII + décisions (queue, DB, retry policy).
-2. `ADR-001.md` : pourquoi Redis vs RabbitMQ (ou autre).
+2. `ADR-001_decision.md` : pourquoi Redis vs RabbitMQ (ou autre).
 3. Code fonctionnel + `docker-compose up` qui marche du premier coup.
 4. **Chaos test** : tue le worker en plein traitement, tue le broker 30 s, coupe le réseau front↔broker. Vérifie que rien n'est perdu ni dupliqué.
 5. `POSTMORTEM.md` : ce qui a cassé, ce que t'as appris, ce que tu changerais.
@@ -64,4 +64,4 @@ Après 30 minutes de conception, tu reçois deux contraintes contradictoires imp
 - "Le système doit maintenant supporter le mode offline côté front."
 - "Le budget infra est divisé par deux : un service de moins."
 
-Tu dois adapter ton architecture pour absorber les deux, ou arbitrer explicitement laquelle tu sacrifies partiellement et pourquoi. Documente la bascule dans un ADR supplémentaire `ADR-002_chaos_contraintes.md` : ce que tu changes, ce que tu abandonnes, le trade-off assumé. C'est le mur d'AOT : la brèche arrive quand tu ne l'attends pas, et l'ingénieur se juge à sa réaction, pas à son plan initial.
+Tu dois adapter ton architecture pour absorber les deux, ou arbitrer explicitement laquelle tu sacrifies partiellement et pourquoi. Documente la bascule dans un ADR supplémentaire `ADR-003_chaos_contraintes.md` : ce que tu changes, ce que tu abandonnes, le trade-off assumé. C'est le mur d'AOT : la brèche arrive quand tu ne l'attends pas, et l'ingénieur se juge à sa réaction, pas à son plan initial.

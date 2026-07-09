@@ -47,7 +47,7 @@ façon fiable (cf. `04_debugging/04_repro_before_fix.md`).
 
 ### 3. ADR de refonte partielle
 
-Dans `ADR/001-refonte-partielle.md` : quels modules tu refactores, lesquels
+Dans `ADR/ADR-003_scope_refonte.md` : quels modules tu refactores, lesquels
 tu laisses tels quels, pourquoi (coût vs risque). Utilise le template
 `27_team_craft/02_adr_writing.md`.
 
@@ -84,7 +84,7 @@ type : mesure `--prof`").
 
 ## Livrable
 
-- `ONBOARDING.md`, `REPRO.md`, `ADR/001-refonte-partielle.md`,
+- `ONBOARDING.md`, `REPRO.md`, `ADR/ADR-003_scope_refonte.md`,
  `WRITE_UP.md`, `BENCH.md`,
 - PR ouverte sur ton fork,
 - CI verte.

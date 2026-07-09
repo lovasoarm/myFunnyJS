@@ -17,7 +17,7 @@ Preuve à sortir : `30_mini_projects/13_memory_hunter/LEAK_REPORT_*.md`.
 
 > "L'IA propose 10 solutions. Elle ne choisit pas. Ma valeur, c'est de peser un trade-off avec le contexte métier, l'écrire dans un ADR, et défendre le choix 6 mois plus tard face à quelqu'un qui n'était pas là. Voici mon ADR sur l'eviction du cache : voilà pourquoi j'ai pris LRU et pas LFU."
 
-Preuve : `ADR-001-eviction-policy.md`.
+Preuve : `13_memory_hunter/ADR/ADR-001_decision.md`.
 
 ---
 

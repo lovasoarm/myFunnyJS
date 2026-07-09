@@ -58,7 +58,7 @@ $ node verify.js
 2. `worker.js` : envoie des increments avec retry backoff.
 3. `chaos.js` : injecte 3 scénarios (`race`, `kill-mid`, `network-drop`).
 4. `verify.js` : compare total observé vs attendu, sort code 0 ou 1.
-5. `ADR-001-idempotence.md` : pourquoi tu as choisi une clé UUID par op et pas un
+5. `ADR-001_decision.md` : pourquoi tu as choisi une clé UUID par op et pas un
   compteur monotone par worker. Trade-offs.
 
 Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS anticipé au design et qui est apparu au chaos.

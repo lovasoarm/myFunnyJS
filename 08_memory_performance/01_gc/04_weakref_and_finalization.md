@@ -6,10 +6,10 @@ Une référence normale garde en vie. Une `WeakRef` dit : "si personne d'autre n
 ## WeakRef
 
 ```js
-let user = { id: 1, name: "Naruto" }
-const ref = new WeakRef(user)
+let shinobi = { id: 1, name: "Naruto" }
+const ref = new WeakRef(shinobi)
 
-user = null      // plus de référence forte
+shinobi = null      // plus de référence forte
 // à un moment, le GC collecte
 ref.deref()      // undefined (peut-être)
 ```
@@ -22,11 +22,11 @@ Cache d'objets lourds indexés par ID, où tu acceptes de recharger si le GC est
 
 ```js
 const cache = new Map() // id -> WeakRef
-function getUser(id) {
+function getShinobi(id) {
  const ref = cache.get(id)
- const u = ref?.deref()
- if (u) return u
- const fresh = loadUser(id)
+ const s = ref?.deref()
+ if (s) return s
+ const fresh = loadShinobi(id)
  cache.set(id, new WeakRef(fresh))
  return fresh
 }

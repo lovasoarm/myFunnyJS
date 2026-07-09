@@ -113,7 +113,7 @@ Logs lisibles en prod           custom error + serialisation JSON
 → Leçon complète async errors : `04_async_error_traps.md`
 → Leçon complète stratégies : `05_error_strategy.md`
 → Async en profondeur : `03_async/`
-→ Testing des erreurs : `03_testing_first/04_mocking_madness.md`
+→ Testing des erreurs : `06_testing/03_mocking_madness.md`
 
 ---
 

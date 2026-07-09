@@ -5,7 +5,7 @@ L'Armure de Garo ne dépend pas de la marque des bottes que León porte. Elle fo
 
 La question que ce pattern répond : comment écrire du code qui survit au changement d'outil ?
 
-Prérequis : `02_mvc_pattern.md`, `12_design_patterns/02_structural/02_adapter_pattern.md`, `13_refactoring/02_solid_principles.md`.
+Prérequis : `03_mvc_pattern.md`, `12_design_patterns/02_structural/02_adapter_pattern.md`, `13_refactoring/02_solid_principles.md`.
 
 > Ce module s'appuie sur le principe de Responsabilité Unique (SRP) et de découplage (couplage : degré de dépendance entre deux modules).
 > La source de vérité pour SRP et couplage est `13_refactoring/02_solid_principles.md`.

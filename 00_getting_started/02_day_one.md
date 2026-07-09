@@ -27,7 +27,10 @@ Pas un développeur "qui sait faire une todo-list". Un **ingénieur** qui :
   comprendre, c'est regarder quelqu'un faire des pompes à ta place.
 - **Tu remplis TDD_JOURNAL et POSTMORTEM.** L'expérience non écrite s'oublie.
 - **Tu mesures ta dépendance à l'IA** (`DEPENDENCY_LEDGER.md`). Une règle non
-  mesurée reste une croyance.
+  mesurée reste une croyance. **Ce fichier n'existe pas encore : crée-le à la
+  racine de ton propre repo maintenant**, en copiant la structure de
+  `.audit/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
+  contenu à lire).
 
 ### Ratio lecture / écriture (règle Thor)
 

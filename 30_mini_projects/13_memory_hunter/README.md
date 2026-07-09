@@ -31,7 +31,7 @@ Ce projet prouve que je sais lire un heap snapshot, corréler une allocation à 
 ## Ce que tu dois livrer
 
 - `LEAK_REPORT_01.md` … `LEAK_REPORT_05.md` : cause racine, preuve (snapshot), correction, mesure.
-- `ADR-001-eviction-policy.md` : quel LRU tu as choisi, pourquoi.
+- `ADR-001_decision.md` : quel LRU tu as choisi, pourquoi.
 - `POSTMORTEM.md` : ce que tu ferais différemment.
 
 ## Critères d'acceptation
