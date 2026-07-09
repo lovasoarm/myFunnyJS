@@ -1,4 +1,5 @@
 # 03 : LIRE UNE TRACE D'AGENT COMME UNE STACK TRACE
+
 Temps de lecture ~25 min
 
 40 actions enchaînées, chacune "raisonnable", et le résultat casse la prod. La cause
@@ -10,6 +11,7 @@ faut apprendre à sauter et à trier.
 ## Qu'est-ce qu'une trace, exactement
 
 Une trace, c'est le journal ordonné des actions de l'agent :
+
 ```
 [001] READ src/auth/login.js
 [002] READ src/auth/session.js
@@ -66,7 +68,7 @@ prémisse pourrie.
 Lire la trace linéairement de 1 à 40. Tu vas te faire embarquer par la logique de
 l'agent. Lis-la par sauts : lis les décisions, ignore les diffs, puis re-lis les
 diffs uniquement à partir de la décision qui pue. Cette lecture par sauts est
-un muscle qui se travaille — les 5-10 premières traces te prennent 40 min,
+un muscle qui se travaille : les 5-10 premières traces te prennent 40 min,
 la 20e te prend 8 min.
 
 ## Le piège de la "trace lisible"
@@ -95,6 +97,7 @@ taux de reverts à 30 jours divise par 3.
 
 Un dépôt d'exemple `29_ai_agents_and_autonomy/traces_pool/`
 contient 3 traces réelles :
+
 - `trace_A.md` : agent qui a "amélioré" une fonction en cassant l'API publique.
 - `trace_B.md` : agent qui a corrigé le bug mais désactivé un test.
 - `trace_C.md` : agent qui a fait exactement ce qu'on demandait : et c'était mauvais.
@@ -110,7 +113,7 @@ Pour chaque trace auditée, tiens un fichier `TRACE_REVIEW.md` dans ton dépôt 
 ```
 ## Trace agent 2026-07-04 (PR #482)
 Décisions repérées : 11 sur 43 actions
-Racine identifiée : action 05 — "j'utilise Map<> pour la cache"
+Racine identifiée : action 05 : "j'utilise Map<> pour la cache"
    → alors que le projet impose `LRUCache` (règle non écrite, ADR-007)
 Contamination : actions 06 à 41 (35 actions dépendantes)
 Verdict : revert complet + spec B.O.R.N.É. rewrite (Non-goals a oublié LRUCache)
@@ -129,4 +132,5 @@ suivant. Sans lecture correcte de la trace, ton refus est un caprice ;
 sans refus argumenté, ta lecture est de la culture inutile.
 
 ---
+
 stability: perissable
