@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# 00_getting_started : lis-moi avant de coder
+# Lis-moi avant de coder
 
 Temps de lecture ~2 min
 
