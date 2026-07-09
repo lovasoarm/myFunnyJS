@@ -1,4 +1,4 @@
-# Frontieres entre 12 (Design Patterns), 13 (Refactoring) et 16 (Architecture)
+# Frontieres entre 12 (Design Patterns), 13 (Refactoring), 16 (Architecture) et 18 (OOP JS)
 -> ~5 min
 
 Trois modules qui parlent d'organisation du code. Ils ne se recouvrent pas.
@@ -39,6 +39,25 @@ meme chose sous trois titres".
 On parle de "frontieres". Elles sont poreuses en pratique. Ce tableau
 sert d'aide a la decision quand tu **commences** une lecon, pas de
 verite absolue.
+
+
+## Et 18 (OOP JS) dans tout ca ?
+
+`18_oop_js` traite du **mecanisme JS de l'orientation objet** (prototype chain,
+`class`, `this`, heritage, mixins). C'est de la mecanique de langage, pas
+une strategie d'organisation :
+
+| Question posee | 18 OOP JS |
+|---|---|
+| Echelle | 1 objet / 1 prototype |
+| Point de depart | "comment JS implemente l'heritage" |
+| Livrable | code JS qui exploite proprement le prototype chain |
+| Reference culte | You Don't Know JS: Objects & Classes (Simpson) |
+| Exemple typique | prototype pollution, `Object.create`, `class` sugar |
+| Ne fait PAS | choisir un pattern GoF ; refactorer un module |
+| Signal "mauvais module" | tu discutes de Strategy vs Factory -> va en 12 ; tu discutes de qui parle a qui -> va en 16 |
+
+Regle : **18 = COMMENT ca marche en JS. 12 = QUELLE intention j'exprime. 13 = COMMENT je re-arrange sans casser. 16 = COMMENT le systeme entier est cable.**
 
 ## Reference
 

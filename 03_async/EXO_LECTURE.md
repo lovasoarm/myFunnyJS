@@ -22,5 +22,18 @@ On te fournit un extrait de code avec un `await` dans une boucle vs `Promise.all
 
 Si ton hypothèse était fausse, tant mieux : tu viens d'apprendre où ton modèle mental cloche. Un dev qui lit vite mais faux est plus dangereux qu'un dev lent mais juste.
 
+
+## RÈGLE READ_ONLY_FIRST (non négociable)
+
+**Tu n'as PAS le droit de modifier le code tant que tu ne peux pas :**
+
+1. Expliquer à voix haute ce que fait la fonction / le fichier, en 3 phrases.
+2. Prédire correctement la sortie sur au moins 2 entrées distinctes (sans exécuter).
+3. Nommer une hypothèse implicite du code (ex : "suppose que l'input est trié", "suppose qu'il y a un seul thread").
+
+Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree clean` sur ce fichier. La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
+
+Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+
 ---
 stability: intemporel

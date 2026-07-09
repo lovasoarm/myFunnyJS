@@ -1,3 +1,7 @@
+> **CE MODULE RÉUTILISE** : patterns (12), async & I/O (03), DB (24 anticipé). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) — table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+
 > **L'architecture a un seul but : rendre le changement moins coûteux.**
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ARCHITECTURE PATTERNS

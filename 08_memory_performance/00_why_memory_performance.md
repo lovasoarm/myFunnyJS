@@ -1,3 +1,7 @@
+> **CE MODULE RÉUTILISE** : closures (01), async (03), bits & représentation (07). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
+> **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `07_math_basics/99_PONT_avant_module_08_memory.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
+
 Temps de lecture ~8 min
 
 > **Mesure avant d'optimiser.** Toute optimisation sans profiling est superstition.

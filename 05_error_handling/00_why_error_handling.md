@@ -1,3 +1,5 @@
+> **CE MODULE RÉUTILISE** : try/catch (01), async & promises (03). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ERROR HANDLING
 
 Temps de lecture ~5 min

@@ -30,5 +30,16 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 
 ## Pourquoi c'est vital
 L'AI-native dev, c'est justement savoir OU l'IA doit se taire. Faire ce drill sans elle, c'est mesurer ce qui reste de toi quand l'assistant s'eteint : la base sur laquelle tu decides quand le rallumer.
+
+## Preuve tracable (proof-of-work)
+
+L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
+
+```bash
+bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill ai_native_dev"
+```
+
+Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.
+
 ---
 stability: intemporel

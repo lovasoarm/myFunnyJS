@@ -29,5 +29,16 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 
 ## Pourquoi c'est vital
 Un discriminated union ecrit a la main, un generique contraint proprement : c'est ce qui separe TypeScript-decoration de TypeScript-outil. Sans IA, tu ne peux plus laisser any glisser dans un coin.
+
+## Preuve tracable (proof-of-work)
+
+L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
+
+```bash
+bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill typescript"
+```
+
+Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.
+
 ---
 stability: intemporel

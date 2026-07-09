@@ -29,5 +29,16 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 
 ## Pourquoi c'est vital
 Le cycle HTTP (auth, validation, handler, error) doit tenir dans ta tete avant de tenir dans le code. L'IA te livre le squelette ; ce drill verifie que tu sais dire pourquoi cet ordre-la, et pas un autre.
+
+## Preuve tracable (proof-of-work)
+
+L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
+
+```bash
+bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill web_concepts"
+```
+
+Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.
+
 ---
 stability: intemporel

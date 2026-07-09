@@ -1,3 +1,7 @@
+> **CE MODULE RÉUTILISE** : patterns (12), tests (06), code smells (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) — table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

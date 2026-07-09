@@ -30,3 +30,17 @@ Ouvre `31_annexes/00_arborescence_complete.md`. Ne lis PAS l'intégralité.
   pas un manuel à lire en séquence.
 - ≤ 3/5 juste : refais l'exercice dans 3 jours. La compétence « scanner
   au lieu de lire » se travaille.
+
+
+## RÈGLE READ_ONLY_FIRST (non négociable)
+
+**Tu n'as PAS le droit de modifier le code tant que tu ne peux pas :**
+
+1. Expliquer à voix haute ce que fait la fonction / le fichier, en 3 phrases.
+2. Prédire correctement la sortie sur au moins 2 entrées distinctes (sans exécuter).
+3. Nommer une hypothèse implicite du code (ex : "suppose que l'input est trié", "suppose qu'il y a un seul thread").
+
+Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree clean` sur ce fichier. La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
+
+Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+

@@ -1,3 +1,11 @@
+> **TL;DR (4 lignes)**
+> - Coder seul en 2028 = coder mal en 2029. Ce module te donne le vocabulaire et les réflexes pour survivre en équipe (revue de code, feedback, PR, désaccord technique).
+> - Ce n'est pas du "soft skill" : c'est de l'ingénierie sociale codifiée, mesurable, testable en entretien.
+> - Tu peux lire vite (30 min les gros titres) OU tout (2h avec exercices).
+> - Si tu es solo tech lead en 2028, ce module est ta différence entre "projet vivant" et "projet zombie".
+
+> **CE MODULE RÉUTILISE** : revue de code, communication écrite. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI TEAM CRAFT MÉRITE TON TEMPS
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

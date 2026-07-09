@@ -1,3 +1,5 @@
+> **CE MODULE RÉUTILISE** : HTTP (17), erreurs (05), sécurité (22). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

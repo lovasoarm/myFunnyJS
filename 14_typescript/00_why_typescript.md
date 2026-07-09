@@ -1,3 +1,5 @@
+> **CE MODULE RÉUTILISE** : types JS (01), OOP JS (18). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

@@ -55,5 +55,16 @@ L'OOP en JS n'est pas un système de classes au sens classique : c'est un systè
 
 La vraie compétence de ce module n'est pas de savoir écrire une `class`. C'est de savoir, face à un bug de `this`, un comportement de prototype inattendu, ou une hiérarchie qui devient ingérable, dire précisément ce qui se passe sous le capot et pourquoi.
 
+
+## OÙ L'ANALOGIE CASSE
+
+Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme. Quand tu dois décider (fix, refactor, ADR), retourne au mécanisme réel (prototype chain, `[[Prototype]]`, `this` binding), pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
+
+### Cas où ça casse le plus
+
+- **"`class` = classe Java/C++"** : ment sur le fond. En JS `class` n'est que du sucre sur le prototype chain — pas de type nominal, pas de vraie encapsulation avant `#private`, `instanceof` peut mentir avec `Symbol.hasInstance`.
+- **"héritage = arbre généalogique"** : ment sur la mutation. Un parent en JS peut être remplacé à la volée (`Object.setPrototypeOf`), un enfant peut shadow n'importe quel membre. L'arbre est vivant.
+- **"`this` = moi, l'objet courant"** : ment sur la stabilité. `this` dépend du **call site**, pas de la déclaration. Un même méthode a 4 valeurs de `this` possibles selon comment on l'appelle.
+
 ---
 stability: intemporel

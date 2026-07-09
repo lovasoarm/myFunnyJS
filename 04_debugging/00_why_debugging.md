@@ -1,3 +1,5 @@
+> **CE MODULE RÉUTILISE** : stack trace (01), exceptions (05), async & event loop (03). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # 00 : Pourquoi le debugging
 
 Temps de lecture ~4 min

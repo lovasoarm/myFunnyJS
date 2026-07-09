@@ -1,3 +1,5 @@
+> **CE MODULE RÉUTILISE** : types primitifs (01), opérateurs (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

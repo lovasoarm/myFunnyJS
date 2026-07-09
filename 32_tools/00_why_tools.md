@@ -1,3 +1,11 @@
+> **TL;DR (4 lignes)**
+> - Ta chaîne d'outils (linter, formatter, bundler, LSP, debugger) est ton exosquelette. Un dev sans outils bien réglés perd 30% de son temps à des tâches automatisables.
+> - Ce module te fait construire ta propre chaîne, pas suivre une config copiée-collée d'un tuto de 2021.
+> - Densité forte car périssable : privilégie la compréhension du **rôle** de chaque outil, pas la config du jour.
+> - En 2028, l'IA écrit le code. Ce sont **tes outils** qui te rendent plus rapide qu'elle.
+
+> **CE MODULE RÉUTILISE** : runtime (15), modules (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
 > **Périssable : valable 2026.** L'outil change vite ; le principe (build, format, lint, package) est **intemporel**.

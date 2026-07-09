@@ -1,3 +1,11 @@
+> **TL;DR (4 lignes)**
+> - Un dev junior code le cas passant. Un dev senior chasse les 12 cas limites AVANT qu'ils cassent la prod.
+> - Ce module liste, par catégorie (I/O, temps, réseau, unicode, concurrence…), les pièges qui font tomber les apps sérieuses.
+> - Lecture rapide : la checklist en fin de module. Lecture complète : les histoires de guerre associées à chaque cas.
+> - Un dev qui ne pense pas edge case coûte plus cher en incidents qu'il ne rapporte en features.
+
+> **CE MODULE RÉUTILISE** : tests (06), debugging (04), erreurs (05). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

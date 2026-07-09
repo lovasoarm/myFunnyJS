@@ -29,5 +29,16 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 
 ## Pourquoi c'est vital
 Une connexion realtime (WebSocket, SSE) sans backpressure ni reconnexion, c'est un bug qui n'apparait qu'en prod sous charge. Ecrire ces controles sans IA prouve que tu les as compris, pas juste vus.
+
+## Preuve tracable (proof-of-work)
+
+L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
+
+```bash
+bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill realtime"
+```
+
+Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.
+
 ---
 stability: intemporel

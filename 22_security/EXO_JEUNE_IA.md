@@ -30,5 +30,16 @@ Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
 
 ## Pourquoi c'est vital
 Coder a la main un check timing-safe (drill_2_timing_safe), c'est prouver que tu sais pourquoi un `===` sur un token est deja une faille. Sans ce reflexe interiorise, l'IA te generera un code vulnerable par defaut.
+
+## Preuve tracable (proof-of-work)
+
+L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
+
+```bash
+bash verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill security"
+```
+
+Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.
+
 ---
 stability: stable

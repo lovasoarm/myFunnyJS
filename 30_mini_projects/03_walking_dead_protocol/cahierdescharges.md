@@ -441,5 +441,16 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 [ ] TDD_JOURNAL.md trace dans quel ordre les tests ont été écrits (phase 1 vs phase 2)
 ```
 
+
+## RÔLE DES DOSSIERS (ne skippe pas)
+
+- `src/` : **tu remplis toi-même**. Le dossier est vide exprès — c'est ton livrable. Aucun code fourni.
+- `tests/` : **TDD strict — tu écris le test AVANT le code de `src/`**. Rouge → vert → refactor. Si `tests/` est vide en fin de projet, ce projet ne compte pas dans ton portfolio.
+- `ADR/` : **au moins 1 décision architecturale documentée** (choix de structure, trade-off, alternative rejetée + pourquoi). Format : Contexte / Décision / Conséquences.
+- `POSTMORTEM.md` : **rédigé à la fin, honnête**. Ce qui a foiré, combien de temps t'a coûté chaque blocage, ce que tu referais autrement.
+- `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
+
+**Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
+
 ---
 stability: intemporel

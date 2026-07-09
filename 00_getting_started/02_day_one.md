@@ -1,5 +1,22 @@
 # 02 : DAY ONE (contexte, environnement, premier code)
 
+## QUIZ DE NIVEAU (30 secondes, auto-évalué)
+
+Avant de continuer, réponds honnêtement à ces 5 questions :
+
+- [ ] Je sais ouvrir un terminal (Terminal.app, iTerm, Windows Terminal, bash).
+- [ ] Je sais lancer `node -v` et lire sa sortie.
+- [ ] Je sais ce qu'est une "stack trace" quand une erreur apparaît (même vaguement).
+- [ ] Je sais utiliser `cd`, `ls`, `pwd` dans un terminal.
+- [ ] Je sais créer un fichier `.js` avec mon éditeur et le sauvegarder.
+
+**Score** :
+- **3+ oui** : fonce, tu es prêt pour la suite de ce fichier.
+- **< 3 oui** : ouvre d'abord `02_shell_survival.md` (dans ce même dossier) et reviens ici après. Aucune honte — MyFunnyJS n'est pas un cours de terminal, mais on te renvoie vers la bonne ressource.
+
+Ce quiz n'est pas technique JS. Il ne teste que **l'environnement**. Tu peux ne rien connaître à JS et cocher 5/5.
+
+
 -> ~15 min
 
 > **INTEMPOREL** : les outils changent, l'idée non. Un environnement
