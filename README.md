@@ -17,13 +17,13 @@ Temps de lecture ~2 min
 
 > **AVANT TOUT** : si tu n'as jamais installé Node de ta vie, va faire [`00_getting_started/01_install.md`](00_getting_started/01_install.md) d'abord. Reviens ici après.
 
-> **`.tools/.tools/.tools/verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Considère-le comme une boîte noire fiable.
+> **`.tools/verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Elle compare ta sortie à un résultat attendu ; si ça matche, le test passe. Considère-le comme une boîte noire fiable.
 
 ## CE QUE C'EST
 
 Un curriculum pour passer de "je copie-colle" à "je comprends ce que je fais, pourquoi je le fais, et je peux le défendre 6 mois après".
 
-JS n'est que le vecteur. On construit les **six pierres** qui te rendent difficile à remplacer par une IA : Runtime, Mémoire, Asynchrone, Architecture, Debugging, Pensée Transférable.
+JS n'est que le vecteur. On construit les **six pierres** (détaillées juste ici) qui te rendent difficile à remplacer par une IA : Runtime, Mémoire, Asynchrone, Architecture, Debugging, Pensée Transférable.
 
 En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui reste rare : comprendre, choisir, sécuriser, débugger. Ce curriculum sert à ça.
 

@@ -48,6 +48,9 @@ $ node verify.js
 $ node chaos.js --scenario network-drop # drop 30% des messages
 $ node verify.js
   expected = 500 observed = 500    [OK, at-least-once + dédup]
+$ node chaos.js --scenario network-partition --duration 5s # coupe 2 workers du coordinateur pendant 5s (split-brain)
+$ node verify.js
+  expected = 500 observed = 500    [OK, quorum refuse le split OU réconcilie après reconnect]
 ```
 
 ---
@@ -56,7 +59,7 @@ $ node verify.js
 
 1. `coordinator.js` : reçoit les increments, applique idempotence (clé unique par op).
 2. `worker.js` : envoie des increments avec retry backoff.
-3. `chaos.js` : injecte 3 scénarios (`race`, `kill-mid`, `network-drop`).
+3. `chaos.js` : injecte 4 scénarios (`race`, `kill-mid`, `network-drop`, `network-partition`). Sur `network-partition`, tu DOIS documenter dans l'ADR comment ton système réagit : refus d'écrire côté minoritaire (quorum type Raft) ou acceptation + réconciliation au reconnect (last-write-wins, CRDT, vector clock). Pas de bonne réponse, juste une décision assumée et défendable.
 4. `verify.js` : compare total observé vs attendu, sort code 0 ou 1.
 5. `ADR-001_decision.md` : pourquoi tu as choisi une clé UUID par op et pas un
   compteur monotone par worker. Trade-offs.
@@ -67,7 +70,8 @@ Bonus (mais fortement recommandé) : 6. `POSTMORTEM.md` d'un bug que tu n'as PAS
 
 ## GRILLE DE RÉUSSITE
 
-- [ ] `verify.js` renvoie 0 sur les 3 scénarios chaos, 10 runs consécutifs.
+- [ ] `verify.js` renvoie 0 sur les 4 scénarios chaos, 10 runs consécutifs.
+- [ ] `network-partition` : ton système soit refuse d'écrire côté minoritaire, soit accepte + réconcilie honnêtement. Choix documenté dans l'ADR avec trade-offs (CAP : tu choisis C ou A, tu ne bluffes pas les deux).
 - [ ] `race` reproduit un data race avant fix (branche `broken`), corrigé après.
 - [ ] `kill-mid` : au moins 1 worker relance sa dernière op sans double-comptage.
 - [ ] `network-drop` : at-least-once avec dédup côté coordinateur (par clé UUID).

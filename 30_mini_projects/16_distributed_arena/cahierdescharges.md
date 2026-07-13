@@ -18,7 +18,7 @@ Construire un compteur distribué (coordinateur + workers) et prouver, métrique
 
 ## LIVRABLE
 
-`coordinator.js`, `worker.js`, `chaos.js`, `verify.js`, rapport de chaos, `POSTMORTEM.md`.
+`coordinator.js`, `worker.js`, `chaos.js` (4 scénarios dont `network-partition`/split-brain), `verify.js`, rapport de chaos, `POSTMORTEM.md`.
 
 ## SÉCURITÉ (gate obligatoire)
 

@@ -34,3 +34,6 @@ scripts/
 *.zip
 *.7z
 *.tar.gz
+
+# Changelogs versionnés (méta, non pédagogique)
+CHANGELOG_v*.md

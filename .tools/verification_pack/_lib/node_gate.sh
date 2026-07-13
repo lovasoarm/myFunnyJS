@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bloque tout module si Node < 20. Message pedagogique.
+# Bloque tout module si Node < 20 ou != version .nvmrc. Message pedagogique.
 set -e
 if ! command -v node >/dev/null 2>&1; then
   echo "[NODE_GATE] Node.js absent."
@@ -13,3 +13,6 @@ if [ "${V:-0}" -lt 20 ]; then
   echo "  Fix rapide (nvm) : nvm install 20 && nvm use 20"
   exit 1
 fi
+# Enforce strict match against .nvmrc
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+node "$SCRIPT_DIR/check-node.js"
