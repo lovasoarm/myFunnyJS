@@ -46,6 +46,20 @@ Pas des définitions Wikipedia. Des outils.
 
 ---
 
+## LES 4 ÉTAPES DE POLYA
+
+```
+1. COMPRENDRE    : c'est quoi le problème, vraiment ? (pas ta première interprétation)
+2. PLANIFIER     : quelle stratégie, avant d'écrire une ligne de code ?
+3. EXÉCUTER      : suis le plan, mais adapte si le terrain contredit la carte.
+4. VÉRIFIER      : la solution répond-elle vraiment au problème de l'étape 1 ?
+```
+
+Test rapide : si tu ne peux pas citer ces 4 étapes sans regarder, relis
+`01_polya_method.md` avant de continuer : c'est le socle de tout ce module.
+
+---
+
 ## LIRE UNE SPEC FLOUE : LE PROTOCOLE EN 5 QUESTIONS
 
 ```

@@ -28,6 +28,7 @@ Thumbs.db
 # Maintenance interne (non pédagogique)
 scripts/
 .audit/
+.tools/
 
 # Archives (ne jamais committer)
 *.rar

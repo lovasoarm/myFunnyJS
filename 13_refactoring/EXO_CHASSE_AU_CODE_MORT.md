@@ -17,7 +17,7 @@ Reprends le mini-projet `30_mini_projects/10_legacy_dungeon`. Ton objectif : lis
 
 ## Auto-verification
 ```bash
-bash verification_pack/13_refactoring/verify.sh solution.js
+bash .tools/verification_pack/13_refactoring/verify.sh solution.js
 # doit afficher : drill 2 OK (detection code mort)
 ```
 

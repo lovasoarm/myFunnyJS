@@ -80,7 +80,7 @@ les 4 semaines.
 
 - `23_ai_native_dev/07_solo_vs_copilot_drill.md`
 - `DEPENDENCY_LEDGER.md`
-- `verification_pack/_jeune_ia/run_fasting_drill.sh`
+- `.tools/verification_pack/_jeune_ia/run_fasting_drill.sh`
 
 ---
 stability: perissable

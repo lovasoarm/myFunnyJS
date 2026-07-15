@@ -35,7 +35,7 @@ Si oui : c'est de la fatigue déguisée en plateau. Une semaine off. Vraiment of
 ### Question 5 : "As-tu essayé d'expliquer ton blocage à voix haute pendant 3 minutes ?"
 
 - **Non** : fais-le. Enregistre-toi. Réécoute. Le blocage se nomme souvent tout seul. Fin.
-- **Oui, ça n'a rien donné** : ouvre un `EXO_JEUNE_IA.md` du module courant. Demande à l'IA de te poser 3 questions socratiques sur ton blocage : pas de te donner la réponse. Cf `verification_pack/_jeune_ia/README.md`. Fin.
+- **Oui, ça n'a rien donné** : ouvre un `EXO_JEUNE_IA.md` du module courant. Demande à l'IA de te poser 3 questions socratiques sur ton blocage : pas de te donner la réponse. Cf `.tools/verification_pack/_jeune_ia/README.md`. Fin.
 
 ### Question 6 : "Coupe l'IA 48 h"
 

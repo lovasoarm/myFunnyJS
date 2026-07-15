@@ -78,8 +78,9 @@ Puis ouvre [`START_HERE.md`](./START_HERE.md).
 
 Licence : voir [`LICENSE`](./LICENSE) : tu peux réutiliser et adapter le matériel
 dans le cadre qui y est décrit. Communauté : `COMMUNAUTE.md`. Version de Node :
-`.nvmrc` (référence) détaillée dans `31_annexes/toolchain/NODE_VERSIONS.md`. Journal d'audit interne (non pédagogique) : `.audit/` (dont
-`CORRECTIONS_APPLIQUEES.md`, un journal interne que l'apprenant peut ignorer.
-`DEPENDENCY_LEDGER.md` est différent : c'est TON livrable personnel (voir
-`00_getting_started/02_day_one.md`), à créer et tenir à jour à la racine
+`.nvmrc` (référence) détaillée dans `31_annexes/toolchain/NODE_VERSIONS.md`.
+Journal d'audit interne (non pédagogique, ignore-le) : `.audit/`,
+dont `DEPENDENCY_LEDGER.md`, fourni comme modèle vide à copier : ce n'est
+pas TON registre personnel. Ton propre `DEPENDENCY_LEDGER.md` (voir
+`00_getting_started/02_day_one.md`) est à créer et tenir à jour à la racine
 de ton propre projet, pas un fichier fourni par le curriculum.

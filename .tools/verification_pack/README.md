@@ -28,12 +28,12 @@ script sort en code non-zéro.
 
 Sanity individuel (un seul module) :
 ```
-bash verification_pack/03_async/verify.sh
+bash .tools/verification_pack/03_async/verify.sh
 ```
 
 Filet complet (tous les modules) :
 ```
-bash verification_pack/verify_all.sh
+bash .tools/verification_pack/verify_all.sh
 ```
 
 Sortie attendue : `[OK] Tous les modules ont passé le filet déterministe.`
@@ -60,7 +60,7 @@ Ajouter un drill à un module existant :
    par le `verify.sh` du module (glob sur `scripts/*.js`).
 
 Ajouter un module :
-1. Créer le dossier `verification_pack/<module>/` avec la même
+1. Créer le dossier `.tools/verification_pack/<module>/` avec la même
    arborescence.
 2. Copier un `verify.sh` existant : le template est générique.
 

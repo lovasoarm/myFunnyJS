@@ -800,7 +800,7 @@ START_HERE.md
   05_tools_grimoire.md
 assets/
   title.svg
-verification_pack/
+.tools/verification_pack/
   01_fundamentals/
     expected/
       drill_1_sum.txt

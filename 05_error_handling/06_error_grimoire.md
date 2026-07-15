@@ -105,6 +105,38 @@ Logs lisibles en prod           custom error + serialisation JSON
 
 ---
 
+## CHECK RAPIDE : LES PIÈGES QU'ON OUBLIE
+
+```
+throw new Error("x") vs throw "x"
+  → new Error() capture la stack trace au moment du throw.
+  → throw "x" ne capture rien : impossible de savoir d'où ça vient en prod.
+
+try/catch/finally, ordre d'exécution :
+  → erreur levée dans try  : catch s'exécute, PUIS finally, PUIS propagation
+    si catch a re-throw (ou pas de propagation si catch a géré).
+  → pas d'erreur          : try se termine, finally s'exécute quand même.
+  → finally tourne TOUJOURS, que l'erreur soit gérée ou non.
+
+Promise rejetée jamais catch/await-ée (Node 20+) :
+  → déclenche l'event 'unhandledRejection', et Node 20+ TERMINE le process
+    par défaut (comportement différent des vieilles versions qui logguaient
+    juste un warning).
+
+throw dans un callback synchrone passé à setTimeout :
+  → le throw remonte dans le contexte d'exécution du callback, PAS dans le
+    contexte où setTimeout a été appelé. Le try autour de setTimeout(...)
+    est déjà "sorti" (call stack vidée) quand le callback s'exécute plus
+    tard : il ne peut structurellement rien attraper.
+
+Quand catch(e) DOIT re-throw plutôt qu'avaler :
+  → si tu ne sais pas traiter l'erreur à cet endroit précis (pas de fallback
+    sensé, pas de retry pertinent) : rethrow. Avaler silencieusement une
+    erreur qu'on ne sait pas gérer transforme un bug visible en bug fantôme.
+```
+
+---
+
 ## RÉFÉRENCES
 
 → Leçon complète try/catch : `01_try_catch_basics.md`
