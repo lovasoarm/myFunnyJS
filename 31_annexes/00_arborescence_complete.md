@@ -1,19 +1,12 @@
 # Arborescence complète du projet MyFunnyJS
 
-Temps de lecture ~6 min
+Pas un chapitre à lire. Une carte à consulter au besoin (voir
+`EXO_LECTURE.md` pour l'exercice qui t'entraîne à t'en servir vite plutôt
+qu'à la lire en entier). Régénérée automatiquement par
+`scripts/gen_arborescence.sh` : ne pas éditer cette section à la main,
+relancer le script après tout ajout/renommage de fichier.
 
-
-> Générée automatiquement. Ne pas éditer à la main.
-
-./
 .nvmrc
-COMMUNAUTE.md
-DEPENDENCY_LEDGER.md
-LICENSE
-NODE_VERSIONS.md
-POSTMORTEM_TEMPLATE.md
-README.md
-START_HERE.md
 00_getting_started/
   00_why_getting_started.md
   01_install.md
@@ -25,7 +18,9 @@ START_HERE.md
   README.md
   package.json
 00_referentiel/
+  00_prereq_check.md
   00_why_referentiel.md
+  01_micro_quiz_15_mots.md
   SORTIR_D_UN_PLATEAU.md
   competences.md
   where_you_stand.md
@@ -76,18 +71,23 @@ START_HERE.md
     03_regex_extractor.md
     04_regex_grimoire.md
   08_git_core.md
+  99_PONT_avant_module_03_async.md
   EXO_IA_MENTEUSE.md
   EXO_JEUNE_IA.md
+  EXO_LECTURE.md
+  expliquer_a_3_publics_closures.md
 02_problem_solving/
   00_prereq_check.md
   00_why_problem_solving.md
-  01_decompose.md
   01_polya_method.md
-  02_model_before_code.md
-  03_choose_an_approach.md
-  04_read_fuzzy_requirements.md
-  05_design_for_change.md
-  06_problem_solving_grimoire.md
+  02_decompose.md
+  03_model_before_code.md
+  04_choose_an_approach.md
+  05_read_fuzzy_requirements.md
+  06_design_for_change.md
+  07_problem_solving_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 03_async/
   00_mental_model_js.md
   00_prereq_check.md
@@ -110,10 +110,14 @@ START_HERE.md
     01_microtask_madness.md
     02_macrotask_monsters.md
     03_event_loop_grimoire.md
+    04_exo_microloop_a_la_main.md
+    expliquer_a_3_publics.md
+    expliquer_a_5_ans.md
   05_advanced_patterns.md
   06_backpressure.md
   07_shared_memory_concurrency.md
   08_event_loop_drill_5ans.md
+  99_PONT_avant_module_08_memory.md
   EXO_IA_MENTEUSE.md
   EXO_JEUNE_IA.md
   EXO_LECTURE.md
@@ -133,10 +137,20 @@ START_HERE.md
   CONSIGNE_HYPOTHESES_OBLIGATOIRE.md
   EXO_DEBUG_AVEUGLE.md
   EXO_JEUNE_IA.md
+  EXO_LECTURE.md
   HYPOTHESES_EXEMPLE.md
   HYPOTHESES_EXEMPLE_REPRO_DETERMINISTE.md
   HYPOTHESES_TEMPLATE.md
+  flaky.js
+  heisenbug_arena.md
+  humain_vs_ia_diff.md
+  scenarios/
+    README.md
+    scenario_1_debounce.js
+    scenario_2_double_post.js
+    scenario_3_react_stale_state.jsx
 05_error_handling/
+  00_prereq_check.md
   00_why_error_handling.md
   01_try_catch_basics.md
   02_custom_errors.md
@@ -144,6 +158,8 @@ START_HERE.md
   04_async_error_traps.md
   05_error_strategy.md
   06_error_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 06_testing/
   00_prereq_check.md
   00_why_testing.md
@@ -156,7 +172,9 @@ START_HERE.md
   07_contract_testing_pact.md
   08_e2e_playwright_beast.md
   09_test_strategy_not_framework.md
-  09_testing_grimoire.md
+  10_testing_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 07_math_basics/
   00_prereq_check.md
   00_why_math_basics.md
@@ -166,8 +184,12 @@ START_HERE.md
   04_hashing_basics.md
   05_probability_random.md
   06_combinatorics_lite.md
-  07_geometry_for_dev.md
-  08_math_grimoire.md
+  07_bits_and_memory_bridge.md
+  08_geometry_for_dev.md
+  09_math_grimoire.md
+  99_PONT_avant_module_08_memory.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 08_memory_performance/
   00_measure_first.md
   00_prereq_check.md
@@ -180,6 +202,10 @@ START_HERE.md
     05_heap_snapshot_hands_on.md
     06_detached_dom_leak.md
     07_worker_leak_reproduction.md
+    fixtures/
+      README.md
+      fixed_case.js
+      leak_case.js
   02_copy_vs_ref/
     01_shallow_vs_deep.md
     02_mutation_minefield.md
@@ -202,11 +228,11 @@ START_HERE.md
   06_jit/
     01_jit_basics.md
     02_flamegraph_heap_reading.md
-  07_memory_perf_grimoire.md
   08_heap_snapshot_workshop.md
   09_memory_perf_grimoire.md
   EXO_JEUNE_IA.md
   EXO_LECTURE.md
+  expliquer_a_3_publics_gc.md
 09_data_structures/
   00_prereq_check.md
   00_why_data_structures.md
@@ -241,6 +267,8 @@ START_HERE.md
     03_suffix_array.md
     README.md
   10_data_structures_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 10_algorithms/
   00_prereq_check.md
   00_why_algorithms.md
@@ -268,6 +296,7 @@ START_HERE.md
     03_topological_sort.md
   07_algorithms_grimoire.md
   EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 11_functional_js/
   00_prereq_check.md
   00_why_functional_js.md
@@ -276,12 +305,12 @@ START_HERE.md
   03_composition.md
   04_currying.md
   05_partial_application.md
-  05b_iterators_symbol.md
-  06_fp_challenge.md
   06_iterators_symbol.md
   07_fp_challenge.md
-  07_fp_grimoire.md
   08_fp_grimoire.md
+  99_PONT_avant_module_12_design_patterns.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 12_design_patterns/
   00_prereq_check.md
   00_why_design_patterns.md
@@ -298,7 +327,10 @@ START_HERE.md
     02_strategy_pattern.md
     03_command_pattern.md
   04_patterns_grimoire.md
+  EXO_FRONTIERE.md
   EXO_IA_MENTEUSE.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 13_refactoring/
   00_prereq_check.md
   00_smell_detection.md
@@ -312,6 +344,8 @@ START_HERE.md
   08_smell_hunter.md
   09_refacto_grimoire.md
   EXO_CHASSE_AU_CODE_MORT.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 14_typescript/
   00_prereq_check.md
   00_why_typescript.md
@@ -329,12 +363,14 @@ START_HERE.md
     02_mapped_types.md
     03_ts_in_real_project.md
   04_typescript_grimoire.md
-  06_advanced/
+  04_typescript_tooling/
     00_why_typescript_advanced.md
     01_declaration_files.md
     02_ts_compiler_config.md
     03_ts_migration_guide.md
     04_ts_advanced_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 15_runtime_env/
   00_prereq_check.md
   00_why_runtime_env.md
@@ -349,15 +385,18 @@ START_HERE.md
     03_automation_scripts.md
     04_cli_tool_builder.md
   07_runtime_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 16_architecture_patterns/
   00_prereq_check.md
   00_why_architecture_patterns.md
   01_module_pattern.md
-  02_mvc_pattern.md
-  03_clean_architecture.md
-  04_event_driven.md
-  05_microservices_intro.md
-  06_architecture_grimoire.md
+  02_solid_principles.md
+  03_mvc_pattern.md
+  04_clean_architecture.md
+  05_event_driven.md
+  06_microservices_intro.md
+  07_architecture_grimoire.md
   EXO_JEUNE_IA.md
   EXO_LECTURE.md
 17_web_concepts/
@@ -371,6 +410,8 @@ START_HERE.md
   06_serialization.md
   07_seo_and_rendering.md
   08_web_concepts_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 18_oop_js/
   00_prereq_check.md
   00_why_oop_js.md
@@ -384,7 +425,9 @@ START_HERE.md
   08_static_getters_setters.md
   09_composition_vs_inheritance.md
   10_oop_js_grimoire.md
+  EXO_JEUNE_IA.md
   EXO_LECTURE.md
+  expliquer_a_3_publics_prototypes.md
 19_web_inclusive/
   00_prereq_check.md
   00_why_accessibility.md
@@ -395,6 +438,8 @@ START_HERE.md
   05_screen_readers.md
   06_a11y_audit.md
   07_a11y_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
   i18n/
     00_prereq_check.md
     00_why_i18n.md
@@ -417,6 +462,8 @@ START_HERE.md
     01_webrtc_concepts.md
     02_webrtc_demo.md
   04_realtime_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 21_api_craft/
   00_prereq_check.md
   00_why_api_craft.md
@@ -444,6 +491,7 @@ START_HERE.md
   09_supply_chain_sbom.md
   10_audit_your_supply_chain.md
   EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 23_ai_native_dev/
   00_prereq_check.md
   00_why_ai_native_dev.md
@@ -452,13 +500,15 @@ START_HERE.md
   03_validate_ai_output.md
   04_ai_refactor_partner.md
   05_ai_test_generator.md
-  06_ai_grimoire.md
+  06_partition_drill.md
   07_solo_vs_copilot_drill.md
   08_ai_code_review_arena.md
-  09_ai_grimoire.md
   09_ai_hallucination_gym.md
   10_ambiguous_ai_response.md
+  11_lire_humain_vs_lire_ia.md
+  12_ai_grimoire.md
   EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 24_databases/
   00_prereq_check.md
   00_why_databases.md
@@ -468,35 +518,37 @@ START_HERE.md
   04_redis_caching.md
   05_db_in_js.md
   06_databases_grimoire.md
+  99_du_single_node_au_cluster.md
+  EXO_JEUNE_IA.md
   EXO_LECTURE.md
 25_scalability/
-  00_distributed_fallacies.md
-  00_distributed_primitives.md
-  00_distributed_thinking.md
   00_prereq_check.md
   00_why_scalability.md
-  01_load_balancing.md
-  02_horizontal_vs_vertical.md
-  03_rate_limiting.md
-  04_message_queues.md
-  05_scalability_grimoire.md
+  01_distributed_thinking.md
+  02_distributed_primitives.md
+  03_distributed_fallacies.md
+  04_load_balancing.md
+  05_horizontal_vs_vertical.md
+  06_rate_limiting.md
+  07_message_queues.md
+  08_scalability_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 26_observability/
   00_prereq_check.md
   00_why_observability.md
   01_structured_logging.md
   02_distributed_tracing.md
-  03_metrics_alerting.md
   03_tracing_paper_drill.md
   04_metrics_alerting.md
-  04_sentry_in_prod.md
-  05_debug_in_prod.md
   05_sentry_in_prod.md
   06_debug_in_prod.md
-  06_prod_stack_trace_drill.md
-  07_observability_grimoire.md
   07_prod_stack_trace_drill.md
   08_oncall_drill.md
+  09_instrumenter_ton_projet.md
   09_observability_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 27_team_craft/
   00_prereq_check.md
   00_why_team_craft.md
@@ -504,17 +556,19 @@ START_HERE.md
   02_adr_writing.md
   03_technical_writing.md
   04_navigate_codebase.md
-  05_mental_health.md
   05_pair_programming.md
-  06_sprint_hell.md
-  07_team_grimoire.md
+  06_mental_health.md
+  07_sprint_hell.md
   08_how_to_ask.md
   09_dire_je_ne_sais_pas.md
   10_rfc_simulation.md
   11_tech_pitch.md
   12_three_audiences_intro.md
-  13_argumentaire_technique.md
   13_three_audiences_drill.md
+  14_argumentaire_technique.md
+  15_team_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
   EXO_TROIS_PUBLICS.md
 28_edge_cases/
   00_prereq_check.md
@@ -526,7 +580,11 @@ START_HERE.md
   05_race_condition_hunter.md
   06_heisenbug_arena.md
   07_edge_cases_grimoire.md
+  99_PONT_28_29.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
 29_ai_agents_and_autonomy/
+  00_bridge_exo.md
   00_prereq_check.md
   00_why_ai_agents.md
   01_agents_vs_copilots.md
@@ -536,15 +594,26 @@ START_HERE.md
   05_agent_sandbox_hygiene.md
   06_agents_grimoire.md
   07_agent_hallucination_gym.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
   EXO_PARTITION_HUMAIN_IA.md
+  traces_pool/
+    trace_A.md
+    trace_B.md
+    trace_C.md
 30_mini_projects/
   00_prereq_check.md
   00_why_mini_projects.md
   01_rasengan_engine/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -554,8 +623,13 @@ START_HERE.md
   02_garo_no_kronika/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -565,8 +639,14 @@ START_HERE.md
   03_walking_dead_protocol/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -576,8 +656,13 @@ START_HERE.md
   04_breaking_cache/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -587,8 +672,13 @@ START_HERE.md
   05_prison_break_api/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -598,8 +688,13 @@ START_HERE.md
   06_ultras_dashboard/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -609,8 +704,13 @@ START_HERE.md
   07_ballon_dor_cli/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -620,8 +720,13 @@ START_HERE.md
   08_trapsoul_radio/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -631,8 +736,13 @@ START_HERE.md
   09_oracle_glitch/
     ADR/
       ADR-001_choix_architecture.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -642,9 +752,13 @@ START_HERE.md
   10_legacy_dungeon/
     ADR/
       ADR-001_pourquoi_ce_code_est_ce_quil_est.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
     RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -654,8 +768,14 @@ START_HERE.md
   11_scheduler/
     ADR/
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_error_semantics.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -666,10 +786,15 @@ START_HERE.md
       pmap.test.js
   12_legacy_takeover/
     ADR/
-      .gitkeep
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_postmortem_scope.md
+      ADR-003_scope_refonte.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -679,9 +804,15 @@ START_HERE.md
   13_memory_hunter/
     ADR/
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_success_criterion.md
+      ADR-003_frontieres_module.md
     LEAK_REPORT_TEMPLATE.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     fixture/
@@ -694,9 +825,17 @@ START_HERE.md
   14_system_design_lab/
     ADR/
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_idempotence.md
+      ADR-003_chaos_contraintes.md
+      ADR-003_frontieres_module.md
+      ADR-004_strategie_tests.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
     SPEC_DRIFT.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -706,8 +845,14 @@ START_HERE.md
   15_porte_rasengan_engine_multilang/
     ADR/
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_scope.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     src/
@@ -717,28 +862,51 @@ START_HERE.md
   16_distributed_arena/
     ADR/
       ADR-001_decision.md
+      ADR-002_choix_donnees.md
+      ADR-002_retry_policy.md
+      ADR-003_frontieres_module.md
     POSTMORTEM.md
     README.md
     RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
     TDD_JOURNAL.md
     cahierdescharges.md
     fixtures/
     src/
       .gitkeep
     tests/
-  synthese/
+  17_polyglot_forge/
+    ADR/
+      ADR-001_choix_langage_secondaire.md
+      ADR-002_choix_donnees.md
+      ADR-003_frontieres_module.md
+      ADR-004_strategie_tests.md
+    POSTMORTEM.md
     README.md
-    chaos_day.md
-    portfolio.md
-    synthese_A.md
-    synthese_B.md
-    synthese_C.md
-    synthese_D.md
-    synthese_E.md
-    synthese_F_bloc_25.md
-    synthese_G_bloc_30.md
+    RULES.md
+    SECURITY.md
+    SPEC_DRIFT_TRIGGERS.md
+    TDD_JOURNAL.md
+    cahierdescharges.md
+    src/
+      loop.js
+      loop.py
+    tests/
+      expected.txt
+      output_alt.txt
+      output_js.txt
+      run_all.sh
+      scenario.json
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
+  README.md
+  _templates/
+    ADR_TEMPLATE.md
+    TDD_JOURNAL_TEMPLATE.md
 31_annexes/
   00_arborescence_complete.md
+  00_cartographier_codebase_inconnue.md
   00_prereq_check.md
   00_why_annexes.md
   01_ascii_charte.md
@@ -755,12 +923,23 @@ START_HERE.md
   12_trade_off_arena.md
   13_portfolio_publication.md
   14_generate_portfolio_report.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
+  GRIMOIRE_CODE_HONNEUR.md
+  PERISSABILITE.md
+  PERISSABILITE_INDEX.md
   _spaced_repetition.md
   career/
     00_guide.md
+    crosslang_challenge.md
+    interview_defense.md
+    plateau_playbook.md
+  frontieres_modules.md
   interview/
     01_desaccord_cto.md
     02_mock_interview_async.md
+    03_objection_storm.md
+    SIMULATION_SOLO.md
   recall/
     _recall_05.md
     _recall_10.md
@@ -768,6 +947,23 @@ START_HERE.md
     _recall_20.md
     _recall_25.md
     _recall_30.md
+  synthese_mini_projects/
+    README.md
+    chaos_day.md
+    portfolio.md
+    spec_drift.md
+    synthese_A.md
+    synthese_B.md
+    synthese_C.md
+    synthese_D.md
+    synthese_E.md
+    synthese_F_bloc_25.md
+    synthese_G_bloc_30.md
+  templates/
+    HYPOTHESES.md
+    POSTMORTEM.md
+    PUBLICATION_CHECKLIST.md
+    README.md
   toolchain/
     00_why_toolchain.md
     01_git_survival.md
@@ -777,6 +973,7 @@ START_HERE.md
     05_docker_basics.md
     06_cicd_basics.md
     07_toolchain_grimoire.md
+    NODE_VERSIONS.md
   transferability/
     01_closure_in_python.md
     02_debug_java_cold_read.md
@@ -798,285 +995,13 @@ START_HERE.md
   03_debug_toolkit.md
   04_cli_scaffolder.md
   05_tools_grimoire.md
+  EXO_JEUNE_IA.md
+  EXO_LECTURE.md
+COMMUNAUTE.md
+LICENSE
+NE_PAS_OUVRIR.md
+README.md
+START_HERE.md
 assets/
-  title.svg
-.tools/verification_pack/
-  01_fundamentals/
-    expected/
-      drill_1_sum.txt
-      drill_2_types.txt
-      drill_3_scope.txt
-    inputs/
-      drill_1_sum.txt
-      drill_2_types.txt
-      drill_3_scope.txt
-    scripts/
-      drill_1_sum.js
-      drill_2_types.js
-      drill_3_scope.js
-    verify.sh
-  03_async/
-    expected/
-      drill_1_promise_order.txt
-      drill_2_async_await.txt
-      drill_3_parallel.txt
-    inputs/
-      drill_1_promise_order.txt
-      drill_2_async_await.txt
-      drill_3_parallel.txt
-    scripts/
-      drill_1_promise_order.js
-      drill_2_async_await.js
-      drill_3_parallel.js
-    verify.sh
-  04_debugging/
-    expected/
-      drill_1_first_error.txt
-      drill_2_count_by_level.txt
-      drill_3_repro_deterministic.txt
-    inputs/
-      drill_1_first_error.txt
-      drill_2_count_by_level.txt
-      drill_3_repro_deterministic.txt
-    scripts/
-      drill_1_first_error.js
-      drill_2_count_by_level.js
-      drill_3_repro_deterministic.js
-    verify.sh
-  05_error_handling/
-    expected/
-      drill_1_try_catch.txt
-      drill_2_promise_reject.txt
-      drill_3_finally.txt
-    inputs/
-      drill_1_try_catch.txt
-      drill_2_promise_reject.txt
-      drill_3_finally.txt
-    scripts/
-      drill_1_try_catch.js
-      drill_2_promise_reject.js
-      drill_3_finally.js
-    verify.sh
-  06_testing/
-    expected/
-      drill_1_asserteq_pass.txt
-      drill_2_asserteq_fail.txt
-      drill_3_test_runner_output.txt
-    inputs/
-      drill_1_asserteq_pass.txt
-      drill_2_asserteq_fail.txt
-      drill_3_test_runner_output.txt
-    scripts/
-      drill_1_asserteq_pass.js
-      drill_2_asserteq_fail.js
-      drill_3_test_runner_output.js
-    verify.sh
-  07_math_basics/
-    expected/
-      drill_1_popcount.txt
-      drill_2_safe_mod.txt
-      drill_3_djb2_hash.txt
-    inputs/
-      drill_1_popcount.txt
-      drill_2_safe_mod.txt
-      drill_3_djb2_hash.txt
-    scripts/
-      drill_1_popcount.js
-      drill_2_safe_mod.js
-      drill_3_djb2_hash.js
-    verify.sh
-  08_memory_performance/
-    expected/
-      drill_1_map_get.txt
-      drill_2_set_dedup.txt
-      drill_3_closure_counter.txt
-    inputs/
-      drill_1_map_get.txt
-      drill_2_set_dedup.txt
-      drill_3_closure_counter.txt
-    scripts/
-      drill_1_map_get.js
-      drill_2_set_dedup.js
-      drill_3_closure_counter.js
-    verify.sh
-  09_data_structures/
-    expected/
-      drill_1_stack.txt
-      drill_2_queue.txt
-      drill_3_bst_insert_inorder.txt
-    inputs/
-      drill_1_stack.txt
-      drill_2_queue.txt
-      drill_3_bst_insert_inorder.txt
-    scripts/
-      drill_1_stack.js
-      drill_2_queue.js
-      drill_3_bst_insert_inorder.js
-    verify.sh
-  10_algorithms/
-    expected/
-      drill_1_sort.txt
-      drill_2_binary_search.txt
-      drill_3_fib.txt
-    inputs/
-      drill_1_sort.txt
-      drill_2_binary_search.txt
-      drill_3_fib.txt
-    scripts/
-      drill_1_sort.js
-      drill_2_binary_search.js
-      drill_3_fib.js
-    verify.sh
-  11_functional_js/
-    expected/
-      drill_1_map.txt
-      drill_2_filter_reduce.txt
-      drill_3_compose.txt
-    inputs/
-      drill_1_map.txt
-      drill_2_filter_reduce.txt
-      drill_3_compose.txt
-    scripts/
-      drill_1_map.js
-      drill_2_filter_reduce.js
-      drill_3_compose.js
-    verify.sh
-  12_design_patterns/
-    expected/
-      drill_1_singleton.txt
-      drill_2_observer.txt
-      drill_3_strategy.txt
-    inputs/
-      drill_1_singleton.txt
-      drill_2_observer.txt
-      drill_3_strategy.txt
-    scripts/
-      drill_1_singleton.js
-      drill_2_observer.js
-      drill_3_strategy.js
-    verify.sh
-  13_refactoring/
-    expected/
-      drill_1_extract.txt
-      drill_2_pure.txt
-      drill_3_guard_clause.txt
-    inputs/
-      drill_1_extract.txt
-      drill_2_pure.txt
-      drill_3_guard_clause.txt
-    scripts/
-      drill_1_extract.js
-      drill_2_pure.js
-      drill_3_guard_clause.js
-    verify.sh
-  14_typescript/
-    expected/
-      drill_1_narrow.txt
-      drill_2_discriminated.txt
-      drill_3_readonly.txt
-    inputs/
-      drill_1_narrow.txt
-      drill_2_discriminated.txt
-      drill_3_readonly.txt
-    scripts/
-      drill_1_narrow.js
-      drill_2_discriminated.js
-      drill_3_readonly.js
-    verify.sh
-  15_runtime_env/
-    expected/
-      drill_1_buffer.txt
-      drill_2_stream_transform.txt
-      drill_3_env_default.txt
-    inputs/
-      drill_1_buffer.txt
-      drill_2_stream_transform.txt
-      drill_3_env_default.txt
-    scripts/
-      drill_1_buffer.js
-      drill_2_stream_transform.js
-      drill_3_env_default.js
-    verify.sh
-  18_oop_js/
-    expected/
-      drill_1_class.txt
-      drill_2_inheritance.txt
-      drill_3_private.txt
-    inputs/
-      drill_1_class.txt
-      drill_2_inheritance.txt
-      drill_3_private.txt
-    scripts/
-      drill_1_class.js
-      drill_2_inheritance.js
-      drill_3_private.js
-    verify.sh
-  21_api_craft/
-    expected/
-      drill_1_status_codes.txt
-      drill_2_idempotency.txt
-      drill_3_pagination.txt
-    inputs/
-      drill_1_status_codes.txt
-      drill_2_idempotency.txt
-      drill_3_pagination.txt
-    scripts/
-      drill_1_status_codes.js
-      drill_2_idempotency.js
-      drill_3_pagination.js
-    verify.sh
-  22_security/
-    expected/
-      drill_1_html_escape.txt
-      drill_2_timing_safe.txt
-      drill_3_no_eval.txt
-    inputs/
-      drill_1_html_escape.txt
-      drill_2_timing_safe.txt
-      drill_3_no_eval.txt
-    scripts/
-      drill_1_html_escape.js
-      drill_2_timing_safe.js
-      drill_3_no_eval.js
-    verify.sh
-  23_ai_native_dev/
-    expected/
-      drill_1_validate_schema.txt
-      drill_2_hallucinated_method.txt
-      drill_3_safeparse.txt
-    hallucination_detection/
-      README.md
-    inputs/
-      drill_1_validate_schema.txt
-      drill_2_hallucinated_method.txt
-      drill_3_safeparse.txt
-    scripts/
-      drill_1_validate_schema.js
-      drill_2_hallucinated_method.js
-      drill_3_safeparse.js
-    verify.sh
-  26_observability/
-    expected/
-      drill_1_json_log.txt
-      drill_2_metric_counter.txt
-      drill_3_correlation_id.txt
-    inputs/
-      drill_1_json_log.txt
-      drill_2_metric_counter.txt
-      drill_3_correlation_id.txt
-    scripts/
-      drill_1_json_log.js
-      drill_2_metric_counter.js
-      drill_3_correlation_id.js
-    verify.sh
   README.md
-  _audit/
-    style_lint.py
-    style_lint.sh
-  _lib/
-    assert.sh
-    node_gate.sh
-  verify_all.sh
-
----
-stability: intemporel
+  title.svg

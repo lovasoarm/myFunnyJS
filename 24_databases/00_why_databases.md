@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : structures de données (09), async (03). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : structures de données (09_data_structures), async (03_async). Scalabilité (25_scalability anticipé) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : async (03_async), scalabilite (25_scalability).
 Temps de lecture ~8 min
 
 Ton app peut avoir le frontend le plus poli du monde, l'architecture la plus propre, l'API la mieux documentée : si tes données sont mal modélisées, tout le reste s'effondre dès que le volume augmente. Une requête qui prend 5ms sur 1000 lignes peut en prendre 8 secondes sur 10 millions, juste parce que personne n'a posé un index au bon endroit.

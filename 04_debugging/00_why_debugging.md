@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : stack trace (01), exceptions (05), async & event loop (03). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : stack trace (01_fundamentals), async & event loop (03_async). Exceptions (05_error_handling anticipé) : tu croiseras `try`/`catch` avant de l'avoir formellement étudié, ce module te donne juste assez pour lire une stack trace, pas pour maîtriser la gestion d'erreur en profondeur. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # 00 : Pourquoi le debugging
 

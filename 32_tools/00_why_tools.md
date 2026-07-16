@@ -4,7 +4,7 @@
 > - Densité forte car périssable : privilégie la compréhension du **rôle** de chaque outil, pas la config du jour.
 > - En 2028, l'IA écrit le code. Ce sont **tes outils** qui te rendent plus rapide qu'elle.
 
-> **CE MODULE RÉUTILISE** : runtime (15), modules (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : runtime (15_runtime_env), modules (01_fundamentals), et transversalement tout module ayant produit du code à builder/lint/packager. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > (attention) **OUTIL PÉRISSABLE** : le tooling JS bouge chaque année. Traite ce module comme une REVUE, pas une bible. `Principes durables` en bas.
 
@@ -14,7 +14,6 @@
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : tous les modules pratiques (build, lint, format, package).
 Temps de lecture ~9 min
 
 Ce module est différent des 30 autres. Et faut le dire cash avant d'aller plus loin.

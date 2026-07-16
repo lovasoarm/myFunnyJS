@@ -13,6 +13,11 @@ stability: intemporel
 > **INTEMPOREL** : reprendre un projet abandonné est **le jour 1** de la
 > majorité des postes. Personne ne code sur du green-field.
 
+> Avant de commencer : `10_legacy_dungeon/README.md` a une section
+> "Avant de cloner : deux pièges mentaux à désamorcer" (mépris du code
+> existant, panique face au volume). Vaut le détour ici aussi, même
+> résumée : tu vas retomber sur les deux mêmes réflexes.
+
 ## Mission
 
 Choisis un petit repo Node.js OSS **abandonné** (dernière release > 24 mois),

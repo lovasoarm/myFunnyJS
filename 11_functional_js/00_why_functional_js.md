@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : fonctions higher-order (01), immutabilité (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions higher-order (01_fundamentals), immutabilité (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS
 

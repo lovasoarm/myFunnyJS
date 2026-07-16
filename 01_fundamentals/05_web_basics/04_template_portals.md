@@ -1,9 +1,11 @@
 # TEMPLATE PORTALS : TEMPLATE STRINGS & DOM TEMPLATING
-Temps de lecture ~7 min
+Temps de lecture ~9 min
 
 Aujourd'hui, on attaque un truc **fondamental du web moderne** : générer du HTML avec JavaScript.
 
-Pourquoi ? Parce que dans une vraie application, les données viennent d'une API, le utilisateur interagit, l'interface doit changer. Le navigateur doit **créer du HTML dynamiquement**.
+Pourquoi ? Parce que dans une vraie application, les données viennent d'une API, l'utilisateur interagit, l'interface doit changer. Le navigateur doit **créer du HTML dynamiquement**.
+
+Pense à une fiche de combattant Dragon Ball : le gabarit (nom, niveau, points de vie) ne change jamais, mais les valeurs changent à chaque combattant (Goku, Vegeta, Piccolo). Le template, c'est le gabarit vide. Les données, c'est ce qui remplit les cases. Le DOM, c'est la fiche affichée à l'écran.
 
 C'est exactement ce que font React, Vue, Angular, Next. Mais derrière tout ça, il y a simplement :
 
@@ -149,16 +151,70 @@ document.body.innerHTML += html; // ajoute -> mais recrée tout le DOM à chaque
 
 Dans les grosses apps, recréer le DOM à chaque update devient lent. C'est pour ça que les frameworks ont inventé le **Virtual DOM** : un système de comparaison intelligent qui ne met à jour que ce qui a changé.
 
+```
+SANS Virtual DOM (innerHTML brut)          AVEC Virtual DOM (React et co)
+1 seul HP change sur 300 joueurs           1 seul HP change sur 300 joueurs
+        |                                          |
+        v                                          v
+tout le DOM est détruit                    comparaison ancien/nouveau (diff)
+        |                                          |
+        v                                          v
+300 éléments recréés                       1 seul élément texte mis à jour
+        |                                          |
+        v                                          v
+lent, listeners perdus                     rapide, listeners conservés
+```
+
 Mais tout part de **ce principe simple**.
+
+---
+
+## 7bis) CE QUI CASSE : LE PIÈGE DU LISTENER FANTÔME
+
+Regarde ce code, il a l'air normal :
+
+```javascript
+let btn = document.querySelector(".attack-btn");
+btn.addEventListener("click", () => console.log("Goku attaque !"));
+
+// Plus tard, tu rafraîchis la liste des joueurs
+document.body.innerHTML += `<div class="player">Vegeta</div>`;
+
+// Tu re-cliques sur le bouton attaque
+btn.click(); // ... silence. Rien ne se passe.
+```
+
+Ce qui casse : `innerHTML +=` ne "rajoute" pas du HTML, il **détruit et
+recrée tout le sous-arbre DOM concerné**, backticks compris. Le bouton que
+tu vois à l'écran après l'update n'est **plus le même objet DOM** que
+celui sur lequel tu avais posé ton `addEventListener`. L'ancien bouton,
+avec son listener attaché, part au garbage collector (vu en détail en
+`08_memory_performance`). Le nouveau bouton, visuellement identique, n'a
+plus aucun listener : silence total, aucune erreur dans la console, juste
+un clic qui ne fait rien.
+
+C'est exactement le genre de bug qui rend fou en debug : le HTML est
+correct, le sélecteur est correct, mais l'événement ne se déclenche plus.
+La cause n'est jamais où on la cherche en premier.
+
+La leçon : `innerHTML` casse la référence à tout élément DOM qu'il
+remplace. Pour du contenu qui change souvent et garde des listeners
+(comme un bouton d'action dans une carte de joueur), attache l'event sur
+un parent stable et utilise la délégation d'événement, ou ré-attache
+explicitement le listener après chaque update.
 
 ---
 
 ## 8) POURQUOI LES INGÉNIEURS DOIVENT SAVOIR ÇA
 
-Derrière React, Vue, Angular : il y a toujours :
+Derrière React, Vue, Angular : il y a toujours le même flux.
 
 ```
-data → template → DOM
+DONNÉES (objet JS)          TEMPLATE (string)              DOM (rendu écran)
+{ name: "Goku", hp: 9000 }  `<h2>${name}</h2>              <h2>Goku</h2>
+                              <p>HP: ${hp}</p>`     -->     <p>HP: 9000</p>
+
+     data          -->         template          -->           DOM
 ```
 
 Si tu comprends ça, tu comprends le moteur du frontend. Le reste, c'est du confort.
@@ -221,7 +277,7 @@ Génère une liste HTML :
 
 ## MISSION 4 : LE PORTAIL MAGIQUE
 
-Crée un `<input>`. Quand le utilisateur tape un nom, JS crée dynamiquement une carte joueur :
+Crée un `<input>`. Quand l'utilisateur tape un nom, JS crée dynamiquement une carte joueur :
 
 ```
 Input : "Blob"

@@ -28,6 +28,27 @@ les repères objectifs qui rendent tout le reste opposable.
 - Les échelles utilisées dans les audits et les postmortems.
 - Les critères de "livrable prêt" pour un exercice, un mini-projet, un ADR.
 
+## Règle précise sur `00_why_*.md`
+
+Chaque **module racine** (`01_fundamentals`, `02_problem_solving`, etc.)
+a obligatoirement son `00_why_<module>.md`. Ça, c'est non négociable :
+32/32 modules le respectent.
+
+Un **sous-dossier thématique interne** (`05_web_basics`, `i18n`,
+`04_typescript_tooling`...) n'a besoin de son propre `00_why` que s'il
+est suffisamment gros et autonome pour mériter son propre contexte
+("pourquoi CE sous-thème précisément, indépendamment du module qui
+l'héberge"). C'est le cas d'`i18n` (sous-domaine entier avec ses propres
+pièges) ou de `04_typescript_tooling` (bascule complète de registre,
+langage vers outillage). Ce n'est pas le cas d'un sous-dossier qui reste
+une simple étape de la progression interne du module (`05_web_basics`
+dans `01_fundamentals` répond déjà à la question "pourquoi" via
+`00_why_fundamentals.md`).
+
+Si un sous-dossier grossit au point de devenir un module à part entière
+(plus de 6-8 fichiers, sujet clairement détachable), il mérite son propre
+`00_why`. En dessous de ce seuil, le `00_why` du module racine suffit.
+
 ## Comment l'utiliser
 
 Ne le lis pas d'un bloc. Reviens-y chaque fois qu'un mot du curriculum te

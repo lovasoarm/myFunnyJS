@@ -1,4 +1,8 @@
-> **CE MODULE RÉUTILISE** : objets & tableaux (01), big-O (10 anticipé), mémoire (08). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : objets & tableaux (01_fundamentals), big-O (10_algorithms anticipé), mémoire (08_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+
+> **9 sous-dossiers dans ce module, c'est plus dense que la moyenne.**
+> Avant de foncer, lis `00_navigation.md` : il découpe la progression en 3
+> paliers digestes plutôt qu'un seul bloc de 9 structures d'affilée.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATA STRUCTURES
 

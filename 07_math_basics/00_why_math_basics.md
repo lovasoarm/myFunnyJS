@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : types primitifs (01), opérateurs (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : types primitifs (01_fundamentals), opérateurs (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : LES MATHS UTILES
 

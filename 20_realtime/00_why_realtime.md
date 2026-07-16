@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : async (03), réseau (17). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : async (03_async), event loop et backpressure (03_async/06), réseau (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : async (03_async), backpressure (03_async/06).
 Temps de lecture ~8 min
 
 Un chat où il faut rafraîchir la page pour voir les nouveaux messages. Un dashboard de match qui affiche le score d'il y a 5 minutes. Une app de notifications qui ne notifie jamais en direct. Ce sont des systèmes cassés aux yeux d'un utilisateur de 2026, habitué à voir les choses apparaître instantanément.
@@ -42,7 +41,7 @@ Le dev qui ne connaît que HTTP classique implémente le temps réel avec du pol
 
 Sur un système avec beaucoup de utilisateurs connectés simultanément, l'absence de maîtrise du temps réel se traduit directement par des coûts d'infrastructure qui explosent (toutes ces requêtes de polling inutiles consomment du CPU et de la bande passante) et une expérience utilisateur qui semble en retard par rapport à des concurrents qui maîtrisent ces mécanismes.
 
-Et sur des cas critiques comme un chat ou un système d'alerte, ne pas gérer correctement la reconnexion automatique (quand la connexion WebSocket ou SSE tombe, par exemple sur un changement de réseau) veut dire que le utilisateur perd silencieusement des messages ou des événements, sans même savoir que sa connexion a été coupée.
+Et sur des cas critiques comme un chat ou un système d'alerte, ne pas gérer correctement la reconnexion automatique (quand la connexion WebSocket ou SSE tombe, par exemple sur un changement de réseau) veut dire que l'utilisateur perd silencieusement des messages ou des événements, sans même savoir que sa connexion a été coupée.
 
 ---
 

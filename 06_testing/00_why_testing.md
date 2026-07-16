@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : fonctions pures (01), async (03), erreurs (05). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions pures (01_fundamentals), async (03_async), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TESTING
 

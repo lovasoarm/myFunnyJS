@@ -109,7 +109,7 @@ User clique sur un bouton
 ```
 INP < 200ms  => vert  : réactif
 INP < 500ms  => orange : lent
-INP >= 500ms  => rouge : le utilisateur sent que le site est cassé
+INP >= 500ms  => rouge : l'utilisateur sent que le site est cassé
 ```
 
 ### Ce qui fait exploser l'INP
@@ -119,7 +119,7 @@ INP >= 500ms  => rouge : le utilisateur sent que le site est cassé
 // mauvais : calcul lourd directement dans le click handler
 button.addEventListener('click', () => {
  // ce calcul bloque le thread pendant 600ms
- // le utilisateur clique, rien ne se passe visuellement
+ // l'utilisateur clique, rien ne se passe visuellement
  const result = computePlayerRankings(10000) // O(n²)
  displayResult(result)
 })
@@ -279,7 +279,7 @@ const observer = new PerformanceObserver((list) => {
 
 observer.observe({ type: 'layout-shift', buffered: true })
 
-// afficher le score final quand le utilisateur quitte la page
+// afficher le score final quand l'utilisateur quitte la page
 document.addEventListener('visibilitychange', () => {
  if (document.visibilityState === 'hidden') {
   console.log(`CLS final : ${clsScore}`)

@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : input validation (05), HTTP (17). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : input validation (05_error_handling), HTTP (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SECURITY
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : erreurs (05_error_handling), edge cases (29_edge_cases).
 Temps de lecture ~8 min
 
 Tu n'as pas besoin d'être attaqué par un hacker en cagoule dans un sous-sol. Il suffit d'un script automatisé qui scanne le web 24/7 à la recherche de failles connues, et qui tombe sur ton input non sanitisé (nettoyé/validé). Tu ne te fais pas hacker parce que tu es une cible importante. Tu te fais hacker parce que ton code laissait la porte ouverte.

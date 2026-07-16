@@ -233,7 +233,7 @@ for await (const stats of fetchStatsParEquipe(equipes)) {
 }
 ```
 
-Compare avec une version `Promise.all` : quelle différence d'expérience pour le utilisateur si chaque fetch prend entre 1 et 3 secondes ?
+Compare avec une version `Promise.all` : quelle différence d'expérience pour l'utilisateur si chaque fetch prend entre 1 et 3 secondes ?
 
 ---
 

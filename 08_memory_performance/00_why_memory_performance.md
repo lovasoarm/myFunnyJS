@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : closures (01), async (03), bits & représentation (07). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : closures (01_fundamentals), async (03_async), bits & représentation (07_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > **AVANT D'OUVRIR CE MODULE** : si tu n'as pas lu `07_math_basics/99_PONT_avant_module_08_memory.md` (le pont bits-mémoire), fais-le d'abord. Sans cette image mentale, ce qui suit reste des mots.
 

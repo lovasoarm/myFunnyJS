@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : debugging (04), erreurs (05). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : debugging (04_debugging), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OBSERVABILITY
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : debug (04_debugging), erreurs (05_error_handling).
 Temps de lecture ~8 min
 
 Ton app est en prod. Un utilisateur signale un bug vague : "ça marche pas parfois". Tu n'as aucun log structuré, aucune trace, aucune métrique. Tu es aveugle, et tu débugues en production à l'aveugle, en ajoutant des logs et en redéployant, en espérant reproduire le bug avant que d'autres utilisateurs ne le signalent aussi.

@@ -1,6 +1,6 @@
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/frontieres_modules.md` — table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
-> **CE MODULE RÉUTILISE** : patterns (12), async & I/O (03), DB (24 anticipé). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : patterns (12_design_patterns), async & I/O (03_async), DB (24_databases anticipé), refactoring (13_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
 
 > **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
@@ -9,8 +9,6 @@
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ARCHITECTURE PATTERNS
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
-
-> Ce module reutilise : SOLID (18_oop_js), refactoring (13_refactoring).
 
 > **L'architecture n'est pas là pour être « belle ». Elle est là pour rendre le CHANGEMENT bon marché. Si ton archi rend le prochain changement coûteux, elle a échoué, peu importe combien elle est élégante.**
 

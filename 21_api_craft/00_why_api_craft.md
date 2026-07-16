@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : HTTP (17), erreurs (05), sécurité (22). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : HTTP (17_web_concepts), erreurs (05_error_handling). Sécurité (22_security anticipé) : ce module touche à l'auth et aux headers de base, la profondeur (XSS, CSRF, injection) est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : erreurs (05_error_handling), securite (22_security).
 Temps de lecture ~8 min
 
 N'importe qui peut écrire `app.get('/route', () => res.send('ok'))`. Construire une API que d'autres équipes vont consommer pendant des années, faire évoluer sans tout casser, et documenter pour qu'un dev externe la comprenne sans te demander : ça, c'est un métier à part entière.

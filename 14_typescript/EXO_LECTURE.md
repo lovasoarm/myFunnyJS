@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait TS avec types conditionnels, `infer`, discriminated union ou template literal types : issu de `14_typescript/06_advanced/`. 15-25 minutes de lecture, pas plus.
+On te fournit un extrait TS avec types conditionnels, `infer`, discriminated union ou template literal types : issu de `14_typescript/03_ts_advanced/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

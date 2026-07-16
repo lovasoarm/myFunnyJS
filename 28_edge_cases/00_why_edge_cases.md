@@ -4,13 +4,12 @@
 > - Lecture rapide : la checklist en fin de module. Lecture complète : les histoires de guerre associées à chaque cas.
 > - Un dev qui ne pense pas edge case coûte plus cher en incidents qu'il ne rapporte en features.
 
-> **CE MODULE RÉUTILISE** : tests (06), debugging (04), erreurs (05). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : tests (06_testing), debugging (04_debugging), erreurs (05_error_handling), math (07_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI EDGE CASES MÉRITE TON TEMPS
 
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : math (07_math_basics), erreurs (05_error_handling).
 Temps de lecture ~12 min
 
 JS est un langage construit en 10 jours.

@@ -94,6 +94,33 @@ Mobilisés en lecture, sans être le coeur du projet : `04_debugging` (stack tra
 
 ---
 
+## AVANT DE CLONER : DEUX PIÈGES MENTAUX À DÉSAMORCER
+
+**Le mépris.** Tu vas tomber sur du code qui te fait lever les yeux au
+ciel : une fonction de 400 lignes, un nommage à côté de la plaque, zéro
+commentaire là où t'en aurais mis dix. Réflexe naturel : juger. Réflexe
+utile : demander pourquoi. Le code que tu regardes a probablement
+survécu à des deadlines, des specs qui ont changé trois fois, et des
+développeurs qui ne travaillent plus là pour t'expliquer. "C'est mal
+écrit" est un jugement de confort. "Je ne sais pas encore pourquoi c'est
+écrit comme ça" est un point de départ. Le premier ferme la réflexion,
+le second l'ouvre.
+
+**La panique.** 47 000 lignes que tu n'as jamais vues, un bug à trouver,
+un chrono qui tourne. Le réflexe de panique pousse à tout lire, ou à
+rien lire et tester au hasard. Aucun des deux ne marche. Le protocole de
+cartographie (`31_annexes/00_cartographier_codebase_inconnue.md`) existe
+justement pour remplacer la panique par une méthode : tu n'as pas besoin
+de tout comprendre, tu as besoin de savoir où chercher.
+
+Les deux pièges ont la même racine : traiter l'inconnu comme une menace
+plutôt que comme un terrain à cartographier. Le POSTMORTEM de ce projet
+te demande explicitement un moment où tu ne savais pas : "je ne sais pas
+encore comment ça marche, mais je sais où regarder" est une réponse
+valide et attendue, pas un aveu d'échec.
+
+---
+
 ## RÈGLES NON-NÉGOCIABLES DE CE PROJET
 
 ```

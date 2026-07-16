@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : types JS (01), OOP JS (18). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : types JS (01_fundamentals), types dynamiques (11_functional_js), design patterns (12_design_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : types dynamiques (11_functional_js), design patterns (12_design_patterns).
 Temps de lecture ~8 min
 
 `undefined is not a function`. Cette erreur, tu l'as croisée. Elle arrive en prod, jamais en dev, toujours au pire moment. TypeScript existe pour une raison simple : te dire AVANT d'exécuter le code que tu es en train d'appeler une fonction qui n'existe pas sur cet objet, ou de passer une string là où une fonction attend un number.

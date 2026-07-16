@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : debugging (04), tests (06), esprit critique (02). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : debugging (04_debugging), tests (06_testing), esprit critique (02_problem_solving). Team craft (27_team_craft anticipé) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : AI NATIVE DEV
 
 > **Durée de vie : 2-3 ans, revenir en 2028.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : team craft (27_team_craft), tests (06_testing).
 Temps de lecture ~8 min
 
 L'IA génère du code en quelques secondes. Du code qui compile, qui a l'air propre, qui répond exactement à ta demande. Et qui peut quand même contenir une fonction qui n'existe pas, une logique métier subtilement fausse, ou une faille de sécurité que tu copies-colles sans la vérifier parce que "ça avait l'air bon".

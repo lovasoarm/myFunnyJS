@@ -1,4 +1,4 @@
-> **CE MODULE RÉUTILISE** : fonctions (01), closures (01). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : fonctions (01_fundamentals), closures (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 

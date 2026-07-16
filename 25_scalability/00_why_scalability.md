@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : mémoire (08), async (03), DB (24). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : mémoire (08_memory_performance), async (03_async), DB (24_databases), architecture (16_architecture_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : SCALABILITY
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : memoire (08_memory_performance), architecture (16_architecture_patterns).
 Temps de lecture ~8 min
 
 10 utilisateurs sur ton serveur, tout va bien. 10 millions d'utilisateurs sur le même serveur, sans rien changer à l'architecture : c'est l'effondrement garanti. Pas parce que ton code est mauvais. Parce qu'un seul serveur, une seule base de données, une seule instance, ça a toujours une limite physique, et cette limite arrive plus vite que tu ne le crois.

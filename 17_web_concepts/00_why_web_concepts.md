@@ -1,10 +1,9 @@
-> **CE MODULE RÉUTILISE** : HTTP basics (21 anticipé), async (03). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
+> **CE MODULE RÉUTILISE** : HTTP basics (21_api_craft anticipé), async (03_async). Sécurité (22_security anticipé) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : WEB CONCEPTS
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
-> Ce module reutilise : async (03_async), securite (22_security).
 Temps de lecture ~7 min
 
 Tu sais écrire un `fetch`. Mais sais-tu pourquoi une requête échoue avec un 403 et pas un 401 ? Tu ne sais peut-être pas non plus ce qui se passe entre le moment où le navigateur reçoit du HTML et le moment où le pixel apparaît à l'écran, ni quand le cache devient ton allié ou ton pire ennemi.

@@ -61,7 +61,7 @@ Templates réutilisables : 31_annexes/templates/  (POSTMORTEM, HYPOTHESES, PUBLI
 32        Tools
 ```
 
-Arborescence complète, dépendances entre modules et noyau dur détaillé : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).
+Arborescence complète, à consulter au besoin (pas à lire d'une traite) : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).
 
 ---
 

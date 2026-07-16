@@ -22,6 +22,16 @@ Axe 3  DEBUG      formuler une hypothèse, la prouver, corriger juste
 Axe 4  ARCHITECTURE  choisir une structure adaptée au problème, pas à la mode
 ```
 
+> **Lien avec les "six pierres" du README** : les deux cadres parlent de
+> la même chose, à deux granularités différentes. Le README vend le
+> projet en 6 pierres (Runtime, Mémoire, Asynchrone, Architecture,
+> Debugging, Pensée Transférable) parce que c'est plus vendeur à
+> l'accroche. Ici, pour te situer concrètement, on regroupe Mémoire et
+> Asynchrone dans l'Axe 1 (Runtime au sens large : "ce que la machine
+> fait vraiment" couvre les deux), et la Pensée Transférable n'est pas un
+> axe séparé : elle se construit en filigrane à travers les 4 axes
+> ci-dessous, pas comme une compétence isolée qu'on coche à part.
+
 Chaque axe a 4 niveaux. Pas pour te flatter. Pour te situer.
 
 ---

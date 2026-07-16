@@ -1,5 +1,5 @@
 ---
-stability: periss-2028
+stability: perissable
 last_reviewed: 2026-07
 depends_on_vendor: false
 ---
