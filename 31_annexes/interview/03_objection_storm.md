@@ -50,7 +50,7 @@ Chaque ADR d'un projet doit produire **2 objections dans le storm**.
 
 ## SCORING
 
-Passage automatique via `.tools/verification_pack/31_annexes/objection_storm.sh` :
+Passage automatique via `.internal/.tools/verification_pack/31_annexes/objection_storm.sh` :
 
 - 25 timestamps valides ISO 8601 : requis.
 - Écart max entre deux timestamps consécutifs : 90 s.

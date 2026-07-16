@@ -2,11 +2,11 @@
 
 -> ~5 min
 
-Chaque fichier `.md` du repo porte un tag `stability:` en front-matter. Ce fichier agrège les 790 tags en une carte de risque unique, pour que tu (ou un mainteneur en 2028) sache **où le contenu vieillit vite** sans ouvrir 790 fichiers.
+Chaque fichier `.md` du repo porte un tag `stability:` en front-matter. Ce fichier agrège les 795 tags en une carte de risque unique, pour que tu (ou un mainteneur en 2028) sache **où le contenu vieillit vite** sans ouvrir 790 fichiers.
 
 ## SYNTHÈSE
 
-- **intemporel** : 633 fichiers (concepts qui ne bougent pas : event loop, big-O, closures, SOLID)
+- **intemporel** : 638 fichiers (concepts qui ne bougent pas : event loop, big-O, closures, SOLID)
 - **stable** : 106 fichiers (API/pratiques stables sur 5+ ans : Node LTS, HTTP, SQL)
 - **périssable** : 51 fichiers (tooling, IA, écosystème en mouvement rapide)
 
@@ -54,7 +54,7 @@ Chaque fichier `.md` du repo porte un tag `stability:` en front-matter. Ce fichi
 
 ## DERNIER CHECK
 
-Cette vue est générée depuis les tags `stability:` déjà présents dans chaque fichier. Pour la régénérer : `grep -rl '^stability: X' --include='*.md' .` par valeur, en excluant `.tools/verification_pack/` (scripts internes, hors périmètre pédagogique). Aucune campagne de re-tagging nécessaire, seule une régénération de comptage.
+Cette vue est générée depuis les tags `stability:` déjà présents dans chaque fichier. Pour la régénérer : `grep -rl '^stability: X' --include='*.md' .` par valeur, en excluant `.internal/.tools/verification_pack/` (scripts internes, hors périmètre pédagogique). Aucune campagne de re-tagging nécessaire, seule une régénération de comptage.
 
 ## COMMENT L'UTILISER
 

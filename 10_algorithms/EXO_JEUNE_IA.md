@@ -12,7 +12,7 @@ Sans aucune assistance IA, sans autocompletion generative, resous le `drill_2` d
 
 ## Critere de reussite (deterministe)
 ```bash
-bash .tools/verification_pack/10_algorithms/verify.sh solution.js
+bash .internal/.tools/verification_pack/10_algorithms/verify.sh solution.js
 # doit afficher : drill 2 OK
 ```
 Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
@@ -36,7 +36,7 @@ Reecrire un tri, une recherche binaire ou un parcours de graphe sans IA, c'est v
 L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
 
 ```bash
-bash .tools/verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill algorithms"
+bash .internal/.tools/verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill algorithms"
 ```
 
 Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.

@@ -31,7 +31,7 @@ Commence par [`00_getting_started/01_install.md`](00_getting_started/01_install.
 
 ## FILET DE SÉCURITÉ (pour plus tard, pas maintenant)
 
-`.tools/verification_pack/<module>/verify.sh` exécute 3 drills à sortie déterministe par module. Tu l'utiliseras quand tu douteras d'un chapitre. Pas au début.
+`.internal/.tools/verification_pack/<module>/verify.sh` exécute 3 drills à sortie déterministe par module. Tu l'utiliseras quand tu douteras d'un chapitre. Pas au début.
 
 ---
 
@@ -110,7 +110,7 @@ Chaque fichier renvoie au suivant à sa fin. Suis le fil, te pose pas de questio
 - Guide carrière : `31_annexes/career/00_guide.md`.
 - Tu veux savoir quel module vieillit vite ? -> `31_annexes/PERISSABILITE.md` (et l'index `31_annexes/PERISSABILITE_INDEX.md`).
 - Zones grises entre modules 12, 13, 16, 18 (patterns / refactoring / architecture / OOP) ? -> `31_annexes/frontieres_modules.md`.
-- Journal d'audit interne (pas pour l'apprenant) : `.audit/`.
+- Journal d'audit interne (pas pour l'apprenant) : `.internal/.audit/`.
 
 Si ça t'encombre, ignore-les au début et suis juste l'ordre plus haut.
 

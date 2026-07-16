@@ -7,11 +7,11 @@ Temps de lecture ~2 min
 > Duree : 45 min chrono. Auto-verifiable par le `verification_pack` du module.
 
 ## Consigne
-Sans aucune assistance IA, sans autocompletion generative, resous le premier `drill` disponible dans `.tools/verification_pack/15_runtime_env/`. Si aucun drill n'existe : redige de memoire un mini-exercice couvrant le concept-cle du module (definition, exemple minimal runnable, un piege classique), puis fais-le tourner via `verify.sh`.
+Sans aucune assistance IA, sans autocompletion generative, resous le premier `drill` disponible dans `.internal/.tools/verification_pack/15_runtime_env/`. Si aucun drill n'existe : redige de memoire un mini-exercice couvrant le concept-cle du module (definition, exemple minimal runnable, un piege classique), puis fais-le tourner via `verify.sh`.
 
 ## Critere de reussite (deterministe)
 ```bash
-bash .tools/verification_pack/15_runtime_env/verify.sh solution.js
+bash .internal/.tools/verification_pack/15_runtime_env/verify.sh solution.js
 # doit sortir avec code 0 et afficher "OK"
 ```
 Binaire : soit `verify.sh` passe, soit non. Pas de zone grise.
@@ -35,7 +35,7 @@ process.argv, variables d'environnement, signaux, exit codes : le runtime est ce
 L'auto-évaluation ci-dessus repose sur ton honnêteté. Pour une **preuve horodatée et signée** que tu as vraiment tenu le jeûne IA (chrono, checklist post-drill, SHA256 du code + horaire) :
 
 ```bash
-bash .tools/verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill runtime_env"
+bash .internal/.tools/verification_pack/_jeune_ia/run_fasting_drill.sh 45 "drill runtime_env"
 ```
 
 Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/fasting.log`. Utile pour toi-même (regarder ta courbe de progression) et pour un CTO qui te demande une preuve concrète.

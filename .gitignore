@@ -24,11 +24,14 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Maintenance interne (non pédagogique)
-scripts/
-.audit/
-.tools/
+# NOTE : .internal/ (contient .tools/, .audit/, scripts/) ne sont PAS ignorés. Ils font partie
+# du repo pédagogique livré à l'apprenant : `.tools/verification_pack/`
+# porte les scripts `verify.sh` appelés depuis les exercices, `.audit/`
+# contient `DEPENDENCY_LEDGER.md` référencé depuis les modules, et
+# `scripts/` porte les linters (`lint_universes.sh`, `lint_stability.py`,
+# etc.) utilisés par les mainteneurs.
+# Voir .internal/NE_PAS_OUVRIR.md pour l'usage : présents dans le repo, mais
+# non-pédagogiques (l'apprenant peut les ignorer sans les supprimer).
 
 # Archives (ne jamais committer)
 *.rar

@@ -204,7 +204,7 @@ npm run size
 Avant de pousser, tu veux savoir si tu vas casser le budget.
 
 ```js
-// scripts/check-perf-budget.js
+// .internal/scripts/check-perf-budget.js
 // Scofield check : est-ce que le plan tient avant d'exécuter ?
 
 const { execSync } = require("child_process");

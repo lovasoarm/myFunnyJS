@@ -70,5 +70,5 @@ sdk.start();
 
 ## DRILL
 
-`.tools/verification_pack/26_observability/otel_running.sh` vérifie qu'un
+`.internal/.tools/verification_pack/26_observability/otel_running.sh` vérifie qu'un
 endpoint OTLP répond pendant la démo apprenant.

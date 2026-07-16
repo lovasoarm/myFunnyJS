@@ -1,0 +1,1 @@
+const v=process.env.MFJ_UNSET_VAR||"default";process.stdout.write(v);

@@ -1,0 +1,1 @@
+const out=[];out.push("sync1");Promise.resolve().then(()=>out.push("micro1")).then(()=>{out.push("micro2");setTimeout(()=>{out.push("macro1");process.stdout.write(out.join("|"));},0)});setTimeout(()=>{},0);out.push("sync2");

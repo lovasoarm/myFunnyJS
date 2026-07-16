@@ -17,7 +17,7 @@ Temps de lecture ~2 min
 
 > **AVANT TOUT** : si tu n'as jamais installé Node de ta vie, va faire [`00_getting_started/01_install.md`](00_getting_started/01_install.md) d'abord. Reviens ici après.
 
-> **`.tools/verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Elle compare ta sortie à un résultat attendu ; si ça matche, le test passe. Considère-le comme une boîte noire fiable.
+> **`.internal/.tools/verification_pack/`** : le moteur de vérification automatique de tes exercices. Tu n'as pas besoin d'y toucher : il est appelé par les `verify.sh` cités dans chaque `EXO_JEUNE_IA.md`. Elle compare ta sortie à un résultat attendu ; si ça matche, le test passe. Considère-le comme une boîte noire fiable.
 
 ## CE QUE C'EST
 
@@ -79,7 +79,7 @@ Puis ouvre [`START_HERE.md`](./START_HERE.md).
 Licence : voir [`LICENSE`](./LICENSE) : tu peux réutiliser et adapter le matériel
 dans le cadre qui y est décrit. Communauté : `COMMUNAUTE.md`. Version de Node :
 `.nvmrc` (référence) détaillée dans `31_annexes/toolchain/NODE_VERSIONS.md`.
-Journal d'audit interne (non pédagogique, ignore-le) : `.audit/`,
+Journal d'audit interne (non pédagogique, ignore-le) : `.internal/.audit/`,
 dont `DEPENDENCY_LEDGER.md`, fourni comme modèle vide à copier : ce n'est
 pas TON registre personnel. Ton propre `DEPENDENCY_LEDGER.md` (voir
 `00_getting_started/02_day_one.md`) est à créer et tenir à jour à la racine

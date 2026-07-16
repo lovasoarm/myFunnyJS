@@ -46,7 +46,7 @@ Pas un développeur "qui sait faire une todo-list". Un **ingénieur** qui :
 - **Tu mesures ta dépendance à l'IA** (`DEPENDENCY_LEDGER.md`). Une règle non
   mesurée reste une croyance. **Ce fichier n'existe pas encore : crée-le à la
   racine de ton propre repo maintenant**, en copiant la structure de
-  `.audit/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
+  `.internal/.audit/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
   contenu à lire).
 
 ### Ratio lecture / écriture (règle Thor)

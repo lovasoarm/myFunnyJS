@@ -57,7 +57,7 @@ l'ordre où tu dois les faire strictement. Recommandation :
   placeholders : un mini-projet n'est pas terminé tant que ce fichier
   contient encore "ajoute ici..." ou le snapshot `npm audit` par défaut.
   Vérifie-le toi-même avant de considérer un projet fini :
-  `bash .tools/verification_pack/_lib/check_security_filled.sh 30_mini_projects/<nom_du_projet>`
+  `bash .internal/.tools/verification_pack/_lib/check_security_filled.sh 30_mini_projects/<nom_du_projet>`
 
 Les synthèses transverses sont dans `synthese/` (à lire après un bloc
 complet de projets).

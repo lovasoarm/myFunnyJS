@@ -1,4 +1,5 @@
 # PROMPTER COMME UN DEV, PAS COMME UN UTILISATEUR
+
 Temps de lecture ~11 min
 
 L'IA répond à ce qu'on lui dit. Si tu lui dis quelque chose de flou, elle répond quelque chose de plausible. Plausible n'est pas correct. Plausible c'est ce qui ressemble à correct sans l'être.
@@ -22,6 +23,7 @@ Un prompt efficace pour du code a 5 composants. Tu n'as pas toujours besoin des 
 ```
 
 Exemple mauvais :
+
 ```
 "Écris une fonction pour valider un email"
 ```
@@ -29,6 +31,7 @@ Exemple mauvais :
 L'IA va produire quelque chose. Avec une regex approximative. Qui va passer 80% des cas. Et rater les edge cases qui arrivent en prod.
 
 Exemple correct :
+
 ```
 Tu es un dev senior JavaScript.
 Écris une fonction validateEmail(email: string): boolean en TypeScript.
@@ -253,6 +256,21 @@ Un bon prompt te donne une meilleure matière première. C'est tout. La transfor
 
 ---
 
+## 9) CHECKLIST FINALE : LES 6 QUESTIONS AVANT D'ENVOYER
+
+Avant d'appuyer sur Entrée, passe le prompt à cette grille. Six questions, dix secondes. Aucune n'est optionnelle : c'est le minimum syndical, pas un idéal.
+
+1. **Contexte** : est-ce que l'IA sait sur quel projet elle bosse (stack, conventions, contraintes déjà en place) ?
+2. **Rôle** : ai-je posé qui doit répondre (senior dev TS ? expert sécurité ? junior qui débute ?) ? Un rôle non posé, c'est une réponse générique.
+3. **Tâche** : est-ce que la tâche est formulée en verbe d'action précis, avec une entrée et une sortie identifiées ? Pas "aide-moi avec X" : "écris une fonction `f(a, b): T` qui fait Y".
+4. **Format** : ai-je dit comment je veux la réponse (langage, style, longueur, avec/sans commentaires, avec/sans tests) ?
+5. **Contraintes** : ai-je listé ce qu'elle **ne doit pas** faire (pas de mutation, pas de lib externe, pas de try/catch global, pas de dépendance à runtime X) ?
+6. **Vérifiabilité** : **comment vais-je vérifier objectivement que la réponse est correcte, sans relire tout le code à l'œil ?** Un test qui passe, une commande qui renvoie 0, un output qui match un pattern précis. Si la seule vérification possible est "ça a l'air bien", ton prompt est trop flou : reformule-le pour que la réponse produise un artefact testable.
+
+La 6e question est celle qui sépare le prompt de dev senior du prompt de vibe-coder. Un dev senior formule ses demandes de façon à ce que la réponse soit **falsifiable** : si elle est fausse, quelque chose casse visiblement. Un vibe-coder demande "écris un truc qui marche" et lit la réponse en priant. Devine qui livre en prod.
+
+---
+
 ## EXERCICES
 
 **EXO 1 : Le re-prompt chirurgical sur l'Oracle**
@@ -271,4 +289,5 @@ Demande 3 implémentations différentes d'une fonction qui déduplique un tablea
 Un prompt flou donne du code plausible. Un prompt précis donne du code utile. La différence : contexte + contraintes + format + exemples. Le few-shot est la technique la plus puissante et la moins utilisée. L'itération en dialogue est normale : tu corriges de façon ciblée, pas depuis zéro. Et à la fin, le code qui rentre dans ton codebase, c'est sous ta responsabilité : pas celle du LLM.
 
 ---
+
 stability: perissable

@@ -3,6 +3,8 @@ Temps de lecture ~8 min
 
 > Une closure c'est une fonction qui garde en mémoire les variables de son environnement, même après que la fonction parente soit morte et enterrée. Comme un fantôme utile.
 
+> **Où l'analogie casse** : un fantôme narratif reste "vivant" par principe, indéfiniment. Une closure, non : elle vit tant que quelque chose la référence encore (une variable, un handler, un timer). Dès que plus rien ne pointe dessus, le garbage collector la balaye : plus de closure, plus de variables capturées, terminé. On reverra ça froidement dans `08_memory_performance/` avec le GC. Retenir : la closure est un mécanisme précis du moteur (référence vers l'environnement lexical), pas une entité magique.
+
 ---
 
 ## 1) CLOSURE BASIQUE : LE COMPTEUR IMMORTEL

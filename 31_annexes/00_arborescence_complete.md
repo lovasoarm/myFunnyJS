@@ -1,10 +1,10 @@
 # Arborescence complète du projet MyFunnyJS
 
 Pas un chapitre à lire. Une carte à consulter au besoin (voir
-`EXO_LECTURE.md` pour l'exercice qui t'entraîne à t'en servir vite plutôt
-qu'à la lire en entier). Régénérée automatiquement par
-`scripts/gen_arborescence.sh` : ne pas éditer cette section à la main,
-relancer le script après tout ajout/renommage de fichier.
+`EXO_LECTURE.md` pour l'exercice qui t'entraîne à t'en servir vite
+plutôt qu'à la lire en entier). Cette arborescence est la version finale
+figée du repo pédagogique : quand un fichier bouge, on met à jour cette
+carte à la main, comme n'importe quelle autre page de doc.
 
 .nvmrc
 00_getting_started/
@@ -21,6 +21,7 @@ relancer le script après tout ajout/renommage de fichier.
   00_prereq_check.md
   00_why_referentiel.md
   01_micro_quiz_15_mots.md
+  JE_NE_SAIS_PAS_ENCORE.md
   SORTIR_D_UN_PLATEAU.md
   competences.md
   where_you_stand.md
@@ -234,6 +235,7 @@ relancer le script après tout ajout/renommage de fichier.
   EXO_LECTURE.md
   expliquer_a_3_publics_gc.md
 09_data_structures/
+  00_navigation.md
   00_prereq_check.md
   00_why_data_structures.md
   01_array/
@@ -903,6 +905,7 @@ relancer le script après tout ajout/renommage de fichier.
   README.md
   _templates/
     ADR_TEMPLATE.md
+    POSTMORTEM_TEMPLATE.md
     TDD_JOURNAL_TEMPLATE.md
 31_annexes/
   00_arborescence_complete.md
@@ -928,6 +931,7 @@ relancer le script après tout ajout/renommage de fichier.
   GRIMOIRE_CODE_HONNEUR.md
   PERISSABILITE.md
   PERISSABILITE_INDEX.md
+  PONTS_INTER_MODULES.md
   _spaced_repetition.md
   career/
     00_guide.md
@@ -947,6 +951,7 @@ relancer le script après tout ajout/renommage de fichier.
     _recall_20.md
     _recall_25.md
     _recall_30.md
+    _recall_31_32.md
   synthese_mini_projects/
     README.md
     chaos_day.md
@@ -1002,6 +1007,7 @@ LICENSE
 NE_PAS_OUVRIR.md
 README.md
 START_HERE.md
+UNIVERS_AUTORISES.md
 assets/
   README.md
   title.svg

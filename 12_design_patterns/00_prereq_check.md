@@ -25,5 +25,23 @@ Temps de lecture ~5 min
 > ne pas encore les maîtriser. Ta compréhension est testée en fin de
 > module, dans `04_patterns_grimoire.md`.
 
+
+## PRÉREQUIS OBLIGATOIRE : POO MENTALISÉE (v19)
+
+Avant d'entrer dans ce module, tu **dois** avoir lu et mentalisé :
+
+- `18_oop_js/01_prototype_chain_raw.md` (chaîne de prototypes brute)
+- `18_oop_js/03_class_syntax_sugar.md` (class = sucre au-dessus des prototypes)
+- `18_oop_js/06_inheritance_extends_super.md` (héritage vs composition)
+- `18_oop_js/09_composition_vs_inheritance.md` (le choix par défaut moderne)
+
+**Pourquoi c'est vital** : Strategy, Observer, Factory, Decorator sont des
+patterns qui manipulent objets, méthodes, héritage et composition. Les nommer
+sans avoir la POO comme réflexe mental produit du code-culte, pas de la
+compréhension. La pierre Architecture s'effondre si POO n'est pas déjà en toi.
+
+Si tu n'as pas encore fait `18_oop_js/`, ferme ce module maintenant, va
+lire ces 4 fichiers, reviens. Ce n'est pas négociable.
+
 ---
 stability: intemporel

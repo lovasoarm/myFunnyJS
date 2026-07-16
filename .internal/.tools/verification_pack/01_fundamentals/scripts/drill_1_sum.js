@@ -1,0 +1,1 @@
+const fs=require("fs");const data=fs.readFileSync(0,"utf8").trim().split("\n").map(Number);process.stdout.write(String(data.reduce((a,b)=>a+b,0)));

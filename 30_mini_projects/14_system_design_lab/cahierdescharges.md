@@ -45,7 +45,7 @@ Pour chaque exigence : écris dans `SECURITY.md` la menace, ta contre-mesure, et
 - **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
 - **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
 
-Un test dans `.tools/verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
+Un test dans `.internal/.tools/verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
 ## RÔLE DES DOSSIERS (ne skippe pas)
 
@@ -56,6 +56,32 @@ Un test dans `.tools/verification_pack/<projet>/verify.sh` doit prouver ces deux
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
+
+## SPEC DRIFT DYNAMIQUE (v19, obligatoire)
+
+À mi-parcours (dès que ta V1 tourne et que ton premier ADR est écrit), tu
+**dois** lire le fichier `SPEC_UPDATE.md` livré à la racine du projet : s'il
+n'existe pas encore côté mainteneur, crée-le toi-même à partir de l'un des
+scénarios listés dans `SPEC_DRIFT_TRIGGERS.md` et joue-le honnêtement.
+
+`SPEC_UPDATE.md` déclare : **la contrainte X change en Y, adapte sans tout
+refaire**. Exemple type :
+
+> V1 : "un worker consomme, un writer écrit en DB."
+> SPEC_UPDATE : "le writer devient partagé entre 3 domaines, il ne doit
+> plus connaître leur schéma. Refactor sans casser les tests V1."
+
+Ce que tu produis :
+
+1. Un ADR supplémentaire (`ADR/00X_spec_update_pivot.md`) : contrainte, options,
+   choix, ce qui casse, plan de migration incrémentale.
+2. Un diff `git` visible : ce que tu as changé, ce que tu as **gardé**.
+3. Une entrée dans `POSTMORTEM.md` : ce qui aurait rendu ta V1 plus tolérante
+   à ce drift.
+
+Un projet qui ne joue pas ce drill ne compte pas pour la pierre Debugging /
+Architecture. C'est ce qui différencie un dev qui rage-quit d'un dev qui
+livre en prod.
 
 ---
 

@@ -13,7 +13,7 @@ Renvois utiles :
 
 - `31_annexes/transferability/` (exercices ciblés existants : `01_closure_in_python.md`, `03_event_loop_in_pseudorust.md`, `06_observer_in_go.md`, `08_final_cross_language_challenge.md`).
 - `30_mini_projects/15_porte_rasengan_engine_multilang/` (mini-projet cross-language de référence).
-- `.tools/verification_pack/_lib/crosslang_compare.sh` (comparateur de sorties, fourni).
+- `.internal/.tools/verification_pack/_lib/crosslang_compare.sh` (comparateur de sorties, fourni).
 
 ## LE CONTRAT
 

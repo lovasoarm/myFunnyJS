@@ -1,6 +1,6 @@
 # Le Guide que ton prof aurait dû te donner le jour 1
 
-Temps de lecture ~30 min
+Temps de lecture ~100 min (guide dense, ~3000 lignes : fractionne en 3-4 sessions, un chapitre à la fois, pas d'une traite)
 
 
 ---

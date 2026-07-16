@@ -7,7 +7,7 @@ Compétence : lire du code réel que tu n'as pas écrit et le comprendre AVANT d
 
 ## L'extrait
 
-On te fournit un extrait qui orchestre un agent (boucle plan/act/observe, sandbox, garde-fous) : issu de `29_ai_agents_and_autonomy/` ou d'un scenario de `.tools/verification_pack/_jeune_ia/`. 15-25 minutes de lecture, pas plus.
+On te fournit un extrait qui orchestre un agent (boucle plan/act/observe, sandbox, garde-fous) : issu de `29_ai_agents_and_autonomy/` ou d'un scenario de `.internal/.tools/verification_pack/_jeune_ia/`. 15-25 minutes de lecture, pas plus.
 
 ## Le protocole (15 min chrono)
 

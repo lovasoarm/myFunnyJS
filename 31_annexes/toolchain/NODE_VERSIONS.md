@@ -66,7 +66,7 @@ officiel Node).
 
 - Revalider tous les 6 mois.
 - Ne modifier `.nvmrc` que sur décision documentée dans
-  `.audit/DEPENDENCY_LEDGER.md`.
+  `.internal/.audit/DEPENDENCY_LEDGER.md`.
 - Fenêtre supportée : « LTS active `.nvmrc` + LTS suivante ». Au-delà, le
   lecteur doit adapter.
 

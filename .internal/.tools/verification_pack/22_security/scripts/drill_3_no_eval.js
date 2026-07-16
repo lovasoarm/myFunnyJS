@@ -1,0 +1,1 @@
+const input="process.exit(1)";process.stdout.write(input.includes("process")?"blocked":"ran");
