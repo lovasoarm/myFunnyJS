@@ -111,7 +111,7 @@ SQL Injection : l'attaquant insère du SQL dans un champ de formulaire. Si tu co
 
 ```js
 // Chakra_gate classique SANS protection
-app.post('/login', async (req, res) => {
+app.post('/enter-arena', async (req, res) => {
  const { username, password } = req.body;
 
  // L'attaquant entre comme username : admin' OR '1'='1' --
@@ -134,7 +134,7 @@ app.post('/login', async (req, res) => {
 
 ```js
 // Avec paramètres : le driver SQL sépare le code des données
-app.post('/login', async (req, res) => {
+app.post('/enter-arena', async (req, res) => {
  const { username, password } = req.body;
 
  // $1 et $2 sont des placeholders : pg envoie la requête et les valeurs séparément

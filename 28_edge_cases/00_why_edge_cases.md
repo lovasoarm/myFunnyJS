@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Encoding, timezone, floating point : bugs éternels.
+---
+
 > **TL;DR (4 lignes)**
 > - Un dev junior code le cas passant. Un dev senior chasse les 12 cas limites AVANT qu'ils cassent la prod.
 > - Ce module liste, par catégorie (I/O, temps, réseau, unicode, concurrence…), les pièges qui font tomber les apps sérieuses.

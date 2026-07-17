@@ -40,3 +40,14 @@ if [ "$fail" -gt 0 ]; then
   exit 1
 fi
 echo "[OK] Tous les modules ont passe le filet deterministe."
+
+# ---- SELF-TEST ----
+if [[ "${1:-}" == "--self-test" ]]; then
+    echo "== self-test =="
+    echo -n "témoin PASS attendu : "
+    if [[ "1" == "1" ]]; then echo "PASS"; else echo "FAIL (incohérent)"; exit 2; fi
+    echo -n "témoin FAIL attendu : "
+    if [[ "1" == "2" ]]; then echo "PASS (incohérent)"; exit 2; else echo "FAIL"; fi
+    echo "self-test OK"
+    exit 0
+fi

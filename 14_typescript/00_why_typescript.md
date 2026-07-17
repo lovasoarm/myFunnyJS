@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: TypeScript évolue vite mais les principes de typage graduel restent.
+---
+
 > **CE MODULE RÉUTILISE** : types JS (01_fundamentals), types dynamiques (11_functional_js), design patterns (12_design_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TYPESCRIPT

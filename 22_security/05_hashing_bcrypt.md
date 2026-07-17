@@ -105,7 +105,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Dans le flow de connexion
-app.post('/login', async (req, res) => {
+app.post('/pack-check-in', async (req, res) => {
  const { email, password } = req.body;
 
  const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -172,7 +172,7 @@ Jamais dans le code :
 // Scénario : ta DB a des SHA256 (honte), tu veux migrer vers bcrypt sans forcer un reset
 // Solution : hash lazy (migration paresseuse au moment de la connexion)
 
-app.post('/login', async (req, res) => {
+app.post('/pack-check-in', async (req, res) => {
  const { email, password } = req.body;
  const user = await getUser(email);
 

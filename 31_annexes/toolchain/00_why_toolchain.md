@@ -1,3 +1,9 @@
+---
+stability: perissable
+duree_de_vie_estimee: 1-2 ans
+raison: Toolchains JS bougent en permanence.
+---
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.

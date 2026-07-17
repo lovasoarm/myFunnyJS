@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Pure functions, immutabilité, composition : paradigme durable.
+---
+
 > **CE MODULE RÉUTILISE** : fonctions higher-order (01_fundamentals), immutabilité (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : FUNCTIONAL JS

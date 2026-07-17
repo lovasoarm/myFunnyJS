@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: La méthode scientifique de debug ne dépend d'aucun outil.
+---
+
 > **CE MODULE RÉUTILISE** : stack trace (01_fundamentals), async & event loop (03_async). Exceptions (05_error_handling anticipé) : tu croiseras `try`/`catch` avant de l'avoir formellement étudié, ce module te donne juste assez pour lire une stack trace, pas pour maîtriser la gestion d'erreur en profondeur. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # 00 : Pourquoi le debugging

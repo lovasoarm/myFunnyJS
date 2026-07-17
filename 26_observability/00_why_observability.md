@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: OpenTelemetry standardise, les vendors bougent.
+---
+
 > **CE MODULE RÉUTILISE** : debugging (04_debugging), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : OBSERVABILITY

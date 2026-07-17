@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Arrays, maps, sets, trees : socle CS.
+---
+
 > **CE MODULE RÉUTILISE** : objets & tableaux (01_fundamentals), big-O (10_algorithms anticipé), mémoire (08_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 > **9 sous-dossiers dans ce module, c'est plus dense que la moyenne.**

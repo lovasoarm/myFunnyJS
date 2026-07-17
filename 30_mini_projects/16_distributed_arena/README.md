@@ -98,3 +98,9 @@ En 2026, "je sais faire du distribué" est le mot magique qui fait passer un CV 
 mid à senior. La plupart des devs qui le disent ont fait un tuto Kubernetes. Toi,
 tu auras cassé et réparé un système chaos-tested, avec un ADR défendable. C'est
 un ordre de magnitude plus crédible en entretien.
+
+---
+
+## REPRODUCTIBILITÉ
+
+Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.

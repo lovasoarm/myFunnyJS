@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: REST, GraphQL, tRPC : formats bougent, contrats restent.
+---
+
 > **CE MODULE RÉUTILISE** : HTTP (17_web_concepts), erreurs (05_error_handling). Sécurité (22_security anticipé) : ce module touche à l'auth et aux headers de base, la profondeur (XSS, CSRF, injection) est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : API CRAFT

@@ -1,4 +1,14 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: tsconfig et outils évoluent, la logique de migration reste.
+---
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS
+
+
+> **Périmètre**. `04_typescript_tooling` couvre `tsconfig`, fichiers `.d.ts`, migration progressive et intégration build. Les types complexes (mapped, conditional, template literal) vivent dans `03_ts_advanced/`. Deux angles distincts, pas un doublon.
+
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 Temps de lecture ~9 min

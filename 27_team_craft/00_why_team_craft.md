@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Communication, revue de code, mentorat : intemporels.
+---
+
 > **TL;DR (4 lignes)**
 > - Coder seul en 2028 = coder mal en 2029. Ce module te donne le vocabulaire et les réflexes pour survivre en équipe (revue de code, feedback, PR, désaccord technique).
 > - Ce n'est pas du "soft skill" : c'est de l'ingénierie sociale codifiée, mesurable, testable en entretien.

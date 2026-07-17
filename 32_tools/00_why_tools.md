@@ -1,3 +1,9 @@
+---
+stability: perissable
+duree_de_vie_estimee: 1-2 ans
+raison: Outils : bougent chaque année. Lis pour saisir la logique, pas pour mémoriser.
+---
+
 > **TL;DR (4 lignes)**
 > - Ta chaîne d'outils (linter, formatter, bundler, LSP, debugger) est ton exosquelette. Un dev sans outils bien réglés perd 30% de son temps à des tâches automatisables.
 > - Ce module te fait construire ta propre chaîne, pas suivre une config copiée-collée d'un tuto de 2021.

@@ -1,6 +1,12 @@
 # EXO LECTURE : 15-25 minutes (Observabilite)
-Temps de lecture ~2 min
 
+> **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.
+>
+> **Budget lecture** : 470 lignes en 15 min chrono. Si tu dépasses, note pourquoi dans `MAP.md`. Objectif progressif : tu dois pouvoir tenir 500 lignes en 15 min à la fin du curriculum.
+>
+> **Protocole de cartographie** : suis `31_annexes/reading/cartographie_15min.md` si tu ne sais pas par où entrer.
+
+Temps de lecture ~2 min
 
 Competence : lire du code reel que tu n'as pas ecrit et le comprendre AVANT de
 le modifier. C'est 80% du metier. Applique le protocole
@@ -28,7 +34,6 @@ Si ton hypothese etait fausse, tant mieux : tu viens d'apprendre ou ton modele
 mental cloche. Un dev qui lit vite mais faux est plus dangereux qu'un dev lent
 mais juste.
 
-
 ## RÈGLE READ_ONLY_FIRST (non négociable)
 
 **Tu n'as PAS le droit de modifier le code tant que tu ne peux pas :**
@@ -42,4 +47,5 @@ Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree 
 Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
 
 ---
+
 stability: intemporel

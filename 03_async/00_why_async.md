@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Callbacks, promises, event loop : modèle de concurrence stable depuis 2015.
+---
+
 > **CE MODULE RÉUTILISE** : fonctions et scope (01_fundamentals), structures de contrôle (01_fundamentals), erreurs synchrones (05_error_handling anticipé). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ASYNC & EVENT LOOP

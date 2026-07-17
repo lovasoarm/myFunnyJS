@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Cadre de posture d'ingénieur, indépendant des technos.
+---
+
 # Pourquoi ce référentiel ?
 
 Temps de lecture ~2 min

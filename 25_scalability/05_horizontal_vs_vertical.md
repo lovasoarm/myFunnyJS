@@ -56,7 +56,7 @@ Le risque réel : scale out exige que ton code soit "stateless" (sans état loca
 // Mauvais pour le scale out : état stocké EN MÉMOIRE du process
 let activeUsers = {} // existe UNIQUEMENT sur ce serveur précis
 
-app.post('/login', (req, res) => {
+app.post('/enter-arena', (req, res) => {
  activeUsers[req.body.userId] = true
  // Si la prochaine requête de ce shinobi atterrit sur un AUTRE serveur,
  // ce serveur-là ne sait RIEN de cette connexion
@@ -66,7 +66,7 @@ app.post('/login', (req, res) => {
 ```js
 // Bon pour le scale out : état externalisé, partagé par TOUS les serveurs
 // (vu en détail dans 24_databases/04_redis_caching)
-app.post('/login', async (req, res) => {
+app.post('/enter-arena', async (req, res) => {
  await redis.set(`active:${req.body.userId}`, true)
  // N'IMPORTE QUEL serveur peut lire cette info ensuite
 })

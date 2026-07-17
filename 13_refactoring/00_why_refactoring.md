@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Fowler 1999, lois de la réécriture inchangées.
+---
+
 > **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
 > **CE MODULE RÉUTILISE** : patterns (12_design_patterns), tests (06_testing), code smells (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.

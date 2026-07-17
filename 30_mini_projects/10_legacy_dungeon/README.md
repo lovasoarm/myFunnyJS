@@ -179,3 +179,9 @@ Voir `RULES.md` pour la règle complète et le format exact du livrable `MAP.md`
 ## THÈME NEUTRE (optionnel)
 
 Si les références Naruto/DBZ ne te parlent pas, remplace mentalement par un domaine que tu connais (foot, cuisine, musique). Le concept technique reste identique.
+
+---
+
+## REPRODUCTIBILITÉ
+
+Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.

@@ -123,7 +123,7 @@ Le pourquoi combiner les trois : un attaquant qui essaie de deviner un mot de pa
 ```js
 // Limite différente selon le contexte, pas une règle unique pour tout le site
 const limits = {
- '/login': { byIP: 5, window: 60 },    // strict : cible de bruteforce
+ '/enter-arena': { byIP: 5, window: 60 },    // strict : cible de bruteforce
  '/search': { byUser: 100, window: 60 },  // souple : usage normal fréquent
  '/export': { byUser: 3, window: 3600 }  // très strict : opération lourde
 }

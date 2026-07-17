@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: WebSocket, SSE, WebRTC : APIs stables mais l'écosystème bouge.
+---
+
 > **CE MODULE RÉUTILISE** : async (03_async), event loop et backpressure (03_async/06), réseau (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REAL-TIME

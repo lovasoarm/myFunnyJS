@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Tri, recherche, graphes : intemporels.
+---
+
 > **CE MODULE RÉUTILISE** : structures de données (09_data_structures), récursion (01_fundamentals), async (03_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ALGORITHMS

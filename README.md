@@ -56,12 +56,12 @@ En 2026, taper du code vite ne vaut plus rien : l'IA le fait déjà. Ce qui rest
 29        AI Agents & Autonomy
 30        17 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
 31        Annexes : transférabilité, interview, portfolio, career, éthique
-          Carte détaillée : 31_annexes/00_arborescence_complete.md
+          Carte détaillée : 31_annexes/ARBORESCENCE.md
 Templates réutilisables : 31_annexes/templates/  (POSTMORTEM, HYPOTHESES, PUBLICATION)
 32        Tools
 ```
 
-Arborescence complète, à consulter au besoin (pas à lire d'une traite) : [`31_annexes/00_arborescence_complete.md`](./31_annexes/00_arborescence_complete.md).
+Arborescence complète, à consulter au besoin (pas à lire d'une traite) : [`31_annexes/ARBORESCENCE.md`](./31_annexes/ARBORESCENCE.md).
 
 ---
 
@@ -84,3 +84,7 @@ dont `DEPENDENCY_LEDGER.md`, fourni comme modèle vide à copier : ce n'est
 pas TON registre personnel. Ton propre `DEPENDENCY_LEDGER.md` (voir
 `00_getting_started/02_day_one.md`) est à créer et tenir à jour à la racine
 de ton propre projet, pas un fichier fourni par le curriculum.
+
+---
+
+**Historique des versions** : voir `.internal/CHANGELOG_v19.md` (et suivants). Non-pédagogique, à ignorer pendant l'apprentissage.

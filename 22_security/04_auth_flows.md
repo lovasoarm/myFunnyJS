@@ -58,7 +58,7 @@ app.use(session({
  }
 }));
 
-app.post('/login', async (req, res) => {
+app.post('/quarry-gate', async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
 
@@ -118,7 +118,7 @@ const ACCESS_TOKEN_EXPIRY = '15m'; // court : si volé, valide 15 minutes max
 const REFRESH_TOKEN_EXPIRY = '7d'; // long : pour regénérer l'access token
 
 // Génération au login
-app.post('/login', async (req, res) => {
+app.post('/quarry-gate', async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) return res.status(401).json({ error: 'Identifiants incorrects' });
 

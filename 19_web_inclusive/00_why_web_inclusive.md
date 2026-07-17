@@ -1,4 +1,14 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: WCAG et normes RGPD bougent, la posture inclusive reste.
+---
+
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ACCESSIBILITY (A11Y)
+
+
+> **Périmètre**. Ce fichier chapeau ouvre le module `19_web_inclusive` en entier : accessibilité (a11y) ET internationalisation (i18n). Le sous-module `i18n/` a son propre `00_why_i18n.md` pour son angle spécifique.
+
 
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 

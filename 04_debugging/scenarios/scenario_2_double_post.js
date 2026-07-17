@@ -1,3 +1,10 @@
+// ============================================================
+// AVANT D'ÉDITER : cp 31_annexes/templates/HYPOTHESES.md ./HYPOTHESES.md
+// puis remplis les 3 hypothèses (chacune avec preuve attendue) AVANT
+// toute modification. Le verify.sh refuse de valider sans HYPOTHESES.md
+// non vide. Aucun raccourci.
+// ============================================================
+
 // Bug attendu : un clic sur "Save" envoie DEUX requêtes POST identiques.
 // Symptôme visible côté serveur : deux entrées créées en base.
 

@@ -1,3 +1,10 @@
+// ============================================================
+// AVANT D'ÉDITER : cp 31_annexes/templates/HYPOTHESES.md ./HYPOTHESES.md
+// puis remplis les 3 hypothèses (chacune avec preuve attendue) AVANT
+// toute modification. Le verify.sh refuse de valider sans HYPOTHESES.md
+// non vide. Aucun raccourci.
+// ============================================================
+
 // Bug attendu : cette fonction "debounce" ré-exécute à chaque appel
 // au lieu de ne déclencher qu'après la période de calme.
 // Symptôme visible : l'utilisateur tape "hello" (5 keydown en 200ms),

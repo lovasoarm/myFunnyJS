@@ -168,3 +168,9 @@ Chaque mini-projet doit contenir a minima :
 - `cahierdescharges.md` : contraintes et périmètre.
 
 Un CI check impose la présence de `src/` et `tests/` avant validation.
+
+---
+
+## REPRODUCTIBILITÉ
+
+Installation canonique : `npm ci` (pas `npm install`). `npm ci` respecte strictement le `package-lock.json` : deux personnes qui clonent obtiennent exactement les mêmes versions. Committe toujours ton `package-lock.json`. Sans lui, un `npm install` 3 mois plus tard installera d'autres versions et tu debug un fantôme.

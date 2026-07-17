@@ -71,3 +71,8 @@ pédagogique. C'est un filet minimal qui prouve, en une requête, que
 les fondations Node du curriculum tournent et produisent les sorties
 attendues. Les tests unitaires vivent dans `06_testing/` et dans le
 `tests/` de chaque mini-projet.
+
+
+## SELF-TEST
+
+Lance `bash .internal/.tools/verification_pack/verify_all.sh --self-test` au démarrage. Ça exécute un exercice témoin (attendu : PASS) et un exercice volontairement cassé (attendu : FAIL). Si l'un des deux ne donne pas le résultat annoncé, la boîte noire n'est pas fiable sur ta machine : vérifie ton shell, ton PATH, tes droits d'exécution avant de faire confiance aux verify.sh des modules.

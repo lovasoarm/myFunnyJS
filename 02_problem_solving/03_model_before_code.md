@@ -199,6 +199,21 @@ Implémente le type discriminant qui les rend impossibles en TypeScript.
 
 ---
 
+
+---
+
+## SIGNES QU'IL NE FAUT PAS CODER MAINTENANT
+
+Cinq signaux nets. Si un seul est allumé, tu poses le clavier et tu vas résoudre le signal avant.
+
+1. **La spec est floue** : tu n'arrives pas à écrire en une phrase ce que le code doit produire. Coder maintenant = coder à ta place la spec qui n'existe pas. Tu vas la réécrire trois fois.
+2. **Ton hypothèse n'est pas prouvée** : tu supposes que le bug vient de X sans l'avoir vérifié. Coder = fixer un truc qui n'était peut-être pas cassé. Va prouver d'abord.
+3. **Il n'y a pas de test qui capture le comportement attendu** : tu vas savoir que tu as fini quand ? Aucun test = aucune fin. Écris le test qui échouera avant.
+4. **Il n'y a pas d'ADR (ni de discussion tracée)** : la décision est encore dans la tête de quelqu'un. Coder maintenant = imposer par le fait accompli. Écris l'ADR, poste-la, attends 24h de retour.
+5. **Il reste un désaccord non résolu dans l'équipe** : deux collègues ont deux approches. Coder maintenant = provoquer un merge conflict humain à la revue. Résous le désaccord d'abord.
+
+Un dev senior se reconnaît à ce qu'il ne code pas. Un junior code pour se rassurer, un senior s'arrête pour dérisquer.
+
 ## RÉSUMÉ
 
 Modéliser avant de coder : c'est décider de la forme des données et des contrats avant que le code existe. Un bon modèle rend les états impossibles... impossibles. Il se lit comme une histoire. Il change quand le domaine change, pas quand l'UI change. Un modèle sans invariants laisse entrer n'importe quoi : et n'importe quoi artefact des bugs qu'on comprend pas.

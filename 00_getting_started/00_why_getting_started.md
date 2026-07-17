@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: Les outils d'installation (Node, npm, VS Code) évoluent mais les principes restent.
+---
+
 # Pourquoi ce dossier "getting started" ?
 
 Temps de lecture ~2 min

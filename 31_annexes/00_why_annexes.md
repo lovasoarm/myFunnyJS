@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Postures, carrière, éthique : sans horizon d'obsolescence.
+---
+
 # 00 : Pourquoi les annexes
 
 Temps de lecture ~4 min

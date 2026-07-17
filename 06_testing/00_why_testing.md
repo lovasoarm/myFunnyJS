@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: Les runners changent (Jest, Vitest, Bun), les principes AAA restent.
+---
+
 > **CE MODULE RÉUTILISE** : fonctions pures (01_fundamentals), async (03_async), erreurs (05_error_handling). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : TESTING

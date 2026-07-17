@@ -2,49 +2,43 @@
 stability: intemporel
 ---
 
-# PONTS INTER-MODULES : choix éditorial
+# PONTS INTER-MODULES : la carte
 
 Temps de lecture ~3 min
 
-> Note de structure. Rien à apprendre ici. À lire seulement si tu t'es
-> demandé "pourquoi certains modules ont un fichier `99_PONT_*` et pas
-> les autres ?"
+> Note de structure. Rien à apprendre ici. Table de référence des ponts qui existent entre modules et de la raison de chacun.
 
-## LE CHOIX
+## POLITIQUE ÉDITORIALE (v20)
 
-Cinq transitions entre modules ont un fichier `99_PONT_*.md` dédié :
+Un pont existe entre deux modules quand **le saut change la nature du travail** : paradigme, échelle de temps, type de responsabilité, ou densité de vocabulaire. Chaque pont tient en 60-100 lignes et suit toujours le même gabarit : ce que tu maîtrises déjà, le vocabulaire qui arrive, le piège mental typique, un exercice-charnière de 5 min.
 
-- `01_fundamentals` → `03_async`
-- `03_async` → `08_memory_performance`
-- `07_math_basics` → `08_memory_performance`
-- `11_functional_js` → `12_design_patterns`
-- `28_edge_cases` → `29_ai_agents_and_autonomy`
+Les transitions "évidentes" (le sujet évolue mais la posture reste) n'ont pas de pont : chaque module ouvre par son `00_why_*.md` qui te resitue. Si un enchaînement te semble abrupt et qu'il n'a pas de pont, ouvre une issue.
 
-Les autres transitions n'en ont pas. Ce n'est pas un oubli : c'est un choix assumé.
+## TABLE DES PONTS
 
-## POURQUOI PAS UN PONT PARTOUT
+| De | Vers | Fichier | Nature du saut |
+|----|------|---------|----------------|
+| 01_fundamentals | 03_async | `01_fundamentals/99_PONT_avant_module_03_async.md` | Syntaxe séquentielle -> concurrence |
+| 02_problem_solving | 03_async | `02_problem_solving/99_PONT_avant_module_03_async.md` | Modèle statique -> modèle temporel |
+| 03_async | 08_memory_performance | `03_async/99_PONT_avant_module_08_memory.md` | Opérations -> ressources |
+| 04_debugging | 05_error_handling | `04_debugging/99_PONT_avant_module_05_error_handling.md` | Réagir -> prévoir |
+| 05_error_handling | 06_testing | `05_error_handling/99_PONT_avant_module_06_testing.md` | Prévoir l'échec -> le prouver |
+| 06_testing | 07_math_basics | `06_testing/99_PONT_avant_module_07_math_basics.md` | Prouver -> raisonner sur les nombres |
+| 07_math_basics | 08_memory_performance | `07_math_basics/99_PONT_avant_module_08_memory.md` | Nombres -> ressources |
+| 08_memory_performance | 09_data_structures | `08_memory_performance/99_PONT_avant_module_09_data_structures.md` | Mesure -> choix de structure |
+| 09_data_structures | 10_algorithms | `09_data_structures/99_PONT_avant_module_10_algorithms.md` | Stocker -> traiter |
+| 11_functional_js | 12_design_patterns | `11_functional_js/99_PONT_avant_module_12_design_patterns.md` | Fonctions -> structures d'objets |
+| 12_design_patterns | 13_refactoring | `12_design_patterns/99_PONT_avant_module_13_refactoring.md` | Reconnaître -> réécrire |
+| 13_refactoring | 14_typescript | `13_refactoring/99_PONT_avant_module_14_typescript.md` | Refactor JS -> refactor typé |
+| 14_typescript | 15_runtime_env | `14_typescript/99_PONT_avant_module_15_runtime_env.md` | Types -> runtime |
+| 22_security | 23_ai_native_dev | `22_security/99_PONT_avant_module_23_ai_native_dev.md` | Code humain -> code IA |
+| 26_observability | 27_team_craft | `26_observability/99_PONT_avant_module_27_team_craft.md` | Observer machines -> observer humains |
+| 28_edge_cases | 29_ai_agents_and_autonomy | `28_edge_cases/99_PONT_28_29.md` | Ingénierie humaine -> délégation |
 
-Un pont entre chaque module, ça reviendrait à écrire 31 petits fichiers de transition sur 32 modules. Le curriculum deviendrait bavard : 90 % de ces ponts diraient la même chose ("tu viens de finir X, tu vas commencer Y, respire"). Le lecteur les sauterait au bout du deuxième : et à ce moment-là, le mécanisme perd sa force partout, y compris là où il compte vraiment.
+## LES TRANSITIONS SANS PONT
 
-## POURQUOI UN PONT ICI, PAS AILLEURS
+Toutes les autres transitions du curriculum. Elles ne posent pas de saut de nature : le sujet évolue, la posture reste. Ouvre simplement le `00_why_*.md` du module suivant.
 
-Les cinq ponts existants marquent des **sauts de nature**, pas des progressions linéaires. On ne passe pas d'un thème à un thème voisin : on change de registre.
+## RÈGLE POUR L'AVENIR
 
-- `01 → 03` : de la syntaxe séquentielle à la concurrence. Le mental doit basculer.
-- `03 → 08` et `07 → 08` : du monde des opérations au monde des ressources. La mesure remplace l'exécution.
-- `11 → 12` : de la manipulation de fonctions à la manipulation de structures d'objets. Deux paradigmes qui cohabitent.
-- `28 → 29` : de l'ingénierie humaine à l'ingénierie qui délègue. La responsabilité change de mains.
-
-Les autres transitions (ex : `04_debugging` → `05_error_handling`, `13_refactoring` → `14_typescript`, `22_security` → `23_ai_native_dev`) sont des enchaînements naturels : le sujet évolue, mais la posture reste. Pas besoin d'un sas.
-
-## SI TU RESSENS UN SAUT ABRUPT AILLEURS
-
-Tu n'imagines pas des choses : `13 → 14` (refactoring → typescript) et `22 → 23` (security → AI native dev) sont les deux transitions non-pontées les plus abruptes conceptuellement. Elles restent gérables parce que chaque module ouvre par son propre `00_why_*.md` qui te resitue. Si le saut te freine quand même : relis le `_recall_` du bloc que tu quittes avant de plonger dans le suivant. C'est ce que fait un pont, à peine différemment.
-
-## RÈGLE POUR L'AVENIR (v17 et au-delà)
-
-Un nouveau pont s'ajoute **seulement si** la transition change la nature du travail (paradigme, échelle de temps, type de responsabilité). Pas si elle change juste le sujet. Ça évite la dérive vers 31 ponts creux.
-
----
-
-Le lecteur pressé n'a rien à faire de cette page. Elle existe pour qu'un lecteur exigeant qui note "seulement 5 ponts, bizarre" sache que c'est délibéré.
+Un nouveau pont s'ajoute **seulement si** la transition change la nature du travail. Pas si elle change juste le sujet. Ça évite la dérive vers 31 ponts creux.

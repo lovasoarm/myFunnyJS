@@ -1,3 +1,9 @@
+---
+stability: intemporel
+duree_de_vie_estimee: 10+ ans
+raison: Gérer l'échec est une posture d'ingénieur, pas une API.
+---
+
 > **CE MODULE RÉUTILISE** : try/catch (01_fundamentals), async & promises (03_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ERROR HANDLING

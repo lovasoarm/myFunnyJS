@@ -1,0 +1,10 @@
+const assert = require('assert');
+const { formatArenaTime } = require('./FIX.js');
+assert.strictEqual(formatArenaTime(0), '00s');
+assert.strictEqual(formatArenaTime(4), '04s');
+assert.strictEqual(formatArenaTime(60), '01m 00s');
+assert.strictEqual(formatArenaTime(3661), '1h 01m 01s');
+assert.throws(() => formatArenaTime(-1));
+assert.throws(() => formatArenaTime(1.5));
+assert.throws(() => formatArenaTime('60'));
+console.log('OK');

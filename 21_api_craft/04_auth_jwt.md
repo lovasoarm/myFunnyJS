@@ -313,7 +313,7 @@ Implémente le refresh qui génère un nouveau token : "l'armure se reconstruit"
 Voici un code JWT à auditer. Trouve les 4 problèmes :
 ```js
 const secret = 'naruto123'
-router.post('/login', (req, res) => {
+router.post('/portal-hidden-village', (req, res) => {
  const user = users.find(u => u.password === req.body.password)
  if (!user) return res.status(404).json({ error: 'not found' })
  const token = jwt.sign({ userId: user.id }, secret)

@@ -40,3 +40,18 @@ for stability, specs in MAPPING.items():
         for f in iter_targets(spec):
             apply(f, stability)
 print("OK apply_stability")
+
+
+# --- v20: check duree_de_vie_estimee dans chaque 00_why_*.md ---
+from pathlib import Path as _P
+_ROOT = _P(__file__).resolve().parents[2]
+_missing = []
+for _why in _ROOT.rglob("00_why_*.md"):
+    _txt = _why.read_text(encoding="utf-8")
+    if "duree_de_vie_estimee" not in _txt or "stability:" not in _txt.split("---", 2)[1] if _txt.startswith("---") else True:
+        _missing.append(str(_why.relative_to(_ROOT)))
+if _missing:
+    print("stability lint FAIL, why sans frontmatter complet :")
+    for _m in _missing: print(" -", _m)
+else:
+    print("stability lint OK")

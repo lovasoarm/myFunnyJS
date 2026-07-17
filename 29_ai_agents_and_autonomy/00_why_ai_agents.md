@@ -1,3 +1,9 @@
+---
+stability: perissable
+duree_de_vie_estimee: 1-2 ans
+raison: Domaine en explosion, les patterns d'aujourd'hui seront réécrits.
+---
+
 > **Avant de lire ce module**, va voir `00_bridge_exo.md` qui relie ça aux edge cases du 28.
 
 # POURQUOI CE MODULE EXISTE

@@ -52,7 +52,7 @@ const mercenaireLimiter = rateLimit({
  legacyHeaders: false,
 });
 
-app.post('/login', mercenaireLimiter, mercenaireHandler);
+app.post('/tenrai-shinsho', mercenaireLimiter, mercenaireHandler);
 
 // Account lockout (verrouillage après N tentatives) : en DB, pas en mémoire
 // --> en mémoire, un redémarrage du serveur reset les compteurs
@@ -267,7 +267,7 @@ const logSecurityEvent = (type, data, req) => {
 };
 
 // Exemples d'événements à logger
-app.post('/login', mercenaireLimiter, async (req, res) => {
+app.post('/tenrai-shinsho', mercenaireLimiter, async (req, res) => {
  const user = await verifyCredentials(req.body.email, req.body.password);
  if (!user) {
   logSecurityEvent('MERCENAIRE_FAILURE', { email: req.body.email }, req); // qui essaie de se connecter avec quoi

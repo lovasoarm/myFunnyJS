@@ -39,5 +39,9 @@ Thumbs.db
 *.7z
 *.tar.gz
 
-# Changelogs versionnés (méta, non pédagogique)
-CHANGELOG_v*.md
+
+# Artefacts curriculum (générés, méta, jamais dans le parcours apprenant)
+.internal/.audit/*.log
+.internal/.audit/a11y_curriculum.md
+*.zip.bak
+.tmp/

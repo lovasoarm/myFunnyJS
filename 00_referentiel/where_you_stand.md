@@ -189,7 +189,7 @@ T'as 32 modules devant toi. Si tu regardes la montagne entière, tu vas paniquer
  une version différente à chaque module. Si un dessin te paraît familier, c'est normal,
  c'est voulu.
 - **Tu cherches un fichier précis et tu sais pas dans quel module il est ?**
- `31_annexes/00_arborescence_complete.md` liste tout, dossier par dossier, fichier par
+ `31_annexes/ARBORESCENCE.md` liste tout, dossier par dossier, fichier par
  fichier, avec son rôle en une ligne. Pas à lire d'une traite : à consulter au besoin.
 
 ### Repérer les modules denses (ralentis volontairement ici)

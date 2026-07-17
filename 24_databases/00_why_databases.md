@@ -1,3 +1,9 @@
+---
+stability: moderne
+duree_de_vie_estimee: 3-5 ans
+raison: SQL éternel, moteurs et modes managés bougent.
+---
+
 > **CE MODULE RÉUTILISE** : structures de données (09_data_structures), async (03_async). Scalabilité (25_scalability anticipé) : ce module pose les bases (index, requêtes), la vraie scalabilité de la couche données est vue plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DATABASES
