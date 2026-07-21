@@ -8,7 +8,7 @@ raison: Les patterns d'hallucination IA évoluent avec les modèles.
 
 Temps de lecture ~25 min
 
-> Cinq snippets. Chacun a l'air propre. Chacun cache trois pièges. Ton exercice : trouver, prouver, corriger. Correction cachée dans `.internal/.tools/verification_pack/23/verify.sh`.
+> Cinq snippets. Chacun a l'air propre. Chacun cache trois pièges. Ton exercice : trouver, prouver, corriger. Correction cachée dans `.internal/.tools/verification_pack/23_ai_native_dev_faux_positifs/verify.sh`.
 
 ## LA RÈGLE DU JEU
 
@@ -117,7 +117,7 @@ Un fichier `AUDIT_FAUX_POSITIFS.md` avec 5 sections numérotées. Chaque section
 - Le test minimal qui prouve chaque piège.
 - La version corrigée du snippet.
 
-Puis lance `bash .internal/.tools/verification_pack/23/verify.sh faux_positifs`. Si tu as raté un piège, le verify te dit lequel sans te donner la réponse.
+Puis lance `bash .internal/.tools/verification_pack/23_ai_native_dev_faux_positifs/verify.sh faux_positifs`. Si tu as raté un piège, le verify te dit lequel sans te donner la réponse.
 
 ## POURQUOI CET EXERCICE
 

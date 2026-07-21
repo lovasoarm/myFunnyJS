@@ -20,11 +20,11 @@ Le curriculum traite les deux angles séparément : `10_legacy_dungeon` pour le 
 
 ## VERSION HUMAINE (vendredi 19h)
 
-Voir `human_version.js`. Écrite vite, marche sur les cas testés, rate le reste.
+Voir `src/human_version.js`. Écrite vite, marche sur les cas testés, rate le reste.
 
 ## VERSION IA (Copilot avec un prompt court)
 
-Voir `ai_version.js`. Semble propre, structurée, commentée, casse autrement.
+Voir `src/ai_version.js`. Semble propre, structurée, commentée, casse autrement.
 
 ## L'EXERCICE
 
@@ -33,7 +33,7 @@ Voir `ai_version.js`. Semble propre, structurée, commentée, casse autrement.
    - "Pièges style humain" : 3 pièges nommés, avec la ligne exacte et la raison.
    - "Pièges style IA" : 3 pièges nommés, différents des précédents, avec la ligne exacte et la raison.
 3. Écris `FIX.md` avec la version corrigée qui passe tous les cas limites.
-4. Passe la version corrigée dans les tests fournis (`tests.js`).
+4. Passe la version corrigée dans les tests fournis (`tests/tests.js`).
 
 ## LOCK
 
