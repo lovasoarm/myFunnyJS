@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CONSIGNE : HYPOTHESES.md OBLIGATOIRE
 
 Temps de lecture ~2 min

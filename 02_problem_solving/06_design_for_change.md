@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CONCEVOIR POUR CE QUI VA CHANGER
 Temps de lecture ~9 min
 

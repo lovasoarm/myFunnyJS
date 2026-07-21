@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 01 : Installation pas-à-pas (Windows / macOS / Linux)
 Temps de lecture ~5 min
 

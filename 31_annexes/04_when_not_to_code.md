@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # When NOT to code
 Temps de lecture ~5 min
 

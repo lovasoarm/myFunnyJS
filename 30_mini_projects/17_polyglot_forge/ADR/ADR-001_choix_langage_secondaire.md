@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ADR 001 : choix du langage secondaire
 
 Temps de lecture ~2 min

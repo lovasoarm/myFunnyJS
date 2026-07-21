@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : SYSTEM DESIGN LAB
 
 Temps de lecture ~2 min

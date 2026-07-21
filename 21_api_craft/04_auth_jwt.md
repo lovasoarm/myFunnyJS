@@ -1,8 +1,12 @@
+---
+stability: intemporel
+---
+
 # JWT DE BOUT EN BOUT
 Temps de lecture ~10 min
 
 JWT c'est pas de l'auth. JWT c'est un format de token.
-L'auth, c'est le mécanisme autour : login, sign, vérification, refresh, révocation.
+L'auth, c'est le mécanisme autour : connexion, sign, vérification, refresh, révocation.
 Ce fichier couvre tout le cycle. Pas juste le happy path, aussi ce qui foire.
 
 ---
@@ -330,9 +334,9 @@ router.get('/protected', (req, res) => {
 
 ## 5) CE QUE CE FICHIER NE COUVRE PAS (volontairement)
 
-Le flow JWT ci-dessus marche : login, access, refresh, middleware. Ça ne veut pas dire que ton API est prête pour la prod. Trois angles morts sont couverts ailleurs dans le curriculum, et tu dois les traiter avant de considérer l'auth comme finie.
+Le flow JWT ci-dessus marche : connexion, access, refresh, middleware. Ça ne veut pas dire que ton API est prête pour la prod. Trois angles morts sont couverts ailleurs dans le curriculum, et tu dois les traiter avant de considérer l'auth comme finie.
 
-- **CSRF (Cross-Site Request Forgery)** : ton cookie httpOnly est envoyé automatiquement par le navigateur, y compris depuis un site attaquant. Sans protection dédiée, un formulaire malveillant peut déclencher des actions au nom de l'utilisateur connecté. --> `22_security/02_csrf_cors.md`
+- **CSRF (Cross-Site Request Forgery)** : ton cookie httpOnly est envoyé automatiquement par le navigateur, y compris depuis un site attaquant. Sans protection dédiée, un formulaire malveillant peut déclencher des actions au nom de l'acteur connecté. --> `22_security/02_csrf_cors.md`
 - **Vol de session / token hijacking** : un access token en mémoire reste volable via XSS avancé, un refresh token peut fuiter via un backup ou un log mal filtré. Détection, rotation forcée, révocation immédiate --> `22_security/04_auth_flows.md`
 - **Rotation des secrets (`ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET`)** : un secret ne se renouvelle pas tout seul. Sans plan de rotation, un leak d'aujourd'hui compromet les tokens émis dans 6 mois. --> `22_security/04_auth_flows.md` + procédures de secrets management.
 

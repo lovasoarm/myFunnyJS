@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CLI BASICS : PARLER AU TERMINAL SANS BÉGAYER
 Temps de lecture ~8 min
 

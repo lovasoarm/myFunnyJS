@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # LA CHAÎNE PROTOTYPE DANS SES ZONES SOMBRES
 Temps de lecture ~11 min
 

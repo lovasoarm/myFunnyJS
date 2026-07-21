@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Humain vs IA : deux patches, un bug, trouve l'auteur
 Temps de lecture ~10 min
 

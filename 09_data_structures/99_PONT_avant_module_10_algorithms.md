@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # PONT : de stocker à traiter à les algorithmes
 
 -> ~10 min

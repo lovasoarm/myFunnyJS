@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SPEC DRIFT : 14_system_design_lab
 
 Temps de lecture ~2 min

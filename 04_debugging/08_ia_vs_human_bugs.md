@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # BUGS IA vs BUGS HUMAINS : signatures distinctes
 
 -> ~9 min

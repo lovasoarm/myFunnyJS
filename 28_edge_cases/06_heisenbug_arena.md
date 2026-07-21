@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # HEISENBUG ARENA : LE BUG QUI DISPARAÎT QUAND TU LE REGARDES
 
 Temps de lecture ~17 min

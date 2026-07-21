@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # PONT : de typer du code à connaître le sol sur lequel il tourne à l'environnement d'exécution
 
 -> ~10 min

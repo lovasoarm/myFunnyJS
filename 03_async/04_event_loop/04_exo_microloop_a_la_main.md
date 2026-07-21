@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # EXO : IMPLÉMENTER UNE MINI FILE DE MICROTASKS À LA MAIN
 Temps de lecture ~7 min. Temps d'implémentation ~30 min.
 

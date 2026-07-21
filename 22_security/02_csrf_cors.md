@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CSRF ET CORS
 Temps de lecture ~9 min
 

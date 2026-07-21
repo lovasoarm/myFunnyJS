@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # portfolio.md : la sortie unique du curriculum
 
 Temps de lecture ~2 min

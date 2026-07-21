@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Connecter ton code à la DB sans te perdre dans l'abstraction
 Temps de lecture ~10 min
 

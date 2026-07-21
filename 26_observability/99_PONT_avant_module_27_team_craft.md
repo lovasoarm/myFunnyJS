@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # PONT : de observer un système à collaborer avec des humains à l'artisanat en équipe
 
 -> ~10 min

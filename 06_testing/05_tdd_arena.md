@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD ARENA : LE TEST EN PREMIER, TOUJOURS
 Temps de lecture ~8 min
 

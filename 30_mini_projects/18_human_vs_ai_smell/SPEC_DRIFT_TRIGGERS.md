@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SPEC DRIFT TRIGGERS
 
 ## Déclencheur J+3

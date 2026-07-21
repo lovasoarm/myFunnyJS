@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # RFC simulation : soumets une décision technique
 Temps de lecture ~5 min
 

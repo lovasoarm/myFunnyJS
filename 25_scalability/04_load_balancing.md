@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Un seul serveur ne suffit jamais longtemps
 Temps de lecture ~11 min
 

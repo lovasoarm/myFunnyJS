@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # 00 : Prereq check : TypeScript
 Temps de lecture ~5 min
 

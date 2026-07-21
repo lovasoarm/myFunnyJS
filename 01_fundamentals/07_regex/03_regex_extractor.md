@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # REGEX EXTRACTOR : CAPTURER, REMPLACER, SPLITTER
 Temps de lecture ~9 min
 

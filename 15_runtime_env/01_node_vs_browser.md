@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # NODE VS BROWSER : MÊME JS, DEUX PLANÈTES
 Temps de lecture ~8 min
 

@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # LIRE UNE STACK TRACE DE PROD QUAND LE CODE SOURCE N'EXISTE PLUS
 Temps de lecture ~8 min
 

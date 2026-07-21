@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Interview Arena : 10 sujets + grilles
 Temps de lecture ~5 min
 

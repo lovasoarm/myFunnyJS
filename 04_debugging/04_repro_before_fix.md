@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 04 : Reproduis avant de corriger
 Temps de lecture ~5 min
 

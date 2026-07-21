@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PROCESS.ENV ET PROCESS.ARGV : LA CONFIG QUI NE SE HARD-CODE PAS
 Temps de lecture ~8 min
 

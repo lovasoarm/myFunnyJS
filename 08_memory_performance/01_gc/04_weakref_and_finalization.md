@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 04 : WeakRef & FinalizationRegistry : quand tu veux "peut-être garder"
 Temps de lecture ~5 min
 

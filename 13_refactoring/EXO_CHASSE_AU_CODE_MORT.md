@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXO : chasse au code mort (15.4)
 
 Temps de lecture ~2 min

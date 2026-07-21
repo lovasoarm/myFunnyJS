@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # INTERVIEW DEFENSE : 10 scénarios d'objection
 
 -> ~45 min de premier passage, à rejouer autant que nécessaire

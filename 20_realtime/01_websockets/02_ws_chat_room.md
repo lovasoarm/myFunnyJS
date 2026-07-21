@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 02_WS_CHAT_ROOM : LE CHAT ROOM QUI TIENT EN PROD
 Temps de lecture ~9 min
 

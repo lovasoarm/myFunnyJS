@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # APPLICATION PARTIELLE : FIXER MAINTENANT, PASSER LE RESTE PLUS TARD
 Temps de lecture ~9 min
 

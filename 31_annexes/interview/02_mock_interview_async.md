@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # MOCK INTERVIEW : DEBUG ASYNC EN DIRECT (solo)
 
 Temps de lecture ~3 min

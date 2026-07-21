@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXPRESS FROM SCRATCH
 Temps de lecture ~8 min
 

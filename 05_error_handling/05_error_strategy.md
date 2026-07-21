@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ERROR STRATEGY : FAIL-FAST, FALLBACK, RETRY
 
 Temps de lecture ~7 min

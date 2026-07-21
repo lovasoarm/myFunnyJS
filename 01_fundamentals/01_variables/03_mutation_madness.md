@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # MUTATION MADNESS : SHALLOW VS DEEP COPY
 Temps de lecture ~6 min
 

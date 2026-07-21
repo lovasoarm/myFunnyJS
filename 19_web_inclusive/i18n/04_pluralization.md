@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PLURALISATION : "1 RÉSULTAT" VS "2 RÉSULTATS" VS "MANY"
 Temps de lecture ~7 min
 

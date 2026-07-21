@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 04 : npm / pnpm : ne bloque pas au premier `install`
 Temps de lecture ~5 min
 

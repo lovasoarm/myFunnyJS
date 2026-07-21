@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # PONT : de mesurer une ressource à choisir la bonne structure à les structures de données
 
 -> ~10 min

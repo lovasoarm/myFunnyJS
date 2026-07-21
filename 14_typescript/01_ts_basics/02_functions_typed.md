@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # FONCTIONS TYPÉES : SIGNER UN CONTRAT AVANT D'EXÉCUTER
 Temps de lecture ~8 min
 

@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # GREEDY : PRENDRE LE MEILLEUR CHOIX LOCAL ET ASSUMER
 Temps de lecture ~11 min
 

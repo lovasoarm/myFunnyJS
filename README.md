@@ -88,3 +88,5 @@ de ton propre projet, pas un fichier fourni par le curriculum.
 ---
 
 **Historique des versions** : voir `.internal/CHANGELOG_v19.md` (et suivants). Non-pédagogique, à ignorer pendant l'apprentissage.
+
+> **Perissabilite** : voir `31_annexes/PERISSABILITE_INDEX.md` (index auto-genere via `.internal/scripts/build_perissabilite_index.py`, trie par urgence de peremption). Ce fichier existe.

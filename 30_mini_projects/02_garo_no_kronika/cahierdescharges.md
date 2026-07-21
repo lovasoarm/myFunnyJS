@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : GARO NO KRONIKA
 
 Temps de lecture ~14 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # JURIDIQUE & EMPLOYABILITÉ : CE QU'ON T'A PAS DIT
 Temps de lecture ~15 min
 

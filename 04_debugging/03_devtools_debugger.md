@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # DEVTOOLS DEBUGGER : LIRE LE CODE EN TRAIN DE S'EXÉCUTER
 
 Temps de lecture ~8 min

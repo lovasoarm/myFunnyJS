@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # DRILL 3 AUDIENCES : TU EXPLIQUES OU TU NE COMPRENDS PAS
 Temps de lecture ~45 min
 

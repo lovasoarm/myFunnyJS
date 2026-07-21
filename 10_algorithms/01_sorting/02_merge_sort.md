@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # MERGE SORT : DIVISER POUR RÉGNER EN O(n log n)
 Temps de lecture ~8 min
 

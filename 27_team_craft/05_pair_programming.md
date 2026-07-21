@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PAIR PROGRAMMING : DEUX CERVEAUX, UN CLAVIER
 Temps de lecture ~9 min
 

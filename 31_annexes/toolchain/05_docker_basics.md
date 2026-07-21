@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # DOCKER BASICS : CONTAINERISER UNE APP NODE : DOCKERFILE, COMPOSE, MULTI-STAGE BUILDS
 Temps de lecture ~9 min
 

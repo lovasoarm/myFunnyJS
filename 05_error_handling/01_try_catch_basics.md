@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TRY/CATCH : CE QU'IL ATTRAPE ET CE QU'IL LAISSE FILER
 
 Temps de lecture ~6 min

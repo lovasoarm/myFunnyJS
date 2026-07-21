@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # ARITHMÉTIQUE FLOTTANTE : POURQUOI 0.1 + 0.2 N'EST PAS 0.3
 Temps de lecture ~10 min
 

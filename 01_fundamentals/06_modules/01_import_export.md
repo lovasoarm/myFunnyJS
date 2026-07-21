@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # IMPORT / EXPORT : ARRÊTE DE TOUT METTRE DANS UN SEUL FICHIER
 Temps de lecture ~8 min
 

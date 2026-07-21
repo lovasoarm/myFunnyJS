@@ -1,5 +1,5 @@
 ---
-stability: intemporel
+stability: periss-2028
 ---
 
 # EXO LECTURE : 15-25 minutes (32_tools)

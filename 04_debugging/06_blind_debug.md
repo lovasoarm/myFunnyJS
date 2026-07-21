@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 06 : Blind Debug
 
 Temps de lecture ~5 min

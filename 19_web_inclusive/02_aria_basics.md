@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ARIA : PARLER LA LANGUE DES LECTEURS D'ÉCRAN
 Temps de lecture ~7 min
 

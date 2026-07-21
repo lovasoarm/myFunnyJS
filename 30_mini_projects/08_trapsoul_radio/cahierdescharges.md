@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : TRAPSOUL RADIO
 
 Temps de lecture ~14 min

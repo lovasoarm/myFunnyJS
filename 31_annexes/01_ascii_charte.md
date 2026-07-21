@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CHARTE ASCII : LA NORME UNIQUE
 Temps de lecture ~8 min
 

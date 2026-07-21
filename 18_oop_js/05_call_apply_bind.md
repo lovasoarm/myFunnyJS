@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # CALL, APPLY, BIND : EMPRUNTER UNE FONCTION, FIGER THIS
 Temps de lecture ~10 min
 

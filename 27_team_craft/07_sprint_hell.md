@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SPRINT HELL : QUAND PERSONNE NE SAIT CE QU'IL FAUT VRAIMENT LIVRER
 Temps de lecture ~11 min
 

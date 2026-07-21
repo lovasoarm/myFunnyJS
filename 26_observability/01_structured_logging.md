@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # Arrête d'écrire des logs que personne ne peut chercher
 Temps de lecture ~10 min
 

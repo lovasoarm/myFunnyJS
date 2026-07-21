@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Parler à une base relationnelle sans la supplier
 Temps de lecture ~12 min
 

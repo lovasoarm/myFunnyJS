@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # OPENAPI ET SWAGGER
 Temps de lecture ~9 min
 

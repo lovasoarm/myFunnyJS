@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # FUNCTION BASICS : UNE FONCTION EST UN OBJET VIVANT
 Temps de lecture ~7 min
 

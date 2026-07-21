@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # 08 : On-call drill : il est 3h du matin
 Temps de lecture ~5 min
 

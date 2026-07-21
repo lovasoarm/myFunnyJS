@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ARGUMENTAIRE TECHNIQUE : CONVAINCRE UN PAIR EN 1 PAGE
 Temps de lecture ~45 min
 

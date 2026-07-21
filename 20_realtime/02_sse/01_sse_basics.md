@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 01_SSE_BASICS : LE SERVEUR QUI PARLE EN PREMIER
 Temps de lecture ~8 min
 

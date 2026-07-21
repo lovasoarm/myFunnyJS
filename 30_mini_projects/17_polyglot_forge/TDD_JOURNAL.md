@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD_JOURNAL
 
 Temps de lecture ~2 min

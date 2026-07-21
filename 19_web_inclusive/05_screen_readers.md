@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # LECTEURS D'ÉCRAN : COMMENT ILS LISENT VRAIMENT TON CODE
 Temps de lecture ~7 min
 

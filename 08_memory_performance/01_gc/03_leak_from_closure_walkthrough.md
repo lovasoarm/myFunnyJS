@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 03 : Fuite par closure : autopsie pas-à-pas
 Temps de lecture ~5 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Découpler pour ne pas tout bloquer en chaîne
 Temps de lecture ~11 min
 

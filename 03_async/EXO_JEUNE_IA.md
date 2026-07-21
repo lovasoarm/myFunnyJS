@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # EXO [JEUNE IA] : 03_async
 
 Temps de lecture ~2 min
@@ -43,3 +48,18 @@ Le script chronomètre, refuse la triche silencieuse, et log dans `~/.myfunnyjs/
 
 ---
 stability: intemporel
+
+## VERROU LOCK (obligatoire, principe generalise)
+
+> Principe LOCK : interdiction de toucher au clavier tant que tu n'as pas
+> ecrit ton plan d'attaque. Le meme verrou que dans le mini-projet 18 et
+> dans `04_debugging/HYPOTHESES_*`. Il n'est pas negociable ici non plus.
+
+Avant tout code :
+1. Ecris ton `HYPOTHESES.md` (une phrase par hypothese, chaque hypothese
+   testable en isolation).
+2. Ecris le critere binaire de reussite (une commande, une sortie attendue).
+3. Ensuite seulement, tu ouvres l'editeur.
+
+Un exo `[JEUNE IA]` sans ces deux artefacts ecrits **avant** le premier
+caractere de code est considere invalide par le `verification_pack`.

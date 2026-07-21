@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # L'IA EN SPARRING PARTNER : CHALLENGER, PAS REMPLAÇANT
 Temps de lecture ~10 min
 

@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # TS COMPILER CONFIG : TSCONFIG.JSON : CHAQUE OPTION EXPLIQUÉE AVEC SON IMPACT RÉEL
 Temps de lecture ~9 min
 

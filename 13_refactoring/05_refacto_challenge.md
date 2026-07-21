@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # REFACTO CHALLENGE
 Temps de lecture ~9 min
 

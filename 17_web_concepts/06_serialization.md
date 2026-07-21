@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SÉRIALISATION : TRANSPORTER LES DONNÉES SANS LES PERDRE
 Temps de lecture ~9 min
 

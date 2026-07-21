@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : ORACLE GLITCH
 
 Temps de lecture ~15 min

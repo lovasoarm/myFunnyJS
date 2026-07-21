@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # LIRE UNE STACK TRACE : LA CARTE QUI TE DIT OÙ LE CODE A EXPLOSÉ
 
 Temps de lecture ~6 min

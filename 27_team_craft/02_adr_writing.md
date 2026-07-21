@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ADR : DOCUMENTER UNE DÉCISION AVANT QU'ELLE DEVIENNE UN MYSTÈRE
 Temps de lecture ~9 min
 

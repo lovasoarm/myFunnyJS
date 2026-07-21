@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 03 : Node : flamegraph avec clinic / 0x
 Temps de lecture ~5 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # WORKER THREADS : PARALLÉLISER SANS BLOQUER L'EVENT LOOP
 Temps de lecture ~9 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 00 : Smell detection
 Temps de lecture ~5 min
 

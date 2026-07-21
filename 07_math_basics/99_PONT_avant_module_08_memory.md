@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # PONT BITS ET MÉMOIRE
 
 -> ~10 min

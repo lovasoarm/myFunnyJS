@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # NaN, UNDEFINED, NULL : TROIS FAÇONS DIFFÉRENTES DE DIRE "RIEN"
 Temps de lecture ~11 min
 

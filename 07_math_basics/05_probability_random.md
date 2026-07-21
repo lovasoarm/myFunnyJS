@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # PROBABILITY & RANDOM : LE RNG QUI NE MENT PAS
 Temps de lecture ~10 min
 

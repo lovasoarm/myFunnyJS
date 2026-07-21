@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # LCP, INP, CLS : LES TROIS CHIFFRES QUE GOOGLE REGARDE SUR TON SITE
 Temps de lecture ~11 min
 

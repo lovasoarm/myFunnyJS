@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # CLASSES TYPESCRIPT : L'ARMURE AVANT LE COMBAT
 Temps de lecture ~8 min
 

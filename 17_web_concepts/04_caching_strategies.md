@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CACHING STRATEGIES : METTRE EN CACHE SANS METTRE EN DANGER
 Temps de lecture ~10 min
 

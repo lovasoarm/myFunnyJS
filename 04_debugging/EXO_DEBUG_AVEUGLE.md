@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXO : debugging a l'aveugle (Pierre 5, 11.5)
 
 Temps de lecture ~2 min

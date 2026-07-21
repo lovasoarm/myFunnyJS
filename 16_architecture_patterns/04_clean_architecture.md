@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CLEAN ARCHITECTURE : LE DOMAINE AU CENTRE
 Temps de lecture ~11 min
 

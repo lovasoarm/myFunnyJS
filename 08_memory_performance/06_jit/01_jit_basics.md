@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # JIT BASICS : LE MOTEUR QUI APPREND TON CODE EN LE LISANT
 Temps de lecture ~9 min
 

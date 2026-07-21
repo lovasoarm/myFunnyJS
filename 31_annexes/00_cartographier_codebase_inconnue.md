@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Cartographier une codebase inconnue en 15 minutes
 -> ~10 min lecture, 15 min drill
 

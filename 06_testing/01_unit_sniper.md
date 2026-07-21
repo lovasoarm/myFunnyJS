@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # UNIT SNIPER : TESTER UNE FONCTION PRÉCISÉMENT
 Temps de lecture ~8 min
 

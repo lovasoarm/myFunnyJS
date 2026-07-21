@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # EXO LECTURE : 15-25 minutes (TypeScript)
 
 > **LOCK : pas d'édition avant HYPOTHESES.md signé.** Tu ne modifies AUCUN fichier avant que ton `HYPOTHESES.md` soit signé (>= 3 hypothèses, chacune avec preuve attendue). Sinon, l'exo ne compte pas.

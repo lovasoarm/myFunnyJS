@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Primitives distribuées : les bases qu'on te demandera en entretien
 Temps de lecture ~5 min
 

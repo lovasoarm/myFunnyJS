@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # VSCODE SETUP : TON CAMP DE BASE, CONFIGURÉ POUR TENIR
 Temps de lecture ~8 min
 

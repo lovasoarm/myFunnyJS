@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 05 : Devsec perso : protège ton chakra avant d'affronter les ninjas renégats du net
 Temps de lecture ~5 min
 

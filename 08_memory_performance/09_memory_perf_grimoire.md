@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # Page verrouillée
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
 
@@ -126,3 +131,30 @@ Règle : quand l'analogie te sert à décider, arrête-la, retourne au mécanism
 
 ---
 stability: intemporel
+
+---
+
+## TROIS PUBLICS : GRILLE D'AUTO-EVALUATION
+
+> Greffe P6 : un ingenieur qui ne sait pas expliquer a trois publics ne survit
+> pas a un entretien senior. Voir `27_team_craft/12_three_audiences_intro.md`.
+
+Prends le concept-cle du module. Explique-le **trois fois**, chronometre en main :
+
+### 1. A un enfant de 10 ans (60 s)
+Analogie seule, zero jargon. Si le mot "runtime" sort, tu as perdu.
+
+### 2. A un dev junior (3 min)
+Un exemple de code minimal executable, un piege classique, un cas d'usage reel.
+
+### 3. A un CTO hostile (5 min)
+Trade-off, cout, quand NE PAS l'utiliser, impact business, alternative.
+
+### Grille (coche honnetement)
+- [ ] Enfant : aucun mot technique.
+- [ ] Junior : l'exemple tourne vraiment.
+- [ ] CTO : le mot "cout" ou "risque" est sorti au moins une fois.
+- [ ] Aucune version ne ment (pas de simplification qui devient fausse).
+
+Si une case n'est pas cochee : tu ne maitrises pas encore ce concept, tu le
+recites.

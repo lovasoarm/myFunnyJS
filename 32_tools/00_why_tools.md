@@ -1,5 +1,5 @@
 ---
-stability: perissable
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Outils : bougent chaque année. Lis pour saisir la logique, pas pour mémoriser.
 ---

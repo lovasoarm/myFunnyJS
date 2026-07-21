@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXO : explique le meme concept a 3 publics
 
 Temps de lecture ~1 min

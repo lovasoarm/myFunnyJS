@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Page verrouillée
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
 

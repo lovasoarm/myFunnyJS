@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # FP CHALLENGE : LE PIPELINE QUI PROUVE QUE C'EST PAS QUE THÉORIQUE
 Temps de lecture ~8 min
 

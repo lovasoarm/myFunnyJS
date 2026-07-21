@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 03 : LIRE UNE TRACE D'AGENT COMME UNE STACK TRACE
 
 Temps de lecture ~25 min

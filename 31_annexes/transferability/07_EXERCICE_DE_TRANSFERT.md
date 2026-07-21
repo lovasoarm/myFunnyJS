@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXERCICE DE TRANSFERT : mode d'emploi
 
 Temps de lecture ~2 min

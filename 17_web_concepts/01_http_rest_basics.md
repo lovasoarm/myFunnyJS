@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # HTTP ET REST : LIRE UNE REQUÊTE COMME UN PROFESSIONNEL
 Temps de lecture ~10 min
 

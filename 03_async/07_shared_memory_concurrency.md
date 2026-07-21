@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # CONCURRENCE MÉMOIRE : SharedArrayBuffer & Atomics
 Temps de lecture ~15 min
 

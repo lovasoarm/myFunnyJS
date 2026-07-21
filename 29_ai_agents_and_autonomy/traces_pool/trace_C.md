@@ -1,5 +1,5 @@
 ---
-stability: intemporel
+stability: periss-2028
 ---
 
 # trace_C : l'agent qui fait exactement ce qu'on demande, et c'est mauvais

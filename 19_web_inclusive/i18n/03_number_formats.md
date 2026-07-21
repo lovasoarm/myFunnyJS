@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # NUMBER FORMATS : 1,234.56 VS 1.234,56
 Temps de lecture ~7 min
 

@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # LINEAR SEARCH VS BINARY SEARCH : LA DIFFÉRENCE QUI COMPTE À L'ÉCHELLE
 Temps de lecture ~9 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TDD_JOURNAL : 18_human_vs_ai_smell
 
 Format : une ligne par cycle rouge/vert/refacto. Date, hypothèse, résultat.

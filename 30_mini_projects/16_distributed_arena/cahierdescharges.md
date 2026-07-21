@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : DISTRIBUTED ARENA
 
 Temps de lecture ~2 min

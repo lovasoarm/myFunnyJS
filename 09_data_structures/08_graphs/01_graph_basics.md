@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # GRAPHES : MODÉLISER CE QUI EST CONNECTÉ
 Temps de lecture ~8 min
 

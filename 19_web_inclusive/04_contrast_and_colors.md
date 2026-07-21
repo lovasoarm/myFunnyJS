@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CONTRASTE ET COULEURS : QUAND LE DESIGN DEVIENT ILLISIBLE
 Temps de lecture ~7 min
 

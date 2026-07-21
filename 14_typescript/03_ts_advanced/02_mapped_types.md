@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # MAPPED TYPES : TRANSFORMER UN TYPE PROPRIÉTÉ PAR PROPRIÉTÉ
 Temps de lecture ~10 min
 

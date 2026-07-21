@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # AUTHENTIFICATION ET AUTORISATION : DEUX PROBLÈMES DIFFÉRENTS
 Temps de lecture ~10 min
 

@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # SCOPE GLOSSARY : Les Mots Que Tu Dois Maîtriser
 Temps de lecture ~7 min
 

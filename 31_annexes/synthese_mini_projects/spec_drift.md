@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SPEC DRIFT : la spec qui bouge en cours de route
 
 Temps de lecture ~4 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Micro-quiz : les 15 mots
 -> ~10 min
 

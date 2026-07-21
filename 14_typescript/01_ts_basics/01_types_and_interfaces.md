@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # TYPES ET INTERFACES : PAS LES MÊMES ARMES
 Temps de lecture ~8 min
 

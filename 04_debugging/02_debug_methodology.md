@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # DEBUG METHODOLOGY : QUATRE ÉTAPES, ZÉRO HASARD
 
 Temps de lecture ~8 min

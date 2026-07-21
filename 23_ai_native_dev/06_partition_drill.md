@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 06 : Partition drill : ce que tu delegue a l'IA, ce que tu gardes
 -> ~30 min drill
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SCRIPTS D'AUTOMATISATION : LE CODE QUI BOSSE À TA PLACE
 Temps de lecture ~8 min
 

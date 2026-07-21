@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # Quand tu ne peux pas juste mettre un breakpoint
 Temps de lecture ~9 min
 

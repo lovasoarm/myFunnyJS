@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # FENWICK TREE : SOMMES DE PRÉFIXES EN O(log n)
 Temps de lecture ~9 min
 

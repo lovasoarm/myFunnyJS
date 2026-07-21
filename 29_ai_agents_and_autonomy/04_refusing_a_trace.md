@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 04 : L'ART DU REVERT ARGUMENTÉ
 
 Temps de lecture ~15 min

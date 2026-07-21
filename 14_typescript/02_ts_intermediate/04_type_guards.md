@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # TYPE GUARDS : RÉTRÉCIR UN TYPE À RUNTIME
 Temps de lecture ~10 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # RGPD ET AI ACT : CE QUE TU N'AS PAS LE DROIT DE LOGGER
 Temps de lecture ~11 min
 

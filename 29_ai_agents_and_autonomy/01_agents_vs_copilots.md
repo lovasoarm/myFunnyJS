@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 01 : AGENTS vs COPILOTES : la ligne de fracture
 
 Temps de lecture ~15 min

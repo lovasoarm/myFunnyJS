@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # DECLARATION FILES : .D.TS, ÉCRIRE LES TYPES POUR DU JS SANS TYPES
 Temps de lecture ~8 min
 

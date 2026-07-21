@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 05 : Debug hypothèse-dirigé
 Temps de lecture ~5 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXO : Reproduction déterministe d'un bug flaky
 
 -> ~45 min

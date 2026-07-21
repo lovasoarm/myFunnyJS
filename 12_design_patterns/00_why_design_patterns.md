@@ -12,6 +12,16 @@ raison: GoF depuis 1994, toujours pertinent.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
 
+> ## CE MODULE VS LES DEUX AUTRES
+>
+> - **Ce module apporte** : vocabulaire partage pour reconnaitre des solutions eprouvees a des problemes de conception recurrents (Observer, Strategy, Factory).
+> - **Vs 13_refactoring** : refactoring change du code existant qui sent mauvais. Les patterns donnent la cible vers laquelle refactorer.
+> - **Vs 16_architecture_patterns** : les patterns vivent a l'echelle d'une classe ou d'un module. L'architecture vit a l'echelle du systeme entier.
+> - **Non recouvrant** : ici on apprend a nommer une intention de conception, pas a la deployer ni a la reparer.
+
+---
+
+
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 > Temps de lecture ~7 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # I18N DANS UN VRAI PROJET : ORGANISATION, PERFORMANCE, DX
 Temps de lecture ~7 min
 

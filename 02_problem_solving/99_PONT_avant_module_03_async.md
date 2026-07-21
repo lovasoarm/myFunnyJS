@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de modéliser un problème à raisonner sur le temps à l'asynchrone
 
 -> ~10 min

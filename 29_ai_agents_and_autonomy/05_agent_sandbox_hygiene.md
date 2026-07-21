@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 05 : SANDBOX HYGIENE : CE QU'ON NE LAISSE JAMAIS FAIRE À UN AGENT
 
 Temps de lecture ~15 min

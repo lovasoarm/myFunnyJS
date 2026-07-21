@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SIMULATION SOLO : défense orale sous pression
 
 -> ~30 min par run, à répéter

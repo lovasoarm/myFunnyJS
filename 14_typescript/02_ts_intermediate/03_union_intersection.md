@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # UNION ET INTERSECTION : COMPOSER DES TYPES COMME DES ENSEMBLES
 Temps de lecture ~10 min
 

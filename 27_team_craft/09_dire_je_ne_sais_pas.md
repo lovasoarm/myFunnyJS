@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Dire "je ne sais pas" : un pouvoir
 Temps de lecture ~5 min
 

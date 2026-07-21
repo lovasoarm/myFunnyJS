@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # Capturer l'erreur avant qu'un shinobi te l'envoie par email
 Temps de lecture ~9 min
 

@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 08 : Heap snapshot workshop (fuite par closure)
 Temps de lecture ~5 min
 

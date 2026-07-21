@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Heisenbug Arena : DÉPLACÉ
 
 Contenu complet déplacé et enrichi dans [`28_edge_cases/06_heisenbug_arena.md`](../28_edge_cases/06_heisenbug_arena.md).

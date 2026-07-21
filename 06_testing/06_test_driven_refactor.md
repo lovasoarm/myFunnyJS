@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TEST-DRIVEN REFACTOR : CHANGER TOUT SANS RIEN CASSER
 Temps de lecture ~9 min
 

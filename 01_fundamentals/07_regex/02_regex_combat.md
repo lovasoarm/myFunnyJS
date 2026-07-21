@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # REGEX COMBAT : VALIDER DES DONNÉES RÉELLES
 Temps de lecture ~9 min
 

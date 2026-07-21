@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SYNTHÈSE D : SÉCURISER LE RÉSEAU RADIO DE FOX RIVER
 Temps de lecture ~7 min
 

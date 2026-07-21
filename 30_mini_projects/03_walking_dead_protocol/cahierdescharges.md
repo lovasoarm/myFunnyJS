@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : WALKING DEAD PROTOCOL
 
 Temps de lecture ~17 min

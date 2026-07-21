@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # INTEGRATION REACTOR : QUAND L'ISOLATION NE SUFFIT PLUS
 Temps de lecture ~8 min
 

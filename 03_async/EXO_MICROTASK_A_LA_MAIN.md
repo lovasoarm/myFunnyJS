@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # EXO : reimplemente une file de microtasks a la main (12.6)
 
 Temps de lecture ~2 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Se souvenir vite pour ne pas redemander à chaque fois
 Temps de lecture ~10 min
 

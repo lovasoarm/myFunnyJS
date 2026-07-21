@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CHOISIR UNE APPROCHE AVANT DE CODER
 Temps de lecture ~9 min
 

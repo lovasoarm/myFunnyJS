@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Drill : Rust
 Temps de lecture ~5 min
 

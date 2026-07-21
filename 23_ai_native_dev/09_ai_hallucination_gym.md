@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 09 : AI Hallucination Gym
 Temps de lecture ~5 min
 

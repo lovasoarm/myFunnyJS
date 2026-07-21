@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # HYPOTHESES.md : exemple rempli
 
 Temps de lecture ~3 min

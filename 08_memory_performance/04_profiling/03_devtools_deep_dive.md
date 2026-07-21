@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # DEVTOOLS DEEP DIVE : LIRE UN FLAMEGRAPH
 Temps de lecture ~9 min
 

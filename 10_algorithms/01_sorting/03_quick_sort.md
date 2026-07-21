@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # QUICK SORT : LE PLUS RAPIDE EN PRATIQUE, LE MOINS STABLE EN THÉORIE
 Temps de lecture ~9 min
 

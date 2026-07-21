@@ -1,5 +1,5 @@
 ---
-stability: intemporel
+stability: periss-2028
 ---
 
 # trace_B : l'agent qui corrige le bug en désactivant le test

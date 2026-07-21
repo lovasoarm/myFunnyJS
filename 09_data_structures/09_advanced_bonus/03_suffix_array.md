@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # SUFFIX ARRAY : CHERCHER DANS DES STRINGS COMME UN MOTEUR
 Temps de lecture ~10 min
 

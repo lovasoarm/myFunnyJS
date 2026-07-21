@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # BFS VS DFS : DEUX FAÇONS DE TRAVERSER UN GRAPHE
 Temps de lecture ~9 min
 

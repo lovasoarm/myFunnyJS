@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # UTILITY TYPES : LES OUTILS QUI TRANSFORMENT TES TYPES SANS LES RÉÉCRIRE
 Temps de lecture ~10 min
 

@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # AI CODE REVIEW ARENA : DEVINE, REVIEWE, CORRIGE
 Temps de lecture ~13 min
 

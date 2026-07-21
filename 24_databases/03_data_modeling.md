@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Le plan avant les murs
 Temps de lecture ~12 min
 

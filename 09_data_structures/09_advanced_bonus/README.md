@@ -1,5 +1,5 @@
 ---
-stability: stable
+stability: intemporel
 ---
 
 # HORS SCOPE DU CURRICULUM PRINCIPAL

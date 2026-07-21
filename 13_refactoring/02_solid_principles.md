@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SOLID (déplacé)
 
 Temps de lecture ~2 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 01 : La méthode Polya (avant de toucher au clavier)
 Temps de lecture ~5 min
 

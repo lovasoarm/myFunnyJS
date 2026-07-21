@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Distributed thinking (sans K8s, sans buzz)
 Temps de lecture ~5 min
 

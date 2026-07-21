@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # EXPLIQUER L'EVENT LOOP À UN ENFANT DE 5 ANS
 Temps de lecture ~4 min
 

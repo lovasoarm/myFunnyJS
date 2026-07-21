@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 07 : Flaky bugs (les bugs non déterministes)
 Temps de lecture ~5 min
 

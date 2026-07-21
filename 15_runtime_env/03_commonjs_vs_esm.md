@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # COMMONJS VS ESM : L'HISTOIRE D'UNE GUERRE QUI N'EST PAS FINIE
 Temps de lecture ~8 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : LEGACY DUNGEON
 
 Temps de lecture ~15 min

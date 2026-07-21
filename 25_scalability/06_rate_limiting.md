@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Protéger ton API sans punir les gens honnêtes
 Temps de lecture ~10 min
 

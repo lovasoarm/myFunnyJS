@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # _EXEMPLE_HYPOTHESES.md (cas reel)
 
 Temps de lecture ~2 min

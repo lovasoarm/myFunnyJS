@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # RÉFÉRENTIEL DE COMPÉTENCES : OÙ T'EN ES VRAIMENT
 
 -> ~12 min

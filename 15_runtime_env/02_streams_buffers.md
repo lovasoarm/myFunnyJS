@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # STREAMS ET BUFFERS : LIRE SANS AVALER
 Temps de lecture ~8 min
 

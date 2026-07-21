@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # ENCAPSULER, EXPOSER, PROTÉGER : LES VRAIS PATTERNS DE MODULES
 Temps de lecture ~9 min
 

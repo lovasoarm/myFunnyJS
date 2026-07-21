@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 02 : DAY ONE (contexte, environnement, premier code)
 
 ## QUIZ DE NIVEAU (30 secondes, auto-évalué)

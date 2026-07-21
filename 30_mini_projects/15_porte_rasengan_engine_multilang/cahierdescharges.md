@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : PORTAGE RASENGAN ENGINE
 
 Temps de lecture ~2 min

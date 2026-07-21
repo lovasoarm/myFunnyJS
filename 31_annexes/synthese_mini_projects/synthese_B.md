@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SYNTHÈSE B : OPTIMISER LA CHAÎNE DE DISTRIBUTION DE WALTER
 Temps de lecture ~6 min
 

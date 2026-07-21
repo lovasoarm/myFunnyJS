@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # AUDITER UNE PAGE : LES OUTILS ET LA MÉTHODE
 Temps de lecture ~7 min
 

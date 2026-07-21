@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : BALLON D'OR CLI
 
 Temps de lecture ~13 min

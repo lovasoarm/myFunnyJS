@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # CONDITIONAL TYPES : DES TYPES QUI DÉPENDENT D'AUTRES TYPES
 Temps de lecture ~10 min
 

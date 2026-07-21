@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CHAOS INSTRUCTIONS : casser un projet volontairement pour s'entraîner
 
 Temps de lecture ~2 min

@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # Suivre un Rasengan qui traverse 6 couches de chakra sans perdre le fil
 Temps de lecture ~10 min
 

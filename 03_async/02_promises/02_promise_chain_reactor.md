@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # CHAÎNER DES OPÉRATIONS ASYNC SANS PERDRE LES ERREURS EN ROUTE
 Temps de lecture ~8 min
 

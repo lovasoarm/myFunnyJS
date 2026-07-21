@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 00 : Prereq check : i18n
 Temps de lecture ~5 min
 

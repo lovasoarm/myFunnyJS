@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 00 : Prereq check : Realtime
 Temps de lecture ~5 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ÉPREUVE FINALE : DEBUG CROSS-LANGUAGE + ADR COMPARATIF EN 4H
 Temps de lecture ~240 min
 

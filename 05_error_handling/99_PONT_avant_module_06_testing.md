@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de prévoir l'échec à le prouver à les tests
 
 -> ~10 min

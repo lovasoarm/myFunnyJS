@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 Temps de lecture ~8 min
 
 Ce fichier sort de la numérotation standard. Il couvre un concept connexe à ce chapitre, non bloquant pour la suite. Lis-le si tu veux aller plus loin sur ce point avant de passer au module suivant.

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Drill : Go
 Temps de lecture ~5 min
 

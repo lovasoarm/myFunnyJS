@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # TRADE-OFF ARENA : 3 SCÉNARIOS, 0 BONNE RÉPONSE
 Temps de lecture ~30 min
 

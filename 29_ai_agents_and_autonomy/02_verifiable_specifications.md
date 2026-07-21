@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 02 : SPÉCIFICATIONS VÉRIFIABLES MACHINE
 
 Temps de lecture ~20 min

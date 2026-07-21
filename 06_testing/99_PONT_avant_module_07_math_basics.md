@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de prouver du code à raisonner sur les nombres à les bases mathématiques
 
 -> ~10 min

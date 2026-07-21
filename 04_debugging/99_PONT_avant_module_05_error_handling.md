@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de chasser un bug à l'organiser en amont à la gestion d'erreur
 
 -> ~10 min

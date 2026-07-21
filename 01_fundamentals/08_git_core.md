@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # GIT SURVIVAL : placé dans le noyau, pas dans l'annexe
 Temps de lecture ~5 min
 

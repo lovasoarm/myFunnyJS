@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # CE QUE L'IA GÉNÈRE, TU NE LE CROIS PAS : TU LE VALIDES
 Temps de lecture ~10 min
 

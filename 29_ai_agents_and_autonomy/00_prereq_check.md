@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # PRÉREQUIS : AI Agents & Autonomy
 
 Temps de lecture ~2 min

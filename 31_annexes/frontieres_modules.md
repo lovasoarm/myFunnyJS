@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Frontieres entre 12 (Design Patterns), 13 (Refactoring), 16 (Architecture) et 18 (OOP JS)
 -> ~5 min
 

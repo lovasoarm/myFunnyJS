@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # GIT SURVIVAL : BRANCHES, REBASE, CONFLITS, BISECT
 Temps de lecture ~9 min
 

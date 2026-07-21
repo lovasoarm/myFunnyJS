@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # NODE CPU PROFILING : TROUVER CE QUI BOUFFE LE CPU EN PROD
 Temps de lecture ~9 min
 

@@ -1,5 +1,5 @@
 ---
-stability: perissable
+stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: L'écosystème IA bouge tous les 6 mois. La posture critique tient plus longtemps.
 ---

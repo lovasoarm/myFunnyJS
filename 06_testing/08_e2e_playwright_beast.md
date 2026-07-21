@@ -1,3 +1,8 @@
+---
+stability: periss-2028
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # E2E PLAYWRIGHT BEAST : SIMULER UN VRAI UTILISATEUR
 Temps de lecture ~8 min
 

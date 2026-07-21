@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Bloc 26-30 : observabilité, équipe, edge cases, agents IA, mini-projets
 Temps de lecture ~5 min
 

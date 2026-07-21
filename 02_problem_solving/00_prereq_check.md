@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 00 : Prereq check : Problem Solving
 Temps de lecture ~5 min
 

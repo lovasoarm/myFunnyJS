@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Référentiel de compétences transversales
 
 Temps de lecture ~2 min

@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # 03 : Distributed tracing (papier d'abord)
 Temps de lecture ~5 min
 

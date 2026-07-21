@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # SCOPE ESCAPE ROOM : LA PORTE EST FERMÉE. LE CODE EST LA CLÉ.
 Temps de lecture ~7 min
 

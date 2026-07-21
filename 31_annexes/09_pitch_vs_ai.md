@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Pitch : "Pourquoi moi et pas une IA ?"
 Temps de lecture ~5 min
 

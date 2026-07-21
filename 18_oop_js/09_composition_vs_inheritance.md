@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # COMPOSITION VS INHERITANCE : LA VRAIE DÉCISION SENIOR
 
 Temps de lecture ~8 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Quand ranger en tables fait plus de mal que de bien
 Temps de lecture ~10 min
 

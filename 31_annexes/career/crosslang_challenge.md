@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CHALLENGE CROSS-LANGUAGE : preuve de transferabilité
 
 Temps de lecture ~3 min

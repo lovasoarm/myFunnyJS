@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # POOL DE BUGS : CANDIDATS CALIBRÉS
 
 Temps de lecture ~2 min

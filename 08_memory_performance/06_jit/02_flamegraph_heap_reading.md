@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # LIRE UN FLAMEGRAPH ET UN HEAP SNAPSHOT : VOIR CE QUE LE JIT FAIT VRAIMENT
 Temps de lecture ~8 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CODE SMELLS
 Temps de lecture ~8 min
 Un code smell, c'est pas un bug. Ça compile, ça tourne, les tests passent (s'il y en a).

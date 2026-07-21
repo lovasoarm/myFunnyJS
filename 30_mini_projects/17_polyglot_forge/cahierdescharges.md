@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 17_polyglot_forge
 
 Temps de lecture ~2 min

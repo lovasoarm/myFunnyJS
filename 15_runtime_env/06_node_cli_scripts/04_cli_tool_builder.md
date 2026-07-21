@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CLI TOOL BUILDER : CONSTRUIRE UN VRAI OUTIL DISTRIBUABLE
 Temps de lecture ~9 min
 

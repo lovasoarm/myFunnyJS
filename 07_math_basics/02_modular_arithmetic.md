@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # ARITHMÉTIQUE MODULAIRE : LE MODULO QUI TOURNE EN BOUCLE
 Temps de lecture ~9 min
 

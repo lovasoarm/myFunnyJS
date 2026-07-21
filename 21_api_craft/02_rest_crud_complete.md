@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # REST CRUD COMPLET
 Temps de lecture ~9 min
 

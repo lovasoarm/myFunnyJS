@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PÉRISSABILITÉ : vue consolidée
 
 -> ~5 min

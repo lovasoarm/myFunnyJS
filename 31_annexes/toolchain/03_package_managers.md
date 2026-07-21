@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PACKAGE MANAGERS : NPM, YARN, PNPM, LES DIFFÉRENCES QUI COMPTENT VRAIMENT EN 2026
 Temps de lecture ~9 min
 

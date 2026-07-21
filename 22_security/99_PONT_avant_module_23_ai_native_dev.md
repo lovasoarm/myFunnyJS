@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de sécuriser du code humain à sécuriser du code IA à le développement natif IA
 
 -> ~10 min

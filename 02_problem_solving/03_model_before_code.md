@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # MODÉLISER AVANT DE CODER
 Temps de lecture ~8 min
 

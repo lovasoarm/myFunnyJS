@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : ULTRAS DASHBOARD
 
 Temps de lecture ~14 min

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CAHIER DES CHARGES : SCHEDULER
 
 Temps de lecture ~2 min

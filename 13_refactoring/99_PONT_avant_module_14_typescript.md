@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PONT : de refactorer en JS pur à ajouter des types à TypeScript
 
 -> ~10 min

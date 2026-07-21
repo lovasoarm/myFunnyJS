@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # NAVIGUER UN CODEBASE INCONNU SANS SE PERDRE
 Temps de lecture ~10 min
 

@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # LIRE DU CODE HUMAIN vs LIRE DU CODE IA
 
 Temps de lecture ~2 min

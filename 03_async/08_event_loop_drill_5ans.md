@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # DRILL : L'event loop explique a un enfant de 5 ans, PUIS reconstruit en 20 lignes
 
 Temps de lecture ~3 min

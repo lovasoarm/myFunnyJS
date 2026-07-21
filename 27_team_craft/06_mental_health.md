@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 06 : Santé mentale du dev : même les Hokages prennent des jours off
 Temps de lecture ~5 min
 

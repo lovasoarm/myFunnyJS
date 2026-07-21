@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 01b : var / let / const : trois portes, trois pièges
 Temps de lecture ~5 min
 

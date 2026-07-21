@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PROPAGATION D'ERREURS : QUI CATCH QUOI ET À QUEL NIVEAU
 
 Temps de lecture ~7 min

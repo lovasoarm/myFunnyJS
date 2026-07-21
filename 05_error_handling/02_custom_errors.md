@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # CUSTOM ERRORS : LES ERREURS QUI RACONTENT UNE HISTOIRE
 
 Temps de lecture ~6 min

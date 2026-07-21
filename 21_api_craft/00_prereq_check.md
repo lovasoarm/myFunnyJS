@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # 00 : Prereq check : API Craft
 Temps de lecture ~5 min
 

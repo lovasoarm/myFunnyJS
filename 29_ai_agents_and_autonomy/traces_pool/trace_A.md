@@ -1,5 +1,5 @@
 ---
-stability: intemporel
+stability: periss-2028
 ---
 
 # trace_A : l'agent qui "améliore" et casse l'API publique

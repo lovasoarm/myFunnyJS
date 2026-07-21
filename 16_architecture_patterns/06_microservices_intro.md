@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # MICROSERVICES : DÉCOUPER OU SOUFFRIR : MAIS PAS N'IMPORTE COMMENT
 Temps de lecture ~9 min
 

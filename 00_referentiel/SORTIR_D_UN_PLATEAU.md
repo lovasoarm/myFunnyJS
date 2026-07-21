@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SORTIR D'UN PLATEAU
 
 > **Ce fichier a été fusionné dans `31_annexes/career/plateau_playbook.md`.**

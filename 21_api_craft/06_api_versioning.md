@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # VERSIONNER UNE API
 Temps de lecture ~9 min
 

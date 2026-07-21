@@ -31,3 +31,15 @@ Snapshot :
 ## Surface d'exposition
 
 Ports / endpoints / fichiers I/O documentés : périmètre local uniquement (voir README)
+
+## GATE SECURITE OBLIGATOIRE
+
+> Ce mini-projet ne peut pas etre marque termine tant que la
+> checklist `22_security/06_owasp_checklist.md` n'a pas ete
+> parcourue et reportee dans `POSTMORTEM.md` section
+> "OWASP PASSE". Un attaquant d'entretien qui demande
+> "as-tu passe la checklist OWASP ?" ne doit pas trouver de trou.
+>
+> Le linter `.internal/scripts/lint_postmortem_owasp.py` refuse
+> le POSTMORTEM sans cette section : le gate est machine, pas
+> juste declaratif.

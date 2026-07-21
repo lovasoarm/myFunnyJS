@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # GRAPH CHALLENGES : CYCLES, COMPOSANTS, TOPO SORT
 Temps de lecture ~10 min
 

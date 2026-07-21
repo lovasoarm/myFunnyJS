@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # TS DANS UN VRAI PROJET : CONFIG, MIGRATION, BOUNDARIES, DÉCISIONS
 Temps de lecture ~11 min
 

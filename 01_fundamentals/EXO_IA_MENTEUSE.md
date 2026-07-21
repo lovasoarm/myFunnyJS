@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # EXO [IA MENTEUSE] : fundamentals (closures)
 
 Temps de lecture ~2 min

@@ -1,3 +1,7 @@
+---
+stability: perissable_2027
+---
+
 # TS MIGRATION GUIDE : MIGRER DU JS PUR VERS TYPESCRIPT : SANS TOUT RÉÉCRIRE EN UNE NUIT
 Temps de lecture ~9 min
 

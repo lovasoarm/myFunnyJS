@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # NE TOUCHE À RIEN AVANT DE POUVOIR L'EXPLIQUER
 
 -> ~7 min

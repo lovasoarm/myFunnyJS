@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # ASYNC ERROR TRAPS : LES ERREURS QUI TOMBENT EN SILENCE
 
 Temps de lecture ~6 min

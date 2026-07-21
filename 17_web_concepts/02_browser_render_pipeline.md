@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # BROWSER RENDER PIPELINE : DE L'HTML BRUT AU PIXEL AFFICHÉ
 Temps de lecture ~10 min
 

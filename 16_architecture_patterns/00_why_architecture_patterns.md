@@ -14,6 +14,16 @@ raison: Hexagonal, CQRS, event-driven : indépendants du langage.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : ARCHITECTURE PATTERNS
 
+> ## CE MODULE VS LES DEUX AUTRES
+>
+> - **Ce module apporte** : decoupage systeme (MVC, Clean Architecture, event-driven), frontieres entre sous-systemes, couplage a l'echelle de l'application.
+> - **Vs 12_design_patterns** : les patterns resolvent un probleme local dans une classe. L'architecture resout un probleme global entre modules.
+> - **Vs 13_refactoring** : refactorer ameliore le detail. L'architecture decide de la carte du systeme avant que le detail existe.
+> - **Non recouvrant** : ici on apprend a dessiner les grandes lignes avant que le code ne soit ecrit.
+
+---
+
+
 > **Durée de vie : intemporel.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 
 > **L'architecture n'est pas là pour être « belle ». Elle est là pour rendre le CHANGEMENT bon marché. Si ton archi rend le prochain changement coûteux, elle a échoué, peu importe combien elle est élégante.**

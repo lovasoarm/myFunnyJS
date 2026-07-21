@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # FILESYSTEM : LIRE ET ÉCRIRE SANS S'ARRACHER LES CHEVEUX
 Temps de lecture ~8 min
 

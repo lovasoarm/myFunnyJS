@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # START HERE
 
 -> ~3 min de lecture, puis 10 minutes d'actions concrètes.

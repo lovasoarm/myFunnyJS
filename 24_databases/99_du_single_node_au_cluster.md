@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Du single-node au cluster : le pont vers le distribué
 Temps de lecture ~12 min
 

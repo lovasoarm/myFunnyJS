@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Chaos Day : 3 vagues de 30 min
 Temps de lecture ~5 min
 

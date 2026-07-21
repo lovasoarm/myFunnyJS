@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # EXERCICE : AUDITER TA PROPRE SUPPLY CHAIN
 Temps de lecture ~40 min
 

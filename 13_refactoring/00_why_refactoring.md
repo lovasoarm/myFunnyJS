@@ -12,6 +12,16 @@ raison: Fowler 1999, lois de la réécriture inchangées.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : REFACTORING
 
+> ## CE MODULE VS LES DEUX AUTRES
+>
+> - **Ce module apporte** : detection de code smells + gestes surs pour transformer du code sale en code testable sans casser le comportement.
+> - **Vs 12_design_patterns** : les patterns sont la cible ideale. Ici on apprend le chemin pour y aller depuis un code reel deja ecrit.
+> - **Vs 16_architecture_patterns** : refactorer intervient dans l'infiniment petit (fonction, classe). L'architecture intervient a la frontiere des sous-systemes.
+> - **Non recouvrant** : ici on apprend a bouger du code existant en securite, pas a le concevoir de zero.
+
+---
+
+
 > **Durée de vie : 5+ ans.** Barème : intemporel = mécanisme de fond (runtime, mémoire, algo, architecture) ; 5+ ans = pratique métier stable ; 2-3 ans, revenir en 2028 = outils IA / stack en mouvement.
 > Temps de lecture ~7 min
 

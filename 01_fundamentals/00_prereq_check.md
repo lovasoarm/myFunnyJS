@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 00 : Prereq check : Fundamentals
 Temps de lecture ~2 min
 

@@ -1,3 +1,8 @@
+---
+stability: intemporel
+last_reviewed: 2026-07
+depends_on_vendor: false
+---
 # 01a : Binding : nommer, c'est déjà décider
 Temps de lecture ~5 min
 

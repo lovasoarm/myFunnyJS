@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # SPEC DRIFT : la specification change en cours de projet
 -> ~30 min sur ce fichier + relance du mini-projet
 

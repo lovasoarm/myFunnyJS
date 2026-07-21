@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # GRAPHQL SANS LA MAGIE
 Temps de lecture ~9 min
 

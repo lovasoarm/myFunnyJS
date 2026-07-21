@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # PLATEAU PLAYBOOK
 
 -> ~5 min pour lire, 1 h à jouer quand tu es coincé

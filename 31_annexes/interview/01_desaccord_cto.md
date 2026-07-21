@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # DÉSACCORD AVEC LE CTO (jeu de rôle écrit, puis oral)
 
 Temps de lecture ~3 min
