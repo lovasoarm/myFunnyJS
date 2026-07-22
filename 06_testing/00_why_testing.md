@@ -1,4 +1,5 @@
 ---
+perennite: evolutif
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Les runners changent (Jest, Vitest, Bun), les principes AAA restent.

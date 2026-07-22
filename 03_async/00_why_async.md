@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Callbacks, promises, event loop : modèle de concurrence stable depuis 2015.

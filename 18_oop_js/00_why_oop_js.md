@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Encapsulation, héritage, polymorphisme : conceptuels.

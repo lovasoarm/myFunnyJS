@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: La méthode scientifique de debug ne dépend d'aucun outil.

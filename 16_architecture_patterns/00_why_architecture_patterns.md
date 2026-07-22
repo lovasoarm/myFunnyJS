@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Hexagonal, CQRS, event-driven : indépendants du langage.

@@ -1,4 +1,5 @@
 ---
+perennite: perissable
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: SQL éternel, moteurs et modes managés bougent.

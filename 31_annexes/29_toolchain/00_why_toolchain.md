@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: perissable
 duree_de_vie_estimee: 1-2 ans
 raison: Toolchains JS bougent en permanence.

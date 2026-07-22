@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Node/Bun/Deno bougent, les concepts (event loop, streams) tiennent.

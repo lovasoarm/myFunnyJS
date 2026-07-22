@@ -1,4 +1,5 @@
 ---
+perennite: intemporel
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: GC, complexité, profilage : concepts stables au-delà du moteur V8.

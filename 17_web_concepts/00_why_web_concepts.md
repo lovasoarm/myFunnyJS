@@ -1,4 +1,5 @@
 ---
+perennite: evolutif
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: HTTP/3, HTTPS, CORS : le stack web bouge par cycles.

@@ -1,4 +1,5 @@
 ---
+perennite: evolutif
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Communication, revue de code, mentorat : intemporels.

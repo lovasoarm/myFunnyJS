@@ -1,4 +1,5 @@
 ---
+perennite: evolutif
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Menaces évoluent, principes (least privilege, defense in depth) éternels.

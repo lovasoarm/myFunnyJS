@@ -1,4 +1,5 @@
 ---
+perennite: evolutif
 stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: REST, GraphQL, tRPC : formats bougent, contrats restent.
