@@ -1,1 +1,0 @@
-sync1|sync2|micro1|micro2|macro1

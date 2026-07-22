@@ -57,7 +57,7 @@ l'ordre où tu dois les faire strictement. Recommandation :
   placeholders : un mini-projet n'est pas terminé tant que ce fichier
   contient encore "ajoute ici..." ou le snapshot `npm audit` par défaut.
   Vérifie-le toi-même avant de considérer un projet fini :
-  `bash .internal/.tools/verification_pack/_lib/check_security_filled.sh 30_mini_projects/<nom_du_projet>`
+  `node solution.js 30_mini_projects/<nom_du_projet>`
 
 Les synthèses transverses sont dans `synthese/` (à lire après un bloc
 complet de projets).
@@ -68,3 +68,25 @@ Les mini-projets 1 a 10 te donnent l'architecture attendue (fichiers dans `src/`
 
 
 > Note v14 : `synthese/` déplacé vers `31_annexes/synthese_mini_projects/` (méta-doc, pas un projet).
+
+## Drill hors serie : 18bis "IA en panne"
+
+`18bis_ia_en_panne/` n'est pas dans la sequence numerotee 01-17. C'est un
+drill de survie technologique : reconstruire un module deja etudie, sur une
+machine vierge, sans IA, sans internet, sans autocompletion. A rejouer une
+fois par trimestre. Voir `18bis_ia_en_panne/README.md`.
+
+## Gate securite (OWASP) : bloquant pour cloturer un projet
+
+Chaque POSTMORTEM de mini-projet doit contenir la checklist OWASP Top 10
+(voir `19_templates/01_POSTMORTEM_TEMPLATE.md`, section "GATE SECURITE").
+Tant qu'une ligne reste en `TODO`, le projet **n'est pas livre**, meme si
+les tests passent. La checklist est obligatoire pour les **17 projets
+numerotes** (le drill 18bis a son propre POSTMORTEM, sans gate reseau si
+le drill est fait hors-ligne).
+
+## Objection storm par ADR : bloquant pour signer un ADR
+
+Chaque ADR d'un mini-projet declenche **un objection storm chronometre**
+(voir `31_annexes/19_interview/03_objection_storm.md`). Pas de storm =
+ADR non defendu = projet non livre.

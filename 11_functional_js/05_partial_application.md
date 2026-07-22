@@ -314,6 +314,3 @@ L'application partielle : fixer certains arguments d'une fonction et retourner u
 L'usage principal : isoler la configuration (base URL, token, coefficients) du traitement des données.
 Différence avec curry : partial garde les arguments restants ensemble, curry les sépare un par un.
 Quand composer dans un pipe : curry. Quand fixer un contexte : partial.
-
----
-stability: intemporel

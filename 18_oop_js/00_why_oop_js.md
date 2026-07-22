@@ -87,7 +87,3 @@ Dix fichiers techniques. Zéro raccourci. À la fin, tu ne récites plus du JS o
 ## AILLEURS QUE JS
 
 En Python, l'objet est un dictionnaire d'attributs et l'héritage suit un MRO (Method Resolution Order), pas une chaîne de prototypes. En Java, les classes sont réelles, pas du sucre. En Rust, pas d'héritage : composition via traits. Le concept (lier comportement et données) est universel ; JS le fait par prototypes là où d'autres le font par classes.
-
----
-
-stability: intemporel

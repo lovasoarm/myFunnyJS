@@ -479,7 +479,3 @@ La couverture de tests sur le v1 est le filet de sécurité qui valide chaque
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
-
----
-
-stability: intemporel

@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > (notamment `02_nosql_basics.md` et `03_data_modeling.md`) : normal de
 > ne pas encore les maîtriser. Ta compréhension est testée en fin de
 > module, dans `06_databases_grimoire.md`.
-
----
-stability: stable

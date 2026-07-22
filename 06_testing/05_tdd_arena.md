@@ -233,6 +233,3 @@ TDD c'est : RED (test qui échoue) → GREEN (code minimal) → REFACTOR (nettoy
 Le test en premier force à penser l'interface avant le code.
 Sur les bugs : reproduire le bug par un test avant de le corriger.
 TDD n'est pas un dogme : c'est l'outil qu'on sort quand la logique est complexe.
-
----
-stability: intemporel

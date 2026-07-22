@@ -37,6 +37,3 @@ Les structures rangent, les algos manipulent. Passer de l'une à l'autre demande
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise beaucoup d'apprenants. Aucune honte à revenir.
-
----
-stability: intemporel

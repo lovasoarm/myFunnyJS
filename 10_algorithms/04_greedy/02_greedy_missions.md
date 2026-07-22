@@ -385,6 +385,3 @@ Implémenter les deux versions du weighted interval scheduling (greedy et DP). G
 ## RÉSUMÉ
 
 Le greedy en conditions réelles, c'est choisir la bonne définition de "optimal" à chaque étape. Job scheduling : optimal = profit le plus élevé, placé dans le slot le plus tardif. LPT scheduling : optimal = donner la tâche la plus longue au worker le moins chargé. Huffman : optimal = fusionner les deux fréquences les plus basses. Quand les priorités changent dynamiquement, une priority queue remplace le tri statique. La ligne rouge reste la même qu'en `01_greedy_basics` : dès que les décisions sont couplées et qu'un choix maintenant peut bloquer une meilleure combinaison plus tard, greedy cède à la DP.
-
----
-stability: intemporel

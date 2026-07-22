@@ -135,7 +135,3 @@ Une fois la trace lue et la racine trouvée, tu as deux choix : accepter
 avec ajustement, ou refuser. Le refus argumenté est l'objet du chapitre
 suivant. Sans lecture correcte de la trace, ton refus est un caprice ;
 sans refus argumenté, ta lecture est de la culture inutile.
-
----
-
-stability: perissable

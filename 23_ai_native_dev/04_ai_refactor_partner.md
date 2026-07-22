@@ -274,6 +274,3 @@ Génère deux fonctions de validation similaires (ninja de village de la feuille
 ## RÉSUMÉ
 
 L'IA ne remplace pas le refactoring : elle t'aide à ne plus être aveugle à ton propre code. Le bon ordre c'est : tests d'abord, diagnostic ensuite, refactoring par étapes, tests qui repassent à chaque étape. Tu demandes un diagnostic avant une solution. Tu évalues ce qu'elle propose plutôt que l'accepter. Et sur tout ce qui touche le contexte business, les contraintes historiques, et l'évolution future : c'est toi qui décides.
-
----
-stability: perissable

@@ -251,6 +251,3 @@ Une fonction pure : même input = même output, zéro effet de bord.
 C'est pas une contrainte stylistique : c'est ce qui rend le code testable, prévisible, et composable.
 L'impureté n'est pas interdite, elle est isolée : aux extrémités du système, jamais dans la logique métier.
 Injecter les dépendances non déterministes (random, date, réseau) en paramètre : c'est repousser le chaos là où il peut être contrôlé.
-
----
-stability: intemporel

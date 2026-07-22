@@ -1,1 +1,0 @@
-class Safe{#v;constructor(v){this.#v=v;}get(){return this.#v;}}process.stdout.write(String(new Safe(42).get()));

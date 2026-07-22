@@ -385,6 +385,3 @@ INP : la réactivité à chaque interaction. Le thread principal bloqué par du 
 CLS : la stabilité visuelle. Images sans dimensions et contenu injecté dynamiquement sont les causes les plus fréquentes.
 
 Les trois métriques se lisent ensemble : chacune révèle une couche différente du problème de performance. Un site avec LCP bon mais INP mauvais n'est pas performant : il charge vite et réagit comme un escargot.
-
----
-stability: intemporel

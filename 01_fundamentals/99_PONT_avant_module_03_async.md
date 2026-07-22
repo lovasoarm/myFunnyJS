@@ -24,7 +24,3 @@ Si tu ne peux pas répondre aux 3 sans hésiter : relis `01_fundamentals/` avant
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
-
----
-
-stability: intemporel

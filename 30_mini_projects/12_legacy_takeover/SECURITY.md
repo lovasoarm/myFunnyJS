@@ -49,6 +49,5 @@ Ports / endpoints / fichiers I/O documentés : périmètre local uniquement (voi
 > "OWASP PASSE". Un attaquant d'entretien qui demande
 > "as-tu passe la checklist OWASP ?" ne doit pas trouver de trou.
 >
-> Le linter `.internal/scripts/lint_postmortem_owasp.py` refuse
 > le POSTMORTEM sans cette section : le gate est machine, pas
 > juste declaratif.

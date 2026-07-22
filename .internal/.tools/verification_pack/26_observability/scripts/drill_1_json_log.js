@@ -1,1 +1,0 @@
-process.stdout.write(JSON.stringify({level:"info",msg:"hello",reqId:"r-1"}));

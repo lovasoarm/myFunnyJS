@@ -287,6 +287,3 @@ Un seul run ne veut rien dire : mesure 10 fois minimum, prends la médiane.
 Le JIT optimise pendant l'exécution : sans warm-up, tes premiers runs sont trop lents.
 `performance.mark` et `performance.measure` fonctionnent en prod et dans DevTools.
 Le profiling remplace l'instinct. L'instinct t'envoie toujours au mauvais endroit.
-
----
-stability: intemporel

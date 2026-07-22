@@ -182,6 +182,3 @@ Une CAN (Coupe d'Afrique des Nations) se joue souvent dans des conditions que pe
 ## RÉSUMÉ
 
 Un sprint réel n'arrive jamais avec une seule source de vérité claire : plusieurs personnes annoncent chacune leur urgence, sincèrement, sans se concerter. La compétence n'est pas de deviner la bonne réponse, c'est de détecter le conflit avant de coder, distinguer urgence annoncée et urgence réelle, remonter la décision avec un message factuel plutôt que de trancher en silence, et documenter le raisonnement pour pouvoir le défendre après coup. Un ticket flou se débloque avec une question groupée et un deadline de décision implicite, pas avec cinq allers-retours épuisants. Livrer un arbitrage clair sous contrainte vaut mieux que de viser une livraison parfaite impossible dans le temps donné.
-
----
-stability: intemporel

@@ -61,6 +61,3 @@ Modélise un échange de tribut entre `service_orders` et `service_payments`. R�
 - Où tu mets l'idempotence.
 - Ta politique de retry.
 - Un ADR qui justifie CP ou AP.
-
----
-stability: stable

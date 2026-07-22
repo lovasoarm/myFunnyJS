@@ -340,6 +340,3 @@ Les opportunities classées par gain sont ta feuille de route. Tu commences par 
 Diagnostics et passed audits complètent le tableau mais ne guident pas ta priorité.
 
 Lighthouse fluctue : toujours lancer plusieurs fois et travailler sur des médianes, pas sur un seul run.
-
----
-stability: intemporel

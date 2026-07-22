@@ -319,6 +319,3 @@ En async, les erreurs ne crashent pas forcément : elles disparaissent. C'est pi
 Les EventEmitters ne gèrent pas les erreurs async de leurs handlers. Wrap systématiquement.
 
 Un `UnhandledPromiseRejection` en prod c'est une bombe à retardement : ça crash Node 15+ immédiatement.
-
----
-stability: intemporel

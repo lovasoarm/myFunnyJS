@@ -218,6 +218,3 @@ Les unit tests vérifient que chaque pièce marche. Les tests d'intégration vé
 Le mismatch d'interface : A retourne un champ que B n'attend pas : n'est visible qu'en intégration.
 In-memory store pour les tests rapides, vraie DB pour les tests de persistance critique.
 Les tests d'intégration ne remplacent pas les unit tests : ils les complètent.
-
----
-stability: intemporel

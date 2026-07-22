@@ -1,1 +1,0 @@
-const mk=()=>{let n=0;return()=>++n;};const c=mk();process.stdout.write([c(),c(),c()].join("|"));

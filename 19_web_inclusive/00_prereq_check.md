@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > module va t'enseigner (notamment `01_a11y_why_it_matters.md`) : normal
 > de ne pas encore les maîtriser. Ta compréhension est testée en fin de
 > module, dans `07_a11y_grimoire.md`.
-
----
-stability: intemporel

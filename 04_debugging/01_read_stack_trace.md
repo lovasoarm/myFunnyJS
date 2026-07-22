@@ -249,6 +249,3 @@ La première ligne donne le type d'erreur et le message exact : c'est ton diagno
 Les premières lignes `at ...` pointent ton code : fais-leur confiance.
 Tout ce qui commence par `node:internal` ou `node_modules` : ignore.
 En async, la trace est parfois incomplète : `node --async-stack-traces` aide en dev.
-
----
-stability: intemporel

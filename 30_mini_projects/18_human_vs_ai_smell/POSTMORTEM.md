@@ -40,7 +40,6 @@ Quel est le bug racine que j'ai le plus mal vu au départ, et pourquoi ?
 ## OWASP PASSE (obligatoire, gate securite)
 
 > Cette section est un **gate**. Un POSTMORTEM sans elle est rejete par le
-> linter `.internal/scripts/lint_postmortem_owasp.py`. Sans gate obligatoire,
 > la securite redevient un module theorique.
 >
 > Reference : `22_security/06_owasp_checklist.md`.

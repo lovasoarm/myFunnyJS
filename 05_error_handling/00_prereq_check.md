@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > sont le contenu que ce module va t'enseigner : normal de ne pas encore
 > les maîtriser. Ta compréhension est testée en fin de module, dans
 > `06_error_grimoire.md`.
-
----
-stability: intemporel

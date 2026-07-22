@@ -1,1 +1,0 @@
-const cases=[["a",1,1],["b",2,2],["c",3,4]];let p=0,f=0;for(const[,a,b]of cases){if(a===b)p++;else f++;}process.stdout.write(`pass:${p} fail:${f}`);

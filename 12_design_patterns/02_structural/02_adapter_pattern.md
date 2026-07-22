@@ -337,6 +337,3 @@ En prod : intégration de third-party, migration de legacy, normalisation de sou
 Règle de décision : si deux systèmes font la même chose mais se parlent des langues différentes, c'est un Adapter.
 
 **Note : 10/10**
-
----
-stability: intemporel

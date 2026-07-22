@@ -328,6 +328,3 @@ Méthode : si doubler n multiplie le temps par 4 → O(n²). Par 2 → O(n). Par
 ## RÉSUMÉ
 
 O(n²) et O(n log n) semblent proches sur de petites données. À 10 000 éléments, O(n²) est déjà 200 à 400 fois plus lent. À 100 000, c'est plusieurs milliers de fois. Le benchmark réel confirme ce que la théorie prédit : bubble sort à 10k éléments prend 600ms, native sort prend 2.5ms. Chercher avec `includes` dans une boucle est O(n²) : remplacer par un Set donne O(n). La mesure avec `performance.now()` transforme le Big O en quelque chose de visible et de décidable.
-
----
-stability: intemporel

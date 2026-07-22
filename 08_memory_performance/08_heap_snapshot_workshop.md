@@ -120,6 +120,3 @@ Quand l'utiliser :
 - Mesurer la mémoire "propre" d'un traitement, sans bruit GC en attente.
 
 (attention) `--expose-gc` désactive certaines optimisations V8. Résultats à valider sans le flag en prod.
-
----
-stability: intemporel

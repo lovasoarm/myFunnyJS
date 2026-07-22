@@ -94,6 +94,3 @@ apres 2 mois.
 - Mini-projet `30_mini_projects/10_legacy_dungeon/` et
   `30_mini_projects/12_legacy_takeover/` : le protocole est la premiere
   chose a executer avant toute modification.
-
----
-stability: intemporel

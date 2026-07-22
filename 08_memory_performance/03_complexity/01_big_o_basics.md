@@ -380,6 +380,3 @@ function analyzeSquad(ninjas) {
 ## RÉSUMÉ
 
 Big O mesure comment un algorithme se comporte quand les données grossissent, pas à quelle vitesse il tourne sur ta machine. O(1) est constant, O(n) linéaire, O(n²) quadratique. Une boucle unique sur n éléments donne O(n). Deux boucles imbriquées donnent O(n²). Diviser par 2 à chaque étape donne O(log n). Les constantes et termes mineurs disparaissent : seule la forme de la croissance compte. Reconnaître le Big O d'un code en le lisant, sans le tester, c'est l'une des compétences qui distinguent un dev senior.
-
----
-stability: intemporel

@@ -60,6 +60,3 @@ Parce qu'un débutant qui bloque 40 minutes sur une install prend
 souvent la décision inconsciente que "ce n'est pas pour moi", alors
 que le problème n'a jamais été le langage. On coupe court à cette
 sortie de route en la rendant impossible.
-
----
-stability: intemporel

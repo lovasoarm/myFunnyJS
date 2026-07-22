@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > (notamment `00_why_architecture_patterns.md` et `03_mvc_pattern.md`) :
 > normal de ne pas encore les maîtriser. Ta compréhension est testée en
 > fin de module, dans `07_architecture_grimoire.md`.
-
----
-stability: intemporel

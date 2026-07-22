@@ -79,6 +79,3 @@ avance.
 Ce n'est pas un cours. Il ne t'apprend pas JavaScript. Il t'apprend à
 parler du projet sans ambiguïté. C'est un outil d'ingénierie
 documentaire, pas un tutoriel.
-
----
-stability: intemporel

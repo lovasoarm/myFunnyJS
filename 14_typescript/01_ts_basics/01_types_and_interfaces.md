@@ -226,6 +226,3 @@ Réponds sans lancer le code. Vérifie ensuite dans ton éditeur.
 Pour les APIs publiques et les objets extensibles : `interface`. Pour tout ce qui dépasse la forme d'un objet : `type`.
 La declaration merging est la vraie différence runtime : elle permet d'étendre une interface depuis n'importe où dans le projet, ce qui peut créer des bugs invisibles.
 Choisir au hasard entre les deux, c'est exposer ton codebase à des comportements que personne n'a décidés.
-
----
-stability: perissable

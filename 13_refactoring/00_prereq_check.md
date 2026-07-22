@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > que ce module va t'enseigner (notamment `03_code_smells.md`) : normal de
 > ne pas encore les maîtriser. Ta compréhension est testée en fin de
 > module, dans `09_refacto_grimoire.md`.
-
----
-stability: intemporel

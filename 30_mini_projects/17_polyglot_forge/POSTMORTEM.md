@@ -34,7 +34,6 @@ Une ligne par déclencheur activé (J+1, J+3, J+5) avec le coût réel payé.
 ## OWASP PASSE (obligatoire, gate securite)
 
 > Cette section est un **gate**. Un POSTMORTEM sans elle est rejete par le
-> linter `.internal/scripts/lint_postmortem_owasp.py`. Sans gate obligatoire,
 > la securite redevient un module theorique.
 >
 > Reference : `22_security/06_owasp_checklist.md`.

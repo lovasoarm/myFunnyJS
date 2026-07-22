@@ -229,6 +229,3 @@ Dans un jeu de foot, les 10 dernières actions sont gardées en mémoire pour le
 ## RÉSUMÉ
 
 Le modulo calcule une position dans un cycle. C'est son vrai rôle : pas juste pair/impair. Les cycles, la pagination, les cooldowns, les distributions équilibrées, les ring buffers : tout ça repose sur `a % n`. Attention aux négatifs : utilise `((a % n) + n) % n` pour un modulo toujours positif. Et retiens que le modulo est la base des hash tables : ramener une valeur dans une plage, c'est toujours `hash % taille`.
-
----
-stability: intemporel

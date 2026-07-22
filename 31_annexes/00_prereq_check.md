@@ -26,6 +26,3 @@ Temps de lecture ~5 min
   avant d'attaquer les annexes de transfert et de préparation.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
-
----
-stability: intemporel

@@ -131,6 +131,3 @@ Shallow copy (copie superficielle) : la structure de premier niveau est copiée,
 Deep copy (copie profonde) : tout l'arbre est dupliqué. `structuredClone()` est la solution native en 2026. `JSON.parse(JSON.stringify(...))` fonctionne mais tue les `undefined`, les fonctions, et les `Date`.
 
 Le bon réflexe : avant de muter un objet reçu en paramètre, demande-toi si tu travailles sur l'original ou sur une copie.
-
----
-stability: intemporel

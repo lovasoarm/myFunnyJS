@@ -387,7 +387,7 @@ Pour chaque exigence : documente dans `SECURITY.md` la menace, ta contre-mesure 
 - **Exigence 1** : aucune donnee sensible (secret, token, cle) dans le code source ni dans les logs. Utiliser variables d'environnement + `.env.example` versionne (jamais `.env`).
 - **Exigence 2** : toute entree externe (STDIN, fichier, HTTP, CLI) est validee AVANT usage (type, longueur, format). En cas d'invalidite : erreur explicite, jamais un crash silencieux.
 
-Un test dans `.internal/.tools/verification_pack/<projet>/verify.sh` doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
+Un test dans `node solution.js` (auto-verif ecrite par toi) doit prouver ces deux points (ex : lancer le programme avec une entree malformee et verifier qu'il refuse proprement).
 
 ---
 
@@ -405,7 +405,3 @@ Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
-
----
-
-stability: intemporel

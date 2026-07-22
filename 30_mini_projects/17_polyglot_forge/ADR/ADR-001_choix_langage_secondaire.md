@@ -25,6 +25,3 @@ Choisir soit **Python 3.11+** soit **Rust stable 1.75+**. Justifier en < 20 lign
 
 ## Statut
 Accepté. À rediscuter uniquement si le curriculum ajoute un 3e mini-projet polyglot.
-
----
-stability: stable

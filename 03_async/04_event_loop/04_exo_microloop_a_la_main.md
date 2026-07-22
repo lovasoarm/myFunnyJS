@@ -66,5 +66,3 @@ Si un seul de ces points casse : ton modèle mental de l'event loop est faux. Re
 ## POURQUOI CET EXO EXISTE
 
 Un dev qui écrit `await` sans savoir ce qu'il y a dessous est un passager. Ce fichier te force à devenir conducteur pendant 30 minutes. Après ça, tu n'oublieras plus jamais que la file microtask est **drainée jusqu'au bout** avant la macrotask suivante : parce que tu l'auras codée toi-même.
-
-stability: intemporel

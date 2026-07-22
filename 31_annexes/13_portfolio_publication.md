@@ -45,6 +45,3 @@ Un dépôt qui passe la checklist. Fais-le relire par un pair **avant** de le me
 | Peer-review reçue | 0 | 1 remarque | ≥ 3 remarques traitées |
 
 Note < 6/10 → tu ne passes pas au module suivant. Point.
-
----
-stability: intemporel

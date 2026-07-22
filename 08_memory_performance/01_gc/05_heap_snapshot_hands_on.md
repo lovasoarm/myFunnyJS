@@ -86,6 +86,3 @@ Pour ça : `process.memoryUsage()`, `process.report`, `lsof -p <pid>`. À creuse
 `06_native_and_worker_leaks.md`.
 
 Prochaine étape : `06_detached_dom_leak.md`.
-
----
-stability: intemporel

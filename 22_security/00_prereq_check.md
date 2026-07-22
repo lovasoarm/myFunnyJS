@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > contenu que ce module va t'enseigner (notamment `01_xss_injection.md`
 > et `02_csrf_cors.md`) : normal de ne pas encore les maîtriser. Ta
 > compréhension est testée en fin de module, dans `07_security_grimoire.md`.
-
----
-stability: stable

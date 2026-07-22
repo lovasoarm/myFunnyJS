@@ -37,6 +37,3 @@ Tu dois vérifier 50 000 IDs contre une whitelist de 20 000. Compare mentalement
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise beaucoup d'apprenants. Aucune honte à revenir.
-
----
-stability: intemporel

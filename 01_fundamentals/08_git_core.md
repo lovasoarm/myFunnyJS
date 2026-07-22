@@ -29,6 +29,3 @@ c'est un prérequis d'employabilité.
 
 Jour 1 en boîte : tu ouvres une PR, tu résous un conflit, tu bisect un bug. Aucun
 de ces gestes ne s'apprend en 5 min sous pression. On les apprend à froid, ici.
-
----
-stability: intemporel

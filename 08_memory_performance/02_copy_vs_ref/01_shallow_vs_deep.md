@@ -347,6 +347,3 @@ _(Indice : `Array.isArray()` te sauvera la vie. Et pense aux cas limite : que fa
 ## RÉSUMÉ
 
 Spread et `Object.assign` font une shallow copy : les propriétés primitives sont copiées par valeur, les objets imbriqués sont partagés. `structuredClone` fait une deep copy : tout est dupliqué indépendamment, jusqu'au fond. `JSON.parse/stringify` fonctionne sur des données sérialisables mais perd les fonctions, les `Date`, et les `undefined`. Dans un système avec état, toujours retourner un nouvel objet plutôt que de muter l'existant : c'est ce qui permet la détection de changement et évite les bugs silencieux.
-
----
-stability: intemporel

@@ -97,6 +97,3 @@ Une factory (usine) est une fonction qui retourne une autre fonction. Chaque app
 C'est la base des currying, des middlewares, des configurations dynamiques. Une factory + une closure = un comportement paramétrable sans objet ni classe.
 
 Si tu veux des fonctions avec des comportements différents basés sur le même template : utilise une factory.
-
----
-stability: intemporel

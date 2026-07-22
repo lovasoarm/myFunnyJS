@@ -88,6 +88,3 @@ Ces maths sont la couche la plus stable de tout le métier. Un modulo en 2026 fo
 Ce ne sont pas des maths académiques : c'est l'arsenal minimal et concret que tout dev croise en vrai. Sans eux, les conditions buguent, les cycles dérivent, et les systèmes de probabilité sont truqués sans que personne ne le sache. Et contrairement à presque tout le reste de la stack, ces outils ne se démodent jamais.
 
 Maintenant, ouvre `01_boolean_logic.md`. Et arrête d'empiler des `if` au hasard.
-
----
-stability: intemporel

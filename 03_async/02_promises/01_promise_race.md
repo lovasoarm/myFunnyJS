@@ -213,6 +213,3 @@ Quatre combinators, quatre situations.
 
 La plupart du temps en prod, tu utilises `all` ou `allSettled`.
 `race` sort pour les timeouts. `any` sort pour les systèmes redondants.
-
----
-stability: intemporel

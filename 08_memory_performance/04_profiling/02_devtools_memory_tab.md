@@ -41,6 +41,3 @@ DevTools force un GC avant snapshot, mais **pas** entre allocations. Ne panique 
 ## Mission
 
 Sur n'importe quelle SPA (la tienne, un mini-projet), trouve une fuite en < 20 min avec ce workflow. Note-la dans un fichier `LEAK_REPORT.md`.
-
----
-stability: intemporel

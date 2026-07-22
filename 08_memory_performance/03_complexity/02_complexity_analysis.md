@@ -369,6 +369,3 @@ Réécris-le en O(n) réel.
 ## RÉSUMÉ
 
 Analyser la complexité d'un algorithme complet se fait bloc par bloc : séquence → garder le plus grand terme, imbrication → multiplier. Les appels de fonction cachent leur complexité : `includes`, `indexOf`, `find` sont O(n), pas O(1). La récursion se lit dans l'arbre des appels : un appel par étape = O(n), deux appels par étape = O(2ⁿ), diviser par deux = O(log n). La mémoïsation transforme un O(2ⁿ) récursif en O(n). Identifier le goulot d'étranglement, c'est trouver le terme qui domine les autres.
-
----
-stability: intemporel

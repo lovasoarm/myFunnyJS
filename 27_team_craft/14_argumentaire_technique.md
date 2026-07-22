@@ -39,6 +39,3 @@ Zéro "je pense que…", "il me semble que…". Un pair convaincu, c'est un pair
 - [ ] Tu peux le lire à voix haute en < 3 min.
 - [ ] Un non-dev comprend au moins le problème et la décision.
 - [ ] Zéro jargon non défini.
-
----
-stability: intemporel

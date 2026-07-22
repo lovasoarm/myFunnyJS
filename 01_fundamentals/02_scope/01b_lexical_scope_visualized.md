@@ -67,6 +67,3 @@ function f() {
  return g
 }
 ```
-
----
-stability: intemporel

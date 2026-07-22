@@ -344,6 +344,3 @@ En prod : middleware, HOC, cache layers, retry logic : tout ça, c'est du Decora
 Le signe que tu as besoin d'un Decorator : tu modifies une fonction pour la dixième fois pour y ajouter un comportement orthogonal au core.
 
 **Note : 10/10**
-
----
-stability: intemporel

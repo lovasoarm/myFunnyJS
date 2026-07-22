@@ -42,6 +42,3 @@ gratuite. Un dev qui l'audite mensuellement est un asset défensif reconnu.
 
 Livrable : ce fichier apparaît coché dans `DEPENDENCY_LEDGER.md`, avec date, sbom
 attaché au repo, et 1 décision documentée.
-
----
-stability: stable

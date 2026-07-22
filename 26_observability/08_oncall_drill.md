@@ -86,6 +86,3 @@ Si NON → tu escalades. Tu ne joues pas au héros seul à 3h.
 
 Le meilleur on-call est celui qui **ne code pas** pendant l'incident. Il
 active des mécanismes préparés. Coder en urgence = ajouter un bug au bug.
-
----
-stability: stable

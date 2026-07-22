@@ -36,6 +36,3 @@ Croire que "JavaScript = JavaScript partout". `fetch` n'existait pas dans Node a
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise beaucoup d'apprenants. Aucune honte à revenir.
-
----
-stability: intemporel

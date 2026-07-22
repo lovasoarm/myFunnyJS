@@ -1,1 +1,0 @@
-const rid="r-abc";const log=(step)=>`${rid}:${step}`;process.stdout.write([log("step1"),log("step2")].join("|"));

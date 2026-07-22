@@ -67,6 +67,3 @@ données, soit tu ajustes la proposition. **Ne les cache pas.**
 Une RFC bien écrite **remplace** 5 réunions. Le temps investi à l'écrit est
 gagné en aval : moins d'ambiguïtés, moins de re-débats, plus rapide à
 onboarder les nouveaux.
-
----
-stability: intemporel

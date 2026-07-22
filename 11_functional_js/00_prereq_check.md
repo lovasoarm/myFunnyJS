@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > (notamment `01_pure_functions.md` et `04_currying.md`) : normal de ne pas
 > encore les maîtriser. Ta compréhension est testée en fin de module, dans
 > `08_fp_grimoire.md`.
-
----
-stability: intemporel

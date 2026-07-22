@@ -381,6 +381,3 @@ Le projet `oracle_glitch` utilise Anthropic SDK (qui a des types) + une lib de p
 ## RÉSUMÉ
 
 `tsconfig.json` : `strict: true` en premier, `target` et `module` selon ton runtime. La migration progressive passe par `allowJs: true`, puis le typage de la surface, puis l'élimination des `any`. Les boundaries du système (API, formulaires, JSON externe) demandent le typage le plus rigoureux. `as` est acceptable après une validation manuelle : inacceptable pour faire taire TS sans comprendre. Les interfaces pour les objets, les types pour les unions et les compositions. Les `.d.ts` pour typer du JS externe sans types. Préfère les unions de string literals aux enums pour éviter le runtime overhead.
-
----
-stability: perissable

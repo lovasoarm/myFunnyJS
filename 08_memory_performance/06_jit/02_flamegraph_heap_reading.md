@@ -182,6 +182,3 @@ Explique ce que cette chaîne révèle, et écris la correction (pas besoin de c
 ## RÉSUMÉ
 
 Un flamegraph se lit en cherchant la barre la plus large possible au niveau le plus haut possible, puis en descendant jusqu'à trouver un self time qui explose : c'est elle, la coupable, pas ses parents au total time gonflé. Un heap snapshot se compare entre deux photos après une action répétée : ce qui grossit sans redescendre est suspect. La colonne Retainers raconte qui garde quoi en otage, et la racine du problème est souvent le listener ou le timer en haut de la chaîne, pas l'objet lourd en bas. En Node sans interface graphique, `node --prof` puis `--prof-process` donnent le même type de classement en version texte.
-
----
-stability: intemporel

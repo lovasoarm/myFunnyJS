@@ -280,6 +280,3 @@ GET lit. POST crée. PUT remplace. PATCH modifie. DELETE supprime.
 Les status codes racontent l'histoire : ne jamais mentir avec un `200` sur une erreur.
 PUT remplace tout. PATCH touche seulement ce qu'on lui envoie.
 L'id en URL c'est toujours une string : la convertir avant de comparer.
-
----
-stability: stable

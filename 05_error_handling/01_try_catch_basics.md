@@ -325,6 +325,3 @@ L'objet `error` a trois propriétés essentielles : `name`, `message`, `stack`. 
 `finally` tourne toujours : c'est là que vont les nettoyages garantis.
 
 Si une erreur n'est pas de ton ressort : `throw e`. Ne jamais avaler silencieusement ce qu'on ne comprend pas.
-
----
-stability: intemporel

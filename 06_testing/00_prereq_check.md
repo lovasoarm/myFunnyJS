@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > t'enseigner (notamment `01_unit_sniper.md`) : normal de ne pas encore
 > les maîtriser. Ta compréhension est testée en fin de module, dans
 > `10_testing_grimoire.md`.
-
----
-stability: intemporel

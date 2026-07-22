@@ -244,6 +244,3 @@ mergeKLists(listes) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ## RÉSUMÉ
 
 Merge sort coupe le tableau en deux récursivement jusqu'aux sous-tableaux de taille 1, puis fusionne en remontant. C'est O(n log n) garanti, peu importe l'ordre d'entrée. Il est stable. Il est prévisible. Son seul coût : O(n) de mémoire supplémentaire pour les tableaux temporaires de fusion. C'est la base de Tim Sort, l'algo qui tourne dans Python, Java et V8 sur les grands tableaux.
-
----
-stability: intemporel

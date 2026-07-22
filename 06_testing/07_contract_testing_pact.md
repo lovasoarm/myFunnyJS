@@ -268,6 +268,3 @@ Le contract testing protège l'interface entre deux services : si le provider ch
 C'est le consumer qui définit le contrat : il sait ce dont il a besoin.
 Pour des projets simples : validateur maison. Pour des équipes distribuées : Pact.
 Ça ne remplace pas les unit tests ni les tests d'intégration : c'est une couche supplémentaire aux frontières entre services.
-
----
-stability: intemporel

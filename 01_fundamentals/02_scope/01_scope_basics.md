@@ -154,6 +154,3 @@ Le scope global est la dernière chose à laquelle JS fait appel. Si une variabl
 ## (attention) Ce que l'analogie "colocation" cache
 
 L'analogie suggère un espace partagé où chacun touche à tout. En réalité, le scope JS suit des **règles lexicales strictes** : les variables sont accessibles là où elles sont **déclarées**, pas là où elles sont **appelées**. La colocation cache la notion de chaîne de portées imbriquées. Retiens le mécanisme : **résolution lexicale**, pas "on partage tout".
-
----
-stability: intemporel

@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > module va t'enseigner (notamment `01_http_rest_basics.md`) : normal de
 > ne pas encore les maîtriser. Ta compréhension est testée en fin de
 > module, dans `08_web_concepts_grimoire.md`.
-
----
-stability: stable

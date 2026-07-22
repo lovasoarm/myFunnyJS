@@ -218,6 +218,3 @@ L'objectif de ce module : niveau 4. Niveau 5 vient avec l'expérience en prod.
 Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
 Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
 pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
-
----
-stability: perissable

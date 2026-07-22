@@ -33,7 +33,3 @@ Les scénarios sont **reproductibles** : deux binômes différents jouent exacte
 ## (attention) Piège
 
 "Envoie-moi le code" = tu perds. La contrainte fait le muscle.
-
----
-
-stability: intemporel

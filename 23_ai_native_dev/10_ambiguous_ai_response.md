@@ -45,6 +45,3 @@ Tu as identifié au moins un bug AVANT de le tester. Si tu ne l'as vu qu'après 
 ## (attention) CE QUE L'EXERCICE RÉVÈLE
 
 Une IA n'a pas honte de se tromper avec assurance. Comme un coéquipier trop confiant qui jure que la passe va passer : tu ne le crois pas sur parole, tu regardes le terrain. La fiabilité d'une réponse ne se lit pas dans son ton, elle se prouve sur les edge cases.
-
----
-stability: perissable

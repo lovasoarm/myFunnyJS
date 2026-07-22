@@ -59,6 +59,3 @@ Le callback n'est **jamais** garanti d'être appelé (fin de process, GC skippé
 ## Mission
 
 Écris un cache WeakRef pour des `Image`, mesure le taux de miss après pression mémoire (crée et jette 10000 objets pour forcer le GC).
-
----
-stability: intemporel

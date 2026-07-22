@@ -266,6 +266,3 @@ Un module = une responsabilité. Une interface publique réduite. Un état inter
 La façade simplifie ce qui est complexe. Le singleton module est gratuit en ES6. Le plugin pattern rend un système extensible sans le modifier.
 
 Ce que tu n'exposes pas, tu ne le casses pas. Ce que tu exposes, tu t'engages à le maintenir. Réfléchis à ce que tu exportes avant de le faire.
-
----
-stability: intemporel

@@ -323,6 +323,3 @@ Le cache existe pour éviter de recalculer ce qui n'a pas changé. Chaque niveau
 Les assets statiques avec hash dans le nom : `immutable` et `max-age=31536000`. Le nom change quand le contenu change.
 ETag : le serveur donne une empreinte, le client la renvoie, le serveur dit si ça a changé. 304 = pas de re-téléchargement.
 `stale-while-revalidate` : servir le cache périmé immédiatement ET rafraîchir en arrière-plan. Le meilleur des deux mondes.
-
----
-stability: stable

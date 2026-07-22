@@ -262,6 +262,3 @@ On te donne deux tables `villages` (10 lignes) et `ninjas` (500 lignes) sans rel
 ## RÉSUMÉ
 
 SQL c'est pas de la syntaxe à apprendre par cœur, c'est une façon de déléguer le travail lourd à un moteur fait pour ça. `WHERE` filtre avant de te ramener la donnée, `JOIN` recolle des tables séparées par design, `INDEX` transforme une recherche linéaire en recherche logarithmique, et `EXPLAIN` te montre ce qui se passe vraiment au lieu de deviner. Le danger numéro un reste humain : un `UPDATE` sans `WHERE` ne pardonne pas.
-
----
-stability: stable

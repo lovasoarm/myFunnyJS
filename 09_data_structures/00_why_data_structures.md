@@ -97,6 +97,3 @@ Les structures de données sont la couche la plus stable de toute l'informatique
 Le tableau n'est pas toujours le bon outil, et le mauvais choix de structure transforme un problème simple en mur de performance. Ce module te donne le vocabulaire pour choisir juste : stack, queue, heap, hash table, graphe, BST. Chacun répond à une famille de problèmes précise. Apprendre à les reconnaître, c'est apprendre à ne plus coder à l'aveugle.
 
 Maintenant, ouvre `01_array_basics.md`. Et regarde enfin ce que `.push()`, `.shift()` et `.splice()` te coûtent vraiment.
-
----
-stability: intemporel

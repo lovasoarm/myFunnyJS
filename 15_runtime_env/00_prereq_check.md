@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > t'enseigner (notamment `01_node_vs_browser.md`) : normal de ne pas
 > encore les maîtriser. Ta compréhension est testée en fin de module, dans
 > `07_runtime_grimoire.md`.
-
----
-stability: stable

@@ -183,6 +183,3 @@ console.log(calculerMoyenne(scores))
 ## RÉSUMÉ
 
 V8 exécute ton code en deux temps : Ignition démarre vite sans optimiser, TurboFan optimise les fonctions qui tournent souvent en pariant sur la forme de leurs données. Les hidden classes déterminent si V8 peut traiter tes objets de façon uniforme : initialise toujours les propriétés dans le même ordre. Les inline caches mémorisent la dernière forme observée à un point d'appel : un seul type stable, c'est rapide, plusieurs types qui changent sans cesse, c'est l'optimisation perdue. Une deopt n'est pas une erreur, c'est V8 qui retire un pari devenu faux : une deopt isolée ne change rien, une bailout loop sur un hot path coûte cher.
-
----
-stability: intemporel

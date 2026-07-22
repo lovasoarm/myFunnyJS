@@ -36,6 +36,3 @@ saches toi-même où tu en es avant de démarrer :
 
 > Aucune case cochée ici ne t'empêche d'avancer. Ce test n'a qu'un seul but :
 > calibrer ta vitesse de lecture sur ce premier module, pas te bloquer.
-
----
-stability: intemporel

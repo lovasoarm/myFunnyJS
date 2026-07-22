@@ -69,6 +69,3 @@ Chaque item : (Q utilisateur) → (R IA plausible mais fausse) → (ta démoliti
 ## Livrable
 
 `REBUTTALS.md` avec ta démolition + le lien vers la source officielle (spec / MDN / RFC).
-
----
-stability: perissable

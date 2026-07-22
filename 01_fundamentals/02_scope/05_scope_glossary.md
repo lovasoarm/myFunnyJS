@@ -28,6 +28,3 @@ Le scope détermine **qui** peut accéder à une variable et **où** elle existe
 | **Execution Context** | Environnement créé à chaque exécution de fonction : contient les variables, `this` et la scope chain | `function fn() { let x = 1; }` `fn(); // nouveau contexte` `fn(); // nouveau contexte recréé` | Une scène de théâtre qui se reconstruit à chaque acte / Un nouveau chantier ouvert avec ses propres ouvriers à chaque fois |
 | **Callback Scope** | Fonction passée dans une autre qui garde accès à son scope d'origine | `function outer() { let msg = "Hello"; setTimeout(function() { console.log(msg); }, 100); }` `outer(); // Hello` | Un ambassadeur envoyé à l'étranger qui garde ses lois nationales / Un étudiant en échange qui garde les règles de son université |
 | **Closure Memory Trap** | Une closure garde des variables en mémoire et peut bloquer le garbage collector | `function trap() { let big = new Array(1000000); return function() { return big.length; }; }` `const fn = trap(); // big reste en mémoire` | Un entrepôt qui stocke des caisses dont personne ne veut mais que personne n'ose jeter / Un ex qui garde toutes tes affaires : la place est occupée, rien n'est libéré |
-
----
-stability: intemporel

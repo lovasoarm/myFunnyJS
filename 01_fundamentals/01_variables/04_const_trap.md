@@ -143,6 +143,3 @@ Ligne D --> ne s'exécute jamais : le crash vient avant (jamais atteinte : le cr
 Si tu veux un objet vraiment immuable : `Object.freeze()`. Et `freeze` ne gèle que le premier niveau, donc les objets imbriqués restent mutables.
 
 La règle : `const` = référence verrouillée. Pas objet immuable.
-
----
-stability: intemporel

@@ -322,6 +322,3 @@ Une Long Task dépasse 50ms : au-delà, l'interface ne répond plus.
 Les reflows forcés arrivent quand tu lis une propriété de layout juste après avoir écrit dans le DOM.
 Le workflow : voir le lag → enregistrer → trouver la Long Task → identifier la barre large → optimiser → remesurer.
 `performance.mark()` place tes repères directement dans le flamegraph.
-
----
-stability: intemporel

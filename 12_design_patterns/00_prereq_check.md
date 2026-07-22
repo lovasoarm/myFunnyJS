@@ -47,6 +47,3 @@ compréhension. La pierre Architecture s'effondre si POO n'est pas déjà en toi
 
 Si tu n'as pas encore fait `18_oop_js/`, ferme ce module maintenant, va
 lire ces 4 fichiers, reviens. Ce n'est pas négociable.
-
----
-stability: intemporel

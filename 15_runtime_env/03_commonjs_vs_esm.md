@@ -263,6 +263,3 @@ console.log(config);
 ## RÉSUMÉ
 
 CommonJS est synchrone, dynamique, et utilise `require`. ESM est statique, compatible tree shaking, et utilise `import/export`. En 2026, ESM est le standard : nouveau projet Node → `"type": "module"` dans `package.json`, extensions `.js` explicites sur les imports. `__dirname` n'existe pas en ESM natif : on le reconstruit avec `import.meta.url`. Les packages ESM-only ne peuvent pas être importés avec `require`.
-
----
-stability: stable

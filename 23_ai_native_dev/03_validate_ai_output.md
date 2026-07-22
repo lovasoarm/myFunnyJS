@@ -288,6 +288,3 @@ L'Oracle génère une fonction `repartirRecompenses(total, joueurs, bonusPercent
 ## RÉSUMÉ
 
 Le code généré par l'Oracle est un premier jet, pas une vérité. La validation se fait en 4 niveaux : lecture critique, typage statique, tests unitaires, tests d'intégration. Zod est ton garde du corps : tout ce qui vient de l'extérieur passe par un schema. Les tests que tu dois écrire sont ceux que l'Oracle n'a pas imaginés : les cas vides, négatifs, limites, et les 0.1 + 0.2 de ce monde. Le pattern validate-in validate-out garantit des frontières propres peu importe ce que l'Oracle a mis au milieu.
-
----
-stability: perissable

@@ -149,6 +149,3 @@ résultat : 26
 Les trois ne mutent jamais l'original. Si tu touches l'original à l'intérieur d'un `map`, tu fais quelque chose de travers.
 
 `map + filter` enchaînés créent deux tableaux intermédiaires. Si la perf compte, `reduce` peut tout faire en un seul passage.
-
----
-stability: intemporel

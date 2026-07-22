@@ -180,6 +180,3 @@ La coercition implicite (conversion automatique) : JS convertit les types selon 
 `==` applique la coercition. `===` ne convertit rien : compare type ET valeur. En prod, `===` partout sauf cas exceptionnels.
 
 Falsy values : `0`, `""`, `null`, `undefined`, `NaN`, `false`. Tout le reste est truthy : y compris `"0"`, `[]`, `{}`.
-
----
-stability: intemporel

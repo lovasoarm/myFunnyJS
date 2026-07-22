@@ -31,6 +31,3 @@ Temps de lecture ~5 min
 > sous-section (`01_callbacks/03_callbacks_grimoire.md`,
 > `02_promises/03_promises_grimoire.md`, `03_async_await/03_async_grimoire.md`,
 > `04_event_loop/03_event_loop_grimoire.md`), pas ici à l'entrée.
-
----
-stability: intemporel

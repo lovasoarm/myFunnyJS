@@ -34,6 +34,3 @@ On te fournit [`flaky.js`](./flaky.js) (15 lignes, autonome). Bug : environ 1 fo
 ---
 
 > Pour tout exercice de debugging : utilise le template [`HYPOTHESES_TEMPLATE.md`](./HYPOTHESES_TEMPLATE.md). Pas de correction sans hypothèse écrite.
-
----
-stability: intemporel

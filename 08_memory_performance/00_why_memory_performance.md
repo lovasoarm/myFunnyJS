@@ -112,6 +112,3 @@ Ce module se lit dans l'ordre, chaque sous-partie prépare la suivante :
 ## AILLEURS QUE JS
 
 En Python, un GC par comptage de références + détection de cycles ; les fuites viennent souvent des références circulaires et des caches non bornés, exactement comme en JS. En Rust, pas de GC du tout : l'ownership et le borrow checker libèrent la mémoire de façon déterministe à la fin de portée. En C, tu gères `malloc`/`free` à la main. Le principe (un objet référencé vit) est universel.
-
----
-stability: intemporel

@@ -282,6 +282,3 @@ const vault = new SecureVault()
 `abstract` force les sous-classes à implémenter ce qui manque. C'est un contrat avec le compilateur, pas avec les humains.
 `private` TypeScript est une protection statique. Elle disparaît à la compilation. `#` natif JS est la vraie protection.
 `implements` sépare le contrat (interface) de l'implémentation (classe) : deux modules peuvent respecter le même contrat sans se connaître.
-
----
-stability: perissable

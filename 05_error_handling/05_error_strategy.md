@@ -357,6 +357,3 @@ Retry : uniquement sur les erreurs transitoires. Toujours avec backoff exponenti
 Circuit breaker : arrêter de frapper un service mort. Le laisser respirer. Retenter quand c'est raisonnable.
 
 Ces stratégies ne s'excluent pas : elles se combinent selon le type d'erreur et le contexte.
-
----
-stability: intemporel

@@ -290,6 +290,3 @@ Implémente `fibMemo`, `fibTab`, et `fibOptimal`. Mesure le temps pour n = 100, 
 ## RÉSUMÉ
 
 DP : identifier les sous-problèmes qui se répètent, les stocker, ne jamais les recalculer. Deux approches : mémoïzation top-down (récursion + cache, calcule seulement ce qui est nécessaire) et tabulation bottom-up (itératif, remplit tous les sous-problèmes dans l'ordre). Un problème est DP si : sous-structure optimale ET chevauchement de sous-problèmes. La majorité des problèmes DP peuvent être optimisés en espace en ne gardant que les dernières valeurs du tableau.
-
----
-stability: intemporel

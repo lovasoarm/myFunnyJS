@@ -88,7 +88,3 @@ Si les 3 réponses coulent (8 octets ; 2 car même référence ; tant que la clo
 - Vient après : `07_math_basics/` complet (représentation numérique).
 - Prépare : `08_memory_performance/00_why_memory_performance.md`, puis `08_memory_performance/01_gc/01_gc_basics.md`.
 - N'introduit pas d'API nouvelle. Uniquement le **modèle mental** que le reste du module 08 utilisera.
-
----
-
-stability: intemporel

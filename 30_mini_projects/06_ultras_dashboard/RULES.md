@@ -5,12 +5,11 @@ stability: intemporel
 # RULES : 06_ultras_dashboard
 
 Règles minimales de release. Un projet qui échoue une de ces règles est marqué
-INCOMPLET par `.internal/.tools/verification_pack/`.
+INCOMPLET par un critere binaire ecrit dans ton `TDD_JOURNAL.md`.
 
 ## ADR_MINIMUM
 
 Nombre minimum d'ADR à livrer dans `ADR/` : **3**
-Sanction : `python3 .internal/scripts/lint_adr.py` échoue et bloque `pack_release.sh`.
 
 Un ADR unique ("choix d'architecture") ne suffit pas. Décisions latérales attendues :
 données, frontières de module, stratégie de tests, choix async, sécurité, observabilité.
@@ -26,7 +25,7 @@ Si activé, `POSTMORTEM.md` doit contenir la section `## Comment j'ai encaissé 
 
 ## Security Gate
 
-Bloc obligatoire (drill `.internal/.tools/verification_pack/30_mini_projects/security_gate.sh`) :
+Bloc obligatoire (drill `node solution.js` (auto-verif ecrite par toi)) :
 
 - **Entrées validées** : chaque entrée externe passe par un schéma explicite (Zod, manuel documenté).
 - **Secrets hors code** : jamais commités ; lus depuis env, documentés dans `SECURITY.md`.

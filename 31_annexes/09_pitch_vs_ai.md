@@ -47,6 +47,3 @@ Distinction critique en entretien et en revue.
 - **"Je ne sais pas encore."** Ouvre : *"voici comment j'irais chercher la réponse : docs officielles, minimal reproducer, benchmark, question à un pair."*
 
 Un ingénieur crédible dit souvent le second. Jamais le premier tout court.
-
----
-stability: intemporel

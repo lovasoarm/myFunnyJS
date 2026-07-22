@@ -221,6 +221,3 @@ Un dev senior se reconnaît à ce qu'il ne code pas. Un junior code pour se rass
 ## RÉSUMÉ
 
 Modéliser avant de coder : c'est décider de la forme des données et des contrats avant que le code existe. Un bon modèle rend les états impossibles... impossibles. Il se lit comme une histoire. Il change quand le domaine change, pas quand l'UI change. Un modèle sans invariants laisse entrer n'importe quoi : et n'importe quoi artefact des bugs qu'on comprend pas.
-
----
-stability: intemporel

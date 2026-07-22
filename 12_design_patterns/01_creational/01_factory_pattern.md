@@ -356,6 +356,3 @@ La Factory déplace la responsabilité de création d'objets dans un endroit dé
 Bénéfice immédiat : couplage faible, logique de création centralisée, testabilité maximale.
 La version function convient pour des créations simples. La classe convient quand la factory doit être configurée ou partagée. L'Abstract Factory entre en jeu quand tu crées des familles d'objets qui doivent rester cohérentes entre elles.
 Une factory qui fait tout n'est pas une factory : c'est un God Object avec un meilleur nom.
-
----
-stability: intemporel

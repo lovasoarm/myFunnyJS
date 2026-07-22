@@ -191,6 +191,3 @@ L'API impose une limite stricte par IP. T-Bag se plaint : "50 membres de mon ré
 ## RÉSUMÉ
 
 Rate limiting protège ton service contre l'abus, qu'il soit malveillant ou juste accidentel (un bug en boucle côté client). Fixed window est simple mais laisse passer des pics à la frontière des fenêtres, sliding window corrige ça, token bucket autorise des rafales contrôlées. La vraie compétence n'est pas d'activer une limite, c'est de la calibrer selon le contexte réel (IP vs user, NAT d'entreprise, endpoint sensible vs endpoint normal), et de répondre proprement (429 + Retry-After) plutôt que de juste claquer une porte au nez du client.
-
----
-stability: stable

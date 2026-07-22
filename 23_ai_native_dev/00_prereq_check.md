@@ -30,6 +30,3 @@ Temps de lecture ~5 min
 > et `07_solo_vs_copilot_drill.md`) : normal de ne pas encore les
 > maîtriser. Ta compréhension est testée en fin de module, dans
 > `12_ai_grimoire.md`.
-
----
-stability: perissable

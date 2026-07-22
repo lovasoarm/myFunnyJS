@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > utiliser un breakpoint conditionnel sont le contenu que ce module va
 > t'enseigner (notamment `03_devtools_debugger.md`) : normal de ne pas
 > encore les maîtriser. Ta compréhension est testée en fin de module.
-
----
-stability: intemporel

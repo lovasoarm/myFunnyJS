@@ -279,6 +279,3 @@ C'est la différence entre subir le langage et le maîtriser.
 > Ce module réutilise : le debugging du module 04 (`04_debugging`) et l'asynchrone du module 03 (`03_async`).
 >
 > **Référence heisenbug** : le fichier `06_heisenbug_arena.md` de ce module est LE point de référence complet sur les heisenbugs (5 scénarios, méthode, cas qui casse). Le stub `04_debugging/heisenbug_arena.md` renvoie ici : ne le duplique pas, approfondis-le.
-
----
-stability: intemporel

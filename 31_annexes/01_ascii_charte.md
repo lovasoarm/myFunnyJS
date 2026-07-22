@@ -226,6 +226,3 @@ Une erreur dans TRANSFORM doit jamais silencieusement corrompre ce qui arrive au
 Tu écris une leçon et t'as besoin d'un de ces 8 schémas : tu recopies le schéma exact ci-dessus, tu l'adaptes au contexte narratif du module si besoin (les noms de variables peuvent changer, la structure du schéma non), et tu mentionnes "voir charte ASCII" si tu veux éviter de répéter l'explication complète.
 
 Si ton module a besoin d'un 9e schéma canonique qui sert dans plusieurs modules : tu le proposes ici, tu l'ajoutes pas en solo dans ta leçon.
-
----
-stability: intemporel

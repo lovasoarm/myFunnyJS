@@ -50,7 +50,7 @@ Pas un développeur "qui sait faire une todo-list". Un **ingénieur** qui :
 - **Tu mesures ta dépendance à l'IA** (`DEPENDENCY_LEDGER.md`). Une règle non
   mesurée reste une croyance. **Ce fichier n'existe pas encore : crée-le à la
   racine de ton propre repo maintenant**, en copiant la structure de
-  `.internal/.audit/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
+  `00_referentiel/DEPENDENCY_LEDGER.md` (fourni comme modèle de référence, pas comme
   contenu à lire).
 
 ### Ratio lecture / écriture (règle Thor)
@@ -138,8 +138,4 @@ Note dans un fichier `TDD_JOURNAL.md` :
 
 ---
 
-Prochaine étape : [`../00_referentiel/where_you_stand.md`](../00_referentiel/where_you_stand.md) (auto-diagnostic).
-
----
-
-stability: intemporel
+Prochaine étape : [`../00_referentiel/05_where_you_stand.md`](../00_referentiel/05_where_you_stand.md) (auto-diagnostic).

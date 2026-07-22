@@ -1,1 +1,0 @@
-(async()=>{const out=["start"];async function a(){out.push("a");}async function b(){out.push("b");}await a();await b();out.push("end");process.stdout.write(out.join("|"));})();

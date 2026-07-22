@@ -72,6 +72,3 @@ Points où elles mentent :
   que ça implique.
 
 Règle : quand l'analogie te sert à décider, arrête-la, retourne au mécanisme.
-
----
-stability: intemporel

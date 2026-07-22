@@ -258,6 +258,3 @@ Jest s'installe avec `npm i -D jest` : rien de plus. Il trouve les fichiers `*.t
 `toBe` pour les primitives, `toEqual` pour les objets.
 Les fonctions async se testent avec `async/await` : sans ça, Jest peut passer un test cassé.
 Le coverage montre les branches non testées : c'est là que vivent les bugs.
-
----
-stability: intemporel

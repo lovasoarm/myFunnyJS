@@ -30,6 +30,3 @@ Temps de lecture ~5 min
 > et `06_bst/`) : normal de ne pas encore les maîtriser. La différence
 > stack/queue a déjà été vue au fil du curriculum ; si c'est flou, jette un
 > œil rapide à `04_queue/01_queue_basics.md` avant de commencer.
-
----
-stability: intemporel

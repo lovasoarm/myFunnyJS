@@ -213,6 +213,3 @@ Les erreurs qui tuent une session : backseat driving, silence du driver, pas de 
 Le pair à distance fonctionne avec vidéo, parole active, et switch plus fréquent.
 Le pair n'est pas adapté à tout : l'utiliser sur les problèmes complexes et critiques, pas sur les tâches répétitives.
 Le débrief de 5 minutes multiplie la valeur de la session.
-
----
-stability: intemporel

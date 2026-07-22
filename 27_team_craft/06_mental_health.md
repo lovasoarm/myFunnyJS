@@ -35,6 +35,3 @@ Ce n'est pas "je suis crevé ce soir". C'est "je suis crevé depuis 3 mois, dorm
 ## Ce que l'analogie cache
 
 Naruto s'entraîne comme un dingue mais il **récupère**. Le manga saute la récup, la vraie vie non. Sans récup, pas de progression, juste de la casse.
-
----
-stability: intemporel

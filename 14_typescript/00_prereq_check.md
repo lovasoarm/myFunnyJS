@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > ce module va t'enseigner (notamment `01_types_and_interfaces.md`) :
 > normal de ne pas encore les maîtriser. Ta compréhension est testée en
 > fin de module, dans `04_typescript_grimoire.md`.
-
----
-stability: perissable

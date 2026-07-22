@@ -82,6 +82,3 @@ partir sans jamais revenir. Traite-le comme tel.
 
 Ces 8 fallacies sont vraies en Go, Java, Rust, Python. Le vocabulaire "queue,
 consumer, backoff" est identique. Le module reste valide sans JS.
-
----
-stability: stable

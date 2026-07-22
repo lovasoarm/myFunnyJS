@@ -239,6 +239,3 @@ app.post('/delete-account', (req, res) => deleteAccount(req.session.userId));
 ## RÉSUMÉ
 
 CSRF exploite la confiance du serveur envers le navigateur du détenu. La défense : tokens imprévisibles ou `SameSite` sur les cookies. CORS contrôle qui peut lire tes réponses depuis le navigateur. La configuration : liste blanche stricte, pas de wildcard avec credentials. Les deux protègent des choses différentes et les deux sont nécessaires dans une app authentifiée.
-
----
-stability: stable

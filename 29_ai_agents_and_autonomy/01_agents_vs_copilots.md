@@ -108,7 +108,3 @@ Les 6 chapitres suivants dérivent tous de cette ligne de fracture :
 
 Copilote et agent ne sont pas deux outils ; ce sont deux niveaux de délégation.
 Confondre les deux, c'est déléguer un scalpel comme si c'était un stylo.
-
----
-
-stability: perissable

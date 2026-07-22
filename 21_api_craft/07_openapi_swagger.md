@@ -439,6 +439,3 @@ Swagger UI monte une interface de test interactive en quelques lignes.
 La validation automatique avec `express-openapi-validator` fait respecter le contrat à l'entrée.
 Spec-first pour les APIs publiques. Code-first pour prototyper vite.
 La spec qui diverge du code réel c'est pire que pas de spec du tout.
-
----
-stability: stable

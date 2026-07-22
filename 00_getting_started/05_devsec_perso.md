@@ -33,6 +33,3 @@ grep -rE "(api[_-]?key|secret|password)\s*=\s*['\"]" --include="*.js" .
 ## Mission
 
 Configure `.gitignore` global, active 2FA GitHub, régénère une clé SSH ed25519 avec passphrase.
-
----
-stability: intemporel

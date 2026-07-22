@@ -213,6 +213,3 @@ Tu sors des cas limites théoriques et tu entres dans les projets où
 l'inattendu arrive en vrai : specs qui bougent, dépendances qui cassent,
 codebase inconnue. Les mini-projets sont l'arène où les 32 modules
 précédents se rencontrent : pas un module de plus, une intégration.
-
----
-stability: intemporel

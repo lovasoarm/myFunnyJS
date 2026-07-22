@@ -172,7 +172,3 @@ Un refus argumenté bien écrit est réutilisé. Il devient jurisprudence : la
 prochaine fois qu'un agent ou un humain produit le même motif, quelqu'un
 le cite. À terme, ta gate de refus devient la gate de l'équipe. C'est
 comme ça qu'un ingénieur seul finit par déplacer une organisation.
-
----
-
-stability: perissable

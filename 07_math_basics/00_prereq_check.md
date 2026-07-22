@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > O(n) vs O(log n), et le piège `0.1 + 0.2 !== 0.3` sont le contenu que ce
 > module va t'enseigner : normal de ne pas encore les maîtriser. Ta
 > compréhension est testée en fin de module, dans `09_math_grimoire.md`.
-
----
-stability: intemporel

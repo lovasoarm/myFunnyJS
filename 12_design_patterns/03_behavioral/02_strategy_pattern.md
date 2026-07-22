@@ -210,6 +210,3 @@ Ensuite, corrige `strategies.lente` pour qu'elle respecte le même contrat que l
 ## RÉSUMÉ
 
 Strategy, c'est déléguer le "comment" à une fonction interchangeable, et garder le "qui appelle" complètement ignorant des détails. Le vrai gain c'est l'ajout sans modification : une nouvelle technique, un nouveau tri, un nouveau calcul, ça rentre sans toucher au code qui orchestre. Le vrai danger c'est le contrat silencieux : si une stratégie ne respecte pas la même signature que les autres, tout pète en douceur, sans erreur visible.
-
----
-stability: intemporel

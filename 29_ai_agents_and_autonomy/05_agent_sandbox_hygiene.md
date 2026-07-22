@@ -171,7 +171,3 @@ Une fois la sandbox propre, tu peux vraiment jouer avec les agents. Le
 grimoire (chapitre 06) est ta bibliothèque de motifs, indexée par
 nature d'échec : utile UNIQUEMENT si tu as la sandbox en place. Sinon
 tu apprends à reconnaître les motifs pendant que ton système brûle.
-
----
-
-stability: perissable

@@ -31,6 +31,3 @@ Livrable : `SMELLS.md`.
 ## (attention) Piège
 
 Refacto par plaisir esthétique. Non. **Un smell + un test qui protège + un refacto ciblé**.
-
----
-stability: intemporel

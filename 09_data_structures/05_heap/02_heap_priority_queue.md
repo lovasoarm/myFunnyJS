@@ -291,6 +291,3 @@ Résultat attendu : distances minimales depuis A vers chaque station.
 ## RÉSUMÉ
 
 Une priority queue c'est un heap avec une interface métier. Enqueue avec une priorité, dequeue en ordre garanti. O(log n) dans les deux sens. À priorité égale, ajoute un critère secondaire (timestamp, deadline) pour stabiliser. La version min-heap est le moteur de Dijkstra : indispensable dans le module 10_algorithms.
-
----
-stability: intemporel

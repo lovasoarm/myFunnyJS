@@ -433,6 +433,3 @@ BFS utilise une queue pour garantir l'ordre par niveau : c'est pour ça qu'il tr
 Marquer les noeuds visités à l'enqueue, pas au dequeue : erreur classique, conséquences graves.
 Task scheduler = queue + compteur de slots : base de tout système de jobs concurrent en Node.
 Grille 2D = graphe implicite : chaque cellule a 4 voisins : BFS s'applique directement.
-
----
-stability: intemporel

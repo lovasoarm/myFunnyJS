@@ -132,6 +132,3 @@ grade("l'agent a ajouté un cache sans regarder le trafic"); // exemple
 
 Réponds AVANT d'appeler `grade`. C'est le seul moyen de sentir la différence
 entre "je vois le piège" et "je le vois après coup".
-
----
-stability: perissable

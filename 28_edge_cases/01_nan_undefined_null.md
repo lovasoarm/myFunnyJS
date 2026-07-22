@@ -335,6 +335,3 @@ console.log(result.chakra); // 100 -- pourquoi le chakra n'a pas bougé ?
 `Number.isNaN()` est strict, `isNaN()` fait une conversion d'abord : utiliser le premier.
 `??` remplace uniquement null et undefined, `||` remplace toute valeur falsy : choisir selon l'intention.
 `== null` est le seul usage intentionnel de `==` en 2026 : il attrape null et undefined ensemble.
-
----
-stability: intemporel

@@ -130,6 +130,3 @@ Construit un petit formulaire (nom, email, spécialité) où chaque `<label>` es
 ## RÉSUMÉ
 
 Le lecteur d'écran lit l'arbre d'accessibilité, pas le rendu visuel : un `<div onclick>` et un `<button>` peuvent se ressembler à l'écran et être totalement différents pour cet arbre. La navigation se fait par catégorie d'éléments (titres, liens, formulaires), donc une vraie hiérarchie de `<h1>` à `<h6>` change tout. Le nom accessible suit une priorité précise (aria-label, contenu textuel, alt), et un bouton icône sans nom est juste annoncé "bouton" sans aucune info utile.
-
----
-stability: intemporel

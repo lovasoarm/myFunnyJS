@@ -158,6 +158,3 @@ Quand catch(e) DOIT re-throw plutôt qu'avaler :
 Rappel Partie B.2 : toute analogie de ce grimoire simplifie un mécanisme.
 Quand tu dois **décider** (fix, refactor, ADR), retourne au mécanisme réel,
 pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
-
----
-stability: intemporel

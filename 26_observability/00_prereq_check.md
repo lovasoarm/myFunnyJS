@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > ce module va t'enseigner (notamment `01_structured_logging.md` et
 > `02_distributed_tracing.md`) : normal de ne pas encore les maîtriser. Ta
 > compréhension est testée en fin de module.
-
----
-stability: stable

@@ -25,6 +25,3 @@ Temps de lecture ~5 min
 - **2 ou moins** → retour au(x) module(s) manquant(s) parmi 6, 14, 22, 29.
 
 > Se sentir "prêt" ≠ être prêt. Les questions ci-dessus tranchent.
-
----
-stability: intemporel

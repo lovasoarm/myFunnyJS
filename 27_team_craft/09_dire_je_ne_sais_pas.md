@@ -28,6 +28,3 @@ Tu **ne sais pas** vraiment. Écris **3 réponses possibles** et classe-les de l
 ## (attention) Ce que le "je sais" par défaut cache
 
 Chaque "oui" non fondé devient une dette d'estimation. Coût : la confiance de l'équipe.
-
----
-stability: intemporel

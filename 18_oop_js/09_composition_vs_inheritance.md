@@ -157,7 +157,3 @@ Reprends l'exemple `Oiseau`/`Pingouin` de la section 5, mais sur le thème Narut
 ## RÉSUMÉ
 
 `extends` répond à la question "est-ce que cet objet EST l'autre, sans exception, pour toujours ?". La composition répond à "est-ce que cet objet POSSÈDE cette capacité, indépendamment des autres ?". Confondre les deux pousse à forcer des hiérarchies qui semblent logiques au départ, mais qui explosent dès qu'un cas réel ne respecte pas l'hypothèse de base. La position par défaut chez un dev senior : privilégier la composition, et réserver `extends` aux relations vraiment stables et universelles.
-
----
-
-stability: intemporel

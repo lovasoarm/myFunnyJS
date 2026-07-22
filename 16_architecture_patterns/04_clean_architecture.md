@@ -376,6 +376,3 @@ On te montre ce code : un use case qui importe `express` et appelle `res.json()`
 ## RÉSUMÉ
 
 La Clean Architecture impose une seule règle vraiment importante : les dépendances pointent vers l'intérieur. Le domaine ne connaît rien d'extérieur. Les use cases définissent des contrats. Les adapters remplissent ces contrats. Les frameworks vivent aux bords et peuvent être échangés sans toucher au domaine. Résultat : des tests rapides, un code qui survit aux migrations d'infra, et un domaine lisible par n'importe qui sans connaître l'outil du moment.
-
----
-stability: intemporel

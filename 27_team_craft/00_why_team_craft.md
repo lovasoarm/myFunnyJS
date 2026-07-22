@@ -233,6 +233,3 @@ Team craft n'est pas un module de soft skills.
 C'est un module d'ingénierie collaborative avec un ROI direct sur la qualité du code artefact.
 
 > Ce module réutilise : le refactoring du module 13 (`13_refactoring`), les tests du module 06 (`06_testing`).
-
----
-stability: intemporel

@@ -102,6 +102,3 @@ Sans coupures, ce n'est pas un entretien, c'est un monologue.
 Le cerveau qui code n'est pas le cerveau qui parle. Sans entraînement
 oral, ta connaissance reste **inaccessible** en entretien. C'est le
 principal filtre injuste du marché : assume-le, prépare-toi.
-
----
-stability: intemporel

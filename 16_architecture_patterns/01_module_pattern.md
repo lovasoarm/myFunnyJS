@@ -218,6 +218,3 @@ Tu as ce module : `const createRoster = () => { const squad = []; return { add: 
 ## RÉSUMÉ
 
 Le Module Pattern, c'est une frontière. Dedans : tout ce qui est interne, mutable, confidentiel. Dehors : une surface d'API (interface de programmation) contrôlée, intentionnelle. Le code qui casse en prod le fait souvent parce que deux parties du système se touchent alors qu'elles ne devraient pas se voir. L'encapsulation coupe ce canal. Avec ESM, tu l'as gratuitement via `export`. Sans ESM, tu le construis avec une closure.
-
----
-stability: intemporel

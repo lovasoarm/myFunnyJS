@@ -104,5 +104,3 @@ Reprends les 5 cas dans l'ordre. Pour chacun : écris ton diagnostic **avant** d
 ## 5) OÙ L'ANALOGIE CASSE
 
 L'IA n'est pas "un dev débutant" ni "un dev pressé" : elle est une distribution de textes plausibles. Lire son code, c'est vérifier chaque symbole contre la réalité (doc, exécution, types), pas chercher son intention. Lire du code humain, c'est chercher l'intention derrière l'imperfection.
-
-stability: intemporel

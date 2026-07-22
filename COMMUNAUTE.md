@@ -24,6 +24,3 @@ Sans peer-review, tu accumules tes propres angles morts.
 ## SIGNAL D'ALARME
 
 Si tu passes plus de 3 jours SEUL sans parler à personne du projet : arrête, écris un post, demande.
-
----
-stability: intemporel

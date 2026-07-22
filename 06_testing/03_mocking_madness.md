@@ -255,6 +255,3 @@ Mock = remplacer une dépendance externe par une version contrôlée.
 `mockResolvedValue` / `mockRejectedValue` pour les Promises.
 `jest.spyOn` pour surveiller sans remplacer.
 `jest.clearAllMocks()` dans `beforeEach` : pas négociable.
-
----
-stability: intemporel

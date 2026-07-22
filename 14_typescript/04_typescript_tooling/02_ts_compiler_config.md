@@ -211,6 +211,3 @@ Configure un alias dans `paths` (genre `@utils/*`), utilise-le dans un import, v
 ## RÉSUMÉ
 
 `tsconfig.json` détermine deux choses séparées : la sortie JS générée (`target`, `module`) et la rigueur de vérification (`strict` et ses sous-options). `strict: true` active plusieurs protections d'un coup, et désactiver une option stricte doit être un choix réfléchi, jamais un défaut négligé. `allowJs` et `checkJs` permettent une migration progressive en typant du JS via JSDoc sans renommage immédiat. `paths` est une info pour le compilateur TS uniquement : il faut la répliquer côté bundler ou runtime pour que ça fonctionne réellement à l'exécution. Le bon tsconfig dépend toujours du contexte du projet, pas d'un copier-coller universel.
-
----
-stability: perissable

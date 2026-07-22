@@ -473,6 +473,3 @@ La géométrie en dev, c'est Pythagore + vecteurs + quelques formules. Pas de ca
 Ce que tu dois avoir en tête : les distances (euclidienne, Manhattan, au carré), les vecteurs (direction, normalisation, dot product), et les tests de collision (rect vs rect, cercle vs cercle, point dans zone). Le reste : lerp, angle, heatmap : c'est des combinaisons de ces outils de base.
 
 Un canvas, une carte, un jeu, un dashboard interactif : tout ça tourne avec ce que tu viens de voir.
-
----
-stability: intemporel

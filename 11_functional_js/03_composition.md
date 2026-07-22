@@ -288,6 +288,3 @@ La composition c'est brancher des petites fonctions ensemble pour en construire 
 Pour composer, les fonctions doivent être unaires (un argument) : c'est pourquoi currying et composition vont ensemble.
 `tap` permet d'insérer des effets de bord (logs) dans un pipeline sans le casser.
 Un pipeline bien composé se lit comme une spec : chaque étape est nommée, isolée, testable.
-
----
-stability: intemporel

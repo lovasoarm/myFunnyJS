@@ -284,6 +284,3 @@ Applique Quick sort avec pivot = dernier élément sur chacun. Mesure le temps. 
 ## RÉSUMÉ
 
 Quick sort choisit un pivot, partitionne le tableau en deux zones (< et >) autour de lui, et récurse. Le pivot est à sa place définitive après chaque partition. Sans récursion de fusion : tout se passe en place en O(log n) de stack. Le pire cas O(n²) arrive sur des tableaux déjà triés avec un pivot mal choisi : un pivot aléatoire l'élimine en pratique. Quick sort n'est pas stable mais il est cache-friendly et rapide sur des données réelles. V8 l'utilise pour trier des primitives.
-
----
-stability: intemporel

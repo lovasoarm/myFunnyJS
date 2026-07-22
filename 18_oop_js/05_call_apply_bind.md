@@ -186,6 +186,3 @@ Crée une fonction `rang()` bindée sur un objet `jounin`. Essaie de la rebinder
 ## RÉSUMÉ
 
 `call` et `apply` exécutent une fonction immédiatement avec un `this` imposé : seule la forme des arguments diffère (listés vs tableau). `apply` est largement remplacé par le spread `...` en 2026, mais reste présent dans tout code legacy. `bind` ne lance rien : il retourne une nouvelle fonction avec `this` figé pour de bon, et peut aussi figer des arguments en avance (partial application). Une fois bindée, une fonction ne peut plus être re-bindée : le deuxième `bind` ou un `call` sur une fonction déjà bindée sont ignorés en silence. Aucun des trois n'a d'effet sur une arrow function, parce que son `this` est capturé à l'écriture, pas à l'appel.
-
----
-stability: intemporel

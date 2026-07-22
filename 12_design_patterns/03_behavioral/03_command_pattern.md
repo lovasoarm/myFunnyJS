@@ -293,6 +293,3 @@ Trace l'état de `historique` et `annulees` à CHAQUE étape. Que se passe-t-il 
 ## RÉSUMÉ
 
 Command transforme une action en objet autonome : elle sait s'exécuter, et souvent s'annuler. Empilée dans un historique, elle donne le undo/redo. Mise dans une queue, elle découple le moment où l'action est DÉCIDÉE du moment où elle est EXÉCUTÉE. Le piège numéro un : un `undo` qui ne reflète pas exactement l'inverse d'`execute`, ou une pile `redo` jamais vidée après une nouvelle action.
-
----
-stability: intemporel

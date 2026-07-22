@@ -412,6 +412,3 @@ Le chaînage fluent (`return this`) rend la configuration lisible : on voit ce q
 `.build()` est le seul point de validation : c'est lui qui garantit que l'objet artefact est cohérent.
 Le Director encapsule les configurations courantes : tu appelles une recette, pas chaque étape.
 Règle simple : si ton constructeur dépasse 3 paramètres optionnels, le Builder est la bonne réponse.
-
----
-stability: intemporel

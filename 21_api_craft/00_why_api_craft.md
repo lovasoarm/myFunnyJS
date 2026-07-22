@@ -110,6 +110,3 @@ Maintenant, ouvre `01_express_from_scratch.md`. Et construis une API comme quelq
 - **Go (chi, gin)** : middleware compose, contexte propage. Meme grammaire.
 - **Rust (axum)** : type-safety a la compilation pour les routes.
 - **Partout** : versionnage, idempotence, retry, timeout, backpressure sont les memes 5 sujets.
-
----
-stability: stable

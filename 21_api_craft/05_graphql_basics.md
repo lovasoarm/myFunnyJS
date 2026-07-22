@@ -339,6 +339,3 @@ Chaque champ complexe a son propre resolver.
 Le problème N+1 est le piège le plus fréquent : surveiller les requêtes DB générées.
 REST reste souvent plus simple pour des APIs stables avec un seul type de client.
 GraphQL brille quand les formes de données sont variées et les relations complexes.
-
----
-stability: stable

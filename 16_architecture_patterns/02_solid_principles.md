@@ -299,6 +299,3 @@ Mission : décris (sans code complet, juste la structure) comment injecter un `l
 
 ## RÉSUMÉ
 SOLID, c'est pas cinq règles à cocher : c'est cinq questions à se poser quand le code devient compliqué à changer. Une classe qui fait trop de choses, un switch qui grossit à chaque feature, une sous-classe qui crash là où la classe mère marchait : ce sont des signaux. SOLID te donne le vocabulaire pour nommer le problème et la direction pour le réparer.
-
----
-stability: intemporel

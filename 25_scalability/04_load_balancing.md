@@ -200,6 +200,3 @@ L'appli du Conseil stocke l'état de chaque Chevalier (armure active, position, 
 ## RÉSUMÉ
 
 Un load balancer distribue le trafic pour qu'aucun serveur seul ne porte tout le poids. Round-robin est simple mais aveugle à la charge réelle, least connections s'adapte mieux quand les requêtes sont inégales. Les sessions en mémoire locale créent un piège classique en multi-serveurs : la vraie solution est de sortir l'état du serveur, pas de forcer l'utilisateur à y rester collé. Et un health check qui ne teste pas la vraie santé du serveur donne une fausse sécurité qui peut amplifier une panne au lieu de la contenir.
-
----
-stability: stable

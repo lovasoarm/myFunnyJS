@@ -94,6 +94,3 @@ Si tu rates plus de 3 questions par groupe, retourne au module concerne.
   `START_HERE.md`, refais le quiz.
 - < 10 : retour aux 4-5 lecons ou tu as trebuche. Pas de honte, l'illusion
   de savoir coute plus cher.
-
----
-stability: intemporel

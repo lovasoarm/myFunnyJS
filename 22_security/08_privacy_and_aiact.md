@@ -242,6 +242,3 @@ L'Oracle Glitch (`09_oracle_glitch`) génère des suggestions de fix de code et 
 ## RÉSUMÉ
 
 RGPD et AI Act ne sont pas des sujets que tu ignores en te disant "c'est le boulot des juristes". Le RGPD impose minimisation, droit à l'oubli réel (toutes les tables, pas une seule), et une distinction stricte entre pseudonymisation (réversible) et anonymisation (définitive). L'AI Act impose transparence dès qu'un supporter parle à une IA, et traçabilité renforcée pour les systèmes à risque élevé. Le réflexe à garder : avant chaque `console.log`, chaque colonne de DB, chaque payload envoyé à un modèle, se demander si cette donnée sert vraiment un but déclaré, et combien de temps elle doit survivre.
-
----
-stability: stable

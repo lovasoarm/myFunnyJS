@@ -34,6 +34,3 @@ Temps de lecture ~5 min
 > le contenu que ce module va t'enseigner : normal de ne pas encore les
 > maîtriser. Ta compréhension est testée en fin de module, dans
 > `05_tools_grimoire.md`.
-
----
-stability: perissable

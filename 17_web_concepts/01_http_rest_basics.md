@@ -341,6 +341,3 @@ Savoir lire un status code te dit immédiatement qui a fait l'erreur : le client
 Les headers transportent le contexte : auth, cache, format, trace.
 La différence entre 401 et 403 compte : non authentifié vs non autorisé, c'est deux bugs différents.
 `fetch()` ne throw pas sur les erreurs HTTP : toujours vérifier `response.ok` ou le status code explicitement.
-
----
-stability: stable

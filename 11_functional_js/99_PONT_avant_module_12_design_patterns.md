@@ -24,7 +24,3 @@ Si les 3 réponses te semblent triviales, tant mieux : tu abordes le module 12 a
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
-
----
-
-stability: intemporel

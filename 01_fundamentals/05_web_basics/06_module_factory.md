@@ -232,6 +232,3 @@ Contrainte technique : aucune variable partagée entre deux clones. Chaque insta
 ## RÉSUMÉ
 
 Le scope global c'est une poubelle partagée : tout le monde y jette, tout le monde marche dedans. L'IIFE crée un scope isolé pour chaque module : une seule variable exposée dans `window`, tout le reste encapsulé. Une fonction factory pousse l'idée plus loin : elle fabrique des instances indépendantes avec un état privé vivant dans la closure. Les ES Modules natifs ont remplacé ce pattern dans les projets modernes, mais comprendre l'IIFE et les closures, c'est comprendre POURQUOI les modules existent. La structure continue dans `07_web_grimoire.md`, et le Factory Pattern en entier t'attend dans `12_design_patterns`.
-
----
-stability: intemporel

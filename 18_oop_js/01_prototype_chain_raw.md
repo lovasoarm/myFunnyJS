@@ -313,6 +313,3 @@ Recherche d'une propriété = remonter les flèches. Retourne à `null` sans tro
 > - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
 > - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
 > - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.
-
----
-stability: intemporel

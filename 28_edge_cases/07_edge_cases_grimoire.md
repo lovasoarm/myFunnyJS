@@ -109,3 +109,31 @@ pas à l'image. L'analogie sert à comprendre vite ; elle ment toujours un peu.
 
 ---
 stability: intemporel
+
+---
+
+## SPEC DRIFT : LE PIRE EDGE CASE EST HUMAIN, PAS TECHNIQUE
+
+Un edge case NaN/undefined/prototype se documente et se teste. Un edge case
+"la spec vient de changer en cours de route" ne se teste pas : il se traverse.
+Le curriculum entier considere le spec drift comme un edge case a part entiere,
+au meme titre que le floating point.
+
+- **A la source** : `SPEC_DRIFT_TRIGGERS.md` est present dans **chaque
+  mini-projet** (`30_mini_projects/*/SPEC_DRIFT_TRIGGERS.md`). Chacun contient
+  au moins trois declencheurs (J+1, J+3, J+5) qui simulent une spec qui change
+  apres le demarrage. Ce ne sont pas des specs floues au depart : ce sont des
+  specs claires au depart, puis modifiees en vol.
+- **Activation** : `SPEC_DRIFT_MODE=on node solution.js` (auto-verif ecrite par toi)
+  declenche le trigger correspondant. Sans cette variable, le mini-projet
+  tourne en mode "spec stable" (pour ne pas noyer le debutant).
+- **Cible pedagogique** : entrainer a **renegocier** sans bricoler. Le drift
+  n'est pas un bug de l'enonce, c'est la matiere premiere du metier.
+- **Piege** : ne pas confondre spec drift (elle change apres) avec spec
+  ambigue (elle etait floue avant). L'un se combat avec un contrat ecrit
+  + une frontiere ; l'autre se combat avec des questions posees tot.
+
+Pour aller plus loin : voir `06_heisenbug_arena.md` (le bug qui apparait
+quand tu regardes) et `05_race_condition_hunter.md` (le bug qui apparait
+quand tu ne regardes pas). Trois formes du meme probleme : la realite ne
+tient pas en place.

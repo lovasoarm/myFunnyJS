@@ -39,6 +39,3 @@ Tu vas signer des contrats. Certains te feront perdre la propriété de TON code
 ## PRINCIPES DURABLES
 
 Un contrat mal lu est plus dangereux qu'un bug en prod. Le bug tu le fixes ; le contrat te suit 5 ans.
-
----
-stability: intemporel

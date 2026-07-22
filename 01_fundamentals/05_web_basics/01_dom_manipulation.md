@@ -371,6 +371,3 @@ Le DOM est une structure arborescente en mémoire. Chaque manipulation a un coû
 Si tu maîtrises ça, tu peux construire n'importe quelle interface.
 
 Sinon, tu bricoles.
-
----
-stability: intemporel

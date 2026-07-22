@@ -1,1 +1,0 @@
-const fs=require("fs");const total=arr=>arr.reduce((a,b)=>a+b,0);process.stdout.write(String(total(fs.readFileSync(0,"utf8").trim().split(",").map(Number))));

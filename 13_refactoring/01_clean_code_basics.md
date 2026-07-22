@@ -165,6 +165,3 @@ score += 10
 
 ## RÉSUMÉ
 Un nom honnête vaut mieux que dix commentaires. Une fonction qui fait une seule chose, tu peux la tester, la lire, la jeter sans peur. Le clean code n'est pas joli pour faire joli : c'est ce qui te sauve à 2h du matin quand prod crash et que tu dois comprendre du code en 5 minutes.
-
----
-stability: intemporel

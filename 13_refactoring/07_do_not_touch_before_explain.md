@@ -36,6 +36,3 @@ d'éditer.
 
 Livrable : `RESUME_AVANT_EDIT.md` + diff du commit. Un pair te lit et vote :
 "tu avais compris avant de toucher, oui/non". Non = tu recommences.
-
----
-stability: intemporel

@@ -337,6 +337,3 @@ Implémenter deux versions de Dijkstra : une avec un array simple (trouver le mi
 ## RÉSUMÉ
 
 Dijkstra = greedy sur graphe pondéré avec poids positifs. À chaque étape, finaliser le noeud le plus proche. La priority queue rend ça efficace : `O((V+E) log V)` au lieu de `O(V²)`. Deux pièges absolus : les poids négatifs (Dijkstra donne des résultats silencieusement incorrects : utiliser Bellman-Ford) et oublier le check `currDist > dist.get(node)` qui permet de skip les entrées obsolètes dans la queue. Reconstruire le chemin se fait avec la map `prev` en remontant depuis la destination.
-
----
-stability: intemporel

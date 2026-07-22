@@ -69,6 +69,3 @@ console.log("D");
 - Les I/O sont déléguées à l'OS, pas exécutées par JS.
 
 Prochain arrêt : [`04_event_loop/`](04_event_loop/).
-
----
-stability: intemporel

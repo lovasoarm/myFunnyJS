@@ -1,1 +1,0 @@
-let inst=null;class S{static get(){if(!inst)inst=new S();return inst;}}const a=S.get(),b=S.get();process.stdout.write(String(a===b));

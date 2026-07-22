@@ -402,6 +402,3 @@ Les quatre sources classiques : listeners non supprimés, timers non clearés, c
 Tout setup a son teardown : c'est une règle de prod, pas une option.
 DevTools Memory tab : heap snapshot pour voir ce qui reste, allocation timeline pour voir ce qui n'est pas libéré.
 `process.memoryUsage()` en Node pour détecter une fuite sans ouvrir DevTools.
-
----
-stability: intemporel

@@ -17,6 +17,3 @@ Avant d'ouvrir ce module, coche honnêtement :
 - [ ] J'ai déjà lu au moins une fois une PR de plus de 20 fichiers sans paniquer.
 
 Si moins de 4 cases cochées, ferme ce module. Reviens quand.
-
----
-stability: perissable

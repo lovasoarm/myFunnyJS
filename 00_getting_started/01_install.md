@@ -125,6 +125,3 @@ figées (`.nvmrc`), vérifications systématiques, réinstall via gestionnaire
 (`nvm`) plutôt que par installeur global.
 
 Retour à `02_day_one.md`.
-
----
-stability: intemporel

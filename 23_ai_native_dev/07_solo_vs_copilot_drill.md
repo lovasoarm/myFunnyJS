@@ -166,6 +166,3 @@ Choisis une tâche calibrée tirée d'un mini-projet que t'as fait il y a au moi
 ## RÉSUMÉ
 
 Une règle non mesurée reste une croyance. Le drill solo-vs-copilot transforme "je crois que je dépends pas trop de l'IA" en une donnée datée et comparable. Le protocole tient sur des tâches courtes (15-45 minutes), jamais sur des mini-projets entiers refaits en double : c'est la fréquence et la répétition dans le temps qui donnent une vraie courbe, pas la taille d'un seul test. Quatre cas de lecture possibles, et un seul demande une vraie action : solo plus lent ET buggé, signe d'un trou de compétence précis à combler, pas d'une honte à porter.
-
----
-stability: perissable

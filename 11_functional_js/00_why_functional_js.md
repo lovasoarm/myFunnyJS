@@ -86,6 +86,3 @@ Maintenant, ouvre `01_pure_functions.md`. Et arrête de laisser tes fonctions ch
 ## AILLEURS QUE JS
 
 En Python, `map`/`filter`/`functools.reduce` et les compréhensions offrent le même style ; les fonctions sont des objets de première classe. En Haskell, la pureté et l'immutabilité sont la norme, pas une discipline optionnelle. En Rust, les itérateurs paresseux (`iter().map().filter().collect()`) poussent la composition encore plus loin. Le concept (transformer sans muter) traverse les langages.
-
----
-stability: intemporel

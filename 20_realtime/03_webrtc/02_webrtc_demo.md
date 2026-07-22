@@ -490,6 +490,3 @@ Implémente un système de "heartbeat DataChannel" :
 
 Contrainte : ne pas toucher à la logique vidéo, uniquement le DataChannel.
 (Indice : `setInterval` pour les pings, `clearTimeout`/`setTimeout` pour le timeout de pong)
-
----
-stability: stable

@@ -309,6 +309,3 @@ L'IA propose `array.remove(x)`. Erreur : n'existe pas en JS. Origine probable : 
 ### Livrable
 
 Un `HALLUCINATIONS.md` par projet. Ce fichier est **un actif** : il devient ta liste noire et améliore tes prompts au fil du temps.
-
----
-stability: perissable

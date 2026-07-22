@@ -36,6 +36,3 @@ Prends une fonction qui `throw` deux erreurs distinctes. Écris trois tests : ch
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise beaucoup d'apprenants. Aucune honte à revenir.
-
----
-stability: intemporel

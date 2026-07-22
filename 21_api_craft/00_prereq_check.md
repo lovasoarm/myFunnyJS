@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > ce module va t'enseigner (notamment `02_rest_crud_complete.md`) :
 > normal de ne pas encore les maîtriser. Ta compréhension est testée en
 > fin de module, dans `08_api_grimoire.md`.
-
----
-stability: stable

@@ -343,6 +343,3 @@ Subsets : tous les sous-ensembles → 2^n. La bit manipulation les génère él�
 Le principe de multiplication permet de compter l'espace de recherche sans l'énumérer.
 Le pruning, c'est couper les branches impossibles avant de les explorer : c'est là que le backtracking devient efficace.
 Avant de coder une boucle de bruteforce, compte d'abord : si c'est > 10^8, t'as besoin d'un autre algo.
-
----
-stability: intemporel

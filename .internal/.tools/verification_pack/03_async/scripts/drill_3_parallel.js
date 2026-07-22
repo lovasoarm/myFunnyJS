@@ -1,1 +1,0 @@
-(async()=>{const p=n=>new Promise(r=>setTimeout(()=>r(n),10));const r=await Promise.all([p(1),p(2),p(3)]);process.stdout.write(String(r.reduce((a,b)=>a+b,0)));})();

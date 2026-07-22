@@ -169,6 +169,3 @@ Une alerte Horror traverse Détecteur → Dispatcher → Chevalier → Conseil. 
 ## RÉSUMÉ
 
 Un log structuré est une donnée JSON cherchable, pas une phrase humaine jetable. Les niveaux de log (DEBUG à FATAL) doivent rester calibrés pour que ERROR garde tout son poids d'alerte. Le correlation ID relie les logs d'une même requête à travers plusieurs services, et c'est le socle sur lequel repose le tracing distribué vu juste après. Et un log, structuré ou pas, ne contient jamais une donnée sensible : un log qui fuite avec une information critique en clair dedans est une fuite de données comme une autre.
-
----
-stability: stable

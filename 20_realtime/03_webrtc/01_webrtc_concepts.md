@@ -256,6 +256,3 @@ a=rtpmap:98 VP9/90000
 ```
 
 (Pas d'indice : lecture de format texte structuré)
-
----
-stability: stable

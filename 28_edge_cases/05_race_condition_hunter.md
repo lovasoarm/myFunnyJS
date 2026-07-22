@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 ## (attention) Piège
 
 Un `console.log` change le timing → le bug disparaît. Utilise un **buffer** logué à la fin, pas des logs synchrones.
-
----
-stability: intemporel

@@ -88,6 +88,3 @@ Une erreur non gérée n'est pas juste un bug : c'est un système qui ment sur s
 > Dans ce module, tu vas croiser des stack traces (la pile d'appels affichée quand une erreur remonte) dans les exemples. T'as pas besoin de savoir la lire couramment pour avancer : le module suivant (`05_debugging`) t'apprend à la décortiquer ligne par ligne. Ici, contente-toi de repérer qu'elle existe et qu'elle raconte un chemin d'exécution.
 
 Maintenant, ouvre `01_try_catch_basics.md`. Et apprends ce que `try/catch` attrape vraiment, et ce qu'il laisse filer.
-
----
-stability: intemporel

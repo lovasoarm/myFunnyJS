@@ -217,6 +217,3 @@ Invente un graphe de 4 villes avec des poids de risque. Montre le bug sur ce gra
 ## RÉSUMÉ
 
 Les specs floues sont la norme, pas l'exception. Ton boulot : transformer un symptôme en problème précis avant d'ouvrir l'éditeur. Le protocole de clarification en cinq questions. La reproduction minimale pour isoler le bug. Les contradictions : tu les présentes, tu proposes, tu demandes une décision. Le problème XY : tu remontes toujours au vrai problème avant de répondre à la demande.
-
----
-stability: intemporel

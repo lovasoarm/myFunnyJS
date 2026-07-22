@@ -220,6 +220,3 @@ Observe `response.ok` et `response.status`. Écris le code qui détecte l'échec
 ## RÉSUMÉ
 
 `fetch` est la porte entre ton code et le monde extérieur. Tu envoies une requête, tu attends la réponse, tu la décode, tu la protèges avec try/catch. `async/await` rend tout ça lisible. La mécanique complète derrière (pourquoi `await` ne bloque pas, comment JS jongle plusieurs opérations en même temps) : c'est le sujet entier de `03_async`, et ça vaut le détour.
-
----
-stability: intemporel

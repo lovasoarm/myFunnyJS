@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > delivery" sont le contenu que ce module va t'enseigner (notamment
 > `02_distributed_primitives.md`) : normal de ne pas encore les maîtriser.
 > Ta compréhension est testée en fin de module.
-
----
-stability: stable

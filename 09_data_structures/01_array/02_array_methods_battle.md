@@ -267,6 +267,3 @@ Tu as un tableau de 30 joueurs avec `{ name, country, position, votes }`. Groupe
 ## RÉSUMÉ
 
 `map` transforme : même longueur, nouveau tableau, jamais de mutation. `forEach` déclenche des effets : log, sauvegarde, DOM. Pas de retour. `for...of` donne le contrôle total : `break`, `continue`, `async/await` séquentiel. `reduce` accumule en une passe : grouper, sommer, restructurer. Le choix de la méthode n'est pas qu'une question de style : c'est une question de coût mémoire, de lisibilité, et de comportement async. Choisir `forEach` avec `async/await` c'est casser le séquencement sans le voir.
-
----
-stability: intemporel

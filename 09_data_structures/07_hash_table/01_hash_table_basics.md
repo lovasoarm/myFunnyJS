@@ -284,6 +284,3 @@ Implémente `findFirstDuplicate(arr)` avec une HashTable. Retourne le premier é
 ## RÉSUMÉ
 
 La hash table convertit une clé en index via une hash function, et stocke la valeur à cet index. O(1) en lecture et écriture en moyenne. Les collisions sont inévitables : le chaining les gère avec une liste par bucket. Le load factor mesure le remplissage : au-delà de ~0.75, on redimensionne. En JS, `Map` est la hash table native optimisée pour la prod.
-
----
-stability: intemporel

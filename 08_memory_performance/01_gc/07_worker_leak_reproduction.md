@@ -100,6 +100,3 @@ process se ferme avec des heaps orphelines. En prod, `SIGTERM` sans grace period
 mémoire perdue jusqu'au restart.
 
 Prochaine étape : approfondis le module mémoire (voir le grimoire `08_memory_performance/09_memory_perf_grimoire.md` et les autres exercices du dossier `01_gc/`).
-
----
-stability: intemporel

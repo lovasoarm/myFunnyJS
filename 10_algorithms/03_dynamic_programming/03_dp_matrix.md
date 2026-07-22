@@ -305,6 +305,3 @@ Reprendre la solution de l'EXO 1 et la réécrire pour n'utiliser qu'un seul tab
 ## RÉSUMÉ
 
 La DP sur grille, c'est décomposer un problème de chemin en sous-problèmes locaux : pour arriver ici, d'où je viens, et quel était le coût optimal là-bas. Les bords sont le seul point de vigilance réel : ils n'ont pas de "voisin gauche" ou "voisin supérieur", il faut les traiter à part. Quand les mouvements sont restreints (bas/droite), la DP tabulaire classique suffit. Quand les 4 directions sont libres, on passe à BFS ou Dijkstra : la DP seule ne peut plus garantir que les dépendances sont résolues dans le bon ordre.
-
----
-stability: intemporel

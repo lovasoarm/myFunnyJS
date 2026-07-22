@@ -298,6 +298,3 @@ Implémenter `astar8dir(grid, start, goal)` et comparer les chemins obtenus avec
 ## RÉSUMÉ
 
 A* = Dijkstra + une heuristique qui guide vers l'objectif. La clé : l'heuristique doit être admissible (jamais surestimer) pour garantir l'optimalité. Distance Manhattan pour les 4 directions, Chebyshev pour les 8, euclidienne pour l'espace continu. Quand `h=0`, A* = Dijkstra. Quand `h` est parfaite, A* ne visite que les noeuds du chemin optimal. En pratique sur des grilles avec obstacles, A* explore 5 à 100 fois moins de noeuds que Dijkstra. En jeu vidéo et robotique, c'est l'algo de pathfinding de référence.
-
----
-stability: intemporel

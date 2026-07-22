@@ -24,7 +24,3 @@ Si tu bloques : relis `03_async/` + `07_math_basics/99_PONT_avant_module_08_memo
 ## SI TU BLOQUES
 
 Relis le module précédent avant de continuer. Ce pont existe précisément parce que sauter cette marche brise 80% des apprenants sur le module suivant. Aucune honte à revenir.
-
----
-
-stability: intemporel

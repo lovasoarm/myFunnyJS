@@ -45,6 +45,3 @@ Le "stack" JS n'est pas exactement le call stack CPU : le moteur (V8) optimise, 
 ## Mission
 
 Écris un `clone()` qui copie vraiment un objet simple à un niveau. Puis explique pourquoi il casse sur un objet imbriqué.
-
----
-stability: intemporel

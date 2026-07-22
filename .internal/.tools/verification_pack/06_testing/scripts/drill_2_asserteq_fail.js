@@ -1,1 +1,0 @@
-function assertEq(a,b){if(a!==b)throw new Error("ne");}try{assertEq(1+1,3);process.stdout.write("ok");}catch{process.stdout.write("ko");}

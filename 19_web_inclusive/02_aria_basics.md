@@ -123,6 +123,3 @@ Cherche un site avec `role="button"` posé sur une `<div>` sans gestion du clavi
 ## RÉSUMÉ
 
 ARIA sert quand le HTML natif ne suffit pas : roles pour dire ce qu'est l'élément, states pour dire dans quel état il est, properties pour relier les éléments entre eux. La règle d'or reste d'utiliser le HTML natif (`<button>`, `<nav>`) chaque fois que possible, car il vient avec le comportement déjà intégré. Un mauvais ARIA qui ment sur le comportement réel est souvent pire que l'absence d'ARIA.
-
----
-stability: intemporel

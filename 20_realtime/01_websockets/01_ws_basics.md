@@ -287,6 +287,3 @@ Implémente une fonction `safeSocket(url, message)` qui :
 
 Contrainte : la fonction doit fonctionner même si appelée immédiatement, sans attendre `open` manuellement.
 (Indice : vérifie `readyState === 1` avant d'envoyer, sinon écoute `open` en premier : `{ once: true }` pour ne l'écouter qu'une fois)
-
----
-stability: stable

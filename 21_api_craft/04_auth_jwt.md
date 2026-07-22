@@ -352,6 +352,3 @@ Refresh token : durée longue, httpOnly cookie.
 `jwt.verify()` vérifie signature + expiration. `jwt.decode()` ne vérifie rien.
 Secrets dans les variables d'environnement, jamais hardcodés.
 Secrets différents pour access et refresh tokens.
-
----
-stability: stable

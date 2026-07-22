@@ -345,6 +345,3 @@ Sortie : `A F C D E B`.
 ### Ce que l'analogie cache
 
 La microtask queue est **drainée entièrement** entre deux macrotasks. Une microtask qui en ajoute une autre = boucle infinie qui bloque le rendu. Le navigateur ne rendra jamais un frame.
-
----
-stability: intemporel

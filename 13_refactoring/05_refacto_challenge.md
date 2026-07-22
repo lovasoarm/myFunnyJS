@@ -301,6 +301,3 @@ Prends la version finale de `PlaylistManager` + `PlaylistHistory`, ajoute une m�
 ## RÉSUMÉ
 
 Une codebase en vrac, tu ne la réécris pas : tu l'audites, tu la figes avec des tests qui décrivent l'intention correcte, puis tu avances par petites transformations. Le bug NaN planqué dans une boucle mal bornée, le shuffle biaisé, le god class qui mélange logs et logique : ce sont les mêmes patterns que tu retrouveras dans n'importe quelle vraie codebase. Les reconnaître ici, c'est les reconnaître partout.
-
----
-stability: intemporel

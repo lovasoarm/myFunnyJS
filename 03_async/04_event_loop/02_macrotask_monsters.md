@@ -287,6 +287,3 @@ L'event loop prend UNE macrotask par tour, puis vide toute la microtask queue, p
 `setTimeout(fn, 0)` ne veut pas dire "immédiatement" : ça veut dire "dès que possible, mais pas avant les microtasks".
 `requestAnimationFrame` est synchronisé avec le cycle de rendu : c'est le bon outil pour les animations.
 Un code sync long bloque tout : découpe en chunks si le calcul est lourd.
-
----
-stability: intemporel

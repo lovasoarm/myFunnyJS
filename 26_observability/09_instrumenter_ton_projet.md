@@ -70,5 +70,5 @@ sdk.start();
 
 ## DRILL
 
-`.internal/.tools/verification_pack/26_observability/otel_running.sh` vérifie qu'un
+`node solution.js` (auto-verif ecrite par toi) vérifie qu'un
 endpoint OTLP répond pendant la démo apprenant.

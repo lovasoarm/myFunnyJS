@@ -81,6 +81,3 @@ entier pour un détail.
 Tu la lis et tu te dis "il me manque un exemple concret". Note-le
 dans ton propre carnet de notes du curriculum. Une annexe qui n'a
 pas d'exemple est une annexe qui n'a pas encore prouvé son utilité.
-
----
-stability: intemporel

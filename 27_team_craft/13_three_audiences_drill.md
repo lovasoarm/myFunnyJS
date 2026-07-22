@@ -24,6 +24,3 @@ Quelqu'un lit ton fichier SANS que tu sois là et devine le concept dès la vers
 ## (attention) CE QUE LE DRILL RÉVÈLE
 
 Si tu galères sur la version #1 (l'enfant), c'est que tu n'as pas compris. Tu récites. Retour à la leçon.
-
----
-stability: intemporel

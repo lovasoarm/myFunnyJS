@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > module va t'enseigner (notamment `01_sorting/`, `03_dynamic_programming/`,
 > `04_greedy/`, `05_backtracking/`) : normal de ne pas encore les maîtriser.
 > Ta compréhension est testée en fin de module, dans `07_algorithms_grimoire.md`.
-
----
-stability: intemporel

@@ -392,7 +392,3 @@ Spec drift obligatoire, voir `30_mini_projects/synthese/spec_drift.md`
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
-
----
-
-stability: intemporel

@@ -119,6 +119,3 @@ Tu as `N=5` répliques. Calcule tous les couples `(W, R)` valides pour `W + R > 
 ## RÉSUMÉ
 
 Passer du single-node au cluster impose de choisir sous partition (CAP), de décider comment on réplique (sync / async / quorum), de découper la donnée (partitioning), et de se prémunir contre le split-brain (quorum de leader, fencing). Sans ce socle, `25_scalability` devient une liste de patterns sans le "pourquoi" qui les rend nécessaires.
-
----
-stability: stable

@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > que ce module va t'enseigner (notamment `01_gc/`) : normal de ne pas
 > encore les maîtriser. La copie par valeur vs par référence, elle, a déjà
 > été vue en `01_fundamentals` : si ce point-là est flou, retourne-y d'abord.
-
----
-stability: intemporel

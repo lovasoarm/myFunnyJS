@@ -261,6 +261,3 @@ Modifie le serveur pour qu'il :
 
 Contrainte : tester en coupant la connexion manuellement (`source.close()`) puis en rouvrant une nouvelle `EventSource` avec le bon `Last-Event-ID` dans les headers.
 (Indice : le navigateur envoie `Last-Event-ID` automatiquement si tu avais un `id:` dans tes events précédents)
-
----
-stability: stable

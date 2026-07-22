@@ -208,6 +208,3 @@ Contrainte : les `<b>`, `<i>`, `<a href>` légitimes doivent survivre. Les `<scr
 ## RÉSUMÉ
 
 XSS et SQL Injection partagent la même logique : de la data détenu qui se retrouve interprétée comme du code. La défense est aussi la même : ne jamais mélanger code et data, toujours séparer les deux avant l'exécution. Pour XSS : `textContent` ou DOMPurify. Pour SQL : paramètres liés, toujours. La sanitization n'est pas une option de dernier recours : c'est la baseline minimum avant de mettre quoi que ce soit en prod.
-
----
-stability: stable

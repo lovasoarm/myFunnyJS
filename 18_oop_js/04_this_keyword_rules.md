@@ -133,6 +133,3 @@ Prends 4 appels de fonctions différents dans un mini-script (appel en méthode,
 ## RÉSUMÉ
 
 `this` se décide au moment de l'appel, pas à l'écriture de la fonction, sauf pour les arrow functions qui capturent le `this` du scope englobant. Extraire une méthode de son objet pour l'appeler seule, ou la passer en callback sans précaution, casse systématiquement `this`. Les arrow functions réparent ce problème dans les callbacks internes à une méthode, mais créent un nouveau piège si elles sont utilisées comme méthode directe d'un objet.
-
----
-stability: intemporel

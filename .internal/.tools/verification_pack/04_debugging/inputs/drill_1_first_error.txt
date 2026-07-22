@@ -1,5 +1,0 @@
-INFO start
-INFO loaded
-WARN slow
-ERROR boom
-INFO recovered

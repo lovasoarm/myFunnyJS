@@ -47,6 +47,3 @@ Sept règles concrètes. Si l'une s'applique : ferme l'IA, réfléchis, décide 
 5. **La spec est floue.** L'IA va combler par la médiane du web. Retourne au jutsu.
 6. **Le code est déjà correct.** "Fais mieux" à l'IA sur du code juste = régression garantie.
 7. **Tu es fatigué, pressé, sous stress.** L'IA amplifie tes mauvaises décisions autant que les bonnes.
-
----
-stability: intemporel

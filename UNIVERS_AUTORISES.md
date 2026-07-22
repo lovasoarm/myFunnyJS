@@ -6,7 +6,6 @@ stability: intemporel
 
 Temps de lecture ~3 min
 
-> Ce fichier est la **source de vérité** pour `.internal/scripts/lint_universes.sh`.
 > Le lint tourne en mode liste blanche stricte : tout univers cité dans un
 > `.md` du repo qui n'apparaît pas ici fait échouer le lint. La charge de
 > la preuve est sur l'ajout, pas sur l'interdiction.

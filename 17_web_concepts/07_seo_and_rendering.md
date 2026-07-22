@@ -133,6 +133,3 @@ Une page CSR pure n'apparaît dans aucun résultat Google. Explique en deux phra
 ## RÉSUMÉ
 
 CSR balance un squelette vide et laisse le navigateur tout construire : rapide à coder, lent à afficher, mauvais pour le SEO. SSR génère le HTML complet à chaque requête : bon SEO, mais ça coûte du calcul serveur en boucle. SSG génère une fois au build et sert un fichier figé : ultra rapide, mais périmé jusqu'au prochain build. ISR régénère automatiquement après un délai : le compromis pour du contenu qui change, mais pas à chaque seconde.
-
----
-stability: stable

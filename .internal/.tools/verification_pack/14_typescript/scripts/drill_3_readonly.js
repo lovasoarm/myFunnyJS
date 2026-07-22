@@ -1,1 +1,0 @@
-const o=Object.freeze({a:1});try{o.a=2;}catch{}process.stdout.write(o.a===1?"immutable":"mutated");

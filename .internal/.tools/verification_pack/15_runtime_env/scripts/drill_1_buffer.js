@@ -1,1 +1,0 @@
-const b=Buffer.from([104,101,108,108,111]);process.stdout.write(b.toString("utf8"));

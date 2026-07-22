@@ -177,7 +177,3 @@ il est refusé, point".
 Écrire une spec B.O.R.N.É. prend 10-20 min. Auditer une PR d'agent sans
 spec prend 45-90 min. La B.O.R.N.É. est ton meilleur ROI de la décennie
 sur le travail avec agents. Ne délègue jamais sans elle.
-
----
-
-stability: perissable

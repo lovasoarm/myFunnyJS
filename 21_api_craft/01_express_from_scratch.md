@@ -246,6 +246,3 @@ Le middleware est le mécanisme central : chaque requête traverse une chaîne.
 L'ordre des `app.use()` détermine l'ordre d'exécution.
 Les Router découpent le code par ressource, pas par commodité.
 `req` c'est ce qui arrive. `res` c'est ce qui part. `next()` c'est ce qui continue.
-
----
-stability: stable

@@ -257,6 +257,3 @@ Suivre une requête de bout en bout : c'est la méthode la plus rapide pour comp
 Le git log est une source d'information : qui a touché quoi, quand, et pourquoi.
 Chercher efficacement : grep, git blame, "Find References" dans VSCode.
 Les bonnes questions montrent qu'on a cherché : les mauvaises montrent qu'on n'a pas essayé.
-
----
-stability: intemporel

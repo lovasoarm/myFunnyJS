@@ -28,6 +28,3 @@ Temps de lecture ~5 min
 > t'enseigner (notamment `02_sse/01_sse_basics.md`) : normal de ne pas
 > encore les maîtriser. Ta compréhension est testée en fin de module, dans
 > `04_realtime_grimoire.md`.
-
----
-stability: stable

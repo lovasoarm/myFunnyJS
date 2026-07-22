@@ -86,6 +86,3 @@ Une IA peut cracher du code copié d'un repo GPL sans te prévenir. Si tu l'int�
 3. En entreprise : politique claire écrite. En perso : mentionne "AI-assisted" dans le README si tu diffuses.
 
 Voir aussi : SPDX license identifiers, `license-checker` npm package.
-
----
-stability: intemporel

@@ -315,6 +315,3 @@ Un `await` manquant = l'erreur passe à travers sans être catchée.
 `Promise.race` + timeout : ne jamais attendre éternellement.
 `Promise.allSettled` : tolérer les échecs partiels et travailler avec ce qui reste.
 La règle d'or : un crash silencieux est pire qu'une erreur visible.
-
----
-stability: intemporel

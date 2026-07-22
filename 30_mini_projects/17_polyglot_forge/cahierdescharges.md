@@ -61,7 +61,3 @@ Seuil de réussite : 8/10. En dessous, `EXO_JEUNE_IA.md` du module concerné et 
 - `TDD_JOURNAL.md` : trace vivante du cycle rouge/vert/refactor.
 
 **Un CTO qui feuillette ton portfolio regarde `src/` ET `tests/` ET `ADR/`. Un `src/` vide sans `tests/` associé = projet non fini, quelle que soit la qualité du reste.**
-
----
-
-stability: stable

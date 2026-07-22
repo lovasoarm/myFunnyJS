@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > t'enseigner (notamment `01_code_review.md`) : normal de ne pas encore
 > les maîtriser. Ta compréhension est testée en fin de module, dans
 > `15_team_grimoire.md`.
-
----
-stability: intemporel

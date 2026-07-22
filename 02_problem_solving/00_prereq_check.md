@@ -29,6 +29,3 @@ Temps de lecture ~5 min
 > ce module va t'enseigner : normal de ne pas encore les connaître. Ta
 > compréhension de ces notions est testée à la fin, dans
 > `07_problem_solving_grimoire.md`, pas ici à l'entrée.
-
----
-stability: intemporel

@@ -339,6 +339,3 @@ for (let i = 0; i < 10_000; i++) {
 ## RÉSUMÉ
 
 Le GC suit toujours le même chemin : partir des roots, marquer ce qui est atteignable, détruire le reste. Les cycles entre objets ne posent pas de problème si aucune root ne les atteint : mark-and-sweep les détruit quand même. Une fuite mémoire, c'est une root qui garde involontairement un objet en vie : tableau global, listener non retiré, closure qui capture. Simuler le GC à la main force à voir les références là où le code semble "propre".
-
----
-stability: intemporel

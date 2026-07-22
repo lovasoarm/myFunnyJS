@@ -240,6 +240,3 @@ Dessine l'architecture d'un adaptateur qui limite l'impact de ce changement à u
 ## RÉSUMÉ
 
 Le code qui ne change jamais, c'est le code mort. Identifier le stable et le volatile avant de coder : c'est la base. Les points de variabilité se mettent derrière des interfaces. OCP en pratique : ajouter du code au lieu de modifier ce qui marche. Les dépendances externes (APIs, SDKs) : toujours derrière un adaptateur. Si un changement externe casse plus d'un fichier : l'architecture a une faille.
-
----
-stability: intemporel

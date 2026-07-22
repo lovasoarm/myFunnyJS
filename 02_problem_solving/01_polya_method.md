@@ -41,6 +41,3 @@ Livrable **avant** toute ligne de code :
 ## (attention) Ce que la précipitation cache
 
 Coder tout de suite = tu résous **le problème que tu as compris**, pas le vrai. La différence tue en prod.
-
----
-stability: intemporel

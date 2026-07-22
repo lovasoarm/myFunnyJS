@@ -42,6 +42,3 @@ Startup 4 devs, 20k utilisateurs, artefact qui pivote tous les 2 mois. On te pro
 ## RÈGLE D'OR
 
 Ta réponse est jugée sur l'ARGUMENT, pas sur le choix. Deux réponses opposées peuvent être 10/10.
-
----
-stability: intemporel
