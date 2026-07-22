@@ -68,3 +68,19 @@ un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
 mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
 technique avant de coder, débugger ou expliquer à un pair. Une analogie
 prise pour la réalité devient un obstacle épistémologique.
+
+---
+
+## Ou l'analogie casse (promise)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "Promise = future async" | Trop court : c est un **etat (pending/fulfilled/rejected) + un pipeline `.then` non annulable par defaut**. |
+| "`await` = bloquer" | Non : ca **suspend la fonction**, la boucle d evenements continue. Croire que ca bloque = deadlocks imagines. |
+| "Promise.all echoue = tout retente" | Faux : `Promise.all` echoue **des la premiere** rejection ; utilise `Promise.allSettled` si tu veux tout attendre. |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

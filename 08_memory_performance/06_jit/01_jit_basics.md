@@ -183,3 +183,19 @@ console.log(calculerMoyenne(scores))
 ## RÉSUMÉ
 
 V8 exécute ton code en deux temps : Ignition démarre vite sans optimiser, TurboFan optimise les fonctions qui tournent souvent en pariant sur la forme de leurs données. Les hidden classes déterminent si V8 peut traiter tes objets de façon uniforme : initialise toujours les propriétés dans le même ordre. Les inline caches mémorisent la dernière forme observée à un point d'appel : un seul type stable, c'est rapide, plusieurs types qui changent sans cesse, c'est l'optimisation perdue. Une deopt n'est pas une erreur, c'est V8 qui retire un pari devenu faux : une deopt isolée ne change rien, une bailout loop sur un hot path coûte cher.
+
+---
+
+## Ou l'analogie casse (JIT)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "JIT = toujours plus rapide" | Faux : warmup, deoptimisation sur type qui change, code monomorphique/polymorphique/megamorphique. Un JIT confus est plus lent qu un interpret pur. |
+| "Le JIT devine mon intention" | Il devine des **types** et des **formes d objet** (hidden classes). Si tu changes la forme, tu deoptimises. |
+| "Micro-benchmarks reflet ent la prod" | Non : le JIT optimise agressivement du code trop simple ; en prod le comportement diverge. |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

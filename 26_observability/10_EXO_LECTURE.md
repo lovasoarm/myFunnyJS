@@ -49,3 +49,15 @@ mais juste.
 Tant que ces 3 points ne sont pas faits, `git status` doit rester `working tree clean` sur ce fichier. La lecture précède l'écriture. Un dev qui modifie avant d'avoir lu est un dev qui casse.
 
 Si tu veux "juste renommer une variable pour comprendre" : **note-le dans `HYPOTHESES.md`, ne le fais pas dans le fichier**.
+
+---
+
+## Livrable obligatoire : MAP_15MIN.md
+
+Ce bloc appartient a "Systeme web complet" / "Ingenierie senior".
+A la fin de cet EXO_LECTURE, tu produis un `MAP_15MIN.md` a cote de ce fichier,
+en suivant `30_mini_projects/_templates/06_MAP_15MIN_TEMPLATE.md`.
+
+Critere binaire : 15 min chrono, cartographie + chemin critique + 3 points
+chauds + 3 hypotheses testables. Sans cet artefact, l'EXO_LECTURE n'est pas
+valide.

@@ -13,7 +13,7 @@ stability: intemporel
 
 ## TES 3 ACTIONS DANS LES 10 PROCHAINES MINUTES
 
-1. **Verifie Node** dans un terminal : `node -v`. Si tu vois `v22.x` ou plus (aligné sur `.nvmrc`), va au 2. Sinon, ouvre `00_getting_started/01_install.md` et reviens ici apres installation.
+1. **Verifie Node** dans un terminal : `node -v`. Regle officielle : **Node >= 22 recommande (voir `.nvmrc` = v22, fichier pedagogique visible), tout code du curriculum doit tourner aussi sur Node 20 LTS**. Detail : [`NODE_VERSION.md`](NODE_VERSION.md). Sinon, ouvre `00_getting_started/01_install.md` et reviens ici.
 2. **Tape tes 3 premieres lignes de JS maintenant** (minute 2, pas minute 8) :
 
    ```bash
@@ -29,6 +29,21 @@ stability: intemporel
 > **Retention** : des que tu termines un module, ouvre [`00_referentiel/07_repetition_espacee.md`](00_referentiel/07_repetition_espacee.md) et programme tes 4 rappels (J+1 / J+7 / J+21 / J+60). Sans ca, tu oublies au rythme habituel : 70 % en 24 h.
 
 C'est tout pour les 10 prochaines minutes. Le reste de ce fichier est le contexte.
+
+---
+
+## AUDIT AUTO-REPRODUCTIBLE (visible cote apprenant)
+
+Deux scripts sont a la racine, tu peux les lancer toi-meme a tout moment :
+
+- `./check_all.sh` : compte les modules, valide les liens internes, verifie la
+  structure des mini-projets, delegue la gate securite et rejoue les tests
+  des scenarios de debug. Sortie binaire : `OK` ou `N categories en echec`.
+- `./check_security_gate.sh` : prouve que la `SECURITY_GATE.md` de chaque
+  mini-projet est *remplie* (au moins une case `[x]`, aucun `TODO` restant),
+  pas juste presente. Utilise-le comme critere binaire de passage.
+
+Tu dois pouvoir refaire l'audit du repo sans moi. C'est la promesse du curriculum.
 
 ---
 

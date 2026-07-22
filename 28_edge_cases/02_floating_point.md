@@ -323,3 +323,19 @@ Pour comparer des flottants : utiliser une tolérance epsilon, jamais `===`.
 Pour les calculs financiers : travailler en entiers (centimes), diviser uniquement pour l'affichage.
 `toFixed()` c'est pour l'affichage, pas pour la logique : ça retourne une string, et ça a ses propres erreurs d'arrondi.
 `Number.MAX_SAFE_INTEGER` : au-delà de `2^53 - 1`, les entiers perdent leur précision. Utiliser BigInt pour les très grands entiers.
+
+---
+
+## Ou l'analogie casse (floating point)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "`0.1 + 0.2 === 0.3`" | Faux : IEEE-754 binaire ne represente pas 0.1 exactement. Utilise `Number.EPSILON`, un decimal library, ou des entiers (centimes). |
+| "Argent = number" | Non : monetaire = **entier en plus petite unite** (centimes) ou `BigInt`/`Decimal`. |
+| "Number.MAX_SAFE_INTEGER est enorme" | 2^53 - 1, atteint plus vite qu on ne croit (timestamps ns, ids). |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

@@ -222,3 +222,19 @@ On dit "closure = fonction qui se souvient". Faux. La closure, c'est le **couple
 > - **closure != variable capturee** : la closure capture la REFERENCE au binding, pas la valeur au moment de la creation.
 > - **event loop != file simple** : microtasks drainent COMPLETEMENT entre chaque macrotask - pas un round-robin.
 > - **reference != alias** : `let b = a; b = {...}` ne mute pas a. `b.x = 1` mute a si a est objet.
+
+---
+
+## Ou l'analogie casse (closure)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "Une closure = une fonction" | Non : c est **la paire (fonction, environnement lexical)**. Deux fonctions peuvent partager le meme environnement. |
+| "La closure copie les valeurs" | Elle **capture les references** aux bindings. `var` dans une boucle sans `let` = piege classique. |
+| "Closure = fuite memoire" | Faux en general ; la fuite vient d une **reference qui traine**, pas de la closure en soi. |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

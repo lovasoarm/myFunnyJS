@@ -82,3 +82,19 @@ un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
 mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
 technique avant de coder, débugger ou expliquer à un pair. Une analogie
 prise pour la réalité devient un obstacle épistémologique.
+
+---
+
+## Ou l'analogie casse (prototype chain)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "Prototype = classe" | Non : c est un **objet delegue** ; la resolution est dynamique, pas fig ee a la compilation. |
+| "`class` en JS = `class` en Java" | Sucre syntaxique au-dessus des prototypes ; `this` reste dynamique, il n y a pas de dispatch statique. |
+| "Modifier un prototype est sans risque" | `Object.prototype` modifie casse **tout** le programme et ouvre la prototype pollution (voir 22_security). |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

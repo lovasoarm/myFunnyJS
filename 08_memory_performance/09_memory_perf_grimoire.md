@@ -177,3 +177,19 @@ un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
 mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
 technique avant de coder, débugger ou expliquer à un pair. Une analogie
 prise pour la réalité devient un obstacle épistémologique.
+
+---
+
+## Ou l'analogie casse (garbage collector)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "Le GC nettoie ce que je n utilise plus" | Non : il nettoie ce qui est **inaccessible depuis les racines**. Une reference oubliee dans un tableau global suffit a garder l objet vivant. |
+| "GC = performance gratuite" | Faux : pauses (stop-the-world partielles), pression memoire, fragmentation. Le cout est deplace, pas nul. |
+| "Manual free est mieux" | Selon le contexte ; les fuites viennent le plus souvent des **listeners non retires**, pas du GC. |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.

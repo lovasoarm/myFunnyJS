@@ -134,3 +134,19 @@ un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
 mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
 technique avant de coder, débugger ou expliquer à un pair. Une analogie
 prise pour la réalité devient un obstacle épistémologique.
+
+---
+
+## Ou l'analogie casse (event loop)
+
+Garde-fou epistemologique : l'analogie seduisante est utile a l'entree, dangereuse a la sortie.
+Ce tableau liste les endroits **precis** ou l'analogie courante trompe.
+
+| Analogie courante | Ou elle casse |
+|-------------------|---------------|
+| "File d attente unique"     | Il y a **plusieurs** files (macrotasks, microtasks, animation frame, I/O). Croire a une file unique fait mal predire l ordre. |
+| "Le navigateur = Node"      | En Node, `setImmediate` et `process.nextTick` n existent pas dans le browser ; l ordre change. |
+| "setTimeout(fn, 0) = immediat" | Non : c est **au minimum** 0 ms, apres vidage des microtasks et selon le nesting (clamp a 4 ms). |
+
+Regle : si tu ne peux pas nommer *une* case ou ton analogie casse, tu ne l'as
+pas encore comprise ; tu l'as juste memorisee.
