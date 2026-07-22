@@ -5,7 +5,7 @@ scope: portage mental (Pierre 6 : Pensee Transferable)
 
 # 98_PORTAGE_MENTAL.md : ce concept en Python / Go / Rust
 
-Module : **23_ai_native_dev** : developpement AI-native (prompts, agents, contexte).
+Module : **23_ai_native_dev** : développement AI-native (prompts, agents, contexte).
 
 Encart obligatoire (Pierre 6 : Pensee Transferable). 3 lignes.
 Objectif : prouver que ce que tu viens d'apprendre n'est pas _JS_, c'est

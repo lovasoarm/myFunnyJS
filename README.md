@@ -8,7 +8,7 @@ stability: stable
 
 Temps de lecture ~3 min
 
-**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 preludes (`00_getting_started/`, `00_referentiel/`) + 18 mini-projets + 1 drill trimestriel de survie (voir `31_annexes/16_career/05_ai_famine_drill.md`), apprenable seul.**
+**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 preludes (`00_getting_started/`, `00_referentiel/`) + 19 mini-projets + 1 drill trimestriel de survie (voir `31_annexes/16_career/05_ai_famine_drill.md`), apprenable seul.**
 
 > **Nouveau ici ?** Va directement lire [`START_HERE.md`](./START_HERE.md).
 > Ce README tient volontairement court. Le detail est en annexe.
@@ -67,7 +67,7 @@ Si tu bloques plus de 2 jours -> tu ouvres `PLATEAU_JOURNAL.md` (a toi de creer)
 23        AI-Native Dev
 24 -> 28  Databases · Scalability · Observability · Team · Edge Cases
 29        AI Agents & Autonomy
-30        18 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
+30        19 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
           + drill trimestriel "IA en panne" (voir 31_annexes/16_career/05_ai_famine_drill.md)
 31        Annexes : transferabilite, interview, portfolio, career, ethique
           Carte detaillee : 31_annexes/15_ARBORESCENCE.md
@@ -84,7 +84,7 @@ Arborescence complete, a consulter au besoin (pas a lire d'une traite) : [`31_an
 Cinq conditions binaires. Aucune n'est optionnelle :
 
 1. Les **32 modules** ont chacun un POSTMORTEM personnel signe.
-2. Les **18 mini-projets** sont livres avec gate OWASP validee (0 TODO dans le POSTMORTEM).
+2. Les **19 mini-projets** sont livres avec gate OWASP validee (0 TODO dans le POSTMORTEM).
 3. Le **crosslang challenge** est passe (6/6 sur la grille, produit commite dans un langage non-JS).
 4. Un **first click replay** (`31_annexes/16_career/04_first_click_replay.md`) a ete filme avec un vrai debutant : 0 a 2 hesitations en 30 min.
 5. Ton **DEPENDENCY_LEDGER.md** personnel tient depuis 3 mois avec dependance IA < 25 % et ratio lecture/ecriture >= 2x.
