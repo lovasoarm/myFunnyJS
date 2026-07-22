@@ -35,9 +35,9 @@ Pour chaque point de friction, un patch minimal :
 
 ## Contrainte de non-régression
 
-- ☐ Aucune modification hors de `START_HERE.md`.
-- ☐ Le nouveau texte a été relu à voix haute (les hésitations résiduelles < 5 s).
-- ☐ Re-tournage avec **un 4e sujet vierge** : `<0-2 hésitations > 5 s ? oui/non>`.
+- [ ] Aucune modification hors de `START_HERE.md`.
+- [ ] Le nouveau texte a été relu à voix haute (les hésitations résiduelles < 5 s).
+- [ ] Re-tournage avec **un 4e sujet vierge** : `<0-2 hésitations > 5 s ? oui/non>`.
 
 Tant que la case "re-tournage" n'est pas cochée, la modification n'est **pas**
 mergée.

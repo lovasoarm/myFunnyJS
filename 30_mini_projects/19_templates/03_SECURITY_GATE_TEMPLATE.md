@@ -24,16 +24,16 @@ Voir aussi : `22_security/06_owasp_checklist.md`.
 
 | #   | Catégorie                           | Preuve fournie                          | Statut                            |
 | --- | ----------------------------------- | --------------------------------------- | --------------------------------- |
-| A01 | Broken Access Control               | `<fichier:ligne / test>`                | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A02 | Cryptographic Failures              | `<config TLS / clé stockée où / algo>`  | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A03 | Injection (SQL / NoSQL / OS / LDAP) | `<test injection + requête paramétrée>` | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A04 | Insecure Design                     | `<ADR menace / threat model>`           | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A05 | Security Misconfiguration           | `<headers, CORS, secrets hors repo>`    | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A06 | Vulnerable & Outdated Components    | `<npm audit / snyk / date de scan>`     | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A07 | Identification & Auth Failures      | `<politique mdp / lockout / MFA>`       | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A08 | Software & Data Integrity Failures  | `<signature deps / CI verrouillée>`     | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A09 | Security Logging & Monitoring       | `<que logue-t-on / alerte sur quoi>`    | ☐ Passé ☐ N/A motivé : `<phrase>` |
-| A10 | Server-Side Request Forgery         | `<whitelist / validation URL>`          | ☐ Passé ☐ N/A motivé : `<phrase>` |
+| A01 | Broken Access Control               | `<fichier:ligne / test>`                | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A02 | Cryptographic Failures              | `<config TLS / clé stockée où / algo>`  | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A03 | Injection (SQL / NoSQL / OS / LDAP) | `<test injection + requête paramétrée>` | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A04 | Insecure Design                     | `<ADR menace / threat model>`           | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A05 | Security Misconfiguration           | `<headers, CORS, secrets hors repo>`    | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A06 | Vulnerable & Outdated Components    | `<npm audit / snyk / date de scan>`     | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A07 | Identification & Auth Failures      | `<politique mdp / lockout / MFA>`       | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A08 | Software & Data Integrity Failures  | `<signature deps / CI verrouillée>`     | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A09 | Security Logging & Monitoring       | `<que logue-t-on / alerte sur quoi>`    | [ ] Passé [ ] N/A motivé : `<phrase>` |
+| A10 | Server-Side Request Forgery         | `<whitelist / validation URL>`          | [ ] Passé [ ] N/A motivé : `<phrase>` |
 
 ## Règle de blocage
 

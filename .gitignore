@@ -58,3 +58,6 @@ PLATEAU_JOURNAL.md
 # Traces regenerees par 30_mini_projects/17_polyglot_forge/tests/run_all.sh
 30_mini_projects/17_polyglot_forge/tests/output_js.txt
 30_mini_projects/17_polyglot_forge/tests/output_alt.txt
+
+# Infra technique (pin Node): masqué au learner
+.nvmrc

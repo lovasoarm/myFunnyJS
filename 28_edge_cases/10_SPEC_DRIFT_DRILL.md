@@ -31,7 +31,7 @@ Tu as **20 minutes** pour livrer une V1 verte (au moins 3 tests qui passent).
 ## DRIFT (à ouvrir uniquement à la minute 20)
 
 <details>
-<summary>⚠️ N'ouvre pas avant la minute 20. Chronomètre-toi.</summary>
+<summary>(!)️ N'ouvre pas avant la minute 20. Chronomètre-toi.</summary>
 
 **Nouvelle contrainte, non négociable côté produit** :
 

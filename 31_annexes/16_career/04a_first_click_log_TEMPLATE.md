@@ -31,5 +31,5 @@ stability: intemporel
 
 ## Verdict
 
-- ☐ 0-2 hésitations > 5 s → promesse tenue pour ce sujet
-- ☐ 3+ hésitations > 5 s → promesse cassée, remplir `04b_first_click_diff.md`
+- [ ] 0-2 hésitations > 5 s → promesse tenue pour ce sujet
+- [ ] 3+ hésitations > 5 s → promesse cassée, remplir `04b_first_click_diff.md`

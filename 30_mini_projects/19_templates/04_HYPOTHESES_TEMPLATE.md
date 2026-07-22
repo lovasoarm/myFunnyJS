@@ -41,7 +41,7 @@ aucune ne l'est, tu n'as pas encore d'hypothèses, tu as des intuitions.
 
 | #   | Résultat                    | Verdict                             |
 | --- | --------------------------- | ----------------------------------- |
-| H1  | `<ce que le test a montré>` | ☐ Confirmée ☐ Réfutée ☐ Inconclusif |
+| H1  | `<ce que le test a montré>` | [ ] Confirmée [ ] Réfutée [ ] Inconclusif |
 | H2  |                             |                                     |
 | H3  |                             |                                     |
 
