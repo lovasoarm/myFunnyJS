@@ -13,7 +13,7 @@ stability: intemporel
 
 ## TES 3 ACTIONS DANS LES 10 PROCHAINES MINUTES
 
-1. **Verifie Node** dans un terminal : `node -v`. Si tu vois `v20.x` ou plus, va au 2. Sinon, ouvre `00_getting_started/01_install.md` et reviens ici apres installation.
+1. **Verifie Node** dans un terminal : `node -v`. Si tu vois `v22.x` ou plus (aligné sur `.nvmrc`), va au 2. Sinon, ouvre `00_getting_started/01_install.md` et reviens ici apres installation.
 2. **Tape tes 3 premieres lignes de JS maintenant** (minute 2, pas minute 8) :
 
    ```bash
@@ -25,6 +25,8 @@ stability: intemporel
    Attendu : `2`. Si tu vois autre chose, tu viens de faire ton premier bug : note-le dans un carnet, pas dans ta tete. Le contexte complet et la suite (`casse volontairement`, `repare`, TDD_JOURNAL) sont dans [`00_getting_started/02_day_one.md`](00_getting_started/02_day_one.md).
 
 3. **Cree** un fichier vide `PLATEAU_JOURNAL.md` a cote de ce `START_HERE.md`. Tu ne l'ouvriras pas aujourd'hui. Seuil unique : **2 jours sans progres -> tu commences a surveiller ; 7 jours -> tu declenches** `31_annexes/16_career/03_plateau_playbook.md`.
+
+> **Retention** : des que tu termines un module, ouvre [`00_referentiel/07_repetition_espacee.md`](00_referentiel/07_repetition_espacee.md) et programme tes 4 rappels (J+1 / J+7 / J+21 / J+60). Sans ca, tu oublies au rythme habituel : 70 % en 24 h.
 
 C'est tout pour les 10 prochaines minutes. Le reste de ce fichier est le contexte.
 
@@ -113,7 +115,7 @@ soi-meme, et se defend a l'oral (voir `31_annexes/19_interview/03_objection_stor
 
 - `node solution.js` (auto-verif ecrite par toi) : dans chaque `EXO_JEUNE_IA.md`,
   tu ecris toi-meme le critere binaire de reussite. Pas de moteur cache.
-- `node --test` : lanceur de tests natif Node 20 utilise partout dans les mini-projets.
+- `node --test` : lanceur de tests natif Node 22 utilise partout dans les mini-projets.
 - `npm audit --json > /tmp/audit.json` : scan de vulnerabilites, commite dans `SECURITY.md`.
 - `crosslang_compare.sh` : compare ta sortie JS et ta sortie dans un autre langage
   (voir `31_annexes/16_career/01_crosslang_challenge.md`).
@@ -167,7 +169,7 @@ a corriger cette trahison-la.
 ## CE QU'IL TE FAUT SUR TA MACHINE
 
 ```
-Node.js  : v20+
+Node.js  : v22+ (voir .nvmrc)
 npm      : v10+ (inclus avec Node.js)
 Editeur  : VSCode recommande (pas obligatoire)
 Terminal : n'importe lequel, tu vas y vivre

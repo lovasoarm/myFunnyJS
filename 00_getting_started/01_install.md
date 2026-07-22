@@ -36,7 +36,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 # ferme et rouvre le terminal
 nvm install --lts
 nvm use --lts
-node -v  # doit renvoyer v20.x ou plus
+node -v  # doit renvoyer v22.x ou plus (aligné sur `.nvmrc` = 22)
 ```
 
 ### Windows
