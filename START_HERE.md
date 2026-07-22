@@ -14,7 +14,16 @@ stability: intemporel
 ## TES 3 ACTIONS DANS LES 10 PROCHAINES MINUTES
 
 1. **Verifie Node** dans un terminal : `node -v`. Si tu vois `v20.x` ou plus, va au 2. Sinon, ouvre `00_getting_started/01_install.md` et reviens ici apres installation.
-2. **Ouvre** `00_getting_started/02_day_one.md`. C'est ton premier fichier de lecture reelle : ~10 min. Il te fait ecrire tes 3 premieres lignes de JS et te dit ou aller ensuite.
+2. **Tape tes 3 premieres lignes de JS maintenant** (minute 2, pas minute 8) :
+
+   ```bash
+   mkdir day_one && cd day_one
+   echo 'console.log(1 + 1)' > hello.js
+   node hello.js
+   ```
+
+   Attendu : `2`. Si tu vois autre chose, tu viens de faire ton premier bug : note-le dans un carnet, pas dans ta tete. Le contexte complet et la suite (`casse volontairement`, `repare`, TDD_JOURNAL) sont dans [`00_getting_started/02_day_one.md`](00_getting_started/02_day_one.md).
+
 3. **Cree** un fichier vide `PLATEAU_JOURNAL.md` a cote de ce `START_HERE.md`. Tu ne l'ouvriras pas aujourd'hui. Seuil unique : **2 jours sans progres -> tu commences a surveiller ; 7 jours -> tu declenches** `31_annexes/16_career/03_plateau_playbook.md`.
 
 C'est tout pour les 10 prochaines minutes. Le reste de ce fichier est le contexte.
@@ -86,19 +95,19 @@ soi-meme, et se defend a l'oral (voir `31_annexes/19_interview/03_objection_stor
 
 ## QUELS FICHIERS FONT QUOI (la carte)
 
-| Fichier / dossier | Ce que ca fait | Quand y aller |
-|---|---|---|
-| `START_HERE.md` | Tu es ici. Point d'entree unique. | Maintenant. |
-| `README.md` | Roadmap condensee des 32 modules. | Apres `02_day_one.md`. |
-| `.nvmrc` | Version de Node de reference (20 LTS). | Lu par `nvm`, pas par toi. |
-| `00_getting_started/` | Installer, ecrire ton premier code. | Jour 1. |
-| `00_referentiel/` | Les 6 pierres, auto-diagnostic, ledger. | Jour 2. |
-| `01_...` a `29_...` | Les 32 modules de fond. | Dans l'ordre. |
-| `30_mini_projects/` | 17 projets (drill trimestriel IA en panne : 31_annexes/16_career/05_ai_famine_drill.md). | Au fil du parcours. |
-| `31_annexes/` | Carriere, interview, portfolio, ethique. | Quand tu es pret a defendre. |
-| `32_tools/` | Outillage complementaire. | Au besoin. |
-| `PLATEAU_JOURNAL.md` (a toi de creer) | Ton journal de blocage. | Apres 2 jours sans progres. |
-| `DEPENDENCY_LEDGER.md` (a toi de creer dans tes projets) | Mesure ta dependance IA + ratio lecture/ecriture. | Chaque fin de semaine. |
+| Fichier / dossier                                        | Ce que ca fait                                                                           | Quand y aller                |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
+| `START_HERE.md`                                          | Tu es ici. Point d'entree unique.                                                        | Maintenant.                  |
+| `README.md`                                              | Roadmap condensee des 32 modules.                                                        | Apres `02_day_one.md`.       |
+| `.nvmrc`                                                 | Version de Node de reference (20 LTS).                                                   | Lu par `nvm`, pas par toi.   |
+| `00_getting_started/`                                    | Installer, ecrire ton premier code.                                                      | Jour 1.                      |
+| `00_referentiel/`                                        | Les 6 pierres, auto-diagnostic, ledger.                                                  | Jour 2.                      |
+| `01_...` a `29_...`                                      | Les 32 modules de fond.                                                                  | Dans l'ordre.                |
+| `30_mini_projects/`                                      | 17 projets (drill trimestriel IA en panne : 31_annexes/16_career/05_ai_famine_drill.md). | Au fil du parcours.          |
+| `31_annexes/`                                            | Carriere, interview, portfolio, ethique.                                                 | Quand tu es pret a defendre. |
+| `32_tools/`                                              | Outillage complementaire.                                                                | Au besoin.                   |
+| `PLATEAU_JOURNAL.md` (a toi de creer)                    | Ton journal de blocage.                                                                  | Apres 2 jours sans progres.  |
+| `DEPENDENCY_LEDGER.md` (a toi de creer dans tes projets) | Mesure ta dependance IA + ratio lecture/ecriture.                                        | Chaque fin de semaine.       |
 
 ## SCRIPTS ET FICHIERS EXECUTABLES : CE QU'ILS FONT
 
@@ -191,7 +200,7 @@ Si t'as pas Node.js : va sur nodejs.org, telecharge la version LTS, installe-la.
 | a11y            | Accessibilite : coder pour que tout le monde puisse utiliser ton site            |
 | i18n            | Internationalisation : adapter ton app a plusieurs langues et pays               |
 | API             | Le point de contact par lequel deux programmes se parlent                        |
-| Scalability     | Tenir la charge quand tu passes de 10 a 10 millions d'utilisateurs                  |
+| Scalability     | Tenir la charge quand tu passes de 10 a 10 millions d'utilisateurs               |
 | Observability   | Voir ce qui se passe en prod sans attendre qu'un client se plaigne               |
 | OOP             | Programmation orientee objet : organiser le code autour d'objets et de classes   |
 

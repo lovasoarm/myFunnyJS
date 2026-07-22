@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # Scénarios de blind debug
 
 Trois bugs reproductibles. Le binôme (ou l'IA) charge le scénario et **ne montre pas le code** à celui qui debug. Ce dernier pose des questions ciblées jusqu'à identifier la ligne fautive et le fix.

@@ -712,7 +712,7 @@ stability: intemporel
 | `31_annexes/career/00_guide.md` | intemporel | 5 ans et + | - |
 | `31_annexes/career/crosslang_challenge.md` | intemporel | 5 ans et + | - |
 | `31_annexes/career/interview_defense.md` | intemporel | 5 ans et + | - |
-| `31_annexes/career/plateau_playbook.md` | intemporel | 5 ans et + | - |
+| `31_annexes/16_career/03_plateau_playbook.md` | intemporel | 5 ans et + | - |
 | `31_annexes/frontieres_modules.md` | intemporel | 5 ans et + | - |
 | `31_annexes/interview/01_desaccord_cto.md` | intemporel | 5 ans et + | - |
 | `31_annexes/interview/02_mock_interview_async.md` | intemporel | 5 ans et + | - |
@@ -739,7 +739,7 @@ stability: intemporel
 | `31_annexes/synthese_mini_projects/synthese_E.md` | intemporel | 5 ans et + | - |
 | `31_annexes/synthese_mini_projects/synthese_F_bloc_25.md` | intemporel | 5 ans et + | - |
 | `31_annexes/synthese_mini_projects/synthese_G_bloc_30.md` | intemporel | 5 ans et + | - |
-| `31_annexes/templates/HYPOTHESES.md` | intemporel | 5 ans et + | - |
+| `31_annexes/28_templates/00_HYPOTHESES.md` | intemporel | 5 ans et + | - |
 | `31_annexes/templates/POSTMORTEM.md` | intemporel | 5 ans et + | - |
 | `31_annexes/templates/PUBLICATION_CHECKLIST.md` | intemporel | 5 ans et + | - |
 | `31_annexes/templates/README.md` | intemporel | 5 ans et + | - |

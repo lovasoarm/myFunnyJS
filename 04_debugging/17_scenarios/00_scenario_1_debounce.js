@@ -1,5 +1,5 @@
 // ============================================================
-// AVANT D'ÉDITER : cp 31_annexes/templates/HYPOTHESES.md ./HYPOTHESES.md
+// AVANT D'ÉDITER : cp 31_annexes/28_templates/00_HYPOTHESES.md ./HYPOTHESES.md
 // puis remplis les 3 hypothèses (chacune avec preuve attendue) AVANT
 // toute modification. Le verify.sh refuse de valider sans HYPOTHESES.md
 // non vide. Aucun raccourci.

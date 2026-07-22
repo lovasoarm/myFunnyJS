@@ -4,7 +4,7 @@ last_reviewed: 2026-07
 depends_on_vendor: false
 ---
 # Page verrouillée
-> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+> Rappel : ce grimoire simplifie via analogies. Lire d'abord [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/18_GRIMOIRE_CODE_HONNEUR.md).
 
 Temps de lecture ~20 min
 

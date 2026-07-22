@@ -1,3 +1,7 @@
+---
+stability: intemporel
+---
+
 # COMMUNAUTÉ MyFunnyJS
 Temps de lecture ~3 min
 

@@ -33,7 +33,7 @@ en attendant que le lecteur croise le vrai mécanisme.
 Chaque grimoire du curriculum contient cette ligne canonique en tête :
 
 > Rappel : ce grimoire simplifie via analogies. Lire d'abord
-> [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/GRIMOIRE_CODE_HONNEUR.md).
+> [`31_annexes/GRIMOIRE_CODE_HONNEUR.md`](../31_annexes/18_GRIMOIRE_CODE_HONNEUR.md).
 
 Cette ligne suffit. Pas de recopie. Pas de reformulation par grimoire (qui
 finit toujours par se lire comme du remplissage généré).

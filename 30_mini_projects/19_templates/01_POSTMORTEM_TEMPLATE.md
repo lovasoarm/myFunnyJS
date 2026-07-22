@@ -40,7 +40,7 @@ Une seule. La plus douloureuse. Pas trois pour diluer.
 ## CE QUE TU NE SAIS PAS ENCORE (mais tu sais où regarder)
 
 > Cette section est un marqueur de maturité, pas de faiblesse. Voir
-> [`00_referentiel/JE_NE_SAIS_PAS_ENCORE.md`](../../00_referentiel/JE_NE_SAIS_PAS_ENCORE.md)
+> [`00_referentiel/JE_NE_SAIS_PAS_ENCORE.md`](../../00_referentiel/03_JE_NE_SAIS_PAS_ENCORE.md)
 > pour le pourquoi. Résumé : "je ne sais pas encore, mais je sais où
 > regarder si j'en ai besoin" bat "je fais semblant". Toujours.
 

@@ -11,6 +11,13 @@ Temps de lecture ~5 min
 Les numéros de version ci-dessous sont à jour pour 2026. Voir `.nvmrc`
 à la racine pour la version canonique en cours.
 
+> **C'est quoi `.nvmrc` ?** Un fichier texte d'une seule ligne (ex. `20`) placé
+> à la racine du projet. `nvm` (Node Version Manager) lit ce fichier et bascule
+> Node sur la version indiquée quand tu tapes `nvm use` dans le dossier. C'est
+> **la source de vérité unique** de la version Node du curriculum : si un
+> exercice ne marche pas, vérifie d'abord `node -v` contre `cat .nvmrc`. Tu
+> n'as rien à créer : le fichier est déjà là.
+
 ---
 
 ## 0. Règle d'or

@@ -25,13 +25,11 @@ Thumbs.db
 # Logs
 *.log
 
-
 # Archives (ne jamais committer)
 *.rar
 *.zip
 *.7z
 *.tar.gz
-
 
 # Artefacts curriculum (générés, méta, jamais dans le parcours apprenant)
 *.zip.bak
@@ -39,8 +37,20 @@ Thumbs.db
 
 # Internal / editor (not for learners)
 .internal/
-.vscode/
 
 # Artefacts internes (audits, journaux d'apprenant, drafts) : jamais dans les PR
 AUDIT_*.md
 PLATEAU_JOURNAL.md
+
+# ---------------------------------------------------------------------------
+# NOTE IMPORTANTE : .vscode/
+# .gitignore n'ignore que les fichiers NON suivis. Si .vscode/ apparaît encore
+# sur GitHub alors qu'il est listé ici, c'est qu'il a été committé AVANT d'être
+# ajouté à .gitignore. Le .gitignore ne dé-track PAS rétroactivement.
+# Fix côté git (une seule fois) :
+#   git rm -r --cached .vscode
+#   git commit -m "stop tracking .vscode"
+#   git push
+# Sans cette commande, tu peux réécrire ce .gitignore cent fois, GitHub
+# gardera le dossier.
+# ---------------------------------------------------------------------------
