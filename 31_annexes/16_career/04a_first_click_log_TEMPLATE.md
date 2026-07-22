@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# 04a — first_click_log.md (template de livrable)
+# 04a : first_click_log.md (template de livrable)
 
 > À remplir **pendant** ou juste après la session `04_first_click_replay.md`.
 > Un log par sujet. Trois sujets minimum pour valider la promesse "0-2
@@ -18,10 +18,10 @@ stability: intemporel
 
 ## Timeline horodatée
 
-| t (mm:ss) | Action / événement | Hésitation > 5 s ? | Verbatim (voix off) |
-|-----------|--------------------|--------------------|---------------------|
-| 00:00 | Ouvre `START_HERE.md` | non | "OK je lis…" |
-| 00:00 | | | |
+| t (mm:ss) | Action / événement    | Hésitation > 5 s ? | Verbatim (voix off) |
+| --------- | --------------------- | ------------------ | ------------------- |
+| 00:00     | Ouvre `START_HERE.md` | non                | "OK je lis…"        |
+| 00:00     |                       |                    |                     |
 
 ## Compteurs
 

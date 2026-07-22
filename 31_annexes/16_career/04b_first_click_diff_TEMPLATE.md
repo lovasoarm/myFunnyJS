@@ -2,24 +2,24 @@
 stability: intemporel
 ---
 
-# 04b — first_click_diff.md (template d'itération)
+# 04b : first_click_diff.md (template d'itération)
 
 > Rempli **après** avoir consolidé les `first_click_log.md` des trois sujets.
 > Objectif : traduire les hésitations réelles en modifications ciblées
-> de `START_HERE.md` (et **rien d'autre** — le curriculum reste intact).
+> de `START_HERE.md` (et **rien d'autre** : le curriculum reste intact).
 
 ## Sujets analysés
 
-- Sujet 1 : `<pseudo>` — hésitations > 5 s : `<n>`
-- Sujet 2 : `<pseudo>` — hésitations > 5 s : `<n>`
-- Sujet 3 : `<pseudo>` — hésitations > 5 s : `<n>`
+- Sujet 1 : `<pseudo>` : hésitations > 5 s : `<n>`
+- Sujet 2 : `<pseudo>` : hésitations > 5 s : `<n>`
+- Sujet 3 : `<pseudo>` : hésitations > 5 s : `<n>`
 
 ## Points de friction récurrents (au moins 2 sujets sur 3)
 
-| # | Passage de `START_HERE.md` | Symptôme observé | Cause probable |
-|---|-----------------------------|-------------------|----------------|
-| F1 | `<citation>` | `<hésitation, mauvais clic, question>` | `<ambiguïté, terme inconnu, ordre>` |
-| F2 | | | |
+| #   | Passage de `START_HERE.md` | Symptôme observé                       | Cause probable                      |
+| --- | -------------------------- | -------------------------------------- | ----------------------------------- |
+| F1  | `<citation>`               | `<hésitation, mauvais clic, question>` | `<ambiguïté, terme inconnu, ordre>` |
+| F2  |                            |                                        |                                     |
 
 ## Diff proposé (bloc par bloc)
 

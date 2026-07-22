@@ -3,12 +3,14 @@ stability: intemporel
 last_reviewed: 2026-07
 depends_on_vendor: false
 ---
+
 # 07b : Race Condition Hunt (bouclier senior)
+
 Temps de lecture ~7 min
 
 > Compagnon senior de `05_race_condition_hunter.md`. Ici on ne se contente pas
 > de reproduire : on **instrumente**, on **falsifie**, on **prouve** que la
-> race est morte — pas juste "je n'ai pas vu le bug pendant 5 minutes".
+> race est morte : pas juste "je n'ai pas vu le bug pendant 5 minutes".
 
 ## Principe
 
@@ -20,7 +22,7 @@ mort si et seulement si test T échoue 0 fois sur N runs sous charge C".
 
 ## 3 cas silencieux à chasser
 
-### Cas 1 — Double clic sur un formulaire de soumission
+### Cas 1 : Double clic sur un formulaire de soumission
 
 - Symptôme : deux entrées créées, ou un paiement dupliqué.
 - Fenêtre de course : entre le premier `click` et l'idempotency token posé.
@@ -32,7 +34,7 @@ mort si et seulement si test T échoue 0 fois sur N runs sous charge C".
 - Falsification : script qui envoie deux `POST` à < 20 ms d'intervalle,
   1000 fois. Zéro doublon en base = passé.
 
-### Cas 2 — Requête en vol lors du démontage du composant
+### Cas 2 : Requête en vol lors du démontage du composant
 
 - Symptôme : `setState` sur un composant démonté, ou données d'une vue N
   qui écrasent la vue N+1.
@@ -46,14 +48,14 @@ mort si et seulement si test T échoue 0 fois sur N runs sous charge C".
 - Falsification : test qui monte/démonte 500 fois pendant qu'un mock renvoie
   avec délai aléatoire 0-200 ms. Zéro warning React, zéro state écrasé.
 
-### Cas 3 — Cache LRU concurrent
+### Cas 3 : Cache LRU concurrent
 
 - Symptôme : deux `get(key)` simultanés déclenchent deux `compute(key)`, la
   valeur en cache oscille, un thread lit une valeur stale.
 - Fenêtre de course : entre `cache.has(key) === false` et `cache.set(key, v)`.
 - Instrumentation : compteur atomique d'appels à `compute()` ; horodatage
   haute résolution ; journal d'ordonnancement (qui a gagné la course).
-- Remède : **coalescing** — stocker la `Promise` en vol dans le cache, pas la
+- Remède : **coalescing** : stocker la `Promise` en vol dans le cache, pas la
   valeur ; les concurrents attendent la même promesse.
 - Falsification : 100 workers demandent la même clé simultanément ; `compute()`
   doit avoir été appelé exactement **1** fois.

@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# 05 : AI Famine Drill (ex-18bis) — simulation de survie technologique
+# 05 : AI Famine Drill (ex-18bis) : simulation de survie technologique
 
 Temps de lecture ~6 min. Temps de realisation : 6 a 10 heures sur 1 a 2 jours.
 
@@ -36,7 +36,7 @@ l'ordre pedagogique existant tout en le greffant au bon endroit du parcours
   notes ecrites (papier ou markdown local), les `.md` du curriculum
   MyFunnyJS qui traitent du module choisi.
 - **Reseau** : coupe le wifi apres avoir installe Node + npm. `sudo ip link
-  set wlan0 down` (Linux) ou equivalent. Rebranche uniquement pour publier
+set wlan0 down` (Linux) ou equivalent. Rebranche uniquement pour publier
   a la fin.
 
 ### Choix du module a reconstruire
