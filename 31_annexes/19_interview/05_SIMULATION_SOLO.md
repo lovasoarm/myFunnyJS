@@ -61,7 +61,7 @@ Après chaque simulation, note-toi de 1 à 3 sur :
 
 ## FRÉQUENCE RECOMMANDÉE
 
-- **1 run par mini-projet terminé** (17 mini-projets = 17 simulations sur la durée du cursus).
+- **1 run par mini-projet terminé** (18 mini-projets = 18 simulations sur la durée du cursus).
 - **1 run par mois** en phase de recherche d'emploi active, sur un projet fort.
 - **Enregistre-toi audio** au moins 3 fois : c'est brutal, c'est formateur.
 

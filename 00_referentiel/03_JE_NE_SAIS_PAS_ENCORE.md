@@ -53,7 +53,7 @@ Quatre lignes. C'est la version protocolaire de "je ne sais pas encore". Elle tr
 - `12_legacy_takeover/` : posture requise pour aborder un repo hostile sans mépris ni panique.
 - `27_team_craft/08_how_to_ask.md` : la version outbound ("demander de l'aide efficacement" est la face active du "je ne sais pas encore").
 - `27_team_craft/09_dire_je_ne_sais_pas.md` : version en situation d'équipe.
-- Chaque `POSTMORTEM_TEMPLATE.md` des 17 mini-projets : section dédiée à remplir.
+- Chaque `POSTMORTEM_TEMPLATE.md` des 18 mini-projets : section dédiée à remplir.
 
 ---
 

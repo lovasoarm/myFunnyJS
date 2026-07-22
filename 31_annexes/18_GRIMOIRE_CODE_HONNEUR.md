@@ -37,3 +37,15 @@ Chaque grimoire du curriculum contient cette ligne canonique en tête :
 
 Cette ligne suffit. Pas de recopie. Pas de reformulation par grimoire (qui
 finit toujours par se lire comme du remplissage généré).
+
+---
+
+## OÙ LES ANALOGIES CASSENT (règle B.2)
+
+Les analogies de ce grimoire simplifient : elles ne définissent pas. Une
+closure **nest pas** un tiroir ; un event loop **nest pas** un carrousel ;
+une pile **nest pas** une pile de crêpes. Chaque analogie sert à visualiser
+un mécanisme ; elle cesse dès que tu veux raisonner sur la complexité, la
+mémoire, la concurrence ou les cas limites. Reviens toujours à la définition
+technique avant de coder, débugger ou expliquer à un pair. Une analogie
+prise pour la réalité devient un obstacle épistémologique.

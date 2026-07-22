@@ -19,7 +19,7 @@ personnelle. Ce drill simule ça.
 minute par minute, chronometre. Aucun ADR n'est considere comme "signe" tant que
 son storm associe n'a pas produit un `REPONSES_ADR-XXX.md` complet et horodate.
 
-- 17 mini-projets x 3 a 6 ADR chacun = **51 a 102 storms sur le parcours**.
+- 18 mini-projets x 3 a 6 ADR chacun = **51 a 102 storms sur le parcours**.
 - Le storm se joue seul si necessaire (voir `05_SIMULATION_SOLO.md`), mais
   toujours chronometre, toujours ecrit, jamais reporte.
 - Un ADR sans storm associe est un ADR non defendu : il ne compte ni pour la

@@ -13,7 +13,7 @@ Compétence visée : encaisser un changement de contrainte à 40% d'avancement s
 
 ## POURQUOI CE FICHIER EXISTE
 
-Les 17 cahiers des charges de `30_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
+Les 18 cahiers des charges de `30_mini_projects/*` sont clairs à l'ouverture. C'est un mensonge pédagogique utile : tu apprends d'abord à décomposer, ensuite à absorber le flou. Ce fichier introduit **le flou mouvant** : après 40% d'avancement, une contrainte change. Tu dois t'adapter sans réécrire depuis zéro.
 
 ## PROJETS ÉLIGIBLES
 

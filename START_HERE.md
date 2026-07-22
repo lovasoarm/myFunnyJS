@@ -64,14 +64,14 @@ jusqu'a "je maitrise tout MyFunnyJS" :
        |    (+ mini-projets 11 a 14)
        v
 [23 -> 29]  AI-Native / Databases / Scale / Observability / Team / Edge Cases / AI Agents
-       |    (+ mini-projets 15 a 17 ; drill trimestriel: 31_annexes/16_career/05_ai_famine_drill.md)
+       |    (+ mini-projets 15 a 18 ; drill trimestriel: 31_annexes/16_career/05_ai_famine_drill.md)
        v
 [31_annexes] Career / Interview / Portfolio / Ethics
        |
        v
 [Diplome MyFunnyJS] <- tu es diplome quand :
                        1. Les 32 modules ont un POSTMORTEM personnel
-                       2. Les 17 mini-projets sont livres avec gate OWASP OK
+                       2. Les 18 mini-projets sont livres avec gate OWASP OK
                        3. Le crosslang challenge est passe (Pierre 6 prouvee)
                        4. Un "first click replay" (31_annexes/16_career/04_...)
                           a ete filme avec un vrai debutant : 0 a 2 hesitations
@@ -103,7 +103,7 @@ soi-meme, et se defend a l'oral (voir `31_annexes/19_interview/03_objection_stor
 | `00_getting_started/`                                    | Installer, ecrire ton premier code.                                                      | Jour 1.                      |
 | `00_referentiel/`                                        | Les 6 pierres, auto-diagnostic, ledger.                                                  | Jour 2.                      |
 | `01_...` a `29_...`                                      | Les 32 modules de fond.                                                                  | Dans l'ordre.                |
-| `30_mini_projects/`                                      | 17 projets (drill trimestriel IA en panne : 31_annexes/16_career/05_ai_famine_drill.md). | Au fil du parcours.          |
+| `30_mini_projects/`                                      | 18 projets (drill trimestriel IA en panne : 31_annexes/16_career/05_ai_famine_drill.md). | Au fil du parcours.          |
 | `31_annexes/`                                            | Carriere, interview, portfolio, ethique.                                                 | Quand tu es pret a defendre. |
 | `32_tools/`                                              | Outillage complementaire.                                                                | Au besoin.                   |
 | `PLATEAU_JOURNAL.md` (a toi de creer)                    | Ton journal de blocage.                                                                  | Apres 2 jours sans progres.  |

@@ -64,7 +64,7 @@ Une technique, une méthode, un réflexe qui t'a fait gagner du temps. Nomme-la,
 ## GATE SECURITE (OWASP) : OBLIGATOIRE POUR CLORE LE PROJET
 
 Un mini-projet non securise n'est pas un mini-projet livre. Cette checklist
-s'applique aux **17 mini-projets** du parcours. Complete `SECURITY.md` du
+s'applique aux **18 mini-projets** du parcours. Complete `SECURITY.md` du
 projet **avant** de considerer ce POSTMORTEM comme fini. Coche chaque ligne
 avec un statut : `OK` / `NA (justifie)` / `TODO (bloquant)`.
 

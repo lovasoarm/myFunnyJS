@@ -40,7 +40,7 @@ Pour chaque sous-tache, coche **une** case et justifie en 1 phrase.
 
 **Garde pour toi quand :**
 - La decision engage l'architecture (choix de pattern, decoupage de module,
-  frontiere de service). Voir `31_annexes/frontieres_modules.md`.
+  frontiere de service). Voir `31_annexes/17_frontieres_modules.md`.
 - Le code touche a la securite, l'auth, la crypto, la gestion des secrets.
 - Le bug est **flaky** ou **race condition** : l'IA voit un happy path,
   pas un ordonnancement.

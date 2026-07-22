@@ -4,11 +4,11 @@ duree_de_vie_estimee: 10+ ans
 raison: Hexagonal, CQRS, event-driven : indépendants du langage.
 ---
 
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
 > **CE MODULE RÉUTILISE** : patterns (12_design_patterns), async & I/O (03_async), DB (24_databases anticipé), refactoring (13_refactoring). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas. SOLID est enseigné directement dans ce module (`02_solid_principles.md`), pas ailleurs.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../31_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 > **L'architecture a un seul but : rendre le changement moins coûteux.**
 

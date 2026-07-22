@@ -4,11 +4,11 @@ duree_de_vie_estimee: 10+ ans
 raison: GoF depuis 1994, toujours pertinent.
 ---
 
-> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
+> **Frontière avec les modules voisins (12/13/16/18)** : lis d'abord `31_annexes/17_frontieres_modules.md` : table de contrat (échelle, point de départ, livrable, zones grises assumées) pour savoir ce qui appartient à ce module et ce qui appartient au module d'à côté.
 
 > **CE MODULE RÉUTILISE** : FP (11_functional_js), fonctions (01_fundamentals). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
-> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/frontieres_modules.md`](../31_annexes/frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
+> **Ce module ressemble à 12/13/16/18 ?** Lis d'abord [`31_annexes/17_frontieres_modules.md`](../31_annexes/17_frontieres_modules.md) : table de contrat qui te dit quel module ouvrir selon ta question réelle. Évite 30 min de tournage en rond.
 
 # POURQUOI CE MODULE MÉRITE TON TEMPS : DESIGN PATTERNS
 

@@ -6,7 +6,6 @@ stability: intemporel
 
 Temps de lecture ~3 min
 
-
 -> ~6-10 h de travail effectif, à répartir sur 1-2 semaines
 
 Compétence visée : prouver, par artefact, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
@@ -91,3 +90,45 @@ Un nouveau module aurait allongé le curriculum sans preuve additionnelle. Une g
 - Prérequis : `10_algorithms/` complet, `12_design_patterns/` complet, `31_annexes/transferability/README.md` lu.
 - Ne pas commencer avant : la fin des mini-projets `01`, `05`, `15`. Sinon tu n'as pas la maturité pour comparer.
 - Après : passe à `31_annexes/career/interview_defense.md` scénario 2. Tu défendras plus solidement.
+
+---
+
+## PALIERS OBLIGATOIRES (v20.4) : 3 langages, une même fonction pure
+
+Le "un langage non-JS au choix" reste la porte d'entrée. Mais pour prouver
+la Pierre 6 comme un pilier (et non une note de bas de page), tu franchis
+**3 paliers cumulatifs** en réimplémentant la **même fonction pure**
+(entrée -> sortie déterministe, pas d'effet de bord) dans 3 familles de
+langages :
+
+### Palier A : langage à typage dynamique proche (Python)
+
+- Choix imposé : **Python**.
+- Objectif : voir ce qui change quand la stdlib est riche et le typage nominal absent.
+- Livrable : `crosslang_challenge/pure_fn/python/` avec `src/`, `tests/`, `README.md`.
+
+### Palier B : langage à typage statique et modèle mémoire différent (Go **ou** Rust)
+
+- Choix libre entre **Go** et **Rust**.
+- Objectif : affronter le compilateur, gérer la mémoire ou le GC autrement.
+- Livrable : `crosslang_challenge/pure_fn/<go|rust>/`.
+
+### Palier C : langage jamais vu (Elixir, Zig, Gleam, OCaml, Roc...)
+
+- Choix libre parmi une famille inconnue **au moment où tu commences**.
+- Objectif : prouver que tu peux atteindre "hello world utile" dans un
+  écosystème neuf en <= 8 h, tests compris.
+- Livrable : `crosslang_challenge/pure_fn/<lang>/` + une section
+  "ce que je n'aurais pas trouvé sans la doc officielle" dans le README.
+
+### Grille 6/6 par palier
+
+Chaque palier doit passer la même grille que ci-dessus (sorties identiques,
+complexité, cas limites, justification, RAPPORT, comparateur à 0). **3 x 6/6
+obligatoire** pour valider le diplôme. Un palier à 5/6 = palier non passé.
+
+### Pourquoi 3 paliers, pas 1
+
+Un seul langage prouve "je peux". Trois paliers prouvent "je peux dans
+n'importe quelle famille" : ce qui est la définition opérationnelle de la
+Pierre 6. C'est ce qui bloque le diplôme, pas la roadmap.

@@ -72,3 +72,14 @@ officiel Node).
 
 Cette section est datée. Si tu la lis un an après juillet 2026 sans qu'une
 nouvelle revue soit consignée : considère-la comme dette et signale-le.
+
+---
+
+## Mise a jour 2026 : Node 22 devient LTS
+
+Depuis octobre 2024, **Node 22** est la ligne LTS active ; en 2026 c'est la
+version de reference du curriculum. Le `.nvmrc` a la racine pointe sur `22`.
+Node 20 reste supporte (fin de vie avril 2026) mais tous les nouveaux
+mini-projets sont testes sur Node 22. Si tu es coince en 20, aucun exercice
+ne casse : les APIs utilisees sont compatibles. Bascule des que tu peux avec
+`nvm install 22 && nvm use 22`.

@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# 30_mini_projects : 17 mini-projets appliqués
+# 30_mini_projects : 18 mini-projets appliqués
 
 Temps de lecture ~3 min
 

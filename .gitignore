@@ -54,3 +54,7 @@ PLATEAU_JOURNAL.md
 # Sans cette commande, tu peux réécrire ce .gitignore cent fois, GitHub
 # gardera le dossier.
 # ---------------------------------------------------------------------------
+
+# Traces regenerees par 30_mini_projects/17_polyglot_forge/tests/run_all.sh
+30_mini_projects/17_polyglot_forge/tests/output_js.txt
+30_mini_projects/17_polyglot_forge/tests/output_alt.txt

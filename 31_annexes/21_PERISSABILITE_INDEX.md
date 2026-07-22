@@ -713,7 +713,7 @@ stability: intemporel
 | `31_annexes/career/crosslang_challenge.md` | intemporel | 5 ans et + | - |
 | `31_annexes/career/interview_defense.md` | intemporel | 5 ans et + | - |
 | `31_annexes/16_career/03_plateau_playbook.md` | intemporel | 5 ans et + | - |
-| `31_annexes/frontieres_modules.md` | intemporel | 5 ans et + | - |
+| `31_annexes/17_frontieres_modules.md` | intemporel | 5 ans et + | - |
 | `31_annexes/interview/01_desaccord_cto.md` | intemporel | 5 ans et + | - |
 | `31_annexes/interview/02_mock_interview_async.md` | intemporel | 5 ans et + | - |
 | `31_annexes/interview/03_objection_storm.md` | intemporel | 5 ans et + | - |
