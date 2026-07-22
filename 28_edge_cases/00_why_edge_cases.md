@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Encoding, timezone, floating point : bugs éternels.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **TL;DR (4 lignes)**
 > - Un dev junior code le cas passant. Un dev senior chasse les 12 cas limites AVANT qu'ils cassent la prod.

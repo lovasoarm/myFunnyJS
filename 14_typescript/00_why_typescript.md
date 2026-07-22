@@ -3,6 +3,8 @@ stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: TypeScript évolue vite mais les principes de typage graduel restent.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : types JS (01_fundamentals), types dynamiques (11_functional_js), design patterns (12_design_patterns). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

@@ -3,6 +3,8 @@ stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Outils : bougent chaque année. Lis pour saisir la logique, pas pour mémoriser.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **TL;DR (4 lignes)**
 > - Ta chaîne d'outils (linter, formatter, bundler, LSP, debugger) est ton exosquelette. Un dev sans outils bien réglés perd 30% de son temps à des tâches automatisables.

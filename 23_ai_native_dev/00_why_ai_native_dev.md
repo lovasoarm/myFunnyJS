@@ -3,6 +3,8 @@ stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: L'écosystème IA bouge tous les 6 mois. La posture critique tient plus longtemps.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : debugging (04_debugging), tests (06_testing), esprit critique (02_problem_solving). Team craft (27_team_craft anticipé) : la posture de code review complète est enseignée plus tard, ce module n'utilise que la checklist de base pour la pratique. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

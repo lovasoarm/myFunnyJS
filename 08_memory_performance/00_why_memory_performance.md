@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: GC, complexité, profilage : concepts stables au-delà du moteur V8.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : closures (01_fundamentals), async (03_async), bits & représentation (07_math_basics). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

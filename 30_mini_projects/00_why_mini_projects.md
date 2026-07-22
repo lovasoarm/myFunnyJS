@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Les projets sont des supports, l'exercice de conception ne se démode pas.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 # POURQUOI DES PROJETS : LA DIFFÉRENCE ENTRE SAVOIR ET POUVOIR
 

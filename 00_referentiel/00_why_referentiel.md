@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Cadre de posture d'ingénieur, indépendant des technos.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 # Pourquoi ce référentiel ?
 

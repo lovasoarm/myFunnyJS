@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Tri, recherche, graphes : intemporels.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : structures de données (09_data_structures), récursion (01_fundamentals), async (03_async). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

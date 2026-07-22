@@ -3,6 +3,8 @@ stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: WebSocket, SSE, WebRTC : APIs stables mais l'écosystème bouge.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : async (03_async), event loop et backpressure (03_async/06), réseau (17_web_concepts). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

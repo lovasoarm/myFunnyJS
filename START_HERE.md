@@ -34,12 +34,12 @@ C'est tout pour les 10 prochaines minutes. Le reste de ce fichier est le context
 
 ## AUDIT AUTO-REPRODUCTIBLE (visible cote apprenant)
 
-Deux scripts sont a la racine, tu peux les lancer toi-meme a tout moment :
+Deux scripts sont dans `.internal/scripts/`, tu peux les lancer depuis la racine du repo toi-meme a tout moment :
 
-- `./check_all.sh` : compte les modules, valide les liens internes, verifie la
+- `bash .internal/scripts/check_all.sh` : compte les modules, valide les liens internes, verifie la
   structure des mini-projets, delegue la gate securite et rejoue les tests
   des scenarios de debug. Sortie binaire : `OK` ou `N categories en echec`.
-- `./check_security_gate.sh` : prouve que la `SECURITY_GATE.md` de chaque
+- `bash .internal/scripts/check_security_gate.sh` : prouve que la `SECURITY_GATE.md` de chaque
   mini-projet est *remplie* (au moins une case `[x]`, aucun `TODO` restant),
   pas juste presente. Utilise-le comme critere binaire de passage.
 

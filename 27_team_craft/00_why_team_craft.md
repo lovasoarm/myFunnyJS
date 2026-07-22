@@ -3,6 +3,8 @@ stability: intemporel
 duree_de_vie_estimee: 10+ ans
 raison: Communication, revue de code, mentorat : intemporels.
 ---
+> **Statut de pérennité :** **intemporel** | évolutif | périssable
+> Statut effectif de ce module : **intemporel**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **TL;DR (4 lignes)**
 > - Coder seul en 2028 = coder mal en 2029. Ce module te donne le vocabulaire et les réflexes pour survivre en équipe (revue de code, feedback, PR, désaccord technique).

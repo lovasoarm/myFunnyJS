@@ -3,6 +3,8 @@ stability: periss-2028
 duree_de_vie_estimee: 1-2 ans
 raison: Domaine en explosion, les patterns d'aujourd'hui seront réécrits.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **Avant de lire ce module**, va voir `00_bridge_exo.md` qui relie ça aux edge cases du 28.
 

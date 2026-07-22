@@ -3,6 +3,8 @@ stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: HTTP/3, HTTPS, CORS : le stack web bouge par cycles.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : HTTP basics (21_api_craft anticipé), async (03_async). Sécurité (22_security anticipé) : ce module pointe vers la distinction authentication/authorization, creusée en détail plus tard. Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 

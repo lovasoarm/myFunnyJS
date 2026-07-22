@@ -3,6 +3,8 @@ stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Les outils d'installation (Node, npm, VS Code) évoluent mais les principes restent.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 # Pourquoi ce dossier "getting started" ?
 

@@ -61,3 +61,17 @@ PLATEAU_JOURNAL.md
 
 # Infra technique (pin Node): masqué au learner
 .nvmrc
+# Artefacts d'audit / CI (ne jamais committer)
+audit_report.txt
+audit_report_*.txt
+audit_*.log
+*.audit.json
+.audit-cache/
+.cache/
+tmp/
+.tmp/
+
+# Node / package managers additionnels
+.pnp.*
+.yarn/
+

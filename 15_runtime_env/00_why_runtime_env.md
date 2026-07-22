@@ -3,6 +3,8 @@ stability: moderne
 duree_de_vie_estimee: 3-5 ans
 raison: Node/Bun/Deno bougent, les concepts (event loop, streams) tiennent.
 ---
+> **Statut de pérennité :** intemporel | **évolutif** | périssable
+> Statut effectif de ce module : **évolutif**. Intemporel = mécanisme de fond (à mémoriser à vie). Évolutif = pratique métier qui bouge (relire tous les 2-3 ans). Périssable = dépend d'une version/vendor (relire tous les 12-18 mois).
 
 > **CE MODULE RÉUTILISE** : event loop (03_async), modules (01_fundamentals), mémoire (08_memory_performance). Si un de ces prérequis est flou, retourne le voir avant. Ce module ne les réexplique pas.
 
