@@ -45,7 +45,7 @@ Si tu bloques plus de 2 jours -> tu ouvres `PLATEAU_JOURNAL.md` (a toi de creer)
 
 1. **Lis chaque `.md` en entier avant de coder.** La lecon est dans le texte, pas dans le code.
 2. **Code toi-meme.** L'IA propose, tu decides. Copier-coller sans comprendre : seule faute grave.
-3. **Finis les mini-projets.** C'est la que les concepts s'assemblent en vrai geste. Chacun avec gate OWASP validee (voir `30_mini_projects/19_templates/01_POSTMORTEM_TEMPLATE.md`).
+3. **Finis les mini-projets.** C'est la que les concepts s'assemblent en vrai geste. Chacun avec gate OWASP validee (voir `30_mini_projects/_templates/01_POSTMORTEM_TEMPLATE.md`).
 4. **Remplis TDD_JOURNAL, POSTMORTEM, ADR.** Ce ne sont pas des formalites. **Chaque ADR declenche un OBJECTION_STORM chronometre** (voir `31_annexes/19_interview/03_objection_storm.md`).
 5. **Rejoue le drill `solo_vs_copilot`** aux checkpoints imposes : sinon tu ne mesures rien. **Checkpoint bloquant apres le module 14 : crosslang challenge** (voir `31_annexes/16_career/01_crosslang_challenge.md`).
 
@@ -85,7 +85,7 @@ Cinq conditions binaires. Aucune n'est optionnelle :
 
 1. Les **32 modules** ont chacun un POSTMORTEM personnel signe.
 2. Les **18 mini-projets** sont livres avec gate OWASP validee (0 TODO dans le POSTMORTEM).
-3. Le **crosslang challenge** est passe (6/6 sur la grille, artefact commite dans un langage non-JS).
+3. Le **crosslang challenge** est passe (6/6 sur la grille, produit commite dans un langage non-JS).
 4. Un **first click replay** (`31_annexes/16_career/04_first_click_replay.md`) a ete filme avec un vrai debutant : 0 a 2 hesitations en 30 min.
 5. Ton **DEPENDENCY_LEDGER.md** personnel tient depuis 3 mois avec dependance IA < 25 % et ratio lecture/ecriture >= 2x.
 

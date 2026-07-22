@@ -17,7 +17,7 @@ Ce fichier t'apprend à écrire des docs que les devs ouvrent et ferment satisfa
 
 ## 1) LES QUATRE TYPES DE DOCUMENTATION
 
-Ils n'ont pas le même objectif. Les confondre artefact des docs qui font tout mal.
+Ils n'ont pas le même objectif. Les confondre produit des docs qui font tout mal.
 
 ```
 TYPE      QUESTION QU'IL RÉPOND     EXEMPLE
@@ -311,7 +311,7 @@ Durée totale : 23 minutes.
 
 ## RÉSUMÉ
 
-Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger artefact une doc qui fait tout mal.
+Les quatre types de doc ont des objectifs différents : tutorial, how-to, référence, explication. Les mélanger produit une doc qui fait tout mal.
 Un README répond à quatre questions dans l'ordre : quoi, comment démarrer, comment c'est organisé, où trouver le reste.
 Un commentaire utile explique le pourquoi et le non-évident : pas ce qu'on voit déjà dans le code.
 Un runbook contient les commandes exactes pour les situations courantes : pas des explications profondes.

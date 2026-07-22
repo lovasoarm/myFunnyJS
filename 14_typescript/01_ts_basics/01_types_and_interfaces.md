@@ -118,7 +118,7 @@ type SageNinja = Ninja & {
 ```
 
 La vraie différence : `interface extends` donne une erreur si les propriétés sont incompatibles.
-`type &` silencieusement artefact `never` si tu intersectes des types incompatibles.
+`type &` silencieusement produit `never` si tu intersectes des types incompatibles.
 
 ```ts
 interface A {

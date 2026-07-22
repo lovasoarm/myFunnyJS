@@ -6,7 +6,7 @@ depends_on_vendor: false
 # 05b : Backpressure : quand le producteur va plus vite que le consommateur
 Temps de lecture ~5 min
 
-Ton stream artefact 10 MB/s. Ton consommateur en avale 2 MB/s. Sans régulation, tu explose la RAM. C'est la backpressure : dire au producteur "attends".
+Ton stream produit 10 MB/s. Ton consommateur en avale 2 MB/s. Sans régulation, tu explose la RAM. C'est la backpressure : dire au producteur "attends".
 
 ## Push vs Pull
 

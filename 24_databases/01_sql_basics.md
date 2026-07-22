@@ -255,7 +255,7 @@ On te donne une requête qui prend 4 secondes sur une table de 2 millions de lig
 Une table `combat_stats(id, ninja_id, chakra_used, outcome, fought_at)`. Écris la requête qui donne, pour chaque ninja, le total de chakra dépensé et le nombre de combats, mais seulement pour les ninjas ayant dépensé plus de 10 000 unités de chakra ce mois-ci. (20 minutes)
 
 **EXO 3 : Le piège du JOIN**
-On te donne deux tables `villages` (10 lignes) et `ninjas` (500 lignes) sans relation directe entre elles dans la requête. Explique ce qui se passe si on fait `SELECT * FROM villages, ninjas;` et calcule le nombre de lignes résultantes. (10 minutes, indice : artefact cartésien)
+On te donne deux tables `villages` (10 lignes) et `ninjas` (500 lignes) sans relation directe entre elles dans la requête. Explique ce qui se passe si on fait `SELECT * FROM villages, ninjas;` et calcule le nombre de lignes résultantes. (10 minutes, indice : produit cartésien)
 
 ---
 

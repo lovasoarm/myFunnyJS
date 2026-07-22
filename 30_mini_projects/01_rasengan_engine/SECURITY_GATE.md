@@ -12,7 +12,7 @@ gate: bloquante
 
 ## Procédure
 
-1. Copie [`../19_templates/03_SECURITY_GATE_TEMPLATE.md`](../19_templates/03_SECURITY_GATE_TEMPLATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
+1. Copie [`../_templates/03_SECURITY_GATE_TEMPLATE.md`](../_templates/03_SECURITY_GATE_TEMPLATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
 2. Renseigne **chaque** item A01→A10 avec une **preuve** (fichier:ligne, test, config, log). `N/A` n'est autorisé qu'avec une phrase de motivation.
 3. Signe (`nom : date`) en fin de fichier.
 4. Ajoute le lien vers `SECURITY_GATE_FILLED.md` dans le `README.md` du projet, section **Publication**.

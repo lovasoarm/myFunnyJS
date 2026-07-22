@@ -28,7 +28,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwibmluamph.aXpfaWQiOiJuYXJ1dG8ifQ.abc123xyz
 ```js
 // ce que contient un payload décodé
 {
- sub: "7",          // subject : l'id du utilisateur
+ sub: "7",          // subject : l'id de l'utilisateur
  ninja_id: "naruto-konoha",
  role: "hokage",
  iat: 1710000000,      // issued at : timestamp de création

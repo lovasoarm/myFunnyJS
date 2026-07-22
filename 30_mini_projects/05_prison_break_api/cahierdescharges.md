@@ -340,7 +340,7 @@ Exemple rempli :
 ## Contexte
 
 Quand une tentative d'évasion échoue, deux informations peuvent manquer : l'ID ou le mot de passe.
-Retourner un message différent selon le cas aidu utilisateur légitime.
+Retourner un message différent selon le cas aide l'utilisateur légitime.
 Mais ça aide aussi l'attaquant à savoir si un ID existe dans la base.
 
 ## Décision

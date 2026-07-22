@@ -146,7 +146,7 @@ La correction : accepter qu'un bug en prod non reproduit, sans feature flag ni l
 
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
-Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression artefact de mauvaises décisions, pas par confort superflu.
+Avant, debugger en prod voulait souvent dire se connecter en SSH (accès distant sécurisé) directement sur le serveur pour lire des fichiers de logs locaux, parfois en ajoutant des `console.log` à chaud et en redéployant dans l'urgence. Maintenant, l'observabilité (logs structurés centralisés, tracing, métriques, Sentry, feature flags) permet de diagnostiquer la majorité des problèmes sans jamais se connecter à un serveur individuel, et les rollouts progressifs réduisent le besoin même de débugger en panique après un déploiement raté. Le switch existe parce que l'urgence sous pression produit de mauvaises décisions, pas par confort superflu.
 
 ---
 

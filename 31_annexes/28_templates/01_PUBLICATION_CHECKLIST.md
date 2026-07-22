@@ -7,7 +7,7 @@ stability: intemporel
 Temps de lecture ~4 min
 
 Ce que tu dois cocher avant de publier publiquement un mini-projet, un
-billet de blog ou un artefact issu du curriculum.
+billet de blog ou un produit issu du curriculum.
 
 Cette checklist était historiquement collée en fin de `POSTMORTEM_TEMPLATE.md`.
 Elle en a été extraite pour être réutilisable par n'importe quel livrable

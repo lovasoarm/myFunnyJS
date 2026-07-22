@@ -82,7 +82,7 @@ fois par trimestre. Voir `31_annexes/16_career/05_ai_famine_drill.md`.
 ## Gate securite (OWASP) : bloquant pour cloturer un projet
 
 Chaque POSTMORTEM de mini-projet doit contenir la checklist OWASP Top 10
-(voir `19_templates/01_POSTMORTEM_TEMPLATE.md`, section "GATE SECURITE").
+(voir `_templates/01_POSTMORTEM_TEMPLATE.md`, section "GATE SECURITE").
 Tant qu'une ligne reste en `TODO`, le projet **n'est pas livre**, meme si
 les tests passent. La checklist est obligatoire pour les **17 projets
 numerotes** (le drill 18bis a son propre POSTMORTEM, sans gate reseau si

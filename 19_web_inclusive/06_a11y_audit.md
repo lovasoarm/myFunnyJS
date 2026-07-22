@@ -64,7 +64,7 @@ Checklist manuelle minimale :
 ```
 
 ```js
-// Respecter la préférence "réduire les animations" du utilisateur
+// Respecter la préférence "réduire les animations" de l'utilisateur
 const motionReduite = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!motionReduite) {

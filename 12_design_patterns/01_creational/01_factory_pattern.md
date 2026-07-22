@@ -152,7 +152,7 @@ L'Abstract Factory crée des familles entières d'objets compatibles entre eux.
 Exemple : un match de Champions League génère des événements différents selon la phase (phase de groupes vs finale).
 
 ```js
-// chaque "factory" artefact une famille cohérente d'objets liés
+// chaque "factory" produit une famille cohérente d'objets liés
 function createMatchFactory(phase) {
  const factories = {
   group: {
@@ -264,7 +264,7 @@ const mockHorrorFactory = {
  create: () => ({ name: "Mock Horror", power: 10, defeated: false }),
 };
 runMission(leon, mockHorrorFactory);
-// le test contrôle exactement ce que la factory artefact
+// le test contrôle exactement ce que la factory produit
 ```
 
 C'est pour ça que la factory n'est pas juste un pattern de confort.

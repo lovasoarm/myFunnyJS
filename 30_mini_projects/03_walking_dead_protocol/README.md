@@ -143,7 +143,7 @@ Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
-Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un produit (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
 
 ## Empreinte carbone (critère d'acceptation)
 

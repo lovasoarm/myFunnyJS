@@ -10,7 +10,7 @@ Temps de lecture ~2 min
 Un mainteneur te livre un bug en une phrase, sans stack, sans repro, sans logs.
 
 ## Enonce
-"Depuis vendredi, une titan sur cent est facturee deux fois. On ne sait ni laquelle, ni pourquoi."
+"Depuis vendredi, une commande sur cent est facturee deux fois. On ne sait ni laquelle, ni pourquoi."
 
 ## Regle
 1. Interdit d'ouvrir le code avant d'avoir ecrit 5 hypotheses classees par probabilite (`HYPOTHESES.md`).

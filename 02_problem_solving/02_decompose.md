@@ -102,7 +102,7 @@ Le test : si tu changes quelque chose dans `ninjaStats.js`, est-ce que tu dois t
 
 ## 5) LES DÉPENDANCES : LE GRAPHE MENTAL
 
-Toute décomposition artefact un graphe de dépendances. Si ce graphe a des cycles, t'as un problème.
+Toute décomposition produit un graphe de dépendances. Si ce graphe a des cycles, t'as un problème.
 
 ```
 // Bon : dépendances à sens unique

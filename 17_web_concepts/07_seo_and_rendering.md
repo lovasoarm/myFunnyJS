@@ -82,7 +82,7 @@ async function buildPages() {
 Build (une fois) --> HTML généré et stocké --> CDN sert le fichier --> Requête : zéro calcul serveur
 ```
 
-C'est ultra rapide à servir : le CDN balance un fichier statique, point. Le piège évident : si les stats de Naruto changent (il monte en rang), la page reste figée jusqu'au prochain build. Bon pour un blog, une doc, une page artefact qui change pas toutes les 5 minutes. Mauvais pour un dashboard de match en direct.
+C'est ultra rapide à servir : le CDN balance un fichier statique, point. Le piège évident : si les stats de Naruto changent (il monte en rang), la page reste figée jusqu'au prochain build. Bon pour un blog, une doc, une page produit qui change pas toutes les 5 minutes. Mauvais pour un dashboard de match en direct.
 
 ## 4) ISR : LE COMPROMIS QUI RAFRAÎCHIT TOUT SEUL
 

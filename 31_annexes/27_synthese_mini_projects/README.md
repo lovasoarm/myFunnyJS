@@ -33,7 +33,7 @@ ce qui donne l'illusion de savoir sans le vécu.
 
 - `chaos_day.md` : simulation d'incident, à faire après au moins 5 projets.
 - `spec_drift.md` : détection d'écart entre spec et implémentation.
-- `portfolio.md` : consolidation en artefact publiable.
+- `portfolio.md` : consolidation en produit publiable.
 
 Ces trois exercices sont indépendants des synthèses A → G : ils s'appliquent
 à ton parcours complet, pas à un bloc précis.

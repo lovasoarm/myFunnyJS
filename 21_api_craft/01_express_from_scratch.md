@@ -235,7 +235,7 @@ Sinon : renvoie les jutsus filtrés (simulés en mémoire).
 Implémente un middleware `requireApiKey` : chaque requête doit avoir le header `x-api-key` avec la valeur `"survey-corps"`.
 Si absent ou mauvais : 403.
 Si correct : attache `req.authenticated = true` et passe.
-Monte ce middleware uniquement sur les routes `/titan/*`, pas sur le reste.
+Monte ce middleware uniquement sur les routes `/admin/*`, pas sur le reste.
 
 ---
 

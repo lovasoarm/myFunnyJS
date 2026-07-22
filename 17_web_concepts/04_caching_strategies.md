@@ -7,7 +7,7 @@ Temps de lecture ~10 min
 
 Walter White a un problème de distribution.
 Chaque client veut sa livraison immédiate. Il ne peut pas tout produire à la demande.
-Solution : avoir du stock pré-artefact dans des points stratégiques.
+Solution : avoir du stock pré-produit dans des points stratégiques.
 Mais du stock qui périme est dangereux. Du stock mal géré, c'est du gâchis.
 
 Le cache web, c'est ça : avoir la réponse déjà calculée, disponible immédiatement.

@@ -8,7 +8,7 @@ Temps de lecture ~11 min
 
 Google mesure la qualité de ton UI avec trois métriques. Si elles passent dans le rouge, ton site descend dans les résultats de recherche. Et les utilisateurs partent avant que la page finisse de charger.
 
-Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel du utilisateur : est-ce que ça charge vite ? est-ce que ça réagit quand je clique ? est-ce que le contenu saute partout ?
+Ces métriques ne sont pas des opinions. Ce sont des mesures du ressenti réel de l'utilisateur : est-ce que ça charge vite ? est-ce que ça réagit quand je clique ? est-ce que le contenu saute partout ?
 
 ---
 

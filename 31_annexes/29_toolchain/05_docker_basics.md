@@ -98,7 +98,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
-# Cette étape artefact un dossier /app/dist avec le code compilé/optimisé
+# Cette étape produit un dossier /app/dist avec le code compilé/optimisé
 
 # ===== STAGE 2 : exécution =====
 FROM node:20-alpine AS runner

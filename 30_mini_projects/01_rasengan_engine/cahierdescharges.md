@@ -30,7 +30,7 @@ Pas de build step, pas de transpilation. Du JS pur, Node en direct.
 
 ## C'EST QUOI CE PROJET, CONCRÈTEMENT
 
-Naruto veut un simulateur de combat textuel. Chaque ninja a des stats (chakra, vitesse, force), une liste de jutsus, et un style de combat. Le moteur calcule les dégâts, gère les cooldowns, résout les esquives, et artefact un log de combat lisible. Naruto affronte Sasuke, Itachi affronte Pain, Gaara défend contre une attaque surprise : le moteur tourne, les dés roulent, le résultat s'affiche dans ta console.
+Naruto veut un simulateur de combat textuel. Chaque ninja a des stats (chakra, vitesse, force), une liste de jutsus, et un style de combat. Le moteur calcule les dégâts, gère les cooldowns, résout les esquives, et produit un log de combat lisible. Naruto affronte Sasuke, Itachi affronte Pain, Gaara défend contre une attaque surprise : le moteur tourne, les dés roulent, le résultat s'affiche dans ta console.
 
 Ce que tu dois voir tourner à la fin :
 

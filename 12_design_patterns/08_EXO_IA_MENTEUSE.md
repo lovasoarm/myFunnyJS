@@ -59,4 +59,4 @@ Ensuite seulement, lance les tests et compare à ta prédiction.
 
 ## Pourquoi c'est vital
 
-Un singleton qui fuit son état entre tests est un des bugs les plus difficiles à tracer en CI, parce qu'il ne se voit que quand l'ordre des tests change, et un simple `npm test` en local peut sembler tout vert pendant des semaines. Une IA qui génère un test sans connaître le cycle de vie réel de l'objet testé artefact un piège à retardement.
+Un singleton qui fuit son état entre tests est un des bugs les plus difficiles à tracer en CI, parce qu'il ne se voit que quand l'ordre des tests change, et un simple `npm test` en local peut sembler tout vert pendant des semaines. Une IA qui génère un test sans connaître le cycle de vie réel de l'objet testé produit un piège à retardement.

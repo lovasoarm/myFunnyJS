@@ -139,7 +139,7 @@ UNE SEULE EXÉCUTION --> sensible au bruit système (autres process, garbage col
 PLUSIEURS ITÉRATIONS MOYENNÉES --> lisse ce bruit, donne une mesure représentative
 ```
 
-**Qui casse une conclusion de benchmark :** mesurer une seule fois, tomber sur un moment où le garbage collector (nettoyeur de mémoire) se déclenche pile pendant la mesure, et conclure à tort qu'une fonction est lente alors que c'était un artefact ponctuel. Le kit ci-dessus moyenne sur des centaines ou milliers d'itérations pour éviter ce piège.
+**Qui casse une conclusion de benchmark :** mesurer une seule fois, tomber sur un moment où le garbage collector (nettoyeur de mémoire) se déclenche pile pendant la mesure, et conclure à tort qu'une fonction est lente alors que c'était un produit ponctuel. Le kit ci-dessus moyenne sur des centaines ou milliers d'itérations pour éviter ce piège.
 
 ---
 

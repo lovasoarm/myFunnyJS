@@ -71,7 +71,7 @@ avant de la vendorer.
 
 ## (attention) Ce que l'analogie "c'est juste du code" cache
 
-Le code est un **artefact juridique**. Ce que tu écris (ou colles) crée des
+Le code est un **produit juridique**. Ce que tu écris (ou colles) crée des
 obligations pour toi, ton employeur, tes shinobis. L'ignorance ne
 protège pas.
 

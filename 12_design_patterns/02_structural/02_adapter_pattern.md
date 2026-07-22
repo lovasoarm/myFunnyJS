@@ -261,7 +261,7 @@ Facade : simplifie un système complexe en cachant ses détails
 
 ```js
 // Adapter : le format de sortie est dicté par ce que ton code attend
-// ton code attend { id, name, value } --> l'Adapter artefact exactement ça
+// ton code attend { id, name, value } --> l'Adapter produit exactement ça
 
 // Facade : le format de sortie est dicté par ce qui est simple à utiliser
 // tu decides que fetch + parse + validate, ça devient juste getPlayer(id)

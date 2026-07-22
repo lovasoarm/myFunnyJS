@@ -8,10 +8,10 @@ Temps de lecture ~3 min
 
 -> ~6-10 h de travail effectif, à répartir sur 1-2 semaines
 
-Compétence visée : prouver, par artefact, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
+Compétence visée : prouver, par produit, que ton raisonnement d'ingénieur ne dépend pas de JavaScript. C'est la Pierre 6 (pensée transférable) qui cesse d'être une promesse pour devenir une preuve.
 
 > **CHECKPOINT BLOQUANT (v20.3)** : ce challenge est **obligatoire apres le module
-> `14_typescript`**. Tant qu'il n'est pas passe avec artefact commite (algo + pattern
+> `14_typescript`**. Tant qu'il n'est pas passe avec produit commite (algo + pattern
 > dans un langage non-JS, tests verts sur `crosslang_compare.sh`), tu ne considere
 > pas le module 14 comme valide, meme si la roadmap continue. Raison : sans drill
 > valide dans un second langage, la Pierre 6 (pensee transferable) reste postulee,

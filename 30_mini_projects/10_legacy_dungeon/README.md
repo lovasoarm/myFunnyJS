@@ -24,7 +24,7 @@ $ cd dungeon
 $ find . -name "*.js" -o -name "*.ts" | grep -v node_modules | xargs wc -l | tail -1
  47832 total # tu mesures, tu ne supposes jamais
 
-[CARTOGRAPHIE] 2h chrono, MAP.md artefact
+[CARTOGRAPHIE] 2h chrono, MAP.md produit
  - point d'entrée réel localisé
  - 6 fichiers où vit la vraie logique
  - diagramme ASCII du flux principal
@@ -164,7 +164,7 @@ Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
-Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un produit (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
 
 ## Empreinte carbone (critère d'acceptation)
 

@@ -170,7 +170,7 @@ JIT : Just-In-Time (ex: JavaScript V8, Java JVM, Kotlin)
  C'est ce que fait Chrome quand il exécute ton JS
 ```
 
-> **Analogie pour le JIT :** t'imagines un chef cuisinier qui prend ta titan et cuisine exactement ce dont tu as besoin, juste à temps. Ni trop tôt (gâché), ni trop tard (froid).
+> **Analogie pour le JIT :** t'imagines un chef cuisinier qui prend ta commande et cuisine exactement ce dont tu as besoin, juste à temps. Ni trop tôt (gâché), ni trop tard (froid).
 
 ---
 
@@ -697,14 +697,14 @@ C'est la section la plus importante. Parce que c'est exactement la situation où
 
 ---
 
-### Étape 1 : Définir le type de artefact
+### Étape 1 : Définir le type de produit
 
 **Avant de choisir un seul outil ou langage**, tu dois savoir ce que tu construis.
 
 Pose-toi ces questions dans l'ordre :
 
 ```
-1. C'est quoi l'artefact ?
+1. C'est quoi l'produit ?
   (site web / app mobile / outil interne / jeu / API / script...)
 
 2. Qui va l'utiliser ?
@@ -982,7 +982,7 @@ DANS LA VRAIE VIE tu l'utilises pour :
 **Analyse du projet** :
 
 ```
-Type de artefact   : Application web (mobile en version 2 peut-être)
+Type de produit   : Application web (mobile en version 2 peut-être)
 Utilisateurs     : Des développeurs : public averti, ils utilisent un navigateur
 Fonctionnalités clés : Auth, profils, posts, likes, messagerie temps réel
 Contrainte principale: messagerie en temps réel = besoin de websockets ou subscriptions
@@ -1086,7 +1086,7 @@ Ce chapitre, c'est le GPS complet. Pas juste "dev frontend vs backend". Vraiment
   ____________________________________________________________
   |                              |
   | CE QUE LES SHINOBIS VOIENT  CE QUI FAIT TOURNER  |
-  | (layer artefact)          (layer infrastructure) |
+  | (layer produit)          (layer infrastructure) |
   |                              |
   | Frontend Dev     Backend Dev   DevOps/SRE     |
   | Mobile Dev      Data Engineer  Cloud Engineer   |
@@ -1199,7 +1199,7 @@ Cloud      : AWS/GCP/Azure (basiques)
 ```javascript
 // Ce que le frontend pense que l'API fait
 fetch('/api/user/42')
-// -> renvoie les données du utilisateur, boom, done
+// -> renvoie les données de l'utilisateur, boom, done
 
 // Ce que le backend dev a réellement écrit
 app.get('/api/user/:id', async (req, res) => {
@@ -1433,7 +1433,7 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
                |
                v
             DATA ENGINEER
-        Collecte tout ce que l'app artefact.
+        Collecte tout ce que l'app produit.
         Nettoie, organise, rend les données utilisables.
                |
           ___________|___________
@@ -1444,7 +1444,7 @@ Une app de rencontre où les utilisateurs créent un profil, matchent, et discut
      "Les matchs arrivent    "Ces deux profils ont 87%
      surtout le dimanche."   de compatibilité."
      Rapport pour        Améliore l'algorithme
-     l'équipe artefact.     de suggestion.
+     l'équipe produit.     de suggestion.
          |            |
          |___________|___________|
                |
@@ -1588,7 +1588,7 @@ Vercel       Héberger le projet, déploiement     Railway, Render, VPS perso
                 |
           _____________|_____________
          |              |
-      Image uploadée       Texte du utilisateur
+      Image uploadée       Texte de l'utilisateur
       (photo de chat)      ("moi un lundi")
          |              |
          |____________|______________|
@@ -1675,7 +1675,7 @@ Résout le bug de l'image       Anticipe que les PNG transparents
 
 Il dit **non** quand il le faut.
 
-> *"Non, on ne génère pas le meme à chaque clic du utilisateur : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, l'utilisateur voit un spinner. Voilà pourquoi, voilà comment."*
+> *"Non, on ne génère pas le meme à chaque clic de l'utilisateur : si 500 personnes cliquent en même temps, le serveur tombe. On met en place une queue de jobs (Bull + Redis) : les memes se génèrent dans l'ordre, l'utilisateur voit un spinner. Voilà pourquoi, voilà comment."*
 
 ```
               CE QU'IL APPORTE SUR CE PROJET
@@ -1793,7 +1793,7 @@ Parle aux premiers utilisateurs        Surveille les coûts d'infra
 ```
 FREELANCE               ENTREPRENEUR (tu construis Meme Mashup)
 :::::::::::::::::::::         ::::::::::::::::::::::::::::::::::::::::
-Un client te paie pour         Tu construis l'artefact, tu vises les
+Un client te paie pour         Tu construis l'produit, tu vises les
  construire ce type d'app        créateurs de contenu TikTok / Instagram
 Tu choisis la stack, tu livres     Tu es dev + PM + support en même temps
 Tu factures à l'heure ou au projet   Si ça devient viral -> gros upside
@@ -1816,7 +1816,7 @@ Software Architect Monolithe vs microservice, Supabase vs S3, scalabilité
 Eng. Manager    Équipe, recrutement, roadmap, protection des devs
 CTO        Stack initiale, vision, si nécessaire premiers commits
 Freelance     Livre la feature demandée, seul ou en mission courte
-Entrepreneur    Tout. Le artefact, les utilisateurs, les coûts, la survie.
+Entrepreneur    Tout. Le produit, les utilisateurs, les coûts, la survie.
 ```
 
 ---
@@ -1861,7 +1861,7 @@ Technologies : Flutter/Dart, React Native/JS, Swift, Kotlin. Ce qui différencie
 
 #### Cloud / DevOps
 
-L'infrastructure est devenue un artefact software. Plus personne n'achète des serveurs physiques.
+L'infrastructure est devenue un produit software. Plus personne n'achète des serveurs physiques.
 
 Technologies : AWS/GCP/Azure, Kubernetes, Terraform, Docker, CI/CD. Ce qui différencie les tops : comprendre les coûts cloud (ça peut ruiner une startup), la résilience, la sécurité infra. Certifications qui valent quelque chose : AWS Solutions Architect, GCP Professional, CKA (Certified Kubernetes Administrator).
 
@@ -2352,7 +2352,7 @@ function construireCarriereRemote(dev) {
  TikTok   -> 9 mois
  ChatGPT  -> 72 heures
 
- Aucun artefact dans l'histoire n'a grandi aussi vite.
+ Aucun produit dans l'histoire n'a grandi aussi vite.
  Et les devs sont en première ligne.
 ```
 

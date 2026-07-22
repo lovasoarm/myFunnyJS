@@ -218,7 +218,7 @@ TypeError: ninja.jutsus is not a function
 
 Sans voir le code : réponds à ces questions.
 - Quel est le type d'erreur ? Qu'est-ce que ça signifie ?
-- Dans quel fichier et à quelle ligne le crash s'est-il artefact ?
+- Dans quel fichier et à quelle ligne le crash s'est-il produit ?
 - Quelle propriété ou méthode est en cause ?
 - Donne une hypothèse concrète sur la cause.
 - Quelle ligne du fichier appelant vaut la peine d'être inspectée en deuxième ?

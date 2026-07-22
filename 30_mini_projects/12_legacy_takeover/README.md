@@ -101,7 +101,7 @@ zone à toucher **avant** de la toucher (voir `06_testing/09_test_strategy_not_f
 
 ## Pitch 3 lignes
 
-Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un produit (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
 
 ## Empreinte carbone (critère d'acceptation)
 

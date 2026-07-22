@@ -1,7 +1,7 @@
 ---
 stability: intemporel
 duree_de_vie_estimee: 10+ ans
-raison: Un plan de migration est un artefact durable, indépendant du contenu.
+raison: Un plan de migration est un produit durable, indépendant du contenu.
 ---
 
 # MIGRATION_LEARNER : passer d'une version à l'autre sans casser ton parcours

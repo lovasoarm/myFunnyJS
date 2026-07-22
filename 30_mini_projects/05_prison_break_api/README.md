@@ -125,7 +125,7 @@ client
 1. Zéro mot de passe en clair dans la DB : bcrypt uniquement, coût minimum 12
 2. Chaque endpoint protégé vérifie le JWT avant tout traitement
 3. Rate limiter actif sur /evasion/badge avant même de chercher le prisonnier en DB
-4. Tous les inputs du utilisateur passent par le sanitizer avant d'atteindre la DB
+4. Tous les inputs de l'utilisateur passent par le sanitizer avant d'atteindre la DB
 5. Les erreurs ne leak jamais de stack trace ni de détail interne vers le client
 ```
 
@@ -158,7 +158,7 @@ Voir `08_memory_performance/00_measure_first.md`.
 
 ## Pitch 3 lignes
 
-Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un artefact (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
+Ce projet démontre une compétence clé : lire du code inconnu, débugger sous pression, livrer un produit (ADR + tests) qu'un autre dev peut reprendre. Utilisable en portfolio et en entretien.
 
 ## Empreinte carbone (critère d'acceptation)
 

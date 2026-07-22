@@ -270,7 +270,7 @@ Avant d'appuyer sur Entrée, passe le prompt à cette grille. Six questions, dix
 3. **Tâche** : est-ce que la tâche est formulée en verbe d'action précis, avec une entrée et une sortie identifiées ? Pas "aide-moi avec X" : "écris une fonction `f(a, b): T` qui fait Y".
 4. **Format** : ai-je dit comment je veux la réponse (langage, style, longueur, avec/sans commentaires, avec/sans tests) ?
 5. **Contraintes** : ai-je listé ce qu'elle **ne doit pas** faire (pas de mutation, pas de lib externe, pas de try/catch global, pas de dépendance à runtime X) ?
-6. **Vérifiabilité** : **comment vais-je vérifier objectivement que la réponse est correcte, sans relire tout le code à l'œil ?** Un test qui passe, une commande qui renvoie 0, un output qui match un pattern précis. Si la seule vérification possible est "ça a l'air bien", ton prompt est trop flou : reformule-le pour que la réponse produise un artefact testable.
+6. **Vérifiabilité** : **comment vais-je vérifier objectivement que la réponse est correcte, sans relire tout le code à l'œil ?** Un test qui passe, une commande qui renvoie 0, un output qui match un pattern précis. Si la seule vérification possible est "ça a l'air bien", ton prompt est trop flou : reformule-le pour que la réponse produise un produit testable.
 
 La 6e question est celle qui sépare le prompt de dev senior du prompt de vibe-coder. Un dev senior formule ses demandes de façon à ce que la réponse soit **falsifiable** : si elle est fausse, quelque chose casse visiblement. Un vibe-coder demande "écris un truc qui marche" et lit la réponse en priant. Devine qui livre en prod.
 

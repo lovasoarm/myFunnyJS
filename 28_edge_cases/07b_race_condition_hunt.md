@@ -87,8 +87,8 @@ Sans ce paragraphe, la review refuse le merge.
 
 ## Livrables
 
-- `HYPOTHESES.md` (voir `30_mini_projects/19_templates/04_HYPOTHESES_TEMPLATE.md`).
+- `HYPOTHESES.md` (voir `30_mini_projects/_templates/04_HYPOTHESES_TEMPLATE.md`).
 - Script de reproduction (10k itérations minimum).
 - Fix + test qui **casse sans le fix**.
 - Condition de falsification écrite.
-- ADR (`30_mini_projects/19_templates/00_ADR_TEMPLATE.md`).
+- ADR (`30_mini_projects/_templates/00_ADR_TEMPLATE.md`).
