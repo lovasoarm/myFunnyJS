@@ -2,7 +2,7 @@
 stability: stable
 ---
 
-# 30_mini_projects : 18 mini-projets appliqués
+# 30_mini_projects : 19 mini-projets appliqués
 
 Temps de lecture ~3 min
 
@@ -45,6 +45,7 @@ l'ordre où tu dois les faire strictement. Recommandation :
 | 15 | `15_porte_rasengan_engine_multilang` | Transfert de compétence (Go) |
 | 16 | `16_distributed_arena` | Systèmes distribués, idempotence |
 | 17 | `17_polyglot_forge` | Bonus : intégration multi-langages |
+| 19 | `19_supervise_the_ai` | Architecte-superviseur : zero code applicatif, ADR + prompts + reviews + POSTMORTEM |
 
 ## Livrables communs à chaque projet
 
@@ -52,6 +53,8 @@ l'ordre où tu dois les faire strictement. Recommandation :
 - `POSTMORTEM.md` : rempli à la fin.
 - `TDD_JOURNAL.md` : le journal des cycles rouge → vert → refactor.
 - `ADR/ADR-001_*.md` : au moins un ADR par projet, souvent plusieurs.
+- `SECURITY_GATE.md` : gate bloquante. **Rejouer avant POSTMORTEM**
+  à chaque livraison de mini-projet (correction #2 de la revue).
 - `SECURITY.md` : entrées validées, secrets hors code, dépendances
   scannées, surface d'exposition. Livré comme template avec des
   placeholders : un mini-projet n'est pas terminé tant que ce fichier

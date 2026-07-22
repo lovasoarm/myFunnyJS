@@ -8,6 +8,8 @@ gate: bloquante
 > **Gate bloquante**. Ce mini-projet ne peut être marqué **publié** tant que
 > la checklist OWASP Top 10 ci-dessous n'est pas remplie **et signée**.
 
+> **Rejouer avant POSTMORTEM** à chaque livraison (correction #2 de la revue).
+
 ## Procédure
 
 1. Copie [`../19_templates/03_SECURITY_GATE_TEMPLATE.md`](../19_templates/03_SECURITY_GATE_TEMPLATE.md) dans ce dossier sous le nom `SECURITY_GATE_FILLED.md`.
