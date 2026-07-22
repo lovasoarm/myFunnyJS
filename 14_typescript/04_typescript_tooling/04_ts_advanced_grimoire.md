@@ -29,24 +29,24 @@ Le plan détaillé de Fox River, version compilateur. Tout ce qu'un dev doit avo
 
 | Terme | Définition | Code | Analogies |
 |-------|------------|------|-----------|
-| Declaration file (.d.ts) | Fichier qui décrit la forme d'un code existant, sans l'implémenter, jamais exécuté | `declare function f(x: number): string;` |la légende d'une carte, pas le territoire | un plan d'architecte, pas le bâtiment|
-| declare | Mot-clé qui dit à TS "fais-moi confiance, ça existe au runtime, voici juste sa forme" | `declare class RadioCrypte { ... }` |un témoignage qu'on accepte sans vérifier soi-même | une carte d'identité qu'on ne questionne pas|
-| @types/* | Paquets npm communautaires (DefinitelyTyped) qui fournissent des types pour des libs JS sans types natifs | `npm install --save-dev @types/lodash` |une traduction officielle d'un texte original | un manuel d'instructions ajouté après coup|
-| declare module (boîte noire) | Déclare qu'un module existe sans préciser sa forme interne, tout devient implicitement any | `declare module 'lib-sans-types';` |un colis accepté sans l'ouvrir | une salle sur le plan, sans savoir ce qu'il y a dedans|
-| declare global | Étend une interface globale existante (comme Window) via la fusion de déclarations | `declare global { interface Window {...} }` |ajouter une annotation sur une carte officielle déjà imprimée | un avenant à un contrat existant|
-| tsconfig.json | Fichier de configuration qui pilote la sortie du compilateur et la rigueur de vérification | `{ "compilerOptions": { "strict": true } }` |le règlement intérieur du plan d'évasion | les statuts d'une organisation|
-| target | Option qui détermine la version de JS générée par la compilation | `"target": "ES2022"` |la langue d'arrivée d'une traduction | le format de sortie d'un fichier exporté|
-| module | Option qui détermine le système de modules utilisé dans le JS compilé | `"module": "NodeNext"` |le protocole de communication choisi entre équipes | le format d'emballage du colis livré|
-| strict | Interrupteur qui active plusieurs vérifications rigoureuses en une fois | `"strict": true` |activer toutes les alarmes de sécurité d'un coup | un contrôle de sécurité renforcé|
-| strictNullChecks | Sous-option de strict qui force à gérer explicitement null et undefined | partie de `"strict": true` |vérifier qu'une pièce est vide avant d'y entrer | ne jamais supposer qu'une case est remplie|
-| noImplicitAny | Sous-option de strict qui interdit les types any non déclarés explicitement | partie de `"strict": true` |interdire les zones d'ombre non identifiées sur le plan | refuser les inconnues non signalées|
-| allowJs | Autorise des fichiers .js à coexister dans un projet TypeScript | `"allowJs": true` |laisser une porte ouverte pendant la transition | un sas de décompression entre deux états|
-| checkJs | Applique la vérification de type TypeScript même sur des fichiers .js, via JSDoc | `"checkJs": true` |inspecter une zone sans la rénover encore | un contrôle qualité sur l'existant, sans tout reconstruire|
-| JSDoc (typage) | Annotations de type écrites en commentaires, lues par TS dans les fichiers .js | `/** @param {number} x */` |des notes manuscrites en marge d'un vieux plan | des indices laissés sans réécrire le document|
-| paths / baseUrl | Définit des alias d'import pour raccourcir des chemins relatifs complexes | `"@utils/*": ["utils/*"]` |un nom de code court pour une route complexe | un raccourci sur une carte au lieu du chemin détaillé|
-| declaration (compilerOptions) | Génère automatiquement les fichiers .d.ts correspondant à ton code TS, pour les consommateurs externes | `"declaration": true` |publier le plan en même temps que le bâtiment construit | fournir la notice avec le jutsu|
-| Migration progressive | Stratégie de conversion JS vers TS fichier par fichier, jamais en un seul bloc | ordre : feuilles du graphe de dépendances d'abord |évacuer un bâtiment étage par étage | un plan d'évasion en plusieurs phases vérifiées|
-| Feuille (graphe de dépendances) | Fichier sans dépendance interne vers d'autres fichiers du projet, point de départ idéal pour migrer | `utils.ts` qui n'importe aucun autre fichier du projet |le premier maillon d'une chaîne, sans rien en amont | la première pièce libérée dans un plan d'évasion|
+| Declaration file (.d.ts) | Fichier qui décrit la forme d'un code existant, sans l'implémenter, jamais exécuté | `declare function f(x: number): string;` | la légende d'une carte, pas le territoire / un plan d'architecte, pas le bâtiment |
+| declare | Mot-clé qui dit à TS "fais-moi confiance, ça existe au runtime, voici juste sa forme" | `declare class RadioCrypte { ... }` | un témoignage qu'on accepte sans vérifier soi-même / une carte d'identité qu'on ne questionne pas |
+| @types/* | Paquets npm communautaires (DefinitelyTyped) qui fournissent des types pour des libs JS sans types natifs | `npm install --save-dev @types/lodash` | une traduction officielle d'un texte original / un manuel d'instructions ajouté après coup |
+| declare module (boîte noire) | Déclare qu'un module existe sans préciser sa forme interne, tout devient implicitement any | `declare module 'lib-sans-types';` | un colis accepté sans l'ouvrir / une salle sur le plan, sans savoir ce qu'il y a dedans |
+| declare global | Étend une interface globale existante (comme Window) via la fusion de déclarations | `declare global { interface Window {...} }` | ajouter une annotation sur une carte officielle déjà imprimée / un avenant à un contrat existant |
+| tsconfig.json | Fichier de configuration qui pilote la sortie du compilateur et la rigueur de vérification | `{ "compilerOptions": { "strict": true } }` | le règlement intérieur du plan d'évasion / les statuts d'une organisation |
+| target | Option qui détermine la version de JS générée par la compilation | `"target": "ES2022"` | la langue d'arrivée d'une traduction / le format de sortie d'un fichier exporté |
+| module | Option qui détermine le système de modules utilisé dans le JS compilé | `"module": "NodeNext"` | le protocole de communication choisi entre équipes / le format d'emballage du colis livré |
+| strict | Interrupteur qui active plusieurs vérifications rigoureuses en une fois | `"strict": true` | activer toutes les alarmes de sécurité d'un coup / un contrôle de sécurité renforcé |
+| strictNullChecks | Sous-option de strict qui force à gérer explicitement null et undefined | partie de `"strict": true` | vérifier qu'une pièce est vide avant d'y entrer / ne jamais supposer qu'une case est remplie |
+| noImplicitAny | Sous-option de strict qui interdit les types any non déclarés explicitement | partie de `"strict": true` | interdire les zones d'ombre non identifiées sur le plan / refuser les inconnues non signalées |
+| allowJs | Autorise des fichiers .js à coexister dans un projet TypeScript | `"allowJs": true` | laisser une porte ouverte pendant la transition / un sas de décompression entre deux états |
+| checkJs | Applique la vérification de type TypeScript même sur des fichiers .js, via JSDoc | `"checkJs": true` | inspecter une zone sans la rénover encore / un contrôle qualité sur l'existant, sans tout reconstruire |
+| JSDoc (typage) | Annotations de type écrites en commentaires, lues par TS dans les fichiers .js | `/** @param {number} x */` | des notes manuscrites en marge d'un vieux plan / des indices laissés sans réécrire le document |
+| paths / baseUrl | Définit des alias d'import pour raccourcir des chemins relatifs complexes | `"@utils/*": ["utils/*"]` | un nom de code court pour une route complexe / un raccourci sur une carte au lieu du chemin détaillé |
+| declaration (compilerOptions) | Génère automatiquement les fichiers .d.ts correspondant à ton code TS, pour les consommateurs externes | `"declaration": true` | publier le plan en même temps que le bâtiment construit / fournir la notice avec le jutsu |
+| Migration progressive | Stratégie de conversion JS vers TS fichier par fichier, jamais en un seul bloc | ordre : feuilles du graphe de dépendances d'abord | évacuer un bâtiment étage par étage / un plan d'évasion en plusieurs phases vérifiées |
+| Feuille (graphe de dépendances) | Fichier sans dépendance interne vers d'autres fichiers du projet, point de départ idéal pour migrer | `utils.ts` qui n'importe aucun autre fichier du projet | le premier maillon d'une chaîne, sans rien en amont / la première pièce libérée dans un plan d'évasion |
 
 ---
 

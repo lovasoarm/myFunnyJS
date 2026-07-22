@@ -48,6 +48,30 @@ Si `node` n'est pas reconnu : ferme et rouvre PowerShell. Toujours pas ?
 → variable `PATH` mal configurée. Cherche "Environment Variables" dans les
 paramètres système, ajoute le dossier d'install de Node.
 
+
+---
+
+## 1bis. Fenêtre Node testée (à vérifier avant tout autre install)
+
+Ce curriculum est testé et validé sur **Node 20.x → 22.x** (LTS actifs à la
+date de review). Node 18 est en fin de vie ; Node 23-24 peuvent émettre des
+warnings de deprecation qui perturbent le premier click.
+
+Vérifie **maintenant**, avant même le premier exercice :
+
+```bash
+node -e 'const [maj] = process.versions.node.split(".").map(Number); if (maj < 20 || maj > 22) { console.error("Node hors fenêtre testée (20-22). Version:", process.versions.node); process.exit(1); } else { console.log("Node OK:", process.versions.node); }'
+```
+
+Si la commande échoue avec `Node hors fenêtre testée` :
+
+- Ré-installe via `nvm install 22 && nvm use 22`.
+- Si tu **dois** rester sur une autre version (contrainte projet), documente-le
+  dans ton `PLATEAU_JOURNAL.md` : tu acceptes que certains warnings soient
+  attendus et non-bloquants.
+
+Le fichier `.nvmrc` à la racine du repo donne la version canonique en cours.
+
 ---
 
 ## 2. Git

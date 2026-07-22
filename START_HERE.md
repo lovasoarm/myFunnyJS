@@ -55,7 +55,7 @@ jusqu'a "je maitrise tout MyFunnyJS" :
        |    (+ mini-projets 11 a 14)
        v
 [23 -> 29]  AI-Native / Databases / Scale / Observability / Team / Edge Cases / AI Agents
-       |    (+ mini-projets 15 a 17 + 18bis "IA en panne")
+       |    (+ mini-projets 15 a 17 ; drill trimestriel: 31_annexes/16_career/05_ai_famine_drill.md)
        v
 [31_annexes] Career / Interview / Portfolio / Ethics
        |
@@ -94,7 +94,7 @@ soi-meme, et se defend a l'oral (voir `31_annexes/19_interview/03_objection_stor
 | `00_getting_started/` | Installer, ecrire ton premier code. | Jour 1. |
 | `00_referentiel/` | Les 6 pierres, auto-diagnostic, ledger. | Jour 2. |
 | `01_...` a `29_...` | Les 32 modules de fond. | Dans l'ordre. |
-| `30_mini_projects/` | 17 projets + 18bis (IA en panne). | Au fil du parcours. |
+| `30_mini_projects/` | 17 projets (drill trimestriel IA en panne : 31_annexes/16_career/05_ai_famine_drill.md). | Au fil du parcours. |
 | `31_annexes/` | Carriere, interview, portfolio, ethique. | Quand tu es pret a defendre. |
 | `32_tools/` | Outillage complementaire. | Au besoin. |
 | `PLATEAU_JOURNAL.md` (a toi de creer) | Ton journal de blocage. | Apres 2 jours sans progres. |
@@ -121,7 +121,7 @@ soi-meme, et se defend a l'oral (voir `31_annexes/19_interview/03_objection_stor
 - **Chaque semaine** : une entree dans ton `DEPENDENCY_LEDGER.md` personnel.
 - **Chaque mini-projet** : POSTMORTEM signe + gate OWASP validee + un OBJECTION_STORM
   par ADR.
-- **Chaque trimestre** : un drill `18bis_ia_en_panne` (reconstruire un module sans IA).
+- **Chaque trimestre** : un drill `31_annexes/16_career/05_ai_famine_drill.md` (reconstruire un module sans IA).
 
 ---
 

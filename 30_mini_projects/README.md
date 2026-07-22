@@ -71,10 +71,10 @@ Les mini-projets 1 a 10 te donnent l'architecture attendue (fichiers dans `src/`
 
 ## Drill hors serie : 18bis "IA en panne"
 
-`18bis_ia_en_panne/` n'est pas dans la sequence numerotee 01-17. C'est un
+`31_annexes/16_career/05_ai_famine_drill.md` n'est pas dans la sequence numerotee 01-17. C'est un
 drill de survie technologique : reconstruire un module deja etudie, sur une
 machine vierge, sans IA, sans internet, sans autocompletion. A rejouer une
-fois par trimestre. Voir `18bis_ia_en_panne/README.md`.
+fois par trimestre. Voir `31_annexes/16_career/05_ai_famine_drill.md`.
 
 ## Gate securite (OWASP) : bloquant pour cloturer un projet
 

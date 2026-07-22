@@ -40,3 +40,7 @@ Thumbs.db
 # Internal / editor (not for learners)
 .internal/
 .vscode/
+
+# Artefacts internes (audits, journaux d'apprenant, drafts) — jamais dans les PR
+AUDIT_*.md
+PLATEAU_JOURNAL.md

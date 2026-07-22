@@ -2,7 +2,7 @@
 stability: intemporel
 ---
 
-# 18bis_ia_en_panne : simulation de survie technologique
+# 05 : AI Famine Drill (ex-18bis) — simulation de survie technologique
 
 Temps de lecture ~6 min. Temps de realisation : 6 a 10 heures sur 1 a 2 jours.
 

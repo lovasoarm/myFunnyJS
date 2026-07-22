@@ -8,7 +8,7 @@ stability: stable
 
 Temps de lecture ~3 min
 
-**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 preludes (`00_getting_started/`, `00_referentiel/`) + 17 mini-projets + 1 drill de survie (18bis), apprenable seul.**
+**MyFunnyJS : 32 modules de fond (01 -> 32) + 2 preludes (`00_getting_started/`, `00_referentiel/`) + 17 mini-projets + 1 drill trimestriel de survie (voir `31_annexes/16_career/05_ai_famine_drill.md`), apprenable seul.**
 
 > **Nouveau ici ?** Va directement lire [`START_HERE.md`](./START_HERE.md).
 > Ce README tient volontairement court. Le detail est en annexe.
@@ -68,7 +68,7 @@ Si tu bloques plus de 2 jours -> tu ouvres `PLATEAU_JOURNAL.md` (a toi de creer)
 24 -> 28  Databases · Scalability · Observability · Team · Edge Cases
 29        AI Agents & Autonomy
 30        17 mini-projets (Legacy Dungeon, Memory Hunter, Distributed Arena...)
-          + 18bis "IA en panne" (drill de survie, une fois par trimestre)
+          + drill trimestriel "IA en panne" (voir 31_annexes/16_career/05_ai_famine_drill.md)
 31        Annexes : transferabilite, interview, portfolio, career, ethique
           Carte detaillee : 31_annexes/15_ARBORESCENCE.md
 Templates reutilisables : 31_annexes/28_templates/  (POSTMORTEM, HYPOTHESES, PUBLICATION)
