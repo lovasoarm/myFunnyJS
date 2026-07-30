@@ -4,7 +4,7 @@ stability: stable
 
 ![MyFunnyJS](./assets/title.svg)
 
-# MyFunnyJS
+# MyFunnyJs
 
 Temps de lecture ~3 min
 
