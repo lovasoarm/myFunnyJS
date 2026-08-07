@@ -220,7 +220,7 @@ _stratégie avant framework_
 **Noyau ★** : un test vérifie un comportement (ce que le code doit garantir), pas une implémentation (comment il le fait en interne). Nomme tes tests par ce qu'ils garantissent, pas par la fonction qu'ils appellent.
 _Fichier : `06_testing/01_unit_sniper.md`_
 
-**Piège** : mocker (remplacer par une version fake) ce que tu possèdes toi-même est un anti-pattern (une mauvaise pratique reconnue) : on mock la frontière du système — le réseau, l'horloge, le système de fichiers — pas ton propre code. Confondre couverture de test et confiance réelle : un test de bout en bout (E2E, qui simule un vrai utilisateur qui clique) qui passe ne couvre souvent qu'un seul chemin, le chemin heureux, pas les cas limites.
+**Piège** : mocker (remplacer par une version fake) ce que tu possèdes toi-même est un anti-pattern (une mauvaise pratique reconnue) : on mock la frontière du système : le réseau, l'horloge, le système de fichiers : pas ton propre code. Confondre couverture de test et confiance réelle : un test de bout en bout (E2E, qui simule un vrai utilisateur qui clique) qui passe ne couvre souvent qu'un seul chemin, le chemin heureux, pas les cas limites.
 
 **Zappable** : la syntaxe précise de Jest, Vitest ou Playwright (les outils de test) est périssable, elle change avec le temps. Le raisonnement sur "quoi tester" est intemporel. Le TDD (écrire le test avant le code) est un outil pour concevoir, pas juste pour vérifier après coup.
 
@@ -342,7 +342,7 @@ _Fichier : `14_typescript/02_ts_intermediate/04_type_guards.md`_
 
 **Noyau** : `any` n'est pas vraiment "typé", c'est une trappe qui désactive toutes les vérifications de TypeScript. `unknown` t'oblige à vérifier le type avant de l'utiliser (le narrowing) : c'est lui, le vrai remplaçant sûr de `any`.
 
-**Zappable** : les génériques (`<T>`) ne sont qu'une "variable de type", pas de la magie — c'est `keyof` (récupérer les noms des propriétés d'un type), `typeof`, et l'accès indexé qui sont le vrai pouvoir de TypeScript. Dans ton `tsconfig` (le fichier de config TS), active `strict` (toutes les vérifications strictes), `noUncheckedIndexedAccess` (force à vérifier qu'un élément d'un tableau existe avant de l'utiliser), et `exactOptionalPropertyTypes` (interdit de confondre "propriété absente" et "propriété à `undefined`"). Les types conditionnels, les template literal types, et les mapped types récursifs : au repo, à consulter au besoin.
+**Zappable** : les génériques (`<T>`) ne sont qu'une "variable de type", pas de la magie : c'est `keyof` (récupérer les noms des propriétés d'un type), `typeof`, et l'accès indexé qui sont le vrai pouvoir de TypeScript. Dans ton `tsconfig` (le fichier de config TS), active `strict` (toutes les vérifications strictes), `noUncheckedIndexedAccess` (force à vérifier qu'un élément d'un tableau existe avant de l'utiliser), et `exactOptionalPropertyTypes` (interdit de confondre "propriété absente" et "propriété à `undefined`"). Les types conditionnels, les template literal types, et les mapped types récursifs : au repo, à consulter au besoin.
 
 ---
 
@@ -366,7 +366,7 @@ _Fichier : `15_runtime_env/01_node_vs_browser.md`_
     |________________________________________________|
 ```
 
-**Piège** : mélanger `require` (l'ancien système d'import) et `import` (le nouveau) dans un même paquet est une source majeure de bugs d'empaquetage — c'est le champ `type: "module"` dans `package.json` qui tranche lequel utiliser. `process.env` (les variables d'environnement) est toujours une chaîne de texte : `'false'` est "truthy" (considéré vrai dans un `if`), `'0'` aussi. Il faut toujours convertir explicitement.
+**Piège** : mélanger `require` (l'ancien système d'import) et `import` (le nouveau) dans un même paquet est une source majeure de bugs d'empaquetage : c'est le champ `type: "module"` dans `package.json` qui tranche lequel utiliser. `process.env` (les variables d'environnement) est toujours une chaîne de texte : `'false'` est "truthy" (considéré vrai dans un `if`), `'0'` aussi. Il faut toujours convertir explicitement.
 
 **Zappable** : un stream traite les données morceau par morceau, indispensable pour les gros fichiers, les uploads, ou les logs. Les `worker_threads` (des threads séparés pour paralléliser du travail) : rares en pratique, car les faire communiquer entre eux coûte cher.
 
@@ -419,7 +419,7 @@ _Fichier : `18_oop_js/04_this_keyword_rules.md`_
 
 **Piège** : oublier que `class` n'est qu'une écriture plus lisible par-dessus les prototypes (le mécanisme d'héritage natif de JS). `Object.getPrototypeOf` remonte la chaîne de prototypes et règle 100% des "pourquoi cette méthode n'est pas trouvée".
 
-**Zappable** : préfère la composition (assembler des objets) à l'héritage (hérite uniquement quand la relation "est un" tient vraiment pour 100% des méthodes). `call`/`apply`/`bind` : `bind` fige définitivement le contexte `this`, `call`/`apply` l'invoquent directement — utile pour les callbacks qui perdent leur contexte d'origine.
+**Zappable** : préfère la composition (assembler des objets) à l'héritage (hérite uniquement quand la relation "est un" tient vraiment pour 100% des méthodes). `call`/`apply`/`bind` : `bind` fige définitivement le contexte `this`, `call`/`apply` l'invoquent directement : utile pour les callbacks qui perdent leur contexte d'origine.
 
 ---
 
@@ -430,7 +430,7 @@ _accessibilité (a11y) et internationalisation (i18n), pas des couches ajoutées
 **Noyau ★** : l'accessibilité est une contrainte de conception dès le départ, pas une couche qu'on ajoute à la fin. Un composant inaccessible est un composant cassé, pour environ 15% des utilisateurs.
 _Fichier : `19_web_inclusive/01_a11y_why_it_matters.md`_
 
-**Piège** : un attribut ARIA (des attributs HTML qui décrivent un élément aux lecteurs d'écran) mal utilisé est pire que pas d'ARIA du tout. Utilise du HTML sémantique (`button`, `nav`, `main` — des balises qui ont un sens clair) avant tout `role="..."` ajouté à la main.
+**Piège** : un attribut ARIA (des attributs HTML qui décrivent un élément aux lecteurs d'écran) mal utilisé est pire que pas d'ARIA du tout. Utilise du HTML sémantique (`button`, `nav`, `main` : des balises qui ont un sens clair) avant tout `role="..."` ajouté à la main.
 
 **Zappable** : le focus visible (voir où on en est au clavier), une tabulation logique, et la touche Escape qui ferme les fenêtres modales : ça couvre 80% des audits d'accessibilité. Le niveau WCAG AA (la norme d'accessibilité web) demande un rapport de contraste d'au moins 4.5:1 pour du texte normal, 3:1 pour du grand texte.
 
@@ -442,7 +442,7 @@ _Fichier : `19_web_inclusive/01_a11y_why_it_matters.md`_
 
 _trois transports, trois compromis_
 
-**Noyau ★** : WebSockets : bidirectionnel (les deux côtés peuvent parler en même temps), stateful (la connexion garde un état, coûteux à faire grossir à l'échelle) — pour le chat, la collaboration en direct, le jeu en ligne. SSE (Server-Sent Events) : uniquement serveur vers client, mais sur du HTTP simple — pour les notifications, les fils d'actualité. WebRTC : de pair à pair (les appareils se parlent directement), complexe à mettre en place (STUN/TURN/signaling, des mécanismes pour connecter deux appareils derrière des box internet différentes) — pour la voix et la vidéo.
+**Noyau ★** : WebSockets : bidirectionnel (les deux côtés peuvent parler en même temps), stateful (la connexion garde un état, coûteux à faire grossir à l'échelle) : pour le chat, la collaboration en direct, le jeu en ligne. SSE (Server-Sent Events) : uniquement serveur vers client, mais sur du HTTP simple : pour les notifications, les fils d'actualité. WebRTC : de pair à pair (les appareils se parlent directement), complexe à mettre en place (STUN/TURN/signaling, des mécanismes pour connecter deux appareils derrière des box internet différentes) : pour la voix et la vidéo.
 _Fichier : `20_realtime/04_realtime_grimoire.md`_
 
 ```
@@ -526,7 +526,7 @@ _Fichier : `22_security/07_security_grimoire.md`_
      accessible par une faille XSS       inaccessible en JS, donc protégé
 ```
 
-**Piège** : la pollution de prototype — `Object.assign({}, req.body)` sans filtre permet à un attaquant d'injecter une clé `__proto__` et de modifier le comportement global de tes objets. Utilise `Object.create(null)` ou une `Map` pour l'éviter. L'IDOR (accéder à la ressource d'un autre utilisateur juste en changeant un identifiant dans l'URL) se corrige avec une double vérification systématique (`WHERE id = $1 AND user_id = $2`), pas une vérification ponctuelle qu'on peut oublier.
+**Piège** : la pollution de prototype : `Object.assign({}, req.body)` sans filtre permet à un attaquant d'injecter une clé `__proto__` et de modifier le comportement global de tes objets. Utilise `Object.create(null)` ou une `Map` pour l'éviter. L'IDOR (accéder à la ressource d'un autre utilisateur juste en changeant un identifiant dans l'URL) se corrige avec une double vérification systématique (`WHERE id = $1 AND user_id = $2`), pas une vérification ponctuelle qu'on peut oublier.
 
 **Zappable** : le Top 10 OWASP (la liste des failles les plus fréquentes) change peu d'une année à l'autre, la relire chaque année vaut 10 formations. `npm install` exécute du code écrit par d'autres : un SBOM (la liste complète de tout ce qui compose ton appli) et un audit régulier des dépendances ne sont plus optionnels. Le CORS n'est pas un mécanisme de sécurité en soi, c'est une relaxation contrôlée d'une restriction de sécurité (le "same-origin").
 
@@ -539,7 +539,7 @@ _collaborer avec l'IA, pas lui déléguer : périssable 2028, un an de plus que 
 **Noyau ★** : l'IA propose, c'est toi qui décides. La signature d'un dev qui a compris ce qu'il fait : il peut expliquer ce qu'il a accepté ET ce qu'il a refusé, et pourquoi.
 _Fichier : `23_ai_native_dev/12_ai_grimoire.md`_
 
-**Noyau** : 4 niveaux de validation, cumulatifs — jamais un seul qui suffit à lui tout seul :
+**Noyau** : 4 niveaux de validation, cumulatifs : jamais un seul qui suffit à lui tout seul :
 
 ```
 [ Lecture critique du code généré ]
@@ -601,7 +601,7 @@ _Fichier : `24_databases/03_data_modeling.md`_
 
 _avant de scaler (faire grossir), mesurer_
 
-**Noyau ★** : les 8 croyances fausses classiques sur les systèmes distribués (par exemple : croire que le réseau est fiable, que la latence est nulle, ou que la bande passante est infinie — la liste complète des 8 est dans le fichier source). À relire tous les ans, elles ne prennent pas une ride.
+**Noyau ★** : les 8 croyances fausses classiques sur les systèmes distribués (par exemple : croire que le réseau est fiable, que la latence est nulle, ou que la bande passante est infinie : la liste complète des 8 est dans le fichier source). À relire tous les ans, elles ne prennent pas une ride.
 _Fichier : `25_scalability/03_distributed_fallacies.md`_
 
 **Piège** : scaler à la verticale (une machine plus puissante) est simple, mais ça plafonne et échoue tout d'un coup en cas de panne. Scaler à l'horizontale (plusieurs machines) demande de la coordination entre elles. Choisis selon le coût opérationnel réel, pas par élégance technique.
@@ -614,7 +614,7 @@ _Fichier : `25_scalability/03_distributed_fallacies.md`_
 
 _les trois piliers, réellement_
 
-**Noyau ★** : des logs structurés (au format JSON, avec des niveaux de gravité et un identifiant de corrélation qui suit une même requête à travers tous les services) + des traces distribuées (le chemin complet d'une requête à travers plusieurs services) + les indicateurs RED (Rate, Errors, Duration — pour les services) ou USE (Utilization, Saturation, Errors — pour les ressources comme le CPU ou la mémoire). Sans ça, un bug dans un système à plusieurs services devient un vrai mystère à résoudre.
+**Noyau ★** : des logs structurés (au format JSON, avec des niveaux de gravité et un identifiant de corrélation qui suit une même requête à travers tous les services) + des traces distribuées (le chemin complet d'une requête à travers plusieurs services) + les indicateurs RED (Rate, Errors, Duration : pour les services) ou USE (Utilization, Saturation, Errors : pour les ressources comme le CPU ou la mémoire). Sans ça, un bug dans un système à plusieurs services devient un vrai mystère à résoudre.
 _Fichier : `26_observability/02_distributed_tracing.md`_
 
 **Piège** : logger un secret par accident est aussi grave que de le committer (l'enregistrer) dans le code. Audite tes logs comme tu auditerais du code source.
@@ -630,7 +630,7 @@ _ce qui te rend embauchable en 2035_
 **Noyau ★** : sache expliquer la même chose à un enfant, à un pair développeur, et à un décideur non-technique. C'est ce qui sépare ceux qui ont vraiment compris de ceux qui ont juste lu.
 _Fichier : `27_team_craft/12_three_audiences_intro.md`_
 
-**Piège** : une Pull Request (PR, une demande de fusion de code) se relit d'abord pour son intention, avant même son diff (les lignes changées). Sans poser de question dessus, ce n'est pas une vraie review, c'est une approbation polie qui ne sert à rien. Dire "je ne sais pas encore, je regarde et je reviens" est plus professionnel qu'une réponse inventée sur le moment — c'est l'antidote au bullshit que l'IA rend plus facile à produire.
+**Piège** : une Pull Request (PR, une demande de fusion de code) se relit d'abord pour son intention, avant même son diff (les lignes changées). Sans poser de question dessus, ce n'est pas une vraie review, c'est une approbation polie qui ne sert à rien. Dire "je ne sais pas encore, je regarde et je reviens" est plus professionnel qu'une réponse inventée sur le moment : c'est l'antidote au bullshit que l'IA rend plus facile à produire.
 
 **Zappable** : un ADR (Architecture Decision Record, un petit document qui capture une décision technique) note le contexte, la décision prise, les alternatives envisagées, et les conséquences. Six mois plus tard, il t'évite de rejouer le même débat depuis zéro.
 
@@ -674,7 +674,7 @@ _Fichier : `29_ai_agents_and_autonomy/02_verifiable_specifications.md`_
 
 **Zappable** : un agent n'est vraiment utile que sur une spécification vérifiable (un critère binaire, des tests, un contrat clair). Sinon, c'est juste du plausible facturé au token.
 
-**Pont** : même échéance de péremption que le module 23 (2028) — ce qui reste vrai des deux modules, c'est le principe de garder le contrôle, pas l'outil du moment.
+**Pont** : même échéance de péremption que le module 23 (2028) : ce qui reste vrai des deux modules, c'est le principe de garder le contrôle, pas l'outil du moment.
 
 ---
 
@@ -685,7 +685,7 @@ _où les concepts s'assemblent_
 **Noyau ★** : on ne mémorise pas le code des projets, on retient ce qu'ils prouvent qu'on sait faire. Chaque projet se clôt par un POSTMORTEM (un bilan écrit après coup) signé : sans postmortem, c'est comme si le projet n'avait pas eu lieu.
 _Fichier : `30_mini_projects/_templates/01_POSTMORTEM_TEMPLATE.md`_
 
-**Piège** : une case "SECURITY_GATE" (le passage obligé de vérification sécurité) cochée sans preuve à l'appui, c'est une case cochée frauduleusement — ça ne compte pas.
+**Piège** : une case "SECURITY_GATE" (le passage obligé de vérification sécurité) cochée sans preuve à l'appui, c'est une case cochée frauduleusement : ça ne compte pas.
 
 **Zappable** : la liste des 19 projets vit dans le repo. Aucun intérêt à la mémoriser par cœur, seul ce qu'ils prouvent compte.
 
@@ -808,7 +808,7 @@ C'est le point le plus important du guide carrière, et il change tout. Le même
 
 _(Chiffres 2026 du guide carrière du repo : ordres de grandeur, pas des promesses. Ils varient selon le pays, l'entreprise et la conjoncture.)_
 
-La conclusion du guide, sans détour : **la question n'est pas "quel métier choisir", c'est "comment accéder au marché remote".** Trois choses y mènent, dans l'ordre : un portfolio GitHub avec 2-3 projets propres et documentés (tes mini-projets du module 30 sont exactement ça), un profil LinkedIn en anglais, et une première mission sur une plateforme comme Upwork ou Toptal — peu importe le tarif de départ, c'est pour la réputation que tu construis, pas pour le chèque immédiat.
+La conclusion du guide, sans détour : **la question n'est pas "quel métier choisir", c'est "comment accéder au marché remote".** Trois choses y mènent, dans l'ordre : un portfolio GitHub avec 2-3 projets propres et documentés (tes mini-projets du module 30 sont exactement ça), un profil LinkedIn en anglais, et une première mission sur une plateforme comme Upwork ou Toptal : peu importe le tarif de départ, c'est pour la réputation que tu construis, pas pour le chèque immédiat.
 
 ### La progression réaliste, pas le fantasme
 
@@ -852,7 +852,7 @@ Quatre habitudes suffisent à la longévité :
 - Un ADR par décision non triviale (qui mérite réflexion). Six mois plus tard, tu te remercies toi-même.
 - Un POSTMORTEM par bug de plus de 2h. La honte s'efface avec le temps, la leçon reste, elle.
 - Une révision espacée après chaque module : J+1, J+7, J+21, J+60.
-- Un DEPENDENCY_LEDGER (un carnet perso) sur ta dépendance à l'IA. Au-delà de 25% de code que tu n'as pas vraiment compris toi-même, c'est un signal à prendre au sérieux — pas un jugement moral, juste un signal.
+- Un DEPENDENCY_LEDGER (un carnet perso) sur ta dépendance à l'IA. Au-delà de 25% de code que tu n'as pas vraiment compris toi-même, c'est un signal à prendre au sérieux : pas un jugement moral, juste un signal.
 
 Tu ne construis pas une pile de connaissances qu'on peut oublier du jour au lendemain. Tu construis un geste, une façon de penser. Un geste, ça se garde en le refaisant, encore et encore.
 
