@@ -12,6 +12,6 @@ L'application partielle fige certains arguments. Elle simplifie les handlers Rea
 
 Quand la mémorisation d'un handler apporte-t-elle réellement quelque chose ?
 
-## 🎬 Tes handlers sont préconfigurés
+##Tes handlers sont préconfigurés
 
 Code plus court, rendus plus stables. Commit.

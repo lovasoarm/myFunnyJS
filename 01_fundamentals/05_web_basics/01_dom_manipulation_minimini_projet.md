@@ -12,6 +12,6 @@ En React on ne touche pas le DOM à la main : sauf pour ce que React ne gère pa
 
 Dans quels cas précis une `ref` est-elle légitime plutôt qu'un state ?
 
-## 🎬 Ta rangée défile comme sur Netflix
+##Ta rangée défile comme sur Netflix
 
 Le geste signature du site fonctionne, et il est écrit en React idiomatique. Montre ce résultat à quelqu'un en 2 minutes.

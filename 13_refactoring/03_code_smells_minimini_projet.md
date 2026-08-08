@@ -12,6 +12,6 @@ Les odeurs : duplication, props en cascade, conditions imbriquées, nombres magi
 
 Quelle odeur as-tu choisi de tolérer, et à quelle condition la traiteras-tu ?
 
-## 🎬 Ta dette technique est visible et datée
+##Ta dette technique est visible et datée
 
 Tu la pilotes au lieu de la subir. Commit `docs/smells.md`.

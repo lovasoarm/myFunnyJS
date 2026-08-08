@@ -12,6 +12,6 @@ Décider où l'erreur s'arrête : la couche données la remonte, la couche UI la
 
 Quelle couche connaît la cause, et quelle couche connaît le bon message ?
 
-## 🎬 Tes erreurs remontent proprement
+##Tes erreurs remontent proprement
 
 Le visiteur lit une phrase humaine, toi tu gardes la cause technique dans les logs. Commit.

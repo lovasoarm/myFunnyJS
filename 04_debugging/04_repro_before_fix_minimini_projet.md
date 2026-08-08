@@ -13,6 +13,6 @@ Un bug non reproductible n'est pas corrigé, il est masqué. Reproduire d'abord,
 
 Comment sais-tu que ta reproduction est complète ?
 
-## 🎬 Ton bug est reproductible sur commande
+##Ton bug est reproductible sur commande
 
 Tu tiens la base d'un futur test de non-régression au module 6.

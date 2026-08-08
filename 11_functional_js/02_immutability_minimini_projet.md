@@ -12,6 +12,6 @@ Ne jamais modifier les données reçues : c'est ce qui garantit que le filtre d'
 
 Quel test prouve concrètement l'immutabilité d'une fonction ?
 
-## 🎬 Ton catalogue est intouchable
+##Ton catalogue est intouchable
 
 Une classe entière de bugs est éliminée, avec un test qui le prouve. Commit.

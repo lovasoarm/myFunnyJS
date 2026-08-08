@@ -12,6 +12,6 @@ Une fonction pure : même entrée, même sortie, aucun effet de bord. C'est ce q
 
 Quelle fonction n'a pas pu devenir pure, et pourquoi c'est légitime ?
 
-## 🎬 Ta couche lib est pure et testable
+##Ta couche lib est pure et testable
 
 Chaque fonction de sélection est vérifiable en une ligne de test. Commit.

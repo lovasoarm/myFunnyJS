@@ -12,6 +12,6 @@ Les types conditionnels adaptent un type selon un autre. Utile pour une carte do
 
 Ce type conditionnel améliore-t-il vraiment ton code, ou complique-t-il la lecture ? Tranche.
 
-## 🎬 Tes variantes de carte sont contraintes par le type
+##Tes variantes de carte sont contraintes par le type
 
 Impossible d'utiliser la mauvaise variante par erreur. Commit si tu gardes, documente si tu simplifies.

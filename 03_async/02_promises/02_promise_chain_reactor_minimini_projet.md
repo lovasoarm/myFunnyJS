@@ -13,6 +13,6 @@ Enchaîner des promesses, c'est décider ce qui dépend de quoi. Deux appels ind
 
 Quand `Promise.all` est-il le mauvais choix, et par quoi le remplaces-tu ?
 
-## 🎬 Tes appels réseau partent en parallèle
+##Tes appels réseau partent en parallèle
 
 Tu as réduit le temps de rendu serveur de ta page d'accueil, mesuré. Commit.

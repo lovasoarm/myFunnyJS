@@ -12,6 +12,6 @@ Une factory produit des fonctions préconfigurées. Pour un portfolio à rangée
 
 Qu'est-ce que la fonction retournée « se souvient » du paramètre `rowName` ?
 
-## 🎬 Tes rangées se génèrent toutes seules
+##Tes rangées se génèrent toutes seules
 
 Ajouter une rangée coûte maintenant une ligne. Commit `projects.js` : tu viens de rendre le catalogue extensible.

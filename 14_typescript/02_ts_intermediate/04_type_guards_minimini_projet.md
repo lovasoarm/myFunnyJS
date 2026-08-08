@@ -12,6 +12,6 @@ Un garde de type restreint `unknown` à quelque chose d'utilisable. Indispensabl
 
 Pourquoi le compilateur ne peut-il pas vérifier seul la forme d'une réponse réseau ?
 
-## 🎬 Tes données externes sont validées au runtime
+##Tes données externes sont validées au runtime
 
 La frontière entre le monde extérieur et ton code typé est étanche. Commit.

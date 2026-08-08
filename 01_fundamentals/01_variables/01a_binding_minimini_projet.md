@@ -13,6 +13,6 @@ Le binding, c'est le lien entre un nom et un emplacement mémoire : pas la valeu
 
 Quand tu écris `me = {...}`, qu'est-ce qui change exactement : la valeur ou le lien ?
 
-## 🎬 Tu vois la différence entre lien et valeur
+##Tu vois la différence entre lien et valeur
 
 Tu viens d'éliminer la source n°1 des bugs « mon state ne se met pas à jour » que tu croiseras dans le portfolio. Ce fichier est un brouillon : supprime-le une fois la note prise.

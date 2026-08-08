@@ -12,6 +12,6 @@ Le code généré compile souvent et se trompe parfois : props inventées, hooks
 
 Quelle erreur l'IA a-t-elle commise que le compilateur n'aurait pas attrapée ?
 
-## 🎬 Ta check-list de relecture existe
+##Ta check-list de relecture existe
 
 Tu intègres du code généré sans importer ses défauts. Commit la check-list.

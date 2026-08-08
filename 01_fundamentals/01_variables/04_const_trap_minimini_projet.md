@@ -13,6 +13,6 @@
 
 Quelle est la différence exacte entre `const` et `Object.freeze()`, et pourquoi un objet gelé peut-il encore changer ?
 
-## 🎬 Tes données personnelles sont réellement immuables
+##Tes données personnelles sont réellement immuables
 
 Tu sais maintenant distinguer un lien constant d'une valeur immuable, et tu connais la limite du gel superficiel. `data/personal.js` est protégé en profondeur : commit ce fichier, c'est une garantie, pas un détail de style.

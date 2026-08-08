@@ -12,6 +12,6 @@ La portée lexicale se lit dans le code, pas à l'exécution. C'est ce qui expli
 
 Si deux variables portent le même nom dans deux portées imbriquées, laquelle gagne et pourquoi ?
 
-## 🎬 Ta carte projet a une hiérarchie claire
+##Ta carte projet a une hiérarchie claire
 
 Tu sais maintenant lire un composant React comme une pile de portées : c'est l'outil mental n°1 pour comprendre le code des autres.

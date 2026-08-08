@@ -12,6 +12,6 @@ Extraire, pas seulement valider : si tes fiches projets deviennent des fichiers 
 
 À quoi sert un groupe de capture par rapport à une simple correspondance ?
 
-## 🎬 Ton sommaire de fiche projet se génère seul
+##Ton sommaire de fiche projet se génère seul
 
 La page détail gagne une navigation interne automatique. Commit ce helper.

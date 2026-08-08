@@ -12,6 +12,6 @@ Currying : transformer `f(a, b)` en `f(a)(b)`. Utile pour préconfigurer un filt
 
 En quoi le currying diffère-t-il d'une fonction à paramètres par défaut ?
 
-## 🎬 Ton filtre générique est en place
+##Ton filtre générique est en place
 
 Un seul filtre couvre tous les champs du catalogue. Commit.

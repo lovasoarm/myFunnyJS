@@ -12,6 +12,6 @@
 
 Pour la liste dédupliquée des technos, pourquoi `reduce` ou `Set` plutôt qu'un `map` ?
 
-## 🎬 Tu as le filtre par techno du portfolio
+##Tu as le filtre par techno du portfolio
 
 La liste des technos alimente directement un futur filtre de catalogue. Commit `projects.js`.

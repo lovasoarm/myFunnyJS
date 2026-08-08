@@ -12,6 +12,6 @@ En production sur Vercel, pas de DevTools sur la machine du visiteur : il reste 
 
 Quelle information aurais-tu voulu avoir dans le log, et l'as-tu ajoutée ?
 
-## 🎬 Tu débogues ta prod sans y toucher
+##Tu débogues ta prod sans y toucher
 
 Ton portfolio déployé est désormais observable. Commit les logs ajoutés.

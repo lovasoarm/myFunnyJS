@@ -12,6 +12,6 @@ Débugger au hasard coûte des heures. Une méthode écrite (observer, isoler, h
 
 Quelle étape t'a évité une modification inutile ?
 
-## 🎬 Ton premier journal de debug est écrit
+##Ton premier journal de debug est écrit
 
 Tu as une méthode reproductible, pas de la chance. Garde ce journal dans `docs/`.

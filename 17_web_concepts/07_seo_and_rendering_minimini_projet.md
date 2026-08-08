@@ -12,6 +12,6 @@ Un portfolio invisible ne sert à rien. Métadonnées, Open Graph, rendu statiqu
 
 Pourquoi la métadonnée de la page projet doit-elle être générée et non écrite en dur ?
 
-## 🎬 Ton lien s'affiche comme une affiche Netflix
+##Ton lien s'affiche comme une affiche Netflix
 
 Partagé sur LinkedIn, ton portfolio a un titre, une description et une image. Montre l'aperçu à quelqu'un en 2 minutes.

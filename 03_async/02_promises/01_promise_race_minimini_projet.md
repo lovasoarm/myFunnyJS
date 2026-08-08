@@ -12,6 +12,6 @@ Une promesse qui traîne bloque un écran. `Promise.race` permet de poser un dé
 
 Que devient la promesse perdante de la course, et pourquoi est-ce important de le savoir ?
 
-## 🎬 Ton appel GitHub ne peut plus bloquer la page
+##Ton appel GitHub ne peut plus bloquer la page
 
 Le portfolio reste rapide même quand un service tiers rame. Commit `withTimeout`.

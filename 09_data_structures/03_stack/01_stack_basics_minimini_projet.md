@@ -12,6 +12,6 @@ Une pile : dernier entré, premier sorti. C'est exactement l'historique « Conti
 
 Pourquoi une pile bornée et pas une simple liste qui grandit ?
 
-## 🎬 Ton historique se comporte comme Netflix
+##Ton historique se comporte comme Netflix
 
 Le dernier projet consulté apparaît en premier, comme attendu. Commit.

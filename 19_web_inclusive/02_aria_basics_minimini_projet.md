@@ -12,6 +12,6 @@ ARIA complète le HTML sémantique, il ne le remplace pas. Une carte cliquable d
 
 Quand un attribut ARIA devient-il inutile parce que le HTML fait déjà le travail ?
 
-## 🎬 Ta structure est annoncée correctement
+##Ta structure est annoncée correctement
 
 Les rangées et la modale du portfolio sont compréhensibles sans les voir. Commit.

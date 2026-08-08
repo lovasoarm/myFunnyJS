@@ -13,6 +13,6 @@
 
 Que se passe-t-il si tu lis `localStorage` pendant le rendu serveur, et comment l'évites-tu ?
 
-## 🎬 La rangée « Continuer à regarder » est réelle
+##La rangée « Continuer à regarder » est réelle
 
 Ton portfolio se souvient du visiteur : c'est LA touche Netflix du projet. Commit ce hook.

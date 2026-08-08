@@ -12,6 +12,6 @@ Chercher un projet par slug dans un tableau est linéaire ; une `Map` le fait en
 
 Sur six projets le gain de performance est nul : quelle est alors la vraie raison d'utiliser une `Map` ici ?
 
-## 🎬 Ta recherche par slug est directe
+##Ta recherche par slug est directe
 
 Le code exprime maintenant « index par slug » au lieu de « parcours du tableau ». Commit.

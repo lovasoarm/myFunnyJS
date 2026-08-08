@@ -12,6 +12,6 @@ Un bug intermittent a presque toujours une cause temporelle : hydratation, cours
 
 Quelle valeur de ton rendu n'était pas identique entre serveur et client ?
 
-## 🎬 Ton rendu est déterministe
+##Ton rendu est déterministe
 
 Les avertissements d'hydratation ont disparu : ton site est stable au rechargement. Commit.

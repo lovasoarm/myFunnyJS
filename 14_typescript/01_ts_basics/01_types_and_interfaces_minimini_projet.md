@@ -13,6 +13,6 @@ C'est le moment central du portfolio : écrire les types `Project` et `PersonalI
 
 Quelle erreur TypeScript t'a révélé une incohérence que tu n'avais pas vue ?
 
-## 🎬 Le type Project du cahier des charges existe
+##Le type Project du cahier des charges existe
 
 C'est la brique n°1 de tout le portfolio : chaque composant s'y adossera désormais. Commit ce fichier.

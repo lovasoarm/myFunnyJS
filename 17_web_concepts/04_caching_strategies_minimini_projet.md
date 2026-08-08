@@ -12,6 +12,6 @@ Le cache décide de la fraîcheur et de la vitesse. Dans l'App Router, le choix 
 
 Quelle donnée de ton site mérite d'être revalidée, et laquelle ne changera jamais ?
 
-## 🎬 Chaque route a sa stratégie de fraîcheur
+##Chaque route a sa stratégie de fraîcheur
 
 Ton site est quasi entièrement statique donc instantané. Commit.

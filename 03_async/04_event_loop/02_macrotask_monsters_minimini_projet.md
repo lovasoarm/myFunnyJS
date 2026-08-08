@@ -13,6 +13,6 @@ Timers et animations sont des macrotâches. Le défilement automatique des rang�
 
 Que se passe-t-il concrètement si tu oublies le nettoyage du `useEffect` ?
 
-## 🎬 Ton auto-scroll tourne sans fuite
+##Ton auto-scroll tourne sans fuite
 
 Une animation signature qui ne dégrade pas le site au fil de la navigation. Commit.

@@ -12,6 +12,6 @@ Lire une stack trace Next.js, c'est distinguer ton code du code du framework et 
 
 Comment repères-tu, dans une trace de 40 lignes, celle qui t'intéresse ?
 
-## 🎬 Tu lis une trace sans paniquer
+##Tu lis une trace sans paniquer
 
 Tu as corrigé une vraie 404 mal gérée sur la route dynamique. Commit le correctif.

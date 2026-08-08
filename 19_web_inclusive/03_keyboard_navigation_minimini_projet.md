@@ -12,6 +12,6 @@ Focus visible, ordre logique, piège de focus dans la modale : c'est ce qui rend
 
 Pourquoi rendre le focus à l'élément déclencheur à la fermeture change-t-il tout pour l'utilisateur ?
 
-## 🎬 Ta modale se pilote entièrement au clavier
+##Ta modale se pilote entièrement au clavier
 
 Le parcours complet du site fonctionne sans souris. Montre-le à quelqu'un en 2 minutes.

@@ -13,6 +13,6 @@ JavaScript convertit silencieusement. Une note « 9.1 » venue d'une chaîne, un
 
 Pourquoi `{0 && <Bar/>}` affiche-t-il `0` à l'écran en React ?
 
-## 🎬 Ta barre de progression ne ment plus
+##Ta barre de progression ne ment plus
 
 Tu viens de corriger un bug d'affichage réel qui touche exactement Safe-driving (48 %) et MyFunnyJS (62 %). Commit le composant.

@@ -12,6 +12,6 @@ Une stratégie = un algorithme interchangeable. Le tri du catalogue (par année,
 
 Qu'est-ce que ce pattern t'évite d'écrire à chaque nouveau critère de tri ?
 
-## 🎬 Ton catalogue se trie à la demande
+##Ton catalogue se trie à la demande
 
 Une vraie fonctionnalité utilisateur, extensible sans toucher l'UI. Commit.

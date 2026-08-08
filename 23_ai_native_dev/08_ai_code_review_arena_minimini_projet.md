@@ -12,6 +12,6 @@ Une revue IA de ton dépôt donne un avis instantané ; savoir trier ses remarqu
 
 Sur quelle remarque as-tu eu raison contre l'IA, et sur quoi t'appuies-tu pour l'affirmer ?
 
-## 🎬 Tu arbitres une revue de code
+##Tu arbitres une revue de code
 
 Tu passes de « consommateur d'IA » à relecteur de l'IA. Commit les corrections retenues.

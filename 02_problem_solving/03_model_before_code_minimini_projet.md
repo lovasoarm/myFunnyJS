@@ -12,6 +12,6 @@ Modéliser, c'est décider de la forme des données avant du JSX. Ton type `Proj
 
 Quel champ as-tu failli oublier, et à quel écran l'aurais-tu découvert trop tard ?
 
-## 🎬 Ton modèle de données est validé contre la maquette
+##Ton modèle de données est validé contre la maquette
 
 Tu vas pouvoir écrire les types TypeScript sans hésiter au module 14. Garde ce document à côté du code.

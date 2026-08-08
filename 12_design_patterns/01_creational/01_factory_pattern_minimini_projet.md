@@ -12,6 +12,6 @@ Une factory centralise la création d'objets conformes. Pour le portfolio : cons
 
 Qu'est-ce qui serait cassé si chaque projet définissait ses valeurs par défaut lui-même ?
 
-## 🎬 Déclarer un projet devient trivial
+##Déclarer un projet devient trivial
 
 Le catalogue accepte des entrées minimalistes sans rien casser à l'affichage. Commit.

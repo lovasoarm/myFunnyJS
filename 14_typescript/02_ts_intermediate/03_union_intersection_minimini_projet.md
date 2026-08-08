@@ -12,6 +12,6 @@ Les unions modélisent des états finis : le statut d'un projet n'est pas une `s
 
 Qu'est-ce qu'une union littérale t'apporte qu'un `string` ne donnera jamais ?
 
-## 🎬 Tes statuts sont infalsifiables
+##Tes statuts sont infalsifiables
 
 Une faute de frappe dans les données devient impossible. Commit.

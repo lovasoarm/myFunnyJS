@@ -13,6 +13,6 @@ Le portfolio va changer : un septième projet, une refonte de rangées. Concevoi
 
 Quels fichiers doivent rester intouchés lors de l'ajout d'un projet, et pourquoi ?
 
-## 🎬 Ajouter un projet coûte une seule ligne
+##Ajouter un projet coûte une seule ligne
 
 Ton catalogue est extensible pour de vrai, testé par l'expérience. Commit le refactor.

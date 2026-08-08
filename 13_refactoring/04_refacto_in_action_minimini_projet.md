@@ -12,6 +12,6 @@ Refactorer sans changer le comportement : c'est possible seulement si des tests 
 
 Comment sais-tu que ton refactor n'a rien changé pour l'utilisateur ?
 
-## 🎬 Ton premier refactor sous filet est fait
+##Ton premier refactor sous filet est fait
 
 Tu peux améliorer ton code sans peur : c'est ce que les tests achètent. Commit séparément du reste.

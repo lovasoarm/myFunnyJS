@@ -12,6 +12,6 @@ Les règles de `this` (appel simple, méthode, `bind`, fléchée) importent au s
 
 Pourquoi `getDerivedStateFromError` est-elle statique alors que `componentDidCatch` ne l'est pas ?
 
-## 🎬 Une erreur de carte ne tue plus la page
+##Une erreur de carte ne tue plus la page
 
 Ton portfolio dégrade proprement au lieu d'afficher un écran blanc. Commit ce composant.

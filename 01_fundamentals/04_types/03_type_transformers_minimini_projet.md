@@ -12,6 +12,6 @@ Transformer proprement une donnée brute en donnée d'affichage (année en libel
 
 Pourquoi ces conversions vivent-elles dans `lib/` et non à l'intérieur du composant ?
 
-## 🎬 Ta couche de formatage existe
+##Ta couche de formatage existe
 
 `format.js` est une vraie pièce du portfolio, testable au module 6 sans monter un seul composant. Commit-la.

@@ -12,6 +12,6 @@ La portée décide de ce qu'un morceau de code peut voir. Dans Next.js App Route
 
 Quelle question te poses-tu pour décider si une valeur doit vivre au niveau module ou dans le composant ?
 
-## 🎬 Ta page est rangée par portée
+##Ta page est rangée par portée
 
 Tu viens d'adopter le réflexe qui garde tes fichiers Next.js lisibles quand ils grossissent. Commit cette page.

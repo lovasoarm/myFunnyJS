@@ -13,6 +13,6 @@ Muter un objet en place, c'est invisible pour React : sans nouvelle référence,
 
 Pourquoi React ne « voit » pas un `push` alors que la donnée a bien changé ?
 
-## 🎬 Ton state React réagit vraiment
+##Ton state React réagit vraiment
 
 Tu tiens la règle qui gouvernera tous les états du portfolio : filtres, recherche, favoris. Montre ce mini-exemple à quelqu'un en 2 minutes : s'il comprend, tu as compris.

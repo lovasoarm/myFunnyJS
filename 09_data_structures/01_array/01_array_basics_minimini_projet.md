@@ -12,6 +12,6 @@ Le catalogue est un tableau. Indexation, longueur, parcours : c'est le socle du 
 
 Comment évites-tu un accès hors limites sans multiplier les conditions ?
 
-## 🎬 La navigation entre projets fonctionne
+##La navigation entre projets fonctionne
 
 Le visiteur peut enchaîner tes six projets comme des épisodes. Commit.

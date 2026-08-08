@@ -13,6 +13,6 @@ Git est le filet du portfolio : chaque brique livrée doit être un commit lisib
 
 Qu'est-ce qui rend un message de commit utile six mois plus tard ?
 
-## 🎬 Ton portfolio a un historique propre
+##Ton portfolio a un historique propre
 
 Le projet est versionné, déployable et récupérable en cas d'erreur. Pousse la branche : c'est la première pierre publique.

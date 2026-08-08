@@ -12,6 +12,6 @@ Même un portfolio statique récupère des données : compteur GitHub, derniers 
 
 Pourquoi ce `fetch` est-il fait côté serveur et pas dans un `useEffect` ?
 
-## 🎬 Ton portfolio parle à GitHub
+##Ton portfolio parle à GitHub
 
 La carte MyFunnyJS affiche désormais une donnée vivante. C'est le genre de détail qu'un recruteur remarque. Commit.

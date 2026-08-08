@@ -12,6 +12,6 @@ Une hypothèse est falsifiable : elle prédit ce qu'on va voir. Sans ça, on mod
 
 Ton hypothèse initiale était-elle la bonne, et qu'est-ce que ça t'apprend sur ton intuition ?
 
-## 🎬 Tu élimines des causes au lieu d'en tester une
+##Tu élimines des causes au lieu d'en tester une
 
 Tu as une démarche d'enquête, pas de bricolage. Note le résultat dans ton journal.

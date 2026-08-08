@@ -12,6 +12,6 @@ Un bon prompt donne le contexte réel : stack, types existants, contraintes. San
 
 Quel élément de contexte a le plus changé la qualité du résultat ?
 
-## 🎬 Tu as un modèle de prompt réutilisable
+##Tu as un modèle de prompt réutilisable
 
 Chaque futur composant partira d'un contexte complet. Commit `docs/prompts.md`.

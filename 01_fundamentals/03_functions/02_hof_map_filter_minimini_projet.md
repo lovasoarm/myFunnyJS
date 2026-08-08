@@ -12,6 +12,6 @@
 
 Pourquoi `key` doit-elle être l'id du projet et jamais l'index du tableau ?
 
-## 🎬 Ta première rangée Netflix est vivante
+##Ta première rangée Netflix est vivante
 
 Le catalogue existe : tes six projets sortent d'une donnée typée et non de HTML recopié. Commit ce fichier, c'est le cœur du site.

@@ -12,6 +12,6 @@ Avant de typer avec TypeScript, il faut savoir ce que JavaScript manipule vraime
 
 Quelle différence de sens fais-tu entre `null` et `undefined` pour le champ `github` ?
 
-## 🎬 Ton modèle de données est cartographié
+##Ton modèle de données est cartographié
 
 Tu as la carte exacte de ton type `Project` avant même de l'écrire. C'est ce qui rendra le module TypeScript facile.

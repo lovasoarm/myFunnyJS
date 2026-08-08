@@ -13,6 +13,6 @@ Une closure capture des variables, pas des valeurs figées : d'où les « stale 
 
 Pourquoi l'intervalle lit-il toujours la même valeur alors que le state, lui, augmente bien ?
 
-## 🎬 Tu as désamorcé la stale closure
+##Tu as désamorcé la stale closure
 
 Ce bug précis coûte des heures à la plupart des devs React. Tu l'as vu, reproduit et corrigé avant qu'il n'atteigne ton carrousel Netflix.

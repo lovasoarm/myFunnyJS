@@ -13,6 +13,6 @@ Primitives en pile, objets et tableaux dans le tas. Ton tableau `projects` est u
 
 Après `[...projects]`, pourquoi modifier `copie[0].title` change-t-il quand même l'original ?
 
-## 🎬 Tu sais où vivent tes données
+##Tu sais où vivent tes données
 
 Tu viens de comprendre pourquoi ton futur filtre « par `category` » ne doit jamais muter `projects`. Cette intuition te fera gagner une soirée de debug au module 4.

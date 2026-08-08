@@ -12,6 +12,6 @@ Composer, c'est enchaîner de petites fonctions au lieu d'en écrire une grosse 
 
 Qu'est-ce que la composition t'apporte que trois appels imbriqués ne donnent pas ?
 
-## 🎬 Tes rangées se déclarent en une ligne
+##Tes rangées se déclarent en une ligne
 
 Une rangée est maintenant une phrase lisible dans le code. Commit.

@@ -12,6 +12,6 @@ Codes de statut, en-têtes, méthodes : ton portfolio consomme une API et sert l
 
 Pourquoi un 200 affichant « page introuvable » est-il un vrai problème, au-delà de l'esthétique ?
 
-## 🎬 Tes statuts HTTP disent la vérité
+##Tes statuts HTTP disent la vérité
 
 Moteurs de recherche et outils de monitoring comprennent enfin ton site. Commit.

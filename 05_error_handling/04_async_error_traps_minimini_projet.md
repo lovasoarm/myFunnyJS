@@ -12,6 +12,6 @@ Les pièges classiques : promesse non attendue, rejet non capturé, erreur aval�
 
 Pourquoi un `try/catch` autour d'un `useEffect` synchrone n'attrape-t-il pas l'erreur asynchrone à l'intérieur ?
 
-## 🎬 Tes erreurs asynchrones ne sont plus silencieuses
+##Tes erreurs asynchrones ne sont plus silencieuses
 
 Tu vois désormais ce qui casse, au lieu de le subir. Commit.

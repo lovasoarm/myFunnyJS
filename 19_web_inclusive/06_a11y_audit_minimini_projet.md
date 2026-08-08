@@ -12,6 +12,6 @@ Un audit transforme des impressions en liste d'actions chiffrées, et se rejoue 
 
 Quel problème l'outil a-t-il manqué que ta navigation clavier avait révélé ?
 
-## 🎬 Ton score d'accessibilité est mesuré et amélioré
+##Ton score d'accessibilité est mesuré et amélioré
 
 Tu peux annoncer un chiffre vérifiable sur ton portfolio. Commit le rapport dans `docs/`.

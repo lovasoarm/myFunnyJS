@@ -12,6 +12,6 @@
 
 Que fait Next.js pendant que ton composant asynchrone attend ?
 
-## 🎬 Ta page a un vrai état de chargement
+##Ta page a un vrai état de chargement
 
 Le portfolio ne montre plus jamais un écran vide pendant l'attente. Commit `loading.tsx`.

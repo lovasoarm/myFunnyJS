@@ -12,6 +12,6 @@
 
 Qu'est-ce que `noUncheckedIndexedAccess` t'a forcé à gérer que tu ignorais ?
 
-## 🎬 Ton compilateur est en mode strict
+##Ton compilateur est en mode strict
 
 Le portfolio est protégé par défaut contre les `undefined` silencieux. Commit `tsconfig.json`.

@@ -12,6 +12,6 @@ Décorer, c'est ajouter un comportement sans modifier l'existant : un cache ou u
 
 Pourquoi un décorateur est-il préférable à un `console.log` ajouté dans la fonction ?
 
-## 🎬 Ton appel réseau est instrumenté
+##Ton appel réseau est instrumenté
 
 Tu peux mesurer sans polluer la logique métier. Commit ce helper.

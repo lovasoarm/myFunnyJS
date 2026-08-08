@@ -12,6 +12,6 @@ Il y a toujours plusieurs chemins : modale vs page dédiée, données statiques 
 
 Quel critère a réellement fait pencher ta décision, et est-il lié à l'utilisateur ou à ton confort ?
 
-## 🎬 Ta première décision d'architecture est documentée
+##Ta première décision d'architecture est documentée
 
 Tu as un ADR : un recruteur technique adore ça. Commit-le.

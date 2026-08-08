@@ -12,6 +12,6 @@ Nommer, raccourcir, supprimer. Un composant de 200 lignes fait fuir un relecteur
 
 Quel nom as-tu changé, et qu'est-ce qu'il cachait ?
 
-## 🎬 Ton plus gros fichier est lisible
+##Ton plus gros fichier est lisible
 
 Le code que tu montreras en entretien tient à l'écran. Commit.

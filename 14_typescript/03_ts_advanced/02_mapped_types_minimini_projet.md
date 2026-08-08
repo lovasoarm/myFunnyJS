@@ -12,6 +12,6 @@ Les mapped types transforment tous les champs d'un type d'un coup : une version 
 
 Quelle différence pratique entre `Readonly<Project>` et ta version profonde ?
 
-## 🎬 Ton catalogue est immuable au niveau des types
+##Ton catalogue est immuable au niveau des types
 
 La règle d'immutabilité du module 11 est désormais vérifiée par le compilateur. Commit.

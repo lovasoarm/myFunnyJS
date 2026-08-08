@@ -12,6 +12,6 @@ La bonne question n'est pas « quel framework » mais « quoi tester ». Un port
 
 Quel test as-tu supprimé, et pourquoi ne te manquera-t-il pas ?
 
-## 🎬 Ta suite de tests est intentionnelle
+##Ta suite de tests est intentionnelle
 
 Tu peux défendre chaque test de ton dépôt en entretien. Commit ce document.

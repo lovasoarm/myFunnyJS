@@ -12,6 +12,6 @@ Où vit l'état : URL, serveur, composant, stockage. Mal placé, il crée des bu
 
 Quels états de ton site méritent l'URL, et lesquels doivent rester locaux ?
 
-## 🎬 Tes filtres sont partageables par URL
+##Tes filtres sont partageables par URL
 
 Un visiteur peut envoyer « regarde mes projets backend » en un lien. Commit.

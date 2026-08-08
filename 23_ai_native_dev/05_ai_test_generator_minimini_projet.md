@@ -12,6 +12,6 @@ Générer des tests fait gagner du temps sur les cas évidents, mais l'IA rate l
 
 Quel cas limite propre à ton catalogue l'IA ne pouvait pas deviner ?
 
-## 🎬 Ta suite de tests est complétée là où ça compte
+##Ta suite de tests est complétée là où ça compte
 
 Vitesse de l'IA plus ta connaissance du domaine : c'est la bonne combinaison. Commit.

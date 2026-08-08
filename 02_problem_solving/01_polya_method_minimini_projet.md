@@ -12,6 +12,6 @@ Comprendre → planifier → exécuter → relire. Appliqué au portfolio, ça �
 
 Quelle étape as-tu eu le plus envie de sauter, et qu'est-ce que ça t'apprend ?
 
-## 🎬 Ta première fonctionnalité est pensée avant d'être écrite
+##Ta première fonctionnalité est pensée avant d'être écrite
 
 Tu as un plan écrit et daté pour la recherche du catalogue. Commit `docs/plan-recherche.md` : c'est la trace de ta méthode.

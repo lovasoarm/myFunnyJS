@@ -11,6 +11,6 @@ Une stratégie, c'est une règle unique appliquée partout : que fait le portfol
 
 Quel écart entre ta stratégie écrite et ton code réel as-tu trouvé ?
 
-## 🎬 Ton portfolio a une politique d'erreurs
+##Ton portfolio a une politique d'erreurs
 
 Un document court qui rend le comportement du site prévisible. Commit-le.

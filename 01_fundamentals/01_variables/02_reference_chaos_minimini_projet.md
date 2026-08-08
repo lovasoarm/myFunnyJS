@@ -13,6 +13,6 @@ Deux noms sur le même objet, c'est du partage d'état involontaire. Dans le por
 
 Quelles méthodes de tableau modifient l'original, et comment les repères-tu avant de les utiliser ?
 
-## 🎬 Ton premier utilitaire non destructif
+##Ton premier utilitaire non destructif
 
 `sortByYear` est une vraie pièce du portfolio : c'est elle qui ordonnera tes rangées de projets. Commit ce fichier, il ne sera plus jamais réécrit.

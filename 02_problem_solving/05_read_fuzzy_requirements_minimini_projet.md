@@ -12,6 +12,6 @@ Un cahier des charges laisse toujours des zones floues. Les repérer tôt évite
 
 Comment saurais-tu, objectivement, que « l'ambiance Netflix » est atteinte ?
 
-## 🎬 Tes exigences floues sont devenues mesurables
+##Tes exigences floues sont devenues mesurables
 
 Tu as maintenant une définition de « terminé » pour le portfolio. Commit `docs/criteres.md`.

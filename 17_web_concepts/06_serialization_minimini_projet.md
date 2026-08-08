@@ -12,6 +12,6 @@ Entre Server et Client Components, tout ce qui passe doit être sérialisable. U
 
 Quelles valeurs peuvent franchir la frontière serveur → client, et pourquoi cette limite existe-t-elle ?
 
-## 🎬 Ta frontière de sérialisation est comprise
+##Ta frontière de sérialisation est comprise
 
 Tu ne subiras plus les erreurs de props non sérialisables. Commit.

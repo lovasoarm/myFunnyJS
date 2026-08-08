@@ -12,6 +12,6 @@ Le portfolio est fonctionnel, mais deux classes restent légitimes : les erreurs
 
 Pourquoi le paramètre d'un `catch` est-il `unknown` et pas `Error` ?
 
-## 🎬 Tes erreurs sont typées et discriminées
+##Tes erreurs sont typées et discriminées
 
 Ton `catch` distingue enfin les cas au lieu de tout traiter pareil. Commit.

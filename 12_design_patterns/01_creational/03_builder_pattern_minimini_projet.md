@@ -12,6 +12,6 @@ Le builder assemble pas à pas un objet complexe. Pour le portfolio : construire
 
 Entre composition de fonctions et builder, lequel gardes-tu pour ce projet, et pourquoi ?
 
-## 🎬 Tu as comparé deux styles sur ton propre code
+##Tu as comparé deux styles sur ton propre code
 
 Tu peux justifier ton style d'API interne avec un exemple concret sous les yeux.

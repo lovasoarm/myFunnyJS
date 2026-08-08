@@ -12,6 +12,6 @@ JS est mono-thread avec une file d'attente. Savoir ce qui bloque le rendu expliq
 
 Qu'est-ce qui est réellement bloqué pendant une boucle synchrone : le réseau, le rendu, ou les deux ?
 
-## 🎬 Tu as vu ton interface geler à la demande
+##Tu as vu ton interface geler à la demande
 
 Tu sais désormais reconnaître un blocage du thread principal dans le portfolio avant qu'un visiteur ne le subisse.

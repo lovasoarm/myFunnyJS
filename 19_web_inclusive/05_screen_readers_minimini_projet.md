@@ -12,6 +12,6 @@ Un lecteur d'écran lit ce que tu as structuré. Images décoratives, textes alt
 
 Qu'est-ce qui distingue un bon texte alternatif d'une simple répétition du titre ?
 
-## 🎬 Ta fiche projet s'écoute correctement
+##Ta fiche projet s'écoute correctement
 
 Le contenu de tes projets est accessible sans l'image. Commit.

@@ -12,6 +12,6 @@ Annuler une requête devenue inutile évite les réponses en retard qui écrasen
 
 Pourquoi une réponse arrivée en retard est-elle un bug d'affichage et pas seulement du gaspillage ?
 
-## 🎬 Ta recherche affiche toujours le bon résultat
+##Ta recherche affiche toujours le bon résultat
 
 La barre de recherche du portfolio est fiable même en frappe rapide. Commit ce composant.

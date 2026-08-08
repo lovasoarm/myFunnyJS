@@ -12,6 +12,6 @@ Les callbacks sont partout en React : `onClick`, `onChange`, callbacks d'observe
 
 Pourquoi la carte ne doit-elle pas savoir ce qui se passe quand on clique dessus ?
 
-## 🎬 Ta carte projet est devenue réutilisable
+##Ta carte projet est devenue réutilisable
 
 Inversion de contrôle réussie : la carte est utilisable dans n'importe quelle rangée. Commit.

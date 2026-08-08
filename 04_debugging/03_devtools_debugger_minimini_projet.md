@@ -12,6 +12,6 @@ Les breakpoints battent les `console.log` : on inspecte l'état réel, on avance
 
 Qu'as-tu vu au breakpoint que trois `console.log` ne t'auraient pas montré ?
 
-## 🎬 Tu inspectes ton état en direct
+##Tu inspectes ton état en direct
 
 Ton outillage de debug est en place pour tout le reste du projet.

@@ -12,6 +12,6 @@ Barrel files, modules « serveur uniquement », séparation client/serveur : dan
 
 Comment sais-tu, en lisant un fichier, s'il finira dans le bundle client ?
 
-## 🎬 Ta frontière client/serveur est explicite
+##Ta frontière client/serveur est explicite
 
 Tu contrôles ce qui part dans le navigateur : c'est du poids de page en moins, gratuitement. Commit.

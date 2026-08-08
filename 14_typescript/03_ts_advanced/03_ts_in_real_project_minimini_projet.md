@@ -12,6 +12,6 @@ Le vrai test : zéro `any`, zéro `@ts-ignore`, un build propre. C'est ce qui re
 
 Quel `as` restait-il, et qu'est-ce qu'il masquait réellement ?
 
-## 🎬 Ton portfolio compile sans compromis
+##Ton portfolio compile sans compromis
 
 Un dépôt TypeScript propre de bout en bout : c'est vérifiable en 30 secondes par un recruteur. Commit.

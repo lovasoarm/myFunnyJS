@@ -12,6 +12,6 @@ Une regex simple suffit pour générer et valider les slugs d'URL de tes projets
 
 Quelle partie de ta regex empêche les doubles tirets, et pourquoi le drapeau `g` est-il nécessaire ?
 
-## 🎬 Tes URLs de projets sont générées
+##Tes URLs de projets sont générées
 
 Les routes dynamiques du portfolio ont maintenant une source fiable. Commit `format.js`.

@@ -12,6 +12,6 @@ Les années et dates de projets doivent s'afficher selon la locale, sans écart 
 
 Pourquoi une date formatée sans locale explicite peut-elle différer entre serveur et navigateur ?
 
-## 🎬 Tes dates sont stables et localisées
+##Tes dates sont stables et localisées
 
 Un bug d'hydratation classique est éliminé avant même d'apparaître. Commit.

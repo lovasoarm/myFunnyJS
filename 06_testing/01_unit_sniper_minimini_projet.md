@@ -12,6 +12,6 @@ Un test unitaire cible une fonction pure. `slugify`, `formatYear`, `getProjectsB
 
 Qu'est-ce qui rend une fonction facile à tester unitairement ?
 
-## 🎬 Tes utilitaires sont sous filet
+##Tes utilitaires sont sous filet
 
 Les briques de formatage du portfolio sont protégées contre les régressions. Commit les tests.

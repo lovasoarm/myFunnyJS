@@ -12,6 +12,6 @@ On simule ce qu'on ne contrôle pas : l'API GitHub, `localStorage`, le routeur. 
 
 Où passe la frontière entre ce qu'il faut simuler et ce qu'il faut tester réellement ?
 
-## 🎬 Tes tests tournent hors ligne
+##Tes tests tournent hors ligne
 
 Ta suite est rapide et déterministe, exécutable dans l'avion. Commit.

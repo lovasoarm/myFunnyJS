@@ -12,6 +12,6 @@ Un adaptateur traduit une forme de données externe vers ta forme interne. La r�
 
 Que se passe-t-il dans ton code le jour où GitHub renomme un champ ?
 
-## 🎬 L'API externe est isolée derrière un adaptateur
+##L'API externe est isolée derrière un adaptateur
 
 Un seul fichier à changer si l'API bouge. Commit.

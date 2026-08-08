@@ -12,6 +12,6 @@ Le test end-to-end vérifie le parcours réel : arrivée sur l'accueil, clic sur
 
 Pourquoi ce test doit-il viser des rôles et textes visibles plutôt que des classes CSS ?
 
-## 🎬 Ton parcours principal est verrouillé
+##Ton parcours principal est verrouillé
 
 Le chemin qu'empruntera un recruteur est testé automatiquement. Commit le scénario.

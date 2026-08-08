@@ -12,6 +12,6 @@ Un module ESM est déjà un singleton : l'index slug → projet ne doit être co
 
 Pourquoi un module ESM suffit-il là où d'autres langages imposent un pattern Singleton ?
 
-## 🎬 Ton index est construit une seule fois
+##Ton index est construit une seule fois
 
 Tu as compris un pattern et su ne pas le sur-implémenter : c'est le vrai signe de maîtrise.

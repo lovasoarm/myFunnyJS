@@ -13,6 +13,6 @@ Une variable, c'est une étiquette posée sur une valeur. Le portfolio Lovasoa c
 
 Pourquoi mettre ces informations dans une variable exportée plutôt que de les écrire en dur dans le JSX de la page ?
 
-## 🎬 Ton nom s'affiche depuis une source unique
+##Ton nom s'affiche depuis une source unique
 
 Tu viens de créer la première source de vérité du portfolio : `data/personal.js`. Chaque page qui parlera de toi lira ce fichier, jamais du texte recopié. C'est la brique sur laquelle les 5 modules suivants s'appuient. Commit ce fichier.

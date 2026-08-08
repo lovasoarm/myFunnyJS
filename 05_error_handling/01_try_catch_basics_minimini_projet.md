@@ -12,6 +12,6 @@
 
 Pourquoi un `catch` vide est-il pire que pas de `catch` du tout ?
 
-## 🎬 Tes frontières risquées sont couvertes
+##Tes frontières risquées sont couvertes
 
 Trois points de rupture réels du portfolio sont sécurisés. Commit.

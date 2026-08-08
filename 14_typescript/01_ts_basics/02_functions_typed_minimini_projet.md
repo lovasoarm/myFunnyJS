@@ -12,6 +12,6 @@ Typer les entrées/sorties des fonctions de `lib/` transforme la doc en garantie
 
 Pourquoi expliciter le type de retour d'une fonction exportée alors que TypeScript sait l'inférer ?
 
-## 🎬 Ta couche lib est entièrement typée
+##Ta couche lib est entièrement typée
 
 L'autocomplétion travaille pour toi dans tout le projet. Commit.

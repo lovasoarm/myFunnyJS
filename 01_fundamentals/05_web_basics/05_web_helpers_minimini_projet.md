@@ -12,6 +12,6 @@ Les API natives du navigateur (IntersectionObserver, matchMedia, clipboard) remp
 
 Quel bénéfice concret un visiteur tire-t-il de `prefers-reduced-motion` respecté ?
 
-## 🎬 Ton site respecte les préférences système
+##Ton site respecte les préférences système
 
 Deux fonctionnalités réelles, zéro dépendance ajoutée. Commit ces hooks.

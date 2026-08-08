@@ -12,6 +12,6 @@ Ambiance sombre Netflix = risque de contraste insuffisant, surtout sur le texte 
 
 Quelle information de ton site reposait uniquement sur la couleur ?
 
-## 🎬 Ta palette sombre est lisible pour tous
+##Ta palette sombre est lisible pour tous
 
 L'ambiance Netflix est conservée et le texte est lisible. Commit ton fichier de thème.

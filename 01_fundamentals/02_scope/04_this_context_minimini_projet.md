@@ -12,6 +12,6 @@
 
 Quelle règle détermine la valeur de `this` lors d'un appel de fonction classique ?
 
-## 🎬 Tu maîtrises le piège du this détaché
+##Tu maîtrises le piège du this détaché
 
 Tu es prêt à écrire une `ErrorBoundary` correcte au module 5 sans copier un exemple sans le comprendre.

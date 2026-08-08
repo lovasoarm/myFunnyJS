@@ -12,6 +12,6 @@ Itérateurs et générateurs permettent de parcourir une collection à la demand
 
 Sur six projets, le générateur est-il justifié ? Réponds honnêtement.
 
-## 🎬 Tu sais ce qu'apporte un itérateur : et quand t'en passer
+##Tu sais ce qu'apporte un itérateur : et quand t'en passer
 
 Tu as testé l'outil et tu peux justifier de ne pas le garder : c'est une décision, pas de l'ignorance.

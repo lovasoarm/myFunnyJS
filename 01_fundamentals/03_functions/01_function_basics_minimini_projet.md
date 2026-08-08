@@ -12,6 +12,6 @@ Un composant React est une fonction : entrées (props) → sortie (JSX). Bien d�
 
 Qu'est-ce qui distingue une fonction React « composant » d'une fonction utilitaire ordinaire ?
 
-## 🎬 Ta première carte projet est à l'écran
+##Ta première carte projet est à l'écran
 
 `ProjectCard` est un vrai composant du portfolio, pas un exercice : il portera les six projets du catalogue. Commit ce fichier.

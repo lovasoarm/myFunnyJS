@@ -12,6 +12,6 @@ Travailler avec l'IA sur ce portfolio, c'est décider ce que tu délègues (boil
 
 Qu'as-tu placé dans « jamais », et quelle compétence protèges-tu ainsi ?
 
-## 🎬 Ta règle de délégation est écrite
+##Ta règle de délégation est écrite
 
 Tu utilises l'IA sans laisser fondre ce que tu apprends. Commit ce document.

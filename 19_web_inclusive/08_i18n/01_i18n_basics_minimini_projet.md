@@ -12,6 +12,6 @@ Le portfolio est en français mais des recruteurs internationaux le liront. Exte
 
 Quelles chaînes ne doivent PAS être externalisées, et pourquoi ?
 
-## 🎬 Tes textes d'interface sont centralisés
+##Tes textes d'interface sont centralisés
 
 Une version anglaise coûte désormais un fichier, pas une refonte. Commit le dictionnaire.

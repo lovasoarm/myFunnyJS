@@ -12,6 +12,6 @@
 
 Qu'est-ce que l'écriture des tests t'a fait décider que tu n'avais pas encore décidé ?
 
-## 🎬 La recherche est née d'une spécification exécutable
+##La recherche est née d'une spécification exécutable
 
 `searchProjects` est une vraie fonctionnalité du site, écrite et prouvée. Commit.

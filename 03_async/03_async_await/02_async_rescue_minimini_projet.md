@@ -12,6 +12,6 @@ Un `await` sans `try/catch` fait tomber la page entière. Sur un portfolio, un s
 
 Quelle est la différence entre gérer l'erreur localement et laisser `error.tsx` la capturer ?
 
-## 🎬 Ta page survit à une panne réseau
+##Ta page survit à une panne réseau
 
 Deux filets de sécurité en place, testés à la main. Commit-les.

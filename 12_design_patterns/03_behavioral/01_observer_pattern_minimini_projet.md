@@ -12,6 +12,6 @@ Observer = s'abonner à un événement. `IntersectionObserver` anime les rangée
 
 Pourquoi un observer est-il préférable à un écouteur de scroll pour cet effet ?
 
-## 🎬 Tes rangées s'animent à l'apparition
+##Tes rangées s'animent à l'apparition
 
 L'effet de défilement Netflix est en place, performant et accessible. Montre-le à quelqu'un en 2 minutes.

@@ -12,6 +12,6 @@ L'IA est utile pour proposer des refactors : à condition que tes tests déciden
 
 Qu'est-ce qui t'a fait rejeter la proposition écartée : le style, la lisibilité, ou un vrai risque ?
 
-## 🎬 Un refactor validé par tes tests
+##Un refactor validé par tes tests
 
 Tu gardes le contrôle de ton code tout en allant plus vite. Commit.

@@ -12,6 +12,6 @@ Un portal rend un élément ailleurs dans le DOM tout en gardant l'arbre React. 
 
 Pourquoi le portal résout-il le problème de découpage alors qu'un simple `z-index` ne suffisait pas ?
 
-## 🎬 Ta modale projet s'ouvre proprement
+##Ta modale projet s'ouvre proprement
 
 La fiche projet en overlay, c'est la moitié de l'expérience Netflix. Commit ce composant, tu le réutiliseras partout.

@@ -12,6 +12,6 @@ Installer, configurer, lancer : un test qui ne tourne pas en une commande ne ser
 
 Pourquoi la config de ton lanceur de tests diffère-t-elle de celle du build Next ?
 
-## 🎬 Une commande, tous tes tests
+##Une commande, tous tes tests
 
 `npm test` fonctionne : la barrière d'entrée est tombée, tu écriras des tests. Commit la config.

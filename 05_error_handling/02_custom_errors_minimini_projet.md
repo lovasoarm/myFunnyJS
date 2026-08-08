@@ -12,6 +12,6 @@ Une erreur typée porte du sens : `ProjectNotFoundError` se traite autrement qu'
 
 Qu'apporte une classe d'erreur dédiée par rapport à un simple message texte ?
 
-## 🎬 Ta 404 projet est correcte
+##Ta 404 projet est correcte
 
 Une URL inexistante rend maintenant une vraie page 404, bonne pour l'utilisateur et pour le SEO. Commit.

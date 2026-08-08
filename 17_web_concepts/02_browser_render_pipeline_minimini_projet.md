@@ -12,6 +12,6 @@ Parsing, layout, paint, composite : savoir quelles propriétés CSS sont chères
 
 Pourquoi `transform` évite-t-il le recalcul de mise en page ?
 
-## 🎬 Le survol de tes cartes est fluide à 60 fps
+##Le survol de tes cartes est fluide à 60 fps
 
 L'effet le plus visible du site est aussi le moins coûteux. Commit les classes Tailwind correspondantes.

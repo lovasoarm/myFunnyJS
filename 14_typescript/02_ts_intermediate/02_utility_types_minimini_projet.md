@@ -12,6 +12,6 @@
 
 Pourquoi dériver plutôt que redéclarer les champs à la main ?
 
-## 🎬 Tes props sont dérivées du modèle
+##Tes props sont dérivées du modèle
 
 Une seule source de vérité de type dans tout le site. Commit.

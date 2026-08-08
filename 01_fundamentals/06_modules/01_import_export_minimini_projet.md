@@ -12,6 +12,6 @@ ESM, imports nommés vs par défaut, alias `@/` : les conventions d'import déci
 
 Quel problème concret l'alias `@/` résout-il quand tu déplaces un fichier ?
 
-## 🎬 Tes imports sont propres partout
+##Tes imports sont propres partout
 
 Le projet est maintenant déplaçable sans casse. Commit `tsconfig.json` et les fichiers touchés.

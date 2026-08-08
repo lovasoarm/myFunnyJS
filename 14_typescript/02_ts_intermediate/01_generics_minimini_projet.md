@@ -12,6 +12,6 @@ Les génériques évitent de dupliquer un utilitaire par type. Ton `take(n)` ou 
 
 Que perds-tu concrètement si tu remplaces le générique par `unknown[]` ?
 
-## 🎬 Tes utilitaires sont réutilisables et typés
+##Tes utilitaires sont réutilisables et typés
 
 Une bibliothèque interne minuscule mais solide. Commit.

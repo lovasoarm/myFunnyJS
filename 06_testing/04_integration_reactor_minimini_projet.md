@@ -12,6 +12,6 @@ Un test d'intégration monte plusieurs pièces : données → filtre → composa
 
 Que couvre ce test que trois tests unitaires séparés ne couvraient pas ?
 
-## 🎬 Ta rangée est testée de bout en bout
+##Ta rangée est testée de bout en bout
 
 La pièce la plus visible du portfolio est vérifiée automatiquement. Commit.
