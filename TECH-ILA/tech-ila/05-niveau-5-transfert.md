@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Niveau 5 : Transfert vers d'autres écosystèmes (section 8)
 
