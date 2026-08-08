@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Niveau 1 : Socle professionnel (section 4)
 
