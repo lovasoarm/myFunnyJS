@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Orientation : lire, classer, ordonner (sections 0 à 3)
 
