@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Cartes MyFunnyJS ↔ technologies (sections 10 et 11)
 
