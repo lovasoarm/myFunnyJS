@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Angles morts de l'IA, exercices, marché, audit (sections 12 à 15 et dernier mot)
 
