@@ -1,4 +1,4 @@
-[← Sommaire TECH-ILA](../TECH-ILA.md)
+[← Sommaire TECH-ILA](../README.md)
 
 # Niveau 4 : Systèmes professionnels (section 7)
 
