@@ -6,7 +6,7 @@ C'est le moment central du portfolio : écrire les types `Project` et `PersonalI
 
 - Crée `types/index.ts` (à la racine du projet, pas sous `src/`) et déclare d'abord les deux unions littérales : `ProjectStatus` (`'completed' | 'in-progress' | 'concept'`) et `ProjectCategory` (`'web' | 'mobile' | 'ux' | 'open-source' | 'backend'`).
 - Déclare `interface Project` avec exactement ces champs : `id`, `slug`, `title`, `tagline`, `description` (string), `category: ProjectCategory`, `status: ProjectStatus`, `year: number`, `duration: string`, `stack: string[]`, `github?: string`, `demo?: string`, `thumbnail: string`, `featured: boolean`, `rating: number` (1 à 5, commente la contrainte).
-- Déclare `interface PersonalInfo` avec : `name`, `alias`, `role`, `bio`, `location`, `email`, `github`, `linkedin` — tous en `string`.
+- Déclare `interface PersonalInfo` avec : `name`, `alias`, `role`, `bio`, `location`, `email`, `github`, `linkedin` : tous en `string`.
 - Applique `Project[]` à `data/projects.ts` et `PersonalInfo` à tes infos personnelles, puis corrige toutes les erreurs remontées.
 
 ## Vérification

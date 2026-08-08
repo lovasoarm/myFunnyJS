@@ -25,4 +25,4 @@ Pourquoi le passage de `var` à `let` change-t-il le résultat, alors que le cor
 
 ##Ton animation de cards s'exécute dans le bon ordre
 
-Tu as reproduit, compris et corrigé le piège le plus classique de `var` — celui qui casse les animations décalées et les handlers générés en boucle. Commit la règle ESLint `no-var` : elle protègera aussi le code que tu écriras à 2 h du matin.
+Tu as reproduit, compris et corrigé le piège le plus classique de `var` : celui qui casse les animations décalées et les handlers générés en boucle. Commit la règle ESLint `no-var` : elle protègera aussi le code que tu écriras à 2 h du matin.
