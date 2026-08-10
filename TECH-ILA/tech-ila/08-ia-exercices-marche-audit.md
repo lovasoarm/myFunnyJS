@@ -8,16 +8,15 @@ companion: MyFunnyJS
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [07-cartes-myfunnyjs.md](./07-cartes-myfunnyjs.md) — le mapping module par module.
+> **Tu viens de** : [07-cartes-myfunnyjs.md](./07-cartes-myfunnyjs.md) : le mapping module par module.
 > **Tu dois déjà savoir** : la grille intemporel/périssable ([00](./00-orientation.md)), écrire un ADR ([04](./04-niveau-4-systemes.md)), la doctrine de vérification de l'IA ([06](./06-niveau-6-ia.md)).
-> **Ensuite** : [09-mode-urgence.md](./09-mode-urgence.md) — à ouvrir seulement quand quelque chose brûle.
+> **Ensuite** : [09-mode-urgence.md](./09-mode-urgence.md) : à ouvrir seulement quand quelque chose brûle.
 
 # Exercices, marché, audit (sections 12 à 14 et dernier mot)
 
 Les angles morts de l'IA ne sont plus ici : ils ont rejoint le [niveau 6](./06-niveau-6-ia.md), avec la doctrine de vérification. Une seule page, un seul endroit.
 
 ---
-
 
 ## 12 : Exercices et mini-projets
 
@@ -29,20 +28,20 @@ Chaque exercice de ce document a un objectif professionnel, réutilise au moins 
 
 ### 12.2 : Les douze exercices transversaux
 
-| #   | Exercice                                                                                                 | Ce qu'il prouve                                              |
-| --- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| #   | Exercice                                                                                                                           | Ce qu'il prouve                                              |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | 1   | Cartographier une codebase inconnue avec les 9 questions de [8.0](./05-niveau-5-transfert.md#80--la-grille-de-lecture-universelle) | tu peux arriver dans une équipe et être utile en trois jours |
-| 2   | Trouver le point d'entrée réel d'un projet sans README                                                   | tu ne dépends pas de la documentation                        |
-| 3   | Suivre une requête de bout en bout avec une trace                                                        | tu comprends ton système, pas seulement ton fichier          |
-| 4   | Reproduire un bug avant de le corriger                                                                   | tu ne corriges pas au hasard                                 |
-| 5   | Corriger une mauvaise abstraction (pas un bug)                                                           | tu vois la dette, pas seulement l'erreur                     |
-| 6   | Comparer deux technos sur des contraintes réelles                                                        | tu décides au lieu de suivre la mode                         |
-| 7   | Choisir un outil sous contrainte (budget, équipe, délai)                                                 | tu raisonnes en ingénieur                                    |
-| 8   | Analyser une réponse IA et prouver une faille                                                            | tu es dirigeant, pas passager                                |
-| 9   | Rédiger un ADR complet                                                                                   | tu sais défendre un choix six mois plus tard                 |
-| 10  | Produire un postmortem sans accuser personne                                                             | tu es employable en environnement d'astreinte                |
-| 11  | Mesurer avant et après une optimisation                                                                  | tu prouves au lieu d'affirmer                                |
-| 12  | Supprimer du code sans rien casser                                                                       | compétence rare, très respectée                              |
+| 2   | Trouver le point d'entrée réel d'un projet sans README                                                                             | tu ne dépends pas de la documentation                        |
+| 3   | Suivre une requête de bout en bout avec une trace                                                                                  | tu comprends ton système, pas seulement ton fichier          |
+| 4   | Reproduire un bug avant de le corriger                                                                                             | tu ne corriges pas au hasard                                 |
+| 5   | Corriger une mauvaise abstraction (pas un bug)                                                                                     | tu vois la dette, pas seulement l'erreur                     |
+| 6   | Comparer deux technos sur des contraintes réelles                                                                                  | tu décides au lieu de suivre la mode                         |
+| 7   | Choisir un outil sous contrainte (budget, équipe, délai)                                                                           | tu raisonnes en ingénieur                                    |
+| 8   | Analyser une réponse IA et prouver une faille                                                                                      | tu es dirigeant, pas passager                                |
+| 9   | Rédiger un ADR complet                                                                                                             | tu sais défendre un choix six mois plus tard                 |
+| 10  | Produire un postmortem sans accuser personne                                                                                       | tu es employable en environnement d'astreinte                |
+| 11  | Mesurer avant et après une optimisation                                                                                            | tu prouves au lieu d'affirmer                                |
+| 12  | Supprimer du code sans rien casser                                                                                                 | compétence rare, très respectée                              |
 
 ### 12.3 : Trois mini-projets d'intégration (pas un par techno)
 
@@ -56,29 +55,27 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 
 ### 12.4 : Les deux exercices de clôture
 
-> **Exercice — L'ADR de fin de parcours**
+> **Exercice : L'ADR de fin de parcours**
 > **Temps réaliste** : 90 min · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : choisis une décision technique réelle prise dans l'un de tes trois mini-projets. Rédige l'ADR : contexte, contraintes, options écartées et pourquoi, décision, conséquences acceptées, signal qui déclencherait une révision. Puis **réécris la même décision en 5 lignes pour un responsable produit, sans un seul nom de techno**.
-> **Réutilise** : [27_team_craft](../../27_team_craft/) — la trace écrite d'une décision.
+> **Réutilise** : [27_team_craft](../../27_team_craft/) : la trace écrite d'une décision.
 > **Piège** : écrire « on a choisi X parce que c'est mieux ». Une option écartée sans raison chiffrée n'est pas une option écartée.
 > **À observer** : le moment où tu ne sais plus justifier un choix. C'est là que la décision était une habitude, pas une décision.
 > **Vérification** (observable, chiffrée) : la version produit tient en 5 lignes, contient zéro nom de technologie, et une personne non technique peut redire la contrainte principale après une seule lecture.
 > **Extension** : six mois plus tard, relis-le et écris l'ADR de révision, même s'il conclut « on garde ».
 
-> **Exercice — Auditer ce document contre toi-même**
+> **Exercice : Auditer ce document contre toi-même**
 > **Temps réaliste** : 60 min · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
 > **Contraintes** : prends la grille de la section 14 et applique-la à trois fiches techno au hasard dans les niveaux 1 à 5. Pour chacune, vérifie qu'il existe un « Quand ne pas la choisir », un message d'erreur littéral, et un ancrage MyFunnyJS cliquable.
-> **Réutilise** : [00-orientation.md](./00-orientation.md) — la grille intemporel/périssable.
+> **Réutilise** : [00-orientation.md](./00-orientation.md) : la grille intemporel/périssable.
 > **Piège** : accepter une fiche parce qu'elle « a l'air complète ». Coche élément par élément.
 > **À observer** : les fiches où le coût annoncé ne correspond pas à ton vécu. C'est ton signal de revue.
 > **Vérification** (observable, chiffrée) : trois fiches auditées, chaque manquement listé avec numéro de ligne, et au moins une correction proposée en une phrase.
 > **Extension** : ouvre la correction. Ce document accepte les contradictions chiffrées, pas les avis.
 
 ---
-
-
 
 ## 13 : Réalité du marché
 
@@ -135,21 +132,21 @@ Mais :
 
 Les règles que ce document s'impose, et que tu peux lui opposer.
 
-| Règle                                        | Application                                                                                                                                         |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Aucune techno par effet de mode              | chacune passe la grille de [2](./00-orientation.md#2--syst%C3%A8me-de-classification) ; celles à durée de vie courte sont marquées PÉRISSABLE et traitées brièvement   |
-| Aucune promesse d'embauche                   | voir [13.1](#131--ce-qui-est-honn%C3%AAte)                                                                                                          |
-| Aucune techno "universellement meilleure"    | chaque fiche a un "Quand ne pas la choisir"                                                                                                         |
-| Aucun framework ne remplace les fondamentaux | chaque fiche cite les modules MyFunnyJS mobilisés                                                                                                   |
-| Aucun exemple artificiel                     | pipelines, caches, files, migrations, incidents, legacy : jamais panier ni login                                                                    |
-| Pas de redite des 32 modules                 | quand MyFunnyJS l'explique déjà, on renvoie au fichier                                                                                              |
-| Aucun jargon non expliqué                    | I/O-bound, backpressure, idempotence, N+1, p99, DLQ, SBOM sont définis à l'usage                                                                    |
-| Compromis systématiques                      | chaque choix expose son coût                                                                                                                        |
-| Durable séparé du changeant                  | "Ce qui restera" vs "Ce qu'il ne faut pas mémoriser"                                                                                                |
+| Règle                                        | Application                                                                                                                                                          |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aucune techno par effet de mode              | chacune passe la grille de [2](./00-orientation.md#2--syst%C3%A8me-de-classification) ; celles à durée de vie courte sont marquées PÉRISSABLE et traitées brièvement |
+| Aucune promesse d'embauche                   | voir [13.1](#131--ce-qui-est-honn%C3%AAte)                                                                                                                           |
+| Aucune techno "universellement meilleure"    | chaque fiche a un "Quand ne pas la choisir"                                                                                                                          |
+| Aucun framework ne remplace les fondamentaux | chaque fiche cite les modules MyFunnyJS mobilisés                                                                                                                    |
+| Aucun exemple artificiel                     | pipelines, caches, files, migrations, incidents, legacy : jamais panier ni login                                                                                     |
+| Pas de redite des 32 modules                 | quand MyFunnyJS l'explique déjà, on renvoie au fichier                                                                                                               |
+| Aucun jargon non expliqué                    | I/O-bound, backpressure, idempotence, N+1, p99, DLQ, SBOM sont définis à l'usage                                                                                     |
+| Compromis systématiques                      | chaque choix expose son coût                                                                                                                                         |
+| Durable séparé du changeant                  | "Ce qui restera" vs "Ce qu'il ne faut pas mémoriser"                                                                                                                 |
 | Angles morts de l'IA traités                 | traités intégralement au [niveau 6](./06-niveau-6-ia.md) et défaillances par techno en [9.3](./06-niveau-6-ia.md#93--les-d%C3%A9faillances-typiques-par-technologie) |
-| Liens jamais inventés                        | modules 07, 09 bonus, 10 avancé : "aucune application directe identifiée" assumé                                                                    |
-| Récompenses rares et méritées                | une dizaine dans tout le document, après une notion dense ou un transfert réussi : jamais après un paragraphe                                       |
-| Volume compatible avec un apprentissage réel | sélectif sur les technos, exhaustif sur les mécanismes                                                                                              |
+| Liens jamais inventés                        | modules 07, 09 bonus, 10 avancé : "aucune application directe identifiée" assumé                                                                                     |
+| Récompenses rares et méritées                | une dizaine dans tout le document, après une notion dense ou un transfert réussi : jamais après un paragraphe                                                        |
+| Volume compatible avec un apprentissage réel | sélectif sur les technos, exhaustif sur les mécanismes                                                                                                               |
 
 ---
 

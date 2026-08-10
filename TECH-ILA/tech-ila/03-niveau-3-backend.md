@@ -20,14 +20,14 @@ companion: MyFunnyJS
 
 ### 6.1 : Express (et les micro-frameworks)
 
-**Express** — Tag : PROFESSIONNELLE (omniprésent en legacy et en petit service) ·
+**Express** : Tag : PROFESSIONNELLE (omniprésent en legacy et en petit service) ·
 Coût : ~8 h avant utilité · Durée de vie : ~6 ans · À apprendre après : `node:http`, composition de fonctions
 
 - **Ancrage MyFunnyJS** : [01_express_from_scratch.md](../../21_api_craft/01_express_from_scratch.md), tu as déjà écrit le routeur et la chaîne de middlewares à la main
 - **Ce qu'il ajoute** : un routeur, une chaîne de middlewares, et rien d'autre. C'est sa force et sa limite.
 - **Ce qu'il masque** : qu'une erreur jetée dans un handler `async` n'est pas attrapée par défaut, et qu'une variable capturée au niveau module est partagée par toutes les requêtes.
 - **Ce qu'il ne résout pas** : l'organisation du code passé une certaine taille d'équipe ; aucune validation, aucune injection de dépendances par défaut.
-- **Quand ne pas le choisir** : pas avant que l'équipe dépasse trois personnes sur une API qui grossit — sans structure imposée, chacun invente la sienne.
+- **Quand ne pas le choisir** : pas avant que l'équipe dépasse trois personnes sur une API qui grossit : sans structure imposée, chacun invente la sienne.
 - **Exemple qui casse** : une route `async` qui jette est invisible pour le gestionnaire d'erreurs ; le client attend jusqu'au timeout, et le process affiche parfois `ERR_UNHANDLED_REJECTION` avant de mourir si rien ne capte le rejet au niveau global.
 - **Preuve que c'est acquis** : tu sais écrire un middleware d'erreur unique qui voit toutes tes routes, y compris les async · **Si tu bloques, reviens à** : [01_express_from_scratch.md](../../21_api_craft/01_express_from_scratch.md)
 
@@ -59,14 +59,18 @@ C'est une **composition de fonctions** ([03_composition.md](../../11_functional_
 // Handler avec validation de schéma en frontière et requête paramétrée
 app.post("/streams/:id/events", requireApiKey, async (req, res, next) => {
   const parsed = eventSchema.safeParse(req.body); // validation en frontière
-  if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
+  if (!parsed.success)
+    return res.status(400).json({ error: parsed.error.flatten() });
 
   const apiSecret = process.env.INGEST_SECRET; // secret depuis l'environnement
   // console.log("secret utilisé:", apiSecret); // MAUVAIS : ne jamais journaliser un secret
 
   try {
     // requête paramétrée : jamais de concaténation de chaîne SQL
-    await db.query("INSERT INTO events (stream_id, payload) VALUES ($1, $2)", [req.params.id, parsed.data]);
+    await db.query("INSERT INTO events (stream_id, payload) VALUES ($1, $2)", [
+      req.params.id,
+      parsed.data,
+    ]);
     // MAUVAIS : await db.query(`INSERT INTO events (stream_id, payload) VALUES (${req.params.id}, '${JSON.stringify(parsed.data)}')`);
     res.status(202).end();
   } catch (err) {
@@ -75,34 +79,33 @@ app.post("/streams/:id/events", requireApiKey, async (req, res, next) => {
 });
 ```
 
-#### Ce qui casse en production — trois pièges classiques
+#### Ce qui casse en production : trois pièges classiques
 
-- **La configuration capturée une seule fois.** Un middleware qui met en cache une configuration dans une closure au niveau module (`config ??= await loadConfig(...)`) fonctionne parfaitement en développement, avec un seul tenant. En production multi-clients, le client B reçoit la configuration du client A — sans erreur, sans log, une fuite de données pure.
+- **La configuration capturée une seule fois.** Un middleware qui met en cache une configuration dans une closure au niveau module (`config ??= await loadConfig(...)`) fonctionne parfaitement en développement, avec un seul tenant. En production multi-clients, le client B reçoit la configuration du client A : sans erreur, sans log, une fuite de données pure.
 - **La concurrence non bornée.** Un service qui rafraîchit 800 flux avec `Promise.all(streams.map(fetchStats))` envoie 800 requêtes simultanées : le fournisseur bannit l'IP, le pool de connexions à la base explose. Le correctif n'est pas un framework différent, c'est une concurrence bornée (huit appels en vol maximum, pas huit cents).
 - **Le code HTTP mal choisi.** Une route qui renvoie `500` pour un identifiant introuvable déclenche l'alerting à tort, fait réessayer un client qui croit à une panne transitoire, et noie le vrai incident du lendemain dans le bruit. C'était un `404`.
 - **Le succès qui ment.** Une API qui renvoie `{ "error": "Utilisateur introuvable" }` avec un statut `200` pousse chaque consommateur à parser le message lui-même. Le jour où la phrase change, les intégrations qui la comparaient cassent en silence. Un code stable (`USER_NOT_FOUND`) et le bon statut HTTP rendent la faute impossible.
-
 
 **Quand le choisir.** Petit service, prototype, code legacy à maintenir, besoin de contrôle total sans opinion imposée.
 **Quand ne pas le choisir.** Équipe de plus de trois personnes sur une API qui grossit : sans structure imposée, chacun invente la sienne. Six mois plus tard, personne ne sait où mettre un nouveau fichier.
 
 #### Alternatives
 
-| Alternative | Tag | Ce qui change | Ce que ça change côté mécanisme MyFunnyJS |
-| --- | --- | --- | --- |
-| **Fastify** | PROFESSIONNELLE | plus rapide, validation de schéma intégrée, excellent défaut moderne | le pipe de validation remplace le middleware maison, même chaîne de responsabilité |
-| **Hono** | CONTEXTUELLE | léger, multi-runtime, edge | la même composition de middlewares tourne aussi hors Node (Deno, Bun, Workers) |
-| **Koa** | PÉRISSABLE | middlewares en `async/await` natif dès l'origine | plus besoin de wrapper `asyncHandler`, le piège async d'Express disparaît structurellement |
-| **Deno** (runtime) | CONTEXTUELLE | permissions explicites, TypeScript natif | le modèle de sécurité par permission remplace la confiance implicite de Node |
-| **Bun** (runtime) | CONTEXTUELLE | démarrage et installation très rapides | même graphe de middlewares, mais l'event loop et le profil mémoire diffèrent |
-| **Go** (net/http) | CONTEXTUELLE | typage statique, goroutines au lieu de l'event loop | le concept de middleware existe encore, mais la concurrence n'est plus coopérative en un seul thread |
+| Alternative        | Tag             | Ce qui change                                                        | Ce que ça change côté mécanisme MyFunnyJS                                                            |
+| ------------------ | --------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Fastify**        | PROFESSIONNELLE | plus rapide, validation de schéma intégrée, excellent défaut moderne | le pipe de validation remplace le middleware maison, même chaîne de responsabilité                   |
+| **Hono**           | CONTEXTUELLE    | léger, multi-runtime, edge                                           | la même composition de middlewares tourne aussi hors Node (Deno, Bun, Workers)                       |
+| **Koa**            | PÉRISSABLE      | middlewares en `async/await` natif dès l'origine                     | plus besoin de wrapper `asyncHandler`, le piège async d'Express disparaît structurellement           |
+| **Deno** (runtime) | CONTEXTUELLE    | permissions explicites, TypeScript natif                             | le modèle de sécurité par permission remplace la confiance implicite de Node                         |
+| **Bun** (runtime)  | CONTEXTUELLE    | démarrage et installation très rapides                               | même graphe de middlewares, mais l'event loop et le profil mémoire diffèrent                         |
+| **Go** (net/http)  | CONTEXTUELLE    | typage statique, goroutines au lieu de l'event loop                  | le concept de middleware existe encore, mais la concurrence n'est plus coopérative en un seul thread |
 
 Le concept de middleware est identique partout.
 
-> **Exercice — Le piège de l'erreur async**
+> **Exercice : Le piège de l'erreur async**
 > **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
-> **Contraintes** : écris trois routes — une qui jette de façon synchrone, une qui jette dans une promesse non enveloppée, une qui jette depuis un `setTimeout` ; un seul middleware d'erreur, aucun `try/catch` dupliqué dans les handlers, un log structuré par erreur.
+> **Contraintes** : écris trois routes : une qui jette de façon synchrone, une qui jette dans une promesse non enveloppée, une qui jette depuis un `setTimeout` ; un seul middleware d'erreur, aucun `try/catch` dupliqué dans les handlers, un log structuré par erreur.
 > **Réutilise** : [04_async_error_traps.md](../../05_error_handling/04_async_error_traps.md)
 > **Piège** : la troisième ne sera jamais rattrapée par un simple wrapper de handler : dis pourquoi et ce que tu mets en place à la place (écoute sur `process.on('uncaughtException')`, mais seulement pour logguer et arrêter proprement, jamais pour continuer).
 > **À observer** : le code HTTP reçu par le client, le temps qu'il attend, et ce que le process fait de l'erreur non gérée.
@@ -115,15 +118,15 @@ Le concept de middleware est identique partout.
 
 ### 6.2 : NestJS
 
-**NestJS** — Tag : PROFESSIONNELLE (dominant sur les gros backends Node en Europe) ·
+**NestJS** : Tag : PROFESSIONNELLE (dominant sur les gros backends Node en Europe) ·
 Coût : ~35 h avant utilité · Durée de vie : ~7 ans · À apprendre après : POO, TypeScript, patrons de conception, architecture propre
 
 - **Ancrage MyFunnyJS** : [02_solid_principles.md](../../16_architecture_patterns/02_solid_principles.md), l'injection de dépendances est l'inversion de dépendance de SOLID
 - **Ce qu'il ajoute** : une architecture imposée, décorateurs, injection de dépendances, guards/interceptors/pipes ordonnés.
-- **Ce qu'il masque** : le conteneur d'injection et la résolution des dépendances — symptôme typique, un module qui n'exporte pas ce qu'un autre importe.
+- **Ce qu'il masque** : le conteneur d'injection et la résolution des dépendances : symptôme typique, un module qui n'exporte pas ce qu'un autre importe.
 - **Ce qu'il ne résout pas** : ton modèle de domaine ; Nest range les fichiers, il ne conçoit pas ton métier.
-- **Quand ne pas le choisir** : pas avant d'avoir une équipe de plusieurs personnes et un backend fait pour durer — un petit service ou une fonction serverless paie un coût d'entrée disproportionné.
-- **Exemple qui casse** : `Nest can't resolve dependencies of the IngestService (?). Please make sure that the argument at index 0 is available in the current context.` — un module n'exporte pas ce qu'un autre importe.
+- **Quand ne pas le choisir** : pas avant d'avoir une équipe de plusieurs personnes et un backend fait pour durer : un petit service ou une fonction serverless paie un coût d'entrée disproportionné.
+- **Exemple qui casse** : `Nest can't resolve dependencies of the IngestService (?). Please make sure that the argument at index 0 is available in the current context.` : un module n'exporte pas ce qu'un autre importe.
 - **Preuve que c'est acquis** : tu sais réciter l'ordre exact middleware → guard → interceptor → pipe → handler → interceptor → filtre, et dire à quelle étape une requête invalide est rejetée · **Si tu bloques, reviens à** : [02_solid_principles.md](../../16_architecture_patterns/02_solid_principles.md)
 
 #### Pourquoi il existe
@@ -187,7 +190,8 @@ export class IngestController {
 
   @UseGuards(ApiKeyGuard) // guard AVANT le pipe : un appelant non autorisé n'atteint jamais la validation
   @Post("events")
-  async push(@Body() dto: PushEventsDto) { // Pipe de validation en frontière
+  async push(@Body() dto: PushEventsDto) {
+    // Pipe de validation en frontière
     const secret = process.env.INGEST_SIGNING_SECRET; // secret depuis l'environnement
     // this.logger.log(`secret: ${secret}`); // MAUVAIS : ne jamais journaliser un secret
     return this.ingest.enqueue(dto.events);
@@ -199,7 +203,7 @@ Ce qui est invisible ici et qui compte : le guard s'exécute avant le pipe, donc
 
 #### Ce qu'il masque
 
-Le conteneur d'injection et la résolution des dépendances. Symptôme littéral : `Nest can't resolve dependencies of the IngestService (?). Please make sure that the argument at index 0 is available in the current context.` — un module n'exporte pas ce qu'un autre importe. L'erreur est intimidante ; elle dit littéralement quel argument est manquant, à quelle position.
+Le conteneur d'injection et la résolution des dépendances. Symptôme littéral : `Nest can't resolve dependencies of the IngestService (?). Please make sure that the argument at index 0 is available in the current context.` : un module n'exporte pas ce qu'un autre importe. L'erreur est intimidante ; elle dit littéralement quel argument est manquant, à quelle position.
 
 #### Ce qu'il ne résout pas
 
@@ -207,8 +211,7 @@ Ton modèle de domaine. Une architecture NestJS impeccable avec une logique mét
 
 #### Exemple qui casse : la dépendance directe au driver
 
-Une équipe veut migrer de MongoDB vers PostgreSQL. Le code métier importe le driver Mongo dans 47 fichiers et manipule des `ObjectId` jusque dans le calcul des droits. La migration, estimée à trois semaines, en prend sept mois : ce n'est plus une migration de base, c'est une réécriture. La même application, avec un repository par agrégat derrière une interface, aurait changé quatre fichiers — exactement ce que l'inversion de dépendance de SOLID est censée acheter.
-
+Une équipe veut migrer de MongoDB vers PostgreSQL. Le code métier importe le driver Mongo dans 47 fichiers et manipule des `ObjectId` jusque dans le calcul des droits. La migration, estimée à trois semaines, en prend sept mois : ce n'est plus une migration de base, c'est une réécriture. La même application, avec un repository par agrégat derrière une interface, aurait changé quatre fichiers : exactement ce que l'inversion de dépendance de SOLID est censée acheter.
 
 #### Testing
 
@@ -248,31 +251,31 @@ Backend qui va vivre des années, équipe de plusieurs personnes, besoin d'une s
 
 Petit service, fonction serverless, prototype, équipe rebutée par les classes et les décorateurs. Le coût d'entrée est réel : concepts empruntés à Angular et Spring, beaucoup de fichiers pour un premier endpoint.
 
-#### Matrice de décision — Express / Fastify / NestJS
+#### Matrice de décision : Express / Fastify / NestJS
 
-| Contrainte | Express | Fastify | NestJS |
-| --- | --- | --- | --- |
-| Équipe de 1-2 personnes, prototype rapide | bon | bon | coût d'entrée trop élevé |
-| Équipe de 4+ personnes, backend qui vivra des années | risqué sans discipline forte | correct si conventions écrites | **choix par défaut si tu n'as pas le temps** |
-| Débit très élevé, latence critique | correct | **meilleur défaut mesuré** | correct mais overhead du conteneur DI |
-| Beaucoup de préoccupations transverses (auth, traçage, validation) | tout à câbler soi-même | à câbler avec des plugins | **structure déjà prévue** |
-| Fonction serverless, cold start critique | **léger, démarre vite** | léger | coût de démarrage du conteneur DI perceptible |
-| Code legacy à maintenir sans réécriture | **déjà là, ne pas migrer sans raison** | migration à évaluer en ADR | migration coûteuse, à réserver à une réécriture assumée |
+| Contrainte                                                         | Express                                | Fastify                        | NestJS                                                  |
+| ------------------------------------------------------------------ | -------------------------------------- | ------------------------------ | ------------------------------------------------------- |
+| Équipe de 1-2 personnes, prototype rapide                          | bon                                    | bon                            | coût d'entrée trop élevé                                |
+| Équipe de 4+ personnes, backend qui vivra des années               | risqué sans discipline forte           | correct si conventions écrites | **choix par défaut si tu n'as pas le temps**            |
+| Débit très élevé, latence critique                                 | correct                                | **meilleur défaut mesuré**     | correct mais overhead du conteneur DI                   |
+| Beaucoup de préoccupations transverses (auth, traçage, validation) | tout à câbler soi-même                 | à câbler avec des plugins      | **structure déjà prévue**                               |
+| Fonction serverless, cold start critique                           | **léger, démarre vite**                | léger                          | coût de démarrage du conteneur DI perceptible           |
+| Code legacy à maintenir sans réécriture                            | **déjà là, ne pas migrer sans raison** | migration à évaluer en ADR     | migration coûteuse, à réserver à une réécriture assumée |
 
 **Choix par défaut si tu n'as pas le temps de trancher** : Fastify pour un service neuf sans contrainte de structure imposée ; NestJS si l'équipe dépasse trois personnes et que le projet doit vivre plus de deux ans.
 
 #### Alternatives et transfert
 
 |                  | NestJS                      | Spring Boot (PROFESSIONNELLE) | .NET / ASP.NET Core (PROFESSIONNELLE) | FastAPI (PROFESSIONNELLE) |
-| ---------------- | --------------------------- | ----------------------- | ---------------------------------- | ------------------------ |
-| DI               | conteneur + décorateurs     | conteneur + annotations | conteneur intégré                  | dépendances par fonction |
-| Validation       | pipes + class-validator/Zod | Bean Validation         | DataAnnotations / FluentValidation | Pydantic                 |
-| Filtres d'erreur | exception filters           | `@ControllerAdvice`     | middleware / filtres               | handlers d'exception     |
-| Interception     | interceptors                | AOP / aspects           | middleware / filtres               | dépendances + middleware |
+| ---------------- | --------------------------- | ----------------------------- | ------------------------------------- | ------------------------- |
+| DI               | conteneur + décorateurs     | conteneur + annotations       | conteneur intégré                     | dépendances par fonction  |
+| Validation       | pipes + class-validator/Zod | Bean Validation               | DataAnnotations / FluentValidation    | Pydantic                  |
+| Filtres d'erreur | exception filters           | `@ControllerAdvice`           | middleware / filtres                  | handlers d'exception      |
+| Interception     | interceptors                | AOP / aspects                 | middleware / filtres                  | dépendances + middleware  |
 
 Regarde ce tableau. **Ce sont les mêmes idées avec des noms différents.** Apprendre NestJS sérieusement, c'est apprendre 70 % de Spring Boot d'avance. C'est exactement l'objectif du niveau 5.
 
-> **Exercice — Rate limiting distribué avec Redis**
+> **Exercice : Rate limiting distribué avec Redis**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : Redis local (conteneur) · **Coût max** : 0 €
 > **Mode** : assistant autorisé
 > **Contraintes** : implémente un guard qui limite le débit par clé d'API, avec compteur en Redis ; la limite doit tenir avec plusieurs instances du service, et un dépassement renvoie 429 avec un header `Retry-After`.
@@ -281,7 +284,7 @@ Regarde ce tableau. **Ce sont les mêmes idées avec des noms différents.** App
 > **À observer** : le nombre de requêtes réellement acceptées sur 200 envoyées en rafale, avec et sans correction.
 > **Vérification** (observable, chiffrée) : avec la version naïve, le nombre accepté dépasse la limite fixée ; avec la version corrigée, il ne la dépasse jamais, sur 10 exécutions.
 > **Repli 100 % local et gratuit** : Redis en conteneur local, aucune instance cloud nécessaire.
-> **Extension** : que se passe-t-il si Redis devient indisponible pendant une rafale — le guard doit-il fermer (bloquer tout) ou ouvrir (laisser tout passer) ?
+> **Extension** : que se passe-t-il si Redis devient indisponible pendant une rafale : le guard doit-il fermer (bloquer tout) ou ouvrir (laisser tout passer) ?
 
 **Moment Thor.** Tu ne récites plus "NestJS c'est structuré". Tu sais que la structure est un ordre d'exécution, que la DI est un point de test, et que rien de tout ça ne remplace un modèle de domaine correct.
 
@@ -289,15 +292,15 @@ Regarde ce tableau. **Ce sont les mêmes idées avec des noms différents.** App
 
 ### 6.3 : Validation, authentification, autorisation
 
-**Auth / validation** — Tag : NOYAU DURABLE ·
+**Auth / validation** : Tag : NOYAU DURABLE ·
 Coût : ~12 h avant utilité · Durée de vie : ~10 ans (concepts) · À apprendre après : Express ou NestJS
 
 - **Ancrage MyFunnyJS** : [04_auth_flows.md](../../22_security/04_auth_flows.md), la différence entre prouver qui tu es et obtenir un droit
 - **Ce qu'elle ajoute** : une frontière explicite entre données non fiables et logique métier.
-- **Ce qu'elle masque** : que vérifier la présence d'un token ne vérifie pas la propriété de la ressource — l'écart entre authentification et autorisation.
+- **Ce qu'elle masque** : que vérifier la présence d'un token ne vérifie pas la propriété de la ressource : l'écart entre authentification et autorisation.
 - **Ce qu'elle ne résout pas** : la conception du modèle de rôles ; une validation parfaite avec des rôles mal pensés reste exploitable.
-- **Quand ne pas la choisir de façon superficielle** : ne jamais valider "juste côté client" — la validation client est un confort, jamais une protection.
-- **Exemple qui casse** : un utilisateur authentifié change un identifiant dans l'URL et lit les données d'un autre — aucune erreur serveur, juste une mauvaise autorisation qui laisse passer.
+- **Quand ne pas la choisir de façon superficielle** : ne jamais valider "juste côté client" : la validation client est un confort, jamais une protection.
+- **Exemple qui casse** : un utilisateur authentifié change un identifiant dans l'URL et lit les données d'un autre : aucune erreur serveur, juste une mauvaise autorisation qui laisse passer.
 - **Preuve que c'est acquis** : tu as des tests qui prouvent qu'un utilisateur A ne peut ni lire, ni modifier, ni supprimer une ressource de B en étant authentifié · **Si tu bloques, reviens à** : [05_auth_authz.md](../../17_web_concepts/05_auth_authz.md)
 
 #### Ce que MyFunnyJS permet déjà de comprendre
@@ -321,7 +324,7 @@ async function getInvoice(req: AuthedRequest, res: Response) {
     [req.params.id, req.user.id],
   );
   // MAUVAIS : const invoice = await db.query(`SELECT * FROM invoices WHERE id = ${req.params.id}`);
-  // MAUVAIS (l'erreur classique) : oublier `AND owner_id = $2` — la requête est "sûre" contre l'injection
+  // MAUVAIS (l'erreur classique) : oublier `AND owner_id = $2` : la requête est "sûre" contre l'injection
   // mais n'importe quel utilisateur authentifié peut lire la facture de n'importe qui.
   if (!invoice) return res.status(404).end();
   return res.json(invoice);
@@ -331,7 +334,7 @@ async function getInvoice(req: AuthedRequest, res: Response) {
 **Sessions vs JWT : le vrai compromis :**
 
 |             | Session serveur                    | JWT                                                                |
-| ----------- | ----------------------------------- | -------------------------------------------------------------------- |
+| ----------- | ---------------------------------- | ------------------------------------------------------------------ |
 | Révocation  | immédiate                          | difficile (il faut une liste de révocation, donc… un état serveur) |
 | Scalabilité | nécessite un store partagé (Redis) | sans état                                                          |
 | Taille      | cookie court                       | token plus lourd à chaque requête                                  |
@@ -343,32 +346,32 @@ Il n'y a pas de gagnant. Il y a un contexte. Un JWT de 24 h pour une application
 
 **Autorisation à l'échelle.** RBAC (rôles) est simple et suffit souvent. ABAC (attributs) est plus fin et plus complexe. Règle transférable : **les rôles ne se stockent jamais côté client, ni dans un champ modifiable par l'utilisateur.** Sinon, escalade de privilèges triviale.
 
-> **Exercice — Prouver l'absence de fuite entre utilisateurs** — jeûne d'IA obligatoire
+> **Exercice : Prouver l'absence de fuite entre utilisateurs** : jeûne d'IA obligatoire
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : prends une API à trois endpoints ; écris les tests qui prouvent qu'un utilisateur A ne peut pas lire, modifier ni supprimer une ressource de B, en étant parfaitement authentifié.
 > **Réutilise** : [05_auth_authz.md](../../17_web_concepts/05_auth_authz.md)
-> **Piège** : un endpoint peut être protégé en lecture et oublié en écriture — teste les trois verbes, pas seulement GET.
+> **Piège** : un endpoint peut être protégé en lecture et oublié en écriture : teste les trois verbes, pas seulement GET.
 > **À observer** : le code HTTP renvoyé pour chaque tentative croisée (403 ou 404, jamais 200 ni 500).
 > **Vérification** (observable, chiffrée) : 3 endpoints × 3 verbes × 1 tentative croisée = 9 tests, tous rouges avant correction, tous verts après.
 > **Repli 100 % local et gratuit** : base de test locale ou en mémoire, aucun service externe nécessaire.
-> **Extension** : ajoute un rôle admin qui peut légitimement tout voir — comment le tests-tu sans casser les 9 précédents ?
+> **Extension** : ajoute un rôle admin qui peut légitimement tout voir : comment le tests-tu sans casser les 9 précédents ?
 > **Preuve du jeûne demandée** : avant d'écrire les tests, note en 5 lignes ton hypothèse écrite sur l'endroit précis où la vérification de propriété doit se faire (couche route, service, ou requête SQL), horodatée avant toute exécution.
 
 ---
 
 ### 6.4 : Redis
 
-**Redis** — Tag : PROFESSIONNELLE ·
+**Redis** : Tag : PROFESSIONNELLE ·
 Coût : ~10 h avant utilité · Durée de vie : ~8 ans · À apprendre après : structures de données de base, stratégies de cache
 
 - **Ancrage MyFunnyJS** : `09_data_structures/`, les mêmes structures que tu connais, partagées entre processus et persistantes au redémarrage
-- **Ce qu'il ajoute** : un espace de structures de données en mémoire partagé par toutes tes instances — chaînes, hashes, ensembles, ensembles triés, listes, flux, compteurs atomiques, verrous, pub/sub.
-- **Ce qu'il masque** : que « mettre en cache » n'est pas gratuit — chaque cache introduit une deuxième source de vérité, donc une question d'invalidation jamais totalement résolue.
+- **Ce qu'il ajoute** : un espace de structures de données en mémoire partagé par toutes tes instances : chaînes, hashes, ensembles, ensembles triés, listes, flux, compteurs atomiques, verrous, pub/sub.
+- **Ce qu'il masque** : que « mettre en cache » n'est pas gratuit : chaque cache introduit une deuxième source de vérité, donc une question d'invalidation jamais totalement résolue.
 - **Ce qu'il ne résout pas** : la cohérence. Deux sources de vérité (base + cache) divergeront toujours à un moment.
 - **Quand ne pas le choisir** : pas comme base principale de données que tu ne peux pas te permettre de perdre sans configuration de persistance sérieuse ; pour un cache local à un seul process, une Map avec TTL suffit.
 - **Son mode de panne principal : l'invalidation.** Une clé très demandée expire, des milliers de requêtes constatent le vide au même instant et frappent la base simultanément (cache stampede) : le cache censé protéger la base la tue.
-- **Exemple qui casse** : une page d'accueil met son bloc de statistiques en cache 300 s. Un déploiement vide le cache ; à la réouverture, 4 000 requêtes simultanées trouvent le vide et partent toutes en base sur la même requête d'agrégation à 900 ms. La base sature, les timeouts commencent, les clients réessaient, la charge double — sans aucun message d'erreur avant l'effondrement complet.
+- **Exemple qui casse** : une page d'accueil met son bloc de statistiques en cache 300 s. Un déploiement vide le cache ; à la réouverture, 4 000 requêtes simultanées trouvent le vide et partent toutes en base sur la même requête d'agrégation à 900 ms. La base sature, les timeouts commencent, les clients réessaient, la charge double : sans aucun message d'erreur avant l'effondrement complet.
 - **Preuve que c'est acquis** : tu sais nommer, sans hésiter, ce que tu ne mets jamais dans Redis, et le compromis fraîcheur/coût de chaque clé que tu y places · **Si tu bloques, reviens à** : [04_redis_caching.md](../../24_databases/04_redis_caching.md)
 
 **Ce que c'est vraiment.** Un espace de structures de données en mémoire, partagé par toutes tes instances. Pas juste "un cache" : chaînes, hashes, ensembles, ensembles triés, listes, flux, compteurs atomiques, verrous, publication/abonnement.
@@ -386,7 +389,7 @@ Redis n'introduit aucune structure nouvelle : il te donne celles que tu connais 
 **Cas d'usage honnêtes :**
 
 | Usage                 | Pourquoi Redis            | Piège                                                 |
-| --------------------- | -------------------------- | ------------------------------------------------------ |
+| --------------------- | ------------------------- | ----------------------------------------------------- |
 | Cache de lecture      | latence sub-milliseconde  | invalidation : le problème difficile                  |
 | Rate limiting         | compteurs atomiques + TTL | sans atomicité, race condition                        |
 | Sessions              | partagé entre instances   | attention à la durabilité                             |
@@ -403,7 +406,7 @@ Journalise chaque `MISS` de cache avec la clé demandée et l'identifiant de cor
 
 **Quand ne pas l'utiliser.** Comme base principale de données que tu ne peux pas te permettre de perdre, sans configuration de persistance sérieuse. Et pour un cache local à un seul process, une Map avec TTL suffit : n'ajoute pas un service pour ça.
 
-> **Exercice — Provoquer puis éteindre une ruée sur le cache**
+> **Exercice : Provoquer puis éteindre une ruée sur le cache**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : Redis local (conteneur) · **Coût max** : 0 €
 > **Mode** : assistant autorisé
 > **Contraintes** : place un cache Redis devant une requête coûteuse (au moins 300 ms) avec un TTL court ; envoie 500 requêtes concurrentes juste après l'expiration de la clé, compte les appels réellement arrivés à la base, puis ramène ce nombre à un seul.
@@ -418,14 +421,14 @@ Journalise chaque `MISS` de cache avec la clé demandée et l'identifiant de cor
 
 ### 6.5 : Files de messages et workers
 
-**Files / queues** — Tag : NOYAU DURABLE (le pattern) / CONTEXTUELLE (l'outil) ·
+**Files / queues** : Tag : NOYAU DURABLE (le pattern) / CONTEXTUELLE (l'outil) ·
 Coût : ~15 h avant utilité · Durée de vie : ~10 ans (pattern) / ~4 ans (outil) · À apprendre après : Redis, event-driven
 
 - **Ancrage MyFunnyJS** : [07_message_queues.md](../../25_scalability/07_message_queues.md), file, producteur, consommateur, livraison au moins une fois
 - **Ce qu'elle ajoute** : une réponse rapide à l'appelant, un traitement lent découplé et rejouable.
-- **Ce qu'elle masque** : que « au moins une fois » signifie qu'un job sera parfois livré deux fois — l'idempotence n'est pas optionnelle, elle est la condition de correction.
+- **Ce qu'elle masque** : que « au moins une fois » signifie qu'un job sera parfois livré deux fois : l'idempotence n'est pas optionnelle, elle est la condition de correction.
 - **Ce qu'elle ne résout pas** : l'ordre global (presque jamais garanti) ni la visibilité (sans métrique de profondeur de file, le problème se découvre par un client).
-- **Quand ne pas la choisir** : pas avant d'avoir un vrai volume ou un vrai besoin de découplage — introduire Kafka pour 50 messages par minute ajoute un système distribué à opérer pour un problème qu'une table PostgreSQL réglait.
+- **Quand ne pas la choisir** : pas avant d'avoir un vrai volume ou un vrai besoin de découplage : introduire Kafka pour 50 messages par minute ajoute un système distribué à opérer pour un problème qu'une table PostgreSQL réglait.
 - **Exemple qui casse** : un worker tué en plein traitement (`docker kill`) relance le même job au redémarrage ; sans idempotence, la ligne est comptée deux fois, sans aucune erreur visible.
 - **Preuve que c'est acquis** : tu sais faire tourner deux workers en parallèle et prouver qu'aucun traitement n'est compté deux fois · **Si tu bloques, reviens à** : [07_message_queues.md](../../25_scalability/07_message_queues.md)
 
@@ -459,26 +462,26 @@ HTTP  →  valide  →  publie un job  →  202 Accepted (immédiat)
 
 #### Ce que tu logues ici et avec quel identifiant
 
-Journalise, à la publication du job, l'identifiant de job et l'identifiant de corrélation de la requête d'origine, propagés ensemble jusqu'au worker. Journalise, à chaque tentative du worker, le numéro de tentative et le résultat (succès, échec retryable, échec définitif vers la DLQ) sous ce même identifiant de job — sans ce fil, un job qui échoue trois fois puis réussit apparaît comme trois incidents distincts au lieu d'un seul.
+Journalise, à la publication du job, l'identifiant de job et l'identifiant de corrélation de la requête d'origine, propagés ensemble jusqu'au worker. Journalise, à chaque tentative du worker, le numéro de tentative et le résultat (succès, échec retryable, échec définitif vers la DLQ) sous ce même identifiant de job : sans ce fil, un job qui échoue trois fois puis réussit apparaît comme trois incidents distincts au lieu d'un seul.
 
 **Outils.**
 
-| Outil | Tag | Ce que ça change côté mécanisme MyFunnyJS |
-| --- | --- | --- |
-| **BullMQ** (Redis) | PROFESSIONNELLE | même Redis que la fiche 6.4, les jobs sont des structures de données Redis sérialisées |
-| **RabbitMQ** | PROFESSIONNELLE | routage riche par exchange, le modèle producteur/consommateur devient explicite dans la configuration |
-| **Kafka** | CONTEXTUELLE | flux à très haut débit, rejouables, coût opérationnel élevé — un log distribué, pas une file classique |
-| **SQS** | CONTEXTUELLE | managé, visibilité et DLQ fournies nativement, mais latence de livraison plus élevée |
+| Outil                   | Tag             | Ce que ça change côté mécanisme MyFunnyJS                                                                 |
+| ----------------------- | --------------- | --------------------------------------------------------------------------------------------------------- |
+| **BullMQ** (Redis)      | PROFESSIONNELLE | même Redis que la fiche 6.4, les jobs sont des structures de données Redis sérialisées                    |
+| **RabbitMQ**            | PROFESSIONNELLE | routage riche par exchange, le modèle producteur/consommateur devient explicite dans la configuration     |
+| **Kafka**               | CONTEXTUELLE    | flux à très haut débit, rejouables, coût opérationnel élevé : un log distribué, pas une file classique    |
+| **SQS**                 | CONTEXTUELLE    | managé, visibilité et DLQ fournies nativement, mais latence de livraison plus élevée                      |
 | **pgboss** (PostgreSQL) | PROFESSIONNELLE | la file vit dans ta base existante : souvent le meilleur choix tant qu'il n'y a pas de problème d'échelle |
 
 **Le piège d'architecture.** Introduire Kafka pour 50 messages par minute. Tu viens d'ajouter un système distribué à opérer pour un problème qu'une table PostgreSQL réglait. C'est une décision qui se défend en ADR, ou qui ne se prend pas.
 
-> **Exercice — Pipeline résilient au redémarrage d'un worker**
+> **Exercice : Pipeline résilient au redémarrage d'un worker**
 > **Temps réaliste** : 3 h · **Prérequis matériel / compte** : Docker local · **Coût max** : 0 €
 > **Mode** : assistant autorisé
-> **Contraintes** : construis un pipeline — un endpoint accepte un fichier de mesures, publie un job, un worker le traite par lots et écrit un résumé ; le worker est tué au milieu du traitement (fais-le vraiment, `docker kill`), le job doit reprendre sans doublon, et un job qui échoue trois fois part en dead-letter.
+> **Contraintes** : construis un pipeline : un endpoint accepte un fichier de mesures, publie un job, un worker le traite par lots et écrit un résumé ; le worker est tué au milieu du traitement (fais-le vraiment, `docker kill`), le job doit reprendre sans doublon, et un job qui échoue trois fois part en dead-letter.
 > **Réutilise** : [07_message_queues.md](../../25_scalability/07_message_queues.md)
-> **Piège** : rendre un job idempotent en le vérifiant "s'il existe déjà" introduit sa propre race condition si deux workers le voient en même temps — teste avec deux workers en parallèle, pas un seul.
+> **Piège** : rendre un job idempotent en le vérifiant "s'il existe déjà" introduit sa propre race condition si deux workers le voient en même temps : teste avec deux workers en parallèle, pas un seul.
 > **À observer** : le nombre de lignes comptées dans le résumé final, le nombre de tentatives par job, et le contenu de la dead-letter après un échec forcé.
 > **Vérification** (observable, chiffrée) : lance deux workers en parallèle et prouve qu'aucune ligne n'est comptée deux fois, sur au moins 3 exécutions du scénario `docker kill`.
 > **Repli 100 % local et gratuit** : file en conteneur local (Redis ou PostgreSQL selon l'outil choisi), aucun service managé nécessaire.
@@ -490,15 +493,15 @@ Journalise, à la publication du job, l'identifiant de job et l'identifiant de c
 
 ### 6.6 : Temps réel : WebSocket et SSE
 
-**Temps réel** — Tag : NOYAU DURABLE (les concepts) ·
+**Temps réel** : Tag : NOYAU DURABLE (les concepts) ·
 Coût : ~10 h avant utilité · Durée de vie : ~9 ans · À apprendre après : files de messages, event loop
 
 - **Ancrage MyFunnyJS** : `20_realtime/`, connexion persistante, flux d'événements, reconnexion
 - **Ce qu'il ajoute** : un canal ouvert qui pousse des données sans que le client les redemande.
-- **Ce qu'il masque** : qu'une connexion ouverte est un état attaché à une instance précise du serveur — avec plusieurs instances, un message publié sur A doit atteindre un client connecté à B.
-- **Ce qu'il ne résout pas** : la décision produit "que se passe-t-il pour les messages émis pendant une coupure réseau" — perdus, rejoués, signalés comme trou dans le flux.
-- **Quand ne pas le choisir** : pas avant que le client ait un vrai besoin d'émettre en continu — si le client n'a rien à envoyer, SSE suffit et coûte dix fois moins cher en complexité que WebSocket.
-- **Exemple qui casse** : un handler de socket qui capture l'état d'un utilisateur dans une closure le garde en vie après sa déconnexion — fuite mémoire multipliée par le nombre de clients, sans erreur visible avant la saturation.
+- **Ce qu'il masque** : qu'une connexion ouverte est un état attaché à une instance précise du serveur : avec plusieurs instances, un message publié sur A doit atteindre un client connecté à B.
+- **Ce qu'il ne résout pas** : la décision produit "que se passe-t-il pour les messages émis pendant une coupure réseau" : perdus, rejoués, signalés comme trou dans le flux.
+- **Quand ne pas le choisir** : pas avant que le client ait un vrai besoin d'émettre en continu : si le client n'a rien à envoyer, SSE suffit et coûte dix fois moins cher en complexité que WebSocket.
+- **Exemple qui casse** : un handler de socket qui capture l'état d'un utilisateur dans une closure le garde en vie après sa déconnexion : fuite mémoire multipliée par le nombre de clients, sans erreur visible avant la saturation.
 - **Preuve que c'est acquis** : tu sais dire, pour ton cas, ce qui arrive aux messages émis pendant une coupure de 20 secondes, et pourquoi tu as choisi cette réponse · **Si tu bloques, reviens à** : [06_backpressure.md](../../03_async/06_backpressure.md)
 
 #### Ce que MyFunnyJS permet déjà de comprendre
@@ -509,7 +512,7 @@ Coût : ~10 h avant utilité · Durée de vie : ~9 ans · À apprendre après : 
 - [02_closure_trap.md](../../01_fundamentals/02_scope/02_closure_trap.md) : un handler de socket qui capture l'état d'un utilisateur le garde en vie après sa déconnexion.
 
 |                 | SSE                                                    | WebSocket                                |
-| --------------- | -------------------------------------------------------- | ------------------------------------------ |
+| --------------- | ------------------------------------------------------ | ---------------------------------------- |
 | Sens            | serveur → client                                       | bidirectionnel                           |
 | Transport       | HTTP standard                                          | protocole distinct après upgrade         |
 | Reconnexion     | automatique, avec `Last-Event-ID`                      | à ta charge                              |
@@ -528,13 +531,12 @@ Coût : ~10 h avant utilité · Durée de vie : ~9 ans · À apprendre après : 
 
 Un tableau de bord diffuse chaque événement à **tous** les clients connectés, sans filtrage ni regroupement. En démonstration, quatre navigateurs : tout va bien. En production, 900 clients et 200 événements par minute donnent 180 000 messages par minute ; la boucle d'événements du serveur ne redescend plus, et le service tombe en cascade. Le correctif n'est pas de changer de bibliothèque : c'est de regrouper les événements par fenêtre de temps et de n'envoyer qu'aux abonnés réellement concernés.
 
-
-> **Exercice — Reconnexion sans trou silencieux**
+> **Exercice : Reconnexion sans trou silencieux**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : assistant autorisé
 > **Contraintes** : diffuse un flux d'événements à plusieurs clients avec SSE ; coupe le réseau d'un client 20 secondes ; à la reconnexion, il doit récupérer ce qu'il a manqué, ou recevoir explicitement un signal "trou dans le flux".
 > **Réutilise** : `20_realtime/`
-> **Piège** : `Last-Event-ID` ne fonctionne que si le serveur a conservé un historique — sans buffer côté serveur, la reconnexion "automatique" ne rattrape rien et masque silencieusement une perte.
+> **Piège** : `Last-Event-ID` ne fonctionne que si le serveur a conservé un historique : sans buffer côté serveur, la reconnexion "automatique" ne rattrape rien et masque silencieusement une perte.
 > **À observer** : les événements reçus par le client avant coupure, pendant, et juste après reconnexion.
 > **Vérification** (observable, chiffrée) : sur 5 coupures de 20 s répétées, le client affiche à chaque fois soit la totalité des événements manqués soit un signal explicite de trou, jamais un silence.
 > **Repli 100 % local et gratuit** : tout l'exercice tourne en local avec une coupure simulée (couper le processus client), aucun service externe requis.
@@ -544,14 +546,14 @@ Un tableau de bord diffuse chaque événement à **tous** les clients connectés
 
 ### 6.7 : GraphQL
 
-**GraphQL** — Tag : CONTEXTUELLE ·
+**GraphQL** : Tag : CONTEXTUELLE ·
 Coût : ~15 h avant utilité · Durée de vie : ~6 ans · À apprendre après : REST solide, N+1 et bases de données
 
 - **Ancrage MyFunnyJS** : [05_graphql_basics.md](../../21_api_craft/05_graphql_basics.md), schéma, requête, résolveur
 - **Ce qu'il ajoute** : un schéma typé fort, une seule requête pour un graphe de données, une évolution sans versioning brutal.
 - **Ce qu'il masque** : que le cache HTTP standard disparaît (tout passe par un `POST /graphql`), et que l'autorisation doit se faire par champ, pas par endpoint.
-- **Ce qu'il ne résout pas** : le N+1 — une requête imbriquée génère des centaines de requêtes SQL sans DataLoader, GraphQL ne le prévient pas de lui-même.
-- **Quand ne pas le choisir** : pas avant d'avoir vraiment plusieurs clients aux besoins divergents — une API, un client, du CRUD, REST suffit et se cache mieux.
+- **Ce qu'il ne résout pas** : le N+1 : une requête imbriquée génère des centaines de requêtes SQL sans DataLoader, GraphQL ne le prévient pas de lui-même.
+- **Quand ne pas le choisir** : pas avant d'avoir vraiment plusieurs clients aux besoins divergents : une API, un client, du CRUD, REST suffit et se cache mieux.
 - **Exemple qui casse** : une requête imbriquée sur 50 entités liées génère des centaines de requêtes SQL individuelles, invisible avec 3 entités de test, écroulant en production à partir d'un certain volume.
 - **Preuve que c'est acquis** : tu sais activer le log SQL, compter les requêtes réellement émises, et les ramener à un ordre de grandeur constant avec un DataLoader · **Si tu bloques, reviens à** : [05_db_in_js.md](../../24_databases/05_db_in_js.md)
 
@@ -570,7 +572,7 @@ Coût : ~15 h avant utilité · Durée de vie : ~6 ans · À apprendre après : 
 **Ce qu'il complique : et c'est sérieux :**
 
 | Problème        | Détail                                                                                                           |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- |
 | N+1             | une requête imbriquée génère des centaines de requêtes SQL sans DataLoader                                       |
 | Cache HTTP      | perdu : tout passe par un `POST /graphql`                                                                        |
 | Autorisation    | à faire **par champ**, pas par endpoint                                                                          |
@@ -582,7 +584,7 @@ Coût : ~15 h avant utilité · Durée de vie : ~6 ans · À apprendre après : 
 
 C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son adoption est réelle mais très inégale selon les secteurs. Sache le lire, sache quand le refuser.
 
-> **Exercice — Rendre visible puis corriger le N+1**
+> **Exercice : Rendre visible puis corriger le N+1**
 > **Temps réaliste** : 2 h 30 · **Prérequis matériel / compte** : base PostgreSQL locale · **Coût max** : 0 €
 > **Mode** : assistant autorisé
 > **Contraintes** : expose trois entités liées (flux → mesures → auteur) en GraphQL, puis rends visible et corrige le N+1 ; active le log SQL, écris une requête imbriquée sur 50 flux, compte les requêtes SQL réellement émises, puis ramène ce nombre à un ordre de grandeur constant.
@@ -595,14 +597,14 @@ C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son
 
 ---
 
-### 6.8 : Exercice de lecture de codebase — backend Node/TypeScript
+### 6.8 : Exercice de lecture de codebase : backend Node/TypeScript
 
-> **Exercice — Cartographier un backend Nest ou Fastify open source**
+> **Exercice : Cartographier un backend Nest ou Fastify open source**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : accès à un dépôt public (GitHub) · **Coût max** : 0 €
 > **Mode** : assistant autorisé
 > **Contraintes** : choisis un backend Nest ou Fastify open source d'au moins 5 000 lignes ; réponds aux 9 questions de la grille de lecture du niveau 5 (point d'entrée, dépendances critiques, flux d'une requête typique, gestion d'erreur, tests existants, configuration et secrets, points d'extension, dette visible, ce que tu changerais en premier) sans exécuter le code au-delà du démarrage local.
 > **Réutilise** : la grille de lecture de codebase du niveau 5 (`05-niveau-5-transfert.md`)
-> **Piège** : le point d'entrée réel n'est presque jamais `main.ts` — c'est le premier module importé qui déclenche la cascade de providers ; le confondre avec le fichier de démarrage fait rater la moitié de la carte.
+> **Piège** : le point d'entrée réel n'est presque jamais `main.ts` : c'est le premier module importé qui déclenche la cascade de providers ; le confondre avec le fichier de démarrage fait rater la moitié de la carte.
 > **À observer** : le nombre de modules avant d'atteindre un premier handler HTTP, la présence ou l'absence de validation en frontière, et la façon dont les secrets sont chargés.
 > **Vérification** (observable, chiffrée) : les 9 questions sont répondues avec au moins une preuve textuelle (extrait de fichier, nom de ligne) pour chacune, et la carte tient sur une seule page.
 > **Repli 100 % local et gratuit** : clone en local, aucune exécution en production ni compte cloud nécessaire.
@@ -611,14 +613,14 @@ C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son
 
 ---
 
-### 6.9 : ADR — choix du framework backend
+### 6.9 : ADR : choix du framework backend
 
-> **Exercice — ADR : Express, Fastify ou NestJS pour ce projet** — jeûne d'IA obligatoire
+> **Exercice : ADR : Express, Fastify ou NestJS pour ce projet** : jeûne d'IA obligatoire
 > **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
 > **Contraintes** : rédige un ADR complet (contexte, options considérées, décision, conséquences) sur le choix du framework backend pour un projet réel ou fictif que tu peux décrire en 5 lignes ; utilise la matrice de décision de la section 6.2.
 > **Réutilise** : la matrice de décision Express / Fastify / NestJS ci-dessus
-> **Piège** : un ADR qui ne mentionne que des critères techniques (performance, syntaxe) sans contrainte d'équipe (taille, expérience, durée de vie attendue) n'est pas un ADR défendable — un vrai ADR pèse aussi le coût humain.
+> **Piège** : un ADR qui ne mentionne que des critères techniques (performance, syntaxe) sans contrainte d'équipe (taille, expérience, durée de vie attendue) n'est pas un ADR défendable : un vrai ADR pèse aussi le coût humain.
 > **À observer** : est-ce que ta décision resterait la même si l'équipe passait de 2 à 8 personnes ? Si non, dis-le dans l'ADR.
 > **Vérification** (observable, chiffrée) : l'ADR tient sur une page, cite au moins deux options rejetées avec leur raison, et une personne qui ne connaît pas le projet peut dire, après lecture, ce qui ferait changer la décision.
 > **Repli 100 % local et gratuit** : exercice purement écrit, aucun coût.

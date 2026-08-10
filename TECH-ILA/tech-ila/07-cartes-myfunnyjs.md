@@ -16,8 +16,8 @@ companion: MyFunnyJS
 
 Cette annexe se consulte, elle ne se lit pas. Tu ne dois jamais l'ouvrir en entier : tu
 arrives ici avec un symptôme (une techno qui te résiste, un module MyFunnyJS que tu viens de
-finir) et tu repars avec un lien. Les fiches complètes — coût, durée de vie, exemple qui
-casse — sont dans les fichiers de niveau 01 à 06. Ici, tu trouves seulement le pont entre les
+finir) et tu repars avec un lien. Les fiches complètes : coût, durée de vie, exemple qui
+casse : sont dans les fichiers de niveau 01 à 06. Ici, tu trouves seulement le pont entre les
 32 modules de MyFunnyJS et le monde technologique qui les réutilise.
 
 Deux entrées possibles :
@@ -29,20 +29,20 @@ Deux entrées possibles :
 
 <a id="idx-tech"></a>
 
-Angular, Vue, Svelte · [Module 01](#mod-01) — CSS/design systems · [Module 19](#mod-19)
-— Docker · [Module 15](#mod-15), [22](#mod-22) — Express · [Module 01](#mod-01),
-[21](#mod-21) — FastAPI/Spring/.NET · [Module 21](#mod-21), [22](#mod-22) — GraphQL ·
-[Module 21](#mod-21) — Java/Spring Boot · [Module 01](#mod-01), [03](#mod-03),
-[18](#mod-18) — Kubernetes · [Module 25](#mod-25) — MongoDB · [Module 16](#mod-16),
-[24](#mod-24) — NestJS · [Module 01](#mod-01), [16](#mod-16), [21](#mod-21) — Next.js ·
-[Module 16](#mod-16), [17](#mod-17), [19](#mod-19) — Node.js · [Module 01](#mod-01),
-[03](#mod-03), [15](#mod-15) — npm/pnpm · [Module 22](#mod-22) — OpenTelemetry ·
-[Module 26](#mod-26) — PostgreSQL · [Module 24](#mod-24), [28](#mod-28) — Prisma/Drizzle ·
-[Module 16](#mod-16), [24](#mod-24) — Python · [Module 01](#mod-01), [03](#mod-03) —
-React · [Module 01](#mod-01), [08](#mod-08), [11-12](#mod-11-12) — Redis ·
-[Module 17](#mod-17), [20](#mod-20), [25](#mod-25) — Sentry · [Module 26](#mod-26) —
-SQL/index · [Module 07](#mod-07), [09-10](#mod-09-10), [24](#mod-24) — TypeScript ·
-[Module 01](#mod-01), [14](#mod-14) — WebSocket/SSE · [Module 20](#mod-20).
+Angular, Vue, Svelte · [Module 01](#mod-01) : CSS/design systems · [Module 19](#mod-19)
+— Docker · [Module 15](#mod-15), [22](#mod-22) : Express · [Module 01](#mod-01),
+[21](#mod-21) : FastAPI/Spring/.NET · [Module 21](#mod-21), [22](#mod-22) : GraphQL ·
+[Module 21](#mod-21) : Java/Spring Boot · [Module 01](#mod-01), [03](#mod-03),
+[18](#mod-18) : Kubernetes · [Module 25](#mod-25) : MongoDB · [Module 16](#mod-16),
+[24](#mod-24) : NestJS · [Module 01](#mod-01), [16](#mod-16), [21](#mod-21) : Next.js ·
+[Module 16](#mod-16), [17](#mod-17), [19](#mod-19) : Node.js · [Module 01](#mod-01),
+[03](#mod-03), [15](#mod-15) : npm/pnpm · [Module 22](#mod-22) : OpenTelemetry ·
+[Module 26](#mod-26) : PostgreSQL · [Module 24](#mod-24), [28](#mod-28) : Prisma/Drizzle ·
+[Module 16](#mod-16), [24](#mod-24) : Python · [Module 01](#mod-01), [03](#mod-03) —
+React · [Module 01](#mod-01), [08](#mod-08), [11-12](#mod-11-12) : Redis ·
+[Module 17](#mod-17), [20](#mod-20), [25](#mod-25) : Sentry · [Module 26](#mod-26) —
+SQL/index · [Module 07](#mod-07), [09-10](#mod-09-10), [24](#mod-24) : TypeScript ·
+[Module 01](#mod-01), [14](#mod-14) : WebSocket/SSE · [Module 20](#mod-20).
 
 ## Index par module MyFunnyJS
 
@@ -66,9 +66,9 @@ SQL/index · [Module 07](#mod-07), [09-10](#mod-09-10), [24](#mod-24) — TypeSc
 
 Chaque entrée tient en trois lignes : le mécanisme qu'on apprend, où il ressurgit, ce que ça
 change concrètement. Quand un module n'a pas d'application technologique directe, c'est écrit
-sans détour — inventer un lien serait pire que n'en donner aucun.
+sans détour : inventer un lien serait pire que n'en donner aucun.
 
-<a id="mod-00"></a>**Prélude — `00_getting_started/` et `00_referentiel/`.**
+<a id="mod-00"></a>**Prélude : `00_getting_started/` et `00_referentiel/`.**
 Shell, Git, gestionnaires de paquets, hygiène de sécurité perso, grille intemporel/périssable :
 le socle qu'on utilise sans le nommer, tous les jours, dans tout écosystème. `07_repetition_espacee.md`
 n'a aucune application technologique : c'est une méthode d'apprentissage, pas un concept transférable.
@@ -79,19 +79,19 @@ le socle qui explique la moitié des bugs « ça marche en dev, pas en prod ». 
 capture des variables, pas des valeurs : c'est le piège classique des `useEffect` React et
 des middlewares Express qui partagent un état entre tenants. Muter au lieu de remplacer casse
 le re-rendu React et fait persister des entités ORM à ton insu.
-Technos : React, Node.js, NestJS, TypeScript, Python, Java/Spring — `08_git_core.md` renvoie
+Technos : React, Node.js, NestJS, TypeScript, Python, Java/Spring : `08_git_core.md` renvoie
 directement à [4.2](./01-niveau-1-socle.md#42--git-et-github).
 
 <a id="mod-02"></a>**02 · `02_problem_solving/`.** Clarifier une demande floue avant de coder
 est la seule compétence que l'IA ne remplace pas. Aucun framework, aucun compilateur, aucun
-test ne signale une spécification contradictoire — ils exécuteront fidèlement la mauvaise
+test ne signale une spécification contradictoire : ils exécuteront fidèlement la mauvaise
 chose. S'applique à la modélisation SQL, à la conception d'API, à l'architecture, au
 prompting.
 
 <a id="mod-03"></a>**03 · `03_async/`.** Ordre d'exécution, microtâches, annulation,
 pression de flux. Un `await` mal placé bloque l'event loop pour toutes les requêtes en vol,
 pas seulement la sienne. `Promise.all` sans limite de concurrence est un déni de service
-envers ta propre base — `Promise.allSettled` et `mapWithConcurrency` existent pour ça.
+envers ta propre base : `Promise.allSettled` et `mapWithConcurrency` existent pour ça.
 Technos : Node.js, React (Suspense, transitions), NestJS, Python `asyncio` (même modèle,
 `gather` ≈ `Promise.all`), Java/.NET (rupture : parallélisme réel).
 
@@ -114,7 +114,7 @@ cas d'erreur testé ne vaut pas mieux.
 Technos : Vitest/Jest/JUnit/pytest, Testcontainers, Playwright, Pact (contract testing).
 
 <a id="mod-07"></a>**07 · `07_math_basics/`.** Verdict global : indirect, avec des
-exceptions nettes — on n'invente pas de lien ici. Logique booléenne → clauses `WHERE` et
+exceptions nettes : on n'invente pas de lien ici. Logique booléenne → clauses `WHERE` et
 feature flags ; hachage → index, partitionnement, dédoublonnage ; probabilités → jitter de
 retry et tests A/B. La manipulation binaire n'a quasiment aucune application en web courant :
 sa valeur est de ne pas paniquer devant un masque binaire dans une bibliothèque.
@@ -134,7 +134,7 @@ utile en entretien.
 
 <a id="mod-11-12"></a>**11-12 · `11_functional_js/` et `12_design_patterns/`.** Pureté,
 immutabilité, composition, puis Factory, Singleton, Decorator, Observer, Strategy. En
-Java/C#, ces patrons sont souvent des classes ; en JS/Python, des fonctions — même intention,
+Java/C#, ces patrons sont souvent des classes ; en JS/Python, des fonctions : même intention,
 forme différente. Un Singleton Node qui masque un état global partagé, un Observer sans
 désabonnement : deux fuites classées ailleurs sous d'autres noms.
 
@@ -156,18 +156,18 @@ asynchrone, CommonJS de façon synchrone, on ne peut pas `require` un module ESM
 <a id="mod-16"></a>**16 · `16_architecture_patterns/`.** Le domaine ne dépend de rien ;
 l'infrastructure en dépend. Un import d'ORM dans une règle métier, un `ObjectId` qui infiltre
 le calcul des droits : deux symptômes d'une frontière qui n'existe que sur le schéma. Appliquer
-la Clean Architecture intégralement à un service de 800 lignes est du sur-design — commence
+la Clean Architecture intégralement à un service de 800 lignes est du sur-design : commence
 par isoler le calcul métier, rien d'autre.
 Technos : NestJS (DI par interface), Prisma/Drizzle (repository), Spring Boot, Next.js
 (server actions).
 
 <a id="mod-17"></a>**17 · `17_web_concepts/`.** HTTP/REST, cache, état et flux de données,
-auth, sérialisation, SEO — le module le plus dense en transferts directs. Un cache est un
+auth, sérialisation, SEO : le module le plus dense en transferts directs. Un cache est un
 pari : donnée possiblement périmée contre latence et charge. Les questions restent les mêmes
 partout : qui écrit, qui invalide, que se passe-t-il quand c'est vide, quand ça ment.
 Technos : HTTP/CDN, Next.js (cache à trois niveaux), Redis, TanStack Query, PostgreSQL.
 
-<a id="mod-18"></a>**18 · `18_oop_js/`.** Héritage contre composition — React a tranché en
+<a id="mod-18"></a>**18 · `18_oop_js/`.** Héritage contre composition : React a tranché en
 supprimant l'option. Une `BaseExporter` qui accumule des drapeaux booléens pour désactiver ses
 propres étapes est le signe que la hiérarchie décrit son historique plutôt que le domaine.
 Technos : NestJS (providers plutôt que classes de base héritées), Java/C# (compilateur plus
@@ -205,7 +205,7 @@ Technos : assistants de code, CI (juge non complaisant), gestionnaires de paquet
 
 <a id="mod-24"></a>**24 · `24_databases/`.** Le modèle de données survit à tous les
 frameworks du projet. Une contrainte en base est la seule règle que personne ne peut
-contourner — une unicité vérifiée seulement en JavaScript ne protège rien sous charge.
+contourner : une unicité vérifiée seulement en JavaScript ne protège rien sous charge.
 Technos : PostgreSQL, Prisma/Drizzle, MongoDB (contextuelle), Redis, modèle en étoile pour
 l'analytique.
 
@@ -221,7 +221,7 @@ réelle des clients mécontents.
 Technos : pino/Winston, OpenTelemetry (standard multi-langage), Sentry, Prometheus/Grafana.
 
 <a id="mod-27"></a>**27 · `27_team_craft/`.** Une décision non écrite n'existe pas. Un ADR
-fige le contexte, les options, le choix et ses conséquences — y compris celles qu'on accepte
+fige le contexte, les options, le choix et ses conséquences : y compris celles qu'on accepte
 de subir. C'est le module le plus transférable du curriculum : aucun de ses gestes ne dépend
 d'un langage.
 
@@ -233,18 +233,18 @@ transit).
 
 <a id="mod-29"></a>**29 · `29_ai_agents_and_autonomy/`.** Un agent exécute ce qui est
 vérifiable. Une consigne sans critère observable produit un travail qu'on ne peut ni valider
-ni refuser — ce module vieillira vite, mais savoir écrire un critère d'acceptation et lire une
+ni refuser : ce module vieillira vite, mais savoir écrire un critère d'acceptation et lire une
 trace ne dépend d'aucun outil.
 
 <a id="mod-30-31"></a>**30-31 · `30_mini_projects/` et `31_annexes/`.** Pas de fiche par
 fichier : ce sont des lieux d'application, pas de concept. Les mini-projets se regroupent par
 archétype de compétence (moteur métier sans framework, API sous contrainte, legacy, systèmes
 distribués, transfert multi-langage, supervision de l'IA). Les annexes se piochent par
-sous-dossier au moment où TECH-ILA en a besoin — `23_reading/`, `29_toolchain/` et
+sous-dossier au moment où TECH-ILA en a besoin : `23_reading/`, `29_toolchain/` et
 `30_transferability/` sont les plus réutilisés.
 
 <a id="mod-32"></a>**32 · `32_tools/`.** Construire soi-même l'outil minimal qu'on utilise
-tous les jours, pour comprendre ce qu'une bibliothèque enrobe — pas pour le mettre en
+tous les jours, pour comprendre ce qu'une bibliothèque enrobe : pas pour le mettre en
 production. Le geste professionnel : le construire une fois, puis adopter l'outil éprouvé en
 sachant ce qu'il fait.
 
@@ -265,34 +265,34 @@ Technologie
     ↓ Compétence opérationnelle
 ```
 
-| Symptôme rencontré                                    | Mécanisme réel                            | Fichier à relire                                                                                          | Ce que tu sauras faire                                         |
-| ----------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| React : mon `setInterval` compte jusqu'à 1            | closure figée                             | [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md)         | lire un tableau de dépendances au lieu de le deviner              |
-| React : la mauvaise réponse s'affiche                 | race condition                            | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md), [`03_async/02_promises/02c_abort_controller.md`](../../03_async/02_promises/02c_abort_controller.md) | annuler une requête obsolète                                      |
-| React : muter l'état ne rerend pas                    | identité de référence                     | [`01_fundamentals/01_variables/02_reference_chaos.md`](../../01_fundamentals/01_variables/02_reference_chaos.md) | expliquer pourquoi l'immutabilité est une contrainte technique   |
-| Node : `heap out of memory`                           | tout chargé en mémoire                    | [`15_runtime_env/02_streams_buffers.md`](../../15_runtime_env/02_streams_buffers.md), [`08_memory_performance/04_profiling/`](../../08_memory_performance/04_profiling/) | passer en streaming et le prouver                                 |
-| Node : l'API entière ralentit                         | event loop bloquée                        | [`03_async/04_event_loop/`](../../03_async/04_event_loop/)                                                  | déporter le CPU en worker                                         |
-| Node : le client attend indéfiniment                  | rejet async non attrapé                   | [`05_error_handling/04_async_error_traps.md`](../../05_error_handling/04_async_error_traps.md)              | fermer tous les chemins d'erreur                                  |
-| Express : mon middleware d'erreur ne s'exécute jamais | promesse rejetée hors chaîne              | [`05_error_handling/03_error_propagation.md`](../../05_error_handling/03_error_propagation.md)              | envelopper les handlers async                                     |
-| NestJS : `can't resolve dependencies`                 | graphe d'injection                        | [`16_architecture_patterns/02_solid_principles.md`](../../16_architecture_patterns/02_solid_principles.md)  | lire un graphe de modules                                         |
-| NestJS : données d'un client vues par un autre        | état dans un singleton                    | [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md), [`12_design_patterns/01_creational/02_singleton_pattern.md`](../../12_design_patterns/01_creational/02_singleton_pattern.md) | placer l'état au bon endroit                                      |
-| SQL : rapide en dev, lent en prod                     | plan d'exécution / index                  | [`09_data_structures/06_bst/`](../../09_data_structures/06_bst/), [`08_memory_performance/03_complexity/`](../../08_memory_performance/03_complexity/) | lire un `EXPLAIN ANALYZE`                                         |
-| SQL : doublons malgré la vérification                 | lecture-modification-écriture concurrente | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md)              | poser une contrainte d'unicité en base                            |
-| SQL : montants faux au centime                        | flottants                                 | [`28_edge_cases/02_floating_point.md`](../../28_edge_cases/02_floating_point.md)                            | utiliser un type décimal                                          |
-| Redis : la base s'effondre à l'expiration             | ruée sur le cache                         | [`17_web_concepts/04_caching_strategies.md`](../../17_web_concepts/04_caching_strategies.md)                | jitter, verrou, stale-while-revalidate                            |
-| File : le job s'exécute deux fois                     | livraison au moins une fois               | [`25_scalability/07_message_queues.md`](../../25_scalability/07_message_queues.md)                          | rendre le handler idempotent                                      |
-| Docker : `permission denied`                          | uid / permissions                         | [`00_getting_started/02_shell_survival.md`](../../00_getting_started/02_shell_survival.md)                  | lire des permissions Unix                                         |
-| Docker : requêtes coupées au déploiement              | `SIGTERM` ignoré                          | [`15_runtime_env/04_process_env_argv.md`](../../15_runtime_env/04_process_env_argv.md)                      | implémenter un arrêt gracieux                                     |
-| CI : le test échoue 1 fois sur 20                     | test flaky                                | [`04_debugging/07_flaky_bugs.md`](../../04_debugging/07_flaky_bugs.md)                                      | isoler la source de non-déterminisme                              |
-| Prod : moyenne verte, clients furieux                 | p99 vs moyenne                            | [`26_observability/04_metrics_alerting.md`](../../26_observability/04_metrics_alerting.md)                  | raisonner en percentiles                                          |
-| Prod : erreur illisible dans la trace                 | source maps absentes                      | [`26_observability/07_prod_stack_trace_drill.md`](../../26_observability/07_prod_stack_trace_drill.md)      | remonter à la ligne d'origine                                     |
-| Python : ma closure ne modifie rien                   | `nonlocal`                                | [`01_fundamentals/02_scope/`](../../01_fundamentals/02_scope/)                                              | transférer le mécanisme entre langages                            |
-| Java : `LazyInitializationException` / N+1            | chargement paresseux                      | [`24_databases/05_db_in_js.md`](../../24_databases/05_db_in_js.md), [`08_memory_performance/03_complexity/`](../../08_memory_performance/03_complexity/) | reconnaître le N+1 dans tout ORM                                  |
-| C# : dictionnaire corrompu sous charge                | parallélisme réel                         | [`03_async/07_shared_memory_concurrency.md`](../../03_async/07_shared_memory_concurrency.md)                | comprendre ce que JS t'épargnait                                  |
-| IA : le code semble correct et casse en prod          | chemins d'erreur absents                  | [`23_ai_native_dev/03_validate_ai_output.md`](../../23_ai_native_dev/03_validate_ai_output.md)              | exiger une preuve avant de faire confiance                        |
+| Symptôme rencontré                                    | Mécanisme réel                            | Fichier à relire                                                                                                                                                                                                                 | Ce que tu sauras faire                                         |
+| ----------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| React : mon `setInterval` compte jusqu'à 1            | closure figée                             | [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md)                                                                                                                               | lire un tableau de dépendances au lieu de le deviner           |
+| React : la mauvaise réponse s'affiche                 | race condition                            | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md), [`03_async/02_promises/02c_abort_controller.md`](../../03_async/02_promises/02c_abort_controller.md)                             | annuler une requête obsolète                                   |
+| React : muter l'état ne rerend pas                    | identité de référence                     | [`01_fundamentals/01_variables/02_reference_chaos.md`](../../01_fundamentals/01_variables/02_reference_chaos.md)                                                                                                                 | expliquer pourquoi l'immutabilité est une contrainte technique |
+| Node : `heap out of memory`                           | tout chargé en mémoire                    | [`15_runtime_env/02_streams_buffers.md`](../../15_runtime_env/02_streams_buffers.md), [`08_memory_performance/04_profiling/`](../../08_memory_performance/04_profiling/)                                                         | passer en streaming et le prouver                              |
+| Node : l'API entière ralentit                         | event loop bloquée                        | [`03_async/04_event_loop/`](../../03_async/04_event_loop/)                                                                                                                                                                       | déporter le CPU en worker                                      |
+| Node : le client attend indéfiniment                  | rejet async non attrapé                   | [`05_error_handling/04_async_error_traps.md`](../../05_error_handling/04_async_error_traps.md)                                                                                                                                   | fermer tous les chemins d'erreur                               |
+| Express : mon middleware d'erreur ne s'exécute jamais | promesse rejetée hors chaîne              | [`05_error_handling/03_error_propagation.md`](../../05_error_handling/03_error_propagation.md)                                                                                                                                   | envelopper les handlers async                                  |
+| NestJS : `can't resolve dependencies`                 | graphe d'injection                        | [`16_architecture_patterns/02_solid_principles.md`](../../16_architecture_patterns/02_solid_principles.md)                                                                                                                       | lire un graphe de modules                                      |
+| NestJS : données d'un client vues par un autre        | état dans un singleton                    | [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md), [`12_design_patterns/01_creational/02_singleton_pattern.md`](../../12_design_patterns/01_creational/02_singleton_pattern.md) | placer l'état au bon endroit                                   |
+| SQL : rapide en dev, lent en prod                     | plan d'exécution / index                  | [`09_data_structures/06_bst/`](../../09_data_structures/06_bst/), [`08_memory_performance/03_complexity/`](../../08_memory_performance/03_complexity/)                                                                           | lire un `EXPLAIN ANALYZE`                                      |
+| SQL : doublons malgré la vérification                 | lecture-modification-écriture concurrente | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md)                                                                                                                                   | poser une contrainte d'unicité en base                         |
+| SQL : montants faux au centime                        | flottants                                 | [`28_edge_cases/02_floating_point.md`](../../28_edge_cases/02_floating_point.md)                                                                                                                                                 | utiliser un type décimal                                       |
+| Redis : la base s'effondre à l'expiration             | ruée sur le cache                         | [`17_web_concepts/04_caching_strategies.md`](../../17_web_concepts/04_caching_strategies.md)                                                                                                                                     | jitter, verrou, stale-while-revalidate                         |
+| File : le job s'exécute deux fois                     | livraison au moins une fois               | [`25_scalability/07_message_queues.md`](../../25_scalability/07_message_queues.md)                                                                                                                                               | rendre le handler idempotent                                   |
+| Docker : `permission denied`                          | uid / permissions                         | [`00_getting_started/02_shell_survival.md`](../../00_getting_started/02_shell_survival.md)                                                                                                                                       | lire des permissions Unix                                      |
+| Docker : requêtes coupées au déploiement              | `SIGTERM` ignoré                          | [`15_runtime_env/04_process_env_argv.md`](../../15_runtime_env/04_process_env_argv.md)                                                                                                                                           | implémenter un arrêt gracieux                                  |
+| CI : le test échoue 1 fois sur 20                     | test flaky                                | [`04_debugging/07_flaky_bugs.md`](../../04_debugging/07_flaky_bugs.md)                                                                                                                                                           | isoler la source de non-déterminisme                           |
+| Prod : moyenne verte, clients furieux                 | p99 vs moyenne                            | [`26_observability/04_metrics_alerting.md`](../../26_observability/04_metrics_alerting.md)                                                                                                                                       | raisonner en percentiles                                       |
+| Prod : erreur illisible dans la trace                 | source maps absentes                      | [`26_observability/07_prod_stack_trace_drill.md`](../../26_observability/07_prod_stack_trace_drill.md)                                                                                                                           | remonter à la ligne d'origine                                  |
+| Python : ma closure ne modifie rien                   | `nonlocal`                                | [`01_fundamentals/02_scope/`](../../01_fundamentals/02_scope/)                                                                                                                                                                   | transférer le mécanisme entre langages                         |
+| Java : `LazyInitializationException` / N+1            | chargement paresseux                      | [`24_databases/05_db_in_js.md`](../../24_databases/05_db_in_js.md), [`08_memory_performance/03_complexity/`](../../08_memory_performance/03_complexity/)                                                                         | reconnaître le N+1 dans tout ORM                               |
+| C# : dictionnaire corrompu sous charge                | parallélisme réel                         | [`03_async/07_shared_memory_concurrency.md`](../../03_async/07_shared_memory_concurrency.md)                                                                                                                                     | comprendre ce que JS t'épargnait                               |
+| IA : le code semble correct et casse en prod          | chemins d'erreur absents                  | [`23_ai_native_dev/03_validate_ai_output.md`](../../23_ai_native_dev/03_validate_ai_output.md)                                                                                                                                   | exiger une preuve avant de faire confiance                     |
 
 **Arme débloquée.** Tu as une table de routage entre les symptômes du monde réel et les
-mécanismes que tu connais. C'est exactement ce qu'un senior a dans la tête — sauf que la
+mécanismes que tu connais. C'est exactement ce qu'un senior a dans la tête : sauf que la
 tienne est écrite.
 
 ---
