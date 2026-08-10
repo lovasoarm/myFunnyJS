@@ -53,7 +53,7 @@ Chaque exercice de ce document a un objectif professionnel, réutilise au moins 
 
 Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un recruteur peut réellement les lire.
 
-### 12.4 : Les deux exercices de clôture
+### 12.4 : Les trois exercices de clôture
 
 > **Exercice : L'ADR de fin de parcours**
 > **Temps réaliste** : 90 min · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
@@ -64,6 +64,16 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 > **À observer** : le moment où tu ne sais plus justifier un choix. C'est là que la décision était une habitude, pas une décision.
 > **Vérification** (observable, chiffrée) : la version produit tient en 5 lignes, contient zéro nom de technologie, et une personne non technique peut redire la contrainte principale après une seule lecture.
 > **Extension** : six mois plus tard, relis-le et écris l'ADR de révision, même s'il conclut « on garde ».
+
+> **Exercice : Fais relire une de tes décisions**
+> **Temps réaliste** : 1 h + le délai de réponse du relecteur · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
+> **Mode** : jeûne d'IA obligatoire
+> **Contraintes** : reprends l'ADR produit ci-dessus et soumets-le à un tiers (un pair, une communauté, le mainteneur d'un projet que tu utilises). Reçois les objections, puis classe chaque retour dans une des trois catégories : « je change », « je ne change pas et voici pourquoi », « je ne sais pas trancher, il me manque telle information ».
+> **Réutilise** : [27_team_craft/01_code_review.md](../../27_team_craft/01_code_review.md) : recevoir une critique sans la subir ni la balayer.
+> **Piège** : traiter toute objection comme une correction à appliquer. L'inverse aussi : défendre par principe.
+> **À observer** : combien d'objections tombent dans la troisième catégorie. C'est la mesure honnête de ce qu'il te manque.
+> **Vérification** (observable, chiffrée) : le classement existe, écrit, une raison par ligne, zéro retour non classé.
+> **Extension** : refais l'exercice dans l'autre sens : relis la décision de quelqu'un d'autre et classe tes propres objections avant de les envoyer.
 
 > **Exercice : Auditer ce document contre toi-même**
 > **Temps réaliste** : 60 min · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
@@ -96,6 +106,8 @@ C'est déjà énorme. Ce n'est pas une promesse d'emploi.
 
 Il ne peut pas vérifier que tu "connais React". Il peut vérifier que tu sais lire du code inconnu, expliquer une décision, décrire comment ton système casse, montrer une trace ou une mesure, écrire un test qui prouve un correctif, et dire "je ne sais pas" au bon moment.
 
+Il peut aussi vérifier la dimension collective, et c'est la question qui départage deux candidats de niveau technique égal : « montre-moi une décision que tu as changée après une revue, et une que tu as maintenue. » Les deux réponses comptent autant l'une que l'autre : la première prouve que tu écoutes, la seconde que tu décides. C'est la doctrine de 13.4 appliquée à toi, pas à ton code.
+
 ### 13.3 : Combinaisons cohérentes
 
 Les technos apparaissent en grappes. Vise **une** grappe complète, pas quinze noms.
@@ -108,13 +120,34 @@ Les technos apparaissent en grappes. Vise **une** grappe complète, pas quinze n
 | Entreprise           | Java/Spring ou .NET · SQL · tests · sécurité · architecture                                  |
 | Data-adjacent        | Python · FastAPI · SQL · orchestration · Docker                                              |
 
+**Les grappes qui n'existent pas.** Le tableau dit vers quoi aller ; celui-ci dit ce qu'il faut refuser de viser, et pour une raison économique, jamais morale.
+
+- « fullstack + data + DevOps » : ce n'est pas un profil, ce sont trois postes non financés. Hors très petite structure, personne ne recrute quelqu'un qui exploite, développe et traite la donnée sur le même poste.
+- « frontend + mobile natif + design » : trois métiers dont deux ont leurs propres écoles et leurs propres outils.
+- « junior + architecte » : l'architecture se paie en cicatrices, pas en lectures.
+- « toutes les technos de ce document » : le document couvre une trentaine de technos justement pour que tu en choisisses six.
+
+Le document pratique déjà cette règle : les trois mini-projets de 12.3 matérialisent une grappe unique, pas un catalogue.
+
+### 13.4 : Choisir un deuxième langage
+
+L'ADR « rester en JS ou porter en Python » du [niveau 5](./05-niveau-5-transfert.md) porte sur un PROJET. Choisir son deuxième langage est une autre décision : un investissement personnel sur dix ans. Cinq critères, dans cet ordre.
+
+1. Quelle grappe de 13.3 vises-tu ? Le langage se déduit de la grappe, jamais l'inverse.
+2. Quel est le coût d'entretien de deux écosystèmes en parallèle ? Il est réel et permanent : outillage, versions, réflexes. Il est presque toujours sous-estimé.
+3. Le deuxième langage ouvre-t-il un domaine, ou seulement un synonyme ? Python ouvre data, IA et scripting : c'est un domaine. Aller de TypeScript à Go pour écrire les mêmes API, c'est un synonyme mieux déployé.
+4. Que devient ton premier langage si tu arrêtes de l'entretenir dix-huit mois ?
+5. Y a-t-il des postes à moins d'une heure de chez toi, ou en remote accessible depuis ton fuseau, qui demandent la grappe visée ? Si non, le meilleur langage du monde ne se convertit pas en emploi.
+
+Réponse explicite pour le cas le plus fréquent : Python + SQL + PostgreSQL est une grappe complète et durable, le langage de la donnée, le modèle qui ne bouge pas, le moteur qui l'implémente le mieux. Ce qui lui manque n'est pas de la longévité, c'est une surface : sans une compétence d'exploitation (niveau 4) ou une compétence produit, elle te place en exécutant d'un pipeline que quelqu'un d'autre a conçu. Cette décision-là aussi s'écrit en ADR.
+
 **Pourquoi JavaScript et TypeScript seuls peuvent ne pas suffire.** Pour un poste frontend, ça peut suffire. Pour un poste backend ou plateforme, on attend en plus SQL, conteneurs, CI/CD et observabilité : parce que ces postes consistent autant à **exploiter** qu'à écrire.
 
-### 13.4 : Ce que ton portfolio doit démontrer
+### 13.5 : Ce que ton portfolio doit démontrer
 
 Pas des fonctionnalités : des **décisions**. Pour chaque projet, un README qui répond à : quel problème, quelles contraintes, quelles options envisagées, quel choix et pourquoi, comment c'est testé, comment c'est observé, ce que tu ferais différemment. Un projet moyen bien documenté bat trois projets brillants sans explication.
 
-### 13.5 : Le résultat attendu
+### 13.6 : Le résultat attendu
 
 Pas :
 
@@ -147,6 +180,11 @@ Les règles que ce document s'impose, et que tu peux lui opposer.
 | Liens jamais inventés                        | modules 07, 09 bonus, 10 avancé : "aucune application directe identifiée" assumé                                                                                     |
 | Récompenses rares et méritées                | une dizaine dans tout le document, après une notion dense ou un transfert réussi : jamais après un paragraphe                                                        |
 | Volume compatible avec un apprentissage réel | sélectif sur les technos, exhaustif sur les mécanismes                                                                                                               |
+| Chiffres recomptés, jamais estimés           | lignes, liens, exercices : recomptés à chaque revue, commandes et valeurs dans le [rituel du README](../README.md#rituel-de-revue-trimestrielle)                      |
+| Alternatives systématiques                   | chaque fiche techno porte un tableau Alternatives avec l'échange consenti, jamais une liste de noms                                                                   |
+| Le document s'applique ses propres règles    | les sections de méthode (2, 3, 7.7, 12, 13, 14) ne portent pas de tag : ce ne sont pas des technos, et c'est déclaré en [0](./00-orientation.md)                       |
+
+Deux lignes de cette grille étaient fausses avant la dernière revue : les chiffres du README étaient estimés, et une partie des fiches n'avait pas d'alternatives. Elles ont été rendues vraies plutôt que retirées. Opposer une ligne fausse à ce document est un usage prévu.
 
 ---
 

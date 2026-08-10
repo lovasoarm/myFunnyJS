@@ -20,6 +20,13 @@ finir) et tu repars avec un lien. Les fiches complètes : coût, durée de vie, 
 casse : sont dans les fichiers de niveau 01 à 06. Ici, tu trouves seulement le pont entre les
 32 modules de MyFunnyJS et le monde technologique qui les réutilise.
 
+**Point de couplage le plus fragile du document.** Cette carte est le seul endroit où TECH-ILA
+dépend de l'arborescence exacte de MyFunnyJS. Si un lien casse, c'est ici en premier : un fichier
+MyFunnyJS déplacé sans répercussion ici produit un lien mort. Contrat de dépendance : TECH-ILA
+référence MyFunnyJS à l'état de la dernière revue trimestrielle (voir le rituel de recomptage du
+[README](../README.md)), et un fichier MyFunnyJS référencé ici ne se déplace pas sans que le
+déplacement soit répercuté dans le même changement. Le point de contrôle est le lien, pas le fichier.
+
 Deux entrées possibles :
 
 - **Section 10** : tu sors d'un module MyFunnyJS, tu veux savoir où ça sert.
@@ -30,7 +37,7 @@ Deux entrées possibles :
 <a id="idx-tech"></a>
 
 Angular, Vue, Svelte · [Module 01](#mod-01) : CSS/design systems · [Module 19](#mod-19)
-— Docker · [Module 15](#mod-15), [22](#mod-22) : Express · [Module 01](#mod-01),
+· Docker · [Module 15](#mod-15), [22](#mod-22) : Express · [Module 01](#mod-01),
 [21](#mod-21) : FastAPI/Spring/.NET · [Module 21](#mod-21), [22](#mod-22) : GraphQL ·
 [Module 21](#mod-21) : Java/Spring Boot · [Module 01](#mod-01), [03](#mod-03),
 [18](#mod-18) : Kubernetes · [Module 25](#mod-25) : MongoDB · [Module 16](#mod-16),
@@ -38,9 +45,9 @@ Angular, Vue, Svelte · [Module 01](#mod-01) : CSS/design systems · [Module 19]
 [Module 16](#mod-16), [17](#mod-17), [19](#mod-19) : Node.js · [Module 01](#mod-01),
 [03](#mod-03), [15](#mod-15) : npm/pnpm · [Module 22](#mod-22) : OpenTelemetry ·
 [Module 26](#mod-26) : PostgreSQL · [Module 24](#mod-24), [28](#mod-28) : Prisma/Drizzle ·
-[Module 16](#mod-16), [24](#mod-24) : Python · [Module 01](#mod-01), [03](#mod-03) —
+[Module 16](#mod-16), [24](#mod-24) : Python · [Module 01](#mod-01), [03](#mod-03) ·
 React · [Module 01](#mod-01), [08](#mod-08), [11-12](#mod-11-12) : Redis ·
-[Module 17](#mod-17), [20](#mod-20), [25](#mod-25) : Sentry · [Module 26](#mod-26) —
+[Module 17](#mod-17), [20](#mod-20), [25](#mod-25) : Sentry · [Module 26](#mod-26) ·
 SQL/index · [Module 07](#mod-07), [09-10](#mod-09-10), [24](#mod-24) : TypeScript ·
 [Module 01](#mod-01), [14](#mod-14) : WebSocket/SSE · [Module 20](#mod-20).
 
@@ -74,7 +81,7 @@ le socle qu'on utilise sans le nommer, tous les jours, dans tout écosystème. `
 n'a aucune application technologique : c'est une méthode d'apprentissage, pas un concept transférable.
 Technos : Linux, Git/GitHub, npm/pnpm/pip/Maven, 2FA et signature de commits.
 
-<a id="mod-01"></a>**01 · `01_fundamentals/`.** Portée, référence, mutation, coercition —
+<a id="mod-01"></a>**01 · `01_fundamentals/`.** Portée, référence, mutation, coercition :
 le socle qui explique la moitié des bugs « ça marche en dev, pas en prod ». Une closure
 capture des variables, pas des valeurs : c'est le piège classique des `useEffect` React et
 des middlewares Express qui partagent un état entre tenants. Muter au lieu de remplacer casse
@@ -268,7 +275,7 @@ Technologie
 | Symptôme rencontré                                    | Mécanisme réel                            | Fichier à relire                                                                                                                                                                                                                 | Ce que tu sauras faire                                         |
 | ----------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | React : mon `setInterval` compte jusqu'à 1            | closure figée                             | [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md)                                                                                                                               | lire un tableau de dépendances au lieu de le deviner           |
-| React : la mauvaise réponse s'affiche                 | race condition                            | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md), [`03_async/02_promises/02c_abort_controller.md`](../../03_async/02_promises/02c_abort_controller.md)                             | annuler une requête obsolète                                   |
+| React : la mauvaise réponse s'affiche                 | race condition                            | [`28_edge_cases/05_race_condition_hunter.md`](../../28_edge_cases/05_race_condition_hunter.md), [`03_async/03_async_await/02c_abort_controller.md`](../../03_async/03_async_await/02c_abort_controller.md)                             | annuler une requête obsolète                                   |
 | React : muter l'état ne rerend pas                    | identité de référence                     | [`01_fundamentals/01_variables/02_reference_chaos.md`](../../01_fundamentals/01_variables/02_reference_chaos.md)                                                                                                                 | expliquer pourquoi l'immutabilité est une contrainte technique |
 | Node : `heap out of memory`                           | tout chargé en mémoire                    | [`15_runtime_env/02_streams_buffers.md`](../../15_runtime_env/02_streams_buffers.md), [`08_memory_performance/04_profiling/`](../../08_memory_performance/04_profiling/)                                                         | passer en streaming et le prouver                              |
 | Node : l'API entière ralentit                         | event loop bloquée                        | [`03_async/04_event_loop/`](../../03_async/04_event_loop/)                                                                                                                                                                       | déporter le CPU en worker                                      |

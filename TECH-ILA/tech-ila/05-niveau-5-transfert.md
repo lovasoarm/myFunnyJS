@@ -42,7 +42,7 @@ Imprime-les mentalement. C'est ta clé d'entrée dans toute codebase inconnue, y
 
 ### 8.1 : Python
 
-**Tag : NOYAU DURABLE** (le langage, par son omniprésence) · Coût : ~15 h avant utilité · Durée de vie : ~15 ans · À apprendre après : bon niveau JS/TS
+**Tag : NOYAU DURABLE** (le langage, pour la grappe data/IA) **/ PROFESSIONNELLE** (l'écosystème d'outillage, qui bouge) · Coût : ~30 h avant utilité réelle · Durée de vie : ~20 ans pour le langage, ~5 ans pour la couche d'outillage · À apprendre après : 4.5 TypeScript et 4.7 SQL
 
 **Objectif ici : pas une formation Python complète.** Juste ce qui sert la transférabilité et les projets.
 
@@ -145,6 +145,30 @@ Regarde ce code avec tes yeux de développeur NestJS : validation déclarative, 
 
 **Ce qu'il ne résout pas.** Le GIL sur du CPU intensif (utilise des workers, ou du natif). Le déploiement Python reste plus artisanal que Node.
 
+**Ce qu'elle masque.** Le typage. Les annotations Python ne sont pas vérifiées à l'exécution ; Pydantic valide aux frontières, pas à l'intérieur de tes fonctions. Un développeur TypeScript croit disposer des mêmes garanties que le compilateur TS : il ne les a pas, sauf à ajouter mypy en CI. Masque aussi la gestion d'environnement (venv, versions d'interpréteur) que Node résout autrement.
+
+**Exemple qui casse.** Un argument par défaut mutable :
+
+```python
+def ajoute(x, acc=[]):
+    acc.append(x)
+    return acc
+# acc n'est créé qu'une fois, à la définition de la fonction :
+# ajoute(1) puis ajoute(2) partagent la même liste, sans que rien ne le signale
+```
+
+Autre variante, dans le même esprit que le module async de MyFunnyJS : un `async def` qui contient un appel bloquant classique gèle toute la boucle d'événements FastAPI, exactement comme un `while` synchrone bloquerait une boucle Node.
+
+**Alternatives**
+
+| Alternative                          | Tag           | Ce qu'elle échange contre quoi                                                    |
+| ------------------------------------- | ------------- | ---------------------------------------------------------------------------------- |
+| Node/TS                               | NOYAU DURABLE | tu restes sur un seul modèle mental, tu perds l'écosystème data et scientifique     |
+| Go                                    | CONTEXTUELLE  | tu gagnes un déploiement en binaire unique, tu perds les bibliothèques scientifiques |
+| Rester en JS et appeler un service Python | CONTEXTUELLE  | tu gagnes l'isolation entre les deux mondes, tu paies un appel réseau et un déploiement de plus |
+
+**Se périme si :** l'écosystème async Python se recentre sur une autre couche qu'ASGI, ou si Pydantic est supplanté comme validateur de référence.
+
 #### Django : **Tag : CONTEXTUELLE**
 
 À l'opposé : tout est fourni (ORM, admin, auth, migrations, templates). Excellent pour un produit CRUD-lourd avec back-office, où l'interface d'administration générée fait gagner des mois. Coût : très opinionné, tu suis ses conventions ou tu souffres.
@@ -205,7 +229,7 @@ Regarde ce code avec tes yeux de développeur NestJS : validation déclarative, 
 @RequestMapping("/ingest")
 public class IngestController {
 
-    private final QueueClient queue;                // Q3 : injection par constructeur —
+    private final QueueClient queue;                // Q3 : injection par constructeur,
 
     public IngestController(QueueClient queue) {     //   Spring construit et fournit
         this.queue = queue;                          //   l'instance, pas toi
@@ -215,7 +239,7 @@ public class IngestController {
     public ResponseEntity<Map<String, Integer>> ingest(
             @Valid @RequestBody IngestBatch batch    // Q4 : validation déclarative,
     ) {                                               //   @Valid déclenche Bean Validation
-        if (!queue.healthy()) {                       // Q7 : ici, appel bloquant classique —
+        if (!queue.healthy()) {                       // Q7 : ici, appel bloquant classique,
             throw new QueueUnavailableException();     //   pas d'await, un vrai thread attend
         }
         queue.publish(batch.streamId(), batch.events()); // Q6 : DB/file, via un client injecté
@@ -301,6 +325,8 @@ Thread.ofVirtual().start(() -> {
 
 **Quand ne pas y aller.** Petite équipe, prototype rapide, service simple. Le coût de démarrage et la verbosité sont réels.
 
+**Alternatives.** Le niveau 5 enseigne le transfert, pas le choix d'un écosystème : plutôt qu'une liste de frameworks concurrents, reviens à la grille des [9 questions de 8.0](#80--la-grille-de-lecture-universelle) et pose-la sur le prochain écosystème que tu rencontres. Elle te dira où chercher, quel que soit le nom du framework.
+
 > **Exercice de lecture : Spring, jeûne d'IA obligatoire**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : accès à un projet Spring Boot open source · **Coût max** : 0 € ·
 > **Mode** : jeûne d'IA obligatoire
@@ -364,6 +390,22 @@ async Task ChargerAsync()
     label.Text = data; // sûr seulement parce que SynchronizationContext l'a garanti
 }
 ```
+
+**Ce qu'elle masque.** Le contexte de synchronisation : un `await` reprend sur le thread d'origine sans que tu l'aies demandé. En ASP.NET Core, ce contexte n'existe plus, et le même code change de comportement selon qu'il tourne dans une application graphique ou dans un service web.
+
+**Ce qu'elle ne résout pas.** Le parallélisme réel exige de penser la concurrence mémoire, ce que le modèle mono-thread de JS n'a jamais imposé. .NET ne protège pas de la course sur état partagé : un `Dictionary` partagé sans verrou reste une bombe.
+
+**Exemple qui casse.** `.Result` ou `.Wait()` appelé sur une tâche asynchrone depuis un contexte qui en attend le retour :
+
+```csharp
+var data = httpClient.GetStringAsync(url).Result; // interbloque sous un contexte
+                                                     // de synchronisation qui attend
+                                                     // la fin de cette même tâche
+```
+
+Un développeur venu de JS l'écrit naturellement, parce qu'en JS il n'existe pas d'équivalent bloquant à `await`.
+
+**Alternatives.** Comme pour 8.2, le choix ne se joue pas entre frameworks : reviens à la grille des [9 questions de 8.0](#80--la-grille-de-lecture-universelle) plutôt que d'arbitrer entre écosystèmes .NET concurrents.
 
 **ASP.NET Core** est mature, rapide, avec une DI de première classe, une configuration par environnement propre, et Entity Framework Core côté persistance. Le tooling (Visual Studio, Rider) est excellent.
 

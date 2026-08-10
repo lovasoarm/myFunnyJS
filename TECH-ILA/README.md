@@ -1,6 +1,7 @@
 ---
 statut: revu
 last_reviewed: 2026-08
+last_counted: 2026-08
 proprietaire: mainteneur TECH-ILA
 revue: trimestrielle
 companion: MyFunnyJS
@@ -18,7 +19,7 @@ companion: MyFunnyJS
 > - [00_referentiel/00_why_referentiel.md](../00_referentiel/00_why_referentiel.md) : le référentiel de compétences et la grille intemporel/périssable.
 > - [01_fundamentals/00_why_fundamentals.md](../01_fundamentals/00_why_fundamentals.md) : variables, scope, fonctions : le socle sur lequel toute fiche de ce document s'appuie.
 
-> **Un seul document, dix fichiers.** Le cahier des charges demandait un unique `TECH-ILA.md`. Le corpus complet couvre les 32 modules de MyFunnyJS et pèse environ 3 600 lignes une fois réparti : largement au-dessus du seuil de confort de lecture continue dans un éditeur Markdown ou sur GitHub, et contraire à deux autres règles du même cahier (« agréable à lire », « pas une encyclopédie »). Choix assumé : **un seul document logique, découpé en dix fichiers pour la lisibilité.** Lis-les dans l'ordre du sommaire ; chaque fichier renvoie ici.
+> **Un seul document, dix fichiers.** Le cahier des charges demandait un unique `TECH-ILA.md`. Le corpus complet couvre les 32 modules de MyFunnyJS et pèse 4 267 lignes réparties sur 10 fichiers (compté au 2026-08) : largement au-dessus du seuil de confort de lecture continue dans un éditeur Markdown ou sur GitHub, et contraire à deux autres règles du même cahier (« agréable à lire », « pas une encyclopédie »). Choix assumé : **un seul document logique, découpé en dix fichiers pour la lisibilité.** Lis-les dans l'ordre du sommaire ; chaque fichier renvoie ici.
 
 TECH-ILA n'est pas un second curriculum. C'est le **parcours technologique parallèle** de MyFunnyJS.
 
@@ -36,18 +37,37 @@ Le contenu est découpé par niveau, un fichier par étape du parcours. Lis dans
 
 | #     | Fichier                                                                     | Section                            | Taille indicative | Ce que tu y gagnes                                  |
 | ----- | --------------------------------------------------------------------------- | ---------------------------------- | ----------------- | --------------------------------------------------- |
-| 0-3   | [00-orientation.md](tech-ila/00-orientation.md)                             | Lire, classer, ordonner            | ~205 lignes       | La méthode, la classification, la carte des niveaux |
-| 4     | [01-niveau-1-socle.md](tech-ila/01-niveau-1-socle.md)                       | Niveau 1 : Socle professionnel     | ~780 lignes       | Terminal, Git, Node, TS, HTTP, SQL, Docker          |
-| 5     | [02-niveau-2-frontend.md](tech-ila/02-niveau-2-frontend.md)                 | Niveau 2 : Frontend                | ~560 lignes       | React, état, stratégies de rendu, perf, a11y        |
-| 6     | [03-niveau-3-backend.md](tech-ila/03-niveau-3-backend.md)                   | Niveau 3 : Backend                 | ~630 lignes       | Express, NestJS, auth, Redis, files, temps réel     |
-| 7     | [04-niveau-4-systemes.md](tech-ila/04-niveau-4-systemes.md)                 | Niveau 4 : Systèmes professionnels | ~480 lignes       | CI/CD, cloud, observabilité, résilience             |
-| 8     | [05-niveau-5-transfert.md](tech-ila/05-niveau-5-transfert.md)               | Niveau 5 : Transfert               | ~435 lignes       | Python, Java/Spring, .NET                           |
-| 9     | [06-niveau-6-ia.md](tech-ila/06-niveau-6-ia.md)                             | Niveau 6 : IA                      | ~300 lignes       | Diriger, vérifier, refuser                          |
-| 10-11 | [07-cartes-myfunnyjs.md](tech-ila/07-cartes-myfunnyjs.md)                   | Cartes MyFunnyJS ↔ technologies    | ~300 lignes       | Le mapping module par module, et l'inverse          |
-| 12-14 | [08-ia-exercices-marche-audit.md](tech-ila/08-ia-exercices-marche-audit.md) | Exercices, marché, audit           | ~180 lignes       | Ce qui reste ton travail, la preuve, l'honnêteté    |
-| :     | [09-mode-urgence.md](tech-ila/09-mode-urgence.md)                           | Mode urgence                       | ~80 lignes        | Trouver la bonne page en incident en moins de 30 s  |
+| 0-3   | [00-orientation.md](tech-ila/00-orientation.md)                             | Lire, classer, ordonner            | 211 lignes       | La méthode, la classification, la carte des niveaux |
+| 4     | [01-niveau-1-socle.md](tech-ila/01-niveau-1-socle.md)                       | Niveau 1 : Socle professionnel     | 854 lignes       | Terminal, Git, Node, TS, HTTP, SQL, Docker          |
+| 5     | [02-niveau-2-frontend.md](tech-ila/02-niveau-2-frontend.md)                 | Niveau 2 : Frontend                | 556 lignes       | React, état, stratégies de rendu, perf, a11y        |
+| 6     | [03-niveau-3-backend.md](tech-ila/03-niveau-3-backend.md)                   | Niveau 3 : Backend                 | 662 lignes       | Express, NestJS, auth, Redis, files, temps réel     |
+| 7     | [04-niveau-4-systemes.md](tech-ila/04-niveau-4-systemes.md)                 | Niveau 4 : Systèmes professionnels | 592 lignes       | CI/CD, cloud, observabilité, résilience             |
+| 8     | [05-niveau-5-transfert.md](tech-ila/05-niveau-5-transfert.md)               | Niveau 5 : Transfert               | 479 lignes       | Python, Java/Spring, .NET                           |
+| 9     | [06-niveau-6-ia.md](tech-ila/06-niveau-6-ia.md)                             | Niveau 6 : IA                      | 312 lignes       | Diriger, vérifier, refuser                          |
+| 10-11 | [07-cartes-myfunnyjs.md](tech-ila/07-cartes-myfunnyjs.md)                   | Cartes MyFunnyJS ↔ technologies    | 307 lignes       | Le mapping module par module, et l'inverse          |
+| 12-14 | [08-ia-exercices-marche-audit.md](tech-ila/08-ia-exercices-marche-audit.md) | Exercices, marché, audit           | 213 lignes       | Ce qui reste ton travail, la preuve, l'honnêteté    |
+| :     | [09-mode-urgence.md](tech-ila/09-mode-urgence.md)                           | Mode urgence                       | 81 lignes        | Trouver la bonne page en incident en moins de 30 s  |
+
+Ces chiffres sont recomptés à chaque revue trimestrielle. S'ils sont faux, c'est un bug : signale-le.
 
 Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts de l'IA » : une seule doctrine de vérification, un seul endroit où la lire.
+
+---
+
+## Rituel de revue trimestrielle
+
+Le corpus impose des chiffres vérifiables aux autres ; il se les impose à lui-même. Une case ne se coche jamais sur jugement : elle se coche après exécution de la commande en regard. Le champ `last_counted` du front-matter porte la date de la dernière exécution complète.
+
+| Ce qui est recompté                            | Commande de vérification                                             | Valeur au 2026-08 |
+| ---------------------------------------------- | -------------------------------------------------------------------- | ------------------- |
+| Lignes par fichier et total                    | `wc -l tech-ila/*.md`                                                | 4 267 sur 10 fichiers |
+| Liens relatifs, et liens résolvant sur disque  | extraire les cibles `](./` et `](../`, puis `test -f` sur chacune    | 358 / 358           |
+| Exercices et parité des 8 champs               | `rg -o 'Temps réaliste' tech-ila/ \| wc -l`                          | 46                  |
+| Fiches portant coût et durée de vie            | `rg -c 'Coût : ~' tech-ila/`                                         | 37 lignes de tag chiffrées |
+| Em-dashes et emojis                            | `rg -c '—' tech-ila/`                                                | 0                   |
+| Mots et exemples interdits                     | `rg -i 'emploi garanti\|panier\|todo\|blog' tech-ila/`               | 0 en usage d'exemple |
+
+**Contrat de dépendance envers MyFunnyJS.** TECH-ILA référence MyFunnyJS à l'état de la dernière revue trimestrielle. Un fichier MyFunnyJS référencé ici ne se déplace pas sans que le déplacement soit répercuté dans le même changement : le point de contrôle est le lien, pas le fichier. Le point de couplage le plus fragile est la carte du fichier 07 : en cas de doute, commence par là.
 
 ---
 
@@ -63,4 +83,6 @@ Ce document ne date rien par principe (aucune version épinglée), mais il vieil
 | Threads virtuels Java           | [05-niveau-5-transfert.md](tech-ila/05-niveau-5-transfert.md) | Le statut (preview, stable, par défaut) a-t-il changé depuis la dernière revue ?                                   |
 | Express 4 vs 5                  | [03-niveau-3-backend.md](tech-ila/03-niveau-3-backend.md)     | La version majeure recommandée par défaut a-t-elle changé ?                                                        |
 
-Chaque revue met à jour `last_reviewed` dans le front-matter du ou des fichiers concernés.
+Ce tableau est aussi l'index des conditions de péremption : les fiches concernées portent un champ « Se périme si : » qui dit ce qui déclencherait leur révision.
+
+Chaque revue met à jour `last_reviewed` dans le front-matter du ou des fichiers concernés, et `last_counted` quand le rituel de recomptage a été exécuté en entier.

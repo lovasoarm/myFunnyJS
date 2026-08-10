@@ -220,13 +220,14 @@ Interface riche, état complexe, équipe déjà formée, besoin d'un écosystèm
 
 #### Alternatives
 
-| Alternative                     | Tag             | Ce qui change                                           | Ce qui reste               | Ce que ça change côté mécanisme MyFunnyJS                                                  |
-| ------------------------------- | --------------- | ------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------ |
-| **Vue** (PROFESSIONNELLE)       | PROFESSIONNELLE | réactivité fine-grain, moins de rendus inutiles         | composants, état, effets   | même piège de closure dans les handlers, mais moins de rendus à surveiller                 |
-| **Svelte** (CONTEXTUELLE)       | CONTEXTUELLE    | compilation, pas de VDOM                                | même modèle mental état→UI | la réactivité est câblée au compilateur, la fuite mémoire se déplace mais ne disparaît pas |
-| **Solid** (CONTEXTUELLE)        | CONTEXTUELLE    | signaux, réactivité granulaire                          | JSX, composition           | un composant ne se "réexécute" presque plus : le débogage par closure change de forme      |
-| **Angular** (CONTEXTUELLE)      | CONTEXTUELLE    | framework complet, DI, RxJS : fort en grande entreprise | composants, cycle de vie   | l'injection de dépendances remplace le prop-drilling ; le même principe SOLID qu'en NestJS |
-| **HTMX / vanilla** (PÉRISSABLE) | PÉRISSABLE      | rendu serveur, très peu de JS                           | HTTP, DOM                  | plus de closure d'effet à traquer : le bug se déplace côté serveur                         |
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **Vue** | PROFESSIONNELLE | tu gagnes une réactivité fine-grain avec moins de rendus inutiles, tu gardes composants, état et effets : même piège de closure dans les handlers, mais moins de rendus à surveiller |
+| **Svelte** | CONTEXTUELLE | tu gagnes la compilation et l'absence de VDOM, tu gardes le même modèle mental état→UI : la réactivité est câblée au compilateur, la fuite mémoire se déplace mais ne disparaît pas |
+| **Solid** | CONTEXTUELLE | tu gagnes des signaux et une réactivité granulaire, tu gardes JSX et la composition : un composant ne se "réexécute" presque plus, le débogage par closure change de forme |
+| **Angular** | CONTEXTUELLE | tu gagnes un framework complet (DI, RxJS), fort en grande entreprise, tu gardes composants et cycle de vie : l'injection de dépendances remplace le prop-drilling, même principe SOLID qu'en NestJS |
+| **HTMX / vanilla** | PÉRISSABLE | tu gagnes le rendu serveur avec très peu de JS, tu gardes HTTP et le DOM : plus de closure d'effet à traquer, le bug se déplace côté serveur |
+| **React Native** | CONTEXTUELLE | tu gardes le modèle de composants et les hooks, tu échanges le DOM contre un pont natif : tout ce que tu sais du rendu web devient faux, tout ce que tu sais de l'état reste vrai |
 
 Si tu comprends "état → rendu → effet → nettoyage", tu apprends n'importe lequel en une semaine. C'est le but.
 
@@ -337,6 +338,14 @@ Un routeur client réimplémente une partie du navigateur (historique, focus apr
 #### Quand ne pas la choisir
 
 Pas de routeur client pour un site à une seule page. Pas de bibliothèque de formulaires complète pour un formulaire de contact à trois champs : la complexité additionnelle dépasse le problème.
+
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **React Router** | PROFESSIONNELLE | tu gagnes l'écosystème le plus répandu et le support des boucles de données par route, tu paies une API qui change à chaque version majeure |
+| **TanStack Router** | CONTEXTUELLE | tu gagnes des routes typées de bout en bout, tu paies un écosystème plus jeune et moins de tutoriels |
+| **Routeur natif du framework méta** (Next.js, Remix) | CONTEXTUELLE | tu gagnes un routage par fichiers déjà intégré au rendu serveur, tu paies un couplage fort au framework |
 
 > **Exercice : État dans l'URL et formulaire clavier**
 > **Temps réaliste** : 2 h 30 · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
@@ -529,20 +538,7 @@ SSR, hydratation (le HTML rendu côté serveur est repris par le JS côté clien
 
 ---
 
-### 5.5 : React Native : encadré, pas une fiche
-
-> **React Native, en 10 lignes.**
-> **Tag : CONTEXTUELLE** · Coût : ~15 h avant utilité (si React déjà su) · Durée de vie : ~5 ans · À apprendre après : React solide.
-> **Ce qui transfère** : le modèle mental état → rendu → effet, les hooks, les closures et leurs pièges, la gestion d'abonnements et leur nettoyage.
-> **Ce qui ne transfère pas** : les éléments ne sont plus des nœuds DOM mais des vues natives ; navigation, gestes, cycle de vie d'application (arrière-plan, mémoire), permissions, distribution par store, mises à jour : chacun a son propre modèle.
-> **Honnêteté.** "Écris une fois, tourne partout" est faux. Compte 70-85 % de code partagé et une part irréductible de spécifique par plateforme.
-> **Quand y aller** : besoin réel d'une application mobile, équipe déjà React, budget qui ne permet pas deux équipes natives séparées.
-> **Quand ne pas y aller** : application très gourmande en performances graphiques, forte dépendance à des API système de pointe, équipe déjà native.
-> **Si tu bloques, reviens à** : [01_node_vs_browser.md](../../15_runtime_env/01_node_vs_browser.md) : un même langage, deux environnements d'exécution aux API différentes, exactement le saut web → natif.
-
----
-
-### 5.6 : Frontend : ce qui te rend employable
+### 5.5 : Frontend : ce qui te rend employable
 
 Ce qu'un recruteur peut réellement vérifier chez toi :
 

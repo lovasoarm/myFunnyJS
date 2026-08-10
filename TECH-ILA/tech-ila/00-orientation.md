@@ -20,9 +20,9 @@ companion: MyFunnyJS
 
 Trois usages. Choisis le tien.
 
-**Usage 1 : parcours.** Tu avances dans MyFunnyJS. Après chaque module, tu ouvres la section TECH-ILA correspondante ([section 10](./07-cartes-myfunnyjs.md#10--carte-myfunnyjs--technologies)) et tu appliques le concept dans une techno réelle.
+**Usage 1 : parcours.** Tu avances dans MyFunnyJS. Après chaque module, tu ouvres la section TECH-ILA correspondante ([section 10](./07-cartes-myfunnyjs.md#10--carte-myfunnyjs--technologies-module-par-module)) et tu appliques le concept dans une techno réelle.
 
-**Usage 2 : dépannage.** Tu es en galère sur React ou NestJS. Tu ouvres la [carte inverse](./07-cartes-myfunnyjs.md#11--carte-inverse-technologie--fichiers-myfunnyjs), tu retrouves le fichier MyFunnyJS qui explique le mécanisme sous-jacent, tu relis, tu reviens. En situation d'incident réel (prod qui casse), tu n'ouvres pas ce document : tu ouvres le [mode urgence](./09-mode-urgence.md).
+**Usage 2 : dépannage.** Tu es en galère sur React ou NestJS. Tu ouvres la [carte inverse](./07-cartes-myfunnyjs.md#11--carte-inverse--technologie--fichiers-myfunnyjs), tu retrouves le fichier MyFunnyJS qui explique le mécanisme sous-jacent, tu relis, tu reviens. En situation d'incident réel (prod qui casse), tu n'ouvres pas ce document : tu ouvres le [mode urgence](./09-mode-urgence.md).
 
 **Usage 3 : décision.** Tu dois choisir un outil. Tu ouvres la fiche techno, tu lis "Quand ne pas la choisir" et "Alternatives", tu écris un ADR (`27_team_craft/02_adr_writing.md`).
 
@@ -118,6 +118,12 @@ Chaque techno de ce document porte un tag. Le tag décide de ton investissement.
 | **PROFESSIONNELLE** | Largement utilisée aujourd'hui, dans plusieurs contextes              | Sérieux, jusqu'à l'autonomie            | React, Node.js, TypeScript, Docker, PostgreSQL                 |
 | **CONTEXTUELLE**    | Utile selon secteur, équipe, architecture                             | À la demande, quand le contexte l'exige | GraphQL, Next.js, Spring Boot, .NET, MongoDB, Kafka            |
 | **PÉRISSABLE**      | Syntaxe, API, config susceptible de changer sous 2-3 ans              | Jamais par cœur, doc ouverte            | API d'un routeur, flags CLI, config d'un bundler               |
+
+**Ce que le tag ne dit pas.** PROFESSIONNELLE qualifie l'usage sur le marché, pas la longévité. Certaines technos PROFESSIONNELLES (PostgreSQL, Docker en tant que format d'image OCI) ont une longévité de NOYAU DURABLE. C'est la ligne « Durée de vie » de chaque fiche qui fait foi, pas le tag. Le tag oriente ton investissement d'aujourd'hui ; le chiffre engage la techno sur la durée.
+
+**Les tags qualifient des TECHNOLOGIES.** Les sections de méthode (ADR, grille de lecture d'écosystème, postmortem, audit d'une réponse d'IA) n'en portent pas : une méthode ne se périme pas de la même façon qu'un outil, et sa durée de vie est celle de ta carrière. Elles sont repérables à leur absence de ligne « Coût / Durée de vie ». Ce n'est pas un oubli, c'est une exception assumée et déclarée ici.
+
+**Deux horizons, à ne pas confondre.** L'horizon du DOCUMENT est 2028 : au-delà, la sélection des technos et les alternatives citées ne sont plus garanties, il faut une révision. L'horizon des TECHNOLOGIES, ce sont les durées de vie chiffrées de chaque fiche : elles engagent la techno, pas le document. SQL sera encore là quand ce texte ne le sera plus. Règle de lecture : un tag NOYAU DURABLE est un pari sur dix ans et plus, un tag PÉRISSABLE est un pari sur trois ans, et le document, lui, se révise tous les trois mois.
 
 Règle brutale : **on n'apprend jamais une syntaxe par cœur, on apprend le problème qu'elle résout.**
 

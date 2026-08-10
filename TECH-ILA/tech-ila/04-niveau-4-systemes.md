@@ -20,9 +20,38 @@ companion: MyFunnyJS
 
 C'est le niveau qui sépare "je sais coder une feature" de "je sais livrer et exploiter un système". C'est aussi celui que les formations sautent. C'est également le niveau le plus long du corpus, et ce n'est pas un hasard : c'est lui qui décide de ton employabilité backend.
 
+> **Le niveau où l'on sur-outille.** L'absence d'outil est une option à part entière, ici comme ailleurs : c'est la règle la plus facile à oublier au moment précis où la pression à sur-outiller est la plus forte. Avant d'ajouter une brique d'exploitation (pipeline, cluster, stack d'observabilité, service de secrets), pose trois questions : qui l'opère à 3 h du matin quand elle tombe ; qu'est-ce qui casse réellement si on l'enlève demain ; quel est son coût mensuel, en euros et en heures d'astreinte. Une brique qui ne survit pas à ces trois questions n'est pas une décision d'architecture, c'est un réflexe de CV.
+
+> **Exercice : retire une brique**
+> **Temps réaliste** : 1 h · **Prérequis matériel / compte** : un de tes projets de niveau 3, avec au moins une brique d'infrastructure (CI, cache, file, conteneur) · **Coût max** : 0 € ·
+> **Mode** : jeûne d'IA obligatoire : décide seul avant de vérifier
+> **Contraintes** : retire une brique d'infrastructure de ce projet et mesure ce qui casse réellement, sans supposer.
+> **Réutilise** : un projet déjà construit dans ce corpus (niveau 3)
+> **Piège** : garder la brique "au cas où" sans jamais avoir mesuré son coût d'astreinte réel.
+> **À observer** : ce qui s'arrête de fonctionner, ce qui continue à l'identique, ce que tu croyais indispensable et qui ne l'était pas.
+> **Vérification** (observable, chiffrée) : le projet démarre encore et tu listes exactement ce qui ne démarre plus, ligne par ligne.
+> **Repli 100 % local et gratuit** : l'exercice se fait entièrement en local, sans dépense.
+> **Extension** : chiffre le coût mensuel, en euros et en heures d'astreinte, de la brique que tu viens de retirer.
+
 ### 7.1 : CI/CD
 
 **Tag : NOYAU DURABLE** (le concept) / **PÉRISSABLE** (la syntaxe YAML) · Coût : ~15 h avant utilité · Durée de vie : ~10 ans (le modèle) · À apprendre après : `06_testing/` complet · Prérequis : `06_testing/`, `27_team_craft/01_code_review.md`
+
+**Ce qu'elle masque** : la CI ne teste que ce que tu lui as demandé de tester ; une suite verte prouve l'absence d'échec détecté, pas la présence de correction.
+
+**Ce qu'elle ne résout pas** : la qualité du code, la lenteur des tests, le flakiness ; une CI rapide sur des tests faux livre plus vite du faux.
+
+**Quand ne pas la choisir** : projet à un seul mainteneur, déploiement hebdomadaire manuel réussi depuis six mois : le pipeline coûte alors plus cher à opérer qu'il ne rapporte.
+
+**Exemple qui casse** : le cache de dépendances garde une version vulnérable au lieu de la rafraîchir, et le scan de sécurité passe au vert sur une dépendance déjà corrigée par ailleurs.
+
+**Alternatives**
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| Déploiement manuel scripté (`./deploy.sh`) | PROFESSIONNELLE | tu gagnes l'absence d'infrastructure CI à opérer, tu paies le risque humain à chaque déploiement |
+| Intégration continue sans déploiement continu | PROFESSIONNELLE | tu gagnes un contrôle humain sur chaque mise en production, tu paies la lenteur et le risque d'oubli d'une étape manuelle |
+| Rien, pour un projet à un seul mainteneur | sans objet | tu gagnes zéro coût d'exploitation, tu paies l'absence totale de garde-fou automatique |
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
@@ -53,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Épinglage par SHA, pas par tag mouvant (voir encadré sécurité plus bas)
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: action/checkout@<sha40> # vN
 
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f # v4.1.0
         with:
@@ -119,7 +148,7 @@ jobs:
 
 **Tests flaky (instables) en CI.** Un test qui échoue une fois sur vingt détruit la confiance de l'équipe : les gens relancent au lieu de lire. C'est `04_debugging/07_flaky_bugs.md` en contexte d'équipe. Traite-les comme des bugs de production : isole, reproduis, corrige ou supprime. Jamais "relance".
 
-**Sécurité du pipeline : épinglage par SHA, pas de folklore.** Le CI a accès à tes secrets de déploiement. `actions/checkout@v4` est un tag mouvant : son propriétaire peut repointer `v4` vers un commit malveillant demain matin, et ton pipeline exécutera ce code avec tes secrets sans qu'aucune ligne n'ait changé chez toi. `actions/checkout@11bd719...` (le SHA complet) est un commit précis, immuable : c'est la seule garantie que l'action que tu exécutes aujourd'hui est celle que tu as auditée. C'est exactement le scénario `22_security/09_supply_chain_sbom.md` appliqué à ton CI. En complément : limite les permissions du token au strict nécessaire (`permissions: contents: read` par défaut), et ne donne jamais les secrets de prod aux pipelines déclenchés par une PR venant d'un fork.
+**Sécurité du pipeline : épinglage par SHA, pas de folklore.** Le CI a accès à tes secrets de déploiement. `action/checkout@vN` est un tag mouvant : son propriétaire peut repointer `vN` vers un commit malveillant demain matin, et ton pipeline exécutera ce code avec tes secrets sans qu'aucune ligne n'ait changé chez toi. `action/checkout@<sha40>` (le SHA complet) est un commit précis, immuable : c'est la seule garantie que l'action que tu exécutes aujourd'hui est celle que tu as auditée. C'est exactement le scénario `22_security/09_supply_chain_sbom.md` appliqué à ton CI. En complément : limite les permissions du token au strict nécessaire (`permissions: contents: read` par défaut), et ne donne jamais les secrets de prod aux pipelines déclenchés par une PR venant d'un fork.
 
 **Procédure de rollback en 6 gestes.** Un rollback ne s'improvise pas à 3 h du matin : il s'exécute :
 
@@ -162,6 +191,30 @@ Les fournisseurs diffèrent. Les concepts, non :
 | Secrets  | gestionnaire dédié, rotation, jamais dans le dépôt                                                                                                                                 | cherche le secret dans l'historique Git avec `git log -p` : il ne doit jamais apparaître      |
 | Coût     | la facture est une métrique d'architecture (`31_annexes/03_finops_greenops.md`)                                                                                                    | calcule le coût mensuel à partir d'une grille tarifaire figée (voir 7.2 bis)                  |
 | IaC      | l'infrastructure décrite en code, versionnée, revue en PR (Infrastructure as Code : plus de clic dans une console, chaque changement passe par une revue comme du code applicatif) | ouvre une PR qui change une ressource et vérifie qu'elle est visible au diff                  |
+
+**Ce qu'il masque** : le coût réel et la latence réseau derrière un appel qui ressemble à un appel local.
+
+**Ce qu'il ne résout pas** : une architecture mal découpée, un N+1, un schéma sans index : le cloud les rend plus chers, pas plus rapides.
+
+**Quand ne pas le choisir** : charge stable et prévisible, données soumises à une contrainte de localisation, équipe sans astreinte disponible.
+
+**Exemple qui casse** : la facture est multipliée par 30 après activation de l'autoscaling sur un service dont la lenteur venait, en réalité, d'une requête non indexée.
+
+**Alternatives**
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| Serveur unique loué à l'année (VPS) | PROFESSIONNELLE | tu gagnes une facture fixe et prévisible, tu paies l'astreinte et la mise à l'échelle manuelle |
+| Plateforme managée (PaaS) | PROFESSIONNELLE | tu gagnes moins d'opérations à porter, tu paies moins de contrôle fin sur l'infrastructure |
+| Hébergement local ou associatif | CONTEXTUELLE | tu gagnes le contrôle total et l'absence de facture cloud, tu paies l'astreinte matérielle toi-même |
+
+#### Décrire plutôt que cliquer
+
+**Tag : NOYAU DURABLE** (la description déclarative) / **PÉRISSABLE** (l'outil) · Coût : ~10 h avant utilité · Durée de vie : ~20 ans pour le concept, ~6 ans pour l'outil dominant · À apprendre après : ce qui précède dans 7.2
+
+Décrire l'infrastructure dans un fichier versionné, plutôt que la construire à coups de clics dans une console, apporte ce que Docker apporte déjà à l'exécution : reproductibilité, revue en pull request, diff avant application, retour arrière possible. Ce que ça masque : la dérive d'état, quand quelqu'un modifie l'infra à la main entre deux applications du fichier décrit. Ce que ça ne résout pas : une architecture mal pensée ne devient pas meilleure, elle devient juste reproductible. Quand ne pas le choisir : une machine, un service, un déploiement par mois : le fichier de description coûte alors plus cher à maintenir que le clic qu'il remplace.
+
+**Alternatives** : script shell versionné (tu gagnes la simplicité, tu paies l'absence de diff structuré et de plan d'exécution) ; image machine préconstruite (tu gagnes un déploiement identique à chaque fois, tu paies la lenteur de reconstruction à chaque changement) ; rien du tout (tu gagnes l'absence totale d'outillage, tu paies la disparition de toute trace de ce qui a été fait dans la console).
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
@@ -229,6 +282,20 @@ Le module MyFunnyJS t'a donné les trois piliers. Voici l'outillage et les déci
 | Traces                 | identifiant de corrélation propagé de la requête HTTP jusqu'au worker, en passant par la file                          | suis un identifiant de trace unique depuis le log d'entrée jusqu'au log de sortie sur trois services différents          |
 | SLO et budget d'erreur | "99,9 % des requêtes sous 300 ms sur 30 jours" transforme une opinion en décision mesurable                            | calcule le budget d'erreur restant du mois et vérifie qu'il correspond au nombre réel d'incidents survenus               |
 
+**Ce qu'elle masque** : des logs volumineux donnent l'impression de voir, alors que sans identifiant de corrélation on ne peut rien reconstituer d'un parcours de requête.
+
+**Ce qu'elle ne résout pas** : l'absence d'hypothèse ; un tableau de bord ne diagnostique pas, il confirme ou infirme une hypothèse déjà posée.
+
+**Quand ne pas la choisir** : avant d'avoir défini ce qu'est une panne pour ce service précis : instrumenter sans définition du normal ne produit que du bruit.
+
+**Alternatives**
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| Logs seuls, sans traces ni métriques | PROFESSIONNELLE | tu gagnes la simplicité de mise en place, tu paies l'impossibilité de reconstituer un parcours multi-service |
+| APM propriétaire intégré (fourni par la plateforme) | CONTEXTUELLE | tu gagnes une mise en place quasi nulle, tu paies le verrouillage chez un fournisseur |
+| Rien, en dessous d'un seul service | sans objet | tu gagnes zéro coût d'instrumentation, tu paies l'absence totale de visibilité en cas de panne |
+
 **Traces.** OpenTelemetry est le standard qui compte : instrumentation vendor-neutral, exportable vers n'importe quel backend. C'est **NOYAU DURABLE**. Le backend (Jaeger, Grafana, Datadog, Sentry) est **PÉRISSABLE / CONTEXTUELLE** : il changera au gré des contrats de ta boîte.
 
 **Exemple réaliste.** Une API répond en 90 ms au p50 et 4,2 s au p99. Le tableau de bord "temps de réponse moyen : 210 ms" est vert. Personne ne bouge. En réalité, 1 % des utilisateurs : souvent ceux qui ont le plus de données : subissent 4 secondes. La trace montre un appel base de données répété 340 fois : un N+1 déclenché uniquement au-delà d'un certain volume. Sans trace, ce bug est invisible pendant des mois.
@@ -294,6 +361,20 @@ au collecteur OpenTelemetry sous le même trace_id
 | **Bulkhead**                 | une dépendance lente épuise tout        | pools séparés par dépendance                               |
 | **Dégradation gracieuse**    | service partiel                         | mieux vaut une page sans recommandations qu'une erreur 500 |
 | **Backpressure**             | producteur plus rapide que consommateur | tu jettes, tu ralentis, ou tu meurs : choisis              |
+
+**Ce qu'elle masque** : que retry et circuit breaker déplacent la douleur ailleurs dans le système, ils ne la suppriment pas ; un retry non idempotent transforme une panne en corruption silencieuse.
+
+**Ce qu'elle ne résout pas** : une dépendance réellement en panne. Aucun patron de résilience ne fait revenir un service qui ne répond plus ; ils limitent seulement les dégâts en attendant.
+
+**Quand ne pas la choisir** : un appel non idempotent sans clé d'idempotence disponible : ajouter un retry dessus transforme un échec propre en duplication.
+
+**Alternatives**
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| Timeout seul, sans retry ni circuit breaker | PROFESSIONNELLE | tu gagnes la simplicité et la prévisibilité, tu paies l'absence de récupération automatique sur panne transitoire |
+| Monolithe modulaire plutôt que services distribués | NOYAU DURABLE | tu gagnes l'absence de réseau entre tes modules, tu paies un couplage au déploiement (tout part ensemble) |
+| Bibliothèque de résilience prête à l'emploi | PROFESSIONNELLE | tu gagnes des patrons déjà testés, tu paies une dépendance de plus à comprendre avant de faire confiance |
 
 **Exemple qui casse : le timeout absent.** Un service appelle un fournisseur externe sans timeout configuré. Le fournisseur ralentit à 40 s au lieu de 200 ms. Les connexions du pool restent occupées, le pool se vide, et le service tombe entièrement : y compris les endpoints qui n'utilisent pas ce fournisseur. Une panne partielle chez un tiers devient une panne totale chez toi, à cause d'une valeur par défaut absente.
 
@@ -361,6 +442,37 @@ Ce que MyFunnyJS t'a appris (XSS, CSRF, injection, pollution de prototype, OWASP
 - **Journalisation d'audit** sur les actions sensibles : et **jamais** de données personnelles ou de secrets dans les logs (RGPD, `22_security/08_privacy_and_aiact.md`).
 - **Dépendances** : scan en CI, mises à jour visibles en PR (Renovate/Dependabot), SBOM (Software Bill of Materials : inventaire exhaustif des dépendances livrées) si le contexte l'exige.
 
+**Ce qu'elle masque** : la conformité prise pour de la sécurité ; cocher une checklist OWASP ne protège pas d'une faille de logique métier.
+
+**Ce qu'elle ne résout pas** : une fuite par logique métier, comme la fuite inter-tenants déjà rencontrée dans ce corpus : aucun en-tête de sécurité ne l'aurait empêchée.
+
+**Quand ne pas la choisir** : jamais « ne pas » ici : la question utile est plutôt ce qui relève de l'équipe plateforme et ce qui reste au développeur.
+
+**Alternatives**
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| Checklist OWASP appliquée manuellement | PROFESSIONNELLE | tu gagnes une couverture large sans outillage, tu paies l'absence de vérification continue |
+| Scan automatisé en CI (dépendances, secrets) | PROFESSIONNELLE | tu gagnes une détection continue, tu paies des faux positifs à trier régulièrement |
+| Plateforme managée qui porte la sécurité réseau | CONTEXTUELLE | tu gagnes une surface d'attaque réduite côté infrastructure, tu paies une dépendance à la politique du fournisseur |
+
+### 7.6 : Secrets
+
+Un secret est une valeur dont la fuite oblige à une rotation ; si la rotation est impossible, ce n'est pas un secret, c'est une dette qui attend son incident. Trois surfaces de fuite à connaître, dans l'ordre où elles surprennent : le dépôt Git, historique compris et pas seulement le `HEAD` ; le bundle client, où tout ce qui est préfixé pour être lu côté navigateur devient public au même titre qu'une page HTML ; les logs et les traces d'erreur, qui recopient trop souvent l'objet de requête entier. La validation au démarrage vue plus haut dans ce niveau s'applique aussi aux secrets : leur absence doit refuser le démarrage du service, jamais retomber sur une valeur par défaut silencieuse. À l'inverse, sur-classifier fait perdre le réflexe : un identifiant de projet public ou une URL déjà exposée dans le HTML ne sont pas des secrets, les traiter comme tels dilue l'attention portée aux vraies valeurs sensibles.
+
+- **Ancrage MyFunnyJS** : `22_security/09_supply_chain_sbom.md` et `15_runtime_env/04_process_env_argv.md` : la config et les secrets viennent de l'environnement, jamais du code.
+
+> **Exercice : fais fuiter un secret exprès**
+> **Temps réaliste** : 1 h · **Prérequis matériel / compte** : un mini-projet avec un frontend buildé et un dépôt Git local · **Coût max** : 0 € ·
+> **Mode** : jeûne d'IA obligatoire
+> **Contraintes** : place une fausse clé dans une variable préfixée pour le client, buildé le projet, retrouve-la dans le fichier servi, commite-la puis annule le commit, retrouve-la quand même dans l'historique.
+> **Réutilise** : `22_security/09_supply_chain_sbom.md`
+> **Piège** : croire qu'annuler un commit ou supprimer un fichier suffit à faire disparaître le secret de l'historique.
+> **À observer** : l'endroit exact où la fausse clé apparaît côté bundle, et la commande qui la retrouve côté Git.
+> **Vérification** (observable, chiffrée) : `git log -S "<fausse-clé>"` retrouve la chaîne alors que le fichier qui la contenait a été supprimé.
+> **Repli 100 % local et gratuit** : tout se fait sur un dépôt local, sans service tiers.
+> **Extension** : remplace la fausse clé par une vraie clé de test, effectue sa rotation, et vérifie que l'ancienne ne fonctionne plus.
+
 **Exemple qui casse : la dépendance transitive piégée.** Une petite bibliothèque de formatage, 40 lignes, vit en dépendance transitive de quatre paquets. Le mainteneur transfère le dépôt à un inconnu. La version suivante ajoute un script `postinstall` qui lit les variables d'environnement ; le build CI l'exécute avec les jetons de déploiement dans son environnement. Personne n'a jamais lu ce paquet : personne ne savait même qu'il était installé.
 
 #### Ce que MyFunnyJS permet déjà de comprendre
@@ -386,7 +498,7 @@ Ce que MyFunnyJS t'a appris (XSS, CSRF, injection, pollution de prototype, OWASP
 
 ---
 
-### 7.6 : Décider et documenter : ADR et postmortem
+### 7.7 : Décider et documenter : ADR et postmortem
 
 Le niveau 4 est celui où une mauvaise décision d'architecture coûte le plus cher. Deux livrables obligatoires, avec grille de relecture commune.
 

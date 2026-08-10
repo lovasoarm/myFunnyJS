@@ -289,7 +289,23 @@ export class OrdersController {
 
 **Faille pointée après coup.** Un pipe attaché à un paramètre de route peut s'exécuter avant que le guard de la méthode n'ait eu l'occasion de refuser la requête, dès que ce pipe fait plus que transformer une valeur. Ici, `findOrCreateBySlug` a un effet de bord : une écriture en base : exécuté pour toute requête, authentifiée ou non. Un pipe reste pur : validation et transformation, jamais création. La résolution qui a un effet de bord se fait dans le handler, après le guard.
 
----
+### 9.9 : Ce qui prend de la valeur, ce qui en perd
+
+Le reste de ce niveau porte sur l'usage de l'IA. Cette section pose la question inverse, celle que se pose un lecteur qui planifie une carrière : quelles compétences perdent de la valeur parce qu'un modèle les produit correctement, et lesquelles en gagnent ? Ce sont des tendances observables aujourd'hui, pas des prophéties : aucune date, aucun métier déclaré mort.
+
+| Perd de la valeur | Gagne de la valeur | Ne bouge pas |
+| ------------------- | -------------------- | -------------- |
+| Écrire du code de plomberie à partir d'une spécification claire | Formuler le problème avant qu'il soit spécifiable | Le modèle relationnel |
+| Connaître une API par cœur | Décider ce qu'on ne construit pas | La boucle d'événements et l'ordonnancement |
+| Produire un CRUD de plus | Diagnostiquer en production sous pression | La concurrence et l'état partagé |
+| Traduire d'un langage à l'autre | Vérifier une affirmation produite par un modèle | La mémoire, les références, le coût d'une allocation |
+| Rédiger des tests unitaires évidents | Porter la responsabilité d'une décision devant une équipe | Les protocoles et les frontières réseau |
+
+La troisième colonne est la condition des deux autres : on ne peut pas vérifier ce qu'on ne comprend pas, et vérifier est justement la colonne qui gagne.
+
+**Chaque tag NOYAU DURABLE de ce document est un pari sur la troisième colonne.**
+
+Pour aller plus loin côté mécanismes : [`23_ai_native_dev/`](../../23_ai_native_dev/) et [`29_ai_agents_and_autonomy/`](../../29_ai_agents_and_autonomy/).
 
 ---
 

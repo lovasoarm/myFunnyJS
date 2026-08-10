@@ -70,6 +70,14 @@ Tu as déjà manipulé un shell et écrit des scripts qui parlent au système ; 
 > **Repli 100 % local et gratuit** : exercice déjà 100 % local, aucun repli nécessaire
 > **Extension** : adapte la commande pour qu'elle tourne aussi sur un flux `tail -f` en continu, sans relancer le pipeline à chaque nouvelle ligne
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| PowerShell | PROFESSIONNELLE | tu gagnes une intégration native à l'écosystème Windows et .NET, tu paies une syntaxe qui ne se transporte pas telle quelle sur un serveur Linux de production |
+| Interface graphique (explorateur de fichiers, client Git graphique) | PÉRISSABLE | tu gagnes une découvrabilité immédiate sans rien mémoriser, tu paies l'impossibilité de rejouer la même action en script ou en CI |
+| Zsh / Fish (shells interactifs) | PROFESSIONNELLE | tu gagnes complétion et confort au quotidien, tu paies une compatibilité POSIX plus fragile pour les scripts partagés avec Bash |
+
 ---
 
 ### 4.2 : Git et GitHub
@@ -250,7 +258,7 @@ Conteneur Docker, image `node:XX-slim` ou distroless (image minimale sans shell 
 | Deno (PROFESSIONNELLE)        | TS natif, sécurité par permissions                          | event loop, modèle async ([03_async/04_event_loop/](../../03_async/04_event_loop/))       |
 | Bun (PÉRISSABLE)              | démarrage rapide, runtime tout-en-un, jeune sur les détails | JS, async, npm                                                                            |
 | Go (CONTEXTUELLE)             | vraie concurrence, goroutines, binaire unique               | pas d'event loop mono-thread : modèle différent                                           |
-| Python/FastAPI (CONTEXTUELLE) | async aussi, écosystème data                                | modèle async/await très proche ([03_async/04_event_loop/](../../03_async/04_event_loop/)) |
+| Python/FastAPI (tag du langage : cf. 8.1 en 05-niveau-5-transfert.md) | async aussi, écosystème data                                | modèle async/await très proche ([03_async/04_event_loop/](../../03_async/04_event_loop/)) |
 
 #### Ce qui restera valable dans 5 à 10 ans
 
@@ -319,6 +327,21 @@ La signature exacte de `fs.promises`, la liste des flags V8, l'API de `worker_th
 > **Repli 100 % local et gratuit** : exercice déjà 100 % local
 > **Extension** : configure `npm audit` en échec de CI si une vulnérabilité de sévérité haute est trouvée
 
+#### Un dépôt ou plusieurs
+
+pnpm sait gérer des **workspaces** : plusieurs paquets versionnés ensemble dans un seul dépôt Git. Ce que ça achète : un seul commit pour un changement qui traverse deux paquets, un seul jeu de versions, pas de publication intermédiaire pour tester une modification côté consommateur. Ce que ça masque : les dépendances implicites entre paquets deviennent invisibles, puisque plus rien n'oblige à publier et à figer une version pour les faire apparaître. Ce que ça ne résout pas : le couplage entre les paquets ; un monorepo ne découple rien, il rend le couplage moins douloureux à court terme et plus profond à long terme, exactement le compromis que 06_microservices_intro.md décrit pour la décomposition d'un système. Quand ne pas choisir un monorepo : deux équipes avec deux rythmes de livraison et deux propriétaires distincts, où un seul commit partagé devient un point de contention plutôt qu'un gain.
+
+- **Pont MyFunnyJS** : [16_architecture_patterns/06_microservices_intro.md](../../16_architecture_patterns/06_microservices_intro.md) : le même arbitrage entre un ensemble regroupé et des parties indépendantes, appliqué ici au dépôt plutôt qu'au déploiement.
+
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| Yarn | PROFESSIONNELLE | tu gagnes des workspaces matures et un historique long, tu paies une base d'utilisateurs qui migre largement vers pnpm |
+| Bun (gestionnaire intégré) | PÉRISSABLE | tu gagnes une installation très rapide et un runtime tout-en-un, tu paies un écosystème encore jeune sur les cas limites (scripts `postinstall`, résolutions exotiques) |
+| Polyrepo + paquet publié | PROFESSIONNELLE | tu gagnes des équipes et des rythmes de livraison réellement indépendants, tu paies une étape de publication et de mise à jour de version à chaque changement partagé |
+| Polyrepo + duplication assumée | CONTEXTUELLE | tu gagnes une indépendance totale, aucune coordination de version, tu paies une copie qui diverge silencieusement si personne ne la resynchronise |
+
 ---
 
 ### 4.5 : TypeScript en conditions réelles
@@ -378,6 +401,14 @@ export async function loadEvent(res: Response): Promise<MetricEvent> {
 > **Repli 100 % local et gratuit** : déjà 100 % local
 > **Extension** : ajoute un test qui vérifie qu'un objet JSON invalide est rejeté par le schéma zod correspondant, pas seulement par le type
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| JSDoc typé (`// @ts-check` + commentaires) | PROFESSIONNELLE | tu gagnes du typage sans étape de build ni fichier `.ts`, tu paies une syntaxe plus verbeuse et des types génériques difficiles à exprimer |
+| Flow | PÉRISSABLE | tu gagnes l'idée de typage progressif sur laquelle TypeScript s'est lui-même appuyé, tu paies un écosystème et un outillage largement désertés au profit de TypeScript |
+| JavaScript nu + tests exhaustifs | NOYAU DURABLE (la discipline de test) | tu gagnes l'absence totale d'étape de compilation, tu paies la détection des erreurs de forme à l'exécution plutôt qu'à la compilation |
+
 ---
 
 ### 4.6 : HTTP et REST
@@ -428,13 +459,21 @@ Tu vas passer ta carrière à envoyer et recevoir des requêtes HTTP. C'est le p
 > **Repli 100 % local et gratuit** : lance ton propre serveur Node local (voir 4.3) si aucune API publique n'est joignable
 > **Extension** : ajoute un header `Idempotency-Key` à un `POST` répété et observe si le serveur le respecte
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| gRPC | PROFESSIONNELLE | tu gagnes des contrats stricts et un débit binaire supérieur entre services internes, tu paies la lisibilité directe (pas de `curl` à l'œil nu) et un support navigateur limité |
+| GraphQL (cf. 6.7) | PROFESSIONNELLE | tu gagnes un client qui choisit exactement les champs dont il a besoin, tu paies un cache HTTP standard qui ne fonctionne plus tel quel |
+| tRPC | CONTEXTUELLE | tu gagnes un typage de bout en bout sans schéma séparé à maintenir, tu paies un couplage fort qui suppose client et serveur écrits dans le même langage |
+
 ---
 
 ### 4.7 : SQL et PostgreSQL
 
 **PostgreSQL** : Tag : NOYAU DURABLE (SQL, le modèle relationnel) / PROFESSIONNELLE (PostgreSQL lui-même) · Coût : ~20 h avant utilité · Durée de vie : ~15 ans pour PostgreSQL, ~50 ans pour SQL · À apprendre après : HTTP/REST (4.6).
 
-Si tu ne dois investir sérieusement que dans **une** techno backend au-delà du langage, c'est celle-ci. SQL a 50 ans et sera là dans 20 ans.
+Si tu ne dois investir sérieusement que dans **une** techno backend au-delà du langage, c'est celle-ci. SQL a 50 ans et sera là dans 20 ans. SQL n'est pas un produit, c'est un modèle mathématique avec une syntaxe : c'est pour ça que sa durée de vie annoncée dépasse celle de toutes les autres fiches de ce document.
 
 - **Ancrage MyFunnyJS** : [09_data_structures/07_hash_table/](../../09_data_structures/07_hash_table/) et [09_data_structures/06_bst/](../../09_data_structures/06_bst/) : un index B-tree, c'est l'arbre que tu as déjà implémenté ; un index de hachage, la table que tu as déjà implémentée.
 - **Ce qu'elle ajoute** : durabilité, transactions, concurrence, contraintes. Une contrainte `UNIQUE` en base est la seule garantie d'unicité réelle.
@@ -539,6 +578,16 @@ Moindre privilège : l'utilisateur base de données de ton API n'a pas besoin de
 
 Le modèle relationnel, l'algèbre relationnelle, ACID, les index, la lecture d'un plan d'exécution.
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| SQLite | PROFESSIONNELLE | tu gagnes zéro serveur à opérer, un fichier unique, tu paies l'absence de concurrence en écriture à haut débit |
+| MySQL | PROFESSIONNELLE | tu gagnes un écosystème d'hébergement au moins aussi large, tu paies des comportements par défaut historiquement moins stricts sur l'intégrité des données |
+| DuckDB | CONTEXTUELLE | tu gagnes des requêtes analytiques très rapides sur de gros volumes en local, tu paies un moteur pensé pour l'analyse et non pour des écritures transactionnelles fréquentes |
+| Document store (cf. le cas MongoDB de 03-niveau-3-backend.md) | CONTEXTUELLE | tu gagnes un schéma flexible au démarrage, tu paies une migration ultérieure vers un modèle relationnel bien plus coûteuse que prévu si le schéma s'avère finalement structuré |
+| Rester sur PostgreSQL et l'étendre (JSON, recherche plein texte, vecteurs, files) | PROFESSIONNELLE | tu gagnes un système à opérer au lieu de quatre, tu paies une base qui fait tout moyennement plutôt qu'une chose parfaitement |
+
 > **Exercice : Lire un plan d'exécution**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : PostgreSQL local (paquet système ou conteneur local) · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
@@ -597,6 +646,14 @@ MyFunnyJS t'a appris la stratégie ([06_testing/09_test_strategy_not_framework.m
 > **Vérification** (observable, chiffrée) : après le refactor interne, si un test échoue sans changement de comportement, tu le réécris ; à la fin, 100 % des tests passent et le comportement externe est identique (mêmes entrées, mêmes sorties observées)
 > **Repli 100 % local et gratuit** : déjà 100 % local
 > **Extension** : remplace un mock de base de données par Testcontainers et observe si le test détecte un bug que le mock cachait
+
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| `node:test` | NOYAU DURABLE (tendance) | tu gagnes zéro dépendance et un runner déjà présent dans le runtime, tu paies un écosystème d'extensions plus restreint que Jest ou Vitest |
+| Jest | PROFESSIONNELLE | tu gagnes un écosystème mature et une base installée immense, tu paies une configuration plus lourde et une intégration moins native avec les outils basés sur Vite |
+| Playwright | PROFESSIONNELLE | tu gagnes des tests de bout en bout multi-navigateurs réalistes, tu paies un temps d'exécution largement supérieur à un test unitaire |
 
 ---
 
@@ -705,6 +762,14 @@ app.get("/readyz", (req, res) => {
 > **Repli 100 % local et gratuit** : tout l'exercice est déjà local, aucun registre distant nécessaire
 > **Extension** : ajoute une limite mémoire (`docker run -m 128m`) et observe à quel seuil le conteneur est tué
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| Podman | PROFESSIONNELLE | tu gagnes l'absence de démon root permanent, tu paies quelques divergences de comportement sur des Dockerfiles qui supposaient l'écosystème Docker |
+| Nix (environnements reproductibles) | CONTEXTUELLE | tu gagnes une reproductibilité poussée jusqu'aux dépendances système, tu paies une courbe d'apprentissage nettement plus raide que celle d'un Dockerfile |
+| Pas de conteneur | PROFESSIONNELLE | tu gagnes l'absence de couche d'isolation à opérer et un déploiement plus direct, tu paies le retour du "ça marche sur ma machine" si l'environnement n'est pas reproduit autrement |
+
 ---
 
 ### 4.10 : Déploiement de base
@@ -756,6 +821,14 @@ rollback possible en une commande
 > **Vérification** (observable, chiffrée) : après rollback, la version précédente répond en moins de 30 secondes et le healthcheck repasse au vert ; le hash de l'artefact en préprod et en prod est identique
 > **Repli 100 % local et gratuit** : si tu ne veux ou ne peux pas utiliser de plateforme distante, fais tourner les deux "environnements" en local : un serveur statique local (`npx serve` ou équivalent) pour le rôle préprod, et un conteneur Docker local pour le rôle prod, avec deux fichiers `.env` différents ; le rollback devient `docker run` sur le tag d'image précédent. Cet exercice est entièrement réalisable sans aucun compte externe.
 > **Extension** : que se passe-t-il si la variable manquante n'est lue qu'au premier appel d'une route rare, trois jours après le déploiement ?
+
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| ----------- | --- | ------------------------------- |
+| PaaS | PROFESSIONNELLE | tu gagnes un déploiement en une commande, tu paies un coût qui grimpe vite à l'échelle et des quotas invisibles au démarrage |
+| VPS classique | PROFESSIONNELLE | tu gagnes un contrôle total de la machine et un coût prévisible, tu paies l'exploitation toi-même (mises à jour, sécurité, supervision) |
+| Serverless | PROFESSIONNELLE | tu gagnes l'absence de serveur à maintenir entre deux invocations, tu paies un démarrage à froid et des contraintes d'exécution (durée, mémoire, état) |
 
 **Seuil franchi.** Le niveau 1 est le seul dont aucune ligne ne sera obsolète dans dix ans. Si tu l'as vraiment, tu peux apprendre n'importe quel framework par-dessus : c'est exactement ce que teste un entretien senior.
 

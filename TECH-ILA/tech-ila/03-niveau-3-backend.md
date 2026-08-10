@@ -8,7 +8,7 @@ companion: MyFunnyJS
 
 [← Sommaire TECH-ILA](../README.md)
 
-> **Tu viens de** : [02-niveau-2-frontend.md](./02-niveau-2-frontend.md) (React, état, Vite, routing/formulaires/a11y, Next.js, React Native)
+> **Tu viens de** : [02-niveau-2-frontend.md](./02-niveau-2-frontend.md) (React, état, Vite, routing/formulaires/a11y, Next.js)
 > **Tu dois déjà savoir** : `node:http` et les fondamentaux Node (`01-niveau-1-socle.md`), composition de fonctions (`11_functional_js/03_composition.md`), les patrons SOLID de base (`16_architecture_patterns/02_solid_principles.md`)
 > **Ensuite** : [04-niveau-4-systemes.md](./04-niveau-4-systemes.md) (CI/CD, cloud, observabilité, résilience)
 
@@ -346,6 +346,14 @@ Il n'y a pas de gagnant. Il y a un contexte. Un JWT de 24 h pour une application
 
 **Autorisation à l'échelle.** RBAC (rôles) est simple et suffit souvent. ABAC (attributs) est plus fin et plus complexe. Règle transférable : **les rôles ne se stockent jamais côté client, ni dans un champ modifiable par l'utilisateur.** Sinon, escalade de privilèges triviale.
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **Valibot** | CONTEXTUELLE | tu gagnes un bundle nettement plus léger que Zod, tu paies un écosystème et une communauté plus petits |
+| **TypeBox** | CONTEXTUELLE | tu gagnes un schéma JSON Schema natif, réutilisable hors TypeScript, tu paies une API moins ergonomique que Zod |
+| **Sessions serveur** (contre JWT) | PROFESSIONNELLE | tu gagnes une révocation immédiate, tu paies un store partagé à opérer (Redis) |
+
 > **Exercice : Prouver l'absence de fuite entre utilisateurs** : jeûne d'IA obligatoire
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : jeûne d'IA obligatoire
@@ -406,6 +414,14 @@ Journalise chaque `MISS` de cache avec la clé demandée et l'identifiant de cor
 
 **Quand ne pas l'utiliser.** Comme base principale de données que tu ne peux pas te permettre de perdre, sans configuration de persistance sérieuse. Et pour un cache local à un seul process, une Map avec TTL suffit : n'ajoute pas un service pour ça.
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **Cache mémoire du process** (Map + TTL) | PROFESSIONNELLE | tu gagnes zéro dépendance réseau et une latence quasi nulle, tu paies un cache non partagé entre instances |
+| **Table PostgreSQL** | PROFESSIONNELLE | tu gagnes une seule source de vérité et une transaction, tu paies une latence plus élevée qu'une structure en mémoire |
+| **CDN** | CONTEXTUELLE | tu gagnes un cache au plus près de l'utilisateur pour du contenu peu personnalisé, tu paies une invalidation beaucoup plus lente que Redis |
+
 > **Exercice : Provoquer puis éteindre une ruée sur le cache**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : Redis local (conteneur) · **Coût max** : 0 €
 > **Mode** : assistant autorisé
@@ -464,15 +480,15 @@ HTTP  →  valide  →  publie un job  →  202 Accepted (immédiat)
 
 Journalise, à la publication du job, l'identifiant de job et l'identifiant de corrélation de la requête d'origine, propagés ensemble jusqu'au worker. Journalise, à chaque tentative du worker, le numéro de tentative et le résultat (succès, échec retryable, échec définitif vers la DLQ) sous ce même identifiant de job : sans ce fil, un job qui échoue trois fois puis réussit apparaît comme trois incidents distincts au lieu d'un seul.
 
-**Outils.**
+#### Alternatives
 
-| Outil                   | Tag             | Ce que ça change côté mécanisme MyFunnyJS                                                                 |
-| ----------------------- | --------------- | --------------------------------------------------------------------------------------------------------- |
-| **BullMQ** (Redis)      | PROFESSIONNELLE | même Redis que la fiche 6.4, les jobs sont des structures de données Redis sérialisées                    |
-| **RabbitMQ**            | PROFESSIONNELLE | routage riche par exchange, le modèle producteur/consommateur devient explicite dans la configuration     |
-| **Kafka**               | CONTEXTUELLE    | flux à très haut débit, rejouables, coût opérationnel élevé : un log distribué, pas une file classique    |
-| **SQS**                 | CONTEXTUELLE    | managé, visibilité et DLQ fournies nativement, mais latence de livraison plus élevée                      |
-| **pgboss** (PostgreSQL) | PROFESSIONNELLE | la file vit dans ta base existante : souvent le meilleur choix tant qu'il n'y a pas de problème d'échelle |
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **BullMQ** (Redis) | PROFESSIONNELLE | tu gagnes le même Redis que la fiche 6.4, les jobs sont des structures Redis sérialisées, tu paies l'absence de persistance forte propre à un vrai broker |
+| **RabbitMQ** | PROFESSIONNELLE | tu gagnes un routage riche par exchange, le modèle producteur/consommateur devient explicite, tu paies un service de plus à opérer |
+| **Kafka** | CONTEXTUELLE | tu gagnes un débit très élevé et des flux rejouables (log distribué), tu paies un coût opérationnel élevé pour un besoin souvent surdimensionné |
+| **SQS** | CONTEXTUELLE | tu gagnes un service managé avec visibilité et DLQ natives, tu paies une latence de livraison plus élevée |
+| **pgboss** (PostgreSQL) | PROFESSIONNELLE | tu gagnes une file qui vit dans ta base existante, sans nouveau service, tu paies un débit plus faible qu'un vrai broker à grande échelle |
 
 **Le piège d'architecture.** Introduire Kafka pour 50 messages par minute. Tu viens d'ajouter un système distribué à opérer pour un problème qu'une table PostgreSQL réglait. C'est une décision qui se défend en ADR, ou qui ne se prend pas.
 
@@ -531,6 +547,13 @@ Coût : ~10 h avant utilité · Durée de vie : ~9 ans · À apprendre après : 
 
 Un tableau de bord diffuse chaque événement à **tous** les clients connectés, sans filtrage ni regroupement. En démonstration, quatre navigateurs : tout va bien. En production, 900 clients et 200 événements par minute donnent 180 000 messages par minute ; la boucle d'événements du serveur ne redescend plus, et le service tombe en cascade. Le correctif n'est pas de changer de bibliothèque : c'est de regrouper les événements par fenêtre de temps et de n'envoyer qu'aux abonnés réellement concernés.
 
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **Polling** | PÉRISSABLE | tu gagnes une infrastructure triviale (juste du HTTP répété), tu paies de la latence et des requêtes inutiles quand rien n'a changé |
+| **Long polling** | PÉRISSABLE | tu gagnes une latence bien meilleure que le polling simple sans changer de protocole, tu paies des connexions HTTP maintenues ouvertes à gérer |
+
 > **Exercice : Reconnexion sans trou silencieux**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €
 > **Mode** : assistant autorisé
@@ -583,6 +606,13 @@ Coût : ~15 h avant utilité · Durée de vie : ~6 ans · À apprendre après : 
 **Quand ne pas le choisir.** Une API, un client, du CRUD. REST + un bon typage partagé (ou tRPC en monorepo TypeScript) est plus simple, mieux caché, plus facile à observer.
 
 C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son adoption est réelle mais très inégale selon les secteurs. Sache le lire, sache quand le refuser.
+
+#### Alternatives
+
+| Alternative | Tag | Ce qu'elle échange contre quoi |
+| --- | --- | --- |
+| **REST bien fait** | PROFESSIONNELLE | tu gagnes le cache HTTP standard et une observabilité par endpoint, tu paies parfois plusieurs allers-retours ou du sur-transfert |
+| **BFF** (Backend for Frontend) | CONTEXTUELLE | tu gagnes une forme de données taillée pour chaque client sans schéma global, tu paies une couche supplémentaire à maintenir par client |
 
 > **Exercice : Rendre visible puis corriger le N+1**
 > **Temps réaliste** : 2 h 30 · **Prérequis matériel / compte** : base PostgreSQL locale · **Coût max** : 0 €
