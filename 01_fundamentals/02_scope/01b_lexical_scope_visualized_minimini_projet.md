@@ -30,7 +30,7 @@ Ta carte projet a une hiérarchie claire.
 
 Si deux variables portent le même nom dans deux portées imbriquées, laquelle gagne et pourquoi ?
 
-## Preuve à conserver
+## Preuve à conserverem-
 
 Après l'expérience, conserve :
 

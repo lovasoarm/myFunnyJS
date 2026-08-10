@@ -247,8 +247,12 @@ trace ne dépend d'aucun outil.
 fichier : ce sont des lieux d'application, pas de concept. Les mini-projets se regroupent par
 archétype de compétence (moteur métier sans framework, API sous contrainte, legacy, systèmes
 distribués, transfert multi-langage, supervision de l'IA). Les annexes se piochent par
-sous-dossier au moment où TECH-ILA en a besoin : `23_reading/`, `29_toolchain/` et
-`30_transferability/` sont les plus réutilisés.
+sous-dossier au moment où TECH-ILA en a besoin : `31_annexes/23_reading/`,
+`31_annexes/29_toolchain/` et `31_annexes/30_transferability/` sont les plus réutilisés.
+Attention au piège de lecture : les sous-dossiers d'annexes ont leur propre numérotation,
+indépendante de celle des 32 modules. `31_annexes/23_reading/` n'a rien à voir avec
+`23_ai_native_dev/`. Dans TECH-ILA, un chemin d'annexe s'écrit TOUJOURS préfixé de
+`31_annexes/`.
 
 <a id="mod-32"></a>**32 · `32_tools/`.** Construire soi-même l'outil minimal qu'on utilise
 tous les jours, pour comprendre ce qu'une bibliothèque enrobe : pas pour le mettre en

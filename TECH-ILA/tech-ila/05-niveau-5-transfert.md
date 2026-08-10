@@ -22,6 +22,8 @@ companion: MyFunnyJS
 
 ### 8.0 : La grille de lecture universelle
 
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
+
 Devant n'importe quel écosystème backend, pose ces neuf questions. Les réponses te donnent 80 % de la compréhension :
 
 ```text
@@ -36,7 +38,7 @@ Devant n'importe quel écosystème backend, pose ces neuf questions. Les répons
 9. Comment configure-t-on selon l'environnement ?
 ```
 
-Imprime-les mentalement. C'est ta clé d'entrée dans toute codebase inconnue, y compris `31_annexes/00_cartographier_codebase_inconnue.md`.
+Imprime-les mentalement. C'est ta clé d'entrée dans toute codebase inconnue, y compris [`31_annexes/00_cartographier_codebase_inconnue.md`](../../31_annexes/00_cartographier_codebase_inconnue.md).
 
 ---
 
@@ -49,10 +51,10 @@ Imprime-les mentalement. C'est ta clé d'entrée dans toute codebase inconnue, y
 #### Ce que MyFunnyJS permet déjà de comprendre
 
 - `03_async/03_async_await/` : `asyncio` reprend le même modèle ; `gather` ≈ `Promise.all`, avec une gestion d'erreur différente.
-- `03_async/03_async_await/02b_generators_yield.md` : générateurs et `yield` existent presque à l'identique.
-- `12_design_patterns/02_structural/01_decorator_pattern.md` : un décorateur Python est ce patron, avec une syntaxe native.
-- `01_fundamentals/02_scope/02_closure_trap.md` : mêmes closures, une différence brutale : sans `nonlocal`, une affectation crée une variable locale.
-- `11_functional_js/01_pure_functions.md` : compréhensions et fonctions pures : la transformation de données se raisonne pareil.
+- [`03_async/03_async_await/02b_generators_yield.md`](../../03_async/03_async_await/02b_generators_yield.md) : générateurs et `yield` existent presque à l'identique.
+- [`12_design_patterns/02_structural/01_decorator_pattern.md`](../../12_design_patterns/02_structural/01_decorator_pattern.md) : un décorateur Python est ce patron, avec une syntaxe native.
+- [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md) : mêmes closures, une différence brutale : sans `nonlocal`, une affectation crée une variable locale.
+- [`11_functional_js/01_pure_functions.md`](../../11_functional_js/01_pure_functions.md) : compréhensions et fonctions pures : la transformation de données se raisonne pareil.
 
 **Ce qui te surprendra en venant de JS :**
 
@@ -169,9 +171,9 @@ Autre variante, dans le même esprit que le module async de MyFunnyJS : un `asyn
 
 **Se périme si :** l'écosystème async Python se recentre sur une autre couche qu'ASGI, ou si Pydantic est supplanté comme validateur de référence.
 
-#### Django : **Tag : CONTEXTUELLE**
+#### Django : **Tag : CONTEXTUELLE** · Coût : ~15 h avant le premier back-office utile · Durée de vie : 10 ans et plus (framework de 1re génération, ORM et admin stables depuis 15 ans, rythme LTS annoncé) · À apprendre après : 8.1 Python
 
-À l'opposé : tout est fourni (ORM, admin, auth, migrations, templates). Excellent pour un produit CRUD-lourd avec back-office, où l'interface d'administration générée fait gagner des mois. Coût : très opinionné, tu suis ses conventions ou tu souffres.
+À l'opposé : tout est fourni (ORM, admin, auth, migrations, templates). Excellent pour un produit CRUD-lourd avec back-office, où l'interface d'administration générée fait gagner des mois. Le prix réel n'est pas le temps d'apprentissage, c'est l'adhérence : tu suis ses conventions ou tu souffres. Sortir de l'ORM Django coûte plus cher que d'y entrer.
 
 **Quand ne pas faire de Python.** Un frontend. Un service temps réel à très haute concurrence quand ton équipe est déjà bonne en Node. Un binaire à distribuer.
 
@@ -198,11 +200,11 @@ Autre variante, dans le même esprit que le module async de MyFunnyJS : un `asyn
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `16_architecture_patterns/02_solid_principles.md` : l'inversion de dépendance est exactement ce que fait le conteneur Spring.
-- `12_design_patterns/02_structural/01_decorator_pattern.md` : les annotations Spring ressemblent aux décorateurs : **où l'analogie casse** : un décorateur TypeScript s'exécute à la définition de la classe ; une annotation Java ne fait rien par elle-même, c'est le conteneur qui la lit par réflexion au démarrage et qui agit en conséquence. Chercher le bug "dans l'annotation" plutôt que "dans ce que le conteneur en a fait" est l'erreur de lecture la plus fréquente d'un développeur JS sur Spring.
-- `18_oop_js/09_composition_vs_inheritance.md` : le débat est identique en Java, avec des outils plus stricts.
-- `01_fundamentals/02_scope/02_closure_trap.md` : Java exige une variable capturée effectivement finale : le langage t'interdit le bug que JavaScript t'autorise.
-- `03_async/07_shared_memory_concurrency.md` : de vrais threads, donc de la mémoire partagée : c'est le saut mental principal.
+- [`16_architecture_patterns/02_solid_principles.md`](../../16_architecture_patterns/02_solid_principles.md) : l'inversion de dépendance est exactement ce que fait le conteneur Spring.
+- [`12_design_patterns/02_structural/01_decorator_pattern.md`](../../12_design_patterns/02_structural/01_decorator_pattern.md) : les annotations Spring ressemblent aux décorateurs : **où l'analogie casse** : un décorateur TypeScript s'exécute à la définition de la classe ; une annotation Java ne fait rien par elle-même, c'est le conteneur qui la lit par réflexion au démarrage et qui agit en conséquence. Chercher le bug "dans l'annotation" plutôt que "dans ce que le conteneur en a fait" est l'erreur de lecture la plus fréquente d'un développeur JS sur Spring.
+- [`18_oop_js/09_composition_vs_inheritance.md`](../../18_oop_js/09_composition_vs_inheritance.md) : le débat est identique en Java, avec des outils plus stricts.
+- [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md) : Java exige une variable capturée effectivement finale : le langage t'interdit le bug que JavaScript t'autorise.
+- [`03_async/07_shared_memory_concurrency.md`](../../03_async/07_shared_memory_concurrency.md) : de vrais threads, donc de la mémoire partagée : c'est le saut mental principal.
 
 **Java moderne n'est plus le Java de 2005.** Records, `sealed interface`, pattern matching, `var`, `Optional`, streams, threads virtuels (concurrence massive sans callback). Le fossé avec TypeScript s'est réduit.
 
@@ -348,10 +350,10 @@ Thread.ofVirtual().start(() -> {
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `03_async/07_shared_memory_concurrency.md` : en C#, `await` n'implique pas un mono-thread ; la sécurité vis-à-vis de la concurrence redevient ton problème.
+- [`03_async/07_shared_memory_concurrency.md`](../../03_async/07_shared_memory_concurrency.md) : en C#, `await` n'implique pas un mono-thread ; la sécurité vis-à-vis de la concurrence redevient ton problème.
 - `14_typescript/` : génériques, nullabilité, unions : la parenté avec C# va jusqu'au vocabulaire.
-- `16_architecture_patterns/02_solid_principles.md` : la DI intégrée d'ASP.NET Core est le même principe qu'ailleurs.
-- `28_edge_cases/02_floating_point.md` : `decimal` existe et sert exactement à ce que tu as déjà vu échouer avec des flottants.
+- [`16_architecture_patterns/02_solid_principles.md`](../../16_architecture_patterns/02_solid_principles.md) : la DI intégrée d'ASP.NET Core est le même principe qu'ailleurs.
+- [`28_edge_cases/02_floating_point.md`](../../28_edge_cases/02_floating_point.md) : `decimal` existe et sert exactement à ce que tu as déjà vu échouer avec des flottants.
 
 | TypeScript         | C#                                                                       |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -428,12 +430,14 @@ Un développeur venu de JS l'écrit naturellement, parce qu'en JS il n'existe pa
 
 ### 8.4 : Décider et documenter : ADR et postmortem
 
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
+
 **Grille de relecture en 5 points (identique au niveau 4)** : décision datée et nommée ; au moins deux options réellement envisagées ; critère de décision explicite et mesurable ; conséquences négatives assumées écrites ; version 5 lignes sans nom de techno, lisible par un non-développeur.
 
 > **Exercice : ADR rester en JS ou porter en Python**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
-> **Contraintes** : à partir de l'exercice de portage FastAPI (8.1), rédige un ADR suivant `27_team_craft/02_adr_writing.md`. Ajoute la contrainte : réécris la décision en 5 lignes pour un responsable produit, sans un seul nom de techno.
+> **Contraintes** : à partir de l'exercice de portage FastAPI (8.1), rédige un ADR suivant [`27_team_craft/02_adr_writing.md`](../../27_team_craft/02_adr_writing.md). Ajoute la contrainte : réécris la décision en 5 lignes pour un responsable produit, sans un seul nom de techno.
 > **Réutilise** : `27_team_craft/02_adr_writing.md`
 > **Piège** : confondre "j'ai aimé écrire ce langage" avec un critère de décision d'équipe.
 > **À observer** : le nombre de critères réellement mesurables dans ta décision.
@@ -445,7 +449,7 @@ Un développeur venu de JS l'écrit naturellement, parce qu'en JS il n'existe pa
 > **Temps réaliste** : 1 h · **Prérequis matériel / compte** : aucun, exercice réflexif · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
 > **Contraintes** : imagine (ou reprends un cas vécu) un portage Node → Java qui a mal tourné en production à cause du modèle de concurrence à threads. Rédige un postmortem complet.
-> **Réutilise** : `26_observability/08_oncall_drill.md`
+> **Réutilise** : [`26_observability/08_oncall_drill.md`](../../26_observability/08_oncall_drill.md)
 > **Piège** : blâmer "Java" comme cause racine au lieu du manque de compréhension du modèle de threads avant le portage.
 > **À observer** : la cause racine identifiée est-elle un mécanisme ou une personne ?
 > **Vérification** (observable, chiffrée) : la grille de relecture en 5 points est satisfaite point par point.
@@ -465,6 +469,8 @@ Un développeur venu de JS l'écrit naturellement, parce qu'en JS il n'existe pa
 ---
 
 ### 8.5 : Ce que le transfert t'apporte réellement
+
+**Section de synthèse** : pas de tag, pas de Coût, pas de Durée de vie : elle ne présente aucune techno, elle referme le niveau.
 
 Après le niveau 5, tu ne dis plus "je suis développeur JavaScript". Tu dis :
 

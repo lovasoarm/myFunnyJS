@@ -18,6 +18,8 @@ companion: MyFunnyJS
 
 ## 6 : Niveau 3 : Backend
 
+<a id="sec-express"></a>
+
 ### 6.1 : Express (et les micro-frameworks)
 
 **Express** : Tag : PROFESSIONNELLE (omniprésent en legacy et en petit service) ·
@@ -290,6 +292,8 @@ Regarde ce tableau. **Ce sont les mêmes idées avec des noms différents.** App
 
 ---
 
+<a id="sec-auth"></a>
+
 ### 6.3 : Validation, authentification, autorisation
 
 **Auth / validation** : Tag : NOYAU DURABLE ·
@@ -368,6 +372,8 @@ Il n'y a pas de gagnant. Il y a un contexte. Un JWT de 24 h pour une application
 
 ---
 
+<a id="sec-redis"></a>
+
 ### 6.4 : Redis
 
 **Redis** : Tag : PROFESSIONNELLE ·
@@ -434,6 +440,8 @@ Journalise chaque `MISS` de cache avec la clé demandée et l'identifiant de cor
 > **Extension** : compare verrou de recalcul, TTL avec jitter et `stale-while-revalidate`, et dis en trois lignes lequel tu déploies.
 
 ---
+
+<a id="sec-queues"></a>
 
 ### 6.5 : Files de messages et workers
 
@@ -506,6 +514,8 @@ Journalise, à la publication du job, l'identifiant de job et l'identifiant de c
 **Arme débloquée.** Tu peux désormais lire une architecture asynchrone sans confondre "ça marche" et "ça survit à un redémarrage".
 
 ---
+
+<a id="sec-temps-reel"></a>
 
 ### 6.6 : Temps réel : WebSocket et SSE
 
@@ -629,6 +639,8 @@ C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son
 
 ### 6.8 : Exercice de lecture de codebase : backend Node/TypeScript
 
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
+
 > **Exercice : Cartographier un backend Nest ou Fastify open source**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : accès à un dépôt public (GitHub) · **Coût max** : 0 €
 > **Mode** : assistant autorisé
@@ -644,6 +656,8 @@ C'est **CONTEXTUELLE** et pas **PROFESSIONNELLE** dans ce document parce que son
 ---
 
 ### 6.9 : ADR : choix du framework backend
+
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
 
 > **Exercice : ADR : Express, Fastify ou NestJS pour ce projet** : jeûne d'IA obligatoire
 > **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : aucun · **Coût max** : 0 €

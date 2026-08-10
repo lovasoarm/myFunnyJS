@@ -33,9 +33,11 @@ C'est le niveau qui sépare "je sais coder une feature" de "je sais livrer et ex
 > **Repli 100 % local et gratuit** : l'exercice se fait entièrement en local, sans dépense.
 > **Extension** : chiffre le coût mensuel, en euros et en heures d'astreinte, de la brique que tu viens de retirer.
 
+<a id="sec-cicd"></a>
+
 ### 7.1 : CI/CD
 
-**Tag : NOYAU DURABLE** (le concept) / **PÉRISSABLE** (la syntaxe YAML) · Coût : ~15 h avant utilité · Durée de vie : ~10 ans (le modèle) · À apprendre après : `06_testing/` complet · Prérequis : `06_testing/`, `27_team_craft/01_code_review.md`
+**Tag : NOYAU DURABLE** (le concept) / **PÉRISSABLE** (la syntaxe YAML) · Coût : ~15 h avant utilité · Durée de vie : ~10 ans (le modèle) · À apprendre après : `06_testing/` complet · Prérequis : `06_testing/`, [`27_team_craft/01_code_review.md`](../../27_team_craft/01_code_review.md)
 
 **Ce qu'elle masque** : la CI ne teste que ce que tu lui as demandé de tester ; une suite verte prouve l'absence d'échec détecté, pas la présence de correction.
 
@@ -55,11 +57,11 @@ C'est le niveau qui sépare "je sais coder une feature" de "je sais livrer et ex
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `06_testing/09_test_strategy_not_framework.md` : l'ordre des étapes d'un pipeline est une stratégie de test, pas une contrainte d'outil.
-- `04_debugging/07_flaky_bugs.md` : un test instable est un bug de non-déterminisme, jamais une raison de relancer.
+- [`06_testing/09_test_strategy_not_framework.md`](../../06_testing/09_test_strategy_not_framework.md) : l'ordre des étapes d'un pipeline est une stratégie de test, pas une contrainte d'outil.
+- [`04_debugging/07_flaky_bugs.md`](../../04_debugging/07_flaky_bugs.md) : un test instable est un bug de non-déterminisme, jamais une raison de relancer.
 - `27_team_craft/01_code_review.md` : le pipeline automatise le vérifiable pour que la revue parle du reste.
-- `22_security/09_supply_chain_sbom.md` : le CI a accès à tes secrets et installe du code tiers : c'est ta chaîne d'approvisionnement.
-- `00_getting_started/04_package_managers.md` : le lockfile est ce qui rend un build reproductible d'une machine à l'autre.
+- [`22_security/09_supply_chain_sbom.md`](../../22_security/09_supply_chain_sbom.md) : le CI a accès à tes secrets et installe du code tiers : c'est ta chaîne d'approvisionnement.
+- [`00_getting_started/04_package_managers.md`](../../00_getting_started/04_package_managers.md) : le lockfile est ce qui rend un build reproductible d'une machine à l'autre.
 
 **Le pipeline minimal défendable, en vrai YAML commenté.** Ce n'est pas un pseudo-code : c'est la structure que tu retrouveras, aux noms de clés près, dans GitHub Actions, GitLab CI ou CircleCI.
 
@@ -174,6 +176,8 @@ jobs:
 
 ---
 
+<a id="sec-cloud"></a>
+
 ### 7.2 : Cloud et déploiement
 
 **4.10 t'a appris à mettre en ligne ; ici tu apprends à exploiter.** Le niveau 1 t'a fait pousser un service sur une plateforme gratuite et vérifier qu'il répond. Ici, la question change : ce service tourne depuis six mois, il a des pics de charge, une dépendance externe qui tombe parfois, et une facture qui monte. Exploiter, c'est savoir pourquoi il est lent un mardi à 14h et combien ça coûte de le garder allumé.
@@ -189,7 +193,7 @@ Les fournisseurs diffèrent. Les concepts, non :
 | Stockage | objets (fichiers), blocs (disques), base managée                                                                                                                                   | vérifie que le stockage objet survit à la suppression de l'instance de calcul                 |
 | Identité | rôles et permissions minimales : le principe du moindre privilège                                                                                                                  | lis le rôle attribué et retire toute permission que le service n'utilise pas, puis relance-le |
 | Secrets  | gestionnaire dédié, rotation, jamais dans le dépôt                                                                                                                                 | cherche le secret dans l'historique Git avec `git log -p` : il ne doit jamais apparaître      |
-| Coût     | la facture est une métrique d'architecture (`31_annexes/03_finops_greenops.md`)                                                                                                    | calcule le coût mensuel à partir d'une grille tarifaire figée (voir 7.2 bis)                  |
+| Coût     | la facture est une métrique d'architecture ([`31_annexes/03_finops_greenops.md`](../../31_annexes/03_finops_greenops.md))                                                                                                    | calcule le coût mensuel à partir d'une grille tarifaire figée (voir 7.2 bis)                  |
 | IaC      | l'infrastructure décrite en code, versionnée, revue en PR (Infrastructure as Code : plus de clic dans une console, chaque changement passe par une revue comme du code applicatif) | ouvre une PR qui change une ressource et vérifie qu'elle est visible au diff                  |
 
 **Ce qu'il masque** : le coût réel et la latence réseau derrière un appel qui ressemble à un appel local.
@@ -218,11 +222,11 @@ Décrire l'infrastructure dans un fichier versionné, plutôt que la construire 
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `15_runtime_env/04_process_env_argv.md` : config et secrets viennent de l'environnement : c'est la base du 12-factor (douze règles de conception pour une application cloud portable, dont « la config vit dans l'environnement, jamais dans le code ») et de tout déploiement cloud.
-- `25_scalability/01_distributed_thinking.md` : ce que tu gagnes en répliquant et ce que tu perds en cohérence.
+- [`15_runtime_env/04_process_env_argv.md`](../../15_runtime_env/04_process_env_argv.md) : config et secrets viennent de l'environnement : c'est la base du 12-factor (douze règles de conception pour une application cloud portable, dont « la config vit dans l'environnement, jamais dans le code ») et de tout déploiement cloud.
+- [`25_scalability/01_distributed_thinking.md`](../../25_scalability/01_distributed_thinking.md) : ce que tu gagnes en répliquant et ce que tu perds en cohérence.
 - `31_annexes/03_finops_greenops.md` : la facture est une métrique d'architecture, mesurable comme la latence.
-- `08_memory_performance/00_measure_first.md` : dimensionner sans mesurer produit soit une facture inutile, soit un incident.
-- `22_security/09_supply_chain_sbom.md` : le moindre privilège s'applique aux rôles cloud comme aux dépendances.
+- [`08_memory_performance/00_measure_first.md`](../../08_memory_performance/00_measure_first.md) : dimensionner sans mesurer produit soit une facture inutile, soit un incident.
+- [`22_security/09_supply_chain_sbom.md`](../../22_security/09_supply_chain_sbom.md) : le moindre privilège s'applique aux rôles cloud comme aux dépendances.
 
 **Orchestration : ce que tu dois savoir sans être ops.** Tu ne vas pas administrer un cluster Kubernetes, mais tu vas déployer dessus, et tes déploiements y meurent parfois pour des raisons que tu dois savoir lire.
 
@@ -261,6 +265,8 @@ Décrire l'infrastructure dans un fichier versionné, plutôt que la construire 
 
 ---
 
+<a id="sec-observabilite"></a>
+
 ### 7.3 : Observabilité
 
 **Tag : NOYAU DURABLE** · Coût : ~12 h avant utilité · Durée de vie : ~10 ans (les trois piliers ne changent pas) · À apprendre après : 7.1 CI/CD · Prérequis : module `26_observability/` complet
@@ -269,11 +275,11 @@ Le module MyFunnyJS t'a donné les trois piliers. Voici l'outillage et les déci
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `26_observability/01_structured_logging.md` : un log est une donnée requêtable, pas une phrase.
-- `26_observability/02_distributed_tracing.md` : la propagation de contexte à travers les services et les files.
-- `26_observability/04_metrics_alerting.md` : pourquoi la moyenne cache exactement les utilisateurs qui souffrent.
-- `26_observability/07_prod_stack_trace_drill.md` : lire une trace de production sans le code sous les yeux.
-- `08_memory_performance/00_measure_first.md` : sans mesure préalable, une optimisation est une croyance.
+- [`26_observability/01_structured_logging.md`](../../26_observability/01_structured_logging.md) : un log est une donnée requêtable, pas une phrase.
+- [`26_observability/02_distributed_tracing.md`](../../26_observability/02_distributed_tracing.md) : la propagation de contexte à travers les services et les files.
+- [`26_observability/04_metrics_alerting.md`](../../26_observability/04_metrics_alerting.md) : pourquoi la moyenne cache exactement les utilisateurs qui souffrent.
+- [`26_observability/07_prod_stack_trace_drill.md`](../../26_observability/07_prod_stack_trace_drill.md) : lire une trace de production sans le code sous les yeux.
+- [`08_memory_performance/00_measure_first.md`](../../08_memory_performance/00_measure_first.md) : sans mesure préalable, une optimisation est une croyance.
 
 | Pilier                 | Ce que tu dois savoir expliquer                                                                                        | Comment tu le vérifies                                                                                                   |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -340,17 +346,19 @@ au collecteur OpenTelemetry sous le même trace_id
 
 ---
 
+<a id="sec-resilience"></a>
+
 ### 7.4 : Résilience et architecture distribuée
 
-**Tag : NOYAU DURABLE** · Coût : ~15 h avant utilité · Durée de vie : ~15 ans (les patrons sont indépendants du langage) · À apprendre après : 7.3 Observabilité · Prérequis : `25_scalability/03_distributed_fallacies.md`, `28_edge_cases/`
+**Tag : NOYAU DURABLE** · Coût : ~15 h avant utilité · Durée de vie : ~15 ans (les patrons sont indépendants du langage) · À apprendre après : 7.3 Observabilité · Prérequis : [`25_scalability/03_distributed_fallacies.md`](../../25_scalability/03_distributed_fallacies.md), `28_edge_cases/`
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
 - `25_scalability/03_distributed_fallacies.md` : le réseau n'est pas fiable, la latence n'est pas nulle : tous les patrons ci-dessous en découlent.
 - `28_edge_cases/` : les cas limites chassés en local deviennent des pannes partielles en distribué.
-- `03_async/02_promises/01_promise_race.md` : un timeout est une course entre ton appel et une horloge.
-- `07_math_basics/05_probability_random.md` : le jitter d'un retry est du hasard utile : sans lui, tous tes clients réessaient à la même seconde.
-- `05_error_handling/05_error_strategy.md` : dégrader proprement est une décision d'erreur, prise avant l'incident.
+- [`03_async/02_promises/01_promise_race.md`](../../03_async/02_promises/01_promise_race.md) : un timeout est une course entre ton appel et une horloge.
+- [`07_math_basics/05_probability_random.md`](../../07_math_basics/05_probability_random.md) : le jitter d'un retry est du hasard utile : sans lui, tous tes clients réessaient à la même seconde.
+- [`05_error_handling/05_error_strategy.md`](../../05_error_handling/05_error_strategy.md) : dégrader proprement est une décision d'erreur, prise avant l'incident.
 
 | Patron                       | Problème traité                         | Piège                                                      |
 | ---------------------------- | --------------------------------------- | ---------------------------------------------------------- |
@@ -387,7 +395,7 @@ Ce ne sont pas des pannes exotiques. Ce sont celles que produit un junior en ajo
 3. **Retry amplificateur.** Un service lent reçoit trois fois plus de requêtes parce que chaque client déçu retente, ce qui le ralentit encore plus, ce qui déclenche encore plus de retries. Contre-mesure : **plafond de tentatives + jitter** : jamais plus de 3 essais, et un délai aléatoire (pas fixe) entre chaque essai pour désynchroniser les clients.
 4. **Panne partielle « 200 avec données périmées ».** Le service répond avec un code de succès mais sert un cache qui n'a pas pu être rafraîchi parce que la dépendance amont est en panne : personne ne le voit, l'alerte ne se déclenche pas, l'incident dure des heures. Contre-mesure : **disjoncteur (circuit breaker)** : au lieu de servir silencieusement du périmé, le service doit exposer explicitement l'état dégradé (en-tête, champ de réponse, métrique) pour que la dégradation soit visible et alertable.
 
-**Micro-services : la position honnête.** Ils résolvent un problème **organisationnel** (des équipes qui veulent déployer indépendamment) au prix d'un problème **technique** (le réseau, la cohérence, l'observabilité, la latence). Une équipe de cinq personnes avec sept micro-services a acheté tous les coûts sans aucun bénéfice. Le monolithe modulaire est un choix professionnel respectable et souvent le bon (`16_architecture_patterns/06_microservices_intro.md`).
+**Micro-services : la position honnête.** Ils résolvent un problème **organisationnel** (des équipes qui veulent déployer indépendamment) au prix d'un problème **technique** (le réseau, la cohérence, l'observabilité, la latence). Une équipe de cinq personnes avec sept micro-services a acheté tous les coûts sans aucun bénéfice. Le monolithe modulaire est un choix professionnel respectable et souvent le bon ([`16_architecture_patterns/06_microservices_intro.md`](../../16_architecture_patterns/06_microservices_intro.md)).
 
 **Cohérence.** Dans un système distribué, tu choisis ce que tu sacrifies. La cohérence à terme (eventual consistency) est acceptable pour un compteur de vues, inacceptable pour un solde. Ce n'est pas une question technique, c'est une question métier : et c'est à toi d'aller la poser.
 
@@ -407,7 +415,7 @@ Sous incident, on n'exécute pas des concepts, on exécute une procédure. Voici
 > **Temps réaliste** : une demi-journée · **Prérequis matériel / compte** : un mini-service local avec une dépendance simulable · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
 > **Contraintes** : simule une panne : ta dépendance externe répond en 30 s au lieu de 100 ms : observe l'effondrement en cascade, ajoute timeout + circuit breaker, mesure la différence.
-> **Réutilise** : `26_observability/08_oncall_drill.md`
+> **Réutilise** : [`26_observability/08_oncall_drill.md`](../../26_observability/08_oncall_drill.md)
 > **Piège** : corriger uniquement le symptôme visible (le timeout) sans traiter l'amplification par retry.
 > **À observer** : le nombre de connexions ouvertes avant et après correction, le temps de récupération du service.
 > **Vérification** (observable, chiffrée) : le service dégradé répond en dégradé (pas en erreur totale) sous panne simulée, avec un temps de réponse mesuré et non estimé.
@@ -429,6 +437,8 @@ Sous incident, on n'exécute pas des concepts, on exécute une procédure. Voici
 
 ---
 
+<a id="sec-securite-prod"></a>
+
 ### 7.5 : Sécurité de production
 
 **Tag : NOYAU DURABLE** · Coût : ~10 h avant utilité · Durée de vie : ~10 ans · À apprendre après : 7.4 Résilience · Prérequis : module `22_security/` complet
@@ -439,7 +449,7 @@ Ce que MyFunnyJS t'a appris (XSS, CSRF, injection, pollution de prototype, OWASP
 - **Moindre privilège** : l'utilisateur base de données de ton API n'a pas besoin de `DROP TABLE`. Le conteneur ne tourne pas en root.
 - **En-têtes** : CSP, HSTS, `X-Content-Type-Options`. Une CSP bien faite transforme une XSS exploitable en tentative bloquée.
 - **Limitation de débit** sur tout ce qui est public, en particulier l'authentification.
-- **Journalisation d'audit** sur les actions sensibles : et **jamais** de données personnelles ou de secrets dans les logs (RGPD, `22_security/08_privacy_and_aiact.md`).
+- **Journalisation d'audit** sur les actions sensibles : et **jamais** de données personnelles ou de secrets dans les logs (RGPD, [`22_security/08_privacy_and_aiact.md`](../../22_security/08_privacy_and_aiact.md)).
 - **Dépendances** : scan en CI, mises à jour visibles en PR (Renovate/Dependabot), SBOM (Software Bill of Materials : inventaire exhaustif des dépendances livrées) si le contexte l'exige.
 
 **Ce qu'elle masque** : la conformité prise pour de la sécurité ; cocher une checklist OWASP ne protège pas d'une faille de logique métier.
@@ -456,11 +466,15 @@ Ce que MyFunnyJS t'a appris (XSS, CSRF, injection, pollution de prototype, OWASP
 | Scan automatisé en CI (dépendances, secrets) | PROFESSIONNELLE | tu gagnes une détection continue, tu paies des faux positifs à trier régulièrement |
 | Plateforme managée qui porte la sécurité réseau | CONTEXTUELLE | tu gagnes une surface d'attaque réduite côté infrastructure, tu paies une dépendance à la politique du fournisseur |
 
+<a id="sec-secrets"></a>
+
 ### 7.6 : Secrets
+
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
 
 Un secret est une valeur dont la fuite oblige à une rotation ; si la rotation est impossible, ce n'est pas un secret, c'est une dette qui attend son incident. Trois surfaces de fuite à connaître, dans l'ordre où elles surprennent : le dépôt Git, historique compris et pas seulement le `HEAD` ; le bundle client, où tout ce qui est préfixé pour être lu côté navigateur devient public au même titre qu'une page HTML ; les logs et les traces d'erreur, qui recopient trop souvent l'objet de requête entier. La validation au démarrage vue plus haut dans ce niveau s'applique aussi aux secrets : leur absence doit refuser le démarrage du service, jamais retomber sur une valeur par défaut silencieuse. À l'inverse, sur-classifier fait perdre le réflexe : un identifiant de projet public ou une URL déjà exposée dans le HTML ne sont pas des secrets, les traiter comme tels dilue l'attention portée aux vraies valeurs sensibles.
 
-- **Ancrage MyFunnyJS** : `22_security/09_supply_chain_sbom.md` et `15_runtime_env/04_process_env_argv.md` : la config et les secrets viennent de l'environnement, jamais du code.
+- **Ancrage MyFunnyJS** : [`22_security/09_supply_chain_sbom.md`](../../22_security/09_supply_chain_sbom.md) et [`15_runtime_env/04_process_env_argv.md`](../../15_runtime_env/04_process_env_argv.md) : la config et les secrets viennent de l'environnement, jamais du code.
 
 > **Exercice : fais fuiter un secret exprès**
 > **Temps réaliste** : 1 h · **Prérequis matériel / compte** : un mini-projet avec un frontend buildé et un dépôt Git local · **Coût max** : 0 € ·
@@ -477,11 +491,11 @@ Un secret est une valeur dont la fuite oblige à une rotation ; si la rotation e
 
 #### Ce que MyFunnyJS permet déjà de comprendre
 
-- `22_security/01_xss_injection.md` : la zone protégée et la zone exposée de chaque framework, et pourquoi une CSP est une seconde barrière.
-- `22_security/02_csrf_cors.md` : CORS n'est pas une protection serveur ; `SameSite` en est une.
+- [`22_security/01_xss_injection.md`](../../22_security/01_xss_injection.md) : la zone protégée et la zone exposée de chaque framework, et pourquoi une CSP est une seconde barrière.
+- [`22_security/02_csrf_cors.md`](../../22_security/02_csrf_cors.md) : CORS n'est pas une protection serveur ; `SameSite` en est une.
 - `22_security/09_supply_chain_sbom.md` : le scan en CI et le SBOM formalisent ce que tu as déjà audité à la main.
-- `22_security/08_privacy_and_aiact.md` : une donnée personnelle dans un log est une fuite avec rétention.
-- `26_observability/01_structured_logging.md` : une journalisation d'audit non structurée n'est pas exploitable en incident.
+- [`22_security/08_privacy_and_aiact.md`](../../22_security/08_privacy_and_aiact.md) : une donnée personnelle dans un log est une fuite avec rétention.
+- [`26_observability/01_structured_logging.md`](../../26_observability/01_structured_logging.md) : une journalisation d'audit non structurée n'est pas exploitable en incident.
 
 > **Exercice : audit de fuite**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : un de tes projets avec historique Git · **Coût max** : 0 € ·
@@ -500,6 +514,8 @@ Un secret est une valeur dont la fuite oblige à une rotation ; si la rotation e
 
 ### 7.7 : Décider et documenter : ADR et postmortem
 
+**Section de méthode** : pas de tag, pas de Coût, pas de Durée de vie : ce geste survit aux outils qui l'implémentent.
+
 Le niveau 4 est celui où une mauvaise décision d'architecture coûte le plus cher. Deux livrables obligatoires, avec grille de relecture commune.
 
 **Grille de relecture en 5 points (pour les deux livrables) :** (1) la décision est datée et nommée sans ambiguïté ; (2) au moins deux options réellement envisagées sont listées, pas une seule habillée en choix ; (3) le critère de décision est explicite et mesurable ; (4) les conséquences négatives assumées sont écrites, pas seulement les bénéfices ; (5) une version en 5 lignes, sans nom de techno, est lisible par quelqu'un qui ne code pas.
@@ -509,7 +525,7 @@ Le niveau 4 est celui où une mauvaise décision d'architecture coûte le plus c
 > **Exercice : ADR conteneur vs serverless**
 > **Temps réaliste** : 2 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
-> **Contraintes** : rédige un ADR complet suivant `27_team_craft/02_adr_writing.md`, à partir des mesures de l'exercice de 7.2. Ajoute la contrainte suivante : réécris la décision en 5 lignes pour un responsable produit, sans un seul nom de techno.
+> **Contraintes** : rédige un ADR complet suivant [`27_team_craft/02_adr_writing.md`](../../27_team_craft/02_adr_writing.md), à partir des mesures de l'exercice de 7.2. Ajoute la contrainte suivante : réécris la décision en 5 lignes pour un responsable produit, sans un seul nom de techno.
 > **Réutilise** : `27_team_craft/02_adr_writing.md`
 > **Piège** : justifier la décision par une préférence personnelle déguisée en critère technique.
 > **À observer** : le nombre d'options réellement comparées avant de trancher.
@@ -520,7 +536,7 @@ Le niveau 4 est celui où une mauvaise décision d'architecture coûte le plus c
 > **Exercice : postmortem sans accusation**
 > **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : l'incident simulé de 7.4 · **Coût max** : 0 € ·
 > **Mode** : assistant autorisé
-> **Contraintes** : chronologie, impact, cause racine, action corrective, action préventive : format `26_observability/08_oncall_drill.md`. Ajoute la version 5 lignes sans nom de techno pour un responsable produit.
+> **Contraintes** : chronologie, impact, cause racine, action corrective, action préventive : format [`26_observability/08_oncall_drill.md`](../../26_observability/08_oncall_drill.md). Ajoute la version 5 lignes sans nom de techno pour un responsable produit.
 > **Réutilise** : `26_observability/08_oncall_drill.md`
 > **Piège** : écrire "erreur humaine" comme cause racine : ce n'est jamais une cause racine, c'est un symptôme d'un système qui permettait l'erreur.
 > **À observer** : le nombre d'actions préventives réellement actionnables (pas "faire plus attention").

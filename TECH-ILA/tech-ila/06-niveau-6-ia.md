@@ -36,6 +36,8 @@ La valeur s'est déplacée de "écrire du code" vers "**savoir si ce code est le
 
 **Outils nommés, pas seulement la section.** GitHub Copilot (**PÉRISSABLE**) : complétion en ligne, utile pour le boilerplate, aveugle au contexte métier. ChatGPT, Claude, Gemini (**PÉRISSABLE**) : chat conversationnel, plausible sur l'explication, dangereux sur l'affirmation non vérifiée. Agents de code autonomes type Claude Code, Cursor en mode agent, Devin (**PÉRISSABLE**) : enchaînent des actions, voir 9.5. Aucun de ces noms ne survivra tel quel dix ans ; le protocole de 9.4 leur survit.
 
+<a id="sec-ia-cadre"></a>
+
 ### 9.2 : Le cadre, à appliquer sur chaque techno de ce document
 
 ```text
@@ -90,6 +92,7 @@ Le point commun : **le chemin heureux est correct**. Ce sont les cas d'échec, l
 > **Piège** : l'IA cite souvent une licence de mémoire, parfois fausse ou périmée.
 > **À observer** : la licence que l'IA t'annonce pour chacune, si elle le fait spontanément.
 > **Vérification** (observable, chiffrée) : va lire la licence à la source (dépôt du paquet, champ `license` du registre) pour les trois dépendances, classe-les en libre / permissive / copyleft faible / copyleft fort, et note les écarts avec ce que l'IA avait dit.
+> **Repli 100 % local et gratuit** : aucun assistant sous la main ? Prends trois dépendances déjà installées dans un projet à toi, devine leur licence de mémoire AVANT de vérifier, puis lis le champ `license` du registre. L'IA à tromper, c'est toi.
 > **Extension** : refais l'exercice sur une dépendance déjà présente dans un de tes projets sans que tu aies jamais vérifié sa licence.
 
 ### 9.5 : Agents et autonomie
@@ -167,6 +170,7 @@ function NotificationBadge({ userId }) {
 > **Piège** : le code fonctionne parfaitement en démo manuelle ; la faille n'apparaît qu'en navigation répétée ou après démontage du composant.
 > **À observer** : le nombre d'abonnements actifs après plusieurs changements de `userId`, et les avertissements de la console au démontage.
 > **Vérification** (observable, chiffrée) : écris un test qui monte le composant, le démonte, puis déclenche un message du flux simulé : le test doit prouver qu'aucun `setState` n'est appelé après démontage.
+> **Repli 100 % local et gratuit** : le spécimen fautif est déjà écrit dans le document ; l'exercice se fait au crayon, sans IA et sans réseau.
 > **Extension** : reproduis la même faille avec un `fetch` annulable plutôt qu'un abonnement, et corrige avec `AbortController`.
 
 **Correction annotée.**
@@ -269,6 +273,7 @@ export class OrdersController {
 > **Piège** : le guard renvoie bien 401 ; on croit donc que rien ne s'est passé avant.
 > **À observer** : l'état de la base de données après une requête non authentifiée.
 > **Vérification** (observable, chiffrée) : compte les lignes créées dans la table des commandes après dix requêtes non authentifiées sur cet endpoint : le compte doit rester à zéro.
+> **Repli 100 % local et gratuit** : le spécimen fautif et sa correction annotée sont déjà dans le document ; l'exercice se lit et s'annote au crayon, sans IA et sans réseau.
 > **Extension** : reproduis le même défaut avec un `ValidationPipe` global qui exécute une validation asynchrone coûteuse (appel réseau) avant tout guard.
 
 **Correction annotée.**

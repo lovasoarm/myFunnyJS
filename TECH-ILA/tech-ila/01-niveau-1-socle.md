@@ -80,6 +80,8 @@ Tu as déjà manipulé un shell et écrit des scripts qui parlent au système ; 
 
 ---
 
+<a id="sec-git"></a>
+
 ### 4.2 : Git et GitHub
 
 **Git et GitHub** : Tag : NOYAU DURABLE · Coût : ~10 h avant utilité · Durée de vie : ~25 ans · À apprendre après : le terminal (4.1).
@@ -140,6 +142,8 @@ feature             D───E     ← branche = pointeur sur E
 **Réflexe gagné.** Devant du code incompréhensible, ton premier geste n'est plus "je réécris". C'est `git log`. Tu cherches l'intention avant de juger le résultat.
 
 ---
+
+<a id="sec-node"></a>
 
 ### 4.3 : Node.js
 
@@ -344,6 +348,8 @@ pnpm sait gérer des **workspaces** : plusieurs paquets versionnés ensemble dan
 
 ---
 
+<a id="sec-typescript"></a>
+
 ### 4.5 : TypeScript en conditions réelles
 
 **TypeScript** : Tag : PROFESSIONNELLE · Coût : ~6 h avant utilité au-delà du langage de base · Durée de vie : ~10 ans · À apprendre après : npm (4.4).
@@ -411,6 +417,8 @@ export async function loadEvent(res: Response): Promise<MetricEvent> {
 
 ---
 
+<a id="sec-http"></a>
+
 ### 4.6 : HTTP et REST
 
 **HTTP et REST** : Tag : NOYAU DURABLE · Coût : ~5 h avant utilité · Durée de vie : ~25 ans · À apprendre après : TypeScript (4.5).
@@ -468,6 +476,8 @@ Tu vas passer ta carrière à envoyer et recevoir des requêtes HTTP. C'est le p
 | tRPC | CONTEXTUELLE | tu gagnes un typage de bout en bout sans schéma séparé à maintenir, tu paies un couplage fort qui suppose client et serveur écrits dans le même langage |
 
 ---
+
+<a id="sec-sql"></a>
 
 ### 4.7 : SQL et PostgreSQL
 
@@ -656,6 +666,8 @@ MyFunnyJS t'a appris la stratégie ([06_testing/09_test_strategy_not_framework.m
 | Playwright | PROFESSIONNELLE | tu gagnes des tests de bout en bout multi-navigateurs réalistes, tu paies un temps d'exécution largement supérieur à un test unitaire |
 
 ---
+
+<a id="sec-docker"></a>
 
 ### 4.9 : Docker et conteneurisation
 

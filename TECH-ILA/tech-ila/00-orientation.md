@@ -42,7 +42,15 @@ Mini-projet si nécessaire
 Décision technique justifiée
 ```
 
-**La règle de rattachement.** Toute techno à laquelle une section est consacrée est reliée à un mécanisme MyFunnyJS nommé, avec un lien relatif vers le fichier exact. Les technos seulement citées : dans un tableau d'alternatives ou en passant (Fastify, Hono, Koa, Deno, Bun, Go, Terraform, Jaeger, Grafana, Datadog, Sentry, Renovate, clinic.js, autocannon…) : ne portent pas cet ancrage complet : elles portent au minimum leur tag entre parenthèses et une colonne « ce que ça change côté mécanisme » dans le tableau où elles apparaissent. Si une fiche complète n'a ni l'un ni l'autre, c'est un bug du document, pas de toi.
+**La règle de rattachement.** Toute techno à laquelle une section est consacrée est reliée à un mécanisme MyFunnyJS nommé, avec un lien relatif vers le fichier exact.
+
+Un chemin MyFunnyJS s'écrit de deux façons, jamais au hasard :
+
+- **ANCRAGE** (lien cliquable obligatoire) : la première fois qu'une fiche techno relie son mécanisme. Une fiche = au moins un ancrage cliquable.
+- **RAPPEL** (backticks, non cliquable) : toute mention ultérieure du même chemin dans la même fiche, ou une mention de dossier générique (`22_security/`).
+
+Un backtick est donc un rappel volontaire, jamais un oubli. Et un chemin d'annexe s'écrit TOUJOURS préfixé de `31_annexes/` : les sous-dossiers d'annexes ont leur propre numérotation, indépendante de celle des 32 modules.
+ Les technos seulement citées : dans un tableau d'alternatives ou en passant (Fastify, Hono, Koa, Deno, Bun, Go, Terraform, Jaeger, Grafana, Datadog, Sentry, Renovate, clinic.js, autocannon…) : ne portent pas cet ancrage complet : elles portent au minimum leur tag entre parenthèses et une colonne « ce que ça change côté mécanisme » dans le tableau où elles apparaissent. Si une fiche complète n'a ni l'un ni l'autre, c'est un bug du document, pas de toi.
 
 **Jargon.** Chaque terme technique est expliqué à sa première apparition, entre parenthèses ou en une ligne. Si un mot te bloque, il manque une explication : signale-le.
 
@@ -121,7 +129,7 @@ Chaque techno de ce document porte un tag. Le tag décide de ton investissement.
 
 **Ce que le tag ne dit pas.** PROFESSIONNELLE qualifie l'usage sur le marché, pas la longévité. Certaines technos PROFESSIONNELLES (PostgreSQL, Docker en tant que format d'image OCI) ont une longévité de NOYAU DURABLE. C'est la ligne « Durée de vie » de chaque fiche qui fait foi, pas le tag. Le tag oriente ton investissement d'aujourd'hui ; le chiffre engage la techno sur la durée.
 
-**Les tags qualifient des TECHNOLOGIES.** Les sections de méthode (ADR, grille de lecture d'écosystème, postmortem, audit d'une réponse d'IA) n'en portent pas : une méthode ne se périme pas de la même façon qu'un outil, et sa durée de vie est celle de ta carrière. Elles sont repérables à leur absence de ligne « Coût / Durée de vie ». Ce n'est pas un oubli, c'est une exception assumée et déclarée ici.
+**Les tags qualifient des TECHNOLOGIES.** Les sections de méthode (ADR, grille de lecture d'écosystème, postmortem, audit d'une réponse d'IA) n'en portent pas : une méthode ne se périme pas de la même façon qu'un outil, et sa durée de vie est celle de ta carrière. Elles sont repérables à leur absence de ligne « Coût / Durée de vie ». Ce n'est pas un oubli, c'est une exception assumée et déclarée ici. Une section de méthode le DÉCLARE en une ligne sous son titre (« **Section de méthode** … », ou « **Section de synthèse** … » pour une section de clôture de niveau). L'absence de déclaration ET de Coût/Durée est un bug du document.
 
 **Deux horizons, à ne pas confondre.** L'horizon du DOCUMENT est 2028 : au-delà, la sélection des technos et les alternatives citées ne sont plus garanties, il faut une révision. L'horizon des TECHNOLOGIES, ce sont les durées de vie chiffrées de chaque fiche : elles engagent la techno, pas le document. SQL sera encore là quand ce texte ne le sera plus. Règle de lecture : un tag NOYAU DURABLE est un pari sur dix ans et plus, un tag PÉRISSABLE est un pari sur trois ans, et le document, lui, se révise tous les trois mois.
 
@@ -129,13 +137,15 @@ Règle brutale : **on n'apprend jamais une syntaxe par cœur, on apprend le prob
 
 **NOYAU DURABLE est plafonné aux concepts, jamais aux produits.** Un produit peut disparaître ; un concept qu'il implémente reste. Next.js n'est pas NOYAU DURABLE : c'est le framework le plus mouvant du corpus (App Router / Pages Router, RSC en évolution constante) : il est CONTEXTUELLE. Ce qui est NOYAU DURABLE derrière lui, c'est « stratégies de rendu » (SSR, SSG, hydratation, cache) : un concept qui survivra à Next.js lui-même. Même logique pour Spring Boot (CONTEXTUELLE) vs injection de dépendances (NOYAU DURABLE), ou pour un ORM (CONTEXTUELLE/PROFESSIONNELLE selon le cas) vs modèle relationnel (NOYAU DURABLE).
 
+**Gabarit d'exercice.** Chaque exercice porte ses huit champs, dont la ligne « Repli 100 % local et gratuit ». Cette ligne est OBLIGATOIRE, y compris quand l'exercice est déjà 100 % local : elle dit alors explicitement qu'il n'y a rien à payer et aucun compte à ouvrir. Une ligne toujours présente se vérifie par grep ; une ligne conditionnelle dérive à chaque ajout d'exercice.
+
 Pour que le tag soit déductible et défendable, chaque fiche porte deux champs chiffrés obligatoires, en tête :
 
 ```text
 Coût : ~N h avant utilité · Durée de vie : ~N ans
 ```
 
-Un tag sans ces deux chiffres n'est pas une classification, c'est une opinion. « Combien d'heures avant d'être utile ? » et « combien d'années avant que ce soit obsolète ou remplacé ? » sont les deux questions qui rendent le tag vérifiable : et contestable, ce qui est le but.
+Un tag sans ces deux chiffres n'est pas une classification, c'est une opinion. Un titre de fiche porte les trois champs sur la même ligne : Tag, Coût, Durée de vie. Un champ en prose ne compte pas. « Combien d'heures avant d'être utile ? » et « combien d'années avant que ce soit obsolète ou remplacé ? » sont les deux questions qui rendent le tag vérifiable : et contestable, ce qui est le but.
 
 MyFunnyJS a déjà posé ce cadre dans `00_referentiel/06_intemporel_vs_perissable.md` et `31_annexes/20_PERISSABILITE.md`. TECH-ILA applique la même grille aux technologies.
 

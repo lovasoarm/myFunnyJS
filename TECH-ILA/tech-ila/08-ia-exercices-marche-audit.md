@@ -63,6 +63,7 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 > **Piège** : écrire « on a choisi X parce que c'est mieux ». Une option écartée sans raison chiffrée n'est pas une option écartée.
 > **À observer** : le moment où tu ne sais plus justifier un choix. C'est là que la décision était une habitude, pas une décision.
 > **Vérification** (observable, chiffrée) : la version produit tient en 5 lignes, contient zéro nom de technologie, et une personne non technique peut redire la contrainte principale après une seule lecture.
+> **Repli 100 % local et gratuit** : tout se fait hors ligne, avec un éditeur de texte. Aucun compte, aucun outil.
 > **Extension** : six mois plus tard, relis-le et écris l'ADR de révision, même s'il conclut « on garde ».
 
 > **Exercice : Fais relire une de tes décisions**
@@ -73,6 +74,7 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 > **Piège** : traiter toute objection comme une correction à appliquer. L'inverse aussi : défendre par principe.
 > **À observer** : combien d'objections tombent dans la troisième catégorie. C'est la mesure honnête de ce qu'il te manque.
 > **Vérification** (observable, chiffrée) : le classement existe, écrit, une raison par ligne, zéro retour non classé.
+> **Repli 100 % local et gratuit** : tout se fait hors ligne, avec un éditeur de texte. Aucun compte, aucun outil. Pas de relecteur disponible ? Relis-toi à 15 jours d'intervalle : le décalage temporel joue le rôle du regard extérieur.
 > **Extension** : refais l'exercice dans l'autre sens : relis la décision de quelqu'un d'autre et classe tes propres objections avant de les envoyer.
 
 > **Exercice : Auditer ce document contre toi-même**
@@ -83,6 +85,7 @@ Trois projets, cohérents entre eux, valent mieux que douze démos jetables. Un 
 > **Piège** : accepter une fiche parce qu'elle « a l'air complète ». Coche élément par élément.
 > **À observer** : les fiches où le coût annoncé ne correspond pas à ton vécu. C'est ton signal de revue.
 > **Vérification** (observable, chiffrée) : trois fiches auditées, chaque manquement listé avec numéro de ligne, et au moins une correction proposée en une phrase.
+> **Repli 100 % local et gratuit** : tout se fait hors ligne, avec un éditeur de texte. Aucun compte, aucun outil.
 > **Extension** : ouvre la correction. Ce document accepte les contradictions chiffrées, pas les avis.
 
 ---

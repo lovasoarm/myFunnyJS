@@ -18,12 +18,14 @@ companion: MyFunnyJS
 
 ## 5 : Niveau 2 : Frontend
 
+<a id="sec-react"></a>
+
 ### 5.1 : React
 
 **React** : Tag : PROFESSIONNELLE ·
 Coût : ~40 h avant utilité · Durée de vie : ~8 ans · À apprendre après : fonctions pures, closures, architecture de base
 
-- **Ancrage MyFunnyJS** : `01_fundamentals/02_scope/02_closure_trap.md`, `11_functional_js/01_pure_functions.md`, `17_web_concepts/03_state_and_dataflow.md`
+- **Ancrage MyFunnyJS** : [`01_fundamentals/02_scope/02_closure_trap.md`](../../01_fundamentals/02_scope/02_closure_trap.md), [`11_functional_js/01_pure_functions.md`](../../11_functional_js/01_pure_functions.md), [`17_web_concepts/03_state_and_dataflow.md`](../../17_web_concepts/03_state_and_dataflow.md)
 - **Ce qu'elle ajoute** : un modèle déclaratif, la composition de composants, la réconciliation, les hooks.
 - **Ce qu'elle masque** : quand exactement le DOM est touché, la planification des rendus (concurrent rendering), le fait qu'un rendu peut être abandonné.
 - **Ce qu'elle ne résout pas** : l'architecture, l'état serveur, les performances, l'accessibilité.
@@ -360,6 +362,8 @@ Pas de routeur client pour un site à une seule page. Pas de bibliothèque de fo
 
 ---
 
+<a id="sec-rendu"></a>
+
 ### 5.4 : Next.js et les stratégies de rendu
 
 **Next.js** : Tag : CONTEXTUELLE (le framework, ses conventions changent vite) ·
@@ -539,6 +543,8 @@ SSR, hydratation (le HTML rendu côté serveur est repris par le JS côté clien
 ---
 
 ### 5.5 : Frontend : ce qui te rend employable
+
+**Section de synthèse** : pas de tag, pas de Coût, pas de Durée de vie : elle ne présente aucune techno, elle referme le niveau.
 
 Ce qu'un recruteur peut réellement vérifier chez toi :
 
