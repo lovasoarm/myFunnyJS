@@ -567,6 +567,58 @@ Hôte Docker
 
 ---
 
+### 7.8 : Big Data et pipelines de données
+
+**Tag : CONTEXTUELLE** · Coût : ~2 h avant utilité · Durée de vie : ~5 ans · À apprendre après : 7.2 Cloud et 7.4 Résilience
+
+Tu ne vas pas devenir data engineer avec ce document, mais si un jour on te dit "on a besoin d'un pipeline pour ingérer 10 millions de lignes par jour", tu dois savoir que ce n'est pas un problème PostgreSQL de plus, et vers quoi chercher. Ce qui suit sert à reconnaître le terrain, pas à l'occuper.
+
+**Le seuil, concrètement.** Un backend classique traite des requêtes : petites, nombreuses, immédiates, sur les données du moment. Un pipeline de données traite des lots : énormes, périodiques, sur l'historique complet. Le basculement se sent avant de se mesurer :
+
+```text
+Encore ton métier                        Déjà un autre métier
+─────────────────────────────────────────────────────────────────────────
+requête utilisateur, réponse en ms       traitement de 40 Go, réponse en heures
+la base tient sur une machine            les données ne tiennent plus sur une machine
+"ce rapport met 2 s"                     "ce rapport met 6 h et bloque la prod"
+un index bien posé règle le problème     aucun index ne règle un scan de tout l'historique
+```
+
+Tant que tu es à gauche, la réponse est un index, une requête réécrite, un cache, une réplique de lecture (voir [`24_databases/`](../../24_databases/00_why_databases.md)). Sortir l'artillerie avant ce seuil, c'est la sur-ingénierie décrite au [niveau 3 à propos des files massives](./03-niveau-3-backend.md) : trois outils de plus à opérer pour un problème que la base réglait.
+
+**Les trois briques, et ce qu'elles font vraiment.**
+
+- **Data lake** (lac de données) : un stockage objet bon marché (S3 et équivalents) où l'on dépose les données brutes telles qu'arrivées, sans schéma imposé à l'écriture. L'idée : le stockage coûte moins cher que la décision de jeter. Le risque, connu et fréquent : sans catalogue ni convention de nommage, le lac devient un marécage que personne ne sait relire.
+- **Moteur de traitement distribué** (Apache Spark est le nom qui revient) : découpe un calcul sur des téraoctets en tâches réparties sur des dizaines de machines, puis recolle les résultats. Mentalement, c'est un `map`/`reduce` dont les morceaux tournent sur des machines différentes, avec tous les problèmes de la [7.4](#74--résilience-et-architecture-distribuée) : une machine qui tombe au milieu, un morceau bien plus lent que les autres, un résultat partiel à ne pas confondre avec un résultat.
+- **Orchestrateur de pipelines** (Apache Airflow, Dagster, Prefect) : déclare des tâches et leurs dépendances sous forme de graphe, les planifie, les relance quand elles échouent, et garde l'historique des exécutions. C'est le `cron` que tu connais, plus les dépendances, la reprise, et la visibilité : autrement dit, c'est du CI/CD ([7.1](#71--cicd)) appliqué à des données au lieu de code.
+
+**ETL / ELT** : extraire des données d'une source, les transformer, les charger dans une destination d'analyse (ETL), ou les charger brutes puis les transformer sur place (ELT, devenu la norme depuis que le stockage et le calcul de l'entrepôt sont bon marché). Quand quelqu'un dit "on a un souci de pipeline", il parle presque toujours d'une de ces étapes qui a échoué en silence pendant trois jours.
+
+**Ce qui pique et que ton expérience backend anticipe déjà.**
+
+- Une tâche relancée qui n'est pas idempotente double les lignes. Exactement le problème de [`25_scalability/07_message_queues.md`](../../25_scalability/07_message_queues.md), avec des millions de lignes au lieu d'un message.
+- Un pipeline qui échoue en silence est pire qu'un pipeline qui tombe : le rapport du lundi sort avec des données de la semaine dernière et personne ne le voit. Les réflexes de [7.3](#73--observabilité) s'appliquent tels quels, appliqués à la fraîcheur des données.
+- La facture. Un calcul distribué mal cadré consomme des heures-machine sans plafond naturel : c'est le sujet de `31_annexes/03_finops_greenops.md`, en plus brutal.
+
+**Ce que tu n'as pas besoin de savoir à ce stade** : écrire un job Spark optimisé, dimensionner un cluster, choisir un format de fichier colonnaire, modéliser un entrepôt. Ça, c'est un métier, avec ses propres années d'apprentissage.
+
+**Ce que tu dois pouvoir faire** : dire en réunion "ça, ce n'est plus une requête, c'est un pipeline", nommer les trois briques, et poser les deux questions qui cadrent le sujet : quelle fraîcheur des données est réellement exigée, et que se passe-t-il quand une exécution échoue à 3 h du matin.
+
+> **Exercice : reconnaître le seuil**
+> **Temps réaliste** : 1 h · **Prérequis matériel / compte** : aucun · **Coût max** : 0 € ·
+> **Mode** : assistant autorisé pour vérifier les ordres de grandeur, pas pour écrire ta décision
+> **Contraintes** : écris quatre besoins plausibles pour un produit que tu connais (un tableau de bord temps réel, un export mensuel de facturation, une recherche utilisateur, un rapport d'usage sur deux ans). Pour chacun : volume estimé, fraîcheur exigée, et ta décision entre "requête sur la base de prod", "réplique de lecture ou vue matérialisée", et "pipeline planifié". Justifie chaque décision en deux lignes.
+> **Réutilise** : le tableau du seuil ci-dessus et la matrice conteneur vs serverless de [7.2](#72--cloud-et-déploiement)
+> **Piège** : classer en "pipeline" tout ce qui est lourd. Un rapport mensuel de 200 000 lignes reste une requête SQL, exécutée la nuit.
+> **À observer** : combien de tes quatre besoins basculent réellement à droite du seuil. Chez la plupart des produits, la réponse est zéro ou un.
+> **Vérification** (observable, chiffrée) : quatre besoins, quatre décisions chiffrées (volume et fraîcheur), et pour chacune la conséquence si tu te trompes de catégorie.
+> **Repli 100 % local et gratuit** : exercice de décision écrite, aucun outil ni compte requis, tout se fait sur papier ou dans un fichier local.
+> **Extension** : reprends le besoin le plus lourd et écris ce qui devrait tripler pour qu'il change de catégorie. C'est ton seuil d'alerte, à surveiller avant qu'il ne soit franchi.
+
+**Se périme si :** Spark cesse d'être le moteur distribué de référence, ou si les entrepôts managés absorbent l'orchestration au point de rendre un ordonnanceur séparé inutile. Les concepts (lot vs requête, idempotence, fraîcheur, échec silencieux), eux, ne bougeront pas.
+
+---
+
 ### Fiches canoniques : technos citées
 
 **Terraform** : Tag : CONTEXTUELLE (périssable au niveau syntaxe) · Coût : ~10 h avant utilité · Durée de vie : ~6 ans · À apprendre après : 7.2 Cloud

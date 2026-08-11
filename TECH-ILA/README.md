@@ -54,26 +54,6 @@ Le niveau 6 (fichier 06) intègre désormais l'ancienne section « angles morts 
 
 ---
 
-## Rituel de revue trimestrielle
-
-Le corpus impose des chiffres vérifiables aux autres ; il se les impose à lui-même. Une case ne se coche jamais sur jugement : elle se coche après exécution de la commande en regard. Le champ `last_counted` du front-matter porte la date de la dernière exécution complète.
-
-| Ce qui est recompté                            | Commande de vérification                                             | Valeur au 2026-08 |
-| ---------------------------------------------- | -------------------------------------------------------------------- | ------------------- |
-| Lignes par fichier et total                    | `wc -l tech-ila/*.md`                                                | 4 343 sur 10 fichiers |
-| Liens relatifs, et liens résolvant sur disque  | extraire les cibles `](./` et `](../`, puis `test -f` sur chacune    | 406 / 406           |
-| Exercices et parité des 8 champs               | `rg -o 'Temps réaliste' tech-ila/ \| wc -l`                          | 46                  |
-| Fiches portant coût et durée de vie            | `rg -c 'Coût : ~' tech-ila/`                                         | 37 lignes de tag chiffrées |
-| Em-dashes et emojis                            | `rg -c '—' tech-ila/`                                                | 0                   |
-| Fiches techno avec ancrage MyFunnyJS cliquable | `rg -c '\]\(\.\./\.\./' tech-ila/0[1-5]*.md`, une fiche à la fois | 33 / 33 |
-| Renvois du mode urgence pointant une ancre    | `rg -o '\]\(\./.*#' tech-ila/09-mode-urgence.md \| wc -l` | 34 / 34 |
-| Exercices portant la ligne « Repli »           | `rg -c 'Repli 100 %' tech-ila/0[1-9]*.md`                            | 46 / 46 |
-| Mots et exemples interdits                     | `rg -i 'emploi garanti\|panier\|todo\|blog' tech-ila/`               | 0 en usage d'exemple |
-
-**Contrat de dépendance envers MyFunnyJS.** TECH-ILA référence MyFunnyJS à l'état de la dernière revue trimestrielle. Un fichier MyFunnyJS référencé ici ne se déplace pas sans que le déplacement soit répercuté dans le même changement : le point de contrôle est le lien, pas le fichier. Le point de couplage le plus fragile est la carte du fichier 07 : en cas de doute, commence par là.
-
----
-
 ## Sections à surveiller
 
 Ce document ne date rien par principe (aucune version épinglée), mais il vieillit quand même. Les zones suivantes bougent plus vite que le reste du corpus. À chaque revue trimestrielle, ouvre-les en premier et pose-toi la question associée.

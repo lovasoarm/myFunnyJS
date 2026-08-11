@@ -175,6 +175,73 @@ Autre variante, dans le même esprit que le module async de MyFunnyJS : un `asyn
 
 À l'opposé : tout est fourni (ORM, admin, auth, migrations, templates). Excellent pour un produit CRUD-lourd avec back-office, où l'interface d'administration générée fait gagner des mois. Le prix réel n'est pas le temps d'apprentissage, c'est l'adhérence : tu suis ses conventions ou tu souffres. Sortir de l'ORM Django coûte plus cher que d'y entrer.
 
+#### Python pour la data et le ML (orientation)
+
+**Tag : CONTEXTUELLE** · Coût : ~6 h avant utilité · Durée de vie : ~8 ans pour les concepts, ~3 ans pour l'outillage · À apprendre après : 8.1 Python
+
+Tu ne vas pas entraîner un modèle de production ici, mais tu vas croiser des équipes qui le font, lire leurs notebooks, et brancher ton backend sur leur sortie. Ce qui se joue à ce stade, c'est de savoir reconnaître qu'un problème **est** un problème de ML avant de passer trois semaines à écrire des `if`.
+
+**La frontière, en une ligne.** Appeler une API de LLM (déjà couvert par [`23_ai_native_dev/`](../../23_ai_native_dev/00_why_ai_native_dev.md)) = consommer un modèle que quelqu'un d'autre a entraîné. Entraîner ou affiner un modèle = produire ce modèle à partir de tes propres données historiques. Le premier geste est du développement backend. Le second est un autre métier, avec ses propres pièges.
+
+**Reconnaître un vrai problème de ML.** Trois signaux, tous nécessaires :
+
+```text
+1. La règle existe dans les données, mais personne ne sait l'écrire à la main.
+   ("qu'est-ce qui distingue un compte frauduleux ?" : tu as 200 000 exemples,
+    et aucune règle en dix lignes ne les sépare correctement)
+2. Tu as un historique étiqueté : des cas passés dont on connaît l'issue.
+3. Se tromper parfois est acceptable, avec un coût d'erreur mesurable.
+```
+
+Si les trois ne sont pas réunis, c'est de la règle métier, et une règle métier explicite bat un modèle : elle se lit, se teste, s'explique à un client, et ne dérive pas quand les données changent. Le réflexe inverse, sortir un modèle parce que le mot est vendeur, produit des systèmes qu'on ne sait ni auditer ni corriger.
+
+**La grille de lecture d'un notebook**, symétrique aux 9 questions de [8.0](#80--la-grille-de-lecture-universelle) :
+
+```text
+1. Quelles données entrent ? (le DataFrame pandas chargé en haut du fichier)
+2. Qu'essaie-t-on de prédire ? (la colonne cible, souvent nommée y)
+3. Comment les données sont-elles séparées ? (train / test : entraînement
+   vs évaluation, jamais mélangés, sinon le score est un mensonge)
+4. Quel modèle et quelle métrique ? (un score d'exactitude seul ne veut rien
+   dire sur des classes déséquilibrées)
+5. Qu'est-ce qui sort, et sous quelle forme mon backend l'appellera-t-il ?
+```
+
+Le vocabulaire minimal : **pandas** (manipulation de tableaux de données en mémoire : c'est du SQL en Python, avec les mêmes réflexes de jointure et d'agrégation), **scikit-learn** (bibliothèque de modèles classiques : ni deep learning, ni GPU), **features** (les colonnes d'entrée), **overfitting** (surapprentissage : le modèle a mémorisé les exemples d'entraînement et s'effondre sur des données neuves : exactement le test qui passe parce qu'il a été écrit après le bug).
+
+```python
+# Le pipeline entier, en un écran. Ce n'est pas un projet, c'est une démystification.
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_iris(return_X_y=True)          # X : les mesures. y : l'espèce à prédire.
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+modele = DecisionTreeClassifier(max_depth=3).fit(X_train, y_train)  # l'entraînement : une ligne
+print(modele.score(X_test, y_test))        # évalué sur des données JAMAIS vues à l'entraînement
+```
+
+Ce que ce code démontre : l'entraînement n'est pas la partie difficile, c'est une ligne. La partie difficile est en amont (des données propres, étiquetées, représentatives) et en aval (est-ce que ce score tient encore dans six mois ?). Un dev backend qui a compris ça pose les bonnes questions en réunion : d'où viennent les étiquettes, sur quoi le modèle a été évalué, et que se passe-t-il quand il se trompe.
+
+**Ce que tu n'as pas besoin de savoir à ce stade** : les architectures de réseaux de neurones, le réglage d'hyperparamètres, le déploiement de GPU. Ça, c'est le métier d'un ML engineer, et le confondre avec le tien te fera perdre des mois.
+
+**Où ça touche ton backend, concrètement.** Le modèle finit derrière un endpoint HTTP (souvent FastAPI, voir plus haut) que ton service appelle comme n'importe quelle dépendance externe : avec un timeout, un repli quand il ne répond pas, et une trace de ce qu'il a répondu. Vu de ton code, c'est un service lent et faillible de plus : les réflexes de [`25_scalability/`](../../25_scalability/00_why_scalability.md) s'appliquent tels quels.
+
+> **Exercice : le notebook démystifié**
+> **Temps réaliste** : 1 h 30 · **Prérequis matériel / compte** : Python 3.11+ et `pip install scikit-learn pandas` · **Coût max** : 0 € ·
+> **Mode** : assistant autorisé
+> **Contraintes** : fais tourner le script ci-dessus, puis change `max_depth` de 3 à 1 puis à 20, et note le score sur `X_test` à chaque fois. Ensuite, écris en trois lignes pourquoi le score d'entraînement et le score de test divergent quand la profondeur augmente.
+> **Réutilise** : la grille de lecture de notebook en 5 questions ci-dessus
+> **Piège** : évaluer le modèle sur `X_train` et se réjouir d'un score de 1.0 : c'est la définition même du surapprentissage.
+> **À observer** : l'écart entre score d'entraînement et score de test selon la profondeur.
+> **Vérification** (observable, chiffrée) : trois valeurs de `max_depth`, trois scores de test notés, et une phrase qui explique la courbe.
+> **Repli 100 % local et gratuit** : le jeu de données est fourni avec scikit-learn, aucun téléchargement ni compte requis, tout tourne hors ligne.
+> **Extension** : remplace le jeu de données par un CSV à toi chargé avec pandas, et vois combien de temps tu passes à nettoyer les données par rapport au temps d'entraînement. C'est le vrai ratio du métier.
+
+**Se périme si :** scikit-learn cesse d'être la porte d'entrée standard des modèles classiques, ou si l'outillage de notebooks est remplacé par une autre interface d'exploration.
+
+
 **Quand ne pas faire de Python.** Un frontend. Un service temps réel à très haute concurrence quand ton équipe est déjà bonne en Node. Un binaire à distribuer.
 
 > **Exercice : portage**
@@ -329,16 +396,16 @@ Thread.ofVirtual().start(() -> {
 
 **Alternatives.** Le niveau 5 enseigne le transfert, pas le choix d'un écosystème : plutôt qu'une liste de frameworks concurrents, reviens à la grille des [9 questions de 8.0](#80--la-grille-de-lecture-universelle) et pose-la sur le prochain écosystème que tu rencontres. Elle te dira où chercher, quel que soit le nom du framework.
 
-> **Exercice de lecture : Spring, jeûne d'IA obligatoire**
-> **Temps réaliste** : 2 h · **Prérequis matériel / compte** : accès à un projet Spring Boot open source · **Coût max** : 0 € ·
+> **Exercice de lecture puis de modification : Spring, jeûne d'IA obligatoire**
+> **Temps réaliste** : 3 h 30 · **Prérequis matériel / compte** : accès à un projet Spring Boot open source, JDK 21+ et Maven ou Gradle installés · **Coût max** : 0 € ·
 > **Mode** : jeûne d'IA obligatoire
-> **Contraintes** : sans écrire une ligne, réponds aux neuf questions de la grille [8.0](#80--la-grille-de-lecture-universelle). Avant d'ouvrir le projet, écris un journal de raisonnement : ce que tu t'attends à trouver, où, et pourquoi : puis compare après lecture.
-> **Réutilise** : la grille des 9 questions
-> **Piège** : chercher le point d'entrée dans un fichier nommé `Main` alors qu'il faut suivre `@SpringBootApplication`.
-> **À observer** : l'écart entre ton journal de raisonnement écrit avant et ce que tu as réellement trouvé.
-> **Vérification** (observable, chiffrée) : les neuf réponses sont écrites avec un nom de fichier et une ligne précis à l'appui, pas une généralité.
-> **Repli 100 % local et gratuit** : tout projet Spring Boot open source cloné en local convient, aucun compte requis.
-> **Extension** : refais l'exercice sur un second projet Spring et vérifie si ton temps de lecture a baissé.
+> **Contraintes** : deux temps. **(1) Lire.** Sans écrire une ligne, réponds aux neuf questions de la grille [8.0](#80--la-grille-de-lecture-universelle). Avant d'ouvrir le projet, écris un journal de raisonnement : ce que tu t'attends à trouver, où, et pourquoi : puis compare après lecture. **(2) Modifier.** Le projet compile et tourne en local. Ajoute un endpoint de lecture sur une ressource existante (par exemple `GET /<ressource>/{id}` s'il n'existe pas, sinon un filtre en paramètre de requête), et une règle de validation sur une entrée existante (champ obligatoire, longueur, format), en respectant les conventions du projet : mêmes annotations, même couche, même style de test que le code voisin.
+> **Réutilise** : la grille des 9 questions, en particulier Q2 (routing), Q4 (validation) et Q5 (erreurs vers HTTP)
+> **Piège** : chercher le point d'entrée dans un fichier nommé `Main` alors qu'il faut suivre `@SpringBootApplication`. Second piège, au moment de modifier : écrire la validation à la main dans le contrôleur alors que le projet utilise déjà des annotations de validation : ta modification doit ressembler au code existant, pas à du NestJS traduit.
+> **À observer** : l'écart entre ton journal de raisonnement écrit avant et ce que tu as réellement trouvé, puis le temps passé à faire compiler ta modification par rapport au temps passé à la concevoir.
+> **Vérification** (observable, chiffrée) : les neuf réponses sont écrites avec un nom de fichier et une ligne précis à l'appui, pas une généralité. Et : ton endpoint répond avec le bon statut sur un cas valide, ta validation renvoie une erreur 400 documentée sur un cas invalide, les deux prouvés par un appel HTTP que tu peux rejouer.
+> **Repli 100 % local et gratuit** : tout projet Spring Boot open source cloné en local convient, aucun compte requis ; si le projet exige une base externe, choisis-en un qui démarre sur une base en mémoire (H2) ou remplace la configuration par un profil local.
+> **Extension** : refais l'exercice sur un second projet Spring et vérifie si ton temps de lecture a baissé. Puis écris en une page ce que la modification t'a appris que la lecture seule ne t'avait pas appris.
 
 ---
 

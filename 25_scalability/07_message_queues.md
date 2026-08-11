@@ -200,6 +200,92 @@ La correction : surveiller la profondeur de la file (queue depth, vu dans `26_ob
 
 ---
 
+## 7) KAFKA CONCRÈTEMENT : LE LOG QU'ON PEUT REJOUER
+
+Une queue classique, c'est une boîte aux lettres : le facteur dépose, tu relèves, la lettre disparaît. Kafka, c'est le journal de bord du camp : chaque événement est écrit à la suite, à l'encre, et personne ne le gomme quand quelqu'un l'a lu. Deux lecteurs différents peuvent lire la même page, chacun à son rythme, et n'importe qui peut revenir trois pages en arrière.
+
+C'est ça, un log distribué (journal ordonné et répliqué sur plusieurs machines) : le message n'est pas consommé au sens "supprimé", il est lu à une position.
+
+```
+QUEUE CLASSIQUE            LOG (Kafka & co)
+[m1][m2][m3]               offset:  0   1   2   3   4
+ worker pop m1              log:   [m1][m2][m3][m4][m5]   <- rien n'est effacé
+ --> m1 disparaît            groupe A lit à l'offset 3
+                             groupe B lit à l'offset 1  (indépendant de A)
+```
+
+### Partition : découper le journal pour aller plus vite
+
+Un seul journal = un seul rythme d'écriture. Kafka découpe donc un **topic** (un sujet, genre `alertes-perimetre`) en **partitions** : plusieurs journaux parallèles pour le même sujet.
+
+Chaque message part dans une partition choisie par sa **clé de partition** (souvent l'identifiant de l'entité concernée). Conséquence directe, et c'est la partie qui compte : l'ordre n'est garanti **qu'à l'intérieur d'une partition**. Tous les événements du secteur nord dans la même partition = ordre garanti pour le secteur nord. Entre secteur nord et secteur sud, aucun ordre global : et tu n'en as pas besoin.
+
+```
+topic "alertes-perimetre"
+├── partition 0  [nord-1][nord-2][nord-3]      <- clé "nord", ordre garanti
+├── partition 1  [sud-1][sud-2]                <- clé "sud", ordre garanti
+└── partition 2  [est-1][est-2][est-3][est-4]  <- clé "est", ordre garanti
+```
+
+C'est la même tension que la section 5 : le parallélisme s'achète en renonçant à un ordre total. Kafka ne supprime pas le compromis, il te laisse choisir sa granularité avec la clé.
+
+### Consumer group : qui lit quoi, sans se marcher dessus
+
+Un **consumer group** (groupe de consommateurs, identifié par un nom) est un ensemble de workers qui se partagent le travail d'un topic. La règle tient en une phrase : chaque partition est assignée à **un seul** membre du groupe à un instant donné.
+
+```
+topic à 3 partitions
+
+groupe "traitement-alertes" avec 2 workers :
+  worker A --> partitions 0 et 1
+  worker B --> partition 2
+
+on ajoute un worker C (rééquilibrage automatique) :
+  A --> p0     B --> p1     C --> p2
+
+on ajoute un worker D :
+  D --> rien du tout. 3 partitions, 4 workers : le 4e attend.
+```
+
+Deux conséquences très concrètes :
+
+- Le nombre de partitions est ton **plafond de parallélisme** pour un groupe. Ajouter des workers au-delà ne sert à rien : c'est la première chose à vérifier quand "on a scalé les workers et ça n'accélère pas".
+- Deux groupes **différents** sur le même topic lisent tout, chacun de son côté. Le groupe "notifications" et le groupe "analytics" voient les mêmes événements sans se gêner : un producteur, plusieurs usages, zéro duplication de la file.
+
+### Offset : la position, pas la suppression
+
+L'**offset** est le numéro de ligne où en est un groupe dans une partition. C'est une donnée que le groupe **commit** (enregistre) : "j'ai traité jusqu'à la ligne 4 812".
+
+```js
+// La mécanique, dépouillée de toute bibliothèque
+async function consommer(partition, groupe) {
+ let offset = await lireOffsetCommit(groupe, partition.id) // reprise où on s'était arrêté
+
+ while (offset < partition.log.length) {
+  const message = partition.log[offset] // on LIT à une position, on ne retire rien
+  await traiter(message)
+  offset++
+  await commitOffset(groupe, partition.id, offset) // on avance le curseur
+ }
+}
+```
+
+Ce que ça change : le crash d'un worker ne perd rien, il repart au dernier offset commité, et les messages déjà traités depuis sont **rejoués**. On retombe pile sur la section 3 : at-least-once, donc idempotence obligatoire. Le log ne te dispense de rien, il rend juste la reprise possible.
+
+### Le replay : la vraie raison d'y venir
+
+Comme rien n'est effacé avant l'expiration de la rétention (durée de conservation configurée, souvent quelques jours), tu peux remettre le curseur d'un groupe à l'offset 0 et **tout relire**. Un bug dans le calcul des scores de risque depuis mardi ? Tu corriges le code, tu remets le groupe au mardi, tu relis. Avec une queue classique, les messages consommés sont partis : tu n'as plus rien à relire, il faut reconstituer à la main depuis la base.
+
+C'est aussi ce qui permet de brancher un nouveau service sur un historique existant : le groupe "analytics" créé aujourd'hui peut lire les événements de la semaine dernière.
+
+Le prix, parce qu'il y en a un : tu stockes tout pendant la rétention (disque, coût), tu gères des partitions et un rééquilibrage qui n'existent pas dans une queue simple, et un replay mal réfléchi renvoie des e-mails déjà envoyés. Un système à faible volume avec des tâches jetables n'a rien à gagner ici : `03-niveau-3-backend.md` de TECH-ILA traite en détail le moment où ce choix devient légitime.
+
+### Ce qu'il faut retenir même quand Kafka aura disparu
+
+Partitions, groupes, offsets, replay : ce ne sont pas des fonctionnalités d'un produit, c'est le modèle "log distribué". Pulsar, Redpanda, Kinesis reprennent les mêmes idées avec d'autres noms. La commande d'installation, elle, aura changé avant que tu aies fini de la retenir.
+
+---
+
 ## TIPS D'ÉVOLUTION TECHNIQUE
 
 Avant, beaucoup d'équipes géraient des tâches asynchrones avec des tables SQL dédiées ("table jobs avec un statut pending/done") interrogées en boucle (polling). Ça marche à petite échelle, mais ça sature vite la DB en lectures inutiles. Maintenant, des systèmes dédiés (RabbitMQ, SQS, Kafka pour des volumes massifs) gèrent nativement le push/pop efficace, les retries, et les dead letter queues, sans réinventer ça à la main sur une table SQL. Le switch existe pour la performance et la fiabilité native, pas par mode : une table SQL en polling reste suffisante pour un petit projet avec peu de volume.
